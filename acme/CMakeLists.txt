@@ -292,6 +292,16 @@ list(APPEND library_source
         #platform/apex_main_struct.h
         platform/application.cpp
         platform/application.h
+        platform/application_array.cpp
+        platform/application_array.h
+        platform/application_base.cpp
+        platform/application_base.h
+        platform/application_container.cpp
+        platform/application_container.h
+        platform/application_exit.cpp
+        platform/application_exit.h
+        #platform/application_flags.cpp
+        platform/application_flags.h
         #platform/app_core.cpp
         #platform/app_core.h
         platform/assert.cpp
@@ -335,6 +345,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/serial.cpp
+        platform/session.cpp
+        platform/session.h
         platform/sub_system.cpp
         platform/sub_system.h
         platform/system.cpp
@@ -906,6 +918,7 @@ list(APPEND library_source
         user/user/element.cpp
         user/user/element.h
         user/user/ewindowflag.h
+        user/user/mouse.h
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
         user/user/os_theme_colors.h
@@ -920,308 +933,20 @@ list(APPEND library_source
 
 
 list(APPEND library_source
-        _.h
-        #_defer.h
-        _start.h
-        #application.h
-        #astr.h
-        #axispolicy/_.h
-        #axispolicy/_c.h
-        #ispolicy/policy_objc.h
-        #xispolicy/policy_objcpp.h
-        #xispolicy/policy_winrt.h
-        #allback.h
-        #compress/_.h
-        #compress/gz.h
-        #compress/zip/_.h
-        #compress/zip/_internal.h
-        #compress/zip/api.h
-        #compress/zip/crypt.h
-        #compress/zip/file.h
-        #compress/zip/impl.h
-        #compress/zip/in_file.h
-        #compress/zip/ioapi.h
-        #compress/zip/iowin32.h
-        #compress/zip/memory_buffer.h
-        #compress/zip/unzip.h
-        console.h
-        constant/_id.h
-        constant/_constant.h
-        constant/character_set.h
-        constant/check.h
-        constant/context.h
-        constant/future.h
-        constant/id.h
-        constant/idpool.h
-        constant/impact.h
-        constant/message.h
-        constant/routine.h
-        constant/simple_command.h
-        constant/source.h
-        constant/status.h
-        constant/status_range_authentication.h
-        #constant/thread.h
-        constant/timer.h
-        constant/user/_.h
-        constant/user/tool_item.h
 
-        exception/_.h
-        exception/_c.h
-        #exception/_const.h
-        exception/_dump_context.h
-        #exception/assert.h
-        #exception/base.h
-        exception/call_stack.h
-        exception/callstack.h
-        exception/cancel.h
-        #exception/debug_stream.h
-        exception/dump_context.h
-        #exception/engine.h
-        exception/exception.cpp
-        exception/exception.h
-        exception/exception2.h
-        exception/exit.cpp
-        exception/exit.h
-        #exception/hresult.h
-        #exception/installing.h
-        #exception/interface_only.h
-        #exception/invalid_argument.h
-        #exception/invalid_character.h
-        #exception/invalid_handle.h
-        #exception/invalid_index.h
-        #exception/invalid_type.h
-        #exception/io.h
-        #exception/memory.h
-        #exception/misc.h
-        #exception/not_implemented.h
-        #exception/not_installed.h
-        #exception/not_licensed.h
-        #exception/not_supported.h
-        #exception/operation_canceled.h
-        #exception/os.h
-        #exception/overflow.h
-        #exception/parsing.h
-        #exception/range.h
-        #exception/resource.h
-        #exception/result.h
-        #exception/runtime.h
-        #exception/simple.h
-        exception/standard.cpp
-        exception/standard.h
-        #exception/system.h
-        #exception/temporary.h
-        #exception/throw.h
-        #exception/todo.h
-        #exception/translator.cpp
-        exception/translator.h
-        exception/trap.h
-        #exception/unhandled_report.h
-        #exception/user.h
-        #exception/void_implementation.h
-        filesystem/_impl.h
-        filesystem/file/_.h
-        filesystem/file/___serialization_draft.h
-        filesystem/file/___serialization_draft001.h
-        filesystem/file/_c.h
-        filesystem/file/_constant.h
-        filesystem/file/_defer.h
-        filesystem/file/_defer_payload_stream.h
-        filesystem/file/_file.h
-        filesystem/file/_impl.h
-        filesystem/file/_papaya.h
-        filesystem/file/_papaya_impl.h
-        filesystem/file/_serializable_impl.h
-        filesystem/file/_stream_process_impl.h
-        filesystem/file/_text_stream_impl.h
-        filesystem/file/_payload_stream_impl.h
-        filesystem/file/binary_stream.h
-        filesystem/file/buffer.h
-        filesystem/file/buffered_file.h
-        filesystem/file/byte_stream.h
-        filesystem/file/byte_stream_memory_file.h
-        filesystem/file/circular_file.h
-        filesystem/file/composite.h
-        filesystem/file/cpp.h
-        filesystem/file/dir.h
-        filesystem/file/exception.h
-        filesystem/file/file.h
-        filesystem/file/file_stream1.h
-        filesystem/file/item.h
-        filesystem/file/item_array.h
-        filesystem/file/listing_provider.h
-        filesystem/file/memory_file.h
-        filesystem/file/memory_map.h
-        filesystem/file/opened.h
-        filesystem/file/ostream_flush.h
-        filesystem/file/path.h
-        filesystem/file/primitive.h
-        #filesystem/file/serializable.h
-        filesystem/file/serialize.h
-        filesystem/file/status.h
-        filesystem/file/stdio_file.cpp
-        filesystem/file/stdio_file.h
-        filesystem/file/stream.h
-        filesystem/file/streamable.h
-        filesystem/file/string_buffer.h
-        filesystem/file/text_file.h
-        filesystem/file/text_stream.h
-        filesystem/file/transfer_file.h
-        filesystem/file/payload_stream.h
-        #filesystem/filesystem.h
-        #filesystem/filesystem/_.h
-        filesystem/filesystem/_impl.h
-        filesystem/filesystem/enumerator.cpp
-        filesystem/filesystem/enumerator.h
-        filesystem/filesystem/listing.h
-        filesystem/filesystem/path.h
-        filesystem/filesystem/path_object.h
-        filesystem/filesystem/path_array.cpp
-        filesystem/filesystem/path_array.h
-        framework.h
-        #amework_c.h
-        graphics/draw2d/_.h
-        graphics/draw2d/_constant.h
-        graphics/draw2d/color.h
-        graphics/draw2d/colorref_array.h
-        #id.h
-        include/_.h
-        include/_c.h
-        include/_c_bridge.h
-        include/_include.h
-        include/_simple_templates.h
-        include/_setup.h
-        include/objc.h
-        include/objcpp.h
-        include/winrt.h
-        inline/__debug_box_clear_impl.h
-        inline/__debug_box_set_impl.h
-        #inline/_acid.h
-        #inline/${PROJECT_NAME}.h
-        inline/_application.h
-        inline/_console_old.h
-        inline/_draw2d_impl.h
-        inline/_new_impl.h
-        inline/application/linux.h
-        #inline/application.h
-        inline/application_common.h
-        inline/console.h
-        inline/console_common.h
-        #inline/library.h
-        ios_aura/ios_aura.h
-        #library.h
-        memory/_heap.h
-        memory/align_byte_count.h
-        memory/allocate.h
-        memory/allocate_processor_cache_oriented.h
-        memory/allocate_system_heap.cpp
-        memory/allocation.h
-        memory/heap_.h
-        memory/heap_c.h
-        memory/heap_item.h
-        memory/heap_item_array.h
-        memory/heap_memory.h
-        memory/malloc.h
-        memory/memory.cpp
-        memory/memory.h
-        memory/memory_allocator.h
-        memory/_new.h
-        memory/os_alloc.h
-        #memory/plex.h
-        #memory/plex_heap1.h
-        #memory/plex_heap_impl1.h
-        #operating_system/_.h
-        #operating_system/_operating_system2.h
+        #   operating_system/android/
         #   operating_system/android/Kerr/LocalMemory.h
         #   operating_system/android/Kerr/kerr.h
         #   operating_system/android/_.h
         #   operating_system/android/_android.h
         #   operating_system/android/android1.h
         #   operating_system/android/application.h
-        #   operating_system/android/
         #   operating_system/android/file.h
         #   operating_system/android/implementation.h
         #   operating_system/android/internal.h
         #   operating_system/android/thread.h
         #   operating_system/serial.h
-        operating_system/_.h
-        operating_system/_application.h
-        operating_system/_impl.h
-        #operating_system/_operating_system.h
-        operating_system/_api.cpp
-        #operating_system/_user.h
-        operating_system/ansi/_.h
-        operating_system/ansi/_ansi.h
-        operating_system/ansi/_c.h
-        operating_system/ansi/ansios_file.h
-        operating_system/ansi/binreloc.h
-        operating_system/ansi/callstack.h
-        operating_system/ansi/datetime_c.h
-        #operating_system/ansi/exception_engine.h
-        operating_system/ansi/file.h
-        operating_system/ansi/file_c.h
-        operating_system/ansi/file_raw.h
-        operating_system/ansi/pmutex_lock.h
-        #operating_system/ansi/pthread.cpp
-        operating_system/ansi/semun.h
-        operating_system/file.h
-        operating_system/graphics.h
-        operating_system/error_code.cpp
-        operating_system/error_code.h
-        operating_system/os_windowing2.h
-        operating_system/parallelization.h
-        operating_system/posix/callstack.cpp
-        operating_system/posix/mq_base.h
-        operating_system/posix/time.h
-        operating_system/solaris/linux_internal.h
-        operating_system/solaris/solaris.h
-        operating_system/solaris/solaris_cairo_keep.h
-        operating_system/solaris/solaris_cross_win_file.h
-        operating_system/solaris/solaris_cross_win_gdi.h
-        operating_system/solaris/solaris_cross_win_gdi_internal.h
-        operating_system/solaris/solaris_debug.h
-        operating_system/solaris/solaris_file.h
-        operating_system/solaris/solaris_file_watcher.h
-        operating_system/solaris/solaris_graphics.h
-        operating_system/solaris/solaris_http.h
-        operating_system/solaris/solaris_http_lib.h
-        operating_system/solaris/solaris_internal.h
-        operating_system/solaris/solaris_process.h
-        operating_system/solaris/solaris_simple_ui.h
-        operating_system/solaris/solaris_solaris.h
-        operating_system/solaris/solaris_user_impl.h
-        operating_system/solaris/solaris_window_xlib.h
-        operating_system/bidirectional_pipe.cpp
-        operating_system/bidirectional_pipe.h
-        operating_system/exit_status.cpp
-        operating_system/exit_status.h
-        #operating_system/main.cpp
-        operating_system/process.cpp
-        operating_system/pipe.cpp
-        operating_system/pipe.h
-        operating_system/text.h
-        operating_system/time.h
-        operating_system/user.h
-        operating_system/universal_windows/_.h
-        #operating_system/universal_windows/_uwp.h
-        #operating_system/universal_windows/_winrt.h
-        operating_system/universal_windows/base_file.h
-        operating_system/universal_windows/exception_engine.h
-        #ode/operating_system/universal_windows/file_winrt.h
-        #operating_system/universal_windows/gdi_winrt.h
-        operating_system/universal_windows/host_interaction.h
-        #operating_system/universal_windows/metrowin_metrowin.h
-        operating_system/universal_windows/parallelization.h
-        operating_system/universal_windows/parallelization_winrt.h
-        operating_system/universal_windows/process.h
-        #operating_system/universal_windows/simple_hold_handle.h
-        #operating_system/universal_windows/simple_ui.h
-        operating_system/universal_windows/sockets.h
-        operating_system/windows/_.h
-        #operating_system/windows/_c.h
-        #operating_system/windows/_windows.h
-        #operating_system/windows/_windows_impl.h
-        #operating_system/windows/api.h
-        #operating_system/windows/callstack.h
+        # #operating_system/windows_common/graphics.h
         # operating_system/windows/d2d1_1.h
         # operating_system/windows/dir.h
         # operating_system/windows/environment_variable.h
@@ -1252,20 +977,372 @@ list(APPEND library_source
         # operating_system/windows_common/comptr.h
         # operating_system/windows_common/cotaskptr.h
         # operating_system/windows_common/file.h
-        # #operating_system/windows_common/graphics.h
         # operating_system/windows_common/new_api.h
         # operating_system/windows_common/parallelization.h
         # operating_system/windows_common/variant.h
         # operating_system/winpr_input.h
+        #_defer.h
+        #allback.h
+        #amework_c.h
+        #application.h
+        #array.h
+        #astr.h
+        #axispolicy/_.h
+        #axispolicy/_c.h
+        #compress/_.h
+        #compress/gz.h
+        #compress/zip/_.h
+        #compress/zip/_internal.h
+        #compress/zip/api.h
+        #compress/zip/crypt.h
+        #compress/zip/file.h
+        #compress/zip/impl.h
+        #compress/zip/in_file.h
+        #compress/zip/ioapi.h
+        #compress/zip/iowin32.h
+        #compress/zip/memory_buffer.h
+        #compress/zip/unzip.h
+        #constant/thread.h
+        #exception/_const.h
+        #exception/assert.h
+        #exception/base.h
+        #exception/debug_stream.h
+        #exception/engine.h
+        #exception/hresult.h
+        #exception/installing.h
+        #exception/interface_only.h
+        #exception/invalid_argument.h
+        #exception/invalid_character.h
+        #exception/invalid_handle.h
+        #exception/invalid_index.h
+        #exception/invalid_type.h
+        #exception/io.h
+        #exception/memory.h
+        #exception/misc.h
+        #exception/not_implemented.h
+        #exception/not_installed.h
+        #exception/not_licensed.h
+        #exception/not_supported.h
+        #exception/operation_canceled.h
+        #exception/os.h
+        #exception/overflow.h
+        #exception/parsing.h
+        #exception/range.h
+        #exception/resource.h
+        #exception/result.h
+        #exception/runtime.h
+        #exception/simple.h
+        #exception/system.h
+        #exception/temporary.h
+        #exception/throw.h
+        #exception/todo.h
+        #exception/translator.cpp
+        #exception/unhandled_report.h
+        #exception/user.h
+        #exception/void_implementation.h
+        #filesystem/file/serializable.h
+        #filesystem/filesystem.h
+        #filesystem/filesystem/_.h
+        #id.h
+        #inline/${PROJECT_NAME}.h
+        #inline/_acid.h
+        #inline/application.h
+        #inline/library.h
+        #ispolicy/policy_objc.h
+        #library.h
+        #memory/plex.h
+        #memory/plex_heap1.h
+        #memory/plex_heap_impl1.h
+        #ode/operating_system/universal_windows/file_winrt.h
+        #operating_system/_.h
+        #operating_system/_operating_system.h
+        #operating_system/_operating_system2.h
+        #operating_system/_user.h
+        #operating_system/ansi/exception_engine.h
+        #operating_system/ansi/pthread.cpp
+        #operating_system/main.cpp
+        #operating_system/universal_windows/_uwp.h
+        #operating_system/universal_windows/_winrt.h
+        #operating_system/universal_windows/gdi_winrt.h
+        #operating_system/universal_windows/metrowin_metrowin.h
+        #operating_system/universal_windows/simple_hold_handle.h
+        #operating_system/universal_windows/simple_ui.h
+        #operating_system/windows/_c.h
+        #operating_system/windows/_windows.h
+        #operating_system/windows/_windows_impl.h
+        #operating_system/windows/api.h
+        #operating_system/windows/callstack.h
         #parallelization/_.h
+        #parallelization/create_thread.h
+        #parallelization/data.h
+        #parallelization/synchronization_object.cpp
+        #parallelization/synchronization_object.h
+        #parallelization/synchronization_result.cpp
+        #parallelization/synchronized_process.cpp
+        #parallelization/synchronized_task.cpp
+        #parallelization/synchronized_task.h
+        #parallelization/thread_impl.h
+        #parallelization/thread_os.h
+        #parallelization/thread_parameter.h
+        #parallelization/zaa_update_task.h
+        #parallelization/zaa_update_task_item.h
+        #parallelization/zaa_update_task_item_array.h
+        #platform/_generic_object_constructor_impl.h
+        #platform/acme.h
+        #platform/acme_str_pool.h
+        #platform/all.h
+        #platform/aura_regex.h
+        #platform/keep_true.h
+        #platform/main.h
+        #platform/message_box.h
+        #platform/net.h
+        #platform/regex.h
+        #platform/restore.h
+        #platform/serial_impl.h
+        #platform/simple_app.h
+        #platform/sprintf.h
+        #platform/static_start.h
+        #platform/static_start_internal.h
+        #platform/system_impl.h
+        #primitive/collection/_.h
+        #primitive/collection/_array_base_impl.h
+        #primitive/collection/_array_impl.h
+        #primitive/collection/_array_impl2.h
+        #primitive/collection/_collection_impl1.h
+        #primitive/collection/_collection_impl2.h
+        #primitive/collection/_fifo_map_impl.h
+        #primitive/collection/_list_impl.h
+        #primitive/collection/_map_impl.h
+        #primitive/collection/_papaya.h
+        #primitive/collection/_papaya_array.h
+        #primitive/collection/_papaya_array2d_impl.h
+        #primitive/collection/_papaya_array_impl.h
+        #primitive/collection/_papaya_impl.h
+        #primitive/collection/_papaya_map.h
+        #primitive/collection/_papaya_map_impl.h
+        #primitive/collection/_point_array.h
+        #primitive/collection/_raw_array_impl.h
+        #primitive/collection/_raw_array_impl2.h
+        #primitive/collection/_sort_array_impl.h
+        #primitive/collection/_sort_map_impl.h
+        #primitive/collection/_string_array_impl.h
+        #primitive/collection/base_2array.h
+        #primitive/collection/decl.h
+        #primitive/collection/runnable_array.h
+        #primitive/collection/string_to_string_map.h
+        #primitive/collection/stringl.h
+        #primitive/collection/template.h
+        #primitive/comparison/var_strict.h
+        #update.h
+        #user/user/_constant.h
+        #user/user/mouse.cpp
+        #xispolicy/policy_objcpp.h
+        #xispolicy/policy_winrt.h
+        _.h
+        _start.h
+        acme.h
+        array2d.h
+        console.h
+        constant/_constant.h
+        constant/_id.h
+        constant/character_set.h
+        constant/check.h
+        constant/context.h
+        constant/future.h
+        constant/id.h
+        constant/idpool.h
+        constant/impact.h
+        constant/message.h
+        constant/routine.h
+        constant/simple_command.h
+        constant/source.h
+        constant/status.h
+        constant/status_range_authentication.h
+        constant/timer.h
+        constant/user/_.h
+        constant/user/tool_item.h
+        exception/_.h
+        exception/_c.h
+        exception/_dump_context.h
+        exception/call_stack.h
+        exception/callstack.h
+        exception/cancel.h
+        exception/dump_context.h
+        exception/exception.cpp
+        exception/exception.h
+        exception/exception2.h
+        exception/exit.cpp
+        exception/exit.h
+        exception/standard.cpp
+        exception/standard.h
+        exception/translator.h
+        exception/trap.h
+        filesystem/_impl.h
+        filesystem/file/_.h
+        filesystem/file/___serialization_draft.h
+        filesystem/file/___serialization_draft001.h
+        filesystem/file/_c.h
+        filesystem/file/_constant.h
+        filesystem/file/_defer.h
+        filesystem/file/_defer_payload_stream.h
+        filesystem/file/_file.h
+        filesystem/file/_impl.h
+        filesystem/file/_papaya.h
+        filesystem/file/_papaya_impl.h
+        filesystem/file/_payload_stream_impl.h
+        filesystem/file/_serializable_impl.h
+        filesystem/file/_stream_process_impl.h
+        filesystem/file/_text_stream_impl.h
+        filesystem/file/binary_stream.h
+        filesystem/file/buffer.h
+        filesystem/file/buffered_file.h
+        filesystem/file/byte_stream.h
+        filesystem/file/byte_stream_memory_file.h
+        filesystem/file/circular_file.h
+        filesystem/file/composite.h
+        filesystem/file/cpp.h
+        filesystem/file/dir.h
+        filesystem/file/exception.h
+        filesystem/file/file.h
+        filesystem/file/file_stream1.h
+        filesystem/file/item.h
+        filesystem/file/item_array.h
+        filesystem/file/listing_provider.h
+        filesystem/file/memory_file.h
+        filesystem/file/memory_map.h
+        filesystem/file/opened.h
+        filesystem/file/ostream_flush.h
+        filesystem/file/path.h
+        filesystem/file/payload_stream.h
+        filesystem/file/primitive.h
+        filesystem/file/serialize.h
+        filesystem/file/status.h
+        filesystem/file/stdio_file.cpp
+        filesystem/file/stdio_file.h
+        filesystem/file/stream.h
+        filesystem/file/streamable.h
+        filesystem/file/string_buffer.h
+        filesystem/file/text_file.h
+        filesystem/file/text_stream.h
+        filesystem/file/transfer_file.h
+        filesystem/filesystem/_impl.h
+        filesystem/filesystem/enumerator.cpp
+        filesystem/filesystem/enumerator.h
+        filesystem/filesystem/listing.h
+        filesystem/filesystem/path.h
+        filesystem/filesystem/path_array.cpp
+        filesystem/filesystem/path_array.h
+        filesystem/filesystem/path_object.h
+        framework.h
+        graphics/draw2d/_.h
+        graphics/draw2d/_constant.h
+        graphics/draw2d/color.h
+        graphics/draw2d/colorref_array.h
+        include/_.h
+        include/_c.h
+        include/_c_bridge.h
+        include/_include.h
+        include/_setup.h
+        include/_simple_templates.h
+        include/objc.h
+        include/objcpp.h
+        include/winrt.h
+        inline/__debug_box_clear_impl.h
+        inline/__debug_box_set_impl.h
+        inline/_application.h
+        inline/_console_old.h
+        inline/_draw2d_impl.h
+        inline/_new_impl.h
+        inline/application/linux.h
+        inline/application_common.h
+        inline/console.h
+        inline/console_common.h
+        ios_aura/ios_aura.h
+        memory/_heap.h
+        memory/_new.h
+        memory/align_byte_count.h
+        memory/allocate.h
+        memory/allocate_processor_cache_oriented.h
+        memory/allocate_system_heap.cpp
+        memory/allocation.h
+        memory/heap_.h
+        memory/heap_c.h
+        memory/heap_item.h
+        memory/heap_item_array.h
+        memory/heap_memory.h
+        memory/malloc.h
+        memory/memory.cpp
+        memory/memory.h
+        memory/memory_allocator.h
+        memory/os_alloc.h
+        operating_system/_.h
+        operating_system/_api.cpp
+        operating_system/_application.h
+        operating_system/_impl.h
+        operating_system/ansi/_.h
+        operating_system/ansi/_ansi.h
+        operating_system/ansi/_c.h
+        operating_system/ansi/ansios_file.h
+        operating_system/ansi/binreloc.h
+        operating_system/ansi/callstack.h
+        operating_system/ansi/datetime_c.h
+        operating_system/ansi/file.h
+        operating_system/ansi/file_c.h
+        operating_system/ansi/file_raw.h
+        operating_system/ansi/pmutex_lock.h
+        operating_system/ansi/semun.h
+        operating_system/bidirectional_pipe.cpp
+        operating_system/bidirectional_pipe.h
+        operating_system/error_code.cpp
+        operating_system/error_code.h
+        operating_system/exit_status.cpp
+        operating_system/exit_status.h
+        operating_system/file.h
+        operating_system/graphics.h
+        operating_system/os_windowing2.h
+        operating_system/parallelization.h
+        operating_system/pipe.cpp
+        operating_system/pipe.h
+        operating_system/posix/callstack.cpp
+        operating_system/posix/mq_base.h
+        operating_system/posix/time.h
+        operating_system/process.cpp
+        operating_system/solaris/linux_internal.h
+        operating_system/solaris/solaris.h
+        operating_system/solaris/solaris_cairo_keep.h
+        operating_system/solaris/solaris_cross_win_file.h
+        operating_system/solaris/solaris_cross_win_gdi.h
+        operating_system/solaris/solaris_cross_win_gdi_internal.h
+        operating_system/solaris/solaris_debug.h
+        operating_system/solaris/solaris_file.h
+        operating_system/solaris/solaris_file_watcher.h
+        operating_system/solaris/solaris_graphics.h
+        operating_system/solaris/solaris_http.h
+        operating_system/solaris/solaris_http_lib.h
+        operating_system/solaris/solaris_internal.h
+        operating_system/solaris/solaris_process.h
+        operating_system/solaris/solaris_simple_ui.h
+        operating_system/solaris/solaris_solaris.h
+        operating_system/solaris/solaris_user_impl.h
+        operating_system/solaris/solaris_window_xlib.h
+        operating_system/text.h
+        operating_system/time.h
+        operating_system/universal_windows/_.h
+        operating_system/universal_windows/base_file.h
+        operating_system/universal_windows/exception_engine.h
+        operating_system/universal_windows/host_interaction.h
+        operating_system/universal_windows/parallelization.h
+        operating_system/universal_windows/parallelization_winrt.h
+        operating_system/universal_windows/process.h
+        operating_system/universal_windows/sockets.h
+        operating_system/user.h
+        operating_system/windows/_.h
         parallelization/_impl.h
         parallelization/_thread_os_create_impl.h
         parallelization/_types.h
         parallelization/common.h
         parallelization/condition.h
-        #parallelization/create_thread.h
         parallelization/critical_section.h
-        #parallelization/data.h
         parallelization/event.h
         parallelization/initial_single_lock.h
         parallelization/manual_reset_event.h
@@ -1280,37 +1357,16 @@ list(APPEND library_source
         parallelization/socket_event.h
         parallelization/synchronization_array.cpp
         parallelization/synchronization_array.h
-        parallelization/synchronous_lock.h
-        #parallelization/synchronization_object.cpp
-        #parallelization/synchronization_object.h
-        #parallelization/synchronization_result.cpp
         parallelization/synchronization_result.h
-        #parallelization/synchronized_process.cpp
         parallelization/synchronized_process.h
-        #parallelization/synchronized_task.cpp
-        #parallelization/synchronized_task.h
+        parallelization/synchronous_lock.h
         parallelization/task.h
-        #parallelization/thread_impl.h
-        #parallelization/thread_os.h
-        #parallelization/thread_parameter.h
         parallelization/tools.cpp
         parallelization/tools.h
-        #parallelization/zaa_update_task.h
-        #parallelization/zaa_update_task_item.h
-        #parallelization/zaa_update_task_item_array.h
         platform/_features.h
-        #platform/_generic_object_constructor_impl.h
         platform/_global.h
         platform/_impl.h
         platform/_platform.h
-        #platform/acme_str_pool.h
-        #platform/all.h
-        #platform/acme.h
-        #platform/aura_regex.h
-        platform/application_array.cpp
-        platform/application_array.h
-        platform/application_container.cpp
-        platform/application_container.h
         platform/auto.h
         platform/auto_pointer.h
         platform/class.h
@@ -1334,16 +1390,10 @@ list(APPEND library_source
         platform/flags.h
         platform/hyperlink.h
         platform/keep.h
-        #platform/keep_true.h
         platform/less.h
         platform/logic.h
         platform/lparam.h
-        #platform/main.h
-        #platform/message_box.h
-        platform/uint32_muldiv.h
-        platform/uint64_muldiv.h
         platform/nanosecond_timer.h
-        #platform/net.h
         platform/number.h
         platform/object_reference_count_debug.cpp
         platform/object_reference_count_debug.h
@@ -1352,23 +1402,15 @@ list(APPEND library_source
         platform/object_type_counter.h
         platform/printf.h
         platform/profiler.h
-        #platform/regex.h
-        #platform/restore.h
         platform/sequence.cpp
         platform/sequencer.h
         platform/serial.h
-        #platform/serial_impl.h
-        #platform/simple_app.h
         platform/simple_log.cpp
         platform/simple_log.h
-        #platform/sprintf.h
-        #platform/static_start.h
-        #platform/static_start_internal.h
         platform/status.h
         platform/string_exchange.cpp
         platform/string_exchange.h
         platform/system.h
-        #platform/system_impl.h
         platform/text.h
         platform/timeout.h
         platform/timer.h
@@ -1379,45 +1421,25 @@ list(APPEND library_source
         platform/timer_task.h
         platform/title.h
         platform/trace_category.h
+        platform/uint32_muldiv.h
+        platform/uint64_muldiv.h
         platform/user_parent.h
         platform/version.h
         primitive/api/api.h
         primitive/api/api_rotate.h
-        #primitive/collection/_.h
-        #primitive/collection/_array_base_impl.h
-        #primitive/collection/_array_impl.h
-        #primitive/collection/_array_impl2.h
-        #primitive/collection/_collection_impl1.h
-        #primitive/collection/_collection_impl2.h
-        #primitive/collection/_fifo_map_impl.h
-        #primitive/collection/_list_impl.h
-        #primitive/collection/_map_impl.h
-        #primitive/collection/_papaya.h
-        #primitive/collection/_papaya_array.h
-        #primitive/collection/_papaya_array2d_impl.h
-        #primitive/collection/_papaya_array_impl.h
-        primitive/collection/_papaya_heap.h
-        #primitive/collection/_papaya_impl.h
-        #primitive/collection/_papaya_map.h
-        #primitive/collection/_papaya_map_impl.h
+        primitive/collection/__payload_array.h
         primitive/collection/_loosely.h
         primitive/collection/_loosely_map.h
-        #primitive/collection/_point_array.h
-        #primitive/collection/_raw_array_impl.h
-        #primitive/collection/_raw_array_impl2.h
-        #primitive/collection/_sort_array_impl.h
-        #primitive/collection/_sort_map_impl.h
-        #primitive/collection/_string_array_impl.h
+        primitive/collection/_papaya_heap.h
         primitive/collection/address_array.h
         primitive/collection/array.h
         primitive/collection/array_base.h
         primitive/collection/attrib_map.h
         primitive/collection/back_insert_iterator.h
-        #primitive/collection/base_2array.h
         primitive/collection/base_enum.h
         primitive/collection/bit_array.h
         primitive/collection/bitset.h
-        primitive/collection/range.h
+        primitive/collection/bool_array.h
         primitive/collection/comparable_array.h
         primitive/collection/comparable_eq_array.h
         primitive/collection/comparable_eq_list.h
@@ -1425,7 +1447,6 @@ list(APPEND library_source
         primitive/collection/comparable_primitive_array.h
         primitive/collection/comparable_raw_array.h
         primitive/collection/composite_array.h
-        #primitive/collection/decl.h
         primitive/collection/deque.h
         primitive/collection/fifo_map.h
         primitive/collection/file_path_map.h
@@ -1435,7 +1456,6 @@ list(APPEND library_source
         primitive/collection/iterable.h
         primitive/collection/iterator.h
         primitive/collection/list.h
-        primitive/collection/bool_array.h
         primitive/collection/map.h
         primitive/collection/map_association.h
         primitive/collection/map_to_smart_pointer.h
@@ -1448,8 +1468,8 @@ list(APPEND library_source
         primitive/collection/priority_queue.h
         primitive/collection/ptr_array.h
         primitive/collection/queue.h
+        primitive/collection/range.h
         primitive/collection/raw_array.h
-        #primitive/collection/runnable_array.h
         primitive/collection/set.h
         primitive/collection/sort.h
         primitive/collection/sort_array.h
@@ -1464,11 +1484,7 @@ list(APPEND library_source
         primitive/collection/string_iterable.h
         primitive/collection/string_list.h
         primitive/collection/string_map.h
-        #primitive/collection/string_to_string_map.h
-        #primitive/collection/stringl.h
-        #primitive/collection/template.h
         primitive/collection/unique_array.h
-        primitive/collection/__payload_array.h
         primitive/comparison/_.h
         primitive/comparison/_c.h
         primitive/comparison/binary.h
@@ -1478,21 +1494,14 @@ list(APPEND library_source
         primitive/comparison/less.h
         primitive/comparison/md5.h
         primitive/comparison/sign.h
-        #primitive/comparison/var_strict.h
         procedure.h
         template/list.h
         user/user/_.h
-        #user/user/_constant.h
         user/user/_constant_key.h
-        user/user/os_colors.h
-        #user/user/mouse.cpp
         user/user/mouse.h
+        user/user/os_colors.h
         version/version.config.h
         version/version.h
-        acme.h
-        array2d.h
-        #array.h
-        #update.h
         )
 
 if (ANDROID)

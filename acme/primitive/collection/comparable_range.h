@@ -30,12 +30,15 @@ public:
    using ITEM = dereference < ITEM_POINTER >;
 
 
-   using BASE_RANGE::BASE_RANGE;
+   //using BASE_RANGE::BASE_RANGE;
 
 
    comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
    comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
    comparable_range() {}
+   comparable_range(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
+   comparable_range(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
+   comparable_range(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
    template<typed_range<iterator> RANGE>
    comparable_range(const RANGE &range) : BASE_RANGE(range) {}
    template<typed_range<const_iterator> RANGE>

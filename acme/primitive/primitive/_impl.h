@@ -244,79 +244,45 @@ inline bool succeeded(const ::property & property)
 }
 
 
+template < typename BASE_TYPE >
+inline ::pointer<BASE_TYPE>particle::__create(::factory::factory* pfactory)
+{
+
+   auto p = pfactory->__create<BASE_TYPE>();
+
+   p->initialize(this);
+
+   return p;
+
+}
 
 
-//
-//template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>matter::__create()
-//{
-//
-//   auto p = ::__create<BASE_TYPE>();
-//
-//   if (p)
-//   {
-//
-//      auto estatus = p->initialize(this);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//   }
-//
-//   return p;
-//
-//}
-//
-//
-//template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>matter::__id_create(const ::atom & atom)
-//{
-//
-//   auto p = ::__id_create<BASE_TYPE>(atom);
-//
-//   if (p)
-//   {
-//
-//      auto estatus = p->initialize(this);
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//   }
-//
-//   return p;
-//
-//}
-//
-//
-//template < typename TYPE >
-//inline ::pointer<TYPE>matter::__create_new()
-//{
-//
-//   ASSERT(::is_set(this));
-//
-//   auto p = ::__create_new<TYPE>();
-//
-//   if (p)
-//   {
-//
-//      p->initialize(this);
-//
-//   }
-//
-//   return p;
-//
-//}
-//
-//
+template < typename BASE_TYPE >
+inline ::pointer<BASE_TYPE>particle::__id_create(const ::atom & atom, ::factory::factory* pfactory)
+{
+
+   auto p = pfactory->__id_create<BASE_TYPE>(atom);
+
+   p->initialize(this);
+
+   return p;
+
+}
+
+
+template < typename TYPE >
+inline ::pointer<TYPE>particle::__create_new()
+{
+
+   //ASSERT(::is_set(this));
+
+   return ::__create_new<TYPE>(this);
+
+   //return p;
+
+}
+
+
 //template < class T >
 //template < typename TEMPLATER >
 //inline pointer < T > & pointer < T >::create(TEMPLATER)

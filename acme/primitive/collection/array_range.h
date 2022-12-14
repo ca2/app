@@ -35,26 +35,31 @@ public:
 
    using ITEM = dereference <ITEM_POINTER>;
 
-   using RANGE_TYPE::RANGE_TYPE;
+   //using BASE_RANGE::BASE_RANGE;
 
-
-   array_range(non_const<ITEM> & item) : RANGE_TYPE(&item, (&item) + 1) {}
+   array_range(enum_no_initialize):BASE_RANGE(e_no_initialize){}
+   array_range(nullptr_t):BASE_RANGE(nullptr){}
+   array_range():BASE_RANGE(){}
+   //array_range(non_const<ITEM> & item) : BASE_RANGE(&item, (&item) + 1) {}
+   array_range(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
+   array_range(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
+   array_range(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
    template<typed_range<iterator> RANGE>
    array_range(const RANGE &range) : BASE_RANGE(range) {}
    template<typed_range<const_iterator> RANGE>
    array_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   array_range(const_iterator data, INTEGRAL count, e_range erange = e_range_none) : RANGE_TYPE(data, count, erange) { }
-   array_range(const_iterator begin, const_iterator end, e_range erange = e_range_none) : RANGE_TYPE(begin, end, erange) {}
+   array_range(const_iterator data, INTEGRAL count, e_range erange = e_range_none) : BASE_RANGE(data, count, erange) { }
+   array_range(const_iterator begin, const_iterator end, e_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
    template < primitive_block BLOCK_TYPE >
    array_range(enum_as_block, const BLOCK_TYPE & block) :
-      RANGE_TYPE(e_no_initialize)
+      BASE_RANGE(e_no_initialize)
    {
       assign_block(block);
    }
    template < typed_block < ITEM > TYPED_BLOCK >
    array_range(enum_as_typed_block, const TYPED_BLOCK & block) :
-      RANGE_TYPE(e_no_initialize)
+      BASE_RANGE(e_no_initialize)
    {
       
       assign_typed_block(block);

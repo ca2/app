@@ -17,7 +17,7 @@ class CLASS_DECL_ACME property_set :
 public:
 
 
-   using ARRAY_BASE = typename property_ptra::ARRAY_BASE;
+   using BASE_ARRAY = property_ptra;
 
 
    using property_ptra::erase;

@@ -141,10 +141,10 @@ public:
    //string_base(const simple_wd16string& simplewd16str);
    //string_base(const simple_wd32string& simplewd32str);
    template < primitive_character CHARACTER2 >
-   string_base(CHARACTER2 chSrc, strsize repeat = 1);
-//   string_base(::ansi_character ansich, strsize repeat = 1);
-//   string_base(::wd16_character wd16ch, strsize repeat = 1);
-//   string_base(::wd32_character wd32ch, strsize repeat = 1);
+   string_base(CHARACTER2 chSrc, strsize repeat);
+   string_base(::ansi_character ansich): NATURAL_POINTER(ansich){}
+   string_base(::wd16_character wd16ch): NATURAL_POINTER(wd16ch){}
+   string_base(::wd32_character wd32ch): NATURAL_POINTER(wd32ch){}
    //string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char, repeat) {}
    //string_base(const ::property & property);
    //string_base(const ::payload & payload);

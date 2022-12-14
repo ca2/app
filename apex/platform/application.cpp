@@ -373,7 +373,7 @@ namespace apex
 
       auto psystem = acmesystem()->m_papexsystem;
 
-      if (psystem->m_bGtkApp)
+      if (acmeapplication()->m_bGtkApp)
       {
 
          auto pnode = psystem->node();
@@ -10115,7 +10115,7 @@ namespace apex
    }
 
 
-   bool application::_handle_uri(const ::block & blockUri)
+   bool application::_handle_uri(const ::string & strUri)
    {
       
       string strHtml;

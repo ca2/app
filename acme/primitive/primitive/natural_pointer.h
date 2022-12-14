@@ -124,6 +124,9 @@ public:
 
 
    inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }
+   natural_pointer(::ansi_character ansichar) : RANGE_TYPE(ansichar) {}
+   natural_pointer(::wd16_character wd16char) : RANGE_TYPE(wd16char) {}
+   natural_pointer(::wd32_character wd32char) : RANGE_TYPE(wd32char) {}
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
 

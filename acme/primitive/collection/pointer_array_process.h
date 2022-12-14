@@ -10,15 +10,15 @@ public:
    using POINTER_ARRAY_PROCESS_BASE_TYPE = typename POINTER_ARRAY_PROCESS::BASE_TYPE;
 
    //using POINTER_ARRAY_PROCESS::POINTER_ARRAY_PROCESS;
-   using ARRAY_BASE = typename POINTER_ARRAY_PROCESS::ARRAY_BASE;
+   using BASE_ARRAY = POINTER_ARRAY_PROCESS;
 
    //using ref_iterator = typename POINTER_ARRAY_PROCESS::ref_iterator;
    //using const_ref_iterator = typename POINTER_ARRAY_PROCESS::const_ref_iterator;
 
 
    pointer_array_process() { }
-   pointer_array_process(const pointer_array_process & array) : POINTER_ARRAY_PROCESS(array) { }
-   pointer_array_process(pointer_array_process && array) noexcept : POINTER_ARRAY_PROCESS(::move(array)) { }
+   pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
+   pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::move(array)) { }
 
    //inline auto ptra(index iStart = 0, index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
 

@@ -121,18 +121,18 @@ namespace sockets_bsd
 
       {
 
-         auto ppair = m_socketmap.get_start();
+         auto iterator = m_socketmap.begin();
 
-         while (ppair != nullptr)
+         while (iterator.is_set())
          {
 
-            if (ppair->element2().is_set())
+            if (iterator->element2().is_set())
             {
 
                try
                {
 
-                  ppair->element2()->close();
+                  iterator->element2()->close();
 
                }
                catch (...)
@@ -143,13 +143,13 @@ namespace sockets_bsd
                //if (m_slave)
                {
 
-                  ppair->element2().release();
+                  iterator->element2().release();
 
                }
 
             }
 
-            ppair = m_socketmap.get_next(ppair);
+            iterator++;
 
          }
 

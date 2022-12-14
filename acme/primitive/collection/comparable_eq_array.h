@@ -21,7 +21,12 @@ public:
    using const_iterator = ARRAY_TYPE::const_iterator;
    
 
-   comparable_eq_array() {}
+   comparable_eq_array(enum_no_initialize):BASE_RANGE(e_no_initialize){}
+   comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
+   comparable_eq_array():BASE_RANGE(){}
+   comparable_eq_array(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
+   comparable_eq_array(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
+   comparable_eq_array(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
    comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
    comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::move(array)) { }

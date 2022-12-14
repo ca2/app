@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_range
+enum enum_range : ::i32
 {
 
    e_range_none = 0,
@@ -149,12 +149,24 @@ public:
    this_iterator m_begin;
    this_iterator m_end;
    e_range m_erange;
+   union
+   {
+      ::byte               m_byte;
+      ::ansi_character     m_ansichar;
+      ::wd16_character     m_wd16char;
+      ::wd32_character     m_wd32char;
+   };
+
+
 
 
    range(enum_no_initialize)
    {
    }
 
+   range(::ansi_character ansichar);
+   range(::wd16_character wd16char);
+   range(::wd32_character wd32char);
    range() : range(nullptr, nullptr, e_range_none)
    {
    }
@@ -163,10 +175,10 @@ public:
    {
    }
 
-   range(ITEM item) : m_begin((this_iterator) &item), m_end((this_iterator) ((&item) + 1)),
-                      m_erange(e_range_read_only_block)
-   {
-   }
+//   range(ITEM item) : m_begin((this_iterator) &item), m_end((this_iterator) ((&item) + 1)),
+//                      m_erange(e_range_read_only_block)
+//   {
+//   }
 
    template<typed_range<iterator> RANGE>
    range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end()),

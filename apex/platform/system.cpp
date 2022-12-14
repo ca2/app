@@ -981,7 +981,7 @@ pacmedirectory->create("/ca2core");
       {
 
          string_array straEnv;
-
+#ifdef WINDOWS_DESKTOP
          if (subsystem()->m_wenvp)
          {
 
@@ -995,7 +995,9 @@ pacmedirectory->create("/ca2core");
             }
 
          }
-         else if (subsystem()->m_envp)
+         else
+#endif
+            if (subsystem()->m_envp)
          {
 
             for (auto env = subsystem()->m_envp; *env != 0; env++)

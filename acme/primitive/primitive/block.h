@@ -52,6 +52,10 @@ struct CLASS_DECL_ACME block :
    //using BLOCK::BLOCK;
 
 
+   block() : BLOCK() {}
+   block(::ansi_character ansichar) : BLOCK(ansichar) {}
+   block(::wd16_character wd16char) : BLOCK(wd16char) {}
+   block(::wd32_character wd32char) : BLOCK(wd32char) {}
    block(const block & block)
    {
       this->m_begin = block.m_begin;

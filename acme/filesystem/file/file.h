@@ -86,7 +86,7 @@ namespace file
 
       virtual void as_memory(memory_base & memory) const;
 
-      virtual void write(const memory_base & memory);
+      virtual void write(const ::block & block);
 
       void write(const void* pdata, memsize nCount) override;
 
@@ -147,7 +147,7 @@ namespace file
       virtual void println(const ::string & str);
       virtual void printf(const char * format, ...);
 
-      virtual void write(const string &);
+      ///virtual void write(const string &);
       virtual bool full_read(void * pdata, memsize nCount);
 
       virtual void write_from_hex(const void * pdata, memsize nCount);

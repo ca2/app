@@ -406,7 +406,7 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add(ARG_T
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array() :
-   ARRAY_BASE::array_base()
+   BASE_ARRAY::array_base()
 {
 
 
@@ -415,7 +415,7 @@ array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array() :
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::array(const array & a) :
-   ARRAY_BASE::array_base(a)
+   BASE_ARRAY::array_base(a)
 {
 
 }

@@ -368,10 +368,10 @@ namespace file
    }
 
 
-   void file::write(const memory_base & base)
+   void file::write(const ::block & block)
    {
 
-      write(base.data(), base.size());
+      write(block.data(), block.size());
 
    }
 
@@ -792,12 +792,12 @@ namespace file
    }
 
 
-   void file::write(const ::string & str)
-   {
-
-      write(str,  str.get_length());
-
-   }
+//   void file::write(const ::string & str)
+//   {
+//
+//      write(str,  str.get_length());
+//
+//   }
 
 
    bool file::is_end_of_file() const 

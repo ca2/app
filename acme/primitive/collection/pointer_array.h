@@ -16,9 +16,6 @@ public:
 
    using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T > >, T >;
 
-   using ARRAY_BASE = typename BASE_ARRAY::ARRAY_BASE;
-
-
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 

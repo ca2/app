@@ -549,7 +549,7 @@ bool property_object::property_set_get_string(string & strResult, const string& 
 
    }
 
-   strResult = linkedproperty->string();
+   strResult = linkedproperty->as_string();
 
    return true;
 
@@ -796,7 +796,7 @@ string property_object::find_string(const ::atom & atom, const ::ansi_character 
 
    }
 
-   return pproperty->get_string(pszDefault);
+   return pproperty->as_string(pszDefault);
 
 }
 

@@ -1485,6 +1485,17 @@ inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_s
 }
 
 
+
+template < ::count c, strsize m_sizeMaximumLength >
+inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
+{
+
+   return ::move(::string(inlinestring) + ::string(sz));
+
+}
+
+
+
 CLASS_DECL_ACME ::string _(const ::string & str);
 
 

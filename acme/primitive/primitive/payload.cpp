@@ -536,7 +536,7 @@ bool payload::convert(const ::payload & payload)
    else if(m_etype == e_type_string)
    {
 
-      m_str = payload.string();
+      m_str = payload.as_string();
 
    }
    else

@@ -1930,13 +1930,13 @@ inline ::string operator +(const char(&sz)[c], const ::atom & atom)
 //}
 
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
-//   string(atom.operator ::string())
-//{
-//
-//
-//}
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
+   string(atom.operator ::string())
+{
+
+
+}
 
 
 //template < typename ITERATOR_TYPE >

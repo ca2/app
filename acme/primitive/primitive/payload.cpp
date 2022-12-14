@@ -716,7 +716,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->f64();
             break;
          case e_type_string:
-            m_str = ::move(this->string());
+            m_str = ::move(this->as_string());
             break;
          case e_type_atom:
             m_atom = ::move(this->atom());
@@ -1922,7 +1922,7 @@ bool payload::is_new_or_null() const
    else
    {
 
-      return string().case_insensitive_order(payload.string());
+      return string().case_insensitive_order(payload.as_string());
 
    }
 
@@ -2038,7 +2038,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
    else
    {
 
-      return string().order(payload.string());
+      return string().order(payload.as_string());
 
    }
 
@@ -2428,15 +2428,16 @@ string payload::get_recursive_string() const
 }
 
 
-string payload::get_string(const char * pszOnNull) const
+string payload::as_string(const char * pszOnNull) const
 {
+
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->get_string(pszOnNull);
+      return m_ppayload->as_string(pszOnNull);
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->get_string(pszOnNull);
+      return m_pproperty->as_string(pszOnNull);
    }
    else if(m_etype == e_type_pstring)
    {
@@ -2580,7 +2581,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      ::string str = this->get_string(pszOnNull);
+      ::string str = this->as_string(pszOnNull);
 
       set_string(str);
 
@@ -4994,7 +4995,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.string() + str);
+         varRet.set_string(varRet.as_string() + str);
 
       }
 
@@ -5011,7 +5012,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
       else
       {
 
-         varRet.set_string(varRet.string() + str);
+         varRet.set_string(varRet.as_string() + str);
 
       }
 
@@ -5019,7 +5020,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
    else
    {
 
-      varRet.set_string(varRet.string() + str);
+      varRet.set_string(varRet.as_string() + str);
 
    }
 
@@ -9877,7 +9878,7 @@ payload & payload::add(const ::payload & payload)
       {
 
          // simple implementation
-         string_array_reference().add(payload.string());
+         string_array_reference().add(payload.as_string());
 
       }
 
@@ -10089,7 +10090,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (string() + payload.string());
+         operator= (string() + payload.as_string());
 
       }
       else
@@ -10169,7 +10170,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (string() + payload.string());
+         operator= (string() + payload.as_string());
 
       }
       else
@@ -10183,7 +10184,7 @@ payload & payload::add(const ::payload & payload)
    else if(payload.is_text())
    {
 
-      operator= (string() + payload.string());
+      operator= (string() + payload.as_string());
 
    }
    else

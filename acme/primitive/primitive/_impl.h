@@ -309,7 +309,7 @@ inline void particle::__construct(::pointer<BASE_TYPE>& p, ::factory::factory * 
 
    }
 
-   auto ptypeNew = pfactoryitem->create();
+   auto ptypeNew = pfactoryitem->__create();
 
    p = ptypeNew;
 

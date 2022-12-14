@@ -167,7 +167,7 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content-type").operator ::string().case_insensitive_find("application/x-www-form-urlencoded") < 0)
+            if (inheader("content-type").as_string().case_insensitive_find("application/x-www-form-urlencoded") < 0)
             {
 
                inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type"), "; ");

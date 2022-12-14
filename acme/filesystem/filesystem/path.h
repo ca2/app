@@ -49,6 +49,7 @@ namespace file
 
 
       path() { m_epath = e_path_file; }
+      path(enum_path epath) { m_epath = epath; }
       path(enum_no_initialize) : string(e_no_initialize) { }
       path(nullptr_t) { }
       //path(enum_for_moving) { }

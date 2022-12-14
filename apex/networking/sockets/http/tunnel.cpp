@@ -211,7 +211,7 @@ namespace sockets
    }
    void http_tunnel::OnHeader(atom key, const ::string & strValue)
    {
-      inheader(key) = strValue;
+      inheader(key.as_string()) = strValue;
    }
 
 

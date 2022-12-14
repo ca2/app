@@ -529,7 +529,7 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.operator ::string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.as_string());
 
                      }
 
@@ -719,7 +719,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.operator ::string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.as_string());
 
                      }
                      if( quote == '"' || quote == '\'' )
@@ -2018,7 +2018,7 @@ namespace xml
       
       property * attr = GetChildAttr( lpszName, attrname );
 
-      return attr ? attr->operator ::string() : string("");
+      return attr ? attr->as_string() : string("");
 
    }
 

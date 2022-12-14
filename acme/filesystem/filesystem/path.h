@@ -982,18 +982,18 @@ namespace file
    //}
 
 
-//   inline path & path::operator += (const ::string & str)
-//   {
-//
-//      range.span("\\/");
-//
-//      auto pathThis = *this;
-//
-//      pathThis.::string::operator = (file_path_normalize(pathThis + range, m_epath));
-//
-//      return *this;
-//
-//   }
+   inline path & path::operator += (const ::string & str)
+   {
+
+      str.span("\\/");
+
+      auto pathThis = *this;
+
+      pathThis.::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
+
+      return *this;
+
+   }
 
 
 

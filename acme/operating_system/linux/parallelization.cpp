@@ -12,6 +12,14 @@
 //void xcb_asynchronous(::procedure function);
 
 
+namespace acme{
+
+
+   class acme * g_p;
+
+} //namespace acme
+
+
 void task_set_name(htask_t htask, const char * psz)
 {
 
@@ -75,7 +83,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 }
 
 
-CLASS_DECL_ACME ::acme::system * acmesystem();
+//CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
 void main_asynchronous(const ::procedure & procedure)
@@ -97,7 +105,7 @@ void main_asynchronous(const ::procedure & procedure)
 
                             };
 
-   auto psystem = acmesystem();
+   auto psystem = ::acme::g_p->m_psubsystem->acmesystem();
 
    psystem->windowing_post(predicate);
 

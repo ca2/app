@@ -1361,11 +1361,11 @@ namespace networking_bsd
       if (::str().is_simple_natural(str))
          return ::str().to_i32(str);
 
-      if (str.case_insensitive_order("http"))
+      if (str.case_insensitive_equals("http"))
       {
          return 80;
       }
-      else if (str.case_insensitive_order("https"))
+      else if (str.case_insensitive_equals("https"))
       {
          return 443;
       }

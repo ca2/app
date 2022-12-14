@@ -91,7 +91,7 @@ const char * callstack::xxxstack_trace() const
 }
 
 
-CLASS_DECL_ACME  ::pointer<callstack>get_callstack(const char* pszFormat, iptr iSkip, void* caller_address, iptr iCount)
+string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
 {
 
    if (iSkip >= 0)

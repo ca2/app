@@ -12,6 +12,9 @@
 #include "networking_bsd/sockets/ssl/client_context_map.h"
 
 
+::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+
+
 #if defined(LINUX) || defined(FREEBSD)
 #undef USE_MISC
 #include <unistd.h>
@@ -94,7 +97,7 @@ static int find_session_key(::sockets_bsd::tcp_socket *c, unsigned char key_name
    for (auto & ticketkey : c->m_ticketkeya)
    {
       // Check if we have a match for tickets.
-      if (__memcmp(ticketkey.key_name, key_name, 16) == 0)
+      if(memory_order(ticketkey.key_name, key_name, 16) == 0)
       {
          *key = ticketkey;
          result = true;

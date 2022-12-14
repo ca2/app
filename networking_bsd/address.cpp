@@ -3,6 +3,9 @@
 #include "networking.h"
 
 
+inline ::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+
+
 namespace networking_bsd
 {
 
@@ -358,7 +361,7 @@ namespace networking_bsd
 
          __memand(&a2, &a2, &aM, sizeof(a2));
 
-         return __memcmp(&a1, &a2, sizeof(aM)) == 0;
+         return ::memory_order(&a1, &a2, sizeof(aM)) == 0;
 
 #endif
 
@@ -381,7 +384,7 @@ namespace networking_bsd
 
          __memand(&a2, &a2, &aM, sizeof(a2));
 
-         return __memcmp(&a1, &a2, sizeof(aM)) == 0;
+         return ::memory_order(&a1, &a2, sizeof(aM)) == 0;
 
 #endif
 
@@ -409,13 +412,13 @@ namespace networking_bsd
       if (_is_ip6() && paddress2->_is_ip6())
       {
 
-         return __memcmp(&u.m_addr6.sin6_addr, &paddress2->u.m_addr6.sin6_addr, sizeof(in6_addr)) == 0;
+         return ::memory_order(&u.m_addr6.sin6_addr, &paddress2->u.m_addr6.sin6_addr, sizeof(in6_addr)) == 0;
 
       }
       else if (_is_ip4() && paddress2->_is_ip4())
       {
 
-         return __memcmp(&u.m_addr.sin_addr, &paddress2->u.m_addr.sin_addr, sizeof(in_addr)) == 0;
+         return ::memory_order(&u.m_addr.sin_addr, &paddress2->u.m_addr.sin_addr, sizeof(in_addr)) == 0;
 
       }
 

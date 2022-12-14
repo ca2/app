@@ -206,11 +206,11 @@ namespace sockets_bsd
 
       auto psocket2 = __Socket(psocket);
 
-      auto passociation = m_socketmapAdd.get_association(psocket2->GetSocketId());
+      auto iterator = m_socketmapAdd.get_association(psocket2->GetSocketId());
 
-      passociation->m_psocket = psocket2;
+      iterator->m_element2 = psocket2;
 
-      move(passociation, &m_socketmapAdd);
+      move(iterator.get(), &m_socketmapAdd);
 
    }
 
@@ -220,11 +220,11 @@ namespace sockets_bsd
 
       auto psocket2 = __Socket(psocket);
 
-      auto passociation = m_socketmapAdd.get_association(psocket2->GetSocketId());
+      auto iterator = m_socketmapAdd.get_association(psocket2->GetSocketId());
 
-      passociation->m_psocket = psocket2;
+      iterator->m_element2 = psocket2;
 
-      move(passociation, &m_socketmapAdd);
+      move(iterator.get(), &m_socketmapAdd);
 
    }
 
@@ -232,7 +232,7 @@ namespace sockets_bsd
    void socket_handler::move(socket_map::association* passociation, socket_map* psocketmap)
    {
 
-      socket* psocket = dynamic_cast <socket*> (passociation->m_psocket.m_p);
+      socket* psocket = dynamic_cast <socket*> (passociation->m_element2.m_p);
 
       //if (psocket->m_psockethandler.is_set())
       //{

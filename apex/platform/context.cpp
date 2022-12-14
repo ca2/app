@@ -446,7 +446,7 @@ namespace apex
 
       }
 
-      path += ::file::e_flag_final_path;
+      path.set(::file::e_flag_final_path);
 
       return path;
 

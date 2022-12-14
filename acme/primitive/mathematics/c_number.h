@@ -279,8 +279,10 @@ class time;
 
 */
 
+
 namespace numeric_info_internal
 {
+
 
    template < typename T >
    class CLASS_DECL_ACME numeric_info < ::c_number < T > > :
@@ -291,7 +293,8 @@ namespace numeric_info_internal
 
    };
 
-}
+
+} // namespace numeric_info_internal
 
 
 //template < typename T >

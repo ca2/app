@@ -9,6 +9,7 @@
 //#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 //#include "acme/platform/acme.h"
+//#include "main1.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/set_app_id.h"
@@ -490,32 +491,32 @@ void main::system_construct(const ::string_array & straParam)
 
 #else
 
-
-void main::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
-{
-
-   m_strCommandLine = pszCommandLine;
-
-   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
-
-   //m_poslocal = nullptr;
-
-   //zero(m_mainrunnera);
-
-   //auto estatus =
-   //
-   on_system_construct();
-
-//   if(!estatus)
-//   {
 //
-//      return estatus;
+//void main::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
+//{
 //
-//   }
+//   m_strCommandLine = pszCommandLine;
 //
-//   return estatus;
-
-}
+//   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+//
+//   //m_poslocal = nullptr;
+//
+//   //zero(m_mainrunnera);
+//
+//   //auto estatus =
+//   //
+//   on_system_construct();
+//
+////   if(!estatus)
+////   {
+////
+////      return estatus;
+////
+////   }
+////
+////   return estatus;
+//
+//}
 
 
 #endif

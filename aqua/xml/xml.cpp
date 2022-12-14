@@ -161,7 +161,7 @@ namespace xml
       str += opt->m_chQuote;
       string strValue;
       if (opt->m_bReferenceValue && opt->m_pentities)
-         strValue = opt->m_pentities->entity_to_ref(prop.operator ::string());
+         strValue = opt->m_pentities->entity_to_ref(prop.as_string());
       else
          strValue = prop;
 

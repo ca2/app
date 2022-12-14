@@ -100,7 +100,7 @@ namespace text
       string body(const char * psz);
 
       bool matches(const context * pcontext, const ::atom & atom, const char * psz) const;
-      bool begins(const context * pcontext, const char * psz, const ::atom & atom) const;
+      bool begins(const context * pcontext, const ::string & str, const ::atom & atom) const;
       bool begins_eat(const context * pcontext, string & str, const ::atom & atom) const;
 
 

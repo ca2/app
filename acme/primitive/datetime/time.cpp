@@ -7,6 +7,7 @@
 #include "acme/primitive/datetime/_string.h"
 //#include "acme/operating_system/time.h"
 #include "acme/exception/not_implemented.h"
+#include "acme/platform/debug.h"
 #include "acme/primitive/string/str.h"
 
 

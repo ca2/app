@@ -64,10 +64,10 @@ namespace file
         // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
       path(const path& path);
-      //path(const ::atom & atom) : path(atom.operator string()){}
-      //path(const ::payload & payload);
-      //path(const ::property & property);
-      //path(const ::string & str);
+      path(const ::atom & atom) : path(atom.operator string()){}
+      path(const ::payload & payload);
+      path(const ::property & property);
+//      path(const ::string & str);
       ~path() noexcept;
 
 
@@ -211,9 +211,9 @@ namespace file
 
 
       //path & operator += (const path & path);
-      //path & operator += (const ::string & str);
-      path & operator += (const ::const_ansi_raw_range & ansirange);
-      using path_meta::operator+=;
+      path & operator += (const ::string & str);
+      //path & operator += (const ::const_ansi_raw_range & ansirange);
+      //using path_meta::operator+=;
       path operator / (const path & path) const;
       path operator / (const ::ansi_string & str) const;
       path operator / (const char * psz) const;
@@ -242,7 +242,7 @@ namespace file
       //string operator << (const ::ansi_string & str) const { return arg(str); }
 
       //path & operator = (const char * psz);
-      path & operator += (const char * psz);
+      //path & operator += (const char * psz);
 
       //path & operator = (const ::payload & payload);
       //path & operator += (const ::payload & payload);
@@ -251,10 +251,10 @@ namespace file
       //path & operator += (const property & property);
 
       //path & operator = (const wstring & wstr);
-      path & operator += (const wstring & wstr);
+      //path & operator += (const wstring & wstr);
 
       //path & operator = (const ::wide_character * psz);
-      path & operator += (const ::wide_character * psz);
+      //path & operator += (const ::wide_character * psz);
 
       //path operator * () const;
 
@@ -854,20 +854,20 @@ namespace file
 //   }
 
 
-   inline path& path::operator += (const ::const_ansi_raw_range & range)
-   {
+   //inline path& path::operator += (const ::const_ansi_raw_range & range)
+   //{
 
-      string str(range);
+   //   string str(range);
 
-      str.trim_left("\\/");
+   //   str.trim_left("\\/");
 
-      string strThis = *this;
+   //   string strThis = *this;
 
-      string ::operator = (file_path_normalize(strThis + str, m_epath));
+   //   string ::operator = (file_path_normalize(strThis + str, m_epath));
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
 //   inline path & path::operator += (const ::string & str)
@@ -1228,12 +1228,12 @@ namespace file
 //   }
 
 
-   inline path& path::operator += (const char* psz)
-   {
+   //inline path& path::operator += (const char* psz)
+   //{
 
-      return operator += (string(psz));
+   //   return operator += (string(psz));
 
-   }
+   //}
 
 //   inline path& path::operator = (const wstring& wstr)
 //   {
@@ -1242,10 +1242,10 @@ namespace file
 //
 //   }
 
-   inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
+   //inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
 
-   //inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(psz)); }
-   inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(psz)); }
+   ////inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(psz)); }
+   //inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(psz)); }
 
    //void path::to_string(string & str) const
    //{

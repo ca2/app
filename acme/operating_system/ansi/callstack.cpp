@@ -16,38 +16,34 @@
 
 void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pmessage, void *address);
 
-namespace acme
+string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, int iSkip)
 {
 
+   ::string strCallstack;
 
-   string _ansi_stack_trace(void *const *ppui, int frames, const char *pszFormat, int iSkip)
+   ::acme::malloc<char **> messages(::backtrace_symbols(ppui, frames));
+
+   //char szN[24];
+
+   //*_strS = '\0';
+
+   //char syscom[1024];
+
+   //const char * func;
+   //const char * file;
+   //unsigned iLine;
+
+   auto ppMessages = messages.get();
+
+   int i = iSkip;
+
+   for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
    {
 
-      ::string strCallstack;
-
-      ::acme::malloc<char **> messages(::backtrace_symbols(ppui, frames));
-
-      //char szN[24];
-
-      //*_strS = '\0';
-
-      //char syscom[1024];
-
-      //const char * func;
-      //const char * file;
-      //unsigned iLine;
-
-      auto ppMessages = messages.get();
-
-      int i = iSkip;
-
-      for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
-      {
-
-         //printf("backtrace %s\n", *ppMessages);
+      //printf("backtrace %s\n", *ppMessages);
 #ifdef __USE_BFD
 
-         if(resolve_addr_file_func_line(((void **)ppui)[i], &file, &func, iLine))
+      if(resolve_addr_file_func_line(((void **)ppui)[i], &file, &func, iLine))
             {
 
 
@@ -60,25 +56,36 @@ namespace acme
             }
 #endif // __USE_BFD
 
-         auto pmessage = *ppMessages;
+      auto pmessage = *ppMessages;
 
-         //printf("%s", pmessage);
+      //printf("%s", pmessage);
 
-         string strSymbolName;
+      string strSymbolName;
 
-         string strAddress;
+      string strAddress;
 
-         backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
+      backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
 
-         string strLine;
+      string strLine;
 
-         strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
+      strLine.format("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
 
-         strCallstack += strLine;
+      strCallstack += strLine;
 
-      }
+   }
 
-      return strCallstack;
+   return strCallstack;
+
+}
+
+
+namespace acme
+{
+
+
+   void node::defer_update_callstack()
+   {
+
 
    }
 
@@ -86,11 +93,13 @@ namespace acme
    string node::get_callstack(const char *pszFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
-      const int iSize = 100;
+      const int iMaximumFramesToCapture = 100;
 
-      void *buf[iSize];
+      void * stack[iMaximumFramesToCapture];
 
-      string str = _ansi_stack_trace(buf, minimum(iCount, iSize), pszFormat, iSkip);
+      auto frames = ::backtrace(stack, iMaximumFramesToCapture);
+
+      string str = _ansi_stack_trace(stack, minimum(iCount, frames), pszFormat, iSkip);
 
       return str;
 

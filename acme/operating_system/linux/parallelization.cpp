@@ -15,7 +15,7 @@
 namespace acme{
 
 
-   class acme * g_p;
+   extern class acme * g_p;
 
 } //namespace acme
 

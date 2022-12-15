@@ -9,7 +9,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat);
+CLASS_DECL_ACME string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat, int iSkip);
 
 
 

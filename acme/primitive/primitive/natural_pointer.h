@@ -155,7 +155,7 @@ public:
    void destroy()
    {
 
-      if (::is_set(this->begin()))
+      if (this->is_natural_pointer() && ::is_set(this->begin()))
       {
 
          //if (this->is_string())

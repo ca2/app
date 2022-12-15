@@ -16,7 +16,7 @@ string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, in
 
    auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-   return _ansi_stack_trace(stack, frames, pszFormat);
+   return _ansi_stack_trace(stack, frames, pszFormat, iSkip);
 
 }
 

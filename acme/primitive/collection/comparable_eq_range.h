@@ -46,9 +46,10 @@ public:
    comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
 
 
-   template < primitive_range RANGE >
-   comparable_eq_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
-   comparable_eq_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
+   //template < primitive_range RANGE >
+   //comparable_eq_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_eq_range & operator = (const comparable_eq_range & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_eq_range & operator = (comparable_eq_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
    using BASE_RANGE::_equals;
 

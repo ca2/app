@@ -68,7 +68,7 @@ public:
 
  
    array_range & operator = (const array_range & array_range) { RANGE_TYPE::operator=(array_range); return *this; }
-   array_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
+   array_range & operator = (array_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
 
    //array_range(const ITEM * data) :range(data) { }

@@ -48,10 +48,10 @@ public:
    comparable_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
 
 
-   template < primitive_range RANGE >
-   comparable_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
-   comparable_range & operator = (const THIS_RANGE & range) { BASE_RANGE::operator=(range); return *this; }
-   comparable_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
+   //template < primitive_range RANGE >
+   //comparable_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_range & operator = (const comparable_range & range) { BASE_RANGE::operator=(range); return *this; }
+   comparable_range & operator = (comparable_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
 
    using BASE_RANGE::_order;

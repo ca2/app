@@ -53,9 +53,6 @@ struct CLASS_DECL_ACME block :
 
 
    block() : BLOCK() {}
-   block(::ansi_character ansichar) : BLOCK(ansichar) {}
-   block(::wd16_character wd16char) : BLOCK(wd16char) {}
-   block(::wd32_character wd32char) : BLOCK(wd32char) {}
    block(const block & block)
    {
       this->m_begin = block.m_begin;
@@ -82,9 +79,9 @@ struct CLASS_DECL_ACME block :
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
-   block(const void * begin, const void * end, e_range erange = e_range_none) : BLOCK((const ::byte *)begin, (const ::byte *)end, erange) {}
+   block(const void * begin, const void * end) : BLOCK((const ::byte *)begin, (const ::byte *)end) {}
    template < primitive_integral INTEGRAL >
-   block(const void * data, INTEGRAL count, e_range erange = e_range_none) : BLOCK((::byte *) data, count, erange) { }
+   block(const void * data, INTEGRAL count) : BLOCK((::byte *) data, count) { }
 
    block & operator = (const block & block) 
    {

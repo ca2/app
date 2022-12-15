@@ -42,8 +42,8 @@ public:
    array(::count n, ARG_TYPE t);
    array(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
    template < primitive_integral INTEGRAL >
-   array(const_iterator begin, INTEGRAL count, e_range erange = e_range_none) : BASE_ARRAY(begin, count, erange) {}
-   array(const_iterator begin, const_iterator end, e_range erange = e_range_none) : BASE_ARRAY(begin, end, erange) {}
+   array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >(::move(a)) { }
    ~array() override;
 

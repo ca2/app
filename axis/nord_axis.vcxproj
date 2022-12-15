@@ -489,7 +489,7 @@
     <ClInclude Include="platform\cpu_architecture.h" />
     <ClInclude Include="platform\cregexp.h" />
     <ClInclude Include="platform\cregexp_util.h" />
-    <ClInclude Include="platform\debug.h" />
+    <ClInclude Include="platform\Debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\department_container.h" />

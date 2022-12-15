@@ -351,7 +351,7 @@
     <ClInclude Include="aura\aura\const.h" />
     <ClInclude Include="aura\aura\constraint.h" />
     <ClInclude Include="aura\aura\core1.h" />
-    <ClInclude Include="aura\aura\debug.h" />
+    <ClInclude Include="aura\aura\Debug.h" />
     <ClInclude Include="aura\aura\document_manager_container.h" />
     <ClInclude Include="aura\aura\history.h" />
     <ClInclude Include="aura\aura\insert_iterator.h" />

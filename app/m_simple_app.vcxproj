@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="debug|ARM">
-      <Configuration>debug</Configuration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="debug|Win32">
-      <Configuration>debug</Configuration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="debug|x64">
-      <Configuration>debug</Configuration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -25,17 +25,17 @@
     <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
@@ -43,15 +43,15 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
@@ -62,8 +62,8 @@
   <PropertyGroup>
     <PackageCertificateKeyFile>Direct3DApp2_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\release\$(SolutionName)\$(PlatformName)\</OutDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\Release\$(SolutionName)\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
     <ReferencePath>$(VCInstallDir)lib</ReferencePath>
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
@@ -72,60 +72,60 @@
     <LinkIncremental>false</LinkIncremental>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\release\$(SolutionName)\$(PlatformName)\</OutDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\Release\$(SolutionName)\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
-    <OutDir>$(SolutionDir)..\..\..\release\$(SolutionName)\$(PlatformName)\</OutDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\..\Release\$(SolutionName)\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(SolutionName)\$(PlatformName)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <SubSystem Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">Windows</SubSystem>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../nodelfs/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Windows</SubSystem>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../nodelfs/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       
-      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='debug|x64'">$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../nodelfs/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='debug|x64'">$(OutDir)$(TargetName).lib</ImportLibrary>
-      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">$(OutDir)$(TargetName).lib</ImportLibrary>
-      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</IgnoreAllDefaultLibraries>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir);$(SolutionDir)../../time/library/$(PlatformName)/$(Configuration)/;$(SolutionDir)../../nodelfs/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</IgnoreAllDefaultLibraries>
       
     </Link>
     <ClCompile>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/thirdparty/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include/;;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../nodelfs/thirdparty;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">Async</ExceptionHandling>
-      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</CompileAsManaged>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</RuntimeTypeInfo>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">false</CompileAsManaged>
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">true</CompileAsWinRT>
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">Async</ExceptionHandling>
-      <StringPooling Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</StringPooling>
-      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</FunctionLevelLinking>
-      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</EnableParallelCodeGeneration>
-      <FloatingPointModel Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">Fast</FloatingPointModel>
-      <FloatingPointExceptions Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</FloatingPointExceptions>
-      <CreateHotpatchableImage Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</CreateHotpatchableImage>
-      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">false</OpenMPSupport>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='debug|x64'">Async</ExceptionHandling>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</CompileAsManaged>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">true</RuntimeTypeInfo>
-      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">false</OpenMPSupport>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='debug|x64'">true</RuntimeTypeInfo>
-      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</OpenMPSupport>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Async</ExceptionHandling>
+      <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</RuntimeTypeInfo>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</CompileAsManaged>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</CompileAsWinRT>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Async</ExceptionHandling>
+      <StringPooling Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</StringPooling>
+      <FunctionLevelLinking Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</FunctionLevelLinking>
+      <EnableParallelCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EnableParallelCodeGeneration>
+      <FloatingPointModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Fast</FloatingPointModel>
+      <FloatingPointExceptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</FloatingPointExceptions>
+      <CreateHotpatchableImage Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CreateHotpatchableImage>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</OpenMPSupport>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_APP_SIMPLE_SIMPLE_DRAWING_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Async</ExceptionHandling>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</RuntimeTypeInfo>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</OpenMPSupport>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</RuntimeTypeInfo>
+      <OpenMPSupport Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</OpenMPSupport>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -147,9 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="simple_drawing.cpp" />
     <ClCompile Include="simple_drawing_application.cpp" />

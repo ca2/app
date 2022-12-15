@@ -93,7 +93,7 @@ namespace acme
 //
 //      }
 
-       factory()->add_factory_item< ::acme::system >();
+       factory()->add_factory_item < ::acme::system >();
        factory()->add_factory_item < ::acme::session >();
 
       //if (!g_p)
@@ -266,9 +266,9 @@ namespace acme
 
          ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
-         psystem->initialize_system();
-
          ::set_task(psystem);
+
+         psystem->initialize_system();
 
          //psystem->acmeapplication() = pacmeapplication;
 

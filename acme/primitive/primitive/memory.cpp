@@ -481,17 +481,17 @@ void memory::to_sz(char * sz, strsize len) const
 
 
 
-
-CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
-{
-
-   if(::is_null(l) || ::is_null(s))
-   {
-
-      throw exception(error_bad_argument);
-
-   }
-
-   return _memory_find(l, l_len, s, s_len);
-
-}
+//
+//CLASS_DECL_ACME const void * memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
+//{
+//
+//   if(::is_null(l) || ::is_null(s))
+//   {
+//
+//      throw exception(error_bad_argument);
+//
+//   }
+//
+//   return _memory_find(l, l_len, s, s_len);
+//
+//}

@@ -227,8 +227,8 @@ public:
    ::block & block() { return *this; }
    const ::block & block() const { return *this; }
 
-   //inline bool is_set() const { return m_memory.is_set(); }
-   //inline bool is_empty() const { return m_memory.is_empty(); }
+   inline bool is_set() const { return MEMORY::is_set(); }
+   inline bool is_empty() const { return MEMORY::is_empty(); }
    inline bool has_data() const { return this->size() > 0; }
 
    inline byte operator [] (::index i) const { return data()[i]; }
@@ -343,6 +343,7 @@ public:
 
    byte * find(const ::block& block, ::index iStart = 0) const;
    ::index find_index(const ::block& block, ::index iStart = 0) const;
+   ::index find_index(char ch, ::index iStart = 0) const;
    byte* rear_find(const ::block& block, ::index iStart = 0) const;
    ::index reverse_find_index(const ::block& block, ::index iStart = 0) const;
    byte* reverse_find_byte_not_in_block(const ::block& block, ::index iStart = 0) const;

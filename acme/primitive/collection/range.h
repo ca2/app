@@ -2,15 +2,17 @@
 #pragma once
 
 
-enum enum_range : ::i32
-{
+//enum enum_range
+//{
+//
+//   e_range_none,
+//   e_range_string,
+//
+//};
+//
+//
+//DECLARE_ENUMERATION(e_range, enum_range);
 
-   e_range_none = 0,
-   e_range_null_terminated = 1,
-   e_range_read_only_block = 2,
-   e_range_natural_pointer = 4,
-
-};
 
 template < primitive_range RANGE >
 constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize count)
@@ -19,12 +21,9 @@ constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize c
    return {
       range.begin() + start,
       ((count >= 0) ? ::clipped_add(range.begin(), start + count, range.begin(), range.end()) :
-      ::clipped_add(range.end(), count, range.begin(), range.end())),
-      range.m_erange};
+      ::clipped_add(range.end(), count, range.begin(), range.end()))};
 
 }
-
-DECLARE_ENUMERATION(e_range, enum_range);
 
 
 template<typename ITERATOR_TYPE>
@@ -44,15 +43,6 @@ struct get_iterator_item<ITEM_TYPE *>
 
 };
 
-
-//template < typename ITEM_TYPE >
-//struct get_type_item_pointer< const ITEM_TYPE * >
-//{
-//
-//   using ITEM = ITEM_TYPE;
-//
-//};
-//
 
 template<typename TYPE>
 struct get_type_item_pointer
@@ -146,28 +136,16 @@ public:
    using CONST_ITEM = add_const<THIS_ITEM>;
 
 
-   this_iterator m_begin;
-   this_iterator m_end;
-   e_range m_erange;
-   union
-   {
-      ::byte               m_byte;
-      ::ansi_character     m_ansichar;
-      ::wd16_character     m_wd16char;
-      ::wd32_character     m_wd32char;
-   };
-
-
+   this_iterator     m_begin;
+   this_iterator     m_end;
+   //e_range           m_erange = e_range_none;
 
 
    range(enum_no_initialize)
    {
    }
 
-   range(::ansi_character ansichar);
-   range(::wd16_character wd16char);
-   range(::wd32_character wd32char);
-   range() : range(nullptr, nullptr, e_range_none)
+   range() : range(nullptr, nullptr)
    {
    }
 
@@ -175,56 +153,43 @@ public:
    {
    }
 
-//   range(ITEM item) : m_begin((this_iterator) &item), m_end((this_iterator) ((&item) + 1)),
-//                      m_erange(e_range_read_only_block)
-//   {
-//   }
+   range(const range & range) : m_begin(range.m_begin), m_end(range.m_end) {}
+   range(range && range) : m_begin(range.m_begin), m_end(range.m_end) { range.m_begin = nullptr; range.m_end = nullptr; }
 
    template<typed_range<iterator> RANGE>
-   range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end()),
-                               m_erange(range.m_erange)
+   range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end())/*, m_erange(range.m_erange)*/
    {
    }
 
    template<typed_range<const_iterator> RANGE>
-   range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end),
-                               m_erange(range.m_erange)
+   range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end)/*, m_erange(range.m_erange)*/
    {
    }
 
    template<typename TYPE>
-   range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) span_zero_item(p)),
-                     m_erange(e_range_null_terminated | (is_const<TYPE> ? e_range_read_only_block : e_range_none))
+   range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) span_zero_item(p))
    {
    }
 
    template<::count count>
-   range(const ITEM(&array)[count]) : range(array, count, e_range_read_only_block)
-   {
-   }
-
-   template<::count count>
-   range(const ITEM(&array)[count], e_range erange) : m_begin((this_iterator) array),
-                                                      m_end((this_iterator) array + count),
-                                                      m_erange(erange | e_range_read_only_block)
+   range(const ITEM(&array)[count]) : range(array, count)
    {
    }
 
    template<primitive_integral INTEGRAL>
-   range(const_iterator begin, INTEGRAL count, e_range erange = e_range_read_only_block) : m_begin(
-      (this_iterator) begin), m_end((this_iterator) (begin + count)), m_erange(erange)
+   range(const_iterator begin, INTEGRAL count) : m_begin(
+      (this_iterator) begin), m_end((this_iterator) (begin + count))
    {
    }
 
-   range(const_iterator begin, const_iterator end, e_range erange = e_range_read_only_block) : m_begin(
-      (this_iterator) begin), m_end((this_iterator) end), m_erange(erange)
+   range(const_iterator begin, const_iterator end) : m_begin(
+      (this_iterator) begin), m_end((this_iterator) end)
    {
    }
 
    template<::comparison::equality<ITEM> EQUALITY>
-   range(const_iterator begin, EQUALITY equality, e_range erange = e_range_read_only_block) : m_begin(
-      (this_iterator) begin), m_end((this_iterator) span_zero_item(begin, equality)), m_erange(
-      erange | e_range_null_terminated)
+   range(const_iterator begin, EQUALITY equality) : m_begin(
+      (this_iterator) begin), m_end((this_iterator) span_zero_item(begin, equality))
    {
    }
 
@@ -234,7 +199,20 @@ public:
 
       m_begin = range.m_begin;
       m_end = range.m_end;
-      m_erange = range.m_erange;
+      /*m_erange = range.m_erange;*/
+
+      return *this;
+
+   }
+
+
+   range & operator=(range && range)
+   {
+
+      m_begin = range.m_begin;
+      m_end = range.m_end;
+      range.m_begin = nullptr;
+      range.m_end = nullptr;
 
       return *this;
 
@@ -249,13 +227,9 @@ public:
    }
 
 
-   constexpr bool is_null_terminated() const noexcept { return m_erange & e_range_null_terminated; }
-   constexpr bool is_read_only_block() const noexcept { return m_erange & e_range_read_only_block; }
-   constexpr bool is_natural_pointer() const noexcept { return m_erange & e_range_natural_pointer; }
-
-   inline void set_null_terminated(bool bSet = true) { m_erange.set(e_range_null_terminated, bSet); }
-   inline void set_read_only_block(bool bSet = true) { m_erange.set(e_range_read_only_block, bSet); }
-   inline void set_natural_pointer(bool bSet = true) { m_erange.set(e_range_natural_pointer, bSet); }
+   /*bool is_string() const { return m_erange & e_range_string; }
+   void set_string_flag() { m_erange |= e_range_string; }
+   void clear_string_flag() { m_erange -= e_range_string; }*/
 
 
    constexpr auto offset_of(const_iterator p) const

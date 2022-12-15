@@ -21,7 +21,6 @@ public:
       
       this->m_begin = m_sz;
       this->m_end = this->m_begin;
-      this->m_erange = e_range_null_terminated;
       m_sz[0] = 0;
 
    }

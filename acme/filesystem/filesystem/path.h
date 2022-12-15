@@ -1083,7 +1083,7 @@ namespace file
    inline path path::operator / (const char* psz) const
    {
 
-      return operator /(::file::path(psz));
+      return operator /(::string(psz));
 
    }
 

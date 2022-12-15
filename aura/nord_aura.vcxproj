@@ -518,7 +518,7 @@
     <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
     <ClCompile Include="graphics\draw2d\color_filter.cpp" />
     <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
-    <ClCompile Include="graphics\draw2d\debug.cpp" />
+    <ClCompile Include="graphics\draw2d\Debug.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
@@ -665,7 +665,7 @@
     <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
-    <ClCompile Include="windowing\debug.cpp" />
+    <ClCompile Include="windowing\Debug.cpp" />
     <ClCompile Include="windowing\desktop_environment.cpp" />
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\graphics_lock.cpp" />

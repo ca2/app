@@ -16,9 +16,10 @@ class array_range :
 public:
 
 
-   using RANGE = array_range < RANGE_TYPE >;
-
    using BASE_RANGE = RANGE_TYPE;
+
+   using THIS_RANGE = ::array_range < BASE_RANGE >;
+
 
    using CONST_RAW_RANGE = RANGE_TYPE::CONST_RAW_RANGE;
 
@@ -40,17 +41,15 @@ public:
    array_range(enum_no_initialize):BASE_RANGE(e_no_initialize){}
    array_range(nullptr_t):BASE_RANGE(nullptr){}
    array_range():BASE_RANGE(){}
-   //array_range(non_const<ITEM> & item) : BASE_RANGE(&item, (&item) + 1) {}
-   array_range(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
-   array_range(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
-   array_range(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
+   array_range(const array_range & array_range) : BASE_RANGE(array_range) {}
+   array_range(array_range && array_range) : BASE_RANGE(::move(array_range)) {}
    template<typed_range<iterator> RANGE>
    array_range(const RANGE &range) : BASE_RANGE(range) {}
    template<typed_range<const_iterator> RANGE>
    array_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   array_range(const_iterator data, INTEGRAL count, e_range erange = e_range_none) : BASE_RANGE(data, count, erange) { }
-   array_range(const_iterator begin, const_iterator end, e_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
+   array_range(const_iterator data, INTEGRAL count) : BASE_RANGE(data, count) { }
+   array_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
    template < primitive_block BLOCK_TYPE >
    array_range(enum_as_block, const BLOCK_TYPE & block) :
       BASE_RANGE(e_no_initialize)
@@ -69,7 +68,7 @@ public:
 
  
    array_range & operator = (const array_range & array_range) { RANGE_TYPE::operator=(array_range); return *this; }
-   //array_range & operator = (array_range && array_range) { RANGE_TYPE::operator=(::move(array_range)); return *this; }
+   array_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
 
    //array_range(const ITEM * data) :range(data) { }
@@ -94,14 +93,6 @@ public:
 
       this->m_end = (iterator)((::byte *)this->begin() + block.length_in_bytes() / this->item_size());
 
-      this->m_erange = block.m_erange & e_range_read_only_block;
-
-      if(block.item_size() >= this->item_size() ? block.is_null_terminated() : false)
-      {
-
-         this->m_erange |= e_range_null_terminated;
-
-      }
 
    }
 

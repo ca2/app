@@ -234,7 +234,7 @@
     <ClCompile Include="message\application.cpp" />
     <ClCompile Include="message\channel.cpp" />
     <ClCompile Include="message\command.cpp" />
-    <ClCompile Include="message\debug.cpp" />
+    <ClCompile Include="message\Debug.cpp" />
     <ClCompile Include="message\dispatcher.cpp" />
     <ClCompile Include="message\message.cpp" />
     <ClCompile Include="message\simple_command.cpp" />

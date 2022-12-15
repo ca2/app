@@ -2087,6 +2087,23 @@ byte * memory_base::find(const ::block & block, ::index iStart) const
 }
 
 
+::index memory_base::find_index(char ch, ::index iStart) const
+{
+
+   auto p = memory_find(data() + iStart, size() - iStart, (byte *)&ch, 1);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - data();
+
+}
+
+
 ::index memory_base::find_index(const ::block & block, ::index iStart) const
 {
 

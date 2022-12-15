@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="debug|Android">
-      <Configuration>debug</Configuration>
+    <ProjectConfiguration Include="Debug|Android">
+      <Configuration>Debug</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="memdleak|Android">
@@ -17,12 +17,12 @@
       <Configuration>profiler</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="release|Android">
-      <Configuration>release</Configuration>
+    <ProjectConfiguration Include="Release|Android">
+      <Configuration>Release</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="static_debug|Android">
-      <Configuration>static_debug</Configuration>
+    <ProjectConfiguration Include="StaticDebug|Android">
+      <Configuration>StaticDebug</Configuration>
       <Platform>Android</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -34,7 +34,7 @@
     <ProjectName>aura</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Android'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -43,7 +43,7 @@
     <AndroidStlType>gnustl_static</AndroidStlType>
     <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Android'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -61,7 +61,7 @@
     <AndroidStlType>gnustl_static</AndroidStlType>
     <AndroidAPILevel>android-9</AndroidAPILevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|Android'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -86,11 +86,11 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|Android'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|Android'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
@@ -98,7 +98,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|Android'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
@@ -111,7 +111,7 @@
     <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|Android'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
     <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
@@ -120,11 +120,11 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|Android'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
     <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
@@ -133,7 +133,7 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -146,11 +146,11 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|Android'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Android'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
     <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
@@ -159,7 +159,7 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -172,7 +172,7 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -185,11 +185,11 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\release\$(PlatformName)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\Release\$(PlatformName)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|Android'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -250,7 +250,7 @@
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|Android'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -285,7 +285,7 @@
       <AdditionalDependencies>aura;axis;base;axiszlib;axisfreeimage;axisfreetype;axiscairo;axisopenssl;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\release\$(PlatformName)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\Release\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -344,7 +344,7 @@
       </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\release\$(PlatformName)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\Release\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -368,7 +368,7 @@
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_debug|Android'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -403,7 +403,7 @@
       </AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\release\$(PlatformName)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\Release\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -513,7 +513,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aura\aura\core_platform.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\_core.cpp" />
     <ClCompile Include="aura\plugin\_plugin.cpp" />
@@ -523,52 +523,52 @@
     <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
     <ClCompile Include="user\user\user_orto_button.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_appearance.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_constants.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_control_box.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_control_box_button.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_dock_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_move_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_size_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_sys_menu_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_work_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_work_set_client_interface.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_work_set_listener.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\frame\experience_frame_work_set_listener_array.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\experience_interaction.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\experience\experience_experience.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="aura\aura\aura.h" />
@@ -698,70 +698,70 @@
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_item.h" />
     <ClCompile Include="aura\aura\aura.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_application.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_constraint.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_Debug.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_history.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_library.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_logic.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_match.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_os_history.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_patch.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_profiler.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_simple_app.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_strn.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_str_format.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_system.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_timer_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_timer_listener.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\core_Timer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='debug|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='release|Android'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">Create</PrecompiledHeader>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='debug|Android'">CompileAsCppHeader</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='release|Android'">CompileAsCppHeader</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">CompileAsCppHeader</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Android'">CompileAsCppHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="framework\framework.h" />
     <ClInclude Include="math\binary_operation.h" />
@@ -906,202 +906,202 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aura\plugin\plugin_history.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\plugin\plugin_host_interaction.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\plugin\plugin_instance.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\plugin\plugin_plugin.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\plugin\plugin_run_start_installer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\plugin\plugin_system.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="database\databaseuser\database_list_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_library.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_left_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_path_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_tab_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
 
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
 
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_info_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_thumbnail.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
 
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_main_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_item.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="math\binary_operation.cpp" />
     <ClCompile Include="math\math.cpp" />
@@ -1115,295 +1115,295 @@
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="primitive\int_biunique.cpp" />
     <ClCompile Include="user\menu\user_menu.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu_button.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu_central.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu_item.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu_list_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_child_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_form_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_frame_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_list_ctrl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_list_header_ctrl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_main_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_menu_bar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_printer_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_static.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_status_bar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_tab_ctrl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_tab_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_toolbar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\simple\simple_tree_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_userex.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_button.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_check_box.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_combo_box.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_combo_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_control_property.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_core.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_data_exchange.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_document_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_edit_plain_text_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_elastic_slider.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_form.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_form_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_form_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_front_end.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_front_end_schema.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_image_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list_cache.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list_cache_interface.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list_data_interface.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_list_header.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_main_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_menu_list_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_meta_button.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_meta_control_box.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_multiple_document_template.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_network_configuration.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_notification_area.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_notify_icon.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_notify_icon_listener.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_shell.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_single_document_template.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_split_bar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_split_layout.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_split_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_split_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_static_control.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_statusbar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_step_slider.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tab.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tab_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tab_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
 
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_toolbar.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_toolbar_ctrl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tool_cmd_ui.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tool_tip_tool.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tool_tip_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tree.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tree_data.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_tree_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_impact_line.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_dialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_child_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_document.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
 
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_menu_document.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_menu_frame.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_menu_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_message_box.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_pane_split_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_pane_tab_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_pane_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_property_page.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_property_sheet.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_split_impact.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_impact_lines.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_xfplayer_impact_line_selection.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

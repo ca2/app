@@ -188,7 +188,7 @@
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
-    <ClCompile Include="exception\debug.cpp" />
+    <ClCompile Include="exception\Debug.cpp" />
     <ClCompile Include="exception\dump_context.cpp" />
     <ClCompile Include="exception\dump_floating_point.cpp" />
     <ClCompile Include="exception\exception.cpp" />
@@ -321,7 +321,7 @@
     <ClCompile Include="operating_system\android\android1.cpp" />
     <ClCompile Include="operating_system\android\application_system_run.cpp" />
     <ClCompile Include="operating_system\android\callstack.cpp" />
-    <ClCompile Include="operating_system\android\debug.cpp" />
+    <ClCompile Include="operating_system\android\Debug.cpp" />
     <ClCompile Include="operating_system\android\dir.cpp" />
     <ClCompile Include="operating_system\android\error.cpp" />
     <ClCompile Include="operating_system\android\exception.cpp" />
@@ -362,7 +362,7 @@
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
-    <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\Debug.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
@@ -415,7 +415,7 @@
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\conversation_message.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
-    <ClCompile Include="platform\debug.cpp" />
+    <ClCompile Include="platform\Debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
@@ -904,7 +904,7 @@
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\conversation_message.h" />
     <ClInclude Include="platform\c_class.h" />
-    <ClInclude Include="platform\debug.h" />
+    <ClInclude Include="platform\Debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\display.h" />

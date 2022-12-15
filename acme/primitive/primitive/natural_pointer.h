@@ -124,9 +124,6 @@ public:
 
 
    inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }
-   natural_pointer(::ansi_character ansichar) : RANGE_TYPE(ansichar) {}
-   natural_pointer(::wd16_character wd16char) : RANGE_TYPE(wd16char) {}
-   natural_pointer(::wd32_character wd32char) : RANGE_TYPE(wd32char) {}
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
 
@@ -144,26 +141,35 @@ public:
    inline natural_pointer() : natural_pointer(e_no_initialize)
    {
 
-      this->set_natural_pointer();
-
       natural_pointer_default_construct();
 
    }
    ~natural_pointer()
    {
 
-      defer_destroy();
+      destroy();
 
    }
 
 
-   void defer_destroy()
+   void destroy()
    {
 
       if (::is_set(this->begin()))
       {
 
-         this->_natural_release(NATURAL_META_DATA::from_data(this->begin()));
+         //if (this->is_string())
+         //{
+
+            this->_natural_release(NATURAL_META_DATA::from_data(this->begin()));
+
+//            this->clear_string_flag();
+
+  //       }
+
+         this->m_begin = nullptr;
+
+         this->m_end = nullptr;
 
       }
 
@@ -175,10 +181,15 @@ public:
 
       if (this != &natural_pointer)
       {
-      
-         natural_pointer.metadata()->natural_add_ref();
 
-         defer_destroy();
+         //if (natural_pointer.is_string())
+         //{
+
+            natural_pointer.metadata()->natural_add_ref();
+
+         //}
+
+         destroy();
 
          RANGE_TYPE::operator = (natural_pointer);
 
@@ -192,10 +203,10 @@ public:
    natural_pointer & operator = (natural_pointer && natural_pointer) 
    { 
 
-      if (this != &natural_pointer)
+      if (this->begin() != natural_pointer.begin())
       {
 
-         defer_destroy();
+         destroy();
 
          RANGE_TYPE::operator = (::move(natural_pointer));
 
@@ -209,11 +220,13 @@ public:
    void natural_pointer_default_construct()
    {
 
-      auto p = default_construct_natural_pointer();
+      auto p = this->default_construct_natural_pointer();
 
       this->m_begin = (iterator) p->begin();
 
       this->m_end = (iterator) p->end();
+
+      //this->set_string_flag();
 
    }
 
@@ -276,6 +289,8 @@ public:
       this->m_begin = (iterator) p->begin();
 
       this->m_end = (iterator) p->end();
+      
+      //this->set_string_flag();
 
    }
 
@@ -300,6 +315,8 @@ public:
 
             }
 
+            //this->set_string_flag();
+
          }
 
          this->m_begin = (iterator)pNew->begin();
@@ -316,7 +333,14 @@ public:
    void natural_release()
    {
 
-      DATA * pdata = (DATA *) this->m_begin;
+      DATA * pdataOld = (DATA *)this->m_begin;
+      
+      //if (this->is_string())
+      //{
+
+      //   pdataOld = (DATA *)this->m_begin;
+
+      //}
 
       auto p = default_construct_natural_pointer();
 
@@ -324,7 +348,14 @@ public:
 
       this->m_end = (iterator)p->end();
 
-      natural_release(pdata);
+      //this->set_string_flag();
+
+      //if (::is_null(pdataOld))
+      //{
+
+         natural_release(pdataOld);
+
+      //}
 
    }
 

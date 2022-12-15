@@ -220,7 +220,7 @@
     <ClCompile Include="..\exception\callstack.cpp" />
     <ClCompile Include="..\exception\cancel.cpp" />
     <ClCompile Include="..\exception\const.cpp" />
-    <ClCompile Include="..\exception\debug.cpp" />
+    <ClCompile Include="..\exception\Debug.cpp" />
     <ClCompile Include="..\exception\dump.cpp" />
     <ClCompile Include="..\exception\dump_context.cpp" />
     <ClCompile Include="..\exception\dump_floating_point.cpp" />
@@ -408,7 +408,7 @@
     <ClCompile Include="..\node\posix\pipe.cpp" />
     <ClCompile Include="..\os\android\application_system_run.cpp" />
     <ClCompile Include="..\os\android\c.cpp" />
-    <ClCompile Include="..\os\android\debug.cpp" />
+    <ClCompile Include="..\os\android\Debug.cpp" />
     <ClCompile Include="..\os\android\dir.cpp" />
     <ClCompile Include="..\os\android\exception_engine.cpp" />
     <ClCompile Include="..\os\android\file.cpp" />
@@ -427,7 +427,7 @@
     <ClCompile Include="..\os\ansios\base.cpp" />
     <ClCompile Include="..\os\ansios\binreloc.cpp" />
     <ClCompile Include="..\os\ansios\datetime.cpp" />
-    <ClCompile Include="..\os\ansios\debug.cpp" />
+    <ClCompile Include="..\os\ansios\Debug.cpp" />
     <ClCompile Include="..\os\ansios\exception_engine.cpp" />
     <ClCompile Include="..\os\ansios\file.cpp" />
     <ClCompile Include="..\os\ansios\file_raw.cpp" />
@@ -449,7 +449,7 @@
     <ClCompile Include="..\os\cross\windows\thread_local_storage.cpp" />
     <ClCompile Include="..\os\cross\windows\user.cpp" />
     <ClCompile Include="..\os\cross\windows\windows.cpp" />
-    <ClCompile Include="..\os\debug.cpp" />
+    <ClCompile Include="..\os\Debug.cpp" />
     <ClCompile Include="..\os\file.cpp" />
     <ClCompile Include="..\os\http.cpp" />
     <ClCompile Include="..\os\parallelization.cpp" />
@@ -490,7 +490,7 @@
     <ClCompile Include="..\platform\aura_str_pool.cpp" />
     <ClCompile Include="..\platform\build_debug.cpp" />
     <ClCompile Include="..\platform\checked.cpp" />
-    <ClCompile Include="..\platform\debug.cpp" />
+    <ClCompile Include="..\platform\Debug.cpp" />
     <ClCompile Include="..\platform\display.cpp" />
     <ClCompile Include="..\platform\exclusive.cpp" />
     <ClCompile Include="..\platform\factory.cpp" />
@@ -724,7 +724,7 @@
     <ClInclude Include="..\acme\acme\cpu_architecture.h" />
     <ClInclude Include="..\acme\acme\cregexp.h" />
     <ClInclude Include="..\acme\acme\cregexp_util.h" />
-    <ClInclude Include="..\acme\acme\debug.h" />
+    <ClInclude Include="..\acme\acme\Debug.h" />
     <ClInclude Include="..\acme\acme\definition.h" />
     <ClInclude Include="..\acme\acme\department.h" />
     <ClInclude Include="..\acme\acme\department_container.h" />
@@ -999,7 +999,7 @@
     <ClInclude Include="..\exception\callstack.h" />
     <ClInclude Include="..\exception\call_stack.h" />
     <ClInclude Include="..\exception\cancel.h" />
-    <ClInclude Include="..\exception\debug.h" />
+    <ClInclude Include="..\exception\Debug.h" />
     <ClInclude Include="..\exception\debug_stream.h" />
     <ClInclude Include="..\exception\dump_context.h" />
     <ClInclude Include="..\exception\engine.h" />
@@ -1311,7 +1311,7 @@
     <ClInclude Include="..\platform\cpu_architecture.h" />
     <ClInclude Include="..\platform\cregexp.h" />
     <ClInclude Include="..\platform\cregexp_util.h" />
-    <ClInclude Include="..\platform\debug.h" />
+    <ClInclude Include="..\platform\Debug.h" />
     <ClInclude Include="..\platform\definition.h" />
     <ClInclude Include="..\platform\department.h" />
     <ClInclude Include="..\platform\department_container.h" />

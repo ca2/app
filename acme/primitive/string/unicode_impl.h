@@ -336,18 +336,18 @@ inline ::i32 unicode_to_upper_case(::i32 i)
 inline const ::wd32_character * wd32_scan(const ::const_wd32_range & block, const ::const_wd32_range & blockCharacters)
 {
 
-   if (block.is_null_terminated() && blockCharacters.is_null_terminated())
-   {
+   //if (block.is_null_terminated() && blockCharacters.is_null_terminated())
+   //{
 
-      return wd32_pbrk((::wd32_character *)block.data(), blockCharacters.data());
+   //   return wd32_pbrk((::wd32_character *)block.data(), blockCharacters.data());
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
       return block.scan(blockCharacters, ::comparison::comparison < ::wd32_character >());
 
-   }
+//   }
 
 }
 

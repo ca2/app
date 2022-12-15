@@ -36,9 +36,6 @@ public:
    comparable_range(enum_no_initialize) : RANGE_TYPE(e_no_initialize) {}
    comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
    comparable_range() {}
-   comparable_range(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
-   comparable_range(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
-   comparable_range(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
    template<typed_range<iterator> RANGE>
    comparable_range(const RANGE &range) : BASE_RANGE(range) {}
    template<typed_range<const_iterator> RANGE>
@@ -46,9 +43,9 @@ public:
    explicit comparable_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
    explicit comparable_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
    template < primitive_integral INTEGRAL >
-   comparable_range(const_iterator begin, INTEGRAL count, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, count, erange) {}
-   comparable_range(const_iterator begin, const_iterator end, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, end, erange) {}
-   comparable_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), e_range_null_terminated | e_range_read_only_block) {}
+   comparable_range(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
+   comparable_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   comparable_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
 
 
    template < primitive_range RANGE >

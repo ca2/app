@@ -340,6 +340,16 @@ inline string_base < ITERATOR_TYPE >::string_base(const CHARACTER2 * pszSource, 
    string_base(e_no_initialize)
 {
 
+   //if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
+   //{
+
+   //   this->m_begin = pszSource + start;
+   //   this->m_end = this->m_begin + count;
+
+   //   return;
+
+   //}
+
    start_count_length(start, count, pszSource);
 
    auto dstlen = utf_to_utf_length(this->begin(), pszSource + start, count);
@@ -355,7 +365,7 @@ inline string_base < ITERATOR_TYPE >::string_base(const CHARACTER2 * pszSource, 
 
       auto pszTarget = create_string(dstlen);
 
-      utf_to_utf(pszTarget, pszSource, count);
+      utf_to_utf(pszTarget, pszSource + start, count);
 
       this->release_string_buffer(dstlen);
 
@@ -432,43 +442,27 @@ inline void string_base < ITERATOR_TYPE >::construct2(const ::range < const CHAR
 
    }
 
-   if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
-   {
+   //if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
+   //{
 
-      if (range.is_natural_pointer() && rangeStartCount.begin() == range.begin() && rangeStartCount.end() == range.end())
-      {
+   //   if (rangeStartCount.begin() == range.begin() && rangeStartCount.end() == range.end())
+   //   {
 
-         this->create_assign_natural_meta_data(NATURAL_META_DATA::from_data(range.begin()));
+   //      this->create_assign_natural_meta_data(NATURAL_META_DATA::from_data(range.begin()));
 
-         this->m_erange = e_range_natural_pointer;
+   //      return;
 
-      }
-      else
-      {
+   //   }
 
-         RANGE::operator =(rangeStartCount);
+   //}
 
-         this->m_erange -= e_range_natural_pointer;
+   auto dstlen = utf_to_utf_length(this->begin(), range.begin(), range.size());
 
-         this->m_erange -= e_range_null_terminated;
+   auto pszTarget = create_string(dstlen);
 
-      }
+   utf_to_utf(pszTarget, range.begin(), range.size());
 
-   }
-   else
-   {
-
-      auto dstlen = utf_to_utf_length(this->begin(), range.begin(), range.size());
-
-      auto pszTarget = create_string(dstlen);
-
-      utf_to_utf(pszTarget, range.begin(), range.size());
-
-      this->release_string_buffer(dstlen);
-
-      this->m_erange = e_range_natural_pointer | e_range_null_terminated;
-
-   }
+   this->release_string_buffer(dstlen);
 
 }
 
@@ -2646,13 +2640,13 @@ template < typename ITERATOR_TYPE >
 typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::fork_string(strsize strsize)
 {
 
-   auto pOld = this->NATURAL_POINTER::metadata();
-
-   ASSERT(pOld->m_countReference >= 1);
-
    auto memsize = char_length_to_byte_length(this->begin(), strsize + 1);
 
    auto pNew = this->create_meta_data(memsize);
+
+   auto pOld = this->NATURAL_POINTER::metadata();
+
+   ASSERT(pOld->m_countReference >= 1);
 
    if (::is_set(pOld))
    {
@@ -2664,7 +2658,7 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
          auto memsizeCopy = minimum(memsizeOld, memsize);
 
-         memcpy_dup((void *) pNew->begin(), pOld->begin(), memsizeCopy);
+         memcpy_dup((void *)pNew->begin(), pOld->begin(), memsizeCopy);
 
       }
 
@@ -2673,8 +2667,6 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
    pNew->set_length(strsize);
 
    this->assign_natural_meta_data(pNew);
-
-   //pNew->natural_dec_ref();
 
    return (CHARACTER *) pNew->begin();
 
@@ -5499,7 +5491,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const s
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
 
-   auto i = span(strCharacters);
+   auto i = scan(strCharacters);
 
    if (i > 0)
    {

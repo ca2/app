@@ -12,8 +12,7 @@ public:
    
    using BASE_RANGE = RANGE_TYPE;
 
-
-   using RANGE = ::comparable_eq_range < BASE_RANGE >;
+   using THIS_RANGE = ::comparable_eq_range < BASE_RANGE >;
 
    
    using this_iterator = BASE_RANGE::this_iterator;
@@ -37,22 +36,19 @@ public:
    comparable_eq_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
    comparable_eq_range(nullptr_t) : BASE_RANGE(nullptr) {}
    comparable_eq_range() {}
-   comparable_eq_range(::ansi_character ansichar) : BASE_RANGE(ansichar) {}
-   comparable_eq_range(::wd16_character wd16char) : BASE_RANGE(wd16char) {}
-   comparable_eq_range(::wd32_character wd32char) : BASE_RANGE(wd32char) {}
    template<typed_range<iterator> RANGE>
    comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
    template<typed_range<const_iterator> RANGE>
    comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   comparable_eq_range(const_iterator begin, INTEGRAL count, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, count, erange) {}
-   comparable_eq_range(const_iterator begin, const_iterator end, e_range erange = e_range_read_only_block) : BASE_RANGE(begin, end, erange) {}
-   comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin), e_range_null_terminated | e_range_read_only_block) {}
+   comparable_eq_range(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
+   comparable_eq_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
 
 
    template < primitive_range RANGE >
    comparable_eq_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
-
+   comparable_eq_range & operator = (THIS_RANGE && range) { BASE_RANGE::operator=(::move(range)); return *this; }
 
    using BASE_RANGE::_equals;
 

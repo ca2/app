@@ -140,8 +140,11 @@ public:
 
 
    payload();
+   payload(enum_no_initialize) {}
    payload(enum_type etype);
    payload(std::nullptr_t);
+   payload(const ::payload & payload);
+   payload(::payload && payload) :payload(e_no_initialize) { *this = payload; payload = ::payload{}; };
    payload(bool b);
    payload(::i32 i);
    payload(::u32 u);
@@ -183,7 +186,6 @@ public:
    payload(const ::int_array & payload);
    payload(const ::payload_array & payload);
    payload(const ::property_set & set);
-   payload(const ::payload & payload);
    payload(const ::property & prop);
    payload(const class time & time);
 
@@ -1517,20 +1519,20 @@ public:
 
 
 
-class CLASS_DECL_ACME pack :
-   public payload
-{
-public:
-
-
-   using payload::payload;
-
-
-   template < typename TYPE >
-   pack(const ::pointer<TYPE>& p) { set_pointer(p); }
-   pack(const ::std::initializer_list < pack >& list);
-
-};
+//class CLASS_DECL_ACME pack :
+//   public payload
+//{
+//public:
+//
+//
+//   using payload::payload;
+//
+//
+//   template < typename TYPE >
+//   pack(const ::pointer<TYPE>& p) { set_pointer(p); }
+//   pack(const ::std::initializer_list < pack >& list);
+//
+//};
 
 
 inline payload __visible(payload varOptions, bool bVisible = true);

@@ -388,23 +388,22 @@ payload::payload(::payload * ppayload)
 }
 
 
-pack::pack(const ::std::initializer_list < pack >& list)
-{
-
-   for (auto& payload : list)
-   {
-
-      if (payload.get_type() == e_type_property_set)
-      {
-
-         propset().merge(payload.propset());
-
-      }
-
-   }
-
-
-}
+//pack::pack(const ::std::initializer_list < pack >& list)
+//{
+//
+//   for (auto& payload : list)
+//   {
+//
+//      if (payload.get_type() == e_type_property_set)
+//      {
+//
+//         propset().merge(payload.propset());
+//
+//      }
+//
+//   }
+//
+//}
 
 
 payload::payload(const ::property & property)

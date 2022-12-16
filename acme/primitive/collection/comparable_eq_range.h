@@ -354,6 +354,55 @@ public:
    }
 
 
+   using BASE_RANGE::_rear_span;
+
+   constexpr const_iterator _rear_span(const CONST_RAW_RANGE & range) const noexcept
+   {
+
+      return this->_rear_span(range, ::comparison::comparison < ITEM >());
+
+   }
+
+
+   using BASE_RANGE::rear_span;
+
+   constexpr const_iterator rear_span(const CONST_RAW_RANGE & range) const noexcept
+   {
+
+      return this->rear_span(range, ::comparison::comparison < ITEM >());
+
+   }
+
+
+   using BASE_RANGE::rear_span_start;
+
+   constexpr const_iterator rear_span_start(const CONST_RAW_RANGE & range, memsize start) const
+   {
+
+      return this->rear_span_start(range, start, ::comparison::comparison < ITEM >());
+
+   }
+
+
+   using BASE_RANGE::_rear_span_start_count;
+
+   constexpr const_iterator _rear_span_start_count(const CONST_RAW_RANGE & range, memsize start, memsize count) const
+   {
+
+      return this->_rear_span_start_count(range, start, count, ::comparison::comparison < ITEM >());
+
+   }
+
+
+   using BASE_RANGE::rear_span_start_count;
+
+   constexpr const_iterator rear_span_start_count(const CONST_RAW_RANGE & range, memsize start, memsize count) const
+   {
+
+      return this->rear_span_start_count(range, start, count, ::comparison::comparison < ITEM >());
+
+   }
+
    using BASE_RANGE::_skip;
 
    constexpr const_iterator _skip(const ITEM & item) const

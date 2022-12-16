@@ -5345,38 +5345,50 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim(const string
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(CHARACTER chTarget)
 {
-   // find beginning of trailing matches
-   // by starting at beginning (DBCS aware)
 
-   auto psz = this->begin();
-   const CHARACTER * pszLast = nullptr;
+   auto i = rear_skip(chTarget);
 
-   while (*psz != 0)
+   if (i > 0)
    {
-      if (*psz == chTarget)
-      {
-         if (pszLast == nullptr)
-         {
-            pszLast = psz;
-         }
-      }
-      else
-      {
-         pszLast = nullptr;
-      }
 
-      unicode_increment(psz);
+      truncate(i);
 
-   }
-
-   if (pszLast != nullptr)
-   {
-      // truncate at left-most matching character
-      strsize iLast = strsize(pszLast - this->begin());
-      truncate(iLast);
    }
 
    return *this;
+
+   //// find beginning of trailing matches
+   //// by starting at beginning (DBCS aware)
+
+   //auto psz = this->begin();
+   //const CHARACTER * pszLast = nullptr;
+
+   //while (*psz != 0)
+   //{
+   //   if (*psz == chTarget)
+   //   {
+   //      if (pszLast == nullptr)
+   //      {
+   //         pszLast = psz;
+   //      }
+   //   }
+   //   else
+   //   {
+   //      pszLast = nullptr;
+   //   }
+
+   //   unicode_increment(psz);
+
+   //}
+
+   //if (pszLast != nullptr)
+   //{
+   //   // truncate at left-most matching character
+   //   strsize iLast = strsize(pszLast - this->begin());
+   //   truncate(iLast);
+   //}
+
+   //return *this;
 
 }
 
@@ -5388,7 +5400,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_right(PCHAR szTargets)
 {
 
-   auto i = rear_scan(strCharacters);
+   auto i = rear_span(strCharacters);
 
    if (i >= 0 && i < size())
    {
@@ -5491,7 +5503,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const s
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
 
-   auto i = scan(strCharacters);
+   auto i = span(strCharacters);
 
    if (i > 0)
    {

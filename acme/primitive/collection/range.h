@@ -1181,6 +1181,150 @@ public:
    }
 
 
+   static constexpr bool
+      _initialize_rear_span(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
+   {
+
+      if (range.is_empty())
+      {
+
+         p = range.begin() - 1;
+
+         return true;
+
+      }
+
+      if (range.is_empty())
+      {
+
+         p = range.begin() - 1;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      _static_rear_span(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
+   {
+
+      do
+      {
+
+         auto pBlockScan = range.begin();
+
+         do
+         {
+
+            if (equality.equals(*range.end(), *pBlockScan))
+            {
+
+               // found a matching item...
+               // stop spanning and return address of the matching item
+
+               return range.begin();
+
+            }
+
+            pBlockScan++;
+
+         } while (!rangeBlock.is_end(pBlockScan));
+
+         range.end()--;
+
+      } while (!range.is_before_begin(range.end()));
+
+      // reached end of the spanning range...
+      // each spanned item matched some item in range...
+      // return address immediately after end of spanning...
+
+      return range.end();
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      static_rear_span(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
+   {
+
+      const_iterator p;
+
+      if (_initialize_rear_span(p, range, rangeBlock))
+      {
+
+         return p;
+
+      }
+
+      range.end()--;
+
+      return _static_rear_span(range, rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator _rear_span(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
+   {
+
+      return _static_rear_span(*this, rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator rear_span(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
+   {
+
+      return static_rear_span(*this, rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator _rear_span_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
+   {
+
+      return _static_rear_span(_start_range(start), rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator rear_span_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
+   {
+
+      return static_rear_span(_start_range(start), rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator
+      _rear_span_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   {
+
+      return _static_rear_span(_start_count_range(start, count), rangeBlock, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator
+      rear_span_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
+   {
+
+      return static_rear_span(_start_count_range(start, count), rangeBlock, equality);
+
+   }
+
+
    static constexpr bool _initialize_skip(const_iterator &p, const THIS_RAW_RANGE &range) noexcept
    {
 

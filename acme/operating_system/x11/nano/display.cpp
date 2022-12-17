@@ -26,16 +26,6 @@ void * x11_get_display();
 void set_main_user_thread();
 
 
-namespace acme
-{
-
-
-   extern acme * g_p;
-
-
-} // namespace acme
-
-
 namespace x11
 {
 

@@ -3405,8 +3405,8 @@ pacmedirectory->create("/ca2core");
 
          stra.explode("/", strAppId);
 
-         strProj.replace_with_ci("_", "-");
-         strProj.replace_with_ci("_", "/");
+         strProj.case_insensitive_replace_with("_", "-");
+         strProj.case_insensitive_replace_with("_", "/");
 
          //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
 

@@ -12,16 +12,6 @@
 
 //::pointer < ::mutex >channel::s_pmutexChannel;
 
-namespace acme
-{
-
-   class acme;
-
-   CLASS_DECL_ACME extern acme * g_p;
-
-
-} // namespace acme
-
 
 channel::channel()
 {
@@ -50,7 +40,7 @@ void channel::install_message_routing(::channel* pchannel)
 void channel::erase_handler(::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(::acme::g_p->channel_critical_section());
+   critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
    auto values = m_dispatchermap.values();
 
@@ -83,7 +73,7 @@ void channel::erase_handler(::particle * pparticle)
 void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(::acme::g_p->channel_critical_section());
+   critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
    for (auto & pair : m_dispatchermap)
    {
@@ -151,7 +141,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::acme::g_p->channel_critical_section()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -254,7 +244,7 @@ void channel::erase_all_routes()
    try
    {
 
-      critical_section_lock synchronouslock(::acme::g_p->channel_critical_section());
+      critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
       // if(m_bNewChannel)
       // {
@@ -463,7 +453,7 @@ void channel::command_handler(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   critical_section_lock synchronouslock(::acme::g_p->channel_critical_section());
+   critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
    ___scoped_restore(pcommand->m_atom.m_etype);
 

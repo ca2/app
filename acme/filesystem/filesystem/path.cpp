@@ -10,3 +10,11 @@
 //CLASS_DECL_ACME::file::path __xxxnode_full_file_path(file::path path);
 
 
+namespace file
+{
+
+
+} // namespace file
+
+
+

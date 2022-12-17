@@ -618,10 +618,10 @@ public:
    static bool _initialize_find(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock)
    {
 
-      p = rangeBlock.begin();
-
       if (range.is_empty())
       {
+
+         p = nullptr;
 
          return true;
 
@@ -635,6 +635,8 @@ public:
    template<::comparison::equality<ITEM> EQUALITY>
    static const_iterator _static_find(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality)
    {
+
+      auto pEnd = range.end() - rangeBlock.size();
 
       do
       {
@@ -653,22 +655,22 @@ public:
 
             }
 
-            p++;
-
             pBlock++;
 
             if (rangeBlock.is_end(pBlock))
             {
 
-               return p;
+               return range.begin();
 
             }
+
+            p++;
 
          }
 
          range.begin()++;
 
-      } while (!range.is_end(range.begin()));
+      } while (range.begin() <= pEnd);
 
       return nullptr;
 
@@ -919,7 +921,7 @@ public:
       do
       {
 
-         auto pBlockScan = range.begin();
+         auto pBlockScan = rangeBlock.begin();
 
          while (true)
          {
@@ -1591,7 +1593,7 @@ public:
       do
       {
 
-         auto pBlockScan = range.begin();
+         auto pBlockScan = rangeBlock.begin();
 
          while (true)
          {
@@ -1616,7 +1618,7 @@ public:
 
 // so p is the end of the scan for matching items...
 
-               return range.begin();
+               return range.end();
 
             }
 
@@ -1630,7 +1632,7 @@ public:
 // each scanned item matched some item in range...
 // return address immediately after end of scanning...
 
-      return range.is_set() ? range.begin() : nullptr;
+      return range.end();
 
    }
 

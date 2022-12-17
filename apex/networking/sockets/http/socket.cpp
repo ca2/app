@@ -414,7 +414,7 @@ namespace sockets
          }
 
       }
-      if (case_insensitive_equals(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
+      if (key.case_insensitive_order("transfer-encoding") == 0 && string_ends_ci(value, "chunked"))
       {
          m_bChunked = true;
       }

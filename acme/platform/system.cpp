@@ -52,13 +52,8 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME extern ::acme::acme * g_p;
-
-
    system::system()
    {
-
-
 
       m_papexsystem = nullptr;
       m_paquasystem = nullptr;
@@ -89,7 +84,7 @@ namespace acme
    void system::initialize_system()
    {
       
-      m_psubsystem = ::acme::g_p->m_psubsystem;
+      m_psubsystem = ::acme::acme::g_p->m_psubsystem;
 
       m_psubsystem->initialize(this);
 

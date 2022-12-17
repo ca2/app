@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "tree_base.h"
@@ -29,11 +29,11 @@ namespace xml
       ~input_tree() override;
 
 
-      virtual node * import_node(const char * pcszName, importable & importable);
+      virtual node * import_node(const ::string & strName, importable & importable);
 
-      virtual node * import_node(const char * pcszName, property_set & set, importable & importable);
+      virtual node * import_node(const ::string & strName, property_set & set, importable & importable);
 
-      virtual node * import_node(const char * pcszName, ::payload & payload);
+      virtual node * import_node(const ::string & strName, ::payload & payload);
 
 
 

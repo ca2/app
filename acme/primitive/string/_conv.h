@@ -55,7 +55,7 @@ void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edi
 /// @param edigitcase base greater than decimal base, the case of output characters 
 /// @return address of end of number (address of the terminating null character>
 template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
-void __utosz(UNSIGNED u, CHARACTER * & p, int iBase, enum_digit_case edigitcase)
+void __utosz(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
 {
 
    if (u == 0)
@@ -69,7 +69,7 @@ void __utosz(UNSIGNED u, CHARACTER * & p, int iBase, enum_digit_case edigitcase)
 
    auto s = p;
 
-   __utosz_internal(u, p, iBase, edigitcase);
+   __utosz_internal(u, p, base, edigitcase);
 
    reverse(s, p - 1);
 
@@ -96,7 +96,7 @@ void __itosz(SIGNED i, CHARACTER * & p, int base, enum_digit_case edigitcase)
 
    auto [ u, bNegative ] = as_absolute_unsigned(i);
 
-   __utosz(u, p, base, edigitcase);
+   __utosz_internal(u, p, base, edigitcase);
 
    if (bNegative) *p++ = '-';
 

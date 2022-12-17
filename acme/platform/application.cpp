@@ -51,9 +51,6 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME extern ::acme::acme * g_p;
-
-
    application::application()
    {
 
@@ -208,7 +205,7 @@ namespace acme
    ::factory::factory_pointer& application::factory()
    {
 
-      return ::acme::g_p->m_psubsystem->factory();
+      return ::acme::acme::g_p->m_psubsystem->factory();
 
    }
 
@@ -262,7 +259,7 @@ namespace acme
 
          //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-         auto pfactoryitem = ::acme::g_p->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+         auto pfactoryitem = ::acme::acme::g_p->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
 
          ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
@@ -462,7 +459,7 @@ namespace acme
 
 #ifdef WINDOWS
 
-         m_pathModule = ::get_module_path((HMODULE)::acme::get()->m_psubsystem->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_p->m_psubsystem->m_hinstanceThis);
 
 #else
 

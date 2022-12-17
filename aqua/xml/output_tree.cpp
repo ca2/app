@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "output_tree.h"
 #include "document.h"
 ////#include "acme/exception/exception.h"
@@ -31,9 +31,10 @@ namespace xml
    {
    }
 
-   node * output_tree::export_node(const char * pcszName, exportable & exportable)
 
+   node * output_tree::export_node(const ::string & strName, exportable & exportable)
    {
+
       if(m_pnode == nullptr)
       {
          
@@ -45,34 +46,47 @@ namespace xml
          }
 
          m_pnode = m_pdocument->root();
-         m_pnode->set_name(pcszName);
+         m_pnode->set_name(strName);
 
          exportable.xml_export(*this);
+
          return m_pdocument->root();
+
       }
       else
       {
+
          node * pnodePrev = m_pnode;
-         node * pnode = m_pnode->add_child(pcszName);
+
+         node * pnode = m_pnode->add_child(strName);
 
          m_pnode = pnode;
+
          exportable.xml_export(*this);
+
          m_pnode = pnodePrev;
+
          return pnode;
+
       }
+
    }
+
 
    node * output_tree::export_node(exportable & exportable)
    {
+
       return export_node("", exportable);
+
    }
 
 
-   node * output_tree::export_node(const char * pcszName, ::payload payload)
-
+   node * output_tree::export_node(const ::string & strName, ::payload payload)
    {
+
       m_varexchange.m_ppayload = &payload;
-      return export_node(pcszName, m_varexchange);
+
+      return export_node(strName, m_varexchange);
 
    }
 
@@ -120,11 +134,13 @@ namespace xml
 
    }
 
-   void output_tree::SetNodeName(const char * pcszName)
 
+   void output_tree::set_node_name(const ::string & strName)
    {
-      m_pnode->set_name(pcszName);
+
+      m_pnode->set_name(strName);
 
    }
+
 
 } // namespace xml

@@ -20,16 +20,6 @@ class ::time g_timeLastDebuggerAttachedCheck;
 ::i32 g_iLastIsDebuggerAttachedOptimizedCount;
 
 
-namespace acme
-{
-
-
-   extern class acme * g_p;
-
-
-} // namespace acme
-
-
 i32 __node_is_debugger_attached()
 {
 

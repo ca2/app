@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "input_tree.h"
 #include "document.h"
 ////#include "acme/exception/exception.h"
@@ -41,7 +41,7 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const char * pcszName, importable & importable)
+   node * input_tree::import_node(const ::string & strName, importable & importable)
    {
 
       node * pnodePrev = m_pnode;
@@ -50,10 +50,12 @@ namespace xml
       {
 
          m_pnode = m_pdocument->root();
-         string strName;
-         strName = m_pnode->get_name();
 
-         if(strName != pcszName)
+         string strNodeName;
+
+         strNodeName = m_pnode->get_name();
+
+         if(strNodeName != strName)
          {
             
             m_pnode = nullptr;
@@ -63,21 +65,28 @@ namespace xml
          }
          
          importable.xml_import(*this);
+
          return m_pdocument->root();
+
       }
       else
       {
-         node * pnode = m_pnode->get_child(pcszName);
+
+         node * pnode = m_pnode->get_child(strName);
 
          m_pnode = pnode;
+
          importable.xml_import(*this);
+
          m_pnode = pnodePrev;
+
          return pnode;
+
       }
    }
 
 
-   node * input_tree::import_node(const char * pcszName, property_set & set, importable & importable)
+   node * input_tree::import_node(const ::string & strName, property_set & set, importable & importable)
    {
 
       node * pnodePrev = m_pnode;
@@ -86,7 +95,8 @@ namespace xml
       {
 
          m_pnode = m_pdocument->root();
-         if(m_pnode->get_name() != pcszName)
+
+         if(m_pnode->get_name() != strName)
          {
 
             ASSERT(false);
@@ -105,12 +115,14 @@ namespace xml
          }
 
          importable.xml_import(*this);
+
          return m_pdocument->root();
+
       }
       else
       {
 
-         node * pnode = m_pnode->child_at(m_pnode->find(pcszName, set));
+         node * pnode = m_pnode->child_at(m_pnode->find(strName, set));
 
          m_pnode = pnode;
 
@@ -133,12 +145,12 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const char * pcszName, ::payload & payload)
+   node * input_tree::import_node(const ::string & strName, ::payload & payload)
    {
 
       m_varexchange.m_ppayload = &payload;
 
-      return import_node(pcszName, m_varexchange);
+      return import_node(strName, m_varexchange);
 
    }
 

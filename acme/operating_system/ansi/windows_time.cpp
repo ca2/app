@@ -14,14 +14,6 @@
 ////#include "acme/exception/exception.h"
 
 
-//critical_section * tz_critical_section();
-namespace acme
-{
-
-   extern acme * g_p;
-
-} // namespace acme
-
 using WORD = ::u16;
 using LONG = ::i32;
 using WINULONG = ::u32;

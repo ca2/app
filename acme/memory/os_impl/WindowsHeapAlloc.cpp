@@ -1,21 +1,10 @@
 ﻿extern HANDLE g_handleSystemHeap;
 
-namespace acme
-{
-
-   class acme;
-
-   CLASS_DECL_ACME extern acme * g_p;
-
-
-} // namespace acme
-
-
 
 void * os_impl_alloc(size_t size)
 {
 
-   critical_section_lock csl(::acme::g_p->system_heap_critical_section());
+   critical_section_lock csl(::acme::acme::g_p->system_heap_critical_section());
 
    return ::HeapAlloc(g_handleSystemHeap, 0, size);
 
@@ -25,7 +14,7 @@ void * os_impl_alloc(size_t size)
 void * os_impl_realloc(void * p, size_t size)
 {
 
-   critical_section_lock lock(::acme::g_p->system_heap_critical_section());
+   critical_section_lock lock(::acme::acme::g_p->system_heap_critical_section());
 
    return ::HeapReAlloc(g_handleSystemHeap, 0, p, size);
 
@@ -35,7 +24,7 @@ void * os_impl_realloc(void * p, size_t size)
 void os_impl_free(void * p)
 {
 
-   critical_section_lock lock(::acme::g_p->system_heap_critical_section());
+   critical_section_lock lock(::acme::acme::g_p->system_heap_critical_section());
 
    if (!::HeapFree(g_handleSystemHeap, 0, p))
    {
@@ -51,7 +40,7 @@ void os_impl_free(void * p)
 size_t os_impl_size(void * p)
 {
 
-   critical_section_lock lock(::acme::g_p->system_heap_critical_section());
+   critical_section_lock lock(::acme::acme::g_p->system_heap_critical_section());
 
    SIZE_T s = ::HeapSize(g_handleSystemHeap, 0, p);
 

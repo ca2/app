@@ -12,16 +12,16 @@
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
-
-
-namespace acme
-{
-
-
-   CLASS_DECL_ACME extern ::acme::acme * g_p;
-
-
-} // namespace acme
+//
+//
+//namespace acme
+//{
+//
+//
+//   CLASS_DECL_ACME extern ::acme::acme * g_p;
+//
+//
+//} // namespace acme
 
 
 
@@ -664,20 +664,15 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 void sub_system::factory_terminate()
 {
 
-   critical_section_lock synchronouslock(::acme::g_p->factory_critical_section());
+   critical_section_lock synchronouslock(::acme::acme::g_p->factory_critical_section());
 
    m_pfactory->erase_all();
 
    m_factorymap.erase_all();
 
-
    m_componentfactorymap.erase_all();
-   //m_pfactory.release();
-
-   //m_pmapFactory.release();
 
 }
-
 
 
 ::pointer<::factory::factory>& sub_system::impact_factory(const ::string& strComponent, const ::string& strImplementation)
@@ -825,7 +820,7 @@ void sub_system::factory_terminate()
 CLASS_DECL_ACME ::factory::factory * get_system_factory()
 {
 
-   return ::acme::g_p->m_psubsystem->m_pfactory;
+   return ::acme::acme::g_p->m_psubsystem->m_pfactory;
 
 }
 

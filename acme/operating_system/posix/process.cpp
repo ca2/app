@@ -14,16 +14,6 @@
 #include <fcntl.h>
 
 
-namespace acme
-{
-
-
-   extern class acme * g_p;
-
-
-} // namespace acme
-
-
 #if !defined(APPLE_IOS)
 
 

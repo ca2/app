@@ -44,16 +44,6 @@ void set_main_user_thread();
 xcb_connection_t * x11_display_xcb_connection(void * pX11Display);
 
 
-namespace acme
-{
-
-
-   extern acme * g_p;
-
-
-} // namespace acme
-
-
 namespace xcb
 {
 

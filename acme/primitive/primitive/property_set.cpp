@@ -17,12 +17,6 @@
 #ifdef WINDOWS
 extern _locale_t g_localeC;
 #else
-namespace acme
-{
-
-   extern acme * g_p;
-
-}
 extern locale_t g_localeC;
 #endif
 

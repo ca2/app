@@ -61,8 +61,8 @@ namespace data
 
       virtual ::xml::document* get_xml_document() const;
 
-      property& attribute(const char* pszAttributeName) { return m_set[pszAttributeName]; }
-      const property& attribute(const char* pszAttributeName) const { return m_set[pszAttributeName]; }
+      property& attribute(const ::atom & atomAttributeName) { return m_set[atomAttributeName]; }
+      const property& attribute(const ::atom & atomAttributeName) const { return m_set[atomAttributeName]; }
 
 
       node* node_at(::index i) { return m_nodea[i]; }

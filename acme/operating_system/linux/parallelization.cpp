@@ -12,14 +12,6 @@
 //void xcb_asynchronous(::procedure function);
 
 
-namespace acme{
-
-
-   extern class acme * g_p;
-
-} //namespace acme
-
-
 void task_set_name(htask_t htask, const char * psz)
 {
 

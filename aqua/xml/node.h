@@ -154,8 +154,8 @@ namespace xml
       ::count get_children_count(const char * lpszName, index iDepth);
       node *                  child_at(index i);
       //node *                create_node( const char * name = nullptr, const char * value = nullptr );
-      node *                  add_child(const char * name = nullptr, const char * value = nullptr);
-      node *                  add_child(const char * name, const property_set & set, const char * value = nullptr);
+      node *                  add_child(const ::string & strName = nullptr, const char * value = nullptr);
+      node *                  add_child(const ::string & strName, const property_set & set, const char * value = nullptr);
       node *                  add_child( node * node );
       bool                    erase_child( node * node );
       node *                  detach_child( node * node );

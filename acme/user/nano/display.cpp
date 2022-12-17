@@ -11,9 +11,6 @@ namespace nano
 {
 
 
-   display * display::g_p = nullptr;
-
-
    display::display()
    {
 

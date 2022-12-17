@@ -55,7 +55,12 @@ namespace file
       //path(enum_for_moving) { }
       //path(enum_get_buffer, strsize len) { get_string_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
-      path(const string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::wd16_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::wd32_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::ansi_character * pansisz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::wd16_character * pansisz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::wd32_character * pansisz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
 
 
       //template<typed_range<::ansi_character *> RANGE>
@@ -528,6 +533,96 @@ namespace file
    }
 
 
+
+   inline path::path(const ::ansi_string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      string(str)
+   {
+
+      m_iSize = iSize;
+
+      if (epath == e_path_none)
+      {
+
+         m_epath = file_path_get_type(str, epath);
+
+      }
+      else
+      {
+
+         m_epath = epath;
+
+      }
+
+      if (bNormalizePath)
+      {
+
+         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
+
+         if (bCertainlySyntathicallyDir)
+         {
+
+            m_iDir = 1;
+
+         }
+         else
+         {
+
+            m_iDir = iDir;
+
+         }
+
+      }
+      else
+      {
+
+         m_iDir = iDir;
+
+      }
+
+   }
+
+
+   inline path::path(const ::wd16_string & wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::string(wd16str))
+   {
+
+
+   }
+
+   
+   inline path::path(const ::wd32_string & wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::string(wd32str))
+   {
+
+
+   }
+
+
+   inline path::path(const ::ansi_character * pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::ansi_string(pansisz))
+   {
+
+
+   }
+
+
+   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::wd16_string(pwd16sz))
+   {
+
+
+   }
+
+
+   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::wd32_string(pwd32sz))
+   {
+
+
+   }
+
+
+
    inline path_meta::~path_meta()
    {
 
@@ -588,56 +683,6 @@ namespace file
    //{
 
    //}
-
-
-   inline path::path(const ::ansi_string& str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      string(str)
-   {
-
-      m_iSize = iSize;
-
-      if (epath == e_path_none)
-      {
-
-         m_epath = file_path_get_type(str, epath);
-
-      }
-      else
-      {
-
-         m_epath = epath;
-
-      }
-
-      if (bNormalizePath)
-      {
-
-         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
-
-         if (bCertainlySyntathicallyDir)
-         {
-
-            m_iDir = 1;
-
-         }
-         else
-         {
-
-            m_iDir = iDir;
-
-         }
-
-      }
-      else
-      {
-
-         m_iDir = iDir;
-
-      }
-
-   }
-
-
 
 
    //

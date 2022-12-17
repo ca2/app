@@ -19,13 +19,10 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME extern ::acme::acme * g_p;
-
-
    application_base::application_base()
    {
 
-      if (!::acme::g_p)
+      if (!::acme::acme::g_p)
       {
 
 #ifdef WINDOWS
@@ -38,11 +35,11 @@ namespace acme
 
          new (p) ::acme::acme();
 
-         ::acme::g_p = (::acme::acme *) p;
+         ::acme::acme::g_p = (::acme::acme *) p;
 
-         ::acme::g_p->acme_initialize();
+         ::acme::acme::g_p->acme_initialize();
 
-         m_pacme = ::acme::g_p;
+         m_pacme = ::acme::acme::g_p;
 
       }
 
@@ -52,23 +49,23 @@ namespace acme
    application_base::~application_base()
    {
 
-      if (m_pacme == ::acme::g_p)
+      if (m_pacme == ::acme::acme::g_p)
       {
 
          m_pacme = nullptr;
 
-         ::acme::g_p->acme_finalize();
+         ::acme::acme::g_p->acme_finalize();
 
-         ::acme::g_p->~acme();
+         ::acme::acme::g_p->~acme();
 
-         ::acme::free(::acme::g_p);
+         ::acme::free(::acme::acme::g_p);
 
       }
 
    }
 
 
-
 } // namespace acme
+
 
 

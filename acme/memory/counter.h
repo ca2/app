@@ -109,10 +109,10 @@ template < typename T >
 void memory_counter_increment(T* pthis)
 {
 
-   if (::acme::get()->m_pmemorycounter)
+   if (::acme::acme::g_p->m_pmemorycounter)
    {
 
-      ::acme::get()->m_pmemorycounter->memory_counter_increment(pthis);
+      ::acme::acme::g_p->m_pmemorycounter->memory_counter_increment(pthis);
 
    }
 
@@ -123,10 +123,10 @@ template < typename T >
 void memory_counter_decrement(T* pthis)
 {
 
-   if (::acme::get()->m_pmemorycounter)
+   if (::acme::acme::g_p->m_pmemorycounter)
    {
 
-      ::acme::get()->m_pmemorycounter->memory_counter_decrement(pthis);
+      ::acme::acme::g_p->m_pmemorycounter->memory_counter_decrement(pthis);
 
    }
 

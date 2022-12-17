@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "tree_base.h"
@@ -34,15 +34,12 @@ namespace xml
       void set_value(const char * pszValue);
 
       virtual node * export_node(exportable & exportable);
-      virtual node * export_node(const char * pcszName, exportable & exportable);
+      virtual node * export_node(const ::string & strName, exportable & exportable);
 
-      virtual node * export_node(const char * pcszName, ::payload payload);
-
-
-      virtual void SetNodeName(const char * pcszName);
+      virtual node * export_node(const ::string & strName, ::payload payload);
 
 
-
+      virtual void set_node_name(const ::string & strName);
 
 
    };

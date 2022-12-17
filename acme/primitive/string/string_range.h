@@ -10,7 +10,54 @@
 
 
 template < typename ITERATOR_TYPE >
-using string_range = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
+class string_range : 
+   public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
+{
+public:
+   
+
+   using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
+
+   using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
+
+
+
+   using this_iterator = BASE_RANGE::this_iterator;
+   using iterator = BASE_RANGE::iterator;
+   using const_iterator = BASE_RANGE::const_iterator;
+
+
+   using THIS_RAW_RANGE = BASE_RANGE::THIS_RAW_RANGE;
+   using RAW_RANGE = BASE_RANGE::RAW_RANGE;
+   using CONST_RAW_RANGE = BASE_RANGE::CONST_RAW_RANGE;
+
+   using ITEM_POINTER = get_type_item_pointer < this_iterator >::type;
+
+   using ITEM = dereference < ITEM_POINTER >;
+
+   
+   template<::count count>
+   constexpr string_range(const ITEM(&array)[count]) : range(array, array[count - 1] == 0 ? count - 1 : count){}
+   template<primitive_integral INTEGRAL>
+   constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin, (this_iterator)(begin + count)){}
+   string_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
+   string_range(nullptr_t) : BASE_RANGE(nullptr) {}
+   string_range() {}
+   template<typed_range<iterator> RANGE>
+   string_range(const RANGE & range) : BASE_RANGE(range) {}
+   template<typed_range<const_iterator> RANGE>
+   string_range(const RANGE & range) : BASE_RANGE(range) {}
+   explicit string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
+   explicit string_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
+   string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   string_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
+
+
+   string_range & operator = (const string_range & string_range) { BASE_RANGE::operator=(string_range); return *this; }
+   string_range & operator = (string_range && string_range) { BASE_RANGE::operator=(::move(string_range)); return *this; }
+
+
+};
 
 
 using ansi_range        = ::string_range < ::ansi_character * >;

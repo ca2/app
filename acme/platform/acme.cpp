@@ -390,24 +390,11 @@ void finalize_global_message_queue();
 #endif
 
 
-
-
 extern thread_local ::task_pointer t_pthread;
 
 
 namespace acme
 {
-
-
-   CLASS_DECL_ACME ::acme::acme * g_p = nullptr;
-
-
-   CLASS_DECL_ACME::acme::acme* get()
-   {
-
-      return g_p;
-
-   }
 
 
    acme::acme()

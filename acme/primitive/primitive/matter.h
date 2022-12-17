@@ -451,45 +451,56 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //////return ::success;
 //
 //}
+
+//
 //template < typename TYPE >
-//inline void matter::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//inline void particle::__construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{
 //
 //   ::__construct(this, p, pfactory);
 //
 //}
-//
-//
-//template < typename BASE_TYPE, typename TYPE >
-//inline void matter::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
-//{
-//
-//   __construct(ptype, p.m_p);
-//
-//}
-//
-//
-//template < typename BASE_TYPE, typename TYPE >
-//inline void matter::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
-//{
-//
-//   if (::is_null(p))
-//   {
-//
-//      ERROR("matter::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
-//
-//      throw_exception(::error_null_pointer);
-//
-//   }
-//
-//   ptype.release();
-//
-//   ptype = p;
-//
-//   ptype->initialize(this);
-//
-//}
-//
+
+
+template < typename BASE_TYPE, typename TYPE >
+inline void particle::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+{
+
+   __construct(ptype, p.m_p);
+
+}
+
+
+template < typename BASE_TYPE, typename TYPE >
+inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+{
+
+   if (::is_null(p))
+   {
+
+      ERROR("particle::__construct p is null");
+
+      throw_exception(::error_null_pointer);
+
+   }
+
+   ptype.release();
+
+   ptype = p;
+
+   if (::is_null(ptype))
+   {
+
+      ERROR("particle::__construct p is null (is assignee type derived from BASE_TYPE?");
+
+      throw_exception(::error_null_pointer);
+
+   }
+
+   ptype->initialize(this);
+
+}
+
 //
 //template < typename TYPE >
 //inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)

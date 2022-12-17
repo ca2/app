@@ -16,12 +16,7 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME extern ::acme::acme * g_p;
-
    const char * psz_empty_app_id = "";
-
-   //::pointer < ::mutex >* library::s_pmutexLoading = nullptr;
-   //::acme::library* library::s_plibraryLoading = nullptr;
 
 
    library::library()
@@ -473,7 +468,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&::acme::g_p->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&::acme::acme::g_p->m_psubsystem->m_criticalsection);
 
       try
       {

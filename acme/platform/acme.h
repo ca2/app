@@ -45,8 +45,7 @@ namespace acme
 
       }
 
-
-
+      inline static acme * g_p = nullptr;
 
       critical_section m_criticalsectionSystemHeap;
 
@@ -230,9 +229,6 @@ namespace acme
    };
 
    
-   CLASS_DECL_ACME::acme::acme* get();
-
-
 } // namespace acme
 
 

@@ -2187,14 +2187,14 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::add_child( const char * lpszName /*= nullptr*/, const char * pszValue /*= nullptr*/ )
+   node * node::add_child( const ::string & strName /*= nullptr*/, const char * pszValue /*= nullptr*/ )
    {
       
       auto pnode = __new(node((node *) this));
 
       //pnode->initialize_matter(this);
       
-      pnode->m_strName = lpszName;
+      pnode->m_strName = strName;
 
       pnode->m_strValue = pszValue;
 
@@ -2205,14 +2205,14 @@ namespace xml
    }
 
 
-   node * node::add_child(const char * lpszName, const property_set & set, const char * pszValue)
+   node * node::add_child(const ::string & strName, const property_set & set, const char * pszValue)
    {
 
       auto pnode = __new(node((node *) this));
 
       //pnode->initialize_matter(this);
 
-      pnode->m_strName = lpszName;
+      pnode->m_strName = strName;
 
       pnode->m_set = set;
 

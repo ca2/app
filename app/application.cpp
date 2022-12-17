@@ -27,6 +27,8 @@ namespace app_app
 
       m_bWriteText = false;
 
+      m_bInterprocessCommunication = false;
+
    }
 
 

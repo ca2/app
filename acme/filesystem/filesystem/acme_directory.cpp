@@ -226,6 +226,8 @@ string acme_directory::system_short_name()
 
    ::file::path path = acmefile()->module();
 
+   path.find_replace(":", "");
+
    path = file_path_folder(path);
 
    return path;

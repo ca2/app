@@ -2015,10 +2015,10 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::scan(const string_base & strSeparators, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::scan(const THIS_RAW_RANGE & rangeSeparators, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range <ITERATOR_TYPE>({ this->begin() + pos, size() - pos }).scan(strSeparators));
+   return offset_of(::string_range <ITERATOR_TYPE>({ this->begin() + pos, size() - pos }).scan(rangeSeparators));
 
 }
 
@@ -2053,19 +2053,19 @@ inline strsize string_base < ITERATOR_TYPE > ::scan(const string_base & strSepar
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::span(const string_base & str, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::span(const THIS_RAW_RANGE & range, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, size() - pos).span(str));
+   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, size() - pos).span(range));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::span(const string_base & str, strsize pos, strsize n) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::span(const THIS_RAW_RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, n).span(str));
+   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, n).span(range));
 
 }
 
@@ -2089,19 +2089,19 @@ inline strsize string_base < ITERATOR_TYPE > ::skip(CHARACTER chSkip, strsize po
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_span(const string_base & str, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_span(const THIS_RAW_RANGE & range, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, size() - pos })._span(str));
+   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, size() - pos })._span(range));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_span(const string_base & str, strsize pos, strsize n) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_span(const THIS_RAW_RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, n })._span(str));
+   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, n })._span(range));
 
 }
 
@@ -2143,19 +2143,19 @@ inline strsize string_base < ITERATOR_TYPE > ::_skip(CHARACTER chSkip, strsize p
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const string_base & str, strsize start) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const THIS_RAW_RANGE & range, strsize start) const RELEASENOTHROW
 {
 
-   return offset_of(NATURAL_POINTER::rear_scan_start(str, start));
+   return offset_of(NATURAL_POINTER::rear_scan_start(range, start));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const string_base & str, strsize start, strsize count) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const THIS_RAW_RANGE & range, strsize start, strsize count) const RELEASENOTHROW
 {
 
-   return offset_of(NATURAL_POINTER::rear_scan_start_count(str, start, count));
+   return offset_of(NATURAL_POINTER::rear_scan_start_count(range, start, count));
 
 }
 
@@ -2170,20 +2170,20 @@ inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const string_base & str
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const string_base & str, strsize start) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const THIS_RAW_RANGE & range, strsize start) const RELEASENOTHROW
 {
 
-   return offset_of(NATURAL_POINTER::_rear_scan_start(str, start));
+   return offset_of(NATURAL_POINTER::_rear_scan_start(range, start));
 
 }
 
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const string_base & str, strsize start, strsize count) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const THIS_RAW_RANGE & range, strsize start, strsize count) const RELEASENOTHROW
 {
 
-   return offset_of(NATURAL_POINTER::_rear_scan_start_count(str, start, count));
+   return offset_of(NATURAL_POINTER::_rear_scan_start_count(range, start, count));
 
 }
 
@@ -3895,175 +3895,100 @@ strsize string_base < ITERATOR_TYPE >::replace_character(CHARACTER charNew, CHAR
    return(count);
 }
 
+
+
 //template < typename ITERATOR_TYPE >
-//strsize string_base < ITERATOR_TYPE >::xxx_replace(CHARACTER charOld, CHARACTER charNew, strsize start)
+//strsize string_base < ITERATOR_TYPE >::replace_with_ci(const string_base & strNew, const string_base & strOld, strsize start)
 //{
 //
-//   return replace_with(charNew, charOld, start);
+//   // can't have is_empty or nullptr pszOld
+//   // nSourceLen is in XCHARs
+//   strsize nSourceLen = strOld.size();
+//
+//   if (nSourceLen == 0)
+//   {
+//
+//      return(0);
+//
+//   }
+//
+//   // nReplacementLen is in XCHARs
+//   strsize nReplacementLen = strNew.size();
+//
+//   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
+//   strsize count = 0;
+//
+//   {
+//
+//      strsize i = start;
+//
+//      strsize iFind;
+//
+//      while ((iFind = case_insensitive_find(strOld, i, -1)) >= 0)
+//      {
+//
+//         count++;
+//
+//         i = iFind + nSourceLen;
+//
+//      }
+//
+//   }
+//
+//   // if any changes were made, make them
+//   if (count > 0)
+//   {
+//
+//      // if the buffer is too small, just
+//      //   allocate a memory_new buffer (slow but sure)
+//      strsize nOldLength = size();
+//
+//      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
+//
+//      CHARACTER * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
+//
+//      strsize i = start;
+//
+//      strsize nEnd = nNewLength;
+//
+//      strsize iFind;
+//
+//      // loop again to actually do the work
+//      while (i < nEnd)
+//      {
+//         
+//         while ((iFind = case_insensitive_find(strOld, i, -1)) >= 0)
+//         {
+//
+//            auto pszTarget = pszBuffer + iFind;
+//
+//            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
+//
+//            memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
+//
+//            memcpy(pszTarget, strOld.begin(), nReplacementLen * sizeof(CHARACTER));
+//
+//            i += nReplacementLen;
+//
+//            pszTarget[nReplacementLen + nBalance] = 0;
+//
+//            nOldLength += (nReplacementLen - nSourceLen);
+//
+//         }
+//
+//         i += string_safe_length(pszBuffer + 1) + 1;
+//
+//      }
+//      
+//      ASSERT(pszBuffer[nNewLength] == 0);
+//
+//      release_string_buffer(nNewLength);
+//
+//   }
+//
+//   return count;
 //
 //}
-
-
-template < typename ITERATOR_TYPE >
-//template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-strsize string_base < ITERATOR_TYPE >::replace_with(const string_base & strNew, const string_base & strOld, strsize start)
-{
-   // can't have is_empty or nullptr pszOld
-
-
-   // nSourceLen is in XCHARs
-   strsize nSourceLen = strOld.size();
-   if (nSourceLen == 0)
-      return(0);
-   // nReplacementLen is in XCHARs
-   strsize nReplacementLen = strNew.size();
-
-   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-   strsize count = 0;
-   {
-      const CHARACTER * pszStart = this->begin() + start;
-      //      const CHARACTER * pszEnd = pszStart+size();
-      const CHARACTER * pszTarget;
-      while ((pszTarget = RANGE(pszStart).find(strOld)) != nullptr)
-      {
-         count++;
-         pszStart = pszTarget + nSourceLen;
-      }
-   }
-
-   // if any changes were made, make them
-   if (count > 0)
-   {
-      // if the buffer is too small, just
-      //   allocate a memory_new buffer (slow but sure)
-      strsize nOldLength = size();
-      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
-
-      CHARACTER * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
-
-      //CHARACTER * pszStart = pszBuffer + start;
-      //CHARACTER * pszEnd = pszBuffer + nOldLength;
-      RANGE range(pszBuffer + start, pszBuffer + nOldLength);
-
-      // loop again to actually do the work
-      while (range.begin() < range.end())
-      {
-         CHARACTER * pszTarget;
-         while ((pszTarget = (CHARACTER *) range.find(strOld)) != nullptr)
-         {
-            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
-            memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
-            memcpy(pszTarget, strNew.begin(), nReplacementLen * sizeof(CHARACTER));
-
-            range.m_begin = pszTarget + nReplacementLen;
-
-            pszTarget[nReplacementLen + nBalance] = 0;
-
-            nOldLength += (nReplacementLen - nSourceLen);
-         }
-         range.m_begin += string_safe_length(range.m_begin) + 1;
-      }
-      ASSERT(pszBuffer[nNewLength] == 0);
-      release_string_buffer(nNewLength);
-   }
-
-   return(count);
-}
-
-
-template < typename ITERATOR_TYPE >
-//template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-strsize string_base < ITERATOR_TYPE >::replace_with_ci(const string_base & strNew, const string_base & strOld, strsize start)
-{
-
-   // can't have is_empty or nullptr pszOld
-   // nSourceLen is in XCHARs
-   strsize nSourceLen = strOld.size();
-
-   if (nSourceLen == 0)
-   {
-
-      return(0);
-
-   }
-
-   // nReplacementLen is in XCHARs
-   strsize nReplacementLen = strNew.size();
-
-   // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-   strsize count = 0;
-
-   {
-
-      strsize i = start;
-
-      strsize iFind;
-
-      while ((iFind = case_insensitive_find(strOld, i, -1)) >= 0)
-      {
-
-         count++;
-
-         i = iFind + nSourceLen;
-
-      }
-
-   }
-
-   // if any changes were made, make them
-   if (count > 0)
-   {
-
-      // if the buffer is too small, just
-      //   allocate a memory_new buffer (slow but sure)
-      strsize nOldLength = size();
-
-      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
-
-      CHARACTER * pszBuffer = get_string_buffer(maximum(nNewLength, nOldLength));
-
-      strsize i = start;
-
-      strsize nEnd = nNewLength;
-
-      strsize iFind;
-
-      // loop again to actually do the work
-      while (i < nEnd)
-      {
-         
-         while ((iFind = case_insensitive_find(strOld, i, -1)) >= 0)
-         {
-
-            auto pszTarget = pszBuffer + iFind;
-
-            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
-
-            memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
-
-            memcpy(pszTarget, strOld.begin(), nReplacementLen * sizeof(CHARACTER));
-
-            i += nReplacementLen;
-
-            pszTarget[nReplacementLen + nBalance] = 0;
-
-            nOldLength += (nReplacementLen - nSourceLen);
-
-         }
-
-         i += string_safe_length(pszBuffer + 1) + 1;
-
-      }
-      
-      ASSERT(pszBuffer[nNewLength] == 0);
-
-      release_string_buffer(nNewLength);
-
-   }
-
-   return(count);
-
-}
 
 
 template < typename ITERATOR_TYPE >
@@ -4869,10 +4794,10 @@ strsize string_base < ITERATOR_TYPE >::rear_case_insensitive_unicode_find(const 
 
 // find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::scan(const string_base & strCharacters, strsize start, strsize n) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::scan(const THIS_RAW_RANGE & rangeCharacters, strsize start, strsize n) const RELEASENOTHROW
 {
 
-   auto p = string_scan({ this->begin() + start, size() - start }, strCharacters);
+   auto p = string_scan({ this->begin() + start, size() - start }, rangeCharacters);
 
    return ::is_set(p) ? offset_of(p) : -1;
 
@@ -5395,17 +5320,17 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(CHARAC
 
 // erase all trailing occurrences of any of the characters in string_base < ITERATOR_TYPE > 'pszTargets'
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const string_base & strCharacters)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const THIS_RAW_RANGE & rangeCharacters)
 //template < pointer_castable < CHARACTER > PCHAR>
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_right(PCHAR szTargets)
 {
 
-   auto i = rear_span(strCharacters);
+   auto i = rear_scan(rangeCharacters);
 
-   if (i >= 0 && i < size())
+   if (i < size() - 1)
    {
 
-      truncate(i);
+      truncate(i + 1);
 
    }
 
@@ -5498,12 +5423,12 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(CHARACT
 
 // erase all leading occurrences of any of the characters in string_base < ITERATOR_TYPE > 'pszTargets'
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const string_base & strCharacters)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const THIS_RAW_RANGE & strCharacters)
 //template < pointer_castable < CHARACTER > PCHAR >
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
 
-   auto i = span(strCharacters);
+   auto i = scan(strCharacters);
 
    if (i > 0)
    {

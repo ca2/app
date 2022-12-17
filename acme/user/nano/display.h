@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 12/04-April/2022. 22:07 <3ThomasBorregaardSørensen!!
 //
 #pragma once
@@ -21,7 +21,7 @@ namespace nano
       ::array < ::procedure >      m_procedureaPost;
 
 
-      static display *                       g_p;
+      inline static display * g_p = nullptr;
 
 
       display();

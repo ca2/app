@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 22:49 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 22:49 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -16,16 +16,16 @@ public:
 
 
 
-   using this_iterator = BASE_RANGE::this_iterator;
-   using iterator = BASE_RANGE::iterator;
-   using const_iterator = BASE_RANGE::const_iterator;
+   using this_iterator = typename BASE_RANGE::this_iterator;
+   using iterator = typename BASE_RANGE::iterator;
+   using const_iterator = typename BASE_RANGE::const_iterator;
 
    
-   using THIS_RAW_RANGE = BASE_RANGE::THIS_RAW_RANGE;
-   using RAW_RANGE = BASE_RANGE::RAW_RANGE;
-   using CONST_RAW_RANGE = BASE_RANGE::CONST_RAW_RANGE;
+   using THIS_RAW_RANGE = typename BASE_RANGE::THIS_RAW_RANGE;
+   using RAW_RANGE = typename BASE_RANGE::RAW_RANGE;
+   using CONST_RAW_RANGE = typename BASE_RANGE::CONST_RAW_RANGE;
 
-   using ITEM_POINTER = get_type_item_pointer < this_iterator >::type;
+   using ITEM_POINTER = typename get_type_item_pointer < this_iterator >::type;
 
    using ITEM = dereference < ITEM_POINTER >;
 

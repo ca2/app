@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#define memory_new ACME_NEW
@@ -34,8 +34,8 @@ public:
 
    using CONTAINER_ITEM_TYPE = association;
 
-   using iterator = BASE_RANGE::iterator;
-   using const_iterator = BASE_RANGE::const_iterator;
+   using iterator = typename BASE_RANGE::iterator;
+   using const_iterator = typename BASE_RANGE::const_iterator;
 
 
    //__declare_iterator_struct_ok(set, iterator, m_passociation, ::is_set(this->m_passociation));

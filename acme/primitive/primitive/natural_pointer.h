@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/memory/memory_allocator.h"
@@ -38,7 +38,7 @@ public:
 
    auto natural_dec_ref() { return --m_countReference; }
 
-   consteval static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
+   constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
    DATA * begin() const { return (DATA *)(((byte *)this) + natural_offset()); }
    DATA * end() const { return (DATA *)(begin() + this->m_datasize); }
@@ -118,9 +118,9 @@ public:
 
 
    using NATURAL_META_DATA = natural_meta_data < BASE_META_DATA >;
-   using META = BASE_META_DATA::META;
-   using DATA = BASE_META_DATA::DATA;
-   using iterator = RANGE_TYPE::iterator;
+   using META = typename BASE_META_DATA::META;
+   using DATA = typename BASE_META_DATA::DATA;
+   using iterator = typename RANGE_TYPE::iterator;
 
 
    inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }

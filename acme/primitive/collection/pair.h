@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#ifdef CPP17
@@ -127,6 +127,21 @@ namespace std
 
    template < typename T1, typename T2, typename ARG_T1, typename ARG_T2 >
    ALIENATED_ANDROID_ANARCHY tuple_size< ::pair <T1, T2, ARG_T1, ARG_T2 > > : integral_constant<size_t, 2> {};
+
+template< class T, class... Types >
+constexpr T& get( ::pair<Types...>& t ) noexcept
+{
+(5)   (since C++14)
+template< class T, class... Types >
+constexpr T&& get( tuple<Types...>&& t ) noexcept;
+(6)   (since C++14)
+template< class T, class... Types >
+constexpr const T& get( const tuple<Types...>& t ) noexcept;
+(7)   (since C++14)
+template< class T, class... Types >
+constexpr const T&& get( const tuple<Types...>&& t ) noexcept;
+(8)
+
 
 
 } // namespace std

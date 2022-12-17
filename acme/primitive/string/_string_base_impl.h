@@ -1,4 +1,4 @@
-﻿//
+//
 //  _string_base_impl.h
 //  acme
 //
@@ -1790,7 +1790,7 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(strsize star
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1806,7 +1806,7 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_o
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1822,7 +1822,7 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::collate(strsize st
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1839,7 +1839,7 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_c
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1856,14 +1856,14 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(strsize star
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
    if (iStart2 + iCount2 > str.size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1879,14 +1879,14 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_o
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
    if (iStart2 + iCount2 > str.size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1902,14 +1902,14 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::collate(strsize st
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
    if (iStart2 + iCount2 > str.size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1925,14 +1925,14 @@ inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_c
    if (start + iCount > size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
    if (iStart2 + iCount2 > str.size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -4506,11 +4506,10 @@ strsize string_base < ITERATOR_TYPE >::find_first(CHARACTER ch, strsize start) c
 /// Optionally returns at \p ppszTail the address immediately after
 /// where \p range was found in the string.
 /// 
-/// @param range [in] range to search for.
+/// @param str [in] range to search for.
 /// @param start [in] position where to start the start.
-/// @param iCount [in] amount of characters since \p start 
+/// @param count [in] amount of characters since \p start
 ///    to continue searching for \p range
-/// @param ppszTail [out,opt] address immediately after where \p range 
 ///    was found in the string.
 /// @return position where \p range was found respecting \p start 
 ///    and \p iCount or -1 if not found.

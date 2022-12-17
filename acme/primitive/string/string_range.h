@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -112,7 +112,7 @@ inline const CHARACTER * _unicode_rear_scan(const ::string_range < CHARACTER > &
 
    auto pBlockEnd = pBlock + blockBlock.size();
 
-   ::i32 len1;
+   //::i32 len1;
 
    ::i32 len2;
 

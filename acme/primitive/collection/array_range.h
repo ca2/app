@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-05 18:28 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-05 18:28 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -21,17 +21,17 @@ public:
    using THIS_RANGE = ::array_range < BASE_RANGE >;
 
 
-   using CONST_RAW_RANGE = RANGE_TYPE::CONST_RAW_RANGE;
+   using CONST_RAW_RANGE = typename RANGE_TYPE::CONST_RAW_RANGE;
 
 
-   using iterator = RANGE_TYPE::iterator;
-   using const_iterator = RANGE_TYPE::const_iterator;
+   using iterator = typename RANGE_TYPE::iterator;
+   using const_iterator = typename RANGE_TYPE::const_iterator;
 
 
    using RAW_RANGE = ::range < iterator >;
 
 
-   using ITEM_POINTER = get_type_item_pointer<iterator>::type;
+   using ITEM_POINTER = typename get_type_item_pointer<iterator>::type;
 
 
    using ITEM = dereference <ITEM_POINTER>;

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "type.h"
@@ -144,7 +144,7 @@ public:
    payload(enum_type etype);
    payload(std::nullptr_t);
    payload(const ::payload & payload);
-   payload(::payload && payload) :payload(e_no_initialize) { *this = payload; payload = ::payload{}; };
+   payload(::payload && payload){ *this = payload; payload = ::payload{}; };
    payload(bool b);
    payload(::i32 i);
    payload(::u32 u);

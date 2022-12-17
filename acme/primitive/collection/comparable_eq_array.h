@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -15,10 +15,10 @@ public:
 
    using BASE_ARRAY = ARRAY_TYPE;
 
-   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
+   using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
-   using iterator = ARRAY_TYPE::iterator;
-   using const_iterator = ARRAY_TYPE::const_iterator;
+   using iterator = typename ARRAY_TYPE::iterator;
+   using const_iterator = typename ARRAY_TYPE::const_iterator;
    
 
    comparable_eq_array(enum_no_initialize):BASE_RANGE(e_no_initialize){}

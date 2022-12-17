@@ -1,4 +1,4 @@
-﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
+// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -93,7 +93,7 @@ template<typename iterator>
 struct get_const_iterator
 {
 
-   using type = iterator::const_iterator;
+   using type = typename iterator::const_iterator;
 
 };
 
@@ -114,8 +114,8 @@ public:
 
 
    using this_iterator = ITERATOR_TYPE;
-   using iterator = get_iterator<ITERATOR_TYPE>::type;
-   using const_iterator = get_const_iterator<iterator>::type;
+   using iterator = typename get_iterator<ITERATOR_TYPE>::type;
+   using const_iterator = typename get_const_iterator<iterator>::type;
 
 
    using THIS_RAW_RANGE = ::range<ITERATOR_TYPE>;
@@ -128,10 +128,10 @@ public:
    using CONST_RANGE = ::range<const_iterator>;
 
 
-   using ITEM_POINTER = get_type_item_pointer<iterator>::type;
+   using ITEM_POINTER = typename get_type_item_pointer<iterator>::type;
 
 
-   using THIS_ITEM = get_iterator_item<ITERATOR_TYPE>::ITEM;
+   using THIS_ITEM = typename get_iterator_item<ITERATOR_TYPE>::ITEM;
    using ITEM = non_const<THIS_ITEM>;
    using CONST_ITEM = add_const<THIS_ITEM>;
 

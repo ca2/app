@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#define memory_new ACME_NEW
@@ -27,13 +27,13 @@ public:
 
    using ITEM_TYPE = association;
 
-   using iterator = BASE_SET::iterator;
-   using const_iterator = BASE_SET::const_iterator;
+   using iterator = typename BASE_SET::iterator;
+   using const_iterator = typename BASE_SET::const_iterator;
 
    using key_iterator = ::first_item_list_iterator < association * >;
    using value_iterator = ::second_item_list_iterator < association * >;
-   using const_key_iterator = key_iterator::const_iterator;
-   using const_value_iterator = value_iterator::const_iterator;
+   using const_key_iterator = typename key_iterator::const_iterator;
+   using const_value_iterator = typename value_iterator::const_iterator;
 
 
    //using iterator_struct = BASE_SET::iterator_struct;

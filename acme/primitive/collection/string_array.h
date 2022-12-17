@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "array.h"
@@ -59,8 +59,8 @@ public:
    typedef Type BASE_TYPE;
    typedef const Type & BASE_ARG_TYPE;
 
-   using THIS_RAW_RANGE = BASE_ARRAY::THIS_RAW_RANGE;
-   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
+   using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
+   using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    string_array_base() {}
 

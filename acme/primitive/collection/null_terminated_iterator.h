@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 23:44 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 23:44 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -12,8 +12,8 @@ public:
 
    using ITERATOR = ITERATOR_TYPE;
 
-   using ITEM = ITERATOR::ITEM;
-   using ITERATOR_ITEM_TYPE = ITERATOR::ITERATOR_ITEM_TYPE;
+   using ITEM = typename ITERATOR::ITEM;
+   using ITERATOR_ITEM_TYPE = typename ITERATOR::ITERATOR_ITEM_TYPE;
 
 
    using ITERATOR_TYPE::ITERATOR_TYPE;

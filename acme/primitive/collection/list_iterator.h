@@ -1,4 +1,4 @@
-﻿// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
+// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -211,12 +211,12 @@ public:
    using ITERATOR_TYPE = BASE_ITERATOR_TYPE;
 
 
-   using ITEM_POINTER = ITERATOR_TYPE::ITEM_POINTER;
-   using LIST_ITEM_POINTER = ITERATOR_TYPE::ITEM_POINTER;
+   using ITEM_POINTER = typename ITERATOR_TYPE::ITEM_POINTER;
+   using LIST_ITEM_POINTER = typename ITERATOR_TYPE::ITEM_POINTER;
 
-   using BASE_ITERATOR = BASE_ITERATOR_TYPE::iterator;
-   using BASE_CONST_ITERATOR = BASE_ITERATOR_TYPE::const_iterator;
-   using BASE_THIS_ITERATOR = BASE_ITERATOR_TYPE::THIS_ITERATOR;
+   using BASE_ITERATOR = typename BASE_ITERATOR_TYPE::iterator;
+   using BASE_CONST_ITERATOR = typename BASE_ITERATOR_TYPE::const_iterator;
+   using BASE_THIS_ITERATOR = typename BASE_ITERATOR_TYPE::THIS_ITERATOR;
 
    using iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::iterator >;
    using const_iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::const_iterator >;
@@ -293,7 +293,7 @@ public:
 
       }
 
-      throw ::exception(error_failed, "iterators aren't from same list");
+      throw_exception(error_failed, "iterators aren't from same list");
 
    }
 

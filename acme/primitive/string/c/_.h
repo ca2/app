@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //  OS ANCIENT          strcpy
@@ -90,7 +90,7 @@ template < primitive_character CHARACTER >
 const CHARACTER * _string_scan(const CHARACTER * psz, const CHARACTER * pszCharacters)
 {
 
-   ::i32 len1;
+   //::i32 len1;
 
    while (*psz)
    {

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -34,10 +34,12 @@ void reverse(TYPE * begin, TYPE * end)
 
 }
 
-
-template < typename A, typename B >
-struct as_ab { A a; B b; };
-
+#include "acme/primitive/collection/pair.h"
+//template < typename A, typename B >
+//struct as_p
+//{
+//   A a; B b; };
+//
 
 //template<typename A, typename B>
 //auto as_ab(A a, B b)
@@ -56,7 +58,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
    bool bNegative;
 
-   return as_ab{(typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
+   return pair<typename std::make_unsigned<SIGNED>::type, bool >((typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative );
 
 }
 

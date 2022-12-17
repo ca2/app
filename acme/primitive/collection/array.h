@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "array_base.h"
@@ -29,7 +29,7 @@ public:
    using ITERATOR_RANGE = typename BASE_ARRAY::array_range;
    
    using CONST_RANGE = typename BASE_ARRAY::CONST_RANGE ;
-   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
+   using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using BASE_ARRAY::BASE_ARRAY;
 

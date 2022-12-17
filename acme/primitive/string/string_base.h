@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_iterator.h"
@@ -33,16 +33,16 @@ public:
 
 
    using NATURAL_POINTER = string_natural_pointer < ITERATOR_TYPE >;
-   using NATURAL_META_DATA = NATURAL_POINTER::NATURAL_META_DATA;
+   using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;
    using RANGE = ::string_range < ITERATOR_TYPE >;
-   using this_iterator = RANGE::this_iterator;
-   using iterator = RANGE::iterator;
-   using const_iterator = RANGE::const_iterator;
-   using THIS_RAW_RANGE = RANGE::THIS_RAW_RANGE;
+   using this_iterator = typename RANGE::this_iterator;
+   using iterator = typename RANGE::iterator;
+   using const_iterator = typename RANGE::const_iterator;
+   using THIS_RAW_RANGE = typename RANGE::THIS_RAW_RANGE;
 
 
    string_base() { }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
@@ -10,7 +10,7 @@ public:
 
    using BASE_ARRAY = comparable_range < ARRAY_TYPE >;
 
-   using CONST_RAW_RANGE = BASE_ARRAY::CONST_RAW_RANGE;
+   using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
    using BASE_ARRAY::operator &=;
    using BASE_ARRAY::operator -=;
@@ -23,8 +23,8 @@ public:
 
    using comparable_range < ARRAY_TYPE >::comparable_range;
 
-   using iterator = BASE_ARRAY::iterator;
-   using const_iterator = BASE_ARRAY::const_iterator;
+   using iterator = typename BASE_ARRAY::iterator;
+   using const_iterator = typename BASE_ARRAY::const_iterator;
 
    comparable_array() { }
    comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }

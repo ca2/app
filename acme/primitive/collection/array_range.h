@@ -48,8 +48,8 @@ public:
    template<typed_range<const_iterator> RANGE>
    array_range(const RANGE &range) : BASE_RANGE(range) {}
    template < primitive_integral INTEGRAL >
-   array_range(const_iterator data, INTEGRAL count) : BASE_RANGE(data, count) { }
-   array_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   constexpr array_range(const_iterator data, INTEGRAL count) : BASE_RANGE(data, count) { }
+   constexpr array_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
    template < primitive_block BLOCK_TYPE >
    array_range(enum_as_block, const BLOCK_TYPE & block) :
       BASE_RANGE(e_no_initialize)

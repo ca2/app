@@ -51,7 +51,7 @@ void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edi
 /// @tparam CHARACTER /p buf character type (character constraint)
 /// @param u number to convert
 /// @param p [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
-/// @param iBase base to convert
+/// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
 void __utosz(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)

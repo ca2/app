@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Include payload.h
@@ -284,6 +284,16 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
 
 }
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
+{
+   
+   assign(property.as_string());
+   
+   return *this;
+   
+}
+
 
 //template < typename ITERATOR_TYPE >
 //string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
@@ -315,6 +325,7 @@ namespace file
 
 
 } // namespace file
+
 
 
 

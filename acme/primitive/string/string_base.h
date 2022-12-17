@@ -195,6 +195,15 @@ public:
       return *this;
    }
    string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::move(string_base)); return *this; }
+   string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
+   string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
+   string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
+   string_base & operator = (const ansi_character * pansisz) { assign(pansisz); return *this; }
+   string_base & operator = (const wd16_character * pwd16sz) { assign(pwd16sz); return *this; }
+   string_base & operator = (const wd32_character * pwd32sz) { assign(pwd32sz); return *this; }
+   string_base & operator = (const ::atom & atom);
+   string_base & operator = (const ::payload & payload);
+   string_base & operator = (const ::property & property);
 
 
    static consteval bool is_null_terminated() { return true; }

@@ -1,4 +1,4 @@
-﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -1938,14 +1938,9 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
 
 }
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom) { assign(atom.as_string()); return *this; }
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-//{
-//
-//   return operator=(atom.operator ::string());
-//
-//}
 
 
 //template < typename ITERATOR_TYPE >

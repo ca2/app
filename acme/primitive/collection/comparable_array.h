@@ -31,9 +31,9 @@ public:
    comparable_array(const comparable_array & array) : comparable_range < ARRAY_TYPE >(array) {}
    comparable_array(comparable_array && array) : comparable_range < ARRAY_TYPE >(::move(array)) {}
    template < primitive_integral INTEGRAL >
-   comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
-   comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   comparable_array(const_iterator begin) : BASE_ARRAY(begin, span_zero_item(begin)) {}
+   constexpr comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
+   constexpr comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
+   constexpr comparable_array(const_iterator begin) : BASE_ARRAY(begin, span_zero_item(begin)) {}
 
 
    using ARRAY_TYPE::operator =;

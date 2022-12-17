@@ -141,28 +141,28 @@ public:
    //e_range           m_erange = e_range_none;
 
 
-   range(enum_no_initialize)
+   constexpr range(enum_no_initialize)
    {
    }
 
-   range() : range(nullptr, nullptr)
+   constexpr range() : range(nullptr, nullptr)
    {
    }
 
-   range(nullptr_t) : range()
+   constexpr range(nullptr_t) : range()
    {
    }
 
-   range(const range & range) : m_begin(range.m_begin), m_end(range.m_end) {}
-   range(range && range) : m_begin(range.m_begin), m_end(range.m_end) { range.m_begin = nullptr; range.m_end = nullptr; }
+   constexpr range(const range & range) : m_begin(range.m_begin), m_end(range.m_end) {}
+   constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end) { range.m_begin = nullptr; range.m_end = nullptr; }
 
    template<typed_range<iterator> RANGE>
-   range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end())/*, m_erange(range.m_erange)*/
+   constexpr range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end())/*, m_erange(range.m_erange)*/
    {
    }
 
    template<typed_range<const_iterator> RANGE>
-   range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end)/*, m_erange(range.m_erange)*/
+   constexpr range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end)/*, m_erange(range.m_erange)*/
    {
    }
 
@@ -172,23 +172,23 @@ public:
    }
 
    template<::count count>
-   range(const ITEM(&array)[count]) : range(array, count)
+   constexpr range(const ITEM(&array)[count]) : range(array, count)
    {
    }
 
    template<primitive_integral INTEGRAL>
-   range(const_iterator begin, INTEGRAL count) : m_begin(
+   constexpr range(const_iterator begin, INTEGRAL count) : m_begin(
       (this_iterator) begin), m_end((this_iterator) (begin + count))
    {
    }
 
-   range(const_iterator begin, const_iterator end) : m_begin(
+   constexpr range(const_iterator begin, const_iterator end) : m_begin(
       (this_iterator) begin), m_end((this_iterator) end)
    {
    }
 
    template<::comparison::equality<ITEM> EQUALITY>
-   range(const_iterator begin, EQUALITY equality) : m_begin(
+   constexpr range(const_iterator begin, EQUALITY equality) : m_begin(
       (this_iterator) begin), m_end((this_iterator) span_zero_item(begin, equality))
    {
    }

@@ -120,27 +120,49 @@ public:
 
 #endif
 
-
+#include <utility>
+::std::pair<int,int> int_pair;
 namespace std
 {
+
 
 
    template < typename T1, typename T2, typename ARG_T1, typename ARG_T2 >
    ALIENATED_ANDROID_ANARCHY tuple_size< ::pair <T1, T2, ARG_T1, ARG_T2 > > : integral_constant<size_t, 2> {};
 
-template< class T, class... Types >
-constexpr T& get( ::pair<Types...>& t ) noexcept
+
+
+
+   template < size_t n, typename A, typename B , typename ARG_A, typename ARG_B >
+   constexpr auto & get( ::pair < A, B, ARG_A, ARG_B >& pair ) noexcept
+   {
+      if constexpr (n % 2 == 0)
+      {
+         return pair.m_element1;
+      }
+      else
+      {
+         
+         return pair.m_element2;
+         
+      }
+   }
+
+
+template < size_t n, typename A, typename B , typename ARG_A, typename ARG_B >
+constexpr auto & get(const ::pair < A, B, ARG_A, ARG_B >& pair ) noexcept
 {
-(5)   (since C++14)
-template< class T, class... Types >
-constexpr T&& get( tuple<Types...>&& t ) noexcept;
-(6)   (since C++14)
-template< class T, class... Types >
-constexpr const T& get( const tuple<Types...>& t ) noexcept;
-(7)   (since C++14)
-template< class T, class... Types >
-constexpr const T&& get( const tuple<Types...>&& t ) noexcept;
-(8)
+   if constexpr (n %2 == 0)
+   {
+      return pair.m_element1;
+   }
+   else
+   {
+      
+      return pair.m_element2;
+      
+   }
+}
 
 
 

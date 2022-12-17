@@ -2251,13 +2251,9 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
 }
 
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
-//{
-//
-//   return operator=(payload.operator ::string());
-//
-//}
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload) { assign(payload.as_string()); return *this; }
+
 
 
 //template < typename ITERATOR_TYPE >

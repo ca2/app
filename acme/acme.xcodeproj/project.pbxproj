@@ -1433,6 +1433,10 @@
 		9A7F3EDF274D543A00D914CC /* implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDB274D543900D914CC /* implement.h */; };
 		9A7F3EE0274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
 		9A7F3EE1274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
+		9A83A850294D4CC90074C712 /* array_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84E294D4CC80074C712 /* array_iterator.h */; };
+		9A83A851294D4CC90074C712 /* array_range.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A84F294D4CC80074C712 /* array_range.h */; };
+		9A83A854294D4D220074C712 /* raw_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A852294D4D210074C712 /* raw_array.h */; };
+		9A83A855294D4D220074C712 /* range.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A83A853294D4D220074C712 /* range.h */; };
 		9A84D3F2284229CD00890F9D /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A84D3ED284229AB00890F9D /* libidn.dylib */; };
 		9A882EF32844C315004113D1 /* new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A4BE2511442E008DABD2 /* new.cpp */; };
 		9A892DD626CD9061008D6412 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DBD26CD9061008D6412 /* filesystem.h */; };
@@ -3481,6 +3485,10 @@
 		9A78F44828E7F275007F62C0 /* conversation_message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conversation_message.h; sourceTree = "<group>"; };
 		9A7F3EDB274D543900D914CC /* implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement.h; sourceTree = "<group>"; };
 		9A7F3EDD274D543900D914CC /* implement_console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement_console.h; sourceTree = "<group>"; };
+		9A83A84E294D4CC80074C712 /* array_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_iterator.h; sourceTree = "<group>"; };
+		9A83A84F294D4CC80074C712 /* array_range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_range.h; sourceTree = "<group>"; };
+		9A83A852294D4D210074C712 /* raw_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = raw_array.h; sourceTree = "<group>"; };
+		9A83A853294D4D220074C712 /* range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = range.h; sourceTree = "<group>"; };
 		9A84D3E7284229AB00890F9D /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../port/idn/idn.xcodeproj; sourceTree = "<group>"; };
 		9A892DBD26CD9061008D6412 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		9A892DBE26CD9061008D6412 /* activate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = activate.h; sourceTree = "<group>"; };
@@ -4515,6 +4523,10 @@
 		9A68A5992511442F008DABD2 /* collection */ = {
 			isa = PBXGroup;
 			children = (
+				9A83A853294D4D220074C712 /* range.h */,
+				9A83A852294D4D210074C712 /* raw_array.h */,
+				9A83A84E294D4CC80074C712 /* array_iterator.h */,
+				9A83A84F294D4CC80074C712 /* array_range.h */,
 				9A0842452935E689009F7FF4 /* __payload_array.cpp */,
 				9A08426A2935E693009F7FF4 /* __payload_array.h */,
 				9A0842532935E68D009F7FF4 /* __property_set.h */,
@@ -6307,6 +6319,7 @@
 				9A08427F2935E694009F7FF4 /* aaa__papaya_impl.h in Headers */,
 				9A0842D82935EB40009F7FF4 /* read_only_memory.h in Headers */,
 				9A9814A128E4EA8E001C9855 /* procedure_array.h in Headers */,
+				9A83A851294D4CC90074C712 /* array_range.h in Headers */,
 				9A68AEFF25114435008DABD2 /* international2.h in Headers */,
 				9A68AEAF25114435008DABD2 /* atomic.h in Headers */,
 				9A68B3F725114438008DABD2 /* _.h in Headers */,
@@ -6326,6 +6339,7 @@
 				9A78621E264B90B4003DF8A0 /* random_number_generator.h in Headers */,
 				9A892DE026CD9061008D6412 /* GLOBAL_ID.h in Headers */,
 				9A68AE7D25114435008DABD2 /* match.h in Headers */,
+				9A83A850294D4CC90074C712 /* array_iterator.h in Headers */,
 				9A786286264B90E7003DF8A0 /* bounding_rect.h in Headers */,
 				9A68ADC425114434008DABD2 /* pointer_array.h in Headers */,
 				9A68AC9925114434008DABD2 /* procedure.h in Headers */,
@@ -6593,6 +6607,7 @@
 				9AA8FC9D27BA7299008FF9AA /* _apple_no_templates.h in Headers */,
 				9A68AD0025114434008DABD2 /* heap_memory.h in Headers */,
 				9A68AF6525114435008DABD2 /* location.h in Headers */,
+				9A83A855294D4D220074C712 /* range.h in Headers */,
 				9A68AE6325114435008DABD2 /* bit.h in Headers */,
 				9A110F7927CDD4C60081BCCD /* file_time_span.h in Headers */,
 				9A110F5427CDD2450081BCCD /* serial_shared.h in Headers */,
@@ -6629,6 +6644,7 @@
 				9A68AE0F25114435008DABD2 /* polygon.h in Headers */,
 				9A0841FF2935DD5D009F7FF4 /* wd16_impl.h in Headers */,
 				9A68AF2C25114435008DABD2 /* static_string.h in Headers */,
+				9A83A854294D4D220074C712 /* raw_array.h in Headers */,
 				9A68AD5125114434008DABD2 /* debug.h in Headers */,
 				9ADD655C26B5CFE700D11298 /* string_memory_allocator.h in Headers */,
 				9A892DF626CD9062008D6412 /* impact.h in Headers */,

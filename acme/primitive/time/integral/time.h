@@ -1,5 +1,4 @@
-﻿// Created by camilo on 2021-10-05 12:16 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
-#pragma once
+﻿#pragma once
 
 
 template < typename INTEGRAL_TIME_TYPE >
@@ -116,16 +115,16 @@ public:
 
    integral_time operator -() const { return BASE_TYPE(-this->m_i); }
 
-   //bool operator == (const BASE_TYPE & time) const { return this->m_i == time.m_i; }
-   //bool operator >  (const BASE_TYPE & time) const { return this->m_i >  time.m_i; }
+   bool operator == (const BASE_TYPE & time) const { return this->m_i == time.m_i; }
+   ::std::strong_ordering operator <=>  (const BASE_TYPE & time) const { return this->m_i <=>  time.m_i; }
    //bool operator >= (const BASE_TYPE & time) const { return this->m_i >= time.m_i; }
    //bool operator <  (const BASE_TYPE & time) const { return this->m_i <  time.m_i; }
    //bool operator <= (const BASE_TYPE & time) const { return this->m_i <= time.m_i; }
    //bool operator != (const BASE_TYPE & time) const { return this->m_i != time.m_i; }
 
 
-   //bool operator == (const integral_time & time) const { return this->m_i == time.m_i; }
-   //bool operator >  (const integral_time & time) const { return this->m_i > time.m_i; }
+   bool operator == (const integral_time & time) const { return this->m_i == time.m_i; }
+   ::std::strong_ordering operator <=>  (const integral_time & time) const { return this->m_i <=> time.m_i; }
    //bool operator >= (const integral_time & time) const { return this->m_i >= time.m_i; }
    //bool operator <  (const integral_time & time) const { return this->m_i < time.m_i; }
    //bool operator <= (const integral_time & time) const { return this->m_i <= time.m_i; }

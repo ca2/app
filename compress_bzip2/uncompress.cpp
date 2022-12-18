@@ -56,16 +56,16 @@ namespace compress_bzip2
       class memory memIn;
       memIn.set_size(1024 * 8);
 
-      i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+      i64 uRead = pfileIn->read(memIn.data(), memIn.size());
 
       bz_stream zstream;
       zero(zstream);
-      zstream.next_in = (char*)memIn.get_data();
+      zstream.next_in = (char*)memIn.data();
       zstream.avail_in = (u32)uRead;
 
       class memory memory;
       memory.set_size(1024 * 256);
-      ASSERT(memory.get_size() <= UINT_MAX);
+      ASSERT(memory.size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
       if (BZ2_bzDecompressInit(&zstream, 0, 0) != BZ_OK)
@@ -81,13 +81,13 @@ namespace compress_bzip2
          do
          {
 
-            zstream.next_out = (char*)memory.get_data();
-            zstream.avail_out = (u32)memory.get_size();
+            zstream.next_out = (char*)memory.data();
+            zstream.avail_out = (u32)memory.size();
 
             // Inflate another chunk.
             status = BZ2_bzDecompress(&zstream);
 
-            pfileOut->write(memory.get_data(), memory.get_size() - zstream.avail_out);
+            pfileOut->write(memory.data(), memory.size() - zstream.avail_out);
 
             if (status == BZ_STREAM_END)
             {
@@ -113,9 +113,9 @@ namespace compress_bzip2
 
          }
 
-         uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+         uRead = pfileIn->read(memIn.data(), memIn.size());
 
-         zstream.next_in = (char*)memIn.get_data();
+         zstream.next_in = (char*)memIn.data();
 
          zstream.avail_in = (u32)uRead;
 

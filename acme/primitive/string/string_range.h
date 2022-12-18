@@ -9,7 +9,6 @@
 #include "acme/primitive/collection/null_terminated_range.h"
 
 
-
 template < typename ITERATOR_TYPE >
 class string_range : 
    //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
@@ -40,7 +39,7 @@ public:
 
    using ITEM = non_const < dereference < ITEM_POINTER > >;
 
-   
+
    template<::std::size_t count>
    constexpr string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count){}
    template<primitive_integral INTEGRAL>

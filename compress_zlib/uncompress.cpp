@@ -36,12 +36,12 @@ namespace compress_zlib
 
       u32 uRead;
 
-      uRead = (u32)(pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
+      uRead = (u32)(pfileGzFileCompressed->read(memIn.data(), memIn.size()));
 
       z_stream zstream;
 
       zero(zstream);
-      zstream.next_in = (u8*)memIn.get_data();
+      zstream.next_in = (u8*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
@@ -51,7 +51,7 @@ namespace compress_zlib
 
       memory.set_size(1024 * 1024);
 
-      ASSERT(memory.get_size() <= UINT_MAX);
+      ASSERT(memory.size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
       if (inflateInit2(&zstream, 16 + MAX_WBITS) != Z_OK)
@@ -67,13 +67,13 @@ namespace compress_zlib
          do
          {
 
-            zstream.next_out = memory.get_data();
-            zstream.avail_out = (u32)memory.get_size();
+            zstream.next_out = memory.data();
+            zstream.avail_out = (u32)memory.size();
 
             // Inflate another chunk.
             status = inflate(&zstream, Z_NO_FLUSH);
 
-            pfileUncompressed->write(memory.get_data(), memory.get_size() - zstream.avail_out);
+            pfileUncompressed->write(memory.data(), memory.size() - zstream.avail_out);
 
             if (status == Z_STREAM_END)
             {
@@ -90,9 +90,9 @@ namespace compress_zlib
 
          } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
-         uRead = (u32)(pfileGzFileCompressed->read(memIn.get_data(), memIn.get_size()));
+         uRead = (u32)(pfileGzFileCompressed->read(memIn.data(), memIn.size()));
 
-         zstream.next_in = (u8*)memIn.get_data();
+         zstream.next_in = (u8*)memIn.data();
 
          zstream.avail_in = (u32)uRead;
 

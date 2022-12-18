@@ -126,12 +126,14 @@ namespace comparison
    {
    public:
 
+
       constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2) const 
       {
          
          return t1 <=> t2;
       
       }
+
 
    };
 

@@ -185,7 +185,7 @@ namespace simpledb
             if(bData)
             {
 
-               stritem.m_memory.assign(getmemory.get_data(), (memsize) getmemory.get_size());
+               stritem.m_memory.assign(getmemory.data(), (memsize) getmemory.size());
 
             }
             else
@@ -294,7 +294,7 @@ namespace simpledb
                if (::is_set(getmemory.m_pmemory))
                {
 
-                  getmemory.m_pmemory->assign(stritem.m_memory.get_data(), stritem.m_memory.get_size());
+                  getmemory.m_pmemory->assign(stritem.m_memory.data(), stritem.m_memory.size());
 
                }
                else
@@ -377,24 +377,24 @@ namespace simpledb
 
          }
 
-         string_map < class item >::pair * pitem = nullptr;
+         string_map < class item >::iterator iterator{};
 
          {
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            pitem = pstorage->m_map.plookup(strKey);
+            iterator = pstorage->m_map.plookup(strKey);
 
          }
 
          string strLoad;
 
-         if (pitem != nullptr)
+         if (iterator.is_ok())
          {
 
             synchronous_lock synchronouslock(this->synchronization());
 
-            if (pitem->element2().m_memory == block)
+            if (iterator->element2().m_memory == block)
             {
 
                return;

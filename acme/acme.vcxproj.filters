@@ -536,7 +536,7 @@
     <ClInclude Include="primitive\datetime\earth_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\time_span.h">
+    <ClInclude Include="primitive\datetime\earth_time_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\zonetime.h">
@@ -2501,37 +2501,10 @@
     <ClInclude Include="primitive\time\_text_stream.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\_time_impl.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\time\_unit_operator.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\aaa_microsecond.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaa_nanosecond.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaa_second.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaa_time.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaaa_hour.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaaa_millisecond.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\aaaa_minute.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\time\day.h">
-      <Filter>Header Files\primitive\time</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\time_operator.h">
       <Filter>Header Files\primitive\time</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\floating\_.h">

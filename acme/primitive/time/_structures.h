@@ -14,20 +14,22 @@ class time;
 
 #define DECLARE_COMPARISON_WITH_TIME(EXPORT_CLAUSE_DECL) \
 EXPORT_CLAUSE_DECL bool operator == (const class  ::time & time) const; \
-EXPORT_CLAUSE_DECL bool operator < (const class  ::time & time) const; \
-EXPORT_CLAUSE_DECL bool operator <= (const class  ::time & time) const; \
-EXPORT_CLAUSE_DECL bool operator > (const class  ::time & time) const; \
-EXPORT_CLAUSE_DECL bool operator >= (const class  ::time & time) const; \
-EXPORT_CLAUSE_DECL bool operator != (const class  ::time & time)  const;
+EXPORT_CLAUSE_DECL ::std::strong_ordering operator <=> (const class  ::time & time) const; 
+//\
+//EXPORT_CLAUSE_DECL bool operator <= (const class  ::time & time) const; \
+//EXPORT_CLAUSE_DECL bool operator > (const class  ::time & time) const; \
+//EXPORT_CLAUSE_DECL bool operator >= (const class  ::time & time) const; \
+//EXPORT_CLAUSE_DECL bool operator != (const class  ::time & time)  const;
 
 
 #define DEFINE_COMPARISON_WITH_TIME(EXPORT_CLAUSE_DECL, TYPE) \
 EXPORT_CLAUSE_DECL bool TYPE::operator == (const class  ::time & time) const { return ((class ::time)*this) == time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator < (const class  ::time & time) const { return ((class ::time)*this) < time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator <= (const class  ::time & time) const { return ((class ::time)*this) <= time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator > (const class  ::time & time) const { return ((class ::time)*this) > time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator >= (const class  ::time & time) const { return ((class ::time)*this) >= time; } \
-EXPORT_CLAUSE_DECL bool TYPE::operator != (const class  ::time & time) const { return ((class ::time)*this) != time; }
+EXPORT_CLAUSE_DECL ::std::strong_ordering TYPE::operator <=> (const class  ::time & time) const { return ((class ::time)*this) <=> time; } 
+//\
+//EXPORT_CLAUSE_DECL bool TYPE::operator <= (const class  ::time & time) const { return ((class ::time)*this) <= time; } \
+//EXPORT_CLAUSE_DECL bool TYPE::operator > (const class  ::time & time) const { return ((class ::time)*this) > time; } \
+//EXPORT_CLAUSE_DECL bool TYPE::operator >= (const class  ::time & time) const { return ((class ::time)*this) >= time; } \
+//EXPORT_CLAUSE_DECL bool TYPE::operator != (const class  ::time & time) const { return ((class ::time)*this) != time; }
 
 
 #define NON_INLINE
@@ -89,11 +91,12 @@ DURATION_UNIT(FLOATING_DAY          , ::f64, m_d);
 
 #define DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER) \
 inline bool operator == (const TYPE & t2) const { return this->MEMBER == t2.MEMBER; } \
-inline bool operator <  (const TYPE & t2) const { return this->MEMBER < t2.MEMBER; } \
-inline bool operator <= (const TYPE & t2) const { return this->MEMBER <= t2.MEMBER; } \
-inline bool operator >  (const TYPE & t2) const { return this->MEMBER > t2.MEMBER; } \
-inline bool operator >= (const TYPE & t2) const { return this->MEMBER >= t2.MEMBER; } \
-inline bool operator != (const TYPE & t2) const { return this->MEMBER != t2.MEMBER; }
+inline ::std::strong_ordering operator <=>  (const TYPE & t2) const { return this->MEMBER <=> t2.MEMBER; } 
+//\
+//inline bool operator <= (const TYPE & t2) const { return this->MEMBER <= t2.MEMBER; } \
+//inline bool operator >  (const TYPE & t2) const { return this->MEMBER > t2.MEMBER; } \
+//inline bool operator >= (const TYPE & t2) const { return this->MEMBER >= t2.MEMBER; } \
+//inline bool operator != (const TYPE & t2) const { return this->MEMBER != t2.MEMBER; }
 
 
 #define __DURATION_SETUP__(TYPE, MEMBER) \

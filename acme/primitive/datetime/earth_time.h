@@ -190,7 +190,7 @@ namespace earth
 } // namespace earth
 
 
-#include "time_span.h"
+#include "earth_time_span.h"
 
 
 namespace earth
@@ -242,12 +242,12 @@ namespace earth
    }
 
 
-
+   DEFINE_COMPARISON_WITH_TIME(inline, time)
 
 } // namespace earth
 
 
-DEFINE_COMPARISON_WITH_TIME(inline, ::earth::time)
+
 
 
 

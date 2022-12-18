@@ -275,6 +275,21 @@ public:
       e_type_happening_text = e_type_happening | e_type_text,
 
 
+      e_type_range = 1ull << 32,
+      e_type_id_range = e_type_atom | e_type_range,
+      e_type_factory_range = e_type_factory | e_type_range,
+      e_type_task_tool_range = e_type_task_tool | e_type_range,
+      e_type_timer_range = e_type_timer | e_type_range,
+      e_type_message_range = e_type_message | e_type_range,
+      e_type_property_range = e_type_property | e_type_range,
+      e_type_command_range = e_type_command | e_type_range,
+      e_type_command_probe_range = e_type_command_probe | e_type_range,
+      e_type_has_command_handler_range = e_type_has_command_handler | e_type_range,
+      e_type_update_range = e_type_update | e_type_range,
+      e_type_impact_range = e_type_impact | e_type_range,
+      e_type_happening_range = e_type_happening | e_type_range,
+
+
    };
 
 
@@ -293,6 +308,7 @@ public:
       enum_dialog_result   m_edialogresult;
       enum_happening       m_ehappening;
       ::string             m_str;
+      ::const_ansi_range   m_range;
       ::iptr               m_iBody;
 
    };
@@ -333,6 +349,9 @@ public:
    template < primitive_unsigned UNSIGNED >
    atom(UNSIGNED u);
    atom(const ::string & str);
+   atom(const const_ansi_range & range);
+   atom(const_ansi_range && range);
+   atom(const const_ansi_range && range);
    //atom(const type & type);
    atom(const ::payload & payload);
    atom(const ::lparam & lparam);
@@ -340,7 +359,16 @@ public:
    ~atom()
    {
 
-      if (is_text())
+      _defer_free();
+
+      m_etype = e_type_null;
+
+   }
+
+   void _defer_free()
+   {
+
+      if (is_text() && !is_range())
       {
 
          m_str.::string::~string();
@@ -598,6 +626,7 @@ public:
    inline bool case_insensitive_ends(const char* pszSuffix) const;
 
    inline bool is_text() const { return m_etype >= e_type_text; }
+   inline bool is_range() const { return m_etype >= e_type_range; }
    inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
 
@@ -911,39 +940,28 @@ inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
 inline atom & atom::operator = (const atom & atom)
 {
 
-   if (atom.is_text())
+   _defer_free();
+
+   if (atom.is_range())
    {
 
-      if (is_text())
-      {
+      m_range = atom.m_range;
 
-         m_str = atom.m_str;
+   }
+   else if (atom.is_text())
+   {
 
-      }
-      else
-      {
-
-         ::new(&m_str) ::string(atom.m_str);
-
-      }
-
-      m_etype = atom.m_etype;
+      ::new(&m_str) ::string(atom.m_str);
 
    }
    else
    {
 
-      if (is_text())
-      {
-
-         m_str.::string::to_string();
-
-      }
-
-      m_etype = atom.m_etype;
       m_u = atom.m_u;
 
    }
+
+   m_etype = atom.m_etype;
 
    return *this;
 
@@ -1835,6 +1853,32 @@ inline atom::atom(const ::string& str) :
 {
 
    m_etype = e_type_text;
+
+}
+
+
+inline atom::atom(const const_ansi_range & range) :
+   m_range(range)
+{
+
+   m_etype = e_type_range;
+
+}
+
+inline atom::atom(const_ansi_range && range) :
+   m_range(::move(range))
+{
+
+   m_etype = e_type_range;
+
+}
+
+
+inline atom::atom(const const_ansi_range && range) :
+   m_range(::move(range))
+{
+
+   m_etype = e_type_range;
 
 }
 

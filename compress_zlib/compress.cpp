@@ -78,13 +78,13 @@ namespace compress_zlib
 
       memIn.set_size((memsize)maximum(1024, minimum(pfileIn->get_left(), 1024 * 64)));
 
-      i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+      i64 uRead = pfileIn->read(memIn.data(), memIn.size());
 
       z_stream zstream;
 
       zero(zstream);
 
-      zstream.next_in = (u8*)memIn.get_data();
+      zstream.next_in = (u8*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;
       zstream.zalloc = Z_NULL;
@@ -92,7 +92,7 @@ namespace compress_zlib
 
       class memory memory;
       memory.set_size(1024 * 256);
-      ASSERT(memory.get_size() <= UINT_MAX);
+      ASSERT(memory.size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
       if (deflateInit2(&zstream, iLevel, Z_DEFLATED, 16 + MAX_WBITS, 9, Z_DEFAULT_STRATEGY) != Z_OK)
@@ -112,14 +112,14 @@ namespace compress_zlib
          do
          {
 
-            zstream.next_out = memory.get_data();
+            zstream.next_out = memory.data();
 
-            zstream.avail_out = (u32)memory.get_size();
+            zstream.avail_out = (u32)memory.size();
 
             // Inflate another chunk.
             status = deflate(&zstream, iFlush);
 
-            pfileOut->write(memory.get_data(), (u32)memory.get_size() - zstream.avail_out);
+            pfileOut->write(memory.data(), (u32)memory.size() - zstream.avail_out);
 
             if (status == Z_STREAM_END)
             {
@@ -136,7 +136,7 @@ namespace compress_zlib
 
          } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
-         uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
+         uRead = pfileIn->read(memIn.data(), memIn.size());
 
          if (uRead == 0)
          {
@@ -151,7 +151,7 @@ namespace compress_zlib
          else
          {
 
-            zstream.next_in = (u8*)memIn.get_data();
+            zstream.next_in = (u8*)memIn.data();
 
             zstream.avail_in = (u32)uRead;
 
@@ -178,7 +178,7 @@ namespace compress_zlib
    ::u32 compress::crc32(::u32 uCrc, const ::block& block)
    {
 
-      return (::u32)::crc32(uCrc, (const Bytef *) block.get_data(), (uInt) block.get_size());
+      return (::u32)::crc32(uCrc, (const Bytef *) block.data(), (uInt) block.size());
 
    }
 

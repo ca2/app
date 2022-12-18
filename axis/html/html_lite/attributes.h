@@ -1,4 +1,4 @@
-//
+﻿//
 //HISTORY:
 //
 //Version 1.0            Gurmeet S. Kochar (GSK)
@@ -179,9 +179,9 @@ public:
     */
    operator bool() const
    {
-      if (!m_strValue.case_insensitive_order("true"))
+      if (m_strValue.case_insensitive_equals("true"))
          return (true);
-      if (!m_strValue.case_insensitive_order("false"))
+      if (m_strValue.case_insensitive_equals("false"))
          return (false);
       return (((i16)*this ? true : false));
    }

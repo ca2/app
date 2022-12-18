@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "dataset.h"
 #include "database.h"
 #include "field.h"
@@ -339,7 +339,7 @@ namespace database
    field * dataset::field(const ::string & name)
    {
 
-      for (auto & pfield : m_result.m_pfielda->ptra())
+      for (auto & pfield : *m_result.m_pfielda)
       {
 
          if (pfield->m_strName.case_insensitive_order(name) == 0)
@@ -598,7 +598,7 @@ namespace database
 
       }
 
-      for(auto & prow : m_result.m_prowa->ptra())
+      for(auto & prow : *m_result.m_prowa)
       {
 
          items->add(prow->element_at(0));

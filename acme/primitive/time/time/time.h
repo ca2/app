@@ -1,6 +1,10 @@
 ﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
+#define _TIME_COMPARISON_WITH(TYPE) \
+   inline bool operator == (const TYPE & t) const { return operator == (class ::time(t)); } \
+   inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> (class ::time(t)); }
+
 
 class CLASS_DECL_ACME time :
    public TIME
@@ -361,10 +365,38 @@ public:
 
 
 
+   _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
+   _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
+   _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
+   _TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
+   _TIME_COMPARISON_WITH(::INTEGRAL_MINUTE);
+   _TIME_COMPARISON_WITH(::INTEGRAL_HOUR);
+   _TIME_COMPARISON_WITH(::INTEGRAL_DAY);
+
+   _TIME_COMPARISON_WITH(::integral_nanosecond);
+   _TIME_COMPARISON_WITH(::integral_microsecond);
+   _TIME_COMPARISON_WITH(::integral_millisecond);
+   _TIME_COMPARISON_WITH(::integral_second);
+   _TIME_COMPARISON_WITH(::integral_minute);
+   _TIME_COMPARISON_WITH(::integral_hour);
+   _TIME_COMPARISON_WITH(::integral_day);
 
 
+   _TIME_COMPARISON_WITH(::FLOATING_NANOSECOND);
+   _TIME_COMPARISON_WITH(::FLOATING_MICROSECOND);
+   _TIME_COMPARISON_WITH(::FLOATING_MILLISECOND);
+   _TIME_COMPARISON_WITH(::FLOATING_SECOND);
+   _TIME_COMPARISON_WITH(::FLOATING_MINUTE);
+   _TIME_COMPARISON_WITH(::FLOATING_HOUR);
+   _TIME_COMPARISON_WITH(::FLOATING_DAY);
 
-
+   _TIME_COMPARISON_WITH(::floating_nanosecond);
+   _TIME_COMPARISON_WITH(::floating_microsecond);
+   _TIME_COMPARISON_WITH(::floating_millisecond);
+   _TIME_COMPARISON_WITH(::floating_second);
+   _TIME_COMPARISON_WITH(::floating_minute);
+   _TIME_COMPARISON_WITH(::floating_hour);
+   _TIME_COMPARISON_WITH(::floating_day);
 
 
    //inline bool operator == (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator == (class ::time(integralnanosecond)); }

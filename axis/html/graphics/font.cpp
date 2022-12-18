@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "font.h"
 #include "acme/primitive/string/str.h"
 #include "aura/graphics/write_text/font.h"
@@ -110,10 +110,10 @@ namespace html
    bool font::operator == (const font & font) const
    {
       
-      return !m_strFamily.case_insensitive_order(font.m_strFamily)
-             && !m_strSize.case_insensitive_order(font.m_strSize)
-             && !m_strWeight.case_insensitive_order(font.m_strWeight)
-             && !m_strTextDecoration.case_insensitive_order(font.m_strTextDecoration);
+      return m_strFamily.case_insensitive_equals(font.m_strFamily)
+             && m_strSize.case_insensitive_equals(font.m_strSize)
+             && m_strWeight.case_insensitive_equals(font.m_strWeight)
+             && m_strTextDecoration.case_insensitive_equals(font.m_strTextDecoration);
       
    }
 

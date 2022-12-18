@@ -104,7 +104,7 @@ namespace compress_bzip2
       class memory memIn;
       memIn.set_size(1024 * 64);
 
-      i64 uRead = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
+      i64 uRead = pfileUncompressed->read(memIn.data(), memIn.size());
 
       iBlockSize = maximum(1, minimum(9, iBlockSize));
       iVerbosity = maximum(0, minimum(4, iVerbosity));
@@ -119,7 +119,7 @@ namespace compress_bzip2
       zstream.bzalloc = (bzalloc)0;
       zstream.bzfree = (bzfree)0;
       zstream.opaque = (void*)0;
-      zstream.next_in = (char*)memIn.get_data();
+      zstream.next_in = (char*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.next_out = nullptr;
       zstream.avail_out = 0;
@@ -129,7 +129,7 @@ namespace compress_bzip2
 
       i32 err = BZ2_bzCompressInit(&zstream, blockSize100k, verbosity, workFactor);
 
-      if (err != BZ_OK || memory.get_data() == nullptr)
+      if (err != BZ_OK || memory.data() == nullptr)
       {
 
          throw ::exception(error_failed);
@@ -146,12 +146,12 @@ namespace compress_bzip2
          do
          {
 
-            zstream.next_out = (char*)memory.get_data();
-            zstream.avail_out = (u32)memory.get_size();
+            zstream.next_out = (char*)memory.data();
+            zstream.avail_out = (u32)memory.size();
 
             ret = BZ2_bzCompress(&zstream, iState);
 
-            pfileBzFileCompressed->write(memory.get_data(), memory.get_size() - zstream.avail_out);
+            pfileBzFileCompressed->write(memory.data(), memory.size() - zstream.avail_out);
 
             if (ret == BZ_STREAM_END)
             {
@@ -174,7 +174,7 @@ namespace compress_bzip2
 
          } while (zstream.avail_out == 0);
 
-         uRead = pfileUncompressed->read(memIn.get_data(), memIn.get_size());
+         uRead = pfileUncompressed->read(memIn.data(), memIn.size());
 
          if (uRead == 0)
          {
@@ -189,7 +189,7 @@ namespace compress_bzip2
          else
          {
 
-            zstream.next_in = (char*)memIn.get_data();
+            zstream.next_in = (char*)memIn.data();
 
             zstream.avail_in = (u32)uRead;
 

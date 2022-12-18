@@ -1413,13 +1413,6 @@
     <ClInclude Include="primitive\string\sz\_impl.h" />
     <ClInclude Include="primitive\string\utf8_character.h" />
     <ClInclude Include="primitive\string\_string_base_impl1.h" />
-    <ClInclude Include="primitive\time\aaaa_hour.h" />
-    <ClInclude Include="primitive\time\aaaa_millisecond.h" />
-    <ClInclude Include="primitive\time\aaaa_minute.h" />
-    <ClInclude Include="primitive\time\aaa_microsecond.h" />
-    <ClInclude Include="primitive\time\aaa_nanosecond.h" />
-    <ClInclude Include="primitive\time\aaa_second.h" />
-    <ClInclude Include="primitive\time\aaa_time.h" />
     <ClInclude Include="primitive\time\day.h" />
     <ClInclude Include="primitive\time\floating\day.h" />
     <ClInclude Include="primitive\time\floating\time.h" />
@@ -1444,7 +1437,6 @@
     <ClInclude Include="primitive\time\time\time.h" />
     <ClInclude Include="primitive\time\time\unit.h" />
     <ClInclude Include="primitive\time\time\_.h" />
-    <ClInclude Include="primitive\time\time_operator.h" />
     <ClInclude Include="primitive\time\_.h" />
     <ClInclude Include="primitive\time\_binary_stream.h" />
     <ClInclude Include="primitive\time\time.h" />
@@ -1452,7 +1444,6 @@
     <ClInclude Include="primitive\time\_string.h" />
     <ClInclude Include="primitive\time\_structures.h" />
     <ClInclude Include="primitive\time\_text_stream.h" />
-    <ClInclude Include="primitive\time\_time_impl.h" />
     <ClInclude Include="primitive\time\_unit_operator.h" />
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="procedure.h" />
@@ -1914,7 +1905,7 @@
     <ClInclude Include="primitive\datetime\_.h" />
     <ClInclude Include="primitive\datetime\date_span.h" />
     <ClInclude Include="primitive\datetime\earth_time.h" />
-    <ClInclude Include="primitive\datetime\time_span.h" />
+    <ClInclude Include="primitive\datetime\earth_time_span.h" />
     <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
     <ClInclude Include="primitive\geometry2d\aaa_align.h" />

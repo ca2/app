@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -57,19 +57,19 @@ namespace html
       static bool _parse_border_width(const ::string & psz, float & f);
       static bool _parse_border_color(const ::string & psz, ::color::color & color32);
 
-      bool get_dimension(bool bParent, atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
-      bool get_surround_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectangle_f32 & rectangle);
-      bool get_border_box(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
-      bool get_border_color(atom idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
+      bool get_dimension(bool bParent, const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
+      bool get_surround_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectangle_f32 & rectangle);
+      bool get_border_box(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
+      bool get_border_color(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       // todo
-      // bool get_border_style(atom idName, const ::string & strSubClass, const html_data * pdata, ::html::element * pelemental, ::color::color & color32);
-      bool get_color(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelemental, ::color::color & color);
-      bool get_text(atom idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str);
+      // bool get_border_style(const_ansi_range rangeName, const ::string & strSubClass, const html_data * pdata, ::html::element * pelemental, ::color::color & color32);
+      bool get_color(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelemental, ::color::color & color);
+      bool get_text(const_ansi_range rangeName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str);
       bool get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::element * pelemental, double & d);
 
-      bool matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName);
-      bool matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, float & f);
-      bool matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, atom idName, ::color::color & color32);
+      bool matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName);
+      bool matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName, float & f);
+      bool matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const_ansi_range rangeName, ::color::color & color32);
 
       
    };

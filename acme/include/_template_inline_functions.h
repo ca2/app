@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -61,7 +61,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
    return ::pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
-
+//::std::pair<int, int> ia;
 //inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //

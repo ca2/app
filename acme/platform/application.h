@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSorensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
@@ -85,7 +85,7 @@ namespace acme
 
       using ::acme::context::factory;
 
-      virtual ::factory::factory_pointer& factory();
+      virtual ::factory::factory_pointer& factory() override;
 
       virtual void implement_application();
 
@@ -99,7 +99,7 @@ namespace acme
       virtual bool is_service() const;
       virtual bool is_user_service() const;
 
-      virtual bool can_exit_application();
+      virtual bool can_exit_application() override;
 
       virtual ::file::path get_module_path();
       virtual ::file::path get_module_folder();

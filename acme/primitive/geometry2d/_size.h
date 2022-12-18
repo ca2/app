@@ -176,17 +176,28 @@ public:
    inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
 
    inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx == rectangle.width() && this->cy == rectangle.height(); }
-   inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
+   //inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
 
-   inline bool operator > (const size_type & size) const noexcept { return this->cx > size.cx && this->cy > size.cy; }
-   inline bool operator >= (const size_type & size) const noexcept { return this->cx >= size.cx && this->cy >= size.cy; }
-   inline bool operator < (const size_type & size) const noexcept { return this->cx < size.cx && this->cy < size.cy; }
-   inline bool operator <= (const size_type & size) const noexcept { return this->cx <= size.cx && this->cy <= size.cy; }
+   inline ::std::strong_ordering operator <=> (const size_type & size) const noexcept 
+   {
+   
+      auto order = this->cx <=> size.cx;
 
-   inline bool operator > (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator > (rectangle.size()); }
-   inline bool operator >= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
-   inline bool operator < (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
-   inline bool operator <= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
+      if (order != 0)
+      {
+
+         return order;
+
+      }
+      
+      return this->cy <=> size.cy; 
+
+   }
+
+   inline ::std::strong_ordering operator <=> (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <=> (rectangle.size()); }
+   //inline bool operator >= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
+   //inline bool operator < (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
+   //inline bool operator <= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
 
    inline bool any_gt (const size_type & size) const noexcept { return this->cx > size.cx || this->cy > size.cy; }
    inline bool any_ge (const size_type & size) const noexcept { return this->cx >= size.cx || this->cy >= size.cy; }

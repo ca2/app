@@ -1950,6 +1950,17 @@ inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
 }
 
 
+template < typename ITERATOR_TYPE >
+inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
+{
+
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
 template < >
 inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
 {
@@ -1971,6 +1982,15 @@ inline string_range <  const ::ansi_character * >::string_range(const atom & ato
 
 }
 
+
+template < >
+inline string_range <  const ::ansi_character * >::string_range(const block & block)
+{
+
+   this->m_begin = (const ::ansi_character *) block.m_begin;
+   this->m_end = (const ::ansi_character *)block.m_end;
+
+}
 
 
 template < typename ITERATOR_TYPE >
@@ -2000,6 +2020,30 @@ inline string_range < const ::ansi_character * > & string_range <  const ::ansi_
       this->m_end = nullptr;
 
    }
+
+   return *this;
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
+{
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+template <  >
+inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
+{
+
+
+   this->m_begin = (const ::ansi_character *)block.m_begin;
+   this->m_end = (const ::ansi_character *)block.m_end;
 
    return *this;
 

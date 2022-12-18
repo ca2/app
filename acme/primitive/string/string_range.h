@@ -57,11 +57,13 @@ public:
    string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
    string_range(const ITEM * & begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
    string_range(const ::atom & atom);
+   string_range(const ::block & block);
 
 
    string_range & operator = (const string_range & range) { BASE_RANGE::operator=(range); return *this; }
    string_range & operator = (string_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
    string_range & operator = (const atom & atom);
+   string_range & operator = (const block & block);
 
 
 

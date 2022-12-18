@@ -1380,7 +1380,7 @@ namespace user
 
             }
 
-            for(auto & pinteraction : uiptraToolWindow.ptra())
+            for(auto & pinteraction : uiptraToolWindow)
             {
 
                if(pinteraction != pmouse->userinteraction())

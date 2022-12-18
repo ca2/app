@@ -43,7 +43,7 @@ namespace simpledb
 
 
       /*   STARTUPINFO startupinfo;
-      __memset(&startupinfo, 0, sizeof(startupinfo));
+      memory_set(&startupinfo, 0, sizeof(startupinfo));
       if(!::CreateProcess(nullptr, "netnoderewrite.exe",
       nullptr,
       nullptr,

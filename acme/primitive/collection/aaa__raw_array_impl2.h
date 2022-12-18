@@ -415,7 +415,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
 ////
 //      m_pData = (TYPE*) memory_new byte[(size_t)nAllocSize * sizeof(TYPE)];
-//      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
+//      //memory_set((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::index i = 0; i < nNewSize; i++ )
 //  //       ::memory_new( (void *)( m_pData + i ) ) TYPE;
 //////#define memory_new ACME_NEW
@@ -428,7 +428,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //      if (nNewSize > m_nSize)
 //      {
 //         // initialize the memory_new elements
-////         __memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+////         memory_set((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////            ::memory_new( (void *)( m_pData + m_nSize + i ) ) TYPE;
@@ -477,7 +477,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::~raw_array()
 //
 //      // construct remaining elements
 //      ASSERT(nNewSize > m_nSize);
-////      __memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+////      memory_set((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
 ////
 ////         ::memory_new( (void *)( pNewData + m_nSize + i ) ) TYPE;

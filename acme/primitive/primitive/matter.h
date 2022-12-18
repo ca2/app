@@ -501,15 +501,16 @@ inline void particle::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 
 }
 
-//
-//template < typename TYPE >
-//inline void matter::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
-//{
-//
-//   ::__id_construct(this, p, atom, pfactory);
-//
-//}
-//
+
+template < typename TYPE >
+inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, ::factory::factory * pfactory)
+{
+
+   ::__id_construct(this, p, atom, pfactory);
+
+}
+
+
 //
 //template < typename TYPE >
 //inline void matter::__construct_new(::pointer<TYPE> & p)

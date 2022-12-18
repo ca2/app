@@ -4836,7 +4836,7 @@ retry_license:
 
       ::memory_file file;
 
-      if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
+      if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->size() > 0)
       {
 
 //         zip_context zip(this);
@@ -7932,7 +7932,7 @@ namespace aura
 //      if (!::IsWindow(oswindow))
 //         return -1;
 //      COPYDATASTRUCT cds;
-//      __memset(&cds, 0, sizeof(cds));
+//      memory_set(&cds, 0, sizeof(cds));
 //      cds.dwData = 888888;
 //      cds.cbData = (u32)strlen(psz);
 //      cds.lpData = (PVOID)psz;

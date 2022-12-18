@@ -179,7 +179,7 @@ namespace user
       while (nCount--)
       VERIFY(DefWindowProc(TB_DELETEBUTTON, 0, 0));
 
-      TBBUTTON button; __memset(&button, 0, sizeof(TBBUTTON));
+      TBBUTTON button; memory_set(&button, 0, sizeof(TBBUTTON));
       button.iString = -1;
       if (pIDArray != nullptr)
 

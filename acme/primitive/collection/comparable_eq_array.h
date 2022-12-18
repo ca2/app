@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -6,12 +6,14 @@
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_eq_array:
-   public comparable_eq_range < ARRAY_TYPE >
+   //public comparable_eq_range < ARRAY_TYPE >
+   public ARRAY_TYPE
 {
 public:
 
 
-   using BASE_RANGE = comparable_eq_range < ARRAY_TYPE >;
+   //using BASE_RANGE = comparable_eq_range < ARRAY_TYPE >;
+   using BASE_RANGE = ARRAY_TYPE;
 
    using BASE_ARRAY = ARRAY_TYPE;
 
@@ -29,9 +31,9 @@ public:
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::move(array)) { }
    comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
    template < primitive_integral INTEGRAL >
-   constexpr comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
-   constexpr comparable_eq_array(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-   constexpr comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
+   comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
+   comparable_eq_array(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
+   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
 
    
    ::index find_first(ARG_TYPE t) const;

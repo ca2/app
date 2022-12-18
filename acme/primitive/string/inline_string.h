@@ -7,7 +7,8 @@
 
 template < primitive_character CHARACTER, strsize m_sizeMaximumLength >
 class inline_string :
-   public ::string_range < CHARACTER * >
+   //public ::range < CHARACTER * >
+   public ::range < CHARACTER * >
 {
 public:
 
@@ -16,7 +17,7 @@ public:
 
    
    constexpr inline_string() :
-      ::string_range < CHARACTER * >(e_no_initialize)
+      ::range < CHARACTER * >(e_no_initialize)
    {
       
       this->m_begin = m_sz;

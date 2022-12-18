@@ -50,7 +50,7 @@ public:
 
       ASSERT(sizeof(*this) == sizeof(service_status));
 
-      __memset(this, 0, sizeof(service_status));
+      memory_set(this, 0, sizeof(service_status));
 
    }
 

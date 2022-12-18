@@ -105,18 +105,18 @@ namespace file
       //template<typed_range<const ::wd32_character *> RANGE>
       //path(const RANGE & str, strsize start, strsize count) : NATURAL_POINTER(e_no_initialize) { construct2(str, start, count); }
 
-      //   path(const ::const_ansi_raw_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
-   //   path(const ::const_wd16_raw_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
-   //   path(const ::const_wd32_raw_range & wd32range) : NATURAL_POINTER(e_no_initialize){construct2(wd32range);}
-      //path(const const_ansi_raw_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange, 0, -1); }
-      //path(const const_wd16_raw_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range, 0, -1); }
-      //path(const const_wd32_raw_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range, 0, -1); }
-      //path(const const_ansi_raw_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
-      //path(const const_wd16_raw_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
-      //path(const const_wd32_raw_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
-      //path(const const_ansi_raw_range & ansirange, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
-      //path(const const_wd16_raw_range & wd16range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
-      //path(const const_wd32_raw_range & wd32range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
+      //   path(const ::const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
+   //   path(const ::const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
+   //   path(const ::const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize){construct2(wd32range);}
+      //path(const const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange, 0, -1); }
+      //path(const const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range, 0, -1); }
+      //path(const const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range, 0, -1); }
+      //path(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
+      //path(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
+      //path(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
+      //path(const const_ansi_range & ansirange, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
+      //path(const const_wd16_range & wd16range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
+      //path(const const_wd32_range & wd32range, strsize start, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
       template < primitive_character CHARACTER2 >
       path(const CHARACTER2 * pszSource) : path(pszSource, 0, string_safe_length(pszSource)) {}
       template < primitive_character CHARACTER2 >
@@ -143,11 +143,11 @@ namespace file
       //path(const path & str, strsize len) : path(str, 0, len) { }
       //path(const path & str, strsize start, strsize len);
    //   template < primitive_character CHARACTER2 >
-   //   path(const ::string_range < const CHARACTER2 * > & strSource) : path(strSource, 0, strSource.size()) {}
+   //   path(const ::range < const CHARACTER2 * > & strSource) : path(strSource, 0, strSource.size()) {}
    //   template < primitive_character CHARACTER2 >
-   //   path(const ::string_range < const CHARACTER2 * > & strSource, strsize len) : path(strSource, 0, minimum(strSource.size(), len)) {}
+   //   path(const ::range < const CHARACTER2 * > & strSource, strsize len) : path(strSource, 0, minimum(strSource.size(), len)) {}
    //   template < primitive_character CHARACTER2 >
-   //   path(const ::string_range < const CHARACTER2 * > & strSource, strsize start, strsize len);
+   //   path(const ::range < const CHARACTER2 * > & strSource, strsize start, strsize len);
       //path(const simple_ansistring& simpleansistr);
       //path(const simple_wd16string& simplewd16str);
       //path(const simple_wd32string& simplewd32str);
@@ -329,7 +329,7 @@ namespace file
 
       //path & operator += (const path & path);
       path & operator += (const ::string & str);
-      //path & operator += (const ::const_ansi_raw_range & ansirange);
+      //path & operator += (const ::const_ansi_range & ansirange);
       //using path_meta::operator+=;
       path operator / (const path & path) const;
       path operator / (const ::ansi_string & str) const;
@@ -1011,7 +1011,7 @@ namespace file
 //   }
 
 
-   //inline path& path::operator += (const ::const_ansi_raw_range & range)
+   //inline path& path::operator += (const ::const_ansi_range & range)
    //{
 
    //   string str(range);

@@ -46,7 +46,7 @@ namespace numeric_info_internal
       static inline TYPE allset()
       {
          TYPE t;
-         __memset(&t,0xff,sizeof(TYPE));
+         memory_set(&t,0xff,sizeof(TYPE));
          return t;
       }
 
@@ -103,7 +103,7 @@ namespace numeric_info_internal
 //      static inline TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -139,7 +139,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -174,7 +174,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -210,7 +210,7 @@ namespace numeric_info_internal
 //      static inline TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -246,7 +246,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -291,7 +291,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t, 0xff, sizeof(TYPE));
+//         memory_set(&t, 0xff, sizeof(TYPE));
 //         return t;
 //      }
 
@@ -328,7 +328,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -365,7 +365,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t, 0xff, sizeof(TYPE));
+//         memory_set(&t, 0xff, sizeof(TYPE));
 //         return t;
 //      }
 
@@ -403,7 +403,7 @@ namespace numeric_info_internal
       //static consteval TYPE allset()
       //{
       //   TYPE t;
-      //   __memset(&t,0xff,sizeof(TYPE));
+      //   memory_set(&t,0xff,sizeof(TYPE));
       //   return t;
       //}
 
@@ -439,7 +439,7 @@ namespace numeric_info_internal
       /*static consteval TYPE allset()
       {
          TYPE t;
-         __memset(&t,0xff,sizeof(TYPE));
+         memory_set(&t,0xff,sizeof(TYPE));
          return t;
       }*/
 
@@ -479,7 +479,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 
@@ -516,7 +516,7 @@ namespace numeric_info_internal
 //      static consteval TYPE allset()
 //      {
 //         TYPE t;
-//         __memset(&t,0xff,sizeof(TYPE));
+//         memory_set(&t,0xff,sizeof(TYPE));
 //         return t;
 //      }
 

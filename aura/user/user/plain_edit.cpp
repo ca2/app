@@ -3008,7 +3008,7 @@ namespace user
 
          m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
 
-         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+         iRead = m_ptree->m_peditfile->read(mem.data(), iImpactSize);
 
          if (iRead < iImpactSize)
          {
@@ -3019,7 +3019,7 @@ namespace user
 
          }
 
-         mem.get_data()[iImpactSize] = 0;
+         mem.data()[iImpactSize] = 0;
 
       }
 
@@ -3065,7 +3065,7 @@ namespace user
 
          }
 
-         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
 
          //if (strLine != m_plinea->lines[i])
          if (strLine != m_straLines[i])
@@ -4318,7 +4318,7 @@ namespace user
 
       m.set_size(1024 * 1024);
 
-      char * buf = (char *)m.get_data();
+      char * buf = (char *)m.data();
 
       memsize uRead;
 
@@ -4344,7 +4344,7 @@ namespace user
 
       int iLastR = 0;
 
-      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.size())) > 0)
       {
 
          uiPos = 0;
@@ -4487,7 +4487,7 @@ namespace user
 
       m.set_size(1024);
 
-      char * buf = (char *)m.get_data();
+      char * buf = (char *)m.data();
 
       memsize uRead;
 
@@ -4510,7 +4510,7 @@ namespace user
 
       bool bSet = false;
 
-      while ((uRead = m_ptree->m_peditfile->read(buf, m.get_size())) > 0)
+      while ((uRead = m_ptree->m_peditfile->read(buf, m.size())) > 0)
       {
 
          uiPos = 0;
@@ -4926,7 +4926,7 @@ namespace user
 
             char buf[512];
 
-            __memset(buf, 0, sizeof(buf));
+            memory_set(buf, 0, sizeof(buf));
 
             m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
 
@@ -5213,7 +5213,7 @@ namespace user
 
       }
 
-      return ::string((const ::ansi_character *)m_pitemComposing->get_data(), m_pitemComposing->get_extent());
+      return ::string((const ::ansi_character *)m_pitemComposing->data(), m_pitemComposing->get_extent());
 
    }
 
@@ -5688,7 +5688,7 @@ namespace user
 
                         char buf[512];
 
-                        __memset(buf, 0, sizeof(buf));
+                        memory_set(buf, 0, sizeof(buf));
 
                         strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
@@ -6949,7 +6949,7 @@ namespace user
             else if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
             {
                char buf[512];
-               __memset(buf, 0, sizeof(buf));
+               memory_set(buf, 0, sizeof(buf));
                strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
@@ -8268,7 +8268,7 @@ namespace user
       bFullUpdate = strText.find('\n') >= 0 || strText.find('\r') >= 0;
 
       if (!bForceNewStep && !bFullUpdate && i1 == i2 && i1 >= 0 && m_pinsert != nullptr
-         && m_pinsert->m_position + m_pinsert->m_memstorage.get_size() == i1
+         && m_pinsert->m_position + m_pinsert->m_memstorage.size() == i1
          && m_ptree->m_peditfile->m_ptreeitem != m_ptree->m_peditfile->m_ptreeitemFlush)
       {
 

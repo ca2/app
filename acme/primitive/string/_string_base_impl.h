@@ -1,4 +1,4 @@
-//
+﻿//
 //  _string_base_impl.h
 //  acme
 //
@@ -183,7 +183,7 @@ constexpr ::std::strong_ordering _count_sz_compare_ci(const CHARACTER * pA, strs
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering _range_collate(::string_range < ITERATOR_TYPE > rangeA, ::string_range < ITERATOR_TYPE > rangeB) noexcept
+inline ::std::strong_ordering _range_collate(::range < ITERATOR_TYPE > rangeA, ::range < ITERATOR_TYPE > rangeB) noexcept
 {
 
    strsize len = minimum(rangeA.size(), rangeB.size());
@@ -203,7 +203,7 @@ inline ::std::strong_ordering _range_collate(::string_range < ITERATOR_TYPE > ra
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering _case_insensitive_range_collate(::string_range < ITERATOR_TYPE > rangeA, ::string_range < ITERATOR_TYPE > rangeB) noexcept
+inline ::std::strong_ordering _case_insensitive_range_collate(::range < ITERATOR_TYPE > rangeA, ::range < ITERATOR_TYPE > rangeB) noexcept
 {
 
    strsize len = minimum(rangeA.size(), rangeB.size());
@@ -259,7 +259,7 @@ inline ::std::strong_ordering _case_insensitive_range_collate(::string_range < I
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering range_collate(::string_range < ITERATOR_TYPE > rangeA, ::string_range < ITERATOR_TYPE > rangeB) noexcept
+inline ::std::strong_ordering range_collate(::range < ITERATOR_TYPE > rangeA, ::range < ITERATOR_TYPE > rangeB) noexcept
 {
 
    ::std::strong_ordering order(::std::strong_ordering::less);
@@ -277,7 +277,7 @@ inline ::std::strong_ordering range_collate(::string_range < ITERATOR_TYPE > ran
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering case_insensitive_range_collate(::string_range < ITERATOR_TYPE > rangeA, ::string_range < ITERATOR_TYPE > rangeB) noexcept
+inline ::std::strong_ordering case_insensitive_range_collate(::range < ITERATOR_TYPE > rangeA, ::range < ITERATOR_TYPE > rangeB) noexcept
 {
 
    ::std::strong_ordering order(::std::strong_ordering::less);
@@ -469,7 +469,7 @@ inline void string_base < ITERATOR_TYPE >::construct2(const ::range < const CHAR
 
 //template < typename ITERATOR_TYPE >
 //template < primitive_character CHARACTER2 >
-//inline string_base < ITERATOR_TYPE >::string_base(const ::string_range < const CHARACTER2 * > & range, strsize start, strsize count)
+//inline string_base < ITERATOR_TYPE >::string_base(const ::range < const CHARACTER2 * > & range, strsize start, strsize count)
 //{
 //
 //   auto lenSource = str.size();
@@ -631,7 +631,7 @@ inline strsize string_base < ITERATOR_TYPE >::unichar_count() const
 
 //template < typename ITERATOR_TYPE >
 //template < primitive_character CHARACTER2 >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::string_range < const CHARACTER2 * > & range)
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::range < const CHARACTER2 * > & range)
 //{
 //
 //   assign(range);
@@ -755,7 +755,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=(const const_wd16_raw_range & wd16range)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=(const const_wd16_range & wd16range)
 //{
 //
 //   return append(wd16range);
@@ -764,7 +764,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=(const const_wd32_raw_range & wd32range)
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator+=(const const_wd32_range & wd32range)
 //{
 //
 //   return append(wd32range);
@@ -1447,7 +1447,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_ansi_raw_range & ansirange)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_ansi_range & ansirange)
 {
 
    return append(ansirange.begin(), ansirange.size());
@@ -1456,7 +1456,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(con
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_wd16_raw_range & wd16range)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_wd16_range & wd16range)
 {
 
    return append(wd16range.begin(), wd16range.size());
@@ -1465,7 +1465,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(con
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_wd32_raw_range & wd32range)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_wd32_range & wd32range)
 {
 
    return append(wd32range.begin(), wd32range.size());
@@ -1747,7 +1747,7 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::order(const string_base & str, strsize len) const noexcept
 {
 
-   return ::string_range < const CHARACTER * >(*this).order({ str.begin(), minimum(str.size(), len) });
+   return ::range < const CHARACTER * >(*this).order({ str.begin(), minimum(str.size(), len) });
 
 }
 
@@ -1756,7 +1756,7 @@ template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering string_base < ITERATOR_TYPE > ::case_insensitive_order(const string_base & str, strsize len) const noexcept
 {
 
-   return ::string_range < const CHARACTER * >(*this).order({ str.begin(), minimum(str.size(), len) }, ::comparison::case_insensitive<const CHARACTER >());
+   return ::range < const CHARACTER * >(*this).order({ str.begin(), minimum(str.size(), len) }, ::comparison::case_insensitive<const CHARACTER >());
 
 }
 
@@ -2015,10 +2015,10 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::scan(const THIS_RAW_RANGE & rangeSeparators, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::scan(const RANGE & rangeSeparators, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range <ITERATOR_TYPE>({ this->begin() + pos, size() - pos }).scan(rangeSeparators));
+   return offset_of(::range <ITERATOR_TYPE>({ this->begin() + pos, size() - pos }).scan(rangeSeparators, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2053,19 +2053,19 @@ inline strsize string_base < ITERATOR_TYPE > ::scan(const THIS_RAW_RANGE & range
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::span(const THIS_RAW_RANGE & range, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::span(const RANGE & range, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, size() - pos).span(range));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos, size() - pos).span(range, ::comparison::comparison < CHARACTER >()));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::span(const THIS_RAW_RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::span(const RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, n).span(range));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos, n).span(range, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2074,7 +2074,7 @@ template < typename ITERATOR_TYPE >
 inline strsize string_base < ITERATOR_TYPE > ::span(const CHARACTER * psz, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, size() - pos).span(psz));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos, size() - pos).span(psz, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2083,25 +2083,25 @@ template < typename ITERATOR_TYPE >
 inline strsize string_base < ITERATOR_TYPE > ::skip(CHARACTER chSkip, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos, size() - pos).skip(chSkip));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos, size() - pos).skip(chSkip, ::comparison::comparison < CHARACTER >()));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_span(const THIS_RAW_RANGE & range, strsize pos) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_span(const RANGE & range, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, size() - pos })._span(range));
+   return offset_of(::range < const CHARACTER * >({ this->begin() + pos, size() - pos })._span(range, ::comparison::comparison < CHARACTER >()));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_span(const THIS_RAW_RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_span(const RANGE & range, strsize pos, strsize n) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >({ this->begin() + pos, n })._span(range));
+   return offset_of(::range < const CHARACTER * >({ this->begin() + pos, n })._span(range, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2110,7 +2110,7 @@ template < typename ITERATOR_TYPE >
 inline strsize string_base < ITERATOR_TYPE > ::_span(const CHARACTER * psz, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos)._span(psz));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos)._span(psz, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2119,7 +2119,7 @@ template < typename ITERATOR_TYPE >
 inline strsize string_base < ITERATOR_TYPE > ::_skip(CHARACTER chSkip, strsize pos) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * >(this->begin() + pos)._skip(chSkip));
+   return offset_of(::range < const CHARACTER * >(this->begin() + pos)._skip(chSkip, ::comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2143,16 +2143,16 @@ inline strsize string_base < ITERATOR_TYPE > ::_skip(CHARACTER chSkip, strsize p
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const THIS_RAW_RANGE & range, strsize start) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const RANGE & range, strsize start) const RELEASENOTHROW
 {
 
-   return offset_of(NATURAL_POINTER::rear_scan_start(range, start));
+   return offset_of(NATURAL_POINTER::rear_scan_start(range, start, ::comparison::comparison < CHARACTER >()));
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const THIS_RAW_RANGE & range, strsize start, strsize count) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const RANGE & range, strsize start, strsize count) const RELEASENOTHROW
 {
 
    return offset_of(NATURAL_POINTER::rear_scan_start_count(range, start, count));
@@ -2170,7 +2170,7 @@ inline strsize string_base < ITERATOR_TYPE > ::rear_scan(const THIS_RAW_RANGE & 
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const THIS_RAW_RANGE & range, strsize start) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const RANGE & range, strsize start) const RELEASENOTHROW
 {
 
    return offset_of(NATURAL_POINTER::_rear_scan_start(range, start));
@@ -2180,7 +2180,7 @@ inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const THIS_RAW_RANGE &
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const THIS_RAW_RANGE & range, strsize start, strsize count) const RELEASENOTHROW
+inline strsize string_base < ITERATOR_TYPE > ::_rear_scan(const RANGE & range, strsize start, strsize count) const RELEASENOTHROW
 {
 
    return offset_of(NATURAL_POINTER::_rear_scan_start_count(range, start, count));
@@ -2201,7 +2201,7 @@ template < typename ITERATOR_TYPE >
 inline strsize string_base < ITERATOR_TYPE > ::rear_find(CHARACTER ch, strsize count) const RELEASENOTHROW
 {
 
-   return offset_of(::string_range < const CHARACTER * > (this->begin(), size() + count + 1).rear_find_item(ch));
+   return offset_of(::range < const CHARACTER * > (this->begin(), size() + count + 1).rear_find_item(ch, comparison::comparison < CHARACTER >()));
 
 }
 
@@ -2614,7 +2614,7 @@ template < typename ITERATOR_TYPE >
 inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noexcept
 {
 
-   copy_chars(psz, this->begin(), length());
+   string_count_copy(psz, this->begin(), length());
 
 }
 
@@ -2687,6 +2687,8 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_string_bu
    }
 
    this->NATURAL_POINTER::metadata()->set_length(nNewLength);
+
+   this->m_end = this->m_begin + nNewLength;
 
    return *this;
 
@@ -3898,7 +3900,7 @@ strsize string_base < ITERATOR_TYPE >::replace_character(CHARACTER charNew, CHAR
 
 
 //template < typename ITERATOR_TYPE >
-//strsize string_base < ITERATOR_TYPE >::replace_with_ci(const string_base & strNew, const string_base & strOld, strsize start)
+//strsize string_base < ITERATOR_TYPE >::case_insensitive_replace_with(const string_base & strNew, const string_base & strOld, strsize start)
 //{
 //
 //   // can't have is_empty or nullptr pszOld
@@ -4177,7 +4179,13 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(strsize s
 
       auto psz = get_string_buffer(len);
 
-      memmove(psz + start + str.size(), psz + start + count);
+      auto lenAfter1 = len - (start + str.size());
+      
+      auto lenAfter2 = len - (start + count);
+
+      auto lenAfter = minimum(lenAfter1, lenAfter2);
+
+      overlapped_string_count_copy(psz + start + str.size(), psz + start + count, lenAfter);
 
       string_count_copy(psz + start, str.begin(), str.size());
 
@@ -4443,7 +4451,7 @@ template < typename ITERATOR_TYPE >
 strsize string_base < ITERATOR_TYPE >::find(const string_base & str, strsize start, strsize count) const RELEASENOTHROW
 {
 
-   return offset_of(RANGE(this->begin() + start, count).find(str));
+   return offset_of(RANGE(this->begin() + start, count).find(str, ::comparison::comparison<CHARACTER>()));
 
 
    //strsize rangeLen;
@@ -4793,7 +4801,7 @@ strsize string_base < ITERATOR_TYPE >::rear_case_insensitive_unicode_find(const 
 
 // find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 template < typename ITERATOR_TYPE >
-strsize string_base < ITERATOR_TYPE >::scan(const THIS_RAW_RANGE & rangeCharacters, strsize start, strsize n) const RELEASENOTHROW
+strsize string_base < ITERATOR_TYPE >::scan(const RANGE & rangeCharacters, strsize start, strsize n) const RELEASENOTHROW
 {
 
    auto p = string_scan({ this->begin() + start, size() - start }, rangeCharacters);
@@ -5063,7 +5071,7 @@ typename string_base < ITERATOR_TYPE >::CHARACTER string_base < ITERATOR_TYPE >:
 template < typename ITERATOR_TYPE >
 strsize string_base < ITERATOR_TYPE >::rear_find(const string_base & str, strsize start) const RELEASENOTHROW
 {
-   return offset_of(NATURAL_POINTER::rear_find_start(str, start));
+   return offset_of(NATURAL_POINTER::rear_find_start(str, start, ::comparison::comparison < CHARACTER >()));
 }
 
 // manipulation
@@ -5125,50 +5133,53 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right()
 {
 
-   const CHARACTER * pszLast = nullptr;
-   const CHARACTER * pszMax = this->begin() + size();
-   auto psz = pszMax;
+   return trim_right(" \t\r\n");
 
-   if (psz != nullptr)
-   {
 
-      while (true)
-      {
+   //const CHARACTER * pszLast = nullptr;
+   //const CHARACTER * pszMax = this->begin() + size();
+   //auto psz = pszMax;
 
-         psz = unicode_prior(psz, this->begin());
+   //if (psz != nullptr)
+   //{
 
-         if (psz < this->begin())
-         {
+   //   while (true)
+   //   {
 
-            break;
+   //      psz = unicode_prior(psz, this->begin());
 
-         }
+   //      if (psz < this->begin())
+   //      {
 
-         if (!unicode_is_whitespace(psz))
-         {
+   //         break;
 
-            pszLast = unicode_next(psz);
+   //      }
 
-            break;
+   //      if (!unicode_is_whitespace(psz))
+   //      {
 
-         }
+   //         pszLast = unicode_next(psz);
 
-      }
+   //         break;
 
-   }
+   //      }
 
-   if (pszLast != nullptr && pszLast < pszMax)
-   {
+   //   }
 
-      // truncate at trailing space start
+   //}
 
-      strsize iLast = strsize(pszLast - this->begin());
+   //if (pszLast != nullptr && pszLast < pszMax)
+   //{
 
-      truncate(iLast);
+   //   // truncate at trailing space start
 
-   }
+   //   strsize iLast = strsize(pszLast - this->begin());
 
-   return *this;
+   //   truncate(iLast);
+
+   //}
+
+   //return *this;
 
 }
 
@@ -5178,68 +5189,70 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left()
 {
    // find first non-space character
 
-   auto i = span_whitespace();
+   return trim_left(" \t\r\n");
 
-   if (i > 0)
-   {
+   //auto i = span_whitespace();
 
-      erase_beginning(i);
-
-   }
-
-   return *this;
-
-   //auto psz = this->begin();
-
-   //strsize iHere;
-
-   //while (unicode_is_whitespace(psz))
+   //if (i > 0)
    //{
 
-   //   unicode_increment(psz);
-
-   //   iHere = (strsize)(psz - this->begin());
-
-   //   if (iHere >= size())
-   //   {
-
-   //      if (iHere == size())
-   //      {
-
-   //         break;
-
-   //      }
-   //      else
-   //      {
-
-   //         return *this;
-
-   //      }
-
-
-   //   }
-
-   //}
-
-
-   //if (psz != this->begin())
-   //{
-   //   // fix up begin and length
-   //   strsize iFirst = strsize(psz - this->begin());
-
-   //   CHARACTER * pszBuffer = get_string_buffer(size());
-
-   //   psz = pszBuffer + iFirst;
-
-   //   strsize nDataLength = size() - iFirst;
-
-   //   memmove(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
-
-   //   release_string_buffer(nDataLength);
+   //   erase_beginning(i);
 
    //}
 
    //return *this;
+
+   ////auto psz = this->begin();
+
+   ////strsize iHere;
+
+   ////while (unicode_is_whitespace(psz))
+   ////{
+
+   ////   unicode_increment(psz);
+
+   ////   iHere = (strsize)(psz - this->begin());
+
+   ////   if (iHere >= size())
+   ////   {
+
+   ////      if (iHere == size())
+   ////      {
+
+   ////         break;
+
+   ////      }
+   ////      else
+   ////      {
+
+   ////         return *this;
+
+   ////      }
+
+
+   ////   }
+
+   ////}
+
+
+   ////if (psz != this->begin())
+   ////{
+   ////   // fix up begin and length
+   ////   strsize iFirst = strsize(psz - this->begin());
+
+   ////   CHARACTER * pszBuffer = get_string_buffer(size());
+
+   ////   psz = pszBuffer + iFirst;
+
+   ////   strsize nDataLength = size() - iFirst;
+
+   ////   memmove(pszBuffer, psz, (nDataLength + 1) * sizeof(CHARACTER));
+
+   ////   release_string_buffer(nDataLength);
+
+   ////}
+
+   ////return *this;
 }
 
 // erase all leading and trailing whitespace
@@ -5319,7 +5332,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(CHARAC
 
 // erase all trailing occurrences of any of the characters in string_base < ITERATOR_TYPE > 'pszTargets'
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const THIS_RAW_RANGE & rangeCharacters)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const RANGE & rangeCharacters)
 //template < pointer_castable < CHARACTER > PCHAR>
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_right(PCHAR szTargets)
 {
@@ -5422,7 +5435,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(CHARACT
 
 // erase all leading occurrences of any of the characters in string_base < ITERATOR_TYPE > 'pszTargets'
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const THIS_RAW_RANGE & strCharacters)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const RANGE & strCharacters)
 //template < pointer_castable < CHARACTER > PCHAR >
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
@@ -6229,6 +6242,26 @@ void string_base < ITERATOR_TYPE >::push_back(CHARACTER ch)
 
 
 template < typename ITERATOR_TYPE >
+inline bool string_base < ITERATOR_TYPE > ::begins(const string_base & str) const
+{
+
+   return NATURAL_POINTER::begins(str, ::comparison::comparison < CHARACTER >());
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+inline bool string_base < ITERATOR_TYPE > ::ends(const string_base & str) const
+{
+
+   return NATURAL_POINTER::ends(str, ::comparison::comparison < CHARACTER >());
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins(const string_base & str) const
 {
 
@@ -6806,9 +6839,9 @@ inline STRING & string_concatenate(STRING & str, const typename STRING::CHARACTE
 
    typename STRING::CHARACTER * pszBuffer = str.get_string_buffer(nNewLength);
 
-   copy_chars(pszBuffer, psz1, nLength1);
+   string_count_copy(pszBuffer, psz1, nLength1);
 
-   copy_chars(pszBuffer + nLength1, psz2, nLength2);
+   string_count_copy(pszBuffer + nLength1, psz2, nLength2);
 
    str.release_string_buffer(nNewLength);
 
@@ -6868,7 +6901,7 @@ template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE >::equals(const string_base & str) const noexcept
 {
 
-   return ::string_range < const CHARACTER * >(*this).equals(str, ::comparison::comparison < CHARACTER >());
+   return ::range < const CHARACTER * >(*this).equals(str, ::comparison::comparison < CHARACTER >());
 
 }
 
@@ -6877,7 +6910,7 @@ template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE >::case_insensitive_equals(const string_base & str) const noexcept
 {
 
-   return ::string_range < const CHARACTER * >(*this).equals(str, ::comparison::case_insensitive< CHARACTER >());
+   return ::range < const CHARACTER * >(*this).equals(str, ::comparison::case_insensitive< CHARACTER >());
 
 }
 

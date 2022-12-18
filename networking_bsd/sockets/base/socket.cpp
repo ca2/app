@@ -465,7 +465,7 @@ namespace sockets_bsd
    }
    else
    {
-   __memset(&fail, 0, sizeof(struct sockaddr_in6));
+   memory_set(&fail, 0, sizeof(struct sockaddr_in6));
    }
    return fail.sin6_addr;
    }*/

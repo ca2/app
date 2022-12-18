@@ -106,7 +106,7 @@ char* cur;
 		/* not dot line here */
 		sscanf(cur,"%d %d\n",&atom,&size);
 		array=(int*)malloc((atom+1)*sizeof(int));
-		__memset(array,0,(atom+1)*sizeof(int));
+		memory_set(array,0,(atom+1)*sizeof(int));
 		array[0]=atom;
 		array[atom]=size_i32;
 		return(array);
@@ -225,7 +225,7 @@ char* cur;
 		/* no dot line here */
 		sscanf(cur,"%d %s\n",&i,s);
 		array=(char**)malloc((i+1)*sizeof(char*));
-		__memset(array,0,(i+1)*sizeof(char*));
+		memory_set(array,0,(i+1)*sizeof(char*));
 		array[0]=(char*)malloc(POPBUF); /* up to 512 chars */
 		snprintf(array[0],POPBUF,"%d",i);
 		array[i]=strdup(s);

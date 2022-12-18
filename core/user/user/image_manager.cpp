@@ -82,7 +82,7 @@ namespace user
 
       toolbar._001SetImageList(&GetImageList());
       TBBUTTON tbb;
-      __memset(&tbb, 0, sizeof(tbb));
+      memory_set(&tbb, 0, sizeof(tbb));
 
       ::u32 user;
       while(*pinteraction != 0xffffffff)

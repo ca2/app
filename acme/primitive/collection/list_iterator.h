@@ -1,4 +1,4 @@
-// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
+﻿// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -294,6 +294,8 @@ public:
       }
 
       throw_exception(error_failed, "iterators aren't from same list");
+
+      return -1;
 
    }
 

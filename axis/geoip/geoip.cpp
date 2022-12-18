@@ -202,7 +202,7 @@ static const char * _GeoIP_inet_ntop(i32 af, const void *src, char *dst, socklen
    if (af == AF_INET)
    {
       struct sockaddr_in in;
-      __memset(&in, 0, sizeof(in));
+      memory_set(&in, 0, sizeof(in));
       in.sin_family = AF_INET;
       ::memcpy_dup(&in.sin_addr, src, sizeof(struct in_addr));
       getnameinfo((struct sockaddr *)&in, sizeof(struct
@@ -212,7 +212,7 @@ static const char * _GeoIP_inet_ntop(i32 af, const void *src, char *dst, socklen
    else if (af == AF_INET6)
    {
       struct sockaddr_in6 in;
-      __memset(&in, 0, sizeof(in));
+      memory_set(&in, 0, sizeof(in));
       in.sin6_family = AF_INET6;
       ::memcpy_dup(&in.sin6_addr, src, sizeof(struct in_addr6));
       getnameinfo((struct sockaddr *)&in, sizeof(struct
@@ -226,7 +226,7 @@ static i32 _GeoIP_inet_pton(i32 af, const char *src, void *dst)
 {
    struct addrinfo hints, *res, *ressave;
 
-   __memset(&hints, 0, sizeof(struct addrinfo));
+   memory_set(&hints, 0, sizeof(struct addrinfo));
    hints.ai_family = af;
 
    if (getaddrinfo(src, nullptr, &hints, &res) != 0)
@@ -291,11 +291,11 @@ char *_GeoIP_full_path_to(const char *file_name)
    if (custom_directory == nullptr)
    {
 #if defined(_UWP) || !defined(_WIN32)
-      __memset(path, 0, sizeof(char) * 1024);
+      memory_set(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", GEOIPDATADIR, file_name);
 #else
       char buf[MAX_PATH], *p, *q = nullptr;
-      __memset(buf, 0, sizeof(buf));
+      memory_set(buf, 0, sizeof(buf));
       len = GetModuleFileNameA(GetModuleHandle(nullptr), buf, sizeof(buf) - 1);
       for (p = buf + len; p > buf; p--)
          if (*p == '\\')
@@ -306,7 +306,7 @@ char *_GeoIP_full_path_to(const char *file_name)
                *p = '/';
          }
       *q = 0;
-      __memset(path, 0, sizeof(char) * 1024);
+      memory_set(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", buf, file_name);
 #endif
    }
@@ -332,7 +332,7 @@ void _GeoIP_setup_dbfilename()
    if (nullptr == GeoIPDBFileName)
    {
       GeoIPDBFileName = (char **) malloc(sizeof(char *) * NUM_DB_TYPES);
-      __memset(GeoIPDBFileName, 0, sizeof(char *) * NUM_DB_TYPES);
+      memory_set(GeoIPDBFileName, 0, sizeof(char *) * NUM_DB_TYPES);
 
       GeoIPDBFileName[GEOIP_COUNTRY_EDITION]      = _GeoIP_full_path_to("GeoIP.dat");
       GeoIPDBFileName[GEOIP_REGION_EDITION_REV0]   = _GeoIP_full_path_to("GeoIPRegion.dat");
@@ -1066,7 +1066,7 @@ _GeoIP_lookupaddress_v6(const char *host)
    i32             gaierr;
    struct addrinfo hints, *aifirst;
 
-   __memset(&hints, 0, sizeof(hints));
+   memory_set(&hints, 0, sizeof(hints));
    hints.ai_family = AF_INET6;
    /* hints.ai_flags = AI_V4MAPPED; */
    hints.ai_socktype = SOCK_STREAM;
@@ -1351,7 +1351,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, u32 inetaddr, GeoIPRegion *regio
 
    /* This also writes in the terminating NULs (if you decide to
    * keep them) and clear any fields that are not set. */
-   __memset(region, 0, sizeof(GeoIPRegion));
+   memory_set(region, 0, sizeof(GeoIPRegion));
 
    seek_region = _GeoIP_seek_record(gi, ntohl(inetaddr));
 
@@ -1378,7 +1378,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, u32 inetaddr, GeoIPRegion *regio
       if (seek_region < US_OFFSET)
       {
          /* Unknown */
-         /* we don't need to do anything here b/ca we __memset region to 0 */
+         /* we don't need to do anything here b/ca we memory_set region to 0 */
       }
       else if (seek_region < CANADA_OFFSET)
       {
@@ -1410,7 +1410,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
 
    /* This also writes in the terminating NULs (if you decide to
    * keep them) and clear any fields that are not set. */
-   __memset(region, 0, sizeof(GeoIPRegion));
+   memory_set(region, 0, sizeof(GeoIPRegion));
 
    seek_region = _GeoIP_seek_record_v6(gi, inetaddr);
 
@@ -1437,7 +1437,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
       if (seek_region < US_OFFSET)
       {
          /* Unknown */
-         /* we don't need to do anything here b/ca we __memset region to 0 */
+         /* we don't need to do anything here b/ca we memory_set region to 0 */
       }
       else if (seek_region < CANADA_OFFSET)
       {

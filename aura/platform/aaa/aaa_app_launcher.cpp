@@ -94,12 +94,12 @@ namespace aura
       wstring wstrParams = get_params();
 
       STARTUPINFOW si;
-      __memset(&si,0,sizeof(si));
+      memory_set(&si,0,sizeof(si));
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
       si.wShowWindow = SW_SHOWNORMAL;
       PROCESS_INFORMATION pi;
-      __memset(&pi,0,sizeof(pi));
+      memory_set(&pi,0,sizeof(pi));
 
       wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 

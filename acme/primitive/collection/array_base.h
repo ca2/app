@@ -68,12 +68,15 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR, ::enum_type m_etypeContainer >
 class array_base :
    virtual public ::particle,
-   public ::array_range < ::range < TYPE * > >
+   //public ::array_range < ::range < TYPE * > >
+   public ::range < TYPE * >
 {
 public:
 
 
-   using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
+   //using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
+   using ARRAY_RANGE = ::range < TYPE * >;
+   using array_range = ::range < TYPE * >;
 
    using PRIMITIVE_CONTAINER_TAG = PRIMITIVE_CONTAINER_TAG_TYPE;
 
@@ -85,7 +88,7 @@ public:
 
 
    //TYPE * this->m_begin;    // the actual array of data
-   //::count   this->_size();    // # of elements (upperBound - 1)
+   //::count   this->size();    // # of elements (upperBound - 1)
    ::count   m_nMaxSize; // maximum allocated
    ::count   m_nGrowBy;  // grow amount
 
@@ -209,7 +212,7 @@ public:
    //   make_iterator(::index iStart, ::index iEnd, const CONTAINER * parray = nullptr)
    //   {
    //      this->m_pelementBeg = (TYPE *)(parray->m_begin + iStart);
-   //      this->m_pelementEnd = (TYPE *)(parray->m_begin + (iEnd < 0 ? parray->_size() + iEnd + 1 : iEnd));
+   //      this->m_pelementEnd = (TYPE *)(parray->m_begin + (iEnd < 0 ? parray->size() + iEnd + 1 : iEnd));
    //      this->m_pcontainer = (CONTAINER *)parray;
    //      this->m_pelement = this->m_pelementBeg;
    //   }
@@ -494,13 +497,16 @@ public:
 
    enum_type get_payload_type() const override { return m_etypeContainer; }
 
+
+   constexpr memsize length_in_bytes() const { return this->size() * sizeof(TYPE); }
+
    //inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 
 
    //inline iterator begin()
    //{
 
-   //   return iterator(0, (::index)this->_size(), this);
+   //   return iterator(0, (::index)this->size(), this);
 
    //}
 
@@ -508,7 +514,7 @@ public:
    //inline iterator end()
    //{
 
-   //   return iterator((::index)this->_size(), (::index)this->_size(), this);
+   //   return iterator((::index)this->size(), (::index)this->size(), this);
 
    //}
 
@@ -530,16 +536,16 @@ public:
    inline ::count get_count() const;
    inline ::count get_byte_count() const;
    inline ::count get_length() const;
-   inline ::count size() const;
+   //inline ::count size() const;
    inline ::count count() const;
    inline ::count length() const;
    inline ::count byte_count() const { return get_byte_count(); }
 
 
-   inline bool has_element() const noexcept { return this->_size() > 0; }
-   inline bool is_empty(::count countMinimum = 0) const noexcept { return this->_size() <= countMinimum; }
-   inline bool empty(::count countMinimum = 0) const noexcept { return this->_size() <= countMinimum; }
-   inline bool has_elements(::count countMinimum = 1) const noexcept { return this->_size() >= countMinimum; }
+   inline bool has_element() const noexcept { return this->size() > 0; }
+   inline bool is_empty(::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
+   inline bool empty(::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
+   inline bool has_elements(::count countMinimum = 1) const noexcept { return this->size() >= countMinimum; }
    inline ::index get_lower_bound(::index i = 0) const;
    inline ::index get_middle_index(::index i = 0) const;
    inline ::index get_upper_bound(::index i = -1) const;
@@ -636,13 +642,13 @@ public:
 
    TYPE pick_at(::index nIndex);
    TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
-   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(this->_size() + nIndex)); }
+   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(this->size() + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 
    ::index erase_item(TYPE * p);
 
-   ::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->_size() ? i : -1; }
+   ::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->size() ? i : -1; }
 
 
    bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return is_found(erase_at(i)); }
@@ -902,7 +908,7 @@ public:
    inline ::index add(ARG_TYPE newElement)
    {
 
-      auto nIndex = this->_size();
+      auto nIndex = this->size();
 
       this->allocate((::count) (nIndex + 1));
 
@@ -916,7 +922,7 @@ public:
    TYPE & add_new()
    {
 
-      auto nIndex = this->_size();
+      auto nIndex = this->size();
 
       this->allocate((::count)(nIndex + 1));
 
@@ -1056,7 +1062,7 @@ inline TYPE& operator%(INTEGRAL nIndex, const array_base < TYPE, ARG_TYPE, ALLOC
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base() :
-ARRAY_RANGE::array_range()
+ARRAY_RANGE()
 {
 
    m_nGrowBy = 0;
@@ -1066,7 +1072,7 @@ ARRAY_RANGE::array_range()
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::array_base(array_base && array) noexcept :
-   ARRAY_RANGE::array_range(array)
+   ARRAY_RANGE(array)
 {
 
    this->m_nGrowBy = array.m_nGrowBy;
@@ -1162,14 +1168,14 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = this->_size() - (nUpperBound);
+   ::count nMoveCount = this->size() - (nUpperBound);
 
    ALLOCATOR::destruct_count(this->m_begin + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
@@ -1201,14 +1207,14 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
 {
 
-   if(this->_size() != m_nMaxSize)
+   if(this->size() != m_nMaxSize)
    {
       // shrink to desired size_i32
 #ifdef SIZE_T_MAX
-      ASSERT(this->_size() <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+      ASSERT(this->size() <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
       TYPE* pNewData = nullptr;
-      if(this->_size() != 0)
+      if(this->size() != 0)
       {
          TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
@@ -1217,29 +1223,29 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
          {
             if (::get_task()->m_strFile.has_char())
             {
-               pNewData = ALLOCATOR::alloc(this->_size(), ::get_task()->m_strFile, ::get_task()->m_iLine);
+               pNewData = ALLOCATOR::alloc(this->size(), ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
             else
             {
-               pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
+               pNewData = ALLOCATOR::alloc(this->size(), __FILE__, __LINE__);
             }
          }
          else
          {
-            pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(this->size(), __FILE__, __LINE__);
          }
 #else
 
          if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(this->_size(), ::get_task()->m_strDebug, 0);
+            pNewData = ALLOCATOR::alloc(this->size(), ::get_task()->m_strDebug, 0);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(this->_size(), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(this->size(), __FILE__, __LINE__);
 
          }
 
@@ -1247,12 +1253,12 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
 
 #else
 
-         pNewData = ALLOCATOR::alloc(this->_size());
+         pNewData = ALLOCATOR::alloc(this->size());
 
 #endif      // copy memory_new data from old
 
          // copy memory_new data from old
-         ::acme::memcpy_s(pNewData, (size_t)this->_size() * sizeof(TYPE),this->m_begin, (size_t)this->_size() * sizeof(TYPE));
+         ::acme::memcpy_s(pNewData, (size_t)this->size() * sizeof(TYPE),this->m_begin, (size_t)this->size() * sizeof(TYPE));
 
       }
 
@@ -1261,7 +1267,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::free_extra()
 
       this->m_begin = pNewData;
 
-      m_nMaxSize = this->_size();
+      m_nMaxSize = this->size();
 
    }
 
@@ -1276,7 +1282,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::destroy()
    if(this->m_begin != nullptr)
    {
 
-      ALLOCATOR::destruct_count(this->m_begin, this->_size() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      ALLOCATOR::destruct_count(this->m_begin, this->size() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
       ALLOCATOR::_free(this->m_begin);
 
@@ -1320,7 +1326,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    if(nIndex < 0)
       throw_exception(error_bad_argument);
 
-   if(nIndex >= this->_size())
+   if(nIndex >= this->size())
    {
 
       // adding after the end of the array
@@ -1331,9 +1337,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) this->_size();
+      ::count nOldSize = (::count) this->size();
 
-      set_size((::count) this->_size() + nCount,-1);  // grow it to memory_new size_i32
+      set_size((::count) this->size() + nCount,-1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(this->m_begin + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),this->m_begin + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1345,7 +1351,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    }
 
    // insert memory_new value in the gap
-   ASSERT(nIndex + nCount <= this->_size());
+   ASSERT(nIndex + nCount <= this->size());
 
    return nIndex;
 
@@ -1357,9 +1363,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & src)
 {
 
-   ::count nOldSize = this->_size();
+   ::count nOldSize = this->size();
 
-   ::count nSrcSize = src._size();   // to enable to append to itself
+   ::count nSrcSize = src.size();   // to enable to append to itself
 
    allocate(nOldSize + nSrcSize);
 
@@ -1381,7 +1387,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
 
    }
 
-   ::count nSrcSize = src._size();
+   ::count nSrcSize = src.size();
 
    allocate(nSrcSize);
 
@@ -1506,7 +1512,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    if (nIndex < 0)
       throw_exception(error_bad_argument);
 
-   if (nIndex >= this->_size())
+   if (nIndex >= this->size())
    {
 
       // adding after the end of the array
@@ -1517,9 +1523,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) this->_size();
+      ::count nOldSize = (::count) this->size();
 
-      set_size((::count) (this->_size() + nCount), -1);  // grow it to memory_new size_i32
+      set_size((::count) (this->size() + nCount), -1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1531,7 +1537,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    }
 
    // insert memory_new value in the gap
-   ASSERT(nIndex + nCount <= this->_size());
+   ASSERT(nIndex + nCount <= this->size());
 
    ::index nIndexParam = nIndex;
 
@@ -1560,14 +1566,14 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = this->_size() - (nUpperBound);
+   ::count nMoveCount = this->size() - (nUpperBound);
 
    auto t = this->m_begin[nIndex];
 
@@ -1595,14 +1601,14 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > array_base < TYPE, AR
 
    ::index nUpperBound = nIndex + nCount;
 
-   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->_size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > this->size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   ::count nMoveCount = this->_size() - (nUpperBound);
+   ::count nMoveCount = this->size() - (nUpperBound);
 
    array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 
@@ -1726,7 +1732,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = (::count) this->_size();
+         nGrowBy = (::count) this->size();
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
       ::count nNewMax;
@@ -1794,9 +1800,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
 #endif      // copy memory_new data from old
 
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->_size() * sizeof(TYPE));
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 
-      ///for(i32 i = 0; i < nNewSize - this->_size(); i++)
+      ///for(i32 i = 0; i < nNewSize - this->size(); i++)
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(this->m_begin);
 
@@ -1836,10 +1842,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    }
 
 
-   if(nNewSize == this->_size())
+   if(nNewSize == this->size())
    {
 
-      return this->_size();
+      return this->size();
 
    }
 
@@ -1850,7 +1856,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
       if(this->m_begin != nullptr)
       {
 
-         ALLOCATOR::destruct_count(this->m_begin, this->_size()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         ALLOCATOR::destruct_count(this->m_begin, this->size()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
          ALLOCATOR::_free(this->m_begin);
 
@@ -1954,21 +1960,21 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
          if (::is_null(ptype))
          {
 
-            ALLOCATOR::construct_count(this->end(), nNewSize - this->_size());
+            ALLOCATOR::construct_count(this->end(), nNewSize - this->size());
 
          }
          else
          {
 
-            ALLOCATOR::copy_construct_count(this->end(), nNewSize - this->_size(), *ptype);
+            ALLOCATOR::copy_construct_count(this->end(), nNewSize - this->size(), *ptype);
 
          }
 
       }
-      else if(this->_size() > nNewSize)
+      else if(this->size() > nNewSize)
       {
 
-         ALLOCATOR::destruct_count(this->m_begin + nNewSize,this->_size() - nNewSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         ALLOCATOR::destruct_count(this->m_begin + nNewSize,this->size() - nNewSize OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
       }
 
@@ -1986,7 +1992,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = this->_size();
+         nGrowBy = this->size();
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 
       }
@@ -2076,24 +2082,24 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 #endif
 
       // copy memory_new data from old
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->_size() * sizeof(TYPE));
+      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 
       // construct remaining elements
-      ASSERT(nNewSize > this->_size());
+      ASSERT(nNewSize > this->size());
 
-      if (nNewSize > this->_size())
+      if (nNewSize > this->size())
       {
 
          if (::is_null(ptype))
          {
 
-            ALLOCATOR::construct_count(pNewData + this->_size(), nNewSize - this->_size());
+            ALLOCATOR::construct_count(pNewData + this->size(), nNewSize - this->size());
 
          }
          else
          {
 
-            ALLOCATOR::copy_construct_count(pNewData + this->_size(), nNewSize - this->_size(), *ptype);
+            ALLOCATOR::copy_construct_count(pNewData + this->size(), nNewSize - this->size(), *ptype);
 
          }
 
@@ -2133,7 +2139,7 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::set_at_
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= this->_size())
+   if (nIndex >= this->size())
    {
 
       this->set_size(nIndex + 1, nGrowBy);
@@ -2151,7 +2157,7 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::eleme
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= this->_size())
+   if (nIndex >= this->size())
    {
 
       this->set_size(nIndex + 1, nGrowBy);
@@ -2265,44 +2271,44 @@ bool array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::prepare_first_
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size() const
 {
-   return (::count) this->_size();
+   return (::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_count() const
 {
-   return (::count) this->_size();
+   return (::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_length() const
 {
-   return (::count) this->_size();
+   return (::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_size_in_bytes() const
 {
-   return (::count)this->_size() * sizeof(TYPE);
+   return (::count)this->size() * sizeof(TYPE);
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_byte_count() const
 {
-   return (::count) (this->_size() * sizeof(TYPE));
+   return (::count) (this->size() * sizeof(TYPE));
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::size() const
-{
-   return this->get_size();
-}
-
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::size() const
+//{
+//   return this->get_size();
+//}
+//
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::count() const
@@ -2343,13 +2349,13 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::leng
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_lower_bound(::index i) const
 {
-   return i < this->_size() ? i : -1;
+   return i < this->size() ? i : -1;
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::get_middle_index(::index iIndex) const
 {
-   return this->_size() / 2 + iIndex;
+   return this->size() / 2 + iIndex;
 }
 
 
@@ -2410,7 +2416,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < this->_size());
+   ASSERT(nIndex >= 0 && nIndex < this->size());
 
    return this->m_begin[nIndex];
 
@@ -2421,7 +2427,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::element_at(::index nIndex)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < this->_size());
+   ASSERT(nIndex >= 0 && nIndex < this->size());
 
    return this->m_begin[nIndex];
 

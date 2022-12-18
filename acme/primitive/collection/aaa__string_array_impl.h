@@ -150,7 +150,7 @@
 ////
 ////   char * lpsz = (char *)mem.get_data();
 ////
-////   __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+////   memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
 ////
 ////   char * lpszN = lpsz;
 ////
@@ -183,11 +183,11 @@
 ////
 ////   if (iTotalLength == 2)
 ////   {
-////      __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+////      memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
 ////   }
 ////   else
 ////   {
-////      __memset(lpszN, 0x00, sizeof(char));
+////      memory_set(lpszN, 0x00, sizeof(char));
 ////   }
 ////
 ////   return mem;

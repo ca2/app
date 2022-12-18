@@ -2753,9 +2753,9 @@ ch_else:
 //      //FILETIME ftCreation;
 //      //FILETIME ftAccess;
 //      //FILETIME ftModified;
-//      //__memset(&ftCreation, 0, sizeof(FILETIME));
-//      //__memset(&ftAccess, 0, sizeof(FILETIME));
-//      //__memset(&ftModified, 0, sizeof(FILETIME));
+//      //memory_set(&ftCreation, 0, sizeof(FILETIME));
+//      //memory_set(&ftAccess, 0, sizeof(FILETIME));
+//      //memory_set(&ftModified, 0, sizeof(FILETIME));
 //      //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 //      //GetFileTime(h, &ftCreation, &ftAccess, &ftModified);
 //      //::CloseHandle(h);
@@ -2807,9 +2807,9 @@ ch_else:
          m_ftaLibModified[i]  = st.st_mtime;
 
          //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-         //__memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
-         //__memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
-         //__memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
+         //memory_set(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
+         //memory_set(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
+         //memory_set(&m_ftaLibModified[i], 0, sizeof(FILETIME));
          //GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
          //::CloseHandle(h);
 

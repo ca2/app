@@ -1112,7 +1112,7 @@ inline const ::wd16_character * wd16_concatenate_and_duplicate(const ::wd16_char
 //
 //#else
 //
-//   return memmem(src, srclen, find, findlen);
+//   return memory_find(src, srclen, find, findlen);
 //
 //#endif
 //

@@ -300,7 +300,7 @@ inline ::i32 unicode_to_upper_case(::i32 i)
 
 
 //template < primitive_character CHARACTER >
-//inline const CHARACTER * string_scan(const ::string_range < CHARACTER > & block, const ::string_range < CHARACTER > & blockCharacters) noexcept
+//inline const CHARACTER * string_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockCharacters) noexcept
 //{
 //
 //   const CHARACTER * psz;

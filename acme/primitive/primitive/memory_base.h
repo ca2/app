@@ -75,6 +75,7 @@ public:
 
    MEMORY();
    MEMORY(const MEMORY & memory) { _assign(memory); }
+   MEMORY(MEMORY && memory) { _assign(memory); zero(memory); }
 
    MEMORY & operator = (const MEMORY & memory) { assign(memory); return *this; }
 
@@ -135,6 +136,7 @@ public:
 
    memory_base() { }
    memory_base(const memory_base & base) : MEMORY(base) {}
+   memory_base(memory_base && base) : MEMORY(::move(base)) {}
    ~memory_base() override;
 
 
@@ -242,7 +244,7 @@ public:
 
 
    template < primitive_character CHARACTER >
-   string_range < CHARACTER * > get_string_buffer(strsize len)
+   range < CHARACTER * > get_string_buffer(strsize len)
    {
 
       set_size((len + 1) * sizeof(CHARACTER));

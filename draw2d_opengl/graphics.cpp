@@ -3451,7 +3451,7 @@ namespace draw2d_opengl
    i32 graphics::StartDoc(const ::string & lpszDocName)
    {
       //DOCINFO di;
-      //__memset(&di, 0, sizeof(DOCINFO));
+      //memory_set(&di, 0, sizeof(DOCINFO));
       //di.cbSize = sizeof(DOCINFO);
       //di.lpszDocName = lpszDocName;
       //return StartDoc(&di);

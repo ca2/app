@@ -524,7 +524,7 @@ namespace write_text
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      __memset(&m_gm, 0, sizeof(m_gm));
+//      memory_set(&m_gm, 0, sizeof(m_gm));
 //
 //#else
 //

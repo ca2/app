@@ -96,7 +96,7 @@ namespace os
          else
          {
 
-            __memset(&m_visualinfo, 0, sizeof(m_visualinfo));
+            memory_set(&m_visualinfo, 0, sizeof(m_visualinfo));
 
          }
 

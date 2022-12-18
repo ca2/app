@@ -33,9 +33,9 @@ void * os_alloc(size_t size)
 
 	u8 * point = (u8 *)os_impl_alloc(size + 512 + sizeof(uptr));
 
-	__memset(&point[sizeof(uptr)], 0, 256);
+	memory_set(&point[sizeof(uptr)], 0, 256);
 
-	__memset(&point[sizeof(uptr) + 256 + size], 0, 256);
+	memory_set(&point[sizeof(uptr) + 256 + size], 0, 256);
 
 	uptr * pinteraction = (uptr *)point_i32;
 
@@ -57,9 +57,9 @@ void * os_realloc(void * pParam, size_t size)
 
 	point = (u8 *)os_impl_realloc(point, size + 512 + sizeof(uptr));
 
-	__memset(&point[sizeof(uptr)], 0, 256);
+	memory_set(&point[sizeof(uptr)], 0, 256);
 
-	__memset(&point[sizeof(uptr) + 256 + size], 0, 256);
+	memory_set(&point[sizeof(uptr) + 256 + size], 0, 256);
 
 	uptr * pinteraction = (uptr *)point_i32;
 

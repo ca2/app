@@ -419,7 +419,7 @@ CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy)
    //
    //   }
    //
-   //   __memset(bitmapData, 0, bitmapByteCount);
+   //   memory_set(bitmapData, 0, bitmapByteCount);
 
    // Create the bitmap context. We want pre-multiplied argb, 8-bits
    // per component. Regardless of what the source image format is

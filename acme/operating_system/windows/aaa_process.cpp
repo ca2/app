@@ -85,7 +85,7 @@ HANDLE dup_handle(HANDLE h)
 //{
 //   _NtQueryInformationProcess NtQueryInformationProcess = (_NtQueryInformationProcess)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtQueryInformationProcess");
 //   PROCESS_BASIC_INFORMATION pbi;
-//   __memset(&pbi, 0, sizeof(pbi));
+//   memory_set(&pbi, 0, sizeof(pbi));
 //   DWORD dwInLen = sizeof(pbi);
 //   DWORD dwOutLen = 0xffffffff;
 //   u32 dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
@@ -320,7 +320,7 @@ void call_sync(const char * pszPath, const char * pszParam, const char * pszDir,
 
    SHELLEXECUTEINFOW infoa;
 
-   __memset(&infoa, 0, sizeof(infoa));
+   memory_set(&infoa, 0, sizeof(infoa));
 
    wstring wstrFile(pszPath);
    wstring wstrParam(pszParam);

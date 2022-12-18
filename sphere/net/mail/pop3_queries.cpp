@@ -82,7 +82,7 @@ char* buf;
 		perror("pop3_query.malloc");
 		return(nullptr);
 	}
-	/* __memset(buf,0,POPBUF); SUGGEST: should not be an obligation */
+	/* memory_set(buf,0,POPBUF); SUGGEST: should not be an obligation */
 	bytes=pop3_recv(sock,buf,POPBUF);
 	while((buf[bytes-2]!='\r') && (buf[bytes-1]!='\n')){
 		r=pop3_recv(sock,buf+bytes,POPBUF-bytes);
@@ -360,7 +360,7 @@ char* buf;
 		perror("pop3_top.malloc");
 		return(nullptr);
 	}
-/*	__memset(buf,0,POPBUG); SUGGEST: no obligation */
+/*	memory_set(buf,0,POPBUG); SUGGEST: no obligation */
 	r=pop3_recv(sock,buf,POPBUF);
    if(r < 0){ /* socket error */
       perror("Socket Error");
@@ -410,7 +410,7 @@ char* buf;
 		perror("pop3_uidl.malloc");
 		return(nullptr);
 	}
-	__memset(buf,0,POPBUF);
+	memory_set(buf,0,POPBUF);
 	r=pop3_recv(sock,buf,POPBUF);
    if (r < 0){ /* socket errorr */
       perror("Socket Error");

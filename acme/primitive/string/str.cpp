@@ -939,7 +939,7 @@ string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, 
 }
 
 
-string str::replace_with_ci(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
+string str::case_insensitive_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
 {
 
    index iPos = iStart;

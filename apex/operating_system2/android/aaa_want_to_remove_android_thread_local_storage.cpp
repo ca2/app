@@ -119,7 +119,7 @@ thread_slot_data * thread_local_storage::get_slot_data()
 
 thread_slot_data::thread_slot_data()
 {
-   __memset(m_pa, 0, sizeof(m_pa));
+   memory_set(m_pa, 0, sizeof(m_pa));
 }
 
 void thread_slot_data::delete_data()

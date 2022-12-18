@@ -265,7 +265,7 @@ namespace sockets
       }
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
-      __memset(&m_local_ip6, 0, sizeof(m_local_ip6));
+      memory_set(&m_local_ip6, 0, sizeof(m_local_ip6));
       {
          if (net::u2ip(h, m_local_ip6))
          {
@@ -707,7 +707,7 @@ namespace sockets
 #else
       struct addrinfo hints;
       service = 0;
-      __memset(&hints, 0, sizeof(hints));
+      memory_set(&hints, 0, sizeof(hints));
       // AI_NUMERICHOST
       // AI_CANONNAME
       // AI_PASSIVE - server

@@ -5268,8 +5268,8 @@ typedef enum _CM_ERROR_CONTROL_TYPE
 #define RtlEqualMemory(Destination, Source, Length) (!__memcmp((Destination),(Source),(Length)))
 #define RtlMoveMemory(Destination, Source, Length) __memmov((Destination),(Source),(Length))
 #define RtlCopyMemory(Destination, Source, Length) ::memcpy_dup((Destination),(Source),(Length))
-#define RtlFillMemory(Destination, Length, Fill) __memset((Destination),(Fill),(Length))
-#define RtlZeroMemory(Destination, Length) __memset((Destination),0,(Length))
+#define RtlFillMemory(Destination, Length, Fill) memory_set((Destination),(Fill),(Length))
+#define RtlZeroMemory(Destination, Length) memory_set((Destination),0,(Length))
 
 #include "windows_guid_def.h"
 

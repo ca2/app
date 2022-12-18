@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -1914,7 +1914,7 @@ inline ::string operator +(const char(&sz)[c], const ::atom & atom)
 
 
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
-//inline ::string_base<CHARACTER2> operator+(const ::string_range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
+//inline ::string_base<CHARACTER2> operator+(const ::range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
 //{
 //
 //   return ::string_base<CHARACTER2>(block) + str;
@@ -1938,9 +1938,76 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
 
 }
 
+
+template < typename ITERATOR_TYPE >
+inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
+{
+   
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+template < >
+inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
+{
+
+   if (atom.is_text())
+   {
+
+      this->m_begin =  atom.m_str.m_begin;
+      this->m_end = atom.m_str.m_end;
+
+   }
+   else
+   {
+
+      this->m_begin = nullptr;
+      this->m_end = nullptr;
+
+   }
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const atom & atom)
+{ 
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+template <  >
+inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const atom & atom)
+{
+
+   if (atom.is_text())
+   {
+
+      BASE_RANGE::operator=(atom.m_str);
+
+   }
+   else
+   {
+
+      this->m_begin = nullptr;
+      this->m_end = nullptr;
+
+   }
+
+   return *this;
+
+}
+
+
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom) { assign(atom.as_string()); return *this; }
-
 
 
 //template < typename ITERATOR_TYPE >

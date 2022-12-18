@@ -170,11 +170,11 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 	jpeg_transform_info transfoptions;
 
 	// Initialize structures
-	__memset(&srcinfo, 0, sizeof(srcinfo));
-	__memset(&jsrcerr, 0, sizeof(jsrcerr));
-	__memset(&jdsterr, 0, sizeof(jdsterr));
-	__memset(&dstinfo, 0, sizeof(dstinfo));
-	__memset(&transfoptions, 0, sizeof(transfoptions));
+	memory_set(&srcinfo, 0, sizeof(srcinfo));
+	memory_set(&jsrcerr, 0, sizeof(jsrcerr));
+	memory_set(&jdsterr, 0, sizeof(jdsterr));
+	memory_set(&dstinfo, 0, sizeof(dstinfo));
+	memory_set(&transfoptions, 0, sizeof(transfoptions));
 
 	// Copy all extra markers from source file
 	copyoption = JCOPYOPT_ALL;

@@ -130,7 +130,7 @@ namespace draw2d
    void region::polygon_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(rectangle, m_polygon.get_data(), m_polygon.get_size());
+      ::max_bounding_box(rectangle, m_polygon.data(), m_polygon.get_size());
 
    }
 

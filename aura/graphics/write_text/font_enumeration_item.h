@@ -1,4 +1,4 @@
-//
+﻿//
 //  font_enumeration_item.h
 //  aura
 //
@@ -47,23 +47,7 @@ namespace write_text
       bool operator < (const font_enumeration_item & item) const
       {
 
-         int iCompare = m_strName.compare(item.m_strName);
-
-         if (iCompare < 0)
-         {
-
-            return true;
-
-         }
-
-         if (iCompare > 0)
-         {
-
-            return false;
-
-         }
-
-         return false;
+         return m_strName.order(item.m_strName) < 0;
 
       }
 

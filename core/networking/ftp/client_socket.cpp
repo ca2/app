@@ -2145,7 +2145,7 @@ auto tickStart = ::time::now();
       string strTemp;
       const int iRet = FileModificationTime(strPath, strTemp);
 
-      __memset(&tmModificationTime, 0, sizeof(tmModificationTime));
+      memory_set(&tmModificationTime, 0, sizeof(tmModificationTime));
       if (iRet == FTP_OK)
       {
          tmModificationTime.tm_year = atoi(strTemp.substr(0, 4));

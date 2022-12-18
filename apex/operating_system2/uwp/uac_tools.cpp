@@ -153,7 +153,7 @@ namespace VistaTools
    {
       SHELLEXECUTEINFO shex;
 
-      __memset( &shex, 0, sizeof( shex) );
+      memory_set( &shex, 0, sizeof( shex) );
 
       shex.cbSize         = sizeof( SHELLEXECUTEINFO );
       shex.fMask         = (phProcess ? SEE_MASK_NOCLOSEPROCESS : 0);

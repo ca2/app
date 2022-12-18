@@ -103,7 +103,7 @@ dostounix (struct date *d, struct time *t)
   time_t the_time = time (0);
 
   ptm = localtime (&the_time);
-  __memset (&utm, N_C, sizeof (struct tm));
+  memory_set (&utm, N_C, sizeof (struct tm));
   memcpy ((void *) &utm, (void *) ptm, sizeof (struct tm));
 
   utm.tm_sec = t->ti_sec;
@@ -121,7 +121,7 @@ unixtodos (time_t the_time, struct date *d, struct time *t)
 {
   struct tm utm, *ptm;
 
-  __memset (&utm, N_C, sizeof (struct tm));
+  memory_set (&utm, N_C, sizeof (struct tm));
   ptm = localtime (&the_time);
   memcpy ((void *) &utm, (void *) ptm, sizeof (struct tm));
 
@@ -139,7 +139,7 @@ unixdos_time (time_t the_time, struct time *t)
 {
   struct date d;
 
-  __memset (&d, N_C, sizeof (struct date));
+  memory_set (&d, N_C, sizeof (struct date));
   unixtodos (the_time, &d, t);
 }
 
@@ -148,7 +148,7 @@ unixdos_date (time_t the_time, struct date *d)
 {
   struct time t;
 
-  __memset (&t, N_C, sizeof (struct time));
+  memory_set (&t, N_C, sizeof (struct time));
   unixtodos (the_time, d, &t);
 }
 
@@ -379,7 +379,7 @@ seqence_STAR_34X (int typ)
 {
   static char put[15];
 
-  __memset (put, N_C, sizeof (put));
+  memory_set (put, N_C, sizeof (put));
 
   switch (typ)
     {

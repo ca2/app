@@ -366,6 +366,20 @@ namespace acme
 
       }
 
+      if (m_bCrypto.undefined())
+      {
+
+         m_bCrypto = !m_bConsole;
+
+      }
+
+      if (m_bResource.undefined())
+      {
+
+         m_bResource = !m_bConsole;
+
+      }
+
 #ifdef WINDOWS_DESKTOP
 
       if (m_bGdiplus.undefined())

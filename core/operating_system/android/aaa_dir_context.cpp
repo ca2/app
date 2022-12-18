@@ -1220,7 +1220,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    //   {
    //      if(!::GetUserNameW(buf, &ulSize))
    //      {
-   //         __memset(buf, 0, sizeof(buf));
+   //         memory_set(buf, 0, sizeof(buf));
    //      }
    //   }*/
    //   /*return unicode_to_utf8(buf);*/

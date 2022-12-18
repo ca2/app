@@ -4,7 +4,7 @@
 * Find the first occurrence of the byte string s in byte string l.
 */
 
-void * memmem(const void * l, size_t l_len, const void * s, size_t s_len)
+void * memory_find(const void * l, size_t l_len, const void * s, size_t s_len)
 {
    char * cur, * last;
    const char * cl = (const ::string &)l;

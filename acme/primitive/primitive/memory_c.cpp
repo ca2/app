@@ -36,7 +36,7 @@ CLASS_DECL_ACME void* __memmov(void * dst, const void * src, memsize iSize)
 
 }
 
-void * __memset(void * p, i32 i, memsize iSize)
+void * memory_set(void * p, i32 i, memsize iSize)
 {
 
    if (iSize <= 0)
@@ -150,13 +150,13 @@ void * memmov_dup(void * dst, const void * src, memsize iSize)
 }
 
 
-i32 memory_compare(const void * p1, const void * p2, memsize iLen)
+::std::strong_ordering memory_order(const void * p1, const void * p2, memsize iLen)
 {
 
    if (iLen <= 0)
    {
 
-      return 0; // equal
+      return ::std::strong_ordering::equal; // equal
 
    }
    else if (iLen > UINTPTR_MAX)
@@ -172,24 +172,24 @@ i32 memory_compare(const void * p1, const void * p2, memsize iLen)
       if (::is_null(p2))
       {
 
-         return 0;
+         return ::std::strong_ordering::equal; // equal
 
       }
       else
       {
 
-         return -1;
+         return ::std::strong_ordering::less; // less
 
       }
    }
    else if(::is_null(p2))
    {
 
-      return 1;
+      return ::std::strong_ordering::greater; // equal;
 
    }
 
-   return memcmp(p1, p2, (size_t) iLen);
+   return memcmp(p1, p2, (size_t) iLen) <=> 0;
 
 }
 

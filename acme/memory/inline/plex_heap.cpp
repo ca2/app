@@ -380,7 +380,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
          auto pZero = pNew + sizeOld;
 
-         __memset(pZero, 0, size - sizeOld);
+         memory_set(pZero, 0, size - sizeOld);
 
       }
 

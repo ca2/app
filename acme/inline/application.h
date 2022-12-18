@@ -84,9 +84,9 @@ int main(int argc, char * argv[], char * envp[])
 {
 
 #if defined(WINDOWS)
-   ::acme::get()->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   ::acme::acme::g_p->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #else
-   ::acme::get()->initialize(argc, argv, envp);
+   ::acme::acme::g_p->initialize(argc, argv, envp);
 #endif
 
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
@@ -94,9 +94,9 @@ int main(int argc, char * argv[], char * envp[])
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::get()->m_pacmeapplication->implement_application();
+   ::acme::acme::g_p->m_pacmeapplication->implement_application();
 
-   return ::acme::get()->m_pacmeapplication->m_iExitCode;
+   return ::acme::acme::g_p->m_pacmeapplication->m_iExitCode;
 
 //   acme::acme acme;
 //

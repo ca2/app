@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -58,7 +58,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
    bool bNegative;
 
-   return pair<typename std::make_unsigned<SIGNED>::type, bool >((typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative );
+   return ::pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
 
@@ -449,7 +449,7 @@ constexpr TYPE * span_zero_item(TYPE * p)
 
    TYPE t{};
 
-   while (*p == t)
+   while (*p != t)
    {
 
       p++;
@@ -467,7 +467,7 @@ constexpr const TYPE * span_zero_item(const TYPE * p, EQUALITY equality)
 
    TYPE t{};
 
-   while (equality.equals(*p, t))
+   while (!equality.equals(*p, t))
    {
 
       p++;

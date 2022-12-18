@@ -976,7 +976,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //   CREATEFILE2_EXTENDED_PARAMETERS ep;
 //
-//   __memset(&ep,0,sizeof(ep));
+//   memory_set(&ep,0,sizeof(ep));
 //   ep.dwSize = sizeof(ep);
 //   ep.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
 //
@@ -989,7 +989,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      return 0;
 //
 //   FILE *file = memory_new FILE;
-//   __memset(file,0,sizeof(FILE));
+//   memory_set(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
 //   if(ansi_find_char(attrs,'t'))
@@ -1021,7 +1021,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      return 0;
 //
 //   FILE *file = memory_new FILE;
-//   __memset(file,0,sizeof(FILE));
+//   memory_set(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
 //   if(wide_find_char(attrs,L't'))
@@ -1505,14 +1505,14 @@ int_bool WINAPI FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME 
 
 SYSTEMTIME st;
 
-__memset(&st, 0, sizeof(st));
+memory_set(&st, 0, sizeof(st));
 
 if(FileTimeToSystemTime(lpFileTime, &st))
 return false;
 
 SYSTEMTIME stLocal;
 
-__memset(&stLocal, 0, sizeof(stLocal));
+memory_set(&stLocal, 0, sizeof(stLocal));
 
 if(!SystemTimeToTzSpecificLocalTime(nullptr, &st, &stLocal))
 return false;
@@ -1534,7 +1534,7 @@ HANDLE create_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwS
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
 
-   __memset(&ps,0,sizeof(ps));
+   memory_set(&ps,0,sizeof(ps));
 
    ps.dwSize                  = sizeof(ps);
    ps.dwFileAttributes        = dwFlagsAndAttributes;

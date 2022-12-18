@@ -6,9 +6,9 @@ inline  constexpr strsize     char_length_to_byte_length(const_wd32char_trigger,
 inline  constexpr strsize     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength) { return (::strsize)(nByteLength / sizeof(::wd32_character)); }
 
 
-inline void copy_chars(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void copy_chars(::wd32_character * pchDest, size_t nDestLen, const ::wd32_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void copy_chars_overlapped(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd32_character * pchDest, size_t nDestLen, const ::wd32_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+inline void overlapped_string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
 
 
 inline ::std::strong_ordering _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_cmp(pszA, pszB)<=>0; }
@@ -191,7 +191,7 @@ inline strsize wd32tring_format(::wd32_character * pszBuffer, strsize nlength, c
 inline const ::wd32_character * string_rear_find_character(const ::wd32_character * psz, ::wd32_character ch) noexcept
 {
 
-   return ::const_wd32_range(psz).rear_find_item(ch);
+   return ::const_wd32_range(psz).rear_find_item(ch, ::comparison::comparison < ::wd32_character >());
 
 }
 

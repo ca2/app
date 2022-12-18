@@ -119,7 +119,7 @@ string dumpBacktrace(void** buffer,size_t count)
 // The following is defined for x86 (XP and higher), x64 and IA64:
 #define GET_CURRENT_CONTEXT(pc, contextFlags) \
    do { \
-   __memset(pc, 0, sizeof(CONTEXT)); \
+   memory_set(pc, 0, sizeof(CONTEXT)); \
    pc->ContextFlags = contextFlags; \
    RtlCaptureContext(pc); \
    } while(0);
@@ -273,7 +273,7 @@ namespace exception
       if(!check())
          return false;
 
-      __memset(&m_stackframe, 0, sizeof(m_stackframe));
+      memory_set(&m_stackframe, 0, sizeof(m_stackframe));
 
       //  s_readMemoryFunction = readMemoryFunction;
       //s_readMemoryFunction_UserData = pUserData;
@@ -1108,7 +1108,7 @@ namespace exception
 #else
 
       current_context context;
-      __memset(&context, 0, sizeof(current_context));
+      memory_set(&context, 0, sizeof(current_context));
 
       bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_htask(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != false;
 

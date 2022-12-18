@@ -5372,7 +5372,7 @@ run:
             if (s_atomMenu == 0)
             {
                WNDCLASSEX wc;
-               __memset(&wc, 0, sizeof(WNDCLASSEX));
+               memory_set(&wc, 0, sizeof(WNDCLASSEX));
                wc.cbSize = sizeof(WNDCLASSEX);
                s_atomMenu = (ATOM)::GetClassInfoEx(nullptr, "#32768", &wc);
             }
@@ -5732,7 +5732,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
 
    // common initialization
    WNDCLASS wndcls;
-   __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
+   memory_set(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.hInstance = Sys(::universal_windows::get_task()->get_app()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;

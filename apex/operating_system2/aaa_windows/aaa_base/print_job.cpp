@@ -47,7 +47,7 @@ namespace windows
 
 
       DOCINFOW docinfo;
-      __memset(&docinfo, 0, sizeof(docinfo));
+      memory_set(&docinfo, 0, sizeof(docinfo));
       docinfo.cbSize = sizeof(docinfo);
       pgraphics->StartDocW(&docinfo);
 

@@ -318,7 +318,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //      return GEOIP_SOCKET_OPEN_ERR;
 //   }
 //
-//   __memset(&sa, 0, sizeof(struct sockaddr_in));
+//   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short)GeoIPHTTPPort);
 //   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;
@@ -571,7 +571,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //      return GEOIP_SOCKET_OPEN_ERR;
 //   }
 //
-//   __memset(&sa, 0, sizeof(struct sockaddr_in));
+//   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short) GeoIPHTTPPort);
 //   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;
@@ -654,7 +654,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //         return GEOIP_SOCKET_OPEN_ERR;
 //      }
 //
-//      __memset(&sa, 0, sizeof(struct sockaddr_in));
+//      memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //      sa.sin_port = htons((u_short) GeoIPHTTPPort);
 //      ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //      sa.sin_family = AF_INET;
@@ -744,7 +744,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //   {
 //      return GEOIP_SOCKET_OPEN_ERR;
 //   }
-//   __memset(&sa, 0, sizeof(struct sockaddr_in));
+//   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short) GeoIPHTTPPort);
 //   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;

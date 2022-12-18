@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#ifdef CPP17
@@ -120,25 +120,40 @@ public:
 
 #endif
 
+template<typename A, typename B> pair(A, B) -> pair<A, B>;
+
 #include <utility>
-::std::pair<int,int> int_pair;
+
+#include <tuple>
+
 namespace std
 {
 
 
-
-   template < typename T1, typename T2, typename ARG_T1, typename ARG_T2 >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::pair <T1, T2, ARG_T1, ARG_T2 > > : integral_constant<size_t, 2> {};
-
-
-
-
-   template < size_t n, typename A, typename B , typename ARG_A, typename ARG_B >
-   constexpr auto & get( ::pair < A, B, ARG_A, ARG_B >& pair ) noexcept
+   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+   struct tuple_element < n, ::pair < A, B, ARG_A, ARG_B > > 
    {
+   
+      static_assert(n < 2, "pair index out of bounds");
+
+      using type = conditional_t < n == 0, A, B >;
+
+   };
+
+   template < typename A, typename B, typename ARG_A, typename ARG_B >
+   ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B, ARG_A, ARG_B > > : integral_constant<size_t, 2> {};
+
+
+   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+   constexpr typename std::tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >::type &
+      get(::pair < A, B, ARG_A, ARG_B > & pair)
+   {
+
       if constexpr (n % 2 == 0)
       {
+
          return pair.m_element1;
+
       }
       else
       {
@@ -146,24 +161,71 @@ namespace std
          return pair.m_element2;
          
       }
+
    }
 
 
-template < size_t n, typename A, typename B , typename ARG_A, typename ARG_B >
-constexpr auto & get(const ::pair < A, B, ARG_A, ARG_B >& pair ) noexcept
-{
-   if constexpr (n %2 == 0)
-   {
-      return pair.m_element1;
-   }
-   else
+   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+   constexpr const typename std::tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >::type & 
+      get(const ::pair < A, B, ARG_A, ARG_B > & pair) noexcept
    {
       
-      return pair.m_element2;
-      
-   }
-}
+      if constexpr (n %2 == 0)
+      {
 
+         return pair.m_element1;
+
+      }
+      else
+      {
+      
+         return pair.m_element2;
+      
+      }
+
+   }
+
+
+   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+   constexpr typename std::tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >::type &&
+      get(::pair < A, B, ARG_A, ARG_B > && pair)
+   {
+
+      if constexpr (n % 2 == 0)
+      {
+
+         return ::move(pair.m_element1);
+
+      }
+      else
+      {
+
+         return ::move(pair.m_element2);
+
+      }
+
+   }
+
+
+   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+   constexpr const typename std::tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >::type &&
+      get(const ::pair < A, B, ARG_A, ARG_B > && pair) noexcept
+   {
+
+      if constexpr (n % 2 == 0)
+      {
+
+         return ::move(pair.m_element1);
+
+      }
+      else
+      {
+
+         return ::move(pair.m_element2);
+
+      }
+
+   }
 
 
 } // namespace std

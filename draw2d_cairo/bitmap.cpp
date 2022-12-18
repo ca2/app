@@ -51,7 +51,7 @@ namespace draw2d_cairo
       if(pdata == nullptr || iStrideParam <= 0)
       {
 
-         __memset(m_mem.get_data(), 0, m_mem.get_size());
+         memory_set(m_mem.get_data(), 0, m_mem.get_size());
 
       }
       else

@@ -498,7 +498,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //void __cdecl char_traits::flood_characters(char ch,strsize nLength,char* pch) noexcept
 //{
 //   // nLength is in XCHARs
-//   __memset(pch,ch,nLength);
+//   memory_set(pch,ch,nLength);
 //}
 //
 //#ifdef WINDOWS

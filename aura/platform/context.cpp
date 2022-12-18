@@ -1041,7 +1041,7 @@ namespace aura
 
          pimage->map();
 
-         copy_colorref(pimage->get_data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
+         copy_colorref(pimage->data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
 
       }
 

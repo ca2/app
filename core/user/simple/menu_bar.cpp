@@ -82,7 +82,7 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
 //   string str;
 //
 //   TBBUTTON tbb;
-//   __memset(&tbb, 0, sizeof(tbb));
+//   memory_set(&tbb, 0, sizeof(tbb));
 //   tbb.iBitmap = 0;
 //   tbb.fsState = TBSTATE_ENABLED;
 //   tbb.fsStyle = TBSTYLE_BUTTON;

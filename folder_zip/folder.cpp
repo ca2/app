@@ -119,7 +119,7 @@ namespace folder_zip
 
       zip_fileinfo zipfi;
 
-      __memset(&zipfi,0,sizeof(zipfi));
+      memory_set(&zipfi,0,sizeof(zipfi));
 
       zipfi.tmz_date.tm_hour = status.m_ctime.hour();
       zipfi.tmz_date.tm_sec  = status.m_ctime.second();
@@ -334,12 +334,12 @@ namespace folder_zip
       
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_order(psz) == 0; }))
+      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_order(psz) == 0; }))
+         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
          {
 
             return false;

@@ -524,7 +524,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //   //
 //   //   }
 //   //
-//   //   __memset(bitmapData, 0, bitmapByteCount);
+//   //   memory_set(bitmapData, 0, bitmapByteCount);
 //
 //   // Create the bitmap context. We want pre-multiplied argb, 8-bits
 //   // per component. Regardless of what the source image format is

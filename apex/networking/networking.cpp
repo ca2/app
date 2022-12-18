@@ -315,7 +315,7 @@ namespace networking
 //         return item.m_bOk;
 //      }
 //      struct sockaddr_in sa;
-//      __memset(&sa, 0, sizeof(sa));
+//      memory_set(&sa, 0, sizeof(sa));
 //      sa.sin_family = AF_INET;
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
@@ -364,7 +364,7 @@ namespace networking
 //      return true;
 //#else
 //      struct addrinfo hints;
-//      __memset(&hints, 0, sizeof(hints));
+//      memory_set(&hints, 0, sizeof(hints));
 //      // AI_NUMERICHOST
 //      // AI_CANONNAME
 //      // AI_PASSIVE - server
@@ -452,7 +452,7 @@ namespace networking
 //
 //      struct sockaddr_in sa;
 //
-//      __memset(&sa, 0, sizeof(sa));
+//      memory_set(&sa, 0, sizeof(sa));
 //
 //      sa.sin_family = AF_INET;
 //
@@ -517,7 +517,7 @@ namespace networking
 //
 //         struct sockaddr_in6 sa;
 //
-//         __memset(&sa, 0, sizeof(sa));
+//         memory_set(&sa, 0, sizeof(sa));
 //
 //         sa.sin6_family = AF_INET6;
 //
@@ -572,7 +572,7 @@ namespace networking
 //      }
 //#ifdef ENABLE_IPV6
 //#ifdef IPPROTO_IPV6
-//      __memset(&m_local_ip6, 0, sizeof(m_local_ip6));
+//      memory_set(&m_local_ip6, 0, sizeof(m_local_ip6));
 //      {
 //         if (convert(m_local_ip6, h))
 //         {
@@ -688,7 +688,7 @@ namespace networking
    /*   bool networking::convert(in_addr & sa, const string & host, i32 ai_flags)
       {
 
-         __memset(&sa, 0, sizeof(sa));
+         memory_set(&sa, 0, sizeof(sa));
          sa.sin_family = AF_INET;
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
@@ -735,7 +735,7 @@ namespace networking
          return true;
    #else
          struct addrinfo hints;
-         __memset(&hints, 0, sizeof(hints));
+         memory_set(&hints, 0, sizeof(hints));
          // AI_NUMERICHOST
          // AI_CANONNAME
          // AI_PASSIVE - server
@@ -810,7 +810,7 @@ namespace networking
 //
 //      }
 //
-//      __memset(&sa, 0, sizeof(sa));
+//      memory_set(&sa, 0, sizeof(sa));
 //#ifdef WINDOWS
 //#else
 //      //sa.sin6_family = AF_INET6;
@@ -886,7 +886,7 @@ namespace networking
 //      return true;
 //#else
 //      struct addrinfo hints;
-//      __memset(&hints, 0, sizeof(hints));
+//      memory_set(&hints, 0, sizeof(hints));
 //      hints.ai_flags = ai_flags;
 //      hints.ai_family = AF_INET6;
 //      hints.ai_socktype = SOCK_STREAM;
@@ -1217,7 +1217,7 @@ namespace networking
 //#else
 //      struct addrinfo hints;
 //      service = 0;
-//      __memset(&hints, 0, sizeof(hints));
+//      memory_set(&hints, 0, sizeof(hints));
 //      // AI_NUMERICHOST
 //      // AI_CANONNAME
 //      // AI_PASSIVE - server
@@ -1467,7 +1467,7 @@ namespace networking
 //      }
 //#ifdef ENABLE_IPV6
 //#ifdef IPPROTO_IPV6
-//      __memset(&m_local_ip6, 0, sizeof(m_local_ip6));
+//      memory_set(&m_local_ip6, 0, sizeof(m_local_ip6));
 //      {
 //         if (convert(m_local_ip6, h))
 //         {

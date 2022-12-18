@@ -119,10 +119,10 @@ namespace colorertake5
 
       //!!regions cleanup
       region = nullptr;
-      __memset(regions, 0, sizeof(regions));
-      __memset(regionsn, 0, sizeof(regionsn));
-      __memset(regione, 0, sizeof(regione));
-      __memset(regionen, 0, sizeof(regionen));
+      memory_set(regions, 0, sizeof(regions));
+      memory_set(regionsn, 0, sizeof(regionsn));
+      memory_set(regione, 0, sizeof(regione));
+      memory_set(regionen, 0, sizeof(regionen));
    };
 
    SchemeNode::~SchemeNode()

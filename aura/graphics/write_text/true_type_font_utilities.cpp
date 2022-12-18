@@ -134,7 +134,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 
             //bug fix: see the post by SimonSays to read more about it
             char* lpszNameBuf = csTemp.get_string_buffer(ttRecord.uStringLength + 1);
-            __memset(lpszNameBuf, 0, ttRecord.uStringLength + 1);
+            memory_set(lpszNameBuf, 0, ttRecord.uStringLength + 1);
             f->read(lpszNameBuf, ttRecord.uStringLength);
             csTemp.release_string_buffer();
             if (csTemp.get_length() > 0)

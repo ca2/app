@@ -129,7 +129,7 @@
 // // // The following is defined for x86 (XP and higher), x64 and IA64:
 // // #define GET_CURRENT_CONTEXT(pc, contextFlags) \
 // //    do { \
-// //    __memset(pc, 0, sizeof(CONTEXT)); \
+// //    memory_set(pc, 0, sizeof(CONTEXT)); \
 // //    pc->ContextFlags = contextFlags; \
 // //    RtlCaptureContext(pc); \
 // //    } while(0);
@@ -248,7 +248,7 @@
 
 // //    byte symbol[4096];
 // //    PIMAGEHLP_SYMBOL64 pSym = (PIMAGEHLP_SYMBOL64)&symbol;
-// //    __memset(pSym,0,sizeof(symbol)) ;
+// //    memory_set(pSym,0,sizeof(symbol)) ;
 // //    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL64) ;
 // //    pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL64);
 
@@ -269,7 +269,7 @@
 
 // //    byte symbol[4096];
 // //    PIMAGEHLP_SYMBOL pSym = (PIMAGEHLP_SYMBOL)&symbol;
-// //    __memset(pSym, 0, sizeof(symbol));
+// //    memory_set(pSym, 0, sizeof(symbol));
 // //    pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL);
 // //    pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
 
@@ -507,7 +507,7 @@
 // //       if(!check())
 // //          return false;
 
-// //       __memset(&m_stackframe, 0, sizeof(m_stackframe));
+// //       memory_set(&m_stackframe, 0, sizeof(m_stackframe));
 
 // //       //  s_readMemoryFunction = readMemoryFunction;
 // //       //s_readMemoryFunction_UserData = pUserData;
@@ -1338,7 +1338,7 @@
 // // #else
 
 // //       current_context context;
-// //       __memset(&context, 0, sizeof(current_context));
+// //       memory_set(&context, 0, sizeof(current_context));
 
 // //       bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_htask(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != false;
 

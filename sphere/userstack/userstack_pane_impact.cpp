@@ -382,7 +382,7 @@ namespace userstack
       ::file::listing listing(get_app());
 
 //      wchar_t buf[4096];
-//      __memset(buf, 0, sizeof(buf));
+//      memory_set(buf, 0, sizeof(buf));
 //      SHGetSpecialFolderPath(
 //      nullptr,
 //      buf,
@@ -405,7 +405,7 @@ namespace userstack
 //            }
 //         }
 //      }
-//      __memset(buf, 0, sizeof(buf));
+//      memory_set(buf, 0, sizeof(buf));
 //      SHGetSpecialFolderPath(
 //      nullptr,
 //      buf,

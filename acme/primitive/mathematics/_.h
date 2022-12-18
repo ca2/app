@@ -198,7 +198,22 @@ namespace comparison
    };
 
 
-   template < primitive_floating F, typename T >
+   template < primitive_floating F1, primitive_floating F2 >
+   class comparison2 < F1, F2 >
+   {
+   public:
+
+      constexpr ::std::strong_ordering order(F1 f1, F2 f2) const
+      {
+
+         return ::std::strong_order(f1, f2);
+
+      }
+
+   };
+
+
+   template < primitive_floating F, primitive_integral T >
    class comparison2 < F, T >
    {
    public:
@@ -206,14 +221,14 @@ namespace comparison
       constexpr ::std::strong_ordering order(F f, T t) const
       {
 
-         return (f <=> t) <=> 0;
+         return ::std::strong_order(f, (F)t);
 
       }
 
    };
 
 
-   template < typename T, primitive_floating F >
+   template < primitive_integral T, primitive_floating F >
    class comparison2 < T, F >
    {
    public:
@@ -221,7 +236,7 @@ namespace comparison
       constexpr ::std::strong_ordering order(T t, F f) const
       {
 
-         return (t <=> f) <=> 0;
+         return ::std::strong_order((F) t, f);
 
       }
 
@@ -232,13 +247,13 @@ namespace comparison
 } //namespace comparison
 
 
-template < typename TYPE >
-constexpr TYPE minimum(const TYPE & a, const TYPE & b)
-{
-
-   return a <= b ? a : b;
-
-}
+//template < typename TYPE >
+//constexpr TYPE minimum(const TYPE & a, const TYPE & b)
+//{
+//
+//   return a <= b ? a : b;
+//
+//}
 
 
 template < typename TYPE1, typename TYPE2 >

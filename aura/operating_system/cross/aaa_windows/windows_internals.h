@@ -2705,9 +2705,9 @@ CLASS_DECL_AURA NTSTATUS CDECL wine_unix_to_nt_file_name(const ANSI_STRING *name
 #define NtCurrentProcess() ((HANDLE)-1)
 
 #ifndef _UWP
-#define RtlFillMemory(Destination,Length,Fill) __memset((Destination),(Fill),(Length))
+#define RtlFillMemory(Destination,Length,Fill) memory_set((Destination),(Fill),(Length))
 #define RtlMoveMemory(Destination,Source,Length) __memmov((Destination),(Source),(Length))
-#define RtlZeroMemory(Destination,Length) __memset((Destination),0,(Length))
+#define RtlZeroMemory(Destination,Length) memory_set((Destination),0,(Length))
 #endif
 #define RtlStoreUlong(p,v)  do { WINULONG _v = (v); ::memcpy_dup((p), &_v, sizeof(_v)); } while (0)
 #define RtlStoreUlonglong(p,v) do { ULONGLONG _v = (v); ::memcpy_dup((p), &_v, sizeof(_v)); } while (0)

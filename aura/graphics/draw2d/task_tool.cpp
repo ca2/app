@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "task_tool.h"
 
 
@@ -371,7 +371,7 @@ restart:
 
                               xEnd8 = minimum(xEnd, xBoundary1);
                               while (x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH <= xEnd8
-                                     && __memcmp(&(((::color32_t *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
+                                     && memory_order(&(((::color32_t *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
                               {
 
                                  x += DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH;
@@ -410,7 +410,7 @@ restart:
                            {
 
                               while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
-                                     && __memcmp(&(((::color32_t *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                                     && memory_order(&(((::color32_t *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
                               {
 
                                  x += DIB_BLEND_ZERO_BLOCK_SIZE;

@@ -1147,7 +1147,7 @@ inline const void * memory_find_memory(const void * src, strsize srclen, const v
 
 #else
 
-   return memmem(src, srclen, find, findlen);
+   return memory_find(src, srclen, find, findlen);
 
 #endif
 

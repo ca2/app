@@ -91,7 +91,7 @@ void * reverse_memmem(const void * l, size_t l_len, const void * s, size_t s_len
    for (cur = (char *)last; cur >= cl; cur--)
    {
 
-      if (cur[0] == cs[0] && _memory_compare(cur, cs, s_len) == 0)
+      if (cur[0] == cs[0] && _memory_order(cur, cs, s_len) == 0)
       {
 
          return cur;

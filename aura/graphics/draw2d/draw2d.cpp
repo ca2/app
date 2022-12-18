@@ -744,7 +744,7 @@ void draw2d::emboss_predicate(
       if (filter.is_set())
       {
 
-         pFilter = filter->get_data();
+         pFilter = filter->begin();
 
       }
       else
@@ -754,7 +754,7 @@ void draw2d::emboss_predicate(
 
          filter->set_size(iFilterArea);
 
-         pFilter = filter->get_data();
+         pFilter = filter->begin();
 
          for (y = 0; y <= iFilterHalfH; y++)
          {
@@ -1058,13 +1058,13 @@ void draw2d::emboss_predicate(
 
       if (filter.is_set())
       {
-         pFilter = filter->get_data();
+         pFilter = filter->begin();
       }
       else
       {
          filter = __new(memory());
          filter->set_size(iFilterArea);
-         pFilter = filter->get_data();
+         pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)
          {
             for (x = 0; x < iFilterW; x++)
@@ -1089,8 +1089,8 @@ void draw2d::emboss_predicate(
       if (cx != pimageSrc->width() || cy != pimageSrc->height())
          return false;
 
-      byte * lpbDst = (byte *)pimageDst->get_data();
-      byte * lpbSrc = (byte *)pimageSrc->get_data();
+      byte * lpbDst = (byte *)pimageDst->data();
+      byte * lpbSrc = (byte *)pimageSrc->data();
 
       //i32 wSrc = cx * 4;
       //i32 wDst = cx * 4;

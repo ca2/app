@@ -6,7 +6,7 @@
 // // The following is defined for x86 (XP and higher), x64 and IA64:
 // #define GET_CURRENT_CONTEXT(pc, contextFlags) \
 //    do { \
-//    __memset(pc, 0, sizeof(CONTEXT)); \
+//    memory_set(pc, 0, sizeof(CONTEXT)); \
 //    pc->ContextFlags = contextFlags; \
 //    RtlCaptureContext(pc); \
 //    } while(0);

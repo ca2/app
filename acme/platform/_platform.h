@@ -143,7 +143,7 @@ struct memory_state;
 
 #define ASSERT_KINDOF(class_name, matter) ASSERT(base_class < class_name > ::bases(matter))
 #define DYNAMIC_CAST(class_name, matter) (dynamic_cast < class_name * > (matter))
-#define ZERO_INIT_JUST_THIS(base_class) __memset(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
+#define ZERO_INIT_JUST_THIS(base_class) memory_set(((base_class*)this)+1, 0, sizeof(*this) - sizeof(class base_class));
 
 
 #include "constraint.h"

@@ -1523,7 +1523,7 @@ namespace draw2d
    void graphics::text_out(double x, double y, const block & block)
    {
 
-      if(block.get_size() <= 0)
+      if(block.size() <= 0)
       {
 
          return;
@@ -3555,7 +3555,7 @@ namespace draw2d
       
       ::size_f64 size;
 
-      get_text_extent(size, (const char*)block.data(), block.zsize());
+      get_text_extent(size, (const char*)block.data(), block.size());
 
       return size;
 

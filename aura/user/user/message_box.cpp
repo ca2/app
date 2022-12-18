@@ -111,7 +111,7 @@ namespace user
 
       m_strTitle = strTitle;
 
-      strMessage.replace_with_ci(" \n", "<br>");
+      strMessage.case_insensitive_replace_with(" \n", "<br>");
 
       __construct_new(m_pstill);
 

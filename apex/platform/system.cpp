@@ -1142,52 +1142,57 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      bool bMatterFromHttpCache = false;
-
-      bool bMatterFromResource = false;
-
-      auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
-
-      if (pfile)
+      if (acmeapplication()->m_bResource)
       {
 
-         bMatterFromResource = true;
+         bool bMatterFromHttpCache = false;
 
-      }
+         bool bMatterFromResource = false;
 
-      if (bMatterFromResource)
-      {
+         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
 
-         m_pdirsystem->m_bMatterFromHttpCache = false;
-
-         m_pdirsystem->m_bMatterFromResource = true;
-
-      }
-      else
-      {
-
-         if (m_iMatterFromHttpCache == -1)
+         if (pfile)
          {
 
-            ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+            bMatterFromResource = true;
 
-            ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+         }
 
-            bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+         if (bMatterFromResource)
+         {
 
-            bMatterFromHttpCache = !bFileSystemMatter;
+            m_pdirsystem->m_bMatterFromHttpCache = false;
+
+            m_pdirsystem->m_bMatterFromResource = true;
 
          }
          else
          {
 
-            bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+            if (m_iMatterFromHttpCache == -1)
+            {
+
+               ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+
+               ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+
+               bMatterFromHttpCache = !bFileSystemMatter;
+
+            }
+            else
+            {
+
+               bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+            }
+
+            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+            m_pdirsystem->m_bMatterFromResource = false;
 
          }
-
-         m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
-
-         m_pdirsystem->m_bMatterFromResource = false;
 
       }
 

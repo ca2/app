@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "array.h"
@@ -2109,7 +2109,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (strTopic.begins(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
+         if (strTopic.case_insensitive_begins(this->element_at(iFind)))
          {
 
             return iFind;
@@ -5022,7 +5022,7 @@ return get_data()[nIndex];
 //
 //   char * lpsz = (char *)mem.get_data();
 //
-//   __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+//   memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
 //
 //   char * lpszN = lpsz;
 //
@@ -5055,11 +5055,11 @@ return get_data()[nIndex];
 //
 //   if (iTotalLength == 2)
 //   {
-//      __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+//      memory_set(lpsz, 0x00, iTotalLength * sizeof(char));
 //   }
 //   else
 //   {
-//      __memset(lpszN, 0x00, sizeof(char));
+//      memory_set(lpszN, 0x00, sizeof(char));
 //   }
 //
 //   return mem;
@@ -5182,7 +5182,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (strTopic.ends(this->element_at(iFind), ::comparison::case_insensitive < CHARACTER >()))
+         if (strTopic.case_insensitive_ends(this->element_at(iFind)))
          {
 
             return iFind;

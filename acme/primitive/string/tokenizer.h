@@ -30,7 +30,12 @@ public:
 
    //strsize size() const { return m_range.size(); }
 
-   //strsize find(const ::string & strSeparator) const { return offset_of(RANGE::find(rangeSeparator)); }
+   const_iterator find(const ::const_ansi_range & range) const 
+   { 
+      
+      return ::const_ansi_range(m_iterator, this->m_end).find(range, ::comparison::comparison < ::ansi_character >()); 
+   
+   }
 
    ::string& substring(::string& str, strsize count)
    {

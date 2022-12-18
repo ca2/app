@@ -76,7 +76,7 @@ int i;
 
 #endif
 
-	__memset((char*)connection,0,sizeof(struct sockaddr_in));
+	memory_set((char*)connection,0,sizeof(struct sockaddr_in));
 
 	hostent_buf=gethostbyname(servername);
 	if(!hostent_buf){

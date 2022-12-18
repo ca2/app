@@ -1,4 +1,4 @@
-// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
+﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -194,7 +194,7 @@ public:
    }
 
 
-   range &operator=(const range &range)
+   range & operator =(const range & range)
    {
 
       m_begin = range.m_begin;
@@ -259,6 +259,18 @@ public:
    }
 
 
+   this_iterator data()
+   {
+      return m_begin;
+   }
+
+
+   const this_iterator data() const
+   {
+      return m_begin;
+   }
+
+
    static consteval memsize item_size()
    {
       return sizeof(ITEM);
@@ -282,7 +294,7 @@ public:
 
    inline bool operator!() const
    {
-      return is_set();
+      return is_empty();
    }
 
 
@@ -1845,6 +1857,10 @@ public:
    static constexpr bool _static_ends(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, EQUALITY equality) noexcept
    {
 
+      range.end()--;
+
+      rangeBlock.end()--;
+
       do
       {
 
@@ -1859,9 +1875,16 @@ public:
 
          rangeBlock.end()--;
 
-      } while (!range.is_before_begin(range.end()) && !rangeBlock.is_before_begin(rangeBlock.end()));
+         if (rangeBlock.is_before_begin(rangeBlock.end()))
+         {
 
-      return true;
+            return true;
+
+         }
+
+      } while (!range.is_before_begin(range.end()));
+
+      return false;
 
    }
 

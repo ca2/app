@@ -343,10 +343,10 @@ void config_session_proxy(HINTERNET hSession, WCHAR * pwzUrl)
 WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
-__memset(szPac, 0, sizeof(szPac));
+memory_set(szPac, 0, sizeof(szPac));
 ::u32 lcbPac;
 HKEY hkey;
-__memset(&apop, 0, sizeof(apop));
+memory_set(&apop, 0, sizeof(apop));
 bool bGot = false;
 lcbPac = sizeof(szPac);
 if(RegOpenKey(HKEY_CURRENT_USER,

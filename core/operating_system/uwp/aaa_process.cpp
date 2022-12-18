@@ -14,7 +14,7 @@ int iShow)
 
    SHELLEXECUTEINFOA infoa;
 
-   __memset(&infoa, 0, sizeof(infoa));
+   memory_set(&infoa, 0, sizeof(infoa));
 
    infoa.cbSize         = sizeof(infoa);
    infoa.lpFile         = pszPath;
@@ -36,7 +36,7 @@ CLASS_DECL_BOOT u32 call_sync(const ::string & pszPath, const ::string & pszPara
 
    SHELLEXECUTEINFOA infoa;
 
-   __memset(&infoa, 0, sizeof(infoa));
+   memory_set(&infoa, 0, sizeof(infoa));
 
    infoa.cbSize         = sizeof(infoa);
    infoa.lpFile         = pszPath;

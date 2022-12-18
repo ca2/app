@@ -24,7 +24,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
    for (cur = cl; cur <= last; cur++)
    {
 
-      if (cur[0] == cs[0] && _memory_compare(cur, cs, s_len) == 0)
+      if (cur[0] == cs[0] && _memory_order(cur, cs, s_len) == 0)
       {
 
          return (const void *) cur;
@@ -43,7 +43,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
 {
 
-   return memmem(l, l_len, s, s_len);
+   return memory_find(l, l_len, s, s_len);
 
 }
 

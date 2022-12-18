@@ -2396,7 +2396,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //
             // TBBUTTONINFOW button;
             //
-            // __memset(&button, 0, sizeof(button));
+            // memory_set(&button, 0, sizeof(button));
             //
             // button.cbSize = sizeof(button);
             //
@@ -2412,7 +2412,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          {
 
             // TBBUTTONINFOW buttona;
-            // __memset(&buttona, 0, sizeof(buttona));
+            // memory_set(&buttona, 0, sizeof(buttona));
             // buttona.cbSize = sizeof(buttona);
             // buttona.dwMask =
             //    TBIF_COMMAND

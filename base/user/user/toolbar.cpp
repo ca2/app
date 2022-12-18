@@ -382,7 +382,7 @@ namespace user
       //      while (nCount--)
       //         VERIFY(default_window_procedure(TB_DELETEBUTTON, 0, 0));
       //
-      //      TBBUTTON button; __memset(&button, 0, sizeof(TBBUTTON));
+      //      TBBUTTON button; memory_set(&button, 0, sizeof(TBBUTTON));
       //      button.iString = -1;
       //      if (pIDArray != nullptr)
       //
@@ -1112,7 +1112,7 @@ namespace user
       //
       //               TBBUTTONINFOW buttona;
       //
-      //               __memset(&buttona, 0, sizeof(buttona));
+      //               memory_set(&buttona, 0, sizeof(buttona));
       //
       //               buttona.cbSize = sizeof(buttona);
       //
@@ -1304,7 +1304,7 @@ namespace user
       // machine the toolbar button description
 
       //   TBBUTTONINFOW button;
-      //   __memset(&button, 0, sizeof(button));
+      //   memory_set(&button, 0, sizeof(button));
       //   button.cbSize = sizeof(button);
       //   ::u32 uID = GetItemID(nIndex);
       //   button.pszText = (unichar *) (const unichar *) wstrText;

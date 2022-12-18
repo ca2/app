@@ -11,6 +11,8 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    bool                             m_bFork;
 
 
+   ::tristate                       m_bResource;
+   ::tristate                       m_bCrypto;
    ::tristate                       m_bLocalization;
    ::tristate                       m_bNetworking;
    ::tristate                       m_bConsole;

@@ -22,7 +22,7 @@ GeoIPRecord * _extract_record(GeoIP* gi, u32 seek_record, i32 *next_record_ptr)
       return nullptr;
 
    record = (GeoIPRecord *) malloc(sizeof(GeoIPRecord));
-   __memset(record, 0, sizeof(GeoIPRecord));
+   memory_set(record, 0, sizeof(GeoIPRecord));
 
    record->charset = gi->charset;
 

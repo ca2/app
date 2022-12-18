@@ -331,7 +331,7 @@ int freerdp_client_old_command_line_pre_filter(void* context, int index, int arg
 
 				for (i = 0; i < args->argc; i++)
 					free(args->argv[i]);
-				__memset(args->argv, 0, argc * sizeof(char*));
+				memory_set(args->argv, 0, argc * sizeof(char*));
 				index++;
 				i++;
 			}

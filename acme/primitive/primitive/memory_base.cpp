@@ -771,7 +771,7 @@ bool memory_base::begins(const char * psz, strsize iCount) const
 
    }
 
-   return !_memory_compare(data(), psz, iCount);
+   return _memory_order(data(), psz, iCount) == 0;
 
 }
 
@@ -831,7 +831,7 @@ bool memory_base::begins(const ::string & str, strsize iCount) const
 
    }
 
-   return !_memory_compare(data(), str.c_str(), iCount);
+   return _memory_order(data(), str.c_str(), iCount) == 0;
 
 }
 
@@ -853,7 +853,7 @@ bool memory_base::case_insensitive_begins(const ::string & str, strsize iCount) 
 
    }
 
-   return !ansi_count_compare_ci((const char*) data(), str.c_str(), iCount);
+   return ansi_count_compare_ci((const char*) data(), str.c_str(), iCount) == 0;
 
 }
 
@@ -875,7 +875,7 @@ bool memory_base::ends(const char * psz, strsize iCount) const
 
    }
 
-   return !_memory_compare(data() + size() - iCount, psz, iCount);
+   return _memory_order(data() + size() - iCount, psz, iCount) == 0;
 
 }
 
@@ -913,7 +913,7 @@ bool memory_base::case_insensitive_ends(const char * psz, strsize iCount) const
 
    }
 
-   return !ansi_count_compare_ci(pszThis + size() - iCount, psz, (size_t) iCount);
+   return ansi_count_compare_ci(pszThis + size() - iCount, psz, (size_t) iCount) == 0;
 
 }
 
@@ -935,7 +935,7 @@ bool memory_base::ends(const ::string & str, strsize iCount) const
 
    }
 
-   return !_memory_compare(data() + size() - iCount, str.c_str(), iCount);
+   return _memory_order(data() + size() - iCount, str.c_str(), iCount) == 0;
 
 }
 
@@ -957,7 +957,7 @@ bool memory_base::case_insensitive_ends(const ::string & str, strsize iCount) co
 
    }
 
-   return !ansi_count_compare_ci((const char*) data() + size() - iCount, str.c_str(), iCount);
+   return ansi_count_compare_ci((const char*) data() + size() - iCount, str.c_str(), iCount) == 0;
 
 }
 
@@ -983,7 +983,7 @@ bool memory_base::operator == (const memory_base & s) const
 
    }
 
-   return memory_compare(data(), s.data(), (size_t)this->size()) == 0;
+   return memory_order(data(), s.data(), (size_t)this->size()) == 0;
 
 }
 
@@ -997,7 +997,7 @@ bool memory_base::operator == (const struct block & s) const
 
    }
 
-   return memory_compare(data(), s.data(), (size_t)this->size()) == 0;
+   return memory_order(data(), s.data(), (size_t)this->size()) == 0;
 
 }
 
@@ -1054,7 +1054,7 @@ void memory_base::set(byte b, memsize iStart, memsize uiSize)
    if (uiSize + iStart > size())
       uiSize = size() - iStart;
 
-   __memset(data() + iStart, b, (size_t)uiSize);
+   memory_set(data() + iStart, b, (size_t)uiSize);
 
 }
 

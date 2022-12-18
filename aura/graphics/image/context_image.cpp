@@ -1047,9 +1047,9 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    output_debug_string("file_as_memory time "+::as_string(dt.floating_millisecond().m_d) + "ms");
 
-   const char * psz = (const char *)memory.get_data();
+   const char * psz = (const char *)memory.data();
 
-   auto size = memory.get_size();
+   auto size = memory.size();
 
    if (::is_null(psz))
    {
@@ -1085,7 +1085,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    }
 
-   if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
+   if (memory.size() > 3 && strnicmp(psz, "gif", 3) == 0)
    {
 
       _load_multi_frame_image(pimage, memory);

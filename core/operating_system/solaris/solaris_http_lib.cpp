@@ -161,7 +161,7 @@ tiny_http::http_retcode tiny_http::t_query(const ::string & command,  const char
    /* get host info by name :*/
    if(hp = gethostbyname(proxy ? m_strProxyServer : (m_strHttpServer != nullptr ? m_strHttpServer : SERVER_DEFAULT )))
    {
-      __memset((char *) &server,0, sizeof(server));
+      memory_set((char *) &server,0, sizeof(server));
       __memmov((char *) &server.sin_addr, hp->h_addr, hp->h_length);
       server.sin_family = hp->h_addrtype;
       server.sin_port = (unsigned short) htons( port );

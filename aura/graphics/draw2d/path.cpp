@@ -606,7 +606,7 @@ namespace draw2d
 
       ppolygon->m_shape.set_size(nCount);
 
-      memcpy(ppolygon->m_shape.get_data(), ppoint, ppolygon->m_shape.get_size_in_bytes());
+      memcpy(ppolygon->m_shape.data(), ppoint, ppolygon->m_shape.get_size_in_bytes());
 
       if (!m_pshapea)
       {
@@ -631,7 +631,7 @@ namespace draw2d
 
       plines->m_shape.set_size(nCount);
 
-      memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
+      memcpy(plines->m_shape.data(), ppoint, plines->m_shape.get_size_in_bytes());
 
       if (!m_pshapea)
       {

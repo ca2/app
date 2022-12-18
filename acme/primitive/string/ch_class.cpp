@@ -22,7 +22,7 @@ void * gen_ch_class_reference_tables()
    ch_class::ch_class()
    {
       infoIndex = memory_new bit_array *[256];
-      __memset(infoIndex, 0, 256 * sizeof(bit_array *));
+      memory_set(infoIndex, 0, 256 * sizeof(bit_array *));
    }
 
    ch_class::~ch_class()

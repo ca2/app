@@ -664,7 +664,7 @@ auto tickStart = ::duration::now();
 //         while(i < 1000)
 //         {
 //            char szBuffer[1000];
-//            __memset(szBuffer, 0, sizeof(szBuffer));
+//            memory_set(szBuffer, 0, sizeof(szBuffer));
 //            fgets(szBuffer, sizeof(szBuffer), pipe);
 //            if(szBuffer[sizeof(szBuffer)-2] == '\n' || szBuffer[sizeof(szBuffer)-2] == '\0')
 //            {
@@ -706,7 +706,7 @@ auto tickStart = ::duration::now();
 
       while(!has_exited() && tickStart.elapsed() < tickTimeout && iCount0 > 0)
       {
-         __memset(sz, 0, sizeof(sz));
+         memory_set(sz, 0, sizeof(sz));
          iRead =(int) fread(sz,1,1024, pipe);
          if(iRead >0)
          {

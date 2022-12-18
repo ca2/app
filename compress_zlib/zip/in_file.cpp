@@ -643,7 +643,7 @@ namespace zip
 
       zip_fileinfo zipfi;
 
-      __memset(&zipfi,0,sizeof(zipfi));
+      memory_set(&zipfi,0,sizeof(zipfi));
 
       zipfi.tmz_date.tm_hour = status.m_ctime.hour();
       zipfi.tmz_date.tm_sec  = status.m_ctime.second();

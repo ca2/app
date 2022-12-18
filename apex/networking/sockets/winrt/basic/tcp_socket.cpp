@@ -834,7 +834,7 @@ namespace sockets
    {
 
       char request[1000];
-      __memset(request, 0, sizeof(request));
+      memory_set(request, 0, sizeof(request));
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {

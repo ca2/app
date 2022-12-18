@@ -9,9 +9,9 @@ inline  constexpr strsize     char_length_to_byte_length(const_ansichar_trigger,
 inline  constexpr strsize     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
 
 
-inline void copy_chars(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars_overlapped(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, strsize nChars) noexcept;
+inline void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept;
 
 
 inline ::std::strong_ordering _string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;

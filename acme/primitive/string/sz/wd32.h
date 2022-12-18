@@ -9,9 +9,9 @@ inline  constexpr strsize     char_length_to_byte_length(const_wd32char_trigger,
 inline  constexpr strsize     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
 
 
-inline void copy_chars(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars(::wd32_character * pchDest, size_t nDestLen, const ::wd32_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars_overlapped(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::wd32_character * pchDest, size_t nDestLen, const ::wd32_character * pchSrc, strsize nChars) noexcept;
+inline void overlapped_string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept;
 
 
 inline ::std::strong_ordering _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept;

@@ -12,9 +12,9 @@ inline  constexpr strsize     byte_length_to_char_length(const_wd16char_trigger,
 
 
 
-inline void copy_chars(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept;
-inline void copy_chars_overlapped(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept;
+inline void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept;
+inline void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept;
 
 
 inline ::std::strong_ordering _string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;

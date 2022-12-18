@@ -690,13 +690,34 @@ public:
    }
 
 
-   inline ::color32_t * get_data()
+   inline ::color32_t * data()
    {
 
       return m_pcolorref1;
 
    }
 
+   inline ::color32_t * begin()
+   {
+
+      return this->data();
+
+   }
+
+   inline const ::color32_t * data() const
+   {
+
+      return m_pcolorref1;
+
+   }
+
+
+   inline const ::color32_t * begin() const 
+   {
+
+      return this->data();
+
+   }
 
    const ::color32_t * get_data() const
    {

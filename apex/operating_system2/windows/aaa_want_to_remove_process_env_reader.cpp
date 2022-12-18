@@ -115,7 +115,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
 
       // Allocate buffer for to copy the block
       pchBuffEnvString = memory_new UCHAR[nReadbleSize];
-      __memset(pchBuffEnvString,0,sizeof(UCHAR)* nReadbleSize);
+      memory_set(pchBuffEnvString,0,sizeof(UCHAR)* nReadbleSize);
 
       // Read the environment block
       ReadProcessMemory(hProcess,(const void *)pAddrEnvStrBlock,

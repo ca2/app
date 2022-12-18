@@ -9611,7 +9611,7 @@ namespace apex
    //      if (!::IsWindow(__hwnd(oswindow)))
    //         return -1;
    //      COPYDATASTRUCT cds;
-   //      __memset(&cds, 0, sizeof(cds));
+   //      memory_set(&cds, 0, sizeof(cds));
    //      cds.dwData = 888888;
    //      cds.cbData = (u32)strlen(psz);
    //      cds.lpData = (PVOID)psz;

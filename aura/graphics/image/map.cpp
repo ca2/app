@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "map.h"
 #include "image.h"
 #include "acme/platform/system.h"
@@ -38,21 +38,21 @@ void image_descriptor_map::erase_bigger()
 
    u64 uAreaMax = 0;
 
-   auto passociation = get_start();
+   auto iterator = this->begin();
 
-   while (passociation != nullptr)
+   while (iterator.is_ok())
    {
 
-      if (passociation->element2()->reference_count() <= 1 && passociation->element2()->area() > uAreaMax)
+      if (iterator->element2()->reference_count() <= 1 && iterator->element2()->area() > uAreaMax)
       {
 
-         uAreaMax = passociation->element2()->area();
+         uAreaMax = iterator->element2()->area();
 
-         keyFind = passociation->element1();
+         keyFind = iterator->element1();
 
       }
 
-      passociation = passociation->m_pnext;
+      iterator++;
 
    }
 
@@ -65,7 +65,7 @@ void image_descriptor_map::erase_bigger()
    else
    {
 
-      erase_key(get_start()->element1());
+      erase_key(this->begin()->element1());
 
    }
 

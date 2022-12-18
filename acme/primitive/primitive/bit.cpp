@@ -70,7 +70,7 @@ namespace acme
          {
             pFullDestEnd--;            
          }
-         __memset(pFullDestStart, b ? 0xFF : 0, (pFullDestEnd - pFullDestStart + 1) / BYTE_ALIGN);
+         memory_set(pFullDestStart, b ? 0xFF : 0, (pFullDestEnd - pFullDestStart + 1) / BYTE_ALIGN);
          if((start % BYTE_ALIGN) > 0)
          {
             byte_set(pFullDestStart - 1, b, start % BYTE_ALIGN, BYTE_ALIGN - 1);

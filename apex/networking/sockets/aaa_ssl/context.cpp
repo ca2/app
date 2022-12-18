@@ -53,7 +53,7 @@ namespace sockets
 //         //#endif
 //         /*       struct sigaction m_saPipe;
 //                struct sigaction m_saPipeOld;
-//                __memset(&m_saPipe, 0, sizeof(m_saPipe));
+//                memory_set(&m_saPipe, 0, sizeof(m_saPipe));
 //                sigemptyset(&m_saPipe.sa_mask);
 //                sigaddset(&m_saPipe.sa_mask, SIGSEGV);
 //                m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;

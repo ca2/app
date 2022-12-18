@@ -52,7 +52,7 @@ namespace sockets
       ,m_slave(false)
    {
 
-      __memset(&m_socks4_host, 0, sizeof(m_socks4_host));
+      memory_set(&m_socks4_host, 0, sizeof(m_socks4_host));
 
       /*      FD_ZERO(&m_rfds);
             FD_ZERO(&m_wfds);
@@ -77,7 +77,7 @@ namespace sockets
    //   ,m_slave(false)
    //{
 
-   //   __memset(&m_socks4_host, 0, sizeof(m_socks4_host));
+   //   memory_set(&m_socks4_host, 0, sizeof(m_socks4_host));
 
    //   //m_pmutex.lock();
 

@@ -50,8 +50,8 @@ namespace draw2d
       m_iHeightField2 = memory_new i32[(iWidth*iHeight)];
 
       // clear our height fields
-      __memset(m_iHeightField1,0,(iWidth*iHeight)*sizeof(i32));
-      __memset(m_iHeightField2,0,(iWidth*iHeight)*sizeof(i32));
+      memory_set(m_iHeightField1,0,(iWidth*iHeight)*sizeof(i32));
+      memory_set(m_iHeightField2,0,(iWidth*iHeight)*sizeof(i32));
 
       m_iWidth = iWidth;
       m_iHeight = iHeight;
@@ -63,8 +63,8 @@ namespace draw2d
    void water_routine::FlattenWater()
    {
       // clear our height fields
-      __memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(i32));
-      __memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(i32));
+      memory_set(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(i32));
+      memory_set(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(i32));
    }
 
 

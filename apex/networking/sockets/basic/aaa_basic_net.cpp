@@ -266,7 +266,7 @@ namespace sockets
 //         return item.m_bOk;
 //      }
 //      struct sockaddr_in sa;
-//      __memset(&sa, 0, sizeof(sa));
+//      memory_set(&sa, 0, sizeof(sa));
 //      sa.sin_family = AF_INET;
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
@@ -315,7 +315,7 @@ namespace sockets
 //      return true;
 //#else
 //      struct addrinfo hints;
-//      __memset(&hints, 0, sizeof(hints));
+//      memory_set(&hints, 0, sizeof(hints));
 //      // AI_NUMERICHOST
 //      // AI_CANONNAME
 //      // AI_PASSIVE - server
@@ -403,7 +403,7 @@ namespace sockets
 //
 //   struct sockaddr_in sa;
 //
-//   __memset(&sa, 0, sizeof(sa));
+//   memory_set(&sa, 0, sizeof(sa));
 //
 //   sa.sin_family  = AF_INET;
 //
@@ -468,7 +468,7 @@ namespace sockets
 //
 //      struct sockaddr_in6 sa;
 //
-//      __memset(&sa, 0, sizeof(sa));
+//      memory_set(&sa, 0, sizeof(sa));
 //
 //      sa.sin6_family = AF_INET6;
 //
@@ -559,7 +559,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 /*   bool net::convert(in_addr & sa, const string & host, i32 ai_flags)
    {
 
-      __memset(&sa, 0, sizeof(sa));
+      memory_set(&sa, 0, sizeof(sa));
       sa.sin_family = AF_INET;
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
@@ -606,7 +606,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
       return true;
 #else
       struct addrinfo hints;
-      __memset(&hints, 0, sizeof(hints));
+      memory_set(&hints, 0, sizeof(hints));
       // AI_NUMERICHOST
       // AI_CANONNAME
       // AI_PASSIVE - server
@@ -681,7 +681,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   }
 //
-//   __memset(&sa, 0, sizeof(sa));
+//   memory_set(&sa, 0, sizeof(sa));
 //#ifdef WINDOWS
 //#else
 //   //sa.sin6_family = AF_INET6;
@@ -757,7 +757,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //   return true;
 //#else
 //   struct addrinfo hints;
-//   __memset(&hints, 0, sizeof(hints));
+//   memory_set(&hints, 0, sizeof(hints));
 //   hints.ai_flags = ai_flags;
 //   hints.ai_family = AF_INET6;
 //   hints.ai_socktype = SOCK_STREAM;
@@ -1078,7 +1078,7 @@ bool net::u2service(const string & name, i32& service, i32 ai_flags)
 #else
    struct addrinfo hints;
    service = 0;
-   __memset(&hints, 0, sizeof(hints));
+   memory_set(&hints, 0, sizeof(hints));
    // AI_NUMERICHOST
    // AI_CANONNAME
    // AI_PASSIVE - server

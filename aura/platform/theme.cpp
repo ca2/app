@@ -363,7 +363,7 @@ namespace aura
       try
       {
 
-         for (auto plistener : m_listenera.ptra())
+         for (auto plistener : m_listenera)
          {
 
             try

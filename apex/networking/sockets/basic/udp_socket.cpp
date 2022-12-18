@@ -328,10 +328,10 @@ namespace sockets
 //      vec[0].iov_base = ioBuf;
 //      vec[0].iov_len = inBufSize;
 //
-//      __memset(&msg, 0, sizeof(msg));
-//      __memset(from, 0, fromlen);
-//      __memset(ioBuf, 0, inBufSize);
-//      __memset(&cmsg_un, 0, sizeof(cmsg_un));
+//      memory_set(&msg, 0, sizeof(msg));
+//      memory_set(from, 0, fromlen);
+//      memory_set(ioBuf, 0, inBufSize);
+//      memory_set(&cmsg_un, 0, sizeof(cmsg_un));
 //
 //#ifdef WINDOWS
 //      msg.msg_name = (caddr_t)from;

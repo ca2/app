@@ -2275,7 +2275,7 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
    byte *pFilter;
 
    byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
-   __memset(pFilterData,1,iFilterHeight * iFilterWidth);
+   memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    byte * pSrc = (byte *)pimageSrc->get_data();
 
@@ -3836,7 +3836,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
 
-   __memset(pFilterData,1,iFilterHeight * iFilterWidth);
+   memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    i32 maxx1 = cx;
    i32 maxy1 = cy;
@@ -4721,7 +4721,7 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
    byte *pFilter;
 
    byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
-   __memset(pFilterData,1,iFilterHeight * iFilterWidth);
+   memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    i32 maxx1 = cx;
    i32 maxy1 = cy;
@@ -5150,7 +5150,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
       pmemory->set_size(iFilterArea);
 
-      byte * pdata = pmemory->get_data();
+      byte * pdata = pmemory->data();
 
       for(y = 0; y < iFilterHalfH; y++)
       {
@@ -5187,7 +5187,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    synchronouslock.unlock();
 
-   byte * pFilterData = pmemory->get_data();
+   byte * pFilterData = pmemory->data();
 
    i32 cx = pimageDst->width();
 
@@ -6491,7 +6491,7 @@ i32 iAlpha)
 
    //   byte pFilter[constFilterHeight *constFilterWidth];
    //u32 pConv[constFilterHeight * constFilterWidth * 3];
-   //   __memset(pFilter, 1, constFilterHeight * constFilterWidth);
+   //   memory_set(pFilter, 1, constFilterHeight * constFilterWidth);
 
    i32 iFilterWidth = iSize;
    i32 iFilterHeight = iSize;
@@ -7088,9 +7088,9 @@ void imaging::free_work_image(::image * pimage)
 void context_image::load_svg(::image * pimage, memory & memory)
 {
 
-   const char * psz = (const char *)memory.get_data();
+   const char * psz = (const char *)memory.data();
 
-   auto size = memory.get_size();
+   auto size = memory.size();
 
    if (::is_null(psz))
    {
@@ -7101,7 +7101,7 @@ void context_image::load_svg(::image * pimage, memory & memory)
 
    }
 
-   if (memmem(psz, size, "<svg", 4) != nullptr)
+   if (memory_find(psz, size, "<svg", 4) != nullptr)
    {
 
       char * pszXml = memory.c_str();

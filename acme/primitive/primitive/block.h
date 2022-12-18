@@ -14,8 +14,8 @@ inline strsize string_get_length(const ::ansi_character* psz) noexcept { return 
 inline strsize string_safe_length(const ::ansi_character* psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
 
 
-
-using BLOCK = array_range < ::range < ::byte * > >;
+using BLOCK = ::range < ::byte * >;
+//using BLOCK = array_range < ::range < ::byte * > >;
 //struct CLASS_DECL_ACME BLOCK
 //{
 //
@@ -83,19 +83,22 @@ struct CLASS_DECL_ACME block :
    template < primitive_integral INTEGRAL >
    block(const void * data, INTEGRAL count) : BLOCK((::byte *) data, count) { }
 
-   block & operator = (const block & block) 
-   {
-      
-      if (this != &block)
-      {
+   //block & operator = (const block & block) 
+   //{
+   //   
+   //   if (this != &block)
+   //   {
 
-         assign_block(block);
+   //      this->m_begin = block.m_begin;
+   //      this->m_end = block.m_end;
 
-      }
+   //      assign_block(block);
 
-      return *this;
+   //   }
 
-   }
+   //   return *this;
+
+   //}
 
    //void * get_data() { return m_pbegin; }
    //const void * get_data() const { return m_pbegin; }
@@ -136,7 +139,7 @@ struct CLASS_DECL_ACME block :
 
       auto commonSize = minimum(size(), block.size());
 
-      auto ordering = memcmp(data(), block.data(), commonSize) <=>0;
+      auto ordering = memcmp(begin(), block.begin(), commonSize) <=>0;
 
       if (ordering != 0)
       {
@@ -167,7 +170,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      return memcmp(data(), block.data(), (size_t)size()) == 0;
+      return memcmp(begin(), block.begin(), (size_t)size()) == 0;
 
    }
 
@@ -186,7 +189,7 @@ struct CLASS_DECL_ACME block :
    {
       return ((::byte*)_memory_find(
          as_pointer<::byte>() + start, size() - start,
-         blockFind.data(), blockFind.size())) - as_pointer <::byte>();
+         blockFind.begin(), blockFind.size())) - as_pointer <::byte>();
 
    }
 
@@ -212,7 +215,8 @@ class GET_BLOCK_TYPE
 public:
 
 
-   using TYPE = ::array_range < ::range < ITEM_TYPE * > >;
+   //using TYPE = ::array_range < ::range < ITEM_TYPE * > >;
+   using TYPE = ::range < ITEM_TYPE * >;
 
 
 };
@@ -248,7 +252,7 @@ inline u32hash u32_hash < const block & >(const block & b)
 
    }
 
-   auto psz = b.data();
+   auto psz = b.begin();
 
    u32 uHash = 0;
 

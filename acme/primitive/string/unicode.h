@@ -115,7 +115,7 @@ CLASS_DECL_ACME ::i32 unicode_to_upper_case(::i32 i);
 
 
 //template < primitive_character CHARACTER >
-//inline const CHARACTER * string_scan(const ::string_range < CHARACTER > & block, const ::string_range < CHARACTER > & blockCharacters) noexcept;
+//inline const CHARACTER * string_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockCharacters) noexcept;
 
 
 inline i32 ansichar_unicode_len(::wd32_character i);
@@ -153,7 +153,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 template < primitive_character CHARACTER >
-inline bool range_begins_ci(::string_range < const CHARACTER * > range, ::string_range < const CHARACTER * > rangePrefix)
+inline bool range_begins_ci(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangePrefix)
 {
 
    return range.begins(rangePrefix, ::comparison::case_insensitive< CHARACTER >());
@@ -162,7 +162,7 @@ inline bool range_begins_ci(::string_range < const CHARACTER * > range, ::string
 
 
 template < primitive_character CHARACTER >
-inline bool range_ends_ci(::string_range < const CHARACTER * > range, ::string_range < const CHARACTER * > rangeSuffix)
+inline bool range_ends_ci(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangeSuffix)
 {
 
    return range.ends(rangeSuffix, ::comparison::case_insensitive< CHARACTER >());

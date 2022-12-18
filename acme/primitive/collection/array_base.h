@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_iterator.h"
@@ -498,7 +498,7 @@ public:
    enum_type get_payload_type() const override { return m_etypeContainer; }
 
 
-   constexpr memsize length_in_bytes() const { return this->size() * sizeof(TYPE); }
+   inline memsize length_in_bytes() const { return this->size() * sizeof(TYPE); }
 
    //inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 

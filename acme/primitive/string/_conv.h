@@ -76,7 +76,7 @@ void __utosz(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
 
 }
 
-
+//::std::pair <int,int> ia;
 
 template < primitive_signed SIGNED, primitive_character CHARACTER >
 void __itosz(SIGNED i, CHARACTER * & p, int base, enum_digit_case edigitcase)

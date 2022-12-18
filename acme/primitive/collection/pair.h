@@ -1,5 +1,6 @@
-﻿#pragma once
+#pragma once
 
+#include "acme/primitive/primitive/move.h"
 
 //#ifdef CPP17
 //
@@ -130,20 +131,21 @@ namespace std
 {
 
 
-   template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
-   struct tuple_element < n, ::pair < A, B, ARG_A, ARG_B > > 
-   {
+template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
+struct tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >
+{
    
-      static_assert(n < 2, "pair index out of bounds");
+   static_assert(n < 2, "pair index out of bounds");
+   
+   using type = conditional_t < n == 0, A, B >;
+   
+};
 
-      using type = conditional_t < n == 0, A, B >;
+template < typename A, typename B, typename ARG_A, typename ARG_B >
+ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B, ARG_A, ARG_B > > : integral_constant<size_t, 2> {};
 
-   };
-
-   template < typename A, typename B, typename ARG_A, typename ARG_B >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::pair < A, B, ARG_A, ARG_B > > : integral_constant<size_t, 2> {};
-
-
+}//namespace std
+//#ifdef WINDOWS_DESKTOP
    template < size_t n, typename A, typename B, typename ARG_A, typename ARG_B >
    constexpr typename std::tuple_element < n, ::pair < A, B, ARG_A, ARG_B > >::type &
       get(::pair < A, B, ARG_A, ARG_B > & pair)
@@ -227,8 +229,52 @@ namespace std
 
    }
 
-
-} // namespace std
-
-
-
+//#endif
+//
+//} // namespace std
+//
+//#if !defined(WINDOWS_DESKTOP)
+//
+//template <size_t n, class _T1, class _T2>
+//inline constexpr
+//typename ::std::tuple_element<n, ::pair<_T1, _T2> >::type&
+//get(::pair<_T1, _T2>& pair) _NOEXCEPT
+//{
+//   if constexpr (n %2 == 0)
+//   {
+//
+//      return pair.m_element1;
+//
+//   }
+//   else
+//   {
+//
+//      return pair.m_element2;
+//
+//   }
+//
+//}
+//
+//template <size_t n, class _T1, class _T2>
+//inline constexpr
+//const typename ::std::tuple_element<n, ::pair<_T1, _T2> >::type&
+//get(const ::pair<_T1, _T2>& pair) _NOEXCEPT
+//{
+//   if constexpr (n %2 == 0)
+//   {
+//
+//      return (_T1&)pair.m_element1;
+//
+//   }
+//   else
+//   {
+//
+//      return (_T2&)pair.m_element2;
+//
+//   }
+//
+//}
+//
+//
+//#endif
+//

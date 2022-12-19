@@ -51,7 +51,7 @@ namespace database
    }
 
 
-   key::key(const char * pszDataKey, bool bLocalData)
+   key::key(const scoped_string & strDataKey, bool bLocalData)
    {
 
       m_strDataKey = pszDataKey;
@@ -93,7 +93,7 @@ namespace database
    }
 
 
-   key & key::operator = (const char * pszDataKey)
+   key & key::operator = (const scoped_string & strDataKey)
    {
 
       m_strDataKey = pszDataKey;

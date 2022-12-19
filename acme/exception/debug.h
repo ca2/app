@@ -1,4 +1,4 @@
-// Created by camilo on 2022-10-27 21:50 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-27 21:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -13,7 +13,7 @@ CLASS_DECL_ACME void throw_todo();
 
 CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName, int iLineNumber);
 
-//CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char* psz);
+//CLASS_DECL_ACME void throw_what_exclamation_exclamation(const scoped_string & str);
 
 #define __pass_array(A) A, sizeof(A)
 
@@ -86,7 +86,12 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName, int iLineNu
 
 
 
-CLASS_DECL_ACME void throw_resource_exception(const char * pszMessage);
+CLASS_DECL_ACME void throw_resource_exception(const scoped_string & strMessage);
 
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = -1);
+
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const scoped_string & strMessage, const scoped_string & strDetails, i32 iSkip = -1);
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const scoped_string & strMessage);
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus);
+
+
 

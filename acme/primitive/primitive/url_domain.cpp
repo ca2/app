@@ -30,13 +30,13 @@ url_domain_base::url_domain_base()
 }
 
 
-void url_domain_base::create(const char * pszServerName)
+void url_domain_base::create(const scoped_string & strServerName)
 {
 
    m_strOriginalName = pszServerName;
    if(m_strOriginalName.is_empty())
       return;
-   const char * psz = m_strOriginalName;
+   const scoped_string & str = m_strOriginalName;
    m_iCount = 1;
    while(*psz != '\0')
    {
@@ -51,7 +51,7 @@ void url_domain_base::create(const char * pszServerName)
       psz += 4;
       m_iCount--;
    }
-   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
+   const scoped_string & strEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
    m_pszTopLevel = pszEnd;
    while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
    {
@@ -87,7 +87,7 @@ void url_domain_base::create(const char * pszServerName)
       m_iLenName        = m_iLenDomain;
       return;
    }
-   const char * pszPreTopLevel = m_pszTopLevel - 2;
+   const scoped_string & strPreTopLevel = m_pszTopLevel - 2;
    i32 iLenPreTopLevel = 0;
    while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
    {
@@ -104,9 +104,9 @@ void url_domain_base::create(const char * pszServerName)
       throw ::exception(error_wrong_state, "not_expected");
 
    }
-   const char * pszPreTopLevel2 = nullptr;
+   const scoped_string & strPreTopLevel2 = nullptr;
    i32 iLenPreTopLevel2 = 0;
-   const char * pszPreTopLevel3 = nullptr;
+   const scoped_string & strPreTopLevel3 = nullptr;
    //      i32 iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
@@ -244,7 +244,7 @@ void url_domain_base::create(const char * pszServerName)
 }
 
 
-string url_domain_base::get_name(const char * pszServerName)
+string url_domain_base::get_name(const scoped_string & strServerName)
 {
 
    url_domain domainaxis;
@@ -259,7 +259,7 @@ string url_domain_base::get_name(const char * pszServerName)
 }
 
 
-void url_domain::create(const char * pszServerName)
+void url_domain::create(const scoped_string & strServerName)
 {
 
    url_domain_base::create(pszServerName);
@@ -321,7 +321,7 @@ void url_domain::create(const char * pszServerName)
 }
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
+bool CLASS_DECL_ACME server_is_top_domain(const scoped_string & strTop1, strsize blen, const scoped_string & strTop2, strsize alen)
 {
    char a1;
    char a2;

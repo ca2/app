@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-invalid_character::invalid_character(const char * pszMessage):
+invalid_character::invalid_character(const scoped_string & strMessage):
    ::exception(pszMessage)
 {
 

@@ -944,7 +944,7 @@
 //}
 //
 //
-//void stream::exchange(const ::atom & atom, const char * psz)
+//void stream::exchange(const ::atom & atom, const scoped_string & str)
 //{
 //
 //   if(is_loading())

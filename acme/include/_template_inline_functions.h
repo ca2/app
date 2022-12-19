@@ -123,7 +123,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //}
 //
 //
-//inline bool __is_valid_string(const char* psz, memsize nMaxLength)
+//inline bool __is_valid_string(const scoped_string & str, memsize nMaxLength)
 //{
 //
 //   return ::__is_valid_address(psz, nMaxLength);

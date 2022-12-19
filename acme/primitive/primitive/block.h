@@ -69,7 +69,7 @@ struct CLASS_DECL_ACME block :
       this->m_end = this->m_begin + c;
 
    }
-   block(const char * psz)
+   block(const ::ansi_character * psz)
    {
       this->m_begin = (::byte *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);
@@ -131,7 +131,7 @@ struct CLASS_DECL_ACME block :
 //
 //#endif
 
-   block & from_base64(const char * psz, strsize iSize) const;
+   block & from_base64(const scoped_string & str, strsize iSize) const;
 
 
    ::std::strong_ordering compare(const block& block) const

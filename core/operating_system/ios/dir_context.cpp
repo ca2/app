@@ -306,7 +306,7 @@ pacmedirectory->is(stra[i]))
    //
    //   string ::file_path_folder(const ::string & path1)
    //   {
-   //      const char * psz = path1 + strlen(path1) - 1;
+   //      const scoped_string & str = path1 + strlen(path1) - 1;
    //      while(psz >= path1)
    //      {
    //         if(*psz != '\\' && *psz != '/' && *psz != ':')
@@ -321,7 +321,7 @@ pacmedirectory->is(stra[i]))
    //      }
    //      if(psz >= path1) // strChar == "\\" || strChar == "/"
    //      {
-   //         const char * pszEnd = psz;
+   //         const scoped_string & strEnd = psz;
    //         /*while(psz >= path1)
    //          {
    //          if(*psz != '\\' && *psz != '/' && *psz != ':')

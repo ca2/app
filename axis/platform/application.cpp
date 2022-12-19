@@ -1790,7 +1790,7 @@ namespace axis
    bool application::assert_user_logged_in()
    {
 
-      const char * pszRequestUrl = nullptr;
+      const scoped_string & strRequestUrl = nullptr;
 
       string strRequestUrl;
 

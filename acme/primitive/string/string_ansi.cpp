@@ -157,65 +157,65 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //
-//i32 __cdecl char_traits::string_collate(const char * pszA,const char * pszB) noexcept
+//i32 __cdecl char_traits::string_collate(const scoped_string & strA,const scoped_string & strB) noexcept
 //{
 //   return strcmp(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
 //
-//i32 __cdecl char_traits::case_insensitive_string_collate(const char * pszA,const char * pszB) noexcept
+//i32 __cdecl char_traits::case_insensitive_string_collate(const scoped_string & strA,const scoped_string & strB) noexcept
 //{
 //   return ansi_compare_ci(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
 //
-//const char * __cdecl char_traits::string_find_string(const char * pszBlock,const char * pszMatch) noexcept
+//const char * __cdecl char_traits::string_find_string(const scoped_string & strBlock,const scoped_string & strMatch) noexcept
 //{
 //   return reinterpret_cast<const char *>(strstr(reinterpret_cast<const  char*>(pszBlock),
 //                                         reinterpret_cast<const  char*>(pszMatch)));
 //}
 //
-//char * __cdecl char_traits::string_find_string(char * pszBlock,const char * pszMatch) noexcept
+//char * __cdecl char_traits::string_find_string(char * pszBlock,const scoped_string & strMatch) noexcept
 //{
 //   return(const_cast<char *>(string_find_string(const_cast<const char *>(pszBlock),pszMatch)));
 //}
 //
-//const char * __cdecl char_traits::string_find_char(const char * pszBlock,char chMatch) noexcept
+//const char * __cdecl char_traits::string_find_char(const scoped_string & strBlock,char chMatch) noexcept
 //{
 //   return reinterpret_cast<const char *>(strchr(reinterpret_cast<const  char*>(pszBlock),(char)chMatch));
 //}
 //
 ///*
-//strsize __cdecl char_traits::string_compare(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::string_compare(const scoped_string & strA,const scoped_string & strB ) noexcept
 //{
 //return _mbscmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//strsize __cdecl char_traits::case_insensitive_string_order(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::case_insensitive_string_order(const scoped_string & strA,const scoped_string & strB ) noexcept
 //{
 //return _mbsicmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//strsize __cdecl char_traits::string_collate(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::string_collate(const scoped_string & strA,const scoped_string & strB ) noexcept
 //{
 //return _mbscoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//strsize __cdecl char_traits::case_insensitive_string_collate(const char * pszA,const char * pszB ) noexcept
+//strsize __cdecl char_traits::case_insensitive_string_collate(const scoped_string & strA,const scoped_string & strB ) noexcept
 //{
 //return _mbsicoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 //}
 //
-//const char * __cdecl char_traits::string_find_string(const char * pszBlock,const char * pszMatch ) noexcept
+//const char * __cdecl char_traits::string_find_string(const scoped_string & strBlock,const scoped_string & strMatch ) noexcept
 //{
 //return reinterpret_cast< const char * >( _mbsstr( reinterpret_cast< const uchar* >( pszBlock ),
 //reinterpret_cast< const uchar* >( pszMatch ) ) );
 //}
 //
-//char * __cdecl char_traits::string_find_string(char * pszBlock,const char * pszMatch ) noexcept
+//char * __cdecl char_traits::string_find_string(char * pszBlock,const scoped_string & strMatch ) noexcept
 //{
 //return( const_cast< char * >( string_find_string( const_cast< const char * >( pszBlock ), pszMatch ) ) );
 //}
 //
-//const char * __cdecl char_traits::string_find_char(const char * pszBlock,char chMatch ) noexcept
+//const char * __cdecl char_traits::string_find_char(const scoped_string & strBlock,char chMatch ) noexcept
 //{
 //return reinterpret_cast< const char * >( _mbschr( reinterpret_cast< const uchar* >( pszBlock ), (uchar)chMatch ) );
 //}
@@ -226,7 +226,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 
 //
 //
-//const char * __cdecl char_traits::string_find_string_reverse(const char * psz,const char * pszFind,strsize iStart) noexcept
+//const char * __cdecl char_traits::string_find_string_reverse(const scoped_string & str,const scoped_string & strFind,strsize iStart) noexcept
 //{
 //   strsize iLen = strsize(strlen(psz));
 //   strsize iLenFind = strsize(strlen(pszFind));
@@ -245,7 +245,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//const char * __cdecl char_traits::string_scan_set(const char * pszBlock,const char * pszMatch) noexcept
+//const char * __cdecl char_traits::string_scan_set(const scoped_string & strBlock,const scoped_string & strMatch) noexcept
 //{
 //   if(pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
 //      return nullptr;
@@ -257,7 +257,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   /*while(*pszMatch != '\0')
 //   {
 //   string strUtf8Char = ::str().get_utf8_char(pszMatch);
-//   const char * psz = strstr(pszBlock, strUtf8Char);
+//   const scoped_string & str = strstr(pszBlock, strUtf8Char);
 //   if(psz != nullptr)
 //   return psz;
 //      unicode_increment(pszMatch);
@@ -267,12 +267,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // reinterpret_cast< const uchar* >( pszMatch ) ) );
 //}
 //
-//strsize __cdecl char_traits::string_span_including(const char * pszBlock,const char * pszSet) noexcept
+//strsize __cdecl char_traits::string_span_including(const scoped_string & strBlock,const scoped_string & strSet) noexcept
 //{
 //   if(pszSet == nullptr || pszBlock == nullptr)
 //      return 0;
-//   const char * psz = pszBlock;
-//   const char * pszLast = nullptr;
+//   const scoped_string & str = pszBlock;
+//   const scoped_string & strLast = nullptr;
 //   while((psz = string_scan_set(psz,pszSet)) != nullptr)
 //   {
 //      pszLast = psz;
@@ -285,12 +285,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   //return (strsize)_mbsspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
 //}
 //
-//strsize __cdecl char_traits::string_span_excluding(const char * pszBlock,const char * pszSet) noexcept
+//strsize __cdecl char_traits::string_span_excluding(const scoped_string & strBlock,const scoped_string & strSet) noexcept
 //{
 //   //   return (strsize)_mbscspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
 //   if(pszSet == nullptr || pszBlock == nullptr)
 //      return 0;
-//   const char * psz = string_scan_set(pszBlock,pszSet);
+//   const scoped_string & str = string_scan_set(pszBlock,pszSet);
 //   if(psz == nullptr)
 //      return strlen(pszBlock);
 //   else
@@ -378,7 +378,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< uchar* >( psz ) ) );
 //}
 //
-//strsize __cdecl char_traits::get_formatted_length(const char * pszFormat,va_list args) noexcept
+//strsize __cdecl char_traits::get_formatted_length(const scoped_string & strFormat,va_list args) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -393,14 +393,14 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//strsize __cdecl char_traits::printf(char * pszBuffer,const char * pszFormat,va_list args) noexcept
+//strsize __cdecl char_traits::printf(char * pszBuffer,const scoped_string & strFormat,va_list args) noexcept
 //{
 //
 //   return vsprintf(pszBuffer,pszFormat,args);
 //
 //}
 //
-//strsize __cdecl char_traits::printf(char * pszBuffer, strsize nlength,const char * pszFormat,va_list args) noexcept
+//strsize __cdecl char_traits::printf(char * pszBuffer, strsize nlength,const scoped_string & strFormat,va_list args) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -415,13 +415,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//strsize __cdecl char_traits::get_char_length(const char * pszSrc) noexcept
+//strsize __cdecl char_traits::get_char_length(const scoped_string & strSrc) noexcept
 //{
 //   // Returns required buffer length in XCHARs
 //   return strsize(strlen(pszSrc));
 //}
 //
-//strsize __cdecl char_traits::get_char_length(const char * pszSrc,strsize nLength) noexcept
+//strsize __cdecl char_traits::get_char_length(const scoped_string & strSrc,strsize nLength) noexcept
 //{
 //   (void)pszSrc;
 //   // Returns required buffer length in XCHARs
@@ -451,7 +451,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return wd32_to_ansi_len(pszSource, nLength);
 //}
 //
-//void __cdecl char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const char * pszSrc,strsize nSrcLength) noexcept
+//void __cdecl char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const scoped_string & strSrc,strsize nSrcLength) noexcept
 //{
 //   if(nSrcLength == -1) { nSrcLength=1 + get_char_length(pszSrc); }
 //   // nLen is in XCHARs
@@ -569,7 +569,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//strsize __cdecl char_traits::SafeStringLen(const char * psz) noexcept
+//strsize __cdecl char_traits::SafeStringLen(const scoped_string & str) noexcept
 //{
 //   // returns length in bytes
 //   return (psz != nullptr) ? strsize(strlen(psz)) : 0;
@@ -598,7 +598,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return  ::str().get_utf8_char(pch).get_length();
 //}
 //
-//u32 __cdecl char_traits::xxxget_environment_variable(const char * pszVar, char * pszBuffer,u32 dwSize )
+//u32 __cdecl char_traits::xxxget_environment_variable(const scoped_string & strVar, char * pszBuffer,u32 dwSize )
 //{
 //
 //#ifdef _UWP
@@ -611,7 +611,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#else
 //
-//   const char * pszEnv = getenv(pszVar);
+//   const scoped_string & strEnv = getenv(pszVar);
 //   if(pszBuffer == nullptr)
 //   {
 //      if(pszEnv == nullptr)
@@ -718,7 +718,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //
-////string::string(const char * pszSrc,string_manager * pstringmanager):
+////string::string(const scoped_string & strSrc,string_manager * pstringmanager):
 ////   string(pstringmanager)
 ////{
 ////   //      if( !CheckImplicitLoad( pszSrc ) )
@@ -914,7 +914,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//string& string::operator=(const char * pszSrc)
+//string& string::operator=(const scoped_string & strSrc)
 //{
 //   string::operator=(pszSrc);
 //
@@ -1011,7 +1011,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//string& string::operator+=(const char * pszSrc)
+//string& string::operator+=(const scoped_string & strSrc)
 //{
 //   string::operator+=(pszSrc);
 //
@@ -1133,59 +1133,59 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //// Comparison
 //
 //
-//i32 string::collate(const char * psz) const noexcept
+//i32 string::collate(const scoped_string & str) const noexcept
 //{
 //   //ASSERT(__is_valid_string(psz));
 //   return(::str().string_collate(m_psz,psz));
 //}
 //
-//i32 string::case_insensitive_collate(const char * psz) const noexcept
+//i32 string::case_insensitive_collate(const scoped_string & str) const noexcept
 //{
 //   //ASSERT(__is_valid_string(psz));
 //   return(::str().case_insensitive_string_collate(m_psz,psz));
 //}
 //
-////i32 string::compare(const char * psz) const
+////i32 string::compare(const scoped_string & str) const
 ////{
 ////   return compare(psz);
 ////}
 ////
-////i32 string::compare_no_case(const char * psz) const noexcept
+////i32 string::compare_no_case(const scoped_string & str) const noexcept
 ////{
 ////   return case_insensitive_order(psz);
 ////}
 //
-////i32 string::collate(const char * psz) const noexcept
+////i32 string::collate(const scoped_string & str) const noexcept
 ////{
 ////   return Collate(psz);
 ////}
 ////
-////i32 string::collate_no_case(const char * psz) const noexcept
+////i32 string::collate_no_case(const scoped_string & str) const noexcept
 ////{
 ////   return CollateNoCase(psz);
 ////}
 //
-//i32 string::compare(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::compare(strsize iStart,strsize nCount,const scoped_string & str) const
 //{
 //   return substr(iStart,nCount).compare(psz);
 //}
 //
-//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const scoped_string & str) const
 //{
 //   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
-//i32 string::collate(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::collate(strsize iStart,strsize nCount,const scoped_string & str) const
 //{
 //   return substr(iStart,nCount).collate(psz);
 //}
 //
-//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const char * psz) const
+//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const scoped_string & str) const
 //{
 //   return substr(iStart,nCount).case_insensitive_order(psz);
 //}
 //
-//i32 string::compare(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::compare(strsize iStart,strsize nCount,const scoped_string & str,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).compare(string(psz).substr(start2,count2));
@@ -1193,7 +1193,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::case_insensitive_order(strsize iStart,strsize nCount,const scoped_string & str,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).case_insensitive_order(string(psz).substr(start2,count2));
@@ -1201,14 +1201,14 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//i32 string::collate(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::collate(strsize iStart,strsize nCount,const scoped_string & str,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).collate(string(psz).substr(start2,count2));
 //
 //}
 //
-//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const char * psz,strsize start2,strsize count2) const
+//i32 string::case_insensitive_collate(strsize iStart,strsize nCount,const scoped_string & str,strsize start2,strsize count2) const
 //{
 //
 //   return substr(iStart,nCount).case_insensitive_collate(string(psz).substr(start2,count2));
@@ -1240,7 +1240,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains(const char * psz,strsize iStart,strsize nCount) const
+//bool string::contains(const scoped_string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return find(psz,iStart,nCount) >= 0;
@@ -1319,7 +1319,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_ci(const char * psz,strsize iStart,strsize nCount) const
+//bool string::contains_ci(const scoped_string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return case_insensitive_find(psz,iStart,nCount) >= 0;
@@ -1391,7 +1391,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_wci(const char * psz,strsize iStart,strsize nCount) const
+//bool string::contains_wci(const scoped_string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return find_wci(psz,iStart,nCount) >= 0;
@@ -1562,7 +1562,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::Insert(strsize iIndex,const char * psz)
+//strsize string::Insert(strsize iIndex,const scoped_string & str)
 //{
 //
 //   if (iIndex < 0)
@@ -1639,7 +1639,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(nCount);
 //}
 //
-//strsize string::replace(const char * pszOld,const char * pszNew,strsize iStart)
+//strsize string::replace(const scoped_string & strOld,const scoped_string & strNew,strsize iStart)
 //{
 //   // can't have is_empty or nullptr pszOld
 //
@@ -1654,9 +1654,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // loop once to figure out the size_i32 of the result string
 //   strsize nCount = 0;
 //   {
-//      const char * pszStart = m_psz + iStart;
-//      //      const char * pszEnd = pszStart+get_length();
-//      const char * pszTarget;
+//      const scoped_string & strStart = m_psz + iStart;
+//      //      const scoped_string & strEnd = pszStart+get_length();
+//      const scoped_string & strTarget;
 //      while((pszTarget = ::str().string_find_string(pszStart,pszOld)) != nullptr)
 //      {
 //         nCount++;
@@ -1702,7 +1702,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//::count string::replace_count(const char * pszOld, const char * pszNew, strsize iStart)
+//::count string::replace_count(const scoped_string & strOld, const scoped_string & strNew, strsize iStart)
 //{
 //   // can't have is_empty or nullptr pszOld
 //
@@ -1719,9 +1719,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // loop once to figure out the size_i32 of the result string
 //   strsize nCount = 0;
 //   {
-//      const char * pszStart = m_psz + iStart;
-//      //      const char * pszEnd = pszStart+get_length();
-//      const char * pszTarget;
+//      const scoped_string & strStart = m_psz + iStart;
+//      //      const scoped_string & strEnd = pszStart+get_length();
+//      const scoped_string & strTarget;
 //      while ((pszTarget = ::str().string_find_string(pszStart, pszOld)) != nullptr)
 //      {
 //         nCount++;
@@ -1769,7 +1769,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//string & string::replace(strsize iStart,strsize nCount,const char * psz)
+//string & string::replace(strsize iStart,strsize nCount,const scoped_string & str)
 //{
 //   if(nCount < 0)
 //   {
@@ -1781,7 +1781,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   }
 //}
 //
-//string & string::replace(strsize iStart,strsize nCount,const char * psz,strsize nSubLen)
+//string & string::replace(strsize iStart,strsize nCount,const scoped_string & str,strsize nSubLen)
 //{
 //   if(nCount < 0)
 //   {
@@ -1828,7 +1828,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(nCount);
 //}
 //
-//string string::Tokenize(const char * pszTokens,strsize& iStart) const
+//string string::Tokenize(const scoped_string & strTokens,strsize& iStart) const
 //{
 //   ASSERT(iStart >= 0);
 //
@@ -1844,8 +1844,8 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   }
 //   else
 //   {
-//      const char * pszPlace = m_psz + iStart;
-//      const char * pszEnd = m_psz + get_length();
+//      const scoped_string & strPlace = m_psz + iStart;
+//      const scoped_string & strEnd = m_psz + get_length();
 //      if(pszPlace < pszEnd)
 //      {
 //         strsize nIncluding = ::str().string_span_including(pszPlace,
@@ -1895,7 +1895,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount < 0)
 //      return -1;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //   for(i32 i = 0; i < nCount; i++)
 //   {
 //      if(psz[i] == ch)
@@ -1928,7 +1928,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount < 0)
 //      return -1;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //   for(i32 i = 0; i < nCount; i++)
 //   {
 //      if(tolower(psz[i]) == tolower(ch))
@@ -1971,7 +1971,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //// look for a specific sub-string
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::find(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::find(const scoped_string & strSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -1999,7 +1999,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount < 0)
 //      return -1;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //   for(i32 i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
@@ -2024,7 +2024,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::case_insensitive_find(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::case_insensitive_find(const scoped_string & strSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2054,7 +2054,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   i32 j;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //   for(i32 i = 0; i <= nCount; i++)
 //   {
 //      bool bFound = true;
@@ -2078,7 +2078,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::find_w(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::find_w(const scoped_string & strSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2092,15 +2092,15 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(iStart < 0)
 //      return -1;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //
 //   if(*psz == '\0')
 //      return -1;
 //   while(*psz != '\0' && (psz - m_psz - iStart) < nCount)
 //   {
 //      bool bFound = true;
-//      const char * psz2 = psz;
-//      const char * pszSub2 = pszSub;
+//      const scoped_string & str2 = psz;
+//      const scoped_string & strSub2 = pszSub;
 //      while(*psz2 != '\0' && *pszSub2 != '\0')
 //      {
 //         if(::str().get_utf8_char(psz2) != ::str().get_utf8_char(pszSub2))
@@ -2130,7 +2130,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::find_wci(const char * pszSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::find_wci(const scoped_string & strSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2144,15 +2144,15 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(iStart < 0)
 //      return -1;
 //
-//   const char * psz = m_psz + iStart;
+//   const scoped_string & str = m_psz + iStart;
 //
 //   if(*psz == '\0')
 //      return -1;
 //   while(*psz != '\0' && (psz - m_psz - iStart) < nCount)
 //   {
 //      bool bFound = true;
-//      const char * psz2 = psz;
-//      const char * pszSub2 = pszSub;
+//      const scoped_string & str2 = psz;
+//      const scoped_string & strSub2 = pszSub;
 //      while(*psz2 != '\0' && *pszSub2 != '\0')
 //      {
 //         if(unicode_to_lower_case(psz2) != unicode_to_lower_case(pszSub2))
@@ -2182,10 +2182,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::rear_find(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+//strsize string::rear_find(const scoped_string & strSub,strsize start,strsize count) const RELEASENOTHROW
 //{
 //
-//   const char * pszTail = nullptr;
+//   const scoped_string & strTail = nullptr;
 //
 //   if(find(pszSub,start,count,&pszTail) < 0)
 //      return -1;
@@ -2195,10 +2195,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::find_w_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+//strsize string::find_w_tail(const scoped_string & strSub,strsize start,strsize count) const RELEASENOTHROW
 //{
 //
-//   const char * pszTail = nullptr;
+//   const scoped_string & strTail = nullptr;
 //
 //   if(find_w(pszSub,start,count,&pszTail) < 0)
 //      return -1;
@@ -2208,10 +2208,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::find_ci_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+//strsize string::find_ci_tail(const scoped_string & strSub,strsize start,strsize count) const RELEASENOTHROW
 //{
 //
-//   const char * pszTail = nullptr;
+//   const scoped_string & strTail = nullptr;
 //
 //   if(case_insensitive_find(pszSub,start,count,&pszTail) < 0)
 //      return -1;
@@ -2221,10 +2221,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//strsize string::find_wci_tail(const char * pszSub,strsize start,strsize count) const RELEASENOTHROW
+//strsize string::find_wci_tail(const scoped_string & strSub,strsize start,strsize count) const RELEASENOTHROW
 //{
 //
-//   const char * pszTail = nullptr;
+//   const scoped_string & strTail = nullptr;
 //
 //   if(find_wci(pszSub,start,count,&pszTail) < 0)
 //      return -1;
@@ -2235,7 +2235,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// find the first occurrence of any of the characters in string 'pszCharSet'
-//strsize string::FindOneOf(const char * pszCharSet,strsize iStart,strsize n) const RELEASENOTHROW
+//strsize string::FindOneOf(const scoped_string & strCharSet,strsize iStart,strsize n) const RELEASENOTHROW
 //{
 //   string strCharSet(pszCharSet,n);
 //   // iStart is in XCHARs
@@ -2247,16 +2247,16 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      return(-1);
 //   }
-//   const char * psz = ::str().string_scan_set(&m_psz[iStart],strCharSet);
+//   const scoped_string & str = ::str().string_scan_set(&m_psz[iStart],strCharSet);
 //   return((psz == nullptr) ? -1 : strsize(psz - m_psz));
 //}
 //
-//strsize string::find_first_of(const char * pszCharSet,strsize iStart) const RELEASENOTHROW
+//strsize string::find_first_of(const scoped_string & strCharSet,strsize iStart) const RELEASENOTHROW
 //{
 //   return FindOneOf(pszCharSet,iStart,-1);
 //}
 //
-//strsize string::find_first_of(const char * pszCharSet,strsize iStart,strsize n) const RELEASENOTHROW
+//strsize string::find_first_of(const scoped_string & strCharSet,strsize iStart,strsize n) const RELEASENOTHROW
 //{
 //   return FindOneOf(pszCharSet,iStart,n);
 //}
@@ -2285,7 +2285,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   if(pos < 0 || pos >= nLength)
 //      return -1;
-//   const char * psz = &m_psz[pos];
+//   const scoped_string & str = &m_psz[pos];
 //   while(*psz != '\0' && *psz == ca)
 //   {
 //      psz++;
@@ -2305,7 +2305,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   if(pos < 0 || pos >= nLength)
 //      return -1;
-//   const char * psz = &m_psz[pos];
+//   const scoped_string & str = &m_psz[pos];
 //   while(*psz != '\0' && strChars.contains(*psz))
 //   {
 //      psz++;
@@ -2328,7 +2328,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      return(-1);
 //   }
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //   while(pos >= 0 && psz[pos] != ca)
 //   {
 //      pos--;
@@ -2336,12 +2336,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return pos;
 //}
 //
-//strsize string::find_last_of(const char * pszCharSet,strsize iStart) const RELEASENOTHROW
+//strsize string::find_last_of(const scoped_string & strCharSet,strsize iStart) const RELEASENOTHROW
 //{
 //   return find_last_of(pszCharSet,iStart,-1);
 //}
 //
-//strsize string::find_last_of(const char * pszCharSet,strsize pos,strsize n) const RELEASENOTHROW
+//strsize string::find_last_of(const scoped_string & strCharSet,strsize pos,strsize n) const RELEASENOTHROW
 //{
 //   strsize nLength = get_length();
 //   // nLength is in XCHARs
@@ -2352,7 +2352,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return(-1);
 //   }
 //   string strChars(pszCharSet,n);
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //   while(pos >= 0 && !strChars.contains(psz[pos]))
 //   {
 //      pos--;
@@ -2377,7 +2377,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      return(-1);
 //   }
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //   while(pos >= 0 && psz[pos] == ca)
 //   {
 //      pos--;
@@ -2385,12 +2385,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return pos;
 //}
 //
-//strsize string::find_last_not_of(const char * pszCharSet,strsize iStart) const RELEASENOTHROW
+//strsize string::find_last_not_of(const scoped_string & strCharSet,strsize iStart) const RELEASENOTHROW
 //{
 //   return find_last_not_of(pszCharSet,iStart,-1);
 //}
 //
-//strsize string::find_last_not_of(const char * pszCharSet,strsize pos,strsize n) const RELEASENOTHROW
+//strsize string::find_last_not_of(const scoped_string & strCharSet,strsize pos,strsize n) const RELEASENOTHROW
 //{
 //   strsize nLength = get_length();
 //   // nLength is in XCHARs
@@ -2401,7 +2401,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return(-1);
 //   }
 //   string strChars(pszCharSet,n);
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //   while(pos >= 0 && strChars.contains(psz[pos]))
 //   {
 //      pos--;
@@ -2419,7 +2419,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //strsize string::rear_find(char ch,strsize iStart) const RELEASENOTHROW
 //{
 //   // find last single character
-//   const char * psz = ::str().string_find_char_reverse(m_psz,ch,iStart);
+//   const scoped_string & str = ::str().string_find_char_reverse(m_psz,ch,iStart);
 //
 //   // return -1 if not found, distance from beginning otherwise
 //   return((psz == nullptr) ? -1 : strsize(psz - m_psz));
@@ -2429,7 +2429,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //strsize string::rear_find(const char * ch,strsize iStart) const RELEASENOTHROW
 //{
 //   // find last single character
-//   const char * psz = ::str().string_find_string_reverse(m_psz,ch,iStart);
+//   const scoped_string & str = ::str().string_find_string_reverse(m_psz,ch,iStart);
 //
 //   // return -1 if not found, distance from beginning otherwise
 //   return((psz == nullptr) ? -1 : strsize(psz - m_psz));
@@ -2476,9 +2476,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //string& string::trim_right()
 //{
 //
-//   const char * pszLast = nullptr;
-//   const char * pszMax = m_psz + get_length();
-//   const char * psz = pszMax;
+//   const scoped_string & strLast = nullptr;
+//   const scoped_string & strMax = m_psz + get_length();
+//   const scoped_string & str = pszMax;
 //
 //   if(psz != nullptr)
 //   {
@@ -2515,7 +2515,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   // find first non-space character
 //
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //
 //   strsize iHere;
 //
@@ -2576,7 +2576,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// erase all leading and trailing occurrences of any of the characters in the string 'pszTargets'
-//string& string::trim(const char * pszTargets)
+//string& string::trim(const scoped_string & strTargets)
 //{
 //   return(trim_right(pszTargets).trim_left(pszTargets));
 //}
@@ -2589,8 +2589,8 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // find beginning of trailing matches
 //   // by starting at beginning (DBCS aware)
 //
-//   const char * psz = m_psz;
-//   const char * pszLast = nullptr;
+//   const scoped_string & str = m_psz;
+//   const scoped_string & strLast = nullptr;
 //
 //   while(*psz != 0)
 //   {
@@ -2619,7 +2619,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// erase all trailing occurrences of any of the characters in string 'pszTargets'
-//string& string::trim_right(const char * pszTargets)
+//string& string::trim_right(const scoped_string & strTargets)
 //{
 //   // if we're not trimming anything, we're not doing any work
 //   if((pszTargets == nullptr) || (*pszTargets == 0))
@@ -2630,9 +2630,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // find beginning of trailing matches
 //   // by starting at beginning (DBCS aware)
 //
-//   const char * psz = m_psz;
-//   const char * pszStart = psz;
-//   const char * pszLast = nullptr;
+//   const scoped_string & str = m_psz;
+//   const scoped_string & strStart = psz;
+//   const scoped_string & strLast = nullptr;
 //
 //   while(!is_ptr_null(psz, 1024) && *psz != 0)
 //   {
@@ -2664,7 +2664,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //string& string::trim_left(char chTarget)
 //{
 //   // find first non-matching character
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //
 //   while(chTarget == *psz)
 //   {
@@ -2687,7 +2687,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// erase all leading occurrences of any of the characters in string 'pszTargets'
-//string& string::trim_left(const char * pszTargets)
+//string& string::trim_left(const scoped_string & strTargets)
 //{
 //   // if we're not trimming anything, we're not doing any work
 //   if((pszTargets == nullptr) || (*pszTargets == 0))
@@ -2695,7 +2695,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return *this;
 //   }
 //
-//   const char * psz = m_psz;
+//   const scoped_string & str = m_psz;
 //   while((*psz != 0) && (::str().string_find_char(pszTargets,*psz) != nullptr))
 //   {
 //      unicode_increment(psz);
@@ -2770,7 +2770,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// erase all leading and trailing occurrences of any of the characters in the string 'pszTargets'
-//string string::trimmed(const char * pszTargets) const
+//string string::trimmed(const scoped_string & strTargets) const
 //{
 //
 //   string str(*this);
@@ -2798,7 +2798,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// erase all trailing occurrences of any of the characters in string 'pszTargets'
-//string string::right_trimmed(const char * pszTargets) const
+//string string::right_trimmed(const scoped_string & strTargets) const
 //{
 //
 //   string str(*this);
@@ -2824,7 +2824,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// erase all leading occurrences of any of the characters in string 'pszTargets'
-//string string::left_trimmed(const char * pszTargets) const
+//string string::left_trimmed(const scoped_string & strTargets) const
 //{
 //
 //   string str(*this);
@@ -2954,7 +2954,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// Return the substring consisting of the leftmost characters in the set 'pszCharSet'
-//string string::span_including(const char * pszCharSet) const
+//string string::span_including(const scoped_string & strCharSet) const
 //{
 //   ASSERT(__is_valid_string(pszCharSet));
 //   if(pszCharSet == nullptr)
@@ -2964,7 +2964,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
-//string string::span_excluding(const char * pszCharSet) const
+//string string::span_excluding(const scoped_string & strCharSet) const
 //{
 //   ASSERT(__is_valid_string(pszCharSet));
 //   if(pszCharSet == nullptr)
@@ -2973,7 +2973,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return(Left(::str().string_span_excluding(m_psz,pszCharSet)));
 //}
 //
-//void string::append_format_arguments(const char * pszFormat,va_list args)
+//void string::append_format_arguments(const scoped_string & strFormat,va_list args)
 //{
 //
 //   ASSERT(__is_valid_string(pszFormat));
@@ -2994,7 +2994,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//void string::printf(const char * pszFormat,va_list args)
+//void string::printf(const scoped_string & strFormat,va_list args)
 //{
 //
 //   ASSERT(__is_valid_string(pszFormat));
@@ -3015,7 +3015,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// Format a message using format string 'pszFormat' and va_list
-//void string::FormatMessageV(const char * pszFormat,va_list* pArgList)
+//void string::FormatMessageV(const scoped_string & strFormat,va_list* pArgList)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3077,7 +3077,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#endif
 //
 //// set the string to the value of environment ::payload 'pszVar'
-//bool string::xxxget_environment_variable(const char * pszVar)
+//bool string::xxxget_environment_variable(const scoped_string & strVar)
 //{
 //
 //   u32 nLength = ::str().xxxget_environment_variable(pszVar,nullptr,0);
@@ -3099,7 +3099,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//bool string::xxxetenv(const char * pszVar)
+//bool string::xxxetenv(const scoped_string & strVar)
 //{
 //
 //   return xxxget_environment_variable(pszVar);
@@ -3151,7 +3151,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 ////#if defined(VARIADIC_TEMPLATE_FORMAT)
 ////
-////void __cdecl string::_Format(const char * pszFormat, ...)
+////void __cdecl string::_Format(const scoped_string & strFormat, ...)
 ////{
 ////   ASSERT(__is_valid_string(pszFormat));
 ////
@@ -3163,7 +3163,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////
 ////
 ////// append formatted data using format string 'pszFormat'
-////void __cdecl string::_AppendFormat(const char * pszFormat, ...)
+////void __cdecl string::_AppendFormat(const scoped_string & strFormat, ...)
 ////{
 ////   ASSERT(__is_valid_string(pszFormat));
 ////
@@ -3179,7 +3179,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////#elif !defined(VARIADIC_TEMPLATE_FORMAT2)
 //
 //
-//void __cdecl string::Format(const char * pszFormat,...)
+//void __cdecl string::Format(const scoped_string & strFormat,...)
 //{
 //   ASSERT(__is_valid_string(pszFormat));
 //
@@ -3191,7 +3191,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //
 //// append formatted data using format string 'pszFormat'
-//void __cdecl string::AppendFormat(const char * pszFormat,...)
+//void __cdecl string::AppendFormat(const scoped_string & strFormat,...)
 //{
 //   ASSERT(__is_valid_string(pszFormat));
 //
@@ -3204,7 +3204,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// Format a message using format string 'pszFormat'
-//void __cdecl string::format_message(const char * pszFormat,...)
+//void __cdecl string::format_message(const scoped_string & strFormat,...)
 //{
 //   if(pszFormat == nullptr)
 //      throw ::exception(error_bad_argument);
@@ -3419,7 +3419,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 
 
-CLASS_DECL_ACME::string string_format(const char * pszFormat, ...)
+CLASS_DECL_ACME::string string_format(const scoped_string & strFormat, ...)
 {
 
    ::string str;

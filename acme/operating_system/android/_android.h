@@ -9,7 +9,7 @@ CLASS_DECL_ACME void os_shell_initialize();
 
 string get_error_message(::u32 dwError);
 
-//::acme::application* win_instantiate_application(::acme::application* pappSystem, const char* pszId);
+//::acme::application* win_instantiate_application(::acme::application* pappSystem, const scoped_string & strId);
 
 
 #include "android1.h"

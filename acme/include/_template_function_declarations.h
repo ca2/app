@@ -5,16 +5,17 @@
 #include "acme/exception/debug.h"
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails = nullptr);
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox);
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails);
 
 
 CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);
 
 
-CLASS_DECL_ACME void windowing_output_debug_string(const char* pszDebugString);
+CLASS_DECL_ACME void windowing_output_debug_string(const scoped_string & strDebugString);
 
 
-CLASS_DECL_ACME void throw_encoding_exception(const char * pszMessage);
+CLASS_DECL_ACME void throw_encoding_exception(const scoped_string & strMessage);
 
 
 //CLASS_DECL_ACME::acme::system* acmesystem();
@@ -29,15 +30,15 @@ CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
-CLASS_DECL_ACME i32 ansi_open(const char* psz, i32 i);
+CLASS_DECL_ACME i32 ansi_open(const scoped_string & str, i32 i);
 
-CLASS_DECL_ACME FILE* ansi_fopen(const char* psz, const char* pszMode);
+CLASS_DECL_ACME FILE* ansi_fopen(const scoped_string & str, const scoped_string & strMode);
 
 CLASS_DECL_ACME int ansi_file_flag(int iFlag);
 
 CLASS_DECL_ACME void ansi_get_errno(i32* perrno);
 
-CLASS_DECL_ACME void ansi_unlink(const char* psz);
+CLASS_DECL_ACME void ansi_unlink(const scoped_string & str);
 
 
 CLASS_DECL_ACME::e_status get_last_status();
@@ -126,10 +127,6 @@ typedef void THREAD_ROUTINE(thread_parameter parameter);
 CLASS_DECL_ACME bool succeeded(const ::payload& payload);
 
 
-CLASS_DECL_ACME::atom message_box_synchronous(::particle* ppartcicle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
-
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& atom) > function, ::particle* pparticle, const char* pszMessage, const char* pszTitle = nullptr, const e_message_box& emessagebox = e_message_box_ok, const char* pszDetails = nullptr);
-
 
 
 
@@ -137,7 +134,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom& at
 CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);
 
 
-CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const char* pszGroup);
+CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const scoped_string & strGroup);
 
 CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, int iGroup);
 
@@ -191,13 +188,13 @@ inline ::u64 make64_from32(::u32 l, ::u32 h);
 //inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength = INT_MAX);
 //
 //
-//inline bool __is_valid_string(const char* psz, memsize nMaxLength = UINT_MAX);
+//inline bool __is_valid_string(const scoped_string & str, memsize nMaxLength = UINT_MAX);
 
 
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);
 
 
-CLASS_DECL_ACME::u32 __u32_hash(const char* psz);
+CLASS_DECL_ACME::u32 __u32_hash(const scoped_string & str);
 
 
 template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p);

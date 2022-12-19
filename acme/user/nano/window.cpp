@@ -326,7 +326,7 @@ void nano_window::add_child(nano_child * pchild)
 }
 
 
-void nano_window::add_button(const char * pszText, enum_dialog_result edialogresult)
+void nano_window::add_button(const scoped_string & strText, enum_dialog_result edialogresult)
 {
 
    auto pbutton = __new(nano_button);

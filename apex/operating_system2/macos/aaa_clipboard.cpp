@@ -10,7 +10,7 @@
 //
 //char * mm_clipboard_get_plain_text();
 //
-//void mm_clipboard_set_plain_text(const char * psz);
+//void mm_clipboard_set_plain_text(const scoped_string & str);
 //
 //
 //long macos_clipboard_get_file_count()
@@ -60,7 +60,7 @@
 //}
 //
 //
-//void macos_clipboard_set_plain_text(const char * pszPlainText)
+//void macos_clipboard_set_plain_text(const scoped_string & strPlainText)
 //{
 //   
 //   mm_clipboard_set_plain_text(pszPlainText);

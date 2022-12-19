@@ -46,7 +46,7 @@ void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 }
 
 
-bool folder::locate_file(const char* pszFileName)
+bool folder::locate_file(const scoped_string & strFileName)
 {
 
    throw ::interface_only();
@@ -56,7 +56,7 @@ bool folder::locate_file(const char* pszFileName)
 }
 
 
-bool folder::locate_folder(const char* pszFolderName)
+bool folder::locate_folder(const scoped_string & strFolderName)
 {
 
    throw ::interface_only();
@@ -76,7 +76,7 @@ bool folder::locate(const ::function < bool(const char*) >& function)
 }
 
 
-::file_pointer folder::get_file(const char * pszFile)
+::file_pointer folder::get_file(const scoped_string & strFile)
 {
 
    throw ::interface_only();
@@ -86,7 +86,7 @@ bool folder::locate(const ::function < bool(const char*) >& function)
 }
 
    
-bool folder::has_sub_folder(const char* pszFileName)
+bool folder::has_sub_folder(const scoped_string & strFileName)
 {
 
    return false;
@@ -94,7 +94,7 @@ bool folder::has_sub_folder(const char* pszFileName)
 }
 
 
-void folder::extract(memory& m, const char* pszFile)
+void folder::extract(memory& m, const scoped_string & strFile)
 {
 
    throw ::interface_only();
@@ -104,7 +104,7 @@ void folder::extract(memory& m, const char* pszFile)
 }
 
 
-bool folder::is_compressed(const char* pszFileName)
+bool folder::is_compressed(const scoped_string & strFileName)
 {
 
    return false;
@@ -112,7 +112,7 @@ bool folder::is_compressed(const char* pszFileName)
 }
 
 
-void folder::e_extract_all(const char* pszTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+void folder::e_extract_all(const scoped_string & strTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
 {
 
    throw ::interface_only();
@@ -168,7 +168,7 @@ void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
 }
 
 
-::file::enum_type folder::type(const char * pszItem)
+::file::enum_type folder::type(const scoped_string & strItem)
 {
 
    if (::is_empty(pszItem))

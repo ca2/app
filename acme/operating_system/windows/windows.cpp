@@ -573,7 +573,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 }
 
 
-// CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl)
+// CLASS_DECL_ACME void operating_system_open_url(const scoped_string & strUrl)
 // {
 
 //    wstring wstrUrl(pszUrl);

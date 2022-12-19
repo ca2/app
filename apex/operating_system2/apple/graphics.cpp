@@ -192,7 +192,7 @@
 //
 //}
 //
-////bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+////bool TextOutU_dup(HDC hdc, int x, int y, const scoped_string & strUtf8, int iSize)
 ////{
 ////
 ////   CGContextRef context = hdc->m_cgcontext;
@@ -275,17 +275,17 @@
 //
 ////HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
 //
-////HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
+////HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc);
 //
 ////
-////HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
+////HFONT CreatePointFont_dup(int nPointSize, const scoped_string & strFaceName, HDC hdc)
 //
 ////{
 ////   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 //
 ////}
 ////
-////HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc)
+////HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc)
 //
 ////{
 ////   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszFaceName, kCFStringEncodingUTF8);
@@ -315,7 +315,7 @@
 //bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 //
 //
-//bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+//bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 //
 //
 //
@@ -330,7 +330,7 @@
 //bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 //
 //
-//bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+//bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 //
 //
 //

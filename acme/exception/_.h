@@ -3,18 +3,14 @@
 
 
 
-CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus = error_failed, ::task* playeredThreadExit = nullptr, const char* pszMessage = nullptr);
-
-
-
 
 CLASS_DECL_ACME bool should_avoid_parsing_exception();
-CLASS_DECL_ACME bool throw_parsing_exception(const char* pszMessage);
+CLASS_DECL_ACME bool throw_parsing_exception(const scoped_string & strMessage);
 
 
 
 
-CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const char * pszMessage);
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const scoped_string & strMessage);
 
 
 
@@ -95,9 +91,9 @@ CLASS_DECL_ACME void __cdecl __clearerr_s(FILE *stream);
 
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int nLine);
+CLASS_DECL_ACME bool __assert_failed_line(const scoped_string & strFileName, int nLine);
 
-CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const char * pszFileName, i32 nLine);
+CLASS_DECL_ACME void __assert_particle_ok(const ::particle * pparticle, const scoped_string & strFileName, i32 nLine);
 
 CLASS_DECL_ACME void __dump(const ::particle * pparticle);
 

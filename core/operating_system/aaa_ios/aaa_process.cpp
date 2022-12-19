@@ -65,9 +65,9 @@ int create_process(const ::string & _cmd_line, int * pprocessId)
 }
 
 CLASS_DECL_CORE int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 int iShow)
 {
    string strCmdLine;
@@ -89,9 +89,9 @@ int iShow)
 }
 
 CLASS_DECL_CORE int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 edisplay edisplay,
 bool bPrivileged,
 unsigned int * puiPid)

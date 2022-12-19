@@ -316,7 +316,7 @@
 //
 //         int iErr = errno;
 //
-//         const char * pszError = strerror(iErr);
+//         const scoped_string & strError = strerror(iErr);
 //
 //         throw ::exception(error_resource);
 //

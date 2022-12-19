@@ -24,7 +24,7 @@ namespace file
       ~streamable_composite() override;
 
 
-      virtual enum_status _open(const char * pszFilePath, const ::file::enum_open & eopen) override;
+      virtual enum_status _open(const scoped_string & strFilePath, const ::file::enum_open & eopen) override;
 
       filesize translate(filesize offset, ::enum_seek eseek) override;
 

@@ -127,7 +127,7 @@ namespace xml
    //}
 
 
-   void output_tree::set_value(const char * pszValue)
+   void output_tree::set_value(const scoped_string & strValue)
    {
 
       m_pnode->set_value(pszValue);

@@ -127,8 +127,8 @@ namespace file
 
       void set_type(e_path epath);
 
-      ::file::path replace_file_extension(const char * pszNewExtension, const char * pszOldExtension);
-      ::file::path replace_file_extension(const char * pszNewExtension);
+      ::file::path replace_file_extension(const scoped_string & strNewExtension, const scoped_string & strOldExtension);
+      ::file::path replace_file_extension(const scoped_string & strNewExtension);
 
       inline char sep() const
       {
@@ -203,7 +203,7 @@ namespace file
       }
 
 
-      bool operator == (const char * psz) const
+      bool operator == (const scoped_string & str) const
       {
 
          return operator == (string(psz));
@@ -227,7 +227,7 @@ namespace file
       }
 
 
-      bool operator != (const char * psz) const
+      bool operator != (const scoped_string & str) const
       {
 
          return operator != (string(psz));
@@ -236,13 +236,13 @@ namespace file
       //      bool operator == (const path & path) const;
 
       //      bool operator == (const ::string & str) const;
-      //      bool operator == (const char * psz) const;
+      //      bool operator == (const scoped_string & str) const;
       bool operator == (const ::payload & payload) const;
 
       //      bool operator != (const path & path) const;
 
       //      bool operator != (const ::string & str) const;
-      //      bool operator != (const char * psz) const;
+      //      bool operator != (const scoped_string & str) const;
       bool operator != (const ::payload & payload) const;
 
       path operator + (const path & path) const;
@@ -250,7 +250,7 @@ namespace file
 
       path operator + (const ::string & str) const;
 
-      path operator + (const char * psz) const;
+      path operator + (const scoped_string & str) const;
       path operator + (const ::payload & payload) const;
       path operator + (const property & property) const;
       path operator + (const atom & atom) const;
@@ -259,14 +259,14 @@ namespace file
       path & operator += (const ::string & str);
       path operator / (const path & path) const;
       path operator / (const ::string & str) const;
-      path operator / (const char * psz) const;
+      path operator / (const scoped_string & str) const;
       path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
       patha operator / (const string_array & path) const;
 
       path & operator /= (const path & path);
       path & operator /= (const ::string & str);
-      path & operator /= (const char * psz);
+      path & operator /= (const scoped_string & str);
 
 
       bool is_empty() const;
@@ -283,8 +283,8 @@ namespace file
 
       //string operator << (const ::string & str) const { return arg(str); }
 
-      path & operator = (const char * psz);
-      path & operator += (const char * psz);
+      path & operator = (const scoped_string & str);
+      path & operator += (const scoped_string & str);
 
       path & operator = (const ::payload & payload);
       path & operator += (const ::payload & payload);
@@ -308,18 +308,18 @@ namespace file
 
       path sibling(const path & path) const;
       path sibling(const ::string & str) const;
-      path sibling(const char * psz) const;
+      path sibling(const scoped_string & str) const;
 
       path operator * (const path & path) const;
 
       path operator * (const ::string & str) const;
-      path operator * (const char * psz) const;
+      path operator * (const scoped_string & str) const;
       path operator * (const property & property) const;
 
       path & operator *= (const path & path);
 
       path & operator *= (const ::string & str);
-      path & operator *= (const char * psz);
+      path & operator *= (const scoped_string & str);
       path & operator *= (const property & property);
 
       ::file::path title() const;

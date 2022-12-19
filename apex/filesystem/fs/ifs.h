@@ -45,7 +45,7 @@ public:
    //filepathmap(bool_array)       m_mapdirFolderDir; // by now, always store item count?
 
 
-   ifs( const char * pszRoot);
+   ifs( const scoped_string & strRoot);
    ~ifs() override;
 
 
@@ -56,8 +56,8 @@ public:
    virtual int is_dir(const ::file::path & path) override;
    virtual ::file::listing & root_ones(::file::listing & listing) override;
 
-   //virtual string file_name(const char * pszPath);
-   //virtual string dir_path(const char * psz1, const char * psz2);
+   //virtual string file_name(const scoped_string & strPath);
+   //virtual string dir_path(const scoped_string & str1, const scoped_string & str2);
 
    virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
 

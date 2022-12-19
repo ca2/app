@@ -127,8 +127,8 @@
       virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
-      virtual ::file::path commonappdata(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr);
-      virtual ::file::path commonappdata_locale_schema(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);
+      virtual ::file::path commonappdata(const scoped_string & strAppId, const scoped_string & strBuild = nullptr, const scoped_string & strPlatform = nullptr, const scoped_string & strConfiguration = nullptr);
+      virtual ::file::path commonappdata_locale_schema(const scoped_string & strAppId, const scoped_string & strBuild = nullptr, const scoped_string & strPlatform = nullptr, const scoped_string & strConfiguration = nullptr, const scoped_string & strLocale = nullptr, const scoped_string & strSchema = nullptr);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 

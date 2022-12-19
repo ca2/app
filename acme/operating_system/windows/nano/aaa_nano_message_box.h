@@ -41,7 +41,7 @@ public:
 
    void on_click(const ::atom & atom) override;
 
-   void add_button(const char * pszText, enum_dialog_result edialogresult);
+   void add_button(const scoped_string & strText, enum_dialog_result edialogresult);
 
 
 };

@@ -145,10 +145,10 @@ namespace VistaTools
 
    bool
    MyShellExec(   oswindow hwnd,
-                  const char * pszVerb,
-                  const char * pszPath,
-                  const char * pszParameters,   // = nullptr
-                  const char * pszDirectory,   // = nullptr
+                  const scoped_string & strVerb,
+                  const scoped_string & strPath,
+                  const scoped_string & strParameters,   // = nullptr
+                  const scoped_string & strDirectory,   // = nullptr
                   HANDLE * phProcess )   // = nullptr
    {
       SHELLEXECUTEINFO shex;
@@ -305,9 +305,9 @@ namespace VistaTools
    bool
    RunElevated(
    __in      oswindow   hwnd,
-   __in      const char * pszPath,
-   __in_opt   const char * pszParameters,   //   = nullptr,
-   __in_opt   const char * pszDirectory,   //   = nullptr,
+   __in      const scoped_string & strPath,
+   __in_opt   const scoped_string & strParameters,   //   = nullptr,
+   __in_opt   const scoped_string & strDirectory,   //   = nullptr,
    __out_opt   HANDLE *phProcess )      //   = nullptr );
    {
       return MyShellExec(
@@ -399,9 +399,9 @@ namespace VistaTools
    bool
    RunNonElevated(
    __in      oswindow   hwnd,
-   __in      const char * pszPath,
-   __in_opt   const char * pszParameters,   //   = nullptr,
-   __in_opt   const char * pszDirectory,   //   = nullptr,
+   __in      const scoped_string & strPath,
+   __in_opt   const scoped_string & strParameters,   //   = nullptr,
+   __in_opt   const scoped_string & strDirectory,   //   = nullptr,
    __out_opt   HANDLE *phProcess)      //   = nullptr );
    {
       ASSERT( pszPath && *pszPath );   // other args are optional

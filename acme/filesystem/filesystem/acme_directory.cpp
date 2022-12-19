@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-CLASS_DECL_ACME bool is_like_url_protocol(const char * psz);
+CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str);
 
 
 acme_directory::acme_directory()
@@ -808,7 +808,7 @@ bool acme_directory::is(const char * path)
 //string name(string path);
 
 
-//void acme_directory::enumrls(::file::path_array & stra, const char * psz)
+//void acme_directory::enumrls(::file::path_array & stra, const scoped_string & str)
 //{
 //
 //   throw ::interface_only();
@@ -816,7 +816,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 
-//void acme_directory::rls_dir(::file::path_array & stra, const char * psz)
+//void acme_directory::rls_dir(::file::path_array & stra, const scoped_string & str)
 //{
 //
 //   throw ::interface_only();
@@ -826,7 +826,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const char * psz, ::file::e_flag eflag, enum_depth edepth)
+//void acme_directory::enumerate(::file::listing & listing, const scoped_string & str, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -834,7 +834,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const char * psz, ::file::e_flag eflag, enum_depth edepth)
+//void acme_directory::enumerate(::file::listing & listing, const scoped_string & str, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -1007,7 +1007,7 @@ bool acme_directory::defer_media_library_representative_file_name(::file::path &
 
 
 
-bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag eflag)
+bool acme_directory::list(string_array & stra, const scoped_string & str, ::file::e_flag eflag)
 {
 
    return ::file::enumerator::list(stra, psz, eflag);
@@ -1015,7 +1015,7 @@ bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag 
 }
 
 
-//void acme_directory::enumerate(::file::path_array & stra, const char * psz)
+//void acme_directory::enumerate(::file::path_array & stra, const scoped_string & str)
 //{
 //
 //   throw ::interface_only();
@@ -1023,7 +1023,7 @@ bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag 
 //}
 //
 //
-//void acme_directory::ls_file(::file::path_array & stra, const char * psz)
+//void acme_directory::ls_file(::file::path_array & stra, const scoped_string & str)
 //{
 //
 //   throw ::interface_only();
@@ -1037,7 +1037,7 @@ bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag 
          //::file::path archive();
 
 
-int acme_directory::make_path(const char * psz)
+int acme_directory::make_path(const scoped_string & str)
 {
 
    throw ::interface_only();
@@ -1059,7 +1059,7 @@ int acme_directory::make_path(const char * psz)
       {*/
 
 
-      //string name(const char * pszPath);
+      //string name(const scoped_string & strPath);
       //bool mk(const ::string & strPath);
       //bool _mk(const  char * path); // makes a directory path (all intermediates too)
       //bool is(const char * path);
@@ -1137,7 +1137,7 @@ string acme_directory::get_current()
 }
 
 
-void acme_directory::change_current(const char * psz)
+void acme_directory::change_current(const scoped_string & str)
 {
 
    throw ::interface_only();

@@ -13,7 +13,7 @@ thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
 
-bool demangle (string & str, const char * pszType)
+bool demangle (string & str, const scoped_string & strType)
 {
 
    //critical_section_lock cs(g_pcsDemangle);

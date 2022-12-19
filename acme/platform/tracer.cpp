@@ -7,7 +7,7 @@
 #include "acme/platform/system.h"
 
 
-CLASS_DECL_ACME void trace_log_information(const char * psz, ...)
+CLASS_DECL_ACME void trace_log_information(const scoped_string & str, ...)
 {
 
    va_list arguments;
@@ -21,7 +21,7 @@ CLASS_DECL_ACME void trace_log_information(const char * psz, ...)
 }
 
 
-CLASS_DECL_ACME void trace_log_warning(const char * psz, ...)
+CLASS_DECL_ACME void trace_log_warning(const scoped_string & str, ...)
 {
 
    va_list arguments;
@@ -35,7 +35,7 @@ CLASS_DECL_ACME void trace_log_warning(const char * psz, ...)
 }
 
 
-CLASS_DECL_ACME void trace_log_error(const char * psz, ...)
+CLASS_DECL_ACME void trace_log_error(const scoped_string & str, ...)
 {
 
    va_list arguments;
@@ -49,7 +49,7 @@ CLASS_DECL_ACME void trace_log_error(const char * psz, ...)
 }
 
 
-CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...)
+CLASS_DECL_ACME void trace_log_fatal(const scoped_string & str, ...)
 {
 
    va_list arguments;

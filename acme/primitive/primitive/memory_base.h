@@ -148,14 +148,14 @@ public:
    virtual char * c_str();
 
    virtual bool begins(const block& block) const;
-   virtual bool begins(const char * psz, strsize iCount = -1) const;
-   virtual bool case_insensitive_begins(const char * psz, strsize iCount = -1) const;
+   virtual bool begins(const scoped_string & str, strsize iCount = -1) const;
+   virtual bool case_insensitive_begins(const scoped_string & str, strsize iCount = -1) const;
    virtual bool begins(const ::string & str, strsize iCount = -1) const;
    virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
 
    virtual bool ends(const block& block) const;
-   virtual bool ends(const char * psz, strsize iCount = -1) const;
-   virtual bool case_insensitive_ends(const char * psz, strsize iCount = -1) const;
+   virtual bool ends(const scoped_string & str, strsize iCount = -1) const;
+   virtual bool case_insensitive_ends(const scoped_string & str, strsize iCount = -1) const;
    virtual bool ends(const ::string & str, strsize iCount = -1) const;
    virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 
@@ -267,11 +267,11 @@ public:
 
 
    void from_string(const ::wide_character * pwsz);
-   void from_string(const char * psz);
+   void from_string(const scoped_string & str);
    void from_string(const ::string & str);
    void from_string(const ::payload & payload);
    void append_from_string(const ::wide_character * pwsz);
-   void append_from_string(const char * psz);
+   void append_from_string(const scoped_string & str);
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
@@ -309,16 +309,16 @@ public:
    void move_and_grow(memsize offset);
    void move(memsize offset, bool bGrow = false);
 
-   //void assign(const char * psz);
-   //void append(const char * psz);
+   //void assign(const scoped_string & str);
+   //void append(const scoped_string & str);
 
    void to_hex(string & str, memsize iStart = 0, memsize size = -1);
    string to_hex(memsize iStart = 0, memsize size = -1);
-   strsize from_hex(const char * psz, strsize nCount = -1);
+   strsize from_hex(const scoped_string & str, strsize nCount = -1);
 
    void to_base64(string & str, memsize iStart = 0, memsize size = -1);
    string to_base64(memsize iStart = 0, memsize size = -1);
-   void from_base64(const char * psz, strsize nCount = -1);
+   void from_base64(const scoped_string & str, strsize nCount = -1);
 
    inline void to_asc(string & str) const { str.assign((const char *) data(), size()); }
    inline string to_asc() const { string str; to_asc(str); return str; }

@@ -8,7 +8,7 @@ int g_iCallStackLevel = 4;
 e_callstack g_ecallstack = callstack_none;
 
 
-callstack::callstack(const char * pszFormat, i32 iSkip, void * address, int iCount) :
+callstack::callstack(const scoped_string & strFormat, i32 iSkip, void * address, int iCount) :
    m_pszFormat(pszFormat),
    m_iCount(iCount),
    m_caller_address(address)
@@ -49,7 +49,7 @@ callstack::~callstack()
 }
 
 
-const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
+const char * callstack::get_dup(const scoped_string & strFormat, i32 iSkip, int iCount)
 {
 
    if (iSkip >= 0)
@@ -59,7 +59,7 @@ const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
 
    }
 
-   const char * psz;
+   const scoped_string & str;
 
    synchronous_lock synchronouslock(::exception_engine().mutex());
 
@@ -91,7 +91,7 @@ const char * callstack::xxxstack_trace() const
 }
 
 
-string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
+string get_callstack(const scoped_string & strFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1)
 {
 
    if (iSkip >= 0)

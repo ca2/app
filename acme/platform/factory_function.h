@@ -18,9 +18,9 @@ public:
    static factory_function* g_pfactoryfunctionNext;
 
 
-   factory_function(const char* pszName, FACTORY_FUNCTION* pfnFactory);
+   factory_function(const scoped_string & strName, FACTORY_FUNCTION* pfnFactory);
 
-   static FACTORY_FUNCTION* get(const char* pszName);
+   static FACTORY_FUNCTION* get(const scoped_string & strName);
 
 };
 

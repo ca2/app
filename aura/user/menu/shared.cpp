@@ -72,7 +72,7 @@ menu_shared::~menu_shared()
 }
 
 
-void * menu_shared::find_item(const char * pszParent, const char * pszId)
+void * menu_shared::find_item(const scoped_string & strParent, const scoped_string & strId)
 {
 
    for(int i = 0; i < m_iCount; i++)

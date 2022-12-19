@@ -17,7 +17,7 @@ void trace_category_static_init(::acme::system * psystem)
 
    trace_category::s_ptracecategorya = memory_new pointer_array < trace_category >;
 
-   const char * psza[] =
+   const scoped_string & stra[] =
    {
    "general",
       "com",
@@ -71,7 +71,7 @@ void trace_category_static_init(::acme::system * psystem)
 
       enum_trace_category etracecategory = (enum_trace_category)iCategory;
 
-      const char * pszCategory = *p;
+      const scoped_string & strCategory = *p;
 
       auto pcategory = __new(trace_category(etracecategory, pszCategory));
 

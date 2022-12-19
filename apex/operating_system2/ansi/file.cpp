@@ -211,7 +211,7 @@ namespace apex
 //#ifndef WINDOWS
 //
 //
-//   bool context::_os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
+//   bool context::_os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI, bool bNoMount)
 //   {
 //
 //      if (::is_null(psz))
@@ -262,7 +262,7 @@ namespace apex
 //#endif
 
 
-//   bool context::os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
+//   bool context::os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI, bool bNoMount)
 //   {
 //
 //      return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -271,7 +271,7 @@ namespace apex
 
 
 
-   // CLASS_DECL_APEX bool _os_may_have_alias(const char * psz)
+   // CLASS_DECL_APEX bool _os_may_have_alias(const scoped_string & str)
    // {
 
    //    return true;

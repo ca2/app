@@ -38,7 +38,7 @@ namespace xml
    };
 
    
-   CLASS_DECL_AQUA char * LoadOtherNodes( node * node, bool* pbRet, const char * pszXml, parse_info * pi = nullptr);
+   CLASS_DECL_AQUA char * LoadOtherNodes( node * node, bool* pbRet, const scoped_string & strXml, parse_info * pi = nullptr);
    
 
 } // namespace xml

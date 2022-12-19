@@ -12,14 +12,14 @@
 
 
 
-int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function);
+int ui_MessageBoxA(const scoped_string & strMessageParam, const scoped_string & strHeaderParam, unsigned int uType, const scoped_string & strDetails, ::function < void (enum_dialog_result) > function);
 
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 
-void message_box_synchronous(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails, const ::function < void(::enum_dialog_result) > & function)
+void message_box_synchronous(oswindow oswindow, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails, const ::function < void(::enum_dialog_result) > & function)
 {
 
    string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""

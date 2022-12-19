@@ -994,7 +994,7 @@ namespace color
    #define duplicate_color_nible(nible) ((nible << 4) | (nible))
 
 
-   bool color::parse_color(const char * psz)
+   bool color::parse_color(const scoped_string & str)
    {
 
       string str(psz);

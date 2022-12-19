@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -76,7 +76,7 @@ inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength)
 }
 
 
-inline bool __is_valid_string(const char* psz, memsize nMaxLength)
+inline bool __is_valid_string(const char * psz, memsize nMaxLength)
 {
 
    return ::__is_valid_address(psz, nMaxLength);
@@ -84,15 +84,13 @@ inline bool __is_valid_string(const char* psz, memsize nMaxLength)
 }
 
 
-
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen)
+inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsize srclen)
 {
 
    return (((byte*)pszSrc) <= ((byte*)pszDst) && ((byte*)pszSrc) + srclen > ((byte*)pszDst))
       || (((byte*)pszDst) <= ((byte*)pszSrc) && ((byte*)pszDst) + srclen > ((byte*)pszSrc));
 
 }
-
 
 
 //template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
@@ -162,7 +160,6 @@ inline const ::particle* trace_object(const ::particle* pparticle) { return ppar
 inline bool failed(const ::payload& payload) { return !::succeeded(payload); }
 
 
-
 inline int read_char(u8*& pdata, memsize& s, char* pch)
 {
 
@@ -182,7 +179,6 @@ inline int read_char(u8*& pdata, memsize& s, char* pch)
    return 1;
 
 }
-
 
 
 //
@@ -227,6 +223,7 @@ inline bool exists(const ::file::enum_type& etype)
 
 }
 
+
 //
 //template < class T >
 //inline void __dynamic_cast(T*& ptarget, T* psource)
@@ -270,15 +267,13 @@ inline bool exists(const ::file::enum_type& etype)
 //
 
 
-
-
-
 inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {
 
    return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
 
 }
+
 
 inline u64 ansi_to_u64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase)
 {

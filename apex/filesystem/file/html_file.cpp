@@ -67,7 +67,7 @@ void html_file::printstr(string str, ...)
 #else
 
 
-void html_file::trace(void*, const char* psz)
+void html_file::trace(void*, const scoped_string & str)
 {
 
    print(psz);

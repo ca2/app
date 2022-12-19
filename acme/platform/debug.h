@@ -110,7 +110,7 @@ do {                                           \
 //#include "acme/networking/sockets/trace_interface.h"
 
 
-CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str, const scoped_string & strFile = nullptr, int iLine = -1);
 
 
 #define _DEBUG_WIDE_(s) L ## s
@@ -313,11 +313,11 @@ typedef struct _MEMORY_STATE
 
 
 
-// CLASS_DECL_ACME i32 FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags);
+// CLASS_DECL_ACME i32 FUNCTION_DEBUGBOX(const scoped_string & strMessage, const scoped_string & strTitle, i32 iFlags);
 
 // CLASS_DECL_ACME i32 FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags);
 
-// inline i32 FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags)
+// inline i32 FUNCTION_XXDEBUGBOX(const scoped_string & strMessage, const scoped_string & strTitle, i32 iFlags)
 // {
 
 //    __UNREFERENCED_PARAMETER(pszMessage);
@@ -378,8 +378,8 @@ typedef struct _MEMORY_STATE
 //extern critical_section * g_pcsTrace;
 //extern matter * g_pobjecTracer;
 //
-CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage);
-//CLASS_DECL_ACME void trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & strMessage);
+//CLASS_DECL_ACME void trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str, const scoped_string & strFile = nullptr, int iLine = -1);
 
 
 

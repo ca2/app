@@ -29,9 +29,9 @@
 
 extern char ** environ;
 
-string_array get_c_args_for_c(const char * psz);
+string_array get_c_args_for_c(const scoped_string & str);
 
-string transform_to_c_arg(const char * psz);
+string transform_to_c_arg(const scoped_string & str);
 
 int create_process2(const char * _cmd_line, int * pprocessId);
 

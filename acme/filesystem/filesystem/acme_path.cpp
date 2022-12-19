@@ -56,7 +56,7 @@ string acme_path::from(string str)
 
 
 
-//bool acme_path::final_is_same(const char * pszPath1, const char * pszPath2)
+//bool acme_path::final_is_same(const scoped_string & strPath1, const scoped_string & strPath2)
 //{
 //
 //   throw ::interface_only();
@@ -192,7 +192,7 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 }
 
 
-void acme_path::create_symbolic_link(const char * pszLink, const char * pszSource)
+void acme_path::create_symbolic_link(const scoped_string & strLink, const scoped_string & strSource)
 {
    
    throw ::interface_only();
@@ -202,7 +202,7 @@ void acme_path::create_symbolic_link(const char * pszLink, const char * pszSourc
 }
 
 
-bool acme_path::is_symbolic_link(const char * pszLink)
+bool acme_path::is_symbolic_link(const scoped_string & strLink)
 {
    
    throw ::interface_only();
@@ -214,7 +214,7 @@ bool acme_path::is_symbolic_link(const char * pszLink)
 }
 
 
-::file::path acme_path::symbolic_link_destination(const char * pszLink)
+::file::path acme_path::symbolic_link_destination(const scoped_string & strLink)
 {
    
    throw ::interface_only();

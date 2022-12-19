@@ -53,7 +53,7 @@ void sleep(::u32 dwMillis)
 
 
 
-void output_debug_string(const char * psz)
+void output_debug_string(const scoped_string & str)
 {
 
    output_debug_string(psz);

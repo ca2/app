@@ -162,7 +162,7 @@ string strNow)
 
    iSelEnd = iBeg + strInsert.get_length();
 
-   const char * psz = unicode_next(strInsert);
+   const scoped_string & str = unicode_next(strInsert);
 
    if(psz == nullptr || *psz == '\0')
    {

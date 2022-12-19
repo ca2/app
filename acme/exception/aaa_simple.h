@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   ::exception(const char * pszMessage = nullptr);
+//   ::exception(const scoped_string & strMessage = nullptr);
 //   virtual ~::exception();
 //
 //

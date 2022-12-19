@@ -105,7 +105,7 @@ inline bool equal_ignore_case(const char * left, const char * right, size_t len)
 inline bool str::trimmed_is_empty(const ::string & str)
 {
 
-   const char * psz = str.c_str();
+   const scoped_string & str = str.c_str();
 
    while (true)
    {
@@ -683,7 +683,7 @@ inline bool str::namespaced(const ::ansi_character * psz, const ::ansi_character
 }
 
 
-inline bool str::begins_ci_skip(const char *& psz, const char * pszPrefix)
+inline bool str::begins_ci_skip(const char *& psz, const scoped_string & strPrefix)
 {
 
    auto length = strlen(pszPrefix);
@@ -714,7 +714,7 @@ inline const ::wide_character * str::windows_bb(const wide_string &) { return L"
 /// Returns:
 /// end of line, and;
 /// next line or null if no next line
-inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char * psz)
+inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const scoped_string & str)
 {
 
    struct ::end_of_line_and_next_line pair;

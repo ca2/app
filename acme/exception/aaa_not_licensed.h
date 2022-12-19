@@ -11,7 +11,7 @@ public:
    string      m_strUrl;      // licensing url
 
 
-   not_licensed(const char * pszRealm, const char * pszUrl);
+   not_licensed(const scoped_string & strRealm, const scoped_string & strUrl);
    virtual ~not_licensed();
 
 

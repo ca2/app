@@ -229,7 +229,7 @@ namespace fs
    //}
 
 
-   //string native::eat_end_level(const char * pszPath, i32 iCount)
+   //string native::eat_end_level(const scoped_string & strPath, i32 iCount)
    //{
 
    //   string strPath(pszPath);
@@ -248,7 +248,7 @@ namespace fs
    //}
 
 
-   //string native::file_name(const char * pszPath)
+   //string native::file_name(const scoped_string & strPath)
    //{
 
    //   return file()->name_(pszPath);
@@ -256,7 +256,7 @@ namespace fs
    //}
 
 
-   //string native::dir_path(const char * psz1, const char * psz2)
+   //string native::dir_path(const scoped_string & str1, const scoped_string & str2)
    //{
 
    //   return ::file::path(psz1) / ::file::path(psz2);

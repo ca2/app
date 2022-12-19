@@ -48,11 +48,11 @@ namespace regular_expression
       virtual void _get_range_array();
 
 
-      //virtual bool matches(const char * psz, strsize len) = 0;
+      //virtual bool matches(const scoped_string & str, strsize len) = 0;
 
       //virtual ::count match_count(const ::string & str) = 0;
 
-      //virtual ::count match_count(const char * psz, strsize len) = 0;
+      //virtual ::count match_count(const scoped_string & str, strsize len) = 0;
 
       //virtual ::pointer<::strsize_range_array>
 
@@ -60,7 +60,7 @@ namespace regular_expression
 
       //virtual ::pointer<::strsize_range_array>
 
-      //matches_ranges(const char * psz, strsize len) = 0;
+      //matches_ranges(const scoped_string & str, strsize len) = 0;
 
       //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
 

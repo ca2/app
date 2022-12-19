@@ -37,7 +37,7 @@ void unit_test___arrayStdSortTest()
 namespace acme
 {
 
-    string_array x1_decode_ida(const char * psz)
+    string_array x1_decode_ida(const scoped_string & str)
 	{
       string str(psz);
       if(str.is_empty())

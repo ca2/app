@@ -838,6 +838,7 @@
     <ClInclude Include="include\_configuration.h" />
     <ClInclude Include="include\_new.h" />
     <ClInclude Include="include\_initial_concepts.h" />
+    <ClInclude Include="include\_string.h" />
     <ClInclude Include="include\_structures.h" />
     <ClInclude Include="include\_template_inline_functions.h" />
     <ClInclude Include="include\_template_structures.h" />
@@ -1398,7 +1399,9 @@
     <ClInclude Include="primitive\string\c\_impl.h" />
     <ClInclude Include="primitive\string\c\_.h" />
     <ClInclude Include="primitive\string\encoding_exception.h" />
+    <ClInclude Include="primitive\string\Header.h" />
     <ClInclude Include="primitive\string\inline_string.h" />
+    <ClInclude Include="primitive\string\scoped_string_base.h" />
     <ClInclude Include="primitive\string\str.h" />
     <ClInclude Include="primitive\string\string_iterator.h" />
     <ClInclude Include="primitive\string\aaaa_simple_string_base.h" />
@@ -1413,6 +1416,7 @@
     <ClInclude Include="primitive\string\sz\_impl.h" />
     <ClInclude Include="primitive\string\utf8_character.h" />
     <ClInclude Include="primitive\string\_string_base_impl1.h" />
+    <ClInclude Include="primitive\string\_string_range_impl.h" />
     <ClInclude Include="primitive\time\day.h" />
     <ClInclude Include="primitive\time\floating\day.h" />
     <ClInclude Include="primitive\time\floating\time.h" />

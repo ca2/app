@@ -43,7 +43,7 @@ int debug_string_iterator()
 
 
 
-//string string_format(const char * pszFormat, ...)
+//string string_format(const scoped_string & strFormat, ...)
 //{
 //
 //   string str;
@@ -71,7 +71,7 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
 
    }
 
-   const char * psz = (const char *)p;
+   const scoped_string & str = (const char *)p;
 
    strsize i = 0;
 
@@ -93,7 +93,7 @@ CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
 
 
 
-CLASS_DECL_ACME string demangle(const char * psz);
+CLASS_DECL_ACME string demangle(const scoped_string & str);
 
 CLASS_DECL_ACME void copy(::string & str, const particle & particle)
 {

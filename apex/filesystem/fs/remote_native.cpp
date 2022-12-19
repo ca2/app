@@ -15,7 +15,7 @@ namespace fs
 {
 
 
-   remote_native::remote_native(const char * pszRoot)
+   remote_native::remote_native(const scoped_string & strRoot)
    {
 
       m_strRoot = pszRoot;

@@ -87,7 +87,7 @@ namespace filemanager
    bool is_valid_manager_id(const ::string & strParam)
    {
 
-      const char * psz = strParam;
+      const scoped_string & str = strParam;
 
       ::count c = 0;
 
@@ -130,7 +130,7 @@ namespace filemanager
    bool is_valid_filemanager_project_entry(const ::string & strParam)
    {
 
-      const char * psz = strParam;
+      const scoped_string & str = strParam;
 
       ::count c = 0;
 

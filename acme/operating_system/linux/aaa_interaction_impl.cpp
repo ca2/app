@@ -9,7 +9,7 @@
 #define TEST 0
 
 
-void x11_store_name(oswindow oswindow, const char * pszName);
+void x11_store_name(oswindow oswindow, const scoped_string & strName);
 void x11_defer_check_configuration(oswindow oswindow);
 void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra);
 #undef ALOG_CONTEXT
@@ -22,7 +22,7 @@ void wm_iconify_window(oswindow w);
 
 void wm_state_above_raw(oswindow w, bool bSet);
 
-void windowing_output_debug_string(const char * pszDebugString);
+void windowing_output_debug_string(const scoped_string & strDebugString);
 
 Display * x11_get_display();
 
@@ -1796,7 +1796,7 @@ namespace linux
          return ::linux::interaction_impl::from_handle(hWnd);
       }
    */
-//   i32 interaction_impl::message_box(const char * pszText, const char * pszcaption, ::u32 nType)
+//   i32 interaction_impl::message_box(const scoped_string & strText, const scoped_string & strcaption, ::u32 nType)
 //   {
 //
 //      string strCaption;
@@ -2189,7 +2189,7 @@ namespace linux
 //   bool gen_GotScrollLines;
 //
 //
-//   void interaction_impl::OnSettingChange(::u32 uFlags, const char * pszSection)
+//   void interaction_impl::OnSettingChange(::u32 uFlags, const scoped_string & strSection)
 //
 //   {
 //
@@ -3177,7 +3177,7 @@ namespace linux
 //   }
 //
 
-   void interaction_impl::set_window_text(const char * pszString)
+   void interaction_impl::set_window_text(const scoped_string & strString)
 
    {
 
@@ -3977,7 +3977,7 @@ namespace linux
 //
 //   }
 //
-//   void interaction_impl::SetDlgItemText(i32 nID, const char * pszString)
+//   void interaction_impl::SetDlgItemText(i32 nID, const scoped_string & strString)
 //
 //   {
 //
@@ -4604,7 +4604,7 @@ namespace linux
 //   { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
 //   bool frame_window::InModalState() const
 //   { return m_cModalStack != 0; }
-//   void frame_window::set_title(const char * pszTitle)
+//   void frame_window::set_title(const scoped_string & strTitle)
 //
 //   { m_strTitle = pszTitle; }
 //

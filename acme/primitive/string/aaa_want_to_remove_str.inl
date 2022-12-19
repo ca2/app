@@ -21,7 +21,7 @@ inline void std_string_assign(string_base & t, const bstring * pbstr)
 
 
 template < >
-inline void std_string_assign(stdstring < memory > & t, const char * psz)
+inline void std_string_assign(stdstring < memory > & t, const scoped_string & str)
 {
    t.assign(psz);
 }

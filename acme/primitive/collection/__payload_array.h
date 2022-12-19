@@ -31,7 +31,7 @@ public:
    index append(const std::initializer_list < ::payload > & list);
 
    inline index add(const ::string & str) { return add((const ::payload &) str); }
-   inline index add(const char * psz) { return add((const string &) psz); }
+   inline index add(const scoped_string & str) { return add((const string &) psz); }
 
    inline index add(i8 i) { return add((const ::payload &) i); }
    inline index add(u8 u) { return add((const ::payload &) u); }
@@ -44,11 +44,11 @@ public:
 
    ::count append_unique(const payload_array & payloada);
 
-   string implode(const char * pszGlue) const;
+   string implode(const scoped_string & strGlue) const;
 
 
-   index find_first_ci(const char * psz, index find = 0, index last = -1) const;
-   index find_first(const char * psz, index find = 0, index last = -1) const;
+   index find_first_ci(const scoped_string & str, index find = 0, index last = -1) const;
+   index find_first(const scoped_string & str, index find = 0, index last = -1) const;
    index find_first(const ::payload & payload, index find = 0, index last = -1) const;
 
    bool contains_ci(const char * pcsz, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
@@ -98,9 +98,9 @@ public:
 
 
    void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const char * pszEnd);
+   void parse_network_payload(const char * & pszJson, const scoped_string & strEnd);
 
-   void find_network_payload_child(const char * & pszJson, const char * pszEnd, const ::payload & payload);
+   void find_network_payload_child(const char * & pszJson, const scoped_string & strEnd, const ::payload & payload);
 
 
    string & get_network_payload(string & str, bool bNewLine = true) const;
@@ -179,7 +179,7 @@ inline std::strong_ordering payload_array::case_insensitive_order(const ::payloa
 
 
 CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson, const scoped_string & strEnd);
 
 
 inline ::payload payload_array::value_at(::index i) const

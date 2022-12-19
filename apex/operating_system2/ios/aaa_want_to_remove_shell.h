@@ -251,7 +251,7 @@ namespace ios
        
        
        // xxx    static WH_SHSTDAPI(::u32) SHGetFileInfo(
-       // xxx       const char * pszPath,
+       // xxx       const scoped_string & strPath,
        // xxx       ::u32 dwFileAttributes,
        // xxx       SHFILEINFO *psfi,
        // xxx       ::u32 cbFileInfo,

@@ -44,7 +44,7 @@
 //   bstring(const bstring& str, strsize pos, strsize len = -1);
 //
 //
-//   bstring(const char * psz);
+//   bstring(const scoped_string & str);
 //
 //
 //   bstring(const void * p, strsize start, strsize end);
@@ -103,13 +103,13 @@
 //   void allocate_add_up(strsize s);
 //   void free();
 //
-//   void append(const char * psz);
+//   void append(const scoped_string & str);
 //
 //   void append(const bstring & bstr);
 //
 //   void assign(const bstring & bstr);
 //
-//   void assign(const char * psz)
+//   void assign(const scoped_string & str)
 //   {
 //
 //      assign(psz, strlen(psz) + 1);
@@ -180,7 +180,7 @@
 //   bstring operator + (char ch) const;
 //
 //
-//   bstring operator + (const char * psz) const;
+//   bstring operator + (const scoped_string & str) const;
 //
 //
 //   bstring operator + (const bstring & bstr) const;
@@ -189,7 +189,7 @@
 //   bstring & operator += (char ch);
 //
 //
-//   bstring & operator += (const char * psz);
+//   bstring & operator += (const scoped_string & str);
 //
 //
 //   bstring & operator += (const ::string & str);
@@ -225,25 +225,25 @@
 //   bool empty() const;
 //
 //
-//   int compare(const char * psz) const;
+//   int compare(const scoped_string & str) const;
 //
 //
-//   bool operator == (const char * psz) const;
+//   bool operator == (const scoped_string & str) const;
 //
 //
-//   bool operator != (const char * psz) const;
+//   bool operator != (const scoped_string & str) const;
 //
 //
-//   bool operator <= (const char * psz) const;
+//   bool operator <= (const scoped_string & str) const;
 //
 //
-//   bool operator < (const char * psz) const;
+//   bool operator < (const scoped_string & str) const;
 //
 //
-//   bool operator >= (const char * psz) const;
+//   bool operator >= (const scoped_string & str) const;
 //
 //
-//   bool operator > (const char * psz) const;
+//   bool operator > (const scoped_string & str) const;
 //
 //
 //   int compare(const bstring & bstr) const;

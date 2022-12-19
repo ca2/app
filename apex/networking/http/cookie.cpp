@@ -183,7 +183,7 @@ namespace http
    }
 
 
-   void cookies::add(const char * psz)
+   void cookies::add(const scoped_string & str)
    {
       ::pointer<class cookie> cookie(__new(class cookie));
       cookie->m_bSecure = false;
@@ -193,12 +193,12 @@ namespace http
       i32 i = 0;
       while(bRun)
       {
-         const char * pszEnd = strchr(psz, ';');
+         const scoped_string & strEnd = strchr(psz, ';');
          bRun = pszEnd != nullptr;
          if(!bRun)
             pszEnd = psz + strlen(psz);
 
-         const char * pszEqual = strchr(psz, '=');
+         const scoped_string & strEqual = strchr(psz, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
@@ -338,16 +338,16 @@ namespace http
 
 
 
-   void cookies::parse_header(const char * psz)
+   void cookies::parse_header(const scoped_string & str)
    {
 
       if(psz == nullptr)
          return;
 
       string_array stra;
-      const char * pszParam = psz;
-      const char * pszParamEnd;
-      const char * pszKeyEnd;
+      const scoped_string & strParam = psz;
+      const scoped_string & strParamEnd;
+      const scoped_string & strKeyEnd;
       class cookie ca;
       while(true)
       {

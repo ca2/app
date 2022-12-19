@@ -238,7 +238,7 @@ namespace app_core_build
 void hellomultiverse_debugging()
 {
 
-   const char * pszFree;
+   const scoped_string & strFree;
 
    {
 

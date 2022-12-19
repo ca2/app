@@ -220,4 +220,4 @@
 
 // }
 
-// void ns_log(const char * pszLog);
+// void ns_log(const scoped_string & strLog);

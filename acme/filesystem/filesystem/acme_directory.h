@@ -185,8 +185,8 @@ public:
          virtual void erase(const char* path);
 
 
-         //virtual void enumerate_recursively(::file::path_array & stra, const char * psz);
-         //virtual void enumerate_recursively_directory(::file::path_array & stra, const char * psz);
+         //virtual void enumerate_recursively(::file::path_array & stra, const scoped_string & str);
+         //virtual void enumerate_recursively_directory(::file::path_array & stra, const scoped_string & str);
 
          //bool _enumerates(::file::listing & listing) override;
          
@@ -202,17 +202,17 @@ public:
 
          //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_directory(::file::path_array & stra, const char * psz, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_file(::file::path_array & stra, const char * psz, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_directory(::file::path_array & stra, const scoped_string & str, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_file(::file::path_array & stra, const scoped_string & str, enum_depth edepth = e_depth_none);
 
-         virtual int make_path(const char * psz);
+         virtual int make_path(const scoped_string & str);
 
 
          /*namespace dir
          {*/
 
 
-            //virtual string name(const char * pszPath);
+            //virtual string name(const scoped_string & strPath);
             //virtual bool mk(const ::string & strPath);
             //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool is(const char * path);
@@ -233,7 +233,7 @@ public:
          //} // namespace dir
 
    virtual string get_current();
-   virtual void change_current(const char * psz);
+   virtual void change_current(const scoped_string & str);
    virtual void change_to_home();
 
 

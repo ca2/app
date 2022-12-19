@@ -12,7 +12,7 @@
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, float & f) { s.default_exchange(atom, f); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, double & d) { s.default_exchange(atom, d); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::earth::time & time) { s.default_exchange(atom, time.m_iSecond); }
-//inline void __var_exchange(payload_stream & s, const ::atom & atom, const char * psz) { s.write_only(atom, psz); }
+//inline void __var_exchange(payload_stream & s, const ::atom & atom, const scoped_string & str) { s.write_only(atom, psz); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, string & str) { s.default_exchange(atom, str); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::file::path & path) { s.default_exchange(atom, path); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::atom & idId) { s.default_exchange(atom, idId); }
@@ -39,7 +39,7 @@
 //inline void __exchange(::payload_stream& s, float& f) { s.default_exchange(f); }
 //inline void __exchange(::payload_stream& s, double& d) { s.default_exchange(d); }
 //inline void __exchange(::payload_stream& s, ::earth::time& time) { s.default_exchange(time.m_i); }
-//inline void __exchange(::payload_stream& s, const char* psz) { s.write_only(psz); }
+//inline void __exchange(::payload_stream& s, const scoped_string & str) { s.write_only(psz); }
 //inline void __exchange(::payload_stream& s, string& str) { s.default_exchange(str); }
 //inline void __exchange(::payload_stream& s, ::file::path& path) { s.default_exchange(path); }
 //inline void __exchange(::payload_stream& s, ::atom& atom) { s.default_exchange(atom); }

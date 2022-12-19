@@ -188,7 +188,7 @@ void task::post_request(::request* prequest)
 }
 
 
-bool task::task_set_name(const char* pszTaskName)
+bool task::task_set_name(const scoped_string & strTaskName)
 {
    
    if(::get_current_itask() == m_itask)
@@ -1550,7 +1550,7 @@ bool task::task_sleep(const class time & timeWait)
 
 
 //
-//bool task::task_set_name(const char* pszThreadName)
+//bool task::task_set_name(const scoped_string & strThreadName)
 //{
 //
 //   if (!::task_set_name(m_htask, pszThreadName))

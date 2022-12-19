@@ -13,7 +13,7 @@ enum enum_start_reference
 };
 
 
-inline ::string ellipsis(const char* psz, strsize len)
+inline ::string ellipsis(const ::ansi_character * psz, strsize len)
 {
 
    auto lenTotal = string_safe_length(psz, len);
@@ -34,7 +34,7 @@ inline ::string ellipsis(const char* psz, strsize len)
 }
 
 
-inline ::u64 consume_natural(const char*& psz, const char* pszBegin, int iRadix = 10)
+inline ::u64 consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;
@@ -62,7 +62,7 @@ inline ::u64 consume_natural(const char*& psz, const char* pszBegin, int iRadix 
 }
 
 
-inline ::i64 consume_integer(const char * & psz, const char * pszBegin, int iRadix = 10)
+inline ::i64 consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;
@@ -90,7 +90,7 @@ inline ::i64 consume_integer(const char * & psz, const char * pszBegin, int iRad
 }
 
 
-inline ::f64 consume_floating(const char*& psz, const char* pszBegin, int iRadix = 10)
+inline ::f64 consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;
@@ -196,7 +196,7 @@ public:
    void write_number(NUMBER number) { print(as_string(number)); }
    
    template < primitive_number NUMBER >
-   void write_number(NUMBER number, const char * pszFormat) { print(as_string(number, pszFormat)); }
+   void write_number(NUMBER number, const ::ansi_character * pszFormat) { print(as_string(number, pszFormat)); }
 
    /*template < typename TYPE >
    void number_exchange(TYPE& t)
@@ -250,7 +250,7 @@ public:
    template < typename TYPE >
    void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
-   void append_format(const char* pszFormat, ...)
+   void append_format(const ::ansi_character * pszFormat, ...)
    {
 
       ::string strText;
@@ -545,7 +545,7 @@ public:
    // void write(const SIZE_I32 & size) ;
    // void write(const ::rectangle_i32 &rectangle) ;
 
-   write_text_stream& operator <<(const char* psz)
+   write_text_stream& operator <<(const ::ansi_character * psz)
    {
 
       if (m_fmtflags & ::file::network_payload)
@@ -712,7 +712,7 @@ public:
    const char* m_pszBegin;
 
 
-   read_sz_stream(const char * psz, const char* pszBegin = nullptr);
+   read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin = nullptr);
    read_sz_stream(const read_sz_stream& stream) = delete;
    ~read_sz_stream();
 
@@ -759,14 +759,14 @@ public:
    }
 
 
-   ::string get_word(const char* pszBreakCharacters = " \n\t\r,;")
+   ::string get_word(const ::ansi_character * pszBreakCharacters = " \n\t\r,;")
    {
 
       return read_span_excluding(pszBreakCharacters);
 
    }
 
-   ::string read_span_excluding(const char * pszBreakCharacters)
+   ::string read_span_excluding(const ::ansi_character * pszBreakCharacters)
    {
 
       auto size = string_span_excluding(m_psz, pszBreakCharacters);
@@ -800,7 +800,7 @@ public:
 //   // void write(const SIZE_I32 & size) ;
 //   // void write(const ::rectangle_i32 &rectangle) ;
 //
-//   text_stream& operator <<(const char* psz);
+//   text_stream& operator <<(const ::ansi_character * psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
 //   text_stream& operator <<(const ::string& str);
 //   //text_stream & operator <<(const property_set& set) ;
@@ -1460,7 +1460,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 
 
 //template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(const char* psz)
+//text_stream < FILE >& text_stream < FILE >::operator <<(const ::ansi_character * psz)
 //{
 //
 //   if (::is_null(psz))
@@ -1840,7 +1840,7 @@ inline auto __text_stream(const ::pointer<FILE>& pfile)
 }
 
 
-inline read_sz_stream::read_sz_stream(const char* psz, const char * pszBegin) :
+inline read_sz_stream::read_sz_stream(const ::ansi_character * psz, const ::ansi_character * pszBegin) :
    m_psz(psz),
    m_pszBegin(!pszBegin ? psz : pszBegin)
 {

@@ -12,7 +12,7 @@
 #include <CoreGraphics/CoreGraphics.h>
 
 
-void throw_ns_exception(enum_status estatus, const char * pszName, const char * pszDescription, const ::property_set & propertyset);
+void throw_ns_exception(enum_status estatus, const scoped_string & strName, const scoped_string & strDescription, const ::property_set & propertyset);
 
 
 void copy(CGRect & rectTarget, const RECTANGLE_I32 & rectSource);

@@ -12,7 +12,7 @@ namespace aura
    bool strn::to(const ::string & psz, i32 iLen, i64 & i)
    {
 
-      const char * pszEnd;
+      const scoped_string & strEnd;
 
       i64 iConversion = ::ansi_count_to_i64(psz, &pszEnd, 10, iLen);
 
@@ -51,7 +51,7 @@ namespace aura
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      const char * pszEnd;
+      const scoped_string & strEnd;
 
       i64 iConversion = ::ansi_count_to_i64(psz, &pszEnd, iBase, iLen);
 
@@ -70,7 +70,7 @@ namespace aura
       if(iBase < 0 || iBase == 1 || iBase > 36)
          return false;
 
-      const char * pszEnd;
+      const scoped_string & strEnd;
 
       i64 iConversion = ::ansi_count_to_i64(psz, &pszEnd, iBase, iLen);
 

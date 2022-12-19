@@ -9,12 +9,12 @@
 #pragma once
 
 
-void * get_thread_ptr(const char * pszKey);
-void set_thread_ptr(const char * pszKey, const void * p);
+void * get_thread_ptr(const scoped_string & strKey);
+void set_thread_ptr(const scoped_string & strKey, const void * p);
 
 
-int get_thread_int(const char * pszKey);
-void set_thread_int(const char * pszKey, int i);
+int get_thread_int(const scoped_string & strKey);
+void set_thread_int(const scoped_string & strKey, int i);
 
 
 i32 process_get_os_priority(i32 nCa2Priority);

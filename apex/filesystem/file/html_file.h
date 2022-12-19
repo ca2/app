@@ -37,7 +37,7 @@ public:
 
 #else
 
-   void trace(void *,const char * psz);
+   void trace(void *,const scoped_string & str);
 
 
    inline void printf(const char *pszFmt) const
@@ -50,7 +50,7 @@ public:
    }
 
    template<typename T,typename... Args>
-   inline void printf(const char * pszFmt,const T & value,Args... args) const
+   inline void printf(const scoped_string & strFmt,const T & value,Args... args) const
    {
 
       string_format format(this,&::html_file::trace,nullptr);

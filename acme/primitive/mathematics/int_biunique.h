@@ -473,7 +473,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //         m.set_at(key, value);
 //      }
 //   }
-//   catch(const char * psz)
+//   catch(const scoped_string & str)
 //   {
 //      m.erase_all();
 //      throw ::exception(psz);
@@ -535,7 +535,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //         stream >> biunique.m_ba;
 //      }
 //   }
-//   catch (const char * psz)
+//   catch (const scoped_string & str)
 //   {
 //      biunique.m_ab.erase_all();
 //      biunique.m_ba.erase_all();

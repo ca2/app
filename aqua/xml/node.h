@@ -84,7 +84,7 @@ namespace xml
    protected:
 
 
-      virtual void _load(const char * & pszNext, const char * pszXml, const char * pszEndXml, parse_info * pi = nullptr);
+      virtual void _load(const char * & pszNext, const scoped_string & strXml, const scoped_string & strEndXml, parse_info * pi = nullptr);
 
 
    public:
@@ -93,18 +93,18 @@ namespace xml
       string get_xml(disp_option * opt = nullptr) const;
       string get_text(disp_option * opt = nullptr) const;
 
-      bool consume(const char * & pszXml, const char * psz);
+      bool consume(const char * & pszXml, const scoped_string & str);
       bool consume_whitespaces(const char * & pszXml, i32 iMinimumCount = 1);
 
-      const char * LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo = nullptr);
+      const char * LoadOtherNodes(bool* pbRet, const scoped_string & strXml, parse_info * pparseinfo = nullptr);
 
       // internal load functions
-      const char *   LoadAttributes( const char * pszAttrs, parse_info * pi = nullptr);
-      const char *   LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pi = nullptr);
-      const char *   LoadProcessingInstruction( const char * pszXml, parse_info * pi = nullptr);
-      const char *   LoadDocType( const char * pszXml, parse_info * pi = nullptr);
-      const char *   LoadComment( const char * pszXml, parse_info * pi = nullptr);
-      const char *   LoadCDATA( const char * pszXml, parse_info * pi = nullptr);
+      const char *   LoadAttributes( const scoped_string & strAttrs, parse_info * pi = nullptr);
+      const char *   LoadAttributes( const scoped_string & strAttrs, const scoped_string & strEnd, parse_info * pi = nullptr);
+      const char *   LoadProcessingInstruction( const scoped_string & strXml, parse_info * pi = nullptr);
+      const char *   LoadDocType( const scoped_string & strXml, parse_info * pi = nullptr);
+      const char *   LoadComment( const scoped_string & strXml, parse_info * pi = nullptr);
+      const char *   LoadCDATA( const scoped_string & strXml, parse_info * pi = nullptr);
 
       
       node *                  get_child( const char * name);
@@ -115,11 +115,11 @@ namespace xml
       void                    get_indexed_path(index_array & iaPath) const;
       node *                  get_node_from_simple_path(const char * path);
       node *                  get_node_from_indexed_path(const index_array & ia);
-      node *                  get_node_from_attr_path(const char * path, const char * lpszName, const char * pszAttr);
+      node *                  get_node_from_attr_path(const char * path, const char * lpszName, const scoped_string & strAttr);
       index_array             get_child_indexed_path(const node * pnode) const;
       void                    get_child_indexed_path(index_array & iaPath, const node * pnode) const;
       string                  get_child_simple_path(const node * pnode) const;
-      string                  get_child_simple_attr_path(node * pnode, const char * pszAttr);
+      string                  get_child_simple_attr_path(node * pnode, const scoped_string & strAttr);
       node *                  get_child(const char * name, index & iStartPosition);
       string                  get_child_value(const char * name);
       string                  get_child_text(const char * name, disp_option * opt = nullptr);
@@ -129,24 +129,24 @@ namespace xml
 
       ::property *            GetChildAttr(const char * name, const char * attrname);
       string                  GetChildAttrValue(const char * name, const char * attrname);
-      node *                  GetChildByAttr(const char * lpszName, const char * pszAttrName, const char * pszAttrValue);
+      node *                  GetChildByAttr(const char * lpszName, const scoped_string & strAttrName, const scoped_string & strAttrValue);
       node *                  GetChildByAnyAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
       node *                  GetChildByAllAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
 
       node * get_child_at( index iIndex);
       node * get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
       node * get_child_at_grow(const char* lpszName, index iIndex);
-      ::count get_child_attr_value(string_array & stra, const char * lpszName, const char * pszAttrName, index iDepth = 1);
-      ::count erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
+      ::count get_child_attr_value(string_array & stra, const char * lpszName, const scoped_string & strAttrName, index iDepth = 1);
+      ::count erase_child_with_attr(const char * lpszName, const scoped_string & strAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
 
       // search node
       node *                  rear_find( const char * name, i32 iDepth = -1);
       node *                  rear_find(const char * pcszName, const property_set & set, index iDepth = -1);
       
-      index find_child_with_name_and_value(const char * pszName, const char * pszValue);
-      node * child_with_name_and_value(const char * pszName, const char * pszValue);
+      index find_child_with_name_and_value(const scoped_string & strName, const scoped_string & strValue);
+      node * child_with_name_and_value(const scoped_string & strName, const scoped_string & strValue);
 
-      string plist_get(const char * pszKey);
+      string plist_get(const scoped_string & strKey);
 
       // modify DOM
       ::count get_children_count();

@@ -148,7 +148,7 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 }
 
 
-CLASS_DECL_ACME::u32 __u32_hash(const char * psz)
+CLASS_DECL_ACME::u32 __u32_hash(const scoped_string & str)
 {
 
    ::u32 u = 0;

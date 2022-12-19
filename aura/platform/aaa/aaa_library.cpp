@@ -14,7 +14,7 @@ namespace aura
 {
 
 
-   const char * psz_empty_app_id = "";
+   const scoped_string & str_empty_app_id = "";
 
 
    void     library::initialize(::particle * pparticle)

@@ -57,7 +57,7 @@ public:
    Atom get_window_long_atom(i32 nIndex);
 
 
-   Atom intern_atom(const char * pszAtomName, bool bCreate);
+   Atom intern_atom(const scoped_string & strAtomName, bool bCreate);
 
    Atom intern_atom(e_net_wm_state estate, bool bCreate);
 

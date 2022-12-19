@@ -220,7 +220,7 @@
 //#ifndef WINDOWS
 //
 //
-//bool context::_os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+//bool context::_os_resolve_alias(::file::path & path, const scoped_string & str, bool bNoUI, bool bNoMount)
 //{
 //
 //   if (::is_null(psz))
@@ -271,7 +271,7 @@
 //#endif
 
 
-// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const scoped_string & str, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -280,7 +280,7 @@
 
 
 
-// CLASS_DECL_ACME bool _os_may_have_alias(const char * psz)
+// CLASS_DECL_ACME bool _os_may_have_alias(const scoped_string & str)
 // {
 
 //    return true;

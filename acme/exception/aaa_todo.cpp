@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-todo::todo(const char * pszMessage) :
+todo::todo(const scoped_string & strMessage) :
    not_implemented(pszMessage)
 {
 

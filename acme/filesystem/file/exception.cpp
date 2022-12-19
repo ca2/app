@@ -98,7 +98,7 @@ namespace file
 
          //m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0 && !(m_eopen & ::file::e_open_no_callstack);
 
-         const char* psz = ::file::status_short_description(estatus);
+         const scoped_string & str = ::file::status_short_description(estatus);
 
          if (psz == NULL)
          {
@@ -420,7 +420,7 @@ namespace file
 //
 //#ifdef __DEBUG
 //
-//      const char* psz = ::file:status_short_description(estatus);
+//      const scoped_string & str = ::file:status_short_description(estatus);
 //
 //      string strFormat;
 //
@@ -439,7 +439,7 @@ namespace file
 //   }
 
 
-   //void throw ::file::exception(errno_status(errno), (i32 nErrno, const char* pszFileName /* = nullptr */)
+   //void throw ::file::exception(errno_status(errno), (i32 nErrno, const scoped_string & strFileName /* = nullptr */)
 
    //{
 

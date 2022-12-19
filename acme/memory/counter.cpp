@@ -78,7 +78,7 @@ void memory_counter::initialize(::particle * pparticle)
 //
 //
 
-void memory_counter::increment_by_name(const char* psz)
+void memory_counter::increment_by_name(const scoped_string & str)
 {
 
    critical_section_lock lock(&m_criticalsection);
@@ -88,7 +88,7 @@ void memory_counter::increment_by_name(const char* psz)
 }
 
 
-void memory_counter::decrement_by_name(const char* psz)
+void memory_counter::decrement_by_name(const scoped_string & str)
 {
 
    critical_section_lock lock(&m_criticalsection);

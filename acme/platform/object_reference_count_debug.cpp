@@ -57,7 +57,7 @@ string object_name(matter* p)
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
-void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
+void matter::add_ref_history(matter* p, const scoped_string & strObjRefDbg)
 {
 
    if (!::acme::g_bAcme)

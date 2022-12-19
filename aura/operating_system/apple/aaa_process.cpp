@@ -214,7 +214,7 @@ namespace apple
 
          int iPrevious = -1;
 
-         const char * psz;
+         const scoped_string & str;
 
          while((psz = environ[i]) != nullptr)
          {

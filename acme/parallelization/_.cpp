@@ -458,7 +458,7 @@ bool isvowel_dup(int i)
 }
 
 
-string _001OnlyAlnumString(const char * psz)
+string _001OnlyAlnumString(const scoped_string & str)
 {
 
    string strOnlyAlnum;
@@ -482,7 +482,7 @@ string _001OnlyAlnumString(const char * psz)
 }
 
 
-string _001OnlyAlnumNonVowelString(const char * psz)
+string _001OnlyAlnumNonVowelString(const scoped_string & str)
 {
 
    string strOnlyAlnum;

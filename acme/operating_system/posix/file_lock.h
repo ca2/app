@@ -20,11 +20,11 @@ namespace file_lock
 
 
       file_lock();
-      file_lock(const char * pszName);
+      file_lock(const scoped_string & strName);
       ~file_lock();
 
 
-      bool set_name(const char * pszName);
+      bool set_name(const scoped_string & strName);
 
 
       bool is_active();

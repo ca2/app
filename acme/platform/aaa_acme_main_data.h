@@ -55,7 +55,7 @@ public:
 
 #else
 
-   void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
+   void system_construct(const scoped_string & strCommandLine, const ::e_display & edisplay = ::e_display_none);
 
 #endif
 

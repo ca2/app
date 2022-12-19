@@ -81,7 +81,7 @@
 //      virtual itask_t get_thread_id();
 //      
 //      
-////      virtual ::pointer<::user::printer>get_printer(const char * pszDeviceName);
+////      virtual ::pointer<::user::printer>get_printer(const scoped_string & strDeviceName);
 //
 //       string draw2d_get_default_library_name();
 //      string multimedia_audio_mixer_get_default_library_name();

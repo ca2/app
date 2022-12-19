@@ -191,7 +191,7 @@ inline  ::wd32_character * next_char(const ::wd32_character *& p)
 
 
 
-CLASS_DECL_ACME string string_format(const char * pszFormat, ...);
+CLASS_DECL_ACME string string_format(const scoped_string & strFormat, ...);
 
 
 

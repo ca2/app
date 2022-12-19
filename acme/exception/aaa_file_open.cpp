@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-file_open_exception::file_open_exception(::e_status estatus, const char* pszMessage, i32 iSkip) :
+file_open_exception::file_open_exception(::e_status estatus, const scoped_string & strMessage, i32 iSkip) :
    ::exception(estatus, pszMessage, nullptr, iSkip)
 {
 

@@ -13,7 +13,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 
 
 
-//CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char* psz)
+//CLASS_DECL_ACME void throw_what_exclamation_exclamation(const scoped_string & str)
 //{
 //
 //   throw what_exclamation_exclamation(psz);
@@ -24,7 +24,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 
 
-//assert_exception::assert_exception(const char * pszFile, long lLine)
+//assert_exception::assert_exception(const scoped_string & strFile, long lLine)
 //{
 //
 //
@@ -41,7 +41,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 //
 //
-//misc_exception::misc_exception(const char * pszMessage) :
+//misc_exception::misc_exception(const scoped_string & strMessage) :
 //   ::exception(pszMessage)
 //{
 //

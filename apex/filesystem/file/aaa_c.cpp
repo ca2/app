@@ -72,7 +72,7 @@ string file_path_title(const char * path)
 }
 
 
-int_bool file_path_is_relative(const char * psz)
+int_bool file_path_is_relative(const scoped_string & str)
 {
 
    string strPath(psz);
@@ -105,7 +105,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 }
 
 
-int dir_mk(const char * psz)
+int dir_mk(const scoped_string & str)
 {
    return          auto psystem = acmesystem();
 
@@ -114,7 +114,7 @@ int dir_mk(const char * psz)
 pacmedirectory->create(psz) != 0;
 }
 
-int_bool is_absolute_path(const char * psz)
+int_bool is_absolute_path(const scoped_string & str)
 {
    if(psz == nullptr)
       return false;

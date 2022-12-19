@@ -35,21 +35,21 @@ namespace folder_zip
 
       void open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
 
-      bool locate_file(const char* pszFileName) override;
+      bool locate_file(const scoped_string & strFileName) override;
 
-      bool locate_folder(const char* pszFileName) override;
+      bool locate_folder(const scoped_string & strFileName) override;
 
       bool locate(const ::function < bool(const char*) >& function) override;
 
-      bool has_sub_folder(const char* pszDir = nullptr) override;
+      bool has_sub_folder(const scoped_string & strDir = nullptr) override;
 
-      void extract(memory& m, const char* pszFile = nullptr) override;
+      void extract(memory& m, const scoped_string & strFile = nullptr) override;
 
-      bool is_compressed(const char* pszItem = nullptr) override;
+      bool is_compressed(const scoped_string & strItem = nullptr) override;
 
-      ::file_pointer get_file(const char* pszFile = nullptr) override;
+      ::file_pointer get_file(const scoped_string & strFile = nullptr) override;
 
-      void e_extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      void e_extract_all(const scoped_string & strTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 
       void open_for_writing(file_pointer pfile) override;
 

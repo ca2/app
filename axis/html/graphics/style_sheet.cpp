@@ -40,18 +40,18 @@ namespace html
    void style_sheet::parse(html_data * pdata, const ::string & strParam)
    {
 
-      const char * psz = strParam;
+      const scoped_string & str = strParam;
 
       while(*psz != '\0')
       {
-         const char * pszStart = psz;
+         const scoped_string & strStart = psz;
          while(*psz != '{' && *psz != '\0')
          {
             psz++;
          }
          if(*psz == '\0')
             return;
-         const char * pszRestart = psz + 1;
+         const scoped_string & strRestart = psz + 1;
          string str(pszStart, psz - pszStart);
          str.trim();
          if(str.get_length() <= 0)

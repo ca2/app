@@ -7,7 +7,7 @@
 #if !defined(WINDOWS)
 
 
-int_bool file_path_is_link(const char * pszPath)
+int_bool file_path_is_link(const scoped_string & strPath)
 {
 
    struct stat stat;
@@ -36,7 +36,7 @@ int_bool file_path_is_link(const char * pszPath)
 #endif
 
 
-void file_put_contents_raw(const char * path, const char * psz)
+void file_put_contents_raw(const char * path, const scoped_string & str)
 {
 
    FILE * f = fopen(path, "wb");
@@ -52,7 +52,7 @@ void file_put_contents_raw(const char * path, const char * psz)
 
 }
 
-void file_add_contents_raw(const char * path, const char * psz)
+void file_add_contents_raw(const char * path, const scoped_string & str)
 {
 
    FILE * f = fopen(path, "ab");
@@ -69,7 +69,7 @@ void file_add_contents_raw(const char * path, const char * psz)
 }
 
 
-void file_beg_contents_raw(const char * path, const char * psz)
+void file_beg_contents_raw(const char * path, const scoped_string & str)
 {
 
    FILE * f = fopen(path, "rb+");

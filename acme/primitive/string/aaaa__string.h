@@ -25,7 +25,7 @@
 ////CLASS_DECL_ACME ::string as_string(const ::wide_character & widech);
 //
 //
-////CLASS_DECL_ACME ::string as_string(const char * psz);
+////CLASS_DECL_ACME ::string as_string(const scoped_string & str);
 ////CLASS_DECL_ACME ::string as_string(char * const psz);
 ////
 ////

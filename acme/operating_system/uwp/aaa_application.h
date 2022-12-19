@@ -198,7 +198,7 @@
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual u32 get_thread_id();
 //
-//      //::pointer<::user::printer>get_printer(const char * pszDeviceName);
+//      //::pointer<::user::printer>get_printer(const scoped_string & strDeviceName);
 //
 //
 //      void show_wait_cursor(bool bShow);

@@ -6,7 +6,7 @@ namespace multimedia
 {
 
 
-   exception::exception(enum_exception eexception, const ::e_status & estatus, const char * pszMessage) :
+   exception::exception(enum_exception eexception, const ::e_status & estatus, const scoped_string & strMessage) :
       ::exception(estatus, pszMessage)
    {
 
@@ -16,7 +16,7 @@ namespace multimedia
    }
 
 
-   //::exception(e_exception eexception, const ::e_status & estatus, void     estatusSecond, const char * pszMessage) :
+   //::exception(e_exception eexception, const ::e_status & estatus, void     estatusSecond, const scoped_string & strMessage) :
    //   ::exception(pszMessage, estatus)
    //{
 

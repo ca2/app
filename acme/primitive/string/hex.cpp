@@ -100,10 +100,10 @@ namespace hex
 {
 
 
-   u16 parse_u16_exc(const char *& psz, const char * pszEnd)
+   u16 parse_u16_exc(const char *& psz, const scoped_string & strEnd)
    {
       string strUni;
-      const char * pszNext = psz;
+      const scoped_string & strNext = psz;
       for (index i = 0; i < 4; i++)
       {
          psz = pszNext;

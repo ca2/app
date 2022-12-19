@@ -92,7 +92,7 @@ namespace hi5
 
       bool getStringFromOAuthKeyValuePairs( const oAuthKeyValuePairs& rawParamMap, /* in */
                                             string& rawParams, /* out */
-                                            const char * pszSeparator /* in */ );
+                                            const scoped_string & strSeparator /* in */ );
 
       bool getSignature( const eOAuthHttpRequestType eType, /* in */
                          const string& rawUrl, /* in */

@@ -44,7 +44,7 @@ size_t get_file_size(int32_t fd)
 
 
 
-int_bool file_set_length(const char * pszName, size_t iSize)
+int_bool file_set_length(const scoped_string & strName, size_t iSize)
 {
 
    int32_t fd = ::open(pszName, O_RDONLY);
@@ -272,7 +272,7 @@ string file_module_path_dup()
 
 
 extern "C"
-int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
+int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
 {
 
    int32_t input, output;
@@ -333,7 +333,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 
 
 
-int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
+int_bool file_is_equal_path_dup(const scoped_string & str1, const scoped_string & str2)
 {
    if(stricmp_dup(psz1, psz2) == 0)
       return true;
@@ -371,7 +371,7 @@ int_bool file_delete(const char * lpszFileName)
 
 
 
-int_bool file_path_is_equal(const char * psz1,const char * psz2)
+int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
@@ -406,7 +406,7 @@ int_bool file_path_is_equal(const char * psz1,const char * psz2)
 
 
 
-int32_t ansi_open(const char * psz,int32_t i)
+int32_t ansi_open(const scoped_string & str,int32_t i)
 {
 
    return open(psz,i);
@@ -418,7 +418,7 @@ void ansi_get_errno(int32_t * perrno)
    *perrno = errno;
 }
 
-FILE * ansi_fopen(const char * psz,const char * pszMode)
+FILE * ansi_fopen(const scoped_string & str,const scoped_string & strMode)
 {
 
    return fopen(psz,pszMode);
@@ -467,7 +467,7 @@ int ansi_file_flag(int iFlag)
 }
 
 
-void ansi_unlink(const char * psz)
+void ansi_unlink(const scoped_string & str)
 {
 
    unlink(psz);

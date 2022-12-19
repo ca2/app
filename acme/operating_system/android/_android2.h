@@ -25,8 +25,8 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 ::i64 get_tick();
 
 
-CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage);
-CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage);
+CLASS_DECL_ACME void * __node_library_touch(const scoped_string & strPath, string & strMessage);
+CLASS_DECL_ACME void * __node_library_open(const scoped_string & strPath, string & strMessage);
 
 
 

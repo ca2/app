@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline int get_utf8_char_length(const char * psz)
+inline int get_utf8_char_length(const ::ansi_character * psz)
 {
 
    int len = utf8_unicode_length(*psz);
@@ -738,7 +738,7 @@ inline const ::wd32_character * unicode_next(const ::wd32_character * psz)
 }
 
 
-inline const char * unicode_prior(const char * psz, const char * pszBeg)
+inline const char * unicode_prior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
 {
 
    if (psz <= pszBeg)

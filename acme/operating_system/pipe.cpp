@@ -58,7 +58,7 @@ namespace operating_system
    }
 
 
-   bool pipe::write(const char * psz)
+   bool pipe::write(const scoped_string & str)
    {
 
       return true;

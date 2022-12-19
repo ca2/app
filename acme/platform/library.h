@@ -33,12 +33,12 @@ namespace acme
       //void dump(dump_context &) const override;
 
       //void     initialize_matter(::matter * pmatter) override;
-      //virtual void     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
-      //virtual void initialize_library(::matter* pmatter, const char* pszName = nullptr, const char* pszFolder = nullptr);
+      //virtual void     initialize_library(::matter* pmatter, int iDesmabi, const scoped_string & strRoot = nullptr, const scoped_string & strName = nullptr, const scoped_string & strFolder = nullptr);
+      //virtual void initialize_library(::matter* pmatter, const scoped_string & strName = nullptr, const scoped_string & strFolder = nullptr);
 
-      //virtual void open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
+      //virtual void open(const scoped_string & strPath,bool bAutoClose = true,bool bCa2Path = false);
 
-      virtual void open(const char* pszPath);
+      virtual void open(const scoped_string & strPath);
 
 
       //static ::acme::library* loading_library();
@@ -60,23 +60,23 @@ namespace acme
       virtual bool is_closed();
 
       template < typename TARGET >
-      TARGET get(const char * pszEntryName)
+      TARGET get(const scoped_string & strEntryName)
       {
          return reinterpret_cast <TARGET>(raw_get(pszEntryName));
       }
 
       template < typename TARGET >
-      TARGET & get(TARGET & ptarget, const char* pszEntryName)
+      TARGET & get(TARGET & ptarget, const scoped_string & strEntryName)
       {
          return ptarget = get<TARGET>(pszEntryName);
       }
 
-      void * raw_get(const char * pszEntryName);
+      void * raw_get(const scoped_string & strEntryName);
 
 
 
 
-      // virtual bool contains_app(const char* pszAppId);
+      // virtual bool contains_app(const scoped_string & strAppId);
 
 
       //virtual void get_create_impact_id_list(::array < ::atom > & ida);
@@ -89,13 +89,13 @@ namespace acme
       //virtual void get_app_list(string_array & stra);
 
       
-      //virtual ::matter* new_object(const char* pszClass);
+      //virtual ::matter* new_object(const scoped_string & strClass);
       
 
       virtual string get_library_name();
 
-      //virtual string get_app_id(const char * pszAppName);
-      //virtual string get_app_name(const char * pszAppId);
+      //virtual string get_app_id(const scoped_string & strAppName);
+      //virtual string get_app_name(const scoped_string & strAppId);
 
       //virtual void get_extension_list(string_array & stra);
 
@@ -129,7 +129,7 @@ namespace acme
 
 
 
-   CLASS_DECL_ACME void * open_ca2_library(const char * psz);
+   CLASS_DECL_ACME void * open_ca2_library(const scoped_string & str);
 
 
 

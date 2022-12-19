@@ -180,7 +180,7 @@ namespace hex
 #endif
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 
-   u16 parse_u16_exc(const char *& psz, const char * pszEnd);
+   u16 parse_u16_exc(const char *& psz, const scoped_string & strEnd);
 
 
 } // namespace hex

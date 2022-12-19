@@ -395,10 +395,7 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
-
-//#endif
-
-inline ::i64 as_i64(const char* psz, int iBase = 10)
+inline ::i64 as_i64(const char * psz, int iBase = 10)
 {
 
    const char * pszEnd = nullptr;

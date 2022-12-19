@@ -10,7 +10,7 @@ class CLASS_DECL_ACME resource_exception :
 public:
 
 
-   resource_exception(const char * pszMessage = nullptr);
+   resource_exception(const scoped_string & strMessage = nullptr);
    ~resource_exception() override;
 
 

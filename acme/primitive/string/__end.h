@@ -9,6 +9,7 @@
 
 //#include "__unicode_character.h"
 
+#include "_string_range_impl.h"
 #include "_string_base_impl.h"
 
 //#include "_ch_impl.h"

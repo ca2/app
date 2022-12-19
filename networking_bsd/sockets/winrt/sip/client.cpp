@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   void sip_client::invite(const char * pszTo, const char * pszFrom)
+   void sip_client::invite(const scoped_string & strTo, const scoped_string & strFrom)
    {
       __UNREFERENCED_PARAMETER(pszTo);
       __UNREFERENCED_PARAMETER(pszFrom);

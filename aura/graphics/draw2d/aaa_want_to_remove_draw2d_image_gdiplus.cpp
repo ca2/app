@@ -260,9 +260,9 @@ return LoadImageFile(ar.GetFile());
 }
 */
 /*HBITMAP imaging::LoadBitmap(
-const char * pszType,
+const scoped_string & strType,
 
-const char * pszId)
+const scoped_string & strId)
 
 {
 throw ::interface_only();

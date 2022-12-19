@@ -70,7 +70,7 @@ class multi_lock;
 //   {
 //
 //      template < typename ARRAY >
-//      ::pointer<::matter>is_running(ARRAY & array, const char * pszTag)
+//      ::pointer<::matter>is_running(ARRAY & array, const scoped_string & strTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)

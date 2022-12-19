@@ -14,7 +14,7 @@ namespace ca
    }
 
 
-   library::library(const char * pszOpen)
+   library::library(const scoped_string & strOpen)
    {
 
       m_plibrary = nullptr;
@@ -32,7 +32,7 @@ namespace ca
    }
 
 
-   bool library::open(const char * pszPath)
+   bool library::open(const scoped_string & strPath)
    {
 
       vsstring strPath(pszPath);
@@ -59,9 +59,9 @@ namespace ca
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
       int iError = errno;
 
-      const char * psz = strerror(iError);
+      const scoped_string & str = strerror(iError);
 
-      const char * psz2 = dlerror();
+      const scoped_string & str2 = dlerror();
 
       return m_plibrary != nullptr;
 
@@ -77,7 +77,7 @@ namespace ca
    }
 
 
-   void * library::raw_get(const char * pszElement)
+   void * library::raw_get(const scoped_string & strElement)
    {
       return dlsym(m_plibrary, pszElement);
    }
@@ -86,7 +86,7 @@ namespace ca
    {
    }
 
-   ca2_library::ca2_library(const char * pszOpen) :
+   ca2_library::ca2_library(const scoped_string & strOpen) :
       library(pszOpen)
    {
 
@@ -97,7 +97,7 @@ namespace ca
 
    }
 
-   bool ca2_library::open(const char * pszPath)
+   bool ca2_library::open(const scoped_string & strPath)
    {
       return library::open(pszPath);
    }

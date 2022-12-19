@@ -64,7 +64,7 @@ namespace universal_windows
    }
 
 
-   //char * exception_engine::xxxstack_trace(uptr uiSkip, void * caller_address, const char * pszFormat)
+   //char * exception_engine::xxxstack_trace(uptr uiSkip, void * caller_address, const scoped_string & strFormat)
    //{
 
    //   return nullptr;

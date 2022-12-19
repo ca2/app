@@ -9,13 +9,13 @@
 
 #if !defined(_UWP)
 
-//CLASS_DECL_ACME void call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_ACME void call_async(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
 //typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-//CLASS_DECL_ACME void call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_ACME void call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 #endif
 
@@ -26,15 +26,15 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
 //CLASS_DECL_ACME string expand_env(string str);
-//CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable);
+//CLASS_DECL_ACME string xxxget_environment_variable(const scoped_string & strEnvironmentVariable);
 //CLASS_DECL_ACME string ca2_command_line();
 
 
-CLASS_DECL_ACME string consume_command_line_parameter(const char * pszCommandLine, const char ** pszEndPtr);
-CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault = false);
-CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam);
-CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
-CLASS_DECL_ACME string get_command_line_parameter(const char * pszCommandLine,const char * pszParam);
+CLASS_DECL_ACME string consume_command_line_parameter(const scoped_string & strCommandLine, const char ** pszEndPtr);
+CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const scoped_string & strCommandLine, const scoped_string & strParam, bool bDefault = false);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam);
+CLASS_DECL_ACME bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strDefault);
+CLASS_DECL_ACME string get_command_line_parameter(const scoped_string & strCommandLine,const scoped_string & strParam);
 
 
 //CLASS_DECL_ACME bool launch_command(::acme::system * psystem, const char * const pszCommand);
@@ -55,13 +55,13 @@ CLASS_DECL_ACME string process_version_dir_name();
 
 
 //CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
-//CLASS_DECL_ACME ::atom_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_ACME ::atom_array module_path_get_pid(const scoped_string & strModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
 //CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
-//CLASS_DECL_ACME atom_array app_get_pid(const char * pszModuleName);
+//CLASS_DECL_ACME atom_array app_get_pid(const scoped_string & strModuleName);
 
 
 #endif
@@ -70,8 +70,8 @@ CLASS_DECL_ACME string process_version_dir_name();
 #endif
 
 #ifndef _UWP
-//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
-//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const scoped_string & strLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const scoped_string & strLibrary);
 #endif
 
 
@@ -96,11 +96,11 @@ CLASS_DECL_ACME ::u32 get_current_process_id();
 CLASS_DECL_ACME void prepare_argc_argv(int & argc, char ** argv, char * cmd_line);
 
 
-CLASS_DECL_ACME string transform_to_c_arg(const char* psz);
-CLASS_DECL_ACME string_array get_c_args_from_string(const char* psz);
-CLASS_DECL_ACME string_array no_escape_get_c_args_from_string(const char * psz);
-CLASS_DECL_ACME string_array get_c_args_from_c(const char* psz);
-CLASS_DECL_ACME string_array get_c_args_for_c(const char* psz);
+CLASS_DECL_ACME string transform_to_c_arg(const scoped_string & str);
+CLASS_DECL_ACME string_array get_c_args_from_string(const scoped_string & str);
+CLASS_DECL_ACME string_array no_escape_get_c_args_from_string(const scoped_string & str);
+CLASS_DECL_ACME string_array get_c_args_from_c(const scoped_string & str);
+CLASS_DECL_ACME string_array get_c_args_for_c(const scoped_string & str);
 CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
 
 // it was extracted from macOS code base

@@ -16,7 +16,7 @@ public:
    ::pointer<::task>             m_ptaskExit;
 
 
-   exit_exception(const ::e_status & estatus = error_failed, ::task * playeredThreadExit = nullptr, const char * pszMessage = nullptr);
+   exit_exception(const ::e_status & estatus = error_failed, ::task * playeredThreadExit = nullptr, const scoped_string & strMessage = nullptr);
    ~exit_exception() override;
 
 

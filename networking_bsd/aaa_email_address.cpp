@@ -11,7 +11,7 @@ namespace net
    }
 
 
-   email_address::email_address(const char * psz)
+   email_address::email_address(const scoped_string & str)
    {
 
       operator = (psz);
@@ -27,7 +27,7 @@ namespace net
    }
 
 
-   email_address & email_address::operator = (const char * psz)
+   email_address & email_address::operator = (const scoped_string & str)
    {
       string str_in(psz);
       string str = str_in;

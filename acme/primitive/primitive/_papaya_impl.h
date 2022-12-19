@@ -5,7 +5,7 @@ namespace acme
 {
 
 
-   inline bool is_false(const char * psz)
+   inline bool is_false(const scoped_string & str)
    {
 
       return ::is_null(psz) || *psz == '\0' || ansi_compare_ci(psz, "false") == 0 || ansi_compare_ci(psz, "no") == 0;
@@ -13,7 +13,7 @@ namespace acme
    }
 
 
-   inline bool is_true(const char * psz)
+   inline bool is_true(const scoped_string & str)
    {
 
       return !is_false(psz);
@@ -21,7 +21,7 @@ namespace acme
    }
 
 
-   inline bool is_set_false(const char * psz)
+   inline bool is_set_false(const scoped_string & str)
    {
 
       return ::is_set(psz) && (ansi_compare_ci(psz, "false") == 0 || ansi_compare_ci(psz, "no") == 0);
@@ -29,7 +29,7 @@ namespace acme
    }
 
 
-   inline bool is_set_true(const char * psz)
+   inline bool is_set_true(const scoped_string & str)
    {
 
       return ::is_set(psz) && (ansi_compare_ci(psz, "true") == 0 || ansi_compare_ci(psz, "yes") == 0);

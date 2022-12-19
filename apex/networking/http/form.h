@@ -25,7 +25,7 @@ namespace http
        * Input is read from stdin. Number of characters to read
        * can be found in the environment ::payload CONTENT_LENGTH.
       */
-      void parse_body(::apex::context *pcontextUploadFile, ::file::file * pfileInput, const char * pszContentType, strsize content_length);
+      void parse_body(::apex::context *pcontextUploadFile, ::file::file * pfileInput, const scoped_string & strContentType, strsize content_length);
       /**
        * Another constructor (used in GET operations).
        * Input is read from the environment ::payload QUERY_STRING.

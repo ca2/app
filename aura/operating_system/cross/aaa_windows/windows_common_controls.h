@@ -243,8 +243,8 @@ typedef struct tagTBADDBITMAP {
 
 typedef struct tagTBSAVEPARAMSA {
    HKEY hkr;
-   const char * pszSubKey;
-   const char * pszValueName;
+   const scoped_string & strSubKey;
+   const scoped_string & strValueName;
 } TBSAVEPARAMSA,*LPTBSAVEPARAMSA;
 
 typedef struct tagTBSAVEPARAMSW {

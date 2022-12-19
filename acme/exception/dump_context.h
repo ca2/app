@@ -25,7 +25,7 @@
 //   void SetDepth(i32 nNewDepth);
 //
 //
-//   //void write(const char * psz) override;
+//   //void write(const scoped_string & str) override;
 //
 ////
 ////#ifdef WINDOWS
@@ -67,11 +67,11 @@
 //////
 //////#endif
 //////
-////   void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
+////   void hex_dump(const scoped_string & strLine, byte* pby, i32 nBytes, i32 nWidth);
 ////
 ////   void flush() override;
 ////
-//   void output_string(const char * psz);
+//   void output_string(const scoped_string & str);
 //
 //protected:
 //

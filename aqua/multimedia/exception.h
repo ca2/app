@@ -17,7 +17,7 @@ namespace multimedia
       enum_exception          m_eexception;
 
 
-      exception(enum_exception eexception = e_exception_undefined, const ::e_status & estatus = error_exception, const char * pszMessage = nullptr);
+      exception(enum_exception eexception = e_exception_undefined, const ::e_status & estatus = error_exception, const scoped_string & strMessage = nullptr);
       ~exception() override;
 
 

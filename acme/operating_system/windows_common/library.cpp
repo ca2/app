@@ -8,7 +8,7 @@ namespace windows
 {
 
 
-   void * get_library_symbol_address(const char * pszLibrary, const char* pszSymbolName)
+   void * get_library_symbol_address(const scoped_string & strLibrary, const scoped_string & strSymbolName)
    {
 
 #ifdef WINDOWS_DESKTOP

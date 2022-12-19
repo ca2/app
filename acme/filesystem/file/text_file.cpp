@@ -18,7 +18,7 @@ namespace file
    }
 
 
-   void text_file::write_string(const char * psz)
+   void text_file::write_string(const scoped_string & str)
 
    {
 

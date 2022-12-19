@@ -85,7 +85,7 @@ namespace file
    }
 
 
-   bool enumerator::list(string_array & stra, const char * psz, ::file::e_flag eflag)
+   bool enumerator::list(string_array & stra, const scoped_string & str, ::file::e_flag eflag)
    {
 
       ::file::listing listing;

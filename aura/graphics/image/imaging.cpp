@@ -7088,7 +7088,7 @@ void imaging::free_work_image(::image * pimage)
 void context_image::load_svg(::image * pimage, memory & memory)
 {
 
-   const char * psz = (const char *)memory.data();
+   const scoped_string & str = (const char *)memory.data();
 
    auto size = memory.size();
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 // Include payload.h
@@ -22,7 +22,7 @@ namespace xml
 
 } // namespace xml
 
-//::string CLASS_DECL_ACME operator + (const char * psz, const property & prop);
+//::string CLASS_DECL_ACME operator + (const scoped_string & str, const property & prop);
 //
 //::payload CLASS_DECL_ACME operator - (i32 i, const property & prop);
 //::payload CLASS_DECL_ACME operator - (u32 user, const property & prop);
@@ -200,10 +200,10 @@ public:
 using property_pointer = ::property *;
 
 
-CLASS_DECL_ACME void property_parse_network_payload_id(atom & atom, const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd);
-CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_parse_network_payload_id(atom & atom, const char *& pszJson, const scoped_string & strEnd);
+CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const scoped_string & strEnd);
+CLASS_DECL_ACME void property_skip_network_payload_id(const char *& pszJson, const scoped_string & strEnd);
+CLASS_DECL_ACME void property_skip_network_payload_value(const char *& pszJson, const scoped_string & strEnd);
 
 
 #include "acme/primitive/collection/ptr_array.h"
@@ -304,13 +304,22 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //}
 
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
-//{
-//
-//   return operator+=(property.operator ::string());
-//
-//}
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::property & property)
+{
+
+   return this->append(property);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::property & property)
+{
+
+   return append((const ::payload &)property);
+
+}
 
 
 namespace file

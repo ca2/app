@@ -33,7 +33,7 @@ namespace acme
       virtual ::acme::application * get_application(const ::string & strAppId, bool bCreate = true, ::request * prequest = nullptr);
 
 
-      //virtual ::pointer<::apex::application>create_application(const char * pszAppId, bool bSynch, ::request * prequest);
+      //virtual ::pointer<::apex::application>create_application(const scoped_string & strAppId, bool bSynch, ::request * prequest);
       //virtual ::pointer<::apex::application>create_platform(::apex::session * psession);
       
       

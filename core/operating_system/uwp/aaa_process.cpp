@@ -6,9 +6,9 @@
 #ifdef WINDOWS_DESKTOP
 
 CLASS_DECL_BOOT int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 int iShow)
 {
 

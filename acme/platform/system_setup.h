@@ -56,8 +56,8 @@ public:
    static system_setup *         s_psetupList;
 
 
-   system_setup(::system_setup::enum_flag eflag, const char * pszName);
-   system_setup(PFN_factory pfnFactory, const char* pszName);
+   system_setup(::system_setup::enum_flag eflag, const scoped_string & strName);
+   system_setup(PFN_factory pfnFactory, const scoped_string & strName);
 
 
    void construct();
@@ -67,9 +67,9 @@ public:
    [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static system_setup* get_last(::system_setup::enum_flag eflag, const char* pszName = nullptr);
-   static system_setup* get_first(::system_setup::enum_flag eflag, const char* pszName = nullptr);
-   static PFN_factory get_factory_function(const char* pszName = nullptr);
+   static system_setup* get_last(::system_setup::enum_flag eflag, const scoped_string & strName = nullptr);
+   static system_setup* get_first(::system_setup::enum_flag eflag, const scoped_string & strName = nullptr);
+   static PFN_factory get_factory_function(const scoped_string & strName = nullptr);
 
 
    virtual ::pointer<::acme::library>create_library();
@@ -95,7 +95,7 @@ public:
    ::pointer<::acme::library>_create_library() override { return __new(LIBRARY); }
 
 
-   explicit static_library_factory(const char * pszName = "") :
+   explicit static_library_factory(const scoped_string & strName = "") :
       system_setup(flag_library, pszName)
    {
 
@@ -116,7 +116,7 @@ public:
    ::pointer < ::particle > _create_particle() override { return __new(OBJECT); }
 
 
-   explicit static_object_factory(::system_setup::enum_flag eflag, const char* pszName = "") :
+   explicit static_object_factory(::system_setup::enum_flag eflag, const scoped_string & strName = "") :
       system_setup(eflag, pszName)
    {
 
@@ -163,7 +163,7 @@ public:
    }
 
 
-   static_application_factory(const char* pszName = "") :
+   static_application_factory(const scoped_string & strName = "") :
       system_setup(flag_application, pszName)
    {
 

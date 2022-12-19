@@ -2,7 +2,7 @@
 
 
 
-void apex_application_main(int argc, char * argv[], const char * pszCommandLine)
+void apex_application_main(int argc, char * argv[], const scoped_string & strCommandLine)
 {
 
 

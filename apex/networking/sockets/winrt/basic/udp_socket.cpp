@@ -72,7 +72,7 @@ namespace sockets
    }
 
 
-   int udp_socket::Bind(const char * pszHost, port_t port, int range)
+   int udp_socket::Bind(const scoped_string & strHost, port_t port, int range)
    {
 
       return Bind(::networking::address(pszHost, port), range);

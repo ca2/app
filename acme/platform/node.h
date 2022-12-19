@@ -420,11 +420,11 @@ namespace acme
       virtual void open_url(const ::string & strUrl);
 
 
-      virtual void shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout = 1_minute);
+      virtual void shell_execute_async(const scoped_string & strFile, const scoped_string & strParams);
+      virtual void shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class time & timeTimeout = 1_minute);
 
-      virtual void root_execute_async(const char * pszFile, const char * pszParams);
-      virtual void root_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout = 1_minute);
+      virtual void root_execute_async(const scoped_string & strFile, const scoped_string & strParams);
+      virtual void root_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class time & timeTimeout = 1_minute);
 
 
       //::file::path command_find_path(const ::string & pszCommand);
@@ -490,9 +490,9 @@ namespace acme
 
       virtual void defer_update_callstack();
 //#if defined(ANDROID)
-//      virtual string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//      virtual string unwind_callstack(const scoped_string & strFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
-      virtual string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+      virtual string get_callstack(const scoped_string & strFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
 //#endif
 
 
@@ -510,7 +510,7 @@ namespace acme
       virtual ::u64 translate_processor_affinity(::i32 i);
 
       //CLASS_DECL_ACME string expand_env(string str);
-      //CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable);
+      //CLASS_DECL_ACME string xxxget_environment_variable(const scoped_string & strEnvironmentVariable);
       //CLASS_DECL_ACME string ca2_command_line();
 
 
@@ -639,7 +639,7 @@ namespace acme
 
 
 
-      virtual void command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      virtual void command_system(string_array & straOutput, int & iExitCode, const scoped_string & str, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 
 
       //virtual string process_version_dir_name();

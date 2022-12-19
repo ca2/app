@@ -58,7 +58,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 //
 //
 //   template < class APP >
-//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const char * pszAppId)
+//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::particle * pparticle, const scoped_string & strAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))

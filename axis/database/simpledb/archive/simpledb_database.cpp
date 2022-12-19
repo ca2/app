@@ -32,12 +32,12 @@ namespace simpledb
    }
 
    bool database::connect(
-   const char * pszHost,
-   const char * pszUser,
-   const char * pszPassword,
-   const char * pszDatabase,
+   const scoped_string & strHost,
+   const scoped_string & strUser,
+   const scoped_string & strPassword,
+   const scoped_string & strDatabase,
    i32 iPort,
-   const char * pszSocketName,
+   const scoped_string & strSocketName,
    u32 uFlags)
    {
       return false;

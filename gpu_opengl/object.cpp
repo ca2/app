@@ -78,7 +78,7 @@ namespace opengl
 
 
       int iErrorN;
-      const char * pszErrorN = nullptr;
+      const scoped_string & strErrorN = nullptr;
 
       while (iErrorN = glGetError())
       {

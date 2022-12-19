@@ -57,7 +57,7 @@ public:
 //#ifdef WINDOWS
    //mutex(enum_create_new ecreatenew, const char * pstrName, void * posdata, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_POSIX)
-//   mutex(enum_create_new ecreatenew = create_new, const char * psz = nullptr, const char * pstrName,sem_t * psem,bool bOwner = true);
+//   mutex(enum_create_new ecreatenew = create_new, const scoped_string & str = nullptr, const char * pstrName,sem_t * psem,bool bOwner = true);
 //#elif defined(MUTEX_NAMED_FD)
 //   mutex(enum_create_new ecreatenew, const char * pstrName, int iFd, bool bOwner = true);
 //#elif defined(MUTEX_NAMED_VSEM)

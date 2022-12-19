@@ -21,7 +21,7 @@ public:
    ::property_set       m_setUserInfo;
    
    
-   ns_exception(const ::e_status & estatus, const char * pszName, const char * pszDescription, const ::property_set & setUserInfo);
+   ns_exception(const ::e_status & estatus, const scoped_string & strName, const scoped_string & strDescription, const ::property_set & setUserInfo);
    ~ns_exception() override;
    
    

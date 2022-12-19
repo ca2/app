@@ -393,7 +393,7 @@ namespace sqlite
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {
 //            FORMATTED_TRACE("Error: %s", err);
-//            const char * pszErrorMessage = get_error_message();
+//            const scoped_string & strErrorMessage = get_error_message();
 //            if(pszErrorMessage != nullptr)
 //            {
 //
@@ -894,7 +894,7 @@ namespace sqlite
 
       }
 
-      const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
+      const scoped_string & str = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
 
       strsize iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 

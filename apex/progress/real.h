@@ -32,7 +32,7 @@ namespace progress
       ::number get_scalar(enum_scalar escalar) override;
       ::number get_scalar_maximum(enum_scalar escalar)override;
 
-      virtual void format_status(const char * pszFormat);
+      virtual void format_status(const scoped_string & strFormat);
 
       virtual void redraw();
       bool step() override;

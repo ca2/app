@@ -8,12 +8,12 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
    if(pszCommandLine == nullptr)
       return "";
 
-   const char * psz = pszCommandLine;
+   const scoped_string & str = pszCommandLine;
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const char * pszStart;
+   const scoped_string & strStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -31,7 +31,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
          psz++;
    }
 
-   const char * pszEnd = psz;
+   const scoped_string & strEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -80,7 +80,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 //
 //   string strValue;
 //
-//   const char * pszValue = ansi_find_string(pszCommandLine, strParam);
+//   const scoped_string & strValue = ansi_find_string(pszCommandLine, strParam);
 //
 //   if(pszValue == nullptr)
 //      return "";
@@ -91,7 +91,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 //   if(*pszValue == '"')
 //   {
 //
-//      const char * pszValueEnd = ansi_find_char(pszValue + 1, '"');
+//      const scoped_string & strValueEnd = ansi_find_char(pszValue + 1, '"');
 //
 //      if(pszValueEnd == nullptr)
 //      {
@@ -106,7 +106,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 //   else
 //   {
 //
-//      const char * pszValueEnd = ansi_find_string(pszValue, " ");
+//      const scoped_string & strValueEnd = ansi_find_string(pszValue, " ");
 //
 //      if(pszValueEnd == nullptr)
 //      {

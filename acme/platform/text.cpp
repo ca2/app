@@ -29,7 +29,7 @@ CLASS_DECL_ACME string null_get_text(string str)
 //}
 
 
-//CLASS_DECL_ACME int __c_get_text_length(const char * psz)
+//CLASS_DECL_ACME int __c_get_text_length(const scoped_string & str)
 //{
 // 
 //   string strGetText(__get_text(psz));
@@ -39,7 +39,7 @@ CLASS_DECL_ACME string null_get_text(string str)
 //}
 //
 //
-//CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const char * psz)
+//CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const scoped_string & str)
 //{
 //   
 //   string strGetText(__get_text(psz));

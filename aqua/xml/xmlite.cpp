@@ -15,7 +15,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsechr(const char * psz,i32 ch,i32 escape)
+   char * _tcsechr(const scoped_string & str,i32 ch,i32 escape)
    {
       char * pch = (char *)psz;
 
@@ -143,7 +143,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsepbrk(const char * psz,const char * chset,i32 escape)
+   char * _tcsepbrk(const scoped_string & str,const char * chset,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -171,7 +171,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   i32 _tcsenicmp(const char * psz,const char * str,strsize len,i32 escape)
+   i32 _tcsenicmp(const scoped_string & str,const char * str,strsize len,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -209,7 +209,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsenistr(const char * psz,const char * str,strsize len,i32 escape)
+   char * _tcsenistr(const scoped_string & str,const char * str,strsize len,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -240,7 +240,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcseistr(const char * psz,const char * str,i32 escape)
+   char * _tcseistr(const scoped_string & str,const char * str,i32 escape)
    {
       strsize len = strlen(str);
       return _tcsenistr(psz,str,len,escape);

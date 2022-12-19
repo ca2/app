@@ -23,7 +23,7 @@ namespace file_lock
     }
 
 
-    file_lock::file_lock(const char * pszName)
+    file_lock::file_lock(const scoped_string & strName)
     {
 
        m_iFileDescriptor = -1;
@@ -41,7 +41,7 @@ namespace file_lock
     }
 
 
-    bool file_lock::set_name(const char * pszName)
+    bool file_lock::set_name(const scoped_string & strName)
     {
 
        close_file();

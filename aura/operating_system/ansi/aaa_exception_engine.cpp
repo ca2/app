@@ -11,7 +11,7 @@
 //
 //   }
 //
-//   const char * psz;
+//   const scoped_string & str;
 //
 //   synchronous_lock synchronouslock(::exception_engine().mutex());
 //

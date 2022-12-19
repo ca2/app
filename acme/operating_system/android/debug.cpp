@@ -51,7 +51,7 @@ void output_debug_string(const char * lpOutputString)
 }
 
 
-CLASS_DECL_ACME void simple_debug_print(const char * psz)
+CLASS_DECL_ACME void simple_debug_print(const scoped_string & str)
 {
 
    __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
@@ -87,7 +87,7 @@ CLASS_DECL_ACME int os_trace_level(enum_trace_level elevel)
 }
 
 
-CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage)
+CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & strMessage)
 {
 
    int iLevel = os_trace_level(elevel);

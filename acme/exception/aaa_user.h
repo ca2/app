@@ -7,7 +7,7 @@ class CLASS_DECL_ACME user_exception :
 public:
 
 
-   user_exception(::enum_status estatus, const char * pszMessage = nullptr);
+   user_exception(::enum_status estatus, const scoped_string & strMessage = nullptr);
    virtual ~user_exception();
 
 

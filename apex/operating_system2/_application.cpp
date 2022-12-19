@@ -31,7 +31,7 @@
 const char * g_pszMainAppId = nullptr;
 
 
-CLASS_DECL_APEX void set_main_app_id(const char * pszAppId)
+CLASS_DECL_APEX void set_main_app_id(const scoped_string & strAppId)
 {
 
    g_pszMainAppId = pszAppId;

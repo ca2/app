@@ -1,15 +1,15 @@
 #pragma once
 
 
-//CLASS_DECL_APEX string url_encode(const char * psz);
+//CLASS_DECL_APEX string url_encode(const scoped_string & str);
 
 
-//CLASS_DECL_APEX string url_decode(const char * psz);
-//CLASS_DECL_APEX string url_decode(const char * pszUrl,strsize iLen);
+//CLASS_DECL_APEX string url_decode(const scoped_string & str);
+//CLASS_DECL_APEX string url_decode(const scoped_string & strUrl,strsize iLen);
 
 
 
-//CLASS_DECL_APEX bool url_query_get_param(string & strParam,const char * pszKey,const char * pszUrl);
+//CLASS_DECL_APEX bool url_query_get_param(string & strParam,const scoped_string & strKey,const scoped_string & strUrl);
 
 
 

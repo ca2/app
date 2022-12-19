@@ -170,7 +170,7 @@ namespace opengl
          if (err != GLEW_OK)
          {
 
-            const char * pszErrorString = (const char *) glewGetErrorString(err);
+            const scoped_string & strErrorString = (const char *) glewGetErrorString(err);
 
             //throw ::exception(error_resource);
             // Problem: glewInit failed, something is seriously wrong.

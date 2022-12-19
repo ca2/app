@@ -54,7 +54,7 @@ namespace xml
    }
 
 
-   //void document::load_location(const char * psz)
+   //void document::load_location(const scoped_string & str)
    //{
 
    //   m_pathLocation = psz;
@@ -147,7 +147,7 @@ namespace xml
 //// Coder    Date                      Desc
 //// bro      2002-10-29
 ////========================================================
-//   void document::_load(const char * & xml, const char * pszXml, const char * pszEndXml, parse_info * pparseinfo)
+//   void document::_load(const char * & xml, const scoped_string & strXml, const scoped_string & strEndXml, parse_info * pparseinfo)
 //   {
 //
 //      // close it
@@ -252,7 +252,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //void document::parse_xml_text(const char * pszXmlText)
+   //void document::parse_xml_text(const scoped_string & strXmlText)
    //{
 
    //   m_nodea.erase_all();
@@ -261,14 +261,14 @@ namespace xml
 
    //   m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 
-   //   const char * pszXml = (const char *) m_memoryData.data();
+   //   const scoped_string & strXml = (const char *) m_memoryData.data();
 
    //   ensure_root();
 
-   //   const char * pszNext = pszXml;
+   //   const scoped_string & strNext = pszXml;
 
    //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-   //   const char * pszRet;
+   //   const scoped_string & strRet;
 
    //   bool bRet = false;
 
@@ -341,7 +341,7 @@ namespace xml
    string document::consume_entity_ref(const char * & pszXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
    {
 
-      const char * pszXml = pszXmlParam;
+      const scoped_string & strXml = pszXmlParam;
 
       if(*pszXml == '\0')
       {
@@ -451,7 +451,7 @@ namespace xml
       // pszXml must be a valid portion of and point_i32 to an entity ref in:
       // m_strData of this document
 
-      const char * pszOldData = (const char *) m_memoryData.data();
+      const scoped_string & strOldData = (const char *) m_memoryData.data();
 
       strsize iPos = pszXml - pszOldData;
 

@@ -6,7 +6,7 @@
 //#define WinGetFileAttributes Winwindows_get_file_attributes
 //CLASS_DECL_APEX ::u32 GetFileSize(HANDLE h, LPDWORD lpdwHi);
 //CLASS_DECL_APEX ::u32 WinSetFilePointer(HANDLE h, ::i32 lMove, PLONG plHi, ::u32 dwMeth);
-//CLASS_DECL_APEX HANDLE FindFirstFile(const char * psz, WIN32_FIND_DATA * pdata);
+//CLASS_DECL_APEX HANDLE FindFirstFile(const scoped_string & str, WIN32_FIND_DATA * pdata);
 
 
 

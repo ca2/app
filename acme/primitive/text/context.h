@@ -88,18 +88,18 @@ namespace text
       inline auto& operator[](const ::atom& atom) { return m_map[atom]; }
       inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 
-      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const char * psz);
+      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const scoped_string & str);
       string get(const context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
       string get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
       void get(string_array & stra, const context * pcontext, const ::atom & atom) const;
       void _get(string_array & stra, const context * pcontext, const ::atom & atom) const ;
 
-      bool load(const char * pszBaseDir);
+      bool load(const scoped_string & strBaseDir);
       bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, ::file::file * pfile);
 
-      string body(const char * psz);
+      string body(const scoped_string & str);
 
-      bool matches(const context * pcontext, const ::atom & atom, const char * psz) const;
+      bool matches(const context * pcontext, const ::atom & atom, const scoped_string & str) const;
       bool begins(const context * pcontext, const ::string & str, const ::atom & atom) const;
       bool begins_eat(const context * pcontext, string & str, const ::atom & atom) const;
 
@@ -198,7 +198,7 @@ namespace text
       }
 
 
-      inline bool matches(const ::atom & atom, const char * psz) const
+      inline bool matches(const ::atom & atom, const scoped_string & str) const
       {
 
          return m_ptable->matches(this, atom, psz);
@@ -206,7 +206,7 @@ namespace text
       }
 
 
-      inline bool begins(const ::atom & atom, const char * psz) const
+      inline bool begins(const ::atom & atom, const scoped_string & str) const
       {
 
          return m_ptable->begins(this, atom, psz);
@@ -245,9 +245,9 @@ namespace text
 
       }
 
-      //virtual bool match(const regex * pregexp, string_array & stra, const char * psz, atom pszExp, atom pszRoot);
+      //virtual bool match(const regex * pregexp, string_array & stra, const scoped_string & str, atom pszExp, atom pszRoot);
 
-      //virtual bool match(string_array & stra, const char * psz, ::atom pszExp, ::atom pszRoot) const;
+      //virtual bool match(string_array & stra, const scoped_string & str, ::atom pszExp, ::atom pszRoot) const;
 
 
    };

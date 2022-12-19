@@ -2323,7 +2323,7 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-void file_context::set_extension(::file::path & path, const char * pszExtension)
+void file_context::set_extension(::file::path & path, const scoped_string & strExtension)
 {
 
    strsize iEnd = path.rear_find('.');
@@ -2981,7 +2981,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 }
 
 
-folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImplementation, const ::file::e_open &eopen)
+folder_pointer file_context::get_folder(::file::file *pfile, const scoped_string & strImplementation, const ::file::e_open &eopen)
 {
 
    auto & pfactory = acmesystem()->folder_factory();
@@ -3707,7 +3707,7 @@ bool file_context::is_link(string strPath)
 //   return psystem->m_spfile->time_log(get_app(), pszId);
 //}
 //
-//file_pointer file_context::time_square_file(const char * pszPrefix, const char * pszSuffix)
+//file_pointer file_context::time_square_file(const scoped_string & strPrefix, const scoped_string & strSuffix)
 //{
 //   return psystem->m_spfile->time_square_file(get_app(), pszPrefix, pszSuffix);
 //}
@@ -3803,7 +3803,7 @@ bool file_context::is_link(string strPath)
 //}
 
 //
-//string file_context::sys_temp(const char * lpszName, const char * pszExtension)
+//string file_context::sys_temp(const char * lpszName, const scoped_string & strExtension)
 //{
 //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
 //}

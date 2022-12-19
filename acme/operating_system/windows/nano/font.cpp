@@ -47,7 +47,7 @@ namespace windows
    }
 
 
-   HFONT nano_font::_create_point_font(int nPointSize, const char* pszFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
+   HFONT nano_font::_create_point_font(int nPointSize, const scoped_string & strFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
    {
 
       LOGFONTW lF;

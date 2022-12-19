@@ -312,7 +312,7 @@ namespace net
 
 
    /*  virtual  */
-   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const char * pszNewExternalIPAddress )
+   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const scoped_string & strNewExternalIPAddress )
    {
 	   string tempStr;
 	   tempStr.format( "UPnP has detected a machine in your external IP address \n"

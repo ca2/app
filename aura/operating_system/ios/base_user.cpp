@@ -12,7 +12,7 @@
 
 
 
-int ui_MessageBoxA(const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function);
+int ui_MessageBoxA(const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType, const scoped_string & strDetails, ::function < void (enum_dialog_result) > function);
 
 
 

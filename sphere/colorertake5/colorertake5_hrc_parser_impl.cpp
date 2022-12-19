@@ -109,7 +109,7 @@ namespace colorertake5
       {
          file_type_impl *ret = fileTypeVector.element_at(idx);
          double prior = 0.0;
-         //      const char * psz = ret->m_strSourceLocation;
+         //      const scoped_string & str = ret->m_strSourceLocation;
          try
          {
             prior = ret->getPriority(fileName, firstLine);

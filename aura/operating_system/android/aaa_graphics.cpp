@@ -86,7 +86,7 @@
 //
 //      ::e_status estatus = __construct_new(putil);
 //
-//      const char * pszSystemFonts = strSystemFonts;
+//      const scoped_string & strSystemFonts = strSystemFonts;
 //
 //      if (pdoc->load(strSystemFonts))
 //      {

@@ -102,11 +102,11 @@ namespace apex
 
 
 
-      virtual bool http_download(const char* pszUrl, const char* pszFile);
+      virtual bool http_download(const scoped_string & strUrl, const scoped_string & strFile);
       virtual string http_get(const string& strUrl, ::property_set& set);
-      virtual string http_get(const char* pszUrl);
+      virtual string http_get(const scoped_string & strUrl);
 
-      string get_latest_build_number(const char* pszConfiguration, const char* pszAppId);
+      string get_latest_build_number(const scoped_string & strConfiguration, const scoped_string & strAppId);
 
       virtual ::file::path defer_make_file_system_url(string str);
       virtual string defer_get_file_title(string str);
@@ -138,19 +138,19 @@ namespace apex
       virtual file_pointer friendly_get_file(::payload payloadFile, const ::file::e_open& eopen);
 
 
-      virtual bool os_resolve_alias(::file::path& path, const char* psz, bool bNoUI = false, bool bNoMount = false);
+      virtual bool os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_has_alias_in_path(const char * psz, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const scoped_string & str, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount);
+      virtual bool _os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI, bool bNoMount);
 
-      virtual bool os_is_alias(const char* psz);
+      virtual bool os_is_alias(const scoped_string & str);
 
       virtual void sys_set(string strPath, string strValue);
       virtual string sys_get(string strPath, string strDefault = "");
 
 
-      virtual string load_string(const char* psz);
+      virtual string load_string(const scoped_string & str);
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing& listing) override;

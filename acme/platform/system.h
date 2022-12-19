@@ -292,7 +292,7 @@ namespace acme
 
       //#else
 
-         //void system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+         //void system_construct(const scoped_string & strCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 
@@ -328,7 +328,7 @@ namespace acme
       void main() override;
 
 
-      virtual ::pointer<::acme::application> new_app(const char * pszAppId);
+      virtual ::pointer<::acme::application> new_app(const scoped_string & strAppId);
 
 
       virtual void end();
@@ -358,7 +358,7 @@ namespace acme
       virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
-      //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
+      //void __tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) const override;
 
 
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
@@ -474,7 +474,7 @@ namespace acme
 
 
       static inline ::atom atom(const ::std::type_info & info);
-      static inline ::atom atom(const char * psz);
+      static inline ::atom atom(const scoped_string & str);
       static inline ::atom atom(const string & str);
       static inline ::atom atom(i64 i);
       //static inline ::atom_space & atom();
@@ -506,7 +506,7 @@ namespace acme
       virtual void on_open_file(const ::string & pszFile);
 
       //template < typename BASE_TYPE >
-      //::pointer<BASE_TYPE> create(const char * pszComponent, const char* pszImplementation)
+      //::pointer<BASE_TYPE> create(const scoped_string & strComponent, const scoped_string & strImplementation)
       //{
 
       //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);
@@ -532,12 +532,12 @@ namespace acme
       //}
 
 
-      void new_compress(::compress ** ppcompress, const char * pszImplementation);
-      void new_uncompress(::uncompress ** ppuncompress, const char * pszImplementation);
+      void new_compress(::compress ** ppcompress, const scoped_string & strImplementation);
+      void new_uncompress(::uncompress ** ppuncompress, const scoped_string & strImplementation);
 
 
-      virtual void compress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation);
-      virtual void uncompress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation);
+      virtual void compress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation);
+      virtual void uncompress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation);
 
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
@@ -566,14 +566,14 @@ namespace acme
       //  -- e.g. cannot lie inside a plugin, 
       // because it is used to load a plugin
       //
-      void* operating_system_library_open(const char* pszPath, string& strMessage);
-      void* operating_system_library_touch(const char* pszPath, string& strMessage);
-      void* operating_system_library_open_ca2(const char* pszPath, string& strMessage);
+      void* operating_system_library_open(const scoped_string & strPath, string& strMessage);
+      void* operating_system_library_touch(const scoped_string & strPath, string& strMessage);
+      void* operating_system_library_open_ca2(const scoped_string & strPath, string& strMessage);
       bool operating_system_library_close(void* plibrary);
-      void* operating_system_library_raw_get(void* plibrary, const char* pszEntryName);
+      void* operating_system_library_raw_get(void* plibrary, const scoped_string & strEntryName);
 
 
-      //CLASS_DECL_ACME ::acme::library * lib(const char * psz);
+      //CLASS_DECL_ACME ::acme::library * lib(const scoped_string & str);
 
 
 
@@ -581,7 +581,7 @@ namespace acme
 
 
       //template < typename ENTRY >
-      //ENTRY* library_call(const char* pszLibrary, const char * pszEntry)
+      //ENTRY* library_call(const scoped_string & strLibrary, const scoped_string & strEntry)
       //{
 
       //   return lib(pszLibrary)->get<decltype(&ENTRY)>(pszEntry));

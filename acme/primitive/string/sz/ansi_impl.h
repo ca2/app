@@ -158,9 +158,10 @@ inline ::ansi_character * string_reverse(::ansi_character * psz) noexcept
       strReverse.append(pDec, pDec - p);
 
       p = pDec;
+
    }
 
-   strcpy(psz, strReverse);
+   strcpy(psz, strReverse.c_str());
 
    return psz;
 
@@ -203,7 +204,7 @@ inline strsize ansistring_format(::ansi_character * pszBuffer, strsize nlength, 
 inline const ::ansi_character * _string_rear_find_character(const ::ansi_character * psz, ::ansi_character ch) noexcept
 {
 
-   return ::const_ansi_range(psz).rear_find_item(ch, ::comparison::comparison < ::ansi_character >());
+   return _string_range(psz).rear_find_item(ch, ::comparison::comparison < ::ansi_character >());
 
 }
 

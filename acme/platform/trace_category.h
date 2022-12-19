@@ -19,7 +19,7 @@ public:
 
    
 
-   trace_category(enum_trace_category etracecategory, const char * pszTopicText) :
+   trace_category(enum_trace_category etracecategory, const scoped_string & strTopicText) :
       m_etracecategory(etracecategory),
       m_strTopicText(pszTopicText)
    {

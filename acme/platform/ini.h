@@ -45,7 +45,7 @@ namespace handle
 } // namespace handle
 
 
-inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
+inline ::pointer<::handle::ini>operator ""_pini(const scoped_string & str, size_t s)
 {
 
    return __new(::handle::ini(string(psz, s)));

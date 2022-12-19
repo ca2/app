@@ -8,7 +8,7 @@
 
 
 
-void copy_character_per_character(char * pszTarget, const char * pszSource)
+void copy_character_per_character(char * pszTarget, const scoped_string & strSource)
 {
 
    while(*pszSource)
@@ -107,7 +107,7 @@ const char * file_path_all_extensions(const char * path)
 }
 
 
-string url_dir_name_for_relative(const char * pszPath)
+string url_dir_name_for_relative(const scoped_string & strPath)
 {
    
    string strDir(pszPath);
@@ -514,7 +514,7 @@ CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl)
 }
 
 
-CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char * pszAbsolute)
+CLASS_DECL_ACME string defer_solve_relative(const scoped_string & strRelative, const scoped_string & strAbsolute)
 {
    string strRelative(pszRelative);
    string strAbsolute(pszAbsolute);
@@ -565,9 +565,9 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
 
 
 
-//CLASS_DECL_ACME bool read_resource_as_file(const char * pszFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
+//CLASS_DECL_ACME bool read_resource_as_file(const scoped_string & strFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
 
-const char * string_reverse_span_excluding(const char * psz, const char * pszBegin, const char * pszExcluding)
+const char * string_reverse_span_excluding(const scoped_string & str, const scoped_string & strBegin, const scoped_string & strExcluding)
 {
 
    while (psz >= pszBegin)
@@ -598,7 +598,7 @@ const char * string_reverse_span_excluding(const char * psz, const char * pszBeg
 }
 
 
-const char * string_reverse_span_including(const char * psz, const char * pszBegin, const char * pszIncluding)
+const char * string_reverse_span_including(const scoped_string & str, const scoped_string & strBegin, const scoped_string & strIncluding)
 {
 
    while (psz >= pszBegin)
@@ -645,7 +645,7 @@ const char * string_reverse_span_including(const char * psz, const char * pszBeg
 string file_path_folder(const char * path1)
 {
 
-   const char * psz = path1 + string_safe_length(path1) - 1;
+   const scoped_string & str = path1 + string_safe_length(path1) - 1;
 
    auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/");
 
@@ -682,9 +682,9 @@ string file_path_folder(const char * path1)
 //string file_path_name(const char * path)
 //{
 //
-//   const char * pszName2 = ansi_find_char_reverse(path, '\\');
+//   const scoped_string & strName2 = ansi_find_char_reverse(path, '\\');
 //   
-//   const char * pszName1 = ansi_find_char_reverse(path, '/');
+//   const scoped_string & strName1 = ansi_find_char_reverse(path, '/');
 //
 //   auto pszName = minimum_non_null(pszName1, pszName2);
 //
@@ -749,7 +749,7 @@ string file_path_title(const char * path)
 }
 
 
-bool file_path_is_relative(const char * psz)
+bool file_path_is_relative(const scoped_string & str)
 {
 
    return !file_path_is_absolute(psz);
@@ -764,7 +764,7 @@ bool file_path_is_relative(const char * psz)
 }
 
 
-bool file_path_is_absolute(const char * psz)
+bool file_path_is_absolute(const scoped_string & str)
 {
 
    if (is_null(psz))
@@ -820,7 +820,7 @@ bool file_path_is_absolute(const char * psz)
 }
 
 
-bool file_path_is_dots(const char * psz)
+bool file_path_is_dots(const scoped_string & str)
 {
 
    if(is_null(psz))
@@ -858,7 +858,7 @@ bool file_path_is_dots(const char * psz)
 }
 
 
-bool file_path_is_equal(const char * psz1, const char * psz2)
+bool file_path_is_equal(const scoped_string & str1, const scoped_string & str2)
 {
 
    auto path1 = file_path_normalize(psz1);

@@ -17,7 +17,7 @@
 #if !defined(APPLE_IOS)
 
 
-//void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+//void command_system(string_array & straOutput, int& iExitCode, const scoped_string & str, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 //{
 //
 //   single_lock singlelock(pparticleSynchronization);

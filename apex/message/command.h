@@ -64,7 +64,7 @@ namespace message
       //virtual void _001SetCheck(bool bCheck = true, const ::action_context & action_context = ::e_source_system);   // true or false
       virtual void _001SetCheck(const ::e_check & echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
       virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
-      virtual void SetText(const char * pszText, const ::action_context & action_context = ::e_source_system);
+      virtual void SetText(const scoped_string & strText, const ::action_context & action_context = ::e_source_system);
 
 
       void do_probe(channel * ptarget);

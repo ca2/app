@@ -22,7 +22,7 @@ namespace acme
 
 
 
-   bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const scoped_string & strFullString, i32 iSubString, char chSep)
    {
 
       if (pszFullString == nullptr)
@@ -324,14 +324,14 @@ void safe_free(void * pfree)
 
 
 
-void this_type_init(const char * psz)
+void this_type_init(const scoped_string & str)
 {
 
 
 }
 
 
-void this_type_term(const char * psz)
+void this_type_term(const scoped_string & str)
 {
    
    

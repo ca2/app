@@ -3,7 +3,7 @@
 
 
 CLASS_DECL_ACME string __get_thread_note();
-CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
+CLASS_DECL_ACME void __set_thread_note(const scoped_string & strNote);
 
 
 

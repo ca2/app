@@ -2,7 +2,7 @@
 #include "cancel.h"
 
 
-cancel_exception::cancel_exception(const char * pszMessage) :
+cancel_exception::cancel_exception(const scoped_string & strMessage) :
    exception(pszMessage)
 {
 

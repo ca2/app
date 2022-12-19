@@ -78,7 +78,7 @@ block::block(const atom & atom) :
 //#endif
 
 
-block & block::from_base64(const char * psz, strsize iSize) const
+block & block::from_base64(const scoped_string & str, strsize iSize) const
 {
 
    ::base64 base64;
@@ -116,7 +116,7 @@ block & block::from_base64(const char * psz, strsize iSize) const
 //}
 
 
-//fork_block & fork_block::from_base64(const char * psz, strsize iSize)
+//fork_block & fork_block::from_base64(const scoped_string & str, strsize iSize)
 //{
 //
 //   m_iSize = (iSize + 1) * 3 / 4;

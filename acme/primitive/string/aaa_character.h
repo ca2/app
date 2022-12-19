@@ -17,10 +17,10 @@ public:
    character(::ansi_character ::ansi_character) { m_wd32char = (::wd32_character) static_cast <byte> (::ansi_character); }
    character(::wd16_character ::wd16_character) { wd16_to_wd32(&m_wd32char, &::wd16_character, 1); }
    character(::wd32_character ::wd32_character) { m_wd32char = ::wd32_character; }
-   character(const char * pszUtf8) { m_wd32char= parse_utf8(pszUtf8); }
+   character(const scoped_string & strUtf8) { m_wd32char= parse_utf8(pszUtf8); }
 
 
-   static ::wd32_character parse_utf8(const char * pszUtf8);
+   static ::wd32_character parse_utf8(const scoped_string & strUtf8);
 
 
 };

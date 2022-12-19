@@ -5,7 +5,7 @@
 #include "_conv.h"
 
 
-CLASS_DECL_ACME i64 strtoi(const char * psz);
+CLASS_DECL_ACME i64 strtoi(const scoped_string & str);
 CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
 
 
@@ -230,7 +230,7 @@ inline STRING& copy(STRING& string, const FLOATING& number)
 
 
 template < primitive_number NUMBER >
-inline string as_string(NUMBER number, const char* pszFormat)
+inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 {
 
    ::string str;

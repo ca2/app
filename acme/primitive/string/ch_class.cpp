@@ -229,7 +229,7 @@ void * gen_ch_class_reference_tables()
       return nullptr;
    }
 
-   void ch_class::add_char(const char * pszUtf8Char)
+   void ch_class::add_char(const scoped_string & strUtf8Char)
    {
       i64 iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
@@ -241,7 +241,7 @@ void * gen_ch_class_reference_tables()
       tablePos->set_bit(iChar & 0xFF);
    }
 
-   void ch_class::clear_char(const char * pszUtf8Char)
+   void ch_class::clear_char(const scoped_string & strUtf8Char)
    {
       i64 iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
@@ -392,7 +392,7 @@ void * gen_ch_class_reference_tables()
    }
 
 
-   bool ch_class::in_class(const char * pszUtf8Char) const
+   bool ch_class::in_class(const scoped_string & strUtf8Char) const
    {
       auto ca = unicode_index(pszUtf8Char);
       if(!is_legal_unicode_index(ca))

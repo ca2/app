@@ -157,9 +157,9 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
    ASSERT(__is_valid_string(pszEntity));
 
 
-   const char * pszBegin = pszEntity;
+   const scoped_string & strBegin = pszEntity;
 
-   const char * pszEnd = ::strchr(pszEntity, ';');
+   const scoped_string & strEnd = ::strchr(pszEntity, ';');
 
    char   chTemp = 0;
 

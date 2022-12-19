@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //
-//veri::exception::veri::exception(const char * pszMessage):
+//veri::exception::veri::exception(const scoped_string & strMessage):
 //   ::exception(pszMessage)
 //{
 //

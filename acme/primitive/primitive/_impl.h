@@ -69,7 +69,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //}
 
 //template < typename STRINGABLE >
-//inline string operator + (const char * psz, const STRINGABLE& stringable)
+//inline string operator + (const scoped_string & str, const STRINGABLE& stringable)
 //{
 //
 //   string strRight(stringable);
@@ -82,7 +82,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 /// END property_set
 
 //
-//inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
+//inline ::pointer<::handle::ini>operator ""_pini(const scoped_string & str, size_t s)
 //{
 //
 //   return __new(::handle::ini(string(psz, s)));
@@ -90,7 +90,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //}
 
 
-//inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
+//inline string CLASS_DECL_ACME operator + (const scoped_string & str, const ::payload & payload)
 //{
 //
 //   return as_string(psz) + payload.get_string();
@@ -725,7 +725,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource, const scoped_string & strObjRefDbg)
 //{
 //
 //   return __refer(preference, psource.get(), pszObjRefDbg);
@@ -734,7 +734,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & pmember, const scoped_string & strObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);
@@ -743,7 +743,7 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const SOURCE * psource, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const SOURCE * psource, const scoped_string & strObjRefDbg)
 //{
 //
 //   preference = psource;

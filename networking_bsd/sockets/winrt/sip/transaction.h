@@ -21,7 +21,7 @@ namespace sip
       transaction(const transaction & src);
       virtual ~transaction();
 
-      property & header(const char * pszKey);
+      property & header(const scoped_string & strKey);
 
       void SetAccept(const string & value);
       string Accept();
@@ -60,7 +60,7 @@ namespace sip
 
       property_set & attrs();
 
-      property & attr(const char * psz);
+      property & attr(const scoped_string & str);
       http::cookies & cookies();
 
       virtual void clear();

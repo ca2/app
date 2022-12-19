@@ -263,32 +263,32 @@ public:
 
 
 
-   virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
-   virtual void trace_log_information_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
-   virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
-   virtual void trace_log_error_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
-   virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const char * pszFormat, va_list & arguments);
+   virtual void trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments);
 
 
-   virtual void trace_arguments(enum_trace_level etracelevel, const char * pszFormat, va_list & arguments);
-   virtual void trace_log_information_arguments(const char * pszFormat, va_list & arguments);
-   virtual void trace_log_warning_arguments(const char * pszFormat, va_list & arguments);
-   virtual void trace_log_error_arguments(const char * pszFormat, va_list & arguments);
-   virtual void trace_log_fatal_arguments(const char * pszFormat, va_list & arguments);
+   virtual void trace_arguments(enum_trace_level etracelevel, const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_information_arguments(const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_warning_arguments(const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_error_arguments(const scoped_string & strFormat, va_list & arguments);
+   virtual void trace_log_fatal_arguments(const scoped_string & strFormat, va_list & arguments);
 
 
-   virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, ...);
-   virtual void trace_log_information(enum_trace_category etracecategory, const char * pszFormat, ...);
-   virtual void trace_log_warning(enum_trace_category etracecategory, const char * pszFormat, ...);
-   virtual void trace_log_error(enum_trace_category etracecategory, const char * pszFormat, ...);
-   virtual void trace_log_fatal(enum_trace_category etracecategory, const char * pszFormat, ...);
+   virtual void trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFormat, ...);
+   virtual void trace_log_information(enum_trace_category etracecategory, const scoped_string & strFormat, ...);
+   virtual void trace_log_warning(enum_trace_category etracecategory, const scoped_string & strFormat, ...);
+   virtual void trace_log_error(enum_trace_category etracecategory, const scoped_string & strFormat, ...);
+   virtual void trace_log_fatal(enum_trace_category etracecategory, const scoped_string & strFormat, ...);
 
 
-   virtual void trace(enum_trace_level etracelevel, const char * pszFormat, ...);
-   virtual void trace_log_information(const char * pszFormat, ...);
-   virtual void trace_log_warning(const char * pszFormat, ...);
-   virtual void trace_log_error(const char * pszFormat, ...);
-   virtual void trace_log_fatal(const char * pszFormat, ...);
+   virtual void trace(enum_trace_level etracelevel, const scoped_string & strFormat, ...);
+   virtual void trace_log_information(const scoped_string & strFormat, ...);
+   virtual void trace_log_warning(const scoped_string & strFormat, ...);
+   virtual void trace_log_error(const scoped_string & strFormat, ...);
+   virtual void trace_log_fatal(const scoped_string & strFormat, ...);
 
 
    inline tracer trace(enum_trace_level etracelevel) { return tracer(m_pcontext, etracelevel, trace_category()); }
@@ -339,10 +339,10 @@ public:
 
    
 
-   virtual void set_generic_object_name(const char* pszName);
-   virtual void set_library_name(const char* pszLibraryName);
+   virtual void set_generic_object_name(const scoped_string & strName);
+   virtual void set_library_name(const scoped_string & strLibraryName);
    // if this is an application/or nano application
-   virtual void set_application_id(const char* pszApplicationId);
+   virtual void set_application_id(const scoped_string & strApplicationId);
 
 
 //   // currently expected returned statuses:

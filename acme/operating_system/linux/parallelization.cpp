@@ -12,7 +12,7 @@
 //void xcb_asynchronous(::procedure function);
 
 
-void task_set_name(htask_t htask, const char * psz)
+void task_set_name(htask_t htask, const scoped_string & str)
 {
 
    string strName(psz);
@@ -29,7 +29,7 @@ void task_set_name(htask_t htask, const char * psz)
 }
 
 
-//void task_set_name(const char * psz)
+//void task_set_name(const scoped_string & str)
 //{
 //
 //   return task_set_name((htask_t) pthread_self(), psz);

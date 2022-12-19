@@ -443,7 +443,7 @@ namespace simpledb
 
    string dataset::consume_quoted_value(const char * & pszXml)
    {
-      const char * psz = pszXml;
+      const scoped_string & str = pszXml;
       string qc = ::str().get_utf8_char(psz);
       if(qc != "\'")
       {

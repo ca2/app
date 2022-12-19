@@ -31,7 +31,7 @@ public:
 
 
 
-//inline ::payload operator + (const char* psz, const ::title& title)
+//inline ::payload operator + (const scoped_string & str, const ::title& title)
 //{
 //
 //   return operator +((payload)psz, title);

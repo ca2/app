@@ -7,7 +7,7 @@ class CLASS_DECL_ACME temporary_exception :
 public:
 
 
-   temporary_exception(const char * pszMessage = nullptr);
+   temporary_exception(const scoped_string & strMessage = nullptr);
    virtual ~temporary_exception();
 
 

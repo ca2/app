@@ -40,7 +40,7 @@ CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel)
 
 
 
-void os_trace(enum_trace_level elevel, const char* pszTag, const char* psz)
+void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str)
 {
 
    string strMessage;
@@ -61,7 +61,7 @@ void os_trace(enum_trace_level elevel, const char* pszTag, const char* psz)
 
 
 
-void simple_debug_print(const char* psz)
+void simple_debug_print(const scoped_string & str)
 {
 
    os_trace(e_trace_level_information, "simple_debug_string", psz);
@@ -75,7 +75,7 @@ void simple_debug_print(const char* psz)
 
 #ifndef ANDROID
 //
-//void os_trace(enum_trace_level elevel, const char * pszTag, const char * psz)
+//void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str)
 //{
 //
 //   string strMessage;
@@ -96,7 +96,7 @@ void simple_debug_print(const char* psz)
 
 
 //
-//void simple_debug_print(const char * psz)
+//void simple_debug_print(const scoped_string & str)
 //{
 //
 ////   os_trace(e_trace_level_information, "simple_debug_string", psz);
@@ -127,7 +127,7 @@ void simple_debug_print(const char* psz)
 //}
 
 
-//CLASS_DECL_ACME void output_debug_string(const char * psz)
+//CLASS_DECL_ACME void output_debug_string(const scoped_string & str)
 //{
 //
 //

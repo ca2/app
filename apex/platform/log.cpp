@@ -234,7 +234,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const scoped_string & strFileName,i32 iLine,const char *,const scoped_string & strFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -287,7 +287,7 @@ namespace apex
 
 
 
-   void log::success(const char * psz)
+   void log::success(const scoped_string & str)
    {
 
       INFORMATION(psz);
@@ -295,7 +295,7 @@ namespace apex
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list args)
    //{
 
    //   string str;
@@ -307,10 +307,10 @@ namespace apex
    //}
 
 
-//   void log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
+//   void log::__tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & str) const
 //   {
 //
-//      //const char * pszTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
+//      //const scoped_string & strTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 //
 //      //synchronous_lock sl2(m_pmutexTrace);
 //
@@ -614,7 +614,7 @@ namespace apex
 //
 //   }
 
-   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
+   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const scoped_string & strFormat, ...)
    //{
    //   if(!m_bTrace)
    //      return;
@@ -628,7 +628,7 @@ namespace apex
 
 
 
-   //void log::print(const char * pszFormat, ...)
+   //void log::print(const scoped_string & strFormat, ...)
    //{
 
    //   //::trace::log::print_v(pszFormat, valist);
@@ -644,7 +644,7 @@ namespace apex
    //}
 
 
-   //void log::initialize_apex_log(enum_trace_level etracelevelMin, const char * pszId)
+   //void log::initialize_apex_log(enum_trace_level etracelevelMin, const scoped_string & strId)
    //{
 
    //   //if (!initialize(atom(pszId)))
@@ -769,7 +769,7 @@ namespace apex
 
 
 
-   //void log::trace(const char * pszFormat, ...)
+   //void log::trace(const scoped_string & strFormat, ...)
    //{
 
    //   if (void_ptr_is_null(this))
@@ -787,7 +787,7 @@ namespace apex
    //   va_end(ptr);
    //}
 
-   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
+   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const scoped_string & strFormat, ...)
    {
       if(!m_bTrace)
          return;

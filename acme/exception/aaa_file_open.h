@@ -8,7 +8,7 @@ class CLASS_DECL_ACME file_open_exception :
 public:
 
 
-   file_open_exception(::e_status estatus = ::error_file_open, const char* pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP);
+   file_open_exception(::e_status estatus = ::error_file_open, const scoped_string & strMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP);
    ~file_open_exception() override;
 
 

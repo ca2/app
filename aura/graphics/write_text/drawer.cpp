@@ -195,7 +195,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const char * pszStart = str;
+      const scoped_string & strStart = str;
 
       auto pszEnd = pszStart;
 
@@ -323,7 +323,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const char * pszStart = str;
+      const scoped_string & strStart = str;
 
       auto pszEnd = pszStart;
 

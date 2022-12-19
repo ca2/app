@@ -115,6 +115,8 @@
 #include "acme/primitive/primitive/move.h"
 
 
+#include  "acme/primitive/string/string.h"
+#include "_string.h"
 #include  "acme/primitive/primitive/payload.h"
 #include  "acme/primitive/primitive/object.h"
 #include  "acme/exception/exception.h"

@@ -2279,9 +2279,9 @@ namespace user
 
       //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-      //   const char * pszStart = strLine;
+      //   const scoped_string & strStart = strLine;
 
-      //   const char * psz = pszStart;
+      //   const scoped_string & str = pszStart;
 
       //   strsize iLen = 0;
 
@@ -2289,7 +2289,7 @@ namespace user
 
       //   iPos = 0;
 
-      //   const char * pszNext = pszStart;
+      //   const scoped_string & strNext = pszStart;
 
       //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -2744,9 +2744,9 @@ namespace user
       //
       //         }
       //
-      //         const char * pszStart = strLine;
+      //         const scoped_string & strStart = strLine;
       //
-      //         const char * psz = pszStart;
+      //         const scoped_string & str = pszStart;
       //
       //         strsize iLen = 0;
       //
@@ -2754,7 +2754,7 @@ namespace user
       //
       //         iPos = 0;
       //
-      //         const char * pszNext = pszStart;
+      //         const scoped_string & strNext = pszStart;
       //
       //         ::size_i32 sizeLast(0, 0);
       //
@@ -3142,9 +3142,9 @@ namespace user
 
       //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-      //   const char * pszStart = strLine;
+      //   const scoped_string & strStart = strLine;
 
-      //   const char * psz = pszStart;
+      //   const scoped_string & str = pszStart;
 
       //   strsize iLen = 0;
 
@@ -3152,7 +3152,7 @@ namespace user
 
       //   iPos = 0;
 
-      //   const char * pszNext = pszStart;
+      //   const scoped_string & strNext = pszStart;
 
       //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -3508,9 +3508,9 @@ namespace user
 
          replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-         const char * pszStart = strLine;
+         const scoped_string & strStart = strLine;
 
-         const char * psz = pszStart;
+         const scoped_string & str = pszStart;
 
          strsize iLen = 0;
 
@@ -3518,7 +3518,7 @@ namespace user
 
          strsize iPos = 0;
 
-         const char * pszNext = pszStart;
+         const scoped_string & strNext = pszStart;
 
          double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -4096,11 +4096,11 @@ namespace user
 
       i32 lim1;
 
-      const char * psz = strLine;
+      const scoped_string & str = strLine;
 
-      const char * pszEnd = psz;
+      const scoped_string & strEnd = psz;
 
-      const char * pszPrevious = psz;
+      const scoped_string & strPrevious = psz;
 
       //string strLineGraphics = strLine;
 
@@ -4720,7 +4720,7 @@ namespace user
 
             const char * pdata = str.c_str();
 
-            const char * psz = pdata;
+            const scoped_string & str = pdata;
 
             for (strsize i = 0; i < afterLength; i++)
             {
@@ -4782,7 +4782,7 @@ namespace user
 
             _001GetText(str, 0, iSelBeg);
 
-            const char * psz = str.c_str() + iSelBeg;
+            const scoped_string & str = str.c_str() + iSelBeg;
 
             const char * pdata = psz;
 
@@ -4932,7 +4932,7 @@ namespace user
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
-            const char * psz = unicode_next(buf);
+            const scoped_string & str = unicode_next(buf);
 
             strsize iMultiByteUtf8DeleteCount = psz - buf;
 
@@ -5694,7 +5694,7 @@ namespace user
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                         m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                         m_ptree->m_peditfile->read(buf, sizeof(buf));
-                        const char * psz;
+                        const scoped_string & str;
                         strsize iMultiByteUtf8DeleteCount;
                         if (iCur > 1 && buf[iCur - 1] == '\n' && buf[iCur - 2] == '\r')
                         {
@@ -6954,7 +6954,7 @@ namespace user
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const char * psz = unicode_prior(&buf[iCur], buf);
+               const scoped_string & str = unicode_prior(&buf[iCur], buf);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));

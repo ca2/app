@@ -1193,9 +1193,9 @@ namespace html
 
             string str = m_straLines[i];
 
-            const char * pszStart = str;
+            const scoped_string & strStart = str;
 
-            const char * pszEnd = pszStart;
+            const scoped_string & strEnd = pszStart;
 
             float cur_x = i == 0 ? x : m_bound.left;
 //            i32 cur_y = y + cy;

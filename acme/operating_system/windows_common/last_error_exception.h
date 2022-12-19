@@ -12,7 +12,7 @@ class CLASS_DECL_ACME last_error_exception :
 public:
 
 
-   last_error_exception(DWORD dwLastError, const char * pszMessage = nullptr, const char * pszDetails = nullptr);
+   last_error_exception(DWORD dwLastError, const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr);
 
 
 };

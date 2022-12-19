@@ -37,7 +37,7 @@
       {
       }
 
-      //bool tx::open(const char * pszChannel, launcher * plauncher)
+      //bool tx::open(const scoped_string & strChannel, launcher * plauncher)
       //{
 
       //   __UNREFERENCED_PARAMETER(plauncher);
@@ -56,7 +56,7 @@
 
       //}
 
-      bool tx::open(const char * pszChannel)
+      bool tx::open(const scoped_string & strChannel)
       {
 
          if (m_strBaseChannel.has_char())
@@ -87,7 +87,7 @@
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool tx::send(const scoped_string & strMessage, duration durationTimeout)
       {
 
          if (!is_tx_ok())
@@ -153,7 +153,7 @@
       }
 
 
-      bool rx::create(const char * pszChannel)
+      bool rx::create(const scoped_string & strChannel)
       {
 
          if (m_strBaseChannel.has_char())
@@ -187,7 +187,7 @@
 
       }
 
-      //void rx::receiver::on_ipc_receive(rx * prx, const char * pszMessage)
+      //void rx::receiver::on_ipc_receive(rx * prx, const scoped_string & strMessage)
       //{
 
       //}
@@ -204,7 +204,7 @@
       //}
 
 
-      void * rx::on_interprocess_receive(rx * prx, const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx, const scoped_string & strMessage)
       {
 
          if (m_preceiver != nullptr)
@@ -280,7 +280,7 @@
       }
 
 
-      //bool ipc::open_ab(const char * pszChannel, const char * pszModule, launcher * plauncher)
+      //bool ipc::open_ab(const scoped_string & strChannel, const scoped_string & strModule, launcher * plauncher)
       //{
 
       //   m_strChannel = pszChannel;
@@ -310,7 +310,7 @@
       //}
 
 
-      //bool ipc::open_ba(const char * pszChannel, const char * pszModule, launcher * plauncher)
+      //bool ipc::open_ba(const scoped_string & strChannel, const scoped_string & strModule, launcher * plauncher)
       //{
 
       //   m_strChannel = pszChannel;
@@ -340,7 +340,7 @@
       //}
 
 
-      bool inteprocess_channel::open_ab(const char * pszChannel, const char * pszModule)
+      bool inteprocess_channel::open_ab(const scoped_string & strChannel, const scoped_string & strModule)
       {
 
          m_strChannel = pszChannel;
@@ -370,7 +370,7 @@
       }
 
 
-      bool inteprocess_channel::open_ba(const char * pszChannel, const char * pszModule)
+      bool inteprocess_channel::open_ba(const scoped_string & strChannel, const scoped_string & strModule)
       {
 
          m_strChannel = pszChannel;

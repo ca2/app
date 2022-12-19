@@ -206,7 +206,7 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
    char * pch = (char *)&(pb)[m_position];
 
 
-   const char * psz = (const char *)pdata;
+   const scoped_string & str = (const char *)pdata;
 
 
    bool bEven = true;

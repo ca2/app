@@ -13,12 +13,12 @@
 //       void * m_uia[64];
 
 
-//       char * xxxstack_trace(iptr iSkip = 0, void * caller_address = nullptr, const char * pszFormat = default_format(), int iCount = -1);
+//       char * xxxstack_trace(iptr iSkip = 0, void * caller_address = nullptr, const scoped_string & strFormat = default_format(), int iCount = -1);
 
 // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 //       void xxxbacktrace(void ** pinteraction, int & c);
-//       char * xxstack_trace(void * const * pinteraction, int c, const char * pszFormat = default_format());
+//       char * xxstack_trace(void * const * pinteraction, int c, const scoped_string & strFormat = default_format());
 
 // #endif
 //    };

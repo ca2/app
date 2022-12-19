@@ -2,10 +2,10 @@
 
 
 
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
 
-bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str)
 {
 
    static ::pointer< ::mutex > pmutex = nullptr;
@@ -26,7 +26,7 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
 }
 //
 //
-//bool ios_get_file_image(::image * pimage, const char * psz)
+//bool ios_get_file_image(::image * pimage, const scoped_string & str)
 //{
 //
 //   if(!ios1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))

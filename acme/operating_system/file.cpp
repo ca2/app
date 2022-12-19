@@ -11,7 +11,7 @@
 #include "acme/platform/system.h"
 
 
-void file_put_contents(const char * pszFilePath, const char * psz)
+void file_put_contents(const scoped_string & strFilePath, const scoped_string & str)
 {
    
    auto ptask = ::get_task();

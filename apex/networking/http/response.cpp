@@ -46,7 +46,7 @@ namespace http
    }
 
 
-   //void response::printf(const char * pszFormat, ...)
+   //void response::printf(const scoped_string & strFormat, ...)
    //{
    //   
    //   va_list args;

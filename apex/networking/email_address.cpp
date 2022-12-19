@@ -12,7 +12,7 @@ namespace networking
    }
 
 
-   email_address::email_address(const char* pszEmail) :
+   email_address::email_address(const scoped_string & strEmail) :
       email_address((const ::string &) pszEmail)
    {
 

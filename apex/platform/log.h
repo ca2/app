@@ -46,7 +46,7 @@ namespace apex
       void load_flags(const ::property_set & set);
 
 
-      //void print(const char * psz, ...) override;
+      //void print(const scoped_string & str, ...) override;
 
 
       void initialize_log(enum_trace_level etracelevelMin, const ::atom & atom) override;
@@ -56,11 +56,11 @@ namespace apex
 
       void process_init() override;
 
-      //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) const override;
+      //virtual void __tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFileName, i32 iLine, const scoped_string & str) const override;
 
       void set_trace_category(enum_trace_category etracecategory, enum_trace_level etracelevelMinimum);
 
-      virtual void success(const char * psz);
+      virtual void success(const scoped_string & str);
 
       //void set_extended_log(bool bSet = true) override;
 
@@ -68,7 +68,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32, const char *, i32, const char *, const char * pszFormat, va_list list);
+   CLASS_DECL_APEX i32 SimpleDebugReport(i32, const char *, i32, const char *, const scoped_string & strFormat, va_list list);
 
 
 } // namespace apex

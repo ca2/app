@@ -747,7 +747,7 @@ char * memory_base::c_str()
 }
 
 
-bool memory_base::begins(const char * psz, strsize iCount) const
+bool memory_base::begins(const scoped_string & str, strsize iCount) const
 {
 
    if (::is_null(psz) || iCount <= 0)
@@ -776,7 +776,7 @@ bool memory_base::begins(const char * psz, strsize iCount) const
 }
 
 
-bool memory_base::case_insensitive_begins(const char * psz, strsize iCount) const
+bool memory_base::case_insensitive_begins(const scoped_string & str, strsize iCount) const
 {
 
    if (::is_null(psz) || *psz == '\0')
@@ -786,7 +786,7 @@ bool memory_base::case_insensitive_begins(const char * psz, strsize iCount) cons
 
    }
 
-   const char * pszThis = (const char *)data();
+   const scoped_string & strThis = (const char *)data();
 
    if (::is_null(pszThis))
    {
@@ -858,7 +858,7 @@ bool memory_base::case_insensitive_begins(const ::string & str, strsize iCount) 
 }
 
 
-bool memory_base::ends(const char * psz, strsize iCount) const
+bool memory_base::ends(const scoped_string & str, strsize iCount) const
 {
 
    if (iCount < 0)
@@ -880,7 +880,7 @@ bool memory_base::ends(const char * psz, strsize iCount) const
 }
 
 
-bool memory_base::case_insensitive_ends(const char * psz, strsize iCount) const
+bool memory_base::case_insensitive_ends(const scoped_string & str, strsize iCount) const
 {
 
    if (::is_null(psz) || *psz == '\0')
@@ -890,7 +890,7 @@ bool memory_base::case_insensitive_ends(const char * psz, strsize iCount) const
 
    }
 
-   const char * pszThis = (const char *)data();
+   const scoped_string & strThis = (const char *)data();
 
    if (::is_null(pszThis))
    {
@@ -1199,7 +1199,7 @@ string memory_base::to_hex(memsize pos, memsize size)
 }
 
 
-strsize memory_base::from_hex(const char * psz, strsize nCount)
+strsize memory_base::from_hex(const scoped_string & str, strsize nCount)
 {
 
    char ch;
@@ -1310,7 +1310,7 @@ string memory_base::to_base64(memsize pos, memsize size)
 
 }
 
-void memory_base::from_base64(const char * psz, strsize nCount)
+void memory_base::from_base64(const scoped_string & str, strsize nCount)
 {
 
    ::base64 base64;
@@ -1328,7 +1328,7 @@ void memory_base::from_base64(const char * psz, strsize nCount)
 //}
 //
 //
-//bool memory_base::from_asc(const char * psz)
+//bool memory_base::from_asc(const scoped_string & str)
 //{
 //
 //
@@ -1343,7 +1343,7 @@ void memory_base::from_string(const ::wide_character * pwsz)
 }
 
 
-void memory_base::from_string(const char * psz)
+void memory_base::from_string(const scoped_string & str)
 {
 
    set_size(strlen(psz));
@@ -1379,7 +1379,7 @@ void memory_base::append_from_string(const ::wide_character * pwsz)
 }
 
 
-void memory_base::append_from_string(const char * psz)
+void memory_base::append_from_string(const scoped_string & str)
 {
 
    auto sizeOld = size();
@@ -1740,7 +1740,7 @@ void memory_base::assign(memsize iCount, uchar uch)
 
 
 
-//void memory_base::assign(const char * psz)
+//void memory_base::assign(const scoped_string & str)
 //{
 //
 //   return from_string(psz);
@@ -1748,7 +1748,7 @@ void memory_base::assign(memsize iCount, uchar uch)
 //}
 //
 //
-//void memory_base::append(const char * psz)
+//void memory_base::append(const scoped_string & str)
 //{
 //
 //   return append_from_string(psz);

@@ -41,7 +41,7 @@ int g_iIgnoreXDisplayError = 0;
 //i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 //{
 //
-//   const char * pszError;
+//   const scoped_string & strError;
 //
 //   if(perrorevent->error_code == BadRequest)
 //   {
@@ -152,7 +152,7 @@ int g_iIgnoreXDisplayError = 0;
 //
 //   }
 //
-//const char * pszRequest;
+//const scoped_string & strRequest;
 //   if(perrorevent->request_code == 1)
 //   {
 //

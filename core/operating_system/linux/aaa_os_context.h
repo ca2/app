@@ -47,7 +47,7 @@ namespace linux
       virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension) override;
 
       virtual bool file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath) override;
-      virtual bool file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const char * pszCommand, const ::string & pszParam) override;
+      virtual bool file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const scoped_string & strCommand, const ::string & pszParam) override;
       virtual bool file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 

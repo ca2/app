@@ -142,7 +142,7 @@ inline strsize  get_formatted_length(const ::wd32_character * pszFormat, va_list
 
    wstring wstr(pszFormat);
 
-   return _vscwprintf(wstr, args);
+   return _vscwprintf(wstr.c_str(), args);
 
 #else
 
@@ -191,7 +191,7 @@ inline strsize wd32tring_format(::wd32_character * pszBuffer, strsize nlength, c
 inline const ::wd32_character * string_rear_find_character(const ::wd32_character * psz, ::wd32_character ch) noexcept
 {
 
-   return ::const_wd32_range(psz).rear_find_item(ch, ::comparison::comparison < ::wd32_character >());
+   return _string_range(psz).rear_find_item(ch, ::comparison::comparison < ::wd32_character >());
 
 }
 

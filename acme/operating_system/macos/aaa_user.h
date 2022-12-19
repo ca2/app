@@ -23,7 +23,7 @@
 //#include "window_impl.h"
 //
 //
-//i32 axis_main_command_line(const char * pszParams, int argc, char *argv[]);
+//i32 axis_main_command_line(const scoped_string & strParams, int argc, char *argv[]);
 //
 //
 //#ifdef cplusplus

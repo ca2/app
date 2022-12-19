@@ -38,7 +38,7 @@ namespace sockets
       void put_byte(char *buf, int& ptr, unsigned char zz);
       void put_boolean(char *buf, int& ptr, bool zz);
       void put_integer(char *buf, int& ptr, short zz);
-      void put_string(char *buf, int& ptr, const char * psz);
+      void put_string(char *buf, int& ptr, const scoped_string & str);
 
    private:
       int m_state;

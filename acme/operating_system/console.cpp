@@ -46,7 +46,7 @@ namespace console
 //#if !defined(_UWP) || defined(_UWP_CONSOLE)
 
 
-void press_any_key_to_exit(const char * pszPrompt)
+void press_any_key_to_exit(const scoped_string & strPrompt)
 {
 
    string strPrompt;
@@ -135,23 +135,23 @@ int safe_get_char(FILE * pfile, const class time & time)
 }
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
 {
 
    string strLine;
 
    strLine = "\n";
 
-   if (strlen(pszTitle) > 0)
+   if (strTitle.size() > 0)
    {
 
-      strLine += pszTitle;
+      strLine += strTitle;
 
       strLine += "\n";
 
    }
 
-   strLine += psz;
+   strLine += str;
 
    enum_dialog_result edialogresultDefault = e_dialog_result_ok;
 
@@ -168,7 +168,7 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
       str += "y/n";
    }
 
-   if (!::is_empty(pszDetails))
+   if (strDetails.is_empty())
    {
 
       str += "/d";
@@ -179,19 +179,19 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
 
    auto edefaultbutton = (emessagebox & e_message_box_default_button_mask);
 
-   if (edefaultbutton == e_message_box_default_button_1 && str.get_length() >= 1)
+   if (edefaultbutton == e_message_box_default_button_1 && str.size() >= 1)
    {
       str.set_at(0, ansi_char_toupper(str[0]));
       edialogresultDefault = e_dialog_result_yes;
       bDefault = true;
    }
-   else if (edefaultbutton == e_message_box_default_button_2 && str.get_length() >= 3)
+   else if (edefaultbutton == e_message_box_default_button_2 && str.size() >= 3)
    {
       str.set_at(2, ansi_char_toupper(str[2]));
       edialogresultDefault = e_dialog_result_no;
       bDefault = true;
    }
-   else if (edefaultbutton == e_message_box_default_button_3 && str.get_length() >= 5)
+   else if (edefaultbutton == e_message_box_default_button_3 && str.size() >= 5)
    {
       str.set_at(4, ansi_char_toupper(str[4]));
       edialogresultDefault = e_dialog_result_cancel;
@@ -234,7 +234,7 @@ repeat:
 
    }
 
-   const char * pszAcceptedAnswer = "";
+   const scoped_string & strAcceptedAnswer = "";
 
    if (etype == e_message_box_yes_no_cancel)
    {
@@ -362,6 +362,14 @@ int getche()
 
 
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
+
+
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox)
+{
+
+   return message_box_for_console(str, strTitle, emessagebox, nullptr);
+
+}
 
 
 

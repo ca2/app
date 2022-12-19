@@ -28,7 +28,7 @@ public:
 //}
 
 
-//inline ::payload operator + (const char* psz, const ::timeout& timeout)
+//inline ::payload operator + (const scoped_string & str, const ::timeout& timeout)
 //{
 //
 //   return ::payload(psz) + timeout;

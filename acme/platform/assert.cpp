@@ -6,25 +6,25 @@
 
 //#if defined(__APPLE__)
 
-//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future);
+//void _os_message_box(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#elif defined(_UWP)
 
-//void _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future);
+//void _os_message_box(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#else
 
 //#ifdef _UWP
-//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future);
+//void _os_message_box(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const ::future & future);
 //#else
-//int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox);
+//int _os_message_box(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox);
 //#endif
 
 
 //#endif
 
 
-CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const scoped_string & strFileName, int iLineNumber);
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
@@ -87,7 +87,7 @@ namespace acme
 //#ifdef _UWP
 //
 //
-//void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future)
+//void message_box_synchronous(const scoped_string & strText, const scoped_string & strTitle, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   return _os_message_box(pszText, pszTitle, emessagebox, process);
@@ -98,7 +98,7 @@ namespace acme
 //#else
 //
 //
-////void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future)
+////void message_box_synchronous(const scoped_string & strText, const scoped_string & strTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
 ////   auto posmessagebox = __new(::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
@@ -114,7 +114,7 @@ namespace acme
 //::acme::system * acmesystem();
 
 
-CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME bool __assert_failed_line(const scoped_string & strFileName, int iLineNumber)
 {
 
 #ifdef LINUX
@@ -152,7 +152,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 }
 
 
-CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const scoped_string & strFileName, int iLineNumber)
 {
 
    char szMessage[1024*4];

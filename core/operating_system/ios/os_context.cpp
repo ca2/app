@@ -474,7 +474,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const char * pszCommand, const ::string & pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const scoped_string & strCommand, const ::string & pszParam)
    {
       //   throw ::not_implemented();
       return false;
@@ -528,7 +528,7 @@ namespace ios
        if(keyLink.QueryValue(nullptr, strFormat))
        {
 
-       const char * psz = strFormat;
+       const scoped_string & str = strFormat;
 
        try
        {

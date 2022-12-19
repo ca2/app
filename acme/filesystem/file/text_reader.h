@@ -15,7 +15,7 @@ public:
 
 
    text_reader() {}
-   text_reader(const char * psz) : m_psz(psz) { }
+   text_reader(const scoped_string & str) : m_psz(psz) { }
    text_reader(const text_reader & textreader) :
       m_psz(textreader.m_psz)
    {
@@ -394,11 +394,11 @@ public:
    }
 
 
-   static void paired_trim(string_block & block, const char * pszBeg, const char * pszEnd)
+   static void paired_trim(string_block & block, const scoped_string & strBeg, const scoped_string & strEnd)
    {
 
-      const char * pszBegChar = pszBeg;
-      const char * pszEndChar = pszEnd;
+      const scoped_string & strBegChar = pszBeg;
+      const scoped_string & strEndChar = pszEnd;
 
       for (;
          *pszBegChar != '\0' &&
@@ -424,7 +424,7 @@ public:
    }
 
 
-   static string ellipsis(const char * psz, strsize maximum_length)
+   static string ellipsis(const scoped_string & str, strsize maximum_length)
    {
 
       if (maximum_length < 3)

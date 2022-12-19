@@ -13,7 +13,7 @@ namespace match
    }
 
 
-   string::string(const char* psz) :
+   string::string(const scoped_string & str) :
       m_str(psz)
    {
 
@@ -28,7 +28,7 @@ namespace match
    }
 
 
-   ci_string::ci_string(const char* psz) :
+   ci_string::ci_string(const scoped_string & str) :
       m_str(psz)
    {
 
@@ -43,7 +43,7 @@ namespace match
    }
 
 
-   prefix::prefix(const char* psz) :
+   prefix::prefix(const scoped_string & str) :
       m_str(psz)
    {
 
@@ -58,7 +58,7 @@ namespace match
    }
 
 
-   ci_prefix::ci_prefix(const char* psz) :
+   ci_prefix::ci_prefix(const scoped_string & str) :
       m_str(psz)
    {
 
@@ -73,7 +73,7 @@ namespace match
    }
 
 
-   suffix::suffix(const char* psz) :
+   suffix::suffix(const scoped_string & str) :
       m_str(psz)
    {
 
@@ -88,7 +88,7 @@ namespace match
    }
 
 
-   ci_suffix::ci_suffix(const char* psz) :
+   ci_suffix::ci_suffix(const scoped_string & str) :
       m_str(psz)
    {
 

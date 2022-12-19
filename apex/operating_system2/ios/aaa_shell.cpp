@@ -13,7 +13,7 @@
 #include "shell.h"
 
 
-bool ios_get_file_image(::image * pimage, const char * psz);
+bool ios_get_file_image(::image * pimage, const scoped_string & str);
 
 
 namespace ios
@@ -374,7 +374,7 @@ namespace ios
 ////         WCHAR wszPath[_MAX_PATH * 6];
 ////         string strPath;
 ////
-////         const char * pszPathParam = imagekey.m_strPath;
+////         const scoped_string & strPathParam = imagekey.m_strPath;
 ////
 ////         HICON hicon16 = nullptr;
 ////         HICON hicon48 = nullptr;
@@ -1257,7 +1257,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 
 
 
-//      bool ios::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon( oswindow oswindow, const scoped_string & str, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);

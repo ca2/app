@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "type.h"
@@ -167,7 +167,7 @@ public:
    payload(::property * pproperty);
    payload(::particle * pparticle);
    payload(class ::time * ptime);
-   payload(const char * psz);
+   payload(const scoped_string & str);
    template < ::count count >
    payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
    template < primitive_integral INTEGRAL >
@@ -399,7 +399,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::procedure get_procedure() const;
 
 
-   ::string as_string(const char * pszOnNull) const;
+   ::string as_string(const scoped_string & strOnNull) const;
    ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom atom(const ::atom & idDefault = nullptr)   const;
@@ -424,6 +424,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_time() const;
    bool is_text() const;
    bool is_fairly_convertible_to_text() const;
+   bool has_string_reference() const;
 
    bool ok() const;
    bool failed() const;
@@ -549,7 +550,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::color::hls() const { return this->hls(); }
    operator ::block() const { return this->block(); }
 
-   ::string & string_reference(const char * pszOnNull = nullptr);
+   ::string & string_reference(const scoped_string & strOnNull = nullptr);
 
    ::memory & memory_reference();
 
@@ -711,7 +712,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::earth::time & time);
    payload & operator = (const ::color::color & color);
    payload & operator = (const ::color::hls & color);
-   inline payload & operator = (const char * psz);
+   inline payload & operator = (const scoped_string & str);
    inline payload & operator = (const ::string & str);
    inline payload & operator = (::string && str);
    inline payload & operator = (::const_ansi_range ansirange);
@@ -873,33 +874,33 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::particle * get_particle();
 
 //   bool strictly_equal(const payload & payload) const;
-//   bool strictly_equal(const char * psz) const;
+//   bool strictly_equal(const scoped_string & str) const;
 //   bool strictly_equal(const ::string & str) const;
 //   bool strictly_equal(double d) const;
 //   bool strictly_equal(::i32 i) const;
 //   bool strictly_equal(bool b) const;
 //
 //   bool strictly_different(const payload & payload) const;
-//   bool strictly_different(const char * psz) const;
+//   bool strictly_different(const scoped_string & str) const;
 //   bool strictly_different(const ::string & str) const;
 //   bool strictly_different(double d) const;
 //   bool strictly_different(::i32 i) const;
 //   bool strictly_different(bool b) const;
 
-   //friend bool CLASS_DECL_ACME strict_equal(const char * psz,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(const scoped_string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
-   //friend bool CLASS_DECL_ACME strict_different(const char * psz,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(const scoped_string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(const ::string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
 
    bool equals(const payload & payload) const;
-   //bool equals(const char * psz) const;
+   //bool equals(const scoped_string & str) const;
 
    bool case_insensitive_equals(const payload & payload) const;
 
@@ -908,50 +909,50 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::std::strong_ordering case_insensitive_order(const ::payload & payload) const;
 
    bool operator == (const payload & payload) const;
-   bool operator == (const char * psz) const;
+   bool operator == (const scoped_string & str) const;
    bool operator == (const ::string & str) const;
    bool operator == (::i64 i) const;
    bool operator == (::i32 i) const;
    bool operator == (bool b) const;
 
    //bool operator != (const payload & payload) const;
-   //bool operator != (const char * psz) const;
+   //bool operator != (const scoped_string & str) const;
    //bool operator != (const ::string & str) const;
    //bool operator != (::i64 i) const;
    //bool operator != (::i32 i) const;
    //bool operator != (bool b) const;
 
    ::std::strong_ordering operator <=> (const payload & payload) const;
-   ::std::strong_ordering operator <=> (const char * psz) const;
+   ::std::strong_ordering operator <=> (const scoped_string & str) const;
    ::std::strong_ordering operator <=> (const ::string & str) const;
    ::std::strong_ordering operator <=> (::i64 i) const;
    ::std::strong_ordering operator <=> (::i32 i) const;
    ::std::strong_ordering operator <=> (bool b) const;
 
    //bool operator <= (const payload & payload) const;
-   //bool operator <= (const char * psz) const;
+   //bool operator <= (const scoped_string & str) const;
    //bool operator <= (const ::string & str) const;
    //bool operator <= (::i64 i) const;
    //bool operator <= (::i32 i) const;
    //bool operator <= (bool b) const;
 
    //bool operator >= (const payload & payload) const;
-   //bool operator >= (const char * psz) const;
+   //bool operator >= (const scoped_string & str) const;
    //bool operator >= (const ::string & str) const;
    //bool operator >= (::i64 i) const;
    //bool operator >= (::i32 i) const;
    //bool operator >= (bool b) const;
 
    //bool operator > (const payload & payload) const;
-   //bool operator > (const char * psz) const;
+   //bool operator > (const scoped_string & str) const;
    //bool operator > (const ::string & str) const;
    //bool operator > (::i64 i) const;
    //bool operator > (::i32 i) const;
    //bool operator > (bool b) const;
 
 
-   ::string implode(const char * pszGlue) const;
-   payload explode(const char * pszGlue,bool bAddEmpty = true) const;
+   ::string implode(const scoped_string & strGlue) const;
+   payload explode(const scoped_string & strGlue,bool bAddEmpty = true) const;
 
    payload first() const;
    payload last() const;
@@ -963,8 +964,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline ::property & operator[] (const ::atom & atom) { return get_property(atom); }
    inline ::payload operator[] (const ::atom & atom) const { return find_property(atom); }
 
-   inline ::property & operator[] (const char * psz) { return get_property(::atom(psz)); }
-   inline ::payload operator[] (const char * psz) const { return find_property(::atom(psz)); }
+   inline ::property & operator[] (const scoped_string & str) { return get_property(::atom(psz)); }
+   inline ::payload operator[] (const scoped_string & str) const { return find_property(::atom(psz)); }
 
    inline ::property & operator[] (const ::string & str) { return get_property(::atom(str)); }
    inline ::payload operator[] (const ::string & str) const { return find_property(::atom(str)); }
@@ -989,12 +990,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    ::count array_get_count() const;
    ::index array_get_upper_bound() const;
-   bool array_contains(const char * psz,::index find = 0,::count count = -1) const;
-   bool array_contains_ci(const char * psz,::index find = 0,::count count = -1) const;
+   bool array_contains(const scoped_string & str,::index find = 0,::count count = -1) const;
+   bool array_contains_ci(const scoped_string & str,::index find = 0,::count count = -1) const;
    bool array_is_empty() const { return array_get_count() <= 0; }
 
-   ::payload equals_ci_get(const char * pszCompare,::payload varOnEqual,payload varOnDifferent) const;
-   ::payload equals_ci_get(const char * pszCompare,::payload varOnEqual) const;
+   ::payload equals_ci_get(const scoped_string & strCompare,::payload varOnEqual,payload varOnDifferent) const;
+   ::payload equals_ci_get(const scoped_string & strCompare,::payload varOnEqual) const;
 
    template < primitive_integral INTEGRAL >
    ::payload operator - (INTEGRAL i) const;
@@ -1008,7 +1009,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::payload operator + (FLOATING f) const;
 
    ::payload operator + (const ::string & str) const;
-   ::payload operator + (const char * psz) const;
+   ::payload operator + (const scoped_string & str) const;
 
    template < primitive_integral INTEGRAL >
    ::payload operator / (INTEGRAL i) const;
@@ -1036,7 +1037,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::payload & operator += (FLOATING f);
 
    ::payload & operator += (const ::string & str);
-   inline ::payload & operator += (const char * psz) { return *this += ::string(psz); }
+   inline ::payload & operator += (const scoped_string & str) { return *this += ::string(psz); }
 
    template < primitive_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);
@@ -1050,17 +1051,17 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    void consume_number(const char * & psz);
-   void consume_number(const char * & psz,const char * pszEnd);
+   void consume_number(const char * & psz,const scoped_string & strEnd);
    void consume_identifier(const char * & psz);
-   void consume_identifier(const char * & psz,const char * pszEnd);
+   void consume_identifier(const char * & psz,const scoped_string & strEnd);
    void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const char * pszEnd);
+   void parse_network_payload(const char * & pszJson, const scoped_string & strEnd);
    const char * parse_network_payload(const ::string & strJson);
    ::enum_type find_network_payload_child(const char * & pszJson, const payload & payload);
-   ::enum_type find_network_payload_child(const char * & pszJson, const char * pszEnd, const payload & payload);
-   ::enum_type find_network_payload_id(const char * & pszJson, const char * pszEnd, const payload & payload);
+   ::enum_type find_network_payload_child(const char * & pszJson, const scoped_string & strEnd, const payload & payload);
+   ::enum_type find_network_payload_id(const char * & pszJson, const scoped_string & strEnd, const payload & payload);
    bool parse_network_payload_step(const char * & pszJson);
-   bool parse_network_payload_step(const char * & pszJson, const char * pszEnd);
+   bool parse_network_payload_step(const char * & pszJson, const scoped_string & strEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
    ::string get_network_payload(bool bNewLine = true) const;
@@ -1111,11 +1112,11 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 CLASS_DECL_ACME void var_skip_number(const char *& psz);
-CLASS_DECL_ACME void var_skip_number(const char *& psz, const char * pszEnd);
+CLASS_DECL_ACME void var_skip_number(const char *& psz, const scoped_string & strEnd);
 CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
-CLASS_DECL_ACME void var_skip_identifier(const char *& psz, const char * pszEnd);
+CLASS_DECL_ACME void var_skip_identifier(const char *& psz, const scoped_string & strEnd);
 CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const scoped_string & strEnd);
 
 
 
@@ -1338,7 +1339,7 @@ inline payload::operator unsigned long() const
 #endif
 
 
-//inline ::string & payload::string_reference(const char * pszOnNull)
+//inline ::string & payload::string_reference(const scoped_string & strOnNull)
 //{
 //
 //   set_type(e_type_string, true);
@@ -1356,7 +1357,7 @@ inline ::string payload::as_string() const
 }
 
 
-inline class payload & payload::operator = (const char * psz)
+inline class payload & payload::operator = (const scoped_string & str)
 {
 
    set_string(psz);
@@ -1409,7 +1410,7 @@ inline class payload& payload::operator = (const inline_number_string & inlinenu
 
 
 
-//inline void payload::set_string(const char* psz, strsize size)
+//inline void payload::set_string(const scoped_string & str, strsize size)
 //{
 //
 //   if (get_type() == e_type_pstring)
@@ -1721,7 +1722,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 
 
 //template < primitive_payload PAYLOAD >
-//inline bool strictly_equal(const char * psz, const PAYLOAD & payload);
+//inline bool strictly_equal(const scoped_string & str, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
 //inline bool strictly_equal(const ::string & str, const PAYLOAD & payload);
 //template < primitive_payload PAYLOAD >
@@ -1733,7 +1734,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 
 
 template < primitive_payload PAYLOAD >
-inline bool strictly_different(const char * psz, const PAYLOAD & payload);
+inline bool strictly_different(const scoped_string & str, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
 inline bool strictly_different(const ::string & str, const PAYLOAD & payload);
 template < primitive_payload PAYLOAD >
@@ -1992,7 +1993,7 @@ namespace file
    inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
    inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + ::string(separator()) + ::sz::trim_left_path_sep(path), m_epath }; }
    inline path path::sibling(const ::ansi_string & str) const { return { ::file_path_folder(*this) + ::string(separator()) + ::sz::trim_left_path_sep(str), m_epath }; }
-   inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + ::string(separator()) + ::sz::trim_left_path_sep(psz), m_epath }; }
+   inline path path::sibling(const scoped_string & str) const { return { ::file_path_folder(*this) + ::string(separator()) + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::all_extensions() const { return &this->data()[find_skip_or_length('.', rear_find(separator()) + 1)]; }
    inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
    //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
@@ -2184,7 +2185,7 @@ inline ::string operator +(const ::string & str, const ::payload & payload)
 }
 
 
-//inline ::string operator+(const char * psz, const ::payload & payload)
+//inline ::string operator+(const scoped_string & str, const ::payload & payload)
 //{
 //
 //   return ::string(psz) + ::string(payload);
@@ -2252,17 +2253,43 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload) { assign(payload.as_string()); return *this; }
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload) 
+{ 
+   
+   assign(payload.as_string()); 
+   
+   return *this; 
+
+}
 
 
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
+{
 
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::payload & payload)
-//{
-//
-//   return operator+=(payload.operator ::string());
-//
-//}
+   return append(payload);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::payload & payload)
+{
+
+   if (payload.m_etype == e_type_string)
+   {
+
+      append(payload.m_str);
+
+   }
+   else
+   {
+
+      return append(payload.as_string());
+
+   }
+
+}
 
 
 namespace file
@@ -2280,6 +2307,46 @@ namespace file
 
 
 
+
+
+
+template < typename ITERATOR_TYPE >
+inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::payload & payload) :
+   m_str(e_no_initialize), RANGE(e_no_initialize)
+{
+
+   m_str = payload.as_string();
+
+   BASE_RANGE::operator = (m_str);
+
+   return *this;
+
+}
+
+
+template <  >
+inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::payload & payload) :
+   m_str(e_no_initialize), RANGE(e_no_initialize)
+{
+
+   if (payload.has_string_reference())
+   {
+
+      BASE_RANGE::operator = (payload.string_reference());
+
+   }
+   else
+   {
+
+      m_str = payload.as_string();
+
+      BASE_RANGE::operator = (m_str);
+
+   }
+
+   return *this;
+
+}
 
 
 

@@ -134,7 +134,7 @@ property * property_set::find_value_ci(const ::payload & payload) const
 }
 
 
-property * property_set::find_value_ci(const char * psz) const
+property * property_set::find_value_ci(const scoped_string & str) const
 {
 
    for (auto & pproperty : *this)
@@ -176,7 +176,7 @@ property * property_set::find_value(const ::payload & payload) const
 }
 
 
-property * property_set::find_value(const char * psz) const
+property * property_set::find_value(const scoped_string & str) const
 {
 
    for (auto & pproperty : *this)
@@ -207,7 +207,7 @@ bool property_set::contains_value_ci(const ::payload & payload, ::count countMin
 
 
 
-bool property_set::contains_value_ci(const char * psz, ::count countMin, ::count countMax) const
+bool property_set::contains_value_ci(const scoped_string & str, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(psz) != nullptr)
@@ -225,7 +225,7 @@ bool property_set::contains_value(const ::payload & payload, ::count countMin, :
 }
 
 
-bool property_set::contains_value(const char * psz, ::count countMin, ::count countMax) const
+bool property_set::contains_value(const scoped_string & str, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value(psz) != nullptr)
@@ -324,7 +324,7 @@ bool property_set::erase_first_value(const char * pcsz)
 }
 
 
-::count property_set::erase_value_ci(const char * psz, ::count countMin, ::count countMax)
+::count property_set::erase_value_ci(const scoped_string & str, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -368,7 +368,7 @@ bool property_set::erase_first_value(const char * pcsz)
 }
 
 
-::count property_set::erase_value(const char * psz, ::count countMin, ::count countMax)
+::count property_set::erase_value(const scoped_string & str, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -486,7 +486,7 @@ bool property_set::is_empty(const atom & idName) const
 }
 
 
-void property_set::_008ParseCommandLine(const char * pszCmdLineParam, ::payload & payloadFile)
+void property_set::_008ParseCommandLine(const scoped_string & strCmdLineParam, ::payload & payloadFile)
 {
 
    string strApp;
@@ -496,7 +496,7 @@ void property_set::_008ParseCommandLine(const char * pszCmdLineParam, ::payload 
 }
 
 
-void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload & payloadFile, string & strApp)
+void property_set::_008ParseCommandFork(const scoped_string & strCmdLineParam, ::payload & payloadFile, string & strApp)
 {
 
    _008Parse(true, pszCmdLineParam, payloadFile, strApp);
@@ -640,7 +640,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
       if(iFindEqual + 1 == iFindQuote)
       {
 
-         const char * pszValue = strValue;
+         const scoped_string & strValue = strValue;
 
          strValue = ::str().consume_quoted_value(pszValue);
 
@@ -661,7 +661,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
 }
 
 
-void property_set::_008Add(const char * pszKey, const char * pszValue)
+void property_set::_008Add(const scoped_string & strKey, const scoped_string & strValue)
 {
 
    string_array straKey;
@@ -710,7 +710,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 }
 
 
-void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp)
+void property_set::_008Parse(bool bApp, const scoped_string & strCmdLine, ::payload & payloadFile, string & strApp)
 {
 
    if (pszCmdLine == nullptr)
@@ -789,7 +789,7 @@ void property_set_skip_network_payload(const char *& pszJson)
 }
 
 
-void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd)
+void property_set_skip_network_payload(const char *& pszJson, const scoped_string & strEnd)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -920,7 +920,7 @@ void property_set::parse_network_payload(const ::string & strJson)
 
 #endif
 
-   const char * pszJson = strJson;
+   const scoped_string & strJson = strJson;
 
    parse_network_payload(pszJson, pszJson + strJson.get_length() - 1);
 
@@ -939,7 +939,7 @@ void property_set::parse_network_payload(const char * & pszJson)
 }
 
 
-void property_set::parse_network_payload(const char * & pszJson, const char * pszEnd)
+void property_set::parse_network_payload(const char * & pszJson, const scoped_string & strEnd)
 {
    ::str().consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '\0')
@@ -1054,7 +1054,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 }
 
 
-void property_set::parse_network_arguments(const char * pszUriOrNetworkArguments)
+void property_set::parse_network_arguments(const scoped_string & strUriOrNetworkArguments)
 {
    
    if(::is_empty(pszUriOrNetworkArguments))
@@ -1064,7 +1064,7 @@ void property_set::parse_network_arguments(const char * pszUriOrNetworkArguments
    
    }
    
-   const char * pszNetworkArguments = strchr(pszUriOrNetworkArguments, '?');
+   const scoped_string & strNetworkArguments = strchr(pszUriOrNetworkArguments, '?');
    
    if(::is_empty(pszNetworkArguments))
    {
@@ -1082,7 +1082,7 @@ void property_set::parse_network_arguments(const char * pszUriOrNetworkArguments
 }
 
 
-void property_set::_parse_network_arguments(const char * pszNetworkArguments)
+void property_set::_parse_network_arguments(const scoped_string & strNetworkArguments)
 {
    
    if(::is_empty(pszNetworkArguments))
@@ -1092,11 +1092,11 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
       
    }
    
-   const char * pszArgument = pszNetworkArguments;
+   const scoped_string & strArgument = pszNetworkArguments;
    
-   const char * pszArgumentEnd;
+   const scoped_string & strArgumentEnd;
    
-   const char * pszKeyEnd;
+   const scoped_string & strKeyEnd;
    
    string strKey;
    
@@ -1159,7 +1159,7 @@ void property_set::_parse_network_arguments(const char * pszNetworkArguments)
 }
 
 
-void property_set::parse_network_headers(const char * pszHeaders)
+void property_set::parse_network_headers(const scoped_string & strHeaders)
 {
    
    string_array stra;
@@ -1273,7 +1273,7 @@ void property_set::clear()
 }
 
 
-string property_set::implode(const char * pszGlue) const
+string property_set::implode(const scoped_string & strGlue) const
 {
 
    string str;
@@ -1308,7 +1308,7 @@ string property_set::implode(const char * pszGlue) const
 }
 
 
-//property * property_set::find_value(const char * psz) const
+//property * property_set::find_value(const scoped_string & str) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)
@@ -1328,7 +1328,7 @@ string property_set::implode(const char * pszGlue) const
 //}
 //
 
-//property * property_set::find_value_ci(const char * psz) const
+//property * property_set::find_value_ci(const scoped_string & str) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)

@@ -80,7 +80,7 @@ namespace file
 
 
 
-   bool memory_map::open_name(const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size)
+   bool memory_map::open_name(const scoped_string & strName, bool bRead, bool bWrite, bool bCreate, memsize size)
    {
 
       string strPath = calculate_path_from_name(pszName);
@@ -97,7 +97,7 @@ namespace file
    }
 
 
-   bool memory_map::open_path(const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size)
+   bool memory_map::open_path(const scoped_string & strPath, bool bRead, bool bWrite, bool bCreate, memsize size)
    {
 
       return open(pszPath, pszPath, bRead, bWrite, bCreate, size);
@@ -105,7 +105,7 @@ namespace file
    }
 
 
-   bool memory_map::open(const char * pszPath, const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size)
+   bool memory_map::open(const scoped_string & strPath, const scoped_string & strName, bool bRead, bool bWrite, bool bCreate, memsize size)
    {
 
       m_strPath = pszPath;

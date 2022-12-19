@@ -10,10 +10,10 @@
 #pragma once
 
 
-CLASS_DECL_ACME void this_type_init(const char * pszThisType);
+CLASS_DECL_ACME void this_type_init(const scoped_string & strThisType);
 
 
-CLASS_DECL_ACME void this_type_term(const char * pszThisType);
+CLASS_DECL_ACME void this_type_term(const scoped_string & strThisType);
 
 
 class this_type
@@ -24,7 +24,7 @@ public:
    const char * m_psz;
    
    
-   this_type(const char * psz) :
+   this_type(const scoped_string & str) :
    m_psz(psz)
    {
    

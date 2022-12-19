@@ -7,7 +7,7 @@ class CLASS_DECL_ACME void_implementation_exception :
 public:
 
 
-   void_implementation_exception(const char * pszMessage = nullptr);
+   void_implementation_exception(const scoped_string & strMessage = nullptr);
    virtual ~void_implementation_exception();
 
 

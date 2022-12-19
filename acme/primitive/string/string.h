@@ -18,11 +18,10 @@
 #include "string_base.h"
 
 
-//using string = string_base < ::ansi_character >;
-//using wstring = string_base < ::wide_character >;
+#include "scoped_string_base.h"
+
 
 typedef string_array_base < string, string, e_type_string_array > string_array;
-
 
 
 #include "__end.h"

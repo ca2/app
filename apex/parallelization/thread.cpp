@@ -767,7 +767,7 @@ void thread::on_message_branch(::message::message* pmessage)
 }
 
 
-//::pointer<::matter>thread::running(const char * pszTag) const
+//::pointer<::matter>thread::running(const scoped_string & strTag) const
 //{
 //
 //   auto pmatter = ::channel::running(pszTag);
@@ -787,7 +787,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //   //   try
 //   //   {
 //
-//   //      const char * pszTaskTag = pcomposite->get_task_tag();
+//   //      const scoped_string & strTaskTag = pcomposite->get_task_tag();
 //
 //   //      if (!strcmp(pszTaskTag, pszTag))
 //   //      {

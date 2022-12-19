@@ -123,7 +123,7 @@ namespace ios
    }
 
 
-   void os_context::terminate_processes_by_title(const char * pszName)
+   void os_context::terminate_processes_by_title(const scoped_string & strName)
    {
 //      throw ::not_implemented();
       return;
@@ -155,7 +155,7 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_path(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const scoped_string & strName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -171,7 +171,7 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_title(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const scoped_string & strName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -309,7 +309,7 @@ namespace ios
    }
 
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run(const scoped_string & strKey, const scoped_string & strCommand)
    {
 
 //     throw ::not_implemented();
@@ -327,7 +327,7 @@ namespace ios
    }
 
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run_once(const scoped_string & strKey, const scoped_string & strCommand)
    {
 
 
@@ -344,7 +344,7 @@ namespace ios
    }
 
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run(const scoped_string & strKey, const scoped_string & strCommand)
    {
 
       //   throw ::not_implemented();
@@ -362,7 +362,7 @@ namespace ios
    }
 
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run_once(const scoped_string & strKey, const scoped_string & strCommand)
    {
 
 //    throw ::not_implemented();
@@ -420,7 +420,7 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const scoped_string & strExtension)
    {
       //   throw ::not_implemented();
       return false;
@@ -445,7 +445,7 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const scoped_string & strExtension)
    {
 
       string_array straKey;
@@ -459,7 +459,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass, const scoped_string & strIconPath)
    {
 
       //    throw ::not_implemented();
@@ -477,7 +477,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass,  const scoped_string & strCommand, const scoped_string & strParam)
    {
       //   throw ::not_implemented();
       return false;
@@ -510,7 +510,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const scoped_string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       //    throw ::not_implemented();
       return false;
@@ -531,7 +531,7 @@ namespace ios
        if(keyLink.QueryValue(nullptr, strFormat))
        {
 
-       const char * psz = strFormat;
+       const scoped_string & str = strFormat;
 
        try
        {

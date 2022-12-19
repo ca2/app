@@ -18,7 +18,7 @@
 //}
 
 
-//void SetCommandLineA(const char * psz)
+//void SetCommandLineA(const scoped_string & str)
 //{
 //
 //   get_command_line_string()     = psz;

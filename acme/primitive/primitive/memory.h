@@ -51,7 +51,7 @@ public:
    memory(enum_copy_clone, const memory_base & memorybase);
    memory(const memory_base & memorybase);
    memory(const memory & memory);
-   memory(const char * psz);
+   memory(const scoped_string & str);
    memory(const ::block & block);
    memory(memory_container * pcontainer, memsize size = 0, ::u32 uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);

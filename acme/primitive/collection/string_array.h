@@ -2387,9 +2387,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 ::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
-   const char * pszBeg = nullptr;
+   const scoped_string & strBeg = nullptr;
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    iFind = find_first_contains_ci(strTopic, iFind, iLast, &pszBeg, &pszEnd);
 

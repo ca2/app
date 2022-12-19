@@ -6,7 +6,7 @@
 //
 //
 //   template < class APP >
-//   ::pointer<::matter>single_application_library < APP > ::new_application(const char * pszAppId)
+//   ::pointer<::matter>single_application_library < APP > ::new_application(const scoped_string & strAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))

@@ -10,7 +10,7 @@ CLASS_DECL_ACME wstring operator + (const wstring & str, const unichar * psz);
 CLASS_DECL_ACME wstring operator + (const unichar * psz, const wstring & str);
 
 
-CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
+CLASS_DECL_ACME wstring gen_utf8_to_16(const scoped_string & str);
 
 
 //class CLASS_DECL_ACME wstring_data
@@ -125,7 +125,7 @@ public:
    wstring(manager * pstringmanager);
    void construct(manager * pstringmanager = nullptr);
    wstring(const wstring & strSrc,manager * pstringmanager = nullptr);
-   wstring(const char * pszSrc,manager * pstringmanager = nullptr);
+   wstring(const scoped_string & strSrc,manager * pstringmanager = nullptr);
    wstring(const u8 * pszSrc,manager * pstringmanager = nullptr);
    wstring(const u8 * pszSrc, strsize nLength, manager * pstringmanager = nullptr);
    wstring(const unichar * pchSrc, manager * pstringmanager = nullptr);
@@ -159,7 +159,7 @@ public:
 
    wstring & operator = (const wstring & wstr);
    wstring & operator = (const unichar * pwsz);
-   wstring & operator = (const char * psz);
+   wstring & operator = (const scoped_string & str);
 
 
    inline operator const unichar * () const { return get_data()->m_iAllocation <= 0 ? wstring_data::get_nil() : m_pwsz; }
@@ -328,7 +328,7 @@ public:
    wstring & operator = (const ::string & str);
 
    void assign(const unichar * pwsz);
-   void assign(const char * psz);
+   void assign(const scoped_string & str);
 
 
    strsize find(unichar ch,strsize start = 0,strsize count = -1) const RELEASENOTHROW;

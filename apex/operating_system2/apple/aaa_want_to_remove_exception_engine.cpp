@@ -1222,7 +1222,7 @@
 // // #ifdef WINDOWS_DESKTOP
 
 
-// //    bool engine::xxxstack_trace(CONTEXT * pcontext, uptr uiSkip, const char * pszFormat)
+// //    bool engine::xxxstack_trace(CONTEXT * pcontext, uptr uiSkip, const scoped_string & strFormat)
 // //    {
 
 // //       if(!pszFormat)
@@ -1319,7 +1319,7 @@
 
 
 
-//    char * engine::xxxstack_trace(iptr uiSkip, void * caller_address, const char * pszFormat, int iCount)
+//    char * engine::xxxstack_trace(iptr uiSkip, void * caller_address, const scoped_string & strFormat, int iCount)
 //    {
 
 //       cslock csl(&m_cs);
@@ -1418,7 +1418,7 @@
 // #ifdef WINDOWS_DESKTOP
 
 
-//    bool engine::xxxstack_trace(CONTEXT * pcontext, uptr uiSkip, bool bSkip, const char * pszFormat)
+//    bool engine::xxxstack_trace(CONTEXT * pcontext, uptr uiSkip, bool bSkip, const scoped_string & strFormat)
 //    {
 
 //       *_strS = '\0';
@@ -1487,9 +1487,9 @@
 //    }
 
 // #if OSBIT == 32
-//    char * engine::xxxstack_trace(::u32 * pinteraction, int c, const char * pszFormat)
+//    char * engine::xxxstack_trace(::u32 * pinteraction, int c, const scoped_string & strFormat)
 // #else
-//    char * engine::xxxstack_trace(DWORD64 * pinteraction, int c, const char * pszFormat)
+//    char * engine::xxxstack_trace(DWORD64 * pinteraction, int c, const scoped_string & strFormat)
 // #endif
 //    {
 
@@ -1532,7 +1532,7 @@
 // #if defined(WINDOWS_DESKTOP)
 
 
-//    char * engine::get_frame(const char * pszFormat, int & iLine)
+//    char * engine::get_frame(const scoped_string & strFormat, int & iLine)
 //    {
 
 
@@ -1663,7 +1663,7 @@
 
 //    }
 
-//    char * engine::xxxstack_trace(void * const * pinteraction, int c, const char * pszFormat)
+//    char * engine::xxxstack_trace(void * const * pinteraction, int c, const scoped_string & strFormat)
 //    {
 
 //       char ** messages = backtrace_symbols(pinteraction, c);
@@ -1767,7 +1767,7 @@
 
 //    }
 
-//    char * engine::xxxstack_trace(void * const * ppui, int c, const char * pszFormat)
+//    char * engine::xxxstack_trace(void * const * ppui, int c, const scoped_string & strFormat)
 //    {
 
 //       char ** messages = backtrace_symbols(ppui, c);

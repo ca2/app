@@ -5,7 +5,7 @@
 #include "assert.h"
 
 
-assert_exception::assert_exception(const char * pszFile, long lLine) :
+assert_exception::assert_exception(const scoped_string & strFile, long lLine) :
    ::exception(::error_assert)
 {
 

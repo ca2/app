@@ -88,7 +88,7 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-int_array module_path_get_pid(const char * pszPath)
+int_array module_path_get_pid(const scoped_string & strPath)
 {
 
    int_array ia;
@@ -123,7 +123,7 @@ int_array module_path_get_pid(const char * pszPath)
 }
 
 //
-//atom_array app_get_pid(const char * psz)
+//atom_array app_get_pid(const scoped_string & str)
 //{
 //
 //   atom_array ia;

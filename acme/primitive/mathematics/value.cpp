@@ -14,7 +14,7 @@ namespace mathematics
 {
 
 
-   void value::set_value_string(const char * psz)
+   void value::set_value_string(const scoped_string & str)
    {
       m_pimpl->set_value_string(psz);
    }
@@ -37,7 +37,7 @@ namespace mathematics
    }
 
 
-   void value_impl::set_value_string(const char * psz)
+   void value_impl::set_value_string(const scoped_string & str)
    {
       m_str = psz;
    }
@@ -47,13 +47,13 @@ namespace mathematics
       return m_str;
    }
 
-   void value::parse_numeric_formula(const char * psz)
+   void value::parse_numeric_formula(const scoped_string & str)
    {
 //      i32 iOpen               = 0;
       //    bool bLeft              = false;
       //  bool bNumber            = false;
       m_pimpl                 = memory_new number();
-//      const char * pszNumber  = nullptr;
+//      const scoped_string & strNumber  = nullptr;
       //    value_impl * pimpl      = m_pimpl;
 
       string strNumber;

@@ -1,4 +1,4 @@
-// From apex by camilo 2021-11-01 13:38 BRT <3ThomasBorregaardSørensen!!
+// From apex by camilo 2021-11-01 13:38 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -6,7 +6,7 @@
 //{
 //public:
 //
-//   set_app_id(const char* pszAppId);
+//   set_app_id(const scoped_string & strAppId);
 //
 //};
 

@@ -32,19 +32,19 @@ public:
    virtual void open_for_reading(file_pointer pfile, int iBufferLevel = 2);
 
 
-   virtual bool locate_file(const char* pszFileName);
-   virtual bool locate_folder(const char* pszFileName);
-   virtual ::file_pointer get_file(const char* pszFile = nullptr);
+   virtual bool locate_file(const scoped_string & strFileName);
+   virtual bool locate_folder(const scoped_string & strFileName);
+   virtual ::file_pointer get_file(const scoped_string & strFile = nullptr);
    
-   ::file::enum_type type(const char * pszItem = nullptr);
+   ::file::enum_type type(const scoped_string & strItem = nullptr);
 
-   virtual bool has_sub_folder(const char* pszDir = nullptr);
-   virtual void extract(memory& m, const char* pszFile = nullptr);
-   virtual bool is_compressed(const char* pszItem = nullptr);
+   virtual bool has_sub_folder(const scoped_string & strDir = nullptr);
+   virtual void extract(memory& m, const scoped_string & strFile = nullptr);
+   virtual bool is_compressed(const scoped_string & strItem = nullptr);
 
    virtual bool locate(const ::function < bool(const char *) > & function);
 
-   virtual void e_extract_all(const char* pszTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
+   virtual void e_extract_all(const scoped_string & strTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 
 
    //bool _enumerates(::file::listing & listing) override;

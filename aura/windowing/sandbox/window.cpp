@@ -342,7 +342,7 @@ namespace sandbox_windowing
 
 
 
-   //void window::set_wm_class(const char * psz)
+   //void window::set_wm_class(const scoped_string & str)
    //{
 
    //   synchronous_lock synchronouslock(user_synchronization());
@@ -984,7 +984,7 @@ namespace sandbox_windowing
 //   }
 
 
-   //i32 window::store_name(const char * psz)
+   //i32 window::store_name(const scoped_string & str)
    //{
 
    //   windowing_output_debug_string("\nwindow::store_name");
@@ -2330,7 +2330,7 @@ namespace sandbox_windowing
    //   }
 
 
-   void window::set_window_text(const char* pszString)
+   void window::set_window_text(const scoped_string & strString)
    {
 
       //      m_strWindowText = pszString;
@@ -3033,7 +3033,7 @@ namespace sandbox_windowing
    //}
 
 
-   //int window::wm_test_state_raw(const char * pszNetStateFlag)
+   //int window::wm_test_state_raw(const scoped_string & strNetStateFlag)
    //{
 
    //   synchronous_lock synchronouslock(user_synchronization());
@@ -3065,7 +3065,7 @@ namespace sandbox_windowing
    //}
 
 
-   //int window::wm_test_state(const char * pszNetStateFlag)
+   //int window::wm_test_state(const scoped_string & strNetStateFlag)
    //{
 
    //   synchronous_lock synchronouslock(user_synchronization());
@@ -3289,7 +3289,7 @@ namespace sandbox_windowing
 
 
    ///// should be run in user thread
-   //::e_status window::x11_store_name(const char * pszName)
+   //::e_status window::x11_store_name(const scoped_string & strName)
    //{
 
    //   synchronous_lock synchronouslock(user_synchronization());

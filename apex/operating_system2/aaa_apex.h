@@ -42,7 +42,7 @@ inline bool IsDirSep(WCHAR ch);
 
 
 
-//CLASS_DECL_APEX void set_command_line_dup(const char * psz);
+//CLASS_DECL_APEX void set_command_line_dup(const scoped_string & str);
 //
 //CLASS_DECL_APEX void get_command_line(char * psz, int iBuffer);
 

@@ -55,7 +55,7 @@
 //      }
 //
 //
-//      bool tx::open(const char * pszKey,launcher * plauncher)
+//      bool tx::open(const scoped_string & strKey,launcher * plauncher)
 //      {
 //
 //         m_strBaseChannel = "apex\\appdata\\inteprocess_channel\\" + string(pszKey);
@@ -87,7 +87,7 @@
 //      }
 //
 //
-//      bool tx::send(const char * pszMessage,unsigned int tickTimeout)
+//      bool tx::send(const scoped_string & strMessage,unsigned int tickTimeout)
 //      {
 //
 //         ::winrt::Windows::Storage::StorageFolder ^ folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
@@ -162,7 +162,7 @@
 //      }
 //
 //
-//      bool rx::create(const char * pszKey)
+//      bool rx::create(const scoped_string & strKey)
 //      {
 //
 //
@@ -283,7 +283,7 @@
 //      }
 //
 //
-//      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
+//      void rx::receiver::on_receive(rx * prx,const scoped_string & strMessage)
 //      {
 //      }
 //
@@ -295,7 +295,7 @@
 //      {
 //      }
 //
-//      void * rx::on_receive(rx * prx,const char * pszMessage)
+//      void * rx::on_receive(rx * prx,const scoped_string & strMessage)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -477,7 +477,7 @@
 //
 //      }
 //
-//      bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
+//      bool ipc::open_ab(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
 //      {
 //
 //         /*m_strChannel = pszKey;
@@ -508,7 +508,7 @@
 //
 //      }
 //
-//      bool ipc::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
+//      bool ipc::open_ba(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
 //      {
 //
 //         //m_strChannel = pszKey;

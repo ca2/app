@@ -116,7 +116,7 @@ void debug_object_event_promisse_predicate()
 //}
 
 
-CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
+CLASS_DECL_ACME void debug_print(const scoped_string & strFormat, ...)
 {
 
    if (is_null(pszFormat, 1024))

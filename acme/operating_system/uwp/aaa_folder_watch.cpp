@@ -14,7 +14,7 @@
 //   }
 //
 //
-//   bool folder_watch::watch(const char * pszPath)
+//   bool folder_watch::watch(const scoped_string & strPath)
 //   {
 //      if(!::file::folder_watch::watch(pszPath))
 //         return false;

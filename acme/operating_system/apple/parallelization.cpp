@@ -73,13 +73,13 @@ i32 process_get_os_priority(i32 nCa2Priority);
 //}
 
 
-bool ns_set_thread_name(const char * psz);
+bool ns_set_thread_name(const scoped_string & str);
 
 
 char * ns_get_thread_name();
 
 
-void task_set_name(const char * psz)
+void task_set_name(const scoped_string & str)
 {
    
    return ns_set_thread_name(psz);

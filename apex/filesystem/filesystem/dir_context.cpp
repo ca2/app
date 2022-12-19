@@ -1362,7 +1362,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //      bool dir_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,u32 &dwLastError, i32 iLastChar)
 //      {
 //
-//         const char * pszEnd = path.c_str() + iLastChar;
+//         const scoped_string & strEnd = path.c_str() + iLastChar;
 //
 //         char sz[2048];
 //
@@ -2248,7 +2248,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       //}
 
-      const char* pszUrl = strUrl;
+      const scoped_string & strUrl = strUrl;
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -2538,7 +2538,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata(const char* pszAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration)
+::file::path dir_context::commonappdata(const scoped_string & strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -2572,7 +2572,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata_locale_schema(const char* pszAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+::file::path dir_context::commonappdata_locale_schema(const scoped_string & strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema)
 {
 
    synchronous_lock synchronouslock(this->synchronization());

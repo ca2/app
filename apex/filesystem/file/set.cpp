@@ -186,7 +186,7 @@ namespace file
    }
 
 
-   bool set::get_next_file(const char * pszFile, string & strNext)
+   bool set::get_next_file(const scoped_string & strFile, string & strNext)
    {
 
       index iFind = find_first_file(pszFile);
@@ -221,7 +221,7 @@ namespace file
    }
 
 
-   string set::get_next_file(const char * pszFile)
+   string set::get_next_file(const scoped_string & strFile)
    {
 
       string strNext;

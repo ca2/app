@@ -25,7 +25,7 @@ namespace acme
    }
 
 
-   string node::get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
+   string node::get_callstack(const scoped_string & strFormat, i32 iSkip, void * caller_address, int iCount)
    {
 
       const size_t iMaximumFramesToCapture = 64;

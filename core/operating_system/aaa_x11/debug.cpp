@@ -39,7 +39,7 @@ void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
 
-   const char * pszError;
+   const scoped_string & strError;
 
    if(perrorevent->error_code == BadRequest)
    {
@@ -150,7 +150,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
    }
 
-const char * pszRequest;
+const scoped_string & strRequest;
    if(perrorevent->request_code == 1)
    {
 

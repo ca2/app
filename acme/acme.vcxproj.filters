@@ -2981,6 +2981,18 @@
     <ClInclude Include="primitive\string\_string_base_impl1.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\Header.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\_string_range_impl.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\scoped_string_base.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_string.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

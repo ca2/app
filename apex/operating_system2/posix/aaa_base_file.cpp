@@ -421,7 +421,7 @@ filesize file_length_dup(const char * path)
 
 
 
-int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
+int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
 {
 
    i32 input, output;
@@ -482,7 +482,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 
 
 
-int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
+int_bool file_is_equal_path_dup(const scoped_string & str1, const scoped_string & str2)
 {
    if (ansi_compare_ci(psz1, psz2) == 0)
       return true;
@@ -504,7 +504,7 @@ CLASS_DECL_APEX string file_get_mozilla_firefox_plugin_container_path()
 
 
 
-int_bool file_delete(const char * pszFileName)
+int_bool file_delete(const scoped_string & strFileName)
 
 {
 
@@ -526,7 +526,7 @@ int_bool file_delete(const char * pszFileName)
 
 
 
-int_bool file_path_is_equal(const char * psz1, const char * psz2)
+int_bool file_path_is_equal(const scoped_string & str1, const scoped_string & str2)
 {
 
    const i32 iBufSize = MAX_PATH * 8;
@@ -561,7 +561,7 @@ int_bool file_path_is_equal(const char * psz1, const char * psz2)
 
 
 
-i32 ansi_open(const char * psz, i32 i)
+i32 ansi_open(const scoped_string & str, i32 i)
 {
 
    return open(psz, i);
@@ -573,7 +573,7 @@ void ansi_get_errno(i32 * perrno)
    *perrno = errno;
 }
 
-FILE * ansi_fopen(const char * psz, const char * pszMode)
+FILE * ansi_fopen(const scoped_string & str, const scoped_string & strMode)
 {
 
    return fopen(psz, pszMode);
@@ -622,7 +622,7 @@ int ansi_file_flag(int iFlag)
 }
 
 
-void ansi_unlink(const char * psz)
+void ansi_unlink(const scoped_string & str)
 {
 
    unlink(psz);

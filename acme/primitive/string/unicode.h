@@ -19,7 +19,7 @@ CLASS_DECL_ACME string wd32_to_ansi_str(const ::wd32_character * pwsz, strsize s
 CLASS_DECL_ACME string         get_utf8_char(const ::ansi_character * psz);
 int            get_utf8_char_length(const ::ansi_character * psz);
 string         get_utf8_char(const ::ansi_character * psz, const ::ansi_character * pszEnd);
-bool           get_utf8_char(string & strChar, const char *& psz, const char * pszEnd);
+bool           get_utf8_char(string & strChar, const char *& psz, const scoped_string & strEnd);
 string         get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i);
 string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
 string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
@@ -359,20 +359,20 @@ inline bool unicode_is_assigned(::i32 iUniIndex);
 inline bool unicode_is_space_char(::i32 iUniIndex);
 
 
-// bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
+// bool is_whitespace(const scoped_string & strUtf8Char, const scoped_string & strEnd);
 
-bool unicode_is_number(const char * pszUtf8Char);
-//       bool to_numeric_value(const char * pszUtf8Char, float *f);
+bool unicode_is_number(const scoped_string & strUtf8Char);
+//       bool to_numeric_value(const scoped_string & strUtf8Char, float *f);
 
 inline ECharCategory unicode_get_category(i32 i);
 inline i32 unicode_get_combining_class(i32 i);
 inline bool unicode_is_mirrored(i32 i);
 
-string unicode_get_category_name(const char * pszUtf8Char);
-ECharCategory unicode_get_category(const char * pszUtf8Char);
+string unicode_get_category_name(const scoped_string & strUtf8Char);
+ECharCategory unicode_get_category(const scoped_string & strUtf8Char);
 
-i32 unicode_get_combining_class(const char * pszUtf8Char);
-bool unicode_is_mirrored(const char * pszUtf8Char);
+i32 unicode_get_combining_class(const scoped_string & strUtf8Char);
+bool unicode_is_mirrored(const scoped_string & strUtf8Char);
 
 i32 unicode_size_of_tables();
 
@@ -381,18 +381,17 @@ inline  bool unicode_is_kanji(i64 i) { return i >= 0x4E00 && i <= 0x9FBF; }
 inline  bool unicode_is_hiragana(i64 i) { return i >= 0x3040 && i <= 0x309F; }
 inline  bool unicode_is_katakana(i64 i) { return i >= 0x30A0 && i <= 0x30FF; }
 inline  bool unicode_is_japanese(i64 i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
-inline  bool unicode_is_kanji(const char * pszUtf8) { return unicode_is_kanji(unicode_index(pszUtf8)); }
-inline  bool unicode_is_hiragana(const char * pszUtf8) { return unicode_is_hiragana(unicode_index(pszUtf8)); }
-inline  bool unicode_is_katakana(const char * pszUtf8) { return unicode_is_katakana(unicode_index(pszUtf8)); }
-inline  bool unicode_is_japanese(const char * pszUtf8) { return unicode_is_japanese(unicode_index(pszUtf8)); }
+inline  bool unicode_is_kanji(const ::ansi_character * pszUtf8) { return unicode_is_kanji(unicode_index(pszUtf8)); }
+inline  bool unicode_is_hiragana(const ::ansi_character * pszUtf8) { return unicode_is_hiragana(unicode_index(pszUtf8)); }
+inline  bool unicode_is_katakana(const ::ansi_character * pszUtf8) { return unicode_is_katakana(unicode_index(pszUtf8)); }
+inline  bool unicode_is_japanese(const ::ansi_character * pszUtf8) { return unicode_is_japanese(unicode_index(pszUtf8)); }
+
 
 void * unicode_char_bidi_names_non_usage_warning();
 
+
 i32 unicode_ref_tables();
 const char * unicode_get_category_name(i32 i);
-
-
-
 
 
 template < typename POINTER >
@@ -408,7 +407,7 @@ inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallo
 }
 
 
-CLASS_DECL_ACME string demangle(const char * psz);
+CLASS_DECL_ACME string demangle(const scoped_string & str);
 
 
 CLASS_DECL_ACME void copy(::string & str, const particle & particle);

@@ -150,7 +150,7 @@ namespace apple
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir, ::enum_priority epriority)
+   bool process::create_child_process(const scoped_string & strCmdLine,bool bPiped,const scoped_string & strDir, ::enum_priority epriority)
    {
 
       if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
@@ -210,7 +210,7 @@ namespace apple
 
          int iPrevious = -1;
 
-         const char * psz;
+         const scoped_string & str;
 
          while((psz = environ[i]) != nullptr)
          {
@@ -375,7 +375,7 @@ namespace apple
    }
 
 
-   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const scoped_string & strCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
 #if defined(MACOS)

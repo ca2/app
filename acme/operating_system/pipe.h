@@ -31,7 +31,7 @@ namespace operating_system
       virtual bool not_inherit_read();
       virtual bool not_inherit_write();
 
-      virtual bool write(const char * psz);
+      virtual bool write(const scoped_string & str);
       virtual string read();
       virtual string one_pass_read();
 

@@ -53,7 +53,7 @@ namespace sockets
 
 
 
-      transfer_socket_exception(const char * pszMessage);
+      transfer_socket_exception(const scoped_string & strMessage);
       virtual ~transfer_socket_exception();
 
    };

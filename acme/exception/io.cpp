@@ -2,7 +2,7 @@
 #include "io.h"
 
 
-io_exception::io_exception(::e_status estatus, const char * pszMessage, i32 iSkip) :
+io_exception::io_exception(::e_status estatus, const scoped_string & strMessage, i32 iSkip) :
    ::exception(estatus, pszMessage, nullptr, iSkip)
 {
 

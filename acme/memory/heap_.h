@@ -10,7 +10,7 @@ namespace heap
    public:
 
 #if MEMDLEAK  || defined(__MCRTDBG)
-      inline static void * alloc(memsize iSize,  const char * pszFile, int iLine)
+      inline static void * alloc(memsize iSize,  const scoped_string & strFile, int iLine)
       {
 
          return system_heap_alloc_debug(iSize, 725, pszFile, iLine);
@@ -43,7 +43,7 @@ namespace heap
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      inline static void * alloc(memsize iSize, const char * pszFile, int iLine)
+      inline static void * alloc(memsize iSize, const scoped_string & strFile, int iLine)
       {
 
          return memory_allocate_debug(iSize, 724, pszFile, iLine);

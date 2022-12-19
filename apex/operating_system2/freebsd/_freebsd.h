@@ -6,7 +6,7 @@
 
 string get_error_message(::u32 dwError);
 
-::pointer<::apex::application>    linux_instantiate_application(::pointer<::apex::application>appSystem, const char * pszId);
+::pointer<::apex::application>    linux_instantiate_application(::pointer<::apex::application>appSystem, const scoped_string & strId);
 
 
 
@@ -60,7 +60,7 @@ int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u3
 
 i32 CLASS_DECL_APEX __linux_main(i32 argc, char * argv[]);
 
-CLASS_DECL_APEX void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
+CLASS_DECL_APEX void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const scoped_string & strFileName = nullptr);
 
 #include "internal.h"
 

@@ -86,7 +86,7 @@ namespace xcb
    }
 
 
-   xcb_atom_t display::intern_atom(const char * pszAtomName, bool bCreate)
+   xcb_atom_t display::intern_atom(const scoped_string & strAtomName, bool bCreate)
    {
 
       if (m_pconnection == nullptr)

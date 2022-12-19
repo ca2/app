@@ -17,7 +17,7 @@
 //
 ////CLASS_DECL_AQUA void os_application_system_run(::apex::system* psystem);
 //
-////CLASS_DECL_APEX void set_main_app_id(const char * pszAppId);
+////CLASS_DECL_APEX void set_main_app_id(const scoped_string & strAppId);
 //
 //
 //void application_common(::apex::system * psystem)

@@ -135,7 +135,7 @@ namespace str
       //}
 
 
-      ::atom locale_schema::localeid(const char * pszLocale, strsize iLen)
+      ::atom locale_schema::localeid(const scoped_string & strLocale, strsize iLen)
       {
 
          //if(iLen == 4)
@@ -322,7 +322,7 @@ namespace str
       }
 
 
-      bool locale_schema::_add_locale_variant(const char * psz, strsize iLen, atom idSchema)
+      bool locale_schema::_add_locale_variant(const scoped_string & str, strsize iLen, atom idSchema)
       {
 
 

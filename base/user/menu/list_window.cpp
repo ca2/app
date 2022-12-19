@@ -127,7 +127,7 @@ namespace user
 
          string strWindowText = pitem->m_puserinteraction->get_window_text();
 
-         //const char * pszWindowText = strWindowText.c_str();
+         //const scoped_string & strWindowText = strWindowText.c_str();
 
          auto size = pgraphics->get_text_extent(strWindowText);
 

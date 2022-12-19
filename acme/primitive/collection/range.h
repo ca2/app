@@ -19,7 +19,7 @@ constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize c
 {
 
    return {
-      range.begin() + start,
+      ::clipped_add(range.begin(), start, range.begin(), range.end()),
       ((count >= 0) ? ::clipped_add(range.begin(), start + count, range.begin(), range.end()) :
       ::clipped_add(range.end(), count, range.begin(), range.end()))};
 

@@ -56,8 +56,8 @@ CLASS_DECL_ACME void __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const char * pszDebug, itask_t atom, bool bClose);
-//void __clear_mq(const char * pszDebug, bool bClose);
+//void __clear_mq(const scoped_string & strDebug, itask_t atom, bool bClose);
+//void __clear_mq(const scoped_string & strDebug, bool bClose);
 
 
 //CLASS_DECL_ACME void __node_term_cross_windows_threading();

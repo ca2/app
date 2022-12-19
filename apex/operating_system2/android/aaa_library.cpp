@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-//CLASS_DECL_APEX void * __node_library_touch(const char * pszPath, string & strMessage)
+//CLASS_DECL_APEX void * __node_library_touch(const scoped_string & strPath, string & strMessage)
 //{
 //
 //   return __node_library_open(pszPath, strMessage);
@@ -10,7 +10,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX void * __node_library_open(const char * pszPath, string & strMessage)
+//CLASS_DECL_APEX void * __node_library_open(const scoped_string & strPath, string & strMessage)
 //{
 //
 //   strMessage.Empty();
@@ -58,9 +58,9 @@
 //
 //      int iError = errno;
 //
-//      const char * psz = strerror(iError);
+//      const scoped_string & str = strerror(iError);
 //
-//      const char * psz2 = dlerror();
+//      const scoped_string & str2 = dlerror();
 //
 //      strMessage += "Failed to load library : \"" + strPath + "\"!";
 //
@@ -85,7 +85,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX void * __node_library_open_ca2(const char * pszPath, string & strMessage)
+//CLASS_DECL_APEX void * __node_library_open_ca2(const scoped_string & strPath, string & strMessage)
 //{
 //
 //   strMessage.Empty();
@@ -95,7 +95,7 @@
 //
 //   int iError = errno;
 //
-//   const char * psz = strerror(iError);
+//   const scoped_string & str = strerror(iError);
 //
 //   if(psz != nullptr)
 //   {
@@ -104,7 +104,7 @@
 //
 //   }
 //
-//   const char * psz2 = dlerror();
+//   const scoped_string & str2 = dlerror();
 //
 //   if(psz2 != nullptr)
 //   {
@@ -129,7 +129,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+//CLASS_DECL_APEX void * __node_library_raw_get(void * plibrary,const scoped_string & strEntryName)
 //{
 //
 //   return dlsym(plibrary,pszEntryName);

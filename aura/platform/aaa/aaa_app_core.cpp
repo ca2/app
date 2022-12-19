@@ -238,7 +238,7 @@ void app_core::system_init()
 
       //string str1 = "\"teste\\\"teste2\"";
 
-      //const char * psz = str1;
+      //const scoped_string & str = str1;
 
       //string str = ::str().consume_quoted_value(psz);
 
@@ -425,8 +425,8 @@ void app_core::system_init()
 
 //   {
 //
-//   const char * psz = nullptr;
-//   const char * psz2 = nullptr;
+//   const scoped_string & str = nullptr;
+//   const scoped_string & str2 = nullptr;
 //
 //   int iRef1 = -1;
 //   int iRef2 = -1;
@@ -1038,7 +1038,7 @@ string_array get_c_args_from_string(const ::string & psz)
 
    string_array straAfterColon;
 
-   const char * pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -1072,7 +1072,7 @@ string_array get_c_args_from_string(const ::string & psz)
       else
       {
 
-         const char * pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -1160,7 +1160,7 @@ string_array get_c_args_from_c(const ::string & psz)
 
    string_array straAfterColon;
 
-   const char * pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -1194,7 +1194,7 @@ string_array get_c_args_from_c(const ::string & psz)
       else
       {
 
-         const char * pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -1278,7 +1278,7 @@ string_array get_c_args_for_c(const ::string & psz)
 
    }
 
-   const char * pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -1309,7 +1309,7 @@ string_array get_c_args_for_c(const ::string & psz)
       else
       {
 
-         const char * pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while(!unicode_is_whitespace(psz))
          {
@@ -1436,7 +1436,7 @@ string transform_to_c_arg(const ::string & psz)
 
    bool bNeedQuote = false;
 
-   const char * pszParse = psz;
+   const scoped_string & strParse = psz;
 
    char chQuote = '\0';
 

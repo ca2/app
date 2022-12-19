@@ -53,7 +53,7 @@ namespace operating_system
    }
 
 
-   ::payload department::get_output(const char * pszCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
+   ::payload department::get_output(const scoped_string & strCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       string strRead;
@@ -68,7 +68,7 @@ namespace operating_system
 
 
 
-   exit_status department::retry(const char * pszCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
+   exit_status department::retry(const scoped_string & strCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       //process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
@@ -82,7 +82,7 @@ namespace operating_system
    }
 
 
-   exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
+   exit_status department::synch(const scoped_string & strCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
    {
 
       auto pprocessor = __create_new < process_processor >();
@@ -94,10 +94,10 @@ namespace operating_system
    }
 
 
-   bool department::launch(const char * pszCmdLine,::e_display edisplay, const char * pszDir)
+   bool department::launch(const scoped_string & strCmdLine,::e_display edisplay, const scoped_string & strDir)
    {
 
-      const char * pszEnd = nullptr;
+      const scoped_string & strEnd = nullptr;
 
       string strBin = consume_command_line_parameter(pszCmdLine,&pszEnd);
 
@@ -123,7 +123,7 @@ namespace operating_system
    }
 
 
-   exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
+   exit_status department::elevated_synch(const scoped_string & strCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
    {
 
 //      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);

@@ -2,7 +2,7 @@
 #include "parsing.h"
 
 
-parsing_exception::parsing_exception(const char * pszMessage) :
+parsing_exception::parsing_exception(const scoped_string & strMessage) :
    ::exception(pszMessage)
 {
 
@@ -36,7 +36,7 @@ CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 }
 
 
-CLASS_DECL_ACME bool throw_parsing_exception(const char * pszMessage)
+CLASS_DECL_ACME bool throw_parsing_exception(const scoped_string & strMessage)
 {
 
    if (should_avoid_parsing_exception())
@@ -73,7 +73,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const char * pszMessage)
 
 
 
-network_payload_parsing_exception::network_payload_parsing_exception(const char * pszMessage) :
+network_payload_parsing_exception::network_payload_parsing_exception(const scoped_string & strMessage) :
    parsing_exception(pszMessage)
 {
 
@@ -89,7 +89,7 @@ network_payload_parsing_exception::~network_payload_parsing_exception()
 
 
 
-CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const char * pszMessage)
+CLASS_DECL_ACME bool throw_network_payload_parsing_exception(const scoped_string & strMessage)
 {
 
    if (should_avoid_parsing_exception())

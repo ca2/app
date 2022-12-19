@@ -10,7 +10,7 @@ class CLASS_DECL_ACME no_memory :
 public:
 
 
-   no_memory(const char * pszMessage = nullptr, const char * pszDetails = nullptr);
+   no_memory(const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr);
    ~no_memory() override;
 
 

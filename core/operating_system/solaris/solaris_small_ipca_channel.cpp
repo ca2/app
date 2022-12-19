@@ -100,7 +100,7 @@ namespace aura
          if(!is_tx_ok())
             return false;
 
-         const char * pszMessage = (const ::string &)pdata;
+         const scoped_string & strMessage = (const ::string &)pdata;
 
          ::count c = len;
 

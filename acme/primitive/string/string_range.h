@@ -8,6 +8,16 @@
 #include "acme/primitive/collection/null_terminated_iterator.h"
 #include "acme/primitive/collection/null_terminated_range.h"
 
+template < typename ITERATOR_TYPE >
+class string_range;
+
+
+template < primitive_character CHARACTER >
+constexpr ::string_range< const CHARACTER * >  _string_range(const CHARACTER * psz);
+
+template < primitive_character CHARACTER >
+constexpr ::string_range< const CHARACTER * >  _start_count_string_range(const CHARACTER * psz, memsize start, memsize count);
+
 
 template < typename ITERATOR_TYPE >
 class string_range : 
@@ -24,6 +34,9 @@ public:
 
    using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
 
+   using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
+   using ITEM = non_const < dereference < ITEM_POINTER > >;
+   using CHARACTER = ITEM;
 
 
    using this_iterator = typename BASE_RANGE::this_iterator;
@@ -54,21 +67,74 @@ public:
    string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
    string_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
    string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-   string_range(const ITEM * & begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
    string_range(const ::atom & atom);
    string_range(const ::block & block);
+   string_range(const CHARACTER * psz) : string_range(psz, 0, string_safe_length(psz)) {}
+   string_range(const CHARACTER * psz, strsize len) : string_range(psz, 0, len) {}
+   string_range(const CHARACTER * psz, strsize start, strsize count) : string_range(::_start_count_string_range(psz, start, count)) {}
 
 
-   string_range & operator = (const string_range & range) { BASE_RANGE::operator=(range); return *this; }
+   string_range & operator = (const THIS_RANGE &range) { BASE_RANGE::operator=(range); return *this; }
    string_range & operator = (string_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
    string_range & operator = (const atom & atom);
    string_range & operator = (const block & block);
 
 
 
+   //::std::strong_ordering order(const string_range &range) const noexcept;
+   //using NATURAL_POINTER::order;
+
+   //::std::strong_ordering order(const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering case_insensitive_order(const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering collate(const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(const THIS_RANGE &range) const noexcept;
+
+   ::std::strong_ordering order(const THIS_RANGE &range, strsize n) const noexcept;
+   ::std::strong_ordering case_insensitive_order(const THIS_RANGE &range, strsize n) const noexcept;
+   ::std::strong_ordering collate(const THIS_RANGE &range, strsize n) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(const THIS_RANGE &range, strsize n) const noexcept;
+
+   ::std::strong_ordering order(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering collate(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
+
+   ::std::strong_ordering order(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering collate(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
+   ::std::strong_ordering case_insensitive_collate(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
+
+   //inline int operator<=>(const string_range &range) const { return order(range); }
+   //inline bool operator==(const string_range &range) const { return size() != range.size() ? false : !order(range); }
+   //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
+   //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
+   //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
+   //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
+   //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
+
+
+   //inline bool operator==(const string_range &range) const { return order(ansistr) == 0; }
+   //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
+   //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
+   //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
+   //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
+   //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
+   
+   inline bool operator==(const THIS_RANGE &range) const { return this->equals(range); }
+   //inline ::std::strong_ordering operator<=>(const THIS_RANGE &range) const { return this->order(range); }
+
+
+   THIS_RANGE start_count(strsize start, strsize count) const
+   {
+
+      return ::_start_count_range(*this, start, count);
+
+   }
+
+
    using BASE_RANGE::_order;
 
-   constexpr ::std::strong_ordering _order(THIS_RANGE range) const
+   constexpr ::std::strong_ordering _order(const THIS_RANGE & range) const
    {
 
       return _order(range, ::comparison::comparison < ITEM >());
@@ -78,15 +144,10 @@ public:
 
    using BASE_RANGE::order;
 
-   constexpr ::std::strong_ordering order(THIS_RANGE range) const
-   {
-
-      return BASE_RANGE::order(range, ::comparison::comparison < ITEM >());
-
-   }
+   constexpr ::std::strong_ordering order(const THIS_RANGE & range) const noexcept;
 
 
-   constexpr ::std::strong_ordering operator<=>(THIS_RANGE range) const
+   constexpr ::std::strong_ordering operator<=>(const THIS_RANGE & range) const
    {
 
       return this->order(range);
@@ -112,6 +173,56 @@ public:
       return this->equals(range, ::comparison::comparison < ITEM >());
 
    }
+
+   constexpr bool case_insensitive_equals(const THIS_RANGE & range) const noexcept
+   {
+
+      return this->equals(range, ::comparison::case_insensitive < ITEM >());
+
+   }
+
+   bool equals(const THIS_RANGE & range, strsize n) const noexcept
+   {
+
+      return this->equals_start_count(range, 0, n, ::comparison::comparison < ITEM >());
+
+   }
+   
+   bool case_insensitive_equals(const THIS_RANGE & range, strsize n) const noexcept
+   {
+
+      return this->equals_start_count(range, 0, n, ::comparison::case_insensitive < ITEM >());
+
+   }
+
+   bool equals(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+   {
+
+      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
+
+   }
+
+   bool case_insensitive_equals(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+   {
+
+      return this->equals_start_count(range, start, count, ::comparison::case_insensitive < ITEM >());
+
+   }
+
+   bool equals(strsize start, strsize count, const THIS_RANGE & range, strsize iStart2, strsize iCount2) const noexcept
+   {
+
+      return this->equals_start_count(range.start_count(iStart2, iCount2), start, count, ::comparison::comparison < ITEM >());
+
+   }
+
+   bool case_insensitive_equals(strsize start, strsize count, const THIS_RANGE & range, strsize iStart2, strsize iCount2) const noexcept
+   {
+
+      return this->equals_start_count(range.start_count(iStart2, iCount2), start, count, ::comparison::case_insensitive < ITEM >());
+
+   }
+
 
 
    using BASE_RANGE::_equals_start;
@@ -153,13 +264,6 @@ public:
 
    }
 
-
-   bool operator == (const THIS_RANGE & range) const
-   {
-
-      return this->equals(range);
-
-   }
 
    using BASE_RANGE::_find;
 
@@ -745,7 +849,6 @@ public:
    }
 
 
-
 };
 
 
@@ -958,5 +1061,30 @@ inline u32hash u32_hash < const_wd32_range >(const_wd32_range range)
    return _string_range_u32_hash<::wd32_character>(range);
 
 }
+
+
+template < primitive_character CHARACTER >
+constexpr ::string_range< const CHARACTER * >  _string_range(const CHARACTER * psz)
+{
+
+   return { psz, psz + string_safe_length(psz) };
+
+}
+
+
+template < primitive_character CHARACTER >
+constexpr ::string_range< const CHARACTER * >  _start_count_string_range(const CHARACTER * psz, memsize start, memsize count)
+{
+
+   auto pend = psz + string_safe_length(psz);
+
+   return {
+      ::clipped_add(psz, start, psz, pend),
+      ((count >= 0) ? ::clipped_add(psz, start + count, psz, pend) :
+      ::clipped_add(pend, count, psz, pend)) };
+
+}
+
+
 
 

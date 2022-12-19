@@ -7,7 +7,7 @@
 
 
 /*
-static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
+static void TraceDDE(const scoped_string & strPrefix, const MESSAGE* pMsg)
 
 {
    ENSURE_ARG(pMsg != nullptr);
@@ -24,7 +24,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
       }
       ASSERT(hCommands != nullptr);
 
-      const char * pszCommands = (const char *)::GlobalLock(hCommands);
+      const scoped_string & strCommands = (const char *)::GlobalLock(hCommands);
 
       ENSURE_THROW(pszCommands != nullptr, ::AfxThrowMemoryException() );
 
@@ -86,7 +86,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 */
 /////////////////////////////////////////////////////////////////////////////
 
-//void __trace_message(const char * pszPrefix, ::message::message * pmessage)
+//void __trace_message(const scoped_string & strPrefix, ::message::message * pmessage)
 
 //{
 ////   ENSURE_ARG(AfxIsValidString(pszPrefix));
@@ -110,7 +110,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //      return;
 //   }
 //
-//   const char * pszMsgName = nullptr;
+//   const scoped_string & strMsgName = nullptr;
 
 //   char szBuf[80];
 //
@@ -183,7 +183,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //
 //
 //
-//void __trace_message(const char * pszPrefix, MESSAGE * lpmsg)
+//void __trace_message(const scoped_string & strPrefix, MESSAGE * lpmsg)
 
 //{
 //   //ENSURE_ARG(AfxIsValidString(pszPrefix));
@@ -218,7 +218,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //      return;
 //   }
 //
-//   const char * pszMsgName = nullptr;
+//   const scoped_string & strMsgName = nullptr;
 
 //   char szBuf[80];
 //

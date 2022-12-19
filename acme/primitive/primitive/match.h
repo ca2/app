@@ -50,7 +50,7 @@ namespace match
       ::string      m_str;
 
 
-      string(const char* psz = nullptr);
+      string(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;
@@ -67,7 +67,7 @@ namespace match
 
       ::string      m_str;
 
-      ci_string(const char* psz = nullptr);
+      ci_string(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;
@@ -84,7 +84,7 @@ namespace match
 
       ::string      m_str;
 
-      prefix(const char* psz = nullptr);
+      prefix(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;
@@ -102,7 +102,7 @@ namespace match
       ::string      m_str;
 
 
-      ci_prefix(const char* psz = nullptr);
+      ci_prefix(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;
@@ -120,7 +120,7 @@ namespace match
       ::string      m_str;
 
 
-      suffix(const char* psz = nullptr);
+      suffix(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;
@@ -137,7 +137,7 @@ namespace match
 
       ::string      m_str;
 
-      ci_suffix(const char* psz = nullptr);
+      ci_suffix(const scoped_string & str = nullptr);
 
 
       virtual bool matches(const ::payload & payload) const;

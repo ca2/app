@@ -1253,7 +1253,7 @@ namespace sockets_bsd
                {
                   int iError = errno;
 
-                  const char * pszError = strerror(iError);
+                  const scoped_string & strError = strerror(iError);
                   INFORMATION(pszError);
                }
                OnDisconnect();

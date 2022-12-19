@@ -10,7 +10,7 @@
 //#include "acme/platform/library.h"
 
 
-CLASS_DECL_ACME ::string demangle(const char * pszMangledName);
+CLASS_DECL_ACME ::string demangle(const scoped_string & strMangledName);
 
 
 //CLASS_DECL_ACME ::critical_section * factory_critical_section();

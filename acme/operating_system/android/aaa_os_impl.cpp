@@ -6,7 +6,7 @@
 ::pointer<os_remote>g_posremote;
 
 
-void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, int iBeg, int iEnd);
+void android_edit_on_set_focus(int l, int t, int r, int b, const scoped_string & strText, int iBeg, int iEnd);
 void android_edit_on_kill_focus();
 
 
@@ -384,7 +384,7 @@ void android_exchange()
 }
 
 
-void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, int iBeg, int iEnd)
+void android_edit_on_set_focus(int l, int t, int r, int b, const scoped_string & strText, int iBeg, int iEnd)
 {
 
    auto plocal = g_poslocal;

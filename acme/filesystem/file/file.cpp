@@ -1225,7 +1225,7 @@ namespace file
    //}
 
    /*
-   void file::from_hex(const char * psz)
+   void file::from_hex(const scoped_string & str)
    {
       memory memory;
       memory.from_hex(psz);
@@ -1334,7 +1334,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const char * psz)
+   void file::write (const scoped_string & str)
    {
       __UNREFERENCED_PARAMETER(psz);
       throw ::interface_only();

@@ -7,7 +7,7 @@ class CLASS_DECL_ACME os_exception :
 public:
 
 
-   os_exception(const char * pszMessage = nullptr);
+   os_exception(const scoped_string & strMessage = nullptr);
    virtual ~os_exception();
 
 

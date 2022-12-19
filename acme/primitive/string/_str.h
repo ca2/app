@@ -161,11 +161,11 @@ public:
 
 
 
-   inline  bool begins_ci_skip(const char *& psz, const char * pszPrefix);
-   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const char * psz);
+   inline  bool begins_ci_skip(const char *& psz, const scoped_string & strPrefix);
+   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const scoped_string & str);
 
-   bool replace_prefix(::string & str, const char * pszPrefixReplacement, const char * pszPrefix);
-   inline bool begins_replace(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+   bool replace_prefix(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix);
+   inline bool begins_replace(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix)
    {
       
       return replace_prefix(str, pszPrefixReplacement, pszPrefix);
@@ -173,8 +173,8 @@ public:
    }
 
 
-   bool replace_prefix_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix);
-   inline bool begins_replace_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+   bool replace_prefix_ci(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix);
+   inline bool begins_replace_ci(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix)
    {
 
       return replace_prefix_ci(str, pszPrefixReplacement, pszPrefix);
@@ -192,9 +192,9 @@ public:
 
    string & zero_pad(string & str, strsize iPad);
    string         zero_padded(const ::string & str, strsize iPad);
-   i32            get_escaped_char(const char * psz, strsize pos, strsize & retPos);
-   bool           get_curly_content(const char * psz, string & str);
-   bool           is_simple_natural(const char * psz, strsize iCount = -1);
+   i32            get_escaped_char(const scoped_string & str, strsize pos, strsize & retPos);
+   bool           get_curly_content(const scoped_string & str, string & str);
+   bool           is_simple_natural(const scoped_string & str, strsize iCount = -1);
    bool           is_natural(const ::string & str);
    bool           is_integer(const ::string & str);
 
@@ -252,7 +252,7 @@ public:
 
 
    template < typename TYPE >
-   inline  TYPE from_string(const char * psz);
+   inline  TYPE from_string(const scoped_string & str);
 
 
    bool simple_escaped(const ::string & str, strsize pos);
@@ -370,7 +370,7 @@ CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::string & strPattern)
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
-CLASS_DECL_ACME string string_from_strdup(const char * psz);
+CLASS_DECL_ACME string string_from_strdup(const scoped_string & str);
 
 
 

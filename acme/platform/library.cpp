@@ -16,7 +16,7 @@ namespace acme
 {
 
 
-   const char * psz_empty_app_id = "";
+   const scoped_string & str_empty_app_id = "";
 
 
    library::library()
@@ -42,7 +42,7 @@ namespace acme
    //}
 
 
-   //void library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   //void library::initialize_library(::matter * pmatter,int iDesambig,const scoped_string & strRoot, const scoped_string & strName, const scoped_string & strFolder)
    //{
 
    //   auto estatus = initialize_matter(pmatter);
@@ -132,8 +132,8 @@ namespace acme
    //}
 
 
-   //void library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
-   void library::open(const char* pszPath)
+   //void library::open(const scoped_string & strPath,bool bAutoClose,bool bCa2Path)
+   void library::open(const scoped_string & strPath)
    {
 
       auto psystem = acmesystem();
@@ -527,7 +527,7 @@ namespace acme
    }
 
 
-//   string library::get_app_id(const char * pszAppName)
+//   string library::get_app_id(const scoped_string & strAppName)
 //   {
 //
 //      auto psystem = acmesystem();
@@ -587,7 +587,7 @@ namespace acme
 //   }
 
 
-//   string library::get_app_name(const char * pszAppId)
+//   string library::get_app_name(const scoped_string & strAppId)
 //   {
 //
 //      auto psystem = acmesystem();
@@ -800,7 +800,7 @@ namespace acme
 //   }
 
 
-   //::matter* library::new_object(const char * pszClassId)
+   //::matter* library::new_object(const scoped_string & strClassId)
    //{
 
    //   if (!m_pca2library)
@@ -817,7 +817,7 @@ namespace acme
 
 
 
-   //bool library::contains_app(const char * pszAppId)
+   //bool library::contains_app(const scoped_string & strAppId)
    //{
 
    //   auto psystem = acmesystem();
@@ -884,7 +884,7 @@ namespace acme
    }
 
 
-   void * library::raw_get(const char * pszEntryName)
+   void * library::raw_get(const scoped_string & strEntryName)
    {
 
       auto psystem = acmesystem();

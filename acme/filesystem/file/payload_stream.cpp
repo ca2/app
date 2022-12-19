@@ -139,7 +139,7 @@
 ////      oblt(size);
 ////
 ////   }
-////   void payload_stream::write(const char * psz)
+////   void payload_stream::write(const scoped_string & str)
 ////   {
 ////
 ////      m_var = psz;

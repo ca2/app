@@ -11,9 +11,9 @@
 #ifdef WINDOWS_DESKTOP
 
 CLASS_DECL_BOOT int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 int iShow)
 {
 
@@ -36,7 +36,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_BOOT u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -209,7 +209,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
 #ifdef WINDOWS_DESKTOP
 
-bool load_modules_diff(string_array & straOld, string_array & straNew, const char * pszExceptDir)
+bool load_modules_diff(string_array & straOld, string_array & straNew, const scoped_string & strExceptDir)
 {
 
    bool bFound;
@@ -322,7 +322,7 @@ int get_current_process_affinity_order()
 
 //#undef ::acmeacmesystem()
 
-//CLASS_DECL_ACME int ui_open_url(const char * pszUrl)
+//CLASS_DECL_ACME int ui_open_url(const scoped_string & strUrl)
 //{
 //
 //   string strUrl(pszUrl);
@@ -348,7 +348,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::time timeTimeout)
+bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::time timeTimeout)
 {
 
    return false;
@@ -372,7 +372,7 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 
 
 
-// CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable)
+// CLASS_DECL_ACME string xxxget_environment_variable(const scoped_string & strEnvironmentVariable)
 // {
 
 //    string str;

@@ -39,11 +39,11 @@ public:
 
 
 
-   virtual void create_symbolic_link(const char * pszLink, const char * pszSource);
+   virtual void create_symbolic_link(const scoped_string & strLink, const scoped_string & strSource);
 
-   virtual bool is_symbolic_link(const char * pszLink);
+   virtual bool is_symbolic_link(const scoped_string & strLink);
 
-   virtual ::file::path symbolic_link_destination(const char * pszLink);
+   virtual ::file::path symbolic_link_destination(const scoped_string & strLink);
 
 
 

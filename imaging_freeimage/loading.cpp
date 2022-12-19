@@ -167,9 +167,9 @@ namespace imaging_freeimage
    }
    */
    /*HBITMAP imaging::LoadBitmap(
-   const char * pszType,
+   const scoped_string & strType,
 
-   const char * pszId)
+   const scoped_string & strId)
 
    {
    throw ::interface_only();
@@ -281,7 +281,7 @@ namespace imaging_freeimage
 
       //file()->non_empty_memory(payloadFile, *pmemory);
 
-      const char * psz = (const char *)memory.get_data();
+      const scoped_string & str = (const char *)memory.get_data();
 
       if (::is_null(psz))
       {

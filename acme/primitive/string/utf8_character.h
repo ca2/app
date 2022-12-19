@@ -20,7 +20,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //
 //   //}
 //
-//   //utf8_character(const char* psz)
+//   //utf8_character(const scoped_string & str)
 //   //{
 //
 //   //   auto len = string_safe_length(psz, 7);

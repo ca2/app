@@ -191,7 +191,7 @@
 //   }
 //
 //
-//   static_application_factory(const char * pszName = "") :
+//   static_application_factory(const scoped_string & strName = "") :
 //      system_setup(flag_application, pszName)
 //   {
 //

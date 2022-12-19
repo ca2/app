@@ -489,7 +489,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 // //
 // //   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
 // //
-// //   const char * psz = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
+// //   const scoped_string & str = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
 // //
 // //#endif
 // //
@@ -617,7 +617,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 ////
 ////   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
 ////
-////   const char * psz = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
+////   const scoped_string & str = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
 ////
 ////#endif
 ////
@@ -909,7 +909,7 @@ thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
 
-bool demangle (string & str, const char * pszType)
+bool demangle (string & str, const scoped_string & strType)
 {
 
    //critical_section_lock cs(g_pcsDemangle);

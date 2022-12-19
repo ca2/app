@@ -19,7 +19,7 @@ public:
    virtual const char * _get_notification_area_action_label(int iIndex) = 0;
    virtual const char * _get_notification_area_action_accelerator(int iIndex) = 0;
    virtual const char * _get_notification_area_action_description(int iIndex) = 0;
-   virtual void call_notification_area_action(const char * pszId) = 0;
+   virtual void call_notification_area_action(const scoped_string & strId) = 0;
 
 
 };

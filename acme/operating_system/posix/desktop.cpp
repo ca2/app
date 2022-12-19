@@ -12,7 +12,7 @@
 ::user::enum_desktop _calculate_edesktop()
 {
 
-   const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
+   const scoped_string & strDesktop = getenv("XDG_CURRENT_DESKTOP");
 
    string strDesktop(pszDesktop);
 

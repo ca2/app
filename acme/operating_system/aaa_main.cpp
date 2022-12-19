@@ -6,18 +6,18 @@
 //#include "acme/primitive/collection/string_array.h"
 
 
-string consume_command_line_parameter(const char * pszCommandLine, const char ** pszEndPtr)
+string consume_command_line_parameter(const scoped_string & strCommandLine, const char ** pszEndPtr)
 {
 
    if(pszCommandLine == nullptr)
       return "";
 
-   const char * psz = pszCommandLine;
+   const scoped_string & str = pszCommandLine;
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const char * pszStart;
+   const scoped_string & strStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -35,7 +35,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
          psz++;
    }
 
-   const char * pszEnd = psz;
+   const scoped_string & strEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -48,7 +48,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 
 
 
-//string get_command_line_parameter(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
+//string get_command_line_parameter(const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strIfParamValue, const scoped_string & strReplaceParam)
 //{
 //
 //   string strValue;
@@ -75,7 +75,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 //
 //}
 
-//string get_command_line_parameter(const char * pszCommandLine, const char * pszParam)
+//string get_command_line_parameter(const scoped_string & strCommandLine, const scoped_string & strParam)
 //{
 //
 //   string strParam(pszParam);
@@ -84,7 +84,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 //
 //   string strValue;
 //
-//   const char * pszValue = ansi_find_string(pszCommandLine, strParam);
+//   const scoped_string & strValue = ansi_find_string(pszCommandLine, strParam);
 //
 //   if(pszValue == nullptr)
 //      return "";
@@ -95,7 +95,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 //   if(*pszValue == '"')
 //   {
 //
-//      const char * pszValueEnd = ansi_find_char(pszValue + 1, '"');
+//      const scoped_string & strValueEnd = ansi_find_char(pszValue + 1, '"');
 //
 //      if(pszValueEnd == nullptr)
 //      {
@@ -110,7 +110,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 //   else
 //   {
 //
-//      const char * pszValueEnd = ansi_find_string(pszValue, " ");
+//      const scoped_string & strValueEnd = ansi_find_string(pszValue, " ");
 //
 //      if(pszValueEnd == nullptr)
 //      {
@@ -129,7 +129,7 @@ string consume_command_line_parameter(const char * pszCommandLine, const char **
 //}
 
 
-bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault)
+bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strDefault)
 {
 
    if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
@@ -146,7 +146,7 @@ bool get_command_line_parameter(string & strValue, const char * pszCommandLine, 
 }
 
 
-string get_command_line_parameter(const char * psz,const char * pszParam)
+string get_command_line_parameter(const scoped_string & str,const scoped_string & strParam)
 {
 
    string str;
@@ -163,7 +163,7 @@ string get_command_line_parameter(const char * psz,const char * pszParam)
 }
 
 
-CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault)
+CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const scoped_string & strCommandLine, const scoped_string & strParam, bool bDefault)
 {
 
    if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
@@ -213,7 +213,7 @@ CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const char
 }
 
 
-bool get_command_line_parameter(string & wstrValue,const char * psz,const char * pszParam)
+bool get_command_line_parameter(string & wstrValue,const scoped_string & str,const scoped_string & strParam)
 {
 
    string wstr(psz);
@@ -532,7 +532,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //#define memory_new ACME_NEW
 
 
-//string_array get_c_args_from_string(const char* psz)
+//string_array get_c_args_from_string(const scoped_string & str)
 //{
 //
 //   string_array stra;
@@ -548,7 +548,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //
 //   string_array straAfterColon;
 //
-//   const char* pszEnd = psz + strlen(psz);
+//   const scoped_string & strEnd = psz + strlen(psz);
 //
 //   string str;
 //
@@ -582,7 +582,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //      else
 //      {
 //
-//         const char* pszValueStart = psz;
+//         const scoped_string & strValueStart = psz;
 //
 //         while (!unicode_is_whitespace(psz))
 //         {
@@ -654,7 +654,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //}
 
 
-string_array get_c_args_from_c(const char* psz)
+string_array get_c_args_from_c(const scoped_string & str)
 {
 
    string_array stra;
@@ -670,7 +670,7 @@ string_array get_c_args_from_c(const char* psz)
 
    string_array straAfterColon;
 
-   const char* pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -704,7 +704,7 @@ string_array get_c_args_from_c(const char* psz)
       else
       {
 
-         const char* pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -776,7 +776,7 @@ string_array get_c_args_from_c(const char* psz)
 }
 
 
-string_array get_c_args_for_c(const char* psz)
+string_array get_c_args_for_c(const scoped_string & str)
 {
 
    string_array stra;
@@ -788,7 +788,7 @@ string_array get_c_args_for_c(const char* psz)
 
    }
 
-   const char* pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -819,7 +819,7 @@ string_array get_c_args_for_c(const char* psz)
       else
       {
 
-         const char* pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -935,12 +935,12 @@ typedef FN_GET_STRING* PFN_GET_STRING;
 //#endif
 
 
-string transform_to_c_arg(const char* psz)
+string transform_to_c_arg(const scoped_string & str)
 {
 
    bool bNeedQuote = false;
 
-   const char* pszParse = psz;
+   const scoped_string & strParse = psz;
 
    char chQuote = '\0';
 
@@ -1007,7 +1007,7 @@ string transform_to_c_arg(const char* psz)
 }
 
 
-string transform_to_quoted_value(const char* psz)
+string transform_to_quoted_value(const scoped_string & str)
 {
 
    string str(psz);

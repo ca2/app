@@ -519,11 +519,11 @@ bool tokenizer::_001GetNextToken(string & strToken)
 bool tokenizer::get_next_word(string * pstrToken)
 {
 
-   const char * psz = m_iterator;
+   const scoped_string & str = m_iterator;
 
-   const char * pszEnd = this->end();
+   const scoped_string & strEnd = this->end();
 
-   const char * pszStart = nullptr;
+   const scoped_string & strStart = nullptr;
 
    while(psz < pszEnd)
    {

@@ -75,9 +75,9 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 
 
 CLASS_DECL_APEX i32 call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 ::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 
@@ -228,7 +228,7 @@ namespace process
 //}
 
 
-CLASS_DECL_APEX bool shell_execute_sync(const char * pszPath, const char * pszParam, ::duration durationTimeout)
+CLASS_DECL_APEX bool shell_execute_sync(const scoped_string & strPath, const scoped_string & strParam, ::duration durationTimeout)
 {
 
    string strCmdLine;

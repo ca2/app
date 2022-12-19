@@ -11,7 +11,7 @@ struct CLASS_DECL_ACME action_item_exchange
    char * m_pszAccelerator;
    char * m_pszDescription;
 
-   action_item_exchange(int iIndex, const char * pszName, const char * pszId, const char * pszLabel, const char * pszAccelerator, const char * pszDescription)
+   action_item_exchange(int iIndex, const scoped_string & strName, const scoped_string & strId, const scoped_string & strLabel, const scoped_string & strAccelerator, const scoped_string & strDescription)
    {
 
       m_iIndex = iIndex;

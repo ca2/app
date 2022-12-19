@@ -73,7 +73,7 @@ namespace folder_zip
 
       //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
 
-      //virtual bool locate(const char * pszFileName);
+      //virtual bool locate(const scoped_string & strFileName);
 
       //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
 

@@ -192,9 +192,9 @@ namespace user
 
       bool bOk = false;
 
-      const char* psz = nullptr;
+      const scoped_string & str = nullptr;
 
-      const char* pszEnd = nullptr;
+      const scoped_string & strEnd = nullptr;
 
       string strName;
 

@@ -14,7 +14,7 @@
 //aaa_//#include "acme/operating_system/_.h"
 //#include "acme/operating_system/_os.h"
 //#include "acme/update.h"
-//char * ns_realpath(const char * pszPath);
+//char * ns_realpath(const scoped_string & strPath);
 //char * mm_ca2_command_line();
 
 
@@ -110,7 +110,7 @@ i32 defer_run_system()
 }
 
 
-//i32 defer_run_system(const char * pszFileName)
+//i32 defer_run_system(const scoped_string & strFileName)
 //{
 //
 //   return __start_system_with_file(pszFileName);
@@ -154,7 +154,7 @@ string apple_get_executable_path()
 //}
 
 //// iMillisDelay default 500ms good
-//void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//void apple_accumulate_on_open_file(const char ** psza, int iCount, const scoped_string & strExtra)
 //{
 //
 //   string_array stra;
@@ -186,7 +186,7 @@ string apple_get_executable_path()
 
 
 
-//void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//void apple_on_open_file(const char ** psza, int iCount, const scoped_string & strExtra)
 //{
 //
 //   if(iCount <= 0)

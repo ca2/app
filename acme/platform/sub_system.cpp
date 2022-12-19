@@ -300,7 +300,7 @@ string sub_system::get_arg(int i) const
 }
 
 
-string sub_system::get_env(const char * pszVariableName) const
+string sub_system::get_env(const scoped_string & strVariableName) const
 {
 
 #ifdef WINDOWS

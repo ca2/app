@@ -48,8 +48,8 @@ public:
    inline property & payload(const atom & atom) { return get(atom); }
    inline const property & payload(const atom & atom) const { return *find(atom); }
 
-   inline property & payload(const char * pszName) { return operator [](::atom(pszName)); }
-   inline const property & payload(const char * pszName) const { return operator [](::atom(pszName)); }
+   inline property & payload(const scoped_string & strName) { return operator [](::atom(pszName)); }
+   inline const property & payload(const scoped_string & strName) const { return operator [](::atom(pszName)); }
 
    inline property & payload(const ::string & strName) { return operator [](::atom(strName)); }
    inline const property & payload(const ::string & strName) const { return operator [](::atom(strName)); }
@@ -70,8 +70,8 @@ public:
    inline property & operator[](const atom & atom) { return payload(atom); }
    inline const property & operator[](const atom & atom) const { return payload(atom); }
 
-   //inline property & operator[](const char * pszName) { return payload(pszName); }
-   //inline const property & operator[](const char * pszName) const { return payload(pszName); }
+   //inline property & operator[](const scoped_string & strName) { return payload(pszName); }
+   //inline const property & operator[](const scoped_string & strName) const { return payload(pszName); }
 
    //inline property & operator[](const ::string & strName) { return payload(strName); }
    //inline const property & operator[](const ::string & strName) const { return payload(strName); }
@@ -99,39 +99,39 @@ public:
    ::payload at(index iId) const;
 
    property * find_value_ci(const ::payload & payload) const;
-   property * find_value_ci(const char * psz) const;
+   property * find_value_ci(const scoped_string & str) const;
 
    property * find_value(const ::payload & payload) const;
-   property * find_value(const char * psz) const;
+   property * find_value(const scoped_string & str) const;
 
    property * str_find(const property & property) const;
 
    bool contains_value_ci(const ::payload & payload) const { return find_value_ci(payload) != nullptr; }
-   bool contains_value_ci(const char * psz) const { return find_value_ci(psz) != nullptr; }
+   bool contains_value_ci(const scoped_string & str) const { return find_value_ci(psz) != nullptr; }
 
    bool contains_value(const ::payload & payload) const { return find_value(payload) != nullptr; }
-   bool contains_value(const char * psz) const { return find_value(psz) != nullptr; }
+   bool contains_value(const scoped_string & str) const { return find_value(psz) != nullptr; }
 
    bool contains_value_ci(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains_value_ci(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_value_ci(const scoped_string & str, ::count countMin = 1, ::count countMax = -1) const;
 
    bool contains_value(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains_value(const char * psz, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_value(const scoped_string & str, ::count countMin = 1, ::count countMax = -1) const;
 
    bool str_contains(const property_set & set) const;
    bool contains(const property_set & set) const;
 
    bool erase_first_value_ci(const ::payload & payload);
-   bool erase_first_value_ci(const char * psz);
+   bool erase_first_value_ci(const scoped_string & str);
 
    bool erase_first_value(const ::payload & payload);
-   bool erase_first_value(const char * psz);
+   bool erase_first_value(const scoped_string & str);
 
    ::count erase_value_ci(const  ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count erase_value_ci(const char * psz, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value_ci(const scoped_string & str, ::count countMin = 0, ::count countMax = -1);
 
    ::count erase_value(const ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count erase_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value(const scoped_string & str, ::count countMin = 0, ::count countMax = -1);
 
    bool has_property(atom idName) const;
 
@@ -282,13 +282,13 @@ public:
    //}
 
 
-   void _008ParseCommandLine(const char * pszCmdLine, ::payload & payloadFile);
-   void _008ParseCommandFork(const char * pszCmdLine, ::payload & payloadFile, string & strApp);
-   void _008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp);
+   void _008ParseCommandLine(const scoped_string & strCmdLine, ::payload & payloadFile);
+   void _008ParseCommandFork(const scoped_string & strCmdLine, ::payload & payloadFile, string & strApp);
+   void _008Parse(bool bApp, const scoped_string & strCmdLine, ::payload & payloadFile, string & strApp);
    void _008AddArgumentPairs(::string_array & straArguments);
    void _008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument);
    void _008AddArgument(const ::string & strArgument);
-   void _008Add(const char * pszKey, const char * pszValue);
+   void _008Add(const scoped_string & strKey, const scoped_string & strValue);
 
    void _008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp);
    void _008ParseArguments(bool bApp, string_array & straArguments, ::payload & payloadFile, string & strApp);
@@ -314,10 +314,10 @@ public:
 
    void parse_network_payload(const ::string & strJson);
    void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const char * pszEnd);
-   void parse_network_arguments(const char * pszUrl);
-   void _parse_network_arguments(const char * pszUrlQuery);
-   void parse_network_headers(const char * pszHeaders);
+   void parse_network_payload(const char * & pszJson, const scoped_string & strEnd);
+   void parse_network_arguments(const scoped_string & strUrl);
+   void _parse_network_arguments(const scoped_string & strUrlQuery);
+   void parse_network_headers(const scoped_string & strHeaders);
 
 
    string & get_network_arguments(string & str) const;
@@ -333,7 +333,7 @@ public:
    //virtual stream & read(::stream & stream) override;
 
 
-   virtual string implode(const char * pszGlue) const;
+   virtual string implode(const scoped_string & strGlue) const;
    //::count get_count() const;
 
 
@@ -382,13 +382,13 @@ public:
 
 
 CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd);
+CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson, const scoped_string & strEnd);
 
 
-//inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s);
+//inline ::pointer<::handle::ini>operator ""_pini(const scoped_string & str, size_t s);
 
 
-//inline ::handle::ini operator ""_ini(const char * psz, size_t s);
+//inline ::handle::ini operator ""_ini(const scoped_string & str, size_t s);
 
 
 //inline ::pointer<::property_set>localconfigini();

@@ -36,11 +36,11 @@ public:
 
    exception();
 //#ifdef ANDROID
-//   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+//   exception(const ::e_status & estatus, const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 //#else
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
 //#endif
-   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
    virtual ~exception();
 
 

@@ -345,7 +345,7 @@ public:
    // void write(const POINT_I32 & point) { raw_write(point); }
    // void write(const SIZE_I32 & size) { raw_write(size); }
    // void write(const ::rectangle_i32 &crect) { raw_write(crect); }
-   //binary_stream & operator <<(const char * psz);
+   //binary_stream & operator <<(const scoped_string & str);
 #ifdef WINDOWS
    binary_stream & operator <<(const unichar * wch) {
       operator <<(string(wch)); return *this;

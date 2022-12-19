@@ -22,7 +22,7 @@ namespace networking
 
 
    //   virtual HRESULT OnNewNumberOfEntries( i32 lNewNumberOfEntries );
-   //   virtual HRESULT OnNewExternalIPAddress(const char * psz );
+   //   virtual HRESULT OnNewExternalIPAddress(const scoped_string & str );
 
 
    //};

@@ -84,7 +84,7 @@ namespace android
       //bool get_icon(oswindow oswindow, const char * pcsz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
-      //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
+      //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const scoped_string & strPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
       //         i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk);
       //         //i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk);
       i32 get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, color32_t crBk);

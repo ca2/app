@@ -42,14 +42,14 @@ public:
    void *            m_caller_address;
 
 
-   call_stack(const char * pszFormat = default_format(), i32 iSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+   call_stack(const scoped_string & strFormat = default_format(), i32 iSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
    virtual ~call_stack();
 
 
    //static void global_enable_stack_trace(bool bEnable = true);
    static const char* default_format() { return "%f(%l) %s\n"; }
 
-   const char * get_dup(const char * pszFormat = default_format(), i32 uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+   const char * get_dup(const scoped_string & strFormat = default_format(), i32 uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 
    const char * xxxstack_trace() const;
 

@@ -38,7 +38,7 @@ class lparam;
 #define __id_is_null_ptr(p) (!(p))
 
 
-inline bool __atom_str_is_empty(const char * psz)
+inline bool __atom_str_is_empty(const ::ansi_character * psz)
 {
 
    return __id_is_null_ptr(psz) || *psz == '\0';
@@ -319,7 +319,7 @@ public:
 //
 //
 //   friend atom_space;
-//   inline atom(const char * psz, atom_space *);
+//   inline atom(const scoped_string & str, atom_space *);
 
 
 public:
@@ -341,7 +341,7 @@ public:
    inline atom(enum_happening eevent);
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
-   atom(const char * psz);
+   atom(const ::ansi_character * psz);
    atom(const inline_number_string & inlinenumberstring);
 
    template < primitive_signed SIGNED >
@@ -452,13 +452,13 @@ public:
    //inline bool operator >= (const atom & atom) const;
 
 
-   //inline ::std::strong_ordering order(const char * psz) const;
-   inline bool operator == (const char * psz) const;
-   inline ::std::strong_ordering operator <=> (const char * psz) const;
-   //inline bool operator < (const char * psz) const;
-   //inline bool operator <= (const char * psz) const;
-   //inline bool operator > (const char * psz) const;
-   //inline bool operator >= (const char * psz) const;
+   //inline ::std::strong_ordering order(const scoped_string & str) const;
+   inline bool operator == (const scoped_string & str) const;
+   inline ::std::strong_ordering operator <=> (const scoped_string & str) const;
+   //inline bool operator < (const scoped_string & str) const;
+   //inline bool operator <= (const scoped_string & str) const;
+   //inline bool operator > (const scoped_string & str) const;
+   //inline bool operator >= (const scoped_string & str) const;
 
 
 //#ifndef NO_TEMPLATE
@@ -559,7 +559,7 @@ public:
 
 
    atom & operator = (const atom & atom);
-   //atom & operator = (const char * psz);
+   //atom & operator = (const scoped_string & str);
 
 //#ifndef NO_TEMPLATE
 //
@@ -615,22 +615,22 @@ public:
    inline void clear();
    
 
-   //inline ::std::strong_ordering CompareNoCase(const char * psz) const { return case_insensitive_order(psz); }
-   inline ::std::strong_ordering case_insensitive_order(const char * psz) const;
+   //inline ::std::strong_ordering CompareNoCase(const scoped_string & str) const { return case_insensitive_order(psz); }
+   inline ::std::strong_ordering case_insensitive_order(const scoped_string & str) const;
 
 
-   inline bool begins(const char * pszPrefix) const;
-   inline bool case_insensitive_begins(const char * pszPrefix) const;
+   inline bool begins(const scoped_string & strPrefix) const;
+   inline bool case_insensitive_begins(const scoped_string & strPrefix) const;
 
-   inline bool ends(const char* pszSuffix) const;
-   inline bool case_insensitive_ends(const char* pszSuffix) const;
+   inline bool ends(const scoped_string & strSuffix) const;
+   inline bool case_insensitive_ends(const scoped_string & strSuffix) const;
 
    inline bool is_text() const { return m_etype >= e_type_text; }
    inline bool is_range() const { return m_etype >= e_type_range; }
    inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
 
-   //inline atom & operator +=(const char * psz);
+   //inline atom & operator +=(const scoped_string & str);
 
    inline operator u32hash() const
    {
@@ -644,7 +644,7 @@ public:
 
 
    //inline string operator +(const atom & atom) const;
-   inline ::string operator +(const char * psz) const;
+   inline ::string operator +(const ::ansi_character * psz) const;
    inline ::string operator +(const ::string & str) const;
 
 
@@ -836,7 +836,7 @@ inline atom::atom(const atom & atom)
 }
 
 
-//inline atom::atom(const char * psz, atom_space *)
+//inline atom::atom(const scoped_string & str, atom_space *)
 //{
 //
 //   m_etype = e_type_text;
@@ -1025,7 +1025,7 @@ inline ::std::strong_ordering atom::operator <=>(const ::string & str) const
 //}
 
 
-inline ::string atom::operator +(const char * psz) const
+inline ::string atom::operator +(const ::ansi_character * psz) const
 {
 
    return ::string(*this) + psz;
@@ -1085,26 +1085,26 @@ inline bool atom::is_empty() const
 //}
 
 
-inline bool atom::operator == (const char * psz) const
+inline bool atom::operator == (const scoped_string & scopedstr) const
 {
 
-   return is_text() ? m_str == psz : false;
+   return is_text() ? m_str == scopedstr : false;
 
 }
 
 
 
-inline ::std::strong_ordering atom::operator<=>(const char * psz) const
+inline ::std::strong_ordering atom::operator<=>(const scoped_string & scopedstr) const
 {
 
-   return is_text() ? m_str <=> psz  : m_etype <=> e_type_text;
+   return is_text() ? m_str <=> scopedstr : m_etype <=> e_type_text;
 
 }
 
 
 
 
-//inline bool atom::operator != (const char * psz) const
+//inline bool atom::operator != (const scoped_string & str) const
 //{
 //
 //   return order(psz) != 0;
@@ -1112,7 +1112,7 @@ inline ::std::strong_ordering atom::operator<=>(const char * psz) const
 //
 //}
 //
-//inline bool atom::operator < (const char * psz) const
+//inline bool atom::operator < (const scoped_string & str) const
 //{
 //
 //   return order(psz) < 0;
@@ -1120,7 +1120,7 @@ inline ::std::strong_ordering atom::operator<=>(const char * psz) const
 //}
 //
 //
-//inline bool atom::operator > (const char * psz) const
+//inline bool atom::operator > (const scoped_string & str) const
 //{
 //
 //   return order(psz) > 0;
@@ -1129,7 +1129,7 @@ inline ::std::strong_ordering atom::operator<=>(const char * psz) const
 //
 //
 //
-//inline bool atom::operator <= (const char * psz) const
+//inline bool atom::operator <= (const scoped_string & str) const
 //{
 //
 //   return order(psz) <= 0;
@@ -1137,7 +1137,7 @@ inline ::std::strong_ordering atom::operator<=>(const char * psz) const
 //}
 //
 //
-//inline bool atom::operator >= (const char * psz) const
+//inline bool atom::operator >= (const scoped_string & str) const
 //{
 //
 //   return order(psz) >= 0;
@@ -1608,16 +1608,16 @@ inline void atom::clear()
 }
 
 
-//inline CLASS_DECL_ACME atom & atom::operator += (const char * psz) { return operator = (string(*this) + string(psz)); }
+//inline CLASS_DECL_ACME atom & atom::operator += (const scoped_string & str) { return operator = (string(*this) + string(psz)); }
 
 
-inline ::std::strong_ordering atom::case_insensitive_order(const char * psz) const
+inline ::std::strong_ordering atom::case_insensitive_order(const scoped_string & str) const
 {
 
    if(is_empty())
    {
 
-      if (::is_empty(psz))
+      if (str.is_empty())
       {
 
          return ::std::strong_ordering::equal;
@@ -1631,7 +1631,7 @@ inline ::std::strong_ordering atom::case_insensitive_order(const char * psz) con
       }
 
    }
-   else if(::is_empty(psz))
+   else if(str.is_empty())
    {
 
       return ::std::strong_ordering::greater;
@@ -1640,7 +1640,7 @@ inline ::std::strong_ordering atom::case_insensitive_order(const char * psz) con
    else
    {
 
-      return m_str.case_insensitive_order(psz);
+      return m_str.case_insensitive_order(str);
 
    }
 
@@ -1657,13 +1657,13 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 
 
 
-//inline string CLASS_DECL_ACME operator + (const char * psz, const ::atom & atom);
+//inline string CLASS_DECL_ACME operator + (const scoped_string & str, const ::atom & atom);
 
 //
 //namespace acme
 //{
 //
-//   CLASS_DECL_ACME ::atom atom(const char* psz);
+//   CLASS_DECL_ACME ::atom atom(const scoped_string & str);
 //
 //}
 //
@@ -1679,10 +1679,10 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 //};
 
 
-inline bool atom::begins(const char * pszCandidatePrefix) const
+inline bool atom::begins(const scoped_string & strCandidatePrefix) const
 {
 
-   if (__atom_str_is_empty(pszCandidatePrefix))
+   if (__atom_str_is_empty(strCandidatePrefix))
    {
 
       return true;
@@ -1698,7 +1698,7 @@ inline bool atom::begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return m_str.begins(pszCandidatePrefix);
+      return m_str.begins(strCandidatePrefix);
 
    }
    else
@@ -1713,10 +1713,10 @@ inline bool atom::begins(const char * pszCandidatePrefix) const
 }
 
 
-inline bool atom::case_insensitive_begins(const char * pszCandidatePrefix) const
+inline bool atom::case_insensitive_begins(const scoped_string & strCandidatePrefix) const
 {
 
-   if (__atom_str_is_empty(pszCandidatePrefix))
+   if (__atom_str_is_empty(strCandidatePrefix))
    {
 
       return true;
@@ -1732,7 +1732,7 @@ inline bool atom::case_insensitive_begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return m_str.case_insensitive_begins(pszCandidatePrefix);
+      return m_str.case_insensitive_begins(strCandidatePrefix);
 
    }
    else
@@ -1747,10 +1747,10 @@ inline bool atom::case_insensitive_begins(const char * pszCandidatePrefix) const
 }
 
 
-inline bool atom::ends(const char* pszCandidateSuffix) const
+inline bool atom::ends(const scoped_string & strCandidateSuffix) const
 {
 
-   if (__atom_str_is_empty(pszCandidateSuffix))
+   if (__atom_str_is_empty(strCandidateSuffix))
    {
 
       return true;
@@ -1766,7 +1766,7 @@ inline bool atom::ends(const char* pszCandidateSuffix) const
    else if (is_text())
    {
 
-      return m_str.ends(pszCandidateSuffix);
+      return m_str.ends(strCandidateSuffix);
 
    }
    else
@@ -1781,10 +1781,10 @@ inline bool atom::ends(const char* pszCandidateSuffix) const
 }
 
 
-inline bool atom::case_insensitive_ends(const char* pszCandidateSuffix) const
+inline bool atom::case_insensitive_ends(const scoped_string & strCandidateSuffix) const
 {
 
-   if (__atom_str_is_empty(pszCandidateSuffix))
+   if (__atom_str_is_empty(strCandidateSuffix))
    {
 
       return true;
@@ -1800,7 +1800,7 @@ inline bool atom::case_insensitive_ends(const char* pszCandidateSuffix) const
    else if (is_text())
    {
 
-      return m_str.case_insensitive_ends(pszCandidateSuffix);
+      return m_str.case_insensitive_ends(strCandidateSuffix);
 
    }
    else
@@ -1827,7 +1827,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 }
 
 
-inline atom::atom(const char * psz) :
+inline atom::atom(const ::ansi_character * psz) :
    m_str(psz)
 {
 
@@ -1901,14 +1901,35 @@ inline atom::atom(const ::inline_number_string& inlinenumberstring) :
 //}
 
 
-//template < typename CHAR >
-//string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
-//{
-//
-//   return append(atom);
-//
-//}
-//
+template < typename CHAR >
+string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
+{
+
+   return append(atom);
+
+}
+
+
+template < typename CHAR >
+string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
+{
+
+   if (atom.is_text())
+   {
+
+      return append(atom.m_range);
+
+   }
+   else
+   {
+
+      return append(atom.as_string());
+
+   }
+
+}
+
+
 //
 //template < typename TYPE_CHAR >
 //string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ::atom & atom) const
@@ -1932,7 +1953,7 @@ inline atom::atom(const ::inline_number_string& inlinenumberstring) :
 //}
 
 
-inline ::string operator+(const char * psz, const ::atom & atom)
+inline ::string operator+(const ::ansi_character * psz, const ::atom & atom)
 {
 
    return ::string(psz) + atom.as_string();
@@ -2105,6 +2126,46 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //   return operator+=(atom.operator ::string());
 //
 //}
+
+
+template < typename ITERATOR_TYPE >
+inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::atom & atom) :
+   m_str(e_no_initialize), RANGE(e_no_initialize)
+{
+
+   m_str = atom.as_string();
+
+   RANGE::operator = (m_str);
+
+   return *this;
+
+}
+
+
+template < >
+inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
+   m_str(e_no_initialize), RANGE(e_no_initialize)
+{
+
+   if (atom.is_text())
+   {
+
+      RANGE::operator=(atom.m_str);
+
+   }
+   else
+   {
+
+      this->m_begin = nullptr;
+      this->m_end = nullptr;
+
+   }
+
+}
+
+
+using scoped_string = scoped_string_base < const ::ansi_character * >;
+using scoped_wstring = scoped_string_base < const ::wide_character * >;
 
 
 

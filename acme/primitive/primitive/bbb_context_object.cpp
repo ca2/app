@@ -510,7 +510,7 @@ void object::delete_this()
 
     }
 
-    void object::system(const char* pszProjectName)
+    void object::system(const scoped_string & strProjectName)
     {
 
    }
@@ -611,14 +611,14 @@ void object::delete_this()
     }
     
     
-    void object::child_post_quit(const char* pszTag)
+    void object::child_post_quit(const scoped_string & strTag)
     {
 
 
     }
 
 
-    void object::child_post_quit_and_wait(const char* pszTag, const time& time)
+    void object::child_post_quit_and_wait(const scoped_string & strTag, const time& time)
     {
 
 
@@ -721,7 +721,7 @@ void object::delete_this()
     }
 
 
-    pointer< ::extended::future < ::conversation > >  object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
+    pointer< ::extended::future < ::conversation > >  object::message_box(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box& emessagebox)
     {
 
        return nullptr;
@@ -734,22 +734,22 @@ void object::delete_this()
    //}
 
 
-   // void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box_timeout(const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
-   // void message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   // void message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box(::user::primitive* puiOwner, const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box_timeout(::user::primitive* puserinteractionOwner, const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
     void object::release_references()
     {
 
     }
 
-    ::pointer<::matter>object::running(const char* pszTag) const
+    ::pointer<::matter>object::running(const scoped_string & strTag) const
     {
 
        return nullptr;
@@ -833,10 +833,10 @@ void object::delete_this()
    //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
    // ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image_pointer load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_pointer load_matter_image(const scoped_string & strMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
    // ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-   // ::image_pointer load_thumbnail(const char * pszPath);
+   // ::image_pointer load_thumbnail(const scoped_string & strPath);
    // ::image_pointer load_dib(const ::file::path & pathDib);
 
 
@@ -1011,7 +1011,7 @@ void object::delete_this()
    //void property_notify(const ::atom & atom, ::matter * pmatter);
 
 
-//   inline void format_topic_text(const char * psz, ...)
+//   inline void format_topic_text(const scoped_string & str, ...)
 //   {
 //
 //      va_list valist;
@@ -1022,7 +1022,7 @@ void object::delete_this()
 //   }
 //
 //
-//   inline void format_topic_text_v(const char * psz, va_list valist)
+//   inline void format_topic_text_v(const scoped_string & str, va_list valist)
 //   {
 //
 //      string str;

@@ -29,7 +29,7 @@ paged_memory::paged_memory(const memory_base & s)
 }
 
 
-paged_memory::paged_memory(const char * psz)
+paged_memory::paged_memory(const scoped_string & str)
 {
 
    from_string(psz);

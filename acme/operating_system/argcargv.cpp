@@ -22,7 +22,7 @@
 //#define memory_new ACME_NEW
 
 
-string_array get_c_args_from_string(const char * psz)
+string_array get_c_args_from_string(const scoped_string & str)
 {
 
    string_array stra;
@@ -38,7 +38,7 @@ string_array get_c_args_from_string(const char * psz)
 
    string_array straAfterColon;
 
-   const char * pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -72,7 +72,7 @@ string_array get_c_args_from_string(const char * psz)
       else
       {
 
-         const char * pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -144,7 +144,7 @@ string_array get_c_args_from_string(const char * psz)
 }
 
 
-string_array no_escape_get_c_args_from_string(const char * psz)
+string_array no_escape_get_c_args_from_string(const scoped_string & str)
 {
 
    string_array stra;
@@ -160,7 +160,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
 
    string_array straAfterColon;
 
-   const char * pszEnd = psz + strlen(psz);
+   const scoped_string & strEnd = psz + strlen(psz);
 
    string str;
 
@@ -194,7 +194,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
       else
       {
 
-         const char * pszValueStart = psz;
+         const scoped_string & strValueStart = psz;
 
          char chQuote = '\0';
 
@@ -327,7 +327,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
    string strArg;
 
-   const char * psz = strCommandLine;
+   const scoped_string & str = strCommandLine;
 
    string strChar;
 
@@ -471,7 +471,7 @@ end:
 }
 
 
-int argcargv_find_parameter(int argc, char * argv[], const char * pszParameter)
+int argcargv_find_parameter(int argc, char * argv[], const scoped_string & strParameter)
 {
 
    for(int i = 1; i < argc; i++)
@@ -491,7 +491,7 @@ int argcargv_find_parameter(int argc, char * argv[], const char * pszParameter)
 }
 
 
-bool argcargv_contains_parameter(int argc, char * argv[], const char * pszParameter)
+bool argcargv_contains_parameter(int argc, char * argv[], const scoped_string & strParameter)
 {
 
    return argcargv_find_parameter(argc, argv, pszParameter) >= 0;

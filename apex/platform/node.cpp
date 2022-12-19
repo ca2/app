@@ -377,17 +377,17 @@ namespace apex
 
 
 //   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
-//                                       const char * pszPlatform, const char * pszConfiguration,
-//                                       const char * pszLocale, const char * pszSchema)
+//                                       const scoped_string & strPlatform, const scoped_string & strConfiguration,
+//                                       const scoped_string & strLocale, const scoped_string & strSchema)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
-//                                        const char * pszPlatform, const char * pszConfiguration,
-//                                        const char * pszLocale, const char * pszSchema)
+//   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const scoped_string & strBuild,
+//                                        const scoped_string & strPlatform, const scoped_string & strConfiguration,
+//                                        const scoped_string & strLocale, const scoped_string & strSchema)
 //   {
 //
 //

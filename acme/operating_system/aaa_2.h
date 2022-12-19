@@ -93,7 +93,7 @@ CLASS_DECL_ACME bool is_verbose();
 template < typename PRED >
 inline bool predicate_Sleep(int iTime, PRED pred);
 
-CLASS_DECL_ACME void press_any_key_to_exit(const char* psz = nullptr);
+CLASS_DECL_ACME void press_any_key_to_exit(const scoped_string & str = nullptr);
 
 //void adapt_font_name(string & str);
 
@@ -142,7 +142,7 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "file.h"
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::enum_message_box& emessagebox);
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::enum_message_box& emessagebox);
 
 //CLASS_DECL_ACME void is_directory(const char * path);
 
@@ -167,9 +167,9 @@ enum enum_command_system
 #include "acme/primitive/duration/_.h"
 
 
-CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
+CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const scoped_string & str, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
+CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const scoped_string & strMessage, const scoped_string & strTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
 
 #include "_c.h"
 

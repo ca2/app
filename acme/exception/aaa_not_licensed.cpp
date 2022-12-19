@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-not_licensed::not_licensed(const char * pszRealm, const char * pszUrl)
+not_licensed::not_licensed(const scoped_string & strRealm, const scoped_string & strUrl)
 {
 
    string str;

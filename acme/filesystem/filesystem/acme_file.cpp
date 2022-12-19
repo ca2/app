@@ -464,7 +464,7 @@ void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize 
 }
 
 
-string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
+string acme_file::get_temporary_file_name(const char * lpszName, const scoped_string & strExtension)
 {
 
    throw interface_only();
@@ -587,7 +587,7 @@ void acme_file::put_contents(const char * path, const char * contents, strsize l
 }
 
 
-void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const scoped_string & strExtension, const scoped_string & strTemplate)
 {
 
    throw ::interface_only();
@@ -675,7 +675,7 @@ void acme_file::set_size(FILE * pfile, filesize size)
 }
 
 
-void acme_file::move(const char * pszNewName, const char * pszOldName)
+void acme_file::move(const scoped_string & strNewName, const scoped_string & strOldName)
 {
 
    copy(pszNewName, pszOldName, true);
@@ -738,7 +738,7 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
+void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc, bool bOverwrite)
 {
 
 #ifdef WINDOWS
@@ -783,7 +783,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-::earth::time acme_file::modification_time(const char* psz)
+::earth::time acme_file::modification_time(const scoped_string & str)
 {
 
    throw ::interface_only();
@@ -794,7 +794,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-void acme_file::set_modification_time(const char* psz, const ::earth::time& time)
+void acme_file::set_modification_time(const scoped_string & str, const ::earth::time& time)
 {
 
    throw ::interface_only();
@@ -804,7 +804,7 @@ void acme_file::set_modification_time(const char* psz, const ::earth::time& time
 }
 
 //
-//::time acme_file::modification_time(const char* psz)
+//::time acme_file::modification_time(const scoped_string & str)
 //{
 //
 //   throw ::interface_only();
@@ -814,7 +814,7 @@ void acme_file::set_modification_time(const char* psz, const ::earth::time& time
 //}
 
 
-void acme_file::synchronize(const char* psz1, const char* psz2)
+void acme_file::synchronize(const scoped_string & str1, const scoped_string & str2)
 {
 
    auto time1 = modification_time(psz1);
@@ -1072,7 +1072,7 @@ string_array acme_file::lines(const char * pathParam)
 }
 
 
-void acme_file::set_line(const char * pathParam, index iLine, const char * pszLine)
+void acme_file::set_line(const char * pathParam, index iLine, const scoped_string & strLine)
 {
 
    if (iLine < 0)
@@ -1247,7 +1247,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const char * pszLi
 }
 
 
-//string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
+//string acme_file::get_temporary_file_name(const char * lpszName, const scoped_string & strExtension)
 //{
 //
 //#ifdef WINDOWS

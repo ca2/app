@@ -108,7 +108,7 @@ namespace html
             if(bParent)
             {
 
-               if(pelement->m_pparent != nullptr && rangeName, "background-color"))
+               if(pelement->m_pparent != nullptr && rangeName.case_insensitive_equals("background-color"))
                {
 
                   if(pelement->m_pparent->m_pstyle->get_dimension(true, rangeName, strSubClass, pdata, pelement->m_pparent, f))
@@ -875,11 +875,11 @@ namespace html
    const char * style::parse(html_data * pdata, const ::string & strParam)
    {
 
-      const char * psz = strParam;
+      const scoped_string & str = strParam;
       __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
-         const char * pszStart = psz;
+         const scoped_string & strStart = psz;
          while(*psz != ':' && *psz != '\0' && *psz != '}')
          {
             psz++;
@@ -1099,8 +1099,8 @@ namespace html
 
       if(iFindDigit >= 0 && iFindColor >= 0 && iFindDigit > iFindColor)
       {
-         const char * psz = &str[iFindColor];
-         const char * pszStart = psz;
+         const scoped_string & str = &str[iFindColor];
+         const scoped_string & strStart = psz;
          if(iFindRgb >= 0)
          {
             try
@@ -1245,8 +1245,8 @@ namespace html
       if(iFindColor < 0)
          return false;
 
-      const char * psz = &pszParam[iFindColor];
-      const char * pszStart = psz;
+      const scoped_string & str = &pszParam[iFindColor];
+      const scoped_string & strStart = psz;
       if(iFindRgb >= 0)
       {
          try

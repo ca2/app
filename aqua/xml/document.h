@@ -48,9 +48,9 @@ namespace xml
       node* root() { return first_xml_node(); }
       const node * root() const { return first_xml_node(); }
 
-      //void load_location(const char * psz);
+      //void load_location(const scoped_string & str);
       //void parse_xml_text(stream & s);
-      //void parse_xml_text(const char * pszXmlText);
+      //void parse_xml_text(const scoped_string & strXmlText);
 
       inline operator bool() const { return ::is_set(this) && root(); }
       inline bool operator !() const { return !operator bool(); }

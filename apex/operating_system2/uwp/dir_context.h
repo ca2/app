@@ -31,7 +31,7 @@ namespace universal_windows
 
       //using ::file::system_dir::path;
       //virtual class ::file::path & path();
-      //virtual string path(const char * pszFolder,strsize iLenFolder,const char * pszRelative,strsize iLenRelative,const char * psz2,strsize iLen2,bool bUrl);
+      //virtual string path(const scoped_string & strFolder,strsize iLenFolder,const scoped_string & strRelative,strsize iLenRelative,const scoped_string & str2,strsize iLen2,bool bUrl);
 
       //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
       //virtual bool  ls_pattern(const char * pcsz,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);

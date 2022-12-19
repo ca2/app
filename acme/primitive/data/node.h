@@ -47,11 +47,11 @@ namespace data
 
 
       string name() const { return m_strName; }
-      void set_name(const char * pszName) { m_strName = pszName; }
+      void set_name(const scoped_string & strName) { m_strName = pszName; }
       
       
       string value() const { return m_strValue; }
-      void set_value(const char * pszValue) { m_strValue = pszValue; }
+      void set_value(const scoped_string & strValue) { m_strValue = pszValue; }
 
 
       inline enum_node get_type() const { return m_enode; }

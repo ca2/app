@@ -568,7 +568,7 @@ namespace crypto_openssl
    //}
 
 
-   //i32 crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
+   //i32 crypto::encrypt(string& strEncrypt, const scoped_string & strDecrypt, const scoped_string & strKey)
    //{
    //   memory storageDecrypt;
    //   memory storageEncrypt;
@@ -595,7 +595,7 @@ namespace crypto_openssl
    //}
 
 
-   //i32 crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
+   //i32 crypto::decrypt(string& strDecrypt, const scoped_string & strEncrypt, const scoped_string & strKey)
    //{
 
    //   memory storageEncrypt;
@@ -621,7 +621,7 @@ namespace crypto_openssl
    //}
 
 
-   //u32 crypto::crc32(u32 dwPrevious, const char* psz)
+   //u32 crypto::crc32(u32 dwPrevious, const scoped_string & str)
    //{
 
    //   return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
@@ -629,7 +629,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::md5(const char* psz)
+   //string crypto::md5(const scoped_string & str)
    //{
 
    //   memory mem;
@@ -641,7 +641,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::sha1(const char* psz)
+   //string crypto::sha1(const scoped_string & str)
    //{
 
    //   memory mem;
@@ -653,7 +653,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::nessie(const char* psz)
+   //string crypto::nessie(const scoped_string & str)
    //{
 
    //   memory mem;
@@ -840,7 +840,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::apex::application* papp)
+   //bool crypto::file_set(::payload payloadFile, const scoped_string & strData, const scoped_string & strSalt, ::apex::application* papp)
    //{
 
    //   memory memoryEncrypt;
@@ -864,7 +864,7 @@ namespace crypto_openssl
    //}
 
 
-   //void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::apex::application* papp)
+   //void     crypto::file_get(::payload payloadFile, string& str, const scoped_string & strSalt, ::apex::application* papp)
    //{
 
    //   memory memoryEncrypt;
@@ -888,7 +888,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::encrypt(memory& storageEncrypt, const char* pszDecrypt, const char* pszSalt)
+   //bool crypto::encrypt(memory& storageEncrypt, const scoped_string & strDecrypt, const scoped_string & strSalt)
    //{
    //   memory memoryDecrypt;
    //   memoryDecrypt.from_asc(pszDecrypt);
@@ -896,7 +896,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::decrypt(string& strDecrypt, const memory& storageEncrypt, const char* pszSalt)
+   //bool crypto::decrypt(string& strDecrypt, const memory& storageEncrypt, const scoped_string & strSalt)
    //{
    //   memory memoryDecrypt;
    //   if (!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
@@ -926,7 +926,7 @@ namespace crypto_openssl
 
    //// calculate the hash from a salt and a password
    //// slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   //string crypto::v5_get_password_hash(const char* pszSalt, const char* pszPassword, i32 iOrder)
+   //string crypto::v5_get_password_hash(const scoped_string & strSalt, const scoped_string & strPassword, i32 iOrder)
    //{
    //   string strHash(pszPassword);
    //   string strSalt(pszSalt);
@@ -940,7 +940,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::v5_get_passhash(const char* pszSalt, const char* pszPassword, i32 iMaxOrder)
+   //string crypto::v5_get_passhash(const scoped_string & strSalt, const scoped_string & strPassword, i32 iMaxOrder)
    //{
    //   string strHash(pszPassword);
    //   string strSalt(pszSalt);
@@ -954,7 +954,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::v5_compare_password(const char* pszPassword, const char* pszHash, i32 iOrder)
+   //bool crypto::v5_compare_password(const scoped_string & strPassword, const scoped_string & strHash, i32 iOrder)
    //{
    //   string strHash(pszHash);
    //   string strSalt = strHash.Left(CA4_CRYPT_V5_SALT_BYTES);
@@ -962,7 +962,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::v5_validate_plain_password(const char* pszPassword)
+   //bool crypto::v5_validate_plain_password(const scoped_string & strPassword)
    //{
    //   string str(pszPassword);
    //   if (str.get_length() < 6)
@@ -971,7 +971,7 @@ namespace crypto_openssl
    //}
 
 
-   //string crypto::v5_get_password_hash(const char* pszPassword, i32 iOrder)
+   //string crypto::v5_get_password_hash(const scoped_string & strPassword, i32 iOrder)
    //{
    //   return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    //}

@@ -6,7 +6,7 @@ namespace mathematics
 {
 
 
-   void number_float::set_value_string(const char * psz)
+   void number_float::set_value_string(const scoped_string & str)
    {
    }
 

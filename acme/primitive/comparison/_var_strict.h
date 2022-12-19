@@ -18,26 +18,26 @@ namespace comparison
 
 
       bool operator == (const ::payload & payload) const;
-      bool operator == (const char * psz) const;
+      bool operator == (const scoped_string & str) const;
       bool operator == (const ::string & str) const;
       bool operator == (double d) const;
       bool operator == (i32 i) const;
       bool operator == (bool b) const;
 
       bool operator != (const ::payload & payload) const;
-      bool operator != (const char * psz) const;
+      bool operator != (const scoped_string & str) const;
       bool operator != (const ::string & str) const;
       bool operator != (double d) const;
       bool operator != (i32 i) const;
       bool operator != (bool b) const;
 
-      friend bool CLASS_DECL_ACME operator == (const char * psz, const ::comparison::var_strict & payload);
+      friend bool CLASS_DECL_ACME operator == (const scoped_string & str, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator == (const ::string & str, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator == (double d, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator == (i32 i, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator == (bool b, const ::comparison::var_strict & payload);
 
-      friend bool CLASS_DECL_ACME operator != (const char * psz, const ::comparison::var_strict & payload);
+      friend bool CLASS_DECL_ACME operator != (const scoped_string & str, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator != (const ::string & str, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator != (double d, const ::comparison::var_strict & payload);
       friend bool CLASS_DECL_ACME operator != (i32 i, const ::comparison::var_strict & payload);

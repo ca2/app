@@ -320,7 +320,7 @@ void nano_message_box::on_create()
 //CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
+CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
 {
 
    initialize_nano_window();
@@ -423,7 +423,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const char * pszDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
 {
 
    auto pmessagebox = __new(message_box);

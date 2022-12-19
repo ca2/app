@@ -142,9 +142,9 @@ int create_process2(const ::string & _cmd_line, int * pprocessId)
 
 
 CLASS_DECL_CORE int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 ::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)

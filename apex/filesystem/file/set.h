@@ -47,7 +47,7 @@ namespace file
       // derived
       virtual bool get_next_file(const char * pcszCurrentFilePath, string & wstrNextFilePath);
 
-      virtual string get_next_file(const char * psz);
+      virtual string get_next_file(const scoped_string & str);
 
 
       virtual void initialize_os_wallpaper(bool bAddSearch);

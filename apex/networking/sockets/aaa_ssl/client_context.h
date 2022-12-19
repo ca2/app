@@ -29,8 +29,8 @@ namespace sockets
       virtual ~ssl_client_context();
 
 
-      void set_context(const char * pszContext);
-      void set_context(const char * pszFontopus, const char * pszSessId);
+      void set_context(const scoped_string & strContext);
+      void set_context(const scoped_string & strFontopus, const scoped_string & strSessId);
 
 
       void InitializeContext(const SSL_METHOD *meth_in);

@@ -670,7 +670,7 @@
 //
 //      range_sz rstr;
 //
-//      const char * pszEnd;
+//      const scoped_string & strEnd;
 //
 //      string strRoot;
 //

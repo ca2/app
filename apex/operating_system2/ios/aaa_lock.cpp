@@ -24,7 +24,7 @@
 //
 //
 //
-//int _c_lock_is_active(const char * pszName)
+//int _c_lock_is_active(const scoped_string & strName)
 //{
 //
 //   int * pfd;
@@ -40,7 +40,7 @@
 //}
 //
 //
-//int _c_lock(const char * pszName, void ** pdata)
+//int _c_lock(const scoped_string & strName, void ** pdata)
 //{
 //
 //   int fd;
@@ -99,7 +99,7 @@
 //
 //
 //
-//string _ca_get_file_name(const char * pszName, bool bCreate, int * pfd)
+//string _ca_get_file_name(const scoped_string & strName, bool bCreate, int * pfd)
 //{
 //
 //   string str(pszName);

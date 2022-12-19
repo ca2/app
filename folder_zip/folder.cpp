@@ -240,7 +240,7 @@ namespace folder_zip
    }
 
    
-   ::file_pointer folder::get_file(const char* pszFile)
+   ::file_pointer folder::get_file(const scoped_string & strFile)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -266,7 +266,7 @@ namespace folder_zip
    }
 
 
-   void folder::extract(memory& m, const char* pszFile)
+   void folder::extract(memory& m, const scoped_string & strFile)
    {
 
       auto pfile = get_file(pszFile);
@@ -276,7 +276,7 @@ namespace folder_zip
    }
 
 
-   bool folder::is_compressed(const char* pszFileName)
+   bool folder::is_compressed(const scoped_string & strFileName)
    {
 
       return false;
@@ -284,7 +284,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const char* pszTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const scoped_string & strTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;
@@ -316,7 +316,7 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_file(const char* pszFileName)
+   bool folder::locate_file(const scoped_string & strFileName)
    {
 
       m_iFilePosition = -1;
@@ -334,12 +334,12 @@ namespace folder_zip
       
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+      if (!locate([strFile](const scoped_string & str) {return strFile.case_insensitive_equals(psz); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
+         if (!locate([strFile](const scoped_string & str) {return strFile.case_insensitive_equals(psz); }))
          {
 
             return false;
@@ -427,7 +427,7 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_folder(const char * pszFolderName)
+   bool folder::locate_folder(const scoped_string & strFolderName)
    {
 
       if (::is_empty(pszFolderName))
@@ -457,7 +457,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const scoped_string & strItem)
          {
 
             string strItem(pszItem);
@@ -478,7 +478,7 @@ namespace folder_zip
    }
 
 
-   bool folder::has_sub_folder(const char* pszFolderName)
+   bool folder::has_sub_folder(const scoped_string & strFolderName)
    {
 
       if (::is_empty(pszFolderName))
@@ -508,7 +508,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const char* pszItem)
+      bool bLocated = locate([strPrefix](const scoped_string & strItem)
          {
 
             string strItem(pszItem);

@@ -79,7 +79,7 @@
 
 
 ////extern "C"
-//CLASS_DECL_APEX int_bool file_copy_dup(const char* pszNew, const char* pszSrc, int_bool bOverwrite)
+//CLASS_DECL_APEX int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
 //{
 //
 //   string strNew(pszNew);

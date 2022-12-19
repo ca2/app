@@ -268,7 +268,7 @@ namespace datetime
    }
 
 
-   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const char * psz, i32 iPath, i32 & iPathCount)
+   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const scoped_string & str, i32 iPath, i32 & iPathCount)
    //{
 
    //   if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -839,7 +839,7 @@ namespace datetime
    }
 
 
-   //string datetime::strftime(const char* psz, const ::earth::time & time, const ::earth::time_shift& timeshift)
+   //string datetime::strftime(const scoped_string & str, const ::earth::time & time, const ::earth::time_shift& timeshift)
    //{
 
    //   string strFormat(psz);
@@ -866,7 +866,7 @@ namespace datetime
    //}
 
 
-   //string datetime::utc_strftime(const char* psz)
+   //string datetime::utc_strftime(const scoped_string & str)
    //{
    //   
    //   return utc_strftime(psz, ::earth::time::now());
@@ -1231,7 +1231,7 @@ namespace datetime
       property_set set;
       bool bAdd = false;
       bool bMinus = false;
-      const char* psz = str;
+      const scoped_string & str = str;
       string strNumber;
       string strText1;
       string strChar;
@@ -1357,7 +1357,7 @@ namespace datetime
       }
       return time;
    }
-   void parse_br_str(const char* psz, property_set& set)
+   void parse_br_str(const scoped_string & str, property_set& set)
    {
       string src(psz);
       src.trim();

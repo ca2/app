@@ -31,7 +31,7 @@ namespace xml
 
       //void set_double_attr(const char * pcszName, double dValue);
 
-      void set_value(const char * pszValue);
+      void set_value(const scoped_string & strValue);
 
       virtual node * export_node(exportable & exportable);
       virtual node * export_node(const ::string & strName, exportable & exportable);

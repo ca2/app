@@ -6,7 +6,7 @@
 
 
 //
-//i32 _c_lock_is_active(const char * pszName)
+//i32 _c_lock_is_active(const scoped_string & strName)
 //{
 //
 //   i32 * pfd;
@@ -22,7 +22,7 @@
 //}
 //
 //
-//i32 _c_lock(const char * pszName, void ** pdata)
+//i32 _c_lock(const scoped_string & strName, void ** pdata)
 //{
 //
 //   i32 fd;
@@ -81,7 +81,7 @@
 //
 //
 //
-//string _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd)
+//string _ca_get_file_name(const scoped_string & strName, bool bCreate, i32 * pfd)
 //{
 //
 //   string str(pszName);

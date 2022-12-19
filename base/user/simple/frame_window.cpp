@@ -2839,7 +2839,7 @@ void simple_frame_window::defer_create_notification_icon()
             //if(estatus.succeeded())
             {
 
-               //const char * pszAppName = papp->m_strAppName;
+               //const scoped_string & strAppName = papp->m_strAppName;
 
                m_piconNotify->load_app_tray_icon(get_app()->m_strAppId);
 
@@ -3082,7 +3082,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //   VERIFY(UnpackDDElParam(WM_DDE_EXECUTE, lParam, &unused, (uptr*)&hData));
 //
 //   // get the command string
-//   const char * psz = (const ::string &)GlobalLock(hData);
+//   const scoped_string & str = (const ::string &)GlobalLock(hData);
 //
 //   wstring strCommand;
 //   try

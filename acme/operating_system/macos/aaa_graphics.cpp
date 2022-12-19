@@ -7,9 +7,9 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
 //device_context::device_context()
 //:
@@ -122,7 +122,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return false;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE_I32 * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const scoped_string & strText, int iSize, SIZE_I32 * psize)
 //{
 //   return false;
 //}
@@ -269,7 +269,7 @@ HBRUSH CreateSolidBrush(color32_t color32)
 //}
 
 //
-//bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+//bool TextOutU_dup(HDC hdc, int x, int y, const scoped_string & strUtf8, int iSize)
 //{
 //
 //   CGContextRef context = hdc->m_cgcontext;
@@ -352,17 +352,17 @@ HBRUSH CreateSolidBrush(color32_t color32)
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
 
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
+HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc);
 
 
-//HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
+//HFONT CreatePointFont_dup(int nPointSize, const scoped_string & strFaceName, HDC hdc)
 //
 //{
 //   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 //
 //}
 //
-//HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc)
+//HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc)
 //
 //{
 //   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszFaceName, kCFStringEncodingUTF8);
@@ -429,13 +429,13 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 
 
 
-//bool macos_get_file_image(::image * pimage, const char * psz);
+//bool macos_get_file_image(::image * pimage, const scoped_string & str);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 
 
-bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
 
 //
@@ -559,16 +559,16 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 
 
 
-//bool macos_get_file_image(::image * pimage, const char * psz);
+//bool macos_get_file_image(::image * pimage, const scoped_string & str);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 
 
-bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
 
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str);
 
 
 #include <Carbon/Carbon.h>
@@ -878,7 +878,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return false;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE_I32 * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const scoped_string & strText, int iSize, SIZE_I32 * psize)
 // {
 //     return false;
 // }
@@ -1024,7 +1024,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //
 //}
 
-// bool TextOutU_dup(HDC hdc, int x, int y, const char * pszUtf8, int iSize)
+// bool TextOutU_dup(HDC hdc, int x, int y, const scoped_string & strUtf8, int iSize)
 // {
 
 //    CGContextRef context = hdc->m_cgcontext;
@@ -1107,17 +1107,17 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
 
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
+HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc);
 
 
-//HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
+//HFONT CreatePointFont_dup(int nPointSize, const scoped_string & strFaceName, HDC hdc)
 
 //{
 //   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 
 //}
 //
-//HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc)
+//HFONT CreatePointBoldFont_dup(int nPointSize, const scoped_string & strFaceName, int BOLD, HDC hdc)
 
 //{
 //   CFStringRef    string            = CFStringCreateWithCString(kCFAllocatorDefault, pszFaceName, kCFStringEncodingUTF8);
@@ -1139,7 +1139,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 
 
 
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const scoped_string & str)
 {
 
    static ::pointer< ::mutex > pmutex = nullptr;
@@ -1162,7 +1162,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
 
 
-//bool macos_get_file_image(::image * pimage, const char * psz)
+//bool macos_get_file_image(::image * pimage, const scoped_string & str)
 //{
 //
 //   pimage->map();
@@ -1253,7 +1253,7 @@ int_bool delete_hcursor(HCURSOR h)
 }
 
 
-double font_similarity(const char * pszSystem, const char * pszUser)
+double font_similarity(const scoped_string & strSystem, const scoped_string & strUser)
 {
 
    if (::is_null(pszSystem) || ::is_null(pszUser))

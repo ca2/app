@@ -55,9 +55,9 @@ namespace acme
 #pragma once
 
 
-CLASS_DECL_ACME bool is_url(const char* pszCandidate, const char** ppszRequest = nullptr);
+CLASS_DECL_ACME bool is_url(const scoped_string & strCandidate, const char** ppszRequest = nullptr);
 
-CLASS_DECL_ACME bool is_like_url_protocol(const char* psz);
+CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str);
 
 
 namespace url
@@ -70,7 +70,7 @@ namespace url
    CLASS_DECL_ACME string decode(const ::block& block);
 
 
-   CLASS_DECL_ACME bool query_get_param(string& strParam, const char* pszKey, const char* pszUrl);
+   CLASS_DECL_ACME bool query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl);
 
 
 } // namespace url

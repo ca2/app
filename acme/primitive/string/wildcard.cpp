@@ -6,15 +6,15 @@
 ////#include "acme/exception/exception.h"
 
 
-const char* wildcard_next_stop(const char* pszCriteria)
+const char* wildcard_next_stop(const scoped_string & strCriteria)
 {
 
    if (pszCriteria == nullptr)
       return nullptr;
 
 
-   const char* pszAsterisk = ansi_find_string(pszCriteria, "*");
-   const char* pszQuestion = ansi_find_string(pszCriteria, "?");
+   const scoped_string & strAsterisk = ansi_find_string(pszCriteria, "*");
+   const scoped_string & strQuestion = ansi_find_string(pszCriteria, "?");
 
    if (pszAsterisk == nullptr && pszQuestion == nullptr)
       return nullptr;
@@ -31,15 +31,15 @@ const char* wildcard_next_stop(const char* pszCriteria)
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const char* pszCriteriaParam, const char* pszValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const scoped_string & strCriteriaParam, const scoped_string & strValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const char* pszCriteria = strCriteria;
+   const scoped_string & strCriteria = strCriteria;
 
-   const char* pszFind;
-   const char* pszStop;
+   const scoped_string & strFind;
+   const scoped_string & strStop;
 
    iptr iLen;
 
@@ -123,10 +123,10 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * p
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const char* pszCriteria = strCriteria;
+   const scoped_string & strCriteria = strCriteria;
 
-   const char* pszFind;
-   const char* pszStop;
+   const scoped_string & strFind;
+   const scoped_string & strStop;
 
    iptr iLen;
 
@@ -210,10 +210,10 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const char* pszCriteria = strCriteria;
+   const scoped_string & strCriteria = strCriteria;
 
-   const char* pszFind;
-   const char* pszStop;
+   const scoped_string & strFind;
+   const scoped_string & strStop;
 
    iptr iLen;
 

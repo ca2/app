@@ -37,7 +37,7 @@ public:
 #endif
 
 
-   event(char * sz = nullptr, bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr, security_attributes * psecurityattributes = nullptr);
+   event(char * sz = nullptr, bool bInitiallyOwn = false, bool bManualReset = false, const scoped_string & strNAme = nullptr, security_attributes * psecurityattributes = nullptr);
    ~event() override;
 
    // using event_base::lock;

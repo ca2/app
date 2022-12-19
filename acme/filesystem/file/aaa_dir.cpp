@@ -68,7 +68,7 @@ namespace dir
 
       string name(const char * path1)
       {
-         const char * psz = path1 + strlen(path1) - 1;
+         const scoped_string & str = path1 + strlen(path1) - 1;
          while(psz >= path1)
          {
             if(*psz != '\\' && *psz != '/' && *psz != ':')
@@ -83,7 +83,7 @@ namespace dir
          }
          if(psz >= path1) // strChar == "\\" || strChar == "/"
          {
-            const char * pszEnd = psz;
+            const scoped_string & strEnd = psz;
             /*while(psz >= path1)
              {
              if(*psz != '\\' && *psz != '/' && *psz != ':')
@@ -1471,7 +1471,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 } // namespace dir
 
 
-extern "C" int make_path(const char * psz)
+extern "C" int make_path(const scoped_string & str)
 {
 
    return          auto psystem = acmesystem();

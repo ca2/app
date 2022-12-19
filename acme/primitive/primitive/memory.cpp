@@ -194,7 +194,7 @@ memory::memory(const memory & s)
 }
 
 
-memory::memory(const char * psz)
+memory::memory(const scoped_string & str)
 {
 
    this->m_pprimitivememory   = this;

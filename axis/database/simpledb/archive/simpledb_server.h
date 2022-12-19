@@ -34,12 +34,12 @@ namespace simpledb
 
 
       virtual bool connect(
-      const char * pszHost,
-      const char * pszUser,
-      const char * pszPassword,
-      const char * pszDatabase,
+      const scoped_string & strHost,
+      const scoped_string & strUser,
+      const scoped_string & strPassword,
+      const scoped_string & strDatabase,
       i32 iPort = 0,
-      const char * pszSocketName = nullptr,
+      const scoped_string & strSocketName = nullptr,
       u32 uFlags = 0);
 
       virtual bool close();

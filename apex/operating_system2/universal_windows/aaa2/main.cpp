@@ -19,8 +19,8 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 
 
-//::application *     win_application_create(::apex::application * pappSystem, const char * pszId);
-//::application *     win_instantiate_application(::apex::application * pappSystem, const char * pszId);
+//::application *     win_application_create(::apex::application * pappSystem, const scoped_string & strId);
+//::application *     win_instantiate_application(::apex::application * pappSystem, const scoped_string & strId);
 //int                     win_application_procedure(::apex::application * pappSystem)
 //::u32 c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
@@ -299,7 +299,7 @@ void os_post_quit()
 
 
 
-void apex_application_main(int argc, char* argv[], const char* pszCommandLine)
+void apex_application_main(int argc, char* argv[], const scoped_string & strCommandLine)
 {
 
 

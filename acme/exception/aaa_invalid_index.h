@@ -7,7 +7,7 @@ class CLASS_DECL_ACME invalid_index_exception :
 public:
 
 
-   invalid_index_exception(const char * pszMessage = nullptr);
+   invalid_index_exception(const scoped_string & strMessage = nullptr);
    virtual ~invalid_index_exception();
 
 

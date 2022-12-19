@@ -16,17 +16,17 @@ public:
 
 
    jfieldID field_str(const char *psz);
-   jfieldID field_b(const char* psz);
-   jfieldID field_uch(const char* psz);
-   jfieldID field_ch(const char* psz);
-   jfieldID field_sh(const char* psz);
-   jfieldID field_i(const char* psz);
-   jfieldID field_l(const char* psz);
-   jfieldID field_f(const char* psz);
-   jfieldID field_d(const char* psz);
+   jfieldID field_b(const scoped_string & str);
+   jfieldID field_uch(const scoped_string & str);
+   jfieldID field_ch(const scoped_string & str);
+   jfieldID field_sh(const scoped_string & str);
+   jfieldID field_i(const scoped_string & str);
+   jfieldID field_l(const scoped_string & str);
+   jfieldID field_f(const scoped_string & str);
+   jfieldID field_d(const scoped_string & str);
 
 
-   void set_str(jfieldID jfieldid, const char* psz);
+   void set_str(jfieldID jfieldid, const scoped_string & str);
 
    string get_str(jfieldID jfieldid);
 
@@ -62,41 +62,41 @@ public:
 
    double get_d(jfieldID jfieldid);
 
-   void set_str(const char* pszField, const char* psz);
+   void set_str(const scoped_string & strField, const scoped_string & str);
 
-   string get_str(const char* pszField);
+   string get_str(const scoped_string & strField);
 
-   void set_b(const char* pszField, bool boolean);
+   void set_b(const scoped_string & strField, bool boolean);
 
-   bool get_b(const char* pszField);
+   bool get_b(const scoped_string & strField);
 
-   void set_uch(const char* pszField, byte b);
+   void set_uch(const scoped_string & strField, byte b);
 
-   byte get_uch(const char* pszField);
+   byte get_uch(const scoped_string & strField);
 
-   void set_ch(const char* pszField, char ch);
+   void set_ch(const scoped_string & strField, char ch);
 
-   char get_ch(const char* pszField);
+   char get_ch(const scoped_string & strField);
 
-   void set_sh(const char* pszField, short sh);
+   void set_sh(const scoped_string & strField, short sh);
 
-   short get_sh(const char* pszField);
+   short get_sh(const scoped_string & strField);
 
-   void set_i(const char* pszField, int i);
+   void set_i(const scoped_string & strField, int i);
 
-   int get_i(const char* pszField);
+   int get_i(const scoped_string & strField);
 
-   void set_l(const char* pszField, long long ll);
+   void set_l(const scoped_string & strField, long long ll);
 
-   long long get_l(const char* pszField);
+   long long get_l(const scoped_string & strField);
 
-   void set_f(const char* pszField, float f);
+   void set_f(const scoped_string & strField, float f);
 
-   float get_f(const char* pszField);
+   float get_f(const scoped_string & strField);
 
-   void set_d(const char* pszField, double f);
+   void set_d(const scoped_string & strField, double f);
 
-   double get_d(const char* pszField);
+   double get_d(const scoped_string & strField);
 
 
 };

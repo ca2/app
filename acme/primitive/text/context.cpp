@@ -218,7 +218,7 @@ namespace text
    }
 
 
-   bool table::load(const char * pszBaseDir)
+   bool table::load(const scoped_string & strBaseDir)
    {
 
       return true;
@@ -261,7 +261,7 @@ namespace text
    }
 
 
-   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const char * psz)
+   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const scoped_string & str)
    {
 
       (*this)[idLocale][idSchema][atom] = psz;
@@ -671,7 +671,7 @@ namespace text
 //
 //      string str;
 //
-//      const char * pszEnd;
+//      const scoped_string & strEnd;
 //
 //      string strRoot;
 //
@@ -855,7 +855,7 @@ namespace text
       return true;
    }
 
-   string table::body(const char * psz)
+   string table::body(const scoped_string & str)
    {
       string table(psz);
       table.replace_with("\r", "\\r");
@@ -864,7 +864,7 @@ namespace text
    }
 
 
-   bool table::matches(const context * pcontext, const ::atom & atom, const char * psz) const
+   bool table::matches(const context * pcontext, const ::atom & atom, const scoped_string & str) const
    {
 
       static ::atom idEn("en");
@@ -1070,7 +1070,7 @@ namespace text
    }
 
 
-   //bool context::match(string_array & stra, const char * psz, ::atom idExpression, ::atom idRoot) const
+   //bool context::match(string_array & stra, const scoped_string & str, ::atom idExpression, ::atom idRoot) const
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());

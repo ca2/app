@@ -276,7 +276,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //   string strArg;
 //
-//   const char * psz = strCmdLine;
+//   const scoped_string & str = strCmdLine;
 //
 //   string strChar;
 //

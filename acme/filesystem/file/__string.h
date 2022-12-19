@@ -12,7 +12,7 @@
 //    intentional duplication because spa
 //    needs md5
 //
-CLASS_DECL_ACME string file_md5_dup(const char * psz);
+CLASS_DECL_ACME string file_md5_dup(const scoped_string & str);
 //
 //
 /////////////////////////////////////////////////////

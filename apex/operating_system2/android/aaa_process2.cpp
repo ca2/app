@@ -154,7 +154,7 @@ struct chldstatus
 //   }
 //
 //
-//   bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir,i32 iCa2Priority)
+//   bool process::create_child_process(const scoped_string & strCmdLine,bool bPiped,const scoped_string & strDir,i32 iCa2Priority)
 //   {
 //
 //      if(!::operating_system::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
@@ -331,7 +331,7 @@ struct chldstatus
 //   }
 //
 //
-//   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+//   bool process::synch_elevated(const scoped_string & strCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
 //   {
 //
 //

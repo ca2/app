@@ -38,7 +38,7 @@ namespace http
    }
 
 
-   void form::parse_body(file::file *infil, const char * pszContentType, strsize content-length)
+   void form::parse_body(file::file *infil, const scoped_string & strContentType, strsize content-length)
    {
 
       if (::comparison::gt(content-length, get_max_http_post()))

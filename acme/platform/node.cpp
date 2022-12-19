@@ -23,7 +23,7 @@
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
-//CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl);
+//CLASS_DECL_ACME void operating_system_open_url(const scoped_string & strUrl);
 
 
 namespace acme
@@ -729,7 +729,7 @@ namespace acme
 
       ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
 
-      const char * pszPathFile = pathFile;
+      const scoped_string & strPathFile = pathFile;
 
       INFORMATION("node::get_last_run_application_path_file pathFile:" << pathFile);
 
@@ -1825,7 +1825,7 @@ return false;
    }
 
 
-   void node::shell_execute_async(const char * pszFile, const char * pszParams)
+   void node::shell_execute_async(const scoped_string & strFile, const scoped_string & strParams)
    {
 
       //throw ::interface_only();
@@ -1837,7 +1837,7 @@ return false;
    }
 
 
-   void node::shell_execute_sync(const char * pszFile, const char * pszParams, const class time & timeTimeout)
+   void node::shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class time & timeTimeout)
    {
 
       //throw ::interface_only();
@@ -1849,7 +1849,7 @@ return false;
    }
 
 
-   void node::root_execute_async(const char * pszFile, const char * pszParams)
+   void node::root_execute_async(const scoped_string & strFile, const scoped_string & strParams)
    {
 
       //throw ::interface_only();
@@ -1861,7 +1861,7 @@ return false;
    }
 
 
-   void node::root_execute_sync(const char * pszFile, const char * pszParams, const class ::time& timeTimeout)
+   void node::root_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class ::time& timeTimeout)
    {
 
       //throw ::interface_only();
@@ -2114,7 +2114,7 @@ return false;
    //}
 
 
-   //string node::get_callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount)
+   //string node::get_callstack(const scoped_string & strFormat, i32 iSkip, void * caller_address, int iCount)
    //{
 
    //   return {};
@@ -2541,7 +2541,7 @@ return false;
    }
 
 
-   void node::command_system(string_array & straOutput, int & iExitCode, const char * psz, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+   void node::command_system(string_array & straOutput, int & iExitCode, const scoped_string & str, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
    {
 
       throw interface_only();

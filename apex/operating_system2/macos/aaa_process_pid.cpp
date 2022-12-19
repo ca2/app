@@ -176,7 +176,7 @@ string module_path_from_pid(unsigned int uiPid)
 }
 
 //
-//atom_array app_get_pid(const char * psz)
+//atom_array app_get_pid(const scoped_string & str)
 //{
 //
 //   atom_array ia;
@@ -276,7 +276,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 
    string strArg;
 
-   const char * psz = strCmdLine;
+   const scoped_string & str = strCmdLine;
 
    string strChar;
 

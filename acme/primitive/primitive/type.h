@@ -4,7 +4,7 @@
 #include "atom.h"
 
 
-CLASS_DECL_ACME string demangle(const char * psz);
+CLASS_DECL_ACME string demangle(const scoped_string & str);
 
 
 #ifdef WINDOWS
@@ -13,7 +13,7 @@ CLASS_DECL_ACME string demangle(const char * psz);
 #define __c_type_name(t) (c_demangle(typeid(t).name()))
 
 
-inline const char * c_demangle(const char * psz)
+inline const char * c_demangle(const ::ansi_character * psz)
 {
 
    if (psz[0] == 'c' &&
@@ -48,7 +48,7 @@ inline const char * c_demangle(const char * psz)
 
 }
 #else
-//inline const char * c_demangle(const char * psz)
+//inline const char * c_demangle(const scoped_string & str)
 //{
 //
 //   return psz;
@@ -98,7 +98,7 @@ public:
    }
 
 
-   //type(const char * pszTypeName) :
+   //type(const scoped_string & strTypeName) :
    //   atom(pszTypeName)
    //{
    //   
@@ -183,7 +183,7 @@ public:
 
    //inline operator const char * () const { return ::atom::operator const char *(); }
 
-   bool name_contains(const char * psz) const { return m_str.contains(psz); }
+   bool name_contains(const ::ansi_character * psz) const { return m_str.contains(psz); }
 
 
 };

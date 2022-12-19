@@ -6,7 +6,7 @@
 
 
 
-const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
+const char * linux_g_direct_get_file_icon_path(const scoped_string & strPath, int iSize);
 
 string linux_get_file_icon_path(string strPath, int iSize)
 {
@@ -15,7 +15,7 @@ string linux_get_file_icon_path(string strPath, int iSize)
 
 }
 
-const char * linux_g_direct_get_file_content_type(const char * pszFile);
+const char * linux_g_direct_get_file_content_type(const scoped_string & strFile);
 
 string core_linux_get_file_content_type(string strPath)
 {
@@ -467,7 +467,7 @@ namespace linux
 
 
 
-//      bool linux::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool linux::get_icon( oswindow oswindow, const scoped_string & str, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);

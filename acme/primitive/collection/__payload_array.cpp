@@ -121,7 +121,7 @@ index payload_array::append(const std::initializer_list < ::payload > & list)
 }
 
 
-string payload_array::implode(const char * pszGlue) const
+string payload_array::implode(const scoped_string & strGlue) const
 {
 
    string str;
@@ -145,7 +145,7 @@ string payload_array::implode(const char * pszGlue) const
 }
 
 
-index payload_array::find_first(const char * psz, index find, index last) const
+index payload_array::find_first(const scoped_string & str, index find, index last) const
 {
 
    if (find < 0)
@@ -179,7 +179,7 @@ index payload_array::find_first(const char * psz, index find, index last) const
 }
 
 
-index payload_array::find_first_ci(const char * psz, index find, index last) const
+index payload_array::find_first_ci(const scoped_string & str, index find, index last) const
 {
    
    if (find < 0)
@@ -560,7 +560,7 @@ void payload_array::parse_network_payload(const char * & pszJson)
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(const char * & pszJson, const char * pszEnd)
+void payload_array::parse_network_payload(const char * & pszJson, const scoped_string & strEnd)
 {
 
    if(pszJson > pszEnd)
@@ -658,7 +658,7 @@ void var_array_skip_network_payload(const char *& pszJson)
 }
 
 
-void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
+void var_array_skip_network_payload(const char *& pszJson, const scoped_string & strEnd)
 {
    
    ::str().consume_spaces(pszJson, 0, pszEnd);

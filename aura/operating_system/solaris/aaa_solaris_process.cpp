@@ -64,9 +64,9 @@ i32 create_process(const ::string & _cmd_line, i32 * pprocessId)
 }
 
 CLASS_DECL_AURA i32 call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 i32 iShow)
 {
    vsstring strCmdLine;

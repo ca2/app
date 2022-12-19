@@ -248,7 +248,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //} // namespace acme
 //
 
-bool get_file_time_set(const char * psz, file_time_set & file_timeset)
+bool get_file_time_set(const scoped_string & str, file_time_set & file_timeset)
 {
 
    return get_file_time_set(psz, file_timeset.m_filetimeCreation, file_timeset.m_filetimeModified);
@@ -259,7 +259,7 @@ bool get_file_time_set(const char * psz, file_time_set & file_timeset)
 #ifdef WINDOWS_DESKTOP
 
 
-bool get_file_time_set(const char * psz, file_time & file_timeCreation, file_time & file_timeModified)
+bool get_file_time_set(const scoped_string & str, file_time & file_timeCreation, file_time & file_timeModified)
 {
 
    HANDLE h = CreateFileW(wstring(psz),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,nullptr,OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS,nullptr);
@@ -293,7 +293,7 @@ bool get_file_time_set(const char * psz, file_time & file_timeCreation, file_tim
 }
 
 
-CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::earth::time& time)
+CLASS_DECL_ACME bool set_modified_file_time(const scoped_string & str, const ::earth::time& time)
 {
 
    ::file_time file_time;
@@ -305,7 +305,7 @@ CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::earth::time
 }
 
 
-CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const file_time & file_timeModified)
+CLASS_DECL_ACME bool set_modified_file_time(const scoped_string & str, const file_time & file_timeModified)
 {
 
    bool bOk = false;
@@ -341,7 +341,7 @@ CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const file_time & f
 #undef USE_MISC
 
 
-bool get_file_time_set(const char * psz, file_time & creation, file_time & modified)
+bool get_file_time_set(const scoped_string & str, file_time & creation, file_time & modified)
 {
 
    struct stat st;

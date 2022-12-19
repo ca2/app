@@ -10,7 +10,7 @@ class CLASS_DECL_ACME installing_exception :
 public:
 
 
-   installing_exception(const char * pszMessage = nullptr);
+   installing_exception(const scoped_string & strMessage = nullptr);
    virtual ~installing_exception();
 
 

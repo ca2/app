@@ -71,7 +71,7 @@ char *br_find_etc_dir     (const char *default_etc_dir);
 char *br_strcat  (const char *str1, const char *str2);
 char *br_build_path (const char *dir, const char *file);
 char *br_dirname (const char *path);
-void br_init_set_symbol(const char * psz);
+void br_init_set_symbol(const scoped_string & str);
 
 #ifdef __cplusplus
 }

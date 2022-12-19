@@ -30,7 +30,7 @@ namespace acme
 
       }
 
-      bool tx::open(const char * pszChannel,launcher * plauncher)
+      bool tx::open(const scoped_string & strChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -67,7 +67,7 @@ namespace acme
       }
 
 
-      bool tx::send(const char * pszMessage,duration durationTimeout)
+      bool tx::send(const scoped_string & strMessage,duration durationTimeout)
       {
 
          data_struct data;
@@ -101,7 +101,7 @@ namespace acme
          if(!is_tx_ok())
             return false;
 
-         const char * pszMessage = (const char *)pdata;
+         const scoped_string & strMessage = (const char *)pdata;
 
          ::count c = len;
 
@@ -170,7 +170,7 @@ namespace acme
       }
 
 
-      bool rx::create(const char * pszChannel)
+      bool rx::create(const scoped_string & strChannel)
       {
          /*
          m_key = ftok(".", 'c');
@@ -244,7 +244,7 @@ namespace acme
 
 
 
-      // void rx::receiver::on_ipc_receive(rx * prx,const char * pszMessage)
+      // void rx::receiver::on_ipc_receive(rx * prx,const scoped_string & strMessage)
       // {
       // }
 
@@ -258,7 +258,7 @@ namespace acme
 
 
 
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_ipc_receive(rx * prx,const scoped_string & strMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -416,7 +416,7 @@ namespace acme
       }
 
 
-      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ab(const scoped_string & strChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -442,7 +442,7 @@ namespace acme
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ba(const scoped_string & strChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;

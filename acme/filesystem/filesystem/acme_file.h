@@ -44,10 +44,10 @@ public:
 
 
 
-   //virtual string get_temp_name(const char * lpszName, const char * pszExtension);
+   //virtual string get_temp_name(const char * lpszName, const scoped_string & strExtension);
    virtual void write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
-   virtual void append_wait(const char * pszFile, const block & block, const class time & time);
-   virtual void append(const char * pszFile, const block & block);
+   virtual void append_wait(const scoped_string & strFile, const block & block, const class time & time);
+   virtual void append(const scoped_string & strFile, const block & block);
 
    virtual bool exists(const ::file::path & path);
 
@@ -95,18 +95,18 @@ public:
    virtual void set_size(FILE * pfile, filesize iSize);
 
 
-   virtual void move(const char * pszNewName, const char * pszOldName);
+   virtual void move(const scoped_string & strNewName, const scoped_string & strOldName);
 
-   virtual void erase(const char * pszFileName);
+   virtual void erase(const scoped_string & strFileName);
 
-   //virtual bool set_line(const char * pszPath, index iLine, const char * pszLine);
+   //virtual bool set_line(const scoped_string & strPath, index iLine, const scoped_string & strLine);
 
-   virtual void copy(const char * pszDup, const char * pszSrc, bool bOverwrite);
+   virtual void copy(const scoped_string & strDup, const scoped_string & strSrc, bool bOverwrite);
    
 
-   virtual ::earth::time modification_time(const char* psz);
-   virtual void set_modification_time(const char* psz, const ::earth::time & time);
-   virtual void synchronize(const char * psz1, const char * psz2);
+   virtual ::earth::time modification_time(const scoped_string & str);
+   virtual void set_modification_time(const scoped_string & str, const ::earth::time & time);
+   virtual void synchronize(const scoped_string & str1, const scoped_string & str2);
 
 
    virtual void save_stra(const char * lpszName, const string_array & stra);
@@ -136,20 +136,20 @@ public:
    virtual string first_line(const char * path);
    virtual string line(const char * path, index iLine);
    virtual string_array lines(const char * path);
-   virtual void set_line(const char * path, index iLine, const char * pszLine);
+   virtual void set_line(const char * path, index iLine, const scoped_string & strLine);
    //virtual string file_extension_dup(const char * path);
-   virtual string get_temporary_file_name(const char * lpszName, const char * pszExtension);
+   virtual string get_temporary_file_name(const char * lpszName, const scoped_string & strExtension);
 
-   virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate);
+   virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const scoped_string & strExtension, const scoped_string & strTemplate);
 
    //virtual string file_final_extension_dup(const char * path);
-   //virtual string url_dir_name_for_relative(const char * pszPath);
+   //virtual string url_dir_name_for_relative(const scoped_string & strPath);
    //virtual string solve_relative(const ::string & str, bool * pbUrl = nullptr);
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
-   //virtual string defer_solve_relative(const char * pszRelative, const char * pszCurrent);
+   //virtual string defer_solve_relative(const scoped_string & strRelative, const scoped_string & strCurrent);
    virtual void append(const ::string & strFile, const block & block);
    virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinite());
-   //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const class ::time & millisTimeout = ::time::infinite());
+   //virtual bool file_append_wait(const ::string & strFile, const scoped_string & str, strsize s, const class ::time & millisTimeout = ::time::infinite());
 
    virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 

@@ -158,7 +158,7 @@ namespace android
 
       //string dir::relpath(const ::string & lpcszSource, const ::string & lpcszRelative, const ::string & psz2)
       //{
-      //   const char * pszRequest;
+      //   const scoped_string & strRequest;
       //   if(::url::is_url(lpcszSource, &pszRequest))
       //   {
       //      if(string_begins(lpcszRelative, "/"))

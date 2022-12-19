@@ -27,7 +27,7 @@ namespace file
    }
 
 
-   enum_status streamable_composite::_open(const char * pszFilePath, const ::file::enum_open & eopen) 
+   enum_status streamable_composite::_open(const scoped_string & strFilePath, const ::file::enum_open & eopen) 
    { 
       
       return m_pstreamable->_open(pszFilePath, eopen); 

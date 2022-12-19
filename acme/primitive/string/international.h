@@ -100,7 +100,7 @@
 //} // namespace str
 
 
-//inline wstring unicode(const char * psz) { return utf8_to_unicode(psz);  }
+//inline wstring unicode(const scoped_string & str) { return utf8_to_unicode(psz);  }
 //inline string utf8(const ::wide_character * pwsz) { return unicode_to_utf8(pwsz); }
 
 

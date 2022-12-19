@@ -152,7 +152,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //      string strMessageText = get_message_text(message, true);
 //
-//      const char * pszMessageText = strMessageText;
+//      const scoped_string & strMessageText = strMessageText;
 //
 //      str.format("%s %" PRIxPTR " %" PRIxPTR, strMessageText.c_str(), wparam, lparam);
 //

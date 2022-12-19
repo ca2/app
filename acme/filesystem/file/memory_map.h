@@ -30,9 +30,9 @@ namespace file
       
 
       virtual bool open();
-      virtual bool open_name(const char * pszName, bool bRead, bool bWrite, bool bCreate, memsize size);
-      virtual bool open_path(const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size);
-      virtual bool open(const char * pszName, const char * pszPath, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open_name(const scoped_string & strName, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open_path(const scoped_string & strPath, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool open(const scoped_string & strName, const scoped_string & strPath, bool bRead, bool bWrite, bool bCreate, memsize size);
       virtual bool close();
 
       virtual void * get_data();

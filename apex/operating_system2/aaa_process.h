@@ -3,13 +3,13 @@
 //
 //#if !defined(_UWP)
 //
-//CLASS_DECL_APEX i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_APEX i32 call_async(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 //
 //typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 //
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
-//CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 //
 //#endif
 //
@@ -27,11 +27,11 @@
 //
 //CLASS_DECL_APEX string expand_env(string str);
 //
-//CLASS_DECL_APEX string consume_command_line_parameter(const char * pszCommandLine, const char ** pszEndPtr);
-//CLASS_DECL_APEX bool is_command_line_parameter_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault = false);
-//CLASS_DECL_APEX bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam);
-//CLASS_DECL_APEX bool get_command_line_parameter(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault);
-//CLASS_DECL_APEX string get_command_line_parameter(const char * pszCommandLine,const char * pszParam);
+//CLASS_DECL_APEX string consume_command_line_parameter(const scoped_string & strCommandLine, const char ** pszEndPtr);
+//CLASS_DECL_APEX bool is_command_line_parameter_true(string& strValue, const scoped_string & strCommandLine, const scoped_string & strParam, bool bDefault = false);
+//CLASS_DECL_APEX bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam);
+//CLASS_DECL_APEX bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strDefault);
+//CLASS_DECL_APEX string get_command_line_parameter(const scoped_string & strCommandLine,const scoped_string & strParam);
 //
 //
 //CLASS_DECL_APEX bool launch_command(const char * const pszCommand);
@@ -50,13 +50,13 @@
 //
 //
 //CLASS_DECL_APEX string module_path_from_pid(unsigned int pid);
-//CLASS_DECL_APEX atom_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_APEX atom_array module_path_get_pid(const scoped_string & strModuleName, bool bModuleNameIsPropertyFormatted = true);
 //
 //
 //#ifndef WINDOWS
 //
 //CLASS_DECL_APEX string_array cmdline_from_pid(unsigned int pid);
-//CLASS_DECL_APEX atom_array app_get_pid(const char * pszModuleName);
+//CLASS_DECL_APEX atom_array app_get_pid(const scoped_string & strModuleName);
 //
 //
 //#endif
@@ -65,8 +65,8 @@
 //#endif
 //
 //#ifndef _UWP
-//CLASS_DECL_APEX bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
-//CLASS_DECL_APEX void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
+//CLASS_DECL_APEX bool process_contains_module(string & strImage, ::u32 processID, const scoped_string & strLibrary);
+//CLASS_DECL_APEX void shared_library_process(dword_array & dwa, string_array & straProcesses, const scoped_string & strLibrary);
 //#endif
 //
 //
@@ -79,11 +79,11 @@
 //
 //
 //
-//CLASS_DECL_APEX bool shell_execute_async(const char * pszFile, const char * pszParams);
-//CLASS_DECL_APEX bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+//CLASS_DECL_APEX bool shell_execute_async(const scoped_string & strFile, const scoped_string & strParams);
+//CLASS_DECL_APEX bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::duration durationTimeout = one_minute());
 //
-//CLASS_DECL_APEX bool root_execute_async(const char * pszFile, const char * pszParams);
-//CLASS_DECL_APEX bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+//CLASS_DECL_APEX bool root_execute_async(const scoped_string & strFile, const scoped_string & strParams);
+//CLASS_DECL_APEX bool root_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::duration durationTimeout = one_minute());
 //
 //
 //CLASS_DECL_APEX bool os_init_application();

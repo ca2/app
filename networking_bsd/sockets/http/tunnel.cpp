@@ -205,7 +205,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnData(const char * psz, memsize size)
+   void http_tunnel::OnData(const scoped_string & str, memsize size)
    {
 
       m_fileBody.write(psz, size);

@@ -1051,7 +1051,7 @@ namespace html
 
    bool element::parse(html_data * phtmldata, const char * & pszParam)
    {
-      const char * psz = pszParam;
+      const scoped_string & str = pszParam;
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
@@ -1066,7 +1066,7 @@ namespace html
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
-      const char * pszTag = psz;
+      const scoped_string & strTag = psz;
       // skip valid char
       while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
@@ -1115,7 +1115,7 @@ namespace html
 
       }
 
-      const char * pszBody = psz;
+      const scoped_string & strBody = psz;
 
       while (true)
       {
@@ -1154,7 +1154,7 @@ namespace html
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
-      const char * pszCloseTag = psz;
+      const scoped_string & strCloseTag = psz;
       // skip valid char
       while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
@@ -1185,7 +1185,7 @@ namespace html
             psz--;
             return;
          }
-         const char * pszKey = psz;
+         const scoped_string & strKey = psz;
          // skip valid char
          while (*psz != '\0' && !character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
@@ -1214,7 +1214,7 @@ namespace html
          while (*psz != '\0' && character_isspace(*psz))
             psz++;
 
-         const char * pszValue;
+         const scoped_string & strValue;
          if (*psz == '\"' || *psz == '\'')
          {
             chQuote = *psz;

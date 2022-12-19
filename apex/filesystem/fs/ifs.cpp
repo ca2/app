@@ -9,7 +9,7 @@
 #include "apex/platform/system.h"
 
 
-ifs::ifs(const char * pszRoot)
+ifs::ifs(const scoped_string & strRoot)
 {
 
    m_strRoot = pszRoot;

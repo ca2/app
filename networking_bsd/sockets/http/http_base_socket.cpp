@@ -361,7 +361,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea, const char* pszContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea, const scoped_string & strContentType)
    {
 
       ::file::path pcsz(pcszParam);

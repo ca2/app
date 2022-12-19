@@ -25,8 +25,8 @@ public:
 
    bool is_enabled();
 
-   void increment_by_name(const char * psz);
-   void decrement_by_name(const char * psz);
+   void increment_by_name(const scoped_string & str);
+   void decrement_by_name(const scoped_string & str);
 
 
    template < typename T >

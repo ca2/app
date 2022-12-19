@@ -8,10 +8,10 @@
 #pragma once
 
 
-CLASS_DECL_ACME int argcargv_find_parameter(int argc, char * argv[], const char * pszParameter);
+CLASS_DECL_ACME int argcargv_find_parameter(int argc, char * argv[], const scoped_string & strParameter);
 
 
-CLASS_DECL_ACME bool argcargv_contains_parameter(int argc, char * argv[], const char * pszParameter);
+CLASS_DECL_ACME bool argcargv_contains_parameter(int argc, char * argv[], const scoped_string & strParameter);
 
 
 

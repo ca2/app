@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/string/x/x_charcategory.h"
@@ -20,7 +20,7 @@ inline char utf8_e(byte c);
 
 
 
-inline strsize utf8_len(const char* psz) { if (::is_null(psz)) return 0; return strlen(psz); }
+inline strsize utf8_len(const ::ansi_character * psz) { if (::is_null(psz)) return 0; return strlen(psz); }
 
 
 const ::ansi_character * unicode_next(const ::ansi_character * psz, int * piError);
@@ -50,8 +50,8 @@ CLASS_DECL_ACME const ::wd16_character * unicode_next(const ::wd16_character* ps
 inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, const ::wd16_character * pszBeg);
 
 
-CLASS_DECL_ACME strsize ansi_to_wd16_len(const char* psz, strsize srclen = -1);
-CLASS_DECL_ACME strsize ansi_to_wd16(::wd16_character* pwsz, const char* psz, strsize srclen = -1);
+CLASS_DECL_ACME strsize ansi_to_wd16_len(const ::ansi_character * psz, strsize srclen = -1);
+CLASS_DECL_ACME strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsize srclen = -1);
 
 CLASS_DECL_ACME ::wd16_character * ansi_to_wd16_dup(const char * input, strsize input_size);
 
@@ -69,8 +69,8 @@ CLASS_DECL_ACME strsize utf32_len(const ::wd32_character* psz);
 inline const ::wd32_character * unicode_next(const ::wd32_character* psz);
 inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, const ::wd32_character * pszBeg);
 
-CLASS_DECL_ACME strsize ansi_to_wd32_len(const char* psz, strsize srclen = -1);
-CLASS_DECL_ACME strsize ansi_to_wd32(::wd32_character* pwsz, const char* psz, strsize srclen = -1);
+CLASS_DECL_ACME strsize ansi_to_wd32_len(const ::ansi_character * psz, strsize srclen = -1);
+CLASS_DECL_ACME strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen = -1);
 
 CLASS_DECL_ACME ::wd32_character* ansi_to_wd32_dup(const char* pcwsz, strsize input_size = -1);
 
@@ -138,8 +138,8 @@ inline strsize wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, s
 #if WCHAR_T_SIZE == 16
 
 
-inline strsize utf8_to_unichar_len(const char* psz, strsize srclen = -1) { return ansi_to_wd16_len(psz, srclen); }
-inline strsize utf8_to_unichar(::wd16_character* pwsz, const char* psz, strsize srclen = -1) { return ansi_to_wd16(pwsz, psz, srclen); }
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd16_len(psz, srclen); }
+inline strsize utf8_to_unichar(::wd16_character* pwsz, const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd16(pwsz, psz, srclen); }
 
 
 inline strsize unichar_to_utf8_len(const ::wd16_character* pwsz, strsize srclen = -1) { return wd16_to_ansi_len(pwsz, srclen); }
@@ -149,8 +149,8 @@ inline strsize unichar_to_utf8(char * psz, const ::wd16_character* pwsz, strsize
 #else
 
 
-inline strsize utf8_to_unichar_len(const char* psz, strsize srclen = -1) { return ansi_to_wd32_len(psz, srclen); }
-inline strsize utf8_to_unichar(::wd32_character* pwsz, const char* psz, strsize srclen = -1) { return ansi_to_wd32(pwsz, psz, srclen); }
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32_len(psz, srclen); }
+inline strsize utf8_to_unichar(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32(pwsz, psz, srclen); }
 
 
 inline strsize unichar_to_utf8_len(const ::wd32_character* pwsz, strsize srclen = -1) { return wd32_to_ansi_len(pwsz, srclen); }

@@ -40,7 +40,7 @@ inline int ch_unicode_len(int c)
 }
 
 
-inline int str_uni_len(const char * pszUtf8)
+inline int str_uni_len(const scoped_string & strUtf8)
 {
 
    return ch_unicode_len(*pszUtf8);

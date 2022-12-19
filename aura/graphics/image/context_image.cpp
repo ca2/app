@@ -1047,7 +1047,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    output_debug_string("file_as_memory time "+::as_string(dt.floating_millisecond().m_d) + "ms");
 
-   const char * psz = (const char *)memory.data();
+   const scoped_string & str = (const char *)memory.data();
 
    auto size = memory.size();
 

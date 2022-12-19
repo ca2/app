@@ -327,9 +327,9 @@ namespace opengl
 
          glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
 
-         const char * psz = shader_type_c_str(type);
+         const scoped_string & str = shader_type_c_str(type);
 
-         const char * pszLog = infoLog;
+         const scoped_string & strLog = infoLog;
 
          strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 

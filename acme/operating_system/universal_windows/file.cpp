@@ -97,7 +97,7 @@
 
 
 
-int_bool file_is_equal_path_dup(const char* psz1, const char* psz2)
+int_bool file_is_equal_path_dup(const scoped_string & str1, const scoped_string & str2)
 {
    return file_path_is_equal(psz1, psz2);
    //   const i32 iBufSize = MAX_PATH * 8;
@@ -162,7 +162,7 @@ string file_module_path_dup()
 
 
 //
-//bool PrintModules(string & strImage,u32 processID,const char * pszDll)
+//bool PrintModules(string & strImage,u32 processID,const scoped_string & strDll)
 //{
 //
 //   HANDLE hProcess;
@@ -228,7 +228,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(u32_array & dwa,string_array & straProcesses,const char * pszDll)
+//void dll_processes(u32_array & dwa,string_array & straProcesses,const scoped_string & strDll)
 //{
 //   // Get the list of process identifiers.
 //
@@ -877,7 +877,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //
 //
-//int_bool file_set_length(const char * pszName,size_t iSize)
+//int_bool file_set_length(const scoped_string & strName,size_t iSize)
 //{
 //
 //   wstring wstr(pszName);
@@ -936,7 +936,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 
 
 //
-//int_bool file_path_is_equal(const char * psz1,const char * psz2)
+//int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1876,7 +1876,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //
 //
-//int_bool file_path_is_equal(const char* psz1, const char* psz2)
+//int_bool file_path_is_equal(const scoped_string & str1, const scoped_string & str2)
 //{
 //
 //   return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
@@ -1906,7 +1906,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //
 //
-//int_bool file_set_length(const char* pszName, size_t iSize)
+//int_bool file_set_length(const scoped_string & strName, size_t iSize)
 //{
 //
 //   int i = open(pszName, 0);
@@ -1922,7 +1922,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //
 //
-//bool file_copy_dup(const char* pszNew, const char* pszSrc, bool bOverwrite)
+//bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, bool bOverwrite)
 //{
 //
 //   ::winrt::Windows::Storage::StorageFolder^ folder = nullptr;
@@ -2059,7 +2059,7 @@ filesize hfile_get_size(HANDLE h)
 //
 
 
-bool get_file_time_set(const char* psz, file_time& creation, file_time& modified)
+bool get_file_time_set(const scoped_string & str, file_time& creation, file_time& modified)
 {
 
    HANDLE hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);

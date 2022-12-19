@@ -111,7 +111,7 @@ public:
 
    //void alloc_up(strsize iAtLeast);
 
-   //void set(const char* psz, strsize len)
+   //void set(const scoped_string & str, strsize len)
    //{
 
 
@@ -124,7 +124,7 @@ public:
    //}
 
 
-   //void append(const char* psz, strsize len)
+   //void append(const scoped_string & str, strsize len)
    //{
 
    //   m_str.append

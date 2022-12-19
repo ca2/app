@@ -332,7 +332,7 @@ br_init (BrInitError *error)
 
 const char * g_psz_br_init_symbol = (const char *) nullptr;
 
-void br_init_set_symbol(const char * psz)
+void br_init_set_symbol(const scoped_string & str)
 {
    g_psz_br_init_symbol = psz;
 }

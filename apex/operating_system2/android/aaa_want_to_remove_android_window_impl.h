@@ -76,7 +76,7 @@ struct CLASS_DECL_APEX oswindow_data
    }
 
 
-   i32 store_name(const char * psz);
+   i32 store_name(const scoped_string & str);
    i32 select_input(i32 iInput);
    i32 select_all_input();
    i32 map_window();

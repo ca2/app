@@ -259,7 +259,7 @@ namespace universal_windows
 
       /*
       static WH_SHSTDAPI(::u32) SHGetFileInfo(
-      const char * pszPath,
+      const scoped_string & strPath,
       ::u32 dwFileAttributes,
       SHFILEINFO *psfi,
       ::u32 cbFileInfo,

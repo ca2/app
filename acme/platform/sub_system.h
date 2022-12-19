@@ -111,7 +111,7 @@ public:
    string_array get_arguments();
 
    string get_arg(int i) const;
-   string get_env(const char * pszVariableName) const;
+   string get_env(const scoped_string & strVariableName) const;
 
 
    int get_status();

@@ -20,7 +20,7 @@ extern bool b_prevent_xdisplay_lock_log;
 #endif
 
 
-void windowing_output_debug_string(const char * pszDebugString);
+void windowing_output_debug_string(const scoped_string & strDebugString);
 void wm_state_clear_raw(oswindow w, bool bSet);
 void wm_state_below_raw(oswindow w, bool bSet);
 void wm_state_above_raw(oswindow w, bool bSet);
@@ -41,7 +41,7 @@ const char * g_pszaNetWmState[]=
 };
 
 
-e_net_wm_state net_wm_state(const char * pszText)
+e_net_wm_state net_wm_state(const scoped_string & strText)
 {
 
    if(::is_null(pszText))
@@ -141,7 +141,7 @@ oswindow_data::~oswindow_data()
 }
 
 
-void oswindow_data::set_wm_class(const char * psz)
+void oswindow_data::set_wm_class(const scoped_string & str)
 {
 
    m_strWMClass = psz;
@@ -441,7 +441,7 @@ int oswindow_data::x_change_property(Atom property, Atom type, int format, int m
 }
 
 
-Atom oswindow_data::intern_atom(const char * pszAtomName, bool bCreate)
+Atom oswindow_data::intern_atom(const scoped_string & strAtomName, bool bCreate)
 {
 
    return m_osdisplay->intern_atom(pszAtomName, bCreate);
@@ -641,7 +641,7 @@ bool oswindow_data::set_icon(::image * pimage)
 }
 
 
-i32 oswindow_data::store_name(const char * psz)
+i32 oswindow_data::store_name(const scoped_string & str)
 {
 
    windowing_output_debug_string("\noswindow_data::store_name");

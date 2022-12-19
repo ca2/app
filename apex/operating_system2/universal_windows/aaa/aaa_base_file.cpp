@@ -74,7 +74,7 @@ filesize file_length_dup(const char * path)
 
 
 
-int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
+int_bool file_is_equal_path_dup(const scoped_string & str1,const scoped_string & str2)
 {
    return file_path_is_equal(psz1,psz2);
 //   const i32 iBufSize = MAX_PATH * 8;
@@ -136,7 +136,7 @@ string file_module_path_dup()
 
 
 //
-//bool PrintModules(string & strImage,u32 processID,const char * pszDll)
+//bool PrintModules(string & strImage,u32 processID,const scoped_string & strDll)
 //{
 //
 //   HANDLE hProcess;
@@ -202,7 +202,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(u32_array & dwa,string_array & straProcesses,const char * pszDll)
+//void dll_processes(u32_array & dwa,string_array & straProcesses,const scoped_string & strDll)
 //{
 //   // Get the list of process identifiers.
 //
@@ -851,7 +851,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //
 //
 //
-//int_bool file_set_length(const char * pszName,size_t iSize)
+//int_bool file_set_length(const scoped_string & strName,size_t iSize)
 //{
 //
 //   wstring wstr(pszName);
@@ -905,7 +905,7 @@ int_bool file_delete(const char * lpszFileName)
 
 
 //
-//int_bool file_path_is_equal(const char * psz1,const char * psz2)
+//int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1831,7 +1831,7 @@ bool file_as_memory(memory_base & memory,const char * path, iptr iReadAtMostByte
 
 
 
-int_bool file_path_is_equal(const char * psz1,const char * psz2)
+int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
 {
 
    return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
@@ -1861,7 +1861,7 @@ string file_get_mozilla_firefox_plugin_container_path()
 //
 
 
-int_bool file_set_length(const char * pszName,size_t iSize)
+int_bool file_set_length(const scoped_string & strName,size_t iSize)
 {
 
    int i = open(pszName,0);
@@ -1877,7 +1877,7 @@ int_bool file_set_length(const char * pszName,size_t iSize)
 
 
 
-bool file_copy_dup(const char  * pszNew, const char * pszSrc,bool bOverwrite)
+bool file_copy_dup(const char  * pszNew, const scoped_string & strSrc,bool bOverwrite)
 {
 
    ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;

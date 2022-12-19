@@ -135,7 +135,7 @@ namespace sockets
    }
 
 
-   //void sockets::http_config_proxy(const char * pszUrl, http_tunnel * psocket)
+   //void sockets::http_config_proxy(const scoped_string & strUrl, http_tunnel * psocket)
    //{
    //   __UNREFERENCED_PARAMETER(pszUrl);
    //   //__UNREFERENCED_PARAMETER(psocket);

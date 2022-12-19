@@ -148,7 +148,7 @@ public:
    //}
 
 
-   virtual i32 filterex_time_square(const char * pszPrefix, ::file::path_array & stra);
+   virtual i32 filterex_time_square(const scoped_string & strPrefix, ::file::path_array & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -196,12 +196,12 @@ public:
 
    virtual file_pointer resource_get_file(const ::file::path & path);
 
-   virtual ::file::path sys_temp(const ::file::path & lpszName, const char * pszExtension);
+   virtual ::file::path sys_temp(const ::file::path & lpszName, const scoped_string & strExtension);
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
    virtual ::file::path replace_with_extension(const ::string & strExtension,  const ::file::path & pszFile);
-   virtual void set_extension(::file::path & str, const char * pszExtension);
+   virtual void set_extension(::file::path & str, const scoped_string & strExtension);
 
 
    virtual void normalize(string & str);
@@ -239,7 +239,7 @@ public:
 
    virtual ::file_pointer data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::folder_pointer get_folder(::file::file * pfile, const char * pszImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::folder_pointer get_folder(::file::file * pfile, const scoped_string & strImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
@@ -289,7 +289,7 @@ public:
    //::file::path time(const ::file::path & pszBasePath, i32 iDepth = 1, const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
 
 
-   //virtual file_pointer time_square_file(const char * pszPrefix = nullptr, const char * pszSuffix = nullptr);
+   //virtual file_pointer time_square_file(const scoped_string & strPrefix = nullptr, const scoped_string & strSuffix = nullptr);
    //virtual file_pointer get(const ::file::path & name);
 
 
@@ -352,7 +352,7 @@ public:
    //virtual bool add_contents(const ::payload & payloadFile, const char * pcszContents);
 
 
-   string sys_temp(const char * lpszName, const char * pszExtension);
+   string sys_temp(const char * lpszName, const scoped_string & strExtension);
 
 
    //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
@@ -384,8 +384,8 @@ public:
    //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
 
-   virtual void crypto_set(const ::payload & payloadFile, const char * pszData, const char * pszSalt);
-   virtual void crypto_get(const ::payload & payloadFile, string & str, const char * pszSalt);
+   virtual void crypto_set(const ::payload & payloadFile, const scoped_string & strData, const scoped_string & strSalt);
+   virtual void crypto_get(const ::payload & payloadFile, string & str, const scoped_string & strSalt);
 
 
    template < typename TYPE >

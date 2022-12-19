@@ -89,9 +89,9 @@
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //
-//      virtual ::user::primitive * FindWindow(const char * pszClassName, const char * pszWindowName);
+//      virtual ::user::primitive * FindWindow(const scoped_string & strClassName, const scoped_string & strWindowName);
 //
-//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
+//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const scoped_string & strWindow);
 //
 //
 //      virtual void get_time(struct timeval *point);

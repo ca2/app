@@ -36,7 +36,7 @@ CLASS_DECL_ACME void       memdleak_term();
 #if MEMDLEAK
 
 
-CLASS_DECL_ACME void       set_last_block_file_name(const char * psz);
+CLASS_DECL_ACME void       set_last_block_file_name(const scoped_string & str);
 CLASS_DECL_ACME void       memdleak_dump();
 
 
@@ -46,8 +46,8 @@ CLASS_DECL_ACME void       memdleak_dump();
 #if MEMDLEAK || defined(__MCRTDBG)
 
 
-CLASS_DECL_ACME void *     system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFile, int iLine);
-CLASS_DECL_ACME void *     system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const char * pszFile, int iLine);
+CLASS_DECL_ACME void *     system_heap_alloc_debug(memsize size, int nBlockUse, const scoped_string & strFile, int iLine);
+CLASS_DECL_ACME void *     system_heap_realloc_debug(void * p, memsize size, int nBlockUse, const scoped_string & strFile, int iLine);
 
 
 #endif

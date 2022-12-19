@@ -17,7 +17,7 @@ namespace mathematics
    }
 
    
-   void binary_operation::set_value_string(const char * psz)
+   void binary_operation::set_value_string(const scoped_string & str)
    {
       
       throw_exception(error_not_implemented, "not implemented");

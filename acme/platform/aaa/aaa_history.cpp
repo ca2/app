@@ -22,7 +22,7 @@ namespace acme
    //}
 
 
-   bool history::hist(const char * psz)
+   bool history::hist(const scoped_string & str)
    {
 
       if(m_phistory != nullptr)

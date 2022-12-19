@@ -192,7 +192,7 @@ filesize FILE_get_size(FILE * fp)
 #endif
 
 
-i32 file_touch(const char * psz)
+i32 file_touch(const scoped_string & str)
 {
 
    FILE * pfile = ::fopen(psz, "a");

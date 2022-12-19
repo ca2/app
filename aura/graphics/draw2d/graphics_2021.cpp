@@ -1688,7 +1688,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetTabbedTextExtent(const scoped_string & strString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -3438,16 +3438,16 @@ namespace draw2d
 
       strsize iLen;
 
-      const char * pszStart = str;
+      const scoped_string & strStart = str;
 
-      const char * psz = pszStart;
+      const scoped_string & str = pszStart;
 
       double dLeft = 0.0;
 
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = unicode_next(psz);
+         const scoped_string & strNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -3484,7 +3484,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetTextBegin(const char * pszString, strsize nCount, strsize iIndex)
+   size_f64 graphics::GetTextBegin(const scoped_string & strString, strsize nCount, strsize iIndex)
    {
 
       return get_text_extent(pszString, nCount, iIndex);
@@ -3492,7 +3492,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const char * pszString, strsize nCount, strsize iIndex)
+   size_f64 graphics::get_text_extent(const scoped_string & strString, strsize nCount, strsize iIndex)
    {
 
       return get_text_extent(pszString, iIndex);
@@ -3500,7 +3500,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const char * pszString, strsize nCount)
+   size_f64 graphics::get_text_extent(const scoped_string & strString, strsize nCount)
    {
 
       return get_text_extent(string(pszString, nCount));
@@ -3520,7 +3520,7 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount, strsize iIndex)
+   void graphics::get_text_extent(size_f64 & size, const scoped_string & strString, strsize nCount, strsize iIndex)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
@@ -3533,7 +3533,7 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount)
+   void graphics::get_text_extent(size_f64 & size, const scoped_string & strString, strsize nCount)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount);
@@ -3559,7 +3559,7 @@ namespace draw2d
    }
 
 
-   //size_f64 graphics::GetOutputTextExtent(const char * pszString, strsize nCount)
+   //size_f64 graphics::GetOutputTextExtent(const scoped_string & strString, strsize nCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -4259,9 +4259,9 @@ namespace draw2d
          if (sz.cx > rectangleClip.width())
          {
 
-            const char * pszStart = str;
+            const scoped_string & strStart = str;
 
-            const char * psz = pszStart;
+            const scoped_string & str = pszStart;
 
             string strLastSample = "...";
 
@@ -4497,23 +4497,23 @@ namespace draw2d
 
       ::rectangle_f64 rectangleClip(rectangle);
 
-      const char * pszSource = strSource;
+      const scoped_string & strSource = strSource;
 
       strsize len = strSource.get_length();
 
-      const char * pszEnd = pszSource + len;
+      const scoped_string & strEnd = pszSource + len;
 
-      const char * pszStart = unicode_next(pszSource);
+      const scoped_string & strStart = unicode_next(pszSource);
 
       size_i32 sz;
 
-      const char * pszSpaceStart = nullptr;
+      const scoped_string & strSpaceStart = nullptr;
 
-      const char * pszSpaceEnd = nullptr;
+      const scoped_string & strSpaceEnd = nullptr;
 
-      const char * psz = pszStart;
+      const scoped_string & str = pszStart;
 
-      const char * pszPrevious = pszSource;
+      const scoped_string & strPrevious = pszSource;
 
       string strChar;
 

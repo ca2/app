@@ -69,7 +69,7 @@ namespace windows
    inline ::e_status hresult_status(HRESULT hresult) { return _hresult_status(hresult); }
 
 
-   CLASS_DECL_ACME void * get_library_symbol_address(const char * pszLibrary, const char * lpszSymbolName);
+   CLASS_DECL_ACME void * get_library_symbol_address(const scoped_string & strLibrary, const char * lpszSymbolName);
 
 
    template < typename PFN >
@@ -78,7 +78,7 @@ namespace windows
    public:
 
 
-      inline static PFN get_address(const char * pszModule, const char * lpszName)
+      inline static PFN get_address(const scoped_string & strModule, const char * lpszName)
       {
 
          return (PFN) get_library_symbol_address(pszModule, lpszName);

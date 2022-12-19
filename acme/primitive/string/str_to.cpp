@@ -7,7 +7,7 @@
 bool str::to(i64 & i, const ::string & str)
 {
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    i64 iConversion = ::ansi_to_i64(str, &pszEnd);
 
@@ -120,7 +120,7 @@ bool str::to(i32 & i, i32 iBase, const ::string & str)
 bool str::to(u64 & u, const ::string & str)
 {
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    u64 uiConversion = ::ansi_to_i64(str, &pszEnd);
 
@@ -140,7 +140,7 @@ bool str::to(u64 & u, const ::string & str)
 bool str::to(u32 & u, const ::string & str)
 {
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    i64 uiConversion = ::ansi_to_u32(str, &pszEnd);
 
@@ -175,7 +175,7 @@ bool str::to(u64 & u, i32 iBase, const ::string & str)
 
    }
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    u64 uiConversion = ::ansi_to_u64(str, &pszEnd, iBase);
 
@@ -203,7 +203,7 @@ bool str::to(u32 & u, i32 iBase, const ::string & str)
 
    }
 
-   const char * pszEnd = nullptr;
+   const scoped_string & strEnd = nullptr;
 
    u32 uiConversion = ::ansi_to_u32(str, &pszEnd, iBase);
 

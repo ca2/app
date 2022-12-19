@@ -10,7 +10,7 @@ class CLASS_DECL_ACME cancel_exception :
 public:
 
 
-   cancel_exception(const char * pszMessage = nullptr);
+   cancel_exception(const scoped_string & strMessage = nullptr);
    virtual ~cancel_exception();
 
 

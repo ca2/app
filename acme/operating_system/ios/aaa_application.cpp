@@ -363,7 +363,7 @@ namespace acme
 
 
 
-//   ::pointer<::user::printer>application::get_printer(const char * pszDeviceName)
+//   ::pointer<::user::printer>application::get_printer(const scoped_string & strDeviceName)
 //   {
 //
 //      ::pointer<::ios2::printer>pprinter = create_object <  ::user::printer  > ();

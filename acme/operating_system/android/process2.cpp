@@ -83,9 +83,9 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 //} // namespace acme
 //
 //CLASS_DECL_ACME i32 call_async(
-//const char * pszPath,
-//const char * pszParam,
-//const char * pszDir,
+//const scoped_string & strPath,
+//const scoped_string & strParam,
+//const scoped_string & strDir,
 //::enum_display edisplay,
 //bool bPrivileged,
 //unsigned int * puiPid)
@@ -115,7 +115,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //}
 //
-//CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//CLASS_DECL_ACME u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //   string strCmdLine;
 //
@@ -244,7 +244,7 @@ CLASS_DECL_ACME bool main_finalize()
 //}
 
 //
-//CLASS_DECL_ACME bool shell_execute_sync(const char * pszPath, const char * pszParam, ::time timeTimeout)
+//CLASS_DECL_ACME bool shell_execute_sync(const scoped_string & strPath, const scoped_string & strParam, ::time timeTimeout)
 //{
 //
 //   string strCmdLine;

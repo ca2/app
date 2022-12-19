@@ -24,7 +24,7 @@ public:
    logger *                   m_plogger;
 
 
-   tracer(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const char * pszFunction = nullptr, const char * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
+   tracer(::acme::context * pcontext, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const ::ansi_character * pszFunction = nullptr, const ::ansi_character * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
       m_pcontext(pcontext),
       m_etracelevel(etracelevel),
       m_etracecategory(etracecategory),
@@ -45,7 +45,7 @@ public:
    }
 
 
-   void format_output_arguments(const char * psz, va_list & arguments)
+   void format_output_arguments(const ::ansi_character * psz, va_list & arguments)
    {
 
       string str;
@@ -57,7 +57,7 @@ public:
    }
 
 
-   tracer & format_output(const char * psz, ...)
+   tracer & format_output(const ::ansi_character * psz, ...)
    {
 
       va_list arguments;
@@ -97,7 +97,7 @@ public:
    //tracer & operator << (const e_status & estatus);
    //tracer & operator << (const enum_status& estatus);
    //tracer & operator << (const ansi_string & str);
-   //tracer & operator << (const char * psz);
+   //tracer & operator << (const ::ansi_character * psz);
 //   tracer & operator << (enum_flush);
 //   tracer & operator << (const integral_byte & memsize);
 //
@@ -127,10 +127,10 @@ public:
 };
 
 
-CLASS_DECL_ACME void trace_log_information(const char * psz, ...);
-CLASS_DECL_ACME void trace_log_warning(const char * psz, ...);
-CLASS_DECL_ACME void trace_log_error(const char * psz, ...);
-CLASS_DECL_ACME void trace_log_fatal(const char * psz, ...);
+CLASS_DECL_ACME void trace_log_information(const ::ansi_character * psz, ...);
+CLASS_DECL_ACME void trace_log_warning(const ::ansi_character * psz, ...);
+CLASS_DECL_ACME void trace_log_error(const ::ansi_character * psz, ...);
+CLASS_DECL_ACME void trace_log_fatal(const ::ansi_character * psz, ...);
 
 
 CLASS_DECL_ACME tracer trace_log_information();

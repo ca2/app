@@ -749,8 +749,8 @@ virtual string GetSocks4Host();
       virtual void run() override;
       virtual bool step() override;
 
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & strFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
       virtual string get_short_description();
 

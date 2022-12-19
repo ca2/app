@@ -211,7 +211,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 
 //template < typename PRED >
-//::task * fork(::particle * pparticle, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
+//::task * fork(::particle * pparticle, PRED pred, const scoped_string & strTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
 //   auto ppredtask = __new(predicate_task < PRED >(pparticle, pred));
@@ -282,7 +282,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 //template < typename PRED >
-//inline auto object::fork(PRED pred, const char * pszTag, int iCallStackAddUp, enum_priority epriority)
+//inline auto object::fork(PRED pred, const scoped_string & strTag, int iCallStackAddUp, enum_priority epriority)
 //{
 //
 //   iCallStackAddUp++;
@@ -298,7 +298,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 //template < typename PRED >
-//inline ::task_pointer object::defer_fork(const char * pszTag, PRED pred)
+//inline ::task_pointer object::defer_fork(const scoped_string & strTag, PRED pred)
 //{
 //
 //   ::pointer<task>ptask = running(pszTag);

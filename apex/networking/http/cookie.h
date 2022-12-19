@@ -92,16 +92,16 @@ namespace http
       ::http::cookie & cookie(const char * name);
       ::http::cookie & lowcookie(const char * name);
       using  pointer_array < http::cookie >::add;
-      void add(const char * psz);
-      void parse_header(const char * psz);
+      void add(const scoped_string & str);
+      void parse_header(const scoped_string & str);
       string get_cookie_header();
       strsize get_length(const char * name);
       bool set_cookie(
-         const char * pszKey,
+         const scoped_string & strKey,
          const ::payload & payload,
          const class time & time = 0_s,
-         const char * pszDomain = nullptr,
-         const char * pszPath = nullptr,
+         const scoped_string & strDomain = nullptr,
+         const scoped_string & strPath = nullptr,
          bool bSecure = false);
       static string expire(const class time & time = 5_minute);
 

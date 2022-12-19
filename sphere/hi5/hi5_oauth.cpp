@@ -586,7 +586,7 @@ namespace hi5
    *--*/
    bool oauth::getStringFromOAuthKeyValuePairs( const oAuthKeyValuePairs& rawParamMap,
          string & rawParams,
-         const char * pszSeparator )
+         const scoped_string & strSeparator )
    {
       string strSeparator(pszSeparator);
       rawParams =  "";

@@ -73,9 +73,9 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
  }// namespace acme
 
 CLASS_DECL_ACME i32 call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 i32 iShow)
 {
    vsstring strCmdLine;
@@ -96,7 +96,7 @@ i32 iShow)
 
 }
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_ACME u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 

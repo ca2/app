@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-//CLASS_DECL_ACME void throw_resource_exception(const char * psz);
+//CLASS_DECL_ACME void throw_resource_exception(const scoped_string & str);
 
 //template < class T >
 //inline pointer < T >::pointer(lparam& lparam)

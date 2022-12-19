@@ -30,7 +30,7 @@
 bool g_bWindowingOutputDebugString = false;
 
 
-void windowing_output_debug_string(const char * pszDebugString)
+void windowing_output_debug_string(const scoped_string & strDebugString)
 {
 
    if(g_bWindowingOutputDebugString)

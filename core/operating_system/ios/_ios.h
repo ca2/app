@@ -8,7 +8,7 @@
 
 string get_error_message(::u32 dwError);
 
-::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const char * pszId);
+::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const scoped_string & strId);
 
 
 #define NULL_REF(class) (*((class *) nullptr))

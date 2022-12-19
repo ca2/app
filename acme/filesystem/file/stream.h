@@ -59,7 +59,7 @@
  inline void __exchange(::binary_stream < FILE > & s, float & f);
  inline void __exchange(::binary_stream < FILE > & s, double & d);
  inline void __exchange(::binary_stream < FILE > & s, ::earth::time & time);
- inline void __exchange(::binary_stream < FILE > & s, const char * psz);
+ inline void __exchange(::binary_stream < FILE > & s, const scoped_string & str);
  inline void __exchange(::binary_stream < FILE > & s, string & str);
  inline void __exchange(::binary_stream < FILE > & s, ::file::path & path);
  inline void __exchange(::binary_stream < FILE > & s, ::atom & atom);
@@ -526,7 +526,7 @@ public:
 //   //virtual void write(const POINT_I32 & point) { raw_write(point); }
 //   //virtual void write(const SIZE_I32 & size) { raw_write(size); }
 //   //virtual void write(const ::rectangle_i32 &crect) { raw_write(crect); }
-//   virtual void write(const char * psz);
+//   virtual void write(const scoped_string & str);
 //#ifdef WINDOWS
 //   virtual void write(const unichar * wch) { write(string(wch)); }
 //#endif
@@ -615,7 +615,7 @@ public:
 //   virtual void exchange(const ::atom & atom, POINT_F64& point) { stream_exchange(atom, point); }
 //   virtual void exchange(const ::atom & atom, SIZE_F64& size) { stream_exchange(atom, size); }
 //   virtual void exchange(const ::atom & atom, RECTANGLE_F64& crect) { stream_exchange(atom, crect); }
-//   virtual void exchange(const ::atom & atom, const char * psz);
+//   virtual void exchange(const ::atom & atom, const scoped_string & str);
 //#ifdef WINDOWS
 //   virtual void exchange(const ::atom & atom, const unichar * wch);
 //#endif
@@ -880,7 +880,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const SIZE_I32 & size) { s.write(size); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const char * psz) { s.write(psz); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const scoped_string & str) { s.write(psz); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const atom & atom) { s.write(atom); return s; }
 //

@@ -13,11 +13,11 @@
 string get_status_message(const ::e_status & estatus);
 
 
-CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & str);
+CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list args);
 
 
-//CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::message_box_synchronous(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -53,13 +53,13 @@ void matter::trace_last_status()
 
 
 extern "C"
-void o_debug_string(const char * psz)
+void o_debug_string(const scoped_string & str)
 {
    output_debug_string(psz);
 }
 
 
-CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const char * pszText, const char * pszFile, int iLine)
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & strText, const scoped_string & strFile, int iLine)
 {
 
    strsize iLen;
@@ -217,7 +217,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str)
 {
 
    if (!m_bLog)
@@ -263,7 +263,7 @@ CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFileName, i32 iLine, const scoped_string & str)
 {
 
 #ifndef DEBUG
@@ -340,7 +340,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 }
 
 
-CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFileName, i32 iLine, const scoped_string & strFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

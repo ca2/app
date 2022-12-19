@@ -87,7 +87,7 @@ public:
    }
 
 
-   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFileName, i32 nLine, const char * psz) override;
+   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFunction, const scoped_string & strFileName, i32 nLine, const scoped_string & str) override;
 
 
 };

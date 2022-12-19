@@ -43,7 +43,7 @@ namespace networking_bsd
    //************************* Class transfer_socket_exception **************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   transfer_socket_exception::transfer_socket_exception(const char * pszMessage) :
+   transfer_socket_exception::transfer_socket_exception(const scoped_string & strMessage) :
       m_nError(get_error()),
       ::exception(pszMessage)
    {

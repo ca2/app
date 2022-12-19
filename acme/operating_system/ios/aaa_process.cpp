@@ -70,9 +70,9 @@ void node::create_process(const char * _cmd_line, int * pprocessId)
 }
 
 CLASS_DECL_ACME int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 int iShow)
 {
    string strCmdLine;
@@ -94,9 +94,9 @@ int iShow)
 }
 
 CLASS_DECL_ACME int call_async(
-const char * pszPath,
-const char * pszParam,
-const char * pszDir,
+const scoped_string & strPath,
+const scoped_string & strParam,
+const scoped_string & strDir,
 edisplay edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
@@ -128,7 +128,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -183,7 +183,7 @@ int get_current_process_affinity_order()
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams,  ::duration durationTimeout )
+bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams,  ::duration durationTimeout )
 {
    
    ::property_set set;

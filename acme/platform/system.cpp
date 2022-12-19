@@ -41,7 +41,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 extern const char * g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::enum_message_box & emessagebox);
 
 
 
@@ -627,7 +627,7 @@ namespace acme
    }
 
 
-   //void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   //void system::__tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) const
    //{
 
    //   if (!m_ptracelog)
@@ -2080,7 +2080,7 @@ namespace acme
    }
 
 
-   void system::new_compress(::compress ** ppcompress, const char * pszImplementation)
+   void system::new_compress(::compress ** ppcompress, const scoped_string & strImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", pszImplementation);
@@ -2101,7 +2101,7 @@ namespace acme
    }
 
 
-   void system::new_uncompress(::uncompress ** ppuncompress, const char * pszImplementation)
+   void system::new_uncompress(::uncompress ** ppuncompress, const scoped_string & strImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", pszImplementation);
@@ -2121,7 +2121,7 @@ namespace acme
 
    }
 
-   void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation)
+   void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation)
    {
 
       ::pointer<::compress>pcompress;
@@ -2149,7 +2149,7 @@ namespace acme
    }
 
 
-   void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation)
+   void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation)
    {
 
       ::pointer<::uncompress>puncompress;
@@ -2207,7 +2207,7 @@ namespace acme
    //
    //}
 
-   ::pointer<::acme::application>system::new_app(const char * pszAppId)
+   ::pointer<::acme::application>system::new_app(const scoped_string & strAppId)
    {
 
       ::pointer<::acme::application>papp;
@@ -2573,7 +2573,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void system_on_open_file(void * pSystem, const scoped_string & strFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -2596,7 +2596,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const char * pszFile)
+void system_on_open_file(void * pSystem, const scoped_string & strFile)
 {
 
    auto psystem = (::acme::system *)pSystem;
@@ -2607,7 +2607,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 }
 
 
-//::pointer<::acme::system>platform_create_system(const char * pszAppId)
+//::pointer<::acme::system>platform_create_system(const scoped_string & strAppId)
 //{
 //
 //   string strAppId(pszAppId);

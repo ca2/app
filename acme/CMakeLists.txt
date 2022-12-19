@@ -439,8 +439,8 @@ list(APPEND library_source
         primitive/datetime/system_time.cpp
         primitive/datetime/time.cpp
         #primitive/datetime/time.h
-        primitive/datetime/time_span.cpp
-        primitive/datetime/time_span.h
+        primitive/datetime/earth_time_span.cpp
+        primitive/datetime/earth_time_span.h
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
         #primitive/time/duration/_.h

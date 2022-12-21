@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "file_path.h"
@@ -412,15 +412,15 @@ namespace file
       //string name(index i /* = -1 */) const;
 
       /// return index pointing to beginning of name
-      index find_name() const;
+      const_iterator find_name() const;
 
       /// return index just after first dot in file name
       /// -1 if not found
-      index find_all_extensions() const;
+      const_iterator find_all_extensions() const;
 
       /// return index just after last dot in file name
       /// -1 if not found
-      index find_final_extension() const;
+      const_iterator find_final_extension() const;
 
       //      bool is_equal(const ::file::path & path2) const;
 
@@ -1482,7 +1482,7 @@ namespace file
    inline index path::find_name() const
    {
 
-      return maximum(0, rear_find(separator()) + 1);
+      return maximum(this->begin(), rear_find(separator()) + 1);
 
    }
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_iterator.h"
@@ -207,6 +207,7 @@ public:
    using NATURAL_POINTER::begin;
    using NATURAL_POINTER::end;
 
+   
    this_iterator & begin(this_iterator begin)
    {
 
@@ -214,6 +215,15 @@ public:
 
    }
 
+   
+   this_iterator & end(this_iterator end)
+   {
+
+      return truncate(end);
+
+   }
+
+   
    //#if OSBIT == 64
    //   inline const CHARACTER & operator [](int i) const { return this->data()[i]; }
    //#endif
@@ -615,7 +625,7 @@ public:
 
    string_base & release_string_buffer(strsize nNewLength = -1);
    //   inline void release_string_buffer(strsize nNewLength);
-   inline void truncate(strsize nNewLength);
+   inline this_iterator & truncate(this_iterator p);
 
 
    ///

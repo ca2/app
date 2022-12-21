@@ -1,4 +1,4 @@
-﻿//
+//
 //  _string_base_impl.h
 //  acme
 //
@@ -1106,7 +1106,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(str
 
 //template < typename ITERATOR_TYPE >
 //template < primitive_character CHARACTER2 >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::start_count_length(strsize & start, strsize & count, const CHARACTER2 * pszSource)
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::start_count_length(strsize & start, strsize & count, const CHARACTER2 * pszSource)
 //{
 //
 //   strsize len = -1;
@@ -1845,7 +1845,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return find_first_of(scopedstr, pos);
@@ -1854,7 +1854,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return find_first_of(scopedstr, pos, n);
@@ -1863,7 +1863,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return find_first_of(s, pos);
@@ -1872,7 +1872,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(CHARACTER ca) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_in(CHARACTER ca) const RELEASENOTHROW
 //{
 //
 //   return find_first_of(ca, pos);
@@ -1881,7 +1881,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_character_in(const SCOPED_STRING & scopedstrSeparators) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_first_character_in(const SCOPED_STRING & scopedstrSeparators) const RELEASENOTHROW
 //{
 //
 //   return this->find_first_character_in(scopedstrSeparators, ::comparison::comparison < CHARACTER >());
@@ -1890,7 +1890,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(const SCOPED_STRING & scopedstrSeparators) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(const SCOPED_STRING & scopedstrSeparators) const RELEASENOTHROW
 //{
 //
 //   auto psz = ::string_token({ this->begin() + pos, n }, scopedstrSeparators);
@@ -1901,7 +1901,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(const CHARACTER * pszSeparators) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(const CHARACTER * pszSeparators) const RELEASENOTHROW
 //{
 //
 //   return ::string_token(this->begin() + pos, pszSeparators);
@@ -1910,7 +1910,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(CHARACTER chSeparator) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::get_token(CHARACTER chSeparator) const RELEASENOTHROW
 //{
 //
 //   return ::string_find_character(ca, pos);
@@ -1919,7 +1919,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIter
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    return this->skip_any_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -1928,7 +1928,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return this->skip_any_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -1937,7 +1937,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const CHARACTER * psz) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const CHARACTER * psz) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::scoped_string_base <  const CHARACTER * >(this->begin() + pos, size() - pos).span(psz, ::comparison::comparison < CHARACTER >()));
@@ -1946,7 +1946,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip(CHARACTER chSkip) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip(CHARACTER chSkip) const RELEASENOTHROW
 {
 
    return this->skip(chSkip, ::comparison::comparison < CHARACTER >());
@@ -1955,7 +1955,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return this->_find_first_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -1964,7 +1964,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::scoped_string_base <  const CHARACTER * >({ this->begin() + pos, n })._find_first_character_in(scopedstr, ::comparison::comparison < CHARACTER >()));
@@ -1973,7 +1973,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const CHARACTER * psz) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_find_first_character_in(const CHARACTER * psz) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::scoped_string_base <  const CHARACTER * >(this->begin() + pos)._find_first_character_in(psz, ::comparison::comparison < CHARACTER >()));
@@ -1982,7 +1982,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_skip(CHARACTER chSkip) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_skip(CHARACTER chSkip) const RELEASENOTHROW
 {
 
    return this->_skip(chSkip, ::comparison::comparison < CHARACTER >());
@@ -1991,7 +1991,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_last_not_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_last_not_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return find_last_not_of(scopedstr, pos);
@@ -2000,7 +2000,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_last_not_in(CHARACTER ca) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::find_last_not_in(CHARACTER ca) const RELEASENOTHROW
 //{
 //
 //   return find_last_not_of(ca, pos);
@@ -2009,7 +2009,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return BASE_RANGE::rear_find_first_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -2018,7 +2018,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return offset_of(BASE_RANGE::rear_find_first_character_in_start_count(scopedstr, count));
@@ -2027,7 +2027,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::string_rear_find_first_character_in({this->begin(), size() + count + 1}, {psz, ::string_safe_length(psz)}));
@@ -2036,7 +2036,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return offset_of(BASE_RANGE::_rear_find_first_character_in_start(scopedstr));
@@ -2046,7 +2046,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return offset_of(BASE_RANGE::_rear_find_first_character_in_start_count(scopedstr, start, count));
@@ -2055,7 +2055,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::_rear_find_first_character_in(const CHARACTER * psz, strsize count) const RELEASENOTHROW
 //{
 //
 //   return offset_of(::_string_rear_find_first_character_in({this->begin(), size() + count + 1}, {psz, ::string_safe_length(psz)}));
@@ -2064,7 +2064,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find(CHARACTER ch) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::rear_find(CHARACTER ch) const RELEASENOTHROW
 {
 
    return this->rear_find_item(ch, comparison::comparison < CHARACTER >());
@@ -2076,7 +2076,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_left(strsize count) const
 {
 
-   return Left(unichar_type_count(count));
+   return { this->begin(), this->unichar_at(count) };
 
 }
 
@@ -2086,26 +2086,22 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(strsize iFirst) const
 {
 
-   return Mid(unichar_type_count(iFirst));
+   return { this->unichar_at(iFirst), this->end() };
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(strsize iFirst, strsize count) const
+inline string_base < ITERATOR_TYPE >  string_base < ITERATOR_TYPE > ::unichar_mid(strsize iStart, strsize iCount) const
 {
 
-   strsize iBeg = char_type_count(iFirst);
-
-   strsize iEnd = char_type_count(iFirst + count);
-
-   return Mid(iFirst, iEnd - iBeg);
+   return { this->unichar_at(iStart), this->unichar_at(iStart + iCount) };
 
 }
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::erase(strsize iIndex, strsize count)
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::erase(strsize iIndex, strsize count)
 //{
 //
 //   return Delete(iIndex, count);
@@ -2455,7 +2451,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::intersection(const 
    for (strsize i = 0; i < size(); i++)
    {
 
-      auto ch = operator[](i);
+      auto ch = this->operator[](i);
 
       if (scopedstrFind.contains(ch))
       {
@@ -2603,28 +2599,23 @@ void string_base < ITERATOR_TYPE >::resize(strsize n, CHARACTER c)
 
 
 template < typename ITERATOR_TYPE >
-inline void string_base < ITERATOR_TYPE >::truncate(strsize nNewLength)
+inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITERATOR_TYPE >::truncate(this_iterator p)
 {
-
-   if (nNewLength >= this->length())
+   
+   if(p <= begin)
    {
-
-      return;
-
-   }
-
-   if (nNewLength <= 0)
-   {
-
+      
       Empty();
+      
+   }
+   else if(p < this->end())
+   {
 
-      return;
+      *this = { this->begin(), p };
 
    }
 
-   get_string_buffer(nNewLength);
-
-   release_string_buffer(nNewLength);
+   return this->end();
 
 }
 
@@ -3655,7 +3646,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::Insert(strsize iIndex, CHARACTER ch)
+inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::Insert(strsize iIndex, CHARACTER ch)
 {
 
    if (iIndex < 0)
@@ -3688,7 +3679,7 @@ inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::Insert(strsize iIndex, const string_base & str)
+inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::Insert(strsize iIndex, const string_base & str)
 {
 
    if (iIndex < 0)
@@ -3728,7 +3719,7 @@ inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::replace_character(CHARACTER charNew, CHARACTER charOld, strsize start)
+inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::replace_character(CHARACTER charNew, CHARACTER charOld, strsize start)
 {
 
    strsize count = 0;
@@ -3769,7 +3760,7 @@ inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_replace_with(const string_base & scopedstrNew, const string_base & scopedstrOld)
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_replace_with(const string_base & scopedstrNew, const string_base & scopedstrOld)
 //{
 //
 //   // can't have is_empty or nullptr pszOld
@@ -4102,7 +4093,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
+inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
 {
 
    strsize nLength = size();
@@ -4144,7 +4135,7 @@ inline string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE
 
 // find the first occurrence of character 'ch', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 {
 
    auto psz = string_find_character(this->begin(), ch);
@@ -4163,7 +4154,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 //{
 //
 //   auto psz = string_find_character(this->begin() + start, ch);
@@ -4224,7 +4215,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 // find the first occurrence of character 'ch', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch) const RELEASENOTHROW
 {
    // start is in XCHARs
    //ASSERT(start >= 0);
@@ -4272,7 +4263,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::skip_whitespace() const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::skip_whitespace() const RELEASENOTHROW
 {
 
    return skip_any_character_in("\t\n\r ");
@@ -4281,7 +4272,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_whitespace() const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_whitespace() const RELEASENOTHROW
 {
 
    return find_first_character_in("\t\n\r ");
@@ -4290,7 +4281,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
 {
    
    return ::string_find_character(this->begin(), ch);
@@ -4318,7 +4309,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 ///    and \p count or -1 if not found.
 /// 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return this->find(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -4388,7 +4379,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 /// @brief find the first occurrence of a scopedstr
 /// string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    return this->find(scopedstr, ::comparison::case_insensitive < CHARACTER >());
@@ -4456,7 +4447,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4529,7 +4520,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4616,7 +4607,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //
 //   return rear_find(scopedstr, ::comparison::comparison < CHARACTER >());
@@ -4625,7 +4616,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    return this->rear_find_w(scopedstr);
@@ -4634,7 +4625,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_case_insensitive_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_case_insensitive_unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    return this->rear_case_insensitive_find_w(scopedstr);
@@ -4645,7 +4636,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 //// find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
 //{
 //
 //   auto p = string_find_first_character_in({ this->begin() + start, size() - start }, scopedstrCharacters);
@@ -4658,7 +4649,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 //// find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW
 //{
 //
 //   auto p = string_pbrk(this->begin() + start, pszCharacters);
@@ -4669,7 +4660,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
 //{
 //
 //   return find_first_character_in(scopedstrCharacters, start);
@@ -4678,7 +4669,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
 //{
 //
 //   return find_first_character_in(scopedstrCharacters, start, n);
@@ -4687,7 +4678,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW
 //{
 //
 //   return find_one_of(pszCharacters, pos);
@@ -4696,7 +4687,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 //
 ////template < typename ITERATOR_TYPE >
-////inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch) const RELEASENOTHROW
+////inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch) const RELEASENOTHROW
 ////{
 ////
 ////   return ::string_find_character(this->begin() + pos, ch);
@@ -4705,7 +4696,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first_of(CHARACTER ch, strsize count) const RELEASENOTHROW
 //{
 //
 //   return ::string_find_character(this->begin() + pos, ch, count);
@@ -4714,7 +4705,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //   
 //   return find_first_not_of(scopedstr, pos, size());
@@ -4723,7 +4714,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const CHARACTER * psz) const
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const CHARACTER * psz) const
 //RELEASENOTHROW
 //{
 //
@@ -4733,7 +4724,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(CHARACTER ca) const
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(CHARACTER ca) const
 //RELEASENOTHROW
 //{
 //   strsize nLength = size();
@@ -4752,7 +4743,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const SCOPED_STRING & scopedstr) const
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::span(const SCOPED_STRING & scopedstr) const
 //RELEASENOTHROW
 //{
 //   string_base < ITERATOR_TYPE > strChars(s, n);
@@ -4775,7 +4766,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 // find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip(CHARACTER ch) const RELEASENOTHROW
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip(CHARACTER ch) const RELEASENOTHROW
 {
 
    return BASE_RANGE::rear_skip_start(ch);
@@ -4797,13 +4788,13 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 }
 
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
 //{
 //   return find_last_of(pszCharSet, start, -1);
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
 //{
 //   strsize nLength = size();
 //   // nLength is in XCHARs
@@ -4823,7 +4814,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const SCOPED_STRING & scopedstr strCharSet) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find_first_character_in(const SCOPED_STRING & scopedstr strCharSet) const RELEASENOTHROW
 //{
 //   return find_last_of(strCharSet, pos, strCharSet.size());
 //}
@@ -4831,7 +4822,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //
 ////// find the first occurrence of any of the characters in string_base < ITERATOR_TYPE > 'pszCharSet'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip(CHARACTER ch) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip(CHARACTER ch) const RELEASENOTHROW
 //{
 //
 //   return offset_of(BASE_RANGE::rear_skip_start_count(ch, start, count));
@@ -4854,18 +4845,18 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
 //{
 //   return BASE_RANGE::rear_skip_any_character_in_start(scopedstrCharacters);
 //}
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW
 //{
 //   return offset_of(BASE_RANGE::rear_skip_any_character_in_start_count(scopedstrCharacters, start, count));
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const CHARACTER * pszCharSet) const RELEASENOTHROW
 //{
 //   strsize nLength = size();
 //   // nLength is in XCHARs
@@ -4885,7 +4876,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 //}
 //
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstr strCharSet) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_skip_any_character_in(const SCOPED_STRING & scopedstr strCharSet) const RELEASENOTHROW
 //{
 //   return find_last_not_of(strCharSet, pos, strCharSet.size());
 //}
@@ -4893,7 +4884,7 @@ inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TY
 
 //// find the last occurrence of character 'ch'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(CHARACTER ch, strsize count) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(CHARACTER ch, strsize count) const RELEASENOTHROW
 //{
 //   // find last single character
 //   auto psz = string_rear_find_character({ this->begin(), size() + count + 1}, ch);
@@ -4914,7 +4905,7 @@ typename string_range < ITERATOR_TYPE >::CHARACTER string_range < ITERATOR_TYPE 
 
 //// find the last occurrence of character 'ch'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 //{
 //   return BASE_RANGE::rear_find(scopedstr, ::comparison::comparison < CHARACTER >());
 //}
@@ -4924,7 +4915,7 @@ typename string_range < ITERATOR_TYPE >::CHARACTER string_range < ITERATOR_TYPE 
 
 //// find the last occurrence of character 'ch'
 //template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const CHARACTER * ch) const RELEASENOTHROW
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::rear_find(const CHARACTER * ch) const RELEASENOTHROW
 //{
 //   // find last single character
 //   const SCOPED_STRING & scopedstr = string_find_string_reverse(this->begin(), ch, start);
@@ -5920,7 +5911,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unichar_at(strsize iUnicharIndex) const
+inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unichar_at(strsize iUnicharIndex) const
 {
 
    auto p = this->begin();

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -164,9 +164,9 @@ public:
 
     inline const CHARACTER *ptr_at(::index i) const { return this->data() + i; }
 
-    inline const CHARACTER *reverse_ptr(::index i) { return this->data() + length() + i; }
+    inline const CHARACTER *reverse_ptr(::index i) { return this->data() + this->length() + i; }
 
-    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + length() + i; }
+    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + this->length() + i; }
 
     inline const CHARACTER &operator[](index i) const { return this->data()[i]; }
 

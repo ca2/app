@@ -44,7 +44,7 @@ size_t get_file_size(int32_t fd)
 
 
 
-int_bool file_set_length(const scoped_string & strName, size_t iSize)
+int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 {
 
    int32_t fd = ::open(pszName, O_RDONLY);
@@ -60,7 +60,7 @@ int_bool file_set_length(const scoped_string & strName, size_t iSize)
 
 
 
-int_bool acmefile()->exists(const char * path1)
+int_bool acmefile()->exists(const ::file::path & path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -79,7 +79,7 @@ int_bool acmefile()->exists(const char * path1)
 
 
 
-int_bool acmefile()->put_contents(const char * path, const char * contents, ::count len)
+int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::count len)
 {
 
    bool bOk = false;
@@ -139,7 +139,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string acmefile()->as_string(const char * path)
+string acmefile()->as_string(const ::file::path & path)
 {
 
    string str;
@@ -167,7 +167,7 @@ string acmefile()->as_string(const char * path)
 }
 
 
-memory file_as_memory(const char * path)
+memory file_as_memory(const ::file::path & path)
 {
 
    memory mem;
@@ -179,7 +179,7 @@ memory file_as_memory(const char * path)
 }
 
 
-bool file_as_memory(memory_base & memory, const char * path)
+bool file_as_memory(memory_base & memory, const ::file::path & path)
 {
 
    FILE * f = fopen(path, "rb");
@@ -219,7 +219,7 @@ bool file_as_memory(memory_base & memory, const char * path)
 
 }
 
-memsize file_as_memory(const char * path, void * p, memsize s)
+memsize file_as_memory(const ::file::path & path, void * p, memsize s)
 {
    FILE * f = fopen(path, "rb");
    if (f == nullptr)
@@ -250,7 +250,7 @@ memsize file_as_memory(const char * path, void * p, memsize s)
 
 
 
-uint64_t file_length_dup(const char * path)
+uint64_t file_length_dup(const ::file::path & path)
 {
 
    struct stat st;
@@ -272,7 +272,7 @@ string file_module_path_dup()
 
 
 extern "C"
-int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
+int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 {
 
    int32_t input, output;
@@ -333,7 +333,7 @@ int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSr
 
 
 
-int_bool file_is_equal_path_dup(const scoped_string & str1, const scoped_string & str2)
+int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
    if(stricmp_dup(psz1, psz2) == 0)
       return true;
@@ -371,7 +371,7 @@ int_bool file_delete(const char * lpszFileName)
 
 
 
-int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
+int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
@@ -406,7 +406,7 @@ int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str
 
 
 
-int32_t ansi_open(const scoped_string & str,int32_t i)
+int32_t ansi_open(const ::scoped_string & scopedstr,int32_t i)
 {
 
    return open(psz,i);
@@ -418,7 +418,7 @@ void ansi_get_errno(int32_t * perrno)
    *perrno = errno;
 }
 
-FILE * ansi_fopen(const scoped_string & str,const scoped_string & strMode)
+FILE * ansi_fopen(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrMode)
 {
 
    return fopen(psz,pszMode);
@@ -467,7 +467,7 @@ int ansi_file_flag(int iFlag)
 }
 
 
-void ansi_unlink(const scoped_string & str)
+void ansi_unlink(const ::scoped_string & scopedstr)
 {
 
    unlink(psz);
@@ -475,7 +475,7 @@ void ansi_unlink(const scoped_string & str)
 }
 
 
-int_bool is_dir(const char * path1)
+int_bool is_dir(const ::file::path & path1)
 {
 
    struct stat st;

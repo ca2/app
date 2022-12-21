@@ -12,7 +12,7 @@
 
 //
 
-// CLASS_DECL_APEX int_bool os_is_alias(const scoped_string & str);
+// CLASS_DECL_APEX int_bool os_is_alias(const ::scoped_string & scopedstr);
 
 //
 

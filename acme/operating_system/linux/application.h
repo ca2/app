@@ -20,7 +20,7 @@
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::scoped_string & scopedstr);
 //
 //      virtual void _001EnableShellOpen();
 //      //virtual ::acme::document * _001OpenDocumentFile(::payload payloadFile);
@@ -89,9 +89,9 @@
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //
-//      virtual ::user::primitive * FindWindow(const scoped_string & strClassName, const scoped_string & strWindowName);
+//      virtual ::user::primitive * FindWindow(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName);
 //
-//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const scoped_string & strWindow);
+//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const ::scoped_string & scopedstrWindow);
 //
 //
 //      virtual void get_time(struct timeval *point_i32);

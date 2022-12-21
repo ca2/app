@@ -152,7 +152,7 @@ namespace fs
    }
 
 
-   //void data::get_ascendants_path(const ::file::path & pcsz,::file::path_array & straParam)
+   //void data::get_ascendants_path(const ::file::path & path,::file::path_array & straParam)
 
    //{
    //   ::file::path_array stra;
@@ -170,7 +170,7 @@ namespace fs
    //   }
    //}
 
-   //void data::get_ascendants_name(const ::file::path & pcsz,::file::path_array & straParam)
+   //void data::get_ascendants_name(const ::file::path & path,::file::path_array & straParam)
 
    //{
    //   string_array straSeparator;

@@ -190,8 +190,7 @@ inline  ::wd32_character * next_char(const ::wd32_character *& p)
 #include "_conv.h"
 
 
-
-CLASS_DECL_ACME string string_format(const scoped_string & strFormat, ...);
+CLASS_DECL_ACME string string_format(const ::ansi_character * pszFormat, ...);
 
 
 

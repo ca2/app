@@ -332,9 +332,9 @@ br_init (BrInitError *error)
 
 const char * g_psz_br_init_symbol = (const char *) nullptr;
 
-void br_init_set_symbol(const scoped_string & str)
+void br_init_set_symbol(const ::scoped_string & scopedstr)
 {
-   g_psz_br_init_symbol = psz;
+   g_psz_br_init_symbol = scopedstr;
 }
 
 /** Initialize the BinReloc library (for libraries).

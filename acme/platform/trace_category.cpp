@@ -17,7 +17,7 @@ void trace_category_static_init(::acme::system * psystem)
 
    trace_category::s_ptracecategorya = memory_new pointer_array < trace_category >;
 
-   const scoped_string & stra[] =
+   const ::ansi_character * psza[] =
    {
    "general",
       "com",
@@ -71,9 +71,9 @@ void trace_category_static_init(::acme::system * psystem)
 
       enum_trace_category etracecategory = (enum_trace_category)iCategory;
 
-      const scoped_string & strCategory = *p;
+      const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __new(trace_category(etracecategory, pszCategory));
+      auto pcategory = __new(trace_category(etracecategory, scopedstrCategory));
 
       pcategory->initialize(psystem);
 
@@ -136,7 +136,7 @@ CLASS_DECL_ACME const char* trace_category_name(enum_trace_category etracecatego
 
    }
 
-   return trace_category::s_ptracecategorya->element_at((iptr)etracecategory)->m_strTopicText;
+   return trace_category::s_ptracecategorya->element_at((iptr)etracecategory)->m_strTopicText.c_str();
 
 }
 

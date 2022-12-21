@@ -11,7 +11,7 @@
 //
 //      folder_watch(::particle * pparticle);
 //
-//      virtual bool watch(const scoped_string & strPath);
+//      virtual bool watch(const ::file::path & path);
 //
 //      virtual e_action translate_os_action(int iAction);
 //

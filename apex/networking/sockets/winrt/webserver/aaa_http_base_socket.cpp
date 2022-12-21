@@ -222,7 +222,7 @@ namespace sockets
          const char * name,
          ::payload payload,
          int iExpire,
-         const char * path,
+         const ::file::path & path,
          const char * domain,
          bool bSecure)
    {

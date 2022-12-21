@@ -24,7 +24,7 @@
 //   using RANGE_TYPE::RANGE_TYPE;
 //
 //
-//   null_terminated_range(const ITEM * pitem) : RANGE_TYPE(pitem, span_zero_item(pitem)) {}
+//   null_terminated_range(const ITEM * pitem) : RANGE_TYPE(pitem, find_first_null_character(pitem)) {}
 //   null_terminated_range(const ITERATOR & iterator) : null_terminated_range(iterator) {}
 //   null_terminated_range(const CONST_ITERATOR & iterator) : null_terminated_range(iterator) {}
 //

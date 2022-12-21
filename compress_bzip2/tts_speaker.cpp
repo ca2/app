@@ -9,8 +9,8 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
    ::application * papp,
    const WCHAR * pszCategoryId,
    ISpObjectToken ** ppToken,
-   const scoped_string & strLang,
-   const scoped_string & strAttributes,
+   const ::scoped_string & scopedstrLang,
+   const ::scoped_string & scopedstrAttributes,
    BOOL fCreateCategoryIfNotExist = true);
 
 
@@ -150,8 +150,8 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
    ::application * papp,
    const WCHAR * pszCategoryId,
    ISpObjectToken ** ppToken,
-   const scoped_string & strLang,
-   const scoped_string & strAttributes,
+   const ::scoped_string & scopedstrLang,
+   const ::scoped_string & scopedstrAttributes,
    BOOL fCreateCategoryIfNotExist)
 {
 
@@ -186,7 +186,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
       string strJson = papp->file()->as_string(papp->dir()->matter("speech/windows/lang.json"));
 
-      const scoped_string & strJson = strJson;
+      const ::ansi_character * pszJson = strJson;
 
       try
       {

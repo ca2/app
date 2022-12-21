@@ -10,7 +10,7 @@
 #include <link.h>
 #endif
 
-void * __node_library_touch(const scoped_string & strPath, string & strMessage)
+void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
 
    for (i32 i = _dyld_image_count(); i >= 0 ; i--)
@@ -41,7 +41,7 @@ found:
 }
 
 
-void * __node_library_open(const scoped_string & strPath, string & strMessage)
+void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
    strMessage.Empty();
@@ -172,7 +172,7 @@ bool __node_library_close(void * plibrary)
 }
 
 
-void * __node_library_raw_get(void * plibrary, const scoped_string & strElement)
+void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
 {
 
    return dlsym(plibrary, pszElement);
@@ -184,7 +184,7 @@ void * __node_library_raw_get(void * plibrary, const scoped_string & strElement)
 
 
 
-void * __node_library_open_ca2(const scoped_string & strPath, string & strMessage)
+void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
    string strPath(pszPath);

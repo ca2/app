@@ -81,10 +81,10 @@ namespace android
 
       i32 get_image(per_fork * pfork, image_key key, const ::wide_character * lpcszExtra, color32_t crBk);
       i32 get_image_by_extension(per_fork * pfork, image_key & key, color32_t crBk);
-      //bool get_icon(oswindow oswindow, const char * pcsz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
+      //bool get_icon(oswindow oswindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
       //bool get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48);
-      //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const scoped_string & strPath, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
+      //         i32 get_image(oswindow oswindow, IShellFolder * lpsf, const ::file::path & path, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, e_icon eicon);
       //         i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk);
       //         //i32 get_image(per_fork * pfork, oswindow oswindow, image_key key, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk);
       i32 get_foo_image(per_fork * pfork, oswindow oswindow, image_key key, color32_t crBk);
@@ -94,7 +94,7 @@ namespace android
       //         ::windows::comptr < IShellFolder> _017GetShellParentFolder(per_fork * pfork, LPITEMIDLIST lpiidlChild);
       //         //::windows::comptr < IShellFolder> _017GetShellFolder(const ::string & str, LPITEMIDLIST lpiidlChild);
       //         ::windows::comptr < IShellFolder> _017GetShellFolder(per_fork * pfork, LPITEMIDLIST lpiidlChild);
-      //         void _017ItemIDListParsePath(per_fork * pfork, oswindow oswindow, LPITEMIDLIST * lpiidl, const char * pcsz);
+      //         void _017ItemIDListParsePath(per_fork * pfork, oswindow oswindow, LPITEMIDLIST * lpiidl, const ::scoped_string & scopedstr);
 
       virtual void shell_run();
 
@@ -106,7 +106,7 @@ namespace android
       //         virtual void GetAscendants(per_fork * pfork, LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //         virtual void Free(per_fork * pfork, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //
-      //         //      string CLASS_DECL_APEX _017FilePathGetParent(const char * pcsz);
+      //         //      string CLASS_DECL_APEX _017FilePathGetParent(const ::scoped_string & scopedstr);
       //
       //         HICON CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, i32 cx, i32 cy);
       //         bool _017HasSubFolder(::particle * pparticle, LPITEMIDLIST lpiidl, const char * lpcszExtra);

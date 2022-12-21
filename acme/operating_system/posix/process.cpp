@@ -17,7 +17,7 @@
 #if !defined(APPLE_IOS)
 
 
-//void command_system(string_array & straOutput, int& iExitCode, const scoped_string & str, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+//void command_system(string_array & straOutput, int& iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 //{
 //
 //   single_lock singlelock(pparticleSynchronization);
@@ -289,7 +289,7 @@ namespace acme
 critical_section * get_pid_cs()
 {
 
-   critical_section_lock cs(::acme::g_p->globals_critical_section());
+   critical_section_lock cs(::acme::acme::g_p->globals_critical_section());
 
    if(g_pcsPid2 == nullptr)
    {

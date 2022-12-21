@@ -978,7 +978,7 @@ return true;
 //               {
 //                  int iError = errno;
 //
-//                  const scoped_string & strError = strerror(iError);
+//                  const ::scoped_string & scopedstrError = strerror(iError);
 //                  INFORMATION(pszError);
 //               }
 //               OnDisconnect();

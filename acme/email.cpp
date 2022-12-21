@@ -412,7 +412,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //#define UUENCODE(ch) ((ch) ? ((ch) & 0x3F ) + ' ' : '`')
 //
 //#ifdef _DEBUG
-//	inline void UUEncodeCheckFilename(_In_z_ const char * pcszFilename)
+//	inline void UUEncodeCheckFilename(_In_z_ const ::scoped_string & scopedstrFilename)
 //	{
 //		// It's the callers responsibility to supply a filename that can readily be
 //		// used for the UUEncode header. We do a basic check here because there does

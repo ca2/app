@@ -64,9 +64,9 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
 }
 
 CLASS_DECL_APEX i32 call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 i32 iShow)
 {
    vsstring strCmdLine;
@@ -87,7 +87,7 @@ i32 iShow)
 
 }
 
-CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 

@@ -78,7 +78,7 @@ namespace sockets_bsd
    }
 
    
-   //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, base_socket * psocket, const ::string & strContext, i32 iError, const ::string & strMessage)
+   //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, base_socket * psocket, const ::string & strContext, i32 iError, const ::string & strMessage)
    //{
 
    //   psocket->__tracef(ecategory, elevel, pszFunction, pszFile, iLine, log_this, strContext, iError, strMessage);

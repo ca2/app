@@ -6,7 +6,7 @@
 #include "acme/_operating_system.h"
 
 
-last_error_exception::last_error_exception(DWORD dwLastError, const scoped_string & strMessage, const scoped_string & strDetails) :
+last_error_exception::last_error_exception(DWORD dwLastError, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
    exception(error_win32, pszMessage, pszDetails)
 {
 

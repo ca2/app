@@ -458,12 +458,16 @@ bool isvowel_dup(int i)
 }
 
 
-string _001OnlyAlnumString(const scoped_string & str)
+string _001OnlyAlnumString(const ::scoped_string & scopedstr)
 {
 
    string strOnlyAlnum;
 
-   while (*psz)
+   auto psz = scopedstr.begin();
+
+   auto end = scopedstr.end();
+
+   while (psz < end)
    {
 
       if (character_isalnum(*psz))
@@ -482,10 +486,12 @@ string _001OnlyAlnumString(const scoped_string & str)
 }
 
 
-string _001OnlyAlnumNonVowelString(const scoped_string & str)
+string _001OnlyAlnumNonVowelString(const ::scoped_string & scopedstr)
 {
 
    string strOnlyAlnum;
+
+   auto psz = scopedstr.begin();
 
    while (*psz)
    {
@@ -525,7 +531,7 @@ string _001CompactString(const ::string & str, int iSkip, int iSkipBegin = 0)
 
    }
 
-   for (; i < str.get_length(); i += (iSkip + 1))
+   for (; i < str.length(); i += (iSkip + 1))
    {
 
       strCompact += str[i];
@@ -540,7 +546,7 @@ string _001CompactString(const ::string & str, int iSkip, int iSkipBegin = 0)
 void thread_name_abbreviate(string & strName, int len)
 {
 
-   if (strName.get_length() <= len)
+   if (strName.length() <= len)
    {
 
       return;
@@ -555,20 +561,29 @@ void thread_name_abbreviate(string & strName, int len)
 
    string strOnlyAlnum;
 
-   while (iFind >= 0)
+   auto range = strName();
+
+   while (range.is_set())
    {
 
-      iFind = strName.find("::", iFindLast);
+      auto pfind = range.find("::");
 
-      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
+      if(::is_null(pfind))
+      {
 
-      iFindLast = iFind + 2;
+         break;
+
+      }
+
+      stra.add(range(0, pfind + 1));
+
+      pfind += 2;
 
    }
 
    strName = stra.implode(":");
 
-   if (strName.get_length() <= len)
+   if (strName.length() <= len)
    {
 
       return;
@@ -582,7 +597,7 @@ void thread_name_abbreviate(string & strName, int len)
 
       strName = stra.implode(":");
 
-      if (strName.get_length() <= len)
+      if (strName.length() <= len)
       {
 
          return;
@@ -598,7 +613,7 @@ void thread_name_abbreviate(string & strName, int len)
 
       strName = stra.implode(":");
 
-      if (strName.get_length() <= len)
+      if (strName.length() <= len)
       {
 
          return;
@@ -614,7 +629,7 @@ void thread_name_abbreviate(string & strName, int len)
 
       strName = stra.implode(":");
 
-      if (strName.get_length() <= len)
+      if (strName.length() <= len)
       {
 
          return;

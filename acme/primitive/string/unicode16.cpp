@@ -104,7 +104,7 @@ strsize wd16_to_ansi(char* psz, const ::wd16_character* pwsz, strsize srclen)
 }
 
 
-strsize ansi_to_wd16_len_len(const scoped_string & str, strsize srclen)
+strsize ansi_to_wd16_len_len(const ::ansi_character * psz, strsize srclen)
 {
 
    strsize len;
@@ -138,7 +138,7 @@ strsize ansi_to_wd16_len_len(const scoped_string & str, strsize srclen)
 }
 
 
-//strsize ansi_to_wd16(::wd16_character* pwsz, const scoped_string & str, strsize srclen)
+//strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsize srclen)
 //{
 //
 //   strsize len;
@@ -323,7 +323,7 @@ extern "C"
 
 
 
-// CLASS_DECL_ACME const char* yoshi_strcat(const scoped_string & str1, const scoped_string & str2, bool bFree2)
+// CLASS_DECL_ACME const char* yoshi_strcat(const ::ansi_character * psz1, const ::ansi_character * psz2, bool bFree2)
 // {
 
 //    strsize iLen1 = psz1 == nullptr ? 0 : strlen(psz1);
@@ -683,7 +683,7 @@ extern "C"
 //}
 
 
-strsize ansi_to_wd16_len(const scoped_string & str, strsize srclen)
+strsize ansi_to_wd16_len(const ::ansi_character * psz, strsize srclen)
 {
 
    strsize utf16len = 0;
@@ -730,7 +730,7 @@ strsize ansi_to_wd16_len(const scoped_string & str, strsize srclen)
 }
 
 
-strsize ansi_to_wd16(::wd16_character* pwsz, const scoped_string & str, strsize srclen)
+strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsize srclen)
 {
 
    strsize len = 0;

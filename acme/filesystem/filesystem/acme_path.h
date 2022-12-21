@@ -25,29 +25,29 @@ public:
 
 
 
-   virtual ::file::path final(const char * path);
+   virtual ::file::path final(const ::file::path & path);
 
-   virtual ::file::path _final(const char * path);
-
-
-
-   virtual bool final_begins_eat_ci(string & str, const char * pcszPrefix);
-
-   virtual bool final_is_same(const char * path1, const char * path2);
-
-   virtual ::file::enum_type get_type(const char * path);
+   virtual ::file::path _final(const ::file::path & path);
 
 
 
-   virtual void create_symbolic_link(const scoped_string & strLink, const scoped_string & strSource);
+   virtual bool final_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix);
 
-   virtual bool is_symbolic_link(const scoped_string & strLink);
+   virtual bool final_is_same(const ::file::path & path1, const ::file::path & path2);
 
-   virtual ::file::path symbolic_link_destination(const scoped_string & strLink);
+   virtual ::file::enum_type get_type(const ::file::path & path);
 
 
 
-   virtual bool has_custom_icon(const char * path);
+   virtual void create_symbolic_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrSource);
+
+   virtual bool is_symbolic_link(const ::scoped_string & scopedstrLink);
+
+   virtual ::file::path symbolic_link_destination(const ::scoped_string & scopedstrLink);
+
+
+
+   virtual bool has_custom_icon(const ::file::path & path);
 
 
    ::file::path defer_process_relative_path(const ::file::path & path);

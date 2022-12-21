@@ -19,7 +19,7 @@
 //inline void __exchange(::payload_stream & s, float & f);
 //inline void __exchange(::payload_stream & s, double & d);
 //inline void __exchange(::payload_stream & s, ::earth::time & time);
-//inline void __exchange(::payload_stream & s, const scoped_string & str);
+//inline void __exchange(::payload_stream & s, const ::scoped_string & scopedstr);
 //inline void __exchange(::payload_stream & s, string & str);
 //inline void __exchange(::payload_stream & s, ::file::path & path);
 //inline void __exchange(::payload_stream & s, ::atom & atom);

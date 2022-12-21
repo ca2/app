@@ -5,7 +5,7 @@
 #include "_conv.h"
 
 
-CLASS_DECL_ACME i64 strtoi(const scoped_string & str);
+CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
 
 

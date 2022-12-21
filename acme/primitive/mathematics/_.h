@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-
+#include <limits>
 
 #define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844
 
@@ -13,7 +13,31 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
+inline ::std::strong_ordering strong_order(double d1, double d2)
+{
 
+   auto d = d1 - d2;
+
+   if(d > std::numeric_limits<double>::epsilon())
+   {
+
+      return ::std::strong_ordering::greater;
+
+   }
+   else if(d < -std::numeric_limits<double>::epsilon())
+   {
+
+      return ::std::strong_ordering::less;
+
+   }
+   else
+   {
+
+      return ::std::strong_ordering::equal;
+
+   }
+
+}
 
 template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
 inline constexpr bool __lt(const SIGNED1 & a, const SIGNED2 & b) { return a < b; }
@@ -208,7 +232,7 @@ namespace comparison
       constexpr ::std::strong_ordering order(F1 f1, F2 f2) const
       {
 
-         return ::std::strong_order(f1, f2);
+         return ::strong_order(f1, f2);
 
       }
 

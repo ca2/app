@@ -14,7 +14,7 @@ class plane_system :
 public:
    
    
-///   virtual bool hanld(const scoped_string & strUrl, const ::function < void(bool) > & functionSucceeded) = 0;
+///   virtual bool hanld(const ::scoped_string & scopedstrUrl, const ::function < void(bool) > & functionSucceeded) = 0;
    
 };
 

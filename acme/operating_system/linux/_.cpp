@@ -4,7 +4,7 @@
 #include "acme/primitive/primitive/atom.h"
 
 
-::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+::std::strong_ordering memory_order(const void * m1, const void * m2,  memsize s);
 
 
 //extern thread_pointer < os_thread > t_posthread;
@@ -56,8 +56,8 @@ CLASS_DECL_ACME void __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const scoped_string & strDebug, itask_t atom, bool bClose);
-//void __clear_mq(const scoped_string & strDebug, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, itask_t atom, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, bool bClose);
 
 
 //CLASS_DECL_ACME void __node_term_cross_windows_threading();

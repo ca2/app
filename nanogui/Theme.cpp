@@ -15,8 +15,8 @@
 #include "Icons.h"
 
 
-char * read_resource_string(const scoped_string & str);
-void read_resource(void *& p, size_t & s, const scoped_string & str);
+char * read_resource_string(const ::scoped_string & scopedstr);
+void read_resource(void *& p, size_t & s, const ::scoped_string & scopedstr);
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -136,7 +136,7 @@ NAMESPACE_END(nanogui)
 
 //
 //
-//char * read_resource_string(const scoped_string & str)
+//char * read_resource_string(const ::scoped_string & scopedstr)
 //{
 //
 //   /* declare a file pointer */
@@ -202,7 +202,7 @@ NAMESPACE_END(nanogui)
 //}
 //
 //
-//void read_resource(void *& p, size_t & s, const scoped_string & str)
+//void read_resource(void *& p, size_t & s, const ::scoped_string & scopedstr)
 //{
 //
 //

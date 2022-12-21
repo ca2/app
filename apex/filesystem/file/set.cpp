@@ -96,11 +96,11 @@ namespace file
    }
 
 
-   ::index set::find_first_file(const char * pcsz, ::index iStart)
+   ::index set::find_first_file(const ::scoped_string & scopedstr, ::index iStart)
 
    {
 
-      return m_listing.find_first_ci(pcsz, iStart);
+      return m_listing.find_first_ci(scopedstr, iStart);
 
    }
 
@@ -186,10 +186,10 @@ namespace file
    }
 
 
-   bool set::get_next_file(const scoped_string & strFile, string & strNext)
+   bool set::get_next_file(const ::scoped_string & scopedstrFile, string & strNext)
    {
 
-      index iFind = find_first_file(pszFile);
+      index iFind = find_first_file(scopedstrFile);
 
       if(iFind < 0)
       {
@@ -221,12 +221,12 @@ namespace file
    }
 
 
-   string set::get_next_file(const scoped_string & strFile)
+   string set::get_next_file(const ::scoped_string & scopedstrFile)
    {
 
       string strNext;
 
-      if(!get_next_file(pszFile, strNext))
+      if(!get_next_file(scopedstrFile, strNext))
       {
 
          return "";

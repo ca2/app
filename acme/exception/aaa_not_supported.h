@@ -7,7 +7,7 @@ class CLASS_DECL_ACME not_supported_exception :
 public:
 
 
-   not_supported_exception(const scoped_string & strMessage = nullptr);
+   not_supported_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~not_supported_exception();
 
 

@@ -177,15 +177,15 @@
 
 
 
-   // CLASS_DECL_EXPORT void nodeos_set_cache_dir(const scoped_string & strDir);
+   // CLASS_DECL_EXPORT void nodeos_set_cache_dir(const ::scoped_string & scopedstrDir);
 
    // CLASS_DECL_EXPORT const char * nodeos_get_cache_dir(void);
 
-   // CLASS_DECL_EXPORT void nodeos_set_home(const scoped_string & strDir);
+   // CLASS_DECL_EXPORT void nodeos_set_home(const ::scoped_string & scopedstrDir);
 
    // CLASS_DECL_EXPORT const char * nodeos_get_home(void);
 
-   // CLASS_DECL_EXPORT void nodeos_set_temp(const scoped_string & strDir);
+   // CLASS_DECL_EXPORT void nodeos_set_temp(const ::scoped_string & scopedstrDir);
 
    // CLASS_DECL_EXPORT const char * nodeos_get_temp(void);
 

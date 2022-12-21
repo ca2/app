@@ -40,17 +40,17 @@ namespace text
          ~locale_schema() override;
 
 
-         ::atom localeid(const scoped_string & strLocale, strsize iLen);
+         //::atom localeid(const ::scoped_string & scopedstrLocale);
 
 
-         virtual bool add_locale_variant(atom idLocale, atom Style);
+         virtual bool add_locale_variant(const ::atom & idLocale, const ::atom & idSchema);
          virtual bool end_prepare(bool bRtlLayout);
          //virtual void end_prepare();
 
-         bool defer_add_locale(atom idLocale, atom idStyle);
-         bool defer_add_locale(const scoped_string & str, strsize iLen, atom idStyle);
-         bool _add_locale_variant(atom pszLocale, atom idStyle);
-         bool _add_locale_variant(const scoped_string & str, strsize iLen, atom idStyle);
+         bool defer_add_locale(const ::atom & idLocale, const ::atom & idSchema);
+         //bool defer_add_locale(const ::scoped_string & scopedstr, atom idStyle);
+         bool _add_locale_variant(const ::atom & idLocale, const ::atom & idSchema);
+         //bool _add_locale_variant(const ::scoped_string & scopedstr, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -68,25 +68,25 @@ namespace text
       };
 
 
-      inline bool locale_schema::_add_locale_variant(atom idLocale, atom idStyle)
+      inline bool locale_schema::_add_locale_variant(const ::atom & idLocale, const ::atom & idSchema)
       {
 
-         if (::is_empty(idLocale.m_str))
+         if (idLocale.is_empty())
          {
 
             return false;
 
          }
 
-         return _add_locale_variant(idLocale.m_str, idLocale.m_str.length(), idStyle);
+         return _add_locale_variant(idLocale, idSchema);
 
       }
 
 
-      inline bool locale_schema::defer_add_locale(const scoped_string & strLocale, strsize iLen, atom idSchema)
+      inline bool locale_schema::defer_add_locale(const ::atom & idLocale, const ::atom & idSchema)
       {
 
-         return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+         return defer_add_locale(idLocale, idSchema);
 
       }
 

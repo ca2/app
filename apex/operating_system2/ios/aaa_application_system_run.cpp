@@ -41,12 +41,12 @@
 //}
 
 
-//void apex_application_main(int argc, char *argv[], const scoped_string & strCommandLine);
+//void apex_application_main(int argc, char *argv[], const ::scoped_string & scopedstrCommandLine);
 //
 //namespace apex
 //{
 //
-//   void system::application_main(int argc, char *argv[], const scoped_string & strCommandLine)
+//   void system::application_main(int argc, char *argv[], const ::scoped_string & scopedstrCommandLine)
 //   {
 //   
 //      apex_application_main(argc, argv, pszCommandLine);

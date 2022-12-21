@@ -9,7 +9,7 @@ class CLASS_DECL_ACME runtime_exception :
 public:
 
 
-   runtime_exception(const scoped_string & strMessage = nullptr);
+   runtime_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~runtime_exception();
 
 };

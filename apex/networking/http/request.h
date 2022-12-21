@@ -34,7 +34,7 @@ namespace http
 
 
       /** Cookies */
-      void add_cookie(const scoped_string & strSetCookie);
+      void add_cookie(const ::scoped_string & scopedstrSetCookie);
 
       /** open file for body data */
       void InitBody( memsize sz );

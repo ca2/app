@@ -178,7 +178,7 @@ const char* br_init_get_symbol();
 //   virtual ::application* new_application() { return memory_new APPLICATION; }
 //
 //
-//   static_application_factory(const scoped_string & strName = "") :
+//   static_application_factory(const ::scoped_string & scopedstrName = "") :
 //      system_setup(flag_application, pszName)
 //   {
 //

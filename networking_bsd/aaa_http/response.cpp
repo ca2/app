@@ -44,7 +44,7 @@ namespace http
    }
 
 
-   void response::printf(const scoped_string & strFormat, ...)
+   void response::printf(const ::scoped_string & scopedstrFormat, ...)
    {
       
       va_list args;

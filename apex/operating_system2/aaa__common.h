@@ -15,8 +15,8 @@
 
 #include "cross.h"
 
-//CLASS_DECL_APEX int __c_get_text_length(const scoped_string & str);
-//CLASS_DECL_APEX void __c_get_text(char * pszText, int iLen, const scoped_string & str);
+//CLASS_DECL_APEX int __c_get_text_length(const ::scoped_string & scopedstr);
+//CLASS_DECL_APEX void __c_get_text(char * pszText, int iLen, const ::scoped_string & scopedstr);
 
 
 /*
@@ -36,7 +36,7 @@ inline bool IsDirSep(::wide_character wch);
 //CLASS_DECL_APEX oswindow get_splash(void);
 
 //CLASS_DECL_APEX int get_processor_count(void);
-//CLASS_DECL_APEX void writeln(const scoped_string & str);
+//CLASS_DECL_APEX void writeln(const ::scoped_string & scopedstr);
 
 
 #include "time.h"
@@ -47,7 +47,7 @@ inline bool IsDirSep(::wide_character wch);
 
 
 
-//CLASS_DECL_APEX void set_command_line_dup(const scoped_string & str);
+//CLASS_DECL_APEX void set_command_line_dup(const ::scoped_string & scopedstr);
 
 //CLASS_DECL_APEX void get_command_line(char * psz, int iBuffer);
 

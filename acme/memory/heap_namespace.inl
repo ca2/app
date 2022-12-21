@@ -10,7 +10,7 @@
 
 #include "align_byte_count.h"
 
-CLASS_DECL_ACME void simple_debug_print(const scoped_string & str);
+CLASS_DECL_ACME void simple_debug_print(const ::scoped_string & scopedstr);
 
 extern iptr g_iMonitor;
 

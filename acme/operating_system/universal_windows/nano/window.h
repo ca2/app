@@ -85,7 +85,7 @@ namespace universal_windows
       //void set_cursor(enum_cursor ecursor) override;
 
 
-      //void add_button(const scoped_string & strText, enum_dialog_result edialogresult);
+      //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult);
 
 
       //void display_temporary_file_with_text(const ::string & str);

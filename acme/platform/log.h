@@ -15,7 +15,7 @@ public:
    static void t_release();
 
 
-   virtual void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) = 0;
+   virtual void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) = 0;
 
 
 };

@@ -27,13 +27,13 @@
 
 
 //CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
-//CLASS_DECL_ACME ::atom_array module_path_get_pid(const scoped_string & strModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_ACME ::atom_array module_path_get_pid(const ::scoped_string & scopedstrModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
 //CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
-//CLASS_DECL_ACME atom_array app_get_pid(const scoped_string & strModuleName);
+//CLASS_DECL_ACME atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 
 #endif
@@ -42,8 +42,8 @@
 #endif
 
 #ifndef _UWP
-//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const scoped_string & strLibrary);
-//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const scoped_string & strLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif
 
 
@@ -90,13 +90,13 @@
 
 #if !defined(_UWP)
 
-//CLASS_DECL_ACME void call_async(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
 //typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 
 //typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-//CLASS_DECL_ACME void call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+//CLASS_DECL_ACME void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
 
 #endif
 

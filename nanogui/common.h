@@ -281,8 +281,8 @@ class Window;
 
 
 
-NANOGUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const char * path);
-NANOGUI_EXPORT void ___save_image(::particle * pparticle, const char * path, ::image * pimage);
+NANOGUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
+NANOGUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage);
 
 
 /**

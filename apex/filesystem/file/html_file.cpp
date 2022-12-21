@@ -67,7 +67,7 @@ void html_file::printstr(string str, ...)
 #else
 
 
-void html_file::trace(void*, const scoped_string & str)
+void html_file::trace(void*, const ::scoped_string & scopedstr)
 {
 
    print(psz);
@@ -78,10 +78,10 @@ void html_file::trace(void*, const scoped_string & str)
 #endif
 
 
-void html_file::dprint(const char* pcsz)
+void html_file::dprint(const ::scoped_string & scopedstr)
 {
 
-   __UNREFERENCED_PARAMETER(pcsz);
+   __UNREFERENCED_PARAMETER(scopedstr);
 
    throw ::interface_only();
 

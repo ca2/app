@@ -39,7 +39,7 @@ namespace aqua
    }
 
 
-   string game::sound_path(const scoped_string & str)
+   string game::sound_path(const ::scoped_string & scopedstr)
    {
    
       string strFileName = string(psz) + string(".wav");

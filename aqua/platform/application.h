@@ -33,7 +33,7 @@ namespace aqua
 
       //void on_initialize_application(::main* pmain) override;
 
-      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const scoped_string & strTitle, ::count iProgressCount);
+      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::scoped_string & scopedstrTitle, ::count iProgressCount);
 
       void init2() override;
 

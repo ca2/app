@@ -21,7 +21,7 @@ CLASS_DECL_ACME void MyFree(void *address);
 
 #ifndef ___NO_DEBUG_CRT
 
-CLASS_DECL_ACME void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const scoped_string & strFileName, i32 nLine);
+CLASS_DECL_ACME void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const ::file::path & path, i32 nLine);
 
 CLASS_DECL_ACME void __free_memory_debug(void * pbData, bool bIsObject);
 

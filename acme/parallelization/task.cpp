@@ -126,7 +126,7 @@ string task::task_get_name() const
 const char * task::get_task_tag()
 {
 
-   return m_strTaskTag;
+   return m_strTaskTag.c_str();
 
 }
 
@@ -188,13 +188,13 @@ void task::post_request(::request* prequest)
 }
 
 
-bool task::task_set_name(const scoped_string & strTaskName)
+bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
    
    if(::get_current_itask() == m_itask)
    {
       
-      ::task_set_name(pszTaskName);
+      ::task_set_name(scopedstrTaskName);
       //{
       //   
       //   return false;
@@ -203,7 +203,7 @@ bool task::task_set_name(const scoped_string & strTaskName)
    }
 
 
-   m_strTaskName = pszTaskName;
+   m_strTaskName = scopedstrTaskName;
 
    if (m_strTaskTag.is_empty() && m_strTaskName.has_char())
    {
@@ -1031,7 +1031,7 @@ bool task::has_message() const
 
    }
 
-   m_pszDebug = strdup(strId);
+   m_pszDebug = strdup(strId.c_str());
 
 #endif
 
@@ -1550,7 +1550,7 @@ bool task::task_sleep(const class time & timeWait)
 
 
 //
-//bool task::task_set_name(const scoped_string & strThreadName)
+//bool task::task_set_name(const ::scoped_string & scopedstrThreadName)
 //{
 //
 //   if (!::task_set_name(m_htask, pszThreadName))

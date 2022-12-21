@@ -27,7 +27,7 @@ os_object::~os_object()
 }
 
 
-jfieldID os_object::field_str(const scoped_string & str)
+jfieldID os_object::field_str(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "Ljava/lang/String;");
@@ -35,7 +35,7 @@ jfieldID os_object::field_str(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_b(const scoped_string & str)
+jfieldID os_object::field_b(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "Z");
@@ -43,7 +43,7 @@ jfieldID os_object::field_b(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_uch(const scoped_string & str)
+jfieldID os_object::field_uch(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "B");
@@ -51,7 +51,7 @@ jfieldID os_object::field_uch(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_ch(const scoped_string & str)
+jfieldID os_object::field_ch(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "C");
@@ -59,7 +59,7 @@ jfieldID os_object::field_ch(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_sh(const scoped_string & str)
+jfieldID os_object::field_sh(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "S");
@@ -67,7 +67,7 @@ jfieldID os_object::field_sh(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_i(const scoped_string & str)
+jfieldID os_object::field_i(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "I");
@@ -75,7 +75,7 @@ jfieldID os_object::field_i(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_l(const scoped_string & str)
+jfieldID os_object::field_l(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "J");
@@ -84,7 +84,7 @@ jfieldID os_object::field_l(const scoped_string & str)
 
 
 
-jfieldID os_object::field_f(const scoped_string & str)
+jfieldID os_object::field_f(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "F");
@@ -92,7 +92,7 @@ jfieldID os_object::field_f(const scoped_string & str)
 }
 
 
-jfieldID os_object::field_d(const scoped_string & str)
+jfieldID os_object::field_d(const ::scoped_string & scopedstr)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "D");
@@ -100,7 +100,7 @@ jfieldID os_object::field_d(const scoped_string & str)
 }
 
 
-void os_object::set_str(const scoped_string & strField, const scoped_string & str)
+void os_object::set_str(const ::scoped_string & scopedstrField, const ::scoped_string & scopedstr)
 {
 
    set_str(field_str(pszField), psz);
@@ -108,7 +108,7 @@ void os_object::set_str(const scoped_string & strField, const scoped_string & st
 }
 
 
-string os_object::get_str(const scoped_string & strField)
+string os_object::get_str(const ::scoped_string & scopedstrField)
 {
 
    return get_str(field_str(pszField));
@@ -116,7 +116,7 @@ string os_object::get_str(const scoped_string & strField)
 }
 
 
-void os_object::set_b(const scoped_string & strField, bool b)
+void os_object::set_b(const ::scoped_string & scopedstrField, bool b)
 {
 
    set_b(field_b(pszField), b);
@@ -124,7 +124,7 @@ void os_object::set_b(const scoped_string & strField, bool b)
 }
 
 
-bool os_object::get_b(const scoped_string & strField)
+bool os_object::get_b(const ::scoped_string & scopedstrField)
 {
 
    return get_b(field_b(pszField));
@@ -133,7 +133,7 @@ bool os_object::get_b(const scoped_string & strField)
 
 
 
-void os_object::set_uch(const scoped_string & strField, byte b)
+void os_object::set_uch(const ::scoped_string & scopedstrField, byte b)
 {
 
    set_uch(field_uch(pszField), b);
@@ -141,7 +141,7 @@ void os_object::set_uch(const scoped_string & strField, byte b)
 }
 
 
-byte os_object::get_uch(const scoped_string & strField)
+byte os_object::get_uch(const ::scoped_string & scopedstrField)
 {
 
    return get_uch(field_uch(pszField));
@@ -150,7 +150,7 @@ byte os_object::get_uch(const scoped_string & strField)
 
 
 
-void os_object::set_ch(const scoped_string & strField, char ch)
+void os_object::set_ch(const ::scoped_string & scopedstrField, char ch)
 {
 
    set_ch(field_ch(pszField), ch);
@@ -158,7 +158,7 @@ void os_object::set_ch(const scoped_string & strField, char ch)
 }
 
 
-char os_object::get_ch(const scoped_string & strField)
+char os_object::get_ch(const ::scoped_string & scopedstrField)
 {
 
    return get_ch(field_ch(pszField));
@@ -167,7 +167,7 @@ char os_object::get_ch(const scoped_string & strField)
 
 
 
-void os_object::set_sh(const scoped_string & strField, short sh)
+void os_object::set_sh(const ::scoped_string & scopedstrField, short sh)
 {
 
    set_sh(field_sh(pszField), sh);
@@ -175,7 +175,7 @@ void os_object::set_sh(const scoped_string & strField, short sh)
 }
 
 
-short os_object::get_sh(const scoped_string & strField)
+short os_object::get_sh(const ::scoped_string & scopedstrField)
 {
 
    return get_sh(field_sh(pszField));
@@ -184,7 +184,7 @@ short os_object::get_sh(const scoped_string & strField)
 
 
 
-void os_object::set_i(const scoped_string & strField, int i)
+void os_object::set_i(const ::scoped_string & scopedstrField, int i)
 {
 
    set_i(field_i(pszField), i);
@@ -193,7 +193,7 @@ void os_object::set_i(const scoped_string & strField, int i)
 
 
 
-int os_object::get_i(const scoped_string & strField)
+int os_object::get_i(const ::scoped_string & scopedstrField)
 {
 
    return get_i(field_i(pszField));
@@ -202,7 +202,7 @@ int os_object::get_i(const scoped_string & strField)
 
 
 
-void os_object::set_l(const scoped_string & strField, long long ll)
+void os_object::set_l(const ::scoped_string & scopedstrField, long long ll)
 {
 
    set_l(field_l(pszField), ll);
@@ -211,7 +211,7 @@ void os_object::set_l(const scoped_string & strField, long long ll)
 
 
 
-long long os_object::get_l(const scoped_string & strField)
+long long os_object::get_l(const ::scoped_string & scopedstrField)
 {
 
    return get_l(field_l(pszField));
@@ -219,7 +219,7 @@ long long os_object::get_l(const scoped_string & strField)
 }
 
 
-void os_object::set_f(const scoped_string & strField, float f)
+void os_object::set_f(const ::scoped_string & scopedstrField, float f)
 {
 
    set_f(field_f(pszField), f);
@@ -227,7 +227,7 @@ void os_object::set_f(const scoped_string & strField, float f)
 }
 
 
-float os_object::get_f(const scoped_string & strField)
+float os_object::get_f(const ::scoped_string & scopedstrField)
 {
 
    return get_f(field_f(pszField));
@@ -235,7 +235,7 @@ float os_object::get_f(const scoped_string & strField)
 }
 
 
-void os_object::set_d(const scoped_string & strField, double d)
+void os_object::set_d(const ::scoped_string & scopedstrField, double d)
 {
 
    set_d(field_d(pszField), d);
@@ -243,7 +243,7 @@ void os_object::set_d(const scoped_string & strField, double d)
 }
 
 
-double os_object::get_d(const scoped_string & strField)
+double os_object::get_d(const ::scoped_string & scopedstrField)
 {
 
    return get_d(field_d(pszField));
@@ -251,7 +251,7 @@ double os_object::get_d(const scoped_string & strField)
 }
 
 
-void os_object::set_str(jfieldID jfieldid, const scoped_string & str)
+void os_object::set_str(jfieldID jfieldid, const ::scoped_string & scopedstr)
 {
 
    jstring jstring = t_pjnienv->NewStringUTF(psz);

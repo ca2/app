@@ -321,7 +321,7 @@ pacmedirectory->system() / "log.txt"))
    void log::__tracea(::particle * pparticle, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
    {
 
-      const scoped_string & strTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
+      const ::scoped_string & scopedstrTopicText = ::is_set(pparticle) ? pparticle->topic_text() : nullptr;
 
       synchronous_lock sl2(m_pmutexTrace);
 

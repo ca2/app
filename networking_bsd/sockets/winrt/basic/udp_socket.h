@@ -90,7 +90,7 @@ namespace sockets
       \param port Port number
       \param range Port range
       \return 0 if bind succeeded */
-      int Bind(const scoped_string & strInterface, port_t port, int range = 1);
+      int Bind(const ::scoped_string & scopedstrInterface, port_t port, int range = 1);
       /** To receive data on a specific interface:port, use this.
       \param a Ip ::networking::address
       \param port Port number

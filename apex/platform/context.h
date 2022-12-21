@@ -102,11 +102,11 @@ namespace apex
 
 
 
-      virtual bool http_download(const scoped_string & strUrl, const scoped_string & strFile);
+      virtual bool http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile);
       virtual string http_get(const string& strUrl, ::property_set& set);
-      virtual string http_get(const scoped_string & strUrl);
+      virtual string http_get(const ::scoped_string & scopedstrUrl);
 
-      string get_latest_build_number(const scoped_string & strConfiguration, const scoped_string & strAppId);
+      string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
 
       virtual ::file::path defer_make_file_system_url(string str);
       virtual string defer_get_file_title(string str);
@@ -138,19 +138,19 @@ namespace apex
       virtual file_pointer friendly_get_file(::payload payloadFile, const ::file::e_open& eopen);
 
 
-      virtual bool os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI = false, bool bNoMount = false);
+      virtual bool os_resolve_alias(::file::path& path, const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_has_alias_in_path(const scoped_string & str, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_resolve_alias(::file::path& path, const scoped_string & str, bool bNoUI, bool bNoMount);
+      virtual bool _os_resolve_alias(::file::path& path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount);
 
-      virtual bool os_is_alias(const scoped_string & str);
+      virtual bool os_is_alias(const ::scoped_string & scopedstr);
 
       virtual void sys_set(string strPath, string strValue);
       virtual string sys_get(string strPath, string strDefault = "");
 
 
-      virtual string load_string(const scoped_string & str);
+      virtual string load_string(const ::scoped_string & scopedstr);
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing& listing) override;

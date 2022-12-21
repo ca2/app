@@ -21,7 +21,7 @@ void object_type_counter_increment(::particle * pparticle)
 
    critical_section_lock synchronouslock(&g_csObjTypCtr);
 
-   const scoped_string & str = typeid(*pparticle).name();
+   const ::scoped_string & scopedstr = typeid(*pparticle).name();
 
    auto i = atomic_increment(&g_pmapObjTypCtr->operator[](psz));
 
@@ -51,7 +51,7 @@ void object_type_counter_decrement(::particle * pparticle)
    }
 
    critical_section_lock synchronouslock(&g_csObjTypCtr);
-   const scoped_string & str = typeid(*pparticle).name();
+   const ::scoped_string & scopedstr = typeid(*pparticle).name();
 
    auto i = atomic_decrement(&g_pmapObjTypCtr->operator[](psz));
 

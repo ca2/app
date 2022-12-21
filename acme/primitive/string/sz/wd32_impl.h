@@ -227,7 +227,7 @@ inline bool character_isspace(::wd32_character ch) noexcept { return wd32_char_i
 
 
 
-inline strsize  string_span_including(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept
+inline strsize  string_skip_any_character_in(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept
 {
 
    return (strsize)wd32_spn(pszBlock, pszSet);
@@ -236,7 +236,7 @@ inline strsize  string_span_including(const ::wd32_character * pszBlock, const :
 
 
 
-inline strsize  string_span_excluding(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept
+inline strsize  string_find_first_character_in(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept
 {
 
    return (strsize)wd32_cspn(pszBlock, pszSet);

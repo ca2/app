@@ -35,7 +35,7 @@ namespace str
          virtual ~locale_schema();
 
 
-         ::atom localeid(const scoped_string & strLocale, strsize iLen);
+         ::atom localeid(const ::scoped_string & scopedstrLocale, strsize iLen);
 
 
          virtual bool add_locale_variant(atom idLocale, atom Style);
@@ -43,9 +43,9 @@ namespace str
          //virtual void end_prepare();
 
          bool defer_add_locale(atom idLocale, atom idStyle);
-         bool defer_add_locale(const scoped_string & str, strsize iLen, atom idStyle);
+         bool defer_add_locale(const ::scoped_string & scopedstr, strsize iLen, atom idStyle);
          bool _add_locale_variant(atom pszLocale, atom idStyle);
-         bool _add_locale_variant(const scoped_string & str, strsize iLen, atom idStyle);
+         bool _add_locale_variant(const ::scoped_string & scopedstr, strsize iLen, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -67,7 +67,7 @@ namespace str
       }
 
 
-      inline bool locale_schema::defer_add_locale(const scoped_string & strLocale, strsize iLen, atom idSchema)
+      inline bool locale_schema::defer_add_locale(const ::scoped_string & scopedstrLocale, strsize iLen, atom idSchema)
       {
 
          return defer_add_locale(localeid(pszLocale, iLen), idSchema);

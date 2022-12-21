@@ -628,7 +628,7 @@ namespace earth
       #else
       struct tm * ptmTemp = localtime(&time.m_i);
       #endif
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat.c_str(), ptmTemp))
       {
          szBuffer[0] = '\0';
       }

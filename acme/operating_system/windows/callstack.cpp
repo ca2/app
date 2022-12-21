@@ -44,7 +44,7 @@
 ////
 ////   }
 ////
-////   const scoped_string & str;
+////   const ::scoped_string & scopedstr;
 ////
 ////   synchronous_lock synchronouslock(::exception_engine().mutex());
 ////
@@ -110,7 +110,7 @@ namespace acme
    }
 
 
-   string node::get_callstack(const scoped_string & strFormat, i32 iSkip, void* caller_address, int iCount)
+   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
    {
 
       critical_section_lock synchronouslock(sym_dbg_help_critical_section());

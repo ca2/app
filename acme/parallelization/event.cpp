@@ -95,7 +95,7 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
-event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName, security_attributes * psecurityattributes)
+event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -197,12 +197,12 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
       m_pcond = nullptr;
 
-      if(pstrName != nullptr && *pstrName != '\0')
+      if(scopedstrName.has_char())
       {
 
-         string strPath = "/var/tmp/ca2/ftok/event/" + string(pstrName);
+         string strPath = "/var/tmp/ca2/ftok/event/" + string(scopedstrName);
 
-         m_sem = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+         m_sem = semget(ftok(strPath.c_str(), 0), 1, 0666 | IPC_CREAT);
 
       }
       else

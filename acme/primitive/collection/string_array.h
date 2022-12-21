@@ -58,6 +58,7 @@ public:
    using RANGE = typename RawType::RANGE;
    typedef Type BASE_TYPE;
    typedef const Type & BASE_ARG_TYPE;
+   using SCOPED_STRING = typename RawType::SCOPED_STRING;
 
    using THIS_RAW_RANGE = typename BASE_ARRAY::THIS_RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
@@ -479,10 +480,28 @@ public:
 
    void add_smallest_tokens(const RawType &str, const RawStringArray & straSeparator,bool bAddEmpty = true,bool bWithSeparator = false);
 
-   void add_lines(const RawType &str, bool bAddEmpty = true);
+    template < bool bAddEmpty >
+    typename Type::const_iterator _____add_lines_rn(const SCOPED_STRING & scopedstr);
+    template < CHARACTER chSeparator, bool bAddEmpty >
+    typename Type::const_iterator _____add_lines(const SCOPED_STRING & scopedstr);
+    template < bool bAddEmpty >
+    void __add_lines_suffix(Type::const_iterator start, Type::const_iterator end);
+    template < bool bAddEmpty >
+    void __add_lines_rn(const SCOPED_STRING & scopedstr) { __add_lines_suffix<bAddEmpty>(__add_lines_rn<bAddEmpty>(scopedstr), scopedstr.end()); }
+    template < CHARACTER chSeparator, bool bAddEmpty >
+    void __add_lines(const SCOPED_STRING & scopedstr) { __add_lines_suffix<bAddEmpty>(__add_lines<chSeparator, bAddEmpty>(scopedstr), scopedstr.end()); }
+    template < bool bAddEmpty >
+    void _add_lines(const SCOPED_STRING & scopedstr);
+    void add_lines(const SCOPED_STRING & scopedstr, bool bAddEmpty = true)
+    {
+       if(bAddEmpty)_add_lines<true>(scopedstr); else _add_lines<false>(scopedstr);
+    }
 
 
-   void _001AddTokens(const RawType &str);
+
+
+
+    void _001AddTokens(const RawType &str);
 
 
 
@@ -1528,142 +1547,133 @@ void string_array_base < Type, RawType, m_etypeContainer > ::add_smallest_tokens
 }
 
 
-
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-void string_array_base < Type, RawType, m_etypeContainer > ::add_lines(const RawType &strParam, bool bAddEmpty)
+template < bool bAddEmpty >
+typename Type::const_iterator string_array_base < Type, RawType, m_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING & scopedstr)
 {
 
-   string str(strParam);
+   auto range = scopedstr.this_range();
 
-   strsize iPos = 0;
-
-   strsize iFindA;
-
-   strsize iFindB;
-
-   strsize iFind1;
-
-   strsize iFind2;
-
-   do
+   while(true)
    {
 
-      iFindA = str.find('\n',iPos);
+      auto p = range.find_first_character_in("\n\r");
 
-      if(iFindA < 0)
-         goto r_only;
-
-      iFindB = str.find('\r',iPos);
-
-      if(iFindB < 0)
-         goto n_only;
-
-      iFind1 = minimum(iFindA,iFindB);
-
-      iFind2 = maximum(iFindA,iFindB);
-
-      if(iFind1 > iPos)
+      if(::is_null(p))
       {
 
-         add((Type)RawType(&str[iPos],iFind1 - iPos));
-
-      }
-      else if(bAddEmpty)
-      {
-
-         add(Type());
+         return range.begin();
 
       }
 
-      if(iFind2 - iFind1 == 1)
+      auto pNext = p;
+
+      if(*pNext == 'r')
       {
 
-         iPos = iFind2 + 1;
+         pNext++;
+
+         if(pNext >= range.end())
+         {
+
+            return pNext;
+
+         }
+         else if(*pNext == '\n')
+         {
+
+            pNext++;
+
+         }
+
+      }
+      else // if(*p == 'n')
+      {
+
+         pNext++;
+
+      }
+
+      __add_suffix<bAddEmpty>(range.begin(), p);
+
+      range.m_begin = pNext;
+
+   };
+
+}
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+template < typename string_array_base < Type, RawType, m_etypeContainer >::CHARACTER chSeparator, bool bAddEmpty >
+typename Type::const_iterator string_array_base < Type, RawType, m_etypeContainer > ::_____add_lines(const SCOPED_STRING & scopedstr)
+{
+
+   auto range = scopedstr.this_range();
+
+   while(true)
+   {
+
+      auto p = range.find(chSeparator);
+
+      if(::is_null(p))
+      {
+
+         return range.begin();
+
+      }
+
+      __add_suffix<bAddEmpty>(range.begin(), p);
+
+      range.m_begin = p + 1;
+
+   }
+
+}
+
+
+
+template < typename Type, typename RawType, ::enum_type m_etypeContainer >
+template < bool bAddEmpty >
+void string_array_base < Type, RawType, m_etypeContainer > ::_add_lines(const SCOPED_STRING &strParam)
+{
+
+   auto pN = strParam.find_first('\n');
+
+   auto pR = strParam.find_first('\r');
+
+   typename Type::const_iterator p = this->begin();
+
+   if(pN)
+   {
+
+      if(pR)
+      {
+
+         p = _____add_lines_rn<bAddEmpty>(strParam);
 
       }
       else
       {
 
-         iPos = iFind1 + 1;
+         p = _____add_lines<'n', bAddEmpty>(strParam);
 
       }
 
    }
-   while(true);
-
-   goto end;
-
-n_only:
-
-   do
+   else if(pR)
    {
 
-      iFindA = str.find('\n',iPos);
-
-      if(iFindA < 0)
-         goto end;
-
-      if(iFindA > iPos)
-      {
-
-         add((Type)RawType(&str[iPos],iFindA - iPos));
-
-      }
-      else if(bAddEmpty)
-      {
-
-         add(Type());
-
-      }
-
-      iPos = iFindA + 1;
-
+      p = _____add_lines<'r', bAddEmpty>(strParam);
 
    }
-   while(true);
-   goto end;
-r_only:
-   do
+   else
    {
 
-      iFindB = str.find('\r',iPos);
-
-      if(iFindB < 0)
-         goto end;
-
-      if(iFindB > iPos)
-      {
-
-         add((Type)RawType(&str[iPos],iFindB - iPos));
-
-      }
-      else if(bAddEmpty)
-      {
-
-         add(Type());
-
-      }
-
-      iPos = iFindB + 1;
-
+      p = strParam.begin();
 
    }
-   while(true);
 
-end:
-
-   if(str.size() > iPos)
-   {
-
-      add((Type)RawType(&str[iPos]));
-
-   }
-   else if(bAddEmpty)
-   {
-
-      add(Type());
-
-   }
+   __add_lines_suffix<bAddEmpty>(p, strParam.end());
 
 }
 
@@ -2387,9 +2397,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 ::index string_array_base < Type, RawType, m_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const RawType &strTopic, ::index iFind, ::index iLast) const
 {
 
-   const scoped_string & strBeg = nullptr;
+   const CHARACTER * pszBeg = nullptr;
 
-   const scoped_string & strEnd = nullptr;
+   const CHARACTER * pszEnd = nullptr;
 
    iFind = find_first_contains_ci(strTopic, iFind, iLast, &pszBeg, &pszEnd);
 
@@ -4561,13 +4571,13 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       if(bMemoryAlloc)
       {
          
-         psz = ansi_duplicate(string(element_at(i)));
+         psz = ansi_duplicate(element_at(i));
          
       }
       else
       {
        
-         psz = strdup(string(element_at(i)));
+         psz = strdup(element_at(i));
          
       }
 

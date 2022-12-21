@@ -3,8 +3,8 @@
 #include "acme/parallelization/task.h"
 
 
-exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThreadExit, const scoped_string & strMessage) :
-   exception(::error_failed, pszMessage),
+exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThreadExit, const ::scoped_string & scopedstrMessage) :
+   exception(::error_failed, scopedstrMessage),
    m_ptaskExit(playeredThreadExit)
 {
 
@@ -56,7 +56,7 @@ exit_exception::~exit_exception()
 }
 
 
-CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus, ::task* playeredThreadExit, const scoped_string & strMessage)
+CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus, ::task* playeredThreadExit, const ::scoped_string & scopedstrMessage)
 {
 
    throw ::exit_exception(estatus);

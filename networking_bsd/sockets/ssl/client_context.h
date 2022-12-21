@@ -29,8 +29,8 @@ namespace sockets_bsd
       virtual ~ssl_client_context();
 
 
-      void set_context(const scoped_string & strContext);
-      void set_context(const scoped_string & strFontopus, const scoped_string & strSessId);
+      void set_context(const ::scoped_string & scopedstrContext);
+      void set_context(const ::scoped_string & scopedstrFontopus, const ::scoped_string & scopedstrSessId);
 
 
       void InitializeContext(const SSL_METHOD *meth_in);

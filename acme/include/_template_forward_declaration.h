@@ -14,6 +14,20 @@
 #include "acme/primitive/primitive/enumeration.h"
 
 
+template < typename ITERATOR_TYPE >
+class scoped_string_base;
+
+
+using scoped_ansi_string = scoped_string_base < const ::ansi_character * >;
+using scoped_wd16_string = scoped_string_base < const ::wd16_character * >;
+using scoped_wd32_string = scoped_string_base < const ::wd32_character * >;
+using scoped_wide_string = scoped_string_base < const ::wide_character * >;
+
+
+using scoped_string = scoped_ansi_string;
+using scoped_wstring = scoped_wide_string;
+
+
 
 
 // erase_const

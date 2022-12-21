@@ -77,8 +77,8 @@ public:
 
    object_reference_count_debug* m_pobjrefdbg;
 
-   void add_ref_history(matter* p, const scoped_string & strObjRefDbg);
-   void dec_ref_history(matter* p, const scoped_string & strObjRefDbgNotUsedCurrently);
+   void add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefDbg);
+   void dec_ref_history(matter* p, const ::scoped_string & scopedstrObjRefDbgNotUsedCurrently);
    void check_pending_releases();
 
 #endif
@@ -165,7 +165,7 @@ public:
 //   virtual void release_reference(::particle * pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual void set_generic_object_name(const scoped_string & strName);
+   //virtual void set_generic_object_name(const ::scoped_string & scopedstrName);
 
 
 
@@ -235,12 +235,12 @@ public:
    inline const ::particle * context_trace_object() const { return this; }
 
 
-   //virtual void __tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) const;
-   //virtual void __tracef(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, ...) const;
-   //virtual void __tracev(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list args) const;
+   //virtual void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const;
+   //virtual void __tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, ...) const;
+   //virtual void __tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
 
-   //virtual void __simple_tracev(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list args) const;
-   //virtual void __simple_tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFileName, i32 iLine, const scoped_string & str) const;
+   //virtual void __simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const;
+   //virtual void __simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 iLine, const ::scoped_string & scopedstr) const;
 
 
 

@@ -257,7 +257,7 @@ namespace sockets
 
       }
 
-      int Bind(const scoped_string & str, port_t port, int depth = 20)
+      int Bind(const ::scoped_string & scopedstr, port_t port, int depth = 20)
       {
 
          return Bind(psz, port, "tcp", depth);
@@ -308,7 +308,7 @@ namespace sockets
       }
 
 
-      int Bind(const scoped_string & strInterface, port_t port, const string & protocol, int depth = 20)
+      int Bind(const ::scoped_string & scopedstrInterface, port_t port, const string & protocol, int depth = 20)
       {
 
          return Bind(::networking::address(pszInterface, port), protocol, depth);

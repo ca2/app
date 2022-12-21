@@ -63,8 +63,8 @@ inline ::wd16_character * string_uppercase(::wd16_character * psz, strsize size)
 inline ::wd16_character * string_reverse(::wd16_character * psz) noexcept;
 
 
-inline strsize string_span_including(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept;
-inline strsize string_span_excluding(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept;
+inline strsize string_skip_any_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept;
+inline strsize string_find_first_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept;
 
 
 inline strsize get_formatted_length(const ::wd16_character * pszFormat, va_list args) noexcept;

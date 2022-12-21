@@ -859,7 +859,7 @@
 ////bool send_input_string(string str, int iSleep)
 ////{
 ////
-////   const scoped_string & str = str;
+////   const ::scoped_string & scopedstr = str;
 ////
 ////   while (psz != nullptr && *psz != '\0')
 ////   {

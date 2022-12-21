@@ -33,7 +33,7 @@ namespace str
       //bool _01Read(char * psz);
 
       bool _01Read(string & str);
-      bool ExtractFolderPath(const char * pcszFilePath);
+      bool ExtractFolderPath(const ::scoped_string & scopedstrFilePath);
 
       void Restart();
       void Restart(string &strNew);

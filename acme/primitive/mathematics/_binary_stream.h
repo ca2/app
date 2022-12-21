@@ -52,7 +52,7 @@ binary_stream < FILE > & operator >> (binary_stream < FILE > & istream, biunique
          istream >> m_ba;
       }
    }
-   catch (const scoped_string & str)
+   catch (const ::scoped_string & scopedstr)
    {
       m_ab.erase_all();
       m_ba.erase_all();

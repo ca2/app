@@ -762,14 +762,14 @@ public:
    ::string get_word(const ::ansi_character * pszBreakCharacters = " \n\t\r,;")
    {
 
-      return read_span_excluding(pszBreakCharacters);
+      return read_find_first_character_in(pszBreakCharacters);
 
    }
 
-   ::string read_span_excluding(const ::ansi_character * pszBreakCharacters)
+   ::string read_find_first_character_in(const ::ansi_character * pszBreakCharacters)
    {
 
-      auto size = string_span_excluding(m_psz, pszBreakCharacters);
+      auto size = string_find_first_character_in(m_psz, pszBreakCharacters);
 
       ::string str(m_psz, size);
 

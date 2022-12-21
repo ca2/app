@@ -85,12 +85,12 @@ namespace file
    }
 
 
-   bool enumerator::list(string_array & stra, const scoped_string & str, ::file::e_flag eflag)
+   bool enumerator::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
    {
 
       ::file::listing listing;
 
-      listing.set_listing(psz, e_depth_none, eflag);
+      listing.set_listing(scopedstr, e_depth_none, eflag);
 
       if(!enumerate(listing))
       {

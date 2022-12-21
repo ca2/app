@@ -46,15 +46,15 @@ namespace console
 //#if !defined(_UWP) || defined(_UWP_CONSOLE)
 
 
-void press_any_key_to_exit(const scoped_string & strPrompt)
+void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 {
 
    string strPrompt;
 
-   if (pszPrompt)
+   if (scopedstrPrompt.has_char())
    {
 
-      strPrompt = pszPrompt;
+      strPrompt = scopedstrPrompt;
 
    }
    else
@@ -135,23 +135,23 @@ int safe_get_char(FILE * pfile, const class time & time)
 }
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    string strLine;
 
    strLine = "\n";
 
-   if (strTitle.size() > 0)
+   if (scopedstrTitle.size() > 0)
    {
 
-      strLine += strTitle;
+      strLine += scopedstrTitle;
 
       strLine += "\n";
 
    }
 
-   strLine += str;
+   strLine += scopedstr;
 
    enum_dialog_result edialogresultDefault = e_dialog_result_ok;
 
@@ -168,7 +168,7 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string &
       str += "y/n";
    }
 
-   if (strDetails.is_empty())
+   if (scopedstrDetails.is_empty())
    {
 
       str += "/d";
@@ -220,7 +220,7 @@ repeat:
    if (emessagebox & e_message_box_icon_exclamation || emessagebox & e_message_box_icon_stop)
    {
 
-      fputs(strLine, stderr);
+      fputs(strLine.c_str(), stderr);
 
       fflush(stderr);
 
@@ -228,13 +228,13 @@ repeat:
    else
    {
 
-      fputs(strLine, stdout);
+      fputs(strLine.c_str(), stdout);
 
       fflush(stdout);
 
    }
 
-   const scoped_string & strAcceptedAnswer = "";
+   const char * pszAcceptedAnswer = "";
 
    if (etype == e_message_box_yes_no_cancel)
    {
@@ -256,13 +256,13 @@ repeat:
 
       c = ::ansi_tolower(c);
 
-      if (!::is_empty(pszDetails))
+      if (scopedstrDetails.has_char())
       {
 
          if (c == 'd')
          {
 
-            printf("%s", pszDetails);
+            printf("%s", scopedstrDetails.c_str());
 
             goto repeat;
 
@@ -364,10 +364,10 @@ int getche()
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::e_message_box & emessagebox)
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
 {
 
-   return message_box_for_console(str, strTitle, emessagebox, nullptr);
+   return message_box_for_console(scopedstr, scopedstrTitle, emessagebox, nullptr);
 
 }
 

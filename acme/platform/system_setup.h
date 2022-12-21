@@ -56,8 +56,8 @@ public:
    static system_setup *         s_psetupList;
 
 
-   system_setup(::system_setup::enum_flag eflag, const scoped_string & strName);
-   system_setup(PFN_factory pfnFactory, const scoped_string & strName);
+   system_setup(::system_setup::enum_flag eflag, const char * pszName);
+   system_setup(PFN_factory pfnFactory, const char * pszName);
 
 
    void construct();
@@ -67,9 +67,9 @@ public:
    [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static system_setup* get_last(::system_setup::enum_flag eflag, const scoped_string & strName = nullptr);
-   static system_setup* get_first(::system_setup::enum_flag eflag, const scoped_string & strName = nullptr);
-   static PFN_factory get_factory_function(const scoped_string & strName = nullptr);
+   static system_setup* get_last(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = nullptr);
+   static system_setup* get_first(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = nullptr);
+   static PFN_factory get_factory_function(const ::scoped_string & scopedstrName = nullptr);
 
 
    virtual ::pointer<::acme::library>create_library();
@@ -95,8 +95,8 @@ public:
    ::pointer<::acme::library>_create_library() override { return __new(LIBRARY); }
 
 
-   explicit static_library_factory(const scoped_string & strName = "") :
-      system_setup(flag_library, pszName)
+   explicit static_library_factory(const ::scoped_string & scopedstrName = "") :
+      system_setup(flag_library, scopedstrName)
    {
 
 
@@ -116,8 +116,8 @@ public:
    ::pointer < ::particle > _create_particle() override { return __new(OBJECT); }
 
 
-   explicit static_object_factory(::system_setup::enum_flag eflag, const scoped_string & strName = "") :
-      system_setup(eflag, pszName)
+   explicit static_object_factory(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = "") :
+      system_setup(eflag, scopedstrName)
    {
 
    }
@@ -163,8 +163,8 @@ public:
    }
 
 
-   static_application_factory(const scoped_string & strName = "") :
-      system_setup(flag_application, pszName)
+   static_application_factory(const ::scoped_string & scopedstrName = "") :
+      system_setup(flag_application, scopedstrName)
    {
 
 

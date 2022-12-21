@@ -11,7 +11,7 @@
 //}
 //
 //
-//const char * atom_space::get_id(const scoped_string & str)
+//const char * atom_space::get_id(const ::scoped_string & scopedstr)
 //{
 //
 //   if (::is_null(psz) || *psz == '\0')
@@ -96,7 +96,7 @@
 //}
 //
 //
-//atom atom_space::operator()(const scoped_string & str)
+//atom atom_space::operator()(const ::scoped_string & scopedstr)
 //{
 //
 //   return ::atom(get_id(psz), this);
@@ -208,7 +208,7 @@
 ////}
 //
 //
-//bool atom_space::find(const scoped_string & strFind,index & iIndex)
+//bool atom_space::find(const ::scoped_string & scopedstrFind,index & iIndex)
 //{
 //
 //   if(m_psza.m_nSize <= 0)
@@ -226,7 +226,7 @@
 //
 //   i64 iCompare = 0;
 //
-//   const scoped_string & str;
+//   const ::scoped_string & scopedstr;
 //
 //   while(iUpperBound - iLowerBound >= 0)
 //   {
@@ -420,7 +420,7 @@
 //}
 //
 //
-//bool strid_array::find(const scoped_string & str,index & iIndex) const
+//bool strid_array::find(const ::scoped_string & scopedstr,index & iIndex) const
 //{
 // 
 //   single_lock synchronouslock(mutex(),true);

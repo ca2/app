@@ -315,7 +315,7 @@ namespace networking
 //
 //
 //   /*  virtual  */
-//   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const scoped_string & strNewExternalIPAddress )
+//   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewExternalIPAddress(const ::scoped_string & scopedstrNewExternalIPAddress )
 //   {
 //	   string tempStr;
 //	   tempStr.format( "UPnP has detected a machine in your external IP address \n"

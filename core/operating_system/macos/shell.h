@@ -251,7 +251,7 @@
 //       
 //       
 //       // xxx    static WH_SHSTDAPI(::u32) SHGetFileInfo(
-//       // xxx       const scoped_string & strPath,
+//       // xxx       const ::file::path & path,
 //       // xxx       ::u32 dwFileAttributes,
 //       // xxx       SHFILEINFO *psfi,
 //       // xxx       ::u32 cbFileInfo,

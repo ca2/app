@@ -9,7 +9,7 @@ class CLASS_DECL_ACME invalid_character :
 public:
 
 
-   invalid_character(const scoped_string & strMessage = nullptr);
+   invalid_character(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~invalid_character();
 
 

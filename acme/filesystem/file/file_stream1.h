@@ -18,7 +18,7 @@
 //
 //
 //      file_stream();
-//      file_stream(const scoped_string & strFileName,u32 nOpenFlags,::acme::application * papp = ::get_app());
+//      file_stream(const ::file::path & path,u32 nOpenFlags,::acme::application * papp = ::get_app());
 //
 //      file_stream(::file::file * preader);
 ////      file_stream(const file_stream & preader);

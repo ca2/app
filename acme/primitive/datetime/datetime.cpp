@@ -268,7 +268,7 @@ namespace datetime
    }
 
 
-   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const scoped_string & str, i32 iPath, i32 & iPathCount)
+   //i64 datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, i32 iPath, i32 & iPathCount)
    //{
 
    //   if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -839,7 +839,7 @@ namespace datetime
    }
 
 
-   //string datetime::strftime(const scoped_string & str, const ::earth::time & time, const ::earth::time_shift& timeshift)
+   //string datetime::strftime(const ::scoped_string & scopedstr, const ::earth::time & time, const ::earth::time_shift& timeshift)
    //{
 
    //   string strFormat(psz);
@@ -866,7 +866,7 @@ namespace datetime
    //}
 
 
-   //string datetime::utc_strftime(const scoped_string & str)
+   //string datetime::utc_strftime(const ::scoped_string & scopedstr)
    //{
    //   
    //   return utc_strftime(psz, ::earth::time::now());
@@ -1231,7 +1231,7 @@ namespace datetime
       property_set set;
       bool bAdd = false;
       bool bMinus = false;
-      const scoped_string & str = str;
+      const char * psz = str.c_str();
       string strNumber;
       string strText1;
       string strChar;
@@ -1252,25 +1252,25 @@ namespace datetime
                   || (pcontext != nullptr && pcontext->matches(idCalendarDay, strText1))
                   || (pcontext != nullptr && pcontext->matches(idCalendarDays, strText1)))
                {
-                  span.m_iDay = atoi(strNumber);
+                  span.m_iDay = atoi(strNumber.c_str());
                }
                else if (strText1 == "week" || strText1 == "weeks"
                   || (pcontext != nullptr && pcontext->matches(idCalendarWeek, strText1))
                   || (pcontext != nullptr && pcontext->matches(idCalendarWeeks, strText1)))
                {
-                  span.m_iDay = atoi(strNumber) * 7;
+                  span.m_iDay = atoi(strNumber.c_str()) * 7;
                }
                else if (strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
                   || (pcontext != nullptr && pcontext->matches(idCalendarHour, strText1))
                   || (pcontext != nullptr && pcontext->matches(idCalendarHour, strText1)))
                {
-                  span.m_iHour = atoi(strNumber);
+                  span.m_iHour = atoi(strNumber.c_str());
                }
                else if (strText1 == "year" || strText1 == "years"
                   || (pcontext != nullptr && pcontext->matches(idCalendarYear, strText1))
                   || (pcontext != nullptr && pcontext->matches(idCalendarYears, strText1)))
                {
-                  span.m_iYear = atoi(strNumber);
+                  span.m_iYear = atoi(strNumber.c_str());
                }
                else if (strText1 == "now"
                   || (pcontext != nullptr && pcontext->matches(idCalendarNow, strText1)))
@@ -1357,9 +1357,9 @@ namespace datetime
       }
       return time;
    }
-   void parse_br_str(const scoped_string & str, property_set& set)
+   void parse_br_str(const ::scoped_string & scopedstr, property_set& set)
    {
-      string src(psz);
+      string src(scopedstr);
       src.trim();
       string str;
       if (src.get_length() >= 2)
@@ -1581,9 +1581,9 @@ namespace datetime
 
          time = ::earth::time::now();
 
-         i32 i1 = atoi(presult->get_match(2));
+         i32 i1 = atoi(presult->get_match(2).c_str());
 
-         i32 i2 = atoi(presult->get_match(3));
+         i32 i2 = atoi(presult->get_match(3).c_str());
 
          i32 iCount = 0;
 

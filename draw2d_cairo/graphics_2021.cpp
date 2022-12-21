@@ -3918,7 +3918,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const scoped_string & strStatus = cairo_status_to_string(status);
+            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
             FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -4273,7 +4273,7 @@ namespace draw2d_cairo
    //        if (status != CAIRO_STATUS_SUCCESS)
    //        {
 
-   //            const scoped_string & strStatus = cairo_status_to_string(status);
+   //            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
    //            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -4608,7 +4608,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const scoped_string & strStatus = cairo_status_to_string(status);
+            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
             FORMATTED_TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
@@ -6204,7 +6204,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const scoped_string & strStatus = cairo_status_to_string(status);
+         const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
          FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -6240,7 +6240,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const scoped_string & strStatus = cairo_status_to_string(status);
+         const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
 
          FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -6831,7 +6831,7 @@ namespace draw2d_cairo
 
          auto ftlibrary = __ftlibrary();
 
-         const scoped_string & str = path;
+         const ::scoped_string & scopedstr = path;
 
          FT_Error error = FT_New_Face(ftlibrary, psz, 0, &ftface);
 

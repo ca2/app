@@ -29,7 +29,7 @@ namespace acme
 
 
 
-      bool tx::open(const scoped_string & strChannel,launcher * plauncher)
+      bool tx::open(const ::scoped_string & scopedstrChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -66,7 +66,7 @@ namespace acme
       }
 
 
-      bool tx::send(const scoped_string & strMessage,::u32 tickTimeout)
+      bool tx::send(const ::scoped_string & scopedstrMessage,::u32 tickTimeout)
       {
 
          data_struct data;
@@ -100,7 +100,7 @@ namespace acme
          if(!is_tx_ok())
             return false;
 
-         const scoped_string & strMessage = (const char *)pdata;
+         const ::scoped_string & scopedstrMessage = (const char *)pdata;
 
          ::count c = len;
 
@@ -169,7 +169,7 @@ namespace acme
       }
 
 
-      bool small_ipc_rx_channel::create(const scoped_string & strChannel)
+      bool small_ipc_rx_channel::create(const ::scoped_string & scopedstrChannel)
       {
          m_key = ftok(".",'c');
 
@@ -244,7 +244,7 @@ namespace acme
 
 
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,const scoped_string & strMessage)
+      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,const ::scoped_string & scopedstrMessage)
       {
       }
 
@@ -258,7 +258,7 @@ namespace acme
 
 
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,const scoped_string & strMessage)
+      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,const ::scoped_string & scopedstrMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -396,7 +396,7 @@ namespace acme
 
 
 
-      bool ipc::open_ab(const scoped_string & strChannel,launcher * plauncher)
+      bool ipc::open_ab(const ::scoped_string & scopedstrChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -421,7 +421,7 @@ namespace acme
 
       }
 
-      bool ipc::open_ba(const scoped_string & strChannel,launcher * plauncher)
+      bool ipc::open_ba(const ::scoped_string & scopedstrChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;

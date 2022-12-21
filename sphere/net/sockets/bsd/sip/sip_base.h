@@ -12,8 +12,8 @@ namespace sockets
       string new_guid();
       string new_branchid();
       string new_derived_branchid(
-         const scoped_string & strToTag, 
-         const scoped_string & strFromTag);
+         const ::scoped_string & scopedstrToTag, 
+         const ::scoped_string & scopedstrFromTag);
 
    };
 

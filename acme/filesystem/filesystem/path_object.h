@@ -30,8 +30,8 @@ namespace file
       //using matter::set_flag;
       //using matter::has_flag;
 
-      using path::set;
-      using path::has;
+      //using path::set;
+      //using path::has;
 
    };
 
@@ -112,7 +112,7 @@ namespace file
    inline strsize path_object::sz_len() const
    {
 
-      return get_length() + 1;
+      return length() + 1;
 
    }
 

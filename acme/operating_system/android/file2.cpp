@@ -43,7 +43,7 @@ i64 fd_get_file_size(i32 fd)
 
 
 
-//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses, const scoped_string & strDll)
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //
@@ -104,7 +104,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 }
 
 
- CLASS_DECL_ACME bool _os_may_have_alias(const scoped_string & str)
+ CLASS_DECL_ACME bool _os_may_have_alias(const ::scoped_string & scopedstr)
  {
 
     return true;
@@ -115,7 +115,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 
 //
 //extern "C"
-//void android_set_cache_dir(const scoped_string & strDir)
+//void android_set_cache_dir(const ::scoped_string & scopedstrDir)
 //{
 //
 //   ::acmeacmesystem()->m_pathCacheDir = pszDir;

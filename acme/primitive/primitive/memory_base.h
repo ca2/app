@@ -147,17 +147,17 @@ public:
 
    virtual char * c_str();
 
-   virtual bool begins(const block& block) const;
-   virtual bool begins(const scoped_string & str, strsize iCount = -1) const;
-   virtual bool case_insensitive_begins(const scoped_string & str, strsize iCount = -1) const;
-   virtual bool begins(const ::string & str, strsize iCount = -1) const;
-   virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
+   virtual bool begins(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).begins(scopedstr); }
+   //virtual bool begins(const ::scoped_string & scopedstr, strsize iCount = -1) const;
+   virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ::scoped_string(*this).case_insensitive_begins(scopedstr); }
+   //virtual bool begins(const ::string & str, strsize iCount = -1) const;
+   //virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
 
-   virtual bool ends(const block& block) const;
-   virtual bool ends(const scoped_string & str, strsize iCount = -1) const;
-   virtual bool case_insensitive_ends(const scoped_string & str, strsize iCount = -1) const;
-   virtual bool ends(const ::string & str, strsize iCount = -1) const;
-   virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
+   virtual bool ends(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).ends(scopedstr); }
+   //virtual bool ends(const ::scoped_string & scopedstr, strsize iCount = -1) const;
+   virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).case_insensitive_ends(scopedstr); }
+   //virtual bool ends(const ::string & str, strsize iCount = -1) const;
+   //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 
    virtual memory detach_as_primitive_memory();
    //virtual byte * detach_virtual_memory();
@@ -267,11 +267,11 @@ public:
 
 
    void from_string(const ::wide_character * pwsz);
-   void from_string(const scoped_string & str);
+   void from_string(const ::scoped_string & scopedstr);
    void from_string(const ::string & str);
    void from_string(const ::payload & payload);
    void append_from_string(const ::wide_character * pwsz);
-   void append_from_string(const scoped_string & str);
+   void append_from_string(const ::scoped_string & scopedstr);
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
@@ -309,20 +309,20 @@ public:
    void move_and_grow(memsize offset);
    void move(memsize offset, bool bGrow = false);
 
-   //void assign(const scoped_string & str);
-   //void append(const scoped_string & str);
+   //void assign(const ::scoped_string & scopedstr);
+   //void append(const ::scoped_string & scopedstr);
 
    void to_hex(string & str, memsize iStart = 0, memsize size = -1);
    string to_hex(memsize iStart = 0, memsize size = -1);
-   strsize from_hex(const scoped_string & str, strsize nCount = -1);
+   strsize from_hex(const ::scoped_string & scopedstr);
 
    void to_base64(string & str, memsize iStart = 0, memsize size = -1);
    string to_base64(memsize iStart = 0, memsize size = -1);
-   void from_base64(const scoped_string & str, strsize nCount = -1);
+   void from_base64(const ::scoped_string & scopedstr);
 
    inline void to_asc(string & str) const { str.assign((const char *) data(), size()); }
    inline string to_asc() const { string str; to_asc(str); return str; }
-   inline void from_asc(const string& str) { assign(str.c_str(), str.get_length()); }
+   inline void from_asc(const ::scoped_string & scopedstr) { assign(scopedstr.c_str(), scopedstr.size()); }
 
    bool operator == (const memory_base & s) const;
    bool operator == (const struct block & block) const ;

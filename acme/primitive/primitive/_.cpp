@@ -15,11 +15,10 @@ void _debug_debug_string_string()
    /*auto bEndsInHa1 = string_ends<const ::ansi_character>(atom, "ha");
    auto bEndsInHa2 = string_ends_ci<const ::ansi_character>(atom, "Ha");*/
 
-
 }
 
 
-void __assert_particle_ok(const ::particle * pOb, const scoped_string & strFileName, i32 nLine)
+void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFileName, i32 nLine)
 {
 
    if (pOb == nullptr)

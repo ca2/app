@@ -34,7 +34,7 @@ off_t tell64(int fd);
 //#include "gnome.h"
 
 
-//int_bool aaa_gdk_launch_uri(const scoped_string & strUri, char * pszError = NULL, int iBufferSize = 0);
+//int_bool aaa_gdk_launch_uri(const ::scoped_string & scopedstrUri, char * pszError = NULL, int iBufferSize = 0);
 
 
 //typedef struct _cairo_rectangle_int cairo_rectangle_int_t;

@@ -28,7 +28,7 @@ namespace windows
       void update(::nano_device * pnanodevice) override;
 
 
-      static HFONT _create_point_font(int nPointSize, const scoped_string & strFaceName, bool bBold, HDC hdc, LOGFONTW * plf);
+      static HFONT _create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW * plf);
       static HFONT _create_point_font_indirect(LOGFONTW * pLogFont, HDC hdc);
 
    };

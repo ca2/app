@@ -65,15 +65,15 @@ namespace folder_zip
 
 
       //virtual bool zip_open(const char *,::u32);
-      //virtual bool zip_open(::zip::file * pzfile,const char * pcszFileName);
+      //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 
       //virtual bool unzip_open(::file::file * pfile, const string_array & = {}, int iBufferLevel = 2, ::file::enum_type * petype = nullptr);
-      //virtual bool unzip_open(::zip::file * pzfile,const char * pcszFileName);
+      //virtual bool unzip_open(::zip::file * pzfile,const ::file::path & path);
 
       //virtual bool unzip_open(const char *, ::file::enum_type * petype = nullptr);
 
-      //virtual bool locate(const scoped_string & strFileName);
+      //virtual bool locate(const ::file::path & path);
 
       //virtual void add_file(const ::file::path & pszDir,const ::file::path & pszRelative);
 

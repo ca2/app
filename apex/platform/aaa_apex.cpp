@@ -138,14 +138,14 @@ namespace apex
    }
 
 
-   bool apex::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema)
+   bool apex::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       return false;
 
    }
 
-   bool apex::set_application_installed(const ::file::path& pathExe, string strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema)
+   bool apex::set_application_installed(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
 

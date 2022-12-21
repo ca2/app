@@ -149,7 +149,7 @@
 //
 ////}
 //
-//void string_buffer::set(const scoped_string & str,strsize len)
+//void string_buffer::set(const ::scoped_string & scopedstr,strsize len)
 //{
 //      
 //   if(psz == nullptr || *psz == '\0' || len <= 0)
@@ -162,7 +162,7 @@
 //
 //}
 //
-//void string_buffer::append(const scoped_string & str,strsize len)
+//void string_buffer::append(const ::scoped_string & scopedstr,strsize len)
 //{
 //
 //   if(psz == nullptr || *psz == '\0' || len <= 0)

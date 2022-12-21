@@ -232,12 +232,12 @@ namespace ftp
    /// see http://pobox.com/~djb/proto/eplf.txt
    /// "+i8388621.29609,m824255902,/,\tdev"
    /// "+i8388621.44468,m839956783,r,s10376,\tRFCEPLF"
-   bool file_list_parser::IsEPLS(const scoped_string & strLine)
+   bool file_list_parser::IsEPLS(const ::scoped_string & scopedstrLine)
    {
       return pszLine && *pszLine == ('+');
    }
 
-   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const scoped_string & strLine, int iLength)
+   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
    {
       if (!IsEPLS(pszLine))
          return false;
@@ -304,7 +304,7 @@ namespace ftp
    /// Also NetPresenz for the Mac:
    /// "-------r--         326  1391972  1392298 Nov 22  1995 MegaPhone.sit"
    /// "drwxrwxr-x               folder        2 May 10  1996 network"
-   bool file_list_parser::IsUNIXStyleListing(const scoped_string & strLine)
+   bool file_list_parser::IsUNIXStyleListing(const ::scoped_string & scopedstrLine)
    {
       if (pszLine == nullptr)
          return false;
@@ -323,7 +323,7 @@ namespace ftp
       return false;
    }
 
-   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const scoped_string & strLine, int iLength)
+   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
    {
       if (!IsUNIXStyleListing(pszLine))
          return false;
@@ -456,12 +456,12 @@ namespace ftp
    /// "CORE.DIR;1          1  8-SEP-1996 16:09 [SYSTEM] (RWE,RWE,RE,RE)"
    /// and non-MutliNet VMS:
    /// "CII-MANUAL.TEX;1  213/216  29-JAN-1996 03:33:12  [ANONYMOU,ANONYMOUS]   (RWED,RWED,,)"
-   bool file_list_parser::IsMultiNetListing(const scoped_string & strLine)
+   bool file_list_parser::IsMultiNetListing(const ::scoped_string & scopedstrLine)
    {
       return pszLine && strchr(pszLine, ';') != nullptr;
    }
 
-   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const scoped_string & strLine, int iLength)
+   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
    {
       if (!IsMultiNetListing(pszLine))
          return false;
@@ -530,12 +530,12 @@ namespace ftp
    /// 04-27-00  09:09PM       <DIR>          licensed
    /// 07-18-00  10:16AM       <DIR>          pub
    /// 04-14-00  03:47PM                  589 readme.htm
-   bool file_list_parser::IsMSDOSListing(const scoped_string & strLine)
+   bool file_list_parser::IsMSDOSListing(const ::scoped_string & scopedstrLine)
    {
       return pszLine && ansi_char_isdigit(pszLine[0]);
    }
 
-   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const scoped_string & strLine, int iLength)
+   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
    {
       if (!IsMSDOSListing(pszLine))
          return false;

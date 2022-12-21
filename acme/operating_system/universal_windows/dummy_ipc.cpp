@@ -56,7 +56,7 @@
 //      }
 //
 //
-//      bool tx::open(const scoped_string & strKey,launcher * plauncher)
+//      bool tx::open(const ::scoped_string & scopedstrKey,launcher * plauncher)
 //      {
 //
 //         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
@@ -88,7 +88,7 @@
 //      }
 //
 //
-//      bool tx::send(const scoped_string & strMessage,unsigned int tickTimeout)
+//      bool tx::send(const ::scoped_string & scopedstrMessage,unsigned int tickTimeout)
 //      {
 //
 //         ::winrt::Windows::Storage::StorageFolder ^ folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
@@ -163,7 +163,7 @@
 //      }
 //
 //
-//      bool rx::create(const scoped_string & strKey)
+//      bool rx::create(const ::scoped_string & scopedstrKey)
 //      {
 //
 //
@@ -284,7 +284,7 @@
 //      }
 //
 //
-//      void rx::receiver::on_receive(rx * prx,const scoped_string & strMessage)
+//      void rx::receiver::on_receive(rx * prx,const ::scoped_string & scopedstrMessage)
 //      {
 //      }
 //
@@ -296,7 +296,7 @@
 //      {
 //      }
 //
-//      void * rx::on_receive(rx * prx,const scoped_string & strMessage)
+//      void * rx::on_receive(rx * prx,const ::scoped_string & scopedstrMessage)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -478,7 +478,7 @@
 //
 //      }
 //
-//      bool ipc::open_ab(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
+//      bool ipc::open_ab(const ::scoped_string & scopedstrKey,const ::scoped_string & scopedstrModule,launcher * plauncher)
 //      {
 //
 //         /*m_strChannel = pszKey;
@@ -509,7 +509,7 @@
 //
 //      }
 //
-//      bool ipc::open_ba(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
+//      bool ipc::open_ba(const ::scoped_string & scopedstrKey,const ::scoped_string & scopedstrModule,launcher * plauncher)
 //      {
 //
 //         //m_strChannel = pszKey;

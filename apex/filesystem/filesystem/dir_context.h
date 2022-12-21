@@ -68,25 +68,25 @@
       //inline bool list_recursively_directory(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
-      virtual bool  is(const ::file::path & pcsz);
+      virtual bool  is(const ::file::path & path);
 
       virtual bool  _is(const ::file::path& pcsz);
 
-      virtual bool  __is(const ::file::path & pcsz, bool & bIsDir);
+      virtual bool  __is(const ::file::path & path, bool & bIsDir);
 
 
-      virtual bool  is_cached(bool & bIs, const ::file::path & pcsz);
+      virtual bool  is_cached(bool & bIs, const ::file::path & path);
 
 
-      virtual bool  name_is(const ::file::path & pcsz);
+      virtual bool  name_is(const ::file::path & path);
 
 
-      virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath);
+      virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
 
-      virtual bool  is_inside_time(const ::file::path & pcsz);
+      virtual bool  is_inside_time(const ::file::path & path);
 
       virtual ::file::listing & root_ones(::file::listing & listing);
-      virtual void  create(const ::file::path & pcsz);
+      virtual void  create(const ::file::path & path);
 
       virtual void  erase(const ::file::path & psz, bool bRecursive = true);
 
@@ -127,8 +127,8 @@
       virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
-      virtual ::file::path commonappdata(const scoped_string & strAppId, const scoped_string & strBuild = nullptr, const scoped_string & strPlatform = nullptr, const scoped_string & strConfiguration = nullptr);
-      virtual ::file::path commonappdata_locale_schema(const scoped_string & strAppId, const scoped_string & strBuild = nullptr, const scoped_string & strPlatform = nullptr, const scoped_string & strConfiguration = nullptr, const scoped_string & strLocale = nullptr, const scoped_string & strSchema = nullptr);
+      virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
+      virtual ::file::path commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr, const ::scoped_string & scopedstrLocale = nullptr, const ::scoped_string & scopedstrSchema = nullptr);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 
@@ -201,18 +201,18 @@
       //virtual ::file::listing & ls_relative_name(::file::listing & listing);
 
 
-      //virtual bool  has_subdir(const ::file::path & pcsz);
+      //virtual bool  has_subdir(const ::file::path & path);
 
-      //virtual bool  is(const ::file::path & pcsz);
+      //virtual bool  is(const ::file::path & path);
 
       //virtual bool  is(const ::string & str);
       //virtual bool  is(const ::payload & payload);
-      //virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath);
+      //virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
 
-      //virtual bool  is_inside_time(const ::file::path & pcsz);
+      //virtual bool  is_inside_time(const ::file::path & path);
 
       //virtual ::file::listing & root_ones(::file::listing & listing);
-      //virtual bool  mk(const ::file::path & pcsz);
+      //virtual bool  mk(const ::file::path & path);
 
       //virtual bool  rm(const ::file::path & psz, bool bRecursive = true);
 

@@ -57,9 +57,12 @@ public:
 
    //virtual void close();
 
+
    void flush();
 
+
    void close() {}
+
 
    bool is_empty() const
    {
@@ -69,11 +72,11 @@ public:
    }
 
 
-
-
-   filesize get_length() const
+   filesize length() const
    {
-      return m_str.get_length();
+
+      return m_str.length();
+
    }
 
 
@@ -111,7 +114,7 @@ public:
 
    //void alloc_up(strsize iAtLeast);
 
-   //void set(const scoped_string & str, strsize len)
+   //void set(const ::scoped_string & scopedstr, strsize len)
    //{
 
 
@@ -124,7 +127,7 @@ public:
    //}
 
 
-   //void append(const scoped_string & str, strsize len)
+   //void append(const ::scoped_string & scopedstr, strsize len)
    //{
 
    //   m_str.append

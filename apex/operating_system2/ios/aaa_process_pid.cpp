@@ -307,7 +307,7 @@ string module_path_from_pid(unsigned int uiPid)
 
 
 
-//atom_array app_get_pid(const scoped_string & str)
+//atom_array app_get_pid(const ::scoped_string & scopedstr)
 //{
 //
 //   return atom_array();
@@ -343,7 +343,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //
 //   string strArg;
 //
-//   const scoped_string & str = strCmdLine;
+//   const ::scoped_string & scopedstr = strCmdLine;
 //
 //   string strChar;
 //

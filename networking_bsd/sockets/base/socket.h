@@ -751,8 +751,8 @@ namespace sockets_bsd
       void run() override;
       bool step() override;
 
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & strFormat, ...);
-      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstrFormat, ...);
+      //virtual void __tracef(object * pparticle, enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
       string get_short_description() override;
 

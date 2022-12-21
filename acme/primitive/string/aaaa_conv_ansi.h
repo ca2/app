@@ -63,7 +63,7 @@ inline void to_string(string& str, const bool & b);
 inline void to_string(string& str, const ::ansi_character & ansich);
 inline void to_string(string& str, const ::wide_character & widech);
 
-inline void to_string(string& str, const scoped_string & str);
+inline void to_string(string& str, const ::scoped_string & scopedstr);
 inline void to_string(string& str, char * const psz);
 
 inline void to_string(string& str, const ::wd16_character * psz);

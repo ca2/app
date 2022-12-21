@@ -875,11 +875,11 @@ namespace html
    const char * style::parse(html_data * pdata, const ::string & strParam)
    {
 
-      const scoped_string & str = strParam;
+      const ::scoped_string & scopedstr = strParam;
       __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
-         const scoped_string & strStart = psz;
+         const ::scoped_string & scopedstrStart = psz;
          while(*psz != ':' && *psz != '\0' && *psz != '}')
          {
             psz++;
@@ -1099,8 +1099,8 @@ namespace html
 
       if(iFindDigit >= 0 && iFindColor >= 0 && iFindDigit > iFindColor)
       {
-         const scoped_string & str = &str[iFindColor];
-         const scoped_string & strStart = psz;
+         const ::scoped_string & scopedstr = &str[iFindColor];
+         const ::scoped_string & scopedstrStart = psz;
          if(iFindRgb >= 0)
          {
             try
@@ -1245,8 +1245,8 @@ namespace html
       if(iFindColor < 0)
          return false;
 
-      const scoped_string & str = &pszParam[iFindColor];
-      const scoped_string & strStart = psz;
+      const ::scoped_string & scopedstr = &pszParam[iFindColor];
+      const ::scoped_string & scopedstrStart = psz;
       if(iFindRgb >= 0)
       {
          try

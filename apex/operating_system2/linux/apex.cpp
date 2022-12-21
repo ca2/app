@@ -42,8 +42,8 @@ CLASS_DECL_APEX bool __node_apex_pos_init()
 
 }
 
-//void __clear_mq(const scoped_string & strDebug, itask_t atom, bool bClose);
-//void __clear_mq(const scoped_string & strDebug, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, itask_t atom, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, bool bClose);
 
 CLASS_DECL_APEX bool __node_apex_pre_term()
 {
@@ -145,7 +145,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 
 
 
-void apex_application_main(int argc, char* argv[], const scoped_string & strCommandLine)
+void apex_application_main(int argc, char* argv[], const ::scoped_string & scopedstrCommandLine)
 {
 
 

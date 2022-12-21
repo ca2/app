@@ -26,7 +26,7 @@
 
 // #include "apex/os/apple/ns_exception.h"
 
-void ns_create_alias(const scoped_string & strTarget, const scoped_string & strSource);
+void ns_create_alias(const ::scoped_string & scopedstrTarget, const ::scoped_string & scopedstrSource);
 // int __node_is_debugger_attached()
 // // Returns true if the current process is being debugged (either
 // // running under the debugger or has a debugger attached post facto).
@@ -225,7 +225,7 @@ void ns_create_alias(const scoped_string & strTarget, const scoped_string & strS
 
 // }
 
-// void ns_log(const scoped_string & strLog);
+// void ns_log(const ::scoped_string & scopedstrLog);
 
 
 namespace apex

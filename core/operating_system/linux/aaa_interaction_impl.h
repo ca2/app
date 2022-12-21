@@ -112,9 +112,9 @@ namespace linux
       // for child windows, views, panes etc
 //      virtual bool create_window(
 //      ::user::interaction * pinteraction,
-//      const scoped_string & strClassName,
+//      const ::scoped_string & scopedstrClassName,
 
-//      const scoped_string & strWindowName,
+//      const ::scoped_string & scopedstrWindowName,
 
 //      ::u32 dwStyle,
 //      const ::rectangle & rectangle,

@@ -4,7 +4,7 @@
 // //thread_int_ptr < iptr > t_iAvoidParsingException;
 
 
-// parsing_exception::parsing_exception(const scoped_string & strMessage) :
+// parsing_exception::parsing_exception(const ::scoped_string & scopedstrMessage) :
 //    ::exception(pszMessage)
 // {
 
@@ -76,7 +76,7 @@ avoid_parsing_exception::~avoid_parsing_exception()
 
 
 
-network_payload_parsing_exception::network_payload_parsing_exception(const scoped_string & strMessage) :
+network_payload_parsing_exception::network_payload_parsing_exception(const ::scoped_string & scopedstrMessage) :
    parsing_exception(pszMessage)
 {
 

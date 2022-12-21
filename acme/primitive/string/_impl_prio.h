@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-CLASS_DECL_ACME i64 strtoi(const scoped_string & str);
+CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME i64 strtoi(const ::wide_character * psz);
 
 
@@ -97,11 +97,11 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 
 
 //template < primitive_atom ATOM >
-//inline ::string operator+(const scoped_string & str, const ATOM & atom) { return string(psz) + string(atom); }
+//inline ::string operator+(const ::scoped_string & scopedstr, const ATOM & atom) { return string(psz) + string(atom); }
 //
 //
 //template < primitive_payload PAYLOAD >
-//inline ::string operator+(const scoped_string & str, const PAYLOAD & payload) { return string(psz) + string(payload); }
+//inline ::string operator+(const ::scoped_string & scopedstr, const PAYLOAD & payload) { return string(psz) + string(payload); }
 
 //
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >

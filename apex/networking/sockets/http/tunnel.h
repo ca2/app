@@ -63,7 +63,7 @@ namespace sockets
       virtual void OnFirst() override;
       virtual void OnHeader(atom idKey, const string &) override;
       virtual void OnHeaderComplete() override;
-      virtual void OnData(const scoped_string & str, memsize size) override;
+      virtual void OnData(const ::scoped_string & scopedstr, memsize size) override;
 
 
    };

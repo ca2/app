@@ -79,8 +79,8 @@ inline ::ansi_character * ansi_lower(::ansi_character * pch);
 inline ::ansi_character * ansi_upper(::ansi_character * pch);
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteria, const scoped_string & strValue);
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * pszCriteria, const scoped_string & strValue);
+CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
 
 
 CLASS_DECL_ACME void ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, i32 * numargs, i32 * numchars);

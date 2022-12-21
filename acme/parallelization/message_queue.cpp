@@ -148,7 +148,7 @@ void message_queue::kick_idle()
 
          }
 
-         auto iMessage = message.m_atom.i64();
+         auto iMessage = message.m_atom.as_i64();
 
          if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
          {
@@ -216,7 +216,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_atom.i64() >= wMsgFilterMin && msg.m_atom.i64() <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_atom.as_i64() >= wMsgFilterMin && msg.m_atom.as_i64() <= wMsgFilterMax)
       {
 
          *pMsg = msg;

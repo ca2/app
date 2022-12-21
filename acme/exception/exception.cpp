@@ -24,8 +24,8 @@ exception::exception()
 
 
 //#ifdef ANDROID
-exception::exception(const ::e_status & estatus, const scoped_string & strMessage, const scoped_string & strDetails, i32 iSkip, void * caller_address) :
-exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, pszDetails, iSkip, caller_address)
+exception::exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address) :
+exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessage, scopedstrDetails, iSkip, caller_address)
 {
    
    
@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, psz
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const scoped_string & strMessage, const scoped_string & strDetails, i32 iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {
@@ -90,9 +90,9 @@ m_errorcodea(errorcodea)
 
    m_bContinue = true;
 
-   m_strMessage = pszMessage;
+   m_strMessage = scopedstrMessage;
 
-   m_strDetails = pszDetails;
+   m_strDetails = scopedstrDetails;
 
 }
 
@@ -199,7 +199,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //{
 
 
-   // CLASS_DECL_ACME void throw_interface_only(const scoped_string & strMessage)
+   // CLASS_DECL_ACME void throw_interface_only(const ::scoped_string & scopedstrMessage)
    // {
 
    //    throw ::exception(error_interface_only, pszMessage);
@@ -207,7 +207,7 @@ void __cdecl __clearerr_s(FILE *stream)
    // }
 
 
-   // CLASS_DECL_ACME void throw_not_implemented(const scoped_string & strMessage)
+   // CLASS_DECL_ACME void throw_not_implemented(const ::scoped_string & scopedstrMessage)
    // {
 
    //    throw ::exception(error_not_implemented, pszMessage);
@@ -284,7 +284,7 @@ void __cdecl __clearerr_s(FILE *stream)
 
 
 
-//   i32 exception::report_error(::u32 nType /* = e_message_box_ok */, const scoped_string & strMessageId /* = nullptr */)
+//   i32 exception::report_error(::u32 nType /* = e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      i32     nDisposition;
@@ -457,7 +457,7 @@ string estatus_to_string(::e_status estatus)
 }
 
 //
-//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const scoped_string & strMessage, const scoped_string & strDetails, i32 iSkip, void * caller_address)
+//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip, void * caller_address)
 //{
 //
 //   throw ::exception(estatus, pszMessage, pszDetails, iSkip, caller_address);
@@ -495,7 +495,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
    }
 
-   if (exception.m_strCallstack)
+   if (exception.m_strCallstack.has_char())
    {
 
       strDetails += "\n\n" + string(exception.m_strCallstack);
@@ -515,18 +515,18 @@ void throw_exception(enum_status estatus)
 }
 
 
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const scoped_string & strMessage, const scoped_string & strDetails, i32 iSkip)
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip)
 {
 
-   throw exception(estatus, strMessage, strDetails, iSkip);
+   throw exception(estatus, scopedstrMessage, scopedstrDetails, iSkip);
 
 }
 
 
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const scoped_string & strMessage)
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage)
 {
 
-   throw_exception(estatus, strMessage, nullptr);
+   throw_exception(estatus, scopedstrMessage, nullptr);
 
 }
 

@@ -218,7 +218,7 @@ namespace text
    }
 
 
-   bool table::load(const scoped_string & strBaseDir)
+   bool table::load(const ::scoped_string & scopedstrBaseDir)
    {
 
       return true;
@@ -261,10 +261,10 @@ namespace text
    }
 
 
-   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const scoped_string & str)
+   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr)
    {
 
-      (*this)[idLocale][idSchema][atom] = psz;
+      (*this)[idLocale][idSchema][atom] = scopedstr;
 
    }
 
@@ -671,7 +671,7 @@ namespace text
 //
 //      string str;
 //
-//      const scoped_string & strEnd;
+//      const ::ansi_character * pszEnd;
 //
 //      string strRoot;
 //
@@ -855,16 +855,16 @@ namespace text
       return true;
    }
 
-   string table::body(const scoped_string & str)
+   string table::body(const ::scoped_string & scopedstr)
    {
-      string table(psz);
+      string table(scopedstr);
       table.replace_with("\r", "\\r");
       table.replace_with("\n", "\\n");
       return table;
    }
 
 
-   bool table::matches(const context * pcontext, const ::atom & atom, const scoped_string & str) const
+   bool table::matches(const context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const
    {
 
       static ::atom idEn("en");
@@ -880,7 +880,7 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.case_insensitive_equals(psz))
+            if(table.case_insensitive_equals(scopedstr))
                return true;
 
          }
@@ -888,7 +888,7 @@ namespace text
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.case_insensitive_equals(psz))
+            if(table.case_insensitive_equals(scopedstr))
                return true;
          }
 
@@ -896,7 +896,7 @@ namespace text
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.case_insensitive_equals(psz))
+            if(table.case_insensitive_equals(scopedstr))
                return true;
 
          }
@@ -907,20 +907,20 @@ namespace text
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.case_insensitive_equals(psz))
+         if(table.case_insensitive_equals(scopedstr))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.case_insensitive_equals(psz))
+      if(table.case_insensitive_equals(scopedstr))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.case_insensitive_equals(psz))
+         if(table.case_insensitive_equals(scopedstr))
             return true;
 
       }
@@ -1070,7 +1070,7 @@ namespace text
    }
 
 
-   //bool context::match(string_array & stra, const scoped_string & str, ::atom idExpression, ::atom idRoot) const
+   //bool context::match(string_array & stra, const ::scoped_string & scopedstr, ::atom idExpression, ::atom idRoot) const
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());

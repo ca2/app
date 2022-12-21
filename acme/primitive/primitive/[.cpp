@@ -13,7 +13,7 @@
 //extern locale_t ::acme::get_c_locale();
 #endif
 
-payload::payload(const scoped_string & str)
+payload::payload(const ::scoped_string & scopedstr)
 {
 
    m_etype = e_type_new;
@@ -521,7 +521,7 @@ void payload::as(::atom & atom) const
 }
 
 
-//void payload::string(const scoped_string & str) const
+//void payload::string(const ::scoped_string & scopedstr) const
 //{
 //
 //   strcpy(psz, string());
@@ -1828,7 +1828,7 @@ bool payload::is_new_or_null() const
    return -2;
 }
 
-::i32 payload::case_insensitive_order(const scoped_string & str) const
+::i32 payload::case_insensitive_order(const ::scoped_string & scopedstr) const
 {
    ::payload payload(psz);
    return case_insensitive_order(payload);
@@ -1898,7 +1898,7 @@ bool payload::is_new_or_null() const
    return -2;
 }
 
-::i32 payload::compare(const scoped_string & str) const
+::i32 payload::compare(const ::scoped_string & scopedstr) const
 {
    ::payload payload(psz);
    return compare(payload);
@@ -1936,32 +1936,32 @@ bool payload::operator != (const class ::payload & payload) const
    return compare(payload) != 0;
 }
 
-bool payload::operator == (const scoped_string & str) const
+bool payload::operator == (const ::scoped_string & scopedstr) const
 {
    return string() == psz;
 }
 
-bool payload::operator < (const scoped_string & str) const
+bool payload::operator < (const ::scoped_string & scopedstr) const
 {
    return string() < psz;
 }
 
-bool payload::operator <= (const scoped_string & str) const
+bool payload::operator <= (const ::scoped_string & scopedstr) const
 {
    return string() <= psz;
 }
 
-bool payload::operator >= (const scoped_string & str) const
+bool payload::operator >= (const ::scoped_string & scopedstr) const
 {
    return string() >= psz;
 }
 
-bool payload::operator > (const scoped_string & str) const
+bool payload::operator > (const ::scoped_string & scopedstr) const
 {
    return string() > psz;
 }
 
-bool payload::operator != (const scoped_string & str) const
+bool payload::operator != (const ::scoped_string & scopedstr) const
 {
    return string() != psz;
 }
@@ -2126,7 +2126,7 @@ bool payload::operator > (bool b) const
 //   return m_etype == payload.m_etype && operator == (payload);
 //}
 //
-//bool payload::strictly_equal(const scoped_string & str) const
+//bool payload::strictly_equal(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype == e_type_string && m_str == psz;
 //}
@@ -2156,7 +2156,7 @@ bool payload::operator > (bool b) const
 //   return m_etype != payload.m_etype || operator != (payload);
 //}
 //
-//bool payload::strictly_different(const scoped_string & str) const
+//bool payload::strictly_different(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype != e_type_string || m_str != psz;
 //}
@@ -2210,7 +2210,7 @@ string payload::get_recursive_string() const
    }
 }
 
-string payload::string(const scoped_string & strOnNull) const
+string payload::string(const ::scoped_string & scopedstrOnNull) const
 {
    if(m_etype == e_type_payload_pointer)
    {
@@ -2285,8 +2285,8 @@ string payload::string(const scoped_string & strOnNull) const
 
 }
 
-//string & payload::as_string(const scoped_string & strOnNull)
-string & payload::string_reference(const scoped_string & strOnNull)
+//string & payload::as_string(const ::scoped_string & scopedstrOnNull)
+string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 {
 
    if(m_etype == e_type_string)
@@ -2329,7 +2329,7 @@ string & payload::string_reference(const scoped_string & strOnNull)
 
 
 
-//const string & payload::get_ref_string(const scoped_string & strOnNull) const
+//const string & payload::get_ref_string(const ::scoped_string & scopedstrOnNull) const
 //{
 //
 //   return ((::payload *)this)->get_ref_string(pszOnNull);
@@ -4322,7 +4322,7 @@ property & payload::property_reference()
 //}
 
 
-string payload::implode(const scoped_string & strGlue) const
+string payload::implode(const ::scoped_string & scopedstrGlue) const
 {
 
    if(get_type() == e_type_property_set)
@@ -4349,7 +4349,7 @@ string payload::implode(const scoped_string & strGlue) const
 }
 
 
-::payload payload::explode(const scoped_string & strGlue, bool bAddEmpty) const
+::payload payload::explode(const ::scoped_string & scopedstrGlue, bool bAddEmpty) const
 {
 
    class ::payload payload;
@@ -4451,7 +4451,7 @@ string payload::implode(const scoped_string & strGlue) const
 }
 
 
-bool payload::array_contains(const scoped_string & str, index find, ::count count) const
+bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::count count) const
 {
 
    switch(m_etype)
@@ -4479,7 +4479,7 @@ bool payload::array_contains(const scoped_string & str, index find, ::count coun
    return false;
 }
 
-bool payload::array_contains_ci(const scoped_string & str, index find, index last) const
+bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, index last) const
 {
    switch(m_etype)
    {
@@ -4509,7 +4509,7 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
 }
 
 
-::payload payload::equals_ci_get(const scoped_string & strCompare, ::payload varOnEqual, ::payload varOnDifferent) const
+::payload payload::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 {
    if(case_insensitive_order(pszCompare) == 0)
    {
@@ -4521,7 +4521,7 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
    }
 }
 
-::payload payload::equals_ci_get(const scoped_string & strCompare, ::payload varOnEqual) const
+::payload payload::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual) const
 {
    if(case_insensitive_order(pszCompare) == 0)
    {
@@ -4586,7 +4586,7 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
 }
 
 
-::payload payload::operator + (const scoped_string & str) const
+::payload payload::operator + (const ::scoped_string & scopedstr) const
 {
    
    return *this + ::string(psz); 
@@ -5806,14 +5806,14 @@ void payload::consume_identifier(const char * & psz)
 }
 
 
-void payload::consume_identifier(const char * & psz, const scoped_string & strEnd)
+void payload::consume_identifier(const char * & psz, const ::ansi_character * pszEnd)
 {
 
-   const scoped_string & strParse = psz;
+   const ::scoped_string & scopedstrParse = psz;
 
    ::str().consume_spaces(pszParse, 0, pszEnd);
 
-   const scoped_string & strStart = pszParse;
+   const ::scoped_string & scopedstrStart = pszParse;
 
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
    {
@@ -5851,13 +5851,13 @@ void payload::consume_number(const char * & psz)
    consume_number(psz, psz + strlen(psz) - 1);
 }
 
-void payload::consume_number(const char * & psz, const scoped_string & strEnd)
+void payload::consume_number(const char * & psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::scoped_string & scopedstrParse = psz;
    bool bSigned = false;
    bool bFloat = false;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::scoped_string & scopedstrStart = pszParse;
    if(*pszParse == '-')
    {
       bSigned = true;
@@ -5981,11 +5981,11 @@ void var_skip_identifier(const char *& psz)
 }
 
 
-void var_skip_identifier(const char *& psz, const scoped_string & strEnd)
+void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::scoped_string & scopedstrParse = psz;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::scoped_string & scopedstrStart = pszParse;
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
       pszParse++;
    strsize iLen = pszParse - pszStart;
@@ -6019,11 +6019,11 @@ void var_skip_number(const char *& psz)
    var_skip_number(psz, psz + strlen(psz) - 1);
 }
 
-void var_skip_number(const char *& psz, const scoped_string & strEnd)
+void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::scoped_string & scopedstrParse = psz;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::scoped_string & scopedstrStart = pszParse;
    if (*pszParse == '-')
    {
       pszParse++;
@@ -6087,7 +6087,7 @@ end:
 }
 
 
-void var_skip_network_payload(const char *& pszJson, const scoped_string & strEnd)
+void var_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6155,7 +6155,7 @@ void var_skip_network_payload(const char *& pszJson)
 const char * payload::parse_network_payload(const ::string & strJson)
 {
 
-   const scoped_string & strJson = strJson;
+   const ::ansi_character * pszJson = strJson;
 
    parse_network_payload(pszJson, pszJson + strJson.get_length());
 
@@ -6164,7 +6164,7 @@ const char * payload::parse_network_payload(const ::string & strJson)
 }
 
 
-void payload::parse_network_payload(const char *& pszJson, const scoped_string & strEnd)
+void payload::parse_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6252,7 +6252,7 @@ void payload::parse_network_payload(const char *& pszJson, const scoped_string &
 }
 
 
-::enum_type payload::find_network_payload_child(const char *& pszJson, const scoped_string & strEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(const char *& pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6403,7 +6403,7 @@ void payload::parse_network_payload(const char *& pszJson, const scoped_string &
 }
 
 
-::enum_type payload::find_network_payload_id(const char * & pszJson, const scoped_string & strEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(const char * & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6569,7 +6569,7 @@ bool is_return_ok(para_return eret)
 }
 
 
-::payload str_ends_get(const char * pcsz, const char * pcszSuffix)
+::payload str_ends_get(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSuffix)
 {
 
    string str(pcsz);

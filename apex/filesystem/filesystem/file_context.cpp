@@ -1339,7 +1339,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::memory_file_pointer file_context::create_resource_file(const char* path)
+::memory_file_pointer file_context::create_resource_file(const ::file::path & path)
 {
 
    ::folder* pfolder = nullptr;
@@ -1392,7 +1392,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::memory file_context::get_resource_memory(const char* path)
+::memory file_context::get_resource_memory(const ::file::path & path)
 {
 
    auto pfile = create_resource_file(path);
@@ -1409,7 +1409,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::file::enum_type file_context::resource_get_type(const char* path)
+::file::enum_type file_context::resource_get_type(const ::file::path & path)
 {
 
    ::folder* pfolder = nullptr;
@@ -2323,7 +2323,7 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-void file_context::set_extension(::file::path & path, const scoped_string & strExtension)
+void file_context::set_extension(::file::path & path, const ::scoped_string & scopedstrExtension)
 {
 
    strsize iEnd = path.rear_find('.');
@@ -2981,7 +2981,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 }
 
 
-folder_pointer file_context::get_folder(::file::file *pfile, const scoped_string & strImplementation, const ::file::e_open &eopen)
+folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, const ::file::e_open &eopen)
 {
 
    auto & pfactory = acmesystem()->folder_factory();
@@ -3707,7 +3707,7 @@ bool file_context::is_link(string strPath)
 //   return psystem->m_spfile->time_log(get_app(), pszId);
 //}
 //
-//file_pointer file_context::time_square_file(const scoped_string & strPrefix, const scoped_string & strSuffix)
+//file_pointer file_context::time_square_file(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
 //{
 //   return psystem->m_spfile->time_square_file(get_app(), pszPrefix, pszSuffix);
 //}
@@ -3763,7 +3763,7 @@ bool file_context::is_link(string strPath)
 //   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_app());
 //}
 //
-//bool file_context::put_contents(const ::payload & payloadFile, const char * pcszContents)
+//bool file_context::put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
 //
 //{
 //   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_app());
@@ -3771,7 +3771,7 @@ bool file_context::is_link(string strPath)
 //}
 //
 //
-//bool file_context::add_contents(const ::payload & payloadFile, const char * pcszContents)
+//bool file_context::add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
 //{
 //
 //   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_app());
@@ -3795,7 +3795,7 @@ bool file_context::is_link(string strPath)
 //}
 //
 //
-//bool file_context::put_text_utf8(const ::payload & payloadFile, const char * pcszContents)
+//bool file_context::put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
 //{
 //
 //   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_app());
@@ -3803,7 +3803,7 @@ bool file_context::is_link(string strPath)
 //}
 
 //
-//string file_context::sys_temp(const char * lpszName, const scoped_string & strExtension)
+//string file_context::sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension)
 //{
 //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
 //}

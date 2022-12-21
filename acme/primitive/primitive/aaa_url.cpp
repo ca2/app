@@ -16,10 +16,10 @@ char* string_append_character(char* psz, ::ansi_character ch)
 
 }
 
-bool is_url(const scoped_string & strCandidate,const char ** ppszRequest)
+bool is_url(const ::scoped_string & scopedstrCandidate,const char ** ppszRequest)
 {
 
-   const scoped_string & str = pszCandidate;
+   const ::scoped_string & scopedstr = pszCandidate;
    while(*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || character_isalnum(*psz)))
    {
       psz++;
@@ -56,7 +56,7 @@ bool is_url(const scoped_string & strCandidate,const char ** ppszRequest)
 }
 
 
-CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str)
+CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 {
 
    if (is_empty(psz))
@@ -183,7 +183,7 @@ namespace url
 
       strsize i = 0;
 
-      const scoped_string & strEncoded = (const char*)block.get_data();
+      const ::scoped_string & scopedstrEncoded = (const char*)block.get_data();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -274,11 +274,11 @@ namespace url
 
 
 
-   CLASS_DECL_ACME bool query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl)
+   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl)
    {
 
-      const scoped_string & strBeg;
-      const scoped_string & strEnd;
+      const ::scoped_string & scopedstrBeg;
+      const ::ansi_character * pszEnd;
 
       {
 
@@ -499,7 +499,7 @@ namespace url
 
 void openURL(const string& url_str);
 
-int ui_open_url(const scoped_string & str);
+int ui_open_url(const ::scoped_string & scopedstr);
 
 void openURL(const string& url_str)
 {
@@ -535,7 +535,7 @@ void openURL(const string& url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const scoped_string & strServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
 //{
 //
 //   ::acme::application * papp = (::acme::application *) instance;
@@ -646,7 +646,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME bool is_url(const scoped_string & strCandidate)
+//CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //{
 //
 //   string strCandidate(pszCandidate);
@@ -684,7 +684,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME string ::url::decode(const scoped_string & str)
+//CLASS_DECL_ACME string ::url::decode(const ::scoped_string & scopedstr)
 //{
 //
 //   string str(psz);
@@ -739,7 +739,7 @@ void openURL(const string& url_str)
 
 
 
-//string ::url::decode(const scoped_string & strUrl, strsize iLen)
+//string ::url::decode(const ::scoped_string & scopedstrUrl, strsize iLen)
 //
 //{
 //
@@ -809,11 +809,11 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME bool url_query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl)
+//CLASS_DECL_ACME bool url_query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl)
 //{
 //
-//   const scoped_string & strBeg;
-//   const scoped_string & strEnd;
+//   const ::scoped_string & scopedstrBeg;
+//   const ::ansi_character * pszEnd;
 //
 //   {
 //
@@ -925,7 +925,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME string ::url::encode(const scoped_string & str)
+//CLASS_DECL_ACME string ::url::encode(const ::scoped_string & scopedstr)
 //{
 //
 //   string str;
@@ -1067,7 +1067,7 @@ void openURL(const string& url_str)
 
 void openURL(const string& url_str);
 
-int ui_open_url(const scoped_string & str);
+int ui_open_url(const ::scoped_string & scopedstr);
 
 //void openURL(const string& url_str)
 //{
@@ -1103,7 +1103,7 @@ int ui_open_url(const scoped_string & str);
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const scoped_string & strServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive)
 //{
 //
 //   ::application * papp = (::apex::application *) instance;

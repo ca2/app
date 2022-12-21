@@ -15,11 +15,11 @@ namespace ansios
       virtual ~process();
 
 
-      virtual bool create_child_process(const scoped_string & strCmdLine,bool bPiped,const scoped_string & strDir = nullptr, ::enum_priority epriority = ::e_priority_normal) override;
+      virtual bool create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir = nullptr, ::enum_priority epriority = ::e_priority_normal) override;
 
       virtual bool has_exited() override;
 
-      virtual bool synch_elevated(const scoped_string & strCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut) override;
+      virtual bool synch_elevated(const ::scoped_string & scopedstrCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut) override;
 
    };
 

@@ -30,9 +30,9 @@ string get_error_message(::u32 dwError);
 #define WIN_THREAD(pthread) (dynamic_cast < ::_UWP::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-//CLASS_DECL_APEX void __trace_message(const scoped_string & strPrefix, ::message::message * pmessage);
+//CLASS_DECL_APEX void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage);
 
-//CLASS_DECL_APEX void __trace_message(const scoped_string & strPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_APEX void __trace_message(const ::scoped_string & scopedstrPrefix, MESSAGE * lpmsg);
 
 
 //CLASS_DECL_APEX void __cdecl __pre_translate_message(::message::message * pmessage);

@@ -1713,7 +1713,7 @@ namespace user
 
                         _001GetLayoutText(strText);
 
-                        const scoped_string & str = strText;
+                        const ::scoped_string & scopedstr = strText;
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
@@ -1769,7 +1769,7 @@ namespace user
 
                      _001GetLayoutText(strText);
 
-                     const scoped_string & str = strText;
+                     const ::scoped_string & scopedstr = strText;
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 

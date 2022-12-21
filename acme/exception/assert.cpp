@@ -5,11 +5,11 @@
 #include "assert.h"
 
 
-assert_exception::assert_exception(const scoped_string & strFile, long lLine) :
+assert_exception::assert_exception(const ::scoped_string & scopedstrFile, long lLine) :
    ::exception(::error_assert)
 {
 
-   m_strMessage.append_format("Assert File=\"%s\" Line=\"%d\"", pszFile, lLine);
+   m_strMessage.append_format("Assert File=\"%s\" Line=\"%d\"", scopedstrFile.c_str(), lLine);
 
 }
 

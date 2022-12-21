@@ -252,7 +252,7 @@ void plex_heap_alloc_array::pre_finalize()
 
 
 
-void * plex_heap_alloc_array::alloc_debug(memsize size, i32 nBlockUse, const scoped_string & strFileName, i32 iLine)
+void * plex_heap_alloc_array::alloc_debug(memsize size, i32 nBlockUse, const ::ansi_character * pszFileName, i32 iLine)
 {
 
 #if LAST_MEM_FILE_AND_LINE
@@ -335,7 +335,7 @@ void plex_heap_alloc_array::free_debug(void * p, memsize size)
 }
 
 
-void * plex_heap_alloc_array::realloc_debug(void * p,  memsize size, memsize sizeOld, int align, i32 nBlockUse, const scoped_string & strFileName, i32 iLine)
+void * plex_heap_alloc_array::realloc_debug(void * p,  memsize size, memsize sizeOld, int align, i32 nBlockUse, const ::ansi_character * pszFileName, i32 iLine)
 {
 
 #if LAST_MEM_FILE_AND_LINE

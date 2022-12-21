@@ -10,7 +10,7 @@ os_history::os_history(::particle * pparticle) //:
 }
 
 
-bool os_history::hist(const scoped_string & str)
+bool os_history::hist(const ::scoped_string & scopedstr)
 {
 
 #if !defined(_UWP)

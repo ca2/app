@@ -718,9 +718,9 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
 
    string strQuery(strCommandFork);
 
-   strsize iFind = strQuery.find('?');
+   autp pFind = strQuery.find('?');
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       strQuery = "";
@@ -735,25 +735,25 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
 
    string strScript(strCommandFork);
 
-   strsize iPos = strScript.find("://");
+   auto pPos = strScript.find("://");
 
-   if (iPos >= 0)
+   if (::is_set(pPos))
    {
 
-      iPos += 3;
+      pPos += 3;
 
-      strsize iStart = strScript.find("/", iPos);
+      auto pStart = strScript(pPos).find("/");
 
-      if (iStart < 0)
+      if (::is_null(pStart))
          strScript = "/";
       else
-         strScript = strScript.Mid(iStart);
+         strScript.begin(pStart);
 
    }
 
-   iFind = strScript.find('?');
+   pFind = strScript.find('?');
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       strScript = strScript.Left(iFind);

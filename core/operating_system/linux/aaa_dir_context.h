@@ -29,21 +29,21 @@ namespace linux
 
 
       virtual bool  is(const ::file::path & path) override;
-      virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath) override;
+      virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath) override;
 
-      virtual bool  is_inside_time(const ::file::path & pcsz) override;
+      virtual bool  is_inside_time(const ::file::path & path) override;
 
       virtual bool  name_is(const ::file::path & path) override;
-      virtual bool  has_subdir(const ::file::path & pcsz) override;
+      virtual bool  has_subdir(const ::file::path & path) override;
 
 
       virtual ::file::listing & root_ones(::file::listing & listing) override;
-      virtual bool mk(const ::file::path & pcsz) override;
+      virtual bool mk(const ::file::path & path) override;
 
       virtual bool rm(const ::file::path & psz, bool bRecursive = true) override;
 
 
-      //virtual ::file::path name(const ::file::path & pcsz);
+      //virtual ::file::path name(const ::file::path & path);
 
 
       virtual ::file::path time() override;

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-// not_installed::not_installed(::particle * pparticle = ::get_app_object(), const scoped_string & strAppId, const scoped_string & strConfiguration, const scoped_string & strPlatform, const scoped_string & strLocale, const scoped_string & strSchema) :
+// not_installed::not_installed(::particle * pparticle = ::get_app_object(), const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) :
 //    ::matter(pparticle),
 //    ::callstack(pparticle),
 //    ::exception()

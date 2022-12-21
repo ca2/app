@@ -46,7 +46,7 @@
 // //   //void system_construct(int argc, wchar_t** argv, wchar_t** envp);
 // //
 // //
-// //   //void system_construct(const scoped_string & strCommandLine);
+// //   //void system_construct(const ::scoped_string & scopedstrCommandLine);
 // //
 // //
 // };

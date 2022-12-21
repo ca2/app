@@ -4,7 +4,7 @@
 
 
 template < typename ITERATOR_TYPE >
-constexpr ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const THIS_RANGE & range) const noexcept
+constexpr ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range) const noexcept
 {
 
    return this->order(range, ::comparison::comparison < CHARACTER >());
@@ -13,7 +13,7 @@ constexpr ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const TH
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range) const noexcept
 {
 
    return this->order(range, ::comparison::case_insensitive < CHARACTER >());
@@ -22,7 +22,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const SCOPED_STRING & range) const noexcept
 {
 
    return range_collate<const CHARACTER *>(*this, range);
@@ -31,7 +31,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const THI
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(const SCOPED_STRING & range) const noexcept
 {
 
    return case_insensitive_range_collate<const CHARACTER *>(*this, range);
@@ -40,7 +40,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const THIS_RANGE & range, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range, strsize countRange) const noexcept
 {
 
    return this->order(range.start_count(0, countRange));
@@ -49,7 +49,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const THIS_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(const THIS_RANGE & range, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range, strsize countRange) const noexcept
 {
 
    return this->case_insensitive_order(range.start_count(0, countRange));
@@ -58,7 +58,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const THIS_RANGE & range, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const SCOPED_STRING & range, strsize countRange) const noexcept
 {
 
    return this->collate(range.start_count(0, countRange));
@@ -67,7 +67,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const THI
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(const THIS_RANGE & range, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(const SCOPED_STRING & range, strsize countRange) const noexcept
 {
 
    return this->case_insensitive_collate(range.start_count(0, countRange));
@@ -76,7 +76,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize start, strsize count, const SCOPED_STRING & range) const noexcept
 {
 
    return this->start_count(start, count).order(range);
@@ -85,7 +85,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize sta
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(strsize start, strsize count, const SCOPED_STRING & range) const noexcept
 {
 
    return this->start_count(start, count).case_insensitive_order(range);
@@ -94,7 +94,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize start, strsize count, const SCOPED_STRING & range) const noexcept
 {
 
    return this->start_count(start, count).collate(range);
@@ -103,7 +103,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize s
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(strsize start, strsize count, const THIS_RANGE & range) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING & range) const noexcept
 {
 
    return this->start_count(start, count).case_insensitive_collate(range);
@@ -112,7 +112,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize start, strsize count, const THIS_RANGE & range, strsize startRange, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize start, strsize count, const SCOPED_STRING & range, strsize startRange, strsize countRange) const noexcept
 {
 
    return this->start_count(start, count).order(range.start_count(startRange, countRange));
@@ -121,7 +121,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(strsize sta
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(strsize start, strsize count, const THIS_RANGE & range, strsize startRange, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(strsize start, strsize count, const SCOPED_STRING & range, strsize startRange, strsize countRange) const noexcept
 {
 
    return this->start_count(start, count).case_insensitive_order(range.start_count(startRange, countRange));
@@ -130,7 +130,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize start, strsize count, const THIS_RANGE & range, strsize startRange, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize start, strsize count, const SCOPED_STRING & range, strsize startRange, strsize countRange) const noexcept
 {
 
    return this->start_count(start, count).collate(range.start_count(startRange, countRange));
@@ -139,7 +139,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(strsize s
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(strsize start, strsize count, const THIS_RANGE & range, strsize startRange, strsize countRange) const noexcept
+inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING & range, strsize startRange, strsize countRange) const noexcept
 {
 
    return this->start_count(start, count).case_insensitive_collate(range.start_count(startRange, countRange));

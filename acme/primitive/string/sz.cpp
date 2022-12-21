@@ -6,7 +6,7 @@
 namespace sz
 {
 
-   const char * trim_left(const scoped_string & str,const scoped_string & strTrimmer)
+   const char * trim_left(const ::ansi_character * psz,const ::ansi_character * pszTrimmer)
    {
 
       if (psz == nullptr)
@@ -27,7 +27,7 @@ namespace sz
 
    }
 
-   const char * trim_left_path_sep(const scoped_string & str)
+   const char * trim_left_path_sep(const ::ansi_character * psz)
    {
 
       if(psz == nullptr)

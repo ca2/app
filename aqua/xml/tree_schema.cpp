@@ -21,7 +21,7 @@ namespace xml
       return m_stra[iNameIndex];
    }
 
-   void tree_schema::set_node_name(i32 iNameIndex, const char * pcszName)
+   void tree_schema::set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrName)
 
    {
       m_stra.set_at_grow(iNameIndex, pcszName);

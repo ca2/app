@@ -320,7 +320,7 @@ void nano_message_box::on_create()
 //CLASS_DECL_ACME ::acme::system * acmesystem();
 
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
+CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    initialize_nano_window();
@@ -349,7 +349,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const sco
    
 #endif
    
-   auto psequencer = pparticle->acmenode()->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
+   auto psequencer = pparticle->acmenode()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
    
    auto atomResult = psequencer->do_synchronously();
    
@@ -423,13 +423,13 @@ public:
 };
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, const scoped_string & strDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    auto pmessagebox = __new(message_box);
 
    pmessagebox->m_pobject = pparticle;
-   pmessagebox->initialize_conversation(pszMessage,pszTitle, emessagebox, pszDetails);
+   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
 
    //pparticle->fork([pmessagebox]()
    //{

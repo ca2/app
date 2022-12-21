@@ -22,12 +22,12 @@
 //#define memory_new ACME_NEW
 
 
-string_array get_c_args_from_string(const scoped_string & str)
+string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (psz == nullptr)
+   if (scopedstr.is_empty())
    {
 
       return stra;
@@ -38,7 +38,9 @@ string_array get_c_args_from_string(const scoped_string & str)
 
    string_array straAfterColon;
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   const char * psz = scopedstr.begin();
+
+   const char * pszEnd = scopedstr.end();
 
    string str;
 
@@ -72,7 +74,7 @@ string_array get_c_args_from_string(const scoped_string & str)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const char * pszValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -144,12 +146,12 @@ string_array get_c_args_from_string(const scoped_string & str)
 }
 
 
-string_array no_escape_get_c_args_from_string(const scoped_string & str)
+string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (psz == nullptr)
+   if (scopedstr.is_empty())
    {
 
       return stra;
@@ -160,7 +162,9 @@ string_array no_escape_get_c_args_from_string(const scoped_string & str)
 
    string_array straAfterColon;
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   const char * psz = scopedstr.begin();
+
+   const char * pszEnd = scopedstr.end();
 
    string str;
 
@@ -194,7 +198,7 @@ string_array no_escape_get_c_args_from_string(const scoped_string & str)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const char * pszValueStart = psz;
 
          char chQuote = '\0';
 
@@ -327,7 +331,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
    string strArg;
 
-   const scoped_string & str = strCommandLine;
+   const char * psz = strCommandLine.begin();
 
    string strChar;
 
@@ -343,7 +347,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
       }
 
-      psz += strChar.get_length();
+      psz += strChar.length();
 
       if(strChar == "\"")
       {
@@ -366,8 +370,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
             }
 
-            psz += strChar.get_length();
-
+            psz += strChar.length();
 
             if(strChar == "\\")
             {
@@ -381,7 +384,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
                }
 
-               psz += strChar.get_length();
+               psz += strChar.length();
 
                if(strChar == "n")
                {
@@ -431,7 +434,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
          }
 
-         psz += strChar.get_length();
+         psz += strChar.length();
 
          if(strChar == "n")
          {
@@ -471,13 +474,13 @@ end:
 }
 
 
-int argcargv_find_parameter(int argc, char * argv[], const scoped_string & strParameter)
+int argcargv_find_parameter(int argc, char * argv[], const ::scoped_string & scopedstrParameter)
 {
 
    for(int i = 1; i < argc; i++)
    {
 
-      if(!strcmp(argv[i], pszParameter))
+      if(scopedstrParameter == argv[i])
       {
 
          return i;
@@ -491,10 +494,10 @@ int argcargv_find_parameter(int argc, char * argv[], const scoped_string & strPa
 }
 
 
-bool argcargv_contains_parameter(int argc, char * argv[], const scoped_string & strParameter)
+bool argcargv_contains_parameter(int argc, char * argv[], const ::scoped_string & scopedstrParameter)
 {
 
-   return argcargv_find_parameter(argc, argv, pszParameter) >= 0;
+   return argcargv_find_parameter(argc, argv, scopedstrParameter) >= 0;
 
 }
 

@@ -7,7 +7,7 @@
 
 // 
 
-// CLASS_DECL_ACME int_bool os_is_alias(const scoped_string & str);
+// CLASS_DECL_ACME int_bool os_is_alias(const ::scoped_string & scopedstr);
 
 // 
 

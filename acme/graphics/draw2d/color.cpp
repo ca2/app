@@ -994,36 +994,36 @@ namespace color
    #define duplicate_color_nible(nible) ((nible << 4) | (nible))
 
 
-   bool color::parse_color(const scoped_string & str)
+   bool color::parse_color(const ::scoped_string & scopedstr)
    {
 
-      string str(psz);
+      string str(scopedstr);
       str.trim();
       str += " ";
-      if (str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
+      if (str.Left(1) == "#" && str.length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
             && ishexdigit(str[5]) && ishexdigit(str[6]))
       {
-         if (str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
+         if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
          {
             i32 iA, iR, iG, iB;
-            sscanf(str, "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
+            sscanf(str.c_str(), "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
             set_COLORREF(argb(iA, iR, iG, iB));
             return true;
          }
          else if (!ishexdigit(str[7]))
          {
             i32 iR, iG, iB;
-            sscanf(str, "#%02x%02x%02x", &iR, &iG, &iB);
+            sscanf(str.c_str(), "#%02x%02x%02x", &iR, &iG, &iB);
             set_COLORREF(argb(255, iR, iG, iB));
             return true;
          }
       }
-      else if (str.Left(1) == "#" && str.get_length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
+      else if (str.Left(1) == "#" && str.length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
       {
-         if (str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
+         if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
          {
             i32 iA, iR, iG, iB;
-            sscanf(str, "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
+            sscanf(str.c_str(), "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
             set_COLORREF(argb(
                          duplicate_color_nible(iA),
                          duplicate_color_nible(iR),
@@ -1034,7 +1034,7 @@ namespace color
          else if (!ishexdigit(str[4]))
          {
             int iR, iG, iB;
-            sscanf(str, "#%1x%1x%1x", &iR, &iG, &iB);
+            sscanf(str.c_str(), "#%1x%1x%1x", &iR, &iG, &iB);
             set_COLORREF(argb(255,
                               duplicate_color_nible(iR),
                               duplicate_color_nible(iG),

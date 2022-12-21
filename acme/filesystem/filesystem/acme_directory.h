@@ -152,8 +152,8 @@ public:
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
 
-   virtual bool is(const char * path1);
-   virtual bool _is(bool & bDir, const char * path1);
+   virtual bool is(const ::file::path & path1);
+   virtual bool _is(bool & bDir, const ::file::path & path1);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_directory.h
 // on 2021-08-09 03:20 BRT
@@ -173,20 +173,20 @@ public:
    //      acme_directory();
    //      ~acme_directory();
 
-         //virtual string name(const char * path1);
+         //virtual string name(const ::file::path & path1);
 
 
          //virtual ::file::path base_module();
 
-         virtual void create(const char * path);
-         //virtual void _create(const char * path);
-         virtual void _create2(const char * path);
-         virtual void __create(const char * path);
-         virtual void erase(const char* path);
+         virtual void create(const ::file::path & path);
+         //virtual void _create(const ::file::path & path);
+         virtual void _create2(const ::file::path & path);
+         virtual void __create(const ::file::path & path);
+         virtual void erase(const ::file::path & path);
 
 
-         //virtual void enumerate_recursively(::file::path_array & stra, const scoped_string & str);
-         //virtual void enumerate_recursively_directory(::file::path_array & stra, const scoped_string & str);
+         //virtual void enumerate_recursively(::file::path_array & stra, const ::scoped_string & scopedstr);
+         //virtual void enumerate_recursively_directory(::file::path_array & stra, const ::scoped_string & scopedstr);
 
          //bool _enumerates(::file::listing & listing) override;
          
@@ -197,33 +197,33 @@ public:
          virtual bool defer_process_media_library_path(::file::path& path);
          virtual bool defer_media_library_representative_file_name(::file::path & path);
 
-         bool list(::string_array & stra, const char * path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
+         bool list(::string_array & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
 
          //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_directory(::file::path_array & stra, const scoped_string & str, enum_depth edepth = e_depth_none);
-         //virtual void enumerate_file(::file::path_array & stra, const scoped_string & str, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_directory(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_file(::file::path_array & stra, const ::scoped_string & scopedstr, enum_depth edepth = e_depth_none);
 
-         virtual int make_path(const scoped_string & str);
+         virtual int make_path(const ::scoped_string & scopedstr);
 
 
          /*namespace dir
          {*/
 
 
-            //virtual string name(const scoped_string & strPath);
+            //virtual string name(const ::file::path & path);
             //virtual bool mk(const ::string & strPath);
             //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
-            //virtual bool is(const char * path);
-            //virtual bool _is(const char * path);
+            //virtual bool is(const ::file::path & path);
+            //virtual bool _is(const ::file::path & path);
             //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
-            //virtual void ls(::file::path_array & patha, const char * path);
-            //virtual void ls_dir(::file::path_array & patha, const char * path);
-            //virtual void ls_file(::file::path_array & patha, const char * path);
-            //virtual void rls(::file::path_array & patha, const char * path);
-            //virtual void rls_dir(::file::path_array & patha, const char * path);
+            //virtual void ls(::file::path_array & patha, const ::file::path & path);
+            //virtual void ls_dir(::file::path_array & patha, const ::file::path & path);
+            //virtual void ls_file(::file::path_array & patha, const ::file::path & path);
+            //virtual void rls(::file::path_array & patha, const ::file::path & path);
+            //virtual void rls_dir(::file::path_array & patha, const ::file::path & path);
 
 
             //virtual::file::path ca2_module();
@@ -233,7 +233,7 @@ public:
          //} // namespace dir
 
    virtual string get_current();
-   virtual void change_current(const scoped_string & str);
+   virtual void change_current(const ::scoped_string & scopedstr);
    virtual void change_to_home();
 
 

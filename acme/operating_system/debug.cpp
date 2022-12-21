@@ -40,7 +40,7 @@ CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel)
 
 
 
-void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str)
+void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr)
 {
 
    string strMessage;
@@ -49,9 +49,9 @@ void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scope
 
    strTag = strTag.Left(23);
 
-   strTag = string(' ', maximum(0, 23 - strTag.get_length()));
+   strTag = string(' ', maximum(0, 23 - strTag.length()));
 
-   strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), psz);
+   strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), scopedstr);
 
    output_debug_string(strMessage);
 
@@ -61,10 +61,10 @@ void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scope
 
 
 
-void simple_debug_print(const scoped_string & str)
+void simple_debug_print(const ::scoped_string & scopedstr)
 {
 
-   os_trace(e_trace_level_information, "simple_debug_string", psz);
+   os_trace(e_trace_level_information, "simple_debug_string", scopedstr);
 
 }
 
@@ -75,7 +75,7 @@ void simple_debug_print(const scoped_string & str)
 
 #ifndef ANDROID
 //
-//void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & str)
+//void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr)
 //{
 //
 //   string strMessage;
@@ -96,7 +96,7 @@ void simple_debug_print(const scoped_string & str)
 
 
 //
-//void simple_debug_print(const scoped_string & str)
+//void simple_debug_print(const ::scoped_string & scopedstr)
 //{
 //
 ////   os_trace(e_trace_level_information, "simple_debug_string", psz);
@@ -127,7 +127,7 @@ void simple_debug_print(const scoped_string & str)
 //}
 
 
-//CLASS_DECL_ACME void output_debug_string(const scoped_string & str)
+//CLASS_DECL_ACME void output_debug_string(const ::scoped_string & scopedstr)
 //{
 //
 //

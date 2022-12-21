@@ -99,7 +99,7 @@ namespace xml
    }
 
 
-   //void output_tree::set_attr(const char * pcszName, i64 iValue, bool bOptional)
+   //void output_tree::set_attr(const ::scoped_string & scopedstrName, i64 iValue, bool bOptional)
 
    //{
    //   if (iValue == 0 && bOptional)
@@ -108,7 +108,7 @@ namespace xml
 
    //}
 
-   //void output_tree::set_bool_attr(const char * pcszName, bool bValue, bool bOptional)
+   //void output_tree::set_bool_attr(const ::scoped_string & scopedstrName, bool bValue, bool bOptional)
 
    //{
    //   if (!bValue && bOptional)
@@ -119,7 +119,7 @@ namespace xml
 
    //}
 
-   //void output_tree::set_double_attr(const char * pcszName, double dValue)
+   //void output_tree::set_double_attr(const ::scoped_string & scopedstrName, double dValue)
 
    //{
    //   m_pnode->set_attr(pcszName, as_string(dValue));
@@ -127,7 +127,7 @@ namespace xml
    //}
 
 
-   void output_tree::set_value(const scoped_string & strValue)
+   void output_tree::set_value(const ::scoped_string & scopedstrValue)
    {
 
       m_pnode->set_value(pszValue);

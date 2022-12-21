@@ -79,7 +79,7 @@ public:
    //inline  bool equal_ignore_case(const ::string & left, const ::string & right, size_t len = 0);
 
 
-   inline     bool trimmed_is_empty(const ::string & psz);
+   inline     bool trimmed_is_empty(const ::scoped_string & scopedstr);
 
 
    template < typename CHAR_TYPE >
@@ -161,25 +161,25 @@ public:
 
 
 
-   inline  bool begins_ci_skip(const char *& psz, const scoped_string & strPrefix);
-   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const scoped_string & str);
+   inline  bool begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix);
+   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const ::scoped_string & scopedstr);
 
-   bool replace_prefix(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix);
-   inline bool begins_replace(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix)
-   {
-      
-      return replace_prefix(str, pszPrefixReplacement, pszPrefix);
-
-   }
-
-
-   bool replace_prefix_ci(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix);
-   inline bool begins_replace_ci(::string & str, const scoped_string & strPrefixReplacement, const scoped_string & strPrefix)
-   {
-
-      return replace_prefix_ci(str, pszPrefixReplacement, pszPrefix);
-
-   }
+//   bool replace_prefix(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);
+//   inline bool begins_replace(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix)
+//   {
+//
+//      return replace_prefix(str, scopedstrPrefixReplacement, scopedstrPrefix);
+//
+//   }
+//
+//
+//   bool replace_prefix_ci(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);
+//   inline bool begins_replace_ci(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix)
+//   {
+//
+//      return replace_prefix_ci(str, scopedstrPrefixReplacement, scopedstrPrefix);
+//
+//   }
 
 
    bool           trim_any_quotes(string & str);
@@ -192,9 +192,9 @@ public:
 
    string & zero_pad(string & str, strsize iPad);
    string         zero_padded(const ::string & str, strsize iPad);
-   i32            get_escaped_char(const scoped_string & str, strsize pos, strsize & retPos);
-   bool           get_curly_content(const scoped_string & str, string & str);
-   bool           is_simple_natural(const scoped_string & str, strsize iCount = -1);
+   i32            get_escaped_char(const ::ansi_character * psz, strsize pos, strsize & retPos);
+   bool           get_curly_content(const ::ansi_character * psz, string & str);
+   bool           is_simple_natural(const ::ansi_character * psz, strsize iCount = -1);
    bool           is_natural(const ::string & str);
    bool           is_integer(const ::string & str);
 
@@ -252,7 +252,7 @@ public:
 
 
    template < typename TYPE >
-   inline  TYPE from_string(const scoped_string & str);
+   inline  TYPE from_string(const ::ansi_character * psz);
 
 
    bool simple_escaped(const ::string & str, strsize pos);
@@ -267,13 +267,13 @@ public:
    string q_valid(string str);
 
 
-   inline ::ansi_character * dup(const ::string & str)
+   inline ::ansi_character * dup(const ::ansi_character * psz)
    {
 
       try
       {
 
-         return ansi_dup(str);
+         return ansi_dup(psz);
 
       }
       catch (...)
@@ -338,8 +338,8 @@ public:
    bool begins_ci_iws(const ::string & str, const ::string & strPrefix);
    bool begins_ci_iws(const wstring & wstr, const wstring & wstrPrefix);
 
-   bool  while_begins_with_chars_eat(string & str, const char * pcszChars);
-   bool  while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
+   //bool  while_begins_with_chars_eat(string & str, const ::scoped_string & scopedstrChars);
+   //bool  while_begins_with_chars_eat_ci(string & str, const ::scoped_string & scopedstrChars);
 
 
    inline const ::ansi_character * windows_bbqbunc(const ansi_string &);
@@ -370,7 +370,7 @@ CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::string & strPattern)
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
-CLASS_DECL_ACME string string_from_strdup(const scoped_string & str);
+CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 
 
 

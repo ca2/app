@@ -37,21 +37,21 @@ namespace linux
       virtual ::payload connection_settings_get_auto_config_url() override;
 
 
-      virtual bool local_machine_set_run(const scoped_string & strKey, const scoped_string & strCommand);
-      virtual bool local_machine_set_run_once(const scoped_string & strKey, const scoped_string & strCommand);
-      virtual bool current_user_set_run(const scoped_string & strKey, const scoped_string & strCommand);
-      virtual bool current_user_set_run_once(const scoped_string & strKey, const scoped_string & strCommand);
+      virtual bool local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
+      virtual bool current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand);
       virtual bool defer_register_ca2_plugin_for_mozilla() override;
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const scoped_string & strExtension) override;
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const scoped_string & strExtension) override;
+      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension) override;
+      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension) override;
 
-      virtual bool file_association_set_default_icon(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass, const scoped_string & strIconPath) override;
-      virtual bool file_association_set_shell_open_command(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass,  const scoped_string & strCommand, const scoped_string & strParam) override;
-      virtual bool file_association_get_shell_open_command(const scoped_string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
+      virtual bool file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath) override;
+      virtual bool file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam) override;
+      virtual bool file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
-      virtual bool open_in_ie(const char * pcsz);
+      virtual bool open_in_ie(const ::scoped_string & scopedstr);
 
 
       virtual bool create_service(::particle * pparticle);

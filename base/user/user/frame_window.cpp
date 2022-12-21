@@ -1932,7 +1932,7 @@ namespace user
    //   if (pMessageBar != nullptr)
    //   {
 
-   //      const scoped_string & str = nullptr;
+   //      const ::scoped_string & scopedstr = nullptr;
 
 
    //      string strMessage;

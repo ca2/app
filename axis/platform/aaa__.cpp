@@ -29,7 +29,7 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //   bool extract_sub_string(string& rString, const ::string & strFullString, i32 iSubString, char chSep)
 //   {
 //
-//      const scoped_string & strFullString = strFullString;
+//      const ::scoped_string & scopedstrFullString = strFullString;
 //
 //      if (pszFullString == nullptr || *pszFullString == '\0')
 //      {

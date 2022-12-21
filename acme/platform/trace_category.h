@@ -19,9 +19,9 @@ public:
 
    
 
-   trace_category(enum_trace_category etracecategory, const scoped_string & strTopicText) :
+   trace_category(enum_trace_category etracecategory, const ::scoped_string & scopedstrTopicText) :
       m_etracecategory(etracecategory),
-      m_strTopicText(pszTopicText)
+      m_strTopicText(scopedstrTopicText)
    {
 
    }

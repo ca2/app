@@ -26,9 +26,9 @@ namespace mathematics
       value_impl * m_pimpl;
 
 
-      void parse_numeric_formula(const scoped_string & str);
+      void parse_numeric_formula(const ::scoped_string & scopedstr);
 
-      virtual void set_value_string(const scoped_string & str);
+      virtual void set_value_string(const ::scoped_string & scopedstr);
       virtual string get_value_string(e_get_value egetvalue);
 
 
@@ -52,7 +52,7 @@ namespace mathematics
       virtual ~value_impl();
 
 
-      virtual void set_value_string(const scoped_string & str);
+      virtual void set_value_string(const ::scoped_string & scopedstr);
       virtual string get_value_string(e_get_value egetvalue);
 
 

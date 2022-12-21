@@ -102,7 +102,7 @@ int fonsExpandAtlas(FONScontext * s, int width, int height);
 int fonsResetAtlas(FONScontext * stash, int width, int height);
 
 // Add fonts
-int fonsAddFont(FONScontext * s, const char * name, const char * path, int fontIndex);
+int fonsAddFont(FONScontext * s, const char * name, const ::file::path & path, int fontIndex);
 int fonsAddFontMem(FONScontext * s, const char * name, unsigned char * data, int ndata, int freeData, int fontIndex);
 int fonsGetFontByName(FONScontext * s, const char * name);
 
@@ -916,7 +916,7 @@ error:
 	return FONS_INVALID;
 }
 
-int fonsAddFont(FONScontext * stash, const char * name, const char * path, int fontIndex)
+int fonsAddFont(FONScontext * stash, const char * name, const ::file::path & path, int fontIndex)
 {
 	FILE * fp = 0;
 	int dataSize = 0;

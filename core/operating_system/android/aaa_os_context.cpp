@@ -457,7 +457,7 @@ namespace android
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const scoped_string & strCommand, const ::string & pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::string & pszParam)
    {
       throw ::interface_only();
       return false;
@@ -510,7 +510,7 @@ namespace android
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const scoped_string & str = strFormat;
+               const ::scoped_string & scopedstr = strFormat;
 
                try
                {

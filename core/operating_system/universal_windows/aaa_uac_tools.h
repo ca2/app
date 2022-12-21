@@ -106,9 +106,9 @@ namespace VistaTools
    bool CLASS_DECL_CORE
    RunElevated(
    __in      oswindow   hwnd,
-   __in      const scoped_string & strPath,
-   __in_opt   const scoped_string & strParameters   = nullptr,
-   __in_opt   const scoped_string & strDirectory   = nullptr,
+   __in      const ::file::path & path,
+   __in_opt   const ::scoped_string & scopedstrParameters   = nullptr,
+   __in_opt   const ::scoped_string & scopedstrDirectory   = nullptr,
    __out_opt   HANDLE *phProcess      = nullptr );
 
    /*
@@ -157,9 +157,9 @@ namespace VistaTools
    bool CLASS_DECL_CORE
    RunNonElevated(
    __in      oswindow   hwnd,
-   __in      const scoped_string & strPath,
-   __in_opt   const scoped_string & strParameters   = nullptr,
-   __in_opt   const scoped_string & strDirectory   = nullptr,
+   __in      const ::file::path & path,
+   __in_opt   const ::scoped_string & scopedstrParameters   = nullptr,
+   __in_opt   const ::scoped_string & scopedstrDirectory   = nullptr,
    __out_opt   HANDLE *phProcess      = nullptr );
 
    /*
@@ -206,10 +206,10 @@ namespace VistaTools
 
    bool CLASS_DECL_CORE
    MyShellExec(   oswindow hwnd,
-                  const scoped_string & strVerb,
-                  const scoped_string & strPath,
-                  const scoped_string & strParameters   = nullptr,
-                  const scoped_string & strDirectory   = nullptr,
+                  const ::scoped_string & scopedstrVerb,
+                  const ::file::path & path,
+                  const ::scoped_string & scopedstrParameters   = nullptr,
+                  const ::scoped_string & scopedstrDirectory   = nullptr,
                   HANDLE * phProcess      = nullptr );
 
 } // namespace VistaTools

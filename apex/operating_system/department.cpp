@@ -53,7 +53,7 @@ namespace operating_system
    }
 
 
-   ::payload department::get_output(const scoped_string & strCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
+   ::payload department::get_output(const ::scoped_string & scopedstrCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       string strRead;
@@ -68,7 +68,7 @@ namespace operating_system
 
 
 
-   exit_status department::retry(const scoped_string & strCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
+   exit_status department::retry(const ::scoped_string & scopedstrCmdLine,const class time & time,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       //process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
@@ -82,7 +82,7 @@ namespace operating_system
    }
 
 
-   exit_status department::synch(const scoped_string & strCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
+   exit_status department::synch(const ::scoped_string & scopedstrCmdLine, ::e_display edisplay, const class time & time, bool * pbPotentialTimeout)
    {
 
       auto pprocessor = __create_new < process_processor >();
@@ -94,10 +94,10 @@ namespace operating_system
    }
 
 
-   bool department::launch(const scoped_string & strCmdLine,::e_display edisplay, const scoped_string & strDir)
+   bool department::launch(const ::scoped_string & scopedstrCmdLine,::e_display edisplay, const ::scoped_string & scopedstrDir)
    {
 
-      const scoped_string & strEnd = nullptr;
+      const ::ansi_character * pszEnd = nullptr;
 
       string strBin = consume_command_line_parameter(pszCmdLine,&pszEnd);
 
@@ -123,7 +123,7 @@ namespace operating_system
    }
 
 
-   exit_status department::elevated_synch(const scoped_string & strCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
+   exit_status department::elevated_synch(const ::scoped_string & scopedstrCmdLine,::e_display edisplay,const class time & time,bool * pbPotentialTimeout)
    {
 
 //      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);

@@ -12,7 +12,7 @@
 //{
 //
 //
-//   CLASS_DECL_ACME string name(const scoped_string & strPath);
+//   CLASS_DECL_ACME string name(const ::file::path & path);
 //   //CLASS_DECL_ACME bool mk(const ::string & strPath);
 //   CLASS_DECL_ACME bool _mk(const  ::file::path& path); // makes a directory path (all intermediates too)
 //   CLASS_DECL_ACME bool is(const ::file::path& path);

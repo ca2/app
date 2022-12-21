@@ -22,7 +22,7 @@ string cxxabi_demangle (const char* name);
 
 
 
-string demangle(const scoped_string & str)
+string demangle(const ::scoped_string & scopedstr)
 {
 
    if (psz[0] == 'c' &&

@@ -233,7 +233,7 @@ inline bool character_isspace(::ansi_character ch) noexcept { return ansi_char_i
 // The strcspn() function calculates the length of the initial segment
 // of s which consists entirely of bytes not in reject.
 
-inline strsize string_span_including(const ::ansi_character * pszBlock, const ::ansi_character * pszSet) noexcept
+inline strsize string_skip_any_character_in(const ::ansi_character * pszBlock, const ::ansi_character * pszSet) noexcept
 {
 
    return (strsize)strspn(pszBlock, pszSet);
@@ -241,7 +241,7 @@ inline strsize string_span_including(const ::ansi_character * pszBlock, const ::
 }
 
 
-inline strsize string_span_excluding(const ::ansi_character * pszBlock, const ::ansi_character * pszSet) noexcept
+inline strsize string_find_first_character_in(const ::ansi_character * pszBlock, const ::ansi_character * pszSet) noexcept
 {
 
    return (strsize)strcspn(pszBlock, pszSet);

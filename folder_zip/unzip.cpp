@@ -499,7 +499,7 @@ zlib_filefunc_def* pzlib_filefunc_def, void * fstream)
 }
 
 
-//extern unzFile CLASS_DECL_FOLDER_ZIP unzOpen (const char * path)
+//extern unzFile CLASS_DECL_FOLDER_ZIP unzOpen (const ::file::path & path)
 //{
 //
 //   return unzOpen2(path, nullptr);

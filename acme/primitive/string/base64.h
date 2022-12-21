@@ -43,16 +43,16 @@
       //string encode(memory_base & memory, e_mode emode = mode_normal);
       string encode(const ::block & block, e_mode emode = mode_normal);
       //string encode(void  * point, ::count ca, e_mode emode = mode_normal);
-      //string encode(const scoped_string & str, e_mode emode = mode_normal);
+      //string encode(const ::scoped_string & scopedstr, e_mode emode = mode_normal);
       //string encode_element(::matter & matter, e_mode emode = mode_normal);
 
       // from Base 64 to binary data
       bool decode(::file::file * pfileOutput, ::file::file * pfileInput);
       i64 decode(const ::block & block, ::file::file * pfileInput);
-      bool decode(memory_base & storageBinary, const scoped_string & strBase64, strsize s = -1);
-      i64 decode(const ::block & block, const scoped_string & strBase64, strsize s = -1);
-      string decode(const scoped_string & str);
-      //bool decode(::matter & matter, const scoped_string & strBase64);
+      bool decode(memory_base & storageBinary, const ::scoped_string & scopedstrBase64);
+      i64 decode(const ::block & block, const ::scoped_string & scopedstrBase64);
+      string decode(const ::scoped_string & scopedstr);
+      //bool decode(::matter & matter, const ::scoped_string & scopedstrBase64);
 
       bool is(int iChar);
 

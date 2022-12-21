@@ -54,7 +54,7 @@
 //
 //
 //
-//inline ::payload operator + (const scoped_string & str, const ::enum_message_box& emessagebox)
+//inline ::payload operator + (const ::scoped_string & scopedstr, const ::enum_message_box& emessagebox)
 //{
 //
 //   return ::payload(psz) + emessagebox;
@@ -64,11 +64,11 @@
 //
 //
 //
-//CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const scoped_string & strText, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//CLASS_DECL_APEX void message_box(::user::primitive * puiOwner, const scoped_string & strText, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_APEX void message_box(::user::primitive * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
-//inline void message_box_synchronous(const scoped_string & strText, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
+//inline void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
 //{
 //
 //   return message_box_synchronous(nullptr, pszText, pszTitle, emessagebox, callback);
@@ -76,7 +76,7 @@
 //}
 //
 //
-//inline void message_box(const scoped_string & strText, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
+//inline void message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
 //{
 //
 //   return message_box(nullptr, pszText, pszTitle, emessagebox, callback);

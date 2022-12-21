@@ -213,7 +213,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::mk(const ::file::path & pcsz)
+   bool dir_context::mk(const ::file::path & path)
    {
 
       if(is(pcsz))
@@ -306,7 +306,7 @@ pacmedirectory->is(stra[i]))
    //
    //   string ::file_path_folder(const ::string & path1)
    //   {
-   //      const scoped_string & str = path1 + strlen(path1) - 1;
+   //      const ::scoped_string & scopedstr = path1 + strlen(path1) - 1;
    //      while(psz >= path1)
    //      {
    //         if(*psz != '\\' && *psz != '/' && *psz != ':')
@@ -321,7 +321,7 @@ pacmedirectory->is(stra[i]))
    //      }
    //      if(psz >= path1) // strChar == "\\" || strChar == "/"
    //      {
-   //         const scoped_string & strEnd = psz;
+   //         const ::ansi_character * pszEnd = psz;
    //         /*while(psz >= path1)
    //          {
    //          if(*psz != '\\' && *psz != '/' && *psz != ':')

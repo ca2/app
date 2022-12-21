@@ -2,8 +2,8 @@
 #include "cancel.h"
 
 
-cancel_exception::cancel_exception(const scoped_string & strMessage) :
-   exception(pszMessage)
+cancel_exception::cancel_exception(const ::scoped_string & scopedstrMessage) :
+   exception(error_cancelled, scopedstrMessage)
 {
 
 }

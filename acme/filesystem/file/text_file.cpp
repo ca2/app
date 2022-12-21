@@ -18,11 +18,11 @@ namespace file
    }
 
 
-   void text_file::write_string(const scoped_string & str)
+   void text_file::write_string(const ::scoped_string & scopedstr)
 
    {
 
-      __UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
 
    }

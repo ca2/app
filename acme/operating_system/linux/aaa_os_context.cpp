@@ -406,7 +406,7 @@ namespace linux
       */
    }
 
-   bool os_context::local_machine_set_run(const scoped_string & strKey, const scoped_string & strCommand)
+   bool os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
 //      throw ::not_implemented();
@@ -424,7 +424,7 @@ namespace linux
    }
 
 
-   bool os_context::local_machine_set_run_once(const scoped_string & strKey, const scoped_string & strCommand)
+   bool os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
 
@@ -440,7 +440,7 @@ namespace linux
 
    }
 
-   bool os_context::current_user_set_run(const scoped_string & strKey, const scoped_string & strCommand)
+   bool os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
       throw ::not_implemented();
@@ -457,7 +457,7 @@ namespace linux
 
    }
 
-   bool os_context::current_user_set_run_once(const scoped_string & strKey, const scoped_string & strCommand)
+   bool os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand)
    {
 
       throw ::not_implemented();
@@ -514,7 +514,7 @@ namespace linux
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
    {
       throw ::not_implemented();
       return false;
@@ -539,7 +539,7 @@ namespace linux
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       string_array straKey;
@@ -552,7 +552,7 @@ namespace linux
 
    }
 
-   bool os_context::file_association_set_default_icon(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass, const scoped_string & strIconPath)
+   bool os_context::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
    {
 
       throw ::not_implemented();
@@ -570,7 +570,7 @@ namespace linux
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass,  const scoped_string & strCommand, const scoped_string & strParam)
+   bool os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
 
       return false;
@@ -606,7 +606,7 @@ namespace linux
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const scoped_string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       throw ::not_implemented();
       return false;
@@ -627,7 +627,7 @@ namespace linux
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const scoped_string & str = strFormat;
+               const ::scoped_string & scopedstr = strFormat;
 
                try
                {
@@ -649,7 +649,7 @@ namespace linux
       */
    }
 
-   bool os_context::open_in_ie(const char * pcsz)
+   bool os_context::open_in_ie(const ::scoped_string & scopedstr)
 
    {
 

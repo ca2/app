@@ -1,4 +1,4 @@
 #include "framework.h"
 
-void dappy(const scoped_string & str);
+void dappy(const ::scoped_string & scopedstr);
 

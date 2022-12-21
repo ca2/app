@@ -35,7 +35,7 @@ void * system_heap_alloc_normal(memsize size)
 }
 
 
-void * system_heap_alloc_debug(memsize size, int nBlockUse, const scoped_string & strFileName, int iLine)
+void * system_heap_alloc_debug(memsize size, int nBlockUse, const ::file::path & path, int iLine)
 {
 
 #if MEMDLEAK
@@ -89,7 +89,7 @@ memsize system_heap_alloc_size(void * p)
 
 #ifdef MEMDLEAK
 
-void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const scoped_string & strFileName, i32 iLine)
+void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const ::file::path & path, i32 iLine)
 {
 
 #if MEMDLEAK
@@ -387,7 +387,7 @@ else
 //
 
 #ifdef MEMDLEAK
-void set_last_block_file_name(const scoped_string & str)
+void set_last_block_file_name(const ::scoped_string & scopedstr)
 {
 
    //t_plastblock->m_pszFileName = strdup(psz == nullptr ? "" : psz);

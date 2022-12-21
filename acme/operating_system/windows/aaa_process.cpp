@@ -107,7 +107,7 @@ struct shell_execute :
 
    wstring        m_wstrParams;
 
-   shell_execute(const scoped_string & strFile, const scoped_string & strParams)
+   shell_execute(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
    {
 
       ::zero(this, sizeof(SHELLEXECUTEINFOW));
@@ -210,7 +210,7 @@ struct shell_execute :
 };
 
 
-bool shell_execute_async(const scoped_string & strFile, const scoped_string & strParams)
+bool shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
 {
 
    shell_execute execute(pszFile, pszParams);
@@ -220,7 +220,7 @@ bool shell_execute_async(const scoped_string & strFile, const scoped_string & st
 }
 
 
-bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::duration durationTimeout)
+bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout)
 {
 
    shell_execute execute(pszFile, pszParams);
@@ -230,7 +230,7 @@ bool shell_execute_sync(const scoped_string & strFile, const scoped_string & str
 }
 
 
-bool root_execute_async(const scoped_string & strFile, const scoped_string & strParams)
+bool root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
 {
 
    shell_execute execute(pszFile, pszParams);
@@ -243,7 +243,7 @@ bool root_execute_async(const scoped_string & strFile, const scoped_string & str
 }
 
 
-bool root_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::duration durationTimeout)
+bool root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout)
 {
 
    shell_execute execute(pszFile, pszParams);
@@ -256,7 +256,7 @@ bool root_execute_sync(const scoped_string & strFile, const scoped_string & strP
 }
 
 
-void call_async(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
+void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
 {
 
    SHELLEXECUTEINFOW info = {};
@@ -315,7 +315,7 @@ void call_async(const scoped_string & strPath, const scoped_string & strParam, c
 }
 
 
-void call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOW infoa;

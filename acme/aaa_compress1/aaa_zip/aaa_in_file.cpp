@@ -32,7 +32,7 @@ namespace zip
 
 
 
-   bool in_file::zip_open(const scoped_string & strFileName,::u32)
+   bool in_file::zip_open(const ::file::path & path,::u32)
    {
 
       m_filea.erase_all();
@@ -255,7 +255,7 @@ namespace zip
    }
 
 
-   bool in_file::locate(const scoped_string & strFileName)
+   bool in_file::locate(const ::file::path & path)
    {
       string strFile(pszFileName);
       index iFind = strFile.find(":");
@@ -288,7 +288,7 @@ namespace zip
    }
 
 
-   bool in_file::unzip_open(::zip::file * pzfile,const char * pcszFileName)
+   bool in_file::unzip_open(::zip::file * pzfile,const ::file::path & path)
 
    {
 
@@ -310,7 +310,7 @@ namespace zip
    }
 
 
-   bool in_file::zip_open(::zip::file * pzfile,const char * pcszFileName)
+   bool in_file::zip_open(::zip::file * pzfile,const ::file::path & path)
 
    {
 

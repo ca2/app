@@ -39,7 +39,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //   void toolbar_control::SaveState(HKEY hKeyRoot, const ::string & pszSubKey,
 //
-//      const scoped_string & strValueName)
+//      const ::scoped_string & scopedstrValueName)
 //
 //   {
 //      ASSERT(is_window());
@@ -54,7 +54,7 @@ namespace user
 //
 //   void toolbar_control::RestoreState(HKEY hKeyRoot, const ::string & pszSubKey,
 //
-//      const scoped_string & strValueName)
+//      const ::scoped_string & scopedstrValueName)
 //
 //   {
 //      ASSERT(is_window());

@@ -5,7 +5,7 @@
 //#ifdef LINUX
 //
 //
-//inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const scoped_string & strFormat, ...)
+//inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iBufferLen);
@@ -22,7 +22,7 @@
 //
 //}
 //
-//inline size_t lstrlen(const scoped_string & str)
+//inline size_t lstrlen(const ::scoped_string & scopedstr)
 //{
 //   return strlen(psz);
 //}
@@ -46,7 +46,7 @@
 //}
 //
 //
-//void dump_context::output_string(const scoped_string & str)
+//void dump_context::output_string(const ::scoped_string & scopedstr)
 //{
 //
 //   //// use C-runtime/output_debug_string when m_p is nullptr
@@ -113,7 +113,7 @@
 ////}
 ////
 ////
-////void dump_context::write(const scoped_string & str)
+////void dump_context::write(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   if (psz == nullptr)
@@ -500,7 +500,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 ////// Formatted output
 ////
-////void dump_context::hex_dump(const scoped_string & strLine, byte* pby, i32 nBytes, i32 nWidth)
+////void dump_context::hex_dump(const ::scoped_string & scopedstrLine, byte* pby, i32 nBytes, i32 nWidth)
 ////// do a simple hex-dump (8 per line) to a dump_context
 //////  the "pszLine" is a string to print at the start of each line
 //////    (%lx should be used to expand the current address)

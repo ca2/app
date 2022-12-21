@@ -267,7 +267,7 @@ void dir_system::init_system()
 //}
 
 
-//::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema)
+//::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 //{
 //
 //   return "";
@@ -275,7 +275,7 @@ void dir_system::init_system()
 //}
 
 
-//::file::path dir_system::get_application_path(string strAppId, const scoped_string & strPlatform, const scoped_string & strConfiguration)
+//::file::path dir_system::get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 //{
 //
 //   return "";

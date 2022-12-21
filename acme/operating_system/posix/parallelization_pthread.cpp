@@ -636,7 +636,7 @@ using htask_t = void *;
 //int   imp_stubs_pthread_setname_np(pthread_t,const char*);
 
 //
-//void task_set_name(htask_t htask, const scoped_string & strTaskName)
+//void task_set_name(htask_t htask, const ::scoped_string & scopedstrTaskName)
 //{
 //
 //   int error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
@@ -653,7 +653,7 @@ using htask_t = void *;
 //}
 //
 
-void task_set_name(const scoped_string & strTaskName)
+void task_set_name(const ::scoped_string & scopedstrTaskName)
 {
 
    //auto pthread = pthread_self();
@@ -668,7 +668,7 @@ void task_set_name(const scoped_string & strTaskName)
 
    auto pthread = pthread_self();
 
-   string strName(pszTaskName);
+   string strName(scopedstrTaskName);
 
    thread_name_abbreviate(strName, 15);
 

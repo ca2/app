@@ -308,7 +308,7 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 }
 
 
-i32 oswindow_data::store_name(const scoped_string & str)
+i32 oswindow_data::store_name(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->synchronization());

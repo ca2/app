@@ -81,7 +81,7 @@ public:
    }
 
 
-   static_application_factory(const scoped_string & strName = "") :
+   static_application_factory(const ::scoped_string & scopedstrName = "") :
       system_setup(flag_application, pszName)
    {
 

@@ -74,7 +74,7 @@ struct CLASS_DECL_ACME block :
       this->m_begin = (::byte *) psz;
       this->m_end = this->m_begin + ::string_safe_length(psz);
    }
-   //block(const ::string & str);
+   //block(const ::scoped_string  & scopedstr);
    template < typename TYPE >
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >
@@ -131,7 +131,7 @@ struct CLASS_DECL_ACME block :
 //
 //#endif
 
-   block & from_base64(const scoped_string & str, strsize iSize) const;
+   block & from_base64(const ::scoped_string & scopedstr) const;
 
 
    ::std::strong_ordering compare(const block& block) const

@@ -425,7 +425,7 @@ namespace simpledb
 
    string set::consume_quoted_value(const char * & pszXml)
    {
-      const scoped_string & str = pszXml;
+      const ::scoped_string & scopedstr = pszXml;
       string qc = ::str().get_utf8_char(psz);
       if(qc != "\'")
       {

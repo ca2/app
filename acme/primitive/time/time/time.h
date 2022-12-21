@@ -2,8 +2,8 @@
 #pragma once
 
 #define _TIME_COMPARISON_WITH(TYPE) \
-   inline bool operator == (const TYPE & t) const { return operator == (class ::time(t)); } \
-   inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> (class ::time(t)); }
+   inline bool operator == (const TYPE & t) const { return operator == ((class ::time) t); } \
+   inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> ((class ::time) t); }
 
 
 class CLASS_DECL_ACME time :

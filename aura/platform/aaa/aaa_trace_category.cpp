@@ -15,7 +15,7 @@ void trace_category_static_init()
 
    trace_category::s_ptracecategorya = memory_new pointer_array < trace_category >;
 
-   const scoped_string & stra[] =
+   const ::scoped_string & scopedstra[] =
    {
    "general",
       "com",
@@ -69,7 +69,7 @@ void trace_category_static_init()
 
       e_trace_category etracecategory = (e_trace_category)iCategory;
 
-      const scoped_string & strCategory = *p;
+      const ::scoped_string & scopedstrCategory = *p;
 
       auto pcategory = __new(trace_category(etracecategory, pszCategory));
 

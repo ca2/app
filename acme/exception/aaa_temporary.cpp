@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-temporary_exception::temporary_exception(const scoped_string & strMessage):
+temporary_exception::temporary_exception(const ::scoped_string & scopedstrMessage):
    ::exception(pszMessage)
 {
 

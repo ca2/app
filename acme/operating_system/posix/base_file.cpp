@@ -70,7 +70,7 @@
 //}
 //
 //
-//int_bool acmefile()->exists(const char * path1)
+//int_bool acmefile()->exists(const ::file::path & path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -96,7 +96,7 @@
 //}
 //
 //
-//int_bool acmepath()->is_file_or_dir(const char * path1, ::file::enum_type * petype)
+//int_bool acmepath()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -138,7 +138,7 @@
 //}
 //
 //
-//int_bool acmefile()->put_contents(const char * path, const char * contents, ::count len)
+//int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::count len)
 //{
 //
 //   bool bOk = false;
@@ -198,7 +198,7 @@
 //
 //
 //
-//string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
+//string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str;
@@ -230,7 +230,7 @@
 //
 //}
 //
-//string_array file_as_lines(const char * path, strsize iReadAtMostByteCount)
+//string_array file_as_lines(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   string str = acmefile()->as_string(path, iReadAtMostByteCount);
@@ -243,7 +243,7 @@
 //
 //}
 //
-//memory file_as_memory(const char * path, strsize iReadAtMostByteCount)
+//memory file_as_memory(const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   memory mem;
@@ -255,7 +255,7 @@
 //}
 //
 //
-//bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMostByteCount)
+//bool file_as_memory(memory_base & memory, const ::file::path & path, strsize iReadAtMostByteCount)
 //{
 //
 //   FILE * f = fopen(path, "rb");
@@ -315,7 +315,7 @@
 //}
 //
 //
-//memsize file_as_memory(const char * path, void * p, memsize s)
+//memsize file_as_memory(const ::file::path & path, void * p, memsize s)
 //{
 //
 //   FILE * f = fopen(path, "rb");
@@ -351,7 +351,7 @@
 //
 //
 //
-//filesize file_length_dup(const char * path)
+//filesize file_length_dup(const ::file::path & path)
 //{
 //
 //   struct stat st;
@@ -434,7 +434,7 @@
 //
 //
 //
-//int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
+//int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 //{
 //
 //   i32 input, output;
@@ -495,7 +495,7 @@
 //
 //
 //
-//int_bool file_is_equal_path_dup(const scoped_string & str1, const scoped_string & str2)
+//int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //   if (ansi_compare_ci(psz1, psz2) == 0)
 //      return true;
@@ -517,7 +517,7 @@
 //
 //
 //
-//int_bool file_delete(const scoped_string & strFileName)
+//int_bool file_delete(const ::file::path & path)
 //
 //{
 //
@@ -539,7 +539,7 @@
 //
 //
 //
-//int_bool file_path_is_equal(const scoped_string & str1, const scoped_string & str2)
+//int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
 //   const i32 iBufSize = MAX_PATH * 8;
@@ -574,7 +574,7 @@
 //
 //
 //
-//i32 ansi_open(const scoped_string & str, i32 i)
+//i32 ansi_open(const ::scoped_string & scopedstr, i32 i)
 //{
 //
 //   return open(psz, i);
@@ -586,7 +586,7 @@
 //   *perrno = errno;
 //}
 //
-//FILE * ansi_fopen(const scoped_string & str, const scoped_string & strMode)
+//FILE * ansi_fopen(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrMode)
 //{
 //
 //   return fopen(psz, pszMode);
@@ -635,7 +635,7 @@
 //}
 //
 //
-//void ansi_unlink(const scoped_string & str)
+//void ansi_unlink(const ::scoped_string & scopedstr)
 //{
 //
 //   unlink(psz);
@@ -643,7 +643,7 @@
 //}
 //
 //
-//int_bool is_dir(const char * path1)
+//int_bool is_dir(const ::file::path & path1)
 //{
 //
 //   struct stat st;
@@ -728,12 +728,12 @@
 //
 
 
-bool is_directory(const char * path)
+bool is_directory(const ::file::path & path)
 {
 
    struct stat stat = {};
 
-   if (::stat(path, &stat))
+   if (::stat(path.c_str(), &stat))
    {
 
       int iErrNo = errno;
@@ -754,7 +754,7 @@ bool is_directory(const char * path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path, iErrNo);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
 
       throw ::exception(estatus);
 
@@ -772,7 +772,7 @@ bool is_directory(const char * path)
 }
 
 
-bool file_exists(const char * path)
+bool file_exists(const ::file::path & path)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -817,7 +817,7 @@ bool file_exists(const char * path)
 }
 
 
-//void create_directory_path(const char * pathParam)
+//void create_directory_path(const ::file::path & pathParam)
 //{
 //
 //   if (is_directory(pathParam))
@@ -887,7 +887,7 @@ bool file_exists(const char * path)
 //
 
 
-void create_directory(const char * path)
+void create_directory(const ::file::path & path)
 {
 
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
@@ -917,7 +917,7 @@ void create_directory(const char * path)
 }
 
 
-void erase_directory(const char * path)
+void erase_directory(const ::file::path & path)
 {
 
 
@@ -933,7 +933,7 @@ void erase_directory(const char * path)
 }
 
 
-void file_delete(const char * path)
+void file_delete(const ::file::path & path)
 {
 
 

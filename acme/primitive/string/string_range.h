@@ -8,862 +8,1318 @@
 #include "acme/primitive/collection/null_terminated_iterator.h"
 #include "acme/primitive/collection/null_terminated_range.h"
 
-template < typename ITERATOR_TYPE >
+template<typename ITERATOR_TYPE>
 class string_range;
 
 
-template < primitive_character CHARACTER >
-constexpr ::string_range< const CHARACTER * >  _string_range(const CHARACTER * psz);
-
-template < primitive_character CHARACTER >
-constexpr ::string_range< const CHARACTER * >  _start_count_string_range(const CHARACTER * psz, memsize start, memsize count);
+//template < typename ITERATOR_TYPE >
+//class scoped_string_base;
 
 
-template < typename ITERATOR_TYPE >
-class string_range : 
-   //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
-   //public ::array_range < ::range < ITERATOR_TYPE > > >
-   public ::range < ITERATOR_TYPE >
-{
+template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
+class inline_string;
+
+
+using inline_number_string = inline_string<char, 64>;
+
+
+template<primitive_character CHARACTER>
+constexpr ::string_range<const CHARACTER *> _string_range(const CHARACTER *psz);
+
+template<primitive_character CHARACTER>
+constexpr ::string_range<const CHARACTER *>
+_start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
+
+
+template<typename ITERATOR_TYPE>
+class string_range :
+        //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
+        //public ::array_range < ::range < ITERATOR_TYPE > > >
+        public ::range<ITERATOR_TYPE> {
 public:
-   
 
-   //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
 
-   using BASE_RANGE = ::range < ITERATOR_TYPE >;
+    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
 
-   using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
+    using BASE_RANGE = ::range<ITERATOR_TYPE>;
 
-   using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
-   using ITEM = non_const < dereference < ITEM_POINTER > >;
-   using CHARACTER = ITEM;
+    using THIS_RANGE = ::string_range<ITERATOR_TYPE>;
 
+    using ITEM_POINTER = typename get_type_item_pointer<ITERATOR_TYPE>::type;
+    using ITEM = non_const<dereference<ITEM_POINTER> >;
+    using CHARACTER = ITEM;
 
-   using this_iterator = typename BASE_RANGE::this_iterator;
-   using iterator =  typename BASE_RANGE::iterator;
-   using const_iterator = typename  BASE_RANGE::const_iterator;
 
+    using this_iterator = typename BASE_RANGE::this_iterator;
+    using iterator = typename BASE_RANGE::iterator;
+    using const_iterator = typename BASE_RANGE::const_iterator;
 
-   using THIS_RAW_RANGE =  typename BASE_RANGE::THIS_RAW_RANGE;
-   using RAW_RANGE =  typename BASE_RANGE::RAW_RANGE;
-   using CONST_RAW_RANGE =  typename BASE_RANGE::CONST_RAW_RANGE;
 
-   using ITEM_POINTER =  typename get_type_item_pointer < this_iterator >::type;
+    using THIS_RAW_RANGE = typename BASE_RANGE::THIS_RAW_RANGE;
+    using RAW_RANGE = typename BASE_RANGE::RAW_RANGE;
+    using CONST_RAW_RANGE = typename BASE_RANGE::CONST_RAW_RANGE;
 
-   using ITEM = non_const < dereference < ITEM_POINTER > >;
+    //using ITEM_POINTER =  typename get_type_item_pointer < this_iterator >::type;
 
+    //using ITEM = non_const < dereference < ITEM_POINTER > >;
 
-   template<::std::size_t count>
-   constexpr string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count){}
-   template<primitive_integral INTEGRAL>
-   constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin, (this_iterator)(begin + count)){}
-   string_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
-   string_range(nullptr_t) : BASE_RANGE(nullptr) {}
-   string_range() {}
-   template<typed_range<iterator> RANGE>
-   string_range(const RANGE & range) : BASE_RANGE(range) {}
-   template<typed_range<const_iterator> RANGE>
-   string_range(const RANGE & range) : BASE_RANGE(range) {}
-   string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
-   string_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
-   string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-   string_range(const ::atom & atom);
-   string_range(const ::block & block);
-   string_range(const CHARACTER * psz) : string_range(psz, 0, string_safe_length(psz)) {}
-   string_range(const CHARACTER * psz, strsize len) : string_range(psz, 0, len) {}
-   string_range(const CHARACTER * psz, strsize start, strsize count) : string_range(::_start_count_string_range(psz, start, count)) {}
+    using SCOPED_STRING = scoped_string_base<ITERATOR_TYPE>;
 
 
-   string_range & operator = (const THIS_RANGE &range) { BASE_RANGE::operator=(range); return *this; }
-   string_range & operator = (string_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
-   string_range & operator = (const atom & atom);
-   string_range & operator = (const block & block);
+    template<::std::size_t count>
+    constexpr string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
 
+    template<primitive_integral INTEGRAL>
+    constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator) begin,
+                                                                              (this_iterator) (begin + count)) {}
 
+    string_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
 
-   //::std::strong_ordering order(const string_range &range) const noexcept;
-   //using NATURAL_POINTER::order;
+    string_range(nullptr_t) : BASE_RANGE(nullptr) {}
 
-   //::std::strong_ordering order(const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering case_insensitive_order(const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering collate(const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering case_insensitive_collate(const THIS_RANGE &range) const noexcept;
+    string_range() {}
 
-   ::std::strong_ordering order(const THIS_RANGE &range, strsize n) const noexcept;
-   ::std::strong_ordering case_insensitive_order(const THIS_RANGE &range, strsize n) const noexcept;
-   ::std::strong_ordering collate(const THIS_RANGE &range, strsize n) const noexcept;
-   ::std::strong_ordering case_insensitive_collate(const THIS_RANGE &range, strsize n) const noexcept;
+    template<typed_range<iterator> RANGE>
+    string_range(const RANGE &range) : BASE_RANGE(range) {}
 
-   ::std::strong_ordering order(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering collate(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
-   ::std::strong_ordering case_insensitive_collate(strsize start, strsize count, const THIS_RANGE &range) const noexcept;
+    template<typed_range<const_iterator> RANGE>
+    string_range(const RANGE &range) : BASE_RANGE(range) {}
 
-   ::std::strong_ordering order(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
-   ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
-   ::std::strong_ordering collate(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
-   ::std::strong_ordering case_insensitive_collate(strsize start, strsize count, const THIS_RANGE &range, strsize iStart2, strsize iCount2) const noexcept;
+    string_range(const THIS_RANGE &range) : BASE_RANGE(range) {}
 
-   //inline int operator<=>(const string_range &range) const { return order(range); }
-   //inline bool operator==(const string_range &range) const { return size() != range.size() ? false : !order(range); }
-   //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
-   //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
-   //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
-   //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
-   //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
+    string_range(THIS_RANGE &&range) : BASE_RANGE(::move(range)) {}
 
+    string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 
-   //inline bool operator==(const string_range &range) const { return order(ansistr) == 0; }
-   //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
-   //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
-   //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
-   //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
-   //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
-   
-   inline bool operator==(const THIS_RANGE &range) const { return this->equals(range); }
-   //inline ::std::strong_ordering operator<=>(const THIS_RANGE &range) const { return this->order(range); }
+    string_range(const ::atom &atom);
 
+    string_range(const ::block &block);
 
-   THIS_RANGE start_count(strsize start, strsize count) const
-   {
+    string_range(const CHARACTER *psz) : string_range(psz, 0, string_safe_length(psz)) {}
 
-      return ::_start_count_range(*this, start, count);
+    string_range(const CHARACTER *psz, strsize len) : string_range(psz, 0, len) {}
 
-   }
+    string_range(const CHARACTER *psz, strsize start, strsize count) : string_range(
+            ::_start_count_string_range(psz, start, count)) {}
 
 
-   using BASE_RANGE::_order;
+    //auto this_range() const {return *this;}
 
-   constexpr ::std::strong_ordering _order(const THIS_RANGE & range) const
-   {
+    //auto subrange(strsize start, strsize count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
-      return _order(range, ::comparison::comparison < ITEM >());
 
-   }
+    SCOPED_STRING operator()(strsize start, strsize count) const {
 
+       return ::_start_count_range(*this, start, count);
 
-   using BASE_RANGE::order;
+    }
 
-   constexpr ::std::strong_ordering order(const THIS_RANGE & range) const noexcept;
+    SCOPED_STRING operator()(strsize start, const_iterator end) const {
 
+       return ::_start_end_range(*this, start, end);
 
-   constexpr ::std::strong_ordering operator<=>(const THIS_RANGE & range) const
-   {
+    }
 
-      return this->order(range);
 
-   }
+    SCOPED_STRING operator()(const_iterator start) const {
 
+       return SCOPED_STRING(start, this->end());
 
-   using BASE_RANGE::_equals;
+    }
 
-   constexpr bool _equals(const THIS_RANGE & range) const
-   {
 
-      return this->_equals(range, ::comparison::comparison < ITEM >());
+    SCOPED_STRING operator()() const {
 
-   }
+       return SCOPED_STRING(*this);
 
+    }
 
-   using BASE_RANGE::equals;
 
-   constexpr bool equals(const THIS_RANGE & range) const
-   {
+    bool has_char() const { return !this->is_empty(); }
 
-      return this->equals(range, ::comparison::comparison < ITEM >());
+    inline bool is_empty() const noexcept { return *this->data() == '\0'; }
+    inline memsize length_in_bytes() const{return this->size() * sizeof(CHARACTER);}
 
-   }
+    //inline bool has_char() const noexcept { return !this->is_empty(); }
+    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->size() + i; }
 
-   constexpr bool case_insensitive_equals(const THIS_RANGE & range) const noexcept
-   {
+    operator ::block() const { return {(::byte *) c_str(), this->length_in_bytes()}; }
 
-      return this->equals(range, ::comparison::case_insensitive < ITEM >());
+    inline CHARACTER character_at(strsize i) const { return this->data()[i]; }
 
-   }
 
-   bool equals(const THIS_RANGE & range, strsize n) const noexcept
-   {
+    inline CHARACTER *data() { return (CHARACTER *) this->begin(); }
 
-      return this->equals_start_count(range, 0, n, ::comparison::comparison < ITEM >());
+    inline const CHARACTER *data() const { return this->begin(); }
 
-   }
-   
-   bool case_insensitive_equals(const THIS_RANGE & range, strsize n) const noexcept
-   {
+    inline const CHARACTER *c_str() const { return this->data(); }
 
-      return this->equals_start_count(range, 0, n, ::comparison::case_insensitive < ITEM >());
+    inline const CHARACTER *c_str_for_printf() const { return this->data(); }
 
-   }
+    inline operator const CHARACTER *() const { return this->data(); }
 
-   bool equals(strsize start, strsize count, const THIS_RANGE & range) const noexcept
-   {
+    inline operator CHARACTER *() { return this->data(); }
 
-      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    inline const CHARACTER *ptr_at(::index i) { return this->data() + i; }
 
-   }
+    inline const CHARACTER *ptr_at(::index i) const { return this->data() + i; }
 
-   bool case_insensitive_equals(strsize start, strsize count, const THIS_RANGE & range) const noexcept
-   {
+    inline const CHARACTER *reverse_ptr(::index i) { return this->data() + length() + i; }
 
-      return this->equals_start_count(range, start, count, ::comparison::case_insensitive < ITEM >());
+    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + length() + i; }
 
-   }
+    inline const CHARACTER &operator[](index i) const { return this->data()[i]; }
 
-   bool equals(strsize start, strsize count, const THIS_RANGE & range, strsize iStart2, strsize iCount2) const noexcept
-   {
+    strsize offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
-      return this->equals_start_count(range.start_count(iStart2, iCount2), start, count, ::comparison::comparison < ITEM >());
 
-   }
+    string_range &operator=(const THIS_RANGE &range) {
+       BASE_RANGE::operator=(range);
+       return *this;
+    }
 
-   bool case_insensitive_equals(strsize start, strsize count, const THIS_RANGE & range, strsize iStart2, strsize iCount2) const noexcept
-   {
+    string_range &operator=(string_range &&range) {
+       BASE_RANGE::operator=(::move(range));
+       return *this;
+    }
 
-      return this->equals_start_count(range.start_count(iStart2, iCount2), start, count, ::comparison::case_insensitive < ITEM >());
+    string_range &operator=(const atom &atom);
 
-   }
+    string_range &operator=(const block &block);
 
 
 
-   using BASE_RANGE::_equals_start;
+    //::std::strong_ordering order(const string_range &range) const noexcept;
+    //using NATURAL_POINTER::order;
 
-   constexpr bool _equals_start(const THIS_RANGE & range, memsize start) const
-   {
+    //::std::strong_ordering order(const SCOPED_STRING &range) const noexcept;
+    ::std::strong_ordering case_insensitive_order(const SCOPED_STRING &range) const noexcept;
 
-      return this->_equals_start(range, start, ::comparison::comparison < ITEM >());
+    ::std::strong_ordering collate(const SCOPED_STRING &range) const noexcept;
 
-   }
+    ::std::strong_ordering case_insensitive_collate(const SCOPED_STRING &range) const noexcept;
 
+    ::std::strong_ordering order(const SCOPED_STRING &range, strsize n) const noexcept;
 
-   using BASE_RANGE::equals_start;
+    ::std::strong_ordering case_insensitive_order(const SCOPED_STRING &range, strsize n) const noexcept;
 
-   constexpr bool equals_start(const THIS_RANGE & range, memsize start) const
-   {
+    ::std::strong_ordering collate(const SCOPED_STRING &range, strsize n) const noexcept;
 
-      return this->equals_start(range, start, ::comparison::comparison < ITEM >());
+    ::std::strong_ordering case_insensitive_collate(const SCOPED_STRING &range, strsize n) const noexcept;
 
-   }
+    ::std::strong_ordering order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
+    ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-   using BASE_RANGE::_equals_start_count;
+    ::std::strong_ordering collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-   constexpr bool _equals_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    ::std::strong_ordering
+    case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-      return this->_equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    ::std::strong_ordering
+    order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
 
-   }
+    ::std::strong_ordering
+    case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+                           strsize iCount2) const noexcept;
 
+    ::std::strong_ordering
+    collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
 
-   using BASE_RANGE::equals_start_count;
+    ::std::strong_ordering
+    case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+                             strsize iCount2) const noexcept;
 
-   constexpr bool equals_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    //inline int operator<=>(const string_range &range) const { return order(range); }
+    //inline bool operator==(const string_range &range) const { return size() != range.size() ? false : !order(range); }
+    //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
+    //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
+    //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
+    //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
+    //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
 
-      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
+    //inline bool operator==(const string_range &range) const { return order(ansistr) == 0; }
+    //inline bool operator>(const string_range &range) const { return order(ansistr) > 0; }
+    //inline bool operator<(const string_range &range) const { return order(ansistr) < 0; }
+    //inline bool operator!=(const string_range &range) const { return !operator ==(ansistr); }
+    //inline bool operator>=(const string_range &range) const { return !operator <(ansistr); }
+    //inline bool operator<=(const string_range &range) const { return !operator >(ansistr); }
 
+    inline bool operator==(const THIS_RANGE &range) const { return this->equals(range); }
+    //inline ::std::strong_ordering operator<=>(const SCOPED_STRING &range) const { return this->order(range); }
 
-   using BASE_RANGE::_find;
 
-   constexpr const_iterator _find(const THIS_RANGE & range) const
-   {
 
-      return this->_find(range, ::comparison::comparison < ITEM >());
 
-   }
+    using BASE_RANGE::_order;
 
+    constexpr ::std::strong_ordering _order(const SCOPED_STRING &range) const {
 
-   using BASE_RANGE::find;
+       return _order(range, ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator find(const THIS_RANGE & range) const
-   {
+    }
 
-      return this->find(range, ::comparison::comparison < ITEM >());
 
-   }
+    using BASE_RANGE::order;
 
+    constexpr ::std::strong_ordering order(const SCOPED_STRING &range) const noexcept;
 
-   using BASE_RANGE::_find_start;
 
-   constexpr const_iterator _find_start(const THIS_RANGE & range, memsize start) const
-   {
+    constexpr ::std::strong_ordering operator<=>(const SCOPED_STRING &range) const {
 
-      return this->_find_start(range, start, ::comparison::comparison < ITEM >());
+       return this->order(range);
 
-   }
+    }
 
 
-   using BASE_RANGE::find_start;
+    using BASE_RANGE::_equals;
 
-   constexpr const_iterator find_start(const THIS_RANGE & range, memsize start) const
-   {
+    constexpr bool _equals(const SCOPED_STRING &range) const {
 
-      return this->find_start(range, start, ::comparison::comparison < ITEM >());
+       return this->_equals(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::_find_start_count;
+    using BASE_RANGE::equals;
 
-   constexpr const_iterator _find_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    constexpr bool equals(const SCOPED_STRING &range) const {
 
-      return this->_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+       return this->equals(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
+    constexpr bool case_insensitive_equals(const SCOPED_STRING &range) const noexcept {
 
-   using BASE_RANGE::find_start_count;
+       return this->equals(range, ::comparison::case_insensitive<ITEM>());
 
-   constexpr const_iterator find_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    }
 
-      return this->find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    bool equals(const SCOPED_STRING &range, strsize n) const noexcept {
 
-   }
+       return this->equals_start_count(range, 0, n, ::comparison::comparison<ITEM>());
 
+    }
 
-   using BASE_RANGE::_rear_find;
+    bool case_insensitive_equals(const SCOPED_STRING &range, strsize n) const noexcept {
 
-   constexpr const_iterator _rear_find(const THIS_RANGE & range) const
-   {
+       return this->equals_start_count(range, 0, n, ::comparison::case_insensitive<ITEM>());
 
-      return this->_rear_find(range, ::comparison::comparison < ITEM >());
+    }
 
-   }
+    bool equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
 
+       return this->equals_start_count(range, start, count, ::comparison::comparison<ITEM>());
 
-   using BASE_RANGE::rear_find;
+    }
 
-   constexpr const_iterator rear_find(const THIS_RANGE & range) const
-   {
+    bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
 
-      return this->rear_find(range, ::comparison::comparison < ITEM >());
+       return this->equals_start_count(range, start, count, ::comparison::case_insensitive<ITEM>());
 
-   }
+    }
 
+    bool
+    equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept {
 
-   using BASE_RANGE::_rear_find_start;
+       return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
+                                       ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator _rear_find_start(const THIS_RANGE & range, memsize start) const
-   {
+    }
 
-      return this->_rear_find_start(range, start, ::comparison::comparison < ITEM >());
+    bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+                                 strsize iCount2) const noexcept {
 
-   }
+       return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
+                                       ::comparison::case_insensitive<ITEM>());
 
+    }
 
-   using BASE_RANGE::rear_find_start;
 
-   constexpr const_iterator rear_find_start(const THIS_RANGE & range, memsize start) const
-   {
 
-      return this->rear_find_start(range, start, ::comparison::comparison < ITEM >());
+//   using BASE_RANGE::_equals_start;
+//
+//   constexpr bool _equals_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_equals_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::equals_start;
+//
+//   constexpr bool equals_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->equals_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_equals_start_count;
+//
+//   constexpr bool _equals_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::equals_start_count;
+//
+//   constexpr bool equals_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
 
-   }
+    using BASE_RANGE::_find;
 
+    constexpr const_iterator _find(const SCOPED_STRING &range) const {
 
-   using BASE_RANGE::_rear_find_start_count;
+       return this->_find(range, ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator _rear_find_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    }
 
-      return this->_rear_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
+    using BASE_RANGE::find;
 
+    constexpr const_iterator find(const SCOPED_STRING &range) const {
 
-   using BASE_RANGE::rear_find_start_count;
+       return this->find(range, ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator rear_find_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    }
 
-      return this->rear_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
+//   using BASE_RANGE::_find_start;
+//
+//   constexpr const_iterator _find_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_find_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::find_start;
+//
+//   constexpr const_iterator find_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->find_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_find_start_count;
+//
+//   constexpr const_iterator _find_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::find_start_count;
+//
+//   constexpr const_iterator find_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
 
-   using BASE_RANGE::_scan;
+    using BASE_RANGE::_rear_find;
 
-   constexpr const_iterator _scan(const THIS_RANGE & range) const
-   {
+    constexpr const_iterator _rear_find(const SCOPED_STRING &range) const {
 
-      return this->_scan(range, ::comparison::comparison < ITEM >());
+       return this->_rear_find(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::scan;
+    using BASE_RANGE::rear_find;
 
-   constexpr const_iterator scan(const THIS_RANGE & range) const
-   {
+    constexpr const_iterator rear_find(const SCOPED_STRING &range) const {
 
-      return this->scan(range, ::comparison::comparison < ITEM >());
+       return this->rear_find(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::_scan_start;
+//   using BASE_RANGE::_rear_find_start;
+//
+//   constexpr const_iterator _rear_find_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_rear_find_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_find_start;
+//
+//   constexpr const_iterator rear_find_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->rear_find_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_rear_find_start_count;
+//
+//   constexpr const_iterator _rear_find_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_rear_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_find_start_count;
+//
+//   constexpr const_iterator rear_find_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->rear_find_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   constexpr const_iterator _scan_start(const THIS_RANGE & range, memsize start) const
-   {
 
-      return this->_scan_start(range, start, ::comparison::comparison < ITEM >());
+    using BASE_RANGE::_find_first_character_in;
 
-   }
+    constexpr const_iterator _find_first_character_in(const SCOPED_STRING &range) const {
 
+       return this->_find_first_character_in(range, ::comparison::comparison<ITEM>());
 
-   using BASE_RANGE::scan_start;
+    }
 
-   constexpr const_iterator scan_start(const THIS_RANGE & range, memsize start) const
-   {
 
-      return this->scan_start(range, start, ::comparison::comparison < ITEM >());
+    using BASE_RANGE::find_first_character_in;
 
-   }
+    constexpr const_iterator find_first_character_in(const SCOPED_STRING &range) const {
 
+       return this->find_first_character_in(range, ::comparison::comparison<ITEM>());
 
-   using BASE_RANGE::_scan_start_count;
+    }
 
-   constexpr const_iterator _scan_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
 
-      return this->_scan_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//   using BASE_RANGE::_find_first_character_in_start;
+//
+//   constexpr const_iterator _find_first_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_find_first_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::find_first_character_in_start;
+//
+//   constexpr const_iterator find_first_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->find_first_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_find_first_character_in_start_count;
+//
+//   constexpr const_iterator _find_first_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_find_first_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::find_first_character_in_start_count;
+//
+//   constexpr const_iterator find_first_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->find_first_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   }
 
 
-   using BASE_RANGE::scan_start_count;
+    using BASE_RANGE::_skip_any_character_in;
 
-   constexpr const_iterator scan_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    constexpr const_iterator _skip_any_character_in(const SCOPED_STRING &range) const {
 
-      return this->scan_start_count(range, start, count, ::comparison::comparison < ITEM >());
+       return this->_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
+    using BASE_RANGE::skip_any_character_in;
 
-   using BASE_RANGE::_span;
+//    constexpr const_iterator skip_any_character_in(const SCOPED_STRING &range) const {
+//
+//       return this->skip_any_character_in(range, ::comparison::comparison<ITEM>());
+//
+//    }
 
-   constexpr const_iterator _span(const THIS_RANGE & range) const
-   {
 
-      return this->_span(range, ::comparison::comparison < ITEM >());
+//   using BASE_RANGE::_skip_any_character_in_start;
+//
+//   constexpr const_iterator _skip_any_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_skip_any_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::skip_any_character_in_start;
+//
+//   constexpr const_iterator skip_any_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->skip_any_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_skip_any_character_in_start_count;
+//
+//   constexpr const_iterator _skip_any_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_skip_any_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::skip_any_character_in_start_count;
+//
+//   constexpr const_iterator skip_any_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->skip_any_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   }
 
+    using BASE_RANGE::_rear_skip_any_character_in;
 
-   using BASE_RANGE::span;
+    constexpr const_iterator _rear_skip_any_character_in(const SCOPED_STRING &range) const noexcept {
 
-   constexpr const_iterator span(const THIS_RANGE & range) const
-   {
+       return this->_rear_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
-      return this->span(range, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+    using BASE_RANGE::rear_skip_any_character_in;
 
-   using BASE_RANGE::_span_start;
+    constexpr const_iterator rear_skip_any_character_in(const SCOPED_STRING &range) const noexcept {
 
-   constexpr const_iterator _span_start(const THIS_RANGE & range, memsize start) const
-   {
+       return this->rear_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
-      return this->_span_start(range, start, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+//   using BASE_RANGE::rear_skip_any_character_in_start;
+//
+//   constexpr const_iterator rear_skip_any_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->rear_skip_any_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_rear_skip_any_character_in_start_count;
+//
+//   constexpr const_iterator _rear_skip_any_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_rear_skip_any_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_skip_any_character_in_start_count;
+//
+//   constexpr const_iterator rear_skip_any_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->rear_skip_any_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   using BASE_RANGE::span_start;
+    using BASE_RANGE::_skip;
 
-   constexpr const_iterator span_start(const THIS_RANGE & range, memsize start) const
-   {
+    constexpr const_iterator _skip(const ITEM &item) const {
 
-      return this->span_start(range, start, ::comparison::comparison < ITEM >());
+       return this->_skip(item, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::_span_start_count;
+    using BASE_RANGE::skip;
 
-   constexpr const_iterator _span_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    constexpr const_iterator skip(const ITEM &item) const {
 
-      return this->_span_start_count(range, start, count, ::comparison::comparison < ITEM >());
+       return this->skip(item, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::span_start_count;
+//   using BASE_RANGE::_skip_start;
+//
+//   constexpr const_iterator _skip_start(const ITEM & item, memsize start) const
+//   {
+//
+//      return this->_skip_start(item, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::skip_start;
+//
+//   constexpr const_iterator skip_start(const ITEM & item, memsize start) const
+//   {
+//
+//      return this->skip_start(item, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_skip_start_count;
+//
+//   constexpr const_iterator _skip_start_count(const ITEM & item, memsize start, memsize count) const
+//   {
+//
+//      return this->_skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::skip_start_count;
+//
+//   constexpr const_iterator skip_start_count(const ITEM & item, memsize start, memsize count) const
+//   {
+//
+//      return this->skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   constexpr const_iterator span_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
 
-      return this->span_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
 
+    using BASE_RANGE::_rear_find_item;
 
-   using BASE_RANGE::_rear_span;
+    constexpr const_iterator _rear_find_item(const ITEM &item) const {
 
-   constexpr const_iterator _rear_span(const THIS_RANGE & range) const noexcept
-   {
+       return this->_rear_find_item(item, ::comparison::comparison<ITEM>());
 
-      return this->_rear_span(range, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+    using BASE_RANGE::rear_find_item;
 
-   using BASE_RANGE::rear_span;
+    constexpr const_iterator rear_find_item(const ITEM &item) const {
 
-   constexpr const_iterator rear_span(const THIS_RANGE & range) const noexcept
-   {
+       return this->rear_find_item(item, ::comparison::comparison<ITEM>());
 
-      return this->rear_span(range, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+//   using BASE_RANGE::_rear_find_item_start;
+//
+//   constexpr const_iterator _rear_find_item_start(const ITEM & item, memsize start) const
+//   {
+//
+//      return this->_rear_find_item_start(item, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_find_item_start;
+//
+//   constexpr const_iterator rear_find_item_start(const ITEM & item, memsize start) const
+//   {
+//
+//      return this->rear_find_item_start(item, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_rear_find_item_start_count;
+//
+//   constexpr const_iterator _rear_find_item_start_count(const ITEM & item, memsize start, memsize count) const
+//   {
+//
+//      return this->_rear_find_item_start_count(item, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_find_item_start_count;
+//
+//   constexpr const_iterator rear_find_item_start_count(const ITEM & item, memsize start, memsize count) const
+//   {
+//
+//      return this->rear_find_item_start_count(item, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   using BASE_RANGE::rear_span_start;
 
-   constexpr const_iterator rear_span_start(const THIS_RANGE & range, memsize start) const
-   {
 
-      return this->rear_span_start(range, start, ::comparison::comparison < ITEM >());
+    using BASE_RANGE::_rear_find_first_character_in;
 
-   }
+    constexpr const_iterator _rear_find_first_character_in(const SCOPED_STRING &range) const noexcept {
 
+       return this->_rear_find_first_character_in(range, ::comparison::comparison<ITEM>());
 
-   using BASE_RANGE::_rear_span_start_count;
+    }
 
-   constexpr const_iterator _rear_span_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
 
-      return this->_rear_span_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    using BASE_RANGE::rear_find_first_character_in;
 
-   }
+    constexpr const_iterator rear_find_first_character_in(const SCOPED_STRING &range) const noexcept {
 
+       return this->rear_find_first_character_in(range, ::comparison::comparison<ITEM>());
 
-   using BASE_RANGE::rear_span_start_count;
+    }
 
-   constexpr const_iterator rear_span_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
 
-      return this->rear_span_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//   using BASE_RANGE::rear_find_first_character_in_start;
+//
+//   constexpr const_iterator rear_find_first_character_in_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->rear_find_first_character_in_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_rear_find_first_character_in_start_count;
+//
+//   constexpr const_iterator _rear_find_first_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_rear_find_first_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::rear_find_first_character_in_start_count;
+//
+//   constexpr const_iterator rear_find_first_character_in_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->rear_find_first_character_in_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   }
 
-   using BASE_RANGE::_skip;
+    using BASE_RANGE::_begins;
 
-   constexpr const_iterator _skip(const ITEM & item) const
-   {
+    constexpr bool _begins(const SCOPED_STRING &range) const {
 
-      return this->_skip(item, ::comparison::comparison < ITEM >());
+       return this->_begins(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::skip;
+    using BASE_RANGE::begins;
 
-   constexpr const_iterator skip(const ITEM & item) const
-   {
+    constexpr bool begins(const SCOPED_STRING &range) const {
 
-      return this->skip(item, ::comparison::comparison < ITEM >());
+       return this->begins(range, ::comparison::comparison<ITEM>());
 
-   }
+    }
 
 
-   using BASE_RANGE::_skip_start;
+//   using BASE_RANGE::_begins_start;
+//
+//   constexpr bool _begins_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_begins_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::begins_start;
+//
+//   constexpr bool begins_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->begins_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_begins_start_count;
+//
+//   constexpr bool _begins_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_begins_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::begins_start_count;
+//
+//   constexpr bool begins_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->begins_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
-   constexpr const_iterator _skip_start(const ITEM & item, memsize start) const
-   {
 
-      return this->_skip_start(item, start, ::comparison::comparison < ITEM >());
 
-   }
+    using BASE_RANGE::_ends;
 
+    constexpr bool _ends(const SCOPED_STRING &range) const {
 
-   using BASE_RANGE::skip_start;
+       return this->_ends(range, ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator skip_start(const ITEM & item, memsize start) const
-   {
+    }
 
-      return this->skip_start(item, start, ::comparison::comparison < ITEM >());
 
-   }
+    using BASE_RANGE::ends;
 
+    constexpr bool ends(const SCOPED_STRING &range) const {
 
-   using BASE_RANGE::_skip_start_count;
+       return this->ends(range, ::comparison::comparison<ITEM>());
 
-   constexpr const_iterator _skip_start_count(const ITEM & item, memsize start, memsize count) const
-   {
+    }
 
-      return this->_skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
 
-   }
+//   using BASE_RANGE::_ends_start;
+//
+//   constexpr bool _ends_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->_ends_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::ends_start;
+//
+//   constexpr bool ends_start(const SCOPED_STRING & range, memsize start) const
+//   {
+//
+//      return this->ends_start(range, start, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::_ends_start_count;
+//
+//   constexpr bool _ends_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->_ends_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
+//
+//
+//   using BASE_RANGE::ends_start_count;
+//
+//   constexpr bool ends_start_count(const SCOPED_STRING & range, memsize start, memsize count) const
+//   {
+//
+//      return this->ends_start_count(range, start, count, ::comparison::comparison < ITEM >());
+//
+//   }
 
 
-   using BASE_RANGE::skip_start_count;
 
-   constexpr const_iterator skip_start_count(const ITEM & item, memsize start, memsize count) const
-   {
 
-      return this->skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
+    template<typename PRED>
+    bool is_every_char(PRED pred) {
 
-   }
+       for (index i = 0; i < this->length(); i++) {
 
+          if (!pred(this->operator[](i))) {
 
+             return false;
 
+          }
 
-   using BASE_RANGE::_rear_find_item;
+       }
 
-   constexpr const_iterator _rear_find_item(const ITEM & item) const
-   {
+       return true;
 
-      return this->_rear_find_item(item, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+    template<typename NUMBER>
+    NUMBER &translate_index(NUMBER &number) {
 
-   using BASE_RANGE::rear_find_item;
+       if (number < 0) {
 
-   constexpr const_iterator rear_find_item(const ITEM & item) const
-   {
+          number += this->size() + 1;
 
-      return this->rear_find_item(item, ::comparison::comparison < ITEM >());
+          if (number < 0) {
 
-   }
+             number = 0;
 
+          }
 
-   using BASE_RANGE::_rear_find_item_start;
+       } else if (number > this->size()) {
 
-   constexpr const_iterator _rear_find_item_start(const ITEM & item, memsize start) const
-   {
+          number = this->size();
 
-      return this->_rear_find_item_start(item, start, ::comparison::comparison < ITEM >());
+       }
 
-   }
+       return number;
 
+    }
 
-   using BASE_RANGE::rear_find_item_start;
 
-   constexpr const_iterator rear_find_item_start(const ITEM & item, memsize start) const
-   {
+    //inline bool contains(CHARACTER ch = 0) const;
+    inline bool contains(const SCOPED_STRING &scopedstr = 0) const;
 
-      return this->rear_find_item_start(item, start, ::comparison::comparison < ITEM >());
+    //inline bool contains(const string_base &str = 0) const;
+    //inline bool contains(CHARACTER ch, const CHARACTER ** ppszBeg) const;
+    inline bool
+    contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
+    //inline bool contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-   }
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_any(const STRING_ARRAY &stra) const;
 
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_all(const STRING_ARRAY &stra) const;
 
-   using BASE_RANGE::_rear_find_item_start_count;
+    //inline bool contains_ci(CHARACTER ch = 0) const;
+    inline bool contains_ci(const SCOPED_STRING &scopedstr = 0) const;
 
-   constexpr const_iterator _rear_find_item_start_count(const ITEM & item, memsize start, memsize count) const
-   {
+    //inline bool contains_ci(const string_base &str = 0) const;
+    //inline bool contains_ci(CHARACTER ch, const CHARACTER ** ppszBeg) const;
+    inline bool
+    contains_ci(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
+    //inline bool contains_ci(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-      return this->_rear_find_item_start_count(item, start, count, ::comparison::comparison < ITEM >());
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_any_ci(const STRING_ARRAY &stra) const;
 
-   }
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_all_ci(const STRING_ARRAY &stra) const;
 
 
-   using BASE_RANGE::rear_find_item_start_count;
+    //inline bool contains_wci(CHARACTER ch = 0) const;
+    inline bool contains_wci(const SCOPED_STRING &scopedstr = 0) const;
 
-   constexpr const_iterator rear_find_item_start_count(const ITEM & item, memsize start, memsize count) const
-   {
+    //inline bool contains_wci(const string_base &str = 0) const;
+    //inline bool contains_wci(CHARACTER ch, const CONST_STRING_RANGE &* ppszBeg) const;
+    inline bool
+    contains_wci(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
+    //inline bool contains_wci(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
-      return this->rear_find_item_start_count(item, start, count, ::comparison::comparison < ITEM >());
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_any_wci(const STRING_ARRAY &stra) const;
 
-   }
+    template<primitive_array STRING_ARRAY>
+    inline bool contains_all_wci(const STRING_ARRAY &stra) const;
 
 
+    template<::comparison::equality<CHARACTER> EQUALITY>
+    ::count _occurrence_count_of(const SCOPED_STRING &scopedstr, EQUALITY equality) {
 
-   using BASE_RANGE::_rear_scan;
+       strsize nLen = scopedstr.size();
 
-   constexpr const_iterator _rear_scan(const THIS_RANGE & range) const noexcept
-   {
+       strsize count = 0;
 
-      return this->_rear_scan(range, ::comparison::comparison < ITEM >());
+       auto range = (*this)();
 
-   }
+       while ((range.begin(range.find(scopedstr, equality))) != nullptr) {
 
+          count++;
 
-   using BASE_RANGE::rear_scan;
+          range.begin() += nLen;
 
-   constexpr const_iterator rear_scan(const THIS_RANGE & range) const noexcept
-   {
+       }
 
-      return this->rear_scan(range, ::comparison::comparison < ITEM >());
+       return count;
 
-   }
+    }
 
 
-   using BASE_RANGE::rear_scan_start;
+    ::count occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
 
-   constexpr const_iterator rear_scan_start(const THIS_RANGE & range, memsize start) const
-   {
+       return _occurrence_count_of(scopedstr, ::comparison::comparison<CHARACTER>());
 
-      return this->rear_scan_start(range, start, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+    ::count case_insensitive_occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
 
-   using BASE_RANGE::_rear_scan_start_count;
+       return _occurrence_count_of(scopedstr, ::comparison::case_insensitive<CHARACTER>());
 
-   constexpr const_iterator _rear_scan_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    }
 
-      return this->_rear_scan_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
 
+    // find routines
 
-   using BASE_RANGE::rear_scan_start_count;
+    // find the first occurrence of character 'ch', starting at index 'iStart'
+    const_iterator find(CHARACTER ch) const RELEASENOTHROW;
 
-   constexpr const_iterator rear_scan_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+//   strsize find(CHARACTER ch) const RELEASENOTHROW;
+//   strsize find(CHARACTER ch) const RELEASENOTHROW;
+    const_iterator case_insensitive_find(CHARACTER ch = 0) const RELEASENOTHROW;
 
-      return this->rear_scan_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    const_iterator find_skip_or_end(CHARACTER ch = 0) const RELEASENOTHROW
+    {
 
-   }
+       auto p = this->begin();
 
+       while (p < this->end()) {
 
-   using BASE_RANGE::_begins;
+          if (*p == ch) {
 
-   constexpr bool _begins(const THIS_RANGE & range) const
-   {
+             p++;
 
-      return this->_begins(range, ::comparison::comparison < ITEM >());
+             return p;
 
-   }
+          }
 
+          p++;
 
-   using BASE_RANGE::begins;
+       }
 
-   constexpr bool begins(const THIS_RANGE & range) const
-   {
+       return p;
 
-      return this->begins(range, ::comparison::comparison < ITEM >());
+    }
 
-   }
 
+    const_iterator find_first_whitespace() const RELEASENOTHROW;
 
-   using BASE_RANGE::_begins_start;
+    const_iterator skip_whitespace() const RELEASENOTHROW;
 
-   constexpr bool _begins_start(const THIS_RANGE & range, memsize start) const
-   {
+    const_iterator rear_find_first_whitespace() const RELEASENOTHROW;
 
-      return this->_begins_start(range, start, ::comparison::comparison < ITEM >());
+    const_iterator rear_skip_whitespace() const RELEASENOTHROW;
 
-   }
 
 
-   using BASE_RANGE::begins_start;
 
-   constexpr bool begins_start(const THIS_RANGE & range, memsize start) const
-   {
+    //inline bool begins(const SCOPED_STRING & scopedstrPrefix) const;
+    //inline bool ends(const SCOPED_STRING & scopedstrSuffix) const;
 
-      return this->begins_start(range, start, ::comparison::comparison < ITEM >());
+    inline bool case_insensitive_begins(const SCOPED_STRING &scopedstrPrefix) const;
 
-   }
+    inline bool case_insensitive_ends(const SCOPED_STRING &scopedstrSuffix) const;
 
 
-   using BASE_RANGE::_begins_start_count;
+    // look for a specific sub-string_base
 
-   constexpr bool _begins_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    //bool _find_prefix(strsize & i, const string_base &str, strsize & start, strsize & blockLen, strsize & nEndPosition, const CHARACTER ** ppszTail) const RELEASENOTHROW;
 
-      return this->_begins_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    // find the first occurrence of string_base 'block', starting at index 'iStart'
+    //const_iterator find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-   }
+    const_iterator case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
+    const_iterator unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-   using BASE_RANGE::begins_start_count;
+    const_iterator case_insensitive_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-   constexpr bool begins_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    // find the first occurrence of string_base 'block', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
+    //const_iterator rear_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-      return this->begins_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    const_iterator rear_case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-   }
+    const_iterator rear_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
+    const_iterator rear_case_insensitive_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
+    // find the first occurrence of any of the characters in string_base 'pszCharSet'
+    //const_iterator find_first_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
+    //const_iterator find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW;
+    //strsize find_first_character_in(const CHARACTER * blockCharacters, strsize iStart = 0) const RELEASENOTHROW;
 
-   using BASE_RANGE::_ends;
+    //const_iterator _find_first_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
+    //const_iterator _find_first_character_in(const SCOPED_STRING & scopedstrCharacters) const RELEASENOTHROW;
+    ///strsize _find_first_character_in(const CHARACTER * blockCharacters, strsize iStart = 0) const RELEASENOTHROW;
 
-   constexpr bool _ends(const THIS_RANGE & range) const
-   {
+    const_iterator find_first(CHARACTER chSeparator) const RELEASENOTHROW;
 
-      return this->_ends(range, ::comparison::comparison < ITEM >());
+    //strsize find_first_in(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_in(const string_base &str) const RELEASENOTHROW;
+    ////strsize find_first_in(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_in(CHARACTER ca) const RELEASENOTHROW;
 
-   }
+    const_iterator
+    skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
+    //const_iterator skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
-   using BASE_RANGE::ends;
+    //strsize skip_any_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW;
+    const_iterator skip(CHARACTER chSkip) const RELEASENOTHROW;
 
-   constexpr bool ends(const THIS_RANGE & range) const
-   {
+    //const_iterator
+    //_skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
-      return this->ends(range, ::comparison::comparison < ITEM >());
+    //const_iterator _skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
-   }
+    //strsize _skip_any_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW;
+    const_iterator _skip(CHARACTER chSkip) const RELEASENOTHROW;
 
 
-   using BASE_RANGE::_ends_start;
+//strsize find_last_not_in(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
+    //strsize find_last_not_in(const string_base &str) const RELEASENOTHROW;
+    ////strsize find_last_not_in(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
+    //strsize find_last_not_in(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
 
-   constexpr bool _ends_start(const THIS_RANGE & range, memsize start) const
-   {
+//    const_iterator rear_find_first_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
+//
+//    const_iterator rear_find_first_character_in(const SCOPED_STRING &scopedstrCharacters, strsize iStart,
+//                                                strsize n) const RELEASENOTHROW;
+    //strsize rear_find_first_character_in(const CHARACTER * blockCharacters) const RELEASENOTHROW;
 
-      return this->_ends_start(range, start, ::comparison::comparison < ITEM >());
+//    const_iterator _rear_find_first_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
+//
+//    const_iterator _rear_find_first_character_in(const SCOPED_STRING &scopedstrCharacters, strsize iStart,
+//                                                 strsize n) const RELEASENOTHROW;
+    //strsize _rear_find_first_character_in(const CHARACTER * blockCharacters) const RELEASENOTHROW;
 
-   }
+    //strsize find_first_of(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_of(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_of(const CHARACTER * pszCharacters) const RELEASENOTHROW;
+    //strsize find_first_of(CHARACTER ca) const RELEASENOTHROW;
+    //strsize find_first_of(CHARACTER ca, strsize pos) const RELEASENOTHROW;
 
+    //strsize find_first_not_of(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_not_of(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_not_of(const string_base &str) const RELEASENOTHROW;
+    //strsize find_first_not_of(CHARACTER ca) const RELEASENOTHROW;
 
-   using BASE_RANGE::ends_start;
+    //const_iterator rear_skip_any_character_in(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    //const_iterator rear_skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
+    //strsize rear_skip_any_character_in(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
 
-   constexpr bool ends_start(const THIS_RANGE & range, memsize start) const
-   {
+    const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW;
+    //const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW;
 
-      return this->ends_start(range, start, ::comparison::comparison < ITEM >());
 
-   }
+    //const_iterator _rear_skip_any_character_in(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    //const_iterator _rear_skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
 
 
-   using BASE_RANGE::_ends_start_count;
+    const_iterator _rear_skip_any_character_in(CHARACTER ca) const RELEASENOTHROW;
+    //const_iterator _rear_skip_any_character_in(CHARACTER ca) const RELEASENOTHROW;
 
-   constexpr bool _ends_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
 
-      return this->_ends_start_count(range, start, count, ::comparison::comparison < ITEM >());
+    //strsize _rear_skip_any_character_in(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
+    //strsize _rear_skip(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
 
-   }
 
+    //strsize find_last_of(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
+    //strsize find_last_of(const string_base &str) const RELEASENOTHROW;
+    ////strsize find_last_of(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
+    //strsize find_last_of(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
 
-   using BASE_RANGE::ends_start_count;
+    // find the last occurrence of character 'ch'
+    const_iterator rear_find(CHARACTER ch) const RELEASENOTHROW;
 
-   constexpr bool ends_start_count(const THIS_RANGE & range, memsize start, memsize count) const
-   {
+    // find the last occurrence of string_base 'sz'
+    //const_iterator rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
 
-      return this->ends_start_count(range, start, count, ::comparison::comparison < ITEM >());
 
-   }
+
+    CHARACTER last_char(strsize count = -1) const;
+
+
+    inline strsize unichar_count() const;
+
+    inline const_iterator unichar_at(strsize iUnicharIndex) const;
+
+
+    const_iterator __replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr)
+    {
+
+       ::memmove(start, start + scopedstr.size(), this->end() - end);
+
+       string_count_copy(start, scopedstr.begin(), scopedstr.size());
+
+    }
+
+
+    //bool equals(const string_base &str) const;
+    //bool case_insensitive_equals(const string_base &str) const;
+    inline bool operator==(const ::ansi_string &str) const { return this->equals(string_base(str)); }
+
+    inline bool operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
+
+    inline bool operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+
+    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
+    inline bool operator==(const ::ansi_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+
+    inline bool operator==(const ::wd16_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+
+    inline bool operator==(const ::wd32_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+
+    inline bool operator==(const ::inline_number_string &inline_number_string) const {
+       return this->equals((const SCOPED_STRING &) inline_number_string);
+    }
+
+    //inline ::std::strong_ordering operator<=>(const string_base & range) const { return this->order(range); }
+    //inline ::std::strong_ordering operator<=>(const SCOPED_STRING &scopedstr) const { return this->order(scopedstr); }
+    //inline ::std::strong_ordering operator<=>(const CHARACTER * psz) const { return *this <=> ((const SCOPED_STRING &)psz); }
+    //inline int operator<=>(CHARACTER ch) const;
+    //inline bool operator==(CHARACTER ch) const;
+    //inline bool operator==(CHARACTER ch) const;
+    //inline bool operator>(const string_base &str2) const;
+    //inline bool operator>(CHARACTER ch) const;
+    //inline bool operator<(const string_base &str2) const;
+    //inline bool operator<(CHARACTER ch) const;
+    //inline bool operator!=(const string_base &str) const { return !operator ==(psz); }
+    //inline bool operator!=(CHARACTER ch) const { return !operator ==(ch); }
+    //inline bool operator>=(const string_base &str) const { return !operator <(psz); }
+    //inline bool operator>=(CHARACTER ch) const { return !operator <(ch); }
+    //inline bool operator<=(const CHARACTER * psz) const { return !operator >(psz); }
+    //inline bool operator<=(CHARACTER ch) const { return !operator >(ch); }
+
+
+
+    //strsize rear_find(CHARACTER ch) const RELEASENOTHROW
+    //{
+    //   return rear_find(ch, iStart);
+    //};
+    //strsize rear_find(const string_base &str) const RELEASENOTHROW
+    //{
+    //   return rear_find(sz, iStart);
+    //};
+
 
 
 };
 
 
-using ansi_range        = ::range < ::ansi_character * >;
-using wd16_range        = ::range < ::wd16_character * >;
-using wd32_range        = ::range < ::wd32_character * >;
-using wide_range        = ::range < ::wide_character * >;
+using ansi_range = ::range<::ansi_character *>;
+using wd16_range = ::range<::wd16_character *>;
+using wd32_range = ::range<::wd32_character *>;
+using wide_range = ::range<::wide_character *>;
 //using range      = ::ansi_range;
 //using wstring_range     = ::wide_range;
 
 
-using const_ansi_range     = ::string_range < const ::ansi_character * >;
-using const_wd16_range     = ::string_range < const ::wd16_character * >;
-using const_wd32_range     = ::string_range < const ::wd32_character * >;
-using const_wide_range     = ::string_range < const ::wide_character * >;
+using const_ansi_range = ::string_range<const ::ansi_character *>;
+using const_wd16_range = ::string_range<const ::wd16_character *>;
+using const_wd32_range = ::string_range<const ::wd32_character *>;
+using const_wide_range = ::string_range<const ::wide_character *>;
 //using const_string_range   = ::const_ansi_range;
 //using const_wstring_range  = ::const_wide_range;
 
@@ -873,9 +1329,9 @@ using const_wide_range     = ::string_range < const ::wide_character * >;
 
 
 
-template < primitive_character CHARACTER >
-inline const CHARACTER * _unicode_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
-{
+template<primitive_character CHARACTER>
+inline const CHARACTER *
+_unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
    auto p = block.data();
 
@@ -889,18 +1345,15 @@ inline const CHARACTER * _unicode_scan(const ::range < CHARACTER > & block, cons
 
    ::i32 len2;
 
-   while (p < pEnd)
-   {
+   while (p < pEnd) {
 
       auto pBlockScan = pBlock;
 
       auto index = unicode_index_length(p, len1);
 
-      do
-      {
+      do {
 
-         if (index == unicode_index_length(pBlockScan, len2))
-         {
+         if (index == unicode_index_length(pBlockScan, len2)) {
 
             return true;
 
@@ -919,29 +1372,26 @@ inline const CHARACTER * _unicode_scan(const ::range < CHARACTER > & block, cons
 }
 
 
-template < primitive_character CHARACTER >
-inline const CHARACTER * unicode_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
-{
+template<primitive_character CHARACTER>
+inline const CHARACTER *
+unicode_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
-   CHARACTER * p;
+   CHARACTER *p;
 
-   if (_string_scan_prefix(p, block, blockBlock))
-   {
+   if (_string_find_first_character_in_prefix(p, block, blockBlock)) {
 
       return p;
 
    }
 
-   return _unicode_scan(block, blockBlock);
+   return _unicode_find_first_character_in(block, blockBlock);
 
 }
 
 
-
-
-template < primitive_character CHARACTER >
-inline const CHARACTER * _unicode_rear_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
-{
+template<primitive_character CHARACTER>
+inline const CHARACTER *
+_unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
    auto p = block.data();
 
@@ -955,8 +1405,7 @@ inline const CHARACTER * _unicode_rear_scan(const ::range < CHARACTER > & block,
 
    ::i32 len2;
 
-   while (pEnd < p)
-   {
+   while (pEnd < p) {
 
       auto pBlockScan = pBlock;
 
@@ -964,11 +1413,9 @@ inline const CHARACTER * _unicode_rear_scan(const ::range < CHARACTER > & block,
 
       auto index = unicode_index(pPrior);
 
-      do
-      {
+      do {
 
-         if (index == unicode_index_length(pBlockScan, len2))
-         {
+         if (index == unicode_index_length(pBlockScan, len2)) {
 
             return true;
 
@@ -987,43 +1434,34 @@ inline const CHARACTER * _unicode_rear_scan(const ::range < CHARACTER > & block,
 }
 
 
-template < primitive_character CHARACTER >
-inline const CHARACTER * unicode_rear_scan(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockBlock) noexcept
-{
+template<primitive_character CHARACTER>
+inline const CHARACTER *
+unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::range<CHARACTER> &blockBlock) noexcept {
 
-   CHARACTER * p;
+   CHARACTER *p;
 
-   if (_string_rear_scan_prefix(p, block, blockBlock))
-   {
+   if (_string_rear_find_first_character_in_prefix(p, block, blockBlock)) {
 
       return p;
 
    }
 
-   return _unicode_rear_scan(block, blockBlock);
+   return _unicode_rear_find_first_character_in(block, blockBlock);
 
 }
 
 
+using const_ansi_range = ::string_range<const ::ansi_character *>;
+using const_wd16_range = ::string_range<const ::wd16_character *>;
+using const_wd32_range = ::string_range<const ::wd32_character *>;
 
 
+template<primitive_character CHARACTER>
+inline u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 
+   if (range.is_empty()) {
 
-
-
-using const_ansi_range = ::string_range < const ::ansi_character * >;
-using const_wd16_range = ::string_range < const ::wd16_character * >;
-using const_wd32_range = ::string_range < const ::wd32_character * >;
-
-
-template < primitive_character CHARACTER >
-inline u32hash _string_range_u32_hash(::string_range < const CHARACTER * > range)
-{
-
-   if (range.is_empty())
-   {
-
-      return { 0 };
+      return {0};
 
    }
 
@@ -1031,57 +1469,53 @@ inline u32hash _string_range_u32_hash(::string_range < const CHARACTER * > range
 
    while (range.m_begin < range.m_end) uHash = (uHash << 5) + *(range.m_begin++);
 
-   return { uHash };
+   return {uHash};
 
 }
 
 
-template < >
-inline u32hash u32_hash < const_ansi_range >(const_ansi_range range)
-{
+template<>
+inline u32hash u32_hash<const_ansi_range>(const_ansi_range range) {
 
    return _string_range_u32_hash<::ansi_character>(range);
 
 }
 
 
-template < >
-inline u32hash u32_hash < const_wd16_range >(const_wd16_range range)
-{
+template<>
+inline u32hash u32_hash<const_wd16_range>(const_wd16_range range) {
 
    return _string_range_u32_hash<::wd16_character>(range);
 
 }
 
 
-template < >
-inline u32hash u32_hash < const_wd32_range >(const_wd32_range range)
-{
+template<>
+inline u32hash u32_hash<const_wd32_range>(const_wd32_range range) {
 
    return _string_range_u32_hash<::wd32_character>(range);
 
 }
 
 
-template < primitive_character CHARACTER >
-constexpr ::string_range< const CHARACTER * >  _string_range(const CHARACTER * psz)
-{
+template<primitive_character CHARACTER>
+constexpr ::string_range<const CHARACTER *> _string_range(const CHARACTER *psz) {
 
-   return { psz, psz + string_safe_length(psz) };
+   return {psz, psz + string_safe_length(psz)};
 
 }
 
 
-template < primitive_character CHARACTER >
-constexpr ::string_range< const CHARACTER * >  _start_count_string_range(const CHARACTER * psz, memsize start, memsize count)
-{
+template<primitive_character CHARACTER>
+constexpr ::string_range<const CHARACTER *>
+_start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
    auto pend = psz + string_safe_length(psz);
 
    return {
-      ::clipped_add(psz, start, psz, pend),
-      ((count >= 0) ? ::clipped_add(psz, start + count, psz, pend) :
-      ::clipped_add(pend, count, psz, pend)) };
+           ::clipped_add(psz, start, psz, pend),
+           ((count >= 0) ? ::clipped_add(psz, start + count, psz, pend) :
+            ::clipped_add(pend, count, psz, pend))};
 
 }
 

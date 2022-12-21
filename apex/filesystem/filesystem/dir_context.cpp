@@ -1362,7 +1362,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //      bool dir_context::is_dir_map::lookup_small(const ::file::path & path,bool &bIsDir,u32 &dwLastError, i32 iLastChar)
 //      {
 //
-//         const scoped_string & strEnd = path.c_str() + iLastChar;
+//         const ::ansi_character * pszEnd = path.c_str() + iLastChar;
 //
 //         char sz[2048];
 //
@@ -2248,7 +2248,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       //}
 
-      const scoped_string & strUrl = strUrl;
+      const ::scoped_string & scopedstrUrl = strUrl;
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -2538,7 +2538,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata(const scoped_string & strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration)
+::file::path dir_context::commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -2572,7 +2572,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata_locale_schema(const scoped_string & strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema)
+::file::path dir_context::commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -3120,7 +3120,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //}
 
 
-//::file::path dir_context::matter_file(const ::file::path & pcsz, bool bDir)
+//::file::path dir_context::matter_file(const ::file::path & path, bool bDir)
 //
 //{
 //
@@ -3163,7 +3163,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //}
 //
 
-//bool dir_context::has_subdir(const ::file::path & pcsz)
+//bool dir_context::has_subdir(const ::file::path & path)
 //
 //{
 //
@@ -3173,7 +3173,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //}
 //
 
-//bool dir_context::is(const ::file::path & pcsz)
+//bool dir_context::is(const ::file::path & path)
 //
 //{
 //
@@ -3183,7 +3183,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //}
 //
 
-//bool dir_context::is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath)
+//bool dir_context::is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath)
 //
 //{
 //
@@ -3193,7 +3193,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 //}
 //
 
-//bool dir_context::is_inside_time(const ::file::path & pcsz)
+//bool dir_context::is_inside_time(const ::file::path & path)
 //
 //{
 //   return psystem->m_spdir.m_p->is_inside_time(pcsz, get_app());

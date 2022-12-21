@@ -3,7 +3,7 @@
 #include "library_not_loaded.h"
 
 
-library_not_loaded::library_not_loaded(const scoped_string & strMessage, const scoped_string & strDetails, const ::e_status & estatus) :
+library_not_loaded::library_not_loaded(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, const ::e_status & estatus) :
    ::exception(estatus, pszMessage, pszDetails)
 {
 

@@ -3,7 +3,7 @@
 
 
 
-installing_exception::installing_exception(const scoped_string & strTip):
+installing_exception::installing_exception(const ::scoped_string & scopedstrTip):
    temporary_exception(pszTip)
 {
 

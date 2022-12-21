@@ -1627,7 +1627,7 @@ namespace user
 
          auto strName = get_window_text();
 
-         const scoped_string & strClassName = nullptr;
+         const ::scoped_string & scopedstrClassName = nullptr;
 
          m_bEnableSaveWindowRect2 = true;
 

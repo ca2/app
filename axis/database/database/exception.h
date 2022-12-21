@@ -16,7 +16,7 @@ namespace database
 
 
       exception();
-      exception(const scoped_string & strFormat, ...);
+      exception(const ::scoped_string & scopedstrFormat, ...);
 
 
    };

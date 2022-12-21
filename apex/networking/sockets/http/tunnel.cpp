@@ -231,7 +231,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnData(const scoped_string & str, memsize size)
+   void http_tunnel::OnData(const ::scoped_string & scopedstr, memsize size)
    {
 
       m_pfileBody->write(psz, size);

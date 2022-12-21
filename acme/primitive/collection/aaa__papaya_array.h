@@ -446,7 +446,7 @@ namespace acme
    template < class A >
    void array_permute(pointer_array < A > & perm,const A & a);
 
-   CLASS_DECL_ACME string_array x1_decode_ida(const scoped_string & str);
+   CLASS_DECL_ACME string_array x1_decode_ida(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME string x1_encode_ida(const string_array & stra);
 
@@ -590,7 +590,7 @@ namespace acme
       }
 
 
-      inline ::index add(string_array & stra, const scoped_string & str);
+      inline ::index add(string_array & stra, const ::scoped_string & scopedstr);
       inline ::index add(string_array & stra, const char & ch);
       inline ::index add(string_array & stra, const ansi_string & str);
       inline ::index add(string_array & stra, const wide_string & str);

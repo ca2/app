@@ -105,7 +105,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //const char * g_pszAppId = nullptr;
 //
 //
-//void executable_set_app_id(const scoped_string & strAppId)
+//void executable_set_app_id(const ::scoped_string & scopedstrAppId)
 //{
 //
 //	g_pszAppId = pszAppId;
@@ -122,7 +122,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 //
 //
-//set_app_id::set_app_id(const scoped_string & strAppId)
+//set_app_id::set_app_id(const ::scoped_string & scopedstrAppId)
 //{
 //
 //#ifdef LINUX
@@ -153,7 +153,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 
 //
-//app_flag::app_flag(::main & main, const scoped_string & strFlag)
+//app_flag::app_flag(::main & main, const ::scoped_string & scopedstrFlag)
 //{
 //
 //   if(!::is_empty(pszFlag))
@@ -492,7 +492,7 @@ void main::system_construct(const ::string_array & straParam)
 #else
 
 //
-//void main::system_construct(const scoped_string & strCommandLine, const ::e_display & edisplay)
+//void main::system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display & edisplay)
 //{
 //
 //   m_strCommandLine = pszCommandLine;
@@ -749,7 +749,7 @@ string apple_get_bundle_identifier();
 //::apex::system * apex_create_apex_system();
 
 
-//CLASS_DECL_ACME void set_path_install_folder(const scoped_string & strPath);
+//CLASS_DECL_ACME void set_path_install_folder(const ::file::path & path);
 
 CLASS_DECL_ACME void set_debug_pointer(void * p);
 
@@ -762,7 +762,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   //string str1 = "\"teste\\\"teste2\"";
 //
-//   //   //const scoped_string & str = str1;
+//   //   //const ::scoped_string & scopedstr = str1;
 //
 //   //   //string str = ::str().consume_quoted_value(psz);
 //
@@ -960,8 +960,8 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 ////   {
 ////
-////   const scoped_string & str = nullptr;
-////   const scoped_string & str2 = nullptr;
+////   const ::scoped_string & scopedstr = nullptr;
+////   const ::scoped_string & scopedstr2 = nullptr;
 ////
 ////   int iRef1 = -1;
 ////   int iRef2 = -1;
@@ -1883,7 +1883,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////}
 ////
 ////
-////void cube_set_app_id(const scoped_string & strAppId)
+////void cube_set_app_id(const ::scoped_string & scopedstrAppId)
 ////{
 ////
 ////   g_pszCubeAppId = pszAppId;

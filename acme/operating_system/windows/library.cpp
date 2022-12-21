@@ -12,7 +12,7 @@ namespace acme
 {
 
 
-   void* system::operating_system_library_open(const scoped_string & strPath, string& strMessage)
+   void* system::operating_system_library_open(const ::file::path & path, string& strMessage)
    {
 
       strMessage.Empty();
@@ -224,7 +224,7 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_touch(const scoped_string & strPath, string& strMessage)
+   void* system::operating_system_library_touch(const ::file::path & path, string& strMessage)
    {
 
       strMessage.Empty();
@@ -471,7 +471,7 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_open_ca2(const scoped_string & str, string& strMessage)
+   void* system::operating_system_library_open_ca2(const ::scoped_string & scopedstr, string& strMessage)
    {
 
       void* p = LoadLibraryW(wstring(psz));
@@ -498,7 +498,7 @@ namespace acme
 
    }
 
-   void* system::operating_system_library_raw_get(void* plibrary, const scoped_string & strEntryName)
+   void* system::operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
       return ::GetProcAddress((HINSTANCE)plibrary, pszEntryName);

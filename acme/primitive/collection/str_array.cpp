@@ -45,7 +45,7 @@ CLASS_DECL_ACME ::count explode_command_line(string_array & stra, const ::string
       for (::index i = 0; i < stra.get_count(); i++)
       {
 
-         char * pch = (char *)(const char *)stra.element_at(i);
+         char * pch = (char *)stra.element_at(i).c_str();
 
          argv->add(pch);
 

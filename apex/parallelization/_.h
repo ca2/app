@@ -82,7 +82,7 @@
 //   {
 //
 //      template < typename ARRAY >
-//      ::pointer<::object>is_running(ARRAY & array, const scoped_string & strTag)
+//      ::pointer<::object>is_running(ARRAY & array, const ::scoped_string & scopedstrTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
@@ -123,8 +123,8 @@
 //
 
 
-//CLASS_DECL_APEX bool task_set_name(const scoped_string & str);
-//CLASS_DECL_APEX bool task_set_name(htask_t htask, const scoped_string & strName);
+//CLASS_DECL_APEX bool task_set_name(const ::scoped_string & scopedstr);
+//CLASS_DECL_APEX bool task_set_name(htask_t htask, const ::scoped_string & scopedstrName);
 
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);

@@ -238,7 +238,7 @@ namespace app_core_build
 void hellomultiverse_debugging()
 {
 
-   const scoped_string & strFree;
+   const ::scoped_string & scopedstrFree;
 
    {
 

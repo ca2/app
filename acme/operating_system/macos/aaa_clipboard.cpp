@@ -10,7 +10,7 @@ void mm_clipboard_set_filea(const char ** psza, long c);
 
 char * mm_clipboard_get_plain_text();
 
-void mm_clipboard_set_plain_text(const scoped_string & str);
+void mm_clipboard_set_plain_text(const ::scoped_string & scopedstr);
 
 
 long macos_clipboard_get_file_count()
@@ -60,7 +60,7 @@ string macos_clipboard_get_plain_text()
 }
 
 
-void macos_clipboard_set_plain_text(const scoped_string & strPlainText)
+void macos_clipboard_set_plain_text(const ::scoped_string & scopedstrPlainText)
 {
    
    mm_clipboard_set_plain_text(pszPlainText);

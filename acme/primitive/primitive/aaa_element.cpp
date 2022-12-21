@@ -94,7 +94,7 @@
 //}
 //
 //
-//void element::set_generic_object_name(const scoped_string & strName)
+//void element::set_generic_object_name(const ::scoped_string & scopedstrName)
 //{
 //
 //   //return ::success_none;
@@ -102,7 +102,7 @@
 //}
 //
 //
-//void element::set_application_id(const scoped_string & strApplicationId)
+//void element::set_application_id(const ::scoped_string & scopedstrApplicationId)
 //{
 //
 //   //return error_none;
@@ -110,7 +110,7 @@
 //}
 //
 //
-//void element::set_library_name(const scoped_string & strLibraryName)
+//void element::set_library_name(const ::scoped_string & scopedstrLibraryName)
 //{
 //
 //   //return error_none;

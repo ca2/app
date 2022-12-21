@@ -2,7 +2,7 @@
 #pragma once
 
 
-//inline void throw ::exception(const ::e_status& estatus, const scoped_string & strMessage)
+//inline void throw ::exception(const ::e_status& estatus, const ::scoped_string & scopedstrMessage)
 //{
 //
 //   throw ::exception(estatus.m_estatus, pszMessage);
@@ -10,7 +10,7 @@
 //}
 //
 //
-//inline void throw ::exception(const ::enum_status& estatus, const scoped_string & strMessage)
+//inline void throw ::exception(const ::enum_status& estatus, const ::scoped_string & scopedstrMessage)
 //{
 //
 //   if (estatus == error_not_implemented)

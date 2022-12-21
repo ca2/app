@@ -56,7 +56,7 @@ namespace datetime
 {
 //
 //
-//   value span_strtotime(::particle * pparticle, const ::text::context * pcontext, const scoped_string & strSpanExpression)
+//   value span_strtotime(::particle * pparticle, const ::text::context * pcontext, const ::scoped_string & scopedstrSpanExpression)
 //   {
 //
 //      static atom idCalendarDay("calendar:day");
@@ -77,7 +77,7 @@ namespace datetime
 //      property_set set;
 //      bool bAdd = false;
 //      bool bMinus = false;
-//      const scoped_string & str = str;
+//      const ::scoped_string & scopedstr = str;
 //      string strNumber;
 //      string strText1;
 //      for(i32 i = 0; *psz; unicode_increment(psz))
@@ -196,7 +196,7 @@ namespace datetime
 //      }
 //      return time;
 //   }
-//   void parse_br_str(const scoped_string & str,property_set & set)
+//   void parse_br_str(const ::scoped_string & scopedstr,property_set & set)
 //   {
 //      string src(psz);
 //      src.trim();
@@ -264,7 +264,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const scoped_string & str,i32 & iPath,i32 & iPathCount,bool bUTC)
+//   value strtotime(::particle * pparticle, const ::text::context * pcontext,const ::scoped_string & scopedstr,i32 & iPath,i32 & iPathCount,bool bUTC)
 //   {
 //      ::earth::time time;
 //      string str(psz);

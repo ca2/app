@@ -43,7 +43,7 @@ namespace sockets
       virtual void initialize(::particle * pparticle) override;
       virtual void destroy() override;
 
-//      virtual void http_config_proxy(const scoped_string & strUrl, http_tunnel * psocket);
+//      virtual void http_config_proxy(const ::scoped_string & scopedstrUrl, http_tunnel * psocket);
 
    };
 

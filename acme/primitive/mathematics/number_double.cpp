@@ -6,7 +6,7 @@ namespace mathematics
 {
 
 
-   void number_double::set_value_string(const scoped_string & str)
+   void number_double::set_value_string(const ::scoped_string & scopedstr)
    {
 
    }
@@ -68,7 +68,7 @@ namespace mathematics
 
       }
 
-      d = atof(str);
+      d = atof(str.c_str());
 
       return true;
 

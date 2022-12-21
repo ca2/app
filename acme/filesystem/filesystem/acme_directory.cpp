@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str);
+CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
 acme_directory::acme_directory()
@@ -328,7 +328,7 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::install()
 {
 
-   if (m_pathInstallFolder == nullptr || m_pathInstallFolder.is_empty())
+   if (m_pathInstallFolder.is_empty())
    {
 
       return default_install();
@@ -647,7 +647,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-//bool acme_directory::_is(const char * path1)
+//bool acme_directory::_is(const ::file::path & path1)
 //{
 //
 //   throw ::interface_only();
@@ -667,7 +667,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-//void acme_directory::create(const char * path)
+//void acme_directory::create(const ::file::path & path)
 //{
 //
 //   return _create(path);
@@ -675,7 +675,7 @@ void acme_directory::set_path_install_folder(const string & strPath)
 //}
 
 
-void acme_directory::create(const char * pathParam)
+void acme_directory::create(const ::file::path & pathParam)
 {
 
    if (is_like_url_protocol(pathParam))
@@ -741,7 +741,7 @@ void acme_directory::create(const char * pathParam)
 }
 
 
-void acme_directory::_create2(const char * pathParam)
+void acme_directory::_create2(const ::file::path & pathParam)
 {
 
    //if (is(pathParam))
@@ -765,7 +765,7 @@ void acme_directory::_create2(const char * pathParam)
 }
 
 
-//void acme_directory::_create_directory(const char * pathParam)
+//void acme_directory::_create_directory(const ::file::path & pathParam)
 //{
 //
 //   throw ::interface_only();
@@ -775,20 +775,13 @@ void acme_directory::_create2(const char * pathParam)
 //}
 
    
-bool acme_directory::is(const char * path)
+bool acme_directory::is(const ::file::path & path)
 {
 
-   if(::is_null(path))
+   if(path.is_empty())
    {
 
       throw ::exception(error_null_pointer);
-
-   }
-
-   if(*path == '\0')
-   {
-
-      throw ::exception(error_bad_argument);
 
    }
 
@@ -808,7 +801,7 @@ bool acme_directory::is(const char * path)
 //string name(string path);
 
 
-//void acme_directory::enumrls(::file::path_array & stra, const scoped_string & str)
+//void acme_directory::enumrls(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -816,7 +809,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 
-//void acme_directory::rls_dir(::file::path_array & stra, const scoped_string & str)
+//void acme_directory::rls_dir(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -826,7 +819,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const scoped_string & str, ::file::e_flag eflag, enum_depth edepth)
+//void acme_directory::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -834,7 +827,7 @@ bool acme_directory::is(const char * path)
 //}
 //
 //
-//void acme_directory::enumerate(::file::listing & listing, const scoped_string & str, ::file::e_flag eflag, enum_depth edepth)
+//void acme_directory::enumerate(::file::listing & listing, const ::scoped_string & scopedstr, ::file::e_flag eflag, enum_depth edepth)
 //{
 //
 //   throw ::interface_only();
@@ -1007,15 +1000,15 @@ bool acme_directory::defer_media_library_representative_file_name(::file::path &
 
 
 
-bool acme_directory::list(string_array & stra, const scoped_string & str, ::file::e_flag eflag)
+bool acme_directory::list(string_array & stra, const ::scoped_string & scopedstr, ::file::e_flag eflag)
 {
 
-   return ::file::enumerator::list(stra, psz, eflag);
+   return ::file::enumerator::list(stra, scopedstr, eflag);
 
 }
 
 
-//void acme_directory::enumerate(::file::path_array & stra, const scoped_string & str)
+//void acme_directory::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1023,7 +1016,7 @@ bool acme_directory::list(string_array & stra, const scoped_string & str, ::file
 //}
 //
 //
-//void acme_directory::ls_file(::file::path_array & stra, const scoped_string & str)
+//void acme_directory::ls_file(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
 //   throw ::interface_only();
@@ -1037,7 +1030,7 @@ bool acme_directory::list(string_array & stra, const scoped_string & str, ::file
          //::file::path archive();
 
 
-int acme_directory::make_path(const scoped_string & str)
+int acme_directory::make_path(const ::scoped_string & scopedstr)
 {
 
    throw ::interface_only();
@@ -1059,18 +1052,18 @@ int acme_directory::make_path(const scoped_string & str)
       {*/
 
 
-      //string name(const scoped_string & strPath);
+      //string name(const ::file::path & path);
       //bool mk(const ::string & strPath);
       //bool _mk(const  char * path); // makes a directory path (all intermediates too)
-      //bool is(const char * path);
-      //bool _is(const char * path);
+      //bool is(const ::file::path & path);
+      //bool _is(const ::file::path & path);
       //bool mk(const  char * path); // makes a directory path (all intermediates too)
       //bool mkdir(const  char * path); // only creates if parent dir already exists
-      //void ls(::file::path_array & patha, const char * path);
-      //void ls_dir(::file::path_array & patha, const char * path);
-      //void ls_file(::file::path_array & patha, const char * path);
-      //void rls(::file::path_array & patha, const char * path);
-      //void rls_dir(::file::path_array & patha, const char * path);
+      //void ls(::file::path_array & patha, const ::file::path & path);
+      //void ls_dir(::file::path_array & patha, const ::file::path & path);
+      //void ls_file(::file::path_array & patha, const ::file::path & path);
+      //void rls(::file::path_array & patha, const ::file::path & path);
+      //void rls_dir(::file::path_array & patha, const ::file::path & path);
 
 
 //::file::path acme_directory::module_folder()
@@ -1088,7 +1081,7 @@ int acme_directory::make_path(const scoped_string & str)
 //} // namespace dir
 
 
-bool acme_directory::_is(bool & bDir, const char * path)
+bool acme_directory::_is(bool & bDir, const ::file::path & path)
 {
 
    auto pathFinal = m_pacmepath->_final(path);
@@ -1100,7 +1093,7 @@ bool acme_directory::_is(bool & bDir, const char * path)
 }
 
 
-void acme_directory::__create(const char * path)
+void acme_directory::__create(const ::file::path & path)
 {
 
    ::create_directory(path);
@@ -1119,7 +1112,7 @@ void acme_directory::__create(const char * path)
 }
 
 
-void acme_directory::erase(const char* path)
+void acme_directory::erase(const ::file::path & path)
 {
 
    ::erase_directory(path);
@@ -1137,7 +1130,7 @@ string acme_directory::get_current()
 }
 
 
-void acme_directory::change_current(const scoped_string & str)
+void acme_directory::change_current(const ::scoped_string & scopedstr)
 {
 
    throw ::interface_only();

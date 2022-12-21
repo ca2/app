@@ -2568,7 +2568,7 @@ ch_else:
    const char * script_compiler::next_nonspace(const ::string & strParam)
    {
 
-      const scoped_string & str = strParam;
+      const ::scoped_string & scopedstr = strParam;
 
       while(*psz != '\0' && character_isspace(*psz))
       {
@@ -2894,7 +2894,7 @@ ch_else:
          for(int j = 0; j < straLine.get_count(); j++)
          {
             string strLine = straLine[j];
-            const scoped_string & str = strLine;
+            const ::scoped_string & scopedstr = strLine;
             try
             {
                ::str().consume_spaces(psz,0);

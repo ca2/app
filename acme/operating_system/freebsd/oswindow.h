@@ -213,12 +213,12 @@ public:
    }
 
    void send_client_event(Atom atom, unsigned int numArgs, ...);
-   i32 store_name(const scoped_string & str);
+   i32 store_name(const ::scoped_string & scopedstr);
    i32 select_input(i32 iInput);
    i32 select_all_input();
    i32 map_window();
    i32 unmap_window(bool bWithdraw);
-    void set_wm_class(const scoped_string & str);
+    void set_wm_class(const ::scoped_string & scopedstr);
 
    void exit_iconify();
 
@@ -250,7 +250,7 @@ public:
    bool screen_to_client(POINT_I32 * ppoint);
 
 
-   Atom intern_atom(const scoped_string & strAtomName, bool bCreate);
+   Atom intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);
    Atom intern_atom(e_net_wm_state state, bool bCreate);
 
    bool is_null() const

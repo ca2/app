@@ -66,7 +66,7 @@ extern "C"
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const scoped_string & str, const char ** argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -3282,7 +3282,7 @@ retry_license:
 //
 //      //}
 //
-//      //const scoped_string & str = doc.GetChildAttrValue("launch", "app");
+//      //const ::scoped_string & scopedstr = doc.GetChildAttrValue("launch", "app");
 //
 //      //if (psz == nullptr || *psz == '\0')
 //      //{
@@ -4877,7 +4877,7 @@ retry_license:
    bool application::assert_user_logged_in()
    {
 
-      //const scoped_string & strRequestUrl = nullptr;
+      //const ::scoped_string & scopedstrRequestUrl = nullptr;
 
       string strRequestUrl;
 
@@ -6207,7 +6207,7 @@ namespace aura
    {
    for (i32 i = 1; i < __argc; i++)
    {
-   const scoped_string & strParam = __targv[i];
+   const ::scoped_string & scopedstrParam = __targv[i];
    bool bFlag = false;
    bool bLast = ((i + 1) == __argc);
    if (pszParam[0] == '-' || pszParam[0] == '/')
@@ -6518,7 +6518,7 @@ namespace aura
 
    void ::aura::FormatString2(string & rString, ::u32 nIDS, const ::string & psz1,
 
-   const scoped_string & str2)
+   const ::scoped_string & scopedstr2)
 
    {
    const char * rgpsz[2];
@@ -6977,7 +6977,7 @@ namespace aura
 
    string application::GetProfileString(const ::string & pszSection, const ::string & pszEntry,
 
-   const scoped_string & strDefault)
+   const ::scoped_string & scopedstrDefault)
 
    {
    ASSERT(pszSection != nullptr);
@@ -7138,7 +7138,7 @@ namespace aura
 
    bool application::WriteProfileString(const ::string & pszSection, const ::string & pszEntry,
 
-   const scoped_string & strValue)
+   const ::scoped_string & scopedstrValue)
 
    {
    ASSERT(pszSection != nullptr);

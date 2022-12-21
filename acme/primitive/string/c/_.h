@@ -22,7 +22,7 @@
 //  ready-to-use-3      wd32_cpy
 
 
-//inline strsize strlen_s_dup(const scoped_string & str, strsize nsize);
+//inline strsize strlen_s_dup(const ::scoped_string & scopedstr, strsize nsize);
 
 
 template < primitive_character CHARACTER >

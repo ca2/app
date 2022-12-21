@@ -196,6 +196,7 @@ list(APPEND library_source
         memory/array_memory_allocate.cpp
         memory/array_memory_allocate.h
         memory/counter.cpp
+        memory/memory.cpp
         memory/memory_allocate.cpp
         memory/memory_allocate.h
         memory/memory_management.cpp
@@ -463,7 +464,7 @@ list(APPEND library_source
         primitive/time/_unit_operator.h
         primitive/time/time.cpp
         primitive/time/time.h
-        primitive/time/time_operator.h
+        #primitive/time/time_operator.h
         primitive/geometry2d/_.cpp
         primitive/geometry2d/_.h
         primitive/geometry2d/_collection.h
@@ -1505,6 +1506,8 @@ list(APPEND library_source
         user/user/os_colors.h
         version/version.config.h
         version/version.h
+        include/_impl.h
+        primitive/geometry2d/_text_stream.h
         )
 
 if (ANDROID)
@@ -2264,7 +2267,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} include/_impl.h primitive/geometry2d/_text_stream.h)
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

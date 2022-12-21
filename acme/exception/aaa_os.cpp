@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_exception::os_exception(const scoped_string & strMessage):
+os_exception::os_exception(const ::scoped_string & scopedstrMessage):
    ::exception(pszMessage)
 {
 

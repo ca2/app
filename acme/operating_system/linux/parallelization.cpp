@@ -12,10 +12,10 @@
 //void xcb_asynchronous(::procedure function);
 
 
-void task_set_name(htask_t htask, const scoped_string & str)
+void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
 {
 
-   string strName(psz);
+   string strName(scopedstr);
 
    thread_name_abbreviate(strName, 15);
 
@@ -29,7 +29,7 @@ void task_set_name(htask_t htask, const scoped_string & str)
 }
 
 
-//void task_set_name(const scoped_string & str)
+//void task_set_name(const ::scoped_string & scopedstr)
 //{
 //
 //   return task_set_name((htask_t) pthread_self(), psz);
@@ -97,7 +97,7 @@ void main_asynchronous(const ::procedure & procedure)
 
                             };
 
-   auto psystem = ::acme::g_p->m_psubsystem->acmesystem();
+   auto psystem = ::acme::acme::g_p->m_psubsystem->acmesystem();
 
    psystem->windowing_post(predicate);
 

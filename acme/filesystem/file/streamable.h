@@ -39,7 +39,7 @@ namespace file
    public:
 
 
-      virtual enum_status _open(const scoped_string & strFilePath, const ::file::enum_open & eopen);
+      virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen);
 
       virtual filesize translate(filesize offset, ::enum_seek eseek);
 

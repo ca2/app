@@ -41,7 +41,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 extern const char * g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const scoped_string & str, const scoped_string & strTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
 
 
 
@@ -627,7 +627,7 @@ namespace acme
    }
 
 
-   //void system::__tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) const
+   //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
    //{
 
    //   if (!m_ptracelog)
@@ -2080,10 +2080,10 @@ namespace acme
    }
 
 
-   void system::new_compress(::compress ** ppcompress, const scoped_string & strImplementation)
+   void system::new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation)
    {
 
-      auto pcompress = create < ::compress >("compress", pszImplementation);
+      auto pcompress = create < ::compress >("compress", scopedstrImplementation);
 
       if (!pcompress)
       {
@@ -2101,10 +2101,10 @@ namespace acme
    }
 
 
-   void system::new_uncompress(::uncompress ** ppuncompress, const scoped_string & strImplementation)
+   void system::new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation)
    {
 
-      auto puncompress = create < ::uncompress >("compress", pszImplementation);
+      auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
 
       if (!puncompress)
       {
@@ -2121,12 +2121,12 @@ namespace acme
 
    }
 
-   void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation)
+   void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation)
    {
 
       ::pointer<::compress>pcompress;
 
-      /*auto estatus =*/ new_compress(&pcompress.m_p, pszImplementation);
+      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
       /*  if (!estatus)
       {
@@ -2149,12 +2149,12 @@ namespace acme
    }
 
 
-   void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const scoped_string & strImplementation)
+   void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation)
    {
 
       ::pointer<::uncompress>puncompress;
 
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, pszImplementation);
+      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 
       //if (!estatus)
       //{
@@ -2207,12 +2207,12 @@ namespace acme
    //
    //}
 
-   ::pointer<::acme::application>system::new_app(const scoped_string & strAppId)
+   ::pointer<::acme::application>system::new_app(const ::scoped_string & scopedstrAppId)
    {
 
       ::pointer<::acme::application>papp;
 
-      string strAppId = pszAppId;
+      string strAppId = scopedstrAppId;
 
       auto psetup = system_setup::get_first(::system_setup::flag_application, strAppId);
 
@@ -2573,7 +2573,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const scoped_string & strFile);
+void system_on_open_file(void * pSystem, const ::scoped_string & scopedstrFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -2596,18 +2596,18 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const scoped_string & strFile)
+void system_on_open_file(void * pSystem, const ::scoped_string & scopedstrFile)
 {
 
    auto psystem = (::acme::system *)pSystem;
 
-   psystem->on_open_file(pszFile);
+   psystem->on_open_file(scopedstrFile);
 
 
 }
 
 
-//::pointer<::acme::system>platform_create_system(const scoped_string & strAppId)
+//::pointer<::acme::system>platform_create_system(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   string strAppId(pszAppId);

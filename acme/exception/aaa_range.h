@@ -9,7 +9,7 @@ class CLASS_DECL_ACME range_exception :
 public:
 
 
-   range_exception(const scoped_string & strMessage = nullptr);
+   range_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~range_exception();
 
 

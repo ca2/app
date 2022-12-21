@@ -17,7 +17,7 @@
 //      
 //      virtual void reset() override;
 //
-//      //virtual char* xxxstack_trace(uptr uiSkip, void* caller_address, const scoped_string & strFormat) override;
+//      //virtual char* xxxstack_trace(uptr uiSkip, void* caller_address, const ::scoped_string & scopedstrFormat) override;
 //
 //
 //   };

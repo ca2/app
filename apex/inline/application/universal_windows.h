@@ -60,7 +60,7 @@ RunBeforeMain go;
 //#include "openssl/applink.c"
 
 
-//CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const scoped_string & strAppId)
+//CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId)
 //{
 //
 //   string strAppId = pszAppId;

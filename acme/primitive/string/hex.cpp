@@ -39,16 +39,17 @@ namespace hex
 {
 
 
-   i64 to_i64(const char * pcsz)
+   i64 to_i64(const ::scoped_string & scopedstr)
    {
 
       i64 r = 0, num = 0;
-      if (pcsz == nullptr)
+      if (scopedstr.is_empty())
       {
 
          return -1;
 
       }
+      auto pcsz = scopedstr.begin();
       for(i64 i = strlen(pcsz)-1; i >= 0; i--)
       {
 
@@ -100,10 +101,10 @@ namespace hex
 {
 
 
-   u16 parse_u16_exc(const char *& psz, const scoped_string & strEnd)
+   u16 parse_u16_exc(const char *& psz, const char * pszEnd)
    {
       string strUni;
-      const scoped_string & strNext = psz;
+      const char * pszNext = psz;
       for (index i = 0; i < 4; i++)
       {
          psz = pszNext;

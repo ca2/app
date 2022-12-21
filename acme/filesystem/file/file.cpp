@@ -355,7 +355,7 @@ namespace file
 
       memory memory;
 
-      memory.from_hex((const char *) pdata, nCount);
+      memory.from_hex({(const ::ansi_character *)pdata, nCount});
 
       write(memory.data(),memory.size());
 
@@ -1225,7 +1225,7 @@ namespace file
    //}
 
    /*
-   void file::from_hex(const scoped_string & str)
+   void file::from_hex(const ::scoped_string & scopedstr)
    {
       memory memory;
       memory.from_hex(psz);
@@ -1334,7 +1334,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const scoped_string & str)
+   void file::write (const ::scoped_string & scopedstr)
    {
       __UNREFERENCED_PARAMETER(psz);
       throw ::interface_only();
@@ -1452,7 +1452,7 @@ namespace file
       else
       {
 
-         payload.file_path_reference() |= ::file::e_flag_bypass_cache;
+         payload.file_path_reference().flags() |= ::file::e_flag_bypass_cache;
 
       }
 

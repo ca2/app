@@ -24,7 +24,7 @@ public:
 
 
 
-CLASS_DECL_ACME void throw_what_exclamation_exclamation(const scoped_string & str)
+CLASS_DECL_ACME void throw_what_exclamation_exclamation(const ::scoped_string & scopedstr)
 {
 
    throw what_exclamation_exclamation(psz);

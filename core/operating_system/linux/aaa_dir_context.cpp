@@ -497,7 +497,7 @@ pacmedirectory->is(path))
    }
 
 
-   bool dir_context::mk(const ::file::path & pcsz)
+   bool dir_context::mk(const ::file::path & path)
    {
 
       if(is(pcsz))

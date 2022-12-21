@@ -227,7 +227,7 @@ namespace message
    }
 
 
-   void command::SetText(const scoped_string & strText, const ::action_context & context)
+   void command::SetText(const ::scoped_string & scopedstrText, const ::action_context & context)
    {
 
       //if (m_pmenu != nullptr)

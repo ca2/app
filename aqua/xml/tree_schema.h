@@ -22,7 +22,7 @@ namespace xml
       virtual ~tree_schema();
 
       string get_node_name(i32 iNameIndex);
-      void set_node_name(i32 iNameIndex, const char * pcszNodeName);
+      void set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrNodeName);
 
 
 

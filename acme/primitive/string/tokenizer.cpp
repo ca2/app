@@ -173,7 +173,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
    
    substring(strMid);
 
-   if((i = strMid.scan(strSeparator)) >= 0)
+   if((i = strMid.find_first_character_in(strSeparator)) >= 0)
    {
 
       if (bWithSeparator)
@@ -194,27 +194,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
       if(bSkipAdjacent)
       {
 
-         strMid = strMid.Mid(i + 1);
-
-         while(strMid.get_length() > 1)
-         {
-
-            if(strMid.scan(strSeparator) == 0)
-            {
-
-               m_iterator++;
-
-            }
-            else
-            {
-
-               break;
-
-            }
-
-            strMid = strMid.Mid(1);
-
-         }
+         strMid.begins_eat_any_character_in(strSeparator, i);
 
       }
 
@@ -246,10 +226,10 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
 }
 
 
-bool tokenizer::ExtractFolderPath(const char * pcszFilePath)
+bool tokenizer::ExtractFolderPath(const ::scoped_string & scopedstrFilePath)
 {
 
-   string strFilePath(pcszFilePath);
+   string strFilePath(scopedstrFilePath);
 
    strsize i = strFilePath.get_length();
 
@@ -519,11 +499,11 @@ bool tokenizer::_001GetNextToken(string & strToken)
 bool tokenizer::get_next_word(string * pstrToken)
 {
 
-   const scoped_string & str = m_iterator;
+   const ::ansi_character * psz = m_iterator;
 
-   const scoped_string & strEnd = this->end();
+   const ::ansi_character * pszEnd = this->end();
 
-   const scoped_string & strStart = nullptr;
+   const ::ansi_character * pszStart = nullptr;
 
    while(psz < pszEnd)
    {

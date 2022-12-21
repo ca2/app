@@ -62,9 +62,9 @@ namespace aura
 //#endif
 
 
-      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const scoped_string & strTypeIdentifier);
+      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier);
 
-      virtual ::image_pointer get_file_image(int iSize, const scoped_string & strPath);
+      virtual ::image_pointer get_file_image(int iSize, const ::file::path & path);
       
       virtual void defer_dock_application(bool bDock);
 

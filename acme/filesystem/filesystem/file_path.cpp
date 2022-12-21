@@ -7,8 +7,7 @@
 //#include "acme/primitive/collection/numeric_array.h"
 
 
-
-void copy_character_per_character(char * pszTarget, const scoped_string & strSource)
+void copy_character_per_character(char * pszTarget, const char * pszSource)
 {
 
    while(*pszSource)
@@ -24,52 +23,25 @@ void copy_character_per_character(char * pszTarget, const scoped_string & strSou
 
 }
 
-const char * file_path_name(const char * path)
+
+const char * file_path_name(const ::file::path & path)
 {
 
-   auto name1 = strrchr(path, '\\');
+   auto p = path.rear_find_first_character_in("\\/");
 
-   auto name2 = strrchr(path, '/');
-
-   if (!name1)
+   if(::is_null(p))
    {
 
-      if (!name2)
-      {
-
-         return path;
-
-      }
-      else
-      {
-
-         return name2 + 1;
-
-      }
+      return path.begin();
 
    }
-   else
-   {
-   
-      if (name1 > name2) // || !name2 not needed
-      {
 
-         return name1 + 1;
-
-      }
-      else 
-      {
-
-         return name2 + 1;
-
-      }
-
-   }
+   return p + 1;
 
 }
 
 
-const char * file_path_final_extension(const char * path)
+const char * file_path_final_extension(const ::file::path & path)
 {
 
    auto name = file_path_name(path);
@@ -88,7 +60,7 @@ const char * file_path_final_extension(const char * path)
 }
 
 
-const char * file_path_all_extensions(const char * path)
+const char * file_path_all_extensions(const ::file::path & path)
 {
 
    auto name = file_path_name(path);
@@ -107,30 +79,22 @@ const char * file_path_all_extensions(const char * path)
 }
 
 
-string url_dir_name_for_relative(const scoped_string & strPath)
+string url_dir_name_for_relative(const ::file::path & path)
 {
-   
-   string strDir(pszPath);
 
-   if (strDir.ends("/"))
-   {
+   ASSERT(!path.ends("/"));
+   ASSERT(!path.ends("\\"));
 
-      return strDir;
+   auto p = path.rear_find('/');
 
-   }
-
-   strDir.ends_eat("/");
-
-   strsize iFind = strDir.rear_find("/");
-
-   if (iFind < 0)
+   if (::is_null(p))
    {
 
       return "/";
 
    }
 
-   return strDir.substr(0, iFind + 1);
+   return { path.begin(), p };
 
 }
 
@@ -171,7 +135,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    bool bDup = false;
 
-   strsize iLen = str.get_length();
+   strsize iLen = str.length();
 
    char * psz = str.get_string_buffer(iLen);
 
@@ -514,10 +478,10 @@ CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl)
 }
 
 
-CLASS_DECL_ACME string defer_solve_relative(const scoped_string & strRelative, const scoped_string & strAbsolute)
+CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrAbsolute)
 {
-   string strRelative(pszRelative);
-   string strAbsolute(pszAbsolute);
+   string strRelative(scopedstrRelative);
+   string strAbsolute(scopedstrAbsolute);
    if (strRelative.is_empty())
       return "";
    if (strAbsolute.is_empty())
@@ -535,28 +499,35 @@ CLASS_DECL_ACME string defer_solve_relative(const scoped_string & strRelative, c
    if (strRelative.begins("\\\\"))
       return solve_relative(strRelative);
 
-   index iFind = strRelative.find(":\\");
+   auto pFind = strRelative.find(":\\");
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
-      index i = 0;
-      for (; i < iFind; i++)
+      auto p = strRelative.begin();
+      for (; p < pFind; p++)
       {
-         if (!ansi_char_isalpha(strRelative[i]) && !ansi_char_isdigit(strRelative[i]))
+         if (!ansi_char_isalpha(*p) && !ansi_char_isdigit(*p))
             break;
       }
 
-      if (i == iFind)
+      if (p == pFind) {
+
          return solve_relative(strRelative);
+
+      }
 
    }
 
    strAbsolute = ::url_dir_name_for_relative(strAbsolute);
 
    if (!strAbsolute.ends("/"))
-      strAbsolute += "/";
-   strRelative = strAbsolute + strRelative;
+   {
 
+      strAbsolute += "/";
+
+   }
+
+   strRelative = strAbsolute + strRelative;
 
    return solve_relative(strRelative);
 
@@ -565,126 +536,154 @@ CLASS_DECL_ACME string defer_solve_relative(const scoped_string & strRelative, c
 
 
 
-//CLASS_DECL_ACME bool read_resource_as_file(const scoped_string & strFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
+//CLASS_DECL_ACME bool read_resource_as_file(const ::scoped_string & scopedstrFile,HINSTANCE hinst,::u32 nID,LPCTSTR pcszType);
 
-const char * string_reverse_span_excluding(const scoped_string & str, const scoped_string & strBegin, const scoped_string & strExcluding)
-{
-
-   while (psz >= pszBegin)
-   {
-
-      auto pszCheck = pszExcluding;
-
-      while(*pszCheck)
-      {
-
-         if (*psz == *pszCheck)
-         {
-
-            return psz;
-
-         }
-
-         pszCheck++;
-
-      }
-
-      psz--;
-
-   }
-
-   return nullptr;
-
-}
-
-
-const char * string_reverse_span_including(const scoped_string & str, const scoped_string & strBegin, const scoped_string & strIncluding)
-{
-
-   while (psz >= pszBegin)
-   {
-
-      auto pszCheck = pszIncluding;
-
-      bool bIncludesAny = false;
-
-      while(*pszCheck)
-      {
-
-         if (*psz == *pszCheck)
-         {
-
-            bIncludesAny = true;
-
-            break;
-
-         }
-
-         pszCheck++;
-
-      }
-
-      if(!bIncludesAny)
-      {
-
-         return psz;
-
-      }
-
-      psz--;
-
-   }
-
-   return nullptr;
-
-}
-
-
-// 1. /folder/name
-// 2. /name
-string file_path_folder(const char * path1)
-{
-
-   const scoped_string & str = path1 + string_safe_length(path1) - 1;
-
-   auto pszSeparator = string_reverse_span_excluding(psz, path1, "\\/");
-
-// 1. /folder/
-// 2. /
-
-   if(!pszSeparator)
-   {
-
-      return "";
-
-   }
-
-   auto pszLastFolderCharacter = string_reverse_span_including(pszSeparator, path1, "\\/");
-
-// 1. /folder
-// 2. nullptr
-
-   if(pszLastFolderCharacter)
-   {
-
-      pszSeparator = pszLastFolderCharacter + 1;
-
-   }
-
-// 1. /folder/
-// 2. /
-
-   return string(path1, pszSeparator - path1);
-
-}
-
-
-//string file_path_name(const char * path)
+//const char * string_reverse_find_first_character_in(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrBegin, const ::scoped_string & scopedstrExcluding)
 //{
 //
-//   const scoped_string & strName2 = ansi_find_char_reverse(path, '\\');
+//   while (psz >= pszBegin)
+//   {
+//
+//      auto pszCheck = pszExcluding;
+//
+//      while(*pszCheck)
+//      {
+//
+//         if (*psz == *pszCheck)
+//         {
+//
+//            return psz;
+//
+//         }
+//
+//         pszCheck++;
+//
+//      }
+//
+//      psz--;
+//
+//   }
+//
+//   return nullptr;
+//
+//}
+
+
+//const char * string_reverse_skip_any_character_in(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrBegin, const ::scoped_string & scopedstrIncluding)
+//{
+//
+//   while (psz >= pszBegin)
+//   {
+//
+//      auto pszCheck = pszIncluding;
+//
+//      bool bIncludesAny = false;
+//
+//      while(*pszCheck)
+//      {
+//
+//         if (*psz == *pszCheck)
+//         {
+//
+//            bIncludesAny = true;
+//
+//            break;
+//
+//         }
+//
+//         pszCheck++;
+//
+//      }
+//
+//      if(!bIncludesAny)
+//      {
+//
+//         return psz;
+//
+//      }
+//
+//      psz--;
+//
+//   }
+//
+//   return nullptr;
+//
+//}
+
+
+string file_path_folder(const ::file::path & path)
+{
+
+   auto p = path.rear_find_first_character_in("\\/");
+
+   if(::is_null(p))
+   {
+
+      return {};
+
+   }
+
+   auto range = path(p);
+
+   auto pFolderLastCharacter = range.rear_skip_any_character_in("\\/");
+
+   if(pFolderLastCharacter)
+   {
+
+      p = pFolderLastCharacter + 1;
+
+   }
+
+   return {path.begin(), p - path.begin() };
+
+}
+
+
+//// 1. /folder/name
+//// 2. /name
+//const char * find_last_slash(const ::file::path & path1)
+//{
+//
+//    const ::scoped_string & scopedstr = path1 + string_safe_length(path1) - 1;
+//
+//    auto pszSeparator = string_reverse_find_first_character_in(psz, path1, "\\/");
+//
+//// 1. /folder/
+//// 2. /
+//
+//    if(!pszSeparator)
+//    {
+//
+//        return "";
+//
+//    }
+//
+//    auto pszLastFolderCharacter = string_reverse_skip_any_character_in(pszSeparator, path1, "\\/");
+//
+//// 1. /folder
+//// 2. nullptr
+//
+//    if(pszLastFolderCharacter)
+//    {
+//
+//        pszSeparator = pszLastFolderCharacter + 1;
+//
+//    }
+//
+//// 1. /folder/
+//// 2. /
+//
+//    return string(path1, pszSeparator - path1);
+//
+//}
+
+
+//string file_path_name(const ::file::path & path)
+//{
+//
+//   const ::scoped_string & scopedstrName2 = ansi_find_char_reverse(path, '\\');
 //   
-//   const scoped_string & strName1 = ansi_find_char_reverse(path, '/');
+//   const ::scoped_string & scopedstrName1 = ansi_find_char_reverse(path, '/');
 //
 //   auto pszName = minimum_non_null(pszName1, pszName2);
 //
@@ -701,7 +700,7 @@ string file_path_folder(const char * path1)
 
 
 
-//string file_path_name(const char * path)
+//string file_path_name(const ::file::path & path)
 //{
 //   string str(path);
 //   strsize iPos;
@@ -734,25 +733,29 @@ string file_path_folder(const char * path1)
 //}
 
 
-string file_path_title(const char * path)
+string file_path_title(const ::file::path & path)
 {
-   string str = file_path_name(path);
-   strsize iPos = str.find('.');
-   if (iPos != -1)
+
+   auto start = file_path_name(path);
+
+   auto end = const_ansi_range(start, path.end()).find('.');
+
+   if (::is_null(end))
    {
-      return str.substr(0, iPos);
+
+      return start;
+
    }
-   else
-   {
-      return str;
-   }
+
+   return { start, end };
+
 }
 
 
-bool file_path_is_relative(const scoped_string & str)
+bool file_path_is_relative(const ::scoped_string & scopedstr)
 {
 
-   return !file_path_is_absolute(psz);
+   return !file_path_is_absolute(scopedstr);
 
    //string strPath(psz);
    //if (strPath.find(':') != -1 && strPath.find(':') < 10)
@@ -764,39 +767,25 @@ bool file_path_is_relative(const scoped_string & str)
 }
 
 
-bool file_path_is_absolute(const scoped_string & str)
+bool file_path_is_absolute(const ::scoped_string & scopedstr)
 {
 
-   if (is_null(psz))
+   if (scopedstr.is_empty())
    {
 
       return false;
 
    }
 
-   if (*psz == '/' || *psz == '\\')
+   if (*scopedstr.begin() == '/' || *scopedstr.begin() == '\\')
    {
 
       return true;
 
    }
 
-   if (!ansi_char_isalpha(*psz))
-   {
+   auto psz = scopedstr.begin();
 
-      return false;
-
-   }
-
-   psz++;
-
-   if (*psz == ':')
-   {
-
-      return true;
-
-   }
-      
    while (*psz
       && (ansi_char_isalpha(*psz)
       || ansi_char_isdigit(*psz)
@@ -820,29 +809,29 @@ bool file_path_is_absolute(const scoped_string & str)
 }
 
 
-bool file_path_is_dots(const scoped_string & str)
+bool file_path_is_dots(const ::scoped_string & scopedstr)
 {
 
-   if(is_null(psz))
+   if(scopedstr.is_empty())
    {
 
       return false;
 
    }
 
-   if (psz[0] == '.')
+   if (scopedstr.begin()[0] == '.')
    {
             
-      if (psz[1] == '\0')
+      if (scopedstr.begin()[1] == '\0')
       {
                
          return true;
                
       }
-      else if(psz[1] == '.')
+      else if(scopedstr.begin()[1] == '.')
       {
                
-         if (psz[2] == '\0')
+         if (scopedstr.begin()[2] == '\0')
          {
                   
             return true;
@@ -858,12 +847,12 @@ bool file_path_is_dots(const scoped_string & str)
 }
 
 
-bool file_path_is_equal(const scoped_string & str1, const scoped_string & str2)
+bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
 
-   auto path1 = file_path_normalize(psz1);
+   auto path1 = file_path_normalize(scopedstr1);
 
-   auto path2 = file_path_normalize(psz2);
+   auto path2 = file_path_normalize(scopedstr2);
 
    return path1.case_insensitive_order(path2) == 0;
 

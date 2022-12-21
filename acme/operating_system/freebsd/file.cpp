@@ -21,7 +21,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 
 
 
-//bool context::_os_resolve_alias(::file::path & path, const scoped_string & str, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
+//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
 //{
 //
 //    if(::is_null(psz))
@@ -71,7 +71,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //
 
 
-// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const scoped_string & str, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -80,7 +80,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 
 
 
-CLASS_DECL_ACME bool _os_may_have_alias(const scoped_string & str)
+CLASS_DECL_ACME bool _os_may_have_alias(const ::scoped_string & scopedstr)
 {
 
    return true;

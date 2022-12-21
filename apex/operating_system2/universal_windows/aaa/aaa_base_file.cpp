@@ -3,7 +3,7 @@
 #include <io.h>
 
 
-int_bool acmefile()->exists(const char * path1)
+int_bool acmefile()->exists(const ::file::path & path1)
 {
 
    u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -17,7 +17,7 @@ int_bool acmefile()->exists(const char * path1)
 
 
 
-int_bool acmefile()->put_contents(const char * path,const char * contents,count len)
+int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,count len)
 {
 
             auto psystem = acmesystem();
@@ -52,7 +52,7 @@ pacmedirectory->create(::file_path_folder(path));
 }
 
 
-filesize file_length_dup(const char * path)
+filesize file_length_dup(const ::file::path & path)
 {
 
    HANDLE hfile = create_file(path,GENERIC_READ,0,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
@@ -74,7 +74,7 @@ filesize file_length_dup(const char * path)
 
 
 
-int_bool file_is_equal_path_dup(const scoped_string & str1,const scoped_string & str2)
+int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 {
    return file_path_is_equal(psz1,psz2);
 //   const i32 iBufSize = MAX_PATH * 8;
@@ -136,7 +136,7 @@ string file_module_path_dup()
 
 
 //
-//bool PrintModules(string & strImage,u32 processID,const scoped_string & strDll)
+//bool PrintModules(string & strImage,u32 processID,const ::scoped_string & scopedstrDll)
 //{
 //
 //   HANDLE hProcess;
@@ -202,7 +202,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(u32_array & dwa,string_array & straProcesses,const scoped_string & strDll)
+//void dll_processes(u32_array & dwa,string_array & straProcesses,const ::scoped_string & scopedstrDll)
 //{
 //   // Get the list of process identifiers.
 //
@@ -851,7 +851,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //
 //
 //
-//int_bool file_set_length(const scoped_string & strName,size_t iSize)
+//int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 //{
 //
 //   wstring wstr(pszName);
@@ -905,7 +905,7 @@ int_bool file_delete(const char * lpszFileName)
 
 
 //
-//int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
+//int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1704,7 +1704,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 
 
 //
-//int_bool acmefile()->exists(const char * path1)
+//int_bool acmefile()->exists(const ::file::path & path1)
 //{
 //
 //   string str(path1);
@@ -1721,7 +1721,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 //
 
 
-//int_bool acmefile()->put_contents(const char * path,const char * contents,::count len)
+//int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::count len)
 //{
 //
 //            auto psystem = acmesystem();
@@ -1752,7 +1752,7 @@ pacmedirectory->create(::file_path_folder(path));
 
 
 
-string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
+string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -1796,7 +1796,7 @@ string acmefile()->as_string(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-bool file_as_memory(memory_base & memory,const char * path, iptr iReadAtMostByteCount)
+bool file_as_memory(memory_base & memory,const ::file::path & path, iptr iReadAtMostByteCount)
 {
 
    memory.set_size(0);
@@ -1831,7 +1831,7 @@ bool file_as_memory(memory_base & memory,const char * path, iptr iReadAtMostByte
 
 
 
-int_bool file_path_is_equal(const scoped_string & str1,const scoped_string & str2)
+int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 {
 
    return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;
@@ -1861,7 +1861,7 @@ string file_get_mozilla_firefox_plugin_container_path()
 //
 
 
-int_bool file_set_length(const scoped_string & strName,size_t iSize)
+int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 {
 
    int i = open(pszName,0);
@@ -1877,7 +1877,7 @@ int_bool file_set_length(const scoped_string & strName,size_t iSize)
 
 
 
-bool file_copy_dup(const char  * pszNew, const scoped_string & strSrc,bool bOverwrite)
+bool file_copy_dup(const char  * pszNew, const ::scoped_string & scopedstrSrc,bool bOverwrite)
 {
 
    ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;

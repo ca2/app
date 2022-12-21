@@ -38,7 +38,7 @@
       {
       }
 
-      //bool tx::open(const scoped_string & strChannel, launcher * plauncher)
+      //bool tx::open(const ::scoped_string & scopedstrChannel, launcher * plauncher)
       //{
 
       //   __UNREFERENCED_PARAMETER(plauncher);
@@ -57,7 +57,7 @@
 
       //}
 
-      bool tx::open(const scoped_string & strChannel)
+      bool tx::open(const ::scoped_string & scopedstrChannel)
       {
 
          if (m_strBaseChannel.has_char())
@@ -88,7 +88,7 @@
       }
 
 
-      bool tx::send(const scoped_string & strMessage, duration durationTimeout)
+      bool tx::send(const ::scoped_string & scopedstrMessage, duration durationTimeout)
       {
 
          if (!is_tx_ok())
@@ -156,7 +156,7 @@
       }
 
 
-      bool rx::create(const scoped_string & strChannel)
+      bool rx::create(const ::scoped_string & scopedstrChannel)
       {
 
          if (m_strBaseChannel.has_char())
@@ -190,7 +190,7 @@
 
       }
 
-      //void rx::receiver::on_ipc_receive(rx * prx, const scoped_string & strMessage)
+      //void rx::receiver::on_ipc_receive(rx * prx, const ::scoped_string & scopedstrMessage)
       //{
 
       //}
@@ -207,7 +207,7 @@
       //}
 
 
-      void * rx::on_ipc_receive(rx * prx, const scoped_string & strMessage)
+      void * rx::on_ipc_receive(rx * prx, const ::scoped_string & scopedstrMessage)
       {
 
          if (m_preceiver != nullptr)
@@ -281,7 +281,7 @@
       }
 
 
-      //bool ipc::open_ab(const scoped_string & strChannel, const scoped_string & strModule, launcher * plauncher)
+      //bool ipc::open_ab(const ::scoped_string & scopedstrChannel, const ::scoped_string & scopedstrModule, launcher * plauncher)
       //{
 
       //   m_strChannel = pszChannel;
@@ -311,7 +311,7 @@
       //}
 
 
-      //bool ipc::open_ba(const scoped_string & strChannel, const scoped_string & strModule, launcher * plauncher)
+      //bool ipc::open_ba(const ::scoped_string & scopedstrChannel, const ::scoped_string & scopedstrModule, launcher * plauncher)
       //{
 
       //   m_strChannel = pszChannel;
@@ -341,7 +341,7 @@
       //}
 
 
-      bool ipc::open_ab(const scoped_string & strChannel, const scoped_string & strModule)
+      bool ipc::open_ab(const ::scoped_string & scopedstrChannel, const ::scoped_string & scopedstrModule)
       {
 
          m_strChannel = pszChannel;
@@ -371,7 +371,7 @@
       }
 
 
-      bool ipc::open_ba(const scoped_string & strChannel, const scoped_string & strModule)
+      bool ipc::open_ba(const ::scoped_string & scopedstrChannel, const ::scoped_string & scopedstrModule)
       {
 
          m_strChannel = pszChannel;

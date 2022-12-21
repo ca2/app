@@ -497,7 +497,7 @@ zlib_filefunc_def* pzlib_filefunc_def)
 }
 
 
-extern unzFile CLASS_DECL_ACME unzOpen (const char * path)
+extern unzFile CLASS_DECL_ACME unzOpen (const ::file::path & path)
 {
    return unzOpen2(path, nullptr);
 }

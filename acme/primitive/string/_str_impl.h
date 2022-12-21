@@ -102,10 +102,10 @@ inline bool equal_ignore_case(const char * left, const char * right, size_t len)
 }
 
 
-inline bool str::trimmed_is_empty(const ::string & str)
+inline bool str::trimmed_is_empty(const ::scoped_string & scopedstr)
 {
 
-   const scoped_string & str = str.c_str();
+   const char * psz = scopedstr.c_str();
 
    while (true)
    {
@@ -683,12 +683,12 @@ inline bool str::namespaced(const ::ansi_character * psz, const ::ansi_character
 }
 
 
-inline bool str::begins_ci_skip(const char *& psz, const scoped_string & strPrefix)
+inline bool str::begins_ci_skip(const char *& psz, const ::scoped_string & scopedstrPrefix)
 {
 
-   auto length = strlen(pszPrefix);
+   auto length = scopedstrPrefix.size();
 
-   if (strnicmp(psz, pszPrefix, length) != 0)
+   if (strnicmp(psz, scopedstrPrefix.c_str(), length) != 0)
    {
 
       return false;
@@ -714,12 +714,12 @@ inline const ::wide_character * str::windows_bb(const wide_string &) { return L"
 /// Returns:
 /// end of line, and;
 /// next line or null if no next line
-inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const scoped_string & str)
+inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const ::scoped_string & scopedstr)
 {
 
    struct ::end_of_line_and_next_line pair;
 
-   pair.end_of_line = strpbrk(psz, "\r\n\0");
+   pair.end_of_line = scopedstr.find_first_character_in("\r\n\0");
 
    pair.next_line = pair.end_of_line;
 

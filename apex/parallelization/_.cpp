@@ -673,7 +673,7 @@ namespace apex
    //}
 
    //
-   //string _001OnlyAlnumString(const scoped_string & str)
+   //string _001OnlyAlnumString(const ::scoped_string & scopedstr)
    //{
    //
    //   string strOnlyAlnum;
@@ -697,7 +697,7 @@ namespace apex
    //}
 
    //
-   //string _001OnlyAlnumNonVowelString(const scoped_string & str)
+   //string _001OnlyAlnumNonVowelString(const ::scoped_string & scopedstr)
    //{
    //
    //   string strOnlyAlnum;

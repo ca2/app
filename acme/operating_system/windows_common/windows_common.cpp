@@ -61,7 +61,7 @@ void output_debug_string(const ::ansi_character * psz)
 }
 
 
-void output_debug_string(const unichar * pwsz)
+void output_debug_string(const ::scoped_string & str)
 {
 
 #ifdef WINDOWS

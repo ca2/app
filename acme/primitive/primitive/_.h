@@ -33,9 +33,7 @@ namespace acme
 } // namespace acme
 
 
-
 // Created by camilo on 2021-04-07 15:00 BRT <3TBS_!!
-#pragma once
 
 
 //#include "url_c.h"
@@ -46,18 +44,13 @@ namespace acme
 #define NETWORK_PAYLOAD_DEFAULT_EXTENSION ".\x6ason"
 
 
-
-
-
-
-
 // Created by camilo on 2022-11-07 22:00 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-CLASS_DECL_ACME bool is_url(const scoped_string & strCandidate, const char** ppszRequest = nullptr);
+CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest = nullptr);
 
-CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str);
+CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
 namespace url
@@ -70,7 +63,7 @@ namespace url
    CLASS_DECL_ACME string decode(const ::block& block);
 
 
-   CLASS_DECL_ACME bool query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl);
+   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl);
 
 
 } // namespace url

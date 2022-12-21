@@ -146,7 +146,7 @@ inline strsize get_formatted_length(const ::wd16_character * pszFormat, va_list 
 
    wd32_string wstr(pszFormat);
 
-   return vswprintf(nullptr, 0, wstr, args);
+   return vswprintf(nullptr, 0, wstr.c_str(), args);
 
 #endif
 
@@ -170,7 +170,7 @@ inline strsize wd16string_format(::wd16_character * pszBuffer, const ::wd16_char
 
    wd32_string wstrFormat(pszFormat);
 
-   auto len = vswprintf(psz, nlength, wstrFormat, args);
+   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
 
    utf_to_utf(pszBuffer, psz, nlength);
 
@@ -196,7 +196,7 @@ inline strsize wd16string_format(::wd16_character * pszBuffer, strsize nlength, 
 
    wd32_string wstrFormat(pszFormat);
 
-   auto len = vswprintf(psz, nlength, wstrFormat, args);
+   auto len = vswprintf(psz, nlength, wstrFormat.c_str(), args);
 
    utf_to_utf(pszBuffer, psz, nlength);
 
@@ -242,7 +242,7 @@ inline bool character_isalnum(::wd16_character ch) noexcept { return wd16_char_i
 inline bool character_isspace(::wd16_character ch) noexcept { return wd16_char_isspace(ch); }
 
 
-inline strsize string_span_including(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept
+inline strsize string_skip_any_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept
 {
 
    return (strsize)wd16_spn(pszBlock, pszSet);
@@ -251,7 +251,7 @@ inline strsize string_span_including(const ::wd16_character * pszBlock, const ::
 
 
 
-inline strsize string_span_excluding(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept
+inline strsize string_find_first_character_in(const ::wd16_character * pszBlock, const ::wd16_character * pszSet) noexcept
 {
 
    return (strsize)wd16_cspn(pszBlock, pszSet);

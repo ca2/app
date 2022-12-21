@@ -150,7 +150,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
 
-void* MEMORY_DECL operator new(size_t nSize, const scoped_string & strFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, const ::file::path & path, i32 nLine) new_throw_spec
 {
 
    return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -158,7 +158,7 @@ void* MEMORY_DECL operator new(size_t nSize, const scoped_string & strFileName, 
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, const scoped_string & strFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new[](size_t nSize, const ::file::path & path, i32 nLine) new_throw_spec
 {
 
    return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -182,7 +182,7 @@ void MEMORY_DECL operator delete[](void* pData, const char* /* pszFileName */, i
 }
 
 
-void* MEMORY_DECL operator new(size_t nSize, i32 nType, const scoped_string & strFileName, i32 nLine)
+void* MEMORY_DECL operator new(size_t nSize, i32 nType, const ::file::path & path, i32 nLine)
 {
 
 #if MEMDLEAK
@@ -206,7 +206,7 @@ void MEMORY_DECL operator delete(void* p, i32 nType, const char* /* pszFileName 
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const scoped_string & strFileName, i32 nLine)
+void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const ::file::path & path, i32 nLine)
 {
 
    return ::operator new(nSize, nType, pszFileName, nLine);
@@ -214,7 +214,7 @@ void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const scoped_string & 
 }
 
 
-void MEMORY_DECL operator delete[](void* p, i32 nType, const scoped_string & strFileName, i32 nLine)
+void MEMORY_DECL operator delete[](void* p, i32 nType, const ::file::path & path, i32 nLine)
 {
 
    ::operator delete(p, nType, pszFileName, nLine);

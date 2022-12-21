@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const scoped_string & strDll)
+CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 {
 
 
@@ -42,7 +42,7 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 //
-//CLASS_DECL_APEX bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const scoped_string & str, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_APEX bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);
@@ -50,7 +50,7 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 //}
 
 
-CLASS_DECL_APEX bool _os_may_have_alias(const scoped_string & str)
+CLASS_DECL_APEX bool _os_may_have_alias(const ::scoped_string & scopedstr)
 {
 
    return true;
@@ -58,7 +58,7 @@ CLASS_DECL_APEX bool _os_may_have_alias(const scoped_string & str)
 }
 
 //
-//bool os_is_folder_alias(const scoped_string & str, bool bNoUI, bool bNoMount)
+//bool os_is_folder_alias(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
 //{
 //
 //   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
@@ -80,10 +80,10 @@ CLASS_DECL_APEX bool _os_may_have_alias(const scoped_string & str)
 #ifndef __APPLE__
 
 
-bool os_is_alias(const char * path);
+bool os_is_alias(const ::file::path & path);
 
 
-bool context::os_is_alias(const char * path)
+bool context::os_is_alias(const ::file::path & path)
 {
 
    return ::os_is_alias(path);

@@ -8,7 +8,7 @@
 
 #include "framework.h"
 
-CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const scoped_string & strDll)
+CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 {
    
    

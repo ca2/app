@@ -128,8 +128,8 @@ string url_decode(const ::string & pszUrl,strsize iLen)
 CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & pszKey, const ::string & pszUrl)
 {
 
-   const scoped_string & strBeg;
-   const scoped_string & strEnd;
+   const ::scoped_string & scopedstrBeg;
+   const ::ansi_character * pszEnd;
 
    {
 

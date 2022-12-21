@@ -216,7 +216,7 @@ namespace color
       color & operator = (enum_color ecolor);
       color & operator = (const hls & hls);
 
-      bool parse_color(const scoped_string & str);
+      bool parse_color(const ::scoped_string & scopedstr);
 
       void set_COLORREF(::color32_t color32);
 

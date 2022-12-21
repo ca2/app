@@ -19,7 +19,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const scoped_string & strUrl, const scoped_string & strFile, bool bProgress, bool bUrlEncode, i32 * piStatus, void (*callback)(void *, i32, dword_ptr), void * callback_param )
+bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile, bool bProgress, bool bUrlEncode, i32 * piStatus, void (*callback)(void *, i32, dword_ptr), void * callback_param )
 {
 
    if(piStatus != nullptr)
@@ -94,7 +94,7 @@ bool ms_download_dup(const scoped_string & strUrl, const scoped_string & strFile
 
 
 
-vsstring ms_get_dup(const scoped_string & strUrl, bool bCache, void (*callback)(void *, i32, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*callback)(void *, i32, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -129,7 +129,7 @@ vsstring ms_get_dup(const scoped_string & strUrl, bool bCache, void (*callback)(
 }
 
 
-vsstring ::url::encode(const scoped_string & str)
+vsstring ::url::encode(const ::scoped_string & scopedstr)
 {
    vsstring str;
    char sz[256];
@@ -176,7 +176,7 @@ vsstring ::url::encode(const scoped_string & str)
 
 
 /*
-vsstring ms_post(const scoped_string & strUrl, const scoped_string & strPost)
+vsstring ms_post(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrPost)
 {
 vsstring strUrl(pszUrl);
 vsstring strHost;

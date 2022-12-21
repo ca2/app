@@ -42,7 +42,7 @@ public:
    ~menu_shared() override;
    
    
-   void * find_item(const scoped_string & strParent, const scoped_string & strId);
+   void * find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId);
    
    void on_idle_update();
    

@@ -240,15 +240,15 @@ namespace folder_zip
    }
 
    
-   ::file_pointer folder::get_file(const scoped_string & strFile)
+   ::file_pointer folder::get_file(const ::scoped_string & scopedstrFile)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (::is_set(pszFile))
+      if (::is_set(scopedstrFile))
       {
 
-         if (!locate_file(pszFile))
+         if (!locate_file(scopedstrFile))
          {
 
             return nullptr;
@@ -266,17 +266,17 @@ namespace folder_zip
    }
 
 
-   void folder::extract(memory& m, const scoped_string & strFile)
+   void folder::extract(memory& m, const ::scoped_string & scopedstrFile)
    {
 
-      auto pfile = get_file(pszFile);
+      auto pfile = get_file(scopedstrFile);
 
       m = pfile->as_memory();
 
    }
 
 
-   bool folder::is_compressed(const scoped_string & strFileName)
+   bool folder::is_compressed(const ::file::path & path)
    {
 
       return false;
@@ -284,7 +284,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const scoped_string & strTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const ::scoped_string & scopedstrTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;
@@ -293,7 +293,7 @@ namespace folder_zip
 
       ::file::path pathTargetFolder;
 
-      pathTargetFolder = pszTargetDir;
+      pathTargetFolder = scopedstrTargetDir;
 
       for (auto & path : listing)
       {
@@ -316,12 +316,12 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_file(const scoped_string & strFileName)
+   bool folder::locate_file(const ::file::path & path)
    {
 
       m_iFilePosition = -1;
 
-      string strFile(pszFileName);
+      string strFile(scopedstrFileName);
 
       index iFind = strFile.find(":");
 
@@ -334,12 +334,12 @@ namespace folder_zip
       
       strFile.replace_with("/", "\\");
 
-      if (!locate([strFile](const scoped_string & str) {return strFile.case_insensitive_equals(psz); }))
+      if (!locate([strFile](const char * psz) {return strFile.case_insensitive_equals(psz); }))
       {
 
          strFile.replace_with("\\", "/");
 
-         if (!locate([strFile](const scoped_string & str) {return strFile.case_insensitive_equals(psz); }))
+         if (!locate([strFile](const char * psz) {return strFile.case_insensitive_equals(psz); }))
          {
 
             return false;
@@ -427,17 +427,17 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_folder(const scoped_string & strFolderName)
+   bool folder::locate_folder(const ::scoped_string & scopedstrFolderName)
    {
 
-      if (::is_empty(pszFolderName))
+      if (::is_empty(scopedstrFolderName))
       {
 
          throw exception(::error_bad_argument);
 
       }
 
-      string strPrefix(pszFolderName);
+      string strPrefix(scopedstrFolderName);
 
       strPrefix.trim("\\/");
 
@@ -457,7 +457,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const scoped_string & strItem)
+      bool bLocated = locate([strPrefix](const char * pszItem)
          {
 
             string strItem(pszItem);
@@ -478,17 +478,17 @@ namespace folder_zip
    }
 
 
-   bool folder::has_sub_folder(const scoped_string & strFolderName)
+   bool folder::has_sub_folder(const ::scoped_string & scopedstrFolderName)
    {
 
-      if (::is_empty(pszFolderName))
+      if (scopedstrFolderName.is_empty())
       {
 
          throw exception(::error_bad_argument);
 
       }
 
-      string strPrefix(pszFolderName);
+      string strPrefix(scopedstrFolderName);
 
       strPrefix.trim("\\/");
 
@@ -508,7 +508,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const scoped_string & strItem)
+      bool bLocated = locate([strPrefix](const char * pszItem)
          {
 
             string strItem(pszItem);
@@ -516,7 +516,7 @@ namespace folder_zip
             if (strItem.case_insensitive_begins_eat(strPrefix))
             {
 
-               if (strItem.contains('/'))
+               if (strItem.contains("/"))
                {
 
                   return true;

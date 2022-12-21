@@ -7,8 +7,8 @@
 
 
 #define _TIME_COMPARISON_WITH(TYPE) \
-   inline bool operator == (const TYPE & t) const { return operator == (class ::time(t)); } \
-   inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> (class ::time(t)); }
+   inline bool operator == (const TYPE & t) const { return operator == ((class ::time) t); } \
+   inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> ((class ::time) t); }
 
 
 namespace earth
@@ -54,7 +54,7 @@ namespace earth
       DECLARE_COMPARISON_WITH_TIME(inline)
 
 
-         _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
+      _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_SECOND);

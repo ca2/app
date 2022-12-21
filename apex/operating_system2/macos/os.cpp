@@ -49,10 +49,10 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 
 
 //
-//char * mm_browse_folder(const scoped_string & strStartDir, bool bCanCreateDirectories);
+//char * mm_browse_folder(const ::scoped_string & scopedstrStartDir, bool bCanCreateDirectories);
 //
 //
-//string apple_browse_folder(const scoped_string & strStartDir, bool bCanCreateDirectories)
+//string apple_browse_folder(const ::scoped_string & scopedstrStartDir, bool bCanCreateDirectories)
 //{
 //
 //   return ::string_from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));

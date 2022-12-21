@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   ::exception(const scoped_string & strMessage = nullptr);
+//   ::exception(const ::scoped_string & scopedstrMessage = nullptr);
 //   virtual ~::exception();
 //
 //

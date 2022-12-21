@@ -28,7 +28,7 @@ virtual public ::apex::shell_launcher
    virtual ~shell_launcher();
 
    //virtual void setup(time timeTimeout = ::one_minute());
-   //virtual void setup(oswindow oswindow, const scoped_string & strOperation, const scoped_string & strFile, const scoped_string & strParameters, const scoped_string & strDirectory, ::e_display edisplay, time timeTimeout = ::one_minute());
+   //virtual void setup(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, time timeTimeout = ::one_minute());
 
    virtual void launch();
 

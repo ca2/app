@@ -14,7 +14,7 @@
 //
 //int create_process6(const char * _cmd_line, int * pprocessId);
 //
-//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses, const scoped_string & strDll)
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //   __UNREFERENCED_PARAMETER(dwa);
@@ -26,7 +26,7 @@
 //
 //
 //
-//i32 create_process(const scoped_string & strCommandLine, i32 * pprocessId)
+//i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
 //{
 //
 //   string_array stra;
@@ -135,7 +135,7 @@
 //}
 //
 //
-//i32 daemonize_process(const scoped_string & strCommandLine, i32 * pprocessId)
+//i32 daemonize_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
 //{
 //
 //   string_array stra;
@@ -241,7 +241,7 @@
 //}
 //
 //
-//i32 create_process4(const scoped_string & strCommandLine, i32 * pprocessId)
+//i32 create_process4(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
 //{
 //
 //   string_array stra;
@@ -315,7 +315,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void call_async(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
 //{
 //
 //   string strCmdLine;
@@ -359,7 +359,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//CLASS_DECL_ACME void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //
 //   string strCmdLine;
@@ -477,7 +477,7 @@
 //}
 //
 //
-//int_array module_path_get_pid(const scoped_string & strPath)
+//int_array module_path_get_pid(const ::file::path & path)
 //{
 //
 //   int_array ia;
@@ -519,7 +519,7 @@
 //   {
 //
 //
-//      atom_array node::module_path_get_pid(const scoped_string & str)
+//      atom_array node::module_path_get_pid(const ::scoped_string & scopedstr)
 //      {
 //
 //         ::output_debug_string("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
@@ -685,7 +685,7 @@
 //
 //} // namespace acme
 //
-//bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::time timeTimeout )
+//bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::time timeTimeout )
 //{
 //
 //   property_set set;
@@ -703,7 +703,7 @@
 //
 //
 //
-//int create_process2(const scoped_string & strCommandLine, int * pprocessId)
+//int create_process2(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
 //   string_array stra;

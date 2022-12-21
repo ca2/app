@@ -162,7 +162,7 @@ namespace ansios
    }
 
 
-   bool process::create_child_process(const scoped_string & strCmdLine,bool bPiped,const scoped_string & strDir, ::enum_priority epriority)
+   bool process::create_child_process(const ::scoped_string & scopedstrCmdLine,bool bPiped,const ::scoped_string & scopedstrDir, ::enum_priority epriority)
    {
 
       if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
@@ -231,7 +231,7 @@ namespace ansios
 
          int iPrevious = -1;
 
-         const scoped_string & str;
+         const ::scoped_string & scopedstr;
 
          while((psz = environ[i]) != nullptr)
          {
@@ -369,7 +369,7 @@ namespace ansios
    }
 
 
-   bool process::synch_elevated(const scoped_string & strCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::scoped_string & scopedstrCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
       string_array straParam;

@@ -213,7 +213,7 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_string(char *buf, int& ptr, const scoped_string & str)
+   void AjpBaseSocket::put_string(char *buf, int& ptr, const ::scoped_string & scopedstr)
    {
       string str(psz);
       put_integer(buf, ptr, (short)str.get_length() );

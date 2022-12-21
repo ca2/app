@@ -45,7 +45,7 @@
 //   template < primitive_integral INTEGRAL >
 //   comparable_range(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
 //   comparable_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-//   comparable_range(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
+//   comparable_range(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
 //
 //
 //   //template < primitive_range RANGE >
@@ -117,7 +117,7 @@
 ////   using comparable_range < RANGE_TYPE >::comparable_range;
 ////
 ////
-////   comparable_range(const ITEM * pitem) : range(pitem, span_zero_item(data)), m_bDeclaredNullTerminated(true) {}
+////   comparable_range(const ITEM * pitem) : range(pitem, find_first_null_character(data)), m_bDeclaredNullTerminated(true) {}
 ////   comparable_range(this_iterator data) : comparable_range((const ITEM *)data) {}
 ////
 ////

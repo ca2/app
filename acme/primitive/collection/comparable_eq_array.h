@@ -33,7 +33,7 @@ public:
    template < primitive_integral INTEGRAL >
    comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
    comparable_eq_array(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
-   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, span_zero_item(begin)) {}
+   comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
 
    
    ::index find_first(ARG_TYPE t) const;

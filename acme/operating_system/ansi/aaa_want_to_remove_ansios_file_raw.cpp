@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 
 
-//int_bool file_exists_raw(const char * path1)
+//int_bool file_exists_raw(const ::file::path & path1)
 //{
 //
 //#ifdef WINDOWS
@@ -35,7 +35,7 @@
 //
 //}
 
-void file_put_contents_raw(const char * path, const scoped_string & str)
+void file_put_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
    FILE * f = fopen(path, "wb");
@@ -51,7 +51,7 @@ void file_put_contents_raw(const char * path, const scoped_string & str)
 
 }
 
-void file_add_contents_raw(const char * path, const scoped_string & str)
+void file_add_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
    FILE * f = fopen(path, "ab");
@@ -68,7 +68,7 @@ void file_add_contents_raw(const char * path, const scoped_string & str)
 }
 
 
-void file_beg_contents_raw(const char * path, const scoped_string & str)
+void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
    FILE * f = fopen(path, "rb+");
@@ -120,7 +120,7 @@ void file_beg_contents_raw(const char * path, const scoped_string & str)
 }
 
 
-u64 file_length_raw(const char * path)
+u64 file_length_raw(const ::file::path & path)
 {
 
 #ifdef WINDOWS
@@ -140,7 +140,7 @@ u64 file_length_raw(const char * path)
 
 
 
-string acmefile()->line(const char * path, index iLine)
+string acmefile()->line(const ::file::path & path, index iLine)
 {
 
    string str;
@@ -207,7 +207,7 @@ string acmefile()->line(const char * path, index iLine)
 }
 
 
-bool file_set_line_dup(const scoped_string & strPath, index iLine, const scoped_string & strLine)
+bool file_set_line_dup(const ::file::path & path, index iLine, const ::scoped_string & scopedstrLine)
 {
 
    if (iLine < 0)

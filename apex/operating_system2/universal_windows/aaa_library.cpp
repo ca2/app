@@ -2,7 +2,7 @@
 
 
 
-void * __node_library_touch(const scoped_string & strPath, string & strMessage)
+void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
 
    return __node_library_open(pszPath, strMessage);
@@ -10,7 +10,7 @@ void * __node_library_touch(const scoped_string & strPath, string & strMessage)
 }
 
 
-void * __node_library_open(const scoped_string & strPath, string & strMessage)
+void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
    void * plibrary = nullptr;
@@ -142,7 +142,7 @@ void * __node_library_open(const scoped_string & strPath, string & strMessage)
 
 
 
-void * __node_library_open_ca2(const scoped_string & str, string & strMessage)
+void * __node_library_open_ca2(const ::scoped_string & scopedstr, string & strMessage)
 {
    /*      string str(psz);
    if(str.find("..") >= 0)
@@ -168,7 +168,7 @@ void * __node_library_open_ca2(const scoped_string & str, string & strMessage)
 }
 
 
-void * __node_library_raw_get(void * plibrary,const scoped_string & strEntryName)
+void * __node_library_raw_get(void * plibrary,const ::scoped_string & scopedstrEntryName)
 {
 
    return ::GetProcAddress((HINSTANCE)plibrary,pszEntryName);

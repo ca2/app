@@ -47,7 +47,7 @@ namespace http
    }
 
 
-   void form::parse_body(::apex::context *pcontext, file::file *infil, const scoped_string & strContentType, strsize sizeContentLength)
+   void form::parse_body(::apex::context *pcontext, file::file *infil, const ::scoped_string & scopedstrContentType, strsize sizeContentLength)
    {
 
       if (::comparison::gt(sizeContentLength, get_max_http_post()))

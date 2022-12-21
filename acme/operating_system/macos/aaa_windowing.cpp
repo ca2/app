@@ -600,7 +600,7 @@ void ns_main_async(dispatch_block_t block);
 //string keyboard_input_source()
 //{
 //
-//   const scoped_string & str = mm_keyboard_input_source();
+//   const ::scoped_string & scopedstr = mm_keyboard_input_source();
 //
 //   string str =psz;
 //

@@ -13,7 +13,7 @@ namespace mathematics
    {
    public:
 
-      virtual void set_value_string(const scoped_string & str);
+      virtual void set_value_string(const ::scoped_string & scopedstr);
       virtual string get_value_string();
 
 

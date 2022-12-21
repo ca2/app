@@ -59,9 +59,9 @@ namespace ca
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
       int iError = errno;
 
-      const scoped_string & str = strerror(iError);
+      const ::scoped_string & scopedstr = strerror(iError);
 
-      const scoped_string & str2 = dlerror();
+      const ::scoped_string & scopedstr2 = dlerror();
 
       return m_plibrary != nullptr;
 

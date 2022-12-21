@@ -110,7 +110,7 @@ namespace opengl
 
          int iError = eglGetError();
 
-         const scoped_string & strError = eglQueryString(m_display, iError);
+         const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 
          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
 

@@ -15,7 +15,7 @@ public:
    void read(FILE * file);
    void write(FILE * file);
    
-   blob & operator = (const scoped_string & str);
+   blob & operator = (const ::scoped_string & scopedstr);
    
    
 };

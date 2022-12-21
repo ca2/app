@@ -8,7 +8,7 @@
 
 #include <vector>
 
-void __wide_append(memory & memory, const scoped_string & str);
+void __wide_append(memory & memory, const ::scoped_string & scopedstr);
 void __wide_append_null(memory & memory);
 
 

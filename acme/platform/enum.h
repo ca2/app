@@ -45,7 +45,7 @@ public:
    operator EENUM() const;
 
    //string get_name();
-   //void set_by_name(const scoped_string & str);
+   //void set_by_name(const ::scoped_string & scopedstr);
 
 };
 
@@ -154,7 +154,7 @@ base_enum<EENUM, edefault>::get_name()
 template <class EENUM, EENUM edefault>
 void
 base_enum<EENUM, edefault>::
-set_by_name(const scoped_string & str)
+set_by_name(const ::scoped_string & scopedstr)
 {
    m_evalue = from_name(psz, edefault);
 }*/

@@ -25,13 +25,13 @@ pacmedirectory->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
 extern char ** environ;
 
-string_array get_c_args_for_c(const scoped_string & str);
+string_array get_c_args_for_c(const ::scoped_string & scopedstr);
 
-string transform_to_c_arg(const scoped_string & str);
+string transform_to_c_arg(const ::scoped_string & scopedstr);
 
 int create_process2(const char * _cmd_line, int * pprocessId);
 
-i32 create_process(const scoped_string & strCommandLine, i32 * pprocessId)
+i32 create_process(const ::scoped_string & scopedstrCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -142,9 +142,9 @@ int create_process2(const char * _cmd_line, int * pprocessId)
 
 
 CLASS_DECL_APEX int call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 ::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
@@ -186,7 +186,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -238,7 +238,7 @@ CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string
 
 
 
-bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::duration durationTimeout )
+bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout )
 {
    
    property_set set;
@@ -362,7 +362,7 @@ pacmedirectory->home(), e_display_none, false) != 0)
 }
 
 
-bool launch_macos_app(const scoped_string & strAppFolder)
+bool launch_macos_app(const ::scoped_string & scopedstrAppFolder)
 {
    
    if (!pszAppFolder)
@@ -381,7 +381,7 @@ bool launch_macos_app(const scoped_string & strAppFolder)
 }
 
 
-bool launch_macos_app_args(const scoped_string & strAppFolder, const scoped_string & strArgs)
+bool launch_macos_app_args(const ::scoped_string & scopedstrAppFolder, const ::scoped_string & scopedstrArgs)
 {
    
    if (!pszAppFolder)

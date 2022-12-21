@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   const char * callstack::get_dup(const scoped_string & strFormat, i32 iSkip, int iCount)
+//   const char * callstack::get_dup(const ::scoped_string & scopedstrFormat, i32 iSkip, int iCount)
 //   {
 //
 //      return nullptr;
@@ -30,7 +30,7 @@
 //   //
 //   //   }
 //   //
-//   //   const scoped_string & str;
+//   //   const ::scoped_string & scopedstr;
 //   //
 //   //   synchronous_lock synchronouslock(::exception_engine().mutex());
 //   //

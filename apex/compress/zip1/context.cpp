@@ -216,7 +216,7 @@ namespace str
    }
 
 
-   bool zip_context::has_sub_folder(const scoped_string & strFileName)
+   bool zip_context::has_sub_folder(const ::file::path & path)
    {
 
       string strZip;
@@ -338,7 +338,7 @@ namespace str
    }
 
 
-   bool zip_context::e_extract_all(const scoped_string & strDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
+   bool zip_context::e_extract_all(const ::scoped_string & scopedstrDir,::payload payloadFile, ::file::path_array * ppatha, string_array * pstraFilter, bool_array * pbaBeginsFilterEat)
    {
 
       auto pfile = file()->get_file(payloadFile,::file::e_open_binary | ::file::e_open_read);
@@ -429,7 +429,7 @@ namespace str
    }
 
 
-   bool zip_context::is_unzippable(const scoped_string & strFileName)
+   bool zip_context::is_unzippable(const ::file::path & path)
    {
 
       string str(pszFileName);

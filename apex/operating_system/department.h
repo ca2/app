@@ -83,11 +83,11 @@ namespace operating_system
 
 
       // run process and get output
-      virtual ::payload get_output(const scoped_string & strCmdLine, const class ::time & dur = ::time::infinite(), e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status retry(const scoped_string & strCmdLine, const class ::time & dur, e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
-      virtual exit_status synch(const scoped_string & strCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
-      virtual bool launch(const scoped_string & strCmdLine, e_display edisplay = e_display_default, const scoped_string & strDir = nullptr);
-      virtual exit_status elevated_synch(const scoped_string & strCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual ::payload get_output(const ::scoped_string & scopedstrCmdLine, const class ::time & dur = ::time::infinite(), e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status retry(const ::scoped_string & scopedstrCmdLine, const class ::time & dur, e_display edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);
+      virtual exit_status synch(const ::scoped_string & scopedstrCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
+      virtual bool launch(const ::scoped_string & scopedstrCmdLine, e_display edisplay = e_display_default, const ::scoped_string & scopedstrDir = nullptr);
+      virtual exit_status elevated_synch(const ::scoped_string & scopedstrCmdLine, e_display edisplay = e_display_default, const class ::time & dur = ::time::infinite(), bool * pbPotentialTimeout = nullptr);
 
    };
 

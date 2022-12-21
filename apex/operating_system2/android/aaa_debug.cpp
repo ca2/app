@@ -3,7 +3,7 @@
 #include <android/log.h>
 
 
-//CLASS_DECL_APEX void simple_debug_print(const scoped_string & str)
+//CLASS_DECL_APEX void simple_debug_print(const ::scoped_string & scopedstr)
 //{
 //
 //   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
@@ -31,7 +31,7 @@
 //}
 //
 
-//CLASS_DECL_APEX void os_trace(enum_trace_level elevel, const scoped_string & strTag, const scoped_string & strMessage)
+//CLASS_DECL_APEX void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMessage)
 //{
 //
 //   int iLevel = os_trace_level(elevel);

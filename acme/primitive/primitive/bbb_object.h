@@ -314,7 +314,7 @@ public:
 
    virtual void destruct();
 
-   static void system(const scoped_string & strProjectName);
+   static void system(const ::scoped_string & scopedstrProjectName);
 
    virtual void enable_application_events(bool bEnable = true);
 
@@ -334,8 +334,8 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const;
    virtual bool is_running() const;
-   virtual void child_post_quit(const scoped_string & strTag);
-   virtual void child_post_quit_and_wait(const scoped_string & strTag, const time& time);
+   virtual void child_post_quit(const ::scoped_string & scopedstrTag);
+   virtual void child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time);
    virtual void finish(::property_object* pcontextobjectFinish = nullptr) override;
    virtual void set_finish(::property_object* pcontextobjectFinish) override;
    virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
@@ -360,7 +360,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual pointer< ::extended::future < ::conversation > >  message_box(const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual pointer< ::extended::future < ::conversation > >  message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -368,19 +368,19 @@ public:
    //}
 
 
-   //virtual void message_box_timeout(const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
 
    //}
 
-   //virtual void message_box(::user::primitive* puiOwner, const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::primitive* puserinteractionOwner, const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::primitive* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::primitive* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
    virtual void release_references();
 
-   virtual ::pointer<::matter>running(const scoped_string & strTag) const;
+   virtual ::pointer<::matter>running(const ::scoped_string & scopedstrTag) const;
 
    virtual bool ___is_reference(::particle * pparticle) const;
 
@@ -414,10 +414,10 @@ public:
    //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
    //virtual ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_pointer load_matter_image(const scoped_string & strMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
    //virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-   //virtual ::image_pointer load_thumbnail(const scoped_string & strPath);
+   //virtual ::image_pointer load_thumbnail(const ::file::path & path);
    //virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
 
@@ -568,7 +568,7 @@ public:
    //void property_notify(const ::atom & atom, ::matter * pmatter);
 
 
-//   inline void format_topic_text(const scoped_string & str, ...)
+//   inline void format_topic_text(const ::scoped_string & scopedstr, ...)
 //   {
 //
 //      va_list valist;
@@ -579,7 +579,7 @@ public:
 //   }
 //
 //
-//   inline void format_topic_text_v(const scoped_string & str, va_list valist)
+//   inline void format_topic_text_v(const ::scoped_string & scopedstr, va_list valist)
 //   {
 //
 //      string str;

@@ -121,7 +121,7 @@ index payload_array::append(const std::initializer_list < ::payload > & list)
 }
 
 
-string payload_array::implode(const scoped_string & strGlue) const
+string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 {
 
    string str;
@@ -132,7 +132,7 @@ string payload_array::implode(const scoped_string & strGlue) const
       if (i > 0)
       {
 
-         str += pszGlue;
+         str += scopedstrGlue;
 
       }
 
@@ -145,7 +145,7 @@ string payload_array::implode(const scoped_string & strGlue) const
 }
 
 
-index payload_array::find_first(const scoped_string & str, index find, index last) const
+index payload_array::find_first(const ::scoped_string & scopedstr, index find, index last) const
 {
 
    if (find < 0)
@@ -165,7 +165,7 @@ index payload_array::find_first(const scoped_string & str, index find, index las
    for(; find < this->get_count(); find++)
    {
 
-      if (this->element_at(find) == psz)
+      if (this->element_at(find) == scopedstr)
       {
 
          return find;
@@ -179,7 +179,7 @@ index payload_array::find_first(const scoped_string & str, index find, index las
 }
 
 
-index payload_array::find_first_ci(const scoped_string & str, index find, index last) const
+index payload_array::find_first_ci(const ::scoped_string & scopedstr, index find, index last) const
 {
    
    if (find < 0)
@@ -199,7 +199,7 @@ index payload_array::find_first_ci(const scoped_string & str, index find, index 
    for(; find < this->get_count(); find++)
    {
 
-      if (this->element_at(find).case_insensitive_order(psz) == 0)
+      if (this->element_at(find).case_insensitive_order(scopedstr) == 0)
       {
 
          return find;
@@ -246,12 +246,12 @@ index payload_array::find_first(const ::payload & payload, index find, index las
 }
 
 
-bool payload_array::contains_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::contains_ci(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_first_ci(pcsz, find, last)) >= 0)
+         && (find = find_first_ci(scopedstr, find, last)) >= 0)
 
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
@@ -259,13 +259,13 @@ bool payload_array::contains_ci(const char * pcsz, index find, index last, ::cou
 }
 
 
-bool payload_array::contains(const char * pcsz, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::contains(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_first(pcsz, find, last)) >= 0)
+         && (find = find_first(scopedstr, find, last)) >= 0)
       count++;
 
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
@@ -287,10 +287,10 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_first_ci(const char * pcsz, index find, index last)
+::count payload_array::erase_first_ci(const ::scoped_string & scopedstr, index find, index last)
 {
 
-   if ((find = find_first_ci(pcsz, find, last)) >= 0)
+   if ((find = find_first_ci(scopedstr, find, last)) >= 0)
    {
 
       erase_at(find);
@@ -302,10 +302,10 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_first(const char * pcsz, index find, index last)
+::count payload_array::erase_first(const ::scoped_string & scopedstr, index find, index last)
 {
 
-   if ((find = find_first(pcsz, find, last)) >= 0)
+   if ((find = find_first(scopedstr, find, last)) >= 0)
    {
 
       erase_at(find);
@@ -332,16 +332,16 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
+::count payload_array::erase_ci(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
 
-   if (contains_ci(pcsz, find, last, countMin, countMax))
+   if (contains_ci(scopedstr, find, last, countMin, countMax))
    {
     
       while (conditional(countMax >= 0, count < countMax)
-         && (find = erase_first_ci(pcsz, find, last)) >= 0)
+         && (find = erase_first_ci(scopedstr, find, last)) >= 0)
       {
 
          count++;
@@ -355,16 +355,16 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
+::count payload_array::erase(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
 
-   if (contains(pcsz, find, last, countMin, countMax))
+   if (contains(scopedstr, find, last, countMin, countMax))
    {
 
       while (conditional(countMax >= 0, count < countMax)
-         && (find = erase_first(pcsz, find, last)) >= 0)
+         && (find = erase_first(scopedstr, find, last)) >= 0)
       {
 
          count++;
@@ -560,7 +560,7 @@ void payload_array::parse_network_payload(const char * & pszJson)
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(const char * & pszJson, const scoped_string & strEnd)
+void payload_array::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
 
    if(pszJson > pszEnd)
@@ -658,7 +658,7 @@ void var_array_skip_network_payload(const char *& pszJson)
 }
 
 
-void var_array_skip_network_payload(const char *& pszJson, const scoped_string & strEnd)
+void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
    
    ::str().consume_spaces(pszJson, 0, pszEnd);

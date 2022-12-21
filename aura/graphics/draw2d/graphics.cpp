@@ -1778,7 +1778,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const scoped_string & strString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -3480,16 +3480,16 @@ namespace draw2d
 
       strsize iLen;
 
-      const scoped_string & strStart = str;
+      const ::scoped_string & scopedstrStart = str;
 
-      const scoped_string & str = pszStart;
+      const ::scoped_string & scopedstr = pszStart;
 
       double dLeft = 0.0;
 
       while (*psz && iRange < iStart + iCount)
       {
 
-         const scoped_string & strNext = unicode_next(psz);
+         const ::scoped_string & scopedstrNext = unicode_next(psz);
 
          if (pszNext == nullptr)
          {
@@ -3526,7 +3526,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetTextBegin(const scoped_string & strString, strsize nCount, strsize iIndex)
+   size_f64 graphics::GetTextBegin(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
    {
 
       return get_text_extent(pszString, nCount, iIndex);
@@ -3534,7 +3534,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const scoped_string & strString, strsize nCount, strsize iIndex)
+   size_f64 graphics::get_text_extent(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
    {
 
       return get_text_extent(pszString, iIndex);
@@ -3542,7 +3542,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const scoped_string & strString, strsize nCount)
+   size_f64 graphics::get_text_extent(const ::scoped_string & scopedstrString, strsize nCount)
    {
 
       return get_text_extent(string(pszString, nCount));
@@ -3562,7 +3562,7 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const scoped_string & strString, strsize nCount, strsize iIndex)
+   void graphics::get_text_extent(size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
@@ -3575,7 +3575,7 @@ namespace draw2d
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const scoped_string & strString, strsize nCount)
+   void graphics::get_text_extent(size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount)
    {
 
       ::size_f64 sz = get_text_extent(string(pszString), nCount);
@@ -3601,7 +3601,7 @@ namespace draw2d
    }
 
 
-   //size_f64 graphics::GetOutputTextExtent(const scoped_string & strString, strsize nCount)
+   //size_f64 graphics::GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -4319,9 +4319,9 @@ namespace draw2d
          if (sz.cx > rectangleClip.width())
          {
 
-            const scoped_string & strStart = str;
+            const ::scoped_string & scopedstrStart = str;
 
-            const scoped_string & str = pszStart;
+            const ::scoped_string & scopedstr = pszStart;
 
             string strLastSample = "...";
 
@@ -4587,23 +4587,23 @@ namespace draw2d
 
       ::rectangle_f64 rectangleClip(rectangle);
 
-      const scoped_string & strSource = strSource;
+      const ::scoped_string & scopedstrSource = strSource;
 
       strsize len = strSource.get_length();
 
-      const scoped_string & strEnd = pszSource + len;
+      const ::ansi_character * pszEnd = pszSource + len;
 
-      const scoped_string & strStart = unicode_next(pszSource);
+      const ::scoped_string & scopedstrStart = unicode_next(pszSource);
 
       size_i32 sz;
 
-      const scoped_string & strSpaceStart = nullptr;
+      const ::scoped_string & scopedstrSpaceStart = nullptr;
 
-      const scoped_string & strSpaceEnd = nullptr;
+      const ::scoped_string & scopedstrSpaceEnd = nullptr;
 
-      const scoped_string & str = pszStart;
+      const ::scoped_string & scopedstr = pszStart;
 
-      const scoped_string & strPrevious = pszSource;
+      const ::scoped_string & scopedstrPrevious = pszSource;
 
       string strChar;
 

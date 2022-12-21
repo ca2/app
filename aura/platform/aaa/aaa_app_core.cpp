@@ -238,7 +238,7 @@ void app_core::system_init()
 
       //string str1 = "\"teste\\\"teste2\"";
 
-      //const scoped_string & str = str1;
+      //const ::scoped_string & scopedstr = str1;
 
       //string str = ::str().consume_quoted_value(psz);
 
@@ -425,8 +425,8 @@ void app_core::system_init()
 
 //   {
 //
-//   const scoped_string & str = nullptr;
-//   const scoped_string & str2 = nullptr;
+//   const ::scoped_string & scopedstr = nullptr;
+//   const ::scoped_string & scopedstr2 = nullptr;
 //
 //   int iRef1 = -1;
 //   int iRef2 = -1;
@@ -1038,7 +1038,7 @@ string_array get_c_args_from_string(const ::string & psz)
 
    string_array straAfterColon;
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(psz);
 
    string str;
 
@@ -1072,7 +1072,7 @@ string_array get_c_args_from_string(const ::string & psz)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const ::scoped_string & scopedstrValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -1160,7 +1160,7 @@ string_array get_c_args_from_c(const ::string & psz)
 
    string_array straAfterColon;
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(psz);
 
    string str;
 
@@ -1194,7 +1194,7 @@ string_array get_c_args_from_c(const ::string & psz)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const ::scoped_string & scopedstrValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -1278,7 +1278,7 @@ string_array get_c_args_for_c(const ::string & psz)
 
    }
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   const ::ansi_character * pszEnd = psz + strlen(psz);
 
    string str;
 
@@ -1309,7 +1309,7 @@ string_array get_c_args_for_c(const ::string & psz)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const ::scoped_string & scopedstrValueStart = psz;
 
          while(!unicode_is_whitespace(psz))
          {
@@ -1436,7 +1436,7 @@ string transform_to_c_arg(const ::string & psz)
 
    bool bNeedQuote = false;
 
-   const scoped_string & strParse = psz;
+   const ::scoped_string & scopedstrParse = psz;
 
    char chQuote = '\0';
 

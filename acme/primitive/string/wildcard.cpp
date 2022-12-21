@@ -6,15 +6,15 @@
 ////#include "acme/exception/exception.h"
 
 
-const char* wildcard_next_stop(const scoped_string & strCriteria)
+const char* wildcard_next_stop(const ::ansi_character * pszCriteria)
 {
 
    if (pszCriteria == nullptr)
       return nullptr;
 
 
-   const scoped_string & strAsterisk = ansi_find_string(pszCriteria, "*");
-   const scoped_string & strQuestion = ansi_find_string(pszCriteria, "?");
+   const ::ansi_character * pszAsterisk = ansi_find_string(pszCriteria, "*");
+   const ::ansi_character * pszQuestion = ansi_find_string(pszCriteria, "?");
 
    if (pszAsterisk == nullptr && pszQuestion == nullptr)
       return nullptr;
@@ -31,15 +31,15 @@ const char* wildcard_next_stop(const scoped_string & strCriteria)
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const scoped_string & strCriteriaParam, const scoped_string & strValue)
+CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const ::ansi_character * pszCriteriaParam, const ::ansi_character * pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const scoped_string & strCriteria = strCriteria;
+   const ::ansi_character * pszCriteria = strCriteria;
 
-   const scoped_string & strFind;
-   const scoped_string & strStop;
+   const ::ansi_character * pszFind;
+   const ::ansi_character * pszStop;
 
    iptr iLen;
 
@@ -123,10 +123,10 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * p
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const scoped_string & strCriteria = strCriteria;
+   const ::ansi_character * pszCriteria = strCriteria;
 
-   const scoped_string & strFind;
-   const scoped_string & strStop;
+   const ::ansi_character * pszFind;
+   const ::ansi_character * pszStop;
 
    iptr iLen;
 
@@ -210,10 +210,10 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszC
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
 
-   const scoped_string & strCriteria = strCriteria;
+   const ::ansi_character * pszCriteria = strCriteria.c_str();
 
-   const scoped_string & strFind;
-   const scoped_string & strStop;
+   const ::ansi_character * pszFind;
+   const ::ansi_character * pszStop;
 
    iptr iLen;
 

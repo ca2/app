@@ -35,7 +35,7 @@ acme_file::~acme_file()
 }
 
 
-void acme_file::ensure_exists(const char* path)
+void acme_file::ensure_exists(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -45,7 +45,7 @@ void acme_file::ensure_exists(const char* path)
 }
 
 
-void acme_file::touch(const char* path)
+void acme_file::touch(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -56,7 +56,7 @@ void acme_file::touch(const char* path)
 }
 
 
-void acme_file::clear_read_only(const char* path)
+void acme_file::clear_read_only(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -66,7 +66,7 @@ void acme_file::clear_read_only(const char* path)
 }
 
 
-void acme_file::set_file_normal(const char* path)
+void acme_file::set_file_normal(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -76,7 +76,7 @@ void acme_file::set_file_normal(const char* path)
 }
 
 
-bool acme_file::is_equal(const char* path1, const char* path2)
+bool acme_file::is_equal(const ::file::path & path1, const ::file::path & path2)
 {
 
    auto mem1 = as_memory(path1);
@@ -88,7 +88,7 @@ bool acme_file::is_equal(const char* path1, const char* path2)
 }
 
 
-void acme_file::overwrite_if_different(const char* pathTarget, const char* pathSource)
+void acme_file::overwrite_if_different(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
 
    if (!exists(pathSource))
@@ -152,7 +152,7 @@ file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_ope
 }
 
 
-file_pointer acme_file::stdio_open(const char * pathParam, const char * attrs, int iShare)
+file_pointer acme_file::stdio_open(const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
    auto pfile = m_pcontext->__create_new < ::stdio_file >();
@@ -166,14 +166,14 @@ file_pointer acme_file::stdio_open(const char * pathParam, const char * attrs, i
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
 
-   pfile->open(path, attrs, iShare);
+   pfile->open(path, scopedstrAttrs, iShare);
 
    return pfile;
 
 }
 
 
-memory acme_file::as_memory(const char * pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_pcontext->__create_new < stdio_file >();
@@ -245,7 +245,7 @@ memory acme_file::as_memory(const char * pathParam, strsize iReadAtMostByteCount
 }
 
 
-string acme_file::as_string(const char * pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
    
    auto memory = as_memory(pathParam, iReadAtMostByteCount);
@@ -346,7 +346,7 @@ string acme_file::as_string(const char * pathParam, strsize iReadAtMostByteCount
 }
 
 
-memsize acme_file::as_memory(const char * pathParam, void * p, memsize s)
+memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s)
 {
 
    stdio_file file;
@@ -382,7 +382,7 @@ memsize acme_file::as_memory(const char * pathParam, void * p, memsize s)
 }
 
 
-void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
+void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, memsize iReadAtMostByteCount, bool bNoExceptionOnOpen)
 {
 
    memory.set_size(0);
@@ -464,7 +464,7 @@ void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize 
 }
 
 
-string acme_file::get_temporary_file_name(const char * lpszName, const scoped_string & strExtension)
+string acme_file::get_temporary_file_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension)
 {
 
    throw interface_only();
@@ -482,22 +482,20 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 }
 
 
-void acme_file::append_wait(const char * strFile, const block & block, const class time & time)
+void acme_file::append_wait(const ::file::path & pathFile, const block & block, const class time & time)
 {
 
    auto pacmedirectory = m_pacmedirectory;
 
-   pacmedirectory->create(::file_path_folder(strFile));
+   pacmedirectory->create(::file_path_folder(pathFile));
 
 
-   if (!pacmedirectory->is(::file_path_folder(strFile)))
+   if (!pacmedirectory->is(::file_path_folder(pathFile)))
    {
 
       throw ::exception(error_path_not_found);
 
    }
-
-   wstring wstr(strFile);
 
    FILE * pfile = nullptr;
 
@@ -508,9 +506,11 @@ void acme_file::append_wait(const char * strFile, const block & block, const cla
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       
-      pfile = fopen(strFile, "ab");
+      pfile = fopen(pathFile, "ab");
 
 #else
+
+      wstring wstr(pathFile);
 
       pfile = _wfopen(wstr, L"ab");
 
@@ -543,10 +543,10 @@ void acme_file::append_wait(const char * strFile, const block & block, const cla
 }
 
 
-void acme_file::append(const char * strFile, const block & block)
+void acme_file::append(const ::file::path & pathFile, const block & block)
 {
 
-   acme_file::append_wait(strFile, block, 0_s);
+   acme_file::append_wait(pathFile, block, 0_s);
 
 }
 
@@ -577,7 +577,17 @@ bool acme_file::exists(const ::file::path & pathParam)
 }
 
 
-void acme_file::put_contents(const char * path, const char * contents, strsize len)
+//void acme_file::put_contents(const ::file::path & path, const ::scoped_string & scopedstr)
+//{
+//
+//   throw ::interface_only();
+//
+//   //throw ::interface_only();
+//
+//}
+
+
+void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
 {
 
    throw ::interface_only();
@@ -587,17 +597,7 @@ void acme_file::put_contents(const char * path, const char * contents, strsize l
 }
 
 
-void acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const scoped_string & strExtension, const scoped_string & strTemplate)
-{
-
-   throw ::interface_only();
-
-   //throw ::interface_only();
-
-}
-
-
-filesize acme_file::get_size(const char * path)
+filesize acme_file::get_size(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -635,7 +635,7 @@ void acme_file::clear_application_data()
 }
 
 
-bool acme_file::is_true(const char * path)
+bool acme_file::is_true(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -645,7 +645,7 @@ bool acme_file::is_true(const char * path)
 }
 
 
-void acme_file::set_size(const char * lpszName, filesize size)
+void acme_file::set_size(const ::file::path & pathName, filesize size)
 {
 
    throw ::interface_only();
@@ -675,30 +675,23 @@ void acme_file::set_size(FILE * pfile, filesize size)
 }
 
 
-void acme_file::move(const scoped_string & strNewName, const scoped_string & strOldName)
+void acme_file::move(const ::file::path & pathNewName, const ::file::path & pathOldName)
 {
 
-   copy(pszNewName, pszOldName, true);
+   copy(pathNewName, pathOldName, true);
 
-   erase(pszOldName);
+   erase(pathOldName);
 
 }
 
 
-void acme_file::erase(const char * pathParam)
+void acme_file::erase(const ::file::path & pathParam)
 {
 
-   if(::is_null(pathParam))
+   if(pathParam.is_empty())
    {
 
       throw ::exception(error_null_pointer);
-
-   }
-
-   if(*pathParam == '\0')
-   {
-
-      throw ::exception(error_bad_argument);
 
    }
 
@@ -738,7 +731,7 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc, bool bOverwrite)
+void acme_file::copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
 {
 
 #ifdef WINDOWS
@@ -747,7 +740,7 @@ void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc,
 
 #else
 
-   FILE * in = fopen(pszSrc, "r"); //create the input file for reading
+   FILE * in = fopen(pathSrc.c_str(), "r"); //create the input file for reading
 
 #endif
 
@@ -760,7 +753,7 @@ void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc,
 
 #else
 
-   FILE * out = fopen(pszDup, "w"); // create the output file for writing
+   FILE * out = fopen(pathDup.c_str(), "w"); // create the output file for writing
 
 #endif
 
@@ -783,7 +776,7 @@ void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc,
 }
 
 
-::earth::time acme_file::modification_time(const scoped_string & str)
+::earth::time acme_file::modification_time(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -794,7 +787,7 @@ void acme_file::copy(const scoped_string & strDup, const scoped_string & strSrc,
 }
 
 
-void acme_file::set_modification_time(const scoped_string & str, const ::earth::time& time)
+void acme_file::set_modification_time(const ::file::path & path, const ::earth::time& time)
 {
 
    throw ::interface_only();
@@ -804,7 +797,7 @@ void acme_file::set_modification_time(const scoped_string & str, const ::earth::
 }
 
 //
-//::time acme_file::modification_time(const scoped_string & str)
+//::time acme_file::modification_time(const ::file::path & path)
 //{
 //
 //   throw ::interface_only();
@@ -814,21 +807,21 @@ void acme_file::set_modification_time(const scoped_string & str, const ::earth::
 //}
 
 
-void acme_file::synchronize(const scoped_string & str1, const scoped_string & str2)
+void acme_file::synchronize(const ::file::path & path1, const ::file::path & path2)
 {
 
-   auto time1 = modification_time(psz1);
+   auto time1 = modification_time(path1);
 
-   auto time2 = modification_time(psz2);
+   auto time2 = modification_time(path2);
 
-   auto bExists1 = exists(psz1);
+   auto bExists1 = exists(path1);
 
-   auto bExists2 = exists(psz2);
+   auto bExists2 = exists(path2);
 
    if ((!bExists1 && bExists2) || ((bExists1 && bExists2) && (time1 < time2)))
    {
 
-      copy(psz1, psz2, true);
+      copy(path1, path2, true);
 
       //if (!estatus)
       //{
@@ -852,7 +845,7 @@ void acme_file::synchronize(const scoped_string & str1, const scoped_string & st
    else if ((!bExists2 && bExists1) || ((bExists1 && bExists2) && (time2 < time1)))
    {
 
-       copy(psz2, psz1, true);
+       copy(path2, path1, true);
 
 
       return;
@@ -877,7 +870,7 @@ void acme_file::synchronize(const scoped_string & str1, const scoped_string & st
 }
 
 
-void acme_file::save_stra(const char * lpszName, const string_array & stra)
+void acme_file::save_stra(const ::file::path & pathName, const string_array & stra)
 {
 
    throw ::interface_only();
@@ -887,7 +880,7 @@ void acme_file::save_stra(const char * lpszName, const string_array & stra)
 }
 
 
-void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
+void acme_file::load_stra(const ::file::path & pathName, string_array & stra, bool bAddEmpty)
 {
 
    throw ::interface_only();
@@ -897,7 +890,7 @@ void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddE
 }
 
 
-void acme_file::put_contents(const char * path, const memory_base & memory)
+void acme_file::put_contents(const ::file::path & path, const memory_base & memory)
 {
 
    put_block(path, memory);
@@ -905,25 +898,30 @@ void acme_file::put_contents(const char * path, const memory_base & memory)
 }
 
 
-void acme_file::put_contents(const char * path, const char * contents)
+void acme_file::put_contents(const ::file::path & path, const ::scoped_string & scopedstrContents)
 {
 
-   put_contents(path, contents, string_safe_length(contents));
+
+   throw interface_only();
+
+   //put_contents(path, scopedstrContents, scopedstrContents.size());
 
   
 }
 
 
-void acme_file::put_block(const char * path, const block & block)
+void acme_file::put_block(const ::file::path & path, const block & block)
 {
 
-   put_contents(path, (const char *) block.data(), block.size());
+   throw interface_only();
+
+   //put_contents(path, (const char *) block.data(), block.size());
 
 }
 
 
 
-void acme_file::as_block(block & block, const char * path)
+void acme_file::as_block(block & block, const ::file::path & path)
 {
 
    auto size = as_memory(path, block.data(), block.size());
@@ -938,7 +936,7 @@ void acme_file::as_block(block & block, const char * path)
 }
 
 
-string acme_file::first_line(const char * path)
+string acme_file::first_line(const ::file::path & path)
 {
 
    return line(path, 0);
@@ -946,7 +944,7 @@ string acme_file::first_line(const char * path)
 }
 
 
-string acme_file::line(const char * pathParam, index iLine)
+string acme_file::line(const ::file::path & pathParam, index iLine)
 {
 
    string str;
@@ -959,7 +957,7 @@ string acme_file::line(const char * pathParam, index iLine)
 
 #else
 
-   FILE * file = fopen(path, "r");
+   FILE * file = fopen(path.c_str(), "r");
 
 #endif
 
@@ -1023,7 +1021,7 @@ string acme_file::line(const char * pathParam, index iLine)
 }
 
 
-string_array acme_file::lines(const char * pathParam)
+string_array acme_file::lines(const ::file::path & pathParam)
 {
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
@@ -1072,7 +1070,7 @@ string_array acme_file::lines(const char * pathParam)
 }
 
 
-void acme_file::set_line(const char * pathParam, index iLine, const scoped_string & strLine)
+void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::scoped_string & scopedstrLine)
 {
 
    if (iLine < 0)
@@ -1166,7 +1164,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const scoped_strin
 
       }
 
-      pfile->write(pszLine);
+      pfile->write(scopedstrLine);
 
    }
    else
@@ -1210,7 +1208,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const scoped_strin
 
          }
 
-         pfile2->write(pszLine);
+         pfile2->write(scopedstrLine);
 
          auto iEnd = pfile->size();
 
@@ -1247,7 +1245,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const scoped_strin
 }
 
 
-//string acme_file::get_temporary_file_name(const char * lpszName, const scoped_string & strExtension)
+//string acme_file::get_temporary_file_name(const ::scope_string & strName, const ::scoped_string & scopedstrExtension)
 //{
 //
 //#ifdef WINDOWS
@@ -1437,7 +1435,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
       
-      pfile = fopen(strFile, "ab");
+      pfile = fopen(strFile.c_str(), "ab");
 
 #else
       
@@ -1472,11 +1470,10 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 }
 
 
-bool acme_file::_exists(const char * path)
+bool acme_file::_exists(const ::file::path & path)
 {
 
-   bool bOk = ::file_exists(path);
-
+   bool bOk = ::file_exists(path.c_str());
 
    return bOk;
 
@@ -1492,7 +1489,7 @@ bool acme_file::_exists(const char * path)
 }
 
 
-void acme_file::_erase(const char * path)
+void acme_file::_erase(const ::file::path & path)
 {
 
     throw ::interface_only();

@@ -17,7 +17,7 @@ namespace mathematics
    }
 
    
-   void binary_operation::set_value_string(const scoped_string & str)
+   void binary_operation::set_value_string(const ::scoped_string & scopedstr)
    {
       
       throw_exception(error_not_implemented, "not implemented");
@@ -59,23 +59,23 @@ namespace mathematics
          double d = 0.0;
          if(m_etype == type_addition)
          {
-            d = atof(m_pvalue1->get_value_string(egetvalue)) +
-                   atof(m_pvalue2->get_value_string(egetvalue));
+            d = atof(m_pvalue1->get_value_string(egetvalue).c_str()) +
+                   atof(m_pvalue2->get_value_string(egetvalue).c_str());
          }
          else if(m_etype == type_subtraction)
          {
-            d = atof(m_pvalue1->get_value_string(egetvalue)) - 
-                   atof(m_pvalue2->get_value_string(egetvalue));
+            d = atof(m_pvalue1->get_value_string(egetvalue).c_str()) -
+                   atof(m_pvalue2->get_value_string(egetvalue).c_str());
          }
          else if(m_etype == type_multiplication)
          {
-            d = atof(m_pvalue1->get_value_string(egetvalue)) *
-                   atof(m_pvalue2->get_value_string(egetvalue));
+            d = atof(m_pvalue1->get_value_string(egetvalue).c_str()) *
+                   atof(m_pvalue2->get_value_string(egetvalue).c_str());
          }
          else if(m_etype == type_division)
          {
-            d = atof(m_pvalue1->get_value_string(egetvalue)) /
-                   atof(m_pvalue2->get_value_string(egetvalue));
+            d = atof(m_pvalue1->get_value_string(egetvalue).c_str()) /
+                   atof(m_pvalue2->get_value_string(egetvalue).c_str());
          }
          string str;
          str.format("%d", d);

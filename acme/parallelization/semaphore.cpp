@@ -121,13 +121,13 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       else
       {
 
-         strPath = "/::payload/tmp/ca2/ftok/semaphore/" + strName;
+         strPath = "/var/tmp/ca2/ftok/semaphore/" + strName;
 
       }
 
       pacmedirectory->create(::file::path(strPath).folder());
 
-      m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+      m_hsync = semget(ftok(strPath.c_str(), 0), 1, 0666 | IPC_CREAT);
 
    }
    else

@@ -6,7 +6,7 @@
 //{
 //public:
 //
-//   set_app_id(const scoped_string & strAppId);
+//   set_app_id(const ::scoped_string & scopedstrAppId);
 //
 //};
 

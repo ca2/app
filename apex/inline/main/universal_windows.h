@@ -24,7 +24,7 @@ RunBeforeMain go;
 //CLASS_DECL_IMPORT char * c_get_first_argv();
 
 
-CLASS_DECL_IMPORT int unicode_main(int argc, wchar_t ** argv, const scoped_string & strAppId);
+CLASS_DECL_IMPORT int unicode_main(int argc, wchar_t ** argv, const ::scoped_string & scopedstrAppId);
 
 
 //[MTAThread]

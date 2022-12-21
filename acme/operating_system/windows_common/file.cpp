@@ -39,7 +39,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME DWORD get_file_attributes(const char * path)
+   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
    {
 
       wstring wstr(path);
@@ -67,7 +67,7 @@ namespace windows
 
 
 
-void delete_file(const char* path)
+void delete_file(const ::file::path & path)
 {
 
    wstring wstrPath(path);
@@ -88,7 +88,7 @@ void delete_file(const char* path)
 }
 
 
-bool file_exists(const char* path)
+bool file_exists(const ::file::path & path)
 {
 
    auto attributes = ::windows::get_file_attributes(path);
@@ -112,7 +112,7 @@ bool file_exists(const char* path)
 }
 
 
-bool is_directory(const char* path)
+bool is_directory(const ::file::path & path)
 {
 
    //#ifdef _UWP
@@ -238,7 +238,7 @@ bool is_directory(const char* path)
 }
 
 
-void create_directory(const char* path)
+void create_directory(const ::file::path & path)
 {
 
    wstring wstr;
@@ -314,7 +314,7 @@ void create_directory(const char* path)
 }
 
 
-void erase_directory(const char* path)
+void erase_directory(const ::file::path & path)
 {
 
    

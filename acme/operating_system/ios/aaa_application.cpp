@@ -43,7 +43,7 @@ namespace acme
       // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-//   bool application::_001OnDDECommand(const char * pcsz)
+//   bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 //   {
 //      __UNREFERENCED_PARAMETER(pcsz);
 //      return false;
@@ -363,7 +363,7 @@ namespace acme
 
 
 
-//   ::pointer<::user::printer>application::get_printer(const scoped_string & strDeviceName)
+//   ::pointer<::user::printer>application::get_printer(const ::scoped_string & scopedstrDeviceName)
 //   {
 //
 //      ::pointer<::ios2::printer>pprinter = create_object <  ::user::printer  > ();

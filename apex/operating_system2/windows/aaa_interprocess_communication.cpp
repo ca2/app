@@ -57,7 +57,7 @@
       }
 
 
-      bool tx::open(const scoped_string & strKey,launcher * plauncher)
+      bool tx::open(const ::scoped_string & scopedstrKey,launcher * plauncher)
       {
 
          if(m_oswindow != nullptr)
@@ -129,7 +129,7 @@
       }
 
 
-      bool tx::send(const scoped_string & strMessage, duration durationTimeout)
+      bool tx::send(const ::scoped_string & scopedstrMessage, duration durationTimeout)
       {
 
          if(!is_tx_ok())
@@ -252,7 +252,7 @@
       }
 
 
-      bool rx::create(const scoped_string & strKey)
+      bool rx::create(const ::scoped_string & scopedstrKey)
       {
 
 
@@ -321,7 +321,7 @@
 
 
 
-      void * rx::on_interprocess_receive(rx * prx,const scoped_string & strMessage)
+      void * rx::on_interprocess_receive(rx * prx,const ::scoped_string & scopedstrMessage)
       {
 
          string strMessage(pszMessage);
@@ -530,7 +530,7 @@
       }
 
 
-      bool inteprocess_channel::open_ab(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
+      bool inteprocess_channel::open_ab(const ::scoped_string & scopedstrKey,const ::scoped_string & scopedstrModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -563,7 +563,7 @@
 
       }
 
-      bool inteprocess_channel::open_ba(const scoped_string & strKey,const scoped_string & strModule,launcher * plauncher)
+      bool inteprocess_channel::open_ba(const ::scoped_string & scopedstrKey,const ::scoped_string & scopedstrModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;

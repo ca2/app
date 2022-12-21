@@ -4,7 +4,7 @@
 #include "acme/platform/system.h"
 
 
-void task_set_name(long l, const scoped_string & str)
+void task_set_name(long l, const ::scoped_string & scopedstr)
 {
 
    string strName(psz);
@@ -19,7 +19,7 @@ void task_set_name(long l, const scoped_string & str)
 }
 
 
-void task_set_name(const scoped_string & str)
+void task_set_name(const ::scoped_string & scopedstr)
 {
 
    task_set_name(pthread_self(), psz);

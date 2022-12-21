@@ -56,14 +56,14 @@ namespace version
          if(i < stra1.get_size())
          {
 
-            iVersion1 = atoi(stra1[i]);
+            iVersion1 = atoi(stra1[i].c_str());
 
          }
 
          if(i < stra2.get_size())
          {
 
-            iVersion2 = atoi(stra2[i]);
+            iVersion2 = atoi(stra2[i].c_str());
 
          }
 

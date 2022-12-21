@@ -94,7 +94,7 @@
 //
 //#else
 //
-//   void system_construct(const scoped_string & strCommandLine, const ::e_display& edisplay = ::e_display_none);
+//   void system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay = ::e_display_none);
 //
 //#endif
 //
@@ -132,11 +132,11 @@
 //   void system_end();
 //
 //   //::pointer<::acme::application>new_app();
-//   //::pointer<::acme::application>new_app(const scoped_string & strAppId);
+//   //::pointer<::acme::application>new_app(const ::scoped_string & scopedstrAppId);
 //
 //
 //   //   ::pointer<::apex::application>get_new_application(::object* pparticle);
-//   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const scoped_string & strAppId);
+//   //   ::pointer<::apex::application>get_new_application(::object* pparticle, const ::scoped_string & scopedstrAppId);
 //
 //   virtual void initialize_application(::acme::application* pacmeapplication, ::particle* pparticle);
 //
@@ -179,7 +179,7 @@
 //public:
 //
 //
-//   app_flag(::main& main, const scoped_string & strFlag);
+//   app_flag(::main& main, const ::scoped_string & scopedstrFlag);
 //
 //
 //};

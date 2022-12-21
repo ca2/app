@@ -51,7 +51,7 @@ namespace apex
    }
 
 
-   void shell_launcher::setup(oswindow oswindow, const scoped_string & strOperation, const scoped_string & strFile, const scoped_string & strParameters, const scoped_string & strDirectory, ::e_display edisplay, const class time & timeTimeout)
+   void shell_launcher::setup(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, const class time & timeTimeout)
    {
 
       m_iMode = 0;

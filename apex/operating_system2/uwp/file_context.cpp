@@ -19,7 +19,7 @@ namespace universal_windows
 
    }
 
-   bool file_context::FullPath(string& str, const scoped_string & strFileIn)
+   bool file_context::FullPath(string& str, const ::scoped_string & scopedstrFileIn)
 
    {
       /*      if(::file::system::FullPath(str, pszFileIn))
@@ -76,7 +76,7 @@ namespace universal_windows
    }
 
 
-   ::u32 file_context::GetFileName(const scoped_string & strPathName, string& str)
+   ::u32 file_context::GetFileName(const ::file::path & pathName, string& str)
 
    {
       int nMax = MAX_PATH * 8;

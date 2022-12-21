@@ -568,7 +568,7 @@ namespace url
    void url::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
-      const scoped_string & strQuery = strchr(strUrlParam, '?');
+      const ::ansi_character * pszQuery = strchr(strUrlParam, '?');
 
       string strKey = ::url::encode(strKeyParam);
       string strValue = ::url::encode(strParam);
@@ -599,7 +599,7 @@ namespace url
          pszQuery++;
          bool bRemove = false;
          bool bAlreadyInsertedFirstParam = false;
-         const scoped_string & strQueryEnd;
+         const ::ansi_character * pszQueryEnd;
          bool bInserted = false;
          while(true)
          {
@@ -1923,17 +1923,19 @@ char* string_append_character(char* psz, ::ansi_character ch)
 
 }
 
-bool is_url(const scoped_string & strCandidate, const char** ppszRequest)
+
+bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest)
 {
 
-   const scoped_string & str = pszCandidate;
+   const ::ansi_character * psz = scopedstrCandidate;
+
    while (*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || character_isalnum(*psz)))
    {
       psz++;
    }
-   if (psz == pszCandidate)
+   if (psz == scopedstrCandidate.begin())
       return false;
-   if (psz == pszCandidate + 1)
+   if (psz == scopedstrCandidate.begin() + 1)
       return false;
    if (*psz != ':')
       return false;
@@ -1963,15 +1965,17 @@ bool is_url(const scoped_string & strCandidate, const char** ppszRequest)
 }
 
 
-CLASS_DECL_ACME bool is_like_url_protocol(const scoped_string & str)
+CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 {
 
-   if (is_empty(psz))
+   if (scopedstr.is_empty())
    {
 
       return false;
 
    }
+
+   auto psz = scopedstr.begin();
 
    if (character_isalpha(*psz))
    {
@@ -2090,7 +2094,7 @@ namespace url
 
       strsize i = 0;
 
-      const scoped_string & strEncoded = (const char*)block.begin();
+      const ::ansi_character * pszEncoded = (const char*)block.begin();
 
       while (*pszEncoded != '\0' && i < sizeLen)
       {
@@ -2181,11 +2185,11 @@ namespace url
 
 
 
-   CLASS_DECL_ACME bool query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl)
+   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::ansi_character * pszKey, const ::ansi_character * pszUrl)
    {
 
-      const scoped_string & strBeg;
-      const scoped_string & strEnd;
+      const ::ansi_character * pszBeg;
+      const ::ansi_character * pszEnd;
 
       {
 
@@ -2406,7 +2410,7 @@ namespace url
 
 void openURL(const string& url_str);
 
-int ui_open_url(const scoped_string & str);
+int ui_open_url(const ::ansi_character * psz);
 
 void openURL(const string& url_str)
 {
@@ -2442,7 +2446,7 @@ void openURL(const string& url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const scoped_string & strServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::ansi_character * pszServerName, int bInteractive)
 //{
 //
 //   ::acme::application * papp = (::acme::application *) instance;
@@ -2553,7 +2557,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME bool is_url(const scoped_string & strCandidate)
+//CLASS_DECL_ACME bool is_url(const ::ansi_character * pszCandidate)
 //{
 //
 //   string strCandidate(pszCandidate);
@@ -2591,7 +2595,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME string ::url::decode(const scoped_string & str)
+//CLASS_DECL_ACME string ::url::decode(const ::ansi_character * psz)
 //{
 //
 //   string str(psz);
@@ -2646,7 +2650,7 @@ void openURL(const string& url_str)
 
 
 
-//string ::url::decode(const scoped_string & strUrl, strsize iLen)
+//string ::url::decode(const ::ansi_character * pszUrl, strsize iLen)
 //
 //{
 //
@@ -2716,11 +2720,11 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME bool url_query_get_param(string& strParam, const scoped_string & strKey, const scoped_string & strUrl)
+//CLASS_DECL_ACME bool url_query_get_param(string& strParam, const ::ansi_character * pszKey, const ::ansi_character * pszUrl)
 //{
 //
-//   const scoped_string & strBeg;
-//   const scoped_string & strEnd;
+//   const ::ansi_character * pszBeg;
+//   const ::ansi_character * pszEnd;
 //
 //   {
 //
@@ -2832,7 +2836,7 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME string ::url::encode(const scoped_string & str)
+//CLASS_DECL_ACME string ::url::encode(const ::ansi_character * psz)
 //{
 //
 //   string str;
@@ -2974,7 +2978,7 @@ void openURL(const string& url_str)
 
 void openURL(const string& url_str);
 
-int ui_open_url(const scoped_string & str);
+int ui_open_url(const ::ansi_character * psz);
 
 //void openURL(const string& url_str)
 //{
@@ -3010,7 +3014,7 @@ int ui_open_url(const scoped_string & str);
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const scoped_string & strServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::ansi_character * pszServerName, int bInteractive)
 //{
 //
 //   ::application * papp = (::apex::application *) instance;

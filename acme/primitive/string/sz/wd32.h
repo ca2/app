@@ -64,8 +64,8 @@ inline ::wd32_character * string_reverse(::wd32_character * psz) noexcept;
 inline ::wd32_character * string_uppercase(::wd32_character * psz, strsize size) noexcept;
 
 
-inline strsize string_span_including(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept;
-inline strsize string_span_excluding(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept;
+inline strsize string_skip_any_character_in(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept;
+inline strsize string_find_first_character_in(const ::wd32_character * pszBlock, const ::wd32_character * pszSet) noexcept;
 
 
 inline strsize get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept;

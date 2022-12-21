@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-runtime_exception::runtime_exception(const scoped_string & strMessage):
+runtime_exception::runtime_exception(const ::scoped_string & scopedstrMessage):
    ::exception(pszMessage)
 {
 

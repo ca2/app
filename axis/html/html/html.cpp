@@ -241,7 +241,7 @@ namespace html
    string html::entities(const ::string & strParam)
    {
       
-      const scoped_string & str = strParam;
+      const ::scoped_string & scopedstr = strParam;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -293,7 +293,7 @@ namespace html
    string html::htmlpre(const ::string & strParam)
    {
 
-      const scoped_string & str = strParam;
+      const ::scoped_string & scopedstr = strParam;
 
       if (psz == nullptr || *psz == '\0')
       {

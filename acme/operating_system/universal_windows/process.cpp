@@ -11,9 +11,9 @@
 #ifdef WINDOWS_DESKTOP
 
 CLASS_DECL_BOOT int call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 int iShow)
 {
 
@@ -36,7 +36,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+CLASS_DECL_BOOT u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -209,7 +209,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
 #ifdef WINDOWS_DESKTOP
 
-bool load_modules_diff(string_array & straOld, string_array & straNew, const scoped_string & strExceptDir)
+bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir)
 {
 
    bool bFound;
@@ -322,7 +322,7 @@ int get_current_process_affinity_order()
 
 //#undef ::acmeacmesystem()
 
-//CLASS_DECL_ACME int ui_open_url(const scoped_string & strUrl)
+//CLASS_DECL_ACME int ui_open_url(const ::scoped_string & scopedstrUrl)
 //{
 //
 //   string strUrl(pszUrl);
@@ -348,7 +348,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 
 
 
-bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, ::time timeTimeout)
+bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::time timeTimeout)
 {
 
    return false;
@@ -372,7 +372,7 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 
 
 
-// CLASS_DECL_ACME string xxxget_environment_variable(const scoped_string & strEnvironmentVariable)
+// CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable)
 // {
 
 //    string str;

@@ -95,7 +95,7 @@
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const scoped_string & str, const char ** argv, int iFlags);
+void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -10143,7 +10143,7 @@ namespace apex
    }
 
 
-   //void application::interprocess_communication_open(const scoped_string & strPath)
+   //void application::interprocess_communication_open(const ::file::path & path)
    //{
    //   
    //   if(!m_prx)
@@ -10189,7 +10189,7 @@ namespace apex
 } // namespace apex
 
 
-void application_on_menu_action(void * pApplication, const scoped_string & strCommand)
+void application_on_menu_action(void * pApplication, const ::scoped_string & scopedstrCommand)
 {
 
    auto papp = (::apex::application *)pApplication;

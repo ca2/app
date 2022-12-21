@@ -61,7 +61,7 @@ void timer::destroy()
 const char* timer::debug_note() const
 {
 
-   return m_strDebugNote;
+   return m_strDebugNote.c_str();
 
 }
 

@@ -20,7 +20,7 @@ namespace xml
 
       
       entity();
-      entity(char chEntity, const scoped_string & strReference);
+      entity(char chEntity, const ::scoped_string & scopedstrReference);
       entity(const entity & entity);
       entity & operator = (const entity & entity);
       
@@ -35,7 +35,7 @@ namespace xml
    
       
       entity * get_entity( i32 entity );
-      entity * get_entity(const scoped_string & strEntity);
+      entity * get_entity(const ::scoped_string & scopedstrEntity);
 
       i32 get_entity_count( const char * str );
 
@@ -48,7 +48,7 @@ namespace xml
       void ref_to_entity(string & str, const char * estr);
       void entity_to_ref(string & s, const char * str);
 
-      void add_entity(char chEntity, const scoped_string & strReference);
+      void add_entity(char chEntity, const ::scoped_string & scopedstrReference);
 
       
    };

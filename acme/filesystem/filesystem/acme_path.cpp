@@ -56,7 +56,7 @@ string acme_path::from(string str)
 
 
 
-//bool acme_path::final_is_same(const scoped_string & strPath1, const scoped_string & strPath2)
+//bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & path2)
 //{
 //
 //   throw ::interface_only();
@@ -66,7 +66,7 @@ string acme_path::from(string str)
 //}
 //
 
-::file::path acme_path::final(const char * path)
+::file::path acme_path::final(const ::file::path & path)
 {
 
    ::file::path pathFull = _final(path);
@@ -83,7 +83,7 @@ string acme_path::from(string str)
 }
 
 
-::file::path acme_path::_final(const char * path)
+::file::path acme_path::_final(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -93,10 +93,10 @@ string acme_path::from(string str)
 }
 
 
-bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
+bool acme_path::final_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix)
 {
 
-   ::file::path path(pcszPrefix);
+   ::file::path path(scopedstrPrefix);
 
    if (path.is_empty())
    {
@@ -170,7 +170,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 }
 
 
-bool acme_path::final_is_same(const char * path1, const char * path2)
+bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & path2)
 {
 
    ::file::path pathFull1 = final(path1);
@@ -182,7 +182,7 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 }
 
 
-::file::enum_type acme_path::get_type(const char * path)
+::file::enum_type acme_path::get_type(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -192,7 +192,7 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 }
 
 
-void acme_path::create_symbolic_link(const scoped_string & strLink, const scoped_string & strSource)
+void acme_path::create_symbolic_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrSource)
 {
    
    throw ::interface_only();
@@ -202,7 +202,7 @@ void acme_path::create_symbolic_link(const scoped_string & strLink, const scoped
 }
 
 
-bool acme_path::is_symbolic_link(const scoped_string & strLink)
+bool acme_path::is_symbolic_link(const ::scoped_string & scopedstrLink)
 {
    
    throw ::interface_only();
@@ -214,7 +214,7 @@ bool acme_path::is_symbolic_link(const scoped_string & strLink)
 }
 
 
-::file::path acme_path::symbolic_link_destination(const scoped_string & strLink)
+::file::path acme_path::symbolic_link_destination(const ::scoped_string & scopedstrLink)
 {
    
    throw ::interface_only();
@@ -224,7 +224,7 @@ bool acme_path::is_symbolic_link(const scoped_string & strLink)
 }
 
 
-bool acme_path::has_custom_icon(const char * path)
+bool acme_path::has_custom_icon(const ::file::path & path)
 {
    
    throw ::interface_only();

@@ -111,7 +111,7 @@ namespace xml
    //}
 
 
-   string xml::special_chars(const scoped_string & str)
+   string xml::special_chars(const ::scoped_string & scopedstr)
    {
 
       string str(psz);

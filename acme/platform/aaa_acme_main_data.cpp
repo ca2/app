@@ -257,7 +257,7 @@ void apex_main_data::system_construct(const ::string_array & straParam)
 #else
 
 
-void apex_main_data::system_construct(const scoped_string & strCommandLine, const ::e_display & edisplay)
+void apex_main_data::system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display & edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -317,7 +317,7 @@ string apex_main_data::get_arg(int i) const
 }
 
 
-string apex_main_data::get_env(const scoped_string & strVariableName) const
+string apex_main_data::get_env(const ::scoped_string & scopedstrVariableName) const
 {
 
    if (m_wenvp)

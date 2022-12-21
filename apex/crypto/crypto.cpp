@@ -220,7 +220,7 @@ namespace crypto
       }
 
 
-      //void crypto::encrypt(string& strEncrypt, const scoped_string & strDecrypt, const scoped_string & strKey)
+      //void crypto::encrypt(string& strEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrKey)
       //{
       //   
       //   memory storageDecrypt;
@@ -255,7 +255,7 @@ namespace crypto
       //}
 
 
-      //void crypto::decrypt(string& strDecrypt, const scoped_string & strEncrypt, const scoped_string & strKey)
+      //void crypto::decrypt(string& strDecrypt, const ::scoped_string & scopedstrEncrypt, const ::scoped_string & scopedstrKey)
       //{
 
       //   memory storageEncrypt;
@@ -281,7 +281,7 @@ namespace crypto
       //}
 
 
-      //u32 crypto::crc32(u32 dwPrevious, const scoped_string & str)
+      //u32 crypto::crc32(u32 dwPrevious, const ::scoped_string & scopedstr)
       //{
 
       //   throw ::interface_only();
@@ -305,7 +305,7 @@ namespace crypto
       //}
 
 
-      //string crypto::sha1(const scoped_string & str)
+      //string crypto::sha1(const ::scoped_string & scopedstr)
       //{
 
       //   memory mem;
@@ -317,7 +317,7 @@ namespace crypto
       //}
 
 
-      //string crypto::nessie(const scoped_string & str)
+      //string crypto::nessie(const ::scoped_string & scopedstr)
       //{
 
       //   memory mem;
@@ -543,19 +543,19 @@ namespace crypto
       }
 
 
-      void crypto::file_set(::payload payloadFile, const scoped_string & strData, const scoped_string & strSalt, ::apex::application* papp)
+      void crypto::file_set(::payload payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt, ::apex::application* papp)
       {
 
          memory memoryEncrypt;
 
-         encrypt(memoryEncrypt, as_block(pszData), as_block(pszSalt));
+         encrypt(memoryEncrypt, as_block(scopedstrData), as_block(scopedstrSalt));
 
          file()->put_memory(payloadFile, memoryEncrypt);
 
       }
 
 
-      void crypto::file_get(::payload payloadFile, string& str, const scoped_string & strSalt, ::apex::application* papp)
+      void crypto::file_get(::payload payloadFile, string& str, const ::scoped_string & scopedstrSalt, ::apex::application* papp)
       {
 
          memory memoryEncrypt;
@@ -571,7 +571,7 @@ namespace crypto
 
          file()->as_memory(payloadFile, memoryEncrypt);
 
-         decrypt(str, memoryEncrypt, as_block(pszSalt));
+         decrypt(str, memoryEncrypt, as_block(scopedstrSalt));
 
       }
 
@@ -629,7 +629,7 @@ namespace crypto
 
       // calculate the hash from a salt and a password
       // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-      string crypto::v5_get_password_hash(const scoped_string & strSalt, const scoped_string & strPassword, i32 iOrder)
+      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iOrder)
       {
 
          string strHash(pszPassword);
@@ -652,7 +652,7 @@ namespace crypto
       }
 
 
-      string crypto::v5_get_passhash(const scoped_string & strSalt, const scoped_string & strPassword, i32 iMaxOrder)
+      string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iMaxOrder)
       {
 
          string strHash(pszPassword);
@@ -675,7 +675,7 @@ namespace crypto
       }
 
 
-      bool crypto::v5_compare_password(const scoped_string & strPassword, const scoped_string & strHash, i32 iOrder)
+      bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, i32 iOrder)
       {
 
          string strHash(pszHash);
@@ -687,7 +687,7 @@ namespace crypto
       }
 
 
-      bool crypto::v5_validate_plain_password(const scoped_string & strPassword)
+      bool crypto::v5_validate_plain_password(const ::scoped_string & scopedstrPassword)
       {
 
          string str(pszPassword);
@@ -704,7 +704,7 @@ namespace crypto
       }
 
 
-      string crypto::v5_get_password_hash(const scoped_string & strPassword, i32 iOrder)
+      string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, i32 iOrder)
       {
 
          return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
@@ -987,7 +987,7 @@ namespace crypto
       //   }
 
 
-      string crypto::spa_login_crypt(const scoped_string & str, const string& strRsa)
+      string crypto::spa_login_crypt(const ::scoped_string & scopedstr, const string& strRsa)
       {
 
          auto prsa = create_rsa_key(strRsa);
@@ -1018,7 +1018,7 @@ namespace crypto
       }
 
 
-      string crypto::spa_login_decrypt(const scoped_string & str, const string& strRsa)
+      string crypto::spa_login_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
       {
 
          auto prsa = create_rsa_key(strRsa);
@@ -1047,7 +1047,7 @@ namespace crypto
          return memory.to_hex();
 
       }
-      string crypto::spa_auth_decrypt(const scoped_string & str, rsa* prsa)
+      string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
          memory memory;
@@ -1075,7 +1075,7 @@ namespace crypto
 
       }
 
-      string crypto::spa_auth_decrypt(const scoped_string & str, const string& strRsa)
+      string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
       {
 
          auto prsa = create_rsa_key(strRsa);
@@ -1106,7 +1106,7 @@ namespace crypto
       }
 
 
-      string crypto::spa_auth_crypt(const scoped_string & str, rsa* prsa)
+      string crypto::spa_auth_crypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
          memory memory;
@@ -1136,7 +1136,7 @@ namespace crypto
 
 
 
-      string crypto::txt_encrypt(const scoped_string & str, rsa* prsa)
+      string crypto::txt_encrypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
          memory memory;
@@ -1165,7 +1165,7 @@ namespace crypto
       }
 
 
-      string crypto::txt_decrypt(const scoped_string & str, rsa* prsa)
+      string crypto::txt_decrypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
          memory memory;
@@ -1199,7 +1199,7 @@ namespace crypto
 
    /*
 
-   bool crypt_file_get(const scoped_string & strFile, string & str, const scoped_string & strSalt)
+   bool crypt_file_get(const ::scoped_string & scopedstrFile, string & str, const ::scoped_string & scopedstrSalt)
    {
 
    string vsstr;

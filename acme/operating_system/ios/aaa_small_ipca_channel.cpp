@@ -40,7 +40,7 @@ namespace acme
       }
    
 
-      bool tx::open(const scoped_string & strChannel,launcher * plauncher)
+      bool tx::open(const ::scoped_string & scopedstrChannel,launcher * plauncher)
       {
 
          CFDataRef data;
@@ -77,7 +77,7 @@ namespace acme
       }
 
 
-      bool tx::send(const scoped_string & strMessage,duration durationTimeout)
+      bool tx::send(const ::scoped_string & scopedstrMessage,duration durationTimeout)
       {
 
          if(m_port == nullptr)
@@ -218,7 +218,7 @@ namespace acme
       }
    
 
-      bool rx::create(const scoped_string & strChannel)
+      bool rx::create(const ::scoped_string & scopedstrChannel)
       {
 
          CFMessagePortContext c = {};
@@ -282,7 +282,7 @@ namespace acme
       }
 
 //
-//      void rx::receiver::on_ipc_receive(rx * prx, const scoped_string & strMessage)
+//      void rx::receiver::on_ipc_receive(rx * prx, const ::scoped_string & scopedstrMessage)
 //      {
 //
 //      }
@@ -300,7 +300,7 @@ namespace acme
 //      }
 //
 
-      void * rx::on_ipc_receive(rx * prx, const scoped_string & strMessage)
+      void * rx::on_ipc_receive(rx * prx, const ::scoped_string & scopedstrMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -401,7 +401,7 @@ namespace acme
       }
 
 
-      bool ipc::open_ab(const scoped_string & strChannel, launcher * plauncher)
+      bool ipc::open_ab(const ::scoped_string & scopedstrChannel, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -431,7 +431,7 @@ namespace acme
       }
    
 
-      bool ipc::open_ba(const scoped_string & strChannel, launcher * plauncher)
+      bool ipc::open_ba(const ::scoped_string & scopedstrChannel, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;

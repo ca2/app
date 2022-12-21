@@ -16,7 +16,7 @@
 #define ITIMER_PROF      2
 
 
-void task_set_name(htask_t htask, const scoped_string & str)
+void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
 {
 
    string strName(psz);
@@ -33,7 +33,7 @@ void task_set_name(htask_t htask, const scoped_string & str)
 }
 
 
-//void task_set_name(const scoped_string & str)
+//void task_set_name(const ::scoped_string & scopedstr)
 //{
 //
 //   return task_set_name((htask_t) pthread_self(), psz);

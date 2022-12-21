@@ -101,7 +101,7 @@ inline string as_string(const T * & p)
 //
 //
 
-   //inline ::string as_string(const scoped_string & str)
+   //inline ::string as_string(const ::scoped_string & scopedstr)
    //{
 
    //   str = psz;

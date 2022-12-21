@@ -90,7 +90,7 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-//int_array module_path_get_pid(const scoped_string & strPath)
+//int_array module_path_get_pid(const ::file::path & path)
 //{
 //
 //   int_array ia;
@@ -125,7 +125,7 @@ string module_path_from_pid(unsigned int iPid)
 //}
 //
 //
-//atom_array app_get_pid(const scoped_string & str)
+//atom_array app_get_pid(const ::scoped_string & scopedstr)
 //{
 //
 //   atom_array ia;

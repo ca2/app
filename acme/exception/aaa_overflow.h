@@ -9,7 +9,7 @@ class CLASS_DECL_ACME overflow_exception :
 public:
 
 
-   overflow_exception(const scoped_string & strMessage = nullptr);
+   overflow_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~overflow_exception();
 
 

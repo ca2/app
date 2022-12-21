@@ -96,7 +96,7 @@ namespace linux
 //      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-//      bool ExecuteDlgInit(const scoped_string & strResourceName);
+//      bool ExecuteDlgInit(const ::scoped_string & scopedstrResourceName);
 //
 //      bool ExecuteDlgInit(LPVOID pResource);
 
@@ -107,9 +107,9 @@ namespace linux
       // for child windows, views, panes etc
 //      virtual bool create_window(
 //      ::user::interaction * pinteraction,
-//      const scoped_string & strClassName,
+//      const ::scoped_string & scopedstrClassName,
 
-//      const scoped_string & strWindowName,
+//      const ::scoped_string & scopedstrWindowName,
 
 //      ::u32 dwStyle,
 //      const ::rectangle & rectangle,
@@ -183,7 +183,7 @@ namespace linux
 
 
       // oswindow Text Functions
-      void set_window_text(const scoped_string & strString) override;
+      void set_window_text(const ::scoped_string & scopedstrString) override;
 
       //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
 

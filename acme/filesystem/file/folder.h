@@ -32,19 +32,19 @@ public:
    virtual void open_for_reading(file_pointer pfile, int iBufferLevel = 2);
 
 
-   virtual bool locate_file(const scoped_string & strFileName);
-   virtual bool locate_folder(const scoped_string & strFileName);
-   virtual ::file_pointer get_file(const scoped_string & strFile = nullptr);
+   virtual bool locate_file(const ::file::path & path);
+   virtual bool locate_folder(const ::file::path & path);
+   virtual ::file_pointer get_file(const ::file::path & pathFile = nullptr);
    
-   ::file::enum_type type(const scoped_string & strItem = nullptr);
+   ::file::enum_type type(const ::file::path & pathItem = nullptr);
 
-   virtual bool has_sub_folder(const scoped_string & strDir = nullptr);
-   virtual void extract(memory& m, const scoped_string & strFile = nullptr);
-   virtual bool is_compressed(const scoped_string & strItem = nullptr);
+   virtual bool has_sub_folder(const ::file::path & pathDir = nullptr);
+   virtual void extract(memory& m, const ::file::path & pathFile = nullptr);
+   virtual bool is_compressed(const ::file::path & pathItem = nullptr);
 
    virtual bool locate(const ::function < bool(const char *) > & function);
 
-   virtual void e_extract_all(const scoped_string & strTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
+   virtual void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 
 
    //bool _enumerates(::file::listing & listing) override;

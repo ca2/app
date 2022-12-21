@@ -47,7 +47,7 @@ namespace acme
             m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
    }
 
-   //bool application::_001OnDDECommand(const char * pcsz)
+   //bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
    //{
    //   __UNREFERENCED_PARAMETER(pcsz);
    //   return false;

@@ -29,7 +29,7 @@ public:
    typedef typename Iterable::BASE_TYPE   Type;
    typedef iterable                       Container;
 
-   iterator add(const scoped_string & str);
+   iterator add(const ::scoped_string & scopedstr);
 
    iterator add(const unichar * pwsz);
 
@@ -79,7 +79,7 @@ public:
 
 
 template < typename ITERABLE >
-typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const scoped_string & str)
+typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const ::scoped_string & scopedstr)
 {
    index nIndex = this->m_nSize;
    set_at_grow(nIndex, psz);

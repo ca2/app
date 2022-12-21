@@ -5,7 +5,7 @@
 factory_function* factory_function::g_pfactoryfunctionNext = nullptr;
 
 
-factory_function::factory_function(const scoped_string & strName, FACTORY_FUNCTION* pfnFactory) :
+factory_function::factory_function(const ::scoped_string & scopedstrName, FACTORY_FUNCTION* pfnFactory) :
    m_pszName(pszName),
    m_pfnFactory(pfnFactory)
 {
@@ -17,7 +17,7 @@ factory_function::factory_function(const scoped_string & strName, FACTORY_FUNCTI
 }
 
 
-FACTORY_FUNCTION* factory_function::get(const scoped_string & strName)
+FACTORY_FUNCTION* factory_function::get(const ::scoped_string & scopedstrName)
 {
 
    if (::is_empty(pszName))

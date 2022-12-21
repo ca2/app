@@ -266,7 +266,7 @@
 
 
 //template < primitive_character CHARACTER >
-//inline const CHARACTER * _unicode_span_excluding(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
+//inline const CHARACTER * _unicode_find_first_character_in(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
 //   auto p = block.data();
@@ -335,7 +335,7 @@
 //
 //
 //template < primitive_character CHARACTER >
-//inline const CHARACTER * _string_span_excluding(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
+//inline const CHARACTER * _string_find_first_character_in(const ::range < CHARACTER > & block, const ::range < CHARACTER > & blockSeparators)
 //{
 //
 //   auto p = block.data();

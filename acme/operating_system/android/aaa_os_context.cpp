@@ -112,7 +112,7 @@ namespace android
 
    }
 
-   void os_context::terminate_processes_by_title(const scoped_string & strName)
+   void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
       throw ::interface_only();
       return;
@@ -143,7 +143,7 @@ namespace android
       //  }
    }
 
-   bool os_context::get_pid_by_path(const scoped_string & strName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
       ::u32_array dwa;
       get_all_processes(dwa);
@@ -158,7 +158,7 @@ namespace android
       return false;
    }
 
-   bool os_context::get_pid_by_title(const scoped_string & strName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, ::u32 & dwPid)
    {
       ::u32_array dwa;
       get_all_processes(dwa);
@@ -293,7 +293,7 @@ namespace android
       */
    }
 
-   bool os_context::local_machine_set_run(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 //      throw ::interface_only();
@@ -311,7 +311,7 @@ namespace android
    }
 
 
-   bool os_context::local_machine_set_run_once(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 
@@ -327,7 +327,7 @@ namespace android
 
    }
 
-   bool os_context::current_user_set_run(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
       throw ::interface_only();
@@ -344,7 +344,7 @@ namespace android
 
    }
 
-   bool os_context::current_user_set_run_once(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
       throw ::interface_only();
@@ -401,7 +401,7 @@ namespace android
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
    {
       throw ::interface_only();
       return false;
@@ -426,7 +426,7 @@ namespace android
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       string_array straKey;
@@ -439,7 +439,7 @@ namespace android
 
    }
 
-   bool os_context::file_association_set_default_icon(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass, const scoped_string & strIconPath)
+   bool os_context::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
    {
 
       throw ::interface_only();
@@ -457,7 +457,7 @@ namespace android
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass,  const scoped_string & strCommand, const scoped_string & strParam)
+   bool os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
       throw ::interface_only();
       return false;
@@ -489,7 +489,7 @@ namespace android
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const scoped_string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       throw ::interface_only();
       return false;
@@ -510,7 +510,7 @@ namespace android
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const scoped_string & str = strFormat;
+               const ::scoped_string & scopedstr = strFormat;
 
                try
                {

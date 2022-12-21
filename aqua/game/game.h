@@ -29,7 +29,7 @@ namespace aqua
 
       void destroy() override;
 
-      virtual string sound_path(const scoped_string & str);
+      virtual string sound_path(const ::scoped_string & scopedstr);
 
 
    };

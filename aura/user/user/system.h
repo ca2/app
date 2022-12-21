@@ -58,8 +58,8 @@ namespace user
       system(const system&);
       system(
          //u32 uExStyle = 0,
-         //const scoped_string & strClassName = 0,
-         //const scoped_string & strWindowName = 0,
+         //const ::scoped_string & scopedstrClassName = 0,
+         //const ::scoped_string & scopedstrWindowName = 0,
          //u32 uStyle = 0,
          //const ::rectangle_i32& rectangle = nullptr,
          ::request* prequest = nullptr);

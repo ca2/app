@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "universal_windows.h"
-int _c_lock_is_active(const scoped_string & strName)
+int _c_lock_is_active(const ::scoped_string & scopedstrName)
 {
 
    HANDLE h;
@@ -16,7 +16,7 @@ int _c_lock_is_active(const scoped_string & strName)
 }
 
 
-int _c_lock(const scoped_string & strName, void ** pdata)
+int _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
 {
 #ifdef _UWP
    wstring wstrName(pszName);

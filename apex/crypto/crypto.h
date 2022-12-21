@@ -40,10 +40,10 @@ namespace crypto
       virtual void decrypt(memory& storageDecrypt, const block & blockEncrypt, const block & blockKey) = 0;
 
  
-      //virtual void encrypt(memory & blockEncrypt, const block & blockDecrypt, const scoped_string & strSalt);
-      //virtual void decrypt(memory & blockDecrypt, const block & blockEncrypt, const scoped_string & strSalt);
-      //virtual void encrypt(memory & storageEncrypt, const scoped_string & strDecrypt, const scoped_string & strSalt);
-      //virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const scoped_string & strSalt);
+      //virtual void encrypt(memory & blockEncrypt, const block & blockDecrypt, const ::scoped_string & scopedstrSalt);
+      //virtual void decrypt(memory & blockDecrypt, const block & blockEncrypt, const ::scoped_string & scopedstrSalt);
+      //virtual void encrypt(memory & storageEncrypt, const ::scoped_string & scopedstrDecrypt, const ::scoped_string & scopedstrSalt);
+      //virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const ::scoped_string & scopedstrSalt);
 
 
       virtual i32 key(memory & storage);
@@ -59,10 +59,10 @@ namespace crypto
       virtual int get_nessie_digest_length() const;
 
 
-      //virtual u32 crc32(u32 dwPrevious, const scoped_string & str) = 0;
-      //virtual string md5(const scoped_string & str);
-      //virtual string sha1(const scoped_string & str);
-      //virtual string nessie(const scoped_string & str);
+      //virtual u32 crc32(u32 dwPrevious, const ::scoped_string & scopedstr) = 0;
+      //virtual string md5(const ::scoped_string & scopedstr);
+      //virtual string sha1(const ::scoped_string & scopedstr);
+      //virtual string nessie(const ::scoped_string & scopedstr);
 
       virtual string md5(const block & block);
       virtual string sha1(const block & block);
@@ -82,8 +82,8 @@ namespace crypto
       virtual void hmac(void * result,const memory & memMessage,const memory & key) = 0;
       virtual void hmac(void * result,const string & memMessage,const string & key) = 0;
 
-      virtual void file_set(::payload payloadFile,const scoped_string & strData,const scoped_string & strSalt, ::apex::application * papp);
-      virtual void file_get(::payload payloadFile,string & str,const scoped_string & strSalt, ::apex::application * papp);
+      virtual void file_set(::payload payloadFile,const ::scoped_string & scopedstrData,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
+      virtual void file_get(::payload payloadFile,string & str,const ::scoped_string & scopedstrSalt, ::apex::application * papp);
 
       // get a memory_new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
@@ -91,14 +91,14 @@ namespace crypto
       // but we future proof it anyway with substr()
       virtual string v5_get_password_salt();
       // calculate the hash from a salt and a password
-      virtual string v5_get_password_hash(const scoped_string & strSalt,const scoped_string & strPassword,i32 iOrder = 0);
-      virtual string v5_get_passhash(const scoped_string & strSalt,const scoped_string & strPassword,i32 iMaxOrder = 0);
-      virtual bool v5_compare_password(const scoped_string & strPassword,const scoped_string & strHash,i32 iOrder = 0);
+      virtual string v5_get_password_hash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,i32 iOrder = 0);
+      virtual string v5_get_passhash(const ::scoped_string & scopedstrSalt,const ::scoped_string & scopedstrPassword,i32 iMaxOrder = 0);
+      virtual bool v5_compare_password(const ::scoped_string & scopedstrPassword,const ::scoped_string & scopedstrHash,i32 iOrder = 0);
       // if iOrder == 0 password is plain
       // if iOrder == 1 password is the first hash
       // if iOrder == (n > 0) password is the nth hash
-      virtual bool v5_validate_plain_password(const scoped_string & strPassword);
-      virtual string v5_get_password_hash(const scoped_string & strPassword,i32 iOrder = 0);
+      virtual bool v5_validate_plain_password(const ::scoped_string & scopedstrPassword);
+      virtual string v5_get_password_hash(const ::scoped_string & scopedstrPassword,i32 iOrder = 0);
 
       virtual ::file::path get_crypt_key_file_path();
       virtual ::memory defer_get_cryptkey();
@@ -119,15 +119,15 @@ namespace crypto
       //void err_load_crypto_strings();
 
 
-      virtual string spa_login_crypt(const scoped_string & str,const string & pszRsa);
-      virtual string spa_login_decrypt(const scoped_string & str,const string & pszRsa);
+      virtual string spa_login_crypt(const ::scoped_string & scopedstr,const string & pszRsa);
+      virtual string spa_login_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
 
-      virtual string spa_auth_crypt(const scoped_string & str,rsa * prsa);
-      virtual string spa_auth_decrypt(const scoped_string & str,rsa * prsa);
-      virtual string spa_auth_decrypt(const scoped_string & str,const string & pszRsa);
+      virtual string spa_auth_crypt(const ::scoped_string & scopedstr,rsa * prsa);
+      virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
+      virtual string spa_auth_decrypt(const ::scoped_string & scopedstr,const string & pszRsa);
 
-      virtual string txt_encrypt(const scoped_string & str,rsa * prsa);
-      virtual string txt_decrypt(const scoped_string & str,rsa * prsa);
+      virtual string txt_encrypt(const ::scoped_string & scopedstr,rsa * prsa);
+      virtual string txt_decrypt(const ::scoped_string & scopedstr,rsa * prsa);
 
       //virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
 

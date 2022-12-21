@@ -10,7 +10,7 @@ public:
    sticker        m_sticker;
 
 
-   stick(const scoped_string & str = nullptr) :
+   stick(const ::scoped_string & scopedstr = nullptr) :
       m_sticker(psz)
    {
 

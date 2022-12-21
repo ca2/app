@@ -378,7 +378,7 @@ namespace dynamic_source
 
 #ifdef LINUX
 
-            const scoped_string & str = dlerror();
+            const ::scoped_string & scopedstr = dlerror();
 
 #endif
 

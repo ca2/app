@@ -21,9 +21,9 @@ namespace sockets
       http_batch_buffer();
 
 
-      //virtual ::extended::status open(const scoped_string & strFileName, ::u32 nOpenFlags);
+      //virtual ::extended::status open(const ::file::path & path, ::u32 nOpenFlags);
 
-      virtual void open(const scoped_string & strFileName, ::u32 nOpenFlags);
+      virtual void open(const ::file::path & path, ::u32 nOpenFlags);
 
       virtual void close();
       virtual void flush();

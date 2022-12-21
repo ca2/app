@@ -32,10 +32,10 @@ public:
    url_domain_base();
 
 
-   void create(const scoped_string & strServerName);
+   void create(const ::scoped_string & scopedstrServerName);
 
 
-   static string get_name(const scoped_string & strServerName);
+   static string get_name(const ::scoped_string & scopedstrServerName);
 
 
 };
@@ -61,14 +61,14 @@ public:
    string      m_strTextTopLevel;
    string      m_strTextName;
 
-   void create(const scoped_string & strServerName);
+   void create(const ::scoped_string & scopedstrServerName);
 
 
 };
 
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const scoped_string & strTop1, strsize iLen1, const scoped_string & strTop2, strsize iLen2);
+bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize iLen1, const char * pszTop2, strsize iLen2);
 
 inline bool CLASS_DECL_ACME server_is_top_domain(string strTop1, string strTop2)
 {

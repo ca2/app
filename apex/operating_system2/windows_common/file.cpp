@@ -7,7 +7,7 @@
 //#endif
 
 
-//CLASS_DECL_APEX ::u32 windows_get_file_attributes(const char* path)
+//CLASS_DECL_APEX ::u32 windows_get_file_attributes(const ::file::path & path)
 //{
 //
 //   wstring wstr(path);
@@ -31,7 +31,7 @@
 //}
 
 
-//CLASS_DECL_APEX bool windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+//CLASS_DECL_APEX bool windows_create_directory(const ::file::path & path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 //{
 //
 //   wstring wstr(path);
@@ -79,7 +79,7 @@
 
 
 ////extern "C"
-//CLASS_DECL_APEX int_bool file_copy_dup(const scoped_string & strNew, const scoped_string & strSrc, int_bool bOverwrite)
+//CLASS_DECL_APEX int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 //{
 //
 //   string strNew(pszNew);
@@ -203,7 +203,7 @@
 //}
 
 
-//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const char* path, ::file::enum_type* petype)
+//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const ::file::path & path, ::file::enum_type* petype)
 //{
 //
 //   auto dwFileAttributes = windows_get_file_attributes(path);

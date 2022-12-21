@@ -14,7 +14,7 @@ public:
    long m_lLine;
 
 
-   assert_exception(const scoped_string & strFile, long lLine);
+   assert_exception(const ::scoped_string & scopedstrFile, long lLine);
    virtual ~assert_exception();
 
 

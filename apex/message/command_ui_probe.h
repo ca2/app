@@ -28,7 +28,7 @@
 //    virtual void _001SetCheck(bool bCheck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
-//    virtual void SetText(const scoped_string & strText, const ::action_context & action_context = ::e_source_system);
+//    virtual void SetText(const ::scoped_string & scopedstrText, const ::action_context & action_context = ::e_source_system);
 
 
 
@@ -58,7 +58,7 @@
 //   const char * lpszName;       // member/property name
 
 //   long lDispID;           // DISPID (may be DISPID_UNKNOWN)
-//   const scoped_string & strParams;      // member parameter description
+//   const ::scoped_string & scopedstrParams;      // member parameter description
 
 //   ::u16 vt;                // return value type / or type of property
 //   __PMSG pfn;           // normal member On<membercall> or, OnGet<property>

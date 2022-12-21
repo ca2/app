@@ -31,17 +31,17 @@ namespace universal_windows
 
       //using ::file::system_dir::path;
       //virtual class ::file::path & path();
-      //virtual string path(const scoped_string & strFolder,strsize iLenFolder,const scoped_string & strRelative,strsize iLenRelative,const scoped_string & str2,strsize iLen2,bool bUrl);
+      //virtual string path(const ::scoped_string & scopedstrFolder,strsize iLenFolder,const ::scoped_string & scopedstrRelative,strsize iLenRelative,const ::scoped_string & scopedstr2,strsize iLen2,bool bUrl);
 
       //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
-      //virtual bool  ls_pattern(const char * pcsz,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
+      //virtual bool  ls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
       using ::dir_context::ls;
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const char * pcsz,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
-      //virtual bool  rls_dir(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
-      //virtual bool  ls_dir(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
-      //virtual bool  ls_file(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  rls_pattern(const ::scoped_string & scopedstr,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,enum_extract eextract = e_extract_first);
+      //virtual bool  rls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
+      //virtual bool  ls_dir(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  ls_file(const ::scoped_string & scopedstr,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
       virtual bool  is_impl(const ::file::path & path) override;
       //virtual bool  is(const ::string & str);
       virtual bool  name_is(const ::file::path & str);
@@ -53,7 +53,7 @@ namespace universal_windows
       virtual bool rm( const ::file::path & path, bool bRecursive = true);
 
 
-      //virtual string name(const char * pcsz);
+      //virtual string name(const ::scoped_string & scopedstr);
       //virtual string name(const ::string & str);
 
       ::file::path userfolder();

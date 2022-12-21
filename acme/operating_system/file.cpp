@@ -11,12 +11,12 @@
 #include "acme/platform/system.h"
 
 
-void file_put_contents(const scoped_string & strFilePath, const scoped_string & str)
+void file_put_contents(const ::scoped_string & scopedstrFilePath, const ::scoped_string & scopedstr)
 {
    
    auto ptask = ::get_task();
    
-   ptask->acmefile()->put_contents(pszFilePath, psz);
+   ptask->acmefile()->put_contents(scopedstrFilePath, scopedstr);
    
 }
 

@@ -23,29 +23,29 @@
 //bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const ::wide_character * pcsz);
 //
 //
-//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz);
+//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr);
 //
-//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount);
+//bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount);
 //
 //
-//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz);
+//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr);
 //
-//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount);
-//
-
-//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz);
-
-//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount);
-
-
-//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz);
-//
-//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount);
+//bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 //
 
-//      bool CLASS_DECL_ACME OemToUtf8(memory & str, const char * pcsz);
+//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr);
 
-//      bool CLASS_DECL_ACME OemToUtf8(memory & str, const char * pcsz, strsize nCount);
+//      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
+
+
+//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr);
+//
+//bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
+//
+
+//      bool CLASS_DECL_ACME OemToUtf8(memory & str, const ::scoped_string & scopedstr);
+
+//      bool CLASS_DECL_ACME OemToUtf8(memory & str, const ::scoped_string & scopedstr, strsize nCount);
 
 
 /*      void unicode_to_utf8(string_array & stra, string_array & stra)
@@ -69,7 +69,7 @@
       }*/
 
 
-bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz)
+bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
 {
 
 #ifdef WINDOWS
@@ -85,7 +85,7 @@ throw ::exception(todo, "multibyte");
 }
 
 
-bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount)
+bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr, strsize nCount)
 {
 
 #ifdef WINDOWS
@@ -101,33 +101,33 @@ throw ::exception(todo, "multibyte");
 }
 
 
-//bool OemToUtf8(memory & str, const char * pcsz)
+//bool OemToUtf8(memory & str, const ::scoped_string & scopedstr)
 
 //{
 //   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz);
 
 //}
 
-//bool OemToUtf8(memory & str, const char * pcsz, strsize nCount)
+//bool OemToUtf8(memory & str, const ::scoped_string & scopedstr, strsize nCount)
 
 //{
 //   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz, nCount);
 
 //}
 
-bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz)
+bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr)
 {
 
-   return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz);
+   return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, scopedstr);
 
 }
 
-bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount)
-
-{
-return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
-
-}
+//bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount)
+//
+//{
+//return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
+//
+//}
 
 //
 //   } // namespace international

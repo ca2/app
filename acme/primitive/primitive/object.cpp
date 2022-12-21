@@ -618,7 +618,7 @@ bool object::is_running() const
 }
 
 
-//void object::runchild_post_quit(const scoped_string & strTag)
+//void object::runchild_post_quit(const ::scoped_string & scopedstrTag)
 //{
 //
 //   try
@@ -3299,7 +3299,7 @@ void object::call_run()
 //}
 
 
-// void message_box_timeout(const scoped_string & strMessage, const scoped_string & strTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 //{
 
 //   return message_box_timeout(nullptr, pszMessage, pszTitle, timeTimeout, emessagebox, process);
@@ -3398,10 +3398,10 @@ void object::call_run()
 //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
 // ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_pointer load_matter_image(const scoped_string & strMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
 // ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-// ::image_pointer load_thumbnail(const scoped_string & strPath);
+// ::image_pointer load_thumbnail(const ::file::path & path);
 // ::image_pointer load_dib(const ::file::path & pathDib);
 
 
@@ -3576,7 +3576,7 @@ bool object::IsSerializable() const
 //void property_notify(const ::atom & atom, ::matter * pmatter);
 
 
-//   inline void format_topic_text(const scoped_string & str, ...)
+//   inline void format_topic_text(const ::scoped_string & scopedstr, ...)
 //   {
 //
 //      va_list valist;
@@ -3587,7 +3587,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//   inline void format_topic_text_v(const scoped_string & str, va_list valist)
+//   inline void format_topic_text_v(const ::scoped_string & scopedstr, va_list valist)
 //   {
 //
 //      string str;

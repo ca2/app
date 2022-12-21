@@ -144,7 +144,7 @@ namespace sandbox_windowing
       //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
 
 
-      virtual void set_window_text(const scoped_string & strString);
+      virtual void set_window_text(const ::scoped_string & scopedstrString);
 
 
       void set_tool_window(bool bSet) override;
@@ -154,8 +154,8 @@ namespace sandbox_windowing
 
 
       //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);
-      //virtual int wm_test_state(windowing_android_WINDOW_MEMBER const scoped_string & strNetStateFlag);
-      //virtual int wm_test_state_raw(windowing_android_WINDOW_MEMBER const scoped_string & strNetStateFlag);
+      //virtual int wm_test_state(windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);
+      //virtual int wm_test_state_raw(windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);
       //virtual int wm_test_list_raw(windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag);
       //virtual bool wm_add_remove_list_raw(windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag, bool bSet);
       //virtual void wm_add_remove_state_mapped_raw(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
@@ -186,8 +186,8 @@ namespace sandbox_windowing
       //virtual int_bool IsWindowVisibleRaw(oswindow w);
 //      virtual Atom * wm_get_list_raw( windowing_android_WINDOW_MEMBER Atom atomList, unsigned long int * pnum_items);
 //      virtual int wm_test_list_raw( windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag);
-//      virtual int wm_test_state_raw( windowing_android_WINDOW_MEMBER const scoped_string & strNetStateFlag);
-//      virtual int wm_test_state( windowing_android_WINDOW_MEMBER const scoped_string & strNetStateFlag);
+//      virtual int wm_test_state_raw( windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);
+//      virtual int wm_test_state( windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);
 //      virtual bool wm_add_remove_list_raw( windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag, bool bSet);
 
 
@@ -199,7 +199,7 @@ namespace sandbox_windowing
       //virtual ::e_status get_client_rect(windowing_android_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
       ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::rectangle_i32 & rectangle);
 
-      //virtual ::e_status x11_store_name(const scoped_string & strName);
+      //virtual ::e_status x11_store_name(const ::scoped_string & scopedstrName);
       //virtual ::e_status set_foreground_window();
       //virtual ::e_status set_active_window();
       //virtual void wm_toolwindow( windowing_android_WINDOW_MEMBER bool bToolWindow);

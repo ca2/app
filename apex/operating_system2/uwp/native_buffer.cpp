@@ -615,7 +615,7 @@ namespace universal_windows
    //}
 
    /*
-   void native_buffer::Rename(const scoped_string & strOldName, const scoped_string & strNewName)
+   void native_buffer::Rename(const ::scoped_string & scopedstrOldName, const ::scoped_string & scopedstrNewName)
 
    {
    if (!::Movenative_buffer((char *)pszOldName, (char *)pszNewName))
@@ -623,7 +623,7 @@ namespace universal_windows
    WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
-   void native_buffer::erase(const scoped_string & strfileName)
+   void native_buffer::erase(const ::scoped_string & scopedstrfileName)
 
    {
    if (!::Deletenative_buffer((char *)pszfileName))

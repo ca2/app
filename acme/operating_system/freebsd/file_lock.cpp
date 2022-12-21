@@ -19,7 +19,7 @@ namespace file_lock
    // }
 
 
-   // file_lock::file_lock(const scoped_string & strName)
+   // file_lock::file_lock(const ::scoped_string & scopedstrName)
    // {
 
    //    m_iFileDescriptor = -1;
@@ -37,7 +37,7 @@ namespace file_lock
    // }
 
 
-   // bool file_lock::set_name(const scoped_string & strName)
+   // bool file_lock::set_name(const ::scoped_string & scopedstrName)
    // {
 
    //    close_file();

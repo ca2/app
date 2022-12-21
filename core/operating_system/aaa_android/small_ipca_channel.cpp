@@ -101,7 +101,7 @@ namespace aura
          if(!is_tx_ok())
             return false;
 
-         const scoped_string & strMessage = (const ::string &)pdata;
+         const ::scoped_string & scopedstrMessage = (const ::string &)pdata;
 
          ::count c = len;
 

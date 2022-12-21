@@ -64,9 +64,9 @@ i32 create_process(const ::string & _cmd_line, i32 * pprocessId)
 }
 
 CLASS_DECL_CORE i32 call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 i32 iShow)
 {
    vsstring strCmdLine;

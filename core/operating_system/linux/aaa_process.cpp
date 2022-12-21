@@ -231,7 +231,7 @@ namespace ansios
 
          int iPrevious = -1;
 
-         const scoped_string & str;
+         const ::scoped_string & scopedstr;
 
          while((psz = environ[i]) != nullptr)
          {

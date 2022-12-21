@@ -15,6 +15,18 @@
 
 
 template < primitive_range RANGE >
+constexpr RANGE _start_end_range(const RANGE & range, memsize start, typename RANGE::const_iterator end)
+{
+
+   return {
+           ::clipped_add(range.begin(), start, range.begin(), range.end()),
+           ::clipped_add(range.begin(), end - range.begin(), range.begin(), range.end())
+   };
+
+}
+
+
+template < primitive_range RANGE >
 constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize count)
 {
 
@@ -167,7 +179,7 @@ public:
    }
 
    template<typename TYPE>
-   range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) span_zero_item(p))
+   range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) find_first_null_character(p))
    {
    }
 
@@ -189,7 +201,7 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    constexpr range(const_iterator begin, EQUALITY equality) : m_begin(
-      (this_iterator) begin), m_end((this_iterator) span_zero_item(begin, equality))
+      (this_iterator) begin), m_end((this_iterator) find_first_null_character(begin, equality))
    {
    }
 
@@ -258,8 +270,18 @@ public:
       return m_end;
    }
 
+    this_iterator &begin(this_iterator begin)
+    {
+       return m_begin = begin;
+    }
 
-   this_iterator data()
+    this_iterator &end(this_iterator end)
+    {
+       return m_end = end;
+    }
+
+
+    this_iterator data()
    {
       return m_begin;
    }
@@ -352,8 +374,18 @@ public:
 
    }
 
+    constexpr THIS_RAW_RANGE _end_range(const_iterator end) const
+    {
 
-   constexpr THIS_RAW_RANGE _start_count_range(memsize start, memsize count) const
+       return {
+               this->begin(), end
+       };
+
+    }
+
+
+
+    constexpr THIS_RAW_RANGE _start_count_range(memsize start, memsize count) const
    {
 
       return {
@@ -449,42 +481,42 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool _equals_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_equals(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool equals_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_equals(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   _equals_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_equals(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   equals_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_equals(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool _equals_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_equals(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool equals_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_equals(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   _equals_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_equals(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   equals_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_equals(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static constexpr bool
@@ -587,44 +619,44 @@ public:
    }
 
 
-   template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering
-   _order_start(const THIS_RAW_RANGE &rangeBlock, memsize start, ORDERING ordering) const
-   {
-
-      return _static_order(_start_range(start), rangeBlock, ordering);
-
-   }
-
-
-   template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering
-   order_start(const THIS_RAW_RANGE &rangeBlock, memsize start, ORDERING ordering) const
-   {
-
-      return static_order(_start_range(start), rangeBlock, ordering);
-
-   }
-
-
-   template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering
-   _order_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, ORDERING ordering) const
-   {
-
-      return _static_order(_start_count_range(start, count), rangeBlock, ordering);
-
-   }
-
-
-   template<::comparison::ordering<ITEM> ORDERING>
-   constexpr ::std::strong_ordering
-   order_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, ORDERING ordering) const
-   {
-
-      return static_order(_start_count_range(start, count), rangeBlock, ordering);
-
-   }
+//   template<::comparison::ordering<ITEM> ORDERING>
+//   constexpr ::std::strong_ordering
+//   _order_start(const THIS_RAW_RANGE &rangeBlock, memsize start, ORDERING ordering) const
+//   {
+//
+//      return _static_order(_start_range(start), rangeBlock, ordering);
+//
+//   }
+//
+//
+//   template<::comparison::ordering<ITEM> ORDERING>
+//   constexpr ::std::strong_ordering
+//   order_start(const THIS_RAW_RANGE &rangeBlock, memsize start, ORDERING ordering) const
+//   {
+//
+//      return static_order(_start_range(start), rangeBlock, ordering);
+//
+//   }
+//
+//
+//   template<::comparison::ordering<ITEM> ORDERING>
+//   constexpr ::std::strong_ordering
+//   _order_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, ORDERING ordering) const
+//   {
+//
+//      return _static_order(_start_count_range(start, count), rangeBlock, ordering);
+//
+//   }
+//
+//
+//   template<::comparison::ordering<ITEM> ORDERING>
+//   constexpr ::std::strong_ordering
+//   order_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, ORDERING ordering) const
+//   {
+//
+//      return static_order(_start_count_range(start, count), rangeBlock, ordering);
+//
+//   }
 
 
    static bool _initialize_find(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock)
@@ -725,32 +757,32 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_find(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_find(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_find(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_find(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_find(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_find(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static bool _initialize_rear_find(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock)
@@ -850,56 +882,56 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_rear_find(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_rear_find(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _rear_find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_rear_find(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   rear_find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_rear_find(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_find(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _rear_find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator rear_find_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _rear_find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   rear_find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   find_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_find(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static constexpr bool
-   _initialize_scan(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
+   _initialize_skip_any_character_in(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -914,7 +946,7 @@ public:
       if (rangeBlock.is_empty())
       {
 
-         p = (const_iterator) range.begin();
+         p = (const_iterator) range.end();
 
          return true;
 
@@ -927,7 +959,7 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   _static_scan(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   _static_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -942,7 +974,7 @@ public:
             {
 
 // found a matching item...
-// continue scanning...
+// continue skip_any_character_inning...
 
                break;
 
@@ -956,7 +988,7 @@ public:
 // Iterated through all pBlock items
 // and didn't find any that match *p
 
-// so p is the end of the scan for matching items...
+// so p is the end of the skip_any_character_in for matching items...
 
                return range.begin();
 
@@ -968,9 +1000,9 @@ public:
 
       } while (!range.is_end(range.begin()));
 
-// reached end of the scanning range...
-// each scanned item matched some item in range...
-// return address immediately after end of scanning...
+// reached end of the skip_any_character_inning range...
+// each skip_any_character_inned item matched some item in range...
+// return address immediately after end of skip_any_character_inning...
 
       return range.begin();
 
@@ -979,80 +1011,80 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   static_scan(const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   static_skip_any_character_in(const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
 
-      if (_initialize_scan(p, range, rangeBlock))
+      if (_initialize_skip_any_character_in(p, range, rangeBlock))
       {
 
          return p;
 
       }
 
-      return _static_scan(range, rangeBlock, equality);
+      return _static_skip_any_character_in(range, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _scan(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _skip_any_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return _static_scan(*this, rangeBlock, equality);
+      return _static_skip_any_character_in(*this, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator scan(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator skip_any_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return static_scan(*this, rangeBlock, equality);
+      return static_skip_any_character_in(*this, rangeBlock, equality);
 
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _scan_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_scan(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator scan_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_scan(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _scan_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_scan(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   scan_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_scan(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _skip_any_character_in_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_skip_any_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator skip_any_character_in_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_skip_any_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _skip_any_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_skip_any_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   skip_any_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_skip_any_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
    static constexpr bool
-   _initialize_span(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
+   _initialize_find_first_character_in(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -1080,7 +1112,7 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   _static_span(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   _static_find_first_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -1095,7 +1127,7 @@ public:
             {
 
 // found a matching item...
-// stop spanning and return address of the matching item
+// stop find_first_character_inning and return address of the matching item
 
                return range.begin();
 
@@ -1106,15 +1138,15 @@ public:
          } while (!rangeBlock.is_end(pBlockScan));
 
 // Didn't found matching item...
-// continue spanning...
+// continue find_first_character_inning...
 
          range.begin()++;
 
       } while (!range.is_end(range.begin()));
 
-// reached end of the spanning range...
+// reached end of the find_first_character_inning range...
 // and didn't find any matching items...
-// return address immediately after end of spanning range....
+// return address immediately after end of find_first_character_inning range....
 
       return range.begin();
 
@@ -1122,96 +1154,96 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   static_span(const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   static_find_first_character_in(const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
 
-      if (_initialize_span(p, range, rangeBlock))
+      if (_initialize_find_first_character_in(p, range, rangeBlock))
       {
 
          return p;
 
       }
 
-      return _static_span(range, rangeBlock, equality);
+      return _static_find_first_character_in(range, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _span(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _find_first_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return _static_span(*this, rangeBlock, equality);
+      return _static_find_first_character_in(*this, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator span(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator find_first_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return static_span(*this, rangeBlock, equality);
+      return static_find_first_character_in(*this, rangeBlock, equality);
 
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _span_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_span(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator span_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_span(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _span_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_span(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   span_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_span(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _find_first_character_in_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_find_first_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator find_first_character_in_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_find_first_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _find_first_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_find_first_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   find_first_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_find_first_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static constexpr bool
-      _initialize_rear_span(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
+      _initialize_rear_find_first_character_in(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
    {
 
       if (range.is_empty())
       {
 
-         p = range.begin() - 1;
+         p = nullptr;
 
          return true;
 
       }
 
-      if (range.is_empty())
+      if (rangeBlock.is_empty())
       {
 
-         p = range.begin() - 1;
+         p = range.end();
 
          return true;
 
@@ -1224,7 +1256,7 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-      _static_rear_span(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
+      _static_rear_find_first_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -1239,7 +1271,7 @@ public:
             {
 
                // found a matching item...
-               // stop spanning and return address of the matching item
+               // stop find_first_character_inning and return address of the matching item
 
                return range.begin();
 
@@ -1253,23 +1285,19 @@ public:
 
       } while (!range.is_before_begin(range.end()));
 
-      // reached end of the spanning range...
-      // each spanned item matched some item in range...
-      // return address immediately after end of spanning...
-
-      return range.end();
+      return nullptr;
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-      static_rear_span(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
+      static_rear_find_first_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
 
-      if (_initialize_rear_span(p, range, rangeBlock))
+      if (_initialize_rear_find_first_character_in(p, range, rangeBlock))
       {
 
          return p;
@@ -1278,65 +1306,65 @@ public:
 
       range.end()--;
 
-      return _static_rear_span(range, rangeBlock, equality);
+      return _static_rear_find_first_character_in(range, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_span(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _rear_find_first_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
-      return _static_rear_span(*this, rangeBlock, equality);
+      return _static_rear_find_first_character_in(*this, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_span(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
+   constexpr const_iterator rear_find_first_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
    {
 
-      return static_rear_span(*this, rangeBlock, equality);
+      return static_rear_find_first_character_in(*this, rangeBlock, equality);
 
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_span_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_rear_span(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_span_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_rear_span(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-      _rear_span_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_rear_span(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-      rear_span_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_rear_span(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _rear_find_first_character_in_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find_first_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator rear_find_first_character_in_start(const THIS_RAW_RANGE & rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find_first_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//      _rear_find_first_character_in_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find_first_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//      rear_find_first_character_in_start_count(const THIS_RAW_RANGE & rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find_first_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static constexpr bool _initialize_skip(const_iterator &p, const THIS_RAW_RANGE &range) noexcept
@@ -1416,40 +1444,40 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _skip_start(const ITEM &item, memsize start, EQUALITY equality) const
-   {
-
-      return _static_skip(_start_range(start), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator skip_start(const ITEM &item, memsize start, EQUALITY equality) const
-   {
-
-      return static_skip(_start_range(start), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _skip_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_skip(_start_count_range(start, count), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator skip_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_skip(_start_count_range(start, count), item, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _skip_start(const ITEM &item, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_skip(_start_range(start), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator skip_start(const ITEM &item, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_skip(_start_range(start), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _skip_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_skip(_start_count_range(start, count), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator skip_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_skip(_start_count_range(start, count), item, equality);
+//
+//   }
 
 
    static constexpr bool _initialize_find_item(const_iterator &p, const THIS_RAW_RANGE &range) noexcept
@@ -1532,46 +1560,46 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_find_item_start(const ITEM &item, memsize start, EQUALITY equality) const
-   {
-
-      return _static_rear_find_item(_start_range(start), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_find_item_start(const ITEM &item, memsize start, EQUALITY equality) const
-   {
-
-      return static_rear_find_item(_start_range(start), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _rear_find_item_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_rear_find_item(_start_count_range(start, count), item, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   rear_find_item_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_rear_find_item(_start_count_range(start, count), item, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _rear_find_item_start(const ITEM &item, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find_item(_start_range(start), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator rear_find_item_start(const ITEM &item, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find_item(_start_range(start), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _rear_find_item_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_find_item(_start_count_range(start, count), item, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   rear_find_item_start_count(const ITEM &item, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_rear_find_item(_start_count_range(start, count), item, equality);
+//
+//   }
 
 
    static constexpr bool
-   _initialize_rear_scan(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
+   _initialize_rear_skip_any_character_in(const_iterator &p, const THIS_RAW_RANGE &range, const THIS_RAW_RANGE &rangeBlock) noexcept
    {
 
       if (range.is_empty())
@@ -1599,7 +1627,7 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   _static_rear_scan(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   _static_rear_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       do
@@ -1614,7 +1642,7 @@ public:
             {
 
 // found a matching item...
-// continue scanning...
+// continue skip_any_character_inning...
 
                break;
 
@@ -1628,7 +1656,7 @@ public:
 // Iterated through all pBlock items
 // and didn't find any that match *p
 
-// so p is the end of the scan for matching items...
+// so p is the end of the skip_any_character_in for matching items...
 
                return range.end();
 
@@ -1640,9 +1668,9 @@ public:
 
       } while (!range.is_before_begin(range.end()));
 
-// reached end of the scanning range...
-// each scanned item matched some item in range...
-// return address immediately after end of scanning...
+// reached end of the skip_any_character_inning range...
+// each skip_any_character_inned item matched some item in range...
+// return address immediately after end of skip_any_character_inning...
 
       return range.end();
 
@@ -1651,12 +1679,12 @@ public:
 
    template<::comparison::equality<ITEM> EQUALITY>
    static constexpr const_iterator
-   static_rear_scan(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
+   static_rear_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) noexcept
    {
 
       const_iterator p;
 
-      if (_initialize_rear_scan(p, range, rangeBlock))
+      if (_initialize_rear_skip_any_character_in(p, range, rangeBlock))
       {
 
          return p;
@@ -1665,65 +1693,65 @@ public:
 
       range.end()--;
 
-      return _static_rear_scan(range, rangeBlock, equality);
+      return _static_rear_skip_any_character_in(range, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_scan(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator _rear_skip_any_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return _static_rear_scan(*this, rangeBlock, equality);
+      return _static_rear_skip_any_character_in(*this, rangeBlock, equality);
 
    }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_scan(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
+   constexpr const_iterator rear_skip_any_character_in(const THIS_RAW_RANGE &rangeBlock, EQUALITY equality) const
    {
 
-      return static_rear_scan(*this, rangeBlock, equality);
+      return static_rear_skip_any_character_in(*this, rangeBlock, equality);
 
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_scan_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_rear_scan(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_scan_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_rear_scan(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   _rear_scan_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_rear_scan(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator
-   rear_scan_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_rear_scan(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator _rear_skip_any_character_in_start(const THIS_RAW_RANGE &rangeBlock, const_iterator end, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_skip_any_character_in(_end_range(end), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator rear_skip_any_character_in_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_rear_skip_any_character_in(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   _rear_skip_any_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_rear_skip_any_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr const_iterator
+//   rear_skip_any_character_in_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_rear_skip_any_character_in(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    static constexpr bool
@@ -1815,42 +1843,42 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool _begins_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_begins(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool begins_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_begins(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   _begins_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_begins(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   begins_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_begins(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool _begins_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_begins(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool begins_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_begins(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   _begins_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_begins(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   begins_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_begins(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
    template<::comparison::equality<ITEM> EQUALITY>
@@ -1926,42 +1954,42 @@ public:
    }
 
 
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool _ends_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return _static_ends(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool ends_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
-   {
-
-      return static_ends(_start_range(start), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   _ends_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return _static_ends(_start_count_range(start, count), rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr bool
-   ends_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
-   {
-
-      return static_ends(_start_count_range(start, count), rangeBlock, equality);
-
-   }
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool _ends_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return _static_ends(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool ends_start(const THIS_RAW_RANGE &rangeBlock, memsize start, EQUALITY equality) const
+//   {
+//
+//      return static_ends(_start_range(start), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   _ends_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return _static_ends(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
+//
+//
+//   template<::comparison::equality<ITEM> EQUALITY>
+//   constexpr bool
+//   ends_start_count(const THIS_RAW_RANGE &rangeBlock, memsize start, memsize count, EQUALITY equality) const
+//   {
+//
+//      return static_ends(_start_count_range(start, count), rangeBlock, equality);
+//
+//   }
 
 
 
@@ -2058,86 +2086,86 @@ public:
 //}
 
 
-//constexpr bool _scan_prefix(this_iterator & p, const THIS_RAW_RANGE & range) const noexcept
+//constexpr bool _skip_any_character_in_prefix(this_iterator & p, const THIS_RAW_RANGE & range) const noexcept
 //{
 
-//   return BASE_ARRAY::_scan_prefix(range, equality);
+//   return BASE_ARRAY::_skip_any_character_in_prefix(range, equality);
 
 //}
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator _scan(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//constexpr this_iterator _skip_any_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
 //{
 
-//   return BASE_ARRAY::_scan(range, equality);
+//   return BASE_ARRAY::_skip_any_character_in(range, equality);
 
 //}
 
 
-//constexpr this_iterator _scan(const THIS_RAW_RANGE & range) noexcept
+//constexpr this_iterator _skip_any_character_in(const THIS_RAW_RANGE & range) noexcept
 //{
 
-//   return _scan(range, ::equals_const_reference < ITEM >);
-
-//}
-
-
-//template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator scan(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
-//{
-
-//   return BASE_ARRAY::scan(range, equality);
-
-//}
-
-
-//constexpr this_iterator scan(const THIS_RAW_RANGE & range) noexcept
-//{
-
-//   return scan(range, ::equals_const_reference < ITEM >);
-
-//}
-
-
-//constexpr bool _span_prefix(this_iterator & p, const THIS_RAW_RANGE & range) noexcept
-//{
-
-//   return BASE_ARRAY::_span_prefix(range, equality);
+//   return _skip_any_character_in(range, ::equals_const_reference < ITEM >);
 
 //}
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator _span(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//constexpr this_iterator skip_any_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
 //{
 
-//   return BASE_ARRAY::_span(range, equality);
+//   return BASE_ARRAY::skip_any_character_in(range, equality);
 
 //}
 
 
-//constexpr this_iterator _span(const THIS_RAW_RANGE & range) noexcept
+//constexpr this_iterator skip_any_character_in(const THIS_RAW_RANGE & range) noexcept
 //{
 
-//   return _span(range, ::equals_const_reference < ITEM >);
+//   return skip_any_character_in(range, ::equals_const_reference < ITEM >);
+
+//}
+
+
+//constexpr bool _find_first_character_in_prefix(this_iterator & p, const THIS_RAW_RANGE & range) noexcept
+//{
+
+//   return BASE_ARRAY::_find_first_character_in_prefix(range, equality);
 
 //}
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator span(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//constexpr this_iterator _find_first_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
 //{
 
-//   return BASE_ARRAY::span(range, equality);
+//   return BASE_ARRAY::_find_first_character_in(range, equality);
 
 //}
 
 
-//constexpr this_iterator span(const THIS_RAW_RANGE & range) noexcept
+//constexpr this_iterator _find_first_character_in(const THIS_RAW_RANGE & range) noexcept
 //{
 
-//   return span(range, ::equals_const_reference < ITEM >);
+//   return _find_first_character_in(range, ::equals_const_reference < ITEM >);
+
+//}
+
+
+//template < ::comparison::equality < ITEM > EQUALITY >
+//constexpr this_iterator find_first_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//{
+
+//   return BASE_ARRAY::find_first_character_in(range, equality);
+
+//}
+
+
+//constexpr this_iterator find_first_character_in(const THIS_RAW_RANGE & range) noexcept
+//{
+
+//   return find_first_character_in(range, ::equals_const_reference < ITEM >);
 
 //}
 
@@ -2210,36 +2238,36 @@ public:
 //}
 
 
-//constexpr bool _rear_scan_prefix(this_iterator & p, const THIS_RAW_RANGE & range) noexcept
+//constexpr bool _rear_skip_any_character_in_prefix(this_iterator & p, const THIS_RAW_RANGE & range) noexcept
 //{
 
-//   return BASE_ARRAY::_rear_scan_prefix(p, range);
+//   return BASE_ARRAY::_rear_skip_any_character_in_prefix(p, range);
 
 //}
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator _rear_scan(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//constexpr this_iterator _rear_skip_any_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
 //{
 
-//   return BASE_ARRAY::_rear_scan(range, equality);
+//   return BASE_ARRAY::_rear_skip_any_character_in(range, equality);
 
 //}
 
 
-//constexpr this_iterator _rear_scan(const THIS_RAW_RANGE & range) noexcept
+//constexpr this_iterator _rear_skip_any_character_in(const THIS_RAW_RANGE & range) noexcept
 //{
 
-//   return _rear_scan(range, ::equals_const_reference < ITEM >);
+//   return _rear_skip_any_character_in(range, ::equals_const_reference < ITEM >);
 
 //}
 
 
 //template < ::comparison::equality < ITEM > EQUALITY >
-//constexpr this_iterator rear_scan(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
+//constexpr this_iterator rear_skip_any_character_in(const THIS_RAW_RANGE & range, EQUALITY equality) noexcept
 //{
 
-//   return BASE_ARRAY::rear_scan(range, equality);
+//   return BASE_ARRAY::rear_skip_any_character_in(range, equality);
 
 //}
 
@@ -2265,7 +2293,7 @@ auto end(::range<ITERATOR_TYPE> &t)
 }
 
 template<primitive_range RANGE>
-void end_scan_null(RANGE &range)
+void end_skip_any_character_in_null(RANGE &range)
 {
 
    while (range.is_set(range.end()++));
@@ -2347,7 +2375,7 @@ template<typename ITEM, ::comparison::equality<ITEM> EQUALITY>
 constexpr bool null_terminated_ends(const ITEM *pz, const ITEM *pzSuffix, EQUALITY equality)
 {
 
-   return ::range<const ITEM *>(pz, equality).ends({pzSuffix, span_zero_item(pzSuffix)}, equality);
+   return ::range<const ITEM *>(pz, equality).ends({pzSuffix, find_first_null_character(pzSuffix)}, equality);
 
 }
 

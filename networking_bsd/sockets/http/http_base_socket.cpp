@@ -300,7 +300,7 @@ namespace sockets
    //const char * name,
    //::payload payload,
    //i32 iExpire,
-   //const char * path,
+   //const ::file::path & path,
    //const char * domain,
    //bool bSecure)
    //{
@@ -361,7 +361,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea, const scoped_string & strContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < int_array >* prangea, const ::scoped_string & scopedstrContentType)
    {
 
       ::file::path pcsz(pcszParam);

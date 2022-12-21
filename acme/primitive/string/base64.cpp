@@ -595,12 +595,12 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
 
 
-   string base64::decode(const scoped_string & strBase64)
+   string base64::decode(const ::scoped_string & scopedstrBase64)
    {
 
       memory storage;
 
-      decode(storage, pszBase64);
+      decode(storage, scopedstrBase64);
 
       string str;
 
@@ -616,12 +616,10 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    }
 
 
-   bool base64::decode(memory_base & storageBinary, const scoped_string & strBase64, strsize s)
+   bool base64::decode(memory_base & storageBinary, const ::scoped_string & scopedstrBase64)
    {
 
-      string str(pszBase64, s);
-
-      ::memory_file fileIn(str);
+      ::memory_file fileIn(scopedstrBase64);
 
       memory_file fileOut(storageBinary);
 
@@ -630,12 +628,10 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    }
 
 
-   i64 base64::decode(const ::block & block, const scoped_string & strBase64, strsize s)
+   i64 base64::decode(const ::block & block, const ::scoped_string & scopedstrBase64)
    {
 
-      string str(pszBase64, s);
-
-      ::memory_file fileIn(str);
+      ::memory_file fileIn(scopedstrBase64);
 
       return decode(block, &fileIn);
 
@@ -660,7 +656,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    //}
 
 
-   //bool base64::decode(::matter & matter, const scoped_string & strBase64)
+   //bool base64::decode(::matter & matter, const ::scoped_string & scopedstrBase64)
    //{
 
    //   ::string_buffer fileIn(pszBase64);

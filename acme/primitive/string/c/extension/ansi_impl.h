@@ -45,6 +45,37 @@ inline ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_
 }
 
 
+inline ::ansi_character * ansi_concatenate(::ansi_character * psz, const ::ansi_character * cat, strsize n)
+{
+
+   auto destination = psz;
+
+   if (::is_null(psz)) return nullptr;
+
+   if (::is_null(cat)) return nullptr;
+
+   psz += strlen(psz);
+
+   while(n > 0)
+   {
+
+      *psz = *cat;
+
+      psz++;
+
+      cat++;
+
+      n--;
+
+   }
+
+   *psz = '\0';
+
+   return destination;
+
+}
+
+
 inline ::ansi_character * ansi_copy(::ansi_character * psz, const ::ansi_character * cpy)
 {
 

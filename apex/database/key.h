@@ -24,13 +24,13 @@ namespace database
       key(string strDataKey, bool bLocalData = false);
 
 
-      key(const scoped_string & strDataKey, bool bLocalData = false);
+      key(const ::scoped_string & scopedstrDataKey, bool bLocalData = false);
 
       key(const atom & idDataKey, bool bLocalData = false);
 
       key(const key & key, bool bLocalData = false);
       key & operator = (const key & key);
-      key & operator = (const scoped_string & strDataKey);
+      key & operator = (const ::scoped_string & scopedstrDataKey);
 
 
       bool operator == (const key & key) const;

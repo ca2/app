@@ -88,18 +88,18 @@ namespace text
       inline auto& operator[](const ::atom& atom) { return m_map[atom]; }
       inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 
-      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const scoped_string & str);
+      void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
       string get(const context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
       string get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
       void get(string_array & stra, const context * pcontext, const ::atom & atom) const;
       void _get(string_array & stra, const context * pcontext, const ::atom & atom) const ;
 
-      bool load(const scoped_string & strBaseDir);
+      bool load(const ::scoped_string & scopedstrBaseDir);
       bool load_uistr_file(const ::atom & idLocale, const ::atom & idSchema, ::file::file * pfile);
 
-      string body(const scoped_string & str);
+      string body(const ::scoped_string & scopedstr);
 
-      bool matches(const context * pcontext, const ::atom & atom, const scoped_string & str) const;
+      bool matches(const context * pcontext, const ::atom & atom, const ::scoped_string & scopedstr) const;
       bool begins(const context * pcontext, const ::string & str, const ::atom & atom) const;
       bool begins_eat(const context * pcontext, string & str, const ::atom & atom) const;
 
@@ -198,18 +198,18 @@ namespace text
       }
 
 
-      inline bool matches(const ::atom & atom, const scoped_string & str) const
+      inline bool matches(const ::atom & atom, const ::scoped_string & scopedstr) const
       {
 
-         return m_ptable->matches(this, atom, psz);
+         return m_ptable->matches(this, atom, scopedstr);
 
       }
 
 
-      inline bool begins(const ::atom & atom, const scoped_string & str) const
+      inline bool begins(const ::atom & atom, const ::scoped_string & scopedstr) const
       {
 
-         return m_ptable->begins(this, atom, psz);
+         return m_ptable->begins(this, atom, scopedstr);
 
       }
 
@@ -245,9 +245,9 @@ namespace text
 
       }
 
-      //virtual bool match(const regex * pregexp, string_array & stra, const scoped_string & str, atom pszExp, atom pszRoot);
+      //virtual bool match(const regex * pregexp, string_array & stra, const ::scoped_string & scopedstr, atom pszExp, atom pszRoot);
 
-      //virtual bool match(string_array & stra, const scoped_string & str, ::atom pszExp, ::atom pszRoot) const;
+      //virtual bool match(string_array & stra, const ::scoped_string & scopedstr, ::atom pszExp, ::atom pszRoot) const;
 
 
    };

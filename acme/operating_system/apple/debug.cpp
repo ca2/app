@@ -7,7 +7,7 @@
 #include "debug.h"
 #include "ns_exception.h"
 
-void throw_ns_exception(enum_status estatus, const scoped_string & strName, const scoped_string & strDescription, const property_set & setUserInfo)
+void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const property_set & setUserInfo)
 {
 
    throw ns_exception(estatus, pszName, pszDescription, setUserInfo);
@@ -59,7 +59,7 @@ int __node_is_debugger_attached()
 
 
 
-void output_debug_string(const scoped_string & strOutputString)
+void output_debug_string(const ::scoped_string & scopedstrOutputString)
 {
    
    printf("%s", pszOutputString);

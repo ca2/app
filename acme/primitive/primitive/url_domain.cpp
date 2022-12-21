@@ -30,13 +30,13 @@ url_domain_base::url_domain_base()
 }
 
 
-void url_domain_base::create(const scoped_string & strServerName)
+void url_domain_base::create(const ::scoped_string & scopedstrServerName)
 {
 
-   m_strOriginalName = pszServerName;
+   m_strOriginalName = scopedstrServerName;
    if(m_strOriginalName.is_empty())
       return;
-   const scoped_string & str = m_strOriginalName;
+   const char * psz = m_strOriginalName;
    m_iCount = 1;
    while(*psz != '\0')
    {
@@ -45,13 +45,13 @@ void url_domain_base::create(const scoped_string & strServerName)
       psz++;
    }
    psz = m_strOriginalName;
-   m_bHasWww = ::string(pszServerName).case_insensitive_begins("www.");
+   m_bHasWww = ::string(scopedstrServerName).case_insensitive_begins("www.");
    if(m_bHasWww)
    {
       psz += 4;
       m_iCount--;
    }
-   const scoped_string & strEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
+   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
    m_pszTopLevel = pszEnd;
    while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
    {
@@ -87,7 +87,7 @@ void url_domain_base::create(const scoped_string & strServerName)
       m_iLenName        = m_iLenDomain;
       return;
    }
-   const scoped_string & strPreTopLevel = m_pszTopLevel - 2;
+   const char * pszPreTopLevel = m_pszTopLevel - 2;
    i32 iLenPreTopLevel = 0;
    while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
    {
@@ -104,9 +104,9 @@ void url_domain_base::create(const scoped_string & strServerName)
       throw ::exception(error_wrong_state, "not_expected");
 
    }
-   const scoped_string & strPreTopLevel2 = nullptr;
+   const char * pszPreTopLevel2 = nullptr;
    i32 iLenPreTopLevel2 = 0;
-   const scoped_string & strPreTopLevel3 = nullptr;
+   const char * pszPreTopLevel3 = nullptr;
    //      i32 iLenPreTopLevel3 = 0;
    if(m_iCount >= 4)
    {
@@ -244,12 +244,12 @@ void url_domain_base::create(const scoped_string & strServerName)
 }
 
 
-string url_domain_base::get_name(const scoped_string & strServerName)
+string url_domain_base::get_name(const ::scoped_string & scopedstrServerName)
 {
 
    url_domain domainaxis;
 
-   domainaxis.create(pszServerName);
+   domainaxis.create(scopedstrServerName);
 
    if(domainaxis.m_pszName != nullptr)
       return string(domainaxis.m_pszName, domainaxis.m_iLenName);
@@ -259,10 +259,10 @@ string url_domain_base::get_name(const scoped_string & strServerName)
 }
 
 
-void url_domain::create(const scoped_string & strServerName)
+void url_domain::create(const ::scoped_string & scopedstrServerName)
 {
 
-   url_domain_base::create(pszServerName);
+   url_domain_base::create(scopedstrServerName);
 
    if(m_pszRadix != nullptr)
    {
@@ -321,7 +321,7 @@ void url_domain::create(const scoped_string & strServerName)
 }
 
 
-bool CLASS_DECL_ACME server_is_top_domain(const scoped_string & strTop1, strsize blen, const scoped_string & strTop2, strsize alen)
+bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
 {
    char a1;
    char a2;

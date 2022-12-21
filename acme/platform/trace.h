@@ -87,7 +87,7 @@ public:
    }
 
 
-   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFunction, const scoped_string & strFileName, i32 nLine, const scoped_string & str) override;
+   //void print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 nLine, const ::scoped_string & scopedstr) override;
 
 
 };

@@ -20,7 +20,7 @@ public:
 
    inline void set_topic_text(const ::string & strTopicText) { m_strTopicText = strTopicText; }
 
-   inline const char * topic_text() const { return m_strTopicText; }
+   inline const char * topic_text() const { return m_strTopicText.c_str(); }
 
    //void destroy(::object* pReferer);
 

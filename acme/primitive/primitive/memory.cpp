@@ -194,14 +194,14 @@ memory::memory(const memory & s)
 }
 
 
-memory::memory(const scoped_string & str)
+memory::memory(const ::scoped_string & scopedstr)
 {
 
-   this->m_pprimitivememory   = this;
-   this->m_beginStorage = (byte *) psz;
-   this->m_begin              = this->storage_begin();
-   this->m_sizeStorage          = strlen(psz);
-   this->m_end = this->m_begin + this->m_sizeStorage;
+   this->m_pprimitivememory      = this;
+   this->m_beginStorage          = (::byte *) scopedstr.begin();
+   this->m_begin                 = this->m_beginStorage;
+   this->m_end                   = (::byte *) scopedstr.end();
+   this->m_sizeStorage           = scopedstr.size();
    m_bAligned                    = false;
 
 }

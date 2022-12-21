@@ -14,7 +14,7 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const string& strAsc);
 
 
-   CLASS_DECL_ACME i64 to_i64(const char * pcsz);
+   CLASS_DECL_ACME i64 to_i64(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME u64 to_u64(const string & pcsz);
 
@@ -151,21 +151,28 @@ namespace hex
 
 
    template < typename INTEGER >
-   inline string lower_pad_from(INTEGER iValue,int iWidth)
+   inline string lower_pad_from(INTEGER iValue, int iWidth)
    {
+
       string str = lower_from(iValue);
-      while(str.get_length() < iWidth)
+
+      while(str.length() < iWidth)
       {
+
          str = "0" + str;
+
       }
+
       return str;
+
    }
+
 
    template < typename INTEGER >
    inline string upper_pad_from(INTEGER iValue,int iWidth)
    {
       string str = upper_from(iValue);
-      while(str.get_length() < iWidth)
+      while(str.length() < iWidth)
       {
          str = "0" + str;
       }
@@ -180,7 +187,7 @@ namespace hex
 #endif
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 
-   u16 parse_u16_exc(const char *& psz, const scoped_string & strEnd);
+   u16 parse_u16_exc(const char *& psz, const ::ansi_character * pszEnd);
 
 
 } // namespace hex

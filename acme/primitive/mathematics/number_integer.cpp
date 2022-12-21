@@ -6,7 +6,7 @@ namespace mathematics
 {
 
 
-   void number_integer::set_value_string(const scoped_string & str)
+   void number_integer::set_value_string(const ::scoped_string & scopedstr)
    {
    }
 

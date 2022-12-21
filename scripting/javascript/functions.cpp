@@ -90,7 +90,7 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 
 bool is_only_digits(const ::string & strParam)
 {
-   const scoped_string & str = strParam;
+   const ::scoped_string & scopedstr = strParam;
    if(psz == nullptr || *psz == '\0')
       return false;
    while(true)

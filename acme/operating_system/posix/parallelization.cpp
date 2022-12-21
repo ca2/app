@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <sys/time.h>
 
-//void __clear_mq(const scoped_string & strDebug, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, bool bClose);
 
 namespace ansios
 {

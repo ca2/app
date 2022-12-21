@@ -88,7 +88,7 @@ namespace xcb
       static display * get();
 
 
-      virtual xcb_atom_t intern_atom(const char *pszAtomName, bool bCreate);
+      virtual xcb_atom_t intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);
       virtual xcb_atom_t intern_atom(::x11::enum_atom eatom, bool bCreate);
 
 

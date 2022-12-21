@@ -32,7 +32,7 @@ CLASS_DECL_ACME void defer_initialize_callstack()
 }
 
 
-string get_callstack(const scoped_string & strFormat, i32 iSkip, void * caller_address, int iCount)
+string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
    critical_section_lock criticalsectionlock(sym_dbg_help_critical_section());

@@ -69,7 +69,7 @@ public:
 
    virtual void on_new_instance(const ::string& strModule, const ::atom& idPid);
 
-   void interprocess_communication_open(const scoped_string & strPath);
+   void interprocess_communication_open(const ::file::path & path);
 
 };
 

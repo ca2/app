@@ -845,7 +845,7 @@ namespace mysql
    }
 
 
-   string database::escape(const scoped_string & str, strsize iLen)
+   string database::escape(const ::scoped_string & scopedstr, strsize iLen)
    {
 
       string strEscaped;

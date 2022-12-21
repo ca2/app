@@ -12,14 +12,14 @@
 
 
 
-int ui_MessageBoxA(void * oswindow, const scoped_string & strMessageParam, const scoped_string & strHeaderParam, unsigned int uType );
+int ui_MessageBoxA(void * oswindow, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrHeaderParam, unsigned int uType );
 
 
 
 CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 
 
-void message_box_synchronous(oswindow oswindow, const scoped_string & strMessage, const scoped_string & strTitle, const ::e_message_box & emessagebox, ::callback callback )
+void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback )
 {
 
    string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""

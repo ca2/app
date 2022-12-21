@@ -16,7 +16,7 @@ namespace acme
 {
 
 
-   const scoped_string & str_empty_app_id = "";
+   const ::scoped_string & scopedstr_empty_app_id = "";
 
 
    library::library()
@@ -42,7 +42,7 @@ namespace acme
    //}
 
 
-   //void library::initialize_library(::matter * pmatter,int iDesambig,const scoped_string & strRoot, const scoped_string & strName, const scoped_string & strFolder)
+   //void library::initialize_library(::matter * pmatter,int iDesambig,const ::scoped_string & scopedstrRoot, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrFolder)
    //{
 
    //   auto estatus = initialize_matter(pmatter);
@@ -132,8 +132,8 @@ namespace acme
    //}
 
 
-   //void library::open(const scoped_string & strPath,bool bAutoClose,bool bCa2Path)
-   void library::open(const scoped_string & strPath)
+   //void library::open(const ::file::path & path,bool bAutoClose,bool bCa2Path)
+   void library::open(const ::file::path & path)
    {
 
       auto psystem = acmesystem();
@@ -178,7 +178,7 @@ namespace acme
 
          //KEEP(s_plibraryLoading, this, nullptr);
 
-         m_plibrary = acmesystem()->operating_system_library_open(pszPath, m_strMessage);
+         m_plibrary = acmesystem()->operating_system_library_open(path, m_strMessage);
 
       //}
             
@@ -195,7 +195,7 @@ namespace acme
 
          //m_strPath = pszPath;
 
-         m_strName = ::file::path(pszPath).title();
+         m_strName = ::file::path(path).title();
 
       //}
       //catch(...)
@@ -527,7 +527,7 @@ namespace acme
    }
 
 
-//   string library::get_app_id(const scoped_string & strAppName)
+//   string library::get_app_id(const ::scoped_string & scopedstrAppName)
 //   {
 //
 //      auto psystem = acmesystem();
@@ -587,7 +587,7 @@ namespace acme
 //   }
 
 
-//   string library::get_app_name(const scoped_string & strAppId)
+//   string library::get_app_name(const ::scoped_string & scopedstrAppId)
 //   {
 //
 //      auto psystem = acmesystem();
@@ -800,7 +800,7 @@ namespace acme
 //   }
 
 
-   //::matter* library::new_object(const scoped_string & strClassId)
+   //::matter* library::new_object(const ::scoped_string & scopedstrClassId)
    //{
 
    //   if (!m_pca2library)
@@ -817,7 +817,7 @@ namespace acme
 
 
 
-   //bool library::contains_app(const scoped_string & strAppId)
+   //bool library::contains_app(const ::scoped_string & scopedstrAppId)
    //{
 
    //   auto psystem = acmesystem();
@@ -884,14 +884,14 @@ namespace acme
    }
 
 
-   void * library::raw_get(const scoped_string & strEntryName)
+   void * library::raw_get(const ::scoped_string & scopedstrEntryName)
    {
 
       auto psystem = acmesystem();
 
       critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
-      return acmesystem()->operating_system_library_raw_get(m_plibrary,pszEntryName);
+      return acmesystem()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
 
    }
 

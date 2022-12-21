@@ -412,7 +412,7 @@ void matter::delete_this()
 }
 
 
-//void matter::__tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, int iLine, const scoped_string & str) const
+//void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
 //{
 //
 //   acmesystem()->__tracea(elevel, pszFunction, pszFile, iLine, psz);
@@ -420,7 +420,7 @@ void matter::delete_this()
 //}
 //
 //
-//void matter::__tracef(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, ...) const
+//void matter::__tracef(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, ...) const
 //{
 //
 //   va_list valist;
@@ -434,7 +434,7 @@ void matter::delete_this()
 //}
 
 
-//void matter::__tracev(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list valist) const
+//void matter::__tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list valist) const
 //{
 //
 //   string str;
@@ -452,7 +452,7 @@ void matter::delete_this()
 //}
 
 
-//void matter::__simple_tracev(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFile, i32 iLine, const scoped_string & strFormat, va_list args) const
+//void matter::__simple_tracev(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args) const
 //{
 //
 //   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
@@ -460,7 +460,7 @@ void matter::delete_this()
 //}
 //
 //
-//void matter::__simple_tracea(enum_trace_level elevel, const scoped_string & strFunction, const scoped_string & strFileName, i32 iLine, const scoped_string & str) const
+//void matter::__simple_tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::file::path & path, i32 iLine, const ::scoped_string & scopedstr) const
 //{
 //
 //   __tracea(elevel, pszFunction, pszFileName, iLine, psz);

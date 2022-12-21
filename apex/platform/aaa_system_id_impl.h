@@ -5,7 +5,7 @@
 
 //
 //
-//inline atom::atom(const scoped_string & str)
+//inline atom::atom(const ::scoped_string & scopedstr)
 //{
 //
 //   m_all = {};

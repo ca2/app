@@ -46,7 +46,7 @@ void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 }
 
 
-bool folder::locate_file(const scoped_string & strFileName)
+bool folder::locate_file(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -56,7 +56,7 @@ bool folder::locate_file(const scoped_string & strFileName)
 }
 
 
-bool folder::locate_folder(const scoped_string & strFolderName)
+bool folder::locate_folder(const ::file::path & pathFolderName)
 {
 
    throw ::interface_only();
@@ -76,7 +76,7 @@ bool folder::locate(const ::function < bool(const char*) >& function)
 }
 
 
-::file_pointer folder::get_file(const scoped_string & strFile)
+::file_pointer folder::get_file(const ::file::path & pathFile)
 {
 
    throw ::interface_only();
@@ -86,7 +86,7 @@ bool folder::locate(const ::function < bool(const char*) >& function)
 }
 
    
-bool folder::has_sub_folder(const scoped_string & strFileName)
+bool folder::has_sub_folder(const ::file::path & path)
 {
 
    return false;
@@ -94,7 +94,7 @@ bool folder::has_sub_folder(const scoped_string & strFileName)
 }
 
 
-void folder::extract(memory& m, const scoped_string & strFile)
+void folder::extract(memory& m, const ::file::path & pathFile)
 {
 
    throw ::interface_only();
@@ -104,7 +104,7 @@ void folder::extract(memory& m, const scoped_string & strFile)
 }
 
 
-bool folder::is_compressed(const scoped_string & strFileName)
+bool folder::is_compressed(const ::file::path & path)
 {
 
    return false;
@@ -112,7 +112,7 @@ bool folder::is_compressed(const scoped_string & strFileName)
 }
 
 
-void folder::e_extract_all(const scoped_string & strTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
 {
 
    throw ::interface_only();
@@ -168,24 +168,24 @@ void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
 }
 
 
-::file::enum_type folder::type(const scoped_string & strItem)
+::file::enum_type folder::type(const ::file::path & pathItem)
 {
 
-   if (::is_empty(pszItem))
+   if (pathItem.is_empty())
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   if (locate_file(pszItem))
+   if (locate_file(pathItem))
    {
 
       return ::file::e_type_file;
 
    }
 
-   if (locate_folder(pszItem))
+   if (locate_folder(pathItem))
    {
 
       return ::file::e_type_folder;

@@ -49,7 +49,7 @@
 //#include "acme/platform/system_impl.h"
 #include "acme/primitive/string/base64.h"
 
-int file_put_contents(const char* path, const char* contents);;
+int file_put_contents(const ::file::path & path, const char* contents);;
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 

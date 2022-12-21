@@ -68,9 +68,9 @@
 
 
 //#if defined(ANDROID)
-//CLASS_DECL_ACME string unwind_callstack(const scoped_string & strFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//CLASS_DECL_ACME string unwind_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
-//CLASS_DECL_ACME string get_callstack(const scoped_string & strFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+//CLASS_DECL_ACME string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
 //#endif
 
 
@@ -81,9 +81,9 @@
 //   //static void global_enable_stack_trace(bool bEnable = true);
 //   static const char* default_format() { return "%f(%l) %s\n"; }
 //
-//   //string get_dup(const scoped_string & strFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//   //string get_dup(const ::scoped_string & scopedstrFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //
-//   void trace(const scoped_string & strFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//   void trace(const ::scoped_string & scopedstrFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //
 //   //string xxxstack_trace() const;
 //

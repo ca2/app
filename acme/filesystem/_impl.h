@@ -550,16 +550,16 @@ namespace file
 
 
 //inline ::file::path operator + (const ::string & str,const ::file::path & path) { return ::file::path(str + string(path)); }
-//inline ::file::path operator + (const scoped_string & str,const ::file::path & path) {  return ::file::path(psz + string(path)); }
+//inline ::file::path operator + (const ::scoped_string & scopedstr,const ::file::path & path) {  return ::file::path(psz + string(path)); }
 // xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.string() + string(path)); }
 //inline ::file::path operator / (const ::string & str,const ::file::path & path) { ::file::path point_i32(str);  return point / path; }
-//inline ::file::path operator / (const scoped_string & str,const ::file::path & path) { ::file::path point_i32(psz);  return point / path; }
+//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path point_i32(psz);  return point / path; }
 // xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path point_i32(payload.get_file_path());  return point / path; }
 
 
 
 // template < class ARRAY >
-// bool file_put_array(const char * path, ARRAY & a, ::acme::application * papp)
+// bool file_put_array(const ::file::path & path, ARRAY & a, ::acme::application * papp)
 // {
 
 
@@ -616,7 +616,7 @@ namespace file
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const char * path, ::acme::application * papp)
+// bool file_as_array(ARRAY & a, const ::file::path & path, ::acme::application * papp)
 // {
 
 //   try

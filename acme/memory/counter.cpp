@@ -78,22 +78,22 @@ void memory_counter::initialize(::particle * pparticle)
 //
 //
 
-void memory_counter::increment_by_name(const scoped_string & str)
+void memory_counter::increment_by_name(const ::scoped_string & scopedstr)
 {
 
    critical_section_lock lock(&m_criticalsection);
 
-   m_mapMemoryCounter[psz]++;
+   m_mapMemoryCounter[scopedstr]++;
 
 }
 
 
-void memory_counter::decrement_by_name(const scoped_string & str)
+void memory_counter::decrement_by_name(const ::scoped_string & scopedstr)
 {
 
    critical_section_lock lock(&m_criticalsection);
 
-   m_mapMemoryCounter[psz]--;
+   m_mapMemoryCounter[scopedstr]--;
 
 }
 

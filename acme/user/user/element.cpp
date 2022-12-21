@@ -2845,7 +2845,7 @@ namespace user
    ::index element::item_index(const ::atom & atom) const
    {
 
-      auto iIndex = atom.index();
+      auto iIndex = atom.as_index();
 
       if(!m_pitema->is_index_ok(iIndex))
       {

@@ -10,27 +10,27 @@
 #endif
 
 
-//CLASS_DECL_ACME int_bool dir_mk(const scoped_string & str);
+//CLASS_DECL_ACME int_bool dir_mk(const ::scoped_string & scopedstr);
 //CLASS_DECL_ACME int_bool dir_appdata(char * psz, size_t size);
-//CLASS_DECL_ACME int_bool file_is_true_dup(const char * path);
+//CLASS_DECL_ACME int_bool file_is_true_dup(const ::file::path & path);
 
-//CLASS_DECL_ACME int_bool file_path_is_relative(const scoped_string & str);
+//CLASS_DECL_ACME int_bool file_path_is_relative(const ::scoped_string & scopedstr);
 
-//CLASS_DECL_ACME int_bool acmefile()->exists(const char * path);
-
-
-//CLASS_DECL_ACME int_bool is_file_ok(const char * path1, const scoped_string & strTemplate);
-//CLASS_DECL_ACME int_bool xxxfile_put_contents(const char * path, const void * contents, memsize len);
-//CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * lpszName, const scoped_string & strExtension);
-//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const scoped_string & strExtension, const scoped_string & strTemplate);
-//CLASS_DECL_ACME filesize file_length(const char * path);
+//CLASS_DECL_ACME int_bool acmefile()->exists(const ::file::path & path);
 
 
+//CLASS_DECL_ACME int_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const void * contents, memsize len);
+//CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * lpszName, const ::scoped_string & scopedstrExtension);
+//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME filesize file_length(const ::file::path & path);
 
-//CLASS_DECL_ACME bool file_path_is_equal(const scoped_string & strPath1, const scoped_string & strPath2);
 
 
-//CLASS_DECL_ACME int_bool file_copy_dup(const scoped_string & strDup, const scoped_string & strSrc, int_bool bOverwrite);
+//CLASS_DECL_ACME bool file_path_is_equal(const ::file::path & path1, const ::file::path & path2);
+
+
+//CLASS_DECL_ACME int_bool file_copy_dup(const ::scoped_string & scopedstrDup, const ::scoped_string & scopedstrSrc, int_bool bOverwrite);
 
 
 //CLASS_DECL_ACME void _init_FILE();
@@ -49,7 +49,7 @@
 //CLASS_DECL_ACME i32 FILE_error(FILE *s);
 //CLASS_DECL_ACME i32 FILE_flush(FILE *s);
 //CLASS_DECL_ACME filesize FILE_get_size(FILE *s);
-//CLASS_DECL_ACME i32 FILE_touch(const scoped_string & str);
+//CLASS_DECL_ACME i32 FILE_touch(const ::scoped_string & scopedstr);
 //
 //
 //#ifdef WINDOWS
@@ -83,15 +83,15 @@
 ////typedef i64   filesize;
 //
 
-CLASS_DECL_ACME bool is_directory(const char * path);
+CLASS_DECL_ACME bool is_directory(const ::file::path & path);
 
-CLASS_DECL_ACME void create_directory(const char * path);
+CLASS_DECL_ACME void create_directory(const ::file::path & path);
 
-CLASS_DECL_ACME void erase_directory(const char* path);
+CLASS_DECL_ACME void erase_directory(const ::file::path & path);
 
-CLASS_DECL_ACME bool file_exists(const char * path);
+CLASS_DECL_ACME bool file_exists(const ::file::path & path);
 
-CLASS_DECL_ACME void file_delete(const char * path);
+CLASS_DECL_ACME void file_delete(const ::file::path & path);
 
 
 

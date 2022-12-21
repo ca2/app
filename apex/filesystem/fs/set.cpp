@@ -398,7 +398,7 @@ namespace fs
    //}
 
 
-   //string set::eat_end_level(const scoped_string & str, i32 iLevel)
+   //string set::eat_end_level(const ::scoped_string & scopedstr, i32 iLevel)
    //{
 
    //   ::fs::data * pdata = path_data(psz);
@@ -413,7 +413,7 @@ namespace fs
    //}
 
 
-   //string set::dir_path(const scoped_string & strPath1, const scoped_string & strPath2)
+   //string set::dir_path(const ::file::path & path1, const ::file::path & path2)
    //{
 
    //   ::fs::data * pdata = path_data(pszPath1);

@@ -57,7 +57,7 @@ public:
    memsize storage_size() const { return m_pmemory->storage_size(); }
 
    void from_string(const ::wide_character * pwsz);
-   void from_string(const scoped_string & str);
+   void from_string(const ::scoped_string & scopedstr);
    void from_string(const ::string & str);
    template < primitive_payload PAYLOAD >
    void from_string(const PAYLOAD & payload);
@@ -156,13 +156,13 @@ inline void memory_container ::from_string(const ::wide_character * pwsz)
 }
 
 
-inline void memory_container ::from_string(const scoped_string & str)
+inline void memory_container ::from_string(const ::scoped_string & scopedstr)
 {
 
    if(m_pmemory.is_null())
       m_pmemory = create_memory();
 
-   m_pmemory->from_string(psz);
+   m_pmemory->from_string(scopedstr);
 
 }
 

@@ -4,7 +4,7 @@
 // static char * g_pszCacheDir;
 
 
-// CLASS_DECL_EXPORT void nodeos_set_cache_dir(const scoped_string & strDir)
+// CLASS_DECL_EXPORT void nodeos_set_cache_dir(const ::scoped_string & scopedstrDir)
 // {
 
 //    if (g_pszCacheDir != nullptr)
@@ -30,7 +30,7 @@
 // static char * g_pszHome;
 
 
-// CLASS_DECL_EXPORT void nodeos_set_home(const scoped_string & strDir)
+// CLASS_DECL_EXPORT void nodeos_set_home(const ::scoped_string & scopedstrDir)
 // {
 
 //    if (g_pszHome != nullptr)
@@ -56,7 +56,7 @@
 // static char * g_pszTemp = nullptr;
 
 
-// CLASS_DECL_EXPORT void nodeos_set_temp(const scoped_string & strDir)
+// CLASS_DECL_EXPORT void nodeos_set_temp(const ::scoped_string & scopedstrDir)
 // {
 
 //    if (g_pszTemp != nullptr)

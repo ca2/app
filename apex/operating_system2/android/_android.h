@@ -9,7 +9,7 @@ CLASS_DECL_APEX void os_shell_initialize();
 
 string get_error_message(::u32 dwError);
 
-//::application* win_instantiate_application(::apex::application* pappSystem, const scoped_string & strId);
+//::application* win_instantiate_application(::apex::application* pappSystem, const ::scoped_string & scopedstrId);
 
 
 #include "android1.h"

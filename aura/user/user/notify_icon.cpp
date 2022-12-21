@@ -133,7 +133,7 @@ namespace user
    }
 
 
-   void notify_icon::call_notification_area_action(const scoped_string & strId)
+   void notify_icon::call_notification_area_action(const ::scoped_string & scopedstrId)
    {
 
       ::atom atom(pszId);

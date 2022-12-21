@@ -127,7 +127,7 @@ namespace android
 //         WCHAR wszPath[_MAX_PATH * 6];
 //         string strPath;
 //
-//         const scoped_string & strPathParam = imagekey.m_strPath;
+//         const ::file::path & pathParam = imagekey.m_strPath;
 //
 //         HICON hicon16 = nullptr;
 //         HICON hicon48 = nullptr;

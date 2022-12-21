@@ -40,7 +40,7 @@ public:
    template < primitive_integral INTEGRAL >
    comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   comparable_array(const_iterator begin) : BASE_ARRAY(begin, span_zero_item(begin)) {}
+   comparable_array(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
 
 
    using ARRAY_TYPE::operator =;

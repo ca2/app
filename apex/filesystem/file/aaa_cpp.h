@@ -13,7 +13,7 @@
 
 
 
-//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const char * path, ::file::enum_type * petype);
+//CLASS_DECL_APEX int_bool acmepath()->is_file_or_dir(const ::file::path & path, ::file::enum_type * petype);
 
 
 

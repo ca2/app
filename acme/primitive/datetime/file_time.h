@@ -118,23 +118,23 @@ namespace earth
 } // namespace earth
 
 
-CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds);
+CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds);
 
 
-CLASS_DECL_ACME bool get_file_time_set(const scoped_string & str, file_time_set & time);
+CLASS_DECL_ACME bool get_file_time_set(const ::scoped_string & scopedstr, file_time_set & time);
 
-CLASS_DECL_ACME bool get_file_time_set(const scoped_string & str, file_time & creation, file_time & modified);
+CLASS_DECL_ACME bool get_file_time_set(const ::scoped_string & scopedstr, file_time & creation, file_time & modified);
 
-CLASS_DECL_ACME bool set_modified_file_time(const scoped_string & str, const ::earth::time & time);
+CLASS_DECL_ACME bool set_modified_file_time(const ::scoped_string & scopedstr, const ::earth::time & time);
 
-CLASS_DECL_ACME bool set_modified_file_time(const scoped_string & str, const file_time & modified);
+CLASS_DECL_ACME bool set_modified_file_time(const ::scoped_string & scopedstr, const file_time & modified);
 
-inline file_time_set get_file_time_set(const scoped_string & str)
+inline file_time_set get_file_time_set(const ::scoped_string & scopedstr)
 {
 
    file_time_set file_timeset;
 
-   if (!get_file_time_set(str, file_timeset))
+   if (!get_file_time_set(scopedstr, file_timeset))
    {
 
       file_time_set timeNull = {};

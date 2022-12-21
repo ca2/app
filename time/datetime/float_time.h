@@ -1037,7 +1037,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
       const char * lpszDate = strDate;
 
-      const scoped_string & strDate = (lpszDate == NULL) ? "" : lpszDate;
+      const ::scoped_string & scopedstrDate = (lpszDate == NULL) ? "" : lpszDate;
 
       HRESULT hr;
 

@@ -30,7 +30,7 @@ namespace ansios
    //
    //   }
    //
-   //   const scoped_string & str;
+   //   const ::scoped_string & scopedstr;
    //
    //   synchronous_lock synchronouslock(::exception_engine().mutex());
    //

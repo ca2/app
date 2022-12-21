@@ -25,7 +25,7 @@
 //   critical_section           m_criticalsection;
 //
 //
-//   bool find(const scoped_string & strFind,index & iIndex);
+//   bool find(const ::scoped_string & scopedstrFind,index & iIndex);
 //
 //   void free_all();
 //
@@ -38,10 +38,10 @@
 //   virtual ~atom_space();
 //
 //
-//   const char * get_id(const scoped_string & strFind);
+//   const char * get_id(const ::scoped_string & scopedstrFind);
 //
 //
-//   atom operator()(const scoped_string & str);
+//   atom operator()(const ::scoped_string & scopedstr);
 //   atom operator()(i64 i);
 //
 //   static atom_space *                            s_pidspace;
@@ -65,7 +65,7 @@
 //
 //
 //   void sort();
-//   bool find(const scoped_string & str, index & iIndex) const;
+//   bool find(const ::scoped_string & scopedstr, index & iIndex) const;
 //
 //
 //public:

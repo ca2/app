@@ -127,21 +127,21 @@ void particle::defer_create_synchronization()
 }
 
 
-const char * __sz_defer_skip(const scoped_string & str, const scoped_string & strSkip)
+const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
 {
 
-   auto len = strlen(pszSkip);
+   auto len = scopedstrSkip.size();
 
-   auto n = strncmp(psz, pszSkip, len);
+   auto n = strncmp(scopedstr.begin(), scopedstrSkip.begin(), len);
 
    if(n)
    {
 
-      return psz;
+      return scopedstr.begin();
 
    }
 
-   return psz + len;
+   return scopedstr.begin() + len;
 
 }
 
@@ -572,7 +572,7 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 
 
 
-void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
 
@@ -581,7 +581,7 @@ void particle::trace_arguments(enum_trace_level etracelevel, enum_trace_category
 }
 
 
-void particle::trace_log_information_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_information_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_information, etracecategory).format_output_arguments(pszFormat, arguments);
@@ -589,7 +589,7 @@ void particle::trace_log_information_arguments(enum_trace_category etracecategor
 }
 
 
-void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_warning_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_warning, etracecategory).format_output_arguments(pszFormat, arguments);
@@ -597,7 +597,7 @@ void particle::trace_log_warning_arguments(enum_trace_category etracecategory, c
 }
 
 
-void particle::trace_log_error_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_error_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_error, etracecategory).format_output_arguments(pszFormat, arguments);
@@ -605,7 +605,7 @@ void particle::trace_log_error_arguments(enum_trace_category etracecategory, con
 }
 
 
-void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_fatal, etracecategory).format_output_arguments(pszFormat, arguments);
@@ -615,7 +615,7 @@ void particle::trace_log_fatal_arguments(enum_trace_category etracecategory, con
 
 
 
-void particle::trace_arguments(enum_trace_level etracelevel, const scoped_string & strFormat, va_list & arguments)
+void particle::trace_arguments(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments)
 {
 
 
@@ -624,7 +624,7 @@ void particle::trace_arguments(enum_trace_level etracelevel, const scoped_string
 }
 
 
-void particle::trace_log_information_arguments(const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_information_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_information, trace_category()).format_output_arguments(pszFormat, arguments);
@@ -632,7 +632,7 @@ void particle::trace_log_information_arguments(const scoped_string & strFormat, 
 }
 
 
-void particle::trace_log_warning_arguments(const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_warning_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_warning, trace_category()).format_output_arguments(pszFormat, arguments);
@@ -640,7 +640,7 @@ void particle::trace_log_warning_arguments(const scoped_string & strFormat, va_l
 }
 
 
-void particle::trace_log_error_arguments(const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_error_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_error, trace_category()).format_output_arguments(pszFormat, arguments);
@@ -648,7 +648,7 @@ void particle::trace_log_error_arguments(const scoped_string & strFormat, va_lis
 }
 
 
-void particle::trace_log_fatal_arguments(const scoped_string & strFormat, va_list & arguments)
+void particle::trace_log_fatal_arguments(const ::ansi_character * pszFormat, va_list & arguments)
 {
 
    tracer(m_pcontext, e_trace_level_fatal, trace_category()).format_output_arguments(pszFormat, arguments);
@@ -656,140 +656,140 @@ void particle::trace_log_fatal_arguments(const scoped_string & strFormat, va_lis
 }
 
 
-void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const scoped_string & str, ...)
+void particle::trace(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(etracelevel, etracecategory, psz, arguments);
+   trace_arguments(etracelevel, etracecategory, pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_information(enum_trace_category etracecategory, const scoped_string & str, ...)
+void particle::trace_log_information(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_information, etracecategory, psz, arguments);
+   trace_arguments(e_trace_level_information, etracecategory, pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_warning(enum_trace_category etracecategory, const scoped_string & str, ...)
+void particle::trace_log_warning(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_warning, etracecategory, psz, arguments);
+   trace_arguments(e_trace_level_warning, etracecategory, pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_error(enum_trace_category etracecategory, const scoped_string & str, ...)
+void particle::trace_log_error(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_error, etracecategory, psz, arguments);
+   trace_arguments(e_trace_level_error, etracecategory, pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_fatal(enum_trace_category etracecategory, const scoped_string & str, ...)
+void particle::trace_log_fatal(enum_trace_category etracecategory, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_fatal, etracecategory, psz, arguments);
+   trace_arguments(e_trace_level_fatal, etracecategory, pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace(enum_trace_level etracelevel, const scoped_string & str, ...)
+void particle::trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(etracelevel, trace_category(), psz, arguments);
+   trace_arguments(etracelevel, trace_category(), pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_information(const scoped_string & str, ...)
+void particle::trace_log_information(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_information, trace_category(), psz, arguments);
+   trace_arguments(e_trace_level_information, trace_category(), pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_warning(const scoped_string & str, ...)
+void particle::trace_log_warning(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_warning, trace_category(), psz, arguments);
+   trace_arguments(e_trace_level_warning, trace_category(), pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_error(const scoped_string & str, ...)
+void particle::trace_log_error(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_error, trace_category(), psz, arguments);
+   trace_arguments(e_trace_level_error, trace_category(), pszFormat, arguments);
 
    va_end(arguments);
 
 }
 
 
-void particle::trace_log_fatal(const scoped_string & str, ...)
+void particle::trace_log_fatal(const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
 
-   va_start(arguments, psz);
+   va_start(arguments, pszFormat);
 
-   trace_arguments(e_trace_level_fatal, trace_category(), psz, arguments);
+   trace_arguments(e_trace_level_fatal, trace_category(), pszFormat, arguments);
 
    va_end(arguments);
 
@@ -1555,7 +1555,7 @@ void particle::set_timeout(const class time & timeTimeout)
 }
 
 
-void particle::set_generic_object_name(const scoped_string & strName)
+void particle::set_generic_object_name(const ::scoped_string & scopedstrName)
 {
 
    //return ::success_none;
@@ -1563,7 +1563,7 @@ void particle::set_generic_object_name(const scoped_string & strName)
 }
 
 
-void particle::set_application_id(const scoped_string & strApplicationId)
+void particle::set_application_id(const ::scoped_string & scopedstrApplicationId)
 {
 
    //return error_none;
@@ -1571,7 +1571,7 @@ void particle::set_application_id(const scoped_string & strApplicationId)
 }
 
 
-void particle::set_library_name(const scoped_string & strLibraryName)
+void particle::set_library_name(const ::scoped_string & scopedstrLibraryName)
 {
 
    //return error_none;

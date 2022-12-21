@@ -32,7 +32,7 @@ namespace xml
       //virtual ::pointer<::xml::document>create_document(); 
 
 
-      string special_chars(const scoped_string & str);
+      string special_chars(const ::scoped_string & scopedstr);
 
       // get XML from the property considering it a node
       string from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/);

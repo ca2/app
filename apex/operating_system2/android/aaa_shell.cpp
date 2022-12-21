@@ -12,7 +12,7 @@
 //#include "shell.h"
 
 
-bool android_get_file_image(::image * pimage, const scoped_string & str);
+bool android_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
 
 
 namespace android
@@ -127,7 +127,7 @@ namespace android
 //         WCHAR wszPath[_MAX_PATH * 6];
 //         string strPath;
 //
-//         const scoped_string & strPathParam = imagekey.m_strPath;
+//         const ::file::path & pathParam = imagekey.m_strPath;
 //
 //         HICON hicon16 = nullptr;
 //         HICON hicon48 = nullptr;
@@ -1010,7 +1010,7 @@ pacmedirectory->config() / "android/app_theme" / m_strShellThemePrefix + strExte
 
 
 
-//      bool shell::get_icon( oswindow oswindow, const scoped_string & str, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool shell::get_icon( oswindow oswindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1705,7 +1705,7 @@ pacmedirectory->is(strPath))
 
 
 
-bool android_get_file_image(::image * pimage, const scoped_string & str)
+bool android_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
 {
 
    return false;

@@ -330,7 +330,7 @@
 //
 //
 //// xxx    static WH_SHSTDAPI(::u32) SHGetFileInfo(
-//// xxx       const scoped_string & strPath,
+//// xxx       const ::file::path & path,
 //// xxx       ::u32 dwFileAttributes,
 //// xxx       SHFILEINFO *psfi,
 //// xxx       ::u32 cbFileInfo,
@@ -339,9 +339,9 @@
 //   static ::u32 GetTempPath(string & str);
 //
 //   static ::u32 GetTempFileName(
-//      const scoped_string & strPath,
+//      const ::file::path & path,
 //
-//      const scoped_string & strPrefix,
+//      const ::scoped_string & scopedstrPrefix,
 //
 //      ::u32 uUnique,
 //      string & str);

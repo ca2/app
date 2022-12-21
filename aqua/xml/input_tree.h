@@ -54,19 +54,19 @@ namespace xml
 
       }
 
-      //virtual bool load_attr(const char * pcszName, bool & b);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, bool & b);
 
-      //virtual bool load_attr(const char * pcszName, double & d);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, double & d);
 
-      //virtual bool load_attr(const char * pcszName, i32 & iValue);
+      //virtual bool load_attr(const ::scoped_string & scopedstrName, i32 & iValue);
 
-      //virtual bool get_attr(const char * pcszName, string & strValue, string strDefault = "");
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, string & strValue, string strDefault = "");
 
-      //virtual bool get_attr(const char * pcszName, bool & b, bool bDefault = false);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, bool & b, bool bDefault = false);
 
-      //virtual bool get_attr(const char * pcszName, double & d, double dDefault = 0.0);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, double & d, double dDefault = 0.0);
 
-      //virtual bool get_attr(const char * pcszName, i32 & iValue, int iDefault = 0);
+      //virtual bool get_attr(const ::scoped_string & scopedstrName, i32 & iValue, int iDefault = 0);
 
       virtual void get_value(string & strValue);
 

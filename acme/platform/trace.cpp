@@ -101,7 +101,7 @@ trace_category::~trace_category()
 //}
 //
 //
-//tracer & tracer::operator << (const scoped_string & str)
+//tracer & tracer::operator << (const ::scoped_string & scopedstr)
 //{
 //
 //   m_str += string(psz);

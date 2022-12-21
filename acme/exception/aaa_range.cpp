@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-range_exception::range_exception(const scoped_string & strMessage):
+range_exception::range_exception(const ::scoped_string & scopedstrMessage):
    ::exception(pszMessage)
 {
 

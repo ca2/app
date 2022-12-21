@@ -38,7 +38,7 @@ namespace universal_windows
       virtual ~printer();
 
 
-      virtual bool open(const scoped_string & strDeviceName);
+      virtual bool open(const ::scoped_string & scopedstrDeviceName);
       virtual ::draw2d::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();

@@ -63,7 +63,7 @@ namespace http
    }
 
 
-   property_set & context::process_set(property_set & set, const scoped_string & strUrl)
+   property_set & context::process_set(property_set & set, const ::scoped_string & scopedstrUrl)
    {
 
       set["app"] = get_app();
@@ -92,7 +92,7 @@ namespace http
    }
 
 
-   bool context::get(::pointer<::sockets::http_client_socket>& psession, const scoped_string & strUrl, property_set & set)
+   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       return http_get(psession, pszUrl, process_set(set, pszUrl));
@@ -100,7 +100,7 @@ namespace http
    }
 
 
-   void context::get(memory_base * pmemory, const scoped_string & strUrl, property_set & set)
+   void context::get(memory_base * pmemory, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       set["get_memory"] = pmemory;
@@ -116,7 +116,7 @@ namespace http
    }
 
 
-   string context::api_get(const scoped_string & strUrl, property_set & set)
+   string context::api_get(const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       ::file::path url("https://api.ca2.software/");
@@ -128,7 +128,7 @@ namespace http
    }
 
 
-   string context::api_get(const scoped_string & strUrl)
+   string context::api_get(const ::scoped_string & scopedstrUrl)
    {
 
       property_set set;
@@ -140,7 +140,7 @@ namespace http
    }
 
 
-   void context::_get(const scoped_string & strUrl, property_set & set)
+   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       auto pmessage = __create_new < ::http::message >();
@@ -156,7 +156,7 @@ namespace http
    }
 
 
-   ::payload context::get(const scoped_string & strUrl, property_set & set)
+   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       set["get_response"] = ""; // create get_response field
@@ -177,7 +177,7 @@ namespace http
    }
 
 
-   void context::get(string & str, const scoped_string & strUrl, property_set & set)
+   void context::get(string & str, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       set["get_response"] = "";
@@ -191,7 +191,7 @@ namespace http
    }
 
 
-   ::file::enum_type context::get_type(const scoped_string & strUrl, ::payload * pvarQuery, property_set & set)
+   ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -290,7 +290,7 @@ namespace http
    }
 
 
-   //::payload context::length(const scoped_string & strUrl, property_set & set)
+   //::payload context::length(const ::scoped_string & scopedstrUrl, property_set & set)
    //{
 
    //   return length(pszUrl, nullptr, set);
@@ -298,7 +298,7 @@ namespace http
    //}
 
 
-   ::payload context::length(const scoped_string & strUrl, ::payload * pvarQuery, property_set & set)
+   ::payload context::length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -364,7 +364,7 @@ namespace http
    }
 
 
-   //bool context::request(const scoped_string & strRequest, const scoped_string & strUrl, property_set & set)
+   //bool context::request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, property_set & set)
    //{
 
    //   return request(pszRequest, pszUrl, process_set(set, pszUrl));
@@ -372,7 +372,7 @@ namespace http
    //}
 
 
-   //bool context::download(::pointer<::sockets::http_session>& psession, const scoped_string & strUrl, ::payload payloadFile, property_set & set)
+   //bool context::download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
    //{
 
    //   return download(psession, pszUrl, payloadFile, process_set(set, pszUrl));
@@ -380,25 +380,25 @@ namespace http
    //}
 
 
- /*  bool context::download(const scoped_string & strUrl, ::payload payloadFile, property_set & set)
+ /*  bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
    {
       return download(pszUrl, payloadFile, process_set(set, pszUrl));
    }*/
 
-   bool context::put(const scoped_string & strUrl, memory_base * pmemory, property_set & set)
+   bool context::put(const ::scoped_string & scopedstrUrl, memory_base * pmemory, property_set & set)
    {
 
       return put(pszUrl, *pmemory, process_set(set, pszUrl));
    }
 
-   //bool context::put(const scoped_string & strUrl, file_pointer  pfile, property_set & set)
+   //bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
    //{
    //   return put(pszUrl, pfile, process_set(set, pszUrl));
    //}
 
 
 
-   string context::locale_schema_url(const scoped_string & strUrl, const scoped_string & strLocale, const scoped_string & strSchema)
+   string context::locale_schema_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       string str;
@@ -427,7 +427,7 @@ namespace http
    }
 
 
-   string context::get_locale_schema(const scoped_string & strUrl, const scoped_string & strLocale, const scoped_string & strSchema)
+   string context::get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
@@ -642,7 +642,7 @@ namespace http
    }
 
 
-   context::pac * context::get_pac(const scoped_string & strUrl)
+   context::pac * context::get_pac(const ::scoped_string & scopedstrUrl)
    {
 
       single_lock synchronouslock(m_pmutexPac, true);
@@ -719,7 +719,7 @@ namespace http
    }
 
 
-   ::http::context::proxy * context::get_proxy(const scoped_string & strUrl)
+   ::http::context::proxy * context::get_proxy(const ::scoped_string & scopedstrUrl)
    {
 
       single_lock synchronouslock(m_pmutexProxy, true);
@@ -753,7 +753,7 @@ namespace http
    }
 
 
-   bool context::try_pac_script(const scoped_string & strScriptUrl, const scoped_string & strUrl, proxy * pproxy)
+   bool context::try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::scoped_string & scopedstrUrl, proxy * pproxy)
    {
 
       single_lock synchronouslock(m_pmutexPac, true);
@@ -823,7 +823,7 @@ namespace http
    }
 
 
-   void context::config_proxy(const scoped_string & strUrl, ::sockets::http_tunnel * psocket)
+   void context::config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket)
    {
 
 #ifdef _UWP
@@ -853,7 +853,7 @@ namespace http
    }
 
 
-   void context::config_proxy(const scoped_string & strUrl, ::http::context::proxy * pproxy)
+   void context::config_proxy(const ::scoped_string & scopedstrUrl, ::http::context::proxy * pproxy)
    {
 
       //throw ::exception(todo("xml"));
@@ -1198,7 +1198,7 @@ namespace http
    }
 
 
-   bool context::request(::pointer<::sockets::http_session>& psession, const scoped_string & strRequest, property_set & set)
+   bool context::request(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, property_set & set)
    {
 
 //      INFORMATION("http context request : " << pszRequest);
@@ -1711,7 +1711,7 @@ namespace http
    }
 
 
-   bool context::get(::http::session & session, const scoped_string & strUrl, string & str, property_set & set)
+   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set)
    {
 
       bool bOk = http_get(session.m_psocket, pszUrl, set);
@@ -1719,7 +1719,7 @@ namespace http
       if (bOk)
       {
 
-         const scoped_string & strData = (const char *)session.m_psocket->GetDataPtr();
+         const ::scoped_string & scopedstrData = (const char *)session.m_psocket->GetDataPtr();
 
          strsize iSize = session.m_psocket->GetContentLength();
 
@@ -1732,7 +1732,7 @@ namespace http
    }
 
 
-   string context::get(::http::session & session, const scoped_string & strUrl, property_set & set)
+   string context::get(::http::session & session, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       string str;
@@ -1750,7 +1750,7 @@ namespace http
 
 
 
-   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const scoped_string & strUrl1, property_set & set)
+   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
    {
 
       //auto ptask = ::get_task();
@@ -2576,7 +2576,7 @@ namespace http
       if (set.has_property("get_response"))
       {
 
-         const scoped_string & strData = (const char *)psocket->GetDataPtr();
+         const ::scoped_string & scopedstrData = (const char *)psocket->GetDataPtr();
 
          strsize iSize = psocket->GetContentLength();
 
@@ -2728,7 +2728,7 @@ namespace http
    }
 
 
-   bool context::download(::pointer<::sockets::http_session>& psession, const scoped_string & strRequest, ::payload payloadFile, property_set & set)
+   bool context::download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, ::payload payloadFile, property_set & set)
    {
 
       file_pointer spfile = file()->get_file(payloadFile,
@@ -2745,7 +2745,7 @@ namespace http
    }
 
 
-   bool context::download(const scoped_string & strUrl, ::payload payloadFile, property_set & set)
+   bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
    {
 
       auto phandler = __create < ::sockets::socket_handler >();
@@ -2786,7 +2786,7 @@ namespace http
    }
 
 
-   bool context::exists(const scoped_string & strUrl, ::property_set & set)
+   bool context::exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
       auto etype = get_type(pszUrl, set);
@@ -2796,7 +2796,7 @@ namespace http
    }
 
 
-   ::file::enum_type context::get_type(const scoped_string & strUrl, ::property_set & set)
+   ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
       single_lock synchronouslock(m_pmutexDownload, true);
@@ -2872,7 +2872,7 @@ namespace http
    }
 
 
-   ::payload context::length(const scoped_string & strUrl, ::property_set & set)
+   ::payload context::length(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
       set["only_headers"] = true;
@@ -3043,7 +3043,7 @@ namespace http
    //}
 
 
-   bool context::put(const scoped_string & strUrl, memory_base & memory, property_set & set)
+   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set)
    {
 
       ::memory_file file(memory);
@@ -3053,7 +3053,7 @@ namespace http
    }
 
 
-   bool context::put(const scoped_string & strUrl, file_pointer  pfile, property_set & set)
+   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
    {
 
       set["put"] = pfile;
@@ -3065,7 +3065,7 @@ namespace http
    }
 
 
-   bool context::request(const scoped_string & strMethod, const scoped_string & strUrl, property_set & set)
+   bool context::request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       set["http_method"] = pszMethod;

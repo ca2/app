@@ -38,7 +38,7 @@ public:
    void on_destroy() override;
 
 
-   virtual i32 image_integer(const char * path);
+   virtual i32 image_integer(const ::file::path & path);
    virtual i32 create_image_integer(int w, int h, const color32_t * pcolor, int iScan = -1);
    virtual image_pointer integer_image(i32 i);
    virtual image_pointer path_image(const char *);

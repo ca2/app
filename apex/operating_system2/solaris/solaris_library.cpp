@@ -14,7 +14,7 @@ namespace ca
    }
 
 
-   library::library(const scoped_string & strOpen)
+   library::library(const ::scoped_string & scopedstrOpen)
    {
 
       m_plibrary = nullptr;
@@ -32,7 +32,7 @@ namespace ca
    }
 
 
-   bool library::open(const scoped_string & strPath)
+   bool library::open(const ::file::path & path)
    {
 
       vsstring strPath(pszPath);
@@ -59,9 +59,9 @@ namespace ca
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
       int iError = errno;
 
-      const scoped_string & str = strerror(iError);
+      const ::scoped_string & scopedstr = strerror(iError);
 
-      const scoped_string & str2 = dlerror();
+      const ::scoped_string & scopedstr2 = dlerror();
 
       return m_plibrary != nullptr;
 
@@ -77,7 +77,7 @@ namespace ca
    }
 
 
-   void * library::raw_get(const scoped_string & strElement)
+   void * library::raw_get(const ::scoped_string & scopedstrElement)
    {
       return dlsym(m_plibrary, pszElement);
    }
@@ -86,7 +86,7 @@ namespace ca
    {
    }
 
-   ca2_library::ca2_library(const scoped_string & strOpen) :
+   ca2_library::ca2_library(const ::scoped_string & scopedstrOpen) :
       library(pszOpen)
    {
 
@@ -97,7 +97,7 @@ namespace ca
 
    }
 
-   bool ca2_library::open(const scoped_string & strPath)
+   bool ca2_library::open(const ::file::path & path)
    {
       return library::open(pszPath);
    }

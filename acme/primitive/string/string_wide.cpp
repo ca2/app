@@ -31,7 +31,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //const unichar * wstring::g_pszWindowsBB(L"\\\\");
 //
 //
-//wstring::wstring(const scoped_string & str)
+//wstring::wstring(const ::scoped_string & scopedstr)
 //{
 //
 //   operator = (psz);
@@ -161,7 +161,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //}
 //
-//wstring& wstring::operator = (const scoped_string & str)
+//wstring& wstring::operator = (const ::scoped_string & scopedstr)
 //{
 //   assign(psz);
 //
@@ -171,7 +171,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //
 //
-//void wstring::assign(const scoped_string & str)
+//void wstring::assign(const ::scoped_string & scopedstr)
 //{
 //
 //   if (::is_null(psz) || *psz == '\0')
@@ -229,7 +229,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //}
 //
 //
-//wstring gen_utf8_to_16(const scoped_string & str)
+//wstring gen_utf8_to_16(const ::scoped_string & scopedstr)
 //{
 //
 //   wstring wstr;

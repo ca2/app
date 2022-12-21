@@ -376,7 +376,7 @@ Object::~Object() { }
 
 
 
-::image_pointer ___load_image(::particle * pparticle, const char * path)
+::image_pointer ___load_image(::particle * pparticle, const ::file::path & path)
 {
 
    return pparticle->m_pcontext->context_image()->path_image(path);
@@ -384,7 +384,7 @@ Object::~Object() { }
 }
 
 
-void ___save_image(::particle * pparticle, const char * path, ::image * pimage)
+void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage)
 {
 
    return pparticle->m_pcontext->context_image()->save_image(path, pimage);

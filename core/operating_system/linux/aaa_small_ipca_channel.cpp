@@ -168,7 +168,7 @@ namespace aura
                   }
                   */
 
-         //const scoped_string & strMessage = (const ::string &)pdata;
+         //const ::scoped_string & scopedstrMessage = (const ::string &)pdata;
 
          ::memcpy_dup(pdata->data,p,iLen);
 

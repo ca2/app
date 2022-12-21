@@ -68,9 +68,11 @@ namespace file
          last += this->get_count();
       for(; find <= last; find++)
       {
-         if(ansi_icmp(this->element_at(find).name(), pcsz) == 0)
+         if(this->element_at(find).name().case_insensitive_equals(pcsz)) {
 
             return find;
+
+         }
       }
       return -1;
    }
@@ -225,7 +227,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
    for (auto & strCriteria : straCriteria)
    {
 
-      if (matches_wildcard_criteria(strCriteria, strValue))
+      if (matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
       {
 
          return true;
@@ -259,7 +261,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
 
       }
 
-      if (matches_wildcard_criteria_ci(strCriteria, strValue))
+      if (matches_wildcard_criteria_ci(strCriteria.c_str(), strValue.c_str()))
       {
 
          return true;

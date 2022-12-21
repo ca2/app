@@ -50,7 +50,7 @@ public:
    operator TYPE() const;
 
    //string get_name();
-   //void set_by_name(const scoped_string & str);
+   //void set_by_name(const ::scoped_string & scopedstr);
 
 };
 
@@ -167,7 +167,7 @@ base_enum<TYPE, edefault>::get_name()
 template <class TYPE, TYPE edefault>
 void
 base_enum<TYPE, edefault>::
-set_by_name(const scoped_string & str)
+set_by_name(const ::scoped_string & scopedstr)
 {
    m_evalue = from_name(psz, edefault);
 }*/

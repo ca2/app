@@ -48,7 +48,7 @@
 //      ~application() override;
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::scoped_string & scopedstr);
 //      virtual void _001EnableShellOpen();
 ////      virtual ::user::document * _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();
@@ -198,7 +198,7 @@
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual u32 get_thread_id();
 //
-//      //::pointer<::user::printer>get_printer(const scoped_string & strDeviceName);
+//      //::pointer<::user::printer>get_printer(const ::scoped_string & scopedstrDeviceName);
 //
 //
 //      void show_wait_cursor(bool bShow);

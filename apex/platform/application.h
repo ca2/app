@@ -1108,7 +1108,7 @@ namespace apex
 
 
       bool _handle_uri(const ::string & strUri) override;
-      //bool on_interprocess_handle(const scoped_string & strUri) override;
+      //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;
 
 
    };

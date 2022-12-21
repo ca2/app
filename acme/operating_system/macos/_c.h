@@ -24,5 +24,5 @@
 //
 //
 //i32 run_system();
-//i32 acme_main_command_line(const scoped_string & strParams, int argc, char *argv[]);
+//i32 acme_main_command_line(const ::scoped_string & scopedstrParams, int argc, char *argv[]);
 

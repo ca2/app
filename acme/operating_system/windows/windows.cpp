@@ -499,7 +499,7 @@ void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-string read_resource_as_string(hinstance hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount = -1)
+string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)
 {
 
    HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(pcszType));
@@ -573,7 +573,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 }
 
 
-// CLASS_DECL_ACME void operating_system_open_url(const scoped_string & strUrl)
+// CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl)
 // {
 
 //    wstring wstrUrl(pszUrl);

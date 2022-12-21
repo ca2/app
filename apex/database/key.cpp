@@ -51,10 +51,10 @@ namespace database
    }
 
 
-   key::key(const scoped_string & strDataKey, bool bLocalData)
+   key::key(const ::scoped_string & scopedstrDataKey, bool bLocalData)
    {
 
-      m_strDataKey = pszDataKey;
+      m_strDataKey = scopedstrDataKey;
 
       m_bLocalData = bLocalData;
 
@@ -93,10 +93,10 @@ namespace database
    }
 
 
-   key & key::operator = (const scoped_string & strDataKey)
+   key & key::operator = (const ::scoped_string & scopedstrDataKey)
    {
 
-      m_strDataKey = pszDataKey;
+      m_strDataKey = scopedstrDataKey;
 
       return *this;
 

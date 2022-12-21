@@ -34,7 +34,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
          m.set_at(key, value);
       }
    }
-   catch (const scoped_string & str)
+   catch (const ::scoped_string & scopedstr)
    {
       m.erase_all();
       throw ::exception(psz);

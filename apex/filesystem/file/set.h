@@ -37,7 +37,7 @@ namespace file
       virtual void add_filter(string_array & stra);
       virtual ::count get_file_count();
       virtual void file_at(::index i, string & str);
-      virtual ::index find_first_file(const char * pcszFilePath, ::index iStart = 0);
+      virtual ::index find_first_file(const ::scoped_string & scopedstrFilePath, ::index iStart = 0);
 
       virtual void clear_file();
       virtual void clear_search();
@@ -45,9 +45,9 @@ namespace file
       virtual void refresh();
 
       // derived
-      virtual bool get_next_file(const char * pcszCurrentFilePath, string & wstrNextFilePath);
+      virtual bool get_next_file(const ::scoped_string & scopedstrCurrentFilePath, string & wstrNextFilePath);
 
-      virtual string get_next_file(const scoped_string & str);
+      virtual string get_next_file(const ::scoped_string & scopedstr);
 
 
       virtual void initialize_os_wallpaper(bool bAddSearch);

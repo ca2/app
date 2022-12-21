@@ -228,7 +228,7 @@ void app_core::system_prep()
 //::apex::system * apex_create_apex_system();
 
 
-//CLASS_DECL_ACME void set_path_install_folder(const scoped_string & strPath);
+//CLASS_DECL_ACME void set_path_install_folder(const ::file::path & path);
 
 CLASS_DECL_ACME void set_debug_pointer(void * p);
 
@@ -241,7 +241,7 @@ void app_core::system_init()
 
    //   //string str1 = "\"teste\\\"teste2\"";
 
-   //   //const scoped_string & str = str1;
+   //   //const ::scoped_string & scopedstr = str1;
 
    //   //string str = ::str().consume_quoted_value(psz);
 
@@ -439,8 +439,8 @@ void app_core::system_init()
 
 //   {
 //
-//   const scoped_string & str = nullptr;
-//   const scoped_string & str2 = nullptr;
+//   const ::scoped_string & scopedstr = nullptr;
+//   const ::scoped_string & scopedstr2 = nullptr;
 //
 //   int iRef1 = -1;
 //   int iRef2 = -1;
@@ -1369,7 +1369,7 @@ void app_core::initialize_application(::acme::application *papp, ::particle * pp
 //}
 //
 //
-//void cube_set_app_id(const scoped_string & strAppId)
+//void cube_set_app_id(const ::scoped_string & scopedstrAppId)
 //{
 //
 //   g_pszCubeAppId = pszAppId;

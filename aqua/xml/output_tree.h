@@ -25,13 +25,13 @@ namespace xml
 
       void set_attribute(const ::atom & atom, const ::payload & payload);
 
-      //void set_attr(const char * pcszName, i64 iValue, bool bOptional = true);
+      //void set_attr(const ::scoped_string & scopedstrName, i64 iValue, bool bOptional = true);
 
-      //void set_bool_attr(const char * pcszName, bool bValue, bool bOptional = true);
+      //void set_bool_attr(const ::scoped_string & scopedstrName, bool bValue, bool bOptional = true);
 
-      //void set_double_attr(const char * pcszName, double dValue);
+      //void set_double_attr(const ::scoped_string & scopedstrName, double dValue);
 
-      void set_value(const scoped_string & strValue);
+      void set_value(const ::scoped_string & scopedstrValue);
 
       virtual node * export_node(exportable & exportable);
       virtual node * export_node(const ::string & strName, exportable & exportable);

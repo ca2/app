@@ -184,7 +184,7 @@ filesize FILE_get_size(FILE * fp)
 
    string str;
 
-   return realpath(path, str.get_string_buffer(PATH_MAX * 8));
+   return realpath(path.c_str(), str.get_string_buffer(PATH_MAX * 8));
 
 }
 
@@ -192,10 +192,10 @@ filesize FILE_get_size(FILE * fp)
 #endif
 
 
-i32 file_touch(const scoped_string & str)
+i32 file_touch(const ::scoped_string & scopedstr)
 {
 
-   FILE * pfile = ::fopen(psz, "a");
+   FILE * pfile = ::fopen(scopedstr.c_str(), "a");
 
    if (pfile == nullptr)
    {

@@ -93,7 +93,7 @@ namespace xml
    }
 
 
-   //::payload node::attr(const char * pcszName)
+   //::payload node::attr(const ::scoped_string & scopedstrName)
    //{
 
    //   return set(pcszName);
@@ -101,7 +101,7 @@ namespace xml
    //}
 
 
-   //bool node::get_attr(const char * pcszName, string & strValue)
+   //bool node::get_attr(const ::scoped_string & scopedstrName, string & strValue)
 
    //{
    //   if(!m_attra.has_property(pcszName))
@@ -112,7 +112,7 @@ namespace xml
    //   return true;
    //}
 
-   //bool node::get_attr(const char * pcszName, i32 & iValue)
+   //bool node::get_attr(const ::scoped_string & scopedstrName, i32 & iValue)
 
    //{
    //   if(!m_attra.has_property(pcszName))
@@ -123,7 +123,7 @@ namespace xml
    //   return true;
    //}
 
-   //bool node::get_attr(const char * pcszName, bool & bValue)
+   //bool node::get_attr(const ::scoped_string & scopedstrName, bool & bValue)
 
    //{
    //   if(!m_attra.has_property(pcszName))
@@ -167,7 +167,7 @@ namespace xml
    }
 
 
-   index node::find(const char * pcszName, const property_set & set, index iStart)
+   index node::find(const ::scoped_string & scopedstrName, const property_set & set, index iStart)
    {
 
       for(index i = iStart; i < m_nodea.get_count(); i++)
@@ -187,7 +187,7 @@ namespace xml
    }
 
 
-   node * node::get_child_with_attribute(const char * pcszName, const ::atom & atom, const ::payload & payload, index iStart)
+   node * node::get_child_with_attribute(const ::scoped_string & scopedstrName, const ::atom & atom, const ::payload & payload, index iStart)
    {
 
       for(index i = iStart; i < m_nodea.get_count(); i++)
@@ -207,7 +207,7 @@ namespace xml
    }
 
 
-   index node::find(const char * pcszName, index iStart)
+   index node::find(const ::scoped_string & scopedstrName, index iStart)
    {
 
       for(index i = iStart; i < m_nodea.get_count(); i++)
@@ -234,7 +234,7 @@ namespace xml
    }
    */
    /*
-   node & node::FindNode(const char * pcszName,i32 iPos)
+   node & node::FindNode(const ::scoped_string & scopedstrName,i32 iPos)
 
    {
       return GetChildNodeArray().find(pcszName, iPos);
@@ -280,7 +280,7 @@ namespace xml
    }
 
 
-   const char * node::LoadDocType( const scoped_string & strXml, parse_info * pparseinfo)
+   const char * node::LoadDocType( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
 
       auto pxml = acmesystem()->xml();
@@ -392,7 +392,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   const char * node::LoadAttributes( const scoped_string & strAttrs, parse_info * pparseinfo)
+   const char * node::LoadAttributes( const ::scoped_string & scopedstrAttrs, parse_info * pparseinfo)
    {
 
       if(pparseinfo == nullptr)
@@ -420,7 +420,7 @@ namespace xml
             }
 
             // XML Attr Name
-            const scoped_string & strEnd = ansi_scan( xml, " =" );
+            const ::ansi_character * pszEnd = ansi_scan( xml, " =" );
 
             if( pszEnd == nullptr )
             {
@@ -572,7 +572,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadProcessingInstruction( const scoped_string & strXml, parse_info * pparseinfo)
+   const char * node::LoadProcessingInstruction( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -634,7 +634,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadAttributes( const scoped_string & strAttrs, const scoped_string & strEnd, parse_info * pparseinfo)
+   const char * node::LoadAttributes( const ::scoped_string & scopedstrAttrs, const ::ansi_character * pszEnd, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -656,7 +656,7 @@ namespace xml
                return xml;
 
             // XML Attr Name
-            const scoped_string & strEnd = ansi_scan( xml, " =" );
+            const ::ansi_character * pszEnd = ansi_scan( xml, " =" );
             if( pszEnd == nullptr )
             {
                //// error
@@ -746,7 +746,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadComment( const scoped_string & strXml, parse_info * pparseinfo)
+   const char * node::LoadComment( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -799,7 +799,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadCDATA( const scoped_string & strXml, parse_info * pparseinfo)
+   const char * node::LoadCDATA( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -853,7 +853,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadOtherNodes(bool* pbRet, const scoped_string & strXml, parse_info * pparseinfo)
+   const char * node::LoadOtherNodes(bool* pbRet, const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -960,7 +960,7 @@ namespace xml
 
       auto pszEnd = pszStart + strXml.length();
 
-      const scoped_string & strNext = nullptr;
+      const ::scoped_string & scopedstrNext = nullptr;
 
       close();
 
@@ -984,7 +984,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::_load(const char *& xml, const scoped_string & strXml, const scoped_string & strEndXml, parse_info * pparseinfo)
+   void node::_load(const char *& xml, const ::scoped_string & scopedstrXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
    {
 
       ////// close it
@@ -1120,7 +1120,7 @@ namespace xml
                if (::str().trimmed_is_empty(pnode->m_strValue))
                {
                   // Text Value
-                  const scoped_string & strEnd = _tcsechr(++xml, chXMLTagOpen, chXMLEscape);
+                  const ::ansi_character * pszEnd = _tcsechr(++xml, chXMLTagOpen, chXMLEscape);
                   if (pszEnd == nullptr)
                   {
                      //if( pparseinfo->m_bErrorOccur == false )
@@ -1278,7 +1278,7 @@ namespace xml
                      if (xml && ::str().trimmed_is_empty(pnode->m_strValue) && *xml != chXMLTagOpen)
                      {
                         // Text Value
-                        const scoped_string & strEnd = _tcsechr(xml, chXMLTagOpen, chXMLEscape);
+                        const ::ansi_character * pszEnd = _tcsechr(xml, chXMLTagOpen, chXMLEscape);
                         if (pszEnd == nullptr)
                         {
                            // error cos not exist CloseTag </TAG>
@@ -1852,7 +1852,7 @@ namespace xml
       return get_child(lpszName, iStart);
    }
 
-   node *        node::get_node_from_attr_path(const char * path, const char * lpszName, const scoped_string & strAttr)
+   node *        node::get_node_from_attr_path(const ::file::path & path, const char * lpszName, const ::scoped_string & scopedstrAttr)
    {
       string_array stra;
       stra.explode("/", path);
@@ -1868,7 +1868,7 @@ namespace xml
       return pnode;
    }
 
-   string                  node::get_child_simple_attr_path(node * pnode, const scoped_string & strAttr)
+   string                  node::get_child_simple_attr_path(node * pnode, const ::scoped_string & scopedstrAttr)
    {
       string str;
       while(pnode != nullptr && pnode != this)
@@ -1885,7 +1885,7 @@ namespace xml
    }
 
 
-   node * node::get_node_from_simple_path(const char * path)
+   node * node::get_node_from_simple_path(const ::file::path & path)
    {
       string_array stra;
       stra.explode("/", path);
@@ -2110,7 +2110,7 @@ namespace xml
    }
 
 
-   ::index node::find_child_with_name_and_value(const scoped_string & strName, const scoped_string & strValue)
+   ::index node::find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
    {
       
       for (::index iNode = 0; iNode < m_nodea.count(); iNode++)
@@ -2132,7 +2132,7 @@ namespace xml
    }
 
 
-   node * node::child_with_name_and_value(const scoped_string & strName, const scoped_string & strValue)
+   node * node::child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
    {
 
       auto iIndex = find_child_with_name_and_value(pszName, pszValue);
@@ -2151,7 +2151,7 @@ namespace xml
    }
 
 
-   string node::plist_get(const scoped_string & strKey)
+   string node::plist_get(const ::scoped_string & scopedstrKey)
    {
       
       auto iKey = find_child_with_name_and_value("key", pszKey);
@@ -2187,7 +2187,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::add_child( const ::string & strName /*= nullptr*/, const scoped_string & strValue /*= nullptr*/ )
+   node * node::add_child( const ::string & strName /*= nullptr*/, const ::scoped_string & scopedstrValue /*= nullptr*/ )
    {
       
       auto pnode = __new(node((node *) this));
@@ -2205,7 +2205,7 @@ namespace xml
    }
 
 
-   node * node::add_child(const ::string & strName, const property_set & set, const scoped_string & strValue)
+   node * node::add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue)
    {
 
       auto pnode = __new(node((node *) this));
@@ -2338,7 +2338,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-// /*   attr * node::add_attr( const char * lpszName /*= nullptr*/, /*const scoped_string & strValue /*= nullptr*/ /*)
+// /*   attr * node::add_attr( const char * lpszName /*= nullptr*/, /*const ::scoped_string & scopedstrValue /*= nullptr*/ /*)
    /* {
 
        ::xml::attr * pproperty = (::xml::attr *) m_attra.add(lpszName, pszValue);
@@ -2583,7 +2583,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::get_child_attr_value(string_array & stra, const char * lpszName, const scoped_string & strAttrName, index iDepth)
+   ::count node::get_child_attr_value(string_array & stra, const char * lpszName, const ::scoped_string & scopedstrAttrName, index iDepth)
    {
 
       if(iDepth == 0)
@@ -2628,7 +2628,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::erase_child_with_attr(const char * lpszName, const scoped_string & strAttrName, index iIndex, ::count iCount, index iDepth)
+   ::count node::erase_child_with_attr(const char * lpszName, const ::scoped_string & scopedstrAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
       ::count nRemoveCount = 0;
@@ -2686,7 +2686,7 @@ namespace xml
       return count;
    }
 
-   node * node::GetChildByAttr(const char * lpszName, const scoped_string & strAttrName, const scoped_string & strAttrValue)
+   node * node::GetChildByAttr(const char * lpszName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue)
    {
       string strValue;
       for(i32 i = 0; i < m_nodea.get_size(); i++)

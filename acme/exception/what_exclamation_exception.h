@@ -11,7 +11,7 @@ class CLASS_DECL_ACME what_exclamation_exclamation :
 public:
 
 
-   what_exclamation_exclamation(const scoped_string & strMessage) :
+   what_exclamation_exclamation(const ::scoped_string & scopedstrMessage) :
       ::exception(error_what_exclamation_exclamation, pszMessage)
    {
 

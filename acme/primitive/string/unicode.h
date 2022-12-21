@@ -19,7 +19,7 @@ CLASS_DECL_ACME string wd32_to_ansi_str(const ::wd32_character * pwsz, strsize s
 CLASS_DECL_ACME string         get_utf8_char(const ::ansi_character * psz);
 int            get_utf8_char_length(const ::ansi_character * psz);
 string         get_utf8_char(const ::ansi_character * psz, const ::ansi_character * pszEnd);
-bool           get_utf8_char(string & strChar, const char *& psz, const scoped_string & strEnd);
+bool           get_utf8_char(string & strChar, const char *& psz, const ::ansi_character * pszEnd);
 string         get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i);
 string         utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
 string         utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, strsize i = 0);
@@ -359,20 +359,20 @@ inline bool unicode_is_assigned(::i32 iUniIndex);
 inline bool unicode_is_space_char(::i32 iUniIndex);
 
 
-// bool is_whitespace(const scoped_string & strUtf8Char, const scoped_string & strEnd);
+// bool is_whitespace(const ::scoped_string & scopedstrUtf8Char, const ::ansi_character * pszEnd);
 
-bool unicode_is_number(const scoped_string & strUtf8Char);
-//       bool to_numeric_value(const scoped_string & strUtf8Char, float *f);
+bool unicode_is_number(const ::scoped_string & scopedstrUtf8Char);
+//       bool to_numeric_value(const ::scoped_string & scopedstrUtf8Char, float *f);
 
 inline ECharCategory unicode_get_category(i32 i);
 inline i32 unicode_get_combining_class(i32 i);
 inline bool unicode_is_mirrored(i32 i);
 
-string unicode_get_category_name(const scoped_string & strUtf8Char);
-ECharCategory unicode_get_category(const scoped_string & strUtf8Char);
+string unicode_get_category_name(const ::scoped_string & scopedstrUtf8Char);
+ECharCategory unicode_get_category(const ::scoped_string & scopedstrUtf8Char);
 
-i32 unicode_get_combining_class(const scoped_string & strUtf8Char);
-bool unicode_is_mirrored(const scoped_string & strUtf8Char);
+i32 unicode_get_combining_class(const ::scoped_string & scopedstrUtf8Char);
+bool unicode_is_mirrored(const ::scoped_string & scopedstrUtf8Char);
 
 i32 unicode_size_of_tables();
 
@@ -407,11 +407,10 @@ inline ::string as_string(const ::acme::memory_allocate < POINTER > & memoryallo
 }
 
 
-CLASS_DECL_ACME string demangle(const scoped_string & str);
+CLASS_DECL_ACME string demangle(const char * pszMangledName);
 
 
 CLASS_DECL_ACME void copy(::string & str, const particle & particle);
-
 
 
 CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);

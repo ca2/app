@@ -46,7 +46,7 @@ namespace sockets
    //************************* Class transfer_socket_exception **************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   transfer_socket_exception::transfer_socket_exception(const scoped_string & strMessage) :
+   transfer_socket_exception::transfer_socket_exception(const ::scoped_string & scopedstrMessage) :
       //m_nError(get_error()),
       ::exception(pszMessage)
    {

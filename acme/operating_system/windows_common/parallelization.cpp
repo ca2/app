@@ -68,7 +68,7 @@ string get_task_name(htask_t htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME void task_set_name(htask_t htask, const scoped_string & strName)
+CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scopedstrName)
 {
 
    bool bOk1 = false;
@@ -295,7 +295,7 @@ CLASS_DECL_ACME int get_processor_count()
 }
 
 
-void task_set_name(const scoped_string & strThreadName)
+void task_set_name(const ::scoped_string & scopedstrThreadName)
 {
 
    /*return*/ task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);

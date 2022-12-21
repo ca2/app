@@ -116,7 +116,7 @@ namespace universal_windows
 
    }
 
-   void os_context::terminate_processes_by_title(const scoped_string & strName)
+   void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
 #ifdef WINDOWS_DESKTOP
       ::u32 dwPid;
@@ -148,7 +148,7 @@ namespace universal_windows
 #endif
    }
 
-   bool os_context::get_pid_by_path(const scoped_string & strName, u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -164,7 +164,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::get_pid_by_title(const scoped_string & strName, u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -315,7 +315,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::local_machine_set_run(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -336,7 +336,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::local_machine_set_run_once(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -356,7 +356,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::current_user_set_run(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -375,7 +375,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::current_user_set_run_once(const scoped_string & strKey, const scoped_string & strCommand, bool bSet)
+   bool os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrCommand, bool bSet)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -517,7 +517,7 @@ namespace universal_windows
 
 
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::scoped_string & scopedstrExtension)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -547,7 +547,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const scoped_string & strExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::scoped_string & scopedstrExtension)
    {
 
       string_array straKey;
@@ -560,7 +560,7 @@ namespace universal_windows
 
    }
 
-   bool os_context::file_association_set_default_icon(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass, const scoped_string & strIconPath)
+   bool os_context::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrIconPath)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -582,7 +582,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const scoped_string & strExtension, const scoped_string & strExtensionNamingClass,  const scoped_string & strCommand, const scoped_string & strParam)
+   bool os_context::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam)
    {
 
       TRACE("file_association_set_shell_open_command NOT IMPLEMENTED!!");
@@ -592,7 +592,7 @@ namespace universal_windows
    }
 
    
-   bool os_context::file_association_get_shell_open_command(const scoped_string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
       TRACE("file_association_get_shell_open_command NOT IMPLEMENTED!!");
@@ -602,7 +602,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::native_full_web_browser(const char * pcsz)
+   bool os_context::native_full_web_browser(const ::scoped_string & scopedstr)
    {
 
 #ifdef WINDOWS_DESKTOP

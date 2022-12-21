@@ -58,9 +58,9 @@ CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & st
 
       int iError = errno;
 
-      const scoped_string & str = strerror(iError);
+      const ::scoped_string & scopedstr = strerror(iError);
 
-      const scoped_string & str2 = dlerror();
+      const ::scoped_string & scopedstr2 = dlerror();
 
       strMessage += "Failed to load library : \"" + strPath + "\"!";
 
@@ -95,7 +95,7 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string 
 
    int iError = errno;
 
-   const scoped_string & str = strerror(iError);
+   const ::scoped_string & scopedstr = strerror(iError);
 
    if(psz != nullptr)
    {
@@ -104,7 +104,7 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string 
 
    }
 
-   const scoped_string & str2 = dlerror();
+   const ::scoped_string & scopedstr2 = dlerror();
 
    if(psz2 != nullptr)
    {

@@ -4,7 +4,7 @@
 #include "atom.h"
 
 
-CLASS_DECL_ACME string demangle(const scoped_string & str);
+CLASS_DECL_ACME string demangle(const char * pszMangledName);
 
 
 #ifdef WINDOWS
@@ -48,7 +48,7 @@ inline const char * c_demangle(const ::ansi_character * psz)
 
 }
 #else
-//inline const char * c_demangle(const scoped_string & str)
+//inline const char * c_demangle(const ::scoped_string & scopedstr)
 //{
 //
 //   return psz;
@@ -98,7 +98,7 @@ public:
    }
 
 
-   //type(const scoped_string & strTypeName) :
+   //type(const ::scoped_string & scopedstrTypeName) :
    //   atom(pszTypeName)
    //{
    //   

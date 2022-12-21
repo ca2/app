@@ -11,7 +11,7 @@ class CLASS_DECL_ACME parsing_exception:
 public:
 
 
-   parsing_exception(const scoped_string & strMessage);
+   parsing_exception(const ::scoped_string & scopedstrMessage);
    ~parsing_exception() override;
 
 
@@ -35,7 +35,7 @@ class network_payload_parsing_exception :
 {
 public:
 
-   network_payload_parsing_exception(const scoped_string & strMessage = nullptr);
+   network_payload_parsing_exception(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~network_payload_parsing_exception();
 
 };

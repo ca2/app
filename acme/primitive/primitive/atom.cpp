@@ -57,12 +57,12 @@ bool is_filemanager(const ::atom & atom)
 
    }
 
-   return is_impact_group(atom.i64(), FILEMANAGER_IMPACT);
+   return is_impact_group(atom.as_i64(), FILEMANAGER_IMPACT);
 
 }
 
 
-bool is_filemanager_group(const ::atom & atom, const scoped_string & strGroup)
+bool is_filemanager_group(const ::atom & atom, const ::scoped_string & scopedstrGroup)
 {
 
    if(!atom.is_text())
@@ -74,7 +74,7 @@ bool is_filemanager_group(const ::atom & atom, const scoped_string & strGroup)
 
    string strFileManagerGroup;
 
-   strFileManagerGroup.format("file_manager_%s", pszGroup);
+   strFileManagerGroup.format("file_manager_%s", scopedstrGroup.c_str());
 
    if(atom == strFileManagerGroup)
    {
@@ -108,7 +108,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 
    }
 
-   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
+   return is_impact_subgroup(atom, FILEMANAGER_IMPACT + iGroup);
 
 }
 
@@ -117,7 +117,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 bool is_color_sel(const ::atom & atom)
 {
    
-   return is_impact_group(atom.i64(), COLORSEL_IMPACT); 
+   return is_impact_group(atom, COLORSEL_IMPACT);
 
 }
 
@@ -125,7 +125,7 @@ bool is_color_sel(const ::atom & atom)
 bool is_font_sel(const ::atom & atom) 
 {
    
-   return is_impact_group(atom.i64(), FONTSEL_IMPACT); 
+   return is_impact_group(atom, FONTSEL_IMPACT);
 
 }
 

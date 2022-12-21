@@ -23,7 +23,7 @@
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
-//CLASS_DECL_ACME void operating_system_open_url(const scoped_string & strUrl);
+//CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
 
 namespace acme
@@ -104,7 +104,7 @@ namespace acme
 #endif
 
 
-   ::string node::get_file_type_identifier(const char * path)
+   ::string node::get_file_type_identifier(const ::file::path & path)
    {
       
       return "";
@@ -704,22 +704,24 @@ namespace acme
 
       string strAppId = strAppIdParam;
 
-      auto iSlash = strAppId.find('/');
+      auto range = strAppId();
 
-      if (iSlash > 0)
+      auto pSlash = range.find('/');
+
+      if (::is_set(pSlash))
       {
 
-         auto iOpenParenthesis = strAppId.find('(', iSlash + 1);
+         auto pOpenParenthesis = range(pSlash + 1).find('(');
 
-         if (iOpenParenthesis > iSlash + 1)
+         if (::is_set(pOpenParenthesis))
          {
 
-            auto iCloseParenthesis = strAppId.find('(', iOpenParenthesis + 1);
+            auto pCloseParenthesis = range(pOpenParenthesis + 1).find(')');
 
-            if (iCloseParenthesis > iOpenParenthesis + 1)
+            if (::is_set(pCloseParenthesis))
             {
 
-               strAppId = strAppId.Left(iOpenParenthesis) + strAppId.Mid(iCloseParenthesis + 1);
+               strAppId = range(0, pOpenParenthesis) + range(pCloseParenthesis + 1);
 
             }
 
@@ -729,7 +731,7 @@ namespace acme
 
       ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
 
-      const scoped_string & strPathFile = pathFile;
+      const ::file::path & pathFile = pathFile;
 
       INFORMATION("node::get_last_run_application_path_file pathFile:" << pathFile);
 
@@ -1530,7 +1532,7 @@ namespace acme
       for(auto & iCurrentPid : pids)
       {
 
-         strPath = module_path_from_pid(iCurrentPid.i32());
+         strPath = module_path_from_pid(iCurrentPid.as_i32());
 
          if(strPath.case_insensitive_order(pszModulePath) == 0 )
          {
@@ -1825,7 +1827,7 @@ return false;
    }
 
 
-   void node::shell_execute_async(const scoped_string & strFile, const scoped_string & strParams)
+   void node::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
    {
 
       //throw ::interface_only();
@@ -1837,7 +1839,7 @@ return false;
    }
 
 
-   void node::shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class time & timeTimeout)
+   void node::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout)
    {
 
       //throw ::interface_only();
@@ -1849,7 +1851,7 @@ return false;
    }
 
 
-   void node::root_execute_async(const scoped_string & strFile, const scoped_string & strParams)
+   void node::root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
    {
 
       //throw ::interface_only();
@@ -1861,7 +1863,7 @@ return false;
    }
 
 
-   void node::root_execute_sync(const scoped_string & strFile, const scoped_string & strParams, const class ::time& timeTimeout)
+   void node::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class ::time& timeTimeout)
    {
 
       //throw ::interface_only();
@@ -2114,7 +2116,7 @@ return false;
    //}
 
 
-   //string node::get_callstack(const scoped_string & strFormat, i32 iSkip, void * caller_address, int iCount)
+   //string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
    //{
 
    //   return {};
@@ -2541,7 +2543,7 @@ return false;
    }
 
 
-   void node::command_system(string_array & straOutput, int & iExitCode, const scoped_string & str, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+   void node::command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
    {
 
       throw interface_only();

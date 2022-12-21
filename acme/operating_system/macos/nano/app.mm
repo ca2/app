@@ -15,8 +15,8 @@ void ns_main_async(dispatch_block_t block);
 
 //void macos_calc_dark_mode();
 void os_system_start();
-//int file_put_contents(const char * path, const char * contents);
-//void file_add_contents_raw(const char * path, const char * psz);
+//int file_put_contents(const ::file::path & path, const char * contents);
+//void file_add_contents_raw(const ::file::path & path, const char * psz);
 
 void application_on_menu_action(void * pApplication, const char * pszCommand);
 void * application_system(void * pApplication);

@@ -3,7 +3,7 @@
 //#include "_memory.h"
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 /*
 * Find the first occurrence of the byte string s in byte string l.
 */
@@ -29,7 +29,7 @@ const void * memory_find(const void * l, memsize l_len, const void * s, memsize 
 
 }
 
-#endif // #ifdef WINDOWS
+//#endif // #ifdef WINDOWS
 
 void * reverse_memchr(const void * l, int ch, size_t l_len)
 {
@@ -148,17 +148,17 @@ void * reverse_byte_not_in_block(const void * l, size_t l_len, const void * s, s
 }
 
 
-CLASS_DECL_ACME::u32 __u32_hash(const scoped_string & str)
+CLASS_DECL_ACME::u32 __u32_hash(const ::scoped_string & scopedstr)
 {
 
    ::u32 u = 0;
 
-   //DUMMY // dummy implementation
+   auto psz = scopedstr.begin();
 
-   while (*psz)
+   while (psz < scopedstr.end())
    {
 
-      u += *psz;
+      u = (u << 5) + *psz;
 
       psz++;
 

@@ -10,7 +10,7 @@ namespace file
 {
 
 
-   enum_status streamable::_open(const char *pszFilePath, const ::file::enum_open &eopen)
+   enum_status streamable::_open(const ::scoped_string & scopestrFilePath, const ::file::enum_open &eopen)
    {
 
       throw error_interface_only;

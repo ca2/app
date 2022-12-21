@@ -12,7 +12,7 @@
 //CLASS_DECL_APEX wstring windows_register_window_class(::particle * pparticle, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 //CLASS_DECL_APEX bool windows_register_class(WNDCLASSEXW* puserinteractionclass);
 
-// CLASS_DECL_APEX wstring windows_calc_icon_window_class(::user::interaction * pinteraction, u32 dwDefaultStyle, const scoped_string & strMatter);
+// CLASS_DECL_APEX wstring windows_calc_icon_window_class(::user::interaction * pinteraction, u32 dwDefaultStyle, const ::scoped_string & scopedstrMatter);
 // CLASS_DECL_APEX wstring windows_get_user_interaction_window_class(::user::interaction * pinteraction);
 //CLASS_DECL_APEX bool windows_register_with_icon(WNDCLASSEXW* puserinteractionclass, const unichar * pszClassName, ::u32 nIDIcon);
 

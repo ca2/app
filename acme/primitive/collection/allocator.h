@@ -223,7 +223,7 @@ namespace heap
    public:
 
 #if MEMDLEAK  || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return (TYPE *)POOL::alloc(sizeof(TYPE) * c, pszFile, iLine);
@@ -408,7 +408,7 @@ namespace allocator
 
 
 #if MEMDLEAK  || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::def < TYPE >::alloc(c, pszFile, iLine);
@@ -494,7 +494,7 @@ namespace allocator
 
 
 #if MEMDLEAK  || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::def < TYPE >::alloc(c, pszFile, iLine);
@@ -579,7 +579,7 @@ namespace allocator
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::def < TYPE >::alloc(c, pszFile, iLine);
@@ -661,7 +661,7 @@ namespace allocator
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::def < TYPE >::alloc(c, pszFile, iLine);
@@ -743,7 +743,7 @@ namespace allocator
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::def < TYPE >::alloc(c, pszFile, iLine);
@@ -824,7 +824,7 @@ namespace allocator
 
 
 #if MEMDLEAK || defined(__MCRTDBG)
-      inline static TYPE * alloc(::count c, const scoped_string & strFile, int iLine)
+      inline static TYPE * alloc(::count c, const ::scoped_string & scopedstrFile, int iLine)
       {
 
          return heap::sys < TYPE >::alloc(c, pszFile, iLine);

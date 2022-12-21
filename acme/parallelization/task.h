@@ -102,7 +102,7 @@ public:
 
    virtual void post_request(::request* prequest);
 
-   virtual bool task_set_name(const scoped_string & strName);
+   virtual bool task_set_name(const ::scoped_string & scopedstrName);
 
 #ifdef WINDOWS
 
@@ -205,7 +205,7 @@ public:
    void destroy() override;
 
 
-   //virtual bool task_set_name(const scoped_string & strThreadName);
+   //virtual bool task_set_name(const ::scoped_string & scopedstrThreadName);
 
    //virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 
@@ -292,8 +292,8 @@ CLASS_DECL_ACME string get_task_name(htask_t htask);
 
 CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
 
-CLASS_DECL_ACME void task_set_name(const scoped_string & str);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const scoped_string & strName);
+CLASS_DECL_ACME void task_set_name(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scopedstrName);
 
 
 CLASS_DECL_ACME string task_get_name();

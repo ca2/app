@@ -123,7 +123,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //}
 //
 //
-//inline bool __is_valid_string(const scoped_string & str, memsize nMaxLength)
+//inline bool __is_valid_string(const ::scoped_string & scopedstr, memsize nMaxLength)
 //{
 //
 //   return ::__is_valid_address(psz, nMaxLength);
@@ -444,7 +444,7 @@ constexpr void subtract_second_nanosecond(SECOND1 & second1, NANOSECOND1 & nanos
 
 
 template < typename TYPE >
-constexpr TYPE * span_zero_item(TYPE * p)
+constexpr TYPE * find_first_null_character(TYPE * p)
 {
 
    TYPE t{};
@@ -462,7 +462,7 @@ constexpr TYPE * span_zero_item(TYPE * p)
 
 
 template < typename TYPE, ::comparison::equality < TYPE > EQUALITY >
-constexpr const TYPE * span_zero_item(const TYPE * p, EQUALITY equality)
+constexpr const TYPE * find_first_null_character(const TYPE * p, EQUALITY equality)
 {
 
    TYPE t{};

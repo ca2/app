@@ -61,7 +61,7 @@ void context_image::on_destroy()
 }
 
 
-i32 context_image::image_integer(const char * path)
+i32 context_image::image_integer(const ::file::path & path)
 {
 
    synchronous_lock  synchronouslock(this->synchronization());
@@ -140,7 +140,7 @@ image_pointer context_image::integer_image(i32 iImage)
 }
 
 
-image_pointer context_image::path_image(const char * path)
+image_pointer context_image::path_image(const ::file::path & path)
 {
 
    synchronous_lock  synchronouslock(this->synchronization());
@@ -1047,7 +1047,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    output_debug_string("file_as_memory time "+::as_string(dt.floating_millisecond().m_d) + "ms");
 
-   const scoped_string & str = (const char *)memory.data();
+   const ::scoped_string & scopedstr = (const char *)memory.data();
 
    auto size = memory.size();
 

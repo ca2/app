@@ -90,7 +90,7 @@ namespace acme
    }
 
 
-   string node::get_callstack(const char *pszFormat, i32 iSkip, void *caller_address, int iCount)
+   string node::get_callstack(const ::scoped_string & strFormat, i32 iSkip, void *caller_address, int iCount)
    {
 
       const int iMaximumFramesToCapture = 100;
@@ -99,7 +99,7 @@ namespace acme
 
       auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-      string str = _ansi_stack_trace(stack, minimum(iCount, frames), pszFormat, iSkip);
+      string str = _ansi_stack_trace(stack, minimum(iCount, frames), strFormat, iSkip);
 
       return str;
 

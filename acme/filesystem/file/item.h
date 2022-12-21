@@ -49,7 +49,7 @@ namespace file
          if (m_pathFinal.has_char())
          {
 
-            if (m_pathFinal & e_flag_final_path)
+            if (m_pathFinal.flags() & e_flag_final_path)
             {
 
                m_flags += e_flag_final_path;
@@ -77,7 +77,7 @@ namespace file
          if (m_pathFinal.has_char())
          {
 
-            if (m_pathFinal & e_flag_final_path)
+            if (m_pathFinal.flags() & e_flag_final_path)
             {
 
                m_flags += e_flag_final_path;
@@ -104,7 +104,7 @@ namespace file
 
       
       void set_user_path(const ::file::path & pathUser) { m_pathUser = pathUser; m_flags -= e_flag_final_path;}
-      void set_final_path(const ::file::path & pathFinal) { ASSERT(pathFinal & e_flag_final_path); m_pathFinal = pathFinal; m_flags += e_flag_final_path; }
+      void set_final_path(const ::file::path & pathFinal) { ASSERT(pathFinal.flags() & e_flag_final_path); m_pathFinal = pathFinal; m_flags += e_flag_final_path; }
 
 
       int get_final_path_dir() const { return m_pathFinal.m_iDir; }

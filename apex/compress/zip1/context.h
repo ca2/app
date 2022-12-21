@@ -17,12 +17,12 @@ public:
    virtual bool is_file_or_dir(::file::file * pfile, const string_array & strPath, ::file::enum_type * petype);
    virtual bool extract(memory & m, ::file::file * pfile, const string_array & strPath, ::file::enum_type * petype = nullptr);
 
-   //virtual bool extract(const scoped_string & strFileName, const scoped_string & strExtractFileName, ::file::enum_type * petype = nullptr);
+   //virtual bool extract(const ::file::path & path, const ::scoped_string & scopedstrExtractFileName, ::file::enum_type * petype = nullptr);
 
-   virtual bool e_extract_all(const scoped_string & strDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
-   virtual bool is_unzippable(const scoped_string & strFileName);
+   virtual bool e_extract_all(const ::scoped_string & scopedstrDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
+   virtual bool is_unzippable(const ::file::path & path);
 
-   virtual bool has_sub_folder(const scoped_string & strFileName);
+   virtual bool has_sub_folder(const ::file::path & path);
 
 
 

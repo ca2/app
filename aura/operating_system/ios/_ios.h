@@ -16,8 +16,8 @@ string get_error_message(::u32 dwError);
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_AURA void __trace_message(const scoped_string & strPrefix, ::message::message * pmessage);
-CLASS_DECL_AURA void __trace_message(const scoped_string & strPrefix, MESSAGE * lpmsg);
+CLASS_DECL_AURA void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage);
+CLASS_DECL_AURA void __trace_message(const ::scoped_string & scopedstrPrefix, MESSAGE * lpmsg);
 
 //#include "implementation.h"
 //#include "dir_system.h"

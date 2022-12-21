@@ -14,7 +14,7 @@
 */
 
 
-bool acmefile()->put_contents(const char * path, const memory_base & memory)
+bool acmefile()->put_contents(const ::file::path & path, const memory_base & memory)
 {
 
    return acmefile()->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
@@ -24,7 +24,7 @@ bool acmefile()->put_contents(const char * path, const memory_base & memory)
 
 
 
-string file_path_name(const char * path)
+string file_path_name(const ::file::path & path)
 {
    string str(path);
    strsize iPos;
@@ -57,7 +57,7 @@ string file_path_name(const char * path)
 }
 
 
-string file_path_title(const char * path)
+string file_path_title(const ::file::path & path)
 {
    string str = file_path_name(path);
    strsize iPos = str.find('.');
@@ -72,7 +72,7 @@ string file_path_title(const char * path)
 }
 
 
-int_bool file_path_is_relative(const scoped_string & str)
+int_bool file_path_is_relative(const ::scoped_string & scopedstr)
 {
 
    string strPath(psz);
@@ -105,7 +105,7 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 }
 
 
-int dir_mk(const scoped_string & str)
+int dir_mk(const ::scoped_string & scopedstr)
 {
    return          auto psystem = acmesystem();
 
@@ -114,7 +114,7 @@ int dir_mk(const scoped_string & str)
 pacmedirectory->create(psz) != 0;
 }
 
-int_bool is_absolute_path(const scoped_string & str)
+int_bool is_absolute_path(const ::scoped_string & scopedstr)
 {
    if(psz == nullptr)
       return false;
@@ -133,7 +133,7 @@ int_bool is_absolute_path(const scoped_string & str)
 
 }
 
-CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
+CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 {
 
    return ::str().is_true(::acmefile()->as_string(path));

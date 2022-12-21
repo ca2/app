@@ -23,7 +23,7 @@ template < typename ARG_TYPE >
 }
 
 //template < >
-//inline i64 from_string(const scoped_string & str)
+//inline i64 from_string(const ::scoped_string & scopedstr)
 //{
 //   return to_i64(string(psz));
 //}
@@ -151,13 +151,13 @@ public:
 
 
 
-   void implode(string & rwstr, const scoped_string & strSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
+   void implode(string & rwstr, const ::scoped_string & scopedstrSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
 
-   string implode(const scoped_string & strSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
+   string implode(const ::scoped_string & scopedstrSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
 
 
 
-   string surround_and_implode(const scoped_string & strSeparator = nullptr, const scoped_string & strPrefix = nullptr, const scoped_string & strSuffix = nullptr, ::index iStart = 0, ::count iCount = -1);
+   string surround_and_implode(const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::index iStart = 0, ::count iCount = -1);
 
 
 
@@ -385,7 +385,7 @@ public:
 
 
 template < typename TYPE, ::enum_type m_etypeContainer >
-void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const scoped_string & strSeparator, ::index start, ::count count) const
+void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count) const
 
 {
    if(start < 0)
@@ -411,7 +411,7 @@ void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const scope
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + as_string(this->element_at(i));
+         str += scopedstrSeparator + as_string(this->element_at(i));
       }
    }
    else
@@ -422,12 +422,12 @@ void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const scope
 
 
 template < typename TYPE, ::enum_type m_etypeContainer >
-string numeric_array < TYPE, m_etypeContainer >::implode(const scoped_string & strSeparator, ::index iStart, ::index iEnd) const
+string numeric_array < TYPE, m_etypeContainer >::implode(const ::scoped_string & scopedstrSeparator, ::index iStart, ::index iEnd) const
 {
 
    string str;
 
-   implode(str, strSeparator, iStart, iEnd);
+   implode(str, scopedstrSeparator, iStart, iEnd);
 
    return str;
 
@@ -435,7 +435,7 @@ string numeric_array < TYPE, m_etypeContainer >::implode(const scoped_string & s
 
 
 template < typename TYPE, ::enum_type m_etypeContainer >
-string numeric_array < TYPE, m_etypeContainer >::surround_and_implode(const scoped_string & strSeparator, const scoped_string & strPrefix, const scoped_string & strSuffix, ::index iStart, ::count iCount)
+string numeric_array < TYPE, m_etypeContainer >::surround_and_implode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::index iStart, ::count iCount)
 {
    string str;
    string strSeparator(strSeparator);

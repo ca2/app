@@ -13,10 +13,10 @@ encoding_exception::encoding_exception(const ::string & strMessage) :
 
 
 
-CLASS_DECL_ACME void throw_encoding_exception(const scoped_string & strMessage)
+CLASS_DECL_ACME void throw_encoding_exception(const ::scoped_string & scopedstrMessage)
 {
 
-   throw encoding_exception(pszMessage);
+   throw encoding_exception(scopedstrMessage);
 
 }
 

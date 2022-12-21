@@ -6,7 +6,7 @@
 //
 //
 //
-//CLASS_DECL_APEX int is_dir(const char * path1);
+//CLASS_DECL_APEX int is_dir(const ::file::path & path1);
 
 
 

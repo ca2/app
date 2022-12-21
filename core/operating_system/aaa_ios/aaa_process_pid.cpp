@@ -343,7 +343,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //
 //   string strArg;
 //
-//   const scoped_string & str = strCmdLine;
+//   const ::scoped_string & scopedstr = strCmdLine;
 //
 //   string strChar;
 //

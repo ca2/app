@@ -8,7 +8,7 @@
 ::system_setup * system_setup::s_psetupList = nullptr;
 
 
-system_setup::system_setup(::system_setup::enum_flag eflag, const scoped_string & strName) :
+system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName) :
    m_pfnFactory(nullptr),
    m_pszName(pszName),
    m_eflag(eflag)
@@ -18,7 +18,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const scoped_string 
 
 }
 
-system_setup::system_setup(PFN_factory pfnFactory, const scoped_string & strName) :
+system_setup::system_setup(PFN_factory pfnFactory, const char * pszName) :
    m_pfnFactory(pfnFactory),
    m_pszName(pszName),
    m_eflag(flag_factory)
@@ -62,7 +62,7 @@ void system_setup::construct()
 }
 
 
-system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const scoped_string & strName)
+system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName)
 {
 
    auto psetup = s_psetupList;
@@ -71,7 +71,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const sco
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (string(pszName).is_empty() || (!stricmp(pszName, psetup->m_pszName))))
+      && (scopedstrName.is_empty() || scopedstrName == psetup->m_pszName))
       {
 
          return psetup;
@@ -118,26 +118,26 @@ CLASS_DECL_ACME ::string get_library_component(const string & strName)
    else
    {
 
-      auto iFind = strName.find('_');
+      auto pUnderscore = strName.find('_');
 
-      if (iFind < 0)
+      if (::is_null(pUnderscore))
       {
 
          return strName;
 
       }
 
-      return strName.Left(iFind);
+      return strName(0, pUnderscore);
 
    }
 
 }
 
 
-PFN_factory system_setup::get_factory_function(const scoped_string & strName)
+PFN_factory system_setup::get_factory_function(const ::scoped_string & scopedstrName)
 {
 
-   if (::is_null(pszName))
+   if (scopedstrName.is_empty())
    {
 
       return nullptr;
@@ -151,7 +151,7 @@ PFN_factory system_setup::get_factory_function(const scoped_string & strName)
       while (psetup != nullptr)
       {
 
-         if (psetup->m_eflag == flag_factory && !stricmp(pszName, psetup->m_pszName))
+         if (psetup->m_eflag == flag_factory && scopedstrName == psetup->m_pszName)
          {
 
             return psetup->m_pfnFactory;
@@ -168,7 +168,7 @@ PFN_factory system_setup::get_factory_function(const scoped_string & strName)
 
       auto psetup = s_psetupList;
 
-      string strComponentSearch = get_library_component(pszName);
+      string strComponentSearch = get_library_component(scopedstrName);
 
       while (psetup != nullptr)
       {
@@ -198,7 +198,7 @@ PFN_factory system_setup::get_factory_function(const scoped_string & strName)
 
 }
 
-system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const scoped_string & strName)
+system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName)
 {
 
    auto psetup = s_psetupList;
@@ -207,7 +207,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const scop
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (string(pszName).is_empty() || (!stricmp(pszName, psetup->m_pszName))))
+         && (scopedstrName.is_empty() || scopedstrName == psetup->m_pszName))
       {
 
          return psetup;

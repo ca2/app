@@ -2,7 +2,7 @@
 
 
 //
-//CLASS_DECL_ACME i64 strtoi(const scoped_string & str)
+//CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr)
 //{
 //   return ::str().to_i64(psz);
 //}

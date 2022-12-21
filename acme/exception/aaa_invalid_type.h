@@ -7,7 +7,7 @@ class invalid_type :
 public:
 
 
-   invalid_type(const scoped_string & strMessage) :
+   invalid_type(const ::scoped_string & scopedstrMessage) :
       exception(pszMessage)
    {
    }

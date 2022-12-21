@@ -65,9 +65,9 @@ int create_process(const char * _cmd_line, int * pprocessId)
 }
 
 CLASS_DECL_APEX int call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 int iShow)
 {
    string strCmdLine;
@@ -89,9 +89,9 @@ int iShow)
 }
 
 CLASS_DECL_APEX int call_async(
-const scoped_string & strPath,
-const scoped_string & strParam,
-const scoped_string & strDir,
+const ::file::path & path,
+const ::scoped_string & scopedstrParam,
+const ::scoped_string & scopedstrDir,
 edisplay edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
@@ -123,7 +123,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_APEX u32 call_sync(const scoped_string & strPath, const scoped_string & strParam, const scoped_string & strDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_APEX u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -178,7 +178,7 @@ int get_current_process_affinity_order()
 
 
 
-bool shell_execute_sync(const scoped_string & strFile, const scoped_string & strParams,  ::duration durationTimeout )
+bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams,  ::duration durationTimeout )
 {
    
    ::property_set set;

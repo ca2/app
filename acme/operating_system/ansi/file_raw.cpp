@@ -7,14 +7,14 @@
 #if !defined(WINDOWS)
 
 
-int_bool file_path_is_link(const scoped_string & strPath)
+int_bool file_path_is_link(const ::file::path & path)
 {
 
    struct stat stat;
 
    zero(stat);
 
-   if(lstat(pszPath, &stat) != 0)
+   if(lstat(path.c_str(), &stat) != 0)
    {
 
       return false;
@@ -36,47 +36,47 @@ int_bool file_path_is_link(const scoped_string & strPath)
 #endif
 
 
-void file_put_contents_raw(const char * path, const scoped_string & str)
+void file_put_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
-   FILE * f = fopen(path, "wb");
+   FILE * f = fopen(path.c_str(), "wb");
 
    if (f == nullptr)
       return;
 
-   ::count iSize = strlen(psz);
+   ::count iSize = strlen(path.c_str());
 
-   ::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::count iRead = fwrite(path.c_str(), 1, (size_t)iSize, f);
 
    fclose(f);
 
 }
 
-void file_add_contents_raw(const char * path, const scoped_string & str)
+void file_add_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
-   FILE * f = fopen(path, "ab");
+   FILE * f = fopen(path.c_str(), "ab");
 
    if (f == nullptr)
       return;
 
-   ::count iSize = strlen(psz);
+   ::count iSize = scopedstr.size();
 
-   ::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::count iRead = fwrite(scopedstr.c_str(), 1, (size_t)iSize, f);
 
    fclose(f);
 
 }
 
 
-void file_beg_contents_raw(const char * path, const scoped_string & str)
+void file_beg_contents_raw(const ::file::path & path, const ::scoped_string & scopedstr)
 {
 
-   FILE * f = fopen(path, "rb+");
+   FILE * f = fopen(path.c_str(), "rb+");
 
    long lLen;
 
-   lLen = (long) ( strlen(psz));
+   lLen = (long) scopedstr.size();
 
    fseek(f, lLen, SEEK_END);
 
@@ -127,7 +127,7 @@ void file_beg_contents_raw(const char * path, const scoped_string & str)
 
    fseek(f, 0, SEEK_SET);
 
-   auto lRead = fwrite(psz, 1, lLen, f);
+   auto lRead = fwrite(scopedstr.c_str(), 1, lLen, f);
 
    if (lRead != lLen)
    {
@@ -141,7 +141,7 @@ void file_beg_contents_raw(const char * path, const scoped_string & str)
 }
 
 
-u64 file_length_raw(const char * path)
+u64 file_length_raw(const ::file::path & path)
 {
 
 #ifdef WINDOWS
@@ -151,7 +151,7 @@ u64 file_length_raw(const char * path)
 
 #else
    struct stat st;
-   ::stat(path, &st);
+   ::stat(path.c_str(), &st);
    return st.st_size;
 
 #endif
@@ -161,7 +161,7 @@ u64 file_length_raw(const char * path)
 
 
 
-//string acmefile()->line(const char * path, index iLine)
+//string acmefile()->line(const ::file::path & path, index iLine)
 //{
 //
 //   string str;

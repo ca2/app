@@ -11,7 +11,7 @@
 #include "shell_uwp.h"
 
 
-bool uwp_get_file_image(::image * pimage, const scoped_string & str);
+bool uwp_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
 
 
 namespace universal_windows
@@ -419,7 +419,7 @@ pacmedirectory->is(strPath))
 } // namespace universal_windows
 
 
-bool uwp_get_file_image(::image * pimage, const scoped_string & str)
+bool uwp_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
 {
 
    return false;

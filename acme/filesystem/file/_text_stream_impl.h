@@ -25,7 +25,7 @@
 //inline void __string_exchange(text_stream & s, float & f) { s.number_exchange(f); }
 //inline void __string_exchange(text_stream & s, double & d) { s.number_exchange(d); }
 //inline void __string_exchange(text_stream & s, ::earth::time & time) { s.number_exchange(time.m_i); }
-//inline void __string_exchange(text_stream & s, const scoped_string & str) { s.write_only(psz); }
+//inline void __string_exchange(text_stream & s, const ::scoped_string & scopedstr) { s.write_only(psz); }
 //inline void __string_exchange(text_stream & s, char * psz) { s.string_exchange(psz); }
 //inline void __string_exchange(text_stream & s, string & str) { s.string_exchange(str); }
 //inline void __string_exchange(text_stream & s, ::file::path & path) { s.string_exchange(path); }

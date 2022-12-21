@@ -51,7 +51,7 @@
 //
 //
 //
-//      transfer_socket_exception(const scoped_string & strMessage);
+//      transfer_socket_exception(const ::scoped_string & scopedstrMessage);
 //      virtual ~transfer_socket_exception();
 //
 //   };

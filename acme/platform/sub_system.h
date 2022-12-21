@@ -111,7 +111,7 @@ public:
    string_array get_arguments();
 
    string get_arg(int i) const;
-   string get_env(const scoped_string & strVariableName) const;
+   string get_env(const ::scoped_string & scopedstrVariableName) const;
 
 
    int get_status();

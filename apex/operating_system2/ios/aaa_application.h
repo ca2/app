@@ -33,7 +33,7 @@
 //      ~application() override;
 //      
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::scoped_string & scopedstr);
 //      virtual void _001EnableShellOpen();
 //      virtual ::user::document * _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();
@@ -81,7 +81,7 @@
 //      virtual itask_t get_thread_id();
 //      
 //      
-////      virtual ::pointer<::user::printer>get_printer(const scoped_string & strDeviceName);
+////      virtual ::pointer<::user::printer>get_printer(const ::scoped_string & scopedstrDeviceName);
 //
 //       string draw2d_get_default_library_name();
 //      string multimedia_audio_mixer_get_default_library_name();

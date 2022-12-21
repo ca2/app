@@ -378,11 +378,11 @@ class machine_event_central;
 
 
 extern "C"
-CLASS_DECL_APEX void register_library(const scoped_string & str, ::acme::library * plibrary);
+CLASS_DECL_APEX void register_library(const ::scoped_string & scopedstr, ::acme::library * plibrary);
 
 
 extern "C"
-CLASS_DECL_APEX void register_get_new_library(const scoped_string & str, PFN_NEW_LIBRARY pfnnewlibrary);
+CLASS_DECL_APEX void register_get_new_library(const ::scoped_string & scopedstr, PFN_NEW_LIBRARY pfnnewlibrary);
 
 
 #define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
@@ -675,12 +675,12 @@ namespace aura
 //CLASS_DECL_APEX bool __node_apex_pos_term();
 
 
-//extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const scoped_string & str);
-//extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const scoped_string & str, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
+//extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const ::scoped_string & scopedstr);
+//extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const ::scoped_string & scopedstr, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
-//CLASS_DECL_APEX ::acme::library & get_library(const scoped_string & str);
-//CLASS_DECL_APEX void register_apex_library(const scoped_string & str, ::acme::library* plibrary);
+//CLASS_DECL_APEX ::acme::library & get_library(const ::scoped_string & scopedstr);
+//CLASS_DECL_APEX void register_apex_library(const ::scoped_string & scopedstr, ::acme::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
 //CLASS_DECL_APEX ::context * get_context(::particle * pparticle);
@@ -1142,10 +1142,10 @@ namespace user
 //#include "apex/parallelization/retry.h"
 
 
-//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema);
-//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema);
-//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const scoped_string & strBuild, const scoped_string & strPlatform, const scoped_string & strConfiguration, const scoped_string & strLocale, const scoped_string & strSchema);
-//CLASS_DECL_APEX::file::path get_application_path(string strAppId, const scoped_string & strPlatform, const scoped_string & strConfiguration);
+//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+//CLASS_DECL_APEX::file::path get_application_path(string strAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
 //CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
 //CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
 //CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);

@@ -135,7 +135,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const char * & psz)
 void add_csv(string_array & stra, const ::string & str)
 {
 
-   const scoped_string & str = str;
+   const char * psz = str.c_str();
 
    string strValue;
 
@@ -161,7 +161,7 @@ CLASS_DECL_ACME char * const * alloc_c_string_array(const string_array & stra)
    for(int i = 0; i < iCount; i++)
    {
 
-      p[i] = strdup(stra[i]);
+      p[i] = strdup(stra[i].c_str());
 
    }
 

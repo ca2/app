@@ -18,7 +18,7 @@
 //}
 
 
-//void SetCommandLineA(const scoped_string & str)
+//void SetCommandLineA(const ::scoped_string & scopedstr)
 //{
 //
 //   get_command_line_string()     = psz;

@@ -214,9 +214,9 @@ namespace geo
             for (auto strJson : stra)
             {
 
-               const scoped_string & strJson = strJson;
+               const ::ansi_character * pszJson = strJson;
 
-               //const scoped_string & strJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+               //const ::ansi_character * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
                ::payload v;
 
@@ -551,7 +551,7 @@ namespace geo
 
       }
 
-      const scoped_string & strId =
+      const ::scoped_string & scopedstrId =
 #include "sensitive/openweather.txt"
          ;
 
@@ -575,7 +575,7 @@ namespace geo
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      const scoped_string & strJson = str;
+      const ::ansi_character * pszJson = str;
 
       ::payload v;
 
@@ -706,7 +706,7 @@ namespace geo
       //         if (str.has_char())
       //         {
       //
-      //            const scoped_string & strJson = str;
+      //            const ::ansi_character * pszJson = str;
       //
       //            ::payload v;
       //

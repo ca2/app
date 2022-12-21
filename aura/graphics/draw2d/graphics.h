@@ -867,23 +867,23 @@ namespace draw2d
 
       virtual ::count get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
 
-      virtual ::size_f64 get_text_extent(const scoped_string & strString, strsize nCount, strsize iIndex);
+      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
 
       ::size_f64 get_text_extent(const ::block & block) override;
 
-      virtual ::size_f64 GetTextBegin(const scoped_string & strString, strsize nCount, strsize iIndex);
+      virtual ::size_f64 GetTextBegin(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
 
-      virtual ::size_f64 get_text_extent(const scoped_string & strString, strsize nCount);
+      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount);
 
-      virtual void get_text_extent(::size_f64 & size, const scoped_string & strString, strsize nCount, strsize iIndex);
+      virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
 
-      virtual void get_text_extent(::size_f64 & size, const scoped_string & strString, strsize nCount);
+      virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount);
 
       virtual void get_text_extent(::size_f64 & size, const ::string & str);
-      //virtual ::size_f64 GetOutputTextExtent(const scoped_string & strString, strsize nCount);
+      //virtual ::size_f64 GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount);
 
       //virtual ::size_f64 GetOutputTextExtent(const ::string & str);
-      //virtual ::size_f64 GetTabbedTextExtent(const scoped_string & strString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
+      //virtual ::size_f64 GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
 
       //virtual ::size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
 

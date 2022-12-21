@@ -63,15 +63,15 @@ namespace acme
    }
 
 
-   void *system::operating_system_library_touch(const char *pszPath, string &strMessage)
+   void * system::operating_system_library_touch(const ::file::path & path, string &strMessage)
    {
 
-      string strPath = __node_library_is_loaded(pszPath);
+      string strPath = __node_library_is_loaded(path);
 
       if (strPath.has_char())
       {
 
-         return operating_system_library_open(strPath, strMessage);
+         return operating_system_library_open(path, strMessage);
 
       }
 
@@ -80,10 +80,10 @@ namespace acme
    }
 
 
-   void *system::operating_system_library_open(const char *pszPath, string &strMessage)
+   void *system::operating_system_library_open(const ::file::path & path, string &strMessage)
    {
 
-      string strPath(pszPath);
+      string strPath(path);
 
       if (strPath == "os")
       {
@@ -141,12 +141,13 @@ namespace acme
 
          }
 
-      } else
+      }
+      else
       {
 
          strMessage += "Successfully loaded library ";
 
-         strMessage += pszPath;
+         strMessage += path;
 
       }
 
@@ -155,10 +156,10 @@ namespace acme
    }
 
 
-   void * system::operating_system_library_open_ca2(const char *pszPath, string &strMessage)
+   void * system::operating_system_library_open_ca2(const ::file::path & path, string &strMessage)
    {
 
-      string strPath(pszPath);
+      string strPath(path);
 
       if (!strPath.case_insensitive_ends(".so"))
       {
@@ -219,10 +220,10 @@ namespace acme
    }
 
 
-   void *system::operating_system_library_raw_get(void *plibrary, const char *pszEntryName)
+   void *system::operating_system_library_raw_get(void *plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
-      return dlsym(plibrary, pszEntryName);
+      return dlsym(plibrary, scopedstrEntryName.c_str());
 
    }
 

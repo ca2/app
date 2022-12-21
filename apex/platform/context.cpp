@@ -55,7 +55,7 @@ namespace apex
    }
 
 
-   string context::get_latest_build_number(const scoped_string & strConfiguration, const scoped_string & strAppId)
+   string context::get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId)
    {
 
       string strConfiguration(pszConfiguration);
@@ -931,7 +931,7 @@ namespace apex
 
 
    //
-   //CLASS_DECL_APEX  bool _os_may_have_alias(const scoped_string & str)
+   //CLASS_DECL_APEX  bool _os_may_have_alias(const ::scoped_string & scopedstr)
    //{
    //
    //   string str(psz);
@@ -941,7 +941,7 @@ namespace apex
    //}
 
 
-   bool context::os_resolve_alias(::file::path & path, const scoped_string & str, bool bNoUI, bool bNoMount)
+   bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
       if (_os_resolve_alias(path, psz, bNoUI, bNoMount))
@@ -990,7 +990,7 @@ namespace apex
    }
 
 
-   bool context::_os_has_alias_in_path(const scoped_string & str, bool bNoUI, bool bNoMount)
+   bool context::_os_has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
       return os_context()->has_alias_in_path(psz);
@@ -999,7 +999,7 @@ namespace apex
 
 
 
-   bool context::_os_resolve_alias(::file::path & path, const scoped_string & str, bool bNoUI, bool bNoMount)
+   bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
       if (os_is_alias(psz))
@@ -1016,7 +1016,7 @@ namespace apex
 //
 //#ifdef WINDOWS
 //
-   bool context::os_is_alias(const scoped_string & str)
+   bool context::os_is_alias(const ::scoped_string & scopedstr)
    {
 
       return os_context()->is_alias(psz);
@@ -1194,7 +1194,7 @@ namespace apex
    }
 
 
-   bool context::http_download(const scoped_string & strUrl, const scoped_string & strFile)
+   bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
    {
 
       string strUrl = pszUrl;
@@ -1210,7 +1210,7 @@ namespace apex
    }
 
 
-   string context::http_get(const scoped_string & strUrl)
+   string context::http_get(const ::scoped_string & scopedstrUrl)
    {
 
       property_set set;
@@ -1262,7 +1262,7 @@ namespace apex
    }
 
 
-   string context::load_string(const scoped_string & str)
+   string context::load_string(const ::scoped_string & scopedstr)
    {
 
       return psz;

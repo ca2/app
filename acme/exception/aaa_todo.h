@@ -7,7 +7,7 @@ class CLASS_DECL_ACME todo :
 public:
 
 
-   todo(const scoped_string & strMessage = nullptr);
+   todo(const ::scoped_string & scopedstrMessage = nullptr);
    virtual ~todo();
 
 

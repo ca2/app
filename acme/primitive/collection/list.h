@@ -1641,6 +1641,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(ARG_TYPE 
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE newElement)
 {
+
    ASSERT_VALID(this);
 
    auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, this->m_end, nullptr);

@@ -195,18 +195,18 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, i32 * n
 }
 
 
-string consume_command_line_parameter(const scoped_string & strCommandLine, const char ** pszEndPtr)
+string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)
 {
 
-   if(pszCommandLine == nullptr)
+   if(scopedstrCommandLine.is_empty())
       return "";
 
-   const scoped_string & str = pszCommandLine;
+   const char * psz = scopedstrCommandLine.begin();
 
    while(*psz && ansi_char_isspace(*psz))
       psz++;
 
-   const scoped_string & strStart;
+   const char * pszStart;
 
    bool bQuoted = *psz == '\"';
 
@@ -224,7 +224,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
          psz++;
    }
 
-   const scoped_string & strEnd = psz;
+   const char * pszEnd = psz;
 
    if(pszEndPtr != nullptr)
    {
@@ -237,7 +237,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 
 
 
-//string get_command_line_parameter(const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strIfParamValue, const scoped_string & strReplaceParam)
+//string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrIfParamValue, const ::scoped_string & scopedstrReplaceParam)
 //{
 //
 //   string strValue;
@@ -264,7 +264,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 //
 //}
 
-//string get_command_line_parameter(const scoped_string & strCommandLine, const scoped_string & strParam)
+//string get_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam)
 //{
 //
 //   string strParam(pszParam);
@@ -273,7 +273,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 //
 //   string strValue;
 //
-//   const scoped_string & strValue = ansi_find_string(pszCommandLine, strParam);
+//   const ::scoped_string & scopedstrValue = ansi_find_string(pszCommandLine, strParam);
 //
 //   if(pszValue == nullptr)
 //      return "";
@@ -284,7 +284,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 //   if(*pszValue == '"')
 //   {
 //
-//      const scoped_string & strValueEnd = ansi_find_char(pszValue + 1, '"');
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_char(pszValue + 1, '"');
 //
 //      if(pszValueEnd == nullptr)
 //      {
@@ -299,7 +299,7 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 //   else
 //   {
 //
-//      const scoped_string & strValueEnd = ansi_find_string(pszValue, " ");
+//      const ::scoped_string & scopedstrValueEnd = ansi_find_string(pszValue, " ");
 //
 //      if(pszValueEnd == nullptr)
 //      {
@@ -318,13 +318,13 @@ string consume_command_line_parameter(const scoped_string & strCommandLine, cons
 //}
 
 
-bool get_command_line_parameter(string & strValue, const scoped_string & strCommandLine, const scoped_string & strParam, const scoped_string & strDefault)
+bool get_command_line_parameter(string & strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDefault)
 {
 
-   if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
+   if (!get_command_line_parameter(strValue, scopedstrCommandLine, scopedstrParam))
    {
 
-      strValue = pszDefault;
+      strValue = scopedstrDefault;
 
       return false;
 
@@ -335,12 +335,12 @@ bool get_command_line_parameter(string & strValue, const scoped_string & strComm
 }
 
 
-string get_command_line_parameter(const scoped_string & str, const scoped_string & strParam)
+string get_command_line_parameter(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrParam)
 {
 
    string str;
 
-   if(!get_command_line_parameter(str,psz,pszParam))
+   if(!get_command_line_parameter(str, scopedstr, scopedstrParam))
    {
 
       return "";
@@ -352,10 +352,10 @@ string get_command_line_parameter(const scoped_string & str, const scoped_string
 }
 
 
-CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const scoped_string & strCommandLine, const scoped_string & strParam, bool bDefault)
+CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrParam, bool bDefault)
 {
 
-   if (!get_command_line_parameter(strValue, pszCommandLine, pszParam))
+   if (!get_command_line_parameter(strValue, scopedstrCommandLine, scopedstrParam))
    {
 
       return bDefault;
@@ -402,12 +402,12 @@ CLASS_DECL_ACME bool is_command_line_parameter_true(string& strValue, const scop
 }
 
 
-bool get_command_line_parameter(string & wstrValue,const scoped_string & str,const scoped_string & strParam)
+bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scopedstr,const ::scoped_string & scopedstrParam)
 {
 
-   string wstr(psz);
+   string wstr(scopedstr);
 
-   string wstrParam(pszParam);
+   string wstrParam(scopedstrParam);
 
    auto iFind = wstr.find(wstrParam + "=");
 
@@ -502,7 +502,7 @@ bool get_command_line_parameter(string & wstrValue,const scoped_string & str,con
 //#define memory_new ACME_NEW
 
 
-//string_array get_c_args_from_string(const scoped_string & str)
+//string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 //{
 //
 //   string_array stra;
@@ -518,7 +518,7 @@ bool get_command_line_parameter(string & wstrValue,const scoped_string & str,con
 //
 //   string_array straAfterColon;
 //
-//   const scoped_string & strEnd = psz + strlen(psz);
+//   const ::ansi_character * pszEnd = psz + strlen(psz);
 //
 //   string str;
 //
@@ -552,7 +552,7 @@ bool get_command_line_parameter(string & wstrValue,const scoped_string & str,con
 //      else
 //      {
 //
-//         const scoped_string & strValueStart = psz;
+//         const ::scoped_string & scopedstrValueStart = psz;
 //
 //         while (!unicode_is_whitespace(psz))
 //         {
@@ -624,12 +624,12 @@ bool get_command_line_parameter(string & wstrValue,const scoped_string & str,con
 //}
 
 
-string_array get_c_args_from_c(const scoped_string & str)
+string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (psz == nullptr)
+   if (scopedstr.is_empty())
    {
 
       return stra;
@@ -640,7 +640,9 @@ string_array get_c_args_from_c(const scoped_string & str)
 
    string_array straAfterColon;
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   auto psz = scopedstr.begin();
+
+   const char * pszEnd = scopedstr.end();
 
    string str;
 
@@ -674,7 +676,7 @@ string_array get_c_args_from_c(const scoped_string & str)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const char * pszValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -746,19 +748,21 @@ string_array get_c_args_from_c(const scoped_string & str)
 }
 
 
-string_array get_c_args_for_c(const scoped_string & str)
+string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (psz == nullptr)
+   if (scopedstr.is_empty())
    {
 
       return stra;
 
    }
 
-   const scoped_string & strEnd = psz + strlen(psz);
+   auto psz = scopedstr.begin();
+
+   auto pszEnd = scopedstr.end();
 
    string str;
 
@@ -789,7 +793,7 @@ string_array get_c_args_for_c(const scoped_string & str)
       else
       {
 
-         const scoped_string & strValueStart = psz;
+         const char * pszValueStart = psz;
 
          while (!unicode_is_whitespace(psz))
          {
@@ -905,12 +909,14 @@ typedef FN_GET_STRING* PFN_GET_STRING;
 //#endif
 
 
-string transform_to_c_arg(const scoped_string & str)
+string transform_to_c_arg(const ::scoped_string & scopedstr)
 {
 
    bool bNeedQuote = false;
 
-   const scoped_string & strParse = psz;
+   const char * psz = scopedstr.begin();
+
+   const char * pszParse = psz;
 
    char chQuote = '\0';
 
@@ -975,10 +981,10 @@ string transform_to_c_arg(const scoped_string & str)
 }
 
 
-string transform_to_quoted_value(const scoped_string & str)
+string transform_to_quoted_value(const ::scoped_string & scopedstr)
 {
 
-   string str(psz);
+   string str(scopedstr);
 
    str.replace_with("\\\\", "\\");
 

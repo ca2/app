@@ -220,7 +220,7 @@ namespace android
    //}
 
 
-   //bool dir_context::rls_pattern(const char * lpcsz, const scoped_string & strPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
+   //bool dir_context::rls_pattern(const char * lpcsz, const ::scoped_string & scopedstrPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, enum_extract eextract)
    //{
 
 

@@ -76,7 +76,7 @@ struct CLASS_DECL_ACME oswindow_data
    }
 
 
-   i32 store_name(const scoped_string & str);
+   i32 store_name(const ::scoped_string & scopedstr);
    i32 select_input(i32 iInput);
    i32 select_all_input();
    i32 map_window();

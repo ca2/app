@@ -11,7 +11,7 @@ class CLASS_DECL_ACME library_not_loaded :
 public:
 
 
-   library_not_loaded(const scoped_string & strMessage = nullptr, const scoped_string & strDetails = nullptr, const ::e_status & estatus = error_library_not_loaded);
+   library_not_loaded(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, const ::e_status & estatus = error_library_not_loaded);
    ~library_not_loaded() override;
 
 

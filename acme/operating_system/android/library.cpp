@@ -4,7 +4,7 @@
 #include <dlfcn.h>
 
 
-CLASS_DECL_ACME void * __node_library_touch(const scoped_string & strPath, string & strMessage)
+CLASS_DECL_ACME void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
 
    return __node_library_open(pszPath, strMessage);
@@ -12,7 +12,7 @@ CLASS_DECL_ACME void * __node_library_touch(const scoped_string & strPath, strin
 }
 
 
-CLASS_DECL_ACME void * __node_library_open(const scoped_string & strPath, string & strMessage)
+CLASS_DECL_ACME void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
    strMessage.Empty();
@@ -60,9 +60,9 @@ CLASS_DECL_ACME void * __node_library_open(const scoped_string & strPath, string
 
       int iError = errno;
 
-      const scoped_string & str = strerror(iError);
+      const ::scoped_string & scopedstr = strerror(iError);
 
-      const scoped_string & str2 = dlerror();
+      const ::scoped_string & scopedstr2 = dlerror();
 
       strMessage += "Failed to load library : \"" + strPath + "\"!";
 
@@ -87,7 +87,7 @@ CLASS_DECL_ACME void * __node_library_open(const scoped_string & strPath, string
 }
 
 
-CLASS_DECL_ACME void * __node_library_open_ca2(const scoped_string & strPath, string & strMessage)
+CLASS_DECL_ACME void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
    strMessage.Empty();
@@ -97,7 +97,7 @@ CLASS_DECL_ACME void * __node_library_open_ca2(const scoped_string & strPath, st
 
    int iError = errno;
 
-   const scoped_string & str = strerror(iError);
+   const ::scoped_string & scopedstr = strerror(iError);
 
    if(psz != nullptr)
    {
@@ -106,7 +106,7 @@ CLASS_DECL_ACME void * __node_library_open_ca2(const scoped_string & strPath, st
 
    }
 
-   const scoped_string & str2 = dlerror();
+   const ::scoped_string & scopedstr2 = dlerror();
 
    if(psz2 != nullptr)
    {
@@ -131,7 +131,7 @@ CLASS_DECL_ACME bool __node_library_close(void * plibrary)
 }
 
 
-CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const scoped_string & strEntryName)
+CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const ::scoped_string & scopedstrEntryName)
 {
 
    return dlsym(plibrary,pszEntryName);

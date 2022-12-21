@@ -86,7 +86,7 @@ namespace xcb
    }
 
 
-   xcb_atom_t display::intern_atom(const scoped_string & strAtomName, bool bCreate)
+   xcb_atom_t display::intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate)
    {
 
       if (m_pconnection == nullptr)
@@ -96,7 +96,7 @@ namespace xcb
 
       }
 
-      auto cookie = xcb_intern_atom(m_pconnection, !bCreate, strlen(pszAtomName), pszAtomName);
+      auto cookie = xcb_intern_atom(m_pconnection, !bCreate, scopedstrAtomName.size(), scopedstrAtomName.begin());
 
       ::acme::malloc preply(xcb_intern_atom_reply(m_pconnection, cookie, nullptr));
 
@@ -384,7 +384,7 @@ namespace xcb
    display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
    {
 
-      critical_section_lock lock(::acme::g_p->globals_critical_section());
+      critical_section_lock lock(::acme::acme::g_p->globals_critical_section());
 
       if (g_p == nullptr)
       {

@@ -559,7 +559,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 ////inline void __io(::binary_stream < FILE > & s, const enum_type & etype) { s.io(etype); }
 ////
 ////
-////inline void __io(::binary_stream < FILE > & s, const scoped_string & str) { s.io(psz); }
+////inline void __io(::binary_stream < FILE > & s, const ::scoped_string & scopedstr) { s.io(psz); }
 ////
 ////
 ////inline void __io(::binary_stream < FILE > & s, ::ansi_string & str) { s.io(str); }
@@ -816,7 +816,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth:
 //inline void __exchange(::binary_stream < FILE > & s, double & d) { s.default_exchange(d); }
 //inline void __exchange(::binary_stream < FILE > & s, ::earth::time & time) { s.default_exchange(time.m_i); }
 //inline void __exchange(::binary_stream < FILE > & s, class ::time & time) { s.default_exchange(time.m_iSecond); s.default_exchange(time.m_iNanosecond); }
-//inline void __exchange(::binary_stream < FILE > & s, const scoped_string & str) { s.write_only(psz); }
+//inline void __exchange(::binary_stream < FILE > & s, const ::scoped_string & scopedstr) { s.write_only(psz); }
 //inline void __exchange(::binary_stream < FILE > & s, string & str) { s.default_exchange(str); }
 //inline void __exchange(::binary_stream < FILE > & s, ::file::path & path) { s.default_exchange(path); }
 //inline void __exchange(::binary_stream < FILE > & s, ::atom & atom) { s.default_exchange(atom); }

@@ -123,12 +123,12 @@ payload::payload(std::nullptr_t)
 
 
 
-payload::payload(const scoped_string & str)
+payload::payload(const ::scoped_string & scopedstr)
 {
 
    m_etype = e_type_new;
 
-   set_string(psz);
+   set_string(scopedstr);
 
 }
 
@@ -1928,7 +1928,7 @@ bool payload::is_new_or_null() const
 }
 
 
-//::std::strong_ordering payload::case_insensitive_order(const scoped_string & str) const
+//::std::strong_ordering payload::case_insensitive_order(const ::scoped_string & scopedstr) const
 //{
 //   ::payload payload(psz);
 //   return case_insensitive_order(payload);
@@ -1944,7 +1944,7 @@ bool payload::equals(const payload & payload) const
 }
 
 
-//bool payload::equals(const scoped_string & str) const
+//bool payload::equals(const ::scoped_string & scopedstr) const
 //{
 //
 //   return order(psz) == 0;
@@ -1960,7 +1960,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
 }
 
 
-//bool payload::case_insensitive_equals(const scoped_string & str) const
+//bool payload::case_insensitive_equals(const ::scoped_string & scopedstr) const
 //{
 //
 //   return case_insensitive_order(psz) == 0;
@@ -2044,7 +2044,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
 }
 
 
-//::std::strong_ordering payload::order(const scoped_string & str) const
+//::std::strong_ordering payload::order(const ::scoped_string & scopedstr) const
 //{
 //
 //   ::payload payload(psz);
@@ -2096,43 +2096,43 @@ bool payload::operator == (const class ::payload & payload) const
 //}
 
 
-bool payload::operator == (const scoped_string & str) const
+bool payload::operator == (const ::scoped_string & scopedstr) const
 {
 
-   return equals(psz);
+   return equals(scopedstr);
 
 }
 
 
-::std::strong_ordering payload::operator <=> (const scoped_string & str) const
+::std::strong_ordering payload::operator <=> (const ::scoped_string & scopedstr) const
 {
    
-   return order(psz);
+   return order(scopedstr);
 
 }
 
 
-//bool payload::operator < (const scoped_string & str) const
+//bool payload::operator < (const ::scoped_string & scopedstr) const
 //{
 //   return as_string() < psz;
 //}
 //
-//bool payload::operator <= (const scoped_string & str) const
+//bool payload::operator <= (const ::scoped_string & scopedstr) const
 //{
 //   return as_string() <= psz;
 //}
 //
-//bool payload::operator >= (const scoped_string & str) const
+//bool payload::operator >= (const ::scoped_string & scopedstr) const
 //{
 //   return as_string() >= psz;
 //}
 //
-//bool payload::operator > (const scoped_string & str) const
+//bool payload::operator > (const ::scoped_string & scopedstr) const
 //{
 //   return as_string() > psz;
 //}
 //
-//bool payload::operator != (const scoped_string & str) const
+//bool payload::operator != (const ::scoped_string & scopedstr) const
 //{
 //   return as_string() != psz;
 //}
@@ -2326,7 +2326,7 @@ bool payload::operator == (bool b) const
 //   return m_etype == payload.m_etype && operator == (payload);
 //}
 //
-//bool payload::strictly_equal(const scoped_string & str) const
+//bool payload::strictly_equal(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype == e_type_string && m_str == psz;
 //}
@@ -2356,7 +2356,7 @@ bool payload::operator == (bool b) const
 //   return m_etype != payload.m_etype || operator != (payload);
 //}
 //
-//bool payload::strictly_different(const scoped_string & str) const
+//bool payload::strictly_different(const ::scoped_string & scopedstr) const
 //{
 //   return m_etype != e_type_string || m_str != psz;
 //}
@@ -2427,16 +2427,16 @@ string payload::get_recursive_string() const
 }
 
 
-string payload::as_string(const scoped_string & strOnNull) const
+string payload::as_string(const ::scoped_string & scopedstrOnNull) const
 {
 
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->as_string(pszOnNull);
+      return m_ppayload->as_string(scopedstrOnNull);
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->as_string(pszOnNull);
+      return m_pproperty->as_string(scopedstrOnNull);
    }
    else if(m_etype == e_type_pstring)
    {
@@ -2454,7 +2454,7 @@ string payload::as_string(const scoped_string & strOnNull) const
       if(m_etype == ::e_type_null)
       {
 
-         str = pszOnNull;
+         str = scopedstrOnNull;
 
       }
       else if(m_etype == ::e_type_i32)
@@ -2549,8 +2549,8 @@ string payload::as_string(const scoped_string & strOnNull) const
 }
 
 
-//string & payload::as_string(const scoped_string & strOnNull)
-string & payload::string_reference(const scoped_string & strOnNull)
+//string & payload::as_string(const ::scoped_string & scopedstrOnNull)
+string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 {
 
    if(m_etype == e_type_string)
@@ -2562,13 +2562,13 @@ string & payload::string_reference(const scoped_string & strOnNull)
    else if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->string_reference(pszOnNull);
+      return m_ppayload->string_reference(scopedstrOnNull);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->string_reference(pszOnNull);
+      return m_pproperty->string_reference(scopedstrOnNull);
 
    }
    else if(m_etype == e_type_pstring)
@@ -2580,7 +2580,7 @@ string & payload::string_reference(const scoped_string & strOnNull)
    else
    {
 
-      ::string str = this->as_string(pszOnNull);
+      ::string str = this->as_string(scopedstrOnNull);
 
       set_string(str);
 
@@ -2591,7 +2591,7 @@ string & payload::string_reference(const scoped_string & strOnNull)
 }
 
 
-//const string & payload::get_ref_string(const scoped_string & strOnNull) const
+//const string & payload::get_ref_string(const ::scoped_string & scopedstrOnNull) const
 //{
 //
 //   return ((::payload *)this)->get_ref_string(pszOnNull);
@@ -2818,13 +2818,13 @@ string & payload::string_reference(const scoped_string & strOnNull)
       return atoi(*m_pstr);
    case e_type_atom:
    {
-      if(!fits_i32(m_atom.i64()))
+      if(!fits_i32(m_atom.as_i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) m_atom;
    }
    case e_type_patom:
    {
-      if(!fits_i32(m_patom->i64()))
+      if(!fits_i32(m_patom->as_i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
       return (::i32) (::i64) *m_patom;
    }
@@ -2960,7 +2960,7 @@ string & payload::string_reference(const scoped_string & strOnNull)
       case e_type_u64:
          return m_u64;
       case e_type_atom:
-         return m_atom.i64();
+         return m_atom.as_i64();
       case e_type_pi8:
          if (::is_null(m_p)) return iDefault;
          return *m_pi8;
@@ -4676,25 +4676,25 @@ property & payload::property_reference ()
 //}
 
 
-string payload::implode(const scoped_string & strGlue) const
+string payload::implode(const ::scoped_string & scopedstrGlue) const
 {
 
    if(get_type() == e_type_property_set)
    {
 
-      return propset().implode(pszGlue);
+      return propset().implode(scopedstrGlue);
 
    }
    else if(get_type() == e_type_payload_array)
    {
 
-      return payloada().implode(pszGlue);
+      return payloada().implode(scopedstrGlue);
 
    }
    else if(get_type() == e_type_string_array)
    {
 
-      return stra().implode(pszGlue);
+      return stra().implode(scopedstrGlue);
 
    }
 
@@ -4703,12 +4703,12 @@ string payload::implode(const scoped_string & strGlue) const
 }
 
 
-::payload payload::explode(const scoped_string & strGlue, bool bAddEmpty) const
+::payload payload::explode(const ::scoped_string & scopedstrGlue, bool bAddEmpty) const
 {
 
    class ::payload payload;
 
-   payload.stra().add_tokens(*this, pszGlue, bAddEmpty);
+   payload.stra().add_tokens(*this, scopedstrGlue, bAddEmpty);
 
    return payload;
 
@@ -4893,25 +4893,25 @@ property & payload::get_property(const ::atom & atom)
 }
 
 
-bool payload::array_contains(const scoped_string & str, index find, ::count count) const
+bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::count count) const
 {
 
    switch(m_etype)
    {
    case e_type_i32_array:
-      return ia().contains(atoi(psz), find, count);
+      return ia().contains(atoi(scopedstr), find, count);
    case e_type_string_array:
-      return stra().contains(psz, find, count);
+      return stra().contains(scopedstr, find, count);
    case e_type_payload_array:
-      return payloada().contains(psz, find, count);
+      return payloada().contains(scopedstr, find, count);
    case e_type_property_set:
-      return propset().contains_value(psz, find, count);
+      return propset().contains_value(scopedstr, find, count);
    default:
    {
       index upperbound = minimum(array_get_upper_bound(), find + count - 1);
       for(index i = find; i <= upperbound; i++)
       {
-         if(at(i) == psz)
+         if(at(i) == scopedstr)
          {
             return true;
          }
@@ -4921,26 +4921,26 @@ bool payload::array_contains(const scoped_string & str, index find, ::count coun
    return false;
 }
 
-bool payload::array_contains_ci(const scoped_string & str, index find, index last) const
+bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, index last) const
 {
    switch(m_etype)
    {
    case e_type_bool:
       return false;
    case e_type_i32_array:
-      return ia().contains(atoi(psz), find, last);
+      return ia().contains(atoi(scopedstr), find, last);
    case e_type_string_array:
-      return stra().contains_ci(psz, find, last);
+      return stra().contains_ci(scopedstr, find, last);
    case e_type_payload_array:
-      return payloada().contains_ci(psz, find, last);
+      return payloada().contains_ci(scopedstr, find, last);
    case e_type_property_set:
-      return propset().contains_value_ci(psz, find, last);
+      return propset().contains_value_ci(scopedstr, find, last);
    default:
    {
       index upperbound = minimum(array_get_upper_bound(), last);
       for(index i = find; i <= upperbound; i++)
       {
-         if(at(i).case_insensitive_order(psz) == 0)
+         if(at(i).case_insensitive_equals(scopedstr))
          {
             return true;
          }
@@ -4951,9 +4951,9 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
 }
 
 
-::payload payload::equals_ci_get(const scoped_string & strCompare, ::payload varOnEqual, ::payload varOnDifferent) const
+::payload payload::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 {
-   if(case_insensitive_order(pszCompare) == 0)
+   if(case_insensitive_equals(scopedstrCompare))
    {
       return varOnEqual;
    }
@@ -4963,9 +4963,10 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
    }
 }
 
-::payload payload::equals_ci_get(const scoped_string & strCompare, ::payload varOnEqual) const
+
+::payload payload::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual) const
 {
-   if(case_insensitive_order(pszCompare) == 0)
+   if(case_insensitive_equals(scopedstrCompare))
    {
       return varOnEqual;
    }
@@ -4977,61 +4978,61 @@ bool payload::array_contains_ci(const scoped_string & str, index find, index las
 
 
 
-::payload payload::operator + (const ::string & str) const
-{
+//::payload payload::operator + (const ::string & str) const
+//{
+//
+//   ::payload varRet(*this);
+//
+//   if (varRet.is_floating())
+//   {
+//
+//      if (::str().is_integer(str))
+//      {
+//
+//         varRet += strtod(str, nullptr);
+//
+//      }
+//      else
+//      {
+//
+//         varRet.set_string(varRet.as_string() + str);
+//
+//      }
+//
+//   }
+//   else if (varRet.is_integer())
+//   {
+//
+//      if (::str().is_integer(str))
+//      {
+//
+//         varRet += ansi_to_i64(str);
+//
+//      }
+//      else
+//      {
+//
+//         varRet.set_string(varRet.as_string() + str);
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      varRet.set_string(varRet.as_string() + str);
+//
+//   }
+//
+//   return varRet;
+//
+//}
 
-   ::payload varRet(*this);
 
-   if (varRet.is_floating())
-   {
-
-      if (::str().is_integer(str))
-      {
-
-         varRet += strtod(str, nullptr);
-
-      }
-      else
-      {
-
-         varRet.set_string(varRet.as_string() + str);
-
-      }
-
-   }
-   else if (varRet.is_integer())
-   {
-
-      if (::str().is_integer(str))
-      {
-
-         varRet += ansi_to_i64(str);
-
-      }
-      else
-      {
-
-         varRet.set_string(varRet.as_string() + str);
-
-      }
-
-   }
-   else
-   {
-
-      varRet.set_string(varRet.as_string() + str);
-
-   }
-
-   return varRet;
-
-}
-
-
-::payload payload::operator + (const scoped_string & str) const
+::payload payload::operator + (const ::scoped_string & scopedstr) const
 {
    
-   return *this + ::string(psz); 
+   return *this + ::string(scopedstr);
 
 }
 
@@ -6318,14 +6319,14 @@ void payload::consume_identifier(const char * & psz)
 }
 
 
-void payload::consume_identifier(const char * & psz, const scoped_string & strEnd)
+void payload::consume_identifier(const char * & psz, const ::ansi_character * pszEnd)
 {
 
-   const scoped_string & strParse = psz;
+   const ::ansi_character * pszParse = psz;
 
    ::str().consume_spaces(pszParse, 0, pszEnd);
 
-   const scoped_string & strStart = pszParse;
+   const ::ansi_character * pszStart = pszParse;
 
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
    {
@@ -6363,13 +6364,13 @@ void payload::consume_number(const char * & psz)
    consume_number(psz, psz + strlen(psz) - 1);
 }
 
-void payload::consume_number(const char * & psz, const scoped_string & strEnd)
+void payload::consume_number(const char * & psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::ansi_character * pszParse = psz;
    bool bSigned = false;
    bool bFloat = false;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::ansi_character * pszStart = pszParse;
    if(*pszParse == '-')
    {
       bSigned = true;
@@ -6493,11 +6494,11 @@ void var_skip_identifier(const char *& psz)
 }
 
 
-void var_skip_identifier(const char *& psz, const scoped_string & strEnd)
+void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::ansi_character * pszParse = psz;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::ansi_character * pszStart = pszParse;
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
       pszParse++;
    strsize iLen = pszParse - pszStart;
@@ -6531,11 +6532,11 @@ void var_skip_number(const char *& psz)
    var_skip_number(psz, psz + strlen(psz) - 1);
 }
 
-void var_skip_number(const char *& psz, const scoped_string & strEnd)
+void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
 {
-   const scoped_string & strParse = psz;
+   const ::ansi_character * pszParse = psz;
    ::str().consume_spaces(pszParse, 0, pszEnd);
-   const scoped_string & strStart = pszParse;
+   const ::ansi_character * pszStart = pszParse;
    if (*pszParse == '-')
    {
       pszParse++;
@@ -6599,7 +6600,7 @@ end:
 }
 
 
-void var_skip_network_payload(const char *& pszJson, const scoped_string & strEnd)
+void var_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6667,7 +6668,7 @@ void var_skip_network_payload(const char *& pszJson)
 const char * payload::parse_network_payload(const ::string & strJson)
 {
 
-   const scoped_string & strJson = strJson;
+   const ::ansi_character * pszJson = strJson;
 
    parse_network_payload(pszJson, pszJson + strJson.get_length());
 
@@ -6676,7 +6677,7 @@ const char * payload::parse_network_payload(const ::string & strJson)
 }
 
 
-void payload::parse_network_payload(const char *& pszJson, const scoped_string & strEnd)
+void payload::parse_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6764,7 +6765,7 @@ void payload::parse_network_payload(const char *& pszJson, const scoped_string &
 }
 
 
-::enum_type payload::find_network_payload_child(const char *& pszJson, const scoped_string & strEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(const char *& pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -6915,7 +6916,7 @@ void payload::parse_network_payload(const char *& pszJson, const scoped_string &
 }
 
 
-::enum_type payload::find_network_payload_id(const char * & pszJson, const scoped_string & strEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(const char * & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
    ::str().consume_spaces(pszJson, 0, pszEnd);
@@ -7479,26 +7480,26 @@ bool is_return_ok(para_return eret)
 }
 
 
-::payload str_ends_get(const char * pcsz, const char * pcszSuffix)
-{
-
-   string str(pcsz);
-
-   string strSuffix(pcszSuffix);
-
-   strsize iLen = strSuffix.get_length();
-
-   if(str.Right(iLen) == pcszSuffix)
-
-   {
-
-      return str.Left(str.get_length() - iLen);
-
-   }
-
-   return false;
-
-}
+//::payload str_ends_get(const ::ansi_character * psz, const ::ansi_character * pszSuffix)
+//{
+//
+//   string str(pcsz);
+//
+//   string strSuffix(pcszSuffix);
+//
+//   strsize iLen = strSuffix.get_length();
+//
+//   if(str.Right(iLen) == pcszSuffix)
+//
+//   {
+//
+//      return str.Left(str.get_length() - iLen);
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
 string payload::get_network_payload(bool bNewLine) const
@@ -7639,14 +7640,14 @@ void payload::null()
       if (propset().is_true("required"))
       {
 
-         path |= ::file::e_flag_required;
+         path.flags() |= ::file::e_flag_required;
 
       }
 
       if (propset().is_true("nocache"))
       {
 
-         path |= ::file::e_flag_bypass_cache;
+         path.flags() |= ::file::e_flag_bypass_cache;
 
       }
 
@@ -7719,7 +7720,7 @@ void payload::null()
       if (ppath)
       {
 
-         *ppath |= eflag;
+         ppath->flags() |= eflag;
 
       }
 
@@ -7729,7 +7730,7 @@ void payload::null()
 
       auto ppath = memory_new ::file::path_object(file_path());
 
-      *ppath |= eflag;
+      ppath->flags() |= eflag;
 
       set_type(e_type_path, false);
 
@@ -8811,7 +8812,7 @@ return nullptr;
 
 
 
-//bool strictly_equal(const scoped_string & str, const class ::payload & payload)
+//bool strictly_equal(const ::ansi_character * psz, const class ::payload & payload)
 //{
 //   return payload.m_etype == ::e_type_string && payload.m_str == psz;
 //}
@@ -8836,7 +8837,7 @@ return nullptr;
 //   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
 //}
 //
-//bool strictly_different(const scoped_string & str, const class ::payload & payload)
+//bool strictly_different(const ::ansi_character * psz, const class ::payload & payload)
 //{
 //   return !strictly_equal(psz, payload);
 //}

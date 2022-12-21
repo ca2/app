@@ -22,8 +22,10 @@ namespace acme
 
 
 
-   bool extract_sub_string(string& rString, const scoped_string & strFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::scoped_string & scopedstrFullString, i32 iSubString, char chSep)
    {
+
+      auto pszFullString = scopedstrFullString.begin();
 
       if (pszFullString == nullptr)
       {
@@ -251,7 +253,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    string strFormat;
    strFormat = pszFormat;
    strFormat.replace_with("%S", "%s");
-   strExtra.format(strFormat, argList);
+   strExtra.format(strFormat.c_str(), argList);
    va_end(argList);
 
    string strModule;
@@ -324,14 +326,14 @@ void safe_free(void * pfree)
 
 
 
-void this_type_init(const scoped_string & str)
+void this_type_init(const ::scoped_string & scopedstr)
 {
 
 
 }
 
 
-void this_type_term(const scoped_string & str)
+void this_type_term(const ::scoped_string & scopedstr)
 {
    
    

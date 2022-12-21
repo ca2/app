@@ -395,14 +395,14 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count c = 0;
 
-   ::index iFind = 0;
+   ::auto pFind = 0;
 
    while (true)
    {
 
       iFind = find_index(idName, iFind);
 
-      if (not_found(iFind))
+      if (::is_null(pFind))
       {
 
          return c;
@@ -922,7 +922,7 @@ void property_set::parse_network_payload(const ::string & strJson)
 
    const ::ansi_character * pszJson = strJson;
 
-   parse_network_payload(pszJson, pszJson + strJson.get_length() - 1);
+   parse_network_payload(pszJson, pszJson + strJson.length() - 1);
 
 }
 
@@ -1805,9 +1805,9 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //bool stable_property_set::is_new_or_null(atom atom)
 //{
 //
-//   index iFind = find(atom);
+//   auto pFind = find(atom);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      return true;
@@ -1829,9 +1829,9 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //bool stable_property_set::has_property(atom atom)
 //{
 //
-//   index iFind = find(atom);
+//   auto pFind = find(atom);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      return false;
@@ -1866,9 +1866,9 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //property & stable_property_set::set_at(const atom & atom, const ::payload & payload)
 //{
 //
-//   index iFind = find(atom);
+//   auto pFind = find(atom);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      auto pproperty = __new(property(nullptr));
@@ -1902,7 +1902,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //
 //      iFind = (index) (atom.i64());
 //
-//      if (iFind < 0 || iFind >= m_propertyptra.get_count())
+//      if (::is_null(pFind) || iFind >= m_propertyptra.get_count())
 //      {
 //
 //         throw ::exception(error_index_out_of_bounds);
@@ -1915,7 +1915,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //
 //      iFind = find(atom);
 //
-//      if (iFind < 0)
+//      if (::is_null(pFind))
 //      {
 //
 //         return set_at(atom, ::e_type_new);
@@ -1955,7 +1955,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       string strItem = pproperty->m_atom;
 
-      if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
+      if(strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -1963,7 +1963,7 @@ string property_set::get_command_line(const string_array & straKeys) const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.find("\"") >= 0)
+      else if(strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -1989,7 +1989,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       strItem = *pproperty;
 
-      if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
+      if(strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -1997,7 +1997,7 @@ string property_set::get_command_line(const string_array & straKeys) const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.find("\"") >= 0)
+      else if(strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2036,7 +2036,7 @@ string property_set::get_command_line() const
 
       string strItem(pproperty->m_atom);
 
-      if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
+      if(strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -2044,7 +2044,7 @@ string property_set::get_command_line() const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.find("\"") >= 0)
+      else if(strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2070,7 +2070,7 @@ string property_set::get_command_line() const
 
       strItem = *pproperty;
 
-      if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
+      if(strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -2078,7 +2078,7 @@ string property_set::get_command_line() const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.find("\"") >= 0)
+      else if(strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2118,9 +2118,9 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
       }
 
       // get the left hand side (LHS) of "=" in the string
-      string strKey = strEnvironment.Left(find);
+      string strKey = strEnvironment(0, find);
 
-      string strValue = strEnvironment.Mid(find + 1);
+      string strValue = strEnvironment(find + 1);
 
       (*this)[strKey] = strValue;
 
@@ -2247,9 +2247,9 @@ property & property_set::get(const ::atom & atom)
 ::property * property_set::find(const ::atom & atom) const
 {
 
-   auto iFind = find_index(atom);
+   auto pFind = find_index(atom);
 
-   if(not_found(iFind))
+   if(::is_null(pFind))
    {
 
       return nullptr;
@@ -2497,12 +2497,12 @@ string property_set::evaluate(const ::string & strSource) const
 
    char chNext;
 
-   for (iPos = 0; iPos < str.get_length(); iPos++)
+   for (iPos = 0; iPos < str.length(); iPos++)
    {
 
       ch = str[iPos];
 
-      if (iPos + 1 < str.get_length())
+      if (iPos + 1 < str.length())
       {
 
          chNext = str[iPos + 1];
@@ -2546,7 +2546,7 @@ string property_set::evaluate(const ::string & strSource) const
 
             str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
 
-            iPos += strEval.get_length() - 1;
+            iPos += strEval.length() - 1;
 
          }
          else
@@ -2574,7 +2574,7 @@ string property_set::evaluate(const ::string & strSource) const
 
          strsize iEnd = iStart + 2;
 
-         for (; iEnd < str.get_length(); iEnd++)
+         for (; iEnd < str.length(); iEnd++)
          {
 
             ch = str[iEnd];
@@ -2597,7 +2597,7 @@ string property_set::evaluate(const ::string & strSource) const
 
             str = str.Left(iPos) + strEval + str.Mid(iEnd);
 
-            iPos += strEval.get_length() - 1;
+            iPos += strEval.length() - 1;
 
          }
          else

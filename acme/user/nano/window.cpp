@@ -179,7 +179,7 @@ void nano_window::on_char(int iChar)
    if (iChar == '\t' && m_childa.has_element())
    {
 
-      auto iFind = m_childa.find_first(m_pchildFocus);
+      auto pFind = m_childa.find_first(m_pchildFocus);
 
       iFind++;
 

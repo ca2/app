@@ -118,12 +118,12 @@ namespace networking
       if (strServer.is_empty())
       {
 
-         auto iFind = strUrl.find(":/");
+         auto pFind = strUrl.find(":/");
 
          if (iFind > 0)
          {
 
-            strRequestScript = strUrl.Mid(iFind + 1);
+            strRequestScript = strUrl(pFind + 1);
 
          }
 

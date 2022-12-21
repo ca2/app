@@ -52,7 +52,7 @@ namespace user
 
       _001GetText(str);
 
-      return str.get_length();
+      return str.length();
 
    }
 

@@ -5161,14 +5161,14 @@ bool payload::is_floating() const
 #endif
       {
          str.trim();
-         if(str.get_length() == 0)
+         if(str.length() == 0)
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
             ::i32 i;
-            for(i = 1; i < str.get_length(); i++)
+            for(i = 1; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5190,7 +5190,7 @@ bool payload::is_floating() const
                return false;
             }
 dot1:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5199,7 +5199,7 @@ dot1:
                return false;
             }
 sp1:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(character_isspace(str[i]))
                   continue;
@@ -5209,7 +5209,7 @@ sp1:
             }
 e:
 //sp2:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(character_isspace(str[i]))
                   continue;
@@ -5225,7 +5225,7 @@ e:
                }
                return false;
             }
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5237,7 +5237,7 @@ e:
                return false;
             }
 dot2:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5291,14 +5291,14 @@ bool payload::is_double() const
 #endif
       {
          str.trim();
-         if(str.get_length() == 0)
+         if(str.length() == 0)
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
             ::i32 i;
-            for(i = 1; i < str.get_length(); i++)
+            for(i = 1; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5320,7 +5320,7 @@ bool payload::is_double() const
                return false;
             }
 dot1:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5329,7 +5329,7 @@ dot1:
                return false;
             }
 sp1:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(character_isspace(str[i]))
                   continue;
@@ -5339,7 +5339,7 @@ sp1:
             }
 e:
 //sp2:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(character_isspace(str[i]))
                   continue;
@@ -5355,7 +5355,7 @@ e:
                }
                return false;
             }
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5367,7 +5367,7 @@ e:
                return false;
             }
 dot2:
-            for(; i < str.get_length(); i++)
+            for(; i < str.length(); i++)
             {
                if(ansi_char_isdigit(str[i]))
                   continue;
@@ -5411,13 +5411,13 @@ bool payload::is_integer() const
 #endif
       {
          str.trim();
-         if(str.get_length() == 0)
+         if(str.length() == 0)
             return false;
          else if(str[0] == '+'
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
-            for(index i = 1; i < str.get_length(); i++)
+            for(index i = 1; i < str.length(); i++)
             {
                if(!ansi_char_isdigit(str[i]))
                   return false;
@@ -5459,12 +5459,12 @@ bool payload::is_natural() const
 #endif
       {
          str.trim();
-         if(str.get_length() == 0)
+         if(str.length() == 0)
             return false;
          else if(str[0] == '+'
                  || ansi_char_isdigit(str[0]))
          {
-            for(index i = 1; i < str.get_length(); i++)
+            for(index i = 1; i < str.length(); i++)
             {
                if(!ansi_char_isdigit(str[i]))
                   return false;
@@ -6157,7 +6157,7 @@ const char * payload::parse_network_payload(const ::string & strJson)
 
    const ::ansi_character * pszJson = strJson;
 
-   parse_network_payload(pszJson, pszJson + strJson.get_length());
+   parse_network_payload(pszJson, pszJson + strJson.length());
 
    return pszJson;
 
@@ -6576,13 +6576,13 @@ bool is_return_ok(para_return eret)
 
    string strSuffix(pcszSuffix);
 
-   strsize iLen = strSuffix.get_length();
+   strsize iLen = strSuffix.length();
 
    if(str.Right(iLen) == pcszSuffix)
 
    {
 
-      return str.Left(str.get_length() - iLen);
+      return str.Left(str.length() - iLen);
 
    }
 

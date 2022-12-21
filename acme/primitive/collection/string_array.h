@@ -1552,7 +1552,7 @@ template < bool bAddEmpty >
 typename Type::const_iterator string_array_base < Type, RawType, m_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING & scopedstr)
 {
 
-   auto range = scopedstr.this_range();
+   auto range = scopedstr();
 
    while(true)
    {
@@ -1594,9 +1594,9 @@ typename Type::const_iterator string_array_base < Type, RawType, m_etypeContaine
 
       }
 
-      __add_suffix<bAddEmpty>(range.begin(), p);
+      __add_lines_suffix<bAddEmpty>(range.begin(), p);
 
-      range.m_begin = pNext;
+      range.begin(pNext);
 
    };
 
@@ -1608,7 +1608,7 @@ template < typename string_array_base < Type, RawType, m_etypeContainer >::CHARA
 typename Type::const_iterator string_array_base < Type, RawType, m_etypeContainer > ::_____add_lines(const SCOPED_STRING & scopedstr)
 {
 
-   auto range = scopedstr.this_range();
+   auto range = scopedstr();
 
    while(true)
    {
@@ -1622,9 +1622,9 @@ typename Type::const_iterator string_array_base < Type, RawType, m_etypeContaine
 
       }
 
-      __add_suffix<bAddEmpty>(range.begin(), p);
+      __add_lines_suffix<bAddEmpty>(range.begin(), p);
 
-      range.m_begin = p + 1;
+      range.begin(p + 1);
 
    }
 
@@ -1641,7 +1641,7 @@ void string_array_base < Type, RawType, m_etypeContainer > ::_add_lines(const SC
 
    auto pR = strParam.find_first('\r');
 
-   typename Type::const_iterator p = this->begin();
+   typename Type::const_iterator p;
 
    if(pN)
    {
@@ -1701,7 +1701,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    auto iFind = find_first(newElement);
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       return -1;
@@ -1743,7 +1743,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    ::index iFind = find_first_ci(newElement);
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       return -1;
@@ -1997,9 +1997,9 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
       if(iSel < 0)
       {
 
-         ::index iHalfLen = (::index) (str.get_length() / 2);
+         ::index iHalfLen = (::index) (str.length() / 2);
 
-         for(::index iTruncate = (::index) str.get_length(); iTruncate >= iHalfLen; iTruncate--)
+         for(::index iTruncate = (::index) str.length(); iTruncate >= iHalfLen; iTruncate--)
          {
 
             str.truncate(iTruncate);
@@ -2289,7 +2289,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind = find_first_begins(strSuffix, iFind, iLast);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2310,7 +2310,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind  = find_first_begins_ci(strPrefix,iFind,iLast);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2332,7 +2332,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind = find_first_ends(strSuffix, iFind, iLast);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2352,7 +2352,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind = find_first_ends_ci(strSuffix, iFind, iLast);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2377,7 +2377,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind = find_first_contains(strSubstring, iFind, iLast, &pszBeg, &pszEnd);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2403,7 +2403,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
    iFind = find_first_contains_ci(strTopic, iFind, iLast, &pszBeg, &pszEnd);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return iFind;
@@ -2956,11 +2956,11 @@ return this->get_size();
 else
 {
 ::index iCount = 0;
-::index iLen = str.get_length();
+::index iLen = str.length();
 for(::index i = 0; i < this->get_size(); i++)
 {
 Type & strLeft = this->element_at(i).Left(iLen);
-if(strLeft.get_length() == iLen)
+if(strLeft.length() == iLen)
 {
 if(case_insensitive_order(strLeft, str) == 0)
 {
@@ -2991,7 +2991,7 @@ if(str.is_empty())
 for(::index i = 0; i < stra.get_size(); i++)
 {
 Type & strMid = stra[i].Left(iLength);
-if(strMid.get_length() >= iMinLength)
+if(strMid.length() >= iMinLength)
 {
 if(FindFirstNoSortNoCase(strMid) < 0)
 {
@@ -3002,11 +3002,11 @@ add(strMid);
 }
 else
 {
-::index iLen = maximum(str.get_length(), iMinLength);
+::index iLen = maximum(str.length(), iMinLength);
 for(::index i = 0; i < stra.get_size(); i++)
 {
 Type & strMid = stra[i].Left(iLength);
-if(strMid.get_length() >= iLen)
+if(strMid.length() >= iLen)
 {
 if(case_insensitive_order(strMid.Left(iLen), str) == 0)
 {
@@ -3912,7 +3912,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
          iFind = find_first_begins(str, i, iLast);
 
-         if (iFind < 0)
+         if (::is_null(pFind))
          {
 
             this->erase_at(i, iLast - i + 1);
@@ -3956,7 +3956,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
          iFind = find_first_begins_ci(str,i,iLast);
 
-         if(iFind < 0)
+         if(::is_null(pFind))
          {
 
             this->erase_at(i,iLast - i + 1);
@@ -4213,7 +4213,7 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::encode_v16()
    //for(::index u = 0; u < this->get_count(); u++)
    //{
    //   Type & str = this->element_at(u);
-   //   strEncode += hex::lower_from((const char*)str,str.get_length());
+   //   strEncode += hex::lower_from((const char*)str,str.length());
    //   strEncode += "00";
    //   /*      for(::index uj = 0; uj < str.size(); uj++)
    //   {

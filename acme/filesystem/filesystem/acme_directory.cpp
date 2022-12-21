@@ -247,7 +247,7 @@ string acme_directory::system_short_name()
 
    string strFolder;
 
-   strsize iFind = strAppId.find('/');
+   auto pFind = strAppId.find('/');
 
    if (strPlatform.case_insensitive_order("win32") == 0 || strPlatform.case_insensitive_order("x86") == 0)
    {
@@ -264,7 +264,7 @@ string acme_directory::system_short_name()
 
    }
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       path /= strAppId;
@@ -273,9 +273,9 @@ string acme_directory::system_short_name()
    else
    {
 
-      path /= strAppId.Left(iFind);
+      path /= strAppId(0, pFind);
 
-      path /= strAppId.Mid(iFind + 1);
+      path /= strAppId(pFind + 1);
 
    }
 
@@ -304,7 +304,7 @@ string acme_directory::system_short_name()
 
    string strFolder;
 
-   strsize iFind = strAppId.find('/');
+   auto pFind = strAppId.find('/');
 
    path = ca2roaming();
 

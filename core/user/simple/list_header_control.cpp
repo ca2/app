@@ -124,7 +124,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
             pdi->pszText = (char *) (const ::string &) str;
 
-            pdi->cchTextMax = str.get_length();
+            pdi->cchTextMax = str.length();
 
          }*/
 /*         if(pdi->mask & HDI_TEXT
@@ -139,7 +139,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
             pdi->pszText = (char *) (const ::string &) str;
 
-            pdi->cchTextMax = str.get_length();
+            pdi->cchTextMax = str.length();
 
          }
       }

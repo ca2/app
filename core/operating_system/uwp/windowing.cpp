@@ -246,9 +246,9 @@ bool  oswindow_data::is_window_visible()
 oswindow oswindow_get(::user::interaction_impl * pimpl)
 {
 
-   iptr iFind = oswindow_find(pimpl);
+   auto pFind = oswindow_find(pimpl);
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
       return g_oswindow_dataptra()->element_at(iFind);
 
    oswindow pdata = memory_new oswindow_data;
@@ -267,9 +267,9 @@ oswindow oswindow_get(::user::interaction_impl * pimpl)
 //int_bool oswindow_erase(::user::interaction_impl * pinteraction)
 //{
 //
-//   iptr iFind = oswindow_find(pinteraction);
+//   auto pFind = oswindow_find(pinteraction);
 //
-//   if(iFind < 0)
+//   if(::is_null(pFind))
 //      return false;
 //
 //   g_oswindow_dataptra()->erase_at(iFind);

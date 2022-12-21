@@ -2381,7 +2381,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             //    ::GetTextExtentPointW(
             //       (HDC)pgraphics->get_os_data(),
             //       str,
-            //       str.get_length(),
+            //       str.length(),
             //       &size);
             //
             //    size.cx += m_sizeButton.cx;

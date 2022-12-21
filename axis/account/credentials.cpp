@@ -235,7 +235,7 @@ namespace account
          bool bBadUser = strUser.is_empty()
             || !psystem->email().is_valid_public_address(strUser);
 
-         bool bBadHash = strHash.get_length() < 80
+         bool bBadHash = strHash.length() < 80
             || strOlen.is_empty()
             || atoi(strOlen) < 4;
 
@@ -328,7 +328,7 @@ namespace account
    bool credentials::is_ok()
    {
 
-      if(m_puser->m_strLogin.get_length() <= 3)
+      if(m_puser->m_strLogin.length() <= 3)
       {
 
          m_estatus = error_credentials_invalid_login;
@@ -337,8 +337,8 @@ namespace account
 
       }
 
-      if((m_strPassword.get_length() < 5
-         && m_strPasshash.get_length() < 80)
+      if((m_strPassword.length() < 5
+         && m_strPasshash.length() < 80)
             || m_iPasswordOriginalLength < 5)
       {
 

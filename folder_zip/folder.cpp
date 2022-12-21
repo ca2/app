@@ -209,7 +209,7 @@ namespace folder_zip
          if (strPrefix.is_empty() || strTitle.case_insensitive_begins_eat(strPrefix))
          {
 
-            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))
             {
                
                if (strTitle.has_char())
@@ -323,12 +323,12 @@ namespace folder_zip
 
       string strFile(scopedstrFileName);
 
-      index iFind = strFile.find(":");
+      auto pFind = strFile.find(":");
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
-         strFile = strFile.Left(iFind);
+         strFile = strFile(0, pFind);
 
       }
       

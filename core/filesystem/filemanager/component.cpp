@@ -496,12 +496,12 @@ namespace filemanager
 
             string str = stra[i];
 
-            strsize iFind = str.find(':');
+            auto pFind = str.find(':');
 
             if (iFind > 0)
             {
 
-               string strPath = str.Mid(iFind + 1);
+               string strPath = str(pFind + 1);
 
                for (index j = i + 1; j < stra.get_size();)
                {
@@ -513,7 +513,7 @@ namespace filemanager
                   if (iFind > 0)
                   {
 
-                     string strOtherPath = strOther.Mid(iFind + 1);
+                     string strOtherPath = strOther(pFind + 1);
 
                      if (strOtherPath.case_insensitive_order(strPath) == 0)
                      {

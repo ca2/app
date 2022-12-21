@@ -132,7 +132,7 @@ namespace sphere
 
    //   string strId = m_strId;
    //   char chFirst = '\0';
-   //   if(strId.get_length() > 0)
+   //   if(strId.length() > 0)
    //   {
    //      chFirst = strId[0];
    //   }
@@ -209,7 +209,7 @@ namespace sphere
 
       char chFirst = '\0';
 
-      if(strId.get_length() > 0)
+      if(strId.length() > 0)
       {
 
          chFirst = strId[0];
@@ -225,7 +225,7 @@ namespace sphere
    {
       //string strId = m_strId;
       //char chFirst = '\0';
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -254,7 +254,7 @@ namespace sphere
    {
       //string strId = m_strId;
       //char chFirst = '\0';
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -282,7 +282,7 @@ namespace sphere
    {
       //string strId = m_strId;
       //char chFirst = '\0';
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -318,7 +318,7 @@ namespace sphere
 
       //string strId = m_strId;
       //char chFirst = '\0';
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -350,7 +350,7 @@ namespace sphere
 
       //char chFirst = '\0';
 
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
 
       //   chFirst = strId[0];
@@ -379,7 +379,7 @@ namespace sphere
    {
       //string strId = m_strId;
       //char chFirst = '\0';
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -408,7 +408,7 @@ namespace sphere
 
       //char chFirst = '\0';
 
-      //if(strId.get_length() > 0)
+      //if(strId.length() > 0)
       //{
 
       //   chFirst = strId[0];

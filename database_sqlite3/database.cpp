@@ -769,7 +769,7 @@ namespace sqlite
 
             }
 
-            strsize iLength = strKey.get_length();
+            strsize iLength = strKey.length();
 
             int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, strKey, (int) iLength,
                                         SQLITE_TRANSIENT);
@@ -859,7 +859,7 @@ namespace sqlite
 
       }
 
-      int iLength = (int) strKey.get_length();
+      int iLength = (int) strKey.length();
 
       int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, strKey, (int) iLength, SQLITE_TRANSIENT);
 

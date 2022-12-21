@@ -174,9 +174,9 @@ bool file_context::exists(const ::file::path &pathParam)
    if (::task_flag().is_set(e_task_flag_compress_is_dir))
    {
 
-      strsize iFind = ::str().find_file_extension("zip:", path);
+      auto pFind = ::str().find_file_extension("zip:", path);
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
          if (!exists(path.Mid(0, iFind + 4)))
@@ -511,7 +511,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
       if (str.case_insensitive_begins_eat(pszPrefix))
       {
 
-         if (str.get_length() < 2)
+         if (str.length() < 2)
          {
 
             stra.erase_at(i);
@@ -2355,7 +2355,7 @@ void file_context::normalize(string &str)
            str.Right(1) == "/"))
    {
       
-      str = str.Left(str.get_length() - 1);
+      str = str.Left(str.length() - 1);
 
    }
 
@@ -2557,7 +2557,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   if (pctx != nullptr)
 //   {
 //
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.length());
 //
 //   }
 //
@@ -2602,12 +2602,12 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 //void file_context::write_gen_string(::file::file * pfile, void * pctx, string & str)
 //{
-//   ::count iLen = str.get_length();
+//   ::count iLen = str.length();
 //   write_n_number(pfile, pctx, iLen);
 //   pfile->write((const char *)str);
 //   if (pctx != nullptr)
 //   {
-//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.get_length());
+//      MD5_Update((MD5_CTX *)pctx, (const char *)str, (i32)str.length());
 //   }
 //}
 
@@ -2929,7 +2929,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
    string strSample = strData.Left(4096);
 
-   strsize iFind = strSample.find(";", 5);
+   auto pFind = strSample.find(";", 5);
 
    if (iFind > 5)
    {

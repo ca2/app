@@ -727,7 +727,7 @@ namespace sockets_bsd
 
 
       void write(const void * buf, memsize c) override;
-      //void inline print(const ::string & str) { write(str.c_str(), str.get_length()); }
+      //void inline print(const ::string & str) { write(str.c_str(), str.length()); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */

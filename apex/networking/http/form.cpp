@@ -67,7 +67,7 @@ namespace http
 
       infil->seek_to_begin();
 
-      if (strContentType.get_length() >= 19 && strContentType.Mid(0, 19) == "multipart/form-data")
+      if (strContentType.length() >= 19 && strContentType.Mid(0, 19) == "multipart/form-data")
       {
          
          ::parse pa(strContentType,";=");
@@ -82,7 +82,7 @@ namespace http
             if (!strcmp(str,"boundary"))
             {
                m_strBoundary = pa.getword();
-               iBoundaryLength = m_strBoundary.get_length();
+               iBoundaryLength = m_strBoundary.length();
                tempcmp.set_size(iBoundaryLength + extra);
             }
             //
@@ -94,7 +94,7 @@ namespace http
             string current_name;
             string current_filename;
             string slask;
-            while((slask.has_char() && !ansi_count_compare(slask,m_strBoundary, m_strBoundary.get_length())) || infil ->read_string(slask))
+            while((slask.has_char() && !ansi_count_compare(slask,m_strBoundary, m_strBoundary.length())) || infil ->read_string(slask))
             {
                content_type = "";
                current_name = "";
@@ -220,7 +220,7 @@ namespace http
 
                      string val;
 
-                     while (infil -> read_string(slask) && ansi_count_compare(slask,m_strBoundary, (strsize)m_strBoundary.get_length() ))
+                     while (infil -> read_string(slask) && ansi_count_compare(slask,m_strBoundary, (strsize)m_strBoundary.length() ))
                      {
 
                         val += slask;
@@ -364,7 +364,7 @@ namespace http
 
          strNetworkArguments = infil->as_string();
 
-         //strsize len = str.get_length();
+         //strsize len = str.length();
 //         strsize clen = content-length;
          //FORMATTED_TRACE("x-www-form-urlencoded POST is %d bytes length and reported content-length header is %d.", len);
          m_setPost.parse_network_arguments(strNetworkArguments);

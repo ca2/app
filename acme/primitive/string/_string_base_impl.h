@@ -1,4 +1,4 @@
-//
+﻿//
 //  _string_base_impl.h
 //  acme
 //
@@ -1051,29 +1051,16 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(str
 //
 
 
-//template < typename ITERATOR_TYPE >
-//template < primitive_character CHARACTER2 >
-//inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const ::string_base < CHARACTER2 > & strSource)
-//{
-//
-//   start_count(start, count, strSource.size());
-//
-//   if(sizeof(CHARACTER) != sizeof(CHARACTER2) || start != 0 || count != strSource.size())
-//   {
-//
-//      assign(strSource.begin(), start, count);
-//
-//   }
-//   else
-//   {
-//
-//      assign(strSource.begin());
-//
-//   }
-//
-//   return *this;
-//
-//}
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER2 >
+inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const CHARACTER2 * start, strsize len)
+{
+
+   _assign(start, len);
+
+   return *this;
+
+}
 
 
 //template < typename ITERATOR_TYPE >
@@ -2602,7 +2589,7 @@ template < typename ITERATOR_TYPE >
 inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITERATOR_TYPE >::truncate(this_iterator p)
 {
    
-   if(p <= begin)
+   if(p <= this->begin())
    {
       
       Empty();
@@ -2611,7 +2598,20 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
    else if(p < this->end())
    {
 
-      *this = { this->begin(), p };
+      auto pmetadata = this->NATURAL_POINTER::metadata();
+
+      if (pmetadata->natural_is_shared())
+      {
+
+         *this = (*this)(0, p);
+
+      }
+      else
+      {
+
+         pmetadata->set_length(p - this->begin());
+
+      }
 
    }
 
@@ -3134,9 +3134,9 @@ bool string_range < ITERATOR_TYPE >::contains_ci(const SCOPED_STRING & scopedstr
 //bool string_base < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 //{
 //
-//   strsize iFind = find(psz, start, count, ppszEnd);
+//   auto pFind = find(psz, start, count, ppszEnd);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      return false;
@@ -3159,9 +3159,9 @@ bool string_range < ITERATOR_TYPE >::contains_ci(const SCOPED_STRING & scopedstr
 //bool string_base < ITERATOR_TYPE >::contains_ci(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 //{
 //
-//   strsize iFind = case_insensitive_find(psz, start, count, ppszEnd);
+//   auto pFind = case_insensitive_find(psz, start, count, ppszEnd);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      return false;
@@ -4138,16 +4138,7 @@ template < typename ITERATOR_TYPE >
 inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 {
 
-   auto psz = string_find_character(this->begin(), ch);
-
-   if (!psz)
-   {
-
-      return -1;
-
-   }
-
-   return psz - this->begin();
+   return this->find_first(ch);
 
 }
 
@@ -5173,12 +5164,12 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_right(PCHAR szTargets)
 {
 
-   auto i = rear_find_first_character_in(scopedstrCharacters);
+   auto p = this->rear_find_first_character_in(scopedstrCharacters);
 
-   if (i < size() - 1)
+   if (p < this->end() - 1)
    {
 
-      truncate(i + 1);
+      truncate(p);
 
    }
 
@@ -5276,12 +5267,12 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_left(const S
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_left(PCHAR szTargets)
 {
 
-   auto p = skip_any_character_in(scopedstrCharacters);
+   auto p = this->skip_any_character_in(scopedstrCharacters);
 
    if (p > this->begin())
    {
 
-      erase_beginning(p);
+      this->erase_beginning(p);
 
    }
 
@@ -5944,9 +5935,9 @@ bool string_base < ITERATOR_TYPE >::eat_before(string_base < ITERATOR_TYPE > & s
 
    }
 
-   index iFind = this->find(scopedstrSeparator);
+   auto pFind = this->find(scopedstrSeparator);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       if (bEatEverythingIfNotFound)
@@ -5985,9 +5976,9 @@ bool string_base < ITERATOR_TYPE >::eat_before_let_separator(string_base < ITERA
 
    }
 
-   index iFind = this->find(scopedstrSeparator);
+   auto pFind = this->find(scopedstrSeparator);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       if (bEatEverythingIfNotFound)
@@ -6005,7 +5996,7 @@ bool string_base < ITERATOR_TYPE >::eat_before_let_separator(string_base < ITERA
 
    strBefore = this->Left(iFind);
 
-   *this = this->Mid(iFind);
+   *this = this-(pFind);
 
    return true;
 
@@ -6593,7 +6584,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
    strsize nReplacementLen = scopedstrNew.size();
 
    // loop once to figure out the size_i32 of the result string_base < ITERATOR_TYPE >
-   auto count = _occurrence_count_of(scopedstrOld, equality);
+   auto count = this->_occurrence_count_of(scopedstrOld, equality);
 
    // if any changes were made, make them
    if (count <= 0) {

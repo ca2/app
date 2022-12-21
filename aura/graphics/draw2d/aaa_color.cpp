@@ -915,10 +915,10 @@ bool color::parse_color(const ::string & psz)
    string str(psz);
    str.trim();
    str += " ";
-   if (str.Left(1) == "#" && str.get_length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
+   if (str.Left(1) == "#" && str.length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
          && ishexdigit(str[5]) && ishexdigit(str[6]))
    {
-      if (str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
+      if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
       {
          i32 iA, iR, iG, iB;
          sscanf(str, "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
@@ -933,9 +933,9 @@ bool color::parse_color(const ::string & psz)
          return true;
       }
    }
-   else if (str.Left(1) == "#" && str.get_length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
+   else if (str.Left(1) == "#" && str.length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
    {
-      if (str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
+      if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
       {
          i32 iA, iR, iG, iB;
          sscanf(str, "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);

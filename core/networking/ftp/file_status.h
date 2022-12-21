@@ -91,8 +91,8 @@ namespace ftp
       {
          if (m_strName.is_empty()) return false;
          if (m_strName[0] != '.') return false;
-         if (m_strName.get_length() == 1) return true;
-         if (m_strName.get_length() > 2) return false;
+         if (m_strName.length() == 1) return true;
+         if (m_strName.length() > 2) return false;
          if (m_strName[1] != '.') return false;
          return true;
       }

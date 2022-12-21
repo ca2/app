@@ -112,7 +112,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //CLASS_DECL_ACME string ::url::decode(const & strParam)
 //{
 //
-//   return ::url::decode(strParam, strParam.get_length());
+//   return ::url::decode(strParam, strParam.length());
 //
 //   /*string str(strParam);
 //
@@ -125,7 +125,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //   while(true)
 //   {
 //
-//      strsize iFind = str.find("%",iStart);
+//      auto pFind = str.find("%",iStart);
 //
 //      if(iFind == -1)
 //      {
@@ -293,7 +293,7 @@ namespace url
          if (pszBeg != nullptr)
          {
 
-            pszBeg += strKey.get_length();
+            pszBeg += strKey.length();
 
             goto success;
 
@@ -314,7 +314,7 @@ namespace url
          if (pszBeg != nullptr)
          {
 
-            pszBeg += strKey.get_length();
+            pszBeg += strKey.length();
 
             goto success;
 
@@ -598,14 +598,14 @@ void openURL(const string& url_str)
 //
 //   string strDomain;
 //
-//   index iFind = user.m_strLogin.find('/');
+//   auto pFind = user.m_strLogin.find('/');
 //
 //   if(iFind > 0)
 //   {
 //
-//      strUser = user.m_strLogin.Mid(iFind + 1);
+//      strUser = user.m_strLogin(pFind + 1);
 //
-//      strDomain = user.m_strLogin.Left(iFind);
+//      strDomain = user.m_strLogin(0, pFind);
 //
 //   }
 //   else
@@ -651,7 +651,7 @@ void openURL(const string& url_str)
 //
 //   string strCandidate(pszCandidate);
 //
-//   strsize iLen = strCandidate.get_length();
+//   strsize iLen = strCandidate.length();
 //
 //   strsize i = 0;
 //
@@ -698,7 +698,7 @@ void openURL(const string& url_str)
 //   while (true)
 //   {
 //
-//      strsize iFind = str.find("%", iStart);
+//      auto pFind = str.find("%", iStart);
 //
 //      if (iFind == -1)
 //      {
@@ -828,7 +828,7 @@ void openURL(const string& url_str)
 //      if (pszBeg != nullptr)
 //      {
 //
-//         pszBeg += strKey.get_length();
+//         pszBeg += strKey.length();
 //
 //         goto success;
 //
@@ -849,7 +849,7 @@ void openURL(const string& url_str)
 //      if (pszBeg != nullptr)
 //      {
 //
-//         pszBeg += strKey.get_length();
+//         pszBeg += strKey.length();
 //
 //         goto success;
 //
@@ -1166,14 +1166,14 @@ pacmedirectory->system() / "config\\user.txt")*/;
 //
 //   string strDomain;
 //
-//   index iFind = user.m_strLogin.find('/');
+//   auto pFind = user.m_strLogin.find('/');
 //
 //   if(iFind > 0)
 //   {
 //
-//      strUser = user.m_strLogin.Mid(iFind + 1);
+//      strUser = user.m_strLogin(pFind + 1);
 //
-//      strDomain = user.m_strLogin.Left(iFind);
+//      strDomain = user.m_strLogin(0, pFind);
 //
 //   }
 //   else

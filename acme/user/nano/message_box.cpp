@@ -85,7 +85,7 @@ void nano_message_box::defer_create_details_still()
 ::count get_line_count(const ::string & str)
 {
 
-   strsize iFind = 0;
+   auto pFind = 0;
 
    ::count cLine = 1;
 

@@ -285,7 +285,7 @@ namespace simpledb
 
                stritem.m_tick.Now();
 
-               stritem.m_memory.from_base64(strValue, strValue.get_length());
+               stritem.m_memory.from_base64(strValue, strValue.length());
 
                synchronouslock.lock();
 

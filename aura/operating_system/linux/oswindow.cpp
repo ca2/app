@@ -308,9 +308,9 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pint
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find_message_only_window(pinteraction);
+   auto pFind = oswindow_find_message_only_window(pinteraction);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
    {
 
       return ::oswindow_data::s_pdataptra->element_at(iFind);
@@ -338,9 +338,9 @@ oswindow_data * oswindow_defer_get(Display * pdisplay, Window window)
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find(pdisplay, window);
+   auto pFind = oswindow_find(pdisplay, window);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return nullptr;
@@ -357,9 +357,9 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find(pdisplay, window);
+   auto pFind = oswindow_find(pdisplay, window);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
    {
 
       return ::oswindow_data::s_pdataptra->element_at(iFind);
@@ -410,9 +410,9 @@ oswindow_data * oswindow_get(Window window)
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find(window);
+   auto pFind = oswindow_find(window);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return nullptr;

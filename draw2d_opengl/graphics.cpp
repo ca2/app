@@ -1781,7 +1781,7 @@ namespace draw2d_opengl
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::GetTabbedTextExtent(m_hdc, str, (i32) str.get_length(), (int) nTabPositions, lpnTabStopPositions);
+      //return ::GetTabbedTextExtent(m_hdc, str, (i32) str.length(), (int) nTabPositions, lpnTabStopPositions);
       return nullptr;
 
    }
@@ -1976,7 +1976,7 @@ namespace draw2d_opengl
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::GetCharacterPlacement(m_hdc, (const ::string &)str, (i32) str.get_length(), (int) nMaxExtent, lpResults, dwFlags);
+      //return ::GetCharacterPlacement(m_hdc, (const ::string &)str, (i32) str.length(), (int) nMaxExtent, lpResults, dwFlags);
       return false;
 
    }
@@ -4682,7 +4682,7 @@ namespace draw2d_opengl
 
       ::size_f64 size;
 
-      if(!get_text_extent(size, str, (i32) str.get_length(), 0))
+      if(!get_text_extent(size, str, (i32) str.length(), 0))
          return ::size_i32(0, 0);
 
       return ::size_i32((long) size.cx, (long) size.cy);

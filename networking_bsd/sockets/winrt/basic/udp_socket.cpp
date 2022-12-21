@@ -244,25 +244,25 @@ namespace sockets
 
    /*   void udp_socket::SendTo(const string & a, port_t p, const ::string & str, int flags)
    {
-   SendToBuf(a, p, str, (int)str.get_length(), flags);
+   SendToBuf(a, p, str, (int)str.length(), flags);
    }
 
 
    void udp_socket::SendTo(ipaddr_t a, port_t p, const ::string & str, int flags)
    {
-   SendToBuf(a, p, str, (int)str.get_length(), flags);
+   SendToBuf(a, p, str, (int)str.length(), flags);
    }
 
 
    void udp_socket::SendTo(in6_addr a, port_t p, const ::string & str, int flags)
    {
-   SendToBuf(a, p, str, (int)str.get_length(), flags);
+   SendToBuf(a, p, str, (int)str.length(), flags);
    }
 
 
    void udp_socket::SendTo(::networking::address& ad, const ::string & str, int flags)
    {
-   SendToBuf(ad, str, (int)str.get_length(), flags);
+   SendToBuf(ad, str, (int)str.length(), flags);
    }
    */
 
@@ -300,7 +300,7 @@ namespace sockets
 
    void udp_socket::Send(const ::string & str, int flags)
    {
-      SendBuf(str, (int)str.get_length(), flags);
+      SendBuf(str, (int)str.length(), flags);
    }
 
 

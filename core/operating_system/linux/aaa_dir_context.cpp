@@ -174,18 +174,18 @@ namespace linux
 
       pathInstall = install();
 
-      index iFind = pathInstall.find(':');
+      auto pFind = pathInstall.find(':');
 
-      if(iFind >= 0)
+      if(::is_set(pFind))
       {
 
-         strsize iFind1 = pathInstall.rear_find("\\", iFind);
+         strsize iFind1 = pathInstall(pFind).rear_find("\\");
 
-         strsize iFind2 = pathInstall.rear_find("/", iFind);
+         strsize iFind2 = pathInstall(pFind).rear_find("/");
 
          strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-         pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall.Mid(iFind + 1);
+         pathInstall = pathInstall.Left(iFind - 1) + "_" + pathInstall.Mid(iStart, iFind - iStart) + pathInstall(pFind + 1);
 
       }
 
@@ -389,7 +389,7 @@ pacmedirectory->is(path))
    bool dir_context::name_is(const ::file::path & str)
    {
       //output_debug_string(str);
-      strsize iLast = str.get_length() - 1;
+      strsize iLast = str.length() - 1;
       while(iLast >= 0)
       {
          if(str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')

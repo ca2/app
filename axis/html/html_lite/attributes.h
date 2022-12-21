@@ -193,7 +193,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    operator byte() const
-   { return ((byte)(m_strValue.get_length() ? m_strValue[0] : 0)); }
+   { return ((byte)(m_strValue.length() ? m_strValue[0] : 0)); }
 
    /**
     * Converts attribute value to double

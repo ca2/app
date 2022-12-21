@@ -140,7 +140,7 @@ namespace windows
       unicode_to_utf8(strExtra, pcszExtra);
 
 
-      if (strExtra.get_length() > 0)
+      if (strExtra.length() > 0)
       {
 
          strPathEx += ":" + strExtra;
@@ -539,7 +539,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
 
       }
 
-      //if (imagekey.m_iIcon >= 0 && strFileParam.get_length() > 0)
+      //if (imagekey.m_iIcon >= 0 && strFileParam.length() > 0)
       //{
 
       //   SHFILEINFOW shfi16;
@@ -930,25 +930,25 @@ pacmedirectory->is(strPath))
       // And then should find icon by extension if
       // it is a file or as folder otherwise.
 
-      strsize iFind = imagekey.m_strPath.case_insensitive_find("://");
+      auto pFind = imagekey.m_strPath.case_insensitive_find("://");
 
       strsize iFind2 = imagekey.m_strPath.case_insensitive_find(":");
 
-      if (iFind >= 0 || iFind2 >= 2)
+      if (::is_set(pFind) || iFind2 >= 2)
       {
 
          string strProtocol = imagekey.m_strPath.Left(maximum(iFind, iFind2));
 
          i32 i = 0;
 
-         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
+         while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
          {
 
             i++;
 
          }
 
-         if (i > 0 && i == strProtocol.get_length())
+         if (i > 0 && i == strProtocol.length())
          {
 
             // heuristically valid protocol

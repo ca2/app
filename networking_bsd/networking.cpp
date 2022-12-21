@@ -355,7 +355,7 @@ namespace networking_bsd
    {
       static   char hex[] = "0123456789ABCDEF";
       string dst;
-      for (i32 i = 0; i < src.get_length(); i++)
+      for (i32 i = 0; i < src.length(); i++)
       {
          if (character_isalnum(src[i]))
          {
@@ -384,7 +384,7 @@ namespace networking_bsd
    string networking::rfc1738_decode(const string& src)
    {
       string dst;
-      for (i32 i = 0; i < src.get_length(); i++)
+      for (i32 i = 0; i < src.length(); i++)
       {
          if (src[i] == '%' && isxdigit((uchar)(src[i + 1])) && isxdigit((uchar)(src[i + 2])))
          {
@@ -411,7 +411,7 @@ namespace networking_bsd
    {
       i32 dots = 0;
       // %! ignore :port?
-      for (i32 i = 0; i < str.get_length(); i++)
+      for (i32 i = 0; i < str.length(); i++)
       {
          if (str[i] == '.')
             dots++;
@@ -430,7 +430,7 @@ namespace networking_bsd
          return false;
       index qc = 0;
       index qd = 0;
-      for (i32 i = 0; i < str.get_length(); i++)
+      for (i32 i = 0; i < str.length(); i++)
       {
          qc += (str[i] == ':') ? 1 : 0;
          qd += (str[i] == '.') ? 1 : 0;
@@ -1718,7 +1718,7 @@ namespace networking_bsd
 
    //   string dst;
 
-   //   for (i32 i = 0; i < src.get_length(); i++)
+   //   for (i32 i = 0; i < src.length(); i++)
    //   {
 
    //      if (character_isalnum((uchar)src[i]))
@@ -1760,7 +1760,7 @@ namespace networking_bsd
    //string networking::rfc1738_decode(const string & src)
    //{
    //   string dst;
-   //   for (i32 i = 0; i < src.get_length(); i++)
+   //   for (i32 i = 0; i < src.length(); i++)
    //   {
    //      if (src[i] == '%' && isxdigit((uchar)(src[i + 1])) && isxdigit((uchar)(src[i + 2])))
    //      {
@@ -1787,7 +1787,7 @@ namespace networking_bsd
    //{
    //   i32 dots = 0;
    //   // %! ignore :port?
-   //   for (i32 i = 0; i < str.get_length(); i++)
+   //   for (i32 i = 0; i < str.length(); i++)
    //   {
    //      if (str[i] == '.')
    //         dots++;
@@ -1806,7 +1806,7 @@ namespace networking_bsd
    //      return false;
    //   index qc = 0;
    //   index qd = 0;
-   //   for (i32 i = 0; i < str.get_length(); i++)
+   //   for (i32 i = 0; i < str.length(); i++)
    //   {
    //      qc += (str[i] == ':') ? 1 : 0;
    //      qd += (str[i] == '.') ? 1 : 0;

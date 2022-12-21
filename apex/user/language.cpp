@@ -209,7 +209,7 @@ namespace user
 
          psz = strLine;
 
-         pszEnd = psz + strLine.get_length();
+         pszEnd = psz + strLine.length();
 
          ::str().consume_spaces(psz, 0, pszEnd);
 
@@ -250,7 +250,7 @@ namespace user
 
                psz = strLine;
 
-               pszEnd = psz + strLine.get_length();
+               pszEnd = psz + strLine.length();
 
                ::str().consume_spaces(psz, 0, pszEnd);
 

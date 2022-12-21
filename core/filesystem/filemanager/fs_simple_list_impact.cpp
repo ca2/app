@@ -554,7 +554,7 @@ namespace filemanager
             i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
             int_array iaRemove;
-            i32 iFind = 0;
+            auto pFind = 0;
             sqlite::CFieldValue fv;
             while(true)
             {

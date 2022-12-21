@@ -4440,7 +4440,7 @@ namespace draw2d_cairo
 
          size_f64 s0(0.0, 0.0);
 
-         get_text_extent(s0, strLine, str.get_length(), str.get_length());
+         get_text_extent(s0, strLine, str.length(), str.length());
 
          size.cx = maximum(size.cx, s0.cx);
 
@@ -4591,7 +4591,7 @@ namespace draw2d_cairo
    void graphics::get_text_extent(size_f64 & size, const ::string & str)
    {
 
-      return get_text_extent(size, str, str.get_length());
+      return get_text_extent(size, str, str.length());
 
    }
 
@@ -6687,12 +6687,12 @@ namespace draw2d_cairo
 ////
 ////      string str((const ::string &)s);
 ////
-////      int iFind = str.find(":");
+////      auto pFind = str.find(":");
 ////
 ////      if (iFind > 0)
 ////      {
 ////
-////         str = str.Left(iFind);
+////         str = str(0, pFind);
 ////
 ////      }
 ////
@@ -6796,9 +6796,9 @@ namespace draw2d_cairo
 //
 //        }
 //
-//        int iFind = stra.find_first_ci(str);
+//        auto pFind = stra.find_first_ci(str);
 //
-//        if (iFind >= 0)
+//        if (::is_set(pFind))
 //        {
 //
 //            strPath = straPath[iFind];
@@ -6809,7 +6809,7 @@ namespace draw2d_cairo
 //
 //            iFind = stra.find_first_begins_ci(str + " Regular");
 //
-//            if (iFind >= 0)
+//            if (::is_set(pFind))
 //            {
 //
 //                strPath = straPath[iFind];
@@ -6820,7 +6820,7 @@ namespace draw2d_cairo
 //
 //                iFind = stra.find_first_begins_ci(str + ",");
 //
-//                if (iFind >= 0)
+//                if (::is_set(pFind))
 //                {
 //
 //                    strPath = straPath[iFind];
@@ -6831,7 +6831,7 @@ namespace draw2d_cairo
 //
 //                    iFind = stra.find_first_begins_ci(str + " ");
 //
-//                    if (iFind >= 0)
+//                    if (::is_set(pFind))
 //                    {
 //
 //                        strPath = straPath[iFind];

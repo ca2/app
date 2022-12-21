@@ -135,9 +135,9 @@ namespace http
    http::cookie & cookies::cookie(const char * name)
    {
 
-      index iFind = find_cookie(name);
+      auto pFind = find_cookie(name);
 
-      if(iFind < 0)
+      if(::is_null(pFind))
       {
 
          auto pcookie = __new(class cookie);
@@ -158,9 +158,9 @@ namespace http
    http::cookie & cookies::lowcookie(const char * name)
    {
 
-      index iFind = lowfind_cookie(name);
+      auto pFind = lowfind_cookie(name);
 
-      if(iFind < 0)
+      if(::is_null(pFind))
       {
 
          class cookie ca;
@@ -173,7 +173,7 @@ namespace http
 
          iFind = find_cookie(name);
 
-         ASSERT(iFind >= 0);
+         ASSERT(::is_set(pFind));
 
       }
 
@@ -241,8 +241,8 @@ namespace http
          i++;
          psz = pszEnd + 1;
       }
-      index iFind = find_cookie(cookie->m_strName);
-      if(iFind < 0)
+      auto pFind = find_cookie(cookie->m_strName);
+      if(::is_null(pFind))
       {
          add(cookie);
          return;

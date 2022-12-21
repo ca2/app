@@ -1127,9 +1127,9 @@ bool string_eat_before(string_base < CHAR_TYPE > & strBefore, const string_base 
 
    }
 
-   index iFind = str.find(strSeparator);
+   auto pFind = str.find(strSeparator);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       if (bEatEverythingIfNotFound)
@@ -1145,9 +1145,9 @@ bool string_eat_before(string_base < CHAR_TYPE > & strBefore, const string_base 
 
    }
 
-   strBefore = str.Left(iFind);
+   strBefore = str(0, pFind);
 
-   str = str.Mid(iFind + strSeparator.length());
+   str = str(pFind + strSeparator.length());
 
    return true;
 
@@ -1167,9 +1167,9 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
    }
 
-   index iFind = str.find(strSeparator);
+   auto pFind = str.find(strSeparator);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       if (bEatEverythingIfNotFound)
@@ -1185,9 +1185,9 @@ bool string_eat_before_let_separator(string_base < CHAR_TYPE > & strBefore, cons
 
    }
 
-   strBefore = str.Left(iFind);
+   strBefore = str(0, pFind);
 
-   str = str.Mid(iFind);
+   str = str(pFind);
 
    return true;
 

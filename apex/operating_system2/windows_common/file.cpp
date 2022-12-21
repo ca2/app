@@ -84,7 +84,7 @@
 //
 //   string strNew(pszNew);
 //
-//   if (strNew.get_length() >= MAX_PATH)
+//   if (strNew.length() >= MAX_PATH)
 //   {
 //
 //      strNew = "\\\\.\\" + strNew;
@@ -93,7 +93,7 @@
 //
 //   string strSrc(pszSrc);
 //
-//   if (strSrc.get_length() >= MAX_PATH)
+//   if (strSrc.length() >= MAX_PATH)
 //   {
 //
 //      strSrc = "\\\\.\\" + strSrc;

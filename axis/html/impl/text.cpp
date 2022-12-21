@@ -203,14 +203,14 @@ namespace html
 
          string strLine;
 
-         for (i32 i = 0; i < str.get_length();)
+         for (i32 i = 0; i < str.length();)
          {
 
             iSpace = 0;
 
             ch = str[i];
 
-            while (i < str.get_length())
+            while (i < str.length())
             {
 
                ch = str[i];
@@ -223,12 +223,12 @@ namespace html
                if (iSpace == 1)
                {
 
-                  if (pdata->m_pcoredata->m_bHasChar || strLine.get_length() > 0)
+                  if (pdata->m_pcoredata->m_bHasChar || strLine.length() > 0)
                   {
 
                      strLine += " ";
 
-                     iLastSpace = strLine.get_length();
+                     iLastSpace = strLine.length();
 
                   }
 
@@ -238,7 +238,7 @@ namespace html
 
             }
 
-            if (strLine.get_length() > 0)
+            if (strLine.length() > 0)
             {
 
                m_straWordSpace.add(strLine);
@@ -247,7 +247,7 @@ namespace html
 
             }
 
-            while (i < str.get_length())
+            while (i < str.length())
             {
 
                ch = str[i];
@@ -261,7 +261,7 @@ namespace html
 
             }
 
-            if (strLine.get_length() > 0)
+            if (strLine.length() > 0)
             {
 
                m_straWordSpace.add(strLine);
@@ -405,14 +405,14 @@ namespace html
 
          sizeContent.cy = maximum(0.f, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
-         for (i32 i = 0; i < str.get_length();)
+         for (i32 i = 0; i < str.length();)
          {
 
             iSpace = 0;
 
             ch = str[i];
 
-            while (i < str.get_length())
+            while (i < str.length())
             {
 
                ch = str[i];
@@ -425,12 +425,12 @@ namespace html
                if (iSpace == 1)
                {
 
-                  if (strLine.get_length() > 0 || pdata->m_pcoredata->m_layoutstate1.m_bHasChar)
+                  if (strLine.length() > 0 || pdata->m_pcoredata->m_layoutstate1.m_bHasChar)
                   {
 
                      strLine += " ";
 
-                     iLastSpace = strLine.get_length();
+                     iLastSpace = strLine.length();
 
                   }
 
@@ -440,7 +440,7 @@ namespace html
 
             }
 
-            while (i < str.get_length())
+            while (i < str.length())
             {
 
                ch = str[i];
@@ -502,7 +502,7 @@ namespace html
 
          }
 
-         if (strLine.get_length() > 0)
+         if (strLine.length() > 0)
          {
 
             sizeText = pgraphics->get_text_extent(strLine);
@@ -865,7 +865,7 @@ namespace html
                   strsize i2 = iSelEnd - lim;
                   strsize i3 = iCursor - lim;
                   strsize iStart = maximum(0,i1);
-                  strsize iEnd = minimum(i2,strLine.get_length());
+                  strsize iEnd = minimum(i2,strLine.length());
                   str1 = strLine.Mid(0,iStart);
                   str2 = strLine.Mid(iStart,iEnd - iStart);
                   str3 = strLine.Mid(iEnd);
@@ -902,12 +902,12 @@ namespace html
 
                   maxcy = maximum(size1.cy,size2.cy);
                   maxcy = maximum(maxcy,size3.cy);
-                  if(m_bFocus && bCaretOn && i3 == str1.get_length())
+                  if(m_bFocus && bCaretOn && i3 == str1.length())
                   {
                      pgraphics->set_current_point(left + size1.cx,y);
                      pgraphics->line_to(left + size1.cx,y + maxcy);
                   }
-                  if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+                  if(m_bFocus && bCaretOn && i3 == (str1.length() + str2.length()))
                   {
                      pgraphics->set_current_point(left + size1.cx + size2.cx,y);
                      pgraphics->line_to(left + size1.cx + size2.cx,y + maxcy);
@@ -921,7 +921,7 @@ namespace html
                }
 
                cy += m_sizea[i].cy;
-               lim += strLine.get_length();
+               lim += strLine.length();
             }
          }
          //pgraphics->fill_rectangle(0, 0, 100, 100, rgb(0, 255, 0));
@@ -1184,7 +1184,7 @@ namespace html
 
          }
 
-         strsize iFind = 0;
+         auto pFind = 0;
 
          strsize iLen = 0;
 
@@ -1236,7 +1236,7 @@ namespace html
             else
             {
 
-               iLen += str.get_length();
+               iLen += str.length();
 
             }
 

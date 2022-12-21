@@ -216,7 +216,7 @@ bool get_command_line_parameter(string & wstrValue, const ::string & psz, const 
 
    string wstrParam(pszParam);
 
-   auto iFind = wstr.find(wstrParam + "=");
+   auto pFind = wstr.find(wstrParam + "=");
 
    if(__not_found(iFind))
    {

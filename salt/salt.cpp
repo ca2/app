@@ -42,7 +42,7 @@
 #define INTM2(s1, s2, s5, s8) \
    {\
       string strHash = straHash.implode(";"); \
-      int iMod = stunCalculateFingerprint(strHash, strHash.get_length()); \
+      int iMod = stunCalculateFingerprint(strHash, strHash.length()); \
       int v1 = s1 * 2 + 1; \
       int v2 = s2 * 2 + 1; \
       int v5 = s5 * 2 + 1; \

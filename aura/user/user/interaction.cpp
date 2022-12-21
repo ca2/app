@@ -7730,7 +7730,7 @@ namespace user
 
       auto puserinteractionpointeraChild = pparent->m_puserinteractionpointeraChild;
 
-      ::index iFind = puserinteractionpointeraChild->find_first_interaction(this);
+      ::auto pFind = puserinteractionpointeraChild->find_first_interaction(this);
 
       if (iFind + 1 >= puserinteractionpointeraChild->interaction_count())
       {
@@ -7793,9 +7793,9 @@ namespace user
 
       }
 
-      auto iFind = puserinteractionpointeraChild->find_first_interaction(this);
+      auto pFind = puserinteractionpointeraChild->find_first_interaction(this);
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return nullptr;
@@ -8015,9 +8015,9 @@ namespace user
 
       auto strText = get_window_text();
 
-      strsize iBeg = strText.get_length();
+      strsize iBeg = strText.length();
 
-      strsize iEnd = strText.get_length();
+      strsize iEnd = strText.length();
 
       _001GetSel(iBeg, iEnd);
 
@@ -8072,7 +8072,7 @@ namespace user
    strsize interaction::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      strsize n = minimum(nMaxCount, m_strWindowText.get_length());
+      strsize n = minimum(nMaxCount, m_strWindowText.length());
 
       ansi_count_copy(pszStringBuf, m_strWindowText, n);
 
@@ -16987,7 +16987,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    strsize interaction::_009GetWindowTextLength()
    {
 
-      return m_strWindowText.get_length();
+      return m_strWindowText.length();
 
    }
 
@@ -18741,9 +18741,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
 
-         psz += strCharacter.get_length();
+         psz += strCharacter.length();
 
-         if (strCharacter.get_length() <= 0)
+         if (strCharacter.length() <= 0)
          {
 
             break;

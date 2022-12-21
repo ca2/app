@@ -960,7 +960,7 @@ namespace crypto_openssl
    //bool crypto::v5_validate_plain_password(const ::scoped_string & scopedstrPassword)
    //{
    //   string str(pszPassword);
-   //   if (str.get_length() < 6)
+   //   if (str.length() < 6)
    //      return false;
    //   return ::str().has_all_v1(pszPassword);
    //}
@@ -1135,7 +1135,7 @@ namespace crypto_openssl
       X509* signer = nullptr;
       {
          string strSigner = file()->as_string(strSignerPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (i32)strSigner.get_length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strSigner, (i32)strSigner.length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
          BIO_free(pbio);
@@ -1144,7 +1144,7 @@ namespace crypto_openssl
       EVP_PKEY* pkey;
       {
          string strKey = file()->as_string(strKeyPath);
-         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (i32)strKey.get_length());
+         BIO* pbio = BIO_new_mem_buf((void*)(const char*)strKey, (i32)strKey.length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
       }
@@ -1158,11 +1158,11 @@ namespace crypto_openssl
          strsize iFind;
          string strEnd = "-----END CERTIFICATE-----";
          string strCertificate;
-         strsize iEndLen = strEnd.get_length();
+         strsize iEndLen = strEnd.length();
          ::count iCount = 0;
          while ((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
-            strsize iEnd = strOthers.find(strEnd, iFind);
+            strsize iEnd = strOthers(pFind).find(strEnd);
             if (iEnd < 0)
                break;
             strCertificate = strOthers.Mid(iFind, iEnd + iEndLen - iFind);
@@ -1188,7 +1188,7 @@ namespace crypto_openssl
          }
       }
 
-      BIO* input = BIO_new_mem_buf((void*)(const char*)strSignature, (i32)strSignature.get_length());
+      BIO* input = BIO_new_mem_buf((void*)(const char*)strSignature, (i32)strSignature.length());
 
       PKCS7* pkcs7 = PKCS7_sign(signer, pkey, pstack509, input, PKCS7_BINARY | PKCS7_DETACHED);
 

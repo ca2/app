@@ -490,9 +490,9 @@ namespace browser
 
       m_strProcessed = str;
 
-      strsize iFind = str.find("image:");
+      auto pFind = str.find("image:");
 
-      if(iFind >= 0 && (iFind == 0 || !character_isalnum(str[iFind-1])))
+      if(::is_set(pFind) && (iFind == 0 || !character_isalnum(str[iFind-1])))
       {
 
          bool bData = str.Mid(iFind + strlen("image:")).case_insensitive_begins("data:");

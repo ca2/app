@@ -65,12 +65,12 @@ namespace ios
 //
 //            strsize iFind2 = str.rear_find('\\', iLast);
 //
-//            strsize iFind = maximum(iFind1, iFind2);
+//            auto pFind = maximum(iFind1, iFind2);
 //
 //            if(iFind >= iLast)
 //               return false;
 //
-//            if(iFind < 0)
+//            if(::is_null(pFind))
 //               return false;
 //
 //            iLast = iFind;
@@ -136,7 +136,7 @@ namespace ios
 //         straParam.add_smallest_tokens(pcsz, straSeparator, false);
 //         if(straParam.get_count() > 0)
 //         {
-//            strsize iFind = straParam[0].find(':');
+//            auto pFind = straParam[0].find(':');
 //            if(iFind >= 2)
 //            {
 //               straParam[0] += "//";
@@ -287,7 +287,7 @@ namespace ios
 //            string str = stra[i];
 //            if(str.case_insensitive_begins_eat(pszPrefix))
 //            {
-//               if(str.get_length() < 2)
+//               if(str.length() < 2)
 //               {
 //                  stra.erase_at(i);
 //                  i--;
@@ -961,11 +961,11 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str().case_insensitive_find(".zip:", pszPath);
+//            auto pFind = ::str().case_insensitive_find(".zip:", pszPath);
 //
 //            zip::Util ziputil;
 //
-//            if(iFind >= 0)
+//            if(::is_set(pFind))
 //               return ziputil.exists(papp, pszPath);
 //
 //            if(!Sys(papp).dir()->name_is(pszPath, papp))
@@ -1016,11 +1016,11 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str().case_insensitive_find(".zip:", strPath);
+//            auto pFind = ::str().case_insensitive_find(".zip:", strPath);
 //
 //            zip::Util ziputil;
 //
-//            if(iFind >= 0)
+//            if(::is_set(pFind))
 //            {
 //
 //               if(!exists(strPath.Mid(0, iFind + 4), papp))
@@ -1240,7 +1240,7 @@ namespace ios
 //      {
 //         strsize iEnd = strFile.rear_find('.');
 //         if(iEnd < 0)
-//            iEnd = strFile.get_length();
+//            iEnd = strFile.length();
 //         strFile = strFile.Left(iEnd) + ::str().has_char(pszExtension, ".");
 //      }
 

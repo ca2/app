@@ -584,7 +584,7 @@ namespace sockets
 
          //int iLen;
 
-         //iLen = (int)(m_strBase64.get_length());
+         //iLen = (int)(m_strBase64.length());
 
          inheader("Sec-WebSocket-Key") = m_strBase64;
          if (m_strWebSocketProtocol.has_char())

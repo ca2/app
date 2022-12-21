@@ -1152,11 +1152,11 @@ namespace html
       if(i < 0)
          return false;
 
-      while(i < str.get_length() && i < isdigit(str[i]))
+      while(i < str.length() && i < isdigit(str[i]))
       {
          i++;
       }
-      if(i >= str.get_length())
+      if(i >= str.length())
       {
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
@@ -1165,25 +1165,25 @@ namespace html
       {
          i++;
       }
-      if(i >= str.get_length())
+      if(i >= str.length())
       {
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      while(i < str.get_length() && i < isdigit(str[i]))
+      while(i < str.length() && i < isdigit(str[i]))
       {
          i++;
       }
-      if(i >= str.get_length())
+      if(i >= str.length())
       {
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
       }
-      while(i < str.get_length() && character_isspace(str[i]))
+      while(i < str.length() && character_isspace(str[i]))
       {
          i++;
       }
-      if(i >= str.get_length())
+      if(i >= str.length())
       {
          f = (float) strtod(&str[iFindDigit], nullptr);
          return true;
@@ -1193,7 +1193,7 @@ namespace html
       if(string_begins_ci(str, "::point_f32"))
       {
          str.trim();
-         if(str.get_length() == 2 || character_isspace(str[3]))
+         if(str.length() == 2 || character_isspace(str[3]))
          {
             f = f * 96.f / 72.f;
          }

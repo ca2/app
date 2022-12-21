@@ -46,7 +46,7 @@ namespace regular_expression_pcre2
 
       auto pcontext = (context *) m_pcontext->m_pContext;
 
-      m_pcode = pcre2_compile((PCRE2_SPTR)(const char *)m_str, m_str.get_length(), 0, &e, &eo, pcontext->m_pcompilecontext);
+      m_pcode = pcre2_compile((PCRE2_SPTR)(const char *)m_str, m_str.length(), 0, &e, &eo, pcontext->m_pcompilecontext);
 
       if (m_pcode == nullptr)
       {
@@ -89,7 +89,7 @@ namespace regular_expression_pcre2
 
       presult->m_pmatchdata = pcre2_match_data_create(m_iRangeCount + 1, m_pgeneralcontext);
 
-      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)str.c_str(), str.get_length(), 0, 0, presult->m_pmatchdata, nullptr);
+      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)str.c_str(), str.length(), 0, 0, presult->m_pmatchdata, nullptr);
 
       if (iMatchResult < 0)
       {
@@ -115,7 +115,7 @@ namespace regular_expression_pcre2
    bool regular_expression::replace(string& str, const string& strPrefix, string& strRet)
    {
 
-      size_t s = maximum(256, str.get_length() + strPrefix.get_length() * 3);
+      size_t s = maximum(256, str.length() + strPrefix.length() * 3);
 
       int err;
 
@@ -125,13 +125,13 @@ namespace regular_expression_pcre2
          err = pcre2_substitute(
             m_pcode,
             (PCRE2_SPTR8)str.c_str(),
-            str.get_length(),
+            str.length(),
             0,
             PCRE2_SUBSTITUTE_GLOBAL,
             /*m_pcreContext->m_pimpl->m_pmd*/
             nullptr,
             nullptr,
-            (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.get_length(),
+            (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.length(),
             (PCRE2_UCHAR8*)strRet.get_string_buffer(s), &s);
 
          strRet.release_string_buffer(s);

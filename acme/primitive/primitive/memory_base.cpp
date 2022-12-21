@@ -799,7 +799,7 @@ char * memory_base::c_str()
 //   if (iCount < 0)
 //   {
 //
-//      iCount += str.get_length() + 1;
+//      iCount += str.length() + 1;
 //
 //   }
 //
@@ -821,7 +821,7 @@ char * memory_base::c_str()
 //   if (iCount < 0)
 //   {
 //
-//      iCount += str.get_length() + 1;
+//      iCount += str.length() + 1;
 //
 //   }
 //
@@ -903,7 +903,7 @@ char * memory_base::c_str()
 //   if (iCount < 0)
 //   {
 //
-//      iCount += str.get_length() + 1;
+//      iCount += str.length() + 1;
 //
 //   }
 //
@@ -925,7 +925,7 @@ char * memory_base::c_str()
 //   if (iCount < 0)
 //   {
 //
-//      iCount += str.get_length() + 1;
+//      iCount += str.length() + 1;
 //
 //   }
 //
@@ -1381,7 +1381,7 @@ void memory_base::append_from_string(const ::string & str)
 
    auto sizeOld = size();
 
-   auto lenExtra = str.get_length();
+   auto lenExtra = str.length();
 
    allocate_add_up(lenExtra);
 
@@ -1895,9 +1895,9 @@ memsize memory_base::length() const
 byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 {
 
-   auto iFind = find_line_prefix_index(blockPrefix, iStart);
+   auto pFind = find_line_prefix_index(blockPrefix, iStart);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return nullptr;
@@ -1944,7 +1944,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
       iFind = find_index(memoryFind, iStart + 1);
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return -1;

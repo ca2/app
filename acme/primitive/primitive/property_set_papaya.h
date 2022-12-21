@@ -185,12 +185,12 @@ namespace acme
 
       //   char chNext;
 
-      //   for (iPos = 0; iPos < str.get_length(); iPos++)
+      //   for (iPos = 0; iPos < str.length(); iPos++)
       //   {
 
       //      ch = str[iPos];
 
-      //      if (iPos + 1 < str.get_length())
+      //      if (iPos + 1 < str.length())
       //      {
 
       //         chNext = str[iPos + 1];
@@ -234,7 +234,7 @@ namespace acme
 
       //            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
 
-      //            iPos += strEval.get_length() - 1;
+      //            iPos += strEval.length() - 1;
 
       //         }
       //         else
@@ -262,7 +262,7 @@ namespace acme
 
       //         strsize iEnd = iStart + 2;
 
-      //         for (; iEnd < str.get_length(); iEnd++)
+      //         for (; iEnd < str.length(); iEnd++)
       //         {
 
       //            ch = str[iEnd];
@@ -285,7 +285,7 @@ namespace acme
 
       //            str = str.Left(iPos) + strEval + str.Mid(iEnd);
 
-      //            iPos += strEval.get_length() - 1;
+      //            iPos += strEval.length() - 1;
 
       //         }
       //         else

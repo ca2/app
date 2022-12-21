@@ -273,7 +273,7 @@ namespace sockets
 
          }
 
-         length += (long)strFields.get_length();
+         length += (long)strFields.length();
 
       }
 

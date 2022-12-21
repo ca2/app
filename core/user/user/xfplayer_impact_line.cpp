@@ -130,7 +130,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 
    ASSERT(pgraphics != nullptr);
 
-   iStrLen = str.get_length();
+   iStrLen = str.length();
 
    iChars = -1;
 
@@ -160,7 +160,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index)
 
    m_str += wch;
 
-   index = m_str.get_length() - 1;
+   index = m_str.length() - 1;
 
    if (m_iaPosition.get_size() < index + 2)
    {
@@ -184,7 +184,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::wri
       m_iaPosition.allocate(m_iaPosition.get_size() + 10);
    }
    m_str += wch;
-   ASSERT(m_str.get_length() - 1 == index);
+   ASSERT(m_str.length() - 1 == index);
 
 }
 
@@ -255,12 +255,12 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          while (true)
          {
             pgraphics->set(m_pfont);
-            if (iChar >= strFinal.get_length())
+            if (iChar >= strFinal.length())
                break;
             if (iLink >= m_iaLinkStart.get_size())
             {
                const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(iChar));
-               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length() - iChar, dBlend);
+               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.length() - iChar, dBlend);
                break;
             }
             else if (m_iaLinkStart[iLink] > iChar)
@@ -391,7 +391,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       ::draw2d::region_pointer prgn(this);
 
       string strFinal(m_str);
-      string strLeft = strFinal.Right(strFinal.get_length() - i);
+      string strLeft = strFinal.Right(strFinal.length() - i);
       i32 iLeftOffset;
       iLeftOffset = iLastLeftDiff - (i32)m_dAnimateProgress;
       ::rectangle_i32 rectangleTextOut;
@@ -403,10 +403,10 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                          0,
                          m_cr,
                          m_colorOutline,
-                         strFinal.get_length(),
+                         strFinal.length(),
                          dBlend);
       }
-      i32 iMaxCounter = maximum((i32)m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left);
+      i32 iMaxCounter = maximum((i32)m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left);
       i32 iRight = iMaxCounter - (i32)m_dAnimateProgress;
       if (iRight < m_rectangle.right)
       {
@@ -424,7 +424,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          rectangleTextOut.left = iRight;
          if (bDraw)
          {
-            embossed_text_out(pgraphics, strRight, rectangleTextOut.left, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length(), dBlend);
+            embossed_text_out(pgraphics, strRight, rectangleTextOut.left, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.length(), dBlend);
          }
       }
 
@@ -538,7 +538,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   }*/
 
       string strFinal(m_str);
-      string strLeft = strFinal.Right(strFinal.get_length() - i);
+      string strLeft = strFinal.Right(strFinal.length() - i);
       i32 iLeftOffset;
       iLeftOffset = iLeftDiff - (i32)m_dAnimateProgress;
 
@@ -571,7 +571,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                       MapToFontEffect(m_iTextEffect));   */
       i32 iSpacing = 100;
       i32 iMaxCounter = maximum(
-                            (i32)m_iaPosition.element_at(m_str.get_length())
+                            (i32)m_iaPosition.element_at(m_str.length())
                             - m_iaPosition.element_at(0) + iSpacing, m_rectangle.right - m_rectangle.left);
       i32 iRight = iMaxCounter - (i32)m_dAnimateProgress;
       if (iRight < m_rectangle.right)
@@ -626,7 +626,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    m_bCacheEmboss = false;
    //::write_text::font * pFont;
 //    ::draw2d::graphics * pdcForeground = m_ptwi->TwiGetDC();
-   if(m_str.get_length() <= 0)
+   if(m_str.length() <= 0)
       return;
    if(pFonts->get_size() > 0)
    {
@@ -641,7 +641,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          GetTextExtentPoint32W(
             pdcForeground->get_os_data(),
             m_str,
-            m_str.get_length(),
+            m_str.length(),
             &size);
          if((m_iAlign & AlignLeft) > 0)
          {
@@ -673,7 +673,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       if(m_iAlign == AlignLeft)
       {
          m_iaPosition[0] = m_rectangle.left + m_iIndent;
-         for(i = 1; i <= m_str.get_length(); i++)
+         for(i = 1; i <= m_str.length(); i++)
          {
             GetTextExtentPoint32W(
                pdcForeground->get_os_data(),
@@ -696,12 +696,12 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          GetTextExtentPoint32W(
             pdcForeground->get_os_data(),
             m_str,
-            m_str.get_length(),
+            m_str.length(),
             &size);
          iMaxExtent = size.cx;
          iLeft = m_rectangle.right - iMaxExtent;
          m_iaPosition[0] = iLeft;
-         for(i = 1; i <= m_str.get_length(); i++)
+         for(i = 1; i <= m_str.length(); i++)
          {
             GetTextExtentPoint32W(
                pdcForeground->get_os_data(),
@@ -727,7 +727,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       i32 i; //, width;
       ::size_i32 size;
          m_iaPosition[0] = m_rectangle.left;
-         for(i = 1; i <= m_str.get_length(); i++)
+         for(i = 1; i <= m_str.length(); i++)
          {
             GetTextExtentPoint32W(
                pdcForeground->get_os_data(),
@@ -758,7 +758,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
    m_bCacheEmboss = false;
 
-   if (m_str.get_length() <= 0)
+   if (m_str.length() <= 0)
    {
 
       return;
@@ -837,7 +837,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       pgraphics->set(m_pfontPrefix);
 
       m_iaPosition[0] = 0;
-      for (i = 1; i <= m_strPrefix.get_length(); i++)
+      for (i = 1; i <= m_strPrefix.length(); i++)
       {
          m_pdcextension->get_text_extent(
          pgraphics,
@@ -857,7 +857,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       
       pgraphics->set(m_pfont);
 
-      for (i = 1; i <= m_strRoot.get_length(); i++)
+      for (i = 1; i <= m_strRoot.length(); i++)
       {
 
          m_pdcextension->get_text_extent(
@@ -878,7 +878,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
       m_iaPosition[0] = 0;
 
-      for (i = 1; i <= m_str.get_length(); i++)
+      for (i = 1; i <= m_str.length(); i++)
       {
 
          m_pdcextension->get_text_extent(
@@ -897,7 +897,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    {
       m_iaPosition[0] = m_rectangle.left + m_iIndent;
       iRight = 0;
-      for(i = 1; i <= m_str.get_length(); i++)
+      for(i = 1; i <= m_str.length(); i++)
       {
          GetTextExtentPoint32W(
             (HDC)pgraphics->get_os_data(),
@@ -920,12 +920,12 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       GetTextExtentPoint32W(
          (HDC)pgraphics->get_os_data(),
          m_str,
-         m_str.get_length(),
+         m_str.length(),
          &size);
       iMaxExtent = size.cx;
       iLeft = m_rectangle.right - iMaxExtent;
       m_iaPosition[0] = iLeft;
-      for(i = 1; i <= m_str.get_length(); i++)
+      for(i = 1; i <= m_str.length(); i++)
       {
          GetTextExtentPoint32W(
             (HDC)pgraphics->get_os_data(),
@@ -953,7 +953,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
 {
    m_bCacheEmboss = false;
-   if(m_str.get_length() <= 0)
+   if(m_str.length() <= 0)
       return;
     ::write_text::font * pfontOriginal = pdcForeground->get_current_font();
    pdcForeground->set(pFont->GetFont());
@@ -971,7 +971,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    GetTextExtentPoint32W(
       (HDC)pgraphics->get_os_data(),
       strMain,
-      strMain.get_length(),
+      strMain.length(),
       &size);
    pgraphics->set(pfont->GetFont());
    if(size.cx > rectangleClient.width())
@@ -1004,7 +1004,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    {
       m_iaPosition[0] = m_rectangle.left + m_iIndent;
       iRight = 0;
-      for(i = 1; i <= m_str.get_length(); i++)
+      for(i = 1; i <= m_str.length(); i++)
       {
          GetTextExtentPoint32W(
             pdcForeground->get_os_data(),
@@ -1027,12 +1027,12 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       GetTextExtentPoint32W(
          pdcForeground->get_os_data(),
          m_str,
-         m_str.get_length(),
+         m_str.length(),
          &size);
       iMaxExtent = size.cx;
       iLeft = m_rectangle.right - iMaxExtent;
       m_iaPosition[0] = iLeft;
-      for(i = 1; i <= m_str.get_length(); i++)
+      for(i = 1; i <= m_str.length(); i++)
       {
          GetTextExtentPoint32W(
             pdcForeground->get_os_data(),
@@ -1141,7 +1141,7 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
          m_dAnimateProgress += m_dAnimateProgressIncrement;
          if (m_iaPosition.get_size() > 0)
          {
-            if ((i32)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left))
+            if ((i32)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left))
                m_dAnimateProgress = 0.0;
             ::rectangle_i32 rectangle;
             GetPlacement(rectangle);
@@ -1429,7 +1429,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          {
 
-            CacheEmboss(pgraphics, m_str, m_str.get_length(), m_pimageMain);
+            CacheEmboss(pgraphics, m_str, m_str.length(), m_pimageMain);
 
          }
 
@@ -1470,13 +1470,13 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          auto psystem = acmesystem()->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), color32, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.length(), color32, dBlend);
 
          pgraphics->set(m_pfont);
 
          int iOffset;
 
-         if (m_strPrefix.get_length() <= 0)
+         if (m_strPrefix.length() <= 0)
          {
 
             iOffset = 0;
@@ -1485,11 +1485,11 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
          else
          {
 
-            iOffset = (int) (size.cx + size.cx / m_strPrefix.get_length());
+            iOffset = (int) (size.cx + size.cx / m_strPrefix.length());
 
          }
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.get_length(), color32, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.length(), color32, dBlend);
 
 
 
@@ -1599,14 +1599,14 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
       pdcCache->set(m_pfontPrefix);
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
-      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
+      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.length(), s);
       pdcCache->set(m_pfont);
 
-      int x = (i32) (s.cx + (s.cx / m_strPrefix.get_length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
+      int x = (i32) (s.cx + (s.cx / m_strPrefix.length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       int y = (i32) (1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
+      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, m_strRoot.length(), s);
 
    }
    else

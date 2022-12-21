@@ -174,7 +174,7 @@ namespace account
 
       }
 
-      if(m_strAppId.get_length() <= 3)
+      if(m_strAppId.length() <= 3)
       {
 
          return false;

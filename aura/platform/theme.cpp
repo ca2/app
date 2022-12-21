@@ -69,9 +69,9 @@ namespace aura
 
       string strTheme = get_theme();
 
-      strsize iFind = m_straTheme.find_first(strTheme);
+      auto pFind = m_straTheme.find_first(strTheme);
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          iFind = 0;

@@ -231,7 +231,7 @@ bool tokenizer::ExtractFolderPath(const ::scoped_string & scopedstrFilePath)
 
    string strFilePath(scopedstrFilePath);
 
-   strsize i = strFilePath.get_length();
+   strsize i = strFilePath.length();
 
    bool b = false;
 

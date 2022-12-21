@@ -809,7 +809,7 @@ namespace user
    //   //         ::GetTextExtentPoint32U(
    //   //         (HDC)pgraphics->get_os_data(),
    //   //         str,
-   //   //         (index) str.get_length(),
+   //   //         (index) str.length(),
    //   //         &size);
    //   //         Δx += size.cx;
    //   //         dxNext = Δx - CX_OVERLAP;

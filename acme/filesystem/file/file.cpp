@@ -795,7 +795,7 @@ namespace file
 //   void file::write(const ::string & str)
 //   {
 //
-//      write(str,  str.get_length());
+//      write(str,  str.length());
 //
 //   }
 

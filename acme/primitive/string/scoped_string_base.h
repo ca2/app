@@ -64,12 +64,12 @@ public:
    inline bool operator ==(const ::ansi_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::wd16_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::wd32_string & str) const { return this->equals(scoped_string_base(str)); }
-   inline bool operator ==(const ::ansi_character * psz) const { return *this == ((const scoped_string_base &)psz); }
-   inline bool operator ==(const ::wd16_character * psz) const { return *this == ((const scoped_string_base &)psz); }
-   inline bool operator ==(const ::wd32_character * psz) const { return *this == ((const scoped_string_base &)psz); }
-   inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals(scoped_string_base(str)); }
-   inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
-   inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
+   inline bool operator ==(const ::ansi_character * psz) const { return this->equals(psz); }
+   inline bool operator ==(const ::wd16_character * psz) const { return this->equals(psz); }
+   inline bool operator ==(const ::wd32_character * psz) const { return this->equals(psz); }
+   //inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals(scoped_string_base(str)); }
+   //inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
+   //inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
 
 
    operator CHARACTER * () { return this->begin(); }

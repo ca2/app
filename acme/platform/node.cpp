@@ -731,7 +731,7 @@ namespace acme
 
       ::file::path pathFile = acmedirectory()->roaming() / strAppId / "last_run_path.txt";
 
-      const ::file::path & pathFile = pathFile;
+      //const ::file::path & pathFile = pathFile;
 
       INFORMATION("node::get_last_run_application_path_file pathFile:" << pathFile);
 

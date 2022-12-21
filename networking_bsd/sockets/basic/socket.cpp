@@ -159,7 +159,7 @@ namespace sockets_bsd
 
          struct protoent * pprotoent = nullptr;
 
-         if (strProtocol.get_length())
+         if (strProtocol.length())
          {
 
             pprotoent = getprotobyname(strProtocol);

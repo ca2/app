@@ -292,7 +292,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //      }
 //
-//      psz += strChar.get_length();
+//      psz += strChar.length();
 //
 //      if(strChar == "\"")
 //      {
@@ -315,7 +315,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //            }
 //
-//            psz += strChar.get_length();
+//            psz += strChar.length();
 //
 //
 //            if(strChar == "\\")
@@ -330,7 +330,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //               }
 //
-//               psz += strChar.get_length();
+//               psz += strChar.length();
 //
 //               if(strChar == "n")
 //               {
@@ -380,7 +380,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //         }
 //
-//         psz += strChar.get_length();
+//         psz += strChar.length();
 //
 //         if(strChar == "n")
 //         {

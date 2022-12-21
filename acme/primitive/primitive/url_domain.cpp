@@ -51,7 +51,7 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       psz += 4;
       m_iCount--;
    }
-   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.get_length();
+   const char * pszEnd = ((const char *) m_strOriginalName) + m_strOriginalName.length();
    m_pszTopLevel = pszEnd;
    while(m_pszTopLevel > psz && *m_pszTopLevel != '.')
    {
@@ -68,11 +68,11 @@ void url_domain_base::create(const ::scoped_string & scopedstrServerName)
       m_pszTopLevel     = nullptr;
       m_iLenTopLevel    = 0;
       m_pszRadix        = psz;
-      m_iLenRadix       = m_strOriginalName.get_length();
+      m_iLenRadix       = m_strOriginalName.length();
       m_pszDomain       = psz;
-      m_iLenDomain      = m_strOriginalName.get_length();
+      m_iLenDomain      = m_strOriginalName.length();
       m_pszName         = psz;
-      m_iLenName        = m_strOriginalName.get_length();
+      m_iLenName        = m_strOriginalName.length();
       return;
    }
    if(m_iCount == 2)
@@ -1085,7 +1085,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize blen, co
 i32 iPos = url.rear_find('.');
 if(iPos < 0)
 return false;
-i32 iLen = str.get_length();
+i32 iLen = str.length();
 if(url.get_length() < iLen + 1)
 return false;
 if(url[iLen] != '.')

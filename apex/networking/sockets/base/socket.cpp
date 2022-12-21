@@ -322,7 +322,7 @@ namespace sockets
 
    m_iSocketType = iType;
    m_strSocketProtocol = strProtocol;
-   if (strProtocol.get_length())
+   if (strProtocol.length())
    {
    point = getprotobyname( strProtocol );
    if (!point_i32)

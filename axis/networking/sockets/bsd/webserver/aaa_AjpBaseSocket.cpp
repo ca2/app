@@ -240,9 +240,9 @@ namespace sockets
    void AjpBaseSocket::put_string(char *buf, i32& ptr, const ::string & psz)
    {
       string str(psz);
-      put_integer(buf, ptr, (i16)str.get_length() );
+      put_integer(buf, ptr, (i16)str.length() );
       ::memcpy_dup(buf + ptr, (const ::string &) str);
-      ptr += (i32)str.get_length();
+      ptr += (i32)str.length();
       put_byte(buf, ptr, 0);
    }
 

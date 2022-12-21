@@ -22,8 +22,8 @@ public:
    explicit string_buffer(string_base < TYPE_CHAR >& str) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
-      m_nLength(str.get_length()),
-      m_nBufferLength(str.get_length())
+      m_nLength(str.length()),
+      m_nBufferLength(str.length())
    {
 
       m_pszBuffer = m_str.GetBuffer();

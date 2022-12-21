@@ -97,7 +97,7 @@ namespace filemanager
             
             strCompare = stra[i].folder();
 
-            for(i32 j = 0; j < minimum(strCompare.get_length(),strBase.get_length()); j++)
+            for(i32 j = 0; j < minimum(strCompare.length(),strBase.length()); j++)
             {
 
                if(strCompare[j] != strBase[j])
@@ -321,7 +321,7 @@ namespace filemanager
 
          m_pchBuffer = (char *)malloc(m_iBufferSize);
 
-         ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.get_length());
+         ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.length());
 
          if(m_str == m_strBase)
          {
@@ -468,7 +468,7 @@ namespace filemanager
             if(m_iFile >= m_stra.get_size())
                return false;
 
-            ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.get_length());
+            ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.length());
 
             if(m_str == m_strBase)
             {
@@ -716,7 +716,7 @@ namespace filemanager
    bool has_digit(string strName)
    {
 
-      for(index i= 0; i < strName.get_length(); i++)
+      for(index i= 0; i < strName.length(); i++)
       {
 
          if(::ansi_char_isdigit(strName[i]))
@@ -740,7 +740,7 @@ namespace filemanager
 
       bool bFirst = true;
 
-      for(index i= 0; i < strName.get_length(); i++)
+      for(index i= 0; i < strName.length(); i++)
       {
 
          if(::ansi_char_isdigit(strName[i]))
@@ -785,7 +785,7 @@ namespace filemanager
 
       index i;
 
-      for(i= strMask.get_length() - 1; i >= 0 ; i--)
+      for(i= strMask.length() - 1; i >= 0 ; i--)
       {
 
          if(strMask[i] == '1' || strMask[i] == 'X')
@@ -818,9 +818,9 @@ namespace filemanager
 
       string strMask = get_number_mask(strName);
 
-      strsize j = strValue.get_length() - 1;
+      strsize j = strValue.length() - 1;
 
-      if (strMask.get_length() < strValue.get_length())
+      if (strMask.length() < strValue.length())
       {
 
          return strValue;
@@ -829,7 +829,7 @@ namespace filemanager
 
       index i;
 
-      for(i= strMask.get_length()-1; i >= 0 ; i--)
+      for(i= strMask.length()-1; i >= 0 ; i--)
       {
 
          if(strMask[i] == 'X' || strMask[i] == '1')
@@ -879,15 +879,15 @@ namespace filemanager
    {
 
       string strDir = psz;
-      string strName = str.Mid(strDir.get_length());
+      string strName = str.Mid(strDir.length());
       string strExtension;
       bool bDir;
-      strsize iFind = strName.find("\\");
+      auto pFind = strName.find("\\");
       bDir = iFind > 0;
       if(bDir)
       {
-         strExtension = "\\" + strName.Mid(iFind + 1);
-         strName = strName.Left(iFind);
+         strExtension = "\\" + strName(pFind + 1);
+         strName = strName(0, pFind);
       }
       else
       {

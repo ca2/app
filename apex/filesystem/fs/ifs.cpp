@@ -323,9 +323,9 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   auto iFind = dir.name_find_first_ci(path.name());
+   auto pFind = dir.name_find_first_ci(path.name());
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return 0;

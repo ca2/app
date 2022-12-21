@@ -186,7 +186,7 @@ pacmedirectory->is(path))
 
 #ifdef WINDOWS
 
-      if(strPath.get_length() >= MAX_PATH)
+      if(strPath.length() >= MAX_PATH)
       {
 
          if(string_begins(strPath, "\\\\"))
@@ -339,7 +339,7 @@ pacmedirectory->is(stra[i]))
    //   string ::file_path_folder(const ::string & str)
    //   {
    //
-   //      strsize iLast = str.get_length() - 1;
+   //      strsize iLast = str.length() - 1;
    //
    //      while(iLast >= 0)
    //      {
@@ -511,7 +511,7 @@ pacmedirectory->is(stra[i]))
 //   ::file::path dir_context::name(const ::file::path & str)
 //   {
 //
-//      strsize iLast = str.get_length() - 1;
+//      strsize iLast = str.length() - 1;
 //
 //      while(iLast >= 0)
 //      {

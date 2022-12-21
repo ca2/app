@@ -1006,7 +1006,7 @@
 //   /*
 //      void tcp_socket_impl::write(const string &str)
 //      {
-//         write(str,  (i32) str.get_length());
+//         write(str,  (i32) str.length());
 //      }
 //   */
 //
@@ -1948,7 +1948,7 @@
 //
 //   //   string strPassword = ptcpsocket ? ptcpsocket->GetPassword().c_str() : "";
 //
-//   //   if(num < strPassword.get_length() + 1)
+//   //   if(num < strPassword.length() + 1)
 //   //   {
 //
 //   //      return 0;
@@ -1957,7 +1957,7 @@
 //
 //   //   strcpy(buf, strPassword);
 //
-//   //   return (i32)strPassword.get_length();
+//   //   return (i32)strPassword.length();
 //
 //   //}
 //
@@ -2407,12 +2407,12 @@
 ////                  else
 ////                  {
 ////
-////                     strsize iFind = strCommon.find('.');
+////                     auto pFind = strCommon.find('.');
 ////
-////                     if(iFind >= 0)
+////                     if(::is_set(pFind))
 ////                     {
 ////
-////                        if(str == strCommon.Mid(iFind + 1))
+////                        if(str == strCommon(pFind + 1))
 ////                        {
 ////
 ////                           ok = true;
@@ -2499,12 +2499,12 @@
 ////                           else
 ////                           {
 ////
-////                              strsize iFind = strCommon.find('.');
+////                              auto pFind = strCommon.find('.');
 ////
-////                              if (iFind >= 0)
+////                              if (::is_set(pFind))
 ////
 ////                              {
-////                                 if (str == strCommon.Mid(iFind + 1))
+////                                 if (str == strCommon(pFind + 1))
 ////                                 {
 ////
 ////                                    ok = true;

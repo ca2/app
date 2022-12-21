@@ -3232,7 +3232,7 @@ namespace linux
 //      ansi_count_copy(pszString, m_strWindowText, nMaxCount);
 
 //
-//      return minimum(nMaxCount, m_strWindowText.get_length());
+//      return minimum(nMaxCount, m_strWindowText.length());
 //
 //   }
 

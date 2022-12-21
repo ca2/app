@@ -331,7 +331,7 @@ namespace write_text
 //      //
 //      //      glyph * pglyph;
 
-//      //      strsize iSize = str.get_length();
+//      //      strsize iSize = str.length();
 //      //      for(i32 i = 0; i < iSize; i++)
 //      //      {
 //      //         pglyph = GetGlyph(str[i]);
@@ -388,7 +388,7 @@ namespace write_text
 //      //
 //      //      glyph * pglyph;
 
-//      //      strsize iSize = str.get_length();
+//      //      strsize iSize = str.length();
 //      //      for(strsize i = 0; i < iSize; i++)
 //      //      {
 //      //         pglyph = GetGlyph(str[i]);
@@ -601,7 +601,7 @@ namespace write_text
 //         for (j = 0; j < straTokens.get_size(); j++)
 //         {
 //            str = straTokens[j];
-//            for (k = 0; k < str.get_length(); k++)
+//            for (k = 0; k < str.length(); k++)
 //            {
 //               ch = str.operator[](k);
 //               if (forceInsertion)
@@ -645,7 +645,7 @@ namespace write_text
 //      string str(pStr);
 
 //      SelectFont();
-//      for (i32 i = 0; i < str.get_length(); i++)
+//      for (i32 i = 0; i < str.length(); i++)
 //      {
 //         AddGlyph(str[i]);
 //      }

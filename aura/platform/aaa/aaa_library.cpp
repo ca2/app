@@ -919,14 +919,14 @@ namespace aura
    library_object_allocator_base * library::find_allocator(const ::string & lpszClass)
    {
 
-      index iFind = m_allocatorptra.predicate_find_first([&](auto & pallocator)
+      auto pFind = m_allocatorptra.predicate_find_first([&](auto & pallocator)
       {
 
          return pallocator->m_strName == lpszClass;
 
       });
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return nullptr;

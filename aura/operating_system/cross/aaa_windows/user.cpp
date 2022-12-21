@@ -511,15 +511,15 @@ int_bool *  pUsedDefaultChar)
   {
      if(cchWideChar < 0)
      {
-        return (i32) str.get_length() + 1;
+        return (i32) str.length() + 1;
      }
      else
      {
-        return (i32) str.get_length();
+        return (i32) str.length();
      }
   }
 
-  i32 iLen = (i32) minimum(cbMultiByte, str.get_length());
+  i32 iLen = (i32) minimum(cbMultiByte, str.length());
 
   if(pMultiByteStr != nullptr)
 

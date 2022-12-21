@@ -409,25 +409,25 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 
    string wstrParam(scopedstrParam);
 
-   auto iFind = wstr.find(wstrParam + "=");
+   auto pFind = wstr.find(wstrParam + "=");
 
-   if(not_found(iFind))
+   if(::is_null(pFind))
    {
 
-      iFind = wstr.find(wstrParam + " ");
+      pFind = wstr.find(wstrParam + " ");
 
-      if (not_found(iFind))
+      if (::is_null(pFind))
       {
 
-         iFind = wstr.find(wstrParam);
+         pFind = wstr.find(wstrParam);
 
-         if (not_found(iFind))
+         if (::is_null(pFind))
          {
 
             return false;
 
          }
-         else if(iFind == wstr.length() - wstrParam.length())
+         else if(wstr.offset_of(pFind) == wstr.length() - wstrParam.length())
          {
 
             wstrValue = "";

@@ -23,15 +23,15 @@
    bool whole_word_contains(string str, string strFind)
    {
 
-      strsize iFind = 0;
+      auto pFind = 0;
 
-      while ((iFind = str.case_insensitive_find(strFind, iFind)) >= 0)
+      while ((iFind = str(pFind).case_insensitive_find(strFind)) >= 0)
       {
 
          bool bLowerBound1 = iFind == 0;
          bool bLowerBound = bLowerBound1 || !ansi_char_isalpha(str[iFind - 1]);
-         strsize iUpperBound = iFind + strFind.get_length();
-         bool bUpperBound1 = iUpperBound == str.get_length();
+         strsize iUpperBound = iFind + strFind.length();
+         bool bUpperBound1 = iUpperBound == str.length();
          bool bUpperBound = bUpperBound1 || !ansi_char_isalpha(str[iUpperBound]);
 
          if (bLowerBound && bUpperBound)
@@ -74,15 +74,15 @@
    void whole_word_erase(string & str, string strFind)
    {
 
-      strsize iFind = 0;
+      auto pFind = 0;
 
-      while ((iFind = str.case_insensitive_find(strFind, iFind)) >= 0)
+      while ((iFind = str(pFind).case_insensitive_find(strFind)) >= 0)
       {
 
          if (iFind == 0 || !ansi_char_isalpha(str[iFind - 1]))
          {
 
-            str = str.Left(iFind) + str.Mid(iFind + strFind.get_length());
+            str = str(0, pFind) + str.Mid(iFind + strFind.length());
 
          }
          else

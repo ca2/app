@@ -32,7 +32,7 @@ namespace user
       void words_trailing_spaces(string_array & stra, string str)
       {
 
-         strsize iFind = 0;
+         auto pFind = 0;
 
          strsize iFind2;
 
@@ -46,7 +46,7 @@ namespace user
             if (iFind2 < 0)
             {
 
-               stra.add(str.Mid(iFind));
+               stra.add(str(pFind));
 
                return;
 
@@ -57,7 +57,7 @@ namespace user
             if (iFind3 < 0)
             {
 
-               stra.add(str.Mid(iFind));
+               stra.add(str(pFind));
 
                return;
 
@@ -375,7 +375,7 @@ namespace user
 
             pspan->m_iPosBeg = iPos;
 
-            iPos += (::i32) pspan->m_str.get_length();
+            iPos += (::i32) pspan->m_str.length();
 
             pspan->m_iPosEnd = iPos;
 
@@ -656,14 +656,14 @@ namespace user
       //::pointer<format>find_existing_format(pointer_array < format > & formata, format * pformat)
       //{
 
-      //   index iFind = spana.predicate_find_first([&](auto & pitem)
+      //   auto pFind = spana.predicate_find_first([&](auto & pitem)
       //   {
 
       //      return *pitem->m_pformat == *pformat;
 
       //   });
 
-      //   if (iFind < 0)
+      //   if (::is_null(pFind))
       //   {
 
       //      return nullptr;

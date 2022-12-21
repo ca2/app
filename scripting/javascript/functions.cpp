@@ -54,9 +54,9 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 //   string addr = pvar->getParameter("addr")->getString();
 //   string mask = pvar->getParameter("mask")->getString();
 //
-//   strsize iFind = host.rear_find(':');
-//   if(iFind >= 0)
-//      host = host.Left(iFind);
+//   auto pFind = host.rear_find(':');
+//   if(::is_set(pFind))
+//      host = host(0, pFind);
 //
 //
 ///*   ipaddr_t l_host;

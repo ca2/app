@@ -48,7 +48,7 @@ namespace zip
       strFile = pszFileName;
 
 
-      index iFind = -1;
+      auto pFind = -1;
 
       index iStart = 0;
 
@@ -136,7 +136,7 @@ namespace zip
 
       iFind = strFile.rear_find(L':');
 
-      strFile = strFile.Mid(iFind + 1);
+      strFile = strFile(pFind + 1);
 
       strFile.begins_eat("/");
 
@@ -215,9 +215,9 @@ namespace zip
 
       string strFile = straPath.last();
 
-      index iFind = strFile.rear_find(L':');
+      auto pFind = strFile.rear_find(L':');
 
-      strFile = strFile.Mid(iFind + 1);
+      strFile = strFile(pFind + 1);
 
       strFile.begins_eat("/");
 
@@ -258,9 +258,9 @@ namespace zip
    bool in_file::locate(const ::file::path & path)
    {
       string strFile(pszFileName);
-      index iFind = strFile.find(":");
-      if(iFind >= 0)
-         strFile = strFile.Left(iFind);
+      auto pFind = strFile.find(":");
+      if(::is_set(pFind))
+         strFile = strFile(0, pFind);
       strFile.replace("\\","/");
       if(unzLocateFile(get_zip_file()->m_pfUnzip,strFile,0) != UNZ_OK)
       {
@@ -704,7 +704,7 @@ namespace zip
             
             string strTitle(szTitle);
 
-            if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))
             {
 
                listing.add(::file::path(strTitle));
@@ -763,7 +763,7 @@ namespace zip
             
             string strTitle(szTitle);
 
-            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))
             {
 
                listing.add(::file::path(strTitle));

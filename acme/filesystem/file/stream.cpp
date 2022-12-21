@@ -514,9 +514,9 @@
 //void stream::write(const ::string & str)
 //{
 //
-//   write_buffer_length(str.get_length());
+//   write_buffer_length(str.length());
 //
-//   write(str.c_str(), str.get_length());
+//   write(str.c_str(), str.length());
 //
 //}
 //

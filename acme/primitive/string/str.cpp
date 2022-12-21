@@ -443,9 +443,9 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 //
-//   index iFind = wstr.find(wstrSeparator);
+//   auto pFind = wstr.find(wstrSeparator);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      if (bEatEverythingIfNotFound)
@@ -461,7 +461,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 //
-//   wstrBefore = wstr.Left(iFind);
+//   wstrBefore = wstr(0, pFind);
 //
 //   wstr = wstr.Mid(iFind + wstrSeparator.length());
 //
@@ -482,9 +482,9 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 //
-//   index iFind = wstr.find(wstrSeparator);
+//   auto pFind = wstr.find(wstrSeparator);
 //
-//   if (iFind < 0)
+//   if (::is_null(pFind))
 //   {
 //
 //      if (bEatEverythingIfNotFound)
@@ -500,9 +500,9 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //
 //   }
 //
-//   wstrBefore = wstr.Left(iFind);
+//   wstrBefore = wstr(0, pFind);
 //
-//   wstr = wstr.Mid(iFind);
+//   wstr = wstr(pFind);
 //
 //   return true;
 //
@@ -516,7 +516,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strPrefix(pcszPrefix);
 //
 //
-//      strsize iLen = strPrefix.get_length();
+//      strsize iLen = strPrefix.length();
 //
 //      if(str.Left(iLen) == pcszPrefix)
 //
@@ -540,7 +540,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strPrefix(pcszPrefix);
 //
 //
-//      strsize iLen = strPrefix.get_length();
+//      strsize iLen = strPrefix.length();
 //
 //      if(str.Left(iLen).case_insensitive_order(pcszPrefix) == 0)
 //
@@ -619,7 +619,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 
    //   string strSuffix(pcszSuffix);
 
-   //   i32 iLen = strSuffix.get_length();
+   //   i32 iLen = strSuffix.length();
    //   if(str.Right(iLen) == pcszSuffix)
 
    //   {
@@ -695,7 +695,7 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      }
 //      const ::scoped_string & scopedstr = str;
 //
-//      const ::ansi_character * pszEnd = pcsz + str.get_length();
+//      const ::ansi_character * pszEnd = pcsz + str.length();
 //
 //      const ::scoped_string & scopedstrSuffixEnd = pcszSuffix;
 //
@@ -737,13 +737,13 @@ bool str::begins_ci_iws(const ::string & str, const ::string & strPrefix)
 //      string strSuffix(pcszSuffix);
 //
 //
-//      strsize iLen = strSuffix.get_length();
+//      strsize iLen = strSuffix.length();
 //
 //      if(str.Right(iLen).case_insensitive_order(pcszSuffix) == 0)
 //
 //      {
 //
-//         str = str.Left(str.get_length() - iLen);
+//         str = str.Left(str.length() - iLen);
 //         return true;
 //
 //      }
@@ -776,7 +776,7 @@ string str::replace_with(const ::string & strOld, const ::string & strNew, const
 index  str::find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart)
 {
 
-   index iFind = -1;
+   auto pFind = -1;
 
    iFound = -1;
 
@@ -788,7 +788,7 @@ index  str::find_first(const string_array & straSearch, index & iFound, const ::
 
          index iSearch = str.find(straSearch[i], iStart);
 
-         if (iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || iFind < 0))
+         if (iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || ::is_null(pFind)))
          {
 
             iFind = iSearch;
@@ -830,7 +830,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 
       index i = (index)(rand() % straNew.get_size());
 
-      str = str.Left(iFind) + straNew[i] + str.Mid(iFind + straOld[iFound].get_length());
+      str = str(0, pFind) + straNew[i] + str.Mid(iFind + straOld[iFound].get_length());
 
       iFind += straNew[i].get_length();
 
@@ -1041,24 +1041,24 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 index str::case_insensitive_find(const ::string & strFind, const ::string & str, index iStart)
 {
 
-   if (strFind.get_length() > (str.get_length() - iStart))
+   if (strFind.length() > (str.length() - iStart))
    {
 
       return -1;
 
    }
 
-   string strFindLow(&((const char *)strFind)[0], strFind.get_length()); // avoid optimized read only string copy
+   string strFindLow(&((const char *)strFind)[0], strFind.length()); // avoid optimized read only string copy
 
    strFindLow.make_lower();
 
-   string strLow(&((const char *)str)[iStart], str.get_length() - iStart); // avoid optimized read only string copy
+   string strLow(&((const char *)str)[iStart], str.length() - iStart); // avoid optimized read only string copy
 
    strLow.make_lower();
 
-   index iFind = strLow.find(strFindLow);
+   auto pFind = strLow.find(strFindLow);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       return -1;
@@ -1073,7 +1073,7 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 //index str::case_insensitive_find(const ::string & strFind, const ::string & strParam, index iStart)
 //{
 
-//   ::count iFindLen = strFind.get_length();
+//   ::count iFindLen = strFind.length();
 
 //   ::count iLen = strlen(&psz[iStart]);
 
@@ -1148,9 +1148,9 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 
 //      strLow.make_lower();
 
-//      index iFind = strLow.find(strFindLow);
+//      auto pFind = strLow.find(strFindLow);
 
-//      if (iFind < 0)
+//      if (::is_null(pFind))
 //      {
 
 //         return -1;
@@ -1169,7 +1169,7 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 
 //   ::count iFindLen = strOld.length();
 
-//   index iLen = str.get_length() - iStart;
+//   index iLen = str.length() - iStart;
 
 //   if (iLen < iFindLen)
 //   {
@@ -1245,7 +1245,7 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 
 //   ::count iFindLen = strlen(pszOld);
 
-//   index iLen = str.get_length() - iStart;
+//   index iLen = str.length() - iStart;
 
 //   if(iLast < 0)
 //      iLast +=iLen;
@@ -1319,7 +1319,7 @@ index str::find_file_extension(const ::string & strOld, const ::string & str, in
    // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point_i32 definitive false).
    // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
-   index iLen = str.get_length() - iStart;
+   index iLen = str.length() - iStart;
 
    if (iLast < 0)
    {
@@ -1605,9 +1605,9 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 //
 //     strLow.make_lower();
 //
-//     index iFind = strLow.find(strFindLow);
+//     auto pFind = strLow.find(strFindLow);
 //
-//     if (iFind < 0)
+//     if (::is_null(pFind))
 //     {
 //
 //        return -1;
@@ -1679,8 +1679,8 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, index i
    while (*pszIter != '\0')
    {
 
-      if (strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t)strFind.get_length() || !unicode_is_letter_or_digit(pszIter + strFind.get_length())))
+      if (strFind == string(pszIter, strFind.length())
+         && (strlen(pszIter) == (size_t)strFind.length() || !unicode_is_letter_or_digit(pszIter + strFind.length())))
       {
 
          return pszIter - psz;
@@ -1727,8 +1727,8 @@ strsize str::find_aww(const ::string & strOld, const ::string & strParam, index 
    while (*pszIter != '\0')
    {
 
-      if (strFind == string(pszIter, strFind.get_length())
-         && (strlen(pszIter) == (size_t)strFind.get_length() || !unicode_is_letter(pszIter + strFind.get_length())))
+      if (strFind == string(pszIter, strFind.length())
+         && (strlen(pszIter) == (size_t)strFind.length() || !unicode_is_letter(pszIter + strFind.length())))
       {
 
          return pszIter - psz;
@@ -2698,7 +2698,7 @@ bool str::is_natural(const ::string & strParam)
 
    str.trim();
 
-   for (index i = 0; i < str.get_length(); i++)
+   for (index i = 0; i < str.length(); i++)
    {
 
       if (!ansi_char_isdigit(str[i]))
@@ -3169,7 +3169,7 @@ string str::consume_quoted_value(const char *& pszParse, const ::ansi_character 
 
    auto p = str.get_string_buffer();
 
-   auto pend = p + str.get_length();
+   auto pend = p + str.length();
 
    while (*p)
    {
@@ -3759,9 +3759,9 @@ string str::consume_command_line_argument(string & str)
 
    strsize iFind2 = str.find('\'');
 
-   strsize iFind = minimum_non_negative(iFind1, iFind2);
+   auto pFind = minimum_non_negative(iFind1, iFind2);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       strResult = consume_spaced_value(str);
@@ -3799,7 +3799,7 @@ string str::consume_command_line_argument(string & str)
 
          iFind++;
 
-         strsize iFind2 = str.find(chSeparator, iFind);
+         strsize iFind2 = str(pFind).find(chSeparator);
 
          if (iFind2 < 0)
          {
@@ -3956,11 +3956,11 @@ string str::consume_c_quoted_value(const char *& pszParse, const ::ansi_characte
 string str::token(string & str, const ::string & strSeparatorText, bool bWithSeparator)
 {
 
-   strsize iFind = str.find(strSeparatorText);
+   auto pFind = str.find(strSeparatorText);
 
    string strToken;
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       if (bWithSeparator)
@@ -3968,19 +3968,19 @@ string str::token(string & str, const ::string & strSeparatorText, bool bWithSep
 
          iFind += strlen(strSeparatorText);
 
-         strToken = str.Left(iFind);
+         strToken = str(0, pFind);
 
-         str = str.Mid(iFind);
+         str = str(pFind);
 
       }
       else
       {
 
-         strToken = str.Left(iFind);
+         strToken = str(0, pFind);
 
          iFind += strlen(strSeparatorText);
 
-         str = str.Mid(iFind);
+         str = str(pFind);
 
       }
 
@@ -3998,11 +3998,11 @@ string str::line(string & str, bool bNewLine)
 
    auto iFind2 = str.find('\n');
 
-   auto iFind = minimum_non_negative(iFind1, iFind2);
+   auto pFind = minimum_non_negative(iFind1, iFind2);
 
    string strToken;
 
-   if (iFind < 0)
+   if (::is_null(pFind))
    {
 
       strToken = str;
@@ -4037,7 +4037,7 @@ string str::line(string & str, bool bNewLine)
       else
       {
 
-         strToken = str.Left(iFind);
+         strToken = str(0, pFind);
 
       }
 
@@ -4126,7 +4126,7 @@ string str::pad(const ::string & strParam, ::count iLen, const ::string & strPat
    if (epad == e_pad_left)
    {
 
-      while (str.get_length() < iLen)
+      while (str.length() < iLen)
       {
 
          if (strPattern[i] == '\0')
@@ -4146,7 +4146,7 @@ string str::pad(const ::string & strParam, ::count iLen, const ::string & strPat
    else if (epad == e_pad_right)
    {
 
-      while (str.get_length() < iLen)
+      while (str.length() < iLen)
       {
 
          if (strPattern[i] == '\0')
@@ -4220,7 +4220,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          str = (char)(a + 48) + str;
          tmp /= 10;
       }
-      if (!str.get_length())
+      if (!str.length())
       {
          str = "0";
       }
@@ -4249,7 +4249,7 @@ i64 str::to_i64(const ::string & str)
 
    i32 i = 0;
 
-   for (; i < str.get_length() && character_isspace(str[i]); i++);
+   for (; i < str.length() && character_isspace(str[i]); i++);
 
    bool bNegative = str[i] == '-';
 
@@ -4262,7 +4262,7 @@ i64 str::to_i64(const ::string & str)
 
    u64 u = 0;
 
-   for (; i < str.get_length() && isdigit(str[i]); i++)
+   for (; i < str.length() && isdigit(str[i]); i++)
    {
 
       u = u * 10 + str[i] - 48;
@@ -4316,11 +4316,11 @@ u64 str::to_u64(const ::string & str)
 
    i32 i = 0;
 
-   for (; i < str.get_length() && character_isspace(str[i]); i++);
+   for (; i < str.length() && character_isspace(str[i]); i++);
 
    u64 u = 0;
 
-   for (; i < str.get_length() && isdigit(str[i]); i++)
+   for (; i < str.length() && isdigit(str[i]); i++)
    {
       u = u * 10 + str[i] - 48;
    }
@@ -4352,29 +4352,29 @@ u64 str::to_u64(const ::string & str)
 void str::increment_digit_letter(string & str)
 {
 
-   strsize i = str.get_length() - 1;
+   strsize i = str.length() - 1;
 
    while (i >= 0)
    {
 
       if (str[i] >= '0' && str[i] <= '8')
       {
-         str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.get_length() - i - 1);
+         str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.length() - i - 1);
          break;
       }
       else if (str[i] == '9')
       {
-         str = str.Left(i) + string((char)('a')) + str.Right(str.get_length() - i - 1);
+         str = str.Left(i) + string((char)('a')) + str.Right(str.length() - i - 1);
          break;
       }
       else if (str[i] >= 'a' && str[i] <= 'y')
       {
-         str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.get_length() - i - 1);
+         str = str.Left(i) + string((char)(str[i] + 1)) + str.Right(str.length() - i - 1);
          break;
       }
       else if (str[i] == 'z')
       {
-         str = str.Left(i) + string((char)('0')) + str.Right(str.get_length() - i - 1);
+         str = str.Left(i) + string((char)('0')) + str.Right(str.length() - i - 1);
          i--;
       }
    }
@@ -4385,7 +4385,7 @@ void str::increment_digit_letter(string & str)
 //{
 //
 //   i32 i = 0;
-//   for (i = 0; i < str.get_length(); i++)
+//   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, str[i]) == nullptr)
 //
@@ -4401,7 +4401,7 @@ void str::increment_digit_letter(string & str)
 //{
 //
 //   i32 i = 0;
-//   for (i = 0; i < str.get_length(); i++)
+//   for (i = 0; i < str.length(); i++)
 //   {
 //      if (strchr(pcszChars, tolower(str[i])) == nullptr)
 //
@@ -4791,7 +4791,7 @@ bool str::trim_any_quotes(string & str)
 bool str::paired_trim(string & str, char ch)
 {
 
-   if (str.get_length() <= 1)
+   if (str.length() <= 1)
    {
 
       return false;
@@ -4805,7 +4805,7 @@ bool str::paired_trim(string & str, char ch)
 
    }
 
-   str = str.Mid(1, str.get_length() - 2);
+   str = str.Mid(1, str.length() - 2);
 
    return true;
 
@@ -4992,7 +4992,7 @@ bool str::is_true(string str)
 
    }
 
-   for (index i = 0; i < str.get_length(); i++)
+   for (index i = 0; i < str.length(); i++)
    {
 
       if (i == 0 && (str[i] == '+' || str[i] == '-'))
@@ -5134,7 +5134,7 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 
    string str(strSrc);
 
-   if (lenPad > str.get_length())
+   if (lenPad > str.length())
    {
 
       ::ansi_zero_pad(str.get_string_buffer(lenPad), lenPad);
@@ -5159,7 +5159,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
       if(bFinal)
       {
 
-         iLimit = str.get_length();
+         iLimit = str.length();
 
          if(iLimit <= 0)
          {
@@ -5191,7 +5191,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
          if(bFinal)
          {
 
-            iFindNext = str.get_length();
+            iFindNext = str.length();
 
             if(iFindNext >= iLast)
             {

@@ -89,7 +89,7 @@ namespace winrt
       //strRsaPrivateKey += chunk_split(::apexacmesystem()->base64().encode(memKey));
       //strRsaPrivateKey += "-----END RSA PUBLIC KEY-----";
 
-      //memKey.set_size(strRsaPrivateKey.get_length());
+      //memKey.set_size(strRsaPrivateKey.length());
 
       //::memcpy_dup(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
 

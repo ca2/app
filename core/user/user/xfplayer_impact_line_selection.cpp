@@ -270,7 +270,7 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
    viewline.m_tokenaMain.element_at(viewline.GetLineCount() - 1).GetText(str);
    //         m_etype &= ~TypeMaskEndHere;
    m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
-   m_item.SetCharEnd(str.get_length());*/
+   m_item.SetCharEnd(str.length());*/
    /*      }
    else
    {
@@ -279,7 +279,7 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
    m_etype &= ~TypeMaskEndHere;
    m_etype |= TypeMaskStartHere;
    m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
-   m_item.SetCharEnd(str.get_length() - 1);
+   m_item.SetCharEnd(str.length() - 1);
    }
    }
    else if(m_etype &  TypeMaskStartHere)
@@ -292,7 +292,7 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
    m_item.SetLineStart(viewline.GetFirstLine());
    m_item.SetCharStart(0);
    m_item.SetLineEnd(viewline.GetFirstLine() + viewline.m_tokenaMain.get_size() - 1);
-   m_item.SetCharEnd(str.get_length() - 1);
+   m_item.SetCharEnd(str.length() - 1);
    }*/
    return true;
 }
@@ -323,7 +323,7 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    else
    {
    viewline.m_tokenaMain[m_item.m_iLineStart].GetText(str);
-   if(m_item.m_iCharStart >= str.get_length())
+   if(m_item.m_iCharStart >= str.length())
    {
    if(str.is_empty())
    {
@@ -331,7 +331,7 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    }
    else
    {
-   m_item.m_iCharStart = str.get_length() - 1;
+   m_item.m_iCharStart = str.length() - 1;
    }
    }
    if(m_item.m_iLineEnd < 0)
@@ -360,12 +360,12 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    }
    else
    {
-   m_item.m_iCharEnd = str.get_length() - 1;
+   m_item.m_iCharEnd = str.length() - 1;
    }
    }
    }
    viewline.m_tokenaMain[m_item.m_iLineEnd].GetText(str);
-   if(m_item.m_iCharEnd >= str.get_length())
+   if(m_item.m_iCharEnd >= str.length())
    {
    if(str.is_empty())
    {
@@ -373,7 +373,7 @@ void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewlin
    }
    else
    {
-   m_item.m_iCharEnd = str.get_length() - 1;
+   m_item.m_iCharEnd = str.length() - 1;
    }
    }
    }*/

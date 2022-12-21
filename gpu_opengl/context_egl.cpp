@@ -300,9 +300,9 @@ namespace opengl
 
       }
 
-      strsize iFind = stra.find_first_begins_ci("out vec4 ");
+      auto pFind = stra.find_first_begins_ci("out vec4 ");
 
-      if(iFind >= 0)
+      if(::is_set(pFind))
       {
 
          stra[iFind] = "out vec4 fragmentColor;";

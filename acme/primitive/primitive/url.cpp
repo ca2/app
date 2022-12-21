@@ -59,7 +59,7 @@ namespace url
       if (iPos == -1)
          return strParam;
       iPos++;
-      while (iPos < str.get_length() && str[iPos] == '/')
+      while (iPos < str.length() && str[iPos] == '/')
       {
          iPos++;
       }
@@ -209,9 +209,9 @@ namespace url
 
       string str(strParam);
 
-      strsize iFind = str.find('?');
+      auto pFind = str.find('?');
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return ::url::decode(str);
@@ -220,7 +220,7 @@ namespace url
       else
       {
 
-         return ::url::decode(str.Left(iFind));
+         return ::url::decode(str(0, pFind));
 
       }
 
@@ -232,9 +232,9 @@ namespace url
 
       string str(strParam);
 
-      strsize iFind = str.find('?');
+      auto pFind = str.find('?');
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return "";
@@ -243,7 +243,7 @@ namespace url
       else
       {
 
-         return str.Mid(iFind + 1);
+         return str(pFind + 1);
 
       }
 
@@ -316,14 +316,14 @@ namespace url
       if (str1.Right(1) == "/")
       {
 
-         str1 = str1.Left(str1.get_length() - 1);
+         str1 = str1.Left(str1.length() - 1);
 
       }
 
       if (str2.Left(1) == "/")
       {
 
-         str2 = str2.Right(str2.get_length() - 1);
+         str2 = str2.Right(str2.length() - 1);
 
       }
 
@@ -350,7 +350,7 @@ namespace url
       if (iQueryStart < 0)
       {
 
-         iQueryStart = str.get_length();
+         iQueryStart = str.length();
 
       }
 
@@ -444,7 +444,7 @@ namespace url
 
       string strCandidate(strCandidateParam);
 
-      strsize iLen = strCandidate.get_length();
+      strsize iLen = strCandidate.length();
 
       strsize i = 0;
 
@@ -525,7 +525,7 @@ namespace url
       if (iPos < 0)
       {
 
-         iPos = strUrl.get_length();
+         iPos = strUrl.length();
 
       }
 
@@ -546,7 +546,7 @@ namespace url
       if (iPos < 0)
       {
 
-         iPos = strUrl.get_length();
+         iPos = strUrl.length();
 
       }
 
@@ -578,7 +578,7 @@ namespace url
 
       string str;
 
-      char * psz = str.get_string_buffer(iLenUrl + iLenKey + strValue.get_length() + 2);
+      char * psz = str.get_string_buffer(iLenUrl + iLenKey + strValue.length() + 2);
 
       if(pszQuery == nullptr)
       {
@@ -587,7 +587,7 @@ namespace url
          strcpy(&psz[iLenUrl + 1], strKey);
          psz[iLenUrl + 1 + iLenKey] = '=';
          strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strValue);
-         str.release_string_buffer(iLenUrl + iLenKey + strValue.get_length() + 2);
+         str.release_string_buffer(iLenUrl + iLenKey + strValue.length() + 2);
       }
       else
       {
@@ -617,8 +617,8 @@ namespace url
                   iFinalLen += iLenKey;
                   psz[iFinalLen] = '=';
                   iFinalLen++;
-                  ansi_count_copy(&psz[iFinalLen], strValue, strValue.get_length());
-                  iFinalLen += strValue.get_length();
+                  ansi_count_copy(&psz[iFinalLen], strValue, strValue.length());
+                  iFinalLen += strValue.length();
                   bRemove = true;
                   bAlreadyInsertedFirstParam = true;
                   bInserted = true;
@@ -661,8 +661,8 @@ namespace url
             iFinalLen += iLenKey;
             psz[iFinalLen] = '=';
             iFinalLen++;
-            ansi_count_copy(&psz[iFinalLen], strValue, strValue.get_length());
-            iFinalLen += strValue.get_length();
+            ansi_count_copy(&psz[iFinalLen], strValue, strValue.length());
+            iFinalLen += strValue.length();
             bRemove = true;
             bAlreadyInsertedFirstParam = true;
             bInserted = true;
@@ -961,9 +961,9 @@ namespace url
       while(true)
       {
          
-         strsize iFind = strQuery.find(strAndKeyEqual);
+         auto pFind = strQuery.find(strAndKeyEqual);
          
-         if(iFind < 0)
+         if(::is_null(pFind))
          {
             
             break;
@@ -975,13 +975,13 @@ namespace url
          if(iNextParam < 0)
          {
             
-            strQuery = strQuery.Left(iFind);
+            strQuery = strQuery(0, pFind);
             
          }
          else
          {
             
-            strQuery = strQuery.Left(iFind) + strQuery.Mid(iNextParam);
+            strQuery = strQuery(0, pFind) + strQuery.Mid(iNextParam);
             
          }
          
@@ -1033,7 +1033,7 @@ namespace url
          if(iPos < 0)
          {
             
-            payload = strQuery.Mid(strKeyEqual.get_length());
+            payload = strQuery.Mid(strKeyEqual.length());
             
             return payload;
             
@@ -1041,7 +1041,7 @@ namespace url
          else
          {
             
-            payload = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
+            payload = strQuery.Mid(strKeyEqual.length(), iPos - strKeyEqual.length());
             
          }
          
@@ -1067,13 +1067,13 @@ namespace url
             if(payload.is_new())
             {
                
-               payload = strQuery.Mid(iPos + strKeyEqual.get_length());
+               payload = strQuery.Mid(iPos + strKeyEqual.length());
                
             }
             else
             {
                
-               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
+               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.length()));
                
             }
             
@@ -1086,13 +1086,13 @@ namespace url
             if(payload.is_new())
             {
                
-               payload = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
+               payload = strQuery.Mid(iPos + strKeyEqual.length(), iEnd - (iPos + strKeyEqual.length()));
                
             }
             else
             {
                
-               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
+               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.length(), iEnd - (iPos + strKeyEqual.length())));
                
             }
             
@@ -2023,7 +2023,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //CLASS_DECL_ACME string ::url::decode(const & strParam)
 //{
 //
-//   return ::url::decode(strParam, strParam.get_length());
+//   return ::url::decode(strParam, strParam.length());
 //
 //   /*string str(strParam);
 //
@@ -2036,7 +2036,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //   while(true)
 //   {
 //
-//      strsize iFind = str.find("%",iStart);
+//      auto pFind = str.find("%",iStart);
 //
 //      if(iFind == -1)
 //      {
@@ -2204,7 +2204,7 @@ namespace url
          if (pszBeg != nullptr)
          {
 
-            pszBeg += strKey.get_length();
+            pszBeg += strKey.length();
 
             goto success;
 
@@ -2225,7 +2225,7 @@ namespace url
          if (pszBeg != nullptr)
          {
 
-            pszBeg += strKey.get_length();
+            pszBeg += strKey.length();
 
             goto success;
 
@@ -2509,14 +2509,14 @@ void openURL(const string& url_str)
 //
 //   string strDomain;
 //
-//   index iFind = user.m_strLogin.find('/');
+//   auto pFind = user.m_strLogin.find('/');
 //
 //   if(iFind > 0)
 //   {
 //
-//      strUser = user.m_strLogin.Mid(iFind + 1);
+//      strUser = user.m_strLogin(pFind + 1);
 //
-//      strDomain = user.m_strLogin.Left(iFind);
+//      strDomain = user.m_strLogin(0, pFind);
 //
 //   }
 //   else
@@ -2562,7 +2562,7 @@ void openURL(const string& url_str)
 //
 //   string strCandidate(pszCandidate);
 //
-//   strsize iLen = strCandidate.get_length();
+//   strsize iLen = strCandidate.length();
 //
 //   strsize i = 0;
 //
@@ -2609,7 +2609,7 @@ void openURL(const string& url_str)
 //   while (true)
 //   {
 //
-//      strsize iFind = str.find("%", iStart);
+//      auto pFind = str.find("%", iStart);
 //
 //      if (iFind == -1)
 //      {
@@ -2739,7 +2739,7 @@ void openURL(const string& url_str)
 //      if (pszBeg != nullptr)
 //      {
 //
-//         pszBeg += strKey.get_length();
+//         pszBeg += strKey.length();
 //
 //         goto success;
 //
@@ -2760,7 +2760,7 @@ void openURL(const string& url_str)
 //      if (pszBeg != nullptr)
 //      {
 //
-//         pszBeg += strKey.get_length();
+//         pszBeg += strKey.length();
 //
 //         goto success;
 //
@@ -3077,14 +3077,14 @@ pacmedirectory->system() / "config\\user.txt")*/;
 //
 //   string strDomain;
 //
-//   index iFind = user.m_strLogin.find('/');
+//   auto pFind = user.m_strLogin.find('/');
 //
 //   if(iFind > 0)
 //   {
 //
-//      strUser = user.m_strLogin.Mid(iFind + 1);
+//      strUser = user.m_strLogin(pFind + 1);
 //
-//      strDomain = user.m_strLogin.Left(iFind);
+//      strDomain = user.m_strLogin(0, pFind);
 //
 //   }
 //   else

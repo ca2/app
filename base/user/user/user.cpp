@@ -1382,7 +1382,7 @@ namespace base
 //
 //   string str = __get_text(psz);
 //
-//   return (int)str.get_length();
+//   return (int)str.length();
 //
 //}
 
@@ -1392,7 +1392,7 @@ namespace base
 //
 //   string str = __get_text(psz);
 //
-//   iLen = minimum(iLen, (int)str.get_length());
+//   iLen = minimum(iLen, (int)str.length());
 //
 //   strncpy(pszText, str, iLen);
 //

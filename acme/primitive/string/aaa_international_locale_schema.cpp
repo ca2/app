@@ -614,17 +614,17 @@ restart:
             if(i >= m_idaSchema.get_count())
                m_idaSchema.add(m_atomSchema);
             atom idSchema = m_idaSchema[i];
-            strsize iFind = strLocale.find("-");
-            if(iFind >= 0)
+            auto pFind = strLocale.find("-");
+            if(::is_set(pFind))
             {
-               atom idLocale2 = strLocale.Left(iFind);
+               atom idLocale2 = strLocale(0, pFind);
                if(m_idaLocale.find_first(idLocale2) < 0)
                {
                   m_idaLocale.insert_at(i + 1, idLocale2);
                   m_idaSchema.insert_at(i + 1, idSchema);
                   goto restart;
                }
-               idLocale2 = strLocale.Mid(iFind + 1);
+               idLocale2 = strLocale(pFind + 1);
                if(idLocale2.is_empty() && m_idaLocale.find_first(idLocale2) < 0)
                {
                   m_idaLocale.insert_at(i + 1, idLocale2);

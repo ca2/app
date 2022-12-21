@@ -476,11 +476,11 @@ namespace xml
 
       }
 
-      auto iDiff = strValue.get_length() - (strName.get_length() + 2);
+      auto iDiff = strValue.length() - (strName.length() + 2);
 
       m_memoryData.allocate_add_up(iDiff);
 
-      auto iRight = iPos + strName.get_length() + 2;
+      auto iRight = iPos + strName.length() + 2;
 
       char * pszRight = (char *)m_memoryData.data() + iRight;
 
@@ -488,7 +488,7 @@ namespace xml
 
       memcpy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 
-      //m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.get_length() + 2);
+      //m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.length() + 2);
 
       return pszRight + iDiff;
 

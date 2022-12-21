@@ -86,9 +86,9 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
-   iptr iFind = osdisplay_find(pdisplay);
+   auto pFind = osdisplay_find(pdisplay);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
    {
 
       return osdisplay_data::s_pdataptra->element_at(iFind);
@@ -129,9 +129,9 @@ bool osdisplay_erase(Display * pdisplay)
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
-   iptr iFind = osdisplay_find(pdisplay);
+   auto pFind = osdisplay_find(pdisplay);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
       return false;
 
    osdisplay_data * pdata = ::osdisplay_data::s_pdataptra->element_at(iFind);

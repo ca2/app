@@ -305,12 +305,12 @@ namespace helloworld
 
          string strImage = str;
 
-         strsize iFind = strImage.find(",");
+         auto pFind = strImage.find(",");
 
-         if(iFind >= 0)
+         if(::is_set(pFind))
          {
 
-            strImage = strImage.Mid(0,iFind);
+            strImage = strImage(0, pFind);
 
          }
 

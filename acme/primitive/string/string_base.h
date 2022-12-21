@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "string_iterator.h"
@@ -626,7 +626,8 @@ public:
    string_base & release_string_buffer(strsize nNewLength = -1);
    //   inline void release_string_buffer(strsize nNewLength);
    inline this_iterator & truncate(this_iterator p);
-
+   template < primitive_integral INTEGRAL >
+   inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
 
    ///
    inline this_iterator & erase_beginning(this_iterator p);
@@ -1187,12 +1188,12 @@ inline ::string operator +(const ::string & str, const ::inline_string < char, m
 }
 
 
-inline ::string operator +(const scoped_string & scopedstr, const ::string & str)
-{
-
-   return ::string(scopedstr) + str;
-
-}
+//inline ::string operator +(const scoped_string & scopedstr, const ::string & str)
+//{
+//
+//   return ::string(scopedstr) + str;
+//
+//}
 
 
 inline ::string operator +(char ch, const ::string & str)

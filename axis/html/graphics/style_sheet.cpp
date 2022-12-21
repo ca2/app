@@ -54,7 +54,7 @@ namespace html
          const ::scoped_string & scopedstrRestart = psz + 1;
          string str(pszStart, psz - pszStart);
          str.trim();
-         if(str.get_length() <= 0)
+         if(str.length() <= 0)
             return;
 
          pszStart = str;
@@ -96,7 +96,7 @@ namespace html
 
          str.trim();
 
-         if(str.get_length() > 0)
+         if(str.length() > 0)
          {
             pszStart = str;
             psz = pszStart;

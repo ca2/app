@@ -557,7 +557,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    strsize iFindLast = 0;
 
-   strsize iFind = 0;
+   auto pFind = 0;
 
    string strOnlyAlnum;
 

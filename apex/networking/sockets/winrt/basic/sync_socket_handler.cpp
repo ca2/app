@@ -42,7 +42,7 @@ namespace sockets
    void sync_socket_handler::write(string &str)
    {
       
-      m_psocket->write(str, str.get_length());
+      m_psocket->write(str, str.length());
 
    }
 

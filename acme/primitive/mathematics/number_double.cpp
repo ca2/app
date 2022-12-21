@@ -33,7 +33,7 @@ namespace mathematics
 
       bool bDouble = false;
 
-      if (str.get_length() >= 1)
+      if (str.length() >= 1)
       {
 
          if (ansi_char_isdigit(str[0]))
@@ -45,7 +45,7 @@ namespace mathematics
          else if (str[0] == '-' || str[0] == '+')
          {
 
-            if (str.get_length() >= 2)
+            if (str.length() >= 2)
             {
 
                if (ansi_char_isdigit(str[1]))

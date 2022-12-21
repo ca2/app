@@ -1476,7 +1476,7 @@ namespace acme
       //   for (index i = aParam.get_upper_bound(); i >= 0; i--)
       //   {
 
-      //      index iFind = 0;
+      //      auto pFind = 0;
 
       //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, m_etypeContainer >::BASE_ARG_TYPE >))
       //      {

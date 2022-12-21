@@ -1372,7 +1372,7 @@ namespace user
 
                auto puser = psession->user();
 
-               ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
+               ::auto pFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
                if (__found(iFind))
                {

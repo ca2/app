@@ -256,7 +256,7 @@ tiny_http::http_retcode tiny_http::t_query(const ::string & command,  const char
 tiny_http::http_retcode tiny_http::t_put(const ::string & data, i32 length, i32 overwrite, void (*callback)(void *, i32, dword_ptr), void * callback_param)
 {
    char header[MAXBUF];
-   if (m_strContentType.get_length() > 0)
+   if (m_strContentType.length() > 0)
       sprintf(header,"Content-length: %d\015\012Content-type: %.64s\015\012%s",
               length,
               (const ::string &) m_strContentType,

@@ -44,9 +44,9 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    mutex_lock synchronouslock(user_synchronization(), true);
 
-   iptr iFind = osdisplay_find(pdisplay);
+   auto pFind = osdisplay_find(pdisplay);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
       return osdisplay_data::s_pdataptra->element_at(iFind);
 
    osdisplay_data * pdata     = memory_new osdisplay_data;
@@ -69,9 +69,9 @@ bool osdisplay_erase(Display * pdisplay)
 
    mutex_lock synchronouslock(user_synchronization(), true);
 
-   iptr iFind = osdisplay_find(pdisplay);
+   auto pFind = osdisplay_find(pdisplay);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
       return false;
 
    ::osdisplay_data::s_pdataptra->erase_at(iFind);

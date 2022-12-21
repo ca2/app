@@ -73,7 +73,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const char * pszTop1, strsize iLen1, c
 inline bool CLASS_DECL_ACME server_is_top_domain(string strTop1, string strTop2)
 {
 
-   return server_is_top_domain(strTop1, strTop1.get_length(), strTop2, strTop2.get_length());
+   return server_is_top_domain(strTop1, strTop1.length(), strTop2, strTop2.length());
 
 }
 

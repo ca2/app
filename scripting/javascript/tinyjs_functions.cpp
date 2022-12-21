@@ -109,7 +109,7 @@ void scStringSubstring(CScriptVar *ca, void *) {
     strsize hi;
     if(ca->findChild("hi") == nullptr)
     {
-       hi = str.get_length();
+       hi = str.length();
     }
     else
     {

@@ -740,7 +740,7 @@ namespace apex
    //
    //   }
    //
-   //   for (; i < str.get_length(); i += (iSkip + 1))
+   //   for (; i < str.length(); i += (iSkip + 1))
    //   {
    //
    //      strCompact += str[i];
@@ -755,7 +755,7 @@ namespace apex
    //void thread_name_abbreviate(string & strName, int len)
    //{
    //
-   //   if (strName.get_length() <= len)
+   //   if (strName.length() <= len)
    //   {
    //
    //      return;
@@ -766,11 +766,11 @@ namespace apex
    //
    //   strsize iFindLast = 0;
    //
-   //   strsize iFind = 0;
+   //   auto pFind = 0;
    //
    //   string strOnlyAlnum;
    //
-   //   while (iFind >= 0)
+   //   while (::is_set(pFind))
    //   {
    //
    //      iFind = strName.find("::", iFindLast);
@@ -783,7 +783,7 @@ namespace apex
    //
    //   strName = stra.implode(":");
    //
-   //   if (strName.get_length() <= len)
+   //   if (strName.length() <= len)
    //   {
    //
    //      return;
@@ -797,7 +797,7 @@ namespace apex
    //
    //      strName = stra.implode(":");
    //
-   //      if (strName.get_length() <= len)
+   //      if (strName.length() <= len)
    //      {
    //
    //         return;
@@ -813,7 +813,7 @@ namespace apex
    //
    //      strName = stra.implode(":");
    //
-   //      if (strName.get_length() <= len)
+   //      if (strName.length() <= len)
    //      {
    //
    //         return;
@@ -829,7 +829,7 @@ namespace apex
    //
    //      strName = stra.implode(":");
    //
-   //      if (strName.get_length() <= len)
+   //      if (strName.length() <= len)
    //      {
    //
    //         return;

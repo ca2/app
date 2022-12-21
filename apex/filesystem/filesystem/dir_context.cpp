@@ -143,7 +143,7 @@ inline bool myspace(char ch)
 
 //   strsize iFolderBeg = 0;
 
-//   strsize iFolderEnd = strFolder.get_length() - 1;
+//   strsize iFolderEnd = strFolder.length() - 1;
 
 //   if(iFolderEnd >= iFolderBeg)
 //   {
@@ -163,7 +163,7 @@ inline bool myspace(char ch)
 
 //   strsize iRelativeBeg = 0;
 
-//   strsize iRelativeEnd = strRelative.get_length() - 1;
+//   strsize iRelativeEnd = strRelative.length() - 1;
 
 //   if(iRelativeEnd >= iRelativeBeg)
 //   {
@@ -241,7 +241,7 @@ inline bool myspace(char ch)
 
 //   strsize iFolderBeg = 0;
 
-//   strsize iFolderEnd = strFolder.get_length() - 1;
+//   strsize iFolderEnd = strFolder.length() - 1;
 
 //   if(iFolderEnd >= iFolderBeg)
 //   {
@@ -261,7 +261,7 @@ inline bool myspace(char ch)
 
 //   strsize iRelativeBeg = 0;
 
-//   strsize iRelativeEnd = strRelative.get_length() - 1;
+//   strsize iRelativeEnd = strRelative.length() - 1;
 
 //   if(iRelativeEnd >= iRelativeBeg)
 //   {
@@ -282,7 +282,7 @@ inline bool myspace(char ch)
 
 //   strsize iBeg2 = 0;
 
-//   strsize iEnd2 = str2.get_length() - 1;
+//   strsize iEnd2 = str2.length() - 1;
 
 //   if(iEnd2 >= iBeg2)
 //   {
@@ -1316,14 +1316,14 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //            }
 //
-//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
+//            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return t1->m_str.case_insensitive_order(t2->m_str) < 0;
 //
 //            });
 //
-//            if (iFind < 0)
+//            if (::is_null(pFind))
 //            {
 //
 //               return false;
@@ -1392,14 +1392,14 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //            }
 //
-//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
+//            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
-//            if (iFind < 0)
+//            if (::is_null(pFind))
 //            {
 //
 //               return false;
@@ -1441,14 +1441,14 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //            }
 //
-//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
+//            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
-//            if (iFind < 0)
+//            if (::is_null(pFind))
 //            {
 //
 //               return false;
@@ -1476,14 +1476,14 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //            }
 //
-//            index iFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
+//            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
 //               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
-//            if (iFind < 0)
+//            if (::is_null(pFind))
 //            {
 //
 //               return false;
@@ -1548,14 +1548,14 @@ bool dir_context::name_is(const ::file::path& strPath)
 //               pfind->m_str = strPath.Mid(iFind0, iFind3 - iFind0);
 //            }
 //
-//            index iFind = pdir->predicate_binary_search(pfind, [&](auto & t1, auto & t2)
+//            auto pFind = pdir->predicate_binary_search(pfind, [&](auto & t1, auto & t2)
 //            {
 //
 //               return t1->m_str.case_insensitive_order(t2->m_str) < 0;
 //
 //            });
 //
-//            if (iFind < 0)
+//            if (::is_null(pFind))
 //            {
 //               while (true)
 //               {
@@ -1866,12 +1866,12 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          strsize iFind2 = strMatter.case_insensitive_find("\\matter\\");
 
-         strsize iFind = minimum_non_negative(iFind1, iFind2);
+         auto pFind = minimum_non_negative(iFind1, iFind2);
 
          if (iFind > 0)
          {
 
-            strMatter = strMatter.Mid(iFind);
+            strMatter = strMatter(pFind);
 
          }
 
@@ -1883,7 +1883,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       ::file::path strFile = dir()->cache() / strMatter / "list_dir.list_dir";
 
-      strsize iFind = strFile.find(DIR_SEPARATOR);
+      auto pFind = strFile.find(DIR_SEPARATOR);
 
       if (iFind > 0)
       {
@@ -2003,7 +2003,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //      string strFile = dir()->cache() / strDir / "list_dir.list_dir";
 //
-//      strsize iFind = strFile.find(DIR_SEPARATOR);
+//      auto pFind = strFile.find(DIR_SEPARATOR);
 //
 //      if (iFind > 0)
 //      {
@@ -2268,14 +2268,14 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strToken = "/matter/";
 
-      auto iFind = strMatter.case_insensitive_find(strToken);
+      auto pFind = strMatter.case_insensitive_find(strToken);
 
-      if (strMatter.has_char() && iFind >= 0)
+      if (strMatter.has_char() && ::is_set(pFind))
       {
 
-         iFind += strToken.get_length();
+         iFind += strToken.length();
 
-         path = "appmatter://" + strMatter.Mid(iFind);
+         path = "appmatter://" + strMatter(pFind);
 
          path.m_iDir = bDir ? 1 : 0;
 
@@ -2476,16 +2476,16 @@ ret:
 ::file::path dir_context::appmatter(string strApp, ::file::path pathRel)
 {
 
-   strsize iFind = strApp.find('/');
+   auto pFind = strApp.find('/');
 
    string strRepo;
 
    if (iFind > 0)
    {
 
-      strRepo = strApp.Left(iFind);
+      strRepo = strApp(0, pFind);
 
-      strApp = strApp.Mid(iFind + 1);
+      strApp = strApp(pFind + 1);
 
    }
    else
@@ -2666,18 +2666,18 @@ ret:
 
    strRelative = strElement;
 
-   index iFind = strRelative.find(':');
+   auto pFind = strRelative.find(':');
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
-      strsize iFind1 = strRelative.rear_find("\\", iFind);
+      strsize iFind1 = strRelative(pFind).rear_find("\\");
 
-      strsize iFind2 = strRelative.rear_find("/", iFind);
+      strsize iFind2 = strRelative(pFind).rear_find("/");
 
       strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-      strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+      strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative(pFind + 1);
 
    }
 

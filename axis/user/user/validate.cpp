@@ -33,7 +33,7 @@ namespace user
          string str = strParam;
          str.trim_left();
          str.trim_right();
-         for (i32 i = 0; i < str.get_length(); i++)
+         for (i32 i = 0; i < str.length(); i++)
          {
             if (str[i] >= L'0'
                && str[i] <= L'9')

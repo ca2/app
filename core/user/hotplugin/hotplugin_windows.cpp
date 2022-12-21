@@ -140,7 +140,7 @@ namespace hotplugin
 
    ////HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
-   ////::text_out(hdc,rectangleBar.left - 1,rectangleBar.bottom + 2,str,str.get_length());
+   ////::text_out(hdc,rectangleBar.left - 1,rectangleBar.bottom + 2,str,str.length());
 
    ////rectangleBar.left++;
    ////rectangleBar.top++;
@@ -153,7 +153,7 @@ namespace hotplugin
    //   CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY,VARIABLE_PITCH,TEXT("Calibri"));
    //HFONT hfontOld = (HFONT) ::SelectObject(hdc,hFont);
 
-   //::DrawText(hdc,str,str.get_length(),&rectangleBar,DT_SINGLELINE| e_align_left_center);
+   //::DrawText(hdc,str,str.length(),&rectangleBar,DT_SINGLELINE| e_align_left_center);
 
    //::DeleteObject(hFont);
 

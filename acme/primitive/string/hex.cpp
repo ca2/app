@@ -66,7 +66,7 @@ namespace hex
    u32 to_u32(const ::string & str)
    {
       u32 r = 0;
-      for (i32 i = 0; i < str.get_length(); i++)
+      for (i32 i = 0; i < str.length(); i++)
       {
          r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
       }
@@ -76,7 +76,7 @@ namespace hex
    u64 to_u64(const ::string & str)
    {
       u64 r = 0;
-      for(i32 i = 0; i < str.get_length(); i++)
+      for(i32 i = 0; i < str.length(); i++)
       {
          r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
       }

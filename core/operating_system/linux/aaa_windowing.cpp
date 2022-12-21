@@ -336,9 +336,9 @@ bool oswindow_erase(Display * display, Window window)
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find(display, window);
+   auto pFind = oswindow_find(display, window);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return false;
@@ -359,9 +359,9 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessag
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
-   iptr iFind = oswindow_find_message_only_window(puibaseMessageOnlyWindow);
+   auto pFind = oswindow_find_message_only_window(puibaseMessageOnlyWindow);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return false;
@@ -1029,9 +1029,9 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    }
 
-//    index iFind = windowa.find_last(oswindow->window());
+//    auto pFind = windowa.find_last(oswindow->window());
 
-//    if(iFind < 0)
+//    if(::is_null(pFind))
 //    {
 
 //       return true;
@@ -1119,9 +1119,9 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    }
 
-   index iFind = windowa.find_last(oswindow->window());
+   auto pFind = windowa.find_last(oswindow->window());
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return;
@@ -2696,7 +2696,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
       }
 
-      int iFind = -1;
+      auto pFind = -1;
 
       int i;
 
@@ -2714,7 +2714,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
       }
 
-      if(iFind >= 0)
+      if(::is_set(pFind))
       {
 
          __memmov(&plist[iFind], &plist[iFind + 1], (num_items - iFind - 1) *sizeof(Atom));

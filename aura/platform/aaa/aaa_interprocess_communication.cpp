@@ -586,7 +586,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      strsize iFind = str.find(":");
+      auto pFind = str.find(":");
 
       string str1;
 
@@ -598,7 +598,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       payload_array payloada;
 
-      if(iFind >= 0 && iFind <= 3)
+      if(::is_set(pFind) && iFind <= 3)
       {
 
          return;
@@ -608,7 +608,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
       if(iFind > 3)
       {
 
-         str1 = str.Left(iFind);
+         str1 = str(0, pFind);
 
       }
       else
@@ -633,10 +633,10 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       strMember = str1.Mid(iFind2 + 1);
 
-      if(iFind >= 0)
+      if(::is_set(pFind))
       {
 
-         str1 = str.Mid(iFind + 1);
+         str1 = str(pFind + 1);
 
          str1.trim();
 

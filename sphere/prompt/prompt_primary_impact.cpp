@@ -80,7 +80,7 @@ namespace prompt
 
                   str = strNewText;
 
-                  m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
+                  m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
 
                   bOk = true;
 
@@ -132,7 +132,7 @@ namespace prompt
 
                         str = strNewText;
 
-                        m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
+                        m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
 
                         bOk = true;
 
@@ -168,7 +168,7 @@ namespace prompt
 
                         str = strNewText;
 
-                        m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
+                        m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
 
                         papp->send_simple_command("winactionareaview::show_calendar(\""+ as_string((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
@@ -204,7 +204,7 @@ namespace prompt
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");
                      _001SetText(strNewText, context + ::e_source_sync + ::e_source_system);
-                     m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
+                     m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
                   }
 
 #else

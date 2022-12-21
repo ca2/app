@@ -250,7 +250,7 @@ namespace draw2d
 
 //      string str;
 //      str = utf8_to_unicode(psz);
-//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left, pcrect.top, str, (i32)str.get_length());
+//      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left, pcrect.top, str, (i32)str.length());
 
    }
 

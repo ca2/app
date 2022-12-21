@@ -346,7 +346,7 @@ namespace windowing
 //               str.trim_right();
 //
 //               XftDrawStringUtf8(m_pdraw, &m_colorFore, m_pfont, m_iMarginLeft, iY + m_iTextAscent,
-//                                 (FcChar8 *) str.c_str(), str.get_length());
+//                                 (FcChar8 *) str.c_str(), str.length());
 //
 //               iY += m_iLineHeight;
 //
@@ -463,7 +463,7 @@ namespace windowing
 //               XftDrawStringUtf8(m_pdraw, &colorFore, m_pfont,
 //                                 rectangleText.left + (rectangleText.width() - rText.width) / 2,
 //                                 rectangleText.top + m_iTextAscent,
-//                                 (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.get_length());
+//                                 (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.length());
 //
 //               right = rButton.left - m_iButtonHSpacing;
 //
@@ -618,7 +618,7 @@ namespace windowing
 //
 //      strMeasure = "Áj";
 //
-//      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &infoDummy);
+//      XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &infoDummy);
 //
 //      XGlyphInfo info;
 //
@@ -627,7 +627,7 @@ namespace windowing
 //
 //         strMeasure = "Áj" + str;
 //
-//         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &info);
+//         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &info);
 //
 //         sizeLine.cx = maximum(sizeLine.cx, info.x + info.width - infoDummy.width);
 //
@@ -653,7 +653,7 @@ namespace windowing
 //
 //            string strMeasure = "Áj" + pbutton->m_strLabel;
 //
-//            XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.get_length(), &infoText);
+//            XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &infoText);
 //
 //            infoText.width -= infoDummy.width;
 //

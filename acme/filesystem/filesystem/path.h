@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "file_path.h"
@@ -932,7 +932,7 @@ namespace file
 
    //   bool bWin1 = strPath.begins_eat("\\\\?\\");
 
-   //   index iFind = 0;
+   //   auto pFind = 0;
    //   while (true)
    //   {
 
@@ -941,7 +941,7 @@ namespace file
    //      index iFind3 = minimum_non_negative(iFind1, iFind2);
    //      if (iFind3 < 0)
    //      {
-   //         string str = strPath.Mid(iFind);
+   //         string str = strPath(pFind);
    //         straParam.add(str);
    //         break;
    //      }
@@ -1247,12 +1247,12 @@ namespace file
 
       strExtension.case_insensitive_begins_eat(".");
 
-      auto iFind = find_all_extensions();
+      auto pFind = find_all_extensions();
 
-      if (iFind >= 1)
+      if (pFind >= this->begin() + 1)
       {
 
-         this->operator = (Left(iFind) + strExtension);
+         this->operator = ((*this)(0, pFind) + strExtension);
 
       }
       else
@@ -1272,12 +1272,12 @@ namespace file
 
       strExtension.case_insensitive_begins_eat(".");
 
-      auto iFind = find_final_extension();
+      auto pFind = find_final_extension();
 
-      if (iFind >= 1)
+      if (pFind >= this->begin() + 1)
       {
 
-         this->operator = (Left(iFind) + strExtension);
+         this->operator = ((*this)(0, pFind) + strExtension);
 
       }
       else
@@ -1479,7 +1479,7 @@ namespace file
 
 
 
-   inline index path::find_name() const
+   inline path::const_iterator path::find_name() const
    {
 
       return maximum(this->begin(), rear_find(separator()) + 1);
@@ -1487,36 +1487,36 @@ namespace file
    }
 
 
-   inline index path::find_final_extension() const
+   inline path::const_iterator path::find_final_extension() const
    {
 
-      auto psz = file_path_final_extension(c_str());
+      auto p = file_path_final_extension(c_str());
 
-      if (!psz)
+      if (::is_null(p))
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return psz - c_str() + 1;
+      return p + 1;
 
    }
 
 
-   inline index path::find_all_extensions() const
+   inline path::const_iterator path::find_all_extensions() const
    {
 
-      auto psz = file_path_all_extensions(c_str());
+      auto p = file_path_all_extensions(c_str());
 
-      if (!psz)
+      if(::is_null(p))
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return psz - c_str() + 1;
+      return p + 1;
 
    }
 

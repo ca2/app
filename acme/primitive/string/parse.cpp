@@ -102,7 +102,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
    #define C ((m_iPos<m_iLen) ? m_psz[m_iPos] : 0)
-//#define CPREV ((m_iPos-1 >=0)&&(m_iPos-1<m_str.get_length()) ? (m_str.get_at(m_iPos-1) : 0)
+//#define CPREV ((m_iPos-1 >=0)&&(m_iPos-1<m_str.length()) ? (m_str.get_at(m_iPos-1) : 0)
 
    i16 parse::issplit(const char ca)
    {
@@ -359,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
       parse::getword();
       s = "";
-      while (s.get_length() + m_strWord.get_length() < (index)l)
+      while (s.get_length() + m_strWord.length() < (index)l)
          s += fill;
       s += m_strWord;
    }
@@ -527,7 +527,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    CLASS_DECL_ACME string consume_token(::string & str, const ::string_array & straSeparator)
    {
 
-      ::index iFind = -1;
+      ::auto pFind = -1;
 
       ::index iSeparator = -1;
 
@@ -543,7 +543,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          ::index iFindSeparator = str.find(straSeparator[i]);
 
-         if (iFind < 0 || (iFindSeparator > 0 && iFindSeparator < iFind))
+         if (::is_null(pFind) || (iFindSeparator > 0 && iFindSeparator < iFind))
          {
 
             iFind = iFindSeparator;
@@ -556,10 +556,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       ::string strToken;
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
-         strToken = str.Left(iFind);
+         strToken = str(0, pFind);
 
          str = str.Mid(iFind + straSeparator[iSeparator].get_length());
 

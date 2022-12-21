@@ -127,7 +127,7 @@
 //   {
 //      static   char hex[] = "0123456789ABCDEF";
 //      string dst;
-//      for (i32 i = 0; i < src.get_length(); i++)
+//      for (i32 i = 0; i < src.length(); i++)
 //      {
 //         if (ansi_char_is_alnum((uchar) src[i]))
 //         {
@@ -156,7 +156,7 @@
 //   string net::rfc1738_decode(const string & src)
 //   {
 //      string dst;
-//      for (i32 i = 0; i < src.get_length(); i++)
+//      for (i32 i = 0; i < src.length(); i++)
 //      {
 //         if (src[i] == '%' && isxdigit((uchar) (src[i + 1])) && isxdigit((uchar) (src[i + 2])))
 //         {
@@ -183,7 +183,7 @@
 //   {
 //      i32 dots = 0;
 //      // %! ignore :port?
-//      for (i32 i = 0; i < str.get_length(); i++)
+//      for (i32 i = 0; i < str.length(); i++)
 //      {
 //         if (str[i] == '.')
 //            dots++;
@@ -202,7 +202,7 @@
 //         return false;
 //      index qc = 0;
 //      index qd = 0;
-//      for (i32 i = 0; i < str.get_length(); i++)
+//      for (i32 i = 0; i < str.length(); i++)
 //      {
 //         qc += (str[i] == ':') ? 1 : 0;
 //         qd += (str[i] == '.') ? 1 : 0;

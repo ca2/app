@@ -194,7 +194,7 @@ namespace os
 
       m_bComposite = XGetSelectionOwner(m_window->display(), XInternAtom(m_window->display(), "_NET_WM_CM_S0", True));
 
-      if(m_strText.get_length() > 0)
+      if(m_strText.length() > 0)
       {
          XStoreName(m_window->display(), m_window->window(), m_strText);
       }

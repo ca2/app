@@ -1112,7 +1112,7 @@ namespace user
 
             synchronous_lock synchronouslock(psession->mutex());
 
-            ::index iFind = psession->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
+            ::auto pFind = psession->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {

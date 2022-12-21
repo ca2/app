@@ -148,9 +148,9 @@ void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrent
 
    }
 
-   ::index iFind = m_pobjrefdbg->m_itema.predicate_find_last([p](auto& item) {return item.m_p == p; });
+   ::auto pFind = m_pobjrefdbg->m_itema.predicate_find_last([p](auto& item) {return item.m_p == p; });
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       m_pobjrefdbg->m_itema.erase_at(iFind);

@@ -87,7 +87,7 @@ namespace sockets
    {
       static   char hex[] = "0123456789ABCDEF";
       string dst;
-      for (int i = 0; i < src.get_length(); i++)
+      for (int i = 0; i < src.length(); i++)
       {
          if (isalnum((unsigned char) src[i]))
          {
@@ -117,7 +117,7 @@ namespace sockets
    string net::rfc1738_decode(const string & src)
    {
       string dst;
-      for (int i = 0; i < src.get_length(); i++)
+      for (int i = 0; i < src.length(); i++)
       {
          if (src[i] == '%' && isxdigit((unsigned char) (src[i + 1])) && isxdigit((unsigned char) (src[i + 2])))
          {
@@ -145,7 +145,7 @@ namespace sockets
    {
       int dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.get_length(); i++)
+      for (int i = 0; i < str.length(); i++)
       {
          if (str[i] == '.')
             dots++;
@@ -163,7 +163,7 @@ namespace sockets
    {
       index qc = 0;
       index qd = 0;
-      for (int i = 0; i < str.get_length(); i++)
+      for (int i = 0; i < str.length(); i++)
       {
          qc += (str[i] == ':') ? 1 : 0;
          qd += (str[i] == '.') ? 1 : 0;

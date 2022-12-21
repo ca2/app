@@ -787,16 +787,16 @@ namespace apex
    //   //         else if (str.case_insensitive_begins_eat("send?messagebin="))
    //   //         {
 
-   //   //            strsize iFind = str.find(',');
+   //   //            auto pFind = str.find(',');
 
-   //   //            if (iFind >= 0)
+   //   //            if (::is_set(pFind))
    //   //            {
 
-   //   //               int message = atoi(str.Left(iFind));
+   //   //               int message = atoi(str(0, pFind));
 
    //   //               memory m;
 
-   //   //               pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
+   //   //               pbase64->decode(m, ::url::decode(str(pFind + 1)));
 
    //   //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.size());
 
@@ -1131,7 +1131,7 @@ namespace apex
 
       ::pointer<string_to_string>pmap;
 
-      index iFind = 0;
+      auto pFind = 0;
 
       if ((iFind = strId.find(':')) <= 0)
       {
@@ -1144,9 +1144,9 @@ namespace apex
       else
       {
 
-         strTable = strId.Mid(0, iFind);
+         strTable = strId(0, pFind);
 
-         strString = strId.Mid(iFind + 1);
+         strString = strId(pFind + 1);
 
       }
 
@@ -5625,7 +5625,7 @@ namespace apex
 
    //   string strString;
 
-   //   index iFind = 0;
+   //   auto pFind = 0;
 
    //   if ((iFind = strId.find(':')) <= 0)
    //   {
@@ -5638,9 +5638,9 @@ namespace apex
    //   else
    //   {
 
-   //      strTable = strId.Mid(0, iFind);
+   //      strTable = strId(0, pFind);
 
-   //      strString = strId.Mid(iFind + 1);
+   //      strString = strId(pFind + 1);
 
    //   }
 
@@ -8177,7 +8177,7 @@ namespace apex
    {
       string strId = m_strId;
       char chFirst = '\0';
-      if (strId.get_length() > 0)
+      if (strId.length() > 0)
       {
          chFirst = strId[0];
       }
@@ -8779,8 +8779,8 @@ namespace apex
 
    if (str.is_empty())
    return false;
-   ASSERT(str.get_length()%2 == 0);
-   iptr nLen = str.get_length();
+   ASSERT(str.length()%2 == 0);
+   iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
    *ppData = memory_new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
@@ -9228,7 +9228,7 @@ namespace apex
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];
@@ -9337,7 +9337,7 @@ namespace apex
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];
@@ -9386,7 +9386,7 @@ namespace apex
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];

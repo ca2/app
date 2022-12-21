@@ -519,7 +519,7 @@ namespace linux
 
          GtkClipboard * clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 
-         gtk_clipboard_set_text(clipboard, str.c_str(), str.get_length());
+         gtk_clipboard_set_text(clipboard, str.c_str(), str.length());
 
       });
 

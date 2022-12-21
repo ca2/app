@@ -1626,7 +1626,7 @@ auto tickStart = ::time::now();
       ::u16 ushTempPort = 0;
       ::u32  ulTempIpAddress = 0;
       int iCommaCnt = 4;
-      for (strsize i = 0; i < strResponse.get_length(); i++)
+      for (strsize i = 0; i < strResponse.length(); i++)
       {
          char it = strResponse[i];
          switch (enState)

@@ -99,7 +99,7 @@ public:
 
       }
 
-      m_str.truncate(m_str.length() - 1);
+      m_str.truncate(m_str.end() - 1);
 
       return true;
 

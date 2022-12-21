@@ -772,7 +772,7 @@ namespace aura
 //            if(i > 0)
 //            {
 //
-//               int iSize = strLine.get_length();
+//               int iSize = strLine.length();
 //
 //               iSize *= 2;
 //
@@ -4202,12 +4202,12 @@ namespace aura
 //            if (strUrl.has_char())
 //            {
 //
-//               strsize iFind = strParam.find("%1");
+//               auto pFind = strParam.find("%1");
 //
-//               if (iFind >= 0)
+//               if (::is_set(pFind))
 //               {
 //
-//                  strParam = strParam.Left(iFind) + strUrl + strParam.Mid(iFind + 2) + " ";
+//                  strParam = strParam(0, pFind) + strUrl + strParam.Mid(iFind + 2) + " ";
 //
 //               }
 //               else

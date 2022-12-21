@@ -156,7 +156,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
       // is attribute value wrapped in quotes?
       if(strChar == "\'" || strChar == "\"" || strChar == "&#039;")
       {
-         pszBegin += strChar.get_length();   // skip quote symbol
+         pszBegin += strChar.length();   // skip quote symbol
 
          do
          {
@@ -202,7 +202,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 
 
       // calculate and return the ::count of characters successfully parsed
-      return (pszEnd - pszString) + strChar.get_length();
+      return (pszEnd - pszString) + strChar.length();
 
    }
 
@@ -386,7 +386,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
+   if((m_strValue.length()) && (::isalpha(m_strValue[0])))
    {
 
       if (preader->m_phtml->m_namedcolor.contains(m_strValue.lowered()))
@@ -405,7 +405,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 {
 
-   if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
+   if((m_strValue.length()) && (::isalpha(m_strValue[0])))
    {
 
       status < ::color::color > color;
@@ -437,10 +437,10 @@ bool LiteHTMLElemAttr::isHexColorValue() const
    if (m_strValue[0] == '#')
    {
 
-      if (m_strValue.get_length() > 1)
+      if (m_strValue.length() > 1)
       {
 
-         for (i32 i = 1; i < m_strValue.get_length(); i++)
+         for (i32 i = 1; i < m_strValue.length(); i++)
          {
 
             if (!::isdigit((uchar) m_strValue[i]))

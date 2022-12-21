@@ -201,7 +201,7 @@ namespace datetime
 //      string src(psz);
 //      src.trim();
 //      string str;
-//      if(src.get_length() >= 2)
+//      if(src.length() >= 2)
 //      {
 //         str = src.Mid(0,2);
 //         str.trim_left('0');
@@ -211,7 +211,7 @@ namespace datetime
 //      {
 //         set["day"]    = 0;
 //      }
-//      if(src.get_length() >= 5)
+//      if(src.length() >= 5)
 //      {
 //         str = src.Mid(3,2);
 //         str.trim_left('0');
@@ -221,7 +221,7 @@ namespace datetime
 //      {
 //         set["month"] = 0;
 //      }
-//      if(src.get_length() >= 10)
+//      if(src.length() >= 10)
 //      {
 //         str = src.Mid(6,4);
 //         str.trim_left('0');
@@ -231,7 +231,7 @@ namespace datetime
 //      {
 //         set["year"] = 0;
 //      }
-//      if(src.get_length() >= 13)
+//      if(src.length() >= 13)
 //      {
 //         str = src.Mid(11,2);
 //         str.trim_left('0');
@@ -241,7 +241,7 @@ namespace datetime
 //      {
 //         set["hour"] = 0;
 //      }
-//      if(src.get_length() >= 16)
+//      if(src.length() >= 16)
 //      {
 //         str = src.Mid(14,2);
 //         str.trim_left('0');
@@ -251,7 +251,7 @@ namespace datetime
 //      {
 //         set["minute"] = 0;
 //      }
-//      if(src.get_length() >= 19)
+//      if(src.length() >= 19)
 //      {
 //         str = src.Mid(17,2);
 //         str.trim_left('0');
@@ -277,7 +277,7 @@ namespace datetime
 //      // if is international date time 2009-04-31 21:45:59
 //      // or
 //      // if is international date time 2009-04-31 21:45
-//      if(str.get_length() >= 16)
+//      if(str.length() >= 16)
 //      {
 //         if(((str.Mid(4,1) == "-") || (str.Mid(4, 1) == ":"))
 //               && ((str.Mid(7,1) == "-") || ( str.Mid(7, 1) == ":"))
@@ -324,7 +324,7 @@ namespace datetime
 //         }
 //      }
 //      // if is international date time 2009-04-31
-//      if(!bBaseTime && str.get_length() >= 10)
+//      if(!bBaseTime && str.length() >= 10)
 //      {
 //         if(str.Mid(4,1) == "-"
 //               && str.Mid(7,1) == "-")
@@ -342,7 +342,7 @@ namespace datetime
 //         }
 //      }
 //      // if is international date time 31/04/2011
-//      if(!bBaseTime && str.get_length() >= 10)
+//      if(!bBaseTime && str.length() >= 10)
 //      {
 //         if(str.Mid(2,1) == "/"
 //               && str.Mid(5,1) == "/")

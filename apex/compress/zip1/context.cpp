@@ -184,11 +184,11 @@ namespace str
             string strTitle(szTitle);
 
             if(strRemain != strTitle && ((strRemain.is_empty() &&
-                                          (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
+                                          (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.length() - 1)))
                                          || (strRemain.has_char() && strTitle.case_insensitive_begins_eat(strRemain))))
             {
 
-               if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+               if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))
                {
 
                   listing.add(::file::path(strLastZip + ":" + strRemain + strTitle));
@@ -434,7 +434,7 @@ namespace str
 
       string str(pszFileName);
 
-      if(str.get_length() < 4)
+      if(str.length() < 4)
       {
          
          return false;

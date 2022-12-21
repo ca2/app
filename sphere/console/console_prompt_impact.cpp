@@ -168,7 +168,7 @@ namespace console
       else if(pkey->m_ekey == ::user::e_key_delete)
       {
 
-         if(m_iCursor >= m_strCommand.utf8_get_length())
+         if(m_iCursor >= m_strCommand.utf8.length())
             return;
 
          const char * lpsz = &m_strCommand[m_iCursor];
@@ -199,7 +199,7 @@ namespace console
       else if(pkey->m_ekey == ::user::e_key_right)
       {
 
-         if(m_iCursor >= m_strCommand.utf8_get_length())
+         if(m_iCursor >= m_strCommand.utf8.length())
             return;
 
          m_iCursor++;

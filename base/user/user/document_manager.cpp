@@ -532,17 +532,17 @@ namespace user
       if (strCommand.Left(7) == _T("[open(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FileOpen;
-      strCommand = strCommand.Right(strCommand.get_length() - 7);
+      strCommand = strCommand.Right(strCommand.length() - 7);
       }
       else if (strCommand.Left(8) == _T("[print(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FilePrint;
-      strCommand = strCommand.Right(strCommand.get_length() - 8);
+      strCommand = strCommand.Right(strCommand.length() - 8);
       }
       else if (strCommand.Left(10) == _T("[printto(\""))
       {
       cmdInfo.m_nShellCommand = command_line::FilePrintTo;\
-      strCommand = strCommand.Right(strCommand.get_length() - 10);
+      strCommand = strCommand.Right(strCommand.length() - 10);
       }
       else
       return false; // not a command we handle
@@ -552,7 +552,7 @@ namespace user
       return false; // illegally terminated
 
       cmdInfo.m_payloadFile = strCommand.Left(i);
-      strCommand = strCommand.Right(strCommand.get_length() - i);
+      strCommand = strCommand.Right(strCommand.length() - i);
 
       //command_line* pOldInfo = nullptr;
       bool bRetVal = true;
@@ -594,7 +594,7 @@ namespace user
       }
       else
       {
-      strCommand = strCommand.Right(strCommand.get_length() - 3);
+      strCommand = strCommand.Right(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -604,7 +604,7 @@ namespace user
       else
       {
       cmdInfo.m_strPrinterName = strCommand.Left(i);
-      strCommand = strCommand.Right(strCommand.get_length() - i);
+      strCommand = strCommand.Right(strCommand.length() - i);
       }
       }
 
@@ -615,7 +615,7 @@ namespace user
       }
       else
       {
-      strCommand = strCommand.Right(strCommand.get_length() - 3);
+      strCommand = strCommand.Right(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -625,7 +625,7 @@ namespace user
       else
       {
       cmdInfo.m_strDriverName = strCommand.Left(i);
-      strCommand = strCommand.Right(strCommand.get_length() - i);
+      strCommand = strCommand.Right(strCommand.length() - i);
       }
       }
 
@@ -636,7 +636,7 @@ namespace user
       }
       else
       {
-      strCommand = strCommand.Right(strCommand.get_length() - 3);
+      strCommand = strCommand.Right(strCommand.length() - 3);
       i = strCommand.find('"');
       if (i == -1)
       {
@@ -646,7 +646,7 @@ namespace user
       else
       {
       cmdInfo.m_strPortName = strCommand.Left(i);
-      strCommand = strCommand.Right(strCommand.get_length() - i);
+      strCommand = strCommand.Right(strCommand.length() - i);
       }
       }
       }

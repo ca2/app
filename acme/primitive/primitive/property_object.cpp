@@ -693,7 +693,7 @@ void property_object::run_property(const ::atom& atom)
 //
 //   to_string(str);
 //
-//   return str.get_length();
+//   return str.length();
 //
 //}
 //

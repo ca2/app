@@ -760,7 +760,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////string(::str().GetDefaultManager())
 ////{
 ////   char sz[256];
-////   strsize iLen = str.get_length();
+////   strsize iLen = str.length();
 ////   if(iLen < ((sizeof(sz) / sizeof(sz[0])) - sizeof(sz[0])))
 ////   {
 ////      str.get_string(sz);
@@ -1006,7 +1006,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //string& string::operator+=(const string& str)
 //{
-//   append(str,str.get_length());
+//   append(str,str.length());
 //
 //   return *this;
 //}
@@ -2263,13 +2263,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //strsize string::find_first_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
-//   return FindOneOf(strCharSet,pos,strCharSet.get_length());
+//   return FindOneOf(strCharSet,pos,strCharSet.length());
 //}
 //
 //strsize string::find_first_not_of(const string& str,strsize pos) const
 //RELEASENOTHROW
 //{
-//   return find_first_not_of(str,pos,str.get_length());
+//   return find_first_not_of(str,pos,str.length());
 //}
 //
 //strsize string::find_first_not_of(const char* s,strsize pos) const
@@ -2362,7 +2362,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //strsize string::find_last_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
-//   return find_last_of(strCharSet,pos,strCharSet.get_length());
+//   return find_last_of(strCharSet,pos,strCharSet.length());
 //}
 //
 //
@@ -2411,7 +2411,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //strsize string::find_last_not_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
-//   return find_last_not_of(strCharSet,pos,strCharSet.get_length());
+//   return find_last_not_of(strCharSet,pos,strCharSet.length());
 //}
 //
 //

@@ -507,12 +507,12 @@ namespace aura
    //         //   else if (str.case_insensitive_begins_eat("send?messagebin="))
    //         //   {
 
-   //         //      strsize iFind = str.find(',');
+   //         //      auto pFind = str.find(',');
 
-   //         //      if (iFind >= 0)
+   //         //      if (::is_set(pFind))
    //         //      {
 
-   //         //         int message = atoi(str.Left(iFind));
+   //         //         int message = atoi(str(0, pFind));
 
    //         //         memory m;
 
@@ -520,7 +520,7 @@ namespace aura
 
    //         //         auto pbase64 = psystem->base64();
 
-   //         //         pbase64->decode(m, ::url::decode(str.Mid(iFind + 1)));
+   //         //         pbase64->decode(m, ::url::decode(str(pFind + 1)));
 
    //         //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
 
@@ -856,7 +856,7 @@ namespace aura
 
    //   ::pointer<string_to_string>pmap;
 
-   //   index iFind = 0;
+   //   auto pFind = 0;
 
    //   if ((iFind = strId.find(':')) <= 0)
    //   {
@@ -869,9 +869,9 @@ namespace aura
    //   else
    //   {
 
-   //      strTable = strId.Mid(0, iFind);
+   //      strTable = strId(0, pFind);
 
-   //      strString = strId.Mid(iFind + 1);
+   //      strString = strId(pFind + 1);
 
    //   }
 
@@ -4275,7 +4275,7 @@ retry_license:
 
    //   string strString;
 
-   //   index iFind = 0;
+   //   auto pFind = 0;
 
    //   if ((iFind = strId.find(':')) <= 0)
    //   {
@@ -4288,9 +4288,9 @@ retry_license:
    //   else
    //   {
 
-   //      strTable = strId.Mid(0, iFind);
+   //      strTable = strId(0, pFind);
 
-   //      strString = strId.Mid(iFind + 1);
+   //      strString = strId(pFind + 1);
 
    //   }
 
@@ -6481,7 +6481,7 @@ namespace aura
    {
       string strId = m_strId;
       //char chFirst = '\0';
-      //if (strId.get_length() > 0)
+      //if (strId.length() > 0)
       //{
       //   chFirst = strId[0];
       //}
@@ -7090,8 +7090,8 @@ namespace aura
 
    if (str.is_empty())
    return false;
-   ASSERT(str.get_length()%2 == 0);
-   iptr nLen = str.get_length();
+   ASSERT(str.length()%2 == 0);
+   iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
    *ppData = memory_new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
@@ -7525,7 +7525,7 @@ namespace aura
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];
@@ -7658,7 +7658,7 @@ namespace aura
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];
@@ -7707,7 +7707,7 @@ namespace aura
 
    //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
+   //   if (strId.length() > 0)
    //   {
 
    //      chFirst = strId[0];

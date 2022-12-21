@@ -76,8 +76,8 @@ namespace fs
    //string data::eat_end_level(const ::file::path & pszPath, i32 iCount)
    //{
    //   string strPath(pszPath);
-   //   strsize iFind = 0;
-   //   strsize iStart = strPath.get_length() - 1;
+   //   auto pFind = 0;
+   //   strsize iStart = strPath.length() - 1;
    //   if(iCount <= 0)
    //      return pszPath;
    //   while(iCount > 0)
@@ -94,7 +94,7 @@ namespace fs
    //               iPos--;
    //               // t12n dedicaverse comments : protocol name
    //               iFind = strPath.rear_find('/', iPos);
-   //               if(iFind < 0)
+   //               if(::is_null(pFind))
    //                  iFind = 0;
    //            }
    //            else
@@ -106,11 +106,11 @@ namespace fs
    //      iCount--;
    //      if(iCount <= 0)
    //         break;
-   //      if(iFind < 0)
+   //      if(::is_null(pFind))
    //         return "";
    //      iStart = iFind - 1;
    //   }
-   //   return strPath.Left(iFind);
+   //   return strPath(0, pFind);
    //}
 
 
@@ -231,9 +231,9 @@ namespace fs
 
       enumerate(listing);
 
-      index iFind = listing.find_first_ci(path.name());
+      auto pFind = listing.find_first_ci(path.name());
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return payload(::e_type_null);

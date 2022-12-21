@@ -1524,10 +1524,10 @@ r_only:
 
 end:
 
-      if (str.get_length() > iPos)
+      if (str.length() > iPos)
       {
 
-         iterable.add((STRING_TYPE)STRING_TYPE(&str[iPos], str.get_length() - iPos));
+         iterable.add((STRING_TYPE)STRING_TYPE(&str[iPos], str.length() - iPos));
 
       }
       else if (bAddEmpty)
@@ -3282,7 +3282,7 @@ end:
       while (true)
       {
          iFind = find_first_begins_ci(pcsz, i, last);
-         if (iFind < 0)
+         if (::is_null(pFind))
             return count;
          stra.add(iterable.element_at(iFind));
          i = iFind + 1;

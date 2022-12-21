@@ -444,7 +444,7 @@ namespace account
 
       }
 
-      if(m_strLogin.get_length() <= 3)
+      if(m_strLogin.length() <= 3)
       {
 
          m_estatusAuthentication = error_credentials_invalid_login;
@@ -453,7 +453,7 @@ namespace account
 
       }
 
-      if(m_strSessId.get_length() < 16)
+      if(m_strSessId.length() < 16)
       {
 
          m_estatusAuthentication = error_authentication_invalid_sessid;

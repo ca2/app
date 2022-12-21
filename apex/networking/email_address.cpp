@@ -53,17 +53,17 @@ namespace networking
             str = str.Mid(0, i);
          m_strDomain = str;
       }
-      while (m_strName.get_length() && m_strName[m_strName.get_length() - 1] == ' ')
-         m_strName = m_strName.Mid(0, m_strName.get_length() - 1);
-      while (m_strDomain.get_length() && m_strDomain[m_strDomain.get_length() - 1] == ' ')
-         m_strDomain = m_strDomain.Mid(0, m_strDomain.get_length() - 1);
-      while (m_strName.get_length() && m_strName[0] == ' ')
+      while (m_strName.get_length() && m_strName[m_strName.length() - 1] == ' ')
+         m_strName = m_strName.Mid(0, m_strName.length() - 1);
+      while (m_strDomain.get_length() && m_strDomain[m_strDomain.length() - 1] == ' ')
+         m_strDomain = m_strDomain.Mid(0, m_strDomain.length() - 1);
+      while (m_strName.length() && m_strName[0] == ' ')
          m_strName = m_strName.Mid(1);
-      while (m_strDomain.get_length() && m_strDomain[0] == ' ')
+      while (m_strDomain.length() && m_strDomain[0] == ' ')
          m_strDomain = m_strDomain.Mid(1);
       m_strTop = m_strDomain;
       {
-         for (i32 i = 0; i < m_strDomain.get_length(); i++)
+         for (i32 i = 0; i < m_strDomain.length(); i++)
          {
             if (m_strDomain[i] == '.')
             {

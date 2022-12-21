@@ -384,7 +384,7 @@ namespace sockets
          string str = dump_hex(m_pfile);
          FORMATTED_TRACE("%s", m_strUrl.c_str());
          
-         for (int i = 0; i < str.get_length(); i+=32 * 100)
+         for (int i = 0; i < str.length(); i+=32 * 100)
          {
 
             ::OutputDebugStringA(str.Mid(i, 32*100));

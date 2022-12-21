@@ -663,7 +663,7 @@ namespace android
 
       string strPath(lpcszPath);
 
-      if (strPath.get_length() >= MAX_PATH)
+      if (strPath.length() >= MAX_PATH)
       {
 
          if (string_begins(strPath, "\\\\"))
@@ -740,7 +740,7 @@ namespace android
    bool dir_context::name_is(const ::file::path & str)
    {
       //output_debug_string(str);
-      strsize iLast = str.get_length() - 1;
+      strsize iLast = str.length() - 1;
       while (iLast >= 0)
       {
          if (str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')
@@ -1112,14 +1112,14 @@ pacmedirectory->system() / "temp");
 pacmedirectory->system() / ".ca2/app/appdata";
       string strRelative;
       strRelative = install();
-      //index iFind = strRelative.find(':');
-      //if(iFind >= 0)
+      //auto pFind = strRelative.find(':');
+      //if(::is_set(pFind))
       {
-         // strsize iFind1 = strRelative.rear_find("\\", iFind);
-         //strsize iFind2 = strRelative.rear_find("/", iFind);
+         // strsize iFind1 = strRelative(pFind).rear_find("\\");
+         //strsize iFind2 = strRelative(pFind).rear_find("/");
          //strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-         //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+         //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative(pFind + 1);
       }
       return str / "ca2";
    }
@@ -1172,13 +1172,13 @@ pacmedirectory->system() / ".ca2/app/appdata";
 //
 //      ::file::path strRelative;
 //      strRelative = install();
-//      index iFind = strRelative.find(':');
-//      if(iFind >= 0)
+//      auto pFind = strRelative.find(':');
+//      if(::is_set(pFind))
 //      {
-//         strsize iFind1 = strRelative.rear_find("\\", iFind);
-//         strsize iFind2 = strRelative.rear_find("/", iFind);
+//         strsize iFind1 = strRelative(pFind).rear_find("\\");
+//         strsize iFind2 = strRelative(pFind).rear_find("/");
 //         strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
-//         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
+//         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative(pFind + 1);
 //      }
 //
 //   ::file::path strUserFolderShift;

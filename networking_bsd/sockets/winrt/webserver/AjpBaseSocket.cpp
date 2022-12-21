@@ -216,9 +216,9 @@ namespace sockets
    void AjpBaseSocket::put_string(char *buf, int& ptr, const ::scoped_string & scopedstr)
    {
       string str(psz);
-      put_integer(buf, ptr, (short)str.get_length() );
+      put_integer(buf, ptr, (short)str.length() );
       ::memcpy_dup(buf + ptr, (const char *) str);
-      ptr += (int)str.get_length();
+      ptr += (int)str.length();
       put_byte(buf, ptr, 0);
    }
 

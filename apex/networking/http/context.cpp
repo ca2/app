@@ -1185,7 +1185,7 @@ namespace http
       if (!psession->open(bConfigProxy))
       {
 
-         INFORMATION("Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length()))  << "\") " << tick1.elapsed().integral_second());
+         INFORMATION("Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.length()))  << "\") " << tick1.elapsed().integral_second());
 
          return false;
 
@@ -1631,7 +1631,7 @@ namespace http
 //               if (string_begins_ci(strCa2Realm, "n7ot licensed: "))
 //               {
 //
-//                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+//                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
 //
 //                  string strLocation;
 //                  
@@ -1657,7 +1657,7 @@ namespace http
 //
 //         set["get_status"] = estatus;
 //
-//         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.get_length())).c_str(), tick1.elapsed().integral_second().m_i);
+//         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
 //
 //      }
 //      catch (...)
@@ -2195,7 +2195,7 @@ namespace http
 
             auto tick2 = ::time::now();
 
-            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
 
             return false;
 
@@ -2207,7 +2207,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
 
          return false;
 
@@ -2482,7 +2482,7 @@ namespace http
 
             auto tick2 = ::time::now();
 
-            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second());
 
             string strLocation;
             

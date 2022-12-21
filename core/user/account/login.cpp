@@ -395,7 +395,7 @@ namespace account
 
          m_peditPassword->_001GetText(strText);
 
-         m_iPasswordOriginalLength = strText.get_length();
+         m_iPasswordOriginalLength = strText.length();
 
          if(!m_bCred)
          {

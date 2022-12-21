@@ -625,12 +625,12 @@ namespace hi5
             for(i32 i = 0; i < keyValueList.get_count(); i++)
             {
 
-               index iFind = keyValueList[i].find("=");
+               auto pFind = keyValueList[i].find("=");
 
-               if(iFind >= 0)
+               if(::is_set(pFind))
                {
 
-                  str = urlencode(keyValueList[i].Left(iFind)) + "=" + urlencode(keyValueList[i].Mid(iFind+ 1));
+                  str = urlencode(keyValueList[i](0, pFind)) + "=" + urlencode(keyValueList[i].Mid(iFind+ 1));
 
                   keyValueList[i] = str;
 

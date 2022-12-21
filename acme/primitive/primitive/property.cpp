@@ -190,7 +190,7 @@ void prop_id_debug(::particle * pparticle);
 //void property::parse_network_payload(const ::string & str)
 //{
 //   const ::ansi_character * pszJson = str;
-//   parse_network_payload(pszJson, str.get_length());
+//   parse_network_payload(pszJson, str.length());
 //}
 //
 //void property::parse_network_payload(const char * & pszJson, strsize length)

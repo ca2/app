@@ -554,7 +554,7 @@ namespace colorertake5
             fillInvisibleSchemes(parent);
          };
          // updates get_length
-         if (len < 0) len = str.get_length();
+         if (len < 0) len = str.length();
          endLine = gy;
 
          // searches for the end of parent block

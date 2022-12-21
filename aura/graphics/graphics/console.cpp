@@ -252,7 +252,7 @@ namespace graphics
       while (*psz)
       {
          char ch = *psz;
-         while (m_stra.element_at_grow(m_y).get_length() < m_x + 1)
+         while (m_stra.element_at_grow(m_y).length() < m_x + 1)
          {
             m_stra.element_at_grow(m_y) += ' ';
          }
@@ -309,7 +309,7 @@ namespace graphics
 
          string & str = m_stra[y];
 
-         for (int x = 0; x < str.get_length(); x++)
+         for (int x = 0; x < str.length(); x++)
          {
 
             draw_write(str[x], x, y, (enum_dos_color) m_i2aColor[y][x]);

@@ -189,9 +189,9 @@ namespace file
    bool set::get_next_file(const ::scoped_string & scopedstrFile, string & strNext)
    {
 
-      index iFind = find_first_file(scopedstrFile);
+      auto pFind = find_first_file(scopedstrFile);
 
-      if(iFind < 0)
+      if(::is_null(pFind))
       {
 
          iFind = -1;

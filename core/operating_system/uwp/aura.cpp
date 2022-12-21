@@ -219,7 +219,7 @@ string normalize_path(const ::string & lpcszPath)
          iptr iFind2 = path.rear_find('\\', iFind);
          if(iFind2 < 0)
          {
-            path = path.substr(0, iFind) + path.substr(iFind + 2);
+            path = path(0, iFind) + path.substr(iFind + 2);
          }
          else if(iFind2 == 0)
          {

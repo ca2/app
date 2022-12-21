@@ -45,42 +45,42 @@ bool linux_can_exec(const ::string &file)
    if(str.case_insensitive_begins_eat("\""))
    {
 
-      strsize iFind = str.find("\"");
+      auto pFind = str.find("\"");
 
-      if(iFind < 0)
+      if(::is_null(pFind))
       {
 
          return false;
 
       }
 
-      str = str.Left(iFind);
+      str = str(0, pFind);
 
    }
    else if(str.case_insensitive_begins_eat("\'"))
    {
 
-      strsize iFind = str.find("\'");
+      auto pFind = str.find("\'");
 
-      if(iFind < 0)
+      if(::is_null(pFind))
       {
 
          return false;
 
       }
 
-      str = str.Left(iFind);
+      str = str(0, pFind);
 
    }
    else
    {
 
-      strsize iFind = str.find(" ");
+      auto pFind = str.find(" ");
 
       if(iFind > 0)
       {
 
-         str = str.Left(iFind);
+         str = str(0, pFind);
 
       }
 
@@ -354,7 +354,7 @@ namespace linux
 //      /*
 //      string strPath;
 //      ::u32 dwSize = 1;
-//      while(natural(strPath.get_length() + 1) == dwSize)
+//      while(natural(strPath.length() + 1) == dwSize)
 //      {
 //         dwSize = ::GetModuleFileName(
 //            hmodule,

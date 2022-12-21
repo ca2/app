@@ -95,7 +95,7 @@ namespace aura
 
             index iBase64 = iEncoding + 1;
 
-            for (; iBase64 < str.get_length(); iBase64++)
+            for (; iBase64 < str.length(); iBase64++)
             {
 
                if (!pbase64->is(str[iBase64]))
@@ -631,7 +631,7 @@ namespace user
                   iErrorBeg -= lim;
                   iErrorEnd -= lim;
                   iErrorBeg = maximum(0, iErrorBeg);
-                  iErrorEnd = minimum(iErrorEnd, strLine.get_length());
+                  iErrorEnd = minimum(iErrorEnd, strLine.length());
 
                }
 
@@ -706,7 +706,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLine = ::str().block('*', i32(strLine.get_length()));
+               strLine = ::str().block('*', i32(strLine.length()));
 
             }
 
@@ -730,7 +730,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLineGraphics = ::str().block('*', i32(strLineGraphics.get_length()));
+               strLineGraphics = ::str().block('*', i32(strLineGraphics.length()));
 
             }
 
@@ -793,7 +793,7 @@ namespace user
 
             }
 
-            if (iCurLineSelBeg < strLineGraphics.get_length())
+            if (iCurLineSelBeg < strLineGraphics.length())
             {
 
                // Draw Normal Text - not selected - after selection
@@ -2296,7 +2296,7 @@ namespace user
       //   if (daExtent.get_size() <= 0)
       //   {
 
-      //      daExtent.set_size(strLine.get_length() + 1);
+      //      daExtent.set_size(strLine.length() + 1);
 
       //      while (*pszNext != '\0')
       //      {
@@ -2314,7 +2314,7 @@ namespace user
 
       //         }
 
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
 
       //         for (int j = 0; j < iLen; j++)
       //         {
@@ -2330,7 +2330,7 @@ namespace user
       //      if (strLineGraphics.has_char())
       //      {
 
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
       //         for (int j = 0; j < iLen; j++)
       //         {
@@ -2439,7 +2439,7 @@ namespace user
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
-            m_ptree->m_peditfile->Insert(strText, strText.get_length());
+            m_ptree->m_peditfile->Insert(strText, strText.length());
 
          }
 
@@ -2763,7 +2763,7 @@ namespace user
       //         if (daExtent.get_size() <= 0)
       //         {
       //
-      //            daExtent.set_size(strLine.get_length() + 1);
+      //            daExtent.set_size(strLine.length() + 1);
       //
       //            while (*pszNext != '\0')
       //            {
@@ -2788,7 +2788,7 @@ namespace user
       //
       //               }
       //
-      //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+      //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
       //
       //               if (size.cx > rectangleClient.width() + 200)
       //               {
@@ -2821,7 +2821,7 @@ namespace user
       //            if (strLineGraphics.has_char())
       //            {
       //
-      //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+      //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
       //
       //               daExtent[(::index)(psz - pszStart)] = size.cx;
       //
@@ -3159,7 +3159,7 @@ namespace user
       //   if (daExtent.get_size() <= 0)
       //   {
 
-      //      daExtent.set_size(strLine.get_length() + 1);
+      //      daExtent.set_size(strLine.length() + 1);
 
       //      while (*pszNext != '\0')
       //      {
@@ -3177,7 +3177,7 @@ namespace user
 
       //         }
 
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
 
       //         for (int j = 0; j < iLen; j++)
       //         {
@@ -3193,7 +3193,7 @@ namespace user
       //      if (strLineGraphics.has_char())
       //      {
 
-      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
       //         for (int j = 0; j < iLen; j++)
       //         {
@@ -3525,7 +3525,7 @@ namespace user
          if (daExtent.get_size() <= 0)
          {
 
-            daExtent.set_size(strLine.get_length() + 1);
+            daExtent.set_size(strLine.length() + 1);
 
             while (::has_char(pszNext))
             {
@@ -3543,7 +3543,7 @@ namespace user
 
                }
 
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
 
                for (int j = 0; j < iLen; j++)
                {
@@ -3559,7 +3559,7 @@ namespace user
             if (strLineGraphics.has_char())
             {
 
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
                for (int j = 0; j < iLen; j++)
                {
@@ -3878,14 +3878,14 @@ namespace user
       if (iColumn < 0)
       {
 
-         iColumn = iColumn + 1 + strLine.get_length();
+         iColumn = iColumn + 1 + strLine.length();
 
       }
 
-      if (iColumn > strLine.get_length())
+      if (iColumn > strLine.length())
       {
 
-         iColumn = strLine.get_length();
+         iColumn = strLine.length();
 
       }
 
@@ -6802,7 +6802,7 @@ namespace user
 
             m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
-            auto iLength = strComposition.get_length();
+            auto iLength = strComposition.length();
 
             m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
 
@@ -7540,7 +7540,7 @@ namespace user
 
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-            m_ptree->m_peditfile->Insert(str, str.get_length());
+            m_ptree->m_peditfile->Insert(str, str.length());
 
          }
 
@@ -8273,9 +8273,9 @@ namespace user
       {
 
          // insert character at the last insert operation
-         m_pinsert->m_memstorage.append(strText, strText.get_length());
+         m_pinsert->m_memstorage.append(strText, strText.length());
 
-         m_ptree->m_peditfile->m_size += strText.get_length();
+         m_ptree->m_peditfile->m_size += strText.length();
 
          if (!bFullUpdate)
          {
@@ -8283,7 +8283,7 @@ namespace user
             iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
 
          }
-         m_ptree->m_iSelEnd += strText.get_length();
+         m_ptree->m_iSelEnd += strText.length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
          m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
          m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
@@ -8336,11 +8336,11 @@ namespace user
          m_ptree->m_iSelEnd = i1;
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
-         m_ptree->m_iSelEnd += strText.get_length();
+         m_ptree->m_iSelEnd += strText.length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
          //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
-         auto iLength = strText.get_length();
+         auto iLength = strText.length();
 
          m_pinsert = m_ptree->m_peditfile->Insert(strText, iLength);
 

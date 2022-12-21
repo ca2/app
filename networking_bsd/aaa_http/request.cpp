@@ -81,7 +81,7 @@ namespace http
       m_strQueryString = purl->object_get_query(m_strRequestUri);
 
       attr(__id(query_string)) = m_strQueryString;
-      m_form.parse_query_string(m_strQueryString, m_strQueryString.get_length());
+      m_form.parse_query_string(m_strQueryString, m_strQueryString.length());
       m_form.request()         = m_form.get();
       attr(__id(http_referer)) = header(__id(referer));
       if(m_atomHttpMethod == __id(put))

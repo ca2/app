@@ -104,9 +104,9 @@ namespace freedesktop
 
          string_array stra = registered_categories();
 
-         index iFind = stra.find_first_ci(str);
+         auto pFind = stra.find_first_ci(str);
 
-         if(iFind >= 0)
+         if(::is_set(pFind))
          {
 
             return stra[iFind];

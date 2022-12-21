@@ -88,7 +88,7 @@ namespace regular_expression_pcre2
 //   bool result::matches(const string& str)
 //   {
 //
-//      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const ::string &)str, str.get_length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+//      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const ::string &)str, str.length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
 //
 //      return c > 0;
 //
@@ -126,7 +126,7 @@ namespace regular_expression_pcre2
 //   ::pointer<::strsize_range_array>result::matches_ranges(const string& str)
 //   {
 //
-//      return matches_ranges(str.c_str(), str.get_length());
+//      return matches_ranges(str.c_str(), str.length());
 //
 //   }
 //

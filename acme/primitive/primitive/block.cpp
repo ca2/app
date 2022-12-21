@@ -13,14 +13,14 @@ block::block(const atom & atom) :
 
 
 //block::block(const ::string & str) :
-//   ::block(str.c_str(), str.get_length())
+//   ::block(str.c_str(), str.length())
 //{
 //
 //}
 
 
 //block::block(const ::string & str, ::strsize s) : 
-//   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.get_length() + s + 1))
+//   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.length() + s + 1))
 //{
 //
 //

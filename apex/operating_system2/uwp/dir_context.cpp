@@ -288,7 +288,7 @@ pacmedirectory->ca2roaming() / "home";
 
      string strPath(lpcszPath);
 
-      if(strPath.get_length() >= MAX_PATH)
+      if(strPath.length() >= MAX_PATH)
       {
          if(string_begins(strPath,"\\\\"))
          {
@@ -320,7 +320,7 @@ pacmedirectory->ca2roaming() / "home";
    bool dir_context::name_is(const ::file::path & str)
    {
       //output_debug_string(str);
-      strsize iLast = str.get_length() - 1;
+      strsize iLast = str.length() - 1;
       while(iLast >= 0)
       {
          if(str[iLast] != '\\' && str[iLast] != '/' && str[iLast] != ':')
@@ -357,11 +357,11 @@ pacmedirectory->ca2roaming() / "home";
 
       }
 
-      strsize iFind = ::str().case_insensitive_find(".zip:",str);
+      auto pFind = ::str().case_insensitive_find(".zip:",str);
 
       string strPath(str.c_str(), iLast + 1);
 
-      if(strPath.get_length() >= MAX_PATH)
+      if(strPath.length() >= MAX_PATH)
       {
          if(string_begins(strPath,"\\\\"))
          {

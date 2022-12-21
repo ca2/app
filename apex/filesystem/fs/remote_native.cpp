@@ -317,12 +317,12 @@ namespace fs
    //      return "";
    //   }
 
-   //   strsize iFind = strPath.rear_find("/");
+   //   auto pFind = strPath.rear_find("/");
 
-   //   if(iFind < 0)
+   //   if(::is_null(pFind))
    //      iFind = -1;
 
-   //   return strPath.Mid(iFind + 1);
+   //   return strPath(pFind + 1);
 
    //}
 

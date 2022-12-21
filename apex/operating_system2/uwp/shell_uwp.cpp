@@ -290,25 +290,25 @@ pacmedirectory->is(strPath))
 
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = imagekey.m_strPath.is_empty() ? -1 : ::str().case_insensitive_find("://", imagekey.m_strPath);
+      auto pFind = imagekey.m_strPath.is_empty() ? -1 : ::str().case_insensitive_find("://", imagekey.m_strPath);
 
       strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str().case_insensitive_find(":", imagekey.m_strPath);
 
-      if (iFind >= 0 || iFind2 >= 2)
+      if (::is_set(pFind) || iFind2 >= 2)
       {
 
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
 
          i32 i = 0;
 
-         while (i < strProtocol.get_length() && character_isalnum(strProtocol[i]))
+         while (i < strProtocol.length() && character_isalnum(strProtocol[i]))
          {
 
             i++;
 
          }
 
-         if (i > 0 && i == strProtocol.get_length())
+         if (i > 0 && i == strProtocol.length())
          {
 
             // heuristically valid protocol

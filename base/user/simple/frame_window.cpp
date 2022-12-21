@@ -3113,7 +3113,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //   }
 //
 //   // execute the command
-//   //LPWSTR pszCommand = strCommand.alloc(strCommand.get_length());
+//   //LPWSTR pszCommand = strCommand.alloc(strCommand.length());
 //
 //   //if (!psystem->OnDDECommand(pszCommand))
 //

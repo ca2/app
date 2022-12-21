@@ -137,9 +137,9 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
-   iptr iFind = oswindow_find_message_only_window(pimpl);
+   auto pFind = oswindow_find_message_only_window(pimpl);
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
    {
 
       return ::oswindow_data::s_pdataptra->element_at(iFind);
@@ -164,9 +164,9 @@ oswindow_data * oswindow_get(::user::interaction_impl * pimpl)
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
-   iptr iFind = oswindow_find(pimpl);
+   auto pFind = oswindow_find(pimpl);
 
-   if (iFind >= 0)
+   if (::is_set(pFind))
       return ::oswindow_data::s_pdataptra->element_at(iFind);
 
    ::oswindow_data * pdata = memory_new ::oswindow_data;
@@ -279,9 +279,9 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 //
 //   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 //
-//   iptr iFind = oswindow_find(pinteraction);
+//   auto pFind = oswindow_find(pinteraction);
 //
-//   if(iFind < 0)
+//   if(::is_null(pFind))
 //      return false;
 //
 //   ::oswindow_data::s_pdataptra->erase_at(iFind);
@@ -296,9 +296,9 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
-   iptr iFind = oswindow_find_message_only_window(pinteraction);
+   auto pFind = oswindow_find_message_only_window(pinteraction);
 
-   if (iFind < 0)
+   if (::is_null(pFind))
       return false;
 
    ::oswindow_data::s_pdataptra->erase_at(iFind);

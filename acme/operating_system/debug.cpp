@@ -84,7 +84,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //
 //   strTag = strTag.Left(23);
 //
-//   strTag = string(' ', maximum(0, 23 - strTag.get_length()));
+//   strTag = string(' ', maximum(0, 23 - strTag.length()));
 //
 //   strMessage.format("-%c- %s %s\n", e_trace_level_char(elevel), strTag.c_str(), psz);
 //

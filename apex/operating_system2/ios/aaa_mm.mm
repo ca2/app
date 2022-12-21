@@ -42,7 +42,7 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
    
    UIDocumentInteractionController *documentInteractionController =[UIDocumentInteractionController interactionControllerWithURL:URL];
    
-   int iFind = 0;
+   auto pFind = 0;
    
    for(; iFind < [[documentInteractionController icons] count]; iFind++)
    {

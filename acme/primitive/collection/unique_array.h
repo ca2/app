@@ -10,7 +10,7 @@ public:
 
    virtual index add(ARG_TYPE newElement)
    {
-      index iFind = 0;
+      auto pFind = 0;
       if(find(newElement, iFind))
       {
          return -1;
@@ -89,7 +89,7 @@ public:
 
    virtual index add(TYPE newElement)
    {
-      index iFind = 0;
+      auto pFind = 0;
       if(find(newElement, iFind))
       {
          return -1;

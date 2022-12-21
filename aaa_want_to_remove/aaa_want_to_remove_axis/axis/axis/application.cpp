@@ -175,7 +175,7 @@ namespace axis
 
       string strString;
 
-      index iFind = 0;
+      auto pFind = 0;
 
       if((iFind = strId.find(':')) <= 0)
       {
@@ -188,9 +188,9 @@ namespace axis
       else
       {
 
-         strTable = strId.Mid(0,iFind);
+         strTable = strId(0, pFind);
 
-         strString = strId.Mid(iFind + 1);
+         strString = strId(pFind + 1);
 
       }
 

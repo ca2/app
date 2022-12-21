@@ -182,21 +182,21 @@ namespace ios
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = ::str().case_insensitive_find("://", imagekey.m_strPath);
+      auto pFind = ::str().case_insensitive_find("://", imagekey.m_strPath);
       strsize iFind2 = ::str().case_insensitive_find(":", imagekey.m_strPath);
-      if (iFind >= 0 || iFind2 >= 2)
+      if (::is_set(pFind) || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
          i32 i = 0;
 
-         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
+         while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
          {
 
             i++;
 
          }
 
-         if (i > 0 && i == strProtocol.get_length())
+         if (i > 0 && i == strProtocol.length())
          {
 
             // heuristically valid protocol
@@ -387,7 +387,7 @@ namespace ios
 ////
 ////         unicode_to_utf8(strExtra, lpcszExtra);
 ////
-////         if (strExtra.get_length() > 0)
+////         if (strExtra.length() > 0)
 ////         {
 ////            strPathEx += ":" + strExtra;
 ////         }
@@ -426,7 +426,7 @@ namespace ios
 ////               if (wcscmp(wszPath, L"*") == 0)
 ////               {
 ////
-////                  strsize iFind = strFilePath.rear_find('.');
+////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
 ////                  imagekey.m_strExtension = (char*)&strFilePath[iFind+1];
@@ -514,10 +514,10 @@ namespace ios
 ////            {
 ////               if (*wszPath == L'*' && wszPath[1] == '\0')
 ////               {
-////                  strsize iFind = strFilePath.rear_find('.');
+////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
-////                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
+////                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
 ////                  imagekey.m_strPath = "";
 ////               }
 ////               else
@@ -553,10 +553,10 @@ namespace ios
 ////               string strP = wszPath;
 ////               if (strcmp(strP, "*") == 0)
 ////               {
-////                  strsize iFind = strFilePath.rear_find('.');
+////                  auto pFind = strFilePath.rear_find('.');
 ////
 ////                  imagekey.m_iIcon = 0x80000000;
-////                  imagekey.m_strExtension = (char *)&strFilePath.Mid(iFind);
+////                  imagekey.m_strExtension = (char *)&strFilePath(pFind);
 ////                  imagekey.m_strPath = "";
 ////               }
 ////               else
@@ -1044,7 +1044,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 
    //   unicode_to_utf8(strExtra, lpcszExtra);
 
-   //   if (strExtra.get_length() > 0)
+   //   if (strExtra.length() > 0)
    //   {
    //      strPathEx += ":" + strExtra;
    //   }
@@ -1077,7 +1077,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //         strPath = szPath;
    //         if (strPath == "*")
    //         {
-   //            strsize iFind = strFilePath.rear_find('.');
+   //            auto pFind = strFilePath.rear_find('.');
 
    //            imagekey.m_iIcon = 0x80000000;
    //            imagekey.m_strExtension = (char*)&strFilePath[iFind];
@@ -1145,7 +1145,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //         strPath = imagekey.m_strPath;
    //         iIcon = imagekey.m_iIcon;
    //         bool bExtract = false;
-   //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.get_length() + 1);
+   //         //HGLOBAL hglobal = ::GlobalAlloc(GPTR, strPath.length() + 1);
    //         //char * lpsz = (char *) ::GlobalLock(hglobal);
    //         //strcpy(lpsz, strPath);
    //         try
@@ -1542,21 +1542,21 @@ pacmedirectory->is(strPath))
 //      }
 //      // try to find "uifs:// http:// ftp:// like addresses"
 //      // then should show icon by extension or if is folder
-//      strsize iFind = imagekey.m_strPath.case_insensitive_find("://");
+//      auto pFind = imagekey.m_strPath.case_insensitive_find("://");
 //      strsize iFind2 = imagekey.m_strPath.case_insensitive_find(":");
-//      if (iFind >= 0 || iFind2 >= 2)
+//      if (::is_set(pFind) || iFind2 >= 2)
 //      {
 //         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
 //         i32 i = 0;
 //
-//         while (i < strProtocol.get_length() && ansi_char_is_alnum(strProtocol[i]))
+//         while (i < strProtocol.length() && ansi_char_is_alnum(strProtocol[i]))
 //         {
 //
 //            i++;
 //
 //         }
 //
-//         if (i > 0 && i == strProtocol.get_length())
+//         if (i > 0 && i == strProtocol.length())
 //         {
 //
 //            // heuristically valid protocol

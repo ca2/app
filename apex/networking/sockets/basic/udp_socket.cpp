@@ -242,7 +242,7 @@ namespace sockets
    //void udp_socket::SendTo(const string & a, ::networking::port_t port, const ::string & str, i32 flags)
    //{
    //   
-   //   SendToBuf(a, port, str, (i32)str.get_length(), flags);
+   //   SendToBuf(a, port, str, (i32)str.length(), flags);
 
    //}
 
@@ -250,7 +250,7 @@ namespace sockets
    //void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::string & str, i32 flags)
    //{
 
-   //   SendToBuf(a, port, str, (i32)str.get_length(), flags);
+   //   SendToBuf(a, port, str, (i32)str.length(), flags);
 
    //}
 
@@ -258,7 +258,7 @@ namespace sockets
    //void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::string & str, i32 flags)
    //{
    //   
-   //   SendToBuf(a, port, str, (i32)str.get_length(), flags);
+   //   SendToBuf(a, port, str, (i32)str.length(), flags);
 
    //}
 
@@ -266,7 +266,7 @@ namespace sockets
    void udp_socket::SendTo(::networking::address * ad, const ::string & str, i32 flags)
    {
 
-      SendToBuf(ad, str, (i32)str.get_length(), flags);
+      SendToBuf(ad, str, (i32)str.length(), flags);
 
    }
 

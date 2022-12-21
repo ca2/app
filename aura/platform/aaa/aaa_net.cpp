@@ -14,7 +14,7 @@ CLASS_DECL_AURA string url_decode(const ::string & psz)
    while(true)
    {
 
-      strsize iFind = str.find("%",iStart);
+      auto pFind = str.find("%",iStart);
 
       if(iFind == -1)
       {
@@ -144,7 +144,7 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       if(pszBeg != nullptr)
       {
 
-         pszBeg += strKey.get_length();
+         pszBeg += strKey.length();
 
          goto success;
 
@@ -165,7 +165,7 @@ CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & psz
       if(pszBeg != nullptr)
       {
 
-         pszBeg += strKey.get_length();
+         pszBeg += strKey.length();
 
          goto success;
 
@@ -482,14 +482,14 @@ pacmedirectory->system() / "config\\pass.txt");
 //
 //   string strDomain;
 //
-//   index iFind = user.m_strLogin.find('/');
+//   auto pFind = user.m_strLogin.find('/');
 //
 //   if(iFind > 0)
 //   {
 //
-//      strUser = user.m_strLogin.Mid(iFind + 1);
+//      strUser = user.m_strLogin(pFind + 1);
 //
-//      strDomain = user.m_strLogin.Left(iFind);
+//      strDomain = user.m_strLogin(0, pFind);
 //
 //   }
 //   else

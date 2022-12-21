@@ -390,7 +390,7 @@ namespace geo
 
       }
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
          goto found;
@@ -436,7 +436,7 @@ namespace geo
 
       }
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
          goto found;
@@ -509,7 +509,7 @@ namespace geo
 
       }
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
          goto found;

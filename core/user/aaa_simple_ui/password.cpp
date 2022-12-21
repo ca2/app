@@ -213,7 +213,7 @@ namespace simple_ui
          strsize i2 = iSelEnd - lim;
          strsize i3 = iCursor - lim;
          strsize iStart = maximum(0,i1);
-         strsize iEnd = minimum(i2,strLine.get_length());
+         strsize iEnd = minimum(i2,strLine.length());
          ::str().fill(strLine,'*');
          str1 = strLine.Mid(0,iStart);
          str2 = strLine.Mid(iStart,iEnd - iStart);
@@ -256,7 +256,7 @@ namespace simple_ui
 
          //maxcy = maximum(size1.cy, size2.cy);
          //maxcy = maximum(maxcy, size3.cy);
-         if(bFocus && bCaretOn && i3 == str1.get_length())
+         if(bFocus && bCaretOn && i3 == str1.length())
          {
             
             pgraphics->set(ppenCaret);
@@ -264,7 +264,7 @@ namespace simple_ui
             pgraphics->line_to(left + size1.cx,y + dLineHeight);
 
          }
-         else if(bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+         else if(bFocus && bCaretOn && i3 == (str1.length() + str2.length()))
          {
             
             pgraphics->set(ppenCaret);

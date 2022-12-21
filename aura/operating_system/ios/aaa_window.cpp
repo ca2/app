@@ -40,9 +40,9 @@ UIWindow * __uiwindow(oswindow oswindow)
 //oswindow_data * oswindow_get(nswindow window)
 //{
 //
-//   iptr iFind = oswindow_find(window);
+//   auto pFind = oswindow_find(window);
 //
-//   if(iFind >= 0)
+//   if(::is_set(pFind))
 //      return g_poswindowdataptra->element_at(iFind);
 //
 //   ::oswindow_data * pdata = memory_new ::oswindow_data;
@@ -108,9 +108,9 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 //bool oswindow_erase(nswindow window)
 //{
 //
-//   iptr iFind = oswindow_find(window);
+//   auto pFind = oswindow_find(window);
 //
-//   if(iFind < 0)
+//   if(::is_null(pFind))
 //      return false;
 //
 //   g_poswindowdataptra->erase_at(iFind);

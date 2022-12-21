@@ -44,19 +44,19 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const ::string & psz, 
 
    bool bDefault = false;
 
-   if((uFlags & MB_DEFBUTTON1) == MB_DEFBUTTON1 && str.get_length() >= 1)
+   if((uFlags & MB_DEFBUTTON1) == MB_DEFBUTTON1 && str.length() >= 1)
    {
       str.set_at(0, ansi_char_toupper(str[0]));
       iDefaultButton = e_dialog_result_yes;
       bDefault = true;
    }
-   else if((uFlags & MB_DEFBUTTON2) == MB_DEFBUTTON2 && str.get_length() >= 3)
+   else if((uFlags & MB_DEFBUTTON2) == MB_DEFBUTTON2 && str.length() >= 3)
    {
       str.set_at(2, ansi_char_toupper(str[2]));
       iDefaultButton = e_dialog_result_no;
       bDefault = true;
    }
-   else if((uFlags & MB_DEFBUTTON3) == MB_DEFBUTTON3 && str.get_length() >= 5)
+   else if((uFlags & MB_DEFBUTTON3) == MB_DEFBUTTON3 && str.length() >= 5)
    {
       str.set_at(4, ansi_char_toupper(str[4]));
       iDefaultButton = e_dialog_result_cancel;

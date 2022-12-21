@@ -260,14 +260,14 @@ public:
       return m_end;
    }
 
-   const this_iterator &begin() const
+   const_iterator &begin() const
    {
-      return m_begin;
+      return (const_iterator &) m_begin;
    }
 
-   const this_iterator &end() const
+   const_iterator &end() const
    {
-      return m_end;
+      return (const_iterator &) m_end;
    }
 
     this_iterator &begin(this_iterator begin)

@@ -197,12 +197,12 @@ strsize lite_html_reader::parseDocument()
          }
 
          // clear pending notifications
-         if ( (dwCharDataLen) || (strCharacters.get_length()) )
+         if ( (dwCharDataLen) || (strCharacters.length()) )
          {
             strCharacters += string(&m_strBuffer[dwCharDataStart], dwCharDataLen);
             NormalizeCharacters(strCharacters);
 
-            if ( (strCharacters.get_length()) &&
+            if ( (strCharacters.length()) &&
                   (getEventNotify(notifyCharacters)) )
             {
                bAbort = false;
@@ -216,7 +216,7 @@ strsize lite_html_reader::parseDocument()
          dwCharDataLen = 0L;
          dwCharDataStart = m_dwBufPos;
 
-         if (strComment.get_length())
+         if (strComment.length())
          {
             if (getEventNotify(notifyComment))
             {
@@ -281,13 +281,13 @@ strsize lite_html_reader::parseDocument()
    }
 
    // clear pending notifications
-   if ( (dwCharDataLen) || (strCharacters.get_length()) )
+   if ( (dwCharDataLen) || (strCharacters.length()) )
    {
       strCharacters += string(&m_strBuffer[dwCharDataStart], dwCharDataLen) + ch;
       NormalizeCharacters(strCharacters);
       strCharacters.trim_right();   // explicit trailing white-space removal
 
-      if ( (strCharacters.get_length()) &&
+      if ( (strCharacters.length()) &&
             (getEventNotify(notifyCharacters)) )
       {
          bAbort = false;

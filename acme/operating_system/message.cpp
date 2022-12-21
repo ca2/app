@@ -203,7 +203,7 @@ namespace operating_system
    CLASS_DECL_ACME const char * get_message_text(enum_message emessage)
    {
 
-      ::i32 iFind = (::i32)emessage;
+      ::auto pFind = (::i32)emessage;
 
       auto pmessagename =
          tuple_array_find(

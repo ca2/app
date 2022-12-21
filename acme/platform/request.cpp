@@ -718,7 +718,7 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
 
    string strQuery(strCommandFork);
 
-   autp pFind = strQuery.find('?');
+   auto pFind = strQuery.find('?');
 
    if (::is_null(pFind))
    {
@@ -729,7 +729,7 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
    else
    {
 
-      strQuery = strQuery.Mid(iFind + 1);
+      strQuery = strQuery(pFind + 1);
 
    }
 
@@ -756,7 +756,7 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
    if (::is_set(pFind))
    {
 
-      strScript = strScript.Left(iFind);
+      strScript = strScript(0, pFind);
 
    }
 

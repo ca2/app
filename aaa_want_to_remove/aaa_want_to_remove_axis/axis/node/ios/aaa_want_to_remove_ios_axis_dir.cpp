@@ -90,7 +90,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
       bool dir::name_is(const ::file::path & str, ::aura::application * papp)
       {
          //output_debug_string(str);
-         strsize iLast = str.get_length() - 1;
+         strsize iLast = str.length() - 1;
          while(iLast >= 0)
          {
             if(str.m_pszData[iLast] != '\\' && str.m_pszData[iLast] != '/' && str.m_pszData[iLast] != ':')
@@ -127,9 +127,9 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         strsize iFind = ::str().case_insensitive_find(".zip:", str);
+         auto pFind = ::str().case_insensitive_find(".zip:", str);
 
-         if(thread_set(e_task_flag_compress_is_dir) && iFind >= 0 && iFind < iLast)
+         if(thread_set(e_task_flag_compress_is_dir) && ::is_set(pFind) && iFind < iLast)
          {
 
             bool bHasSubFolder = m_pziputil->has_sub_folder(papp, str);

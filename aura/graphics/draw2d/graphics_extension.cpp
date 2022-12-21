@@ -40,7 +40,7 @@ namespace draw2d
       throw ::exception(todo);
       /*string str(pcsz);
 
-      strsize iLen = str.get_length();
+      strsize iLen = str.length();
       sizea.allocate(iLen);
       if(iLen > 0)
       {
@@ -70,7 +70,7 @@ namespace draw2d
       ::GetTextExtentPoint32U(
          (HDC)pgraphics->get_os_data(),
          (const ::string &) str,
-         str.get_length(),
+         str.length(),
          &size);*/
 
       size = pgraphics->get_text_extent(psz);

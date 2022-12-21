@@ -3613,7 +3613,7 @@ return true;
    //strsize interaction_impl::GetWindowText(char * lpszString,strsize nMaxCount)
    //{
    //   strncpy(lpszString,m_strWindowText,nMaxCount);
-   //   return minimum(nMaxCount,m_strWindowText.get_length());
+   //   return minimum(nMaxCount,m_strWindowText.length());
    //}
 
    //strsize interaction_impl::get_window_text_length()
@@ -3623,7 +3623,7 @@ return true;
 
    //   get_window_text(str);
 
-   //   return str.get_length();
+   //   return str.length();
 
    //   //throw ::exception(todo);
 
@@ -6265,7 +6265,7 @@ namespace universal_windows
 
       pinteraction->_001GetText(strText);
 
-      strsize sizeLen = strText.get_length();
+      strsize sizeLen = strText.length();
 
       m_pframeworkview->SetText(strText, 0, sizeLen);
 

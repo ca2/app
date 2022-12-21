@@ -1649,7 +1649,7 @@ namespace user
             //str.load_string(_001GetColumnText(iColumn));
             //hditem.pszText = (char *) (const ::string &) str;
             //hditem.pszText = LPSTR_TEXTCALLBACK;
-            //hditem.cchTextMax = str.get_length();
+            //hditem.cchTextMax = str.length();
 
             hditem.cchTextMax = 0;
 
@@ -5806,7 +5806,7 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.get_length(), size);
+         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.length(), size);
 
          cx += size.cx;
 

@@ -41,9 +41,9 @@ oswindow_data * oswindow_get(nswindow window)
 
    synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
-   iptr iFind = oswindow_find(window);
+   auto pFind = oswindow_find(window);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
    {
       
       return g_poswindowdataptra->element_at(iFind);
@@ -121,9 +121,9 @@ bool oswindow_erase(nswindow window)
 
    synchronous_lock synchronouslock(g_pmutexOsWindowData);
 
-   iptr iFind = oswindow_find(window);
+   auto pFind = oswindow_find(window);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
    {
 
       return false;

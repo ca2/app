@@ -58,9 +58,9 @@ int oswindow_find(UIWindow * window)
 oswindow_data * oswindow_get(UIWindow * window)
 {
 
-   iptr iFind = oswindow_find(window);
+   auto pFind = oswindow_find(window);
 
-   if(iFind >= 0)
+   if(::is_set(pFind))
       return g_poswindowdataptra->element_at(iFind);
 
    ::oswindow_data * pdata = memory_new ::oswindow_data;
@@ -146,9 +146,9 @@ CLASS_DECL_ACME ::user::interaction_impl * oswindow_get(oswindow oswindow)
 bool oswindow_erase(UIWindow * window)
 {
 
-   iptr iFind = oswindow_find(window);
+   auto pFind = oswindow_find(window);
 
-   if(iFind < 0)
+   if(::is_null(pFind))
       return false;
 
    g_poswindowdataptra->erase_at(iFind);

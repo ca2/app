@@ -34,7 +34,7 @@ CLASS_DECL_ACME string null_get_text(string str)
 // 
 //   string strGetText(__get_text(psz));
 //   
-//   return (int) strGetText.get_length();
+//   return (int) strGetText.length();
 //   
 //}
 //
@@ -44,7 +44,7 @@ CLASS_DECL_ACME string null_get_text(string str)
 //   
 //   string strGetText(__get_text(psz));
 //   
-//   strncpy(pszText, strGetText, minimum(iLen, strGetText.get_length()));
+//   strncpy(pszText, strGetText, minimum(iLen, strGetText.length()));
 //   
 //}
 

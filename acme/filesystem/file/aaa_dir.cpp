@@ -418,12 +418,12 @@ namespace dir
 
 //       strsize iFind2 = str.rear_find('\\', iLast);
 
-//       strsize iFind = maximum(iFind1, iFind2);
+//       auto pFind = maximum(iFind1, iFind2);
 
 //       if(iFind >= iLast)
 //          return false;
 
-//       if(iFind < 0)
+//       if(::is_null(pFind))
 //          return false;
 
 //       iLast = iFind;
@@ -594,7 +594,7 @@ namespace dir
 
          pathDir = strPrefix;
 
-         iLastPos = strPrefix.get_length();
+         iLastPos = strPrefix.length();
 
       }
 

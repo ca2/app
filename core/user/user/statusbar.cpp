@@ -727,7 +727,7 @@ namespace user
 
          __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
-         nLen = pSBP->strText.get_length();
+         nLen = pSBP->strText.length();
 
          if (nLen > nMaxLen)
          {
@@ -765,7 +765,7 @@ namespace user
 
          __STATUSPANE * pSBP = _GetPanePtr(nIndex);
 
-         nLen = pSBP->strText.get_length();
+         nLen = pSBP->strText.length();
 
       }
 

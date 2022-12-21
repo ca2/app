@@ -275,7 +275,7 @@ namespace user
 
                straLines.add_lines(strPlainText);
 
-               index iFind = straLines.predicate_find_first([](auto strLine)
+               auto pFind = straLines.predicate_find_first([](auto strLine)
                   {
 
                      return (strLine.case_insensitive_begins("http://")
@@ -283,7 +283,7 @@ namespace user
                         && strLine.case_insensitive_ends(".gif");
                   });
 
-               if (iFind >= 0)
+               if (::is_set(pFind))
                {
 
                   ::file::path path = straLines[iFind];

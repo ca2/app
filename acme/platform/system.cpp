@@ -1399,9 +1399,9 @@ namespace acme
 
          string str(*psz);
 
-         auto iStart = str.find('(');
+         auto pStart = str.find('(');
 
-         if (iStart < 0)
+         if (::is_null(pStart))
          {
 
             stra.add(str);
@@ -1410,12 +1410,12 @@ namespace acme
 
          }
 
-         auto iEnd = str.find(')', iStart + 1);
+         auto pEnd = str(pStart+1).find(')');
 
-         if (iEnd < 0)
+         if (::is_null(pEnd))
          {
 
-            string strItem = str.Left(iStart);
+            string strItem = str(0, pStart);
 
             stra.add(strItem);
 
@@ -1423,9 +1423,7 @@ namespace acme
 
          }
 
-         string strItem = str.Mid(iStart, iEnd - iStart - 1);
-
-         stra.add(strItem);
+         stra.add({ pStart, pEnd - pStart - 1});
 
       }
 

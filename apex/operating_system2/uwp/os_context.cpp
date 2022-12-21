@@ -248,7 +248,7 @@ namespace universal_windows
 
       ::u32 dwSize = 1;
 
-      while(natural(strPath.get_length() + 1) == dwSize)
+      while(natural(strPath.length() + 1) == dwSize)
       {
          dwSize = ::GetModuleFileName(
                   hmodule,

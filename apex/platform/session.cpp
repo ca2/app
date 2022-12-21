@@ -741,12 +741,12 @@ namespace apex
 
       ::file::path strPathName(strOriginalPathName);
 
-      strsize iFind = strPathName.find("?");
+      auto pFind = strPathName.find("?");
 
-      if (iFind >= 0)
+      if (::is_set(pFind))
       {
 
-         strPathName = strPathName.Left(iFind);
+         strPathName = strPathName(0, pFind);
 
       }
 

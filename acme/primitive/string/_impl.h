@@ -94,7 +94,7 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 //
 //   string_base < TYPE_CHAR > str;
 //
-//   return string_concatenate(str, str1, str1.get_length(), str2, str2.get_length());
+//   return string_concatenate(str, str1, str1.length(), str2, str2.length());
 //
 //}
 

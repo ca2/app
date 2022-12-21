@@ -526,9 +526,9 @@ namespace sandbox_windowing
    //
    //      single_lock slOsWindow(::window::s_pmutex, true);
    //
-   //      iptr iFind = oswindow_find_message_only_window(pinteraction);
+   //      auto pFind = oswindow_find_message_only_window(pinteraction);
    //
-   //      if (iFind >= 0)
+   //      if (::is_set(pFind))
    //      {
    //
    //         return ::window::s_pdataptra->element_at(iFind);
@@ -556,9 +556,9 @@ namespace sandbox_windowing
    //
    //      single_lock slOsWindow(::window::s_pmutex, true);
    //
-   //      iptr iFind = oswindow_find(Display(), window);
+   //      auto pFind = oswindow_find(Display(), window);
    //
-   //      if (iFind < 0)
+   //      if (::is_null(pFind))
    //      {
    //
    //         return nullptr;
@@ -577,9 +577,9 @@ namespace sandbox_windowing
 
    //   //single_lock slOsWindow(::window::s_pmutex, true);
 
-   //   //      iptr iFind = oswindow_find(Display(), window);
+   //   //      auto pFind = oswindow_find(Display(), window);
    //   //
-   //   //      if (iFind >= 0)
+   //   //      if (::is_set(pFind))
    //   //      {
    //   //
    //   //         return ::window::s_pdataptra->element_at(iFind);
@@ -694,9 +694,9 @@ namespace sandbox_windowing
    //
    //      single_lock slOsWindow(::window::s_pmutex, true);
    //
-   //      iptr iFind = oswindow_find(window);
+   //      auto pFind = oswindow_find(window);
    //
-   //      if (iFind < 0)
+   //      if (::is_null(pFind))
    //      {
    //
    //         return nullptr;
@@ -2533,9 +2533,9 @@ namespace sandbox_windowing
 //
 //      }
 //
-//      index iFind = windowa.find_last(Window());
+//      auto pFind = windowa.find_last(Window());
 //
-//      if (iFind < 0)
+//      if (::is_null(pFind))
 //      {
 //
 //         return;
@@ -3140,7 +3140,7 @@ namespace sandbox_windowing
 
    //      }
 
-   //      int iFind = -1;
+   //      auto pFind = -1;
 
    //      int i;
 
@@ -3158,7 +3158,7 @@ namespace sandbox_windowing
 
    //      }
 
-   //      if (iFind >= 0)
+   //      if (::is_set(pFind))
    //      {
 
    //         atoma.erase_at(iFind);

@@ -692,7 +692,7 @@ namespace crypto
 
          string str(pszPassword);
          
-         if (str.get_length() < 6)
+         if (str.length() < 6)
          {
 
             return false;

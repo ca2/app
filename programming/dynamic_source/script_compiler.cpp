@@ -858,9 +858,9 @@ namespace dynamic_source
             //for(auto & strLine : straLog)
             //{
             //   int iColCount = 80;
-            //   for (index i = 0; i < strLine.get_length(); i += iColCount)
+            //   for (index i = 0; i < strLine.length(); i += iColCount)
             //   {
-            //      if (strLine.get_length() < i + iColCount + 10)
+            //      if (strLine.length() < i + iColCount + 10)
             //      {
             //         FORMATTED_TRACE(strLine.Mid(i));
             //         break;
@@ -1188,7 +1188,7 @@ namespace dynamic_source
       }
       strDest += "\r\n";
       strDest += "\r\n";
-      iPosId = strDest.get_length();
+      iPosId = strDest.length();
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
@@ -1854,7 +1854,7 @@ auto tickStart = ::time::now();
 
       strDest += "\r\n";
       strDest += "\r\n";
-      strsize iPosId = strDest.get_length();
+      strsize iPosId = strDest.length();
       strDest += "\r\n";
       strDest += "\r\n";
 
@@ -1907,7 +1907,7 @@ auto tickStart = ::time::now();
       {
          strKey.make_lower();
       }
-      strsize iFind = straId.find_first(strKey);
+      auto pFind = straId.find_first(strKey);
       if(iFind <= 0)
       {
          straId.add(strKey);
@@ -1941,7 +1941,7 @@ auto tickStart = ::time::now();
       char ch;
       char chNext;
       string strResult;
-      strsize iLen = str.get_length();
+      strsize iLen = str.length();
       strsize i = 0;
       bool bInitial = true;
       string strSpec1;
@@ -2019,7 +2019,7 @@ auto tickStart = ::time::now();
             {
                if(iServer < 0)
                {
-                  iServer = strResult.get_length();
+                  iServer = strResult.length();
                }
             }
             else if(iServer >= 0)
@@ -2322,13 +2322,13 @@ auto tickStart = ::time::now();
             bInSimpleQuote = true;
             //strResult += "unitext(\""; // overloads should cope with the possibility of conversion between string to character
             strResult += "\""; // overloads should cope with the possibility of conversion between string to character
-            iSimpleQuote = strResult.get_length();
+            iSimpleQuote = strResult.length();
          }
          else if(ch == '@')
          {
-            iArroba = strResult.get_length();
+            iArroba = strResult.length();
          }
-         else if(ch == '_' && chNext == '_' && is_id(&str[i], str.get_length() - i,  "__ch", 4, iIdLen))
+         else if(ch == '_' && chNext == '_' && is_id(&str[i], str.length() - i,  "__ch", 4, iIdLen))
          {
             strResult += "'";
             bInVar = false;
@@ -2373,35 +2373,35 @@ auto tickStart = ::time::now();
                }
                else
                {
-                  if(is_id(&str[i + 1], str.get_length() - i - 1, "_GET", 4,  iIdLen))
+                  if(is_id(&str[i + 1], str.length() - i - 1, "_GET", 4,  iIdLen))
                   {
                      strResult += "geta()[";
                      bInVar = false;
                      bServer = true;
                      i += iIdLen + 1;
                   }
-                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_POST", 5,  iIdLen))
+                  else if(is_id(&str[i + 1], str.length() - i - 1, "_POST", 5,  iIdLen))
                   {
                      strResult += "posta()[";
                      bInVar = false;
                      bServer = true;
                      i += iIdLen + 1;
                   }
-                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_REQUEST", 8, iIdLen))
+                  else if(is_id(&str[i + 1], str.length() - i - 1, "_REQUEST", 8, iIdLen))
                   {
                      strResult += "requesta()[";
                      bInVar = false;
                      bServer = true;
                      i += iIdLen + 1;
                   }
-                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_SERVER", 7, iIdLen))
+                  else if(is_id(&str[i + 1], str.length() - i - 1, "_SERVER", 7, iIdLen))
                   {
                      strResult += "inattra()[";
                      bInVar = false;
                      bServer = true;
                      i += iIdLen + 1;
                   }
-                  else if(is_id(&str[i + 1], str.get_length() - i - 1, "_COOKIE", 7, iIdLen))
+                  else if(is_id(&str[i + 1], str.length() - i - 1, "_COOKIE", 7, iIdLen))
                   {
                      strResult += "cookies()[";
                      bInVar = false;
@@ -2476,25 +2476,25 @@ ch_comma:
          else
          {
 ch_else:
-            if(bScript &&str[i-1] != '_' && is_id(&str[i], str.get_length() - i,  "return", 6,  iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
+            if(bScript &&str[i-1] != '_' && is_id(&str[i], str.length() - i,  "return", 6,  iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
                i += iIdLen - 1;
             }
-            else if(is_id(&str[i], str.get_length() - i,  "include", 7, iIdLen))
+            else if(is_id(&str[i], str.length() - i,  "include", 7, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "include";
                i += iIdLen - 1;
             }
-            else if(is_id(&str[i], str.get_length() - i,   "print", 5,  iIdLen))
+            else if(is_id(&str[i], str.length() - i,   "print", 5,  iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
                i += iIdLen - 1;
             }
-            else if(is_id(&str[i], str.get_length() - i,  "echo", 4, iIdLen))
+            else if(is_id(&str[i], str.length() - i,  "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
@@ -2842,10 +2842,10 @@ ch_else:
    {
       string strSource(psz);
       string strDest;
-      while(strSource.get_length() > 0)
+      while(strSource.length() > 0)
       {
-         strsize iLen = minimum(4 * 1024, strSource.get_length());
-         if(strSource.get_length() > iLen)
+         strsize iLen = minimum(4 * 1024, strSource.length());
+         if(strSource.length() > iLen)
          {
             if(strSource[iLen] == '\n')
                iLen++;

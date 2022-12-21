@@ -176,7 +176,7 @@ lite_html_tag::~lite_html_tag()
       pszEnd++;
 
 
-      ASSERT(strTagName.get_length());
+      ASSERT(strTagName.length());
       ASSERT(pcollAttr == nullptr);
       nRetVal = (::u32) (pszEnd - &strString[iPos]);
 
@@ -212,7 +212,7 @@ lite_html_tag::~lite_html_tag()
          }
 
          // ... and delegate parsing process
-         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.get_length() - (pszBegin - (const ::string &) strString));
+         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.length() - (pszBegin - (const ::string &) strString));
 
       }
 

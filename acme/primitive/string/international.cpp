@@ -290,7 +290,7 @@
 
          ::wide_character * pwsz = wstr.get_string_buffer(iBuffer);
 
-         if(multibyte_to_unicode(uCodePage,pwsz, iBuffer + 1, str, (strsize) str.get_length()))
+         if(multibyte_to_unicode(uCodePage,pwsz, iBuffer + 1, str, (strsize) str.length()))
          {
 
             wstr.release_string_buffer(iBuffer);

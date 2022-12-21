@@ -368,7 +368,7 @@ namespace account
 
       //string strSessId = proot->attribute("sessid");
 
-      //if(strSessId.get_length() < 16)
+      //if(strSessId.length() < 16)
       //{
 
       //   return error_failed;

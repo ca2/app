@@ -157,14 +157,14 @@ namespace userex
    group_image_list_impact::group * group_image_list_impact::get_group(::atom idGroup)
    {
 
-      index iFind = m_groupa.predicate_find_first([=](auto & item)
+      auto pFind = m_groupa.predicate_find_first([=](auto & item)
       {
 
          return item->m_atomGroup == idGroup;
 
       });
 
-      if (iFind < 0)
+      if (::is_null(pFind))
       {
 
          return nullptr;

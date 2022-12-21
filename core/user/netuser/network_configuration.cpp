@@ -131,7 +131,7 @@ namespace usernet
 
             pinteraction->_001GetText(strServer);
 
-            if(strServer.get_length() == 0)
+            if(strServer.length() == 0)
             {
 
                pcontext->m_papexcontext->file()->erase(dir()->appdata()/ "proxy.xml");

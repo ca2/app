@@ -16,7 +16,7 @@ namespace ios
       
       str = "/::payload/tmp/ca2/";
       
-      return str.get_length();
+      return str.length();
       
    }
 

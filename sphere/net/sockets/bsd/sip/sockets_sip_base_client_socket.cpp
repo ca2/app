@@ -187,7 +187,7 @@ namespace sockets
 
          ::parse pa(line);
          string str = pa.getword();
-         if (str.get_length() > 4 &&  string_begins_ci(str, "http/")) // response
+         if (str.length() > 4 &&  string_begins_ci(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
             m_request.attr("http_status_code") = pa.getword();

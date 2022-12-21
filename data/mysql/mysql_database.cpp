@@ -871,7 +871,7 @@ namespace mysql
    string database::escape(const ::string & str)
    {
 
-      return escape(str.c_str(), str.get_length());
+      return escape(str.c_str(), str.length());
 
    }
 

@@ -138,9 +138,9 @@
 //
 //     };
 //
-//     index iFind = proutea->predicate_find_first(pred);
+//     auto pFind = proutea->predicate_find_first(pred);
 //
-//     if (iFind >= 0)
+//     if (::is_set(pFind))
 //     {
 //
 //        proute = proutea->sp_at(iFind);
@@ -226,9 +226,9 @@
 //
 //     };
 //
-//     index iFind = proutea->predicate_find_first(pred);
+//     auto pFind = proutea->predicate_find_first(pred);
 //
-//     if(iFind >= 0)
+//     if(::is_set(pFind))
 //     {
 //
 //        proute = proutea->sp_at(iFind);

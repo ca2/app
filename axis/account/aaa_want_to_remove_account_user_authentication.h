@@ -21,7 +21,7 @@ public:
 
    strsize get_length()
    {
-      return m_str.get_length();
+      return m_str.length();
    }
 
 };

@@ -102,9 +102,9 @@ template < typename LIST_ITEM, typename LIST_ITEM2 >
 bool list_contains(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
 {
 
-   auto iFind = list_find_first(pitem, pitemItem);
+   auto pFind = list_find_first(pitem, pitemItem);
 
-   return iFind >= 0;
+   return ::is_set(pFind);
 
 }
 

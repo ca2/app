@@ -24,7 +24,7 @@ strsize str_begins_common(const ::string & str1, const ::string & str2)
 
    strsize i = 0;
 
-   for(i = 0; i < str1.get_length() && i < str2.get_length(); i++)
+   for(i = 0; i < str1.length() && i < str2.length(); i++)
    {
 
       if(str1[i] != str2[i])
@@ -45,7 +45,7 @@ strsize str_begins_eat_common(string & str1, string & str2, string & str)
 
    strsize i = 0;
 
-   for(i = 0; i < str1.get_length() && i < str2.get_length(); i++)
+   for(i = 0; i < str1.length() && i < str2.length(); i++)
    {
 
       if(str1[i] != str2[i])
@@ -73,9 +73,9 @@ strsize str_ends_common(const ::string & str1, const ::string & str2)
 
    strsize i = 0;
 
-   strsize i1 = str1.get_length() - 1;
+   strsize i1 = str1.length() - 1;
 
-   strsize i2 = str2.get_length() - 1;
+   strsize i2 = str2.length() - 1;
 
    for(; i1 >= 0 && i2 >= 0; i1--, i2--)
    {
@@ -101,9 +101,9 @@ strsize str_ends_eat_common(string & str1, string & str2, string & str)
 
    strsize i = 0;
 
-   strsize i1 = str1.get_length() - 1;
+   strsize i1 = str1.length() - 1;
 
-   strsize i2 = str2.get_length() - 1;
+   strsize i2 = str2.length() - 1;
 
    for(; i1 >= 0 && i2 >= 0; i1--, i2--)
    {
@@ -155,11 +155,11 @@ string strNow)
 
    iInsBeg = iBeg;
 
-   iInsEnd = strPrevious.get_length() - iEnd;
+   iInsEnd = strPrevious.length() - iEnd;
 
-   strInsert = strNow.Mid(iBeg, strNow.get_length() - iEnd - iBeg);
+   strInsert = strNow.Mid(iBeg, strNow.length() - iEnd - iBeg);
 
-   iSelEnd = iBeg + strInsert.get_length();
+   iSelEnd = iBeg + strInsert.length();
 
    const ::scoped_string & scopedstr = unicode_next(strInsert);
 
@@ -3101,14 +3101,14 @@ namespace ios
 
       strncpy(lpszString, m_strWindowText, nMaxCount);
 
-      return minimum(nMaxCount, m_strWindowText.get_length());
+      return minimum(nMaxCount, m_strWindowText.length());
 
    }
 
    strsize interaction_impl::get_window_text_length()()
    {
 
-      return m_strWindowText.get_length();
+      return m_strWindowText.length();
 
    }
 

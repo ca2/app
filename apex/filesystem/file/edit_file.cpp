@@ -738,7 +738,7 @@ namespace file
 
       pinsertitem->m_memstorage.assign(str);
 
-      m_size += (str.get_length() - iOldLen);
+      m_size += (str.length() - iOldLen);
 
    }
 
@@ -750,7 +750,7 @@ namespace file
 
       pinsertitem->m_memstorage.append(str);
 
-      m_size += (str.get_length());
+      m_size += (str.length());
 
    }
 

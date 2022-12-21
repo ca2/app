@@ -248,7 +248,7 @@ namespace sockets
 
          string str = pa.getword();
 
-         if (str.get_length() > 4 &&  string_begins_ci(str, "http/")) // response
+         if (str.length() > 4 &&  string_begins_ci(str, "http/")) // response
          {
 
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
@@ -332,14 +332,14 @@ namespace sockets
       atom key;
       string strKey;
       string value;
-      strsize iFind = line.find(':');
-      if(iFind < 0)
+      auto pFind = line.find(':');
+      if(::is_null(pFind))
       {
          strKey = line;
       }
       else
       {
-         strKey = line.Left(iFind);
+         strKey = line(0, pFind);
          strKey.trim();
          iFind++;
          while(character_isspace((unsigned char) line[iFind]) && iFind < line.get_length())

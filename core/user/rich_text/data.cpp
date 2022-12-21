@@ -1024,7 +1024,7 @@ namespace user
 
          long l = 1;
 
-         auto u = strWord.get_length();
+         auto u = strWord.length();
 
          long m = 1;
 

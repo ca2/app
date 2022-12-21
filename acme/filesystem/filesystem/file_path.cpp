@@ -114,7 +114,7 @@ string url_dir_name_for_relative(const ::file::path & path)
 
 #define CHECK_NATIVE_FILE_SEP(ch) \
    \
-   if (bOnlyNativeFileSep && psz[iPos] == '/') \
+   if (bOnlyNativeFileSep && (ch) == '/') \
    { \
    \
       bOnlyNativeFileSep = false; \
@@ -141,6 +141,8 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    //string strAbsolute(strParam);
 
+   char * pend = psz + iLen;
+
    strsize iNewPosition;
 
    bool bDynIa = false;
@@ -149,7 +151,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    iaSlash.set_size(0);
 
-   strsize iPos = 0;
+   auto p = psz;
 
    if (iLen >= 2)
    {
@@ -165,35 +167,35 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
          iaSlash.add(1);
 
-         iPos = 2;
+         p += 2;
 
       }
 
    }
 
-   while (psz[iPos])
+   while (p < pend)
    {
 
-      if (psz[iPos] == '/' || psz[iPos] == '\\')
+      if (*p == '/' || *p == '\\')
       {
 
-         CHECK_NATIVE_FILE_SEP(psz[iPos]);
+         CHECK_NATIVE_FILE_SEP(*p);
 
-         iaSlash.add(iPos);
+         iaSlash.add(p - psz);
 
-         iPos++;
+         p++;
 
-         if (iPos >= iLen)
+         if (p >= pend)
          {
 
             // the end of string has been reached
 
-            if (iPos > 2)
+            if (p > psz + 2)
             {
 
                iaSlash.erase_at(iaSlash.get_upper_bound());
 
-               iPos--; // erase trailing slash
+               p--; // erase trailing slash
 
             }
 
@@ -202,12 +204,12 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
             goto ret;
 
          }
-         else if (psz[iPos] == '.')
+         else if (*p == '.')
          {
 
-            iPos++;
+            p++;
 
-            if (iPos >= iLen)
+            if (p >= pend)
             {
 
                // the end of string has been reached
@@ -215,13 +217,13 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                if (iaSlash.size() >= 2)
                {
 
-                  iPos -= 2; // erase the dot and and trailing slash
+                  p -= 2; // erase the dot and and trailing slash
 
                }
                else
                {
 
-                  iPos--;// erase the dot
+                  p--;// erase the dot
 
                }
 
@@ -230,24 +232,24 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                goto ret;
 
             }
-            else if (psz[iPos] == '.')
+            else if (*p == '.')
             {
 
-               iPos++;
+               p++;
 
-               if (iPos >= iLen)
+               if (p >= pend)
                {
 
                   // the end of string has been reached
 
-                  iPos = iaSlash[maximum(0, iaSlash.size() - 2)]; // go back to position of previous slash
+                  p = psz + iaSlash[maximum(0, iaSlash.size() - 2)]; // go back to position of previous slash
 
                   iaSlash.set_size(maximum(1, iaSlash.size() - 2));
 
-                  if (iPos > 2)
+                  if (p > psz + 2)
                   {
 
-                     iPos--;
+                     p--;
 
                   }
 
@@ -256,10 +258,10 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                   goto ret;
 
                }
-               else if (psz[iPos] == '/' || psz[iPos] == '\\')
+               else if (*p == '/' || *p == '\\')
                {
 
-                  CHECK_NATIVE_FILE_SEP(psz[iPos]);
+                  CHECK_NATIVE_FILE_SEP(*p);
 
                   if (!bDup)
                   {
@@ -289,22 +291,22 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   }
 
-                  strcpy(&psz[iNewPosition], &psz[iPos]);
+                  strcpy(&psz[iNewPosition], p);
 
-                  iLen -= iPos - iNewPosition;
+                  iLen -= p - &psz[iNewPosition];
 
-                  iPos = iNewPosition;
+                  p = &psz[iNewPosition];
 
                }
                else
                {
 
-                  iPos += utf8_unicode_length(psz[iPos]);
+                  p += utf8_unicode_length(*p);
 
-                  if (iPos >= iLen)
+                  if (p >= pend)
                   {
 
-                     iPos = iLen - 1;
+                     p = pend - 1;
 
                      goto ret;
 
@@ -313,10 +315,10 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                }
 
             }
-            else if (psz[iPos] == '/' || psz[iPos] == '\\')
+            else if (*p == '/' || *p == '\\')
             {
 
-               CHECK_NATIVE_FILE_SEP(psz[iPos]);
+               CHECK_NATIVE_FILE_SEP(*p);
 
                if (!bDup)
                {
@@ -348,47 +350,40 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                auto pszNewPosition = psz + iNewPosition;
 
-               auto pszPos = psz + iPos;
+               auto pszPos = p;
 
                copy_character_per_character(pszNewPosition, pszPos);
 
-               iLen -= iPos - iNewPosition;
+               iLen -= p - pszNewPosition;
 
-               iPos = iNewPosition;
+               p = pszNewPosition;
 
             }
             else
             {
 
-               iPos += utf8_unicode_length(psz[iPos]);
-
-               if (iPos >= iLen)
-               {
-
-                  goto ret;
-
-               }
+               p += utf8_unicode_length(*p);
 
             }
 
          }
-         else if (psz[iPos] == '/' || psz[iPos] == '\\')
+         else if (*p == '/' || *p == '\\')
          {
 
-            CHECK_NATIVE_FILE_SEP(psz[iPos]);
+            CHECK_NATIVE_FILE_SEP(*p);
 
-            iaSlash.add(iPos);
+            iaSlash.add(p - psz);
 
-            iPos++;
+            p++;
 
-            if (iPos > 3 && psz[iPos - 3] == ':')
+            if (p > psz + 3 && *(p - 3) == ':')
             {
 
                bUrl = true;
 
             }
 
-            if (iPos >= iLen)
+            if (p >= pend)
             {
 
                // the end of string has been reached
@@ -404,14 +399,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
          else
          {
 
-            iPos += utf8_unicode_length(psz[iPos]);
-
-            if (iPos >= iLen)
-            {
-
-               goto ret;
-
-            }
+            p += utf8_unicode_length(*p);
 
          }
 
@@ -419,14 +407,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
       else
       {
 
-         iPos += utf8_unicode_length(psz[iPos]);
-
-         if (iPos >= iLen)
-         {
-
-            goto ret;
-
-         }
+         p += utf8_unicode_length(*p);
 
       }
 
@@ -437,13 +418,13 @@ ret:
    if (bDup)
    {
 
-      str.release_string_buffer(iPos);
+      str.release_string_buffer(p - psz);
 
    }
-   else if (iPos < iLen)
+   else if (p < pend)
    {
 
-      str.truncate(iPos);
+      str.truncate(p);
 
    }
 
@@ -918,7 +899,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
 #ifdef WINDOWS
 
-   if (strPath.get_length() > 3
+   if (strPath.length() > 3
       && strPath[2] == ':'
       && strPath.begins_eat("/"))
    {

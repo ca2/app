@@ -2949,7 +2949,7 @@ namespace android
 
       strncpy(lpszStringBuf, m_strWindowText, nMaxCount);
 
-      return minimum(nMaxCount, m_strWindowText.get_length());
+      return minimum(nMaxCount, m_strWindowText.length());
 
    }
 
@@ -2965,7 +2965,7 @@ namespace android
    strsize interaction_impl::get_window_text_length()
    {
 
-      return m_strWindowText.get_length();
+      return m_strWindowText.length();
 
    }
 

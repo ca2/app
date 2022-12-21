@@ -790,7 +790,7 @@ namespace user
          if (psubitem->m_bOk)
          {
 
-            index iFind = pcombo->_001FindListText(psubitem->m_strText);
+            auto pFind = pcombo->_001FindListText(psubitem->m_strText);
 
             pcombo->set_current_item(__new(::item(::e_element_item, iFind)), ::e_source_sync);
 

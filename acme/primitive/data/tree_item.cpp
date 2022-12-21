@@ -196,9 +196,9 @@ namespace data
 
          }
 
-         index iFind = list_find_first(m_pparent, this);
+         auto pFind = list_find_first(m_pparent, this);
 
-         if (iFind < 0)
+         if (::is_null(pFind))
          {
 
             // self-healinng
@@ -233,9 +233,9 @@ namespace data
 
          }
 
-         index iFind = list_find_first(m_pparent, this);
+         auto pFind = list_find_first(m_pparent, this);
 
-         if (iFind < 0)
+         if (::is_null(pFind))
          {
 
             // self-healing
@@ -265,9 +265,9 @@ namespace data
       else if(erelative == e_relative_replace)
       {
 
-         index iFind = list_find_first(m_pparent,this);
+         auto pFind = list_find_first(m_pparent,this);
 
-         if(iFind < 0)
+         if(::is_null(pFind))
          {
 
             m_pparent = nullptr;

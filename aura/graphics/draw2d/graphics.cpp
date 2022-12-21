@@ -3444,7 +3444,7 @@ namespace draw2d
 
       }
 
-      if (iStart > str.get_length())
+      if (iStart > str.length())
       {
 
          return 0;
@@ -3454,14 +3454,14 @@ namespace draw2d
       if (iCount < 0)
       {
 
-         iCount = str.get_length() - iStart;
+         iCount = str.length() - iStart;
 
       }
 
-      if (iStart + iCount > str.get_length())
+      if (iStart + iCount > str.length())
       {
 
-         iCount = str.get_length() - iStart;
+         iCount = str.length() - iStart;
 
          if (iCount <= 0)
          {
@@ -4273,7 +4273,7 @@ namespace draw2d
 
       }
 
-      strsize iLen = str.get_length();
+      strsize iLen = str.length();
 
       bool bLastLine = false;
 
@@ -4500,17 +4500,17 @@ namespace draw2d
 
       rectangle.Align(ealign, rectangleParam);
 
-      if (iUnderline >= 0 && iUnderline < str.get_length())
+      if (iUnderline >= 0 && iUnderline < str.length())
       {
 
-         text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)minimum(iUnderline, str.get_length()) });
+         text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)minimum(iUnderline, str.length()) });
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
          rectangle.left,
          rectangle.top,
          str,
-         minimum(iUnderline, str.get_length()));*/
-         if (iUnderline <= str.get_length())
+         minimum(iUnderline, str.length()));*/
+         if (iUnderline <= str.length())
          {
             set(pfontUnderline);
             /*::GetTextExtentPoint32U(
@@ -4531,7 +4531,7 @@ namespace draw2d
             
             text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
 
-            if (iUnderline + 1 <= str.get_length())
+            if (iUnderline + 1 <= str.length())
             {
 
                sz = get_text_extent(str, (i32)(iUnderline + 1));
@@ -4541,7 +4541,7 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                
-               strsize iCount = str.get_length() - iUnderline - 1;
+               strsize iCount = str.length() - iUnderline - 1;
 
                text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.Right(iCount).c_str(), (i32)iCount });
 
@@ -4564,7 +4564,7 @@ namespace draw2d
 
       }
 
-      if (!bLastLine && str2.get_length() > 0)
+      if (!bLastLine && str2.length() > 0)
       {
 
          rectangleClip.top = rectangleClip.top+sz.cy;
@@ -4589,7 +4589,7 @@ namespace draw2d
 
       const ::scoped_string & scopedstrSource = strSource;
 
-      strsize len = strSource.get_length();
+      strsize len = strSource.length();
 
       const ::ansi_character * pszEnd = pszSource + len;
 
@@ -4638,7 +4638,7 @@ namespace draw2d
             if(sz.cx > rectangleClip.width())
             {
 
-               strsize iSampleLen = strSource.get_length();
+               strsize iSampleLen = strSource.length();
 
                while(iSampleLen > 0)
                {
@@ -4761,7 +4761,7 @@ namespace draw2d
    {
       strsize iStart = 0;
       strsize iIndex;
-      strsize iLen = str.get_length();
+      strsize iLen = str.length();
       while (true)
       {
          iIndex = str.find(L'&', iStart);
@@ -4781,7 +4781,7 @@ namespace draw2d
             return iIndex;
          }
 
-         if (iIndex >= str.get_length())
+         if (iIndex >= str.length())
             break;
       }
       // Not Found

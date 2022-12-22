@@ -72,7 +72,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      string strServer = purl->get_root(pszUrl);
+      string strServer = purl->get_root(scopedstrUrl);
 
       if (strServer == "server.ca2.software")
       {
@@ -95,7 +95,7 @@ namespace http
    bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
-      return http_get(psession, pszUrl, process_set(set, pszUrl));
+      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl));
 
    }
 
@@ -105,9 +105,9 @@ namespace http
 
       set["get_memory"] = pmemory;
 
-      //auto estatus = _get(pszUrl, process_set(set, pszUrl));
+      //auto estatus = _get(scopedstrUrl, process_set(set, scopedstrUrl));
 
-      _get(pszUrl, process_set(set, pszUrl));
+      _get(scopedstrUrl, process_set(set, scopedstrUrl));
 
       set.erase_by_name("get_memory");
 
@@ -121,7 +121,7 @@ namespace http
 
       ::file::path url("https://api.ca2.software/");
 
-      url /= pszUrl;
+      url /= scopedstrUrl;
 
       return get(url, set);
 
@@ -135,7 +135,7 @@ namespace http
 
       set["disable_common_name_cert_check"] = true;
 
-      return api_get(pszUrl, set);
+      return api_get(scopedstrUrl, set);
 
    }
 
@@ -147,7 +147,7 @@ namespace http
 
       pmessage->m_ppropertyset = &set;
 
-      pmessage->m_strUrl = pszUrl;
+      pmessage->m_strUrl = scopedstrUrl;
 
       get(pmessage);
 
@@ -161,9 +161,9 @@ namespace http
 
       set["get_response"] = ""; // create get_response field
 
-      //auto estatus = _get(pszUrl, set);
+      //auto estatus = _get(scopedstrUrl, set);
 
-      _get(pszUrl, set);
+      _get(scopedstrUrl, set);
 
       //if (!estatus)
       //{
@@ -182,7 +182,7 @@ namespace http
 
       set["get_response"] = "";
 
-      set["bool_result"] = get(pszUrl, process_set(set, pszUrl));
+      set["bool_result"] = get(scopedstrUrl, process_set(set, scopedstrUrl));
 
       str = set["get_response"];
 
@@ -194,7 +194,7 @@ namespace http
    ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
       string strFile(strUrl);
 
@@ -249,14 +249,14 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str().find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).case_insensitive_find("/matter/") < 0)
+      if (::str().find_wwci("ca2", purl->get_server(scopedstrUrl)) < 0 && purl->get_object(scopedstrUrl).case_insensitive_find_index("/matter/") < 0)
       {
 
          set["raw_http"] = true;
 
       }
 
-      auto etype = get_type(strUrl, process_set(set, pszUrl));
+      auto etype = get_type(strUrl, process_set(set, scopedstrUrl));
 
       if (etype == ::file::e_type_folder)
       {
@@ -293,7 +293,7 @@ namespace http
    //::payload context::length(const ::scoped_string & scopedstrUrl, property_set & set)
    //{
 
-   //   return length(pszUrl, nullptr, set);
+   //   return length(scopedstrUrl, nullptr, set);
 
    //}
 
@@ -301,7 +301,7 @@ namespace http
    ::payload context::length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
       string strFile(strUrl);
 
@@ -342,7 +342,7 @@ namespace http
 
       }
 
-      ::payload len = length(strUrl, process_set(set, pszUrl));
+      ::payload len = length(strUrl, process_set(set, scopedstrUrl));
 
       if (len.is_empty())
       {
@@ -353,7 +353,7 @@ namespace http
       else
       {
 
-         strCache = ::as_string(len.i64());
+         strCache = ::as_string(len.as_i64());
 
       }
 
@@ -367,7 +367,7 @@ namespace http
    //bool context::request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, property_set & set)
    //{
 
-   //   return request(pszRequest, pszUrl, process_set(set, pszUrl));
+   //   return request(pszRequest, scopedstrUrl, process_set(set, scopedstrUrl));
 
    //}
 
@@ -375,25 +375,25 @@ namespace http
    //bool context::download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
    //{
 
-   //   return download(psession, pszUrl, payloadFile, process_set(set, pszUrl));
+   //   return download(psession, scopedstrUrl, payloadFile, process_set(set, scopedstrUrl));
 
    //}
 
 
  /*  bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
    {
-      return download(pszUrl, payloadFile, process_set(set, pszUrl));
+      return download(scopedstrUrl, payloadFile, process_set(set, scopedstrUrl));
    }*/
 
    bool context::put(const ::scoped_string & scopedstrUrl, memory_base * pmemory, property_set & set)
    {
 
-      return put(pszUrl, *pmemory, process_set(set, pszUrl));
+      return put(scopedstrUrl, *pmemory, process_set(set, scopedstrUrl));
    }
 
    //bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
    //{
-   //   return put(pszUrl, pfile, process_set(set, pszUrl));
+   //   return put(scopedstrUrl, pfile, process_set(set, scopedstrUrl));
    //}
 
 
@@ -405,9 +405,9 @@ namespace http
 
       //      i32 iAttempt = 0;
 
-      string strUrl(pszUrl);
+      string strUrl(scopedstrUrl);
 
-      if (strUrl.find("?") >= 0)
+      if (strUrl.contains("?"))
       {
 
          strUrl += "&";
@@ -420,7 +420,7 @@ namespace http
 
       }
 
-      strUrl += "lang=" + string(pszLocale) + "&styl=" + string(pszSchema);
+      strUrl += "lang=" + string(scopedstrLocale) + "&styl=" + string(scopedstrSchema);
 
       return strUrl;
 
@@ -434,7 +434,7 @@ namespace http
 
       output_debug_string("What?!");
 
-      string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
+      string strUrl = locale_schema_url(scopedstrUrl, scopedstrLocale, scopedstrSchema);
 
       string str;
 
@@ -446,17 +446,17 @@ namespace http
       //
       //      string strFontopusServer;
       //
-      //      if(atoi(purl->get_param(pszUrl, "authnone")) == 1
-      //            || purl->get_param(pszUrl,"sessid").case_insensitive_order("noauth") == 0)
+      //      if(atoi(purl->get_param(scopedstrUrl, "authnone")) == 1
+      //            || purl->get_param(scopedstrUrl,"sessid").case_insensitive_order("noauth") == 0)
       //      {
       //
-      //         strFontopusServer = pszUrl;
+      //         strFontopusServer = scopedstrUrl;
       //
       //      }
       //      else
       //      {
       //
-      //         strFontopusServer = psession->account()->authenticator()->get_account_server(pszUrl);
+      //         strFontopusServer = psession->account()->authenticator()->get_account_server(scopedstrUrl);
       //
       //      }
       //
@@ -647,21 +647,21 @@ namespace http
 
       single_lock synchronouslock(m_pmutexPac, true);
 
-      auto ppair = m_mapPac.plookup(pszUrl);
+      auto ppair = m_mapPac.plookup(scopedstrUrl);
 
       if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(pszUrl);
+            m_mapPac.erase_key(scopedstrUrl);
          }
 
          auto ppac = __create_new < class pac >();
 
          ppac->m_timeLastChecked= ::time::now();
 
-         ppac->m_strUrl = pszUrl;
+         ppac->m_strUrl = scopedstrUrl;
 
          ::payload payloadFile;
 
@@ -672,7 +672,7 @@ namespace http
          ppac->m_strAutoConfigScript = file()->as_string(payloadFile);
 
 
-         m_mapPac.set_at(pszUrl, ppac);
+         m_mapPac.set_at(scopedstrUrl, ppac);
 
          if (ppac->m_strAutoConfigScript.is_empty())
          {
@@ -684,7 +684,7 @@ namespace http
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         ppair = m_mapPac.plookup(pszUrl);
+         ppair = m_mapPac.plookup(scopedstrUrl);
 
          if (ppair == nullptr)
             return nullptr;
@@ -724,25 +724,25 @@ namespace http
 
       single_lock synchronouslock(m_pmutexProxy, true);
 
-      auto ppair = m_mapProxy.plookup(pszUrl);
+      auto ppair = m_mapProxy.plookup(scopedstrUrl);
 
       if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(pszUrl);
+            m_mapPac.erase_key(scopedstrUrl);
          }
 
          auto pproxy = __create_new < class ::http::context::proxy >();
 
          pproxy->m_timeLastChecked= ::time::now();
 
-         pproxy->m_strUrl = pszUrl;
+         pproxy->m_strUrl = scopedstrUrl;
 
-         config_proxy(pszUrl, pproxy);
+         config_proxy(scopedstrUrl, pproxy);
 
-         m_mapProxy.set_at(pszUrl, pproxy);
+         m_mapProxy.set_at(scopedstrUrl, pproxy);
 
          return pproxy;
 
@@ -760,15 +760,15 @@ namespace http
 
       string strProxyServer;
 
-      string strUrl(pszScriptUrl);
+      string strUrl(scopedstrScriptUrl);
 
-      if (string_begins(pszUrl, strUrl))
+      if (string_begins(scopedstrUrl, strUrl))
       {
          pproxy->m_bDirect = true;
          return true;
       }
 
-      class pac * ppac = get_pac(pszScriptUrl);
+      class pac * ppac = get_pac(scopedstrUrl);
 
       if (ppac == nullptr)
          return false;
@@ -779,9 +779,9 @@ namespace http
 
       auto purl = psystem->url();
 
-      strHost = purl->get_server(pszUrl);
+      strHost = purl->get_server(scopedstrUrl);
 
-      i32 port = purl->get_port(pszUrl);
+      i32 port = purl->get_port(scopedstrUrl);
 
       //::networking::address ad(strHost, port);
 
@@ -791,7 +791,7 @@ namespace http
       //throw ::exception(todo("scripting"));
       //try
       //{
-      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" + strHost + "');");
+      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(scopedstrUrl) + "', '" + strHost + "');");
       //}
       //catch (...)
       //{
@@ -832,7 +832,7 @@ namespace http
 
 #else
 
-      ::http::context::proxy * pproxy = get_proxy(pszUrl);
+      ::http::context::proxy * pproxy = get_proxy(scopedstrUrl);
 
       if (pproxy == nullptr)
          return;
@@ -917,9 +917,9 @@ namespace http
 
       //bool bOk = true;
 
-      //string strHost = purl->get_server(pszUrl);
+      //string strHost = purl->get_server(scopedstrUrl);
 
-      //i32 iHostPort = purl->get_port(pszUrl);
+      //i32 iHostPort = purl->get_port(scopedstrUrl);
 
       //::networking::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
@@ -1001,7 +1001,7 @@ namespace http
       ////
       ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
       ////
-      ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
+      ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
       ////         //         return;
       ////
       ////         //   }
@@ -1019,12 +1019,12 @@ namespace http
       ////
       ////         //      FORMATTED_TRACE("get_auto_config_url : %s",strUrl);
       ////
-      ////         //      if(try_pac_script(strUrl,pszUrl,pproxy))
+      ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
       ////         //         return;
       ////
       ////         //   }
       ////
-      ////         //   if(try_pac_script("http://wpad/wpad.dat",pszUrl,pproxy))
+      ////         //   if(try_pac_script("http://wpad/wpad.dat",scopedstrUrl,pproxy))
       ////         //      return;
       ////
       ////         //}
@@ -1511,9 +1511,9 @@ namespace http
 //
 //            double dRateDownloaded = 0.0;
 //
-//            i64 iContentLength = set["http_content_length"].i64();
+//            i64 iContentLength = set["http_content_length"].as_i64();
 //
-//            i64 iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+//            i64 iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
 //
 //            if (iContentLength > 0)
 //            {
@@ -1714,12 +1714,12 @@ namespace http
    bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set)
    {
 
-      bool bOk = http_get(session.m_psocket, pszUrl, set);
+      bool bOk = http_get(session.m_psocket, scopedstrUrl, set);
 
       if (bOk)
       {
 
-         const ::scoped_string & scopedstrData = (const char *)session.m_psocket->GetDataPtr();
+         const char * pszData = (const char *)session.m_psocket->GetDataPtr();
 
          strsize iSize = session.m_psocket->GetContentLength();
 
@@ -1737,7 +1737,7 @@ namespace http
 
       string str;
 
-      if (!get(session, pszUrl, str, set))
+      if (!get(session, scopedstrUrl, str, set))
       {
 
          return "";
@@ -1755,7 +1755,7 @@ namespace http
 
       //auto ptask = ::get_task();
 
-      //KEEP(ptask->payload("work_url"), pszUrl);
+      //KEEP(ptask->payload("work_url"), scopedstrUrl);
 
       auto psystem = acmesystem()->m_papexsystem;
 
@@ -1783,7 +1783,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"];
+         iTryCount = set["try"].as_i32();
 
          if (iTryCount > 5)
          {
@@ -1803,7 +1803,7 @@ namespace http
 
       string strUrl;
 
-      strUrl = pszUrl1;
+      strUrl = scopedstrUrl1;
 
       string strRedirect;
 //#ifdef BSD_STYLE_SOCKETS
@@ -2231,7 +2231,7 @@ namespace http
       if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].i32());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_i32());
 
       }
       //else
@@ -2293,7 +2293,7 @@ namespace http
 
          double dRateDownloaded = 0.0;
 
-         i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].i64();
+         i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_i64();
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2396,7 +2396,7 @@ namespace http
 
       i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code");
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       set["http_status_code"] = iStatusCode;
 
@@ -2406,9 +2406,9 @@ namespace http
 
       set["http_status"] = strStatus;
 
-      iContentLength = set["http_content_length"].i64();
+      iContentLength = set["http_content_length"].as_i64();
 
-      iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+      iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
 
       INFORMATION(LOG_HTTP_PREFIX
          << strUrl
@@ -2546,7 +2546,7 @@ namespace http
          //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
          //{
 
-         //   psession->account()->not_auth(pszUrl);
+         //   psession->account()->not_auth(scopedstrUrl);
 
          //   iRetrySession++;
 
@@ -2576,7 +2576,7 @@ namespace http
       if (set.has_property("get_response"))
       {
 
-         const ::scoped_string & scopedstrData = (const char *)psocket->GetDataPtr();
+         const char *pszData = (const char *)psocket->GetDataPtr();
 
          strsize iSize = psocket->GetContentLength();
 
@@ -2698,7 +2698,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
          pmessageMessage->m_bRet = false;
 
@@ -2713,13 +2713,13 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 
       i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code");
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2736,7 +2736,7 @@ namespace http
 
       set["file"] = spfile;
 
-      bool bOk = request(psession, pszRequest, set);
+      bool bOk = request(psession, scopedstrRequest, set);
 
       set["file"].null();
 
@@ -2768,7 +2768,7 @@ namespace http
 
          set["file"] = (::file_pointer) rfile;
 
-         bOk = http_get(psocket, pszUrl, set);
+         bOk = http_get(psocket, scopedstrUrl, set);
 
          set["file"].null();
 
@@ -2789,7 +2789,7 @@ namespace http
    bool context::exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto etype = get_type(pszUrl, set);
+      auto etype = get_type(scopedstrUrl, set);
 
       return ::exists(etype);
 
@@ -2806,7 +2806,7 @@ namespace http
       try
       {
 
-         while (m_straExists.contains(pszUrl))
+         while (m_straExists.contains(scopedstrUrl))
          {
 
             synchronouslock.unlock();
@@ -2817,7 +2817,7 @@ namespace http
 
          }
 
-         m_straExists.add(pszUrl);
+         m_straExists.add(scopedstrUrl);
 
          synchronouslock.unlock();
 
@@ -2831,9 +2831,9 @@ namespace http
 
          auto purl = psystem->url();
 
-         domain.create(purl->get_server(pszUrl));
+         domain.create(purl->get_server(scopedstrUrl));
 
-         if (string_begins(purl->get_object(pszUrl), "/matter/"))
+         if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
          {
 
             set["raw_http"] = true;
@@ -2842,18 +2842,18 @@ namespace http
 
          ::pointer<::sockets::http_client_socket>psocket;
 
-         if (!http_get(psocket, pszUrl, set))
+         if (!http_get(psocket, scopedstrUrl, set))
          {
 
             synchronouslock.lock();
 
-            m_straExists.erase(pszUrl);
+            m_straExists.erase(scopedstrUrl);
 
             return ::file::e_type_doesnt_exist;
 
          }
 
-         iStatusCode = psocket->outattr("http_status_code");
+         iStatusCode = psocket->outattr("http_status_code").as_i32();
 
          synchronouslock.lock();
 
@@ -2863,7 +2863,7 @@ namespace http
 
       }
 
-      m_straExists.erase(pszUrl);
+      m_straExists.erase(scopedstrUrl);
 
       bool bExists = iStatusCode == 200;
 
@@ -2885,9 +2885,9 @@ namespace http
 
       auto purl = psystem->url();
 
-      domain.create(purl->get_server(pszUrl));
+      domain.create(purl->get_server(scopedstrUrl));
 
-      if (string_begins(purl->get_object(pszUrl), "/matter/"))
+      if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
       {
 
          set["disable_ca2_sessid"] = true;
@@ -2896,7 +2896,7 @@ namespace http
 
       ::pointer<::sockets::http_client_socket>psocket;
 
-      if (http_get(psocket, pszUrl, set))
+      if (http_get(psocket, scopedstrUrl, set))
       {
 
          return false;
@@ -2905,7 +2905,7 @@ namespace http
 
       i32 iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code");
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       if (iStatusCode == 200)
       {
@@ -3048,7 +3048,7 @@ namespace http
 
       ::memory_file file(memory);
 
-      return put(pszUrl, &file, set);
+      return put(scopedstrUrl, &file, set);
 
    }
 
@@ -3060,7 +3060,7 @@ namespace http
 
       set["noclose"] = false;
 
-      return get(pszUrl, set).is_true();
+      return get(scopedstrUrl, set).is_true();
 
    }
 
@@ -3068,9 +3068,9 @@ namespace http
    bool context::request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
-      set["http_method"] = pszMethod;
+      set["http_method"] = scopedstrMethod;
 
-      return get(pszUrl, set).is_true();
+      return get(scopedstrUrl, set).is_true();
 
    }
 

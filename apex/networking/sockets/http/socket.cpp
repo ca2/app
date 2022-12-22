@@ -87,9 +87,9 @@ namespace sockets
                switch (m_chunk_state)
                {
                case 4:
-                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.substr(m_chunk_line.get_length() - 2) != "\r\n"))
+                  while (ptr < len && (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
                      m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.get_length() > 1 && m_chunk_line.substr(m_chunk_line.get_length() - 2) == "\r\n")
+                  if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
                   {
                      OnDataComplete();
                      // prepare for next request(or response)
@@ -112,12 +112,12 @@ namespace sockets
                   }
                   break;
                case 0:
-                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.substr(m_chunk_line.get_length() - 2) != "\r\n"))
+                  while (ptr < len && (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
                      m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.get_length() > 1 && m_chunk_line.substr(m_chunk_line.get_length() - 2) == "\r\n")
+                  if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
                   {
                      
-                     m_chunk_line = m_chunk_line.left(m_chunk_line.get_length() - 2);
+                     m_chunk_line = m_chunk_line.left(m_chunk_line.length() - 2);
                      
                      ::parse pa(m_chunk_line, ";");
 
@@ -303,7 +303,7 @@ namespace sockets
 
       }
 
-      if (!line.get_length())
+      if (!line.length())
       {
 
          if (m_body_size_left || !m_b_keepalive || m_bChunked)
@@ -331,21 +331,21 @@ namespace sockets
       atom key;
       string strKey;
       string value;
-      auto pFind = line.find(':');
-      if(::is_null(pFind))
+      auto iFind = line.find_index(':');
+      if(::not_found(iFind))
       {
          strKey = line;
       }
       else
       {
-         strKey = line(0, pFind);
+         strKey = line(0, iFind);
          strKey.trim();
          iFind++;
-         while(character_isspace(line[iFind]) && iFind < line.get_length())
+         while(character_isspace(line[iFind]) && iFind < line.length())
          {
             iFind++;
          }
-         strsize iLen = line.get_length();
+         strsize iLen = line.length();
          while(iLen >= iFind && character_isspace(line[iLen - 1]))
          {
             iLen--;

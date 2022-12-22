@@ -371,22 +371,33 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
+   
+   ::i8 & as(::i8 & i) const { return i = as_i8(); }
+   ::u8 & as(::u8  & u) const { return u = as_u8(); }
+   ::i16 & as(::i16 & i) const { return i = as_i16(); }
+   ::u16 & as(::u16 & u) const { return u = as_u16(); }
+   ::i32 & as(::i32 & i)  const { return i = as_i32(); }
+   ::u32 & as(::u32 & u)  const { return u = as_u32(); }
+   ::i64 & as(::i64 & i)  const { return i = as_i64(); }
+   ::u64 & as(::u64 & u)  const { return u = as_u64(); }
+   ::f32 & as(::f32 & f) const { return f = as_f32(); }
+   ::f64 & as(::f64 & f) const { return f = as_f64(); }
 
 
-   ::i8 i8(::i8 iDefault = 0) const;
-   ::u8 u8(::u8 uDefault = 0) const;
-   ::i16 i16(::i16 iDefault = 0) const;
-   ::u16 u16(::u16 uDefault = 0) const;
-   ::i32 i32(::i32 iDefault = 0)  const;
-   ::u32 u32(::u32 uiDefault = 0)  const;
-   ::i64 i64(::i64 iDefault = 0)  const;
-   ::u64 u64(::u64 uiDefault = 0)  const;
-   ::f32 f32(::f32 fDefault = 0) const;
-   ::f64 f64(::f64 fDefault = 0) const;
+   ::i8 as_i8(::i8 iDefault = 0) const;
+   ::u8 as_u8(::u8 uDefault = 0) const;
+   ::i16 as_i16(::i16 iDefault = 0) const;
+   ::u16 as_u16(::u16 uDefault = 0) const;
+   ::i32 as_i32(::i32 iDefault = 0)  const;
+   ::u32 as_u32(::u32 uiDefault = 0)  const;
+   ::i64 as_i64(::i64 iDefault = 0)  const;
+   ::u64 as_u64(::u64 uiDefault = 0)  const;
+   ::f32 as_f32(::f32 fDefault = 0) const;
+   ::f64 as_f64(::f64 fDefault = 0) const;
 
 
-   inline ::iptr iptr(iptr iDefault = 0)  const;
-   inline ::uptr uptr(uptr uiDefault = 0)  const;
+   inline ::iptr iptr(::iptr iDefault = 0)  const;
+   inline ::uptr uptr(::uptr uiDefault = 0)  const;
 
    ::file::path file_path() const;
    ::file_time file_time() const;
@@ -2139,7 +2150,7 @@ template < primitive_integral INTEGRAL >
 inline void copy(INTEGRAL& integral, const ::payload& payload)
 {
 
-    integral = (INTEGRAL)payload.i64();
+    integral = (INTEGRAL)payload.as_i64();
 
 }
 
@@ -2147,7 +2158,7 @@ inline void copy(INTEGRAL& integral, const ::payload& payload)
 inline void copy(f32& f, const ::payload& payload)
 {
 
-    f = payload.f32();
+    f = payload.as_f32();
 
 }
 
@@ -2155,7 +2166,7 @@ inline void copy(f32& f, const ::payload& payload)
 inline void copy(::f64& f, const ::payload & payload)
 {
 
-    f = payload.f64();
+    f = payload.as_f64();
 
 }
 

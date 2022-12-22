@@ -1,4 +1,4 @@
-/** \file resolv_socket.cpp
+﻿/** \file resolv_socket.cpp
  **   \date  2005-03-24
  **   \author grymse@alhem.net
 **/
@@ -242,7 +242,7 @@ namespace sockets
          //}
          m_parent = nullptr;
       }
-      else if (key == "Name" && !m_resolv_host.get_length() && m_parent)
+      else if (key == "Name" && !m_resolv_host.length() && m_parent)
       {
 //         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
 //         {
@@ -384,7 +384,7 @@ namespace sockets
    void resolv_socket::OnConnect()
    {
 
-      if (m_resolv_host.get_length())
+      if (m_resolv_host.length())
       {
 
          string msg = (m_resolve_ipv6 ? "gethostbyname2 " : "gethostbyname ") + m_resolv_host + "\n";

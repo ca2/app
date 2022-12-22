@@ -64,7 +64,7 @@ namespace sockets
 
          m_filename = file;
 
-         m_content_length = ::particle::file()->length(file);
+         m_content_length = ::particle::file()->length(file).as_i64();
 
       }
       else

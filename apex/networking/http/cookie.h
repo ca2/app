@@ -100,8 +100,8 @@ namespace http
          const ::scoped_string & scopedstrKey,
          const ::payload & payload,
          const class time & time = 0_s,
-         const ::scoped_string & scopedstrDomain = nullptr,
          const ::file::path & path = nullptr,
+         const ::scoped_string & scopedstrDomain = nullptr,
          bool bSecure = false);
       static string expire(const class time & time = 5_minute);
 

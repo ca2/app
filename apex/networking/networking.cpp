@@ -235,13 +235,13 @@ namespace networking
       ::parse pa(str, ":.");
 
       string tmp = pa.getword();
-      while (tmp.get_length())
+      while (tmp.length())
       {
-         if (tmp.get_length() > 4)
+         if (tmp.length() > 4)
          {
             return false;
          }
-         for (i32 i = 0; i < tmp.get_length(); i++)
+         for (i32 i = 0; i < tmp.length(); i++)
          {
             if (tmp[i] < '0' || (tmp[i] > '9' && tmp[i] < 'A') ||
                (tmp[i] > 'F' && tmp[i] < 'a') || tmp[i] > 'f')

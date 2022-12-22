@@ -6057,7 +6057,7 @@ bool string_base < ITERATOR_TYPE >::eat_before(string_base < ITERATOR_TYPE > & s
 
          strBefore = *this;
 
-         this->Empty();
+         this->empty();
 
       }
 

@@ -331,12 +331,12 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").as_string().find("gzip") >= 0)
+      if(inheader("accept-encoding").as_string().contains("gzip"))
       {
 
          string str = outheader("content-type");
 
-         if (str.case_insensitive_find("text") >= 0 || str.case_insensitive_find("javascript") >= 0)
+         if (str.case_insensitive_contains("text" || str.case_insensitive_contais("javascript"))
          {
 
             m_response.m_propertysetHeader.set_at("content-encoding", "gzip");
@@ -380,7 +380,7 @@ namespace sockets
 
       string str = strExtension;
       str.make_lower();
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
 
       string strName(pcsz);
 

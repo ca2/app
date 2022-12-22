@@ -1317,3 +1317,33 @@ inline ::string_base < ITERATOR_TYPE > operator + (const string_range < ITERATOR
    return ::move(str);
 
 }
+
+
+template < strsize n, typename ITERATOR_TYPE >
+inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const string_range < ITERATOR_TYPE > & scopedstr)
+{
+
+   return ::move(::string_base < ITERATOR_TYPE >(cha) + scopedstr);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
+{
+
+   return ::move(::string_base < ITERATOR_TYPE >(psz) + str);
+
+}
+
+
+template < strsize n, typename ITERATOR_TYPE >
+inline ::string_base < ITERATOR_TYPE > operator + (const char(&cha)[n], const string_base < ITERATOR_TYPE > & str)
+{
+
+   return ::move(::string_base < ITERATOR_TYPE >(cha) + str);
+
+}
+
+
+

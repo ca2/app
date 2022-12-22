@@ -1462,12 +1462,12 @@ namespace datetime
 
                struct tm atm;
 
-               atm.tm_sec = set["second"].i32();
-               atm.tm_min = set["minute"].i32();
-               atm.tm_hour = set["hour"].i32();
-               atm.tm_mday = set["day"].i32();
-               atm.tm_mon = set["month"].i32() - 1;        // tm_mon is 0 based
-               atm.tm_year = set["year"].i32() - 1900;     // tm_year is 1900 based
+               atm.tm_sec = set["second"].as_i32();
+               atm.tm_min = set["minute"].as_i32();
+               atm.tm_hour = set["hour"].as_i32();
+               atm.tm_mday = set["day"].as_i32();
+               atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
+               atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
                atm.tm_isdst = -1;
                /*time_t now = _time64(nullptr);
                time_t nowUtc = mktime(gmtime(&now));
@@ -1479,12 +1479,12 @@ namespace datetime
             {
 
                time = ::earth::time(
-                  set["year"].i32(),
-                  set["month"].i32(),
-                  set["day"].i32(),
-                  set["hour"].i32(),
-                  set["minute"].i32(),
-                  set["second"].i32());
+                  set["year"].as_i32(),
+                  set["month"].as_i32(),
+                  set["day"].as_i32(),
+                  set["hour"].as_i32(),
+                  set["minute"].as_i32(),
+                  set["second"].as_i32());
 
             }
 
@@ -1503,12 +1503,12 @@ namespace datetime
             international().parse_str(str, set);
 
             time = ::earth::time(
-               set["year"].i32(),
-               set["month"].i32(),
-               set["day"].i32(),
-               set["hour"].i32(),
-               set["minute"].i32(),
-               set["second"].i32());
+               set["year"].as_i32(),
+               set["month"].as_i32(),
+               set["day"].as_i32(),
+               set["hour"].as_i32(),
+               set["minute"].as_i32(),
+               set["second"].as_i32());
             iStart = 11;
          }
       }
@@ -1522,12 +1522,12 @@ namespace datetime
             parse_br_str(str, set);
 
             time = ::earth::time(
-               set["year"].i32(),
-               set["month"].i32(),
-               set["day"].i32(),
-               set["hour"].i32(),
-               set["minute"].i32(),
-               set["second"].i32());
+               set["year"].as_i32(),
+               set["month"].as_i32(),
+               set["day"].as_i32(),
+               set["hour"].as_i32(),
+               set["minute"].as_i32(),
+               set["second"].as_i32());
             iStart = 11;
          }
       }

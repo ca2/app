@@ -280,7 +280,7 @@ namespace interprocess
 
             string strOriginObject = propertyset["protocol"]["origin_object"];
 
-            auto iCallId = propertyset["protocol"]["call_id"].i64();
+            auto iCallId = propertyset["protocol"]["call_id"].as_i64();
 
             auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -765,7 +765,7 @@ namespace interprocess
          if (strMember.case_insensitive_begins("reply."))
          {
 
-            ::i64 iTask = propertyset["protocol:call_id"];
+            ::i64 iTask = propertyset["protocol:call_id"].as_i64();
 
             auto pinterprocesstask = get_task(iTask);
 
@@ -792,7 +792,7 @@ namespace interprocess
             papp->m_papexapplication->on_additional_local_instance(
                (bool &)payload["handled"],
                strModule,
-               propertyset["pid"].i32(),
+               propertyset["pid"].as_i32(),
                strCommandLine);
 
             propertyset["continue"] = true;
@@ -961,7 +961,7 @@ namespace interprocess
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
+      ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.as_i64());
 
       string strModuleList = acmefile()->as_string(pathModule);
 

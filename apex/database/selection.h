@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "selection_item.h"
@@ -14,7 +14,7 @@ namespace database
    public:
 
 
-      array < selection_item,selection_item & > m_itema;
+      array < selection_item, const selection_item & > m_itema;
 
 
       selection();

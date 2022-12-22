@@ -76,6 +76,7 @@ public:
 
    inline bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
    inline bool has(ENUM e) const { return is(e); }
+   inline bool is_clear(ENUM e) const { return !(m_eenum & e); }
 
    void erase(ENUM e) { operator -= (e); }
    void add(const enumeration & e) { operator += (e); }

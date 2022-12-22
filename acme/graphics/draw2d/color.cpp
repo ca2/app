@@ -1219,10 +1219,10 @@ namespace color
    ::color::color & color::operator =(const ::payload & payload)
    {
 
-      red = payload["red"].u8();
-      green = payload["green"].u8();
-      blue = payload["blue"].u8();
-      alpha = payload["alpha"].u8();
+      red = payload["red"].as_u8();
+      green = payload["green"].as_u8();
+      blue = payload["blue"].as_u8();
+      alpha = payload["alpha"].as_u8();
 
       return *this;
 
@@ -1241,9 +1241,9 @@ namespace color
       else if(payload.m_etype == e_type_property_set)
       {
 
-         m_dH = payload["hue"].f64();
-         m_dL = payload["lightness"].f64();
-         m_dS = payload["saturation"].f64();
+         m_dH = payload["hue"].as_f64();
+         m_dL = payload["lightness"].as_f64();
+         m_dS = payload["saturation"].as_f64();
 
       }
 

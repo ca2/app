@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "set.h"
 #include "acme/parallelization/event.h"
 #include "apex/platform/context.h"
@@ -189,9 +189,9 @@ namespace file
    bool set::get_next_file(const ::scoped_string & scopedstrFile, string & strNext)
    {
 
-      auto pFind = find_first_file(scopedstrFile);
+      auto iFind = find_first_file(scopedstrFile);
 
-      if(::is_null(pFind))
+      if(not_found(iFind))
       {
 
          iFind = -1;

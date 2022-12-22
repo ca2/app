@@ -820,7 +820,7 @@ string property_object::find_string(const ::atom & atom, const ::ansi_character 
 
    }
 
-   return pproperty->i32(iDefault);
+   return pproperty->as_i32(iDefault);
 
 }
 
@@ -844,7 +844,7 @@ string property_object::find_string(const ::atom & atom, const ::ansi_character 
 
    }
 
-   return pproperty->u32(iDefault);
+   return pproperty->as_u32(iDefault);
 
 }
 

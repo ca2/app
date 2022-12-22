@@ -63,7 +63,7 @@ namespace http
 
       strsize extra = 2;
 
-      string strContentType(pszContentType);
+      string strContentType(scopedstrContentType);
 
       infil->seek_to_begin();
 
@@ -147,7 +147,7 @@ namespace http
                                  if (!h.is_empty() && h[0] == '"')
                                  {
 
-                                    current_name = h.substr(1, h.get_length() - 2);
+                                    current_name = h.substr(1, h.length() - 2);
 
                                  }
                                  else
@@ -164,7 +164,7 @@ namespace http
                                  if (!h.is_empty() && h[0] == '"')
                                  {
 
-                                    current_filename = h.substr(1, h.get_length() - 2);
+                                    current_filename = h.substr(1, h.length() - 2);
 
                                  }
                                  else
@@ -176,7 +176,7 @@ namespace http
 
                                  strsize x = 0;
 
-                                 for (i32 i = 0; i < current_filename.get_length(); i++)
+                                 for (i32 i = 0; i < current_filename.length(); i++)
                                  {
 
                                     if (current_filename[i] == '/' || current_filename[i] == '\\')
@@ -229,10 +229,10 @@ namespace http
 
                      // erase trailing color32/linefeed
 
-                     while (!val.is_empty() && (val[val.get_length() - 1] == 13 || val[val.get_length() - 1] == 10))
+                     while (!val.is_empty() && (val[val.length() - 1] == 13 || val[val.length() - 1] == 10))
                      {
 
-                        val = val.substr(0,val.get_length() - 1);
+                        val = val.substr(0,val.length() - 1);
 
                      }
 
@@ -242,7 +242,7 @@ namespace http
                      m_setPost[current_name] = val;
 
                   }
-                  else // current_filename.get_length() > 0
+                  else // current_filename.length() > 0
                   {
 
                      // read until m_strBoundary...

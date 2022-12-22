@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "command.h"
 #include "channel.h"
 ////#include "acme/exception/exception.h"
@@ -240,11 +240,11 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->_001SetText(pszText, ::e_source_sync);
+         m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
 
       }
 
-      m_strText = pszText;
+      m_strText = scopedstrText;
 
 
    }

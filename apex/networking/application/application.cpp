@@ -118,12 +118,12 @@ namespace networking
       if (strServer.is_empty())
       {
 
-         auto pFind = strUrl.find(":/");
+         auto iFind = strUrl.find_index(":/");
 
          if (iFind > 0)
          {
 
-            strRequestScript = strUrl(pFind + 1);
+            strRequestScript = strUrl(iFind + 1);
 
          }
 

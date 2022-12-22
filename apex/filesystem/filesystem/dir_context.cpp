@@ -1023,7 +1023,7 @@ bool dir_context::is(const ::file::path& pathParam)
 
    bool bIs = false;
 
-   if (!(pathParam & ::file::e_flag_bypass_cache) && is_cached(bIs, path))
+   if (!(pathParam.flags() & ::file::e_flag_bypass_cache) && is_cached(bIs, path))
    {
 
       return bIs;
@@ -1069,7 +1069,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
       property_set set;
 
-      if (path & ::file::e_flag_bypass_cache)
+      if (path.flags() & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -1862,16 +1862,16 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       else
       {
 
-         strsize iFind1 = strMatter.case_insensitive_find("/matter/");
+         strsize iFind1 = strMatter.case_insensitive_find_index("/matter/");
 
-         strsize iFind2 = strMatter.case_insensitive_find("\\matter\\");
+         strsize iFind2 = strMatter.case_insensitive_find_index("\\matter\\");
 
-         auto pFind = minimum_non_negative(iFind1, iFind2);
+         auto iFind = minimum_non_negative(iFind1, iFind2);
 
          if (iFind > 0)
          {
 
-            strMatter = strMatter(pFind);
+            strMatter = strMatter(iFind);
 
          }
 
@@ -1883,7 +1883,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       ::file::path strFile = dir()->cache() / strMatter / "list_dir.list_dir";
 
-      auto pFind = strFile.find(DIR_SEPARATOR);
+      auto iFind = strFile.find_index(DIR_SEPARATOR);
 
       if (iFind > 0)
       {
@@ -2130,7 +2130,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          }
 
-         if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
+         if (!(patha[0].flags() & ::file::e_flag_bypass_cache) && path.has_char())
          {
 
             string strFinal(path);
@@ -2207,14 +2207,14 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       set["disable_common_name_cert_check"] = true;
 
-      if (patha[0] & ::file::e_flag_required)
+      if (patha[0].flags() & ::file::e_flag_required)
       {
 
          set["required"] = true;
 
       }
 
-      if (patha[0] & ::file::e_flag_bypass_cache)
+      if (patha[0].flags() & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -2268,14 +2268,14 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strToken = "/matter/";
 
-      auto pFind = strMatter.case_insensitive_find(strToken);
+      auto iFind = strMatter.case_insensitive_find_index(strToken);
 
-      if (strMatter.has_char() && ::is_set(pFind))
+      if (strMatter.has_char() && ::found(iFind))
       {
 
          iFind += strToken.length();
 
-         path = "appmatter://" + strMatter(pFind);
+         path = "appmatter://" + strMatter(iFind);
 
          path.m_iDir = bDir ? 1 : 0;
 
@@ -2398,7 +2398,7 @@ ret:
 
       file()->erase(pathMeta);
 
-      ((enumeration < ::file::enum_flag >&)path) = patha[0];
+      path.flags() = patha[0].flags();
 
    }
 
@@ -2476,16 +2476,16 @@ ret:
 ::file::path dir_context::appmatter(string strApp, ::file::path pathRel)
 {
 
-   auto pFind = strApp.find('/');
+   auto iFind = strApp.find_index('/');
 
    string strRepo;
 
    if (iFind > 0)
    {
 
-      strRepo = strApp(0, pFind);
+      strRepo = strApp(0, iFind);
 
-      strApp = strApp(pFind + 1);
+      strApp = strApp(iFind + 1);
 
    }
    else
@@ -2543,9 +2543,9 @@ ret:
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   string strAppId(pszAppId);
+   string strAppId(scopedstrAppId);
 
-   string strPlatform(pszPlatform);
+   string strPlatform(scopedstrPlatform);
 
    auto psystem = acmesystem()->m_papexsystem;
 
@@ -2556,7 +2556,7 @@ ret:
 
    }
 
-   string strConfiguration(pszConfiguration);
+   string strConfiguration(scopedstrConfiguration);
 
    if (strConfiguration.is_empty())
    {
@@ -2565,19 +2565,25 @@ ret:
 
    }
 
-   string strBuild(pszBuild);
+   string strBuild(scopedstrBuild);
 
    return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId;
 
 }
 
 
-::file::path dir_context::commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+::file::path dir_context::commonappdata_locale_schema(
+   const ::scoped_string & scopedstrAppId,
+   const ::scoped_string & scopedstrBuild, 
+   const ::scoped_string & scopedstrPlatform, 
+   const ::scoped_string & scopedstrConfiguration,
+   const ::scoped_string & scopedstrLocale, 
+   const ::scoped_string & scopedstrSchema)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   string strLocale(pszLocale);
+   string strLocale(scopedstrLocale);
 
    if (strLocale.is_empty())
    {
@@ -2586,7 +2592,7 @@ ret:
 
    }
 
-   string strSchema(pszSchema);
+   string strSchema(scopedstrSchema);
 
    if (strSchema.is_empty())
    {
@@ -2595,7 +2601,7 @@ ret:
 
    }
 
-   return commonappdata(pszAppId, pszBuild, pszPlatform, pszConfiguration) / strLocale / strSchema;
+   return commonappdata(scopedstrAppId, scopedstrBuild, scopedstrPlatform, scopedstrConfiguration) / strLocale / strSchema;
 
 }
 
@@ -2671,13 +2677,13 @@ ret:
    if (::is_set(pFind))
    {
 
-      strsize iFind1 = strRelative(pFind).rear_find("\\");
+      auto pFind1 = strRelative(pFind).rear_find("\\");
 
-      strsize iFind2 = strRelative(pFind).rear_find("/");
+      auto pFind2 = strRelative(pFind).rear_find("/");
 
-      strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
+      auto pStart = maximum(pFind1 + 1, pFind2 + 1);
 
-      strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
+      strRelative = strRelative.left(pFind - 1) + "_" + strRelative.substr(pStart, pFind - pStart) + strRelative(pFind + 1);
 
    }
 

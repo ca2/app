@@ -123,7 +123,7 @@ namespace sockets
          if (m_straProxy.get_count() == 1)
          {
 
-            strsize iPos = str.find(" ");
+            strsize iPos = str.find_index(" ");
 
             string strStatus;
 
@@ -231,7 +231,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnData(const ::scoped_string & scopedstr, memsize size)
+   void http_tunnel::OnData(const char * psz, memsize size)
    {
 
       m_pfileBody->write(psz, size);

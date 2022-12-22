@@ -114,7 +114,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathParam);
 
-   if (!(path & ::file::e_flag_required) && path.is_empty())
+   if (path.flags().is_clear(::file::e_flag_required) && path.is_empty())
    {
 
       return false;
@@ -153,14 +153,14 @@ bool file_context::exists(const ::file::path &pathParam)
 
       property_set set;
 
-      if (path & ::file::e_flag_required)
+      if (path.flags() & ::file::e_flag_required)
       {
 
          set["required"] = true;
 
       }
 
-      if (path & ::file::e_flag_bypass_cache)
+      if (path.flags() & ::file::e_flag_bypass_cache)
       {
 
          set["nocache"] = true;
@@ -174,9 +174,9 @@ bool file_context::exists(const ::file::path &pathParam)
    if (::task_flag().is_set(e_task_flag_compress_is_dir))
    {
 
-      auto pFind = ::str().find_file_extension("zip:", path);
+      auto iFind = ::str().find_file_extension("zip:", path);
 
-      if (::is_set(pFind))
+      if (found(iFind))
       {
 
          if (!exists(path.substr(0, iFind + 4)))
@@ -496,7 +496,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 }
 
 
-i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array &stra)
+i32 file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array &stra)
 {
 
    i32 iMax = -1;
@@ -508,7 +508,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
       string str = stra[i].name();
 
-      if (str.case_insensitive_begins_eat(pszPrefix))
+      if (str.case_insensitive_begins_eat(scopedstrPrefix))
       {
 
          if (str.length() < 2)
@@ -1145,17 +1145,10 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 }
 
 
-void file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
+void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopestrContents)
 {
 
-   if (::is_null(pcszContents))
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   return add_contents(payloadFile, pcszContents, strlen(pcszContents));
+   return add_contents(payloadFile, scopestrContents.begin(), scopestrContents.size());
 
 }
 
@@ -2144,7 +2137,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-::file::path file_context::sys_temp(const ::file::path &lpszName, const char *pszExtension)
+::file::path file_context::sys_temp(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
 {
 
 
@@ -2167,11 +2160,11 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
       sprintf(buf, "%d", i);
 
       str = strTempDir;
-      str += lpszName;
+      str += scopedstrName;
       str += "-";
       str += buf;
       str += ".";
-      str += pszExtension;
+      str += scopedstrExtension;
 
       if (!exists(str))
       {
@@ -2295,16 +2288,16 @@ file_pointer file_context::get(const ::file::path &name)
 void file_context::set_extension(::file::path & path, const ::scoped_string & scopedstrExtension)
 {
 
-   strsize iEnd = path.rear_find('.');
+   strsize iEnd = path.rear_find_index('.');
 
    if (iEnd < 0)
    {
 
-      iEnd = path.get_length();
+      iEnd = path.length();
 
    }
 
-   path = path.left(iEnd) + ::str().has_char(pszExtension, ".");
+   path = path.left(iEnd) + ::str().has_char(scopedstrExtension, ".");
 
 }
 
@@ -2898,14 +2891,14 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
    string strSample = strData.left(4096);
 
-   auto pFind = strSample.find(";", 5);
+   auto iFind = strSample.find_index(";", 5);
 
    if (iFind > 5)
    {
 
-      strsize iEncoding1 = strSample.find(",", iFind + 1);
+      strsize iEncoding1 = strSample.find_index(",", iFind + 1);
 
-      strsize iEncoding2 = strSample.find(";", iFind + 1);
+      strsize iEncoding2 = strSample.find_index(";", iFind + 1);
 
       strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
 
@@ -3086,7 +3079,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
 
-      if (!(path & ::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
+      if (path.flags().is_clear(::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -3277,19 +3270,19 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    }
 
-   if (!(path & ::file::e_flag_required) &&
+   if (path.flags().is_clear(::file::e_flag_required) &&
          payloadFile.is_property_true("required"))
    {
 
-      path |= ::file::e_flag_required;
+      path.flags().set(::file::e_flag_required);
 
    }
 
-   if (!(path & ::file::e_flag_bypass_cache)
+   if (path.flags().is_clear(::file::e_flag_bypass_cache)
          && ((eopen & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
    {
 
-      path |= ::file::e_flag_bypass_cache;
+      path.flags().set(::file::e_flag_bypass_cache);
 
    }
 
@@ -3844,7 +3837,7 @@ bool file_context::is_link(string strPath)
 //}
 
 
-void file_context::crypto_set(const ::payload &payloadFile, const char *pszData, const char *pszSalt)
+void file_context::crypto_set(const ::payload &payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt)
 {
 
    throw ::interface_only();
@@ -3854,7 +3847,7 @@ void file_context::crypto_set(const ::payload &payloadFile, const char *pszData,
 }
 
 
-void file_context::crypto_get(const ::payload &payloadFile, string &str, const char *pszSalt)
+void file_context::crypto_get(const ::payload &payloadFile, string &str, const ::scoped_string & scopedstrSalt)
 {
 
    throw ::interface_only();

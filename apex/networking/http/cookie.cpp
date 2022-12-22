@@ -136,9 +136,9 @@ namespace http
    http::cookie & cookies::cookie(const char * name)
    {
 
-      auto pFind = find_cookie(name);
+      auto iFind = find_cookie(name);
 
-      if(::is_null(pFind))
+      if(not_found(iFind))
       {
 
          auto pcookie = __new(class cookie);
@@ -159,9 +159,9 @@ namespace http
    http::cookie & cookies::lowcookie(const char * name)
    {
 
-      auto pFind = lowfind_cookie(name);
+      auto iFind = lowfind_cookie(name);
 
-      if(::is_null(pFind))
+      if(::not_found(iFind))
       {
 
          class cookie ca;
@@ -174,7 +174,7 @@ namespace http
 
          iFind = find_cookie(name);
 
-         ASSERT(::is_set(pFind));
+         ASSERT(::found(iFind));
 
       }
 
@@ -189,6 +189,7 @@ namespace http
       cookie->m_bSecure = false;
       //string_array stra;
       //stra.add_tokens(psz, ";", true);
+      auto psz = scopedstr.begin();
       bool bRun = true;
       i32 i = 0;
       while(bRun)
@@ -198,13 +199,13 @@ namespace http
          if(!bRun)
             pszEnd = psz + strlen(psz);
 
-         const ::scoped_string & scopedstrEqual = strchr(psz, '=');
+         const ::ansi_character * pszEqual = strchr(psz, '=');
          if(pszEqual > pszEnd)
             pszEqual = nullptr;
          if(i == 0)
          {
             if(pszEqual != nullptr)
-            {
+            { 
                cookie->m_strName = string(psz, pszEqual - psz);
                cookie->m_strNameLow = cookie->m_strName;
                cookie->m_strNameLow.make_lower();
@@ -242,8 +243,8 @@ namespace http
          i++;
          psz = pszEnd + 1;
       }
-      auto pFind = find_cookie(cookie->m_strName);
-      if(::is_null(pFind))
+      auto iFind = find_cookie(cookie->m_strName);
+      if(::not_found(iFind))
       {
          add(cookie);
          return;
@@ -267,14 +268,14 @@ namespace http
 
    strsize cookies::get_length( const char * name)
    {
-      return cookie(name).m_varValue.as_string().get_length();
+      return cookie(name).m_varValue.as_string().length();
    }
 
 
-   bool cookies::set_cookie(const char * name, const ::payload & payload, const class time & time, const ::file::path & path, const char * domain, bool bSecure)
+   bool cookies::set_cookie(const ::scoped_string & scopedstrName, const ::payload & payload, const class time & time, const ::file::path & path, const ::scoped_string & scopedstrDomain, bool bSecure)
    {
 
-      auto & cookie = this->cookie(name);
+      auto & cookie = this->cookie(scopedstrName);
 
       cookie.m_varValue = payload;
 
@@ -287,7 +288,7 @@ namespace http
 
       cookie.m_strPath = path;
 
-      cookie.m_strDomain = domain;
+      cookie.m_strDomain = scopedstrDomain;
 
       cookie.m_bSecure = bSecure;
 
@@ -341,13 +342,13 @@ namespace http
    void cookies::parse_header(const ::scoped_string & scopedstr)
    {
 
-      if(psz == nullptr)
+      if(scopedstr.is_empty())
          return;
 
       string_array stra;
-      const ::scoped_string & scopedstrParam = psz;
-      const ::scoped_string & scopedstrParamEnd;
-      const ::scoped_string & scopedstrKeyEnd;
+      const char * pszParam = scopedstr.begin();
+      const char * pszParamEnd;
+      const char * pszKeyEnd;
       class cookie ca;
       while(true)
       {

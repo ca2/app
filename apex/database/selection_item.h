@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "key.h"
@@ -17,8 +17,9 @@ namespace database
 
 
       selection_item();
-      selection_item(key & key);
-      virtual ~selection_item();
+      selection_item(const key & key);
+      selection_item(const selection_item & selection_item);
+      ~selection_item();
 
 
    };

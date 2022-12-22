@@ -118,7 +118,7 @@ namespace message
    ::u32 translate_to_os_message(const ::atom& atom)
    {
 
-      return atom.u32();
+      return atom.as_u32();
 
    }
 

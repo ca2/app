@@ -138,7 +138,7 @@ namespace sockets
 
                string strContentType = inheader("content-type");
 
-               if (strContentType.case_insensitive_find("application/json") < 0)
+               if (not_found(strContentType.case_insensitive_find_index("application/json")))
                {
 
                   inheader("content-type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
@@ -167,7 +167,7 @@ namespace sockets
 
             m_fields.get_network_arguments(strBody);
 
-            if (inheader("content-type").as_string().case_insensitive_find("application/x-www-form-urlencoded") < 0)
+            if (not_found(inheader("content-type").as_string().case_insensitive_find("application/x-www-form-urlencoded")))
             {
 
                inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type"), "; ");
@@ -311,7 +311,7 @@ namespace sockets
             tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
                   + content_type + strContentLength + "\r\n";
 
-            length += (long)tmp.get_length();
+            length += (long)tmp.length();
 
             length += content_length;
 
@@ -338,7 +338,7 @@ namespace sockets
          //      "content-type: " + content-type + "\r\n"
          //      "\r\n";
 
-         //   length += (long)tmp.get_length();
+         //   length += (long)tmp.length();
 
          //   length += content-length;
 
@@ -351,7 +351,7 @@ namespace sockets
       // end
       tmp = "--" + m_boundary + "--\r\n";
 
-      length += (long)tmp.get_length();
+      length += (long)tmp.length();
 
       // build header, send body
       m_request.attr("http_method") = "POST";

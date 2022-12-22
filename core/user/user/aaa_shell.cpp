@@ -87,7 +87,7 @@ namespace user
          else
          {
 
-            m_strExtension.Empty();
+            m_strExtension.empty();
 
          }
 
@@ -109,13 +109,13 @@ namespace user
          if (iDot < 0)
          {
 
-            m_strExtension.Empty();
+            m_strExtension.empty();
 
          }
          else
          {
 
-            m_strExtension = strPath.Mid(iDot + 1);
+            m_strExtension = strPath.substr(iDot + 1);
 
          }
 

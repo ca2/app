@@ -63,7 +63,7 @@ namespace user
 
             }
 
-            string strWord = str.Mid(iFind, iFind3 - iFind);
+            string strWord = str.substr(iFind, iFind3 - iFind);
 
             stra.add(strWord);
 

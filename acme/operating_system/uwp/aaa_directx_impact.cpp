@@ -220,9 +220,9 @@ namespace universal_windows
    void impact::ReplaceText(CoreTextRange  modifiedRange, String ^ text)
    {
       // Modify the internal text store.
-      m_strText = m_strText.Left(modifiedRange.StartCaretPosition) +
+      m_strText = m_strText.left(modifiedRange.StartCaretPosition) +
          text->Begin() +
-         m_strText.Mid(modifiedRange.EndCaretPosition);
+         m_strText.substr(modifiedRange.EndCaretPosition);
 
       // Move the caret to the end of the replacement text.
       _selection.StartCaretPosition = modifiedRange.StartCaretPosition + m_strText.length();
@@ -272,7 +272,7 @@ namespace universal_windows
    void impact::EditContext_TextRequested(CoreTextEditContext ^ sender, CoreTextTextRequestedEventArgs ^args)
    {
       CoreTextTextRequest ^ request = args->Request;
-      request->Text = m_strText.Mid(
+      request->Text = m_strText.substr(
          request->Range.StartCaretPosition,
          minimum(request->Range.EndCaretPosition, m_strText.length()) - request->Range.StartCaretPosition);
    }
@@ -292,9 +292,9 @@ namespace universal_windows
       auto pwsz= newText.c_str();
       m_strNewText = newText;
       // Modify the internal text store.
-      m_strText = m_strText.Left( range.StartCaretPosition) +
+      m_strText = m_strText.left( range.StartCaretPosition) +
          newText +
-         m_strText.Mid(minimum(m_strText.length(), range.EndCaretPosition));
+         m_strText.substr(minimum(m_strText.length(), range.EndCaretPosition));
 
       // You can set the proper font or direction for the updated text based on the language by checking
       // args.InputLanguage.  We will not do that in this sample.
@@ -520,7 +520,7 @@ namespace universal_windows
          //   range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //   ReplaceText(range, "");
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
 
          // Left arrow
@@ -554,7 +554,7 @@ namespace universal_windows
          //      SetSelectionAndNotify(range);
          //   }
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
 
          // Right arrow
@@ -588,7 +588,7 @@ namespace universal_windows
          //      SetSelectionAndNotify(range);
          //   }
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
       }
    }

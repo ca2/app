@@ -122,10 +122,13 @@ public:
 
    using iterator = ::list_iterator_item < typename BASE_ITERATOR_TYPE::iterator >;
    using const_iterator = ::list_iterator_item < typename BASE_ITERATOR_TYPE::const_iterator >;
-   using THIS_ITERATOR = ::list_iterator_item < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
+   using THIS_ITERATOR = ::list_iterator_item < BASE_ITERATOR_TYPE >;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM;
+
+
+   using THIS_ITEM_POINTER = typename BASE_ITERATOR_TYPE::THIS_ITEM_POINTER;
 
 
    using BASE_ITERATOR_TYPE::BASE_ITERATOR_TYPE;
@@ -135,8 +138,8 @@ public:
    list_iterator_item(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   ITEM * item() { return this->get(); }
-   const ITEM * item() const { return this->get(); }
+   auto item() { return this->get(); }
+   auto item() const { return this->get(); }
 
 
 };
@@ -446,8 +449,8 @@ public:
    bool operator !() const { return ::is_set(this->get()); }
 
 
-   ITEM & operator *() { return *this->item(); }
-   CONST_ITEM & operator *() const { return *this->item(); }
+   auto & operator *() { return *this->item(); }
+   auto & operator *() const { return *this->item(); }
 
 
    auto operator ->() { return this->item(); }

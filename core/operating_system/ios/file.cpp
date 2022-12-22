@@ -116,7 +116,7 @@ namespace ios
 
       m_iFile = (::u32)hFileNull;
       
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
       m_strFileName = path;
       
@@ -469,7 +469,7 @@ namespace ios
 
       m_iFile = (::u32) hFileNull;
       //      m_bCloseOnDelete = false;
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
       if (bError)
          ::file::throw_os_error( (::i32)::get_last_error());
@@ -484,7 +484,7 @@ namespace ios
 //         ::close(m_iFile);
 //         m_iFile = (::u32)hFileNull;
 //      }
-//      m_strFileName.Empty();
+//      m_strFileName.empty();
 //   }
 //
    
@@ -659,7 +659,7 @@ namespace ios
 //      wstrFileName = utf8_to_unicode(lpszFileName);
 //      //      if (!windows_full_path(wstrFullName, wstrFileName))
 //      //    {
-//      //     rStatus.m_strFullName.Empty();
+//      //     rStatus.m_strFullName.empty();
 //      //   return false;
 //      //}
 //

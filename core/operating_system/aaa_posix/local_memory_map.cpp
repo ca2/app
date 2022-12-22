@@ -14,7 +14,7 @@ namespace file
    void memory_map::construct()
    {
 
-      m_strName.Empty();
+      m_strName.empty();
       m_iFile = -1;
       m_pdata = (void *)MAP_FAILED;
       m_bRead = false;

@@ -78,13 +78,13 @@ namespace sockets
 
       if (dt.get_length() == 19)
       {
-         tp.tm_year = atoi(dt.Mid(0,4)) - 1900;
-         i = atoi(dt.Mid(5,2)) - 1;
+         tp.tm_year = atoi(dt.substr(0,4)) - 1900;
+         i = atoi(dt.substr(5,2)) - 1;
          tp.tm_mon = i >= 0 ? i : 0;
-         tp.tm_mday = atoi(dt.Mid(8,2));
-         tp.tm_hour = atoi(dt.Mid(11,2));
-         tp.tm_min = atoi(dt.Mid(14,2));
-         tp.tm_sec = atoi(dt.Mid(17,2));
+         tp.tm_mday = atoi(dt.substr(8,2));
+         tp.tm_hour = atoi(dt.substr(11,2));
+         tp.tm_min = atoi(dt.substr(14,2));
+         tp.tm_sec = atoi(dt.substr(17,2));
          tp.tm_wday = 0;
          tp.tm_yday = 0;
          tp.tm_isdst = 0;

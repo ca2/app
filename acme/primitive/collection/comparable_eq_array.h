@@ -131,7 +131,7 @@ public:
    TYPE get_next(ARG_TYPE t)
    {
 
-      auto pFind = this->find_first(t);
+      auto iFind = this->find_first(t);
 
       if (this->is_empty())
       {
@@ -140,7 +140,7 @@ public:
 
       }
 
-      if (::is_null(pFind))
+      if (iFind < 0)
       {
 
          return this->first();
@@ -623,9 +623,9 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique_at(::inde
 
    }
 
-   auto pFind = this->find_first(t);
+   auto iFind = this->find_first(t);
 
-   if (::is_null(pFind))
+   if (iFind < 0)
    {
 
       this->insert_at(i, t);

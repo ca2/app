@@ -997,7 +997,7 @@ namespace experience
    bool frame::get_window_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      if (__type_name(this).contains_ci("file"))
+      if (__type_name(this).case_insensitive_contains("file"))
       {
 
 

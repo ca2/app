@@ -99,7 +99,7 @@ namespace account
 //
 //      doc.load(strAuth);
 //
-//      m_strGateway.Empty();
+//      m_strGateway.empty();
 //
 //      if(doc.get_name() == "response")
 //      {

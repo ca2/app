@@ -84,7 +84,7 @@ namespace aura
 
          }
 
-         string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
+         string strEncoding = str.substr(iMime + 1, iEncoding - iMime - 1);
 
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
@@ -107,11 +107,11 @@ namespace aura
 
             }
 
-            string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
+            string strBase64 = str.substr(iEncoding + 1, iBase64 - iEncoding - 1);
 
             string strPack = "%pack" + ::as_string(iPack + 1) + "%";
 
-            str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
+            str = str.left(iEncoding + 1) + strPack + str.substr(iBase64);
 
             base64map[strPack] = strBase64;
 
@@ -788,7 +788,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - before selection
-               auto strLeft = strLineGraphics.Left(iCurLineSelBeg);
+               auto strLeft = strLineGraphics.left(iCurLineSelBeg);
                pgraphics->text_out(left, y, strLeft);
 
             }
@@ -797,7 +797,7 @@ namespace user
             {
 
                // Draw Normal Text - not selected - after selection
-               string strRight = strLineGraphics.Mid(iCurLineSelEnd);
+               string strRight = strLineGraphics.substr(iCurLineSelEnd);
                pgraphics->text_out(left + x2, y, strRight);
 
             }
@@ -817,7 +817,7 @@ namespace user
             {
 
                // Draw Selected Text
-               string strSelected = strLineGraphics.Mid(iCurLineSelBeg, iCurLineSelEnd - iCurLineSelBeg);
+               string strSelected = strLineGraphics.substr(iCurLineSelBeg, iCurLineSelEnd - iCurLineSelBeg);
                pgraphics->text_out(left + x1, y, strSelected);
 
             }
@@ -3871,7 +3871,7 @@ namespace user
       else
       {
 
-         strLine.Empty();
+         strLine.empty();
 
       }
 
@@ -6646,7 +6646,7 @@ namespace user
             //      if (iNewCursorPosition > 1)
             //      {
 
-            //         wd16_string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
 
@@ -6663,7 +6663,7 @@ namespace user
             //      if (iNewCursorPosition < 0)
             //      {
 
-            //         wd16_string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+            //         wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
 
             //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6697,7 +6697,7 @@ namespace user
                   if (iNewCursorPosition > 1)
                   {
 
-                     wd16_string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
 
@@ -6712,7 +6712,7 @@ namespace user
                   if (iNewCursorPosition < 0)
                   {
 
-                     wd16_string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+                     wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
 
                      iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
@@ -6792,7 +6792,7 @@ namespace user
 
             strsize iEnd = wd16_to_ansi_len(wstrText, iCandidateEnd);
 
-            string strComposition(strText.Mid(iStart, iEnd - iStart));
+            string strComposition(strText.substr(iStart, iEnd - iStart));
 
             m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
@@ -8238,7 +8238,7 @@ namespace user
    void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
-      ::output_debug_string("plain_edit::insert_text: \"" + strText.Left(64) + "\" \n");
+      ::output_debug_string("plain_edit::insert_text: \"" + strText.left(64) + "\" \n");
 
       synchronous_lock synchronouslock(this->synchronization());
 

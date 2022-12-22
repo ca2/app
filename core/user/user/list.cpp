@@ -306,7 +306,7 @@ namespace user
                rectangle.right = rectangleClient.right;
                rectangle.bottom = ::i32(y - pointOffset.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart, i - iStart), rectangle, e_align_left);
+               pgraphics->_DrawText(m_strTopText.substr(iStart, i - iStart), rectangle, e_align_left);
                iStart = iNewStart;
             }
          }
@@ -6356,7 +6356,7 @@ namespace user
       //   for (index j = 0; j < m_pcolumna->get_count(); j++)
       //   {
       //      list_column * pcolumn = m_pcolumna->get_by_index(j);
-      //      item.m_strText.Empty();
+      //      item.m_strText.empty();
       //      item.m_iItem = iFilter1Step;
       //      item.m_iSubItem = pcolumn->m_iSubItem;
       //      item.m_iListItem = -1;

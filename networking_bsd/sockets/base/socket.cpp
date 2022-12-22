@@ -852,7 +852,7 @@ namespace sockets_bsd
       //psocket->m_psslcontext->m_iSslCtxRetry = 0;
       //psocket->m_psslcontext->m_ssl = nullptr;
       //psocket->m_psslcontext->m_sbio = nullptr;
-      psocket2->m_password.Empty();
+      psocket2->m_password.empty();
 
 
    }

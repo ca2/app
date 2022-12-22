@@ -4488,9 +4488,9 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
    case e_type_i32_array:
       return ia().contains(atoi(psz), find, last);
    case e_type_string_array:
-      return stra().contains_ci(psz, find, last);
+      return stra().case_insensitive_contains(psz, find, last);
    case e_type_payload_array:
-      return payloada().contains_ci(psz, find, last);
+      return payloada().case_insensitive_contains(psz, find, last);
    case e_type_property_set:
       return propset().contains_value_ci(psz, find, last);
    default:
@@ -6578,11 +6578,11 @@ bool is_return_ok(para_return eret)
 
    strsize iLen = strSuffix.length();
 
-   if(str.Right(iLen) == pcszSuffix)
+   if(str.right(iLen) == pcszSuffix)
 
    {
 
-      return str.Left(str.length() - iLen);
+      return str.left(str.length() - iLen);
 
    }
 

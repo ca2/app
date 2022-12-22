@@ -403,8 +403,8 @@ namespace mail
       string strSend;
       strSend.format("RETR %s\r\n", m_ppop3->m_straIndex[0].c_str());
       write((const ::string &) strSend);
-      m_ppop3->m_strHeaders.Empty();
-      m_ppop3->m_strBody.Empty();
+      m_ppop3->m_strHeaders.empty();
+      m_ppop3->m_strBody.empty();
       m_ppop3->m_straId.erase_at(0);
       m_ppop3->m_straIndex.erase_at(0);
       return true;

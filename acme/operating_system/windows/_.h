@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_c.h"
@@ -169,7 +169,7 @@ inline void copy(MSG & msg, const MESSAGE & message)
 {
 
    msg.hwnd = (HWND)(message.oswindow);
-   msg.message = (UINT)message.m_atom.i64();
+   msg.message = (UINT)message.m_atom.as_i64();
    msg.wParam = message.wParam;
    msg.lParam = message.lParam;
    msg.pt.x = message.pt.x;

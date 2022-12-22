@@ -12,28 +12,28 @@ namespace acme
 {
 
 
-   void* system::operating_system_library_open(const ::file::path & path, string& strMessage)
+   void* system::operating_system_library_open(const ::file::path & pathParam, string& strMessage)
    {
 
-      strMessage.Empty();
+      strMessage.empty();
 
       string strError;
 
-      string strPath(pszPath);
+      string strPath(pathParam);
 
       u32 uiError;
 
       void* plibrary = nullptr;
 
-      if (ansi_ends_ci(strPath, ".ilk")
-         || ansi_ends_ci(strPath, ".pdb")
-         || ansi_ends_ci(strPath, ".lib")
-         || ansi_ends_ci(strPath, ".exp"))
+      if (strPath.case_insensitive_ends(".ilk")
+         || strPath.case_insensitive_ends(".pdb")
+         || strPath.case_insensitive_ends(".lib")
+         || strPath.case_insensitive_ends(".exp"))
       {
 
          string strMessage;
 
-         strMessage.format("Not going to try to load library. Invalid file extension in name : \"%s\"", pszPath);
+         strMessage.format("Not going to try to load library. Invalid file extension in name : \"%s\"", pathParam.c_str());
 
          ERROR(strMessage);
 
@@ -41,7 +41,7 @@ namespace acme
 
       }
 
-      if (strPath.find('.') < 0 || !::PathFileExistsW(wstring(strPath)))
+      if (!strPath.contains('.') || !::PathFileExistsW(wstring(strPath)))
       {
 
          strPath += ".dll";
@@ -224,14 +224,14 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_touch(const ::file::path & path, string& strMessage)
+   void* system::operating_system_library_touch(const ::file::path & pathParam, string& strMessage)
    {
 
-      strMessage.Empty();
+      strMessage.empty();
 
       string strError;
 
-      string strPath(pszPath);
+      string strPath(pathParam);
 
       u32 uiError;
 
@@ -471,15 +471,15 @@ namespace acme
    }
 
 
-   void* system::operating_system_library_open_ca2(const ::scoped_string & scopedstr, string& strMessage)
+   void* system::operating_system_library_open_ca2(const ::file::path & pathParam, string& strMessage)
    {
 
-      void* p = LoadLibraryW(wstring(psz));
+      void* p = LoadLibraryW(wstring(pathParam));
 
       if (p != nullptr)
       {
 
-         strMessage = "Loaded Library (2) " + string(psz);
+         strMessage = "Loaded Library (2) " + string(pathParam);
 
       }
       else
@@ -487,7 +487,7 @@ namespace acme
 
          u32 uiError = GetLastError();
 
-         strMessage = "Failed to Load Library (2) " + string(psz) + " with error (" + ::as_string(uiError) +
+         strMessage = "Failed to Load Library (2) " + string(pathParam) + " with error (" + ::as_string(uiError) +
             ")" + ::windows::last_error_message(uiError);
 
       }
@@ -501,11 +501,12 @@ namespace acme
    void* system::operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
-      return ::GetProcAddress((HINSTANCE)plibrary, pszEntryName);
+      return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
 
    }
 
 
-
 } // namespace acme
+
+
 

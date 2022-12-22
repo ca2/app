@@ -350,7 +350,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz)
 
    string str(psz);
 
-   return str.case_insensitive_ends(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
+   return str.case_insensitive_ends(".lnk") || str.case_insensitive_contains(".lnk/") || str.case_insensitive_contains(".lnk\\");
 
 }
 

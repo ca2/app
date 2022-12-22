@@ -186,7 +186,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
             edit_undo();
 
-            m_strImeComposition.Empty();
+            m_strImeComposition.empty();
 
          }
 
@@ -475,7 +475,7 @@ void imm_client::on_message_key_down(::message::message * pmessage)
 
          edit_undo();
 
-         m_strImeComposition.Empty();
+         m_strImeComposition.empty();
 
          pkey->m_bRet = true;
 

@@ -109,7 +109,7 @@ void matter::add_ref_history(matter* p, const ::scoped_string & scopedstrObjRefD
             output_debug_string("pacman::game");
 
          }
-         else if (strType.contains_ci("session"))
+         else if (strType.case_insensitive_contains("session"))
          {
 
 //            if (m_pobjrefdbg->m_iStep == 39)

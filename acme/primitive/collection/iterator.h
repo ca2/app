@@ -45,7 +45,7 @@ public:
 
    using ITEM_POINTER = non_const < ITERATOR_TYPE >;
    using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
-   using THIS_ITEM_POINTER = ITERATOR_TYPE;
+   using THIS_ITEM_POINTER = ITEM_POINTER;
 
    using ITEM = dereference < ITEM_POINTER >;
 
@@ -97,7 +97,7 @@ public:
 
    using ITEM_POINTER = non_const < ITERATOR_TYPE >;
    using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
-   using THIS_ITEM_POINTER = ITERATOR_TYPE;
+   using THIS_ITEM_POINTER = CONST_ITEM_POINTER;
 
 
    using ITEM = dereference < ITEM_POINTER >;
@@ -105,7 +105,7 @@ public:
 
    using iterator = ::iterator_base < ITEM_POINTER >;
    using const_iterator = ::const_iterator_base < ITEM_POINTER >;
-   using THIS_ITERATOR = ::const_iterator_base < ITEM_POINTER >;
+   using THIS_ITERATOR = ::const_iterator_base < ITERATOR_TYPE >;
 
 
    CONST_ITEM_POINTER m_p;

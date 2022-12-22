@@ -904,7 +904,7 @@ namespace colorertake5
                   }
                   //               delete schemeName;
                   //             delete snode->schemeName;
-                  snode->schemeName.Empty();
+                  snode->schemeName.empty();
                };
                if (snode->type == SNT_INHERIT)
                {
@@ -934,7 +934,7 @@ namespace colorertake5
                               errorHandler->error(string("cannot virtualize scheme '")+vt->virtSchemeName+"' in scheme '"+scheme->element2()->schemeName+"'");
                            }
                         }
-                        vt->virtSchemeName.Empty();
+                        vt->virtSchemeName.empty();
                      };
                      if (vt->substScheme == nullptr && vt->substSchemeName.has_char())
                      {
@@ -952,7 +952,7 @@ namespace colorertake5
                            }
                         }
                         else if (errorHandler != nullptr) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->element2()->schemeName+"'");
-                        vt->substSchemeName.Empty();
+                        vt->substSchemeName.empty();
                      };
                   };
                };

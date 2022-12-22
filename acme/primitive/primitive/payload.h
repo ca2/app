@@ -818,6 +818,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
+   template < strsize n >
+   payload & operator = (const char (&cha)[n])
+   {
+
+      return this->operator = (::string(cha));
+
+   }
+
 
    template < class T >
    ::pointer< T > cast(T * pDefault);
@@ -2285,7 +2293,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::pa
    if (payload.m_etype == e_type_string)
    {
 
-      append(payload.m_str);
+      return append(payload.m_str);
 
    }
    else

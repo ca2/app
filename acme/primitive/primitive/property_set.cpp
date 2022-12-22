@@ -395,14 +395,14 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count c = 0;
 
-   ::auto pFind = 0;
+   ::index iFind = 0;
 
    while (true)
    {
 
       iFind = find_index(idName, iFind);
 
-      if (::is_null(pFind))
+      if (iFind < 0)
       {
 
          return c;
@@ -593,7 +593,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
    if(strArgument.case_insensitive_begins("-"))
    {
 
-      _008AddArgument(strArgument.Mid(1));
+      _008AddArgument(strArgument.substr(1));
 
    }
    else if (bColon)
@@ -626,18 +626,18 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
       void property_set::_008AddArgument(const ::string & strArg)
 {
 
-   index iFindEqual = strArg.find('=');
+   auto pFindEqual = strArg.find('=');
 
-   index iFindQuote = strArg.find('\"');
+   auto pFindQuote = strArg.find('\"');
 
-   if(iFindEqual >= 0)
+   if(::is_set(pFindEqual))
    {
 
       string strValue;
 
-      strValue = strArg.Mid(iFindEqual + 1);
+      strValue = strArg(pFindEqual + 1);
 
-      if(iFindEqual + 1 == iFindQuote)
+      if(pFindEqual + 1 == pFindQuote)
       {
 
          const char *pszValue = strValue;
@@ -646,7 +646,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
 
       }
 
-      string strKey = strArg.Left(iFindEqual);
+      string strKey = strArg(0, pFindEqual);
 
       _008Add(strKey, strValue);
 
@@ -1015,7 +1015,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
          p++;
 
-         if (!p)
+         if (p >= end())
          {
 
             break;
@@ -1171,9 +1171,9 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
    for(i32 i = 0; i < stra.get_size(); i++)
    {
       
-      strsize iPos = stra[i].find(":");
+      auto pPos = stra[i].find(":");
       
-      if(iPos < 0)
+      if(::is_null(pPos))
       {
 
          strName = stra[i].make_lower();
@@ -1184,9 +1184,9 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
       else
       {
 
-         strName = stra[i].Left(iPos).make_lower();
+         strName = stra[i].substr(0, pPos).make_lower();
 
-         set_at(strName, stra[i].Mid(iPos + 2));
+         set_at(strName, stra[i](0, pPos + 2));
 
       }
 
@@ -2108,9 +2108,9 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
    for (auto & strEnvironment : straEnvironment)
    {
 
-      auto find = strEnvironment.find("=");
+      auto pFind = strEnvironment.find("=");
 
-      if (find <= 0)
+      if (pFind <= strEnvironment.begin())
       {
 
          continue;
@@ -2118,9 +2118,9 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
       }
 
       // get the left hand side (LHS) of "=" in the string
-      string strKey = strEnvironment(0, find);
+      string strKey = strEnvironment(0, pFind);
 
-      string strValue = strEnvironment(find + 1);
+      string strValue = strEnvironment(pFind + 1);
 
       (*this)[strKey] = strValue;
 
@@ -2247,9 +2247,9 @@ property & property_set::get(const ::atom & atom)
 ::property * property_set::find(const ::atom & atom) const
 {
 
-   auto pFind = find_index(atom);
+   auto iFind = find_index(atom);
 
-   if(::is_null(pFind))
+   if(iFind < 0)
    {
 
       return nullptr;
@@ -2491,21 +2491,19 @@ string property_set::evaluate(const ::string & strSource) const
 
    string str(strSource);
 
-   strsize iPos;
-
    char ch;
 
    char chNext;
 
-   for (iPos = 0; iPos < str.length(); iPos++)
+   for (auto pPos = str.c_str(); pPos < str.end(); pPos++)
    {
 
-      ch = str[iPos];
+      ch = *pPos;
 
-      if (iPos + 1 < str.length())
+      if (pPos + 1 <str.end())
       {
 
-         chNext = str[iPos + 1];
+         chNext = *(pPos + 1);
 
       }
       else
@@ -2518,7 +2516,7 @@ string property_set::evaluate(const ::string & strSource) const
       if (ch == '\\')
       {
 
-         iPos++;
+         pPos++;
 
          continue;
 
@@ -2526,9 +2524,9 @@ string property_set::evaluate(const ::string & strSource) const
       else if (ch == '{' && chNext == '$')
       {
 
-         strsize iEnd = str.find('}', iPos + 1);
+         auto pEnd = str(pPos + 1).find('}');
 
-         if (iEnd < 0)
+         if (::is_null(pEnd))
          {
 
             //error
@@ -2537,22 +2535,22 @@ string property_set::evaluate(const ::string & strSource) const
 
          }
 
-         string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
+         string strKey(pPos + 2, pEnd - pPos - 2);
 
          string strEval;
 
          if (get_string(strEval, strKey))
          {
 
-            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
+            str = str(0, pPos) + strEval + str(0, pEnd + 1);
 
-            iPos += strEval.length() - 1;
+            pPos += strEval.length() - 1;
 
          }
          else
          {
 
-            iPos = iEnd;
+            pPos = pEnd;
 
          }
 
@@ -2570,14 +2568,14 @@ string property_set::evaluate(const ::string & strSource) const
 
          }
 
-         strsize iStart = iPos;
+         auto pStart = pPos;
 
-         strsize iEnd = iStart + 2;
+         auto pEnd = pStart + 2;
 
-         for (; iEnd < str.length(); iEnd++)
+         for (; pEnd < str.end(); pEnd++)
          {
 
-            ch = str[iEnd];
+            ch = *pEnd;
 
             if (!(ansi_char_isalpha(ch) || ch == '_' || ansi_char_isdigit(ch)))
             {
@@ -2588,22 +2586,22 @@ string property_set::evaluate(const ::string & strSource) const
 
          }
 
-         string strExpression = str.Mid(iStart, iEnd - iStart);
+         string strExpression(pStart, pEnd - pStart);
 
          string strEval;
 
          if (get_evaluation(strEval, strExpression))
          {
 
-            str = str.Left(iPos) + strEval + str.Mid(iEnd);
+            str = str(0, pPos) + strEval + str(pEnd);
 
-            iPos += strEval.length() - 1;
+            pPos += strEval.length() - 1;
 
          }
          else
          {
 
-            iPos = iEnd;
+            pPos = pEnd;
 
          }
 

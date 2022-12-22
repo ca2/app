@@ -936,7 +936,7 @@ namespace apex
    //
    //   string str(psz);
    //
-   //   return str.case_insensitive_ends(".lnk") || str.contains_ci(".lnk/") || str.contains_ci(".lnk\\");
+   //   return str.case_insensitive_ends(".lnk") || str.case_insensitive_contains(".lnk/") || str.case_insensitive_contains(".lnk\\");
    //
    //}
 
@@ -1281,7 +1281,7 @@ namespace apex
 
       string strMatterLocator = strApp;
 
-      if (!strMatterLocator.contains_ci("/_matter/"))
+      if (!strMatterLocator.case_insensitive_contains("/_matter/"))
       {
 
          string_array stra;

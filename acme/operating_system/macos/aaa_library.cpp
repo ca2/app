@@ -44,7 +44,7 @@ found:
 void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strPath(pszPath);
 

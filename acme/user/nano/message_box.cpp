@@ -85,11 +85,11 @@ void nano_message_box::defer_create_details_still()
 ::count get_line_count(const ::string & str)
 {
 
-   auto pFind = 0;
+   ::index iFind = 0;
 
    ::count cLine = 1;
 
-   while ((iFind = str.find('\n', iFind)) >= 0)
+   while ((iFind = str(iFind).find_index('\n')) >= 0)
    {
 
       cLine++;

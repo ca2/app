@@ -3933,7 +3933,7 @@ pacmedirectory->create("/ca2core");
                if (::is_set(pFind))
                {
 
-                  strParam = strParam(0, pFind) + strUrl + strParam.Mid(iFind + 2) + " ";
+                  strParam = strParam(0, pFind) + strUrl + strParam.substr(iFind + 2) + " ";
 
                }
                else

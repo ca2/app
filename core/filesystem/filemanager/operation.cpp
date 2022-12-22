@@ -103,7 +103,7 @@ namespace filemanager
                if(strCompare[j] != strBase[j])
                {
                   
-                  strBase = ::file::path(strCompare.Left(j)).folder();
+                  strBase = ::file::path(strCompare.left(j)).folder();
 
                   break;
 
@@ -321,7 +321,7 @@ namespace filemanager
 
          m_pchBuffer = (char *)malloc(m_iBufferSize);
 
-         ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.length());
+         ::file::path strName = m_str / m_stra[m_iFile].substr(m_strBase.length());
 
          if(m_str == m_strBase)
          {
@@ -468,7 +468,7 @@ namespace filemanager
             if(m_iFile >= m_stra.get_size())
                return false;
 
-            ::file::path strName = m_str / m_stra[m_iFile].Mid(m_strBase.length());
+            ::file::path strName = m_str / m_stra[m_iFile].substr(m_strBase.length());
 
             if(m_str == m_strBase)
             {
@@ -879,7 +879,7 @@ namespace filemanager
    {
 
       string strDir = psz;
-      string strName = str.Mid(strDir.length());
+      string strName = str.substr(strDir.length());
       string strExtension;
       bool bDir;
       auto pFind = strName.find("\\");

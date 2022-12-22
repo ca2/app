@@ -15,7 +15,7 @@ CLASS_DECL_ACME void * __node_library_touch(const ::file::path & path, string & 
 CLASS_DECL_ACME void * __node_library_open(const ::file::path & path, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strPath(pszPath);
 
@@ -90,7 +90,7 @@ CLASS_DECL_ACME void * __node_library_open(const ::file::path & path, string & s
 CLASS_DECL_ACME void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
    void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW);

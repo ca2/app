@@ -18,7 +18,7 @@ public:
    static factory_function* g_pfactoryfunctionNext;
 
 
-   factory_function(const ::scoped_string & scopedstrName, FACTORY_FUNCTION* pfnFactory);
+   factory_function(const char * pszName, FACTORY_FUNCTION* pfnFactory);
 
    static FACTORY_FUNCTION* get(const ::scoped_string & scopedstrName);
 

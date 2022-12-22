@@ -202,7 +202,7 @@ namespace aura
 
       string strContext;
 
-      if (strState.contains_ci("night"))
+      if (strState.case_insensitive_contains("night"))
       {
 
          strContext += ".night";
@@ -215,13 +215,13 @@ namespace aura
 
       }
 
-      if (strState.contains_ci("cloud") && !strState.contains_ci("partly"))
+      if (strState.case_insensitive_contains("cloud") && !strState.case_insensitive_contains("partly"))
       {
 
          strContext += ".dampened";
 
       }
-      else if (strState.contains_ci("rain"))
+      else if (strState.case_insensitive_contains("rain"))
       {
 
          strContext += ".dampened";
@@ -240,31 +240,31 @@ namespace aura
 
       string strWeather = get_current_weather();
 
-      if (strWeather.case_insensitive_find(".night") >= 0 && m_straTheme.contains_ci("dark"))
+      if (strWeather.case_insensitive_find(".night") >= 0 && m_straTheme.case_insensitive_contains("dark"))
       {
 
          strTheme = "dark";
 
       }
-      else if (strWeather.case_insensitive_find(".dampened") && m_straTheme.contains_ci("blue"))
+      else if (strWeather.case_insensitive_find(".dampened") && m_straTheme.case_insensitive_contains("blue"))
       {
 
          strTheme = "blue";
 
       }
-      else if (strWeather.case_insensitive_find(".day") && m_straTheme.contains_ci("lite"))
+      else if (strWeather.case_insensitive_find(".day") && m_straTheme.case_insensitive_contains("lite"))
       {
 
          strTheme = "lite";
 
       }
-      else if (m_straTheme.contains_ci("dark"))
+      else if (m_straTheme.case_insensitive_contains("dark"))
       {
 
          strTheme = "dark";
 
       }
-      else if (m_straTheme.contains_ci("lite"))
+      else if (m_straTheme.case_insensitive_contains("lite"))
       {
 
          strTheme = "blue";

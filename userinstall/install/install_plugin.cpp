@@ -640,7 +640,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       if(bJustLoggedIn)
       {
 
-         m_phost->m_pbasecomposer->m_strEntryHallText.Empty(); // It was Checking Credentials... no more checking credentials.
+         m_phost->m_pbasecomposer->m_strEntryHallText.empty(); // It was Checking Credentials... no more checking credentials.
 
       }
 
@@ -1455,7 +1455,7 @@ retry_get_prompt:
          else
          {
 
-            strPrompt.Empty();
+            strPrompt.empty();
 
          }
 

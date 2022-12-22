@@ -287,7 +287,7 @@ namespace hellobase
                //
                //   payloadFile["url"] = strImage;
                //
-               //   payloadFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
+               //   payloadFile["http_set"]["raw_http"] = purl->get_server(m_strImage).unicode_case_insensitive_find("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //

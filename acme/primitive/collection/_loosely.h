@@ -28,7 +28,7 @@ namespace loosely
    inline bool contains(const string_base < CHAR1 >& a, const string_base < CHAR2 >& b)
    {
 
-      return a.contains_ci(b);
+      return a.case_insensitive_contains(b);
 
    }
 

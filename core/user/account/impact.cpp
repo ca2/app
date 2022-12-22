@@ -571,7 +571,7 @@ namespace account
 
       m_peditPassword->_001SetText(pcredentials->m_strPassword, ::e_source_initialize);
 
-      m_strResponse.Empty();
+      m_strResponse.empty();
 
       m_evSubmit.ResetEvent();
 

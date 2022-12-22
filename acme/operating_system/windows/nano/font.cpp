@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 31/01/2022 16:06 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -67,7 +67,7 @@ namespace windows
 
       plf->lfWeight = bBold ? FW_BOLD : FW_NORMAL;
 
-      wstring wstr(pszFaceName);
+      wstring wstr(scopedstrFaceName);
 
       wstr = wstr.substr(0, sizeof(plf->lfFaceName));
 

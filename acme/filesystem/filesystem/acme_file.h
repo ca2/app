@@ -138,7 +138,7 @@ public:
    virtual string_array lines(const ::file::path & path);
    virtual void set_line(const ::file::path & path, index iLine, const ::scoped_string & scopedstrLine);
    //virtual string file_extension_dup(const ::file::path & path);
-   virtual string get_temporary_file_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
+   virtual string get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
 
    virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 
@@ -160,6 +160,11 @@ public:
 
 
    virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str);
+
+
+   virtual ::pointer<::handle::ini>get_ini(const ::payload & payloadFile);
+
+
 
 
 };

@@ -319,7 +319,7 @@ namespace datetime
       if (src.length() >= 4)
       {
 
-         str = src.Mid(0, 4);
+         str = src.substr(0, 4);
 
          str.trim_left('0');
 
@@ -336,7 +336,7 @@ namespace datetime
       if (src.length() >= 7)
       {
 
-         str = src.Mid(5, 2);
+         str = src.substr(5, 2);
 
          str.trim_left('0');
 
@@ -353,7 +353,7 @@ namespace datetime
       if (src.length() >= 10)
       {
       
-         str = src.Mid(8, 2);
+         str = src.substr(8, 2);
 
          str.trim_left('0');
 
@@ -370,7 +370,7 @@ namespace datetime
       if (src.length() >= 13)
       {
       
-         str = src.Mid(11, 2);
+         str = src.substr(11, 2);
          
          str.trim_left('0');
          
@@ -387,7 +387,7 @@ namespace datetime
       if (src.length() >= 16)
       {
       
-         str = src.Mid(14, 2);
+         str = src.substr(14, 2);
          
          str.trim_left('0');
          
@@ -404,7 +404,7 @@ namespace datetime
       if (src.length() >= 19)
       {
         
-         str = src.Mid(17, 2);
+         str = src.substr(17, 2);
 
          str.trim_left('0');
 
@@ -1287,8 +1287,8 @@ namespace datetime
                {
                   throw ::not_implemented();
                }
-               strNumber.Empty();
-               strText1.Empty();
+               strNumber.empty();
+               strText1.empty();
                if (bAdd)
                {
                   time = time + span;
@@ -1320,7 +1320,7 @@ namespace datetime
 
             bAdd = true;
             bMinus = false;
-            strNumber.Empty();
+            strNumber.empty();
          }
          else if (strChar == "-")
          {
@@ -1344,7 +1344,7 @@ namespace datetime
 
             bAdd = false;
             bMinus = true;
-            strNumber.Empty();
+            strNumber.empty();
          }
          else if (unicode_is_digit(psz))
          {
@@ -1364,7 +1364,7 @@ namespace datetime
       string str;
       if (src.length() >= 2)
       {
-         str = src.Mid(0, 2);
+         str = src.substr(0, 2);
          str.trim_left('0');
          set["day"] = str;
       }
@@ -1374,7 +1374,7 @@ namespace datetime
       }
       if (src.length() >= 5)
       {
-         str = src.Mid(3, 2);
+         str = src.substr(3, 2);
          str.trim_left('0');
          set["month"] = str;
       }
@@ -1384,7 +1384,7 @@ namespace datetime
       }
       if (src.length() >= 10)
       {
-         str = src.Mid(6, 4);
+         str = src.substr(6, 4);
          str.trim_left('0');
          set["year"] = str;
       }
@@ -1394,7 +1394,7 @@ namespace datetime
       }
       if (src.length() >= 13)
       {
-         str = src.Mid(11, 2);
+         str = src.substr(11, 2);
          str.trim_left('0');
          set["hour"] = str;
       }
@@ -1404,7 +1404,7 @@ namespace datetime
       }
       if (src.length() >= 16)
       {
-         str = src.Mid(14, 2);
+         str = src.substr(14, 2);
          str.trim_left('0');
          set["minute"] = str;
       }
@@ -1414,7 +1414,7 @@ namespace datetime
       }
       if (src.length() >= 19)
       {
-         str = src.Mid(17, 2);
+         str = src.substr(17, 2);
          str.trim_left('0');
          set["second"] = str;
       }
@@ -1441,10 +1441,10 @@ namespace datetime
       if (str.length() >= 16)
       {
 
-         if (((str.Mid(4, 1) == "-") || (str.Mid(4, 1) == ":"))
-            && ((str.Mid(7, 1) == "-") || (str.Mid(7, 1) == ":"))
-            && str.Mid(10, 1) == " "
-            && str.Mid(13, 1) == ":")
+         if (((str.substr(4, 1) == "-") || (str.substr(4, 1) == ":"))
+            && ((str.substr(7, 1) == "-") || (str.substr(7, 1) == ":"))
+            && str.substr(10, 1) == " "
+            && str.substr(13, 1) == ":")
          {
 
             bBaseTime = true;
@@ -1453,7 +1453,7 @@ namespace datetime
 
             international().parse_str(str, set);
 
-            string strWord = str.Mid(19);
+            string strWord = str.substr(19);
             strWord.trim_left();
             strWord = ::str().get_word(strWord, " ");
             if (strWord.case_insensitive_order("UTC") == 0
@@ -1495,8 +1495,8 @@ namespace datetime
       // if is international date time 2009-04-31
       if (!bBaseTime && str.length() >= 10)
       {
-         if (str.Mid(4, 1) == "-"
-            && str.Mid(7, 1) == "-")
+         if (str.substr(4, 1) == "-"
+            && str.substr(7, 1) == "-")
          {
             bBaseTime = true;
 
@@ -1515,8 +1515,8 @@ namespace datetime
       // if is international date time 31/04/2011
       if (!bBaseTime && str.length() >= 10)
       {
-         if (str.Mid(2, 1) == "/"
-            && str.Mid(5, 1) == "/")
+         if (str.substr(2, 1) == "/"
+            && str.substr(5, 1) == "/")
          {
             bBaseTime = true;
             parse_br_str(str, set);
@@ -1624,24 +1624,28 @@ namespace datetime
             iPath = iPath / iCount;
             iPathCount = iPathCount * iCount;
             bBaseTime = true;
+
          }
+
       }
+
       if (bBaseTime)
       {
-         if (str.Mid(iStart).trimmed().get_length() == 0)
+
+         if (str.substr(iStart).trimmed().length() == 0)
          {
 
             return result(time);
 
          }
 
-         return result(time) + span_parse_time(pcontext, str.Mid(iStart));
+         return result(time) + span_parse_time(pcontext, str.substr(iStart));
 
       }
       else
       {
 
-         return span_parse_time(pcontext, str.Mid(iStart));
+         return span_parse_time(pcontext, str.substr(iStart));
 
       }
 

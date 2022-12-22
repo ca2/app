@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 31/01/2022.
 //
 #include "framework.h"
@@ -76,7 +76,7 @@ namespace windows
 
       int iFlag = draw_text_to_windows_draw_text(edrawtext);
 
-      ::DrawText(m_hdc, wstrMessage, (int)wstrMessage.get_length(), (LPRECT)&rectangleText, iAlign | iFlag);
+      ::DrawText(m_hdc, wstrMessage, (int)wstrMessage.length(), (LPRECT)&rectangleText, iAlign | iFlag);
 
    }
 

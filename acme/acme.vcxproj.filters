@@ -3139,7 +3139,7 @@
     <ClCompile Include="primitive\datetime\time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\time_span.cpp">
+    <ClCompile Include="primitive\datetime\earth_time_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\zonetime.cpp">

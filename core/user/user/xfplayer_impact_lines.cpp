@@ -254,13 +254,13 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
       if (iLineEnd == iLineStart)
       {
 
-         strSelText = line_at(iLineStart)->m_str.Mid(iCharStart, iCharEnd - iCharStart + 1);
+         strSelText = line_at(iLineStart)->m_str.substr(iCharStart, iCharEnd - iCharStart + 1);
 
       }
       else
       {
 
-         strSelText = line_at(iLineStart)->m_str.Mid(iCharStart);
+         strSelText = line_at(iLineStart)->m_str.substr(iCharStart);
 
          for (index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
          {
@@ -276,7 +276,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
 
             strSelText += pszLineSeparator;
 
-            strSelText += line_at(iLineEnd)->m_str.Mid(0, iCharEnd + 1);
+            strSelText += line_at(iLineEnd)->m_str.substr(0, iCharEnd + 1);
 
          }
       }

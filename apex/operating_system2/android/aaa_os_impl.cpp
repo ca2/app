@@ -278,7 +278,7 @@ void android_exchange()
 
       premote->setOpenUrl(plocal->m_strOpenUrl);
 
-      plocal->m_strOpenUrl.Empty();
+      plocal->m_strOpenUrl.empty();
 
    }
 
@@ -306,7 +306,7 @@ void android_exchange()
 
             premote->setMessageBox(plocal->m_strMessageBox);
 
-            plocal->m_strMessageBox.Empty();
+            plocal->m_strMessageBox.empty();
 
          }
 
@@ -315,7 +315,7 @@ void android_exchange()
 
             premote->setMessageBoxCaption(plocal->m_strMessageBoxCaption);
 
-            plocal->m_strMessageBoxCaption.Empty();
+            plocal->m_strMessageBoxCaption.empty();
 
          }
 
@@ -336,7 +336,7 @@ void android_exchange()
 
       premote->setUserWallpaper(plocal->m_strSetUserWallpaper);
 
-      plocal->m_strSetUserWallpaper.Empty();
+      plocal->m_strSetUserWallpaper.empty();
 
    }
 

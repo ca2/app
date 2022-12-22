@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //////#include "acme/exception/exception.h"
 
@@ -20,7 +20,7 @@
 
       bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr);
 
-      bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount);
+      //bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount);
 
 
       bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr);

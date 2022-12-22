@@ -731,7 +731,7 @@ namespace user
 
       //   string strType = __type_name(this);
 
-      //   if (strType.contains_ci("control_box"))
+      //   if (strType.case_insensitive_contains("control_box"))
       //   {
 
       //      output_debug_string("control box on clip");

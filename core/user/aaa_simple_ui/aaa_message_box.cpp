@@ -12,7 +12,7 @@ void maximum_line_length(string_array & stra, int iLen)
       if(strLine.length() > iLen - 16)
       {
 
-         stra.insert_at(i + 1, strLine.Mid(iLen));
+         stra.insert_at(i + 1, strLine.substr(iLen));
 
          strLine.truncate(iLen);
 

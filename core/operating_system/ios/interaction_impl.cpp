@@ -57,11 +57,11 @@ strsize str_begins_eat_common(string & str1, string & str2, string & str)
 
    }
 
-   str = str1.Left(i);
+   str = str1.left(i);
 
-   str1 = str1.Mid(i);
+   str1 = str1.substr(i);
 
-   str2 = str2.Mid(i);
+   str2 = str2.substr(i);
 
    return i;
 
@@ -122,11 +122,11 @@ strsize str_ends_eat_common(string & str1, string & str2, string & str)
    if(i1 >= 0)
    {
 
-      str = str1.Mid(i1 + 1);
+      str = str1.substr(i1 + 1);
 
-      str1 = str1.Left(i1 + 1);
+      str1 = str1.left(i1 + 1);
 
-      str2 = str2.Mid(i2 + 1);
+      str2 = str2.substr(i2 + 1);
 
    }
 
@@ -157,7 +157,7 @@ string strNow)
 
    iInsEnd = strPrevious.length() - iEnd;
 
-   strInsert = strNow.Mid(iBeg, strNow.length() - iEnd - iBeg);
+   strInsert = strNow.substr(iBeg, strNow.length() - iEnd - iBeg);
 
    iSelEnd = iBeg + strInsert.length();
 

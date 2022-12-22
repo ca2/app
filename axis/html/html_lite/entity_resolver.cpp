@@ -241,7 +241,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       }
       else
       {
-         string   strT = strKey.Mid(1);
+         string   strT = strKey.substr(1);
          strKey.make_lower();
          if (strT.case_insensitive_order("grave") == 0 ||
                strT.case_insensitive_order("acute") == 0 ||

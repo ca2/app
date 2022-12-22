@@ -35,46 +35,38 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 }
 
 
-void output_debug_string(const ::ansi_character * psz)
-{
-
-#ifdef WINDOWS
-
-   auto len = utf8_to_unichar_len(psz);
-
-   memory memory;
-
-   memory.set_size((len + 1) * sizeof(wchar_t));
-
-   auto pwsz = (wchar_t *)memory.data();
-
-   utf8_to_unichar(pwsz, psz, len);
-
-   ::OutputDebugStringW(pwsz);
-
-#else
-
-   printf("%s", psz);
-
-#endif
-
-}
-
+//void output_debug_string(const ::ansi_character * psz)
+//{
+//
+//#ifdef WINDOWS
+//
+//   auto len = utf8_to_unichar_len(psz);
+//
+//   memory memory;
+//
+//   memory.set_size((len + 1) * sizeof(wchar_t));
+//
+//   auto pwsz = (wchar_t *)memory.data();
+//
+//   utf8_to_unichar(pwsz, psz, len);
+//
+//   ::OutputDebugStringW(pwsz);
+//
+//#else
+//
+//   printf("%s", psz);
+//
+//#endif
+//
+//}
+//
 
 void output_debug_string(const ::scoped_string & str)
 {
 
-#ifdef WINDOWS
+   ::wstring wstr(str);
 
-   ::OutputDebugStringW(pwsz);
-
-#else
-
-   string str(pwsz);
-
-   printf("%s", str.c_str());
-
-#endif
+   ::OutputDebugStringW(wstr);
 
 }
 

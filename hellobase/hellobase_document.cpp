@@ -90,7 +90,7 @@ namespace hellobase
               && (str = pcontext->m_papexcontext->file()->as_string(payloadFile)).has_char())
       {
 
-         get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);
+         get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.left(84),::e_source_user);
 
       }
 

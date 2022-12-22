@@ -1687,7 +1687,7 @@ inline write_text_stream < FILE >::~write_text_stream()
 //text_stream < FILE >& text_stream < FILE >::operator >>(string& str)
 //{
 //
-//   str.Empty();
+//   str.empty();
 //
 //   char ch = 0;
 //

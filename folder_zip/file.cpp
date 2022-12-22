@@ -289,7 +289,7 @@ void file::write(const void* pdata, memsize nCount)
       //m_infilea.erase_all();
       m_straPath.erase_all();
       m_straPrefix.erase_all();
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
    }
 

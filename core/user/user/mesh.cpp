@@ -281,7 +281,7 @@ namespace user
                rectangle.right = rectangleClient.right;
                rectangle.bottom = ::i32(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle,e_align_left);
+               pgraphics->_DrawText(m_strTopText.substr(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
             }
          }
@@ -4848,7 +4848,7 @@ namespace user
          //for(index j = 0; j < m_nColumnCount; j++)
          /*{
             mesh_column * pcolumn = m_columna._001GetByKey(j);
-            item.m_strText.Empty();
+            item.m_strText.empty();
             item.m_iItem = iFilter1Step;
             item.m_iSubItem = pcolumn->m_iSubItem;
             item.m_iListItem = -1;

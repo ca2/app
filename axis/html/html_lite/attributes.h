@@ -114,7 +114,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    bool isPercentValue() const
-   { return (m_strValue.Right(1) == "%" ? true : false); }
+   { return (m_strValue.right(1) == "%" ? true : false); }
 
    /**
     * Returns a percent value of the attribute
@@ -157,7 +157,7 @@ public:
       i32 i;
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
-         if (m_strValue.Right(::strlen(_szUnits[i])). \
+         if (m_strValue.right(::strlen(_szUnits[i])). \
                case_insensitive_order(_szUnits[i]) == 0)
          {
             rUnit = (LengthUnitsEnum)i;

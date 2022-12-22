@@ -1075,14 +1075,14 @@ namespace dynamic_source
 
       path /= paction->m_pathFile;
 
-      if (path.contains_ci("\\.git\\") || path.contains_ci("/.git/"))
+      if (path.case_insensitive_contains("\\.git\\") || path.case_insensitive_contains("/.git/"))
       {
 
          return;
 
       }
 
-      if (path.contains_ci("\\.git") || path.contains_ci("/.git"))
+      if (path.case_insensitive_contains("\\.git") || path.case_insensitive_contains("/.git"))
       {
 
          return;

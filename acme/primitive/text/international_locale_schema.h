@@ -83,12 +83,12 @@ namespace text
       }
 
 
-      inline bool locale_schema::defer_add_locale(const ::atom & idLocale, const ::atom & idSchema)
-      {
+      //inline bool locale_schema::defer_add_locale(const ::atom & idLocale, const ::atom & idSchema)
+      //{
 
-         return defer_add_locale(idLocale, idSchema);
+      //   return _add_locale_variant(idLocale, idSchema);
 
-      }
+      //}
 
 
       CLASS_DECL_ACME void create_rtl_map();

@@ -13,7 +13,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    string strPath(pszPath);
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strError;
 
@@ -167,7 +167,7 @@ void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstr
 void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strError;
 

@@ -88,7 +88,7 @@ namespace opengl
       //   return 0;
 
       //}
-      m_strError.Empty();
+      m_strError.empty();
 
       return uShader;
 

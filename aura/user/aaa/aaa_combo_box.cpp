@@ -1439,7 +1439,7 @@ namespace user
    bool combo_box::_001GetListText(index iSel,string & str) const
    {
 
-      str.Empty();
+      str.empty();
 
       if (iSel < 0)
          return false;

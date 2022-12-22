@@ -73,7 +73,7 @@ namespace ios
                if(dir_context == listing.m_pathFinal)
                   continue;
 
-               listing.m_pathUser.Empty();
+               listing.m_pathUser.empty();
                listing.m_pathFinal = dir_context;
 
                if(listing.m_eextract != e_extract_all)
@@ -192,7 +192,7 @@ pacmedirectory->is(path))
          if(string_begins(strPath, "\\\\"))
          {
 
-            strPath = "\\\\?\\UNC" + strPath.Mid(1);
+            strPath = "\\\\?\\UNC" + strPath.substr(1);
 
          }
          else
@@ -361,7 +361,7 @@ pacmedirectory->is(stra[i]))
    //               break;
    //            iLast--;
    //         }
-   //         return str.Left(iLast + 1);
+   //         return str.left(iLast + 1);
    //      }
    //      else
    //      {
@@ -386,7 +386,7 @@ pacmedirectory->is(stra[i]))
 //      {
 //         string strDir = name(psz);
 //         string str;
-//         str = strDir.Left(2);
+//         str = strDir.left(2);
 //         str += "\\trash_that_is_not_trash\\";
 //         string strFormat;
 //         ::earth::time time;
@@ -395,11 +395,11 @@ pacmedirectory->is(stra[i]))
 //         str += strFormat;
 //         if(strDir.m_pszData[2] == '\\')
 //         {
-//            str += strDir.Mid(3);
+//            str += strDir.substr(3);
 //         }
 //         else
 //         {
-//            str += strDir.Mid(2);
+//            str += strDir.substr(2);
 //         }
 //         return str;
 //      }
@@ -533,7 +533,7 @@ pacmedirectory->is(stra[i]))
 //               break;
 //            iLast--;
 //         }
-//         return str.Left(iLast + 1);
+//         return str.left(iLast + 1);
 //      }
 //      else
 //      {

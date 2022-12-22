@@ -209,7 +209,7 @@ namespace ios
 //         string strPrefix(pszPrefix);
 //         string strSuffix(pszSuffix);
 //      restart:
-//         str.Empty();
+//         str.empty();
 //         str = psz;
 //         pcontext->m_papexcontext->dir()->create(str, papp);
 //         string_array straTitle;
@@ -299,7 +299,7 @@ namespace ios
 //                  i--;
 //                  continue;
 //               }
-//               iIndex = atoi(str.Mid(0, 2));
+//               iIndex = atoi(str.substr(0, 2));
 //               if(iIndex > iMax)
 //                  iMax = iIndex;
 //            }
@@ -592,7 +592,7 @@ namespace ios
 //
 //         if(iPos >= 0)
 //         {
-//            return str.Mid(0, iPos);
+//            return str.substr(0, iPos);
 //         }
 //         else
 //         {
@@ -653,7 +653,7 @@ namespace ios
 //
 //         }
 //
-//         return str.Mid(iPos);
+//         return str.substr(iPos);
 //
 //      }
 //
@@ -667,7 +667,7 @@ namespace ios
 //         if(iPos >= 0)
 //         {
 //
-//            return str.Mid(iPos + 1);
+//            return str.substr(iPos + 1);
 //
 //         }
 //         else
@@ -1023,7 +1023,7 @@ namespace ios
 //            if(::is_set(pFind))
 //            {
 //
-//               if(!exists(strPath.Mid(0, iFind + 4), papp))
+//               if(!exists(strPath.substr(0, iFind + 4), papp))
 //                  return false;
 //
 //               return ziputil.exists(papp, strPath);
@@ -1241,7 +1241,7 @@ namespace ios
 //         strsize iEnd = strFile.rear_find('.');
 //         if(iEnd < 0)
 //            iEnd = strFile.length();
-//         strFile = strFile.Left(iEnd) + ::str().has_char(pszExtension, ".");
+//         strFile = strFile.left(iEnd) + ::str().has_char(pszExtension, ".");
 //      }
 
       file_pointer file_system::get_file(::payload payloadFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)

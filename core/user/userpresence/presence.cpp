@@ -80,7 +80,7 @@ namespace userpresence
       straRequestingServer.add("api.ca2.software");
       straRequestingServer.add("eu-api.ca2.software");
       straRequestingServer.add("asia-api.ca2.software");
-      if(!straRequestingServer.contains_ci(strHost))
+      if(!straRequestingServer.case_insensitive_contains(strHost))
       {
          strHost = "api.ca2.software";
       }

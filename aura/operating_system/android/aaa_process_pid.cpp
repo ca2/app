@@ -211,7 +211,7 @@ int_array module_path_get_pid(const ::string & pszPath)
 //
 //         stra.add(strArg);
 //
-//         strArg.Empty();
+//         strArg.empty();
 //
 //      }
 //      else

@@ -411,7 +411,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
          stra.add(strArg);
 
-         strArg.Empty();
+         strArg.empty();
 
       }
       else if(strChar == " ")
@@ -419,7 +419,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
          stra.add(strArg);
 
-         strArg.Empty();
+         strArg.empty();
 
       }
       else if(strChar == "\\")

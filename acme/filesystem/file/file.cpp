@@ -595,7 +595,7 @@ namespace file
 
       memory mem;
 
-      str.Empty();
+      str.empty();
 
       if (!read_string(mem))
       {

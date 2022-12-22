@@ -573,7 +573,7 @@ namespace user
 
                         string strType = __type_name(puserinteraction);
 
-                        if (strType.contains_ci("filemanager"))
+                        if (strType.case_insensitive_contains("filemanager"))
                         {
 
                            //INFORMATION("filemanager");

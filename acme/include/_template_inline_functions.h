@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -720,6 +720,41 @@ ITERATOR clipped_add(ITERATOR p, ::count c, T1, T2)
 }
 
 
+
+template < primitive_signed SIGNED >
+bool found(SIGNED s)
+{
+
+   return s >= 0;
+
+}
+
+
+template < typename T >
+bool found(const T * p)
+{
+
+   return ::is_set(p);
+
+}
+
+
+template < primitive_signed SIGNED >
+bool not_found(SIGNED s)
+{
+
+   return !found(s);
+
+}
+
+
+template < typename T >
+bool not_found(const T * p)
+{
+
+   return !found(p);
+
+}
 
 
 

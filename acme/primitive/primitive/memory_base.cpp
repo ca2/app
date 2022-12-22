@@ -1895,9 +1895,9 @@ memsize memory_base::length() const
 byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 {
 
-   auto pFind = find_line_prefix_index(blockPrefix, iStart);
+   auto iFind = find_line_prefix_index(blockPrefix, iStart);
 
-   if (::is_null(pFind))
+   if (iFind < 0)
    {
 
       return nullptr;
@@ -1944,7 +1944,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
       iFind = find_index(memoryFind, iStart + 1);
 
-      if (::is_null(pFind))
+      if (iFind < 0)
       {
 
          return -1;

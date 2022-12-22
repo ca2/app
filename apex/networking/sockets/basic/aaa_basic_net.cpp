@@ -695,7 +695,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //      {
 //         if (i == host.get_length() || host[i] == ':')
 //         {
-//            string s = host.Mid(x, i - x);
+//            string s = host.substr(x, i - x);
 //            //
 //            if (strstr(s,".")) // x.x.x.x
 //            {

@@ -281,7 +281,7 @@ namespace browser
          if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
 
-            m_pimpactLastBilbo->m_prender->m_strFontHover.Empty();
+            m_pimpactLastBilbo->m_prender->m_strFontHover.empty();
 
             m_pimpactLastBilbo->set_need_layout();
 
@@ -481,7 +481,7 @@ namespace browser
                if (strFont.has_char())
                {
 
-                  m_pimpactLastBilbo->m_prender->m_strFontHover.Empty();
+                  m_pimpactLastBilbo->m_prender->m_strFontHover.empty();
 
                   m_pimpactLastBilbo->m_prender->m_strFontSel = strFont;
 

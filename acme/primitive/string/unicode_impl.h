@@ -1137,7 +1137,7 @@ bool string_eat_before(string_base < CHAR_TYPE > & strBefore, const string_base 
 
          strBefore = str;
 
-         str.Empty();
+         str.empty();
 
       }
 

@@ -204,7 +204,7 @@ inline strsize ansistring_format(::ansi_character * pszBuffer, strsize nlength, 
 inline const ::ansi_character * _string_rear_find_character(const ::ansi_character * psz, ::ansi_character ch) noexcept
 {
 
-   return _string_range(psz).rear_find_item(ch, ::comparison::comparison < ::ansi_character >());
+   return _string_range(psz).rear_find(ch, ::comparison::comparison < ::ansi_character >());
 
 }
 

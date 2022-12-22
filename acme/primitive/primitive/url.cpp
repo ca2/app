@@ -36,16 +36,16 @@ namespace url
 
       string str(strParam);
 
-      index iPos = str.find(":");
+      auto pPos = str.find(":");
 
-      if(iPos == -1)
+      if(::is_null(pPos))
       {
 
          return "";
 
       }
 
-      return str.Mid(0, iPos);
+      return (*this)(0, pPos);
 
    }
 
@@ -55,26 +55,26 @@ namespace url
 
       string str(strParam);
 
-      index iPos = str.find(":");
-      if (iPos == -1)
+      auto pPos = str.find(":");
+      if (::is_null(pPos))
          return strParam;
-      iPos++;
-      while (iPos < str.length() && str[iPos] == '/')
+      pPos++;
+      while (pPos < str.end() && *pPos == '/')
       {
-         iPos++;
+         pPos++;
       }
-      index iStart = iPos;
-      index iEnd = str.find("/", iStart);
-      index iArgumentsStart = str.find("?", iStart);
+      auto pStart = pPos;
+      auto pEnd = str(pStart).find("/");
+      auto pArgumentsStart = str(pStart).find("?");
 
-      if (iEnd < 0 || (iArgumentsStart > 0 && iEnd > iArgumentsStart))
+      if (::is_null(pEnd) || (::is_set(pArgumentsStart) && pEnd > pArgumentsStart))
       {
 
          return {};
 
       }
 
-      return str.Mid(iStart, iEnd - iStart);
+      return { pStart, pEnd };
 
    }
 
@@ -84,12 +84,16 @@ namespace url
 
       string strRoot = get_root(strParam);
 
-      strsize iPos = strRoot.find(":");
+      auto pPos = strRoot.find(":");
 
-      if(iPos < 0)
+      if (::is_null(pPos))
+      {
+
          return strRoot;
 
-      return strRoot.Left(iPos);
+      }
+
+      return strRoot.left(pPos);
 
    }
 
@@ -99,9 +103,9 @@ namespace url
 
       string strRoot = get_root(strParam);
 
-      strsize iPos = strRoot.find(":");
+      auto pPos = strRoot.find(":");
 
-      if(iPos < 0)
+      if(not_found(pPos))
       {
 
          if(iDefault == -1)
@@ -134,7 +138,7 @@ namespace url
 
       }
 
-      return atoi(strRoot.Mid(iPos + 1));
+      return atoi(strRoot.substr(pPos + 1));
 
    }
 
@@ -144,16 +148,16 @@ namespace url
 
       string str(strParam);
 
-      strsize iPos1 = str.find("://");
+      auto pPos1 = str.find("://");
 
-      strsize iPos2 = str.find(":/");
+      auto pPos2 = str.find(":/");
 
-      strsize iPos;
+      string::const_iterator pPos;
 
-      if(iPos1 < 0)
+      if(not_found(pPos1))
       {
 
-         if (iPos2 < 0)
+         if (::not_found(pPos2))
          {
 
             return strParam;
@@ -162,33 +166,33 @@ namespace url
          else
          {
 
-            iPos = iPos2 + 2;
+            pPos = pPos2 + 2;
 
          }
 
       }
-      else if(iPos2 < 0)
+      else if(not_found(pPos2))
       {
 
-         iPos = iPos1 + 3;
+         pPos = pPos1 + 3;
 
       }
-      else if(iPos1 <= iPos2)
+      else if(pPos1 <= pPos2)
       {
 
-         iPos = iPos1 + 3;
+         pPos = pPos1 + 3;
 
       }
       else
       {
 
-         iPos = iPos2 + 2;         
+         pPos = pPos2 + 2;         
 
       }
 
-      strsize iStart = str.find("/", iPos);
+      auto pStart = str(pPos).find("/");
 
-      if (iStart < 0)
+      if (not_found(pStart))
       {
 
          return "/";
@@ -197,7 +201,7 @@ namespace url
       else
       {
 
-         return str.Mid(iStart);
+         return str.substr(pStart);
 
       }
 
@@ -313,17 +317,17 @@ namespace url
 
       string str2(str2Param);
 
-      if (str1.Right(1) == "/")
+      if (str1.right(1) == "/")
       {
 
-         str1 = str1.Left(str1.length() - 1);
+         str1 = str1.left(str1.length() - 1);
 
       }
 
-      if (str2.Left(1) == "/")
+      if (str2.left(1) == "/")
       {
 
-         str2 = str2.Right(str2.length() - 1);
+         str2 = str2.right(str2.length() - 1);
 
       }
 
@@ -345,27 +349,27 @@ namespace url
 
       string str(strParam);
 
-      strsize iQueryStart = str.find('?');
+      auto pQueryStart = str.find('?');
 
-      if (iQueryStart < 0)
+      if (not_found(pQueryStart))
       {
 
-         iQueryStart = str.length();
+         pQueryStart = str.end();
 
       }
 
-      str = str.Left(iQueryStart);
+      str = str.left(pQueryStart);
 
-      strsize iLastSlash = str.rear_find('/');
+      auto pLastSlash = str.rear_find('/');
 
-      if (iLastSlash < 0)
+      if (not_found(pLastSlash))
       {
          
          return "";
 
       }
 
-      return str.Left(iLastSlash);
+      return str.left(pLastSlash);
 
    }
 
@@ -399,19 +403,19 @@ namespace url
 
       string strUrl(strUrlParam);
 
-      strsize iStart = strUrl.find("://");
+      auto pStart = strUrl.find("://");
 
-      if(iStart > 0)
+      if(pStart > strUrl.begin())
       {
 
-         iStart = strUrl.find("/", iStart + 4);
+         pStart = strUrl(pStart + 4).find("/");
 
-         if(iStart < 0)
+         if(not_found(pStart))
          {
 
 //xxx            FORMATTED_TRACE("invalid url %s", pszUrl);
 
-            iStart = 0;
+            pStart = strUrl.begin();
 
          }
 
@@ -419,11 +423,11 @@ namespace url
       else
       {
 
-         iStart = 0;
+         pStart = strUrl.begin();
 
       }
 
-      if(strUrl.find("?", iStart) > 0)
+      if(strUrl(pStart).find("?") > strUrl.begin())
       {
 
          return strUrl + "&" + strQuery;
@@ -520,18 +524,18 @@ namespace url
 
       string strUrl(strUrlParam);
 
-      strsize iPos = strUrl.find("?");
+      auto pPos = strUrl.find("?");
 
-      if (iPos < 0)
+      if (not_found(pPos))
       {
 
-         iPos = strUrl.length();
+         pPos = strUrl.end();
 
       }
 
-      return strUrl.Left(iPos)
+      return strUrl.left(pPos)
              + "?" +
-             query_set(strUrl.Mid(iPos + 1), strKeyParam, payload);
+             query_set(strUrl.substr(pPos + 1), strKeyParam, payload);
 
    }
 
@@ -541,16 +545,16 @@ namespace url
 
       strUrl = strUrlParam;
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if (iPos < 0)
+      if (not_found(pPos))
       {
 
-         iPos = strUrl.length();
+         pPos = strUrl.end();
 
       }
 
-      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), strKeyParam, payload);
+      strUrl = strUrl.left(pPos) + "?" + query_set(strUrl.substr(pPos + 1), strKeyParam, payload);
 
    }
 
@@ -592,7 +596,7 @@ namespace url
       else
       {
          strsize iFinalLen = pszQuery - strUrlParam;
-//         i32 iPos = 0;
+//         i32 pPos = 0;
          ansi_count_copy(psz, strUrlParam, iFinalLen);
          psz[iFinalLen] = '?';
          iFinalLen++;
@@ -705,12 +709,12 @@ namespace url
 
       string strUrl(strUrlParam);
 
-      strsize iPos = strUrl.find("?");
+      auto pPos = strUrl.find("?");
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return strUrl;
 
-      return strUrl.Left(iPos) + ::str().has_char(query_erase(strUrl.Mid(iPos + 1), strKeyParam), "?");
+      return strUrl.left(pPos) + ::str().has_char(query_erase(strUrl.substr(pPos + 1), strKeyParam), "?");
 
    }
 
@@ -719,12 +723,12 @@ namespace url
 
       string strUrl(strUrlParam);
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return payload(::e_type_empty);
       else
-         return query_get_var(strUrl.Mid(iPos + 1), strKeyParam);
+         return query_get_var(strUrl.substr(pPos + 1), strKeyParam);
 
    }
 
@@ -733,67 +737,67 @@ namespace url
 
       string strUrl(strUrlParam);
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return payload(::e_type_empty);
       else
-         return ::url::decode(query_get_param(strUrl.Mid(iPos + 1), strKeyParam));
+         return ::url::decode(query_get_param(strUrl.substr(pPos + 1), strKeyParam));
 
    }
 
    bool url::get_param(string & strValue, const ::string & strUrl, const ::string & strKey)
    {
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return false;
       else
-         return query_get_param(strValue, strUrl.Mid(iPos + 1), strKey);
+         return query_get_param(strValue, strUrl.substr(pPos + 1), strKey);
 
    }
 
    bool url::has_param(const ::string & strUrl, const ::string & strKey)
    {
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return false;
       else
-         return query_has_param(strUrl.Mid(iPos + 1), strKey);
+         return query_has_param(strUrl.substr(pPos + 1), strKey);
 
    }
 
    bool url::param_has_char(const ::string & strUrl, const ::string & strKey)
    {
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return false;
       else
-         return query_param_has_char(strUrl.Mid(iPos + 1), strKey);
+         return query_param_has_char(strUrl.substr(pPos + 1), strKey);
    }
 
 
    bool url::has_param_replace(string & strUrl, const ::string & strKeyParam, const ::string & strValueParam)
    {
 
-      strsize iPos = strUrl.find('?');
+      auto pPos = strUrl.find('?');
 
-      if(iPos < 0)
+      if(not_found(pPos))
          return false;
       else
       {
 
-         string strQuery = strUrl.Mid(iPos + 1);
+         string strQuery = strUrl.substr(pPos + 1);
 
          if(!query_has_param_replace(strQuery, strKeyParam, strValueParam))
             return false;
 
-         strUrl = strUrl.Left(iPos + 1) + strQuery;
+         strUrl = strUrl.left(pPos + 1) + strQuery;
 
          return true;
 
@@ -823,32 +827,32 @@ namespace url
 
       if(string_begins(strQuery, strKeyEqual))
       {
-         strsize iPos = strQuery.find("&");
-         if(iPos < 0)
+         auto pPos = strQuery.find("&");
+         if(not_found(pPos))
          {
             strQuery = strKeyEqual2 + strValue;
          }
          else
          {
-            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
          }
       }
       else if(string_begins(strQuery, strKeyEqual2))
       {
-         strsize iPos = strQuery.find("&");
-         if(iPos < 0)
+         auto pPos = strQuery.find("&");
+         if(not_found(pPos))
          {
             strQuery = strKeyEqual2 + strValue;
          }
          else
          {
-            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
          }
       }
       else
       {
-         strsize iPos = strQuery.find(strAndKeyEqual);
-         if(iPos < 0)
+         auto pPos = strQuery.find(strAndKeyEqual);
+         if(not_found(pPos))
          {
             if(strQuery.has_char())
             {
@@ -861,8 +865,8 @@ namespace url
          }
          else
          {
-            iPos = strQuery.find(strAndKeyEqual2);
-            if(iPos < 0)
+            pPos = strQuery.find(strAndKeyEqual2);
+            if(not_found(pPos))
             {
                if(strQuery.has_char())
                {
@@ -875,7 +879,7 @@ namespace url
             }
             else
             {
-               strQuery = strQuery.Left(iPos) + strAndKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
+               strQuery = strQuery.left(pPos) + strAndKeyEqual2 + strValue + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
             }
          }
       }
@@ -899,20 +903,20 @@ namespace url
 
       if(string_begins(strQuery, strKeyEqual))
       {
-         strsize iPos = strQuery.find("&");
-         if(iPos < 0)
+         auto pPos = strQuery.find("&");
+         if(not_found(pPos))
          {
             strQuery = strKey + strParam;
          }
          else
          {
-            strQuery = strKey + strParam + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKey + strParam + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
          }
       }
       else
       {
-         strsize iPos = strQuery.find(strAndKeyEqual);
-         if(iPos < 0)
+         auto pPos = strQuery.find(strAndKeyEqual);
+         if(not_found(pPos))
          {
             if(strQuery.has_char())
             {
@@ -925,7 +929,7 @@ namespace url
          }
          else
          {
-            strQuery = strKey + strParam + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
+            strQuery = strKey + strParam + __query_erase(strQuery.substr(pPos), strAndKeyEqual);
          }
       }
 
@@ -970,9 +974,9 @@ namespace url
             
          }
          
-         strsize iNextParam = strQuery.find("&", iFind + 1);
+         auto pNextParam = strQuery(pFind+1).find("&");
          
-         if(iNextParam < 0)
+         if(not_found(pNextParam))
          {
             
             strQuery = strQuery(0, pFind);
@@ -981,7 +985,7 @@ namespace url
          else
          {
             
-            strQuery = strQuery(0, pFind) + strQuery.Mid(iNextParam);
+            strQuery = strQuery(0, pFind) + strQuery.substr(pNextParam);
             
          }
          
@@ -1023,17 +1027,17 @@ namespace url
 
       ::payload payload;
 
-      strsize iPos = 0;
+      string::const_iterator pPos = strQuery.begin();
 
       if(string_begins(strQuery, strKeyEqual))
       {
          
-         iPos = strQuery.find('&');
+         pPos = strQuery.find('&');
          
-         if(iPos < 0)
+         if(not_found(pPos))
          {
             
-            payload = strQuery.Mid(strKeyEqual.length());
+            payload = strQuery.substr(strKeyEqual.length());
             
             return payload;
             
@@ -1041,7 +1045,7 @@ namespace url
          else
          {
             
-            payload = strQuery.Mid(strKeyEqual.length(), iPos - strKeyEqual.length());
+            payload = strQuery.substr(strKeyEqual.length(), pPos - strKeyEqual.length());
             
          }
          
@@ -1050,30 +1054,30 @@ namespace url
       while(true)
       {
          
-         iPos = strQuery.find(strAndKeyEqual, iPos);
+         pPos = strQuery(pPos).find(strAndKeyEqual);
          
-         if(iPos < 0)
+         if(not_found(pPos))
          {
             
             break;
             
          }
          
-         strsize iEnd = strQuery.find('&', iPos + 1);
+         auto pEnd = strQuery(pPos + 1).find('&');
          
-         if(iEnd < 0)
+         if(not_found(pEnd))
          {
             
             if(payload.is_new())
             {
                
-               payload = strQuery.Mid(iPos + strKeyEqual.length());
+               payload = strQuery.substr(pPos + strKeyEqual.length());
                
             }
             else
             {
                
-               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.length()));
+               payload.payloada().add(strQuery.substr(pPos + strKeyEqual.length()));
                
             }
             
@@ -1086,19 +1090,19 @@ namespace url
             if(payload.is_new())
             {
                
-               payload = strQuery.Mid(iPos + strKeyEqual.length(), iEnd - (iPos + strKeyEqual.length()));
+               payload = strQuery.substr(pPos + strKeyEqual.length(), pEnd - (pPos + strKeyEqual.length()));
                
             }
             else
             {
                
-               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.length(), iEnd - (iPos + strKeyEqual.length())));
+               payload.payloada().add(strQuery.substr(pPos + strKeyEqual.length(), pEnd - (pPos + strKeyEqual.length())));
                
             }
             
          }
          
-         iPos++;
+         pPos++;
          
       }
 
@@ -1150,18 +1154,18 @@ namespace url
          else if(strQuery[strKey.length()] == '=')
          {
             
-            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            auto pFind2 = strQuery(strKey.length() + 1).find('&');
             
-            if(iFind2 > 0)
+            if(pFind2 > strQuery.begin())
             {
                
-               strValue = strQuery.Mid(strKey.length() + 1, iFind2 - (strKey.length() + 1));
+               strValue = strQuery.substr(strKey.length() + 1, pFind2 - (strKey.length() + 1));
                
             }
             else
             {
                
-               strValue = strQuery.Mid(strKey.length() + 1);
+               strValue = strQuery.substr(strKey.length() + 1);
                
             }
             
@@ -1171,17 +1175,17 @@ namespace url
 
       }
 
-      strsize iStart = 1;
+      ::string::const_iterator pStart = strQuery.begin() + 1;
 
-      strsize iFind;
+      ::string::const_iterator pFind;
 
-      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      while(found(pFind = strQuery(pStart).find(strKey)))
       {
          
-         if(strQuery[iFind - 1] == '&')
+         if (*(pFind - 1) == '&')
          {
             
-            if(strQuery.length() == (iFind + strKey.length()))
+            if(strQuery.end() == (pFind + strKey.length()))
             {
                
                strValue = "";
@@ -1189,21 +1193,21 @@ namespace url
                return true;
                
             }
-            else if(strQuery[iFind + strKey.length()] == '=')
+            else if(*(pFind + strKey.length()) == '=')
             {
                
-               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               auto pFind2 = strQuery(pFind + strKey.length() + 1).find('&');
                
-               if(iFind2 > 0)
+               if(pFind2 > strQuery.begin())
                {
                   
-                  strValue = strQuery.Mid(iFind + strKey.length() + 1, iFind2 - (iFind + strKey.length() + 1));
+                  strValue = strQuery.substr(pFind + strKey.length() + 1, pFind2 - (pFind + strKey.length() + 1));
                   
                }
                else
                {
                   
-                  strValue = strQuery.Mid(iFind + strKey.length() + 1);
+                  strValue = strQuery.substr(pFind + strKey.length() + 1);
                   
                }
                
@@ -1213,7 +1217,7 @@ namespace url
             
          }
          
-         iStart = iFind + strKey.length() + 1;
+         pStart = pFind + strKey.length() + 1;
          
       }
 
@@ -1252,23 +1256,23 @@ namespace url
 
       }
 
-      strsize iStart = strKey.length();
+      auto iStart = strKey.length();
 
-      strsize iFind;
+      ::string::const_iterator pFind;
 
-      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      while(found(pFind = strQuery(iStart).find(strKey)))
       {
          
-         if(strQuery[iFind - 1] == '&')
+         if(*(pFind - 1) == '&')
          {
             
-            if(strQuery.length() == (iFind + strKey.length()))
+            if(strQuery.end() == (pFind + strKey.length()))
             {
                
                return true;
                
             }
-            else if(strQuery[iFind + strKey.length()] == '=')
+            else if(*(pFind + strKey.length()) == '=')
             {
                
                return true;
@@ -1277,7 +1281,7 @@ namespace url
             
          }
          
-         iStart = iFind + strKey.length() + 1;
+         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
          
       }
 
@@ -1310,12 +1314,12 @@ namespace url
          else if(strQuery[strKey.length()] == '=')
          {
             
-            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            auto pFind2 = strQuery(strKey.length() + 1).find('&');
             
-            if(iFind2 > 0)
+            if(pFind2 > strQuery.begin())
             {
                
-               return (iFind2 - (strKey.length() + 1)) > 0;
+               return (strQuery.offset_of(pFind2) - (strKey.length() + 1)) > 0;
                
             }
             else
@@ -1329,37 +1333,37 @@ namespace url
 
       }
 
-      strsize iStart = strKey.length();
+      auto iStart = strKey.length();
 
-      strsize iFind;
+      ::string::const_iterator pFind;
 
-      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      while(found(pFind = strQuery(iStart).find(strKey)))
       {
          
-         if(strQuery[iFind - 1] == '&')
+         if(*(pFind - 1) == '&')
          {
             
-            if(strQuery.length() == (iFind + strKey.length()))
+            if(strQuery.end() == (pFind + strKey.length()))
             {
                
                return false;
                
             }
-            else if(strQuery[iFind + strKey.length()] == '=')
+            else if(*(pFind + strKey.length()) == '=')
             {
                
-               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               auto pFind2 = strQuery(pFind + strKey.length() + 1).find('&');
                
-               if(iFind2 > 0)
+               if(found(pFind2))
                {
                   
-                  return (iFind2 - (iFind + strKey.length() + 1)) > 0;
+                  return (pFind2 - (pFind + strKey.length() + 1)) > 0;
                   
                }
                else
                {
                   
-                  return (strQuery.length() - (iFind + strKey.length() + 1)) > 0;
+                  return (strQuery.length() - (strQuery.offset_of(pFind) + strKey.length() + 1)) > 0;
                   
                }
                
@@ -1367,7 +1371,7 @@ namespace url
             
          }
          
-         iStart = iFind + strKey.length() + 1;
+         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
          
       }
 
@@ -1402,18 +1406,18 @@ namespace url
          else if(strQuery[strKey.length()] == '=')
          {
             
-            strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            auto pFind2 = strQuery(strKey.length() + 1).find('&');
             
-            if(iFind2 > 0)
+            if(pFind2 > strQuery.begin())
             {
                
-               strQuery = strQuery.Left(strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+               strQuery = strQuery.left(strKey.length() + 1) + strValue + strQuery.substr(pFind2);
                
             }
             else
             {
                
-               strQuery = strQuery.Left(strKey.length() + 1) + strValue;
+               strQuery = strQuery.left(strKey.length() + 1) + strValue;
                
             }
             
@@ -1425,15 +1429,15 @@ namespace url
 
       strsize iStart = strKey.length();
 
-      strsize iFind;
+      ::string::const_iterator pFind;
 
-      while((iFind = strQuery.find(strKey, iStart)) >= 0)
+      while(found(pFind = strQuery(iStart).find(strKey)))
       {
          
-         if(strQuery[iFind - 1] == '&')
+         if(*(pFind - 1) == '&')
          {
             
-            if(strQuery.length() == (iFind + strKey.length()))
+            if(strQuery.end() == (pFind + strKey.length()))
             {
                
                strQuery += "=" + strValue;
@@ -1441,21 +1445,21 @@ namespace url
                return true;
                
             }
-            else if(strQuery[iFind + strKey.length()] == '=')
+            else if(*(pFind + strKey.length()) == '=')
             {
                
-               strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               auto pFind2 = strQuery(pFind + strKey.length() + 1).find('&');
                
-               if(iFind2 > 0)
+               if(pFind2 > strQuery.begin())
                {
                   
-                  strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+                  strQuery = strQuery.left(pFind + strKey.length() + 1) + strValue + strQuery.substr(pFind2);
                   
                }
                else
                {
                   
-                  strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue;
+                  strQuery = strQuery.left(pFind + strKey.length() + 1) + strValue;
                   
                }
                
@@ -1465,7 +1469,7 @@ namespace url
             
          }
          
-         iStart = iFind + strKey.length() + 1;
+         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
          
       }
 
@@ -2040,11 +2044,11 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //
 //      if(iFind == -1)
 //      {
-//         strDecode += str.Mid(iStart);
+//         strDecode += str.substr(iStart);
 //         break;
 //      }
 //
-//      strDecode += str.Mid(iStart,iFind - iStart);
+//      strDecode += str.substr(iStart,iFind - iStart);
 //
 //      if(str[iFind + 1] == '%')
 //      {
@@ -2056,7 +2060,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.Mid(iFind + 1,2),nullptr,16);
+//         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
 //
 //         if(ch != 0)
 //         {
@@ -2376,7 +2380,7 @@ namespace url
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.Right(2);
+//      str += "%" + strChar.right(2);
 //   }
 //
 //   psz++;
@@ -2613,11 +2617,11 @@ void openURL(const string& url_str)
 //
 //      if (iFind == -1)
 //      {
-//         strDecode += str.Mid(iStart);
+//         strDecode += str.substr(iStart);
 //         break;
 //      }
 //
-//      strDecode += str.Mid(iStart, iFind - iStart);
+//      strDecode += str.substr(iStart, iFind - iStart);
 //
 //      if (str[iFind + 1] == '%')
 //      {
@@ -2629,7 +2633,7 @@ void openURL(const string& url_str)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.Mid(iFind + 1, 2), nullptr, 16);
+//         char ch = (char)strtol(str.substr(iFind + 1, 2), nullptr, 16);
 //
 //         if (ch != 0)
 //         {
@@ -2927,7 +2931,7 @@ void openURL(const string& url_str)
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.Right(2);
+//      str += "%" + strChar.right(2);
 //   }
 //
 //   psz++;

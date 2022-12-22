@@ -1178,7 +1178,7 @@ namespace filemanager
 
             spitem->m_strName = listingUser.name(i);
 
-            //if (spitem->m_strName.contains_ci("aaa."))
+            //if (spitem->m_strName.case_insensitive_contains("aaa."))
             //{
 
             //   output_debug_string("test filemanager file_list");

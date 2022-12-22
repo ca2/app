@@ -352,7 +352,7 @@ namespace xml
 
       ::str().consume(pszXml, "&");
 
-      strName.Empty();
+      strName.empty();
 
       while(*pszXml != ';')
       {
@@ -488,7 +488,7 @@ namespace xml
 
       memcpy(m_memoryData.data() + iPos, strValue, strValue.length_in_bytes());
 
-      //m_strData = m_strData.Left(iPos) + strValue + m_strData.Mid(iPos + strName.length() + 2);
+      //m_strData = m_strData.left(iPos) + strValue + m_strData.substr(iPos + strName.length() + 2);
 
       return pszRight + iDiff;
 

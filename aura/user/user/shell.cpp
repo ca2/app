@@ -90,7 +90,7 @@ namespace user
       else
       {
 
-         m_strExtension.Empty();
+         m_strExtension.empty();
 
       }
 
@@ -111,13 +111,13 @@ namespace user
       if (iDot < 0)
       {
 
-         m_strExtension.Empty();
+         m_strExtension.empty();
 
       }
       else
       {
 
-         m_strExtension = strPath.Mid(iDot + 1);
+         m_strExtension = strPath.substr(iDot + 1);
 
       }
 
@@ -1489,7 +1489,7 @@ namespace user
       
       string strPath = getfileimage.m_imagekey.m_strPath;
       
-      getfileimage.m_imagekey.m_strPath.Empty();
+      getfileimage.m_imagekey.m_strPath.empty();
       
       getfileimage.m_imagekey.m_strExtension = strTypeIdentifier;
       
@@ -1521,7 +1521,7 @@ namespace user
                
                getfileimage.m_imagekey.m_strPath = strPath;
                
-               getfileimage.m_imagekey.m_strExtension.Empty();
+               getfileimage.m_imagekey.m_strExtension.empty();
                
                return false;
             
@@ -1550,7 +1550,7 @@ namespace user
 //
 //         string strPathOld = getfileimage.m_imagekey.m_strPath;
 //
-//         getfileimage.m_imagekey.m_strPath.Empty();
+//         getfileimage.m_imagekey.m_strPath.empty();
 //
 //         getfileimage.m_imagekey.m_strExtension = strUniversalTypeIdentifier;
 //
@@ -1695,9 +1695,9 @@ namespace user
          try
          {
 
-            m_pgetfileimage->m_pathProcessed.Empty();
+            m_pgetfileimage->m_pathProcessed.empty();
             
-            m_pgetfileimage->m_pathFinal.Empty();
+            m_pgetfileimage->m_pathFinal.empty();
 
             auto strPath = m_pgetfileimage->m_imagekey.m_strPath;
 
@@ -1707,7 +1707,7 @@ namespace user
 
             m_pgetfileimage->m_imagekey.m_strPath = strPath;
 
-            m_pgetfileimage->m_imagekey.m_strExtension.Empty();
+            m_pgetfileimage->m_imagekey.m_strExtension.empty();
 
             m_pgetfileimage->m_imagekey.m_iIcon = 0;
 

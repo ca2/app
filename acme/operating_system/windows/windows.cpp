@@ -502,7 +502,7 @@ void attach_thread_input_to_main_thread(bool bAttach)
 string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)
 {
 
-   HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(pcszType));
+   HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(scopedstrType));
 
    if (hrsrc == nullptr)
    {

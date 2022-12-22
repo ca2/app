@@ -682,7 +682,7 @@ namespace text
 //      while(parse.has_char())
 //      {
 //
-//         str.Empty();
+//         str.empty();
 //
 //         bFinal = false;
 //

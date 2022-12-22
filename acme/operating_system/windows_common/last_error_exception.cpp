@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-03 17:24 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-03 17:24 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "last_error_exception.h"
 
@@ -7,7 +7,7 @@
 
 
 last_error_exception::last_error_exception(DWORD dwLastError, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
-   exception(error_win32, pszMessage, pszDetails)
+   exception(error_win32, scopedstrMessage, scopedstrDetails)
 {
 
    m_errorcodea.add(::windows::last_error_error_code(dwLastError));

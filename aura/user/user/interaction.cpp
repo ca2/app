@@ -504,10 +504,10 @@ namespace user
 
       string strType = typeid(*this).name();
 
-      if (strType.contains_ci("control_box"))
+      if (strType.case_insensitive_contains("control_box"))
       {
 
-         if (strType.contains_ci("button"))
+         if (strType.case_insensitive_contains("button"))
          {
 
          }
@@ -3525,7 +3525,7 @@ namespace user
 //            output_debug_string("scroll_bar");
 //
 //         }
-         //         else if (strType.contains_ci("combo_box"))
+         //         else if (strType.case_insensitive_contains("combo_box"))
          //         {
          //
          //            output_debug_string("combo box on clip");
@@ -3534,7 +3534,7 @@ namespace user
 
 #if defined(MACOS) || defined(LINUX) || defined(_UWP)
 
-//         if (strType.contains_ci("pane"))
+//         if (strType.case_insensitive_contains("pane"))
 //         {
 //
 //            output_debug_string("a");
@@ -4454,7 +4454,7 @@ namespace user
          //output_debug_string("plain_edit");
 
       }
-      //      else if (strType.contains_ci("font_list"))
+      //      else if (strType.case_insensitive_contains("font_list"))
       //      {
       //
       //         output_debug_string("font_list");
@@ -4679,7 +4679,7 @@ namespace user
 //
 //            output_debug_string("waven::impact");
 //         }
-         //         else if(strType.contains_ci("menu_list_impact"))
+         //         else if(strType.case_insensitive_contains("menu_list_impact"))
          //         {
          //
          //            output_debug_string("menu_list_impact");

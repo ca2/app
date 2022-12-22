@@ -928,7 +928,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
 
       CFStringRef name = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowName);
       
-      strName.Empty();
+      strName.empty();
 
       if(name)
       {
@@ -939,7 +939,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
       
       CFStringRef appname = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowOwnerName);
       
-      strAppName.Empty();
+      strAppName.empty();
       
       if(appname)
       {
@@ -1167,7 +1167,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
       
       CFStringRef name = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowName);
       
-      strName.Empty();
+      strName.empty();
       
       if(name)
       {
@@ -1178,7 +1178,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
       
       CFStringRef appname = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowOwnerName);
       
-      strAppName.Empty();
+      strAppName.empty();
       
       if(appname)
       {

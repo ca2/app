@@ -154,7 +154,7 @@ gdb_check(void)
 //}
 
 
-void output_debug_string(const char * pOutputString)
+void output_debug_string(const scoped_string & str)
 {
 
    if(::acme::g_bOutputDebugString)

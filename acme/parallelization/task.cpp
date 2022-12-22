@@ -987,7 +987,7 @@ bool task::has_message() const
 
    string strId = m_atom;
 
-   if (strId.contains_ci("forking_thread"))
+   if (strId.case_insensitive_contains("forking_thread"))
    {
 
 #if 0
@@ -1184,7 +1184,7 @@ bool task::has_message() const
 //
 //   string strId = m_atom;
 //
-//   if (strId.contains_ci("forking_thread"))
+//   if (strId.case_insensitive_contains("forking_thread"))
 //   {
 //
 //#if 0
@@ -1335,7 +1335,7 @@ bool task::has_message() const
 //
 //   string strId = m_atom;
 //
-//   if (strId.contains_ci("forking_thread"))
+//   if (strId.case_insensitive_contains("forking_thread"))
 //   {
 //
 //#if 0

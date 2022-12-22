@@ -1377,7 +1377,7 @@ namespace user
    //   //         }
    //   //
    //   //      }
-   //   //      rWString.Empty();
+   //   //      rWString.empty();
    //   //#else
    //   //      throw ::exception(todo);
    //   //#endif

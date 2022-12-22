@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/memory/memory_allocator.h"
@@ -124,6 +124,7 @@ public:
 
 
    inline natural_pointer(enum_no_initialize) : RANGE_TYPE(e_no_initialize) { }
+   inline natural_pointer(enum_zero_initialize) : RANGE_TYPE(e_zero_initialize) { }
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
 

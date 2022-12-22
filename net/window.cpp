@@ -91,7 +91,7 @@ namespace app_net
 
          auto elapsed = m_timeStartGettingUrl.elapsed();
 
-         strGet = "Getting Url " + strDots.Left((elapsed.integral_millisecond().m_i / 300) % 4);
+         strGet = "Getting Url " + strDots.left((elapsed.integral_millisecond().m_i / 300) % 4);
 
       }
       else

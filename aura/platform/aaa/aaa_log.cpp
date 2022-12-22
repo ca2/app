@@ -557,7 +557,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
                   sleep(1_s);
 
-                  if (!acmepath()->app_module().contains_ci("logviewer") && acmefile()->exists(         auto psystem = acmesystem();
+                  if (!acmepath()->app_module().case_insensitive_contains("logviewer") && acmefile()->exists(         auto psystem = acmesystem();
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 

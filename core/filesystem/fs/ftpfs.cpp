@@ -353,7 +353,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
       strPath.ends_eat("/");
 
-      if(m_straFtpServer.contains_ci(strPath))
+      if(m_straFtpServer.case_insensitive_contains(strPath))
       {
 
          return 1;

@@ -1,4 +1,4 @@
-//Created by camilo on 2021-03-26 00:10 BRT <3ThomasBS_
+﻿//Created by camilo on 2021-03-26 00:10 BRT <3ThomasBS_
 #include "framework.h"
 #include "text.h"
 #include "translator.h"
@@ -98,7 +98,7 @@ namespace text
 
             string strText = m_pdata->m_atom;
 
-            auto find = strText.find("://");
+            auto find = strText.find_index("://");
 
             if(find < 0)
             {
@@ -111,14 +111,14 @@ namespace text
 
                find += 3;
 
-               auto find1 = strText.find("/", find);
+               auto find1 = strText(find).find_index("/");
 
                if(find1 > find)
                {
 
                   find = find1 + 1;
 
-                  find1 = strText.find("/", find);
+                  find1 = strText(find).find_index("/");
 
                   if(find1 > find)
                   {
@@ -131,7 +131,7 @@ namespace text
 
             }
 
-            m_pdata->m_str = strText.Mid(find);
+            m_pdata->m_str = strText.substr(find);
 
          }
 

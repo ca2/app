@@ -556,7 +556,7 @@ namespace user
       if (!m_bCustomOpen)
       {
 
-         m_path.Empty();
+         m_path.empty();
 
          m_datamap.erase_all();
 
@@ -889,9 +889,9 @@ namespace user
 
       m_bModified = false;
 
-      m_path.Empty();
+      m_path.empty();
 
-      m_strTitle.Empty();
+      m_strTitle.empty();
 
       if (!on_new_document())
       {
@@ -900,9 +900,9 @@ namespace user
 
          m_bModified = false;
 
-         m_path.Empty();
+         m_path.empty();
 
-         m_strTitle.Empty();
+         m_strTitle.empty();
 
       }
 
@@ -1580,7 +1580,7 @@ namespace user
             if (iBad != -1)
             {
 
-               newName = newName.as_string().Left(iBad);
+               newName = newName.as_string().left(iBad);
 
             }
 

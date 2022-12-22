@@ -47,7 +47,7 @@ void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, con
 
    string strTag;
 
-   strTag = strTag.Left(23);
+   strTag = strTag.left(23);
 
    strTag = string(' ', maximum(0, 23 - strTag.length()));
 
@@ -82,7 +82,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //
 //   string strTag;
 //
-//   strTag = strTag.Left(23);
+//   strTag = strTag.left(23);
 //
 //   strTag = string(' ', maximum(0, 23 - strTag.length()));
 //

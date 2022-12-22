@@ -223,7 +223,7 @@ static const char *basis_hex = "0123456789abcdef";
 CLASS_DECL_APEX ::string as_string(const in6_addr  & addr)
 {
 
-   str.Empty();
+   str.empty();
 
 #define STUFF(c) { str += ((char)(c)); }
 

@@ -74,7 +74,7 @@ namespace user
 
          auto strOpenOnCreate = m_strOpenOnCreate;
 
-         m_strOpenOnCreate.Empty();
+         m_strOpenOnCreate.empty();
 
          if (strOpenOnCreate.has_char())
          {

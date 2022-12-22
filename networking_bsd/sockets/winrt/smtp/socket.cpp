@@ -44,7 +44,7 @@ namespace sockets
                string_array stra;
                stra.explode(" ", pa.getrest());
                stra.trim();
-               if(stra.contains_ci("login"))
+               if(stra.case_insensitive_contains("login"))
                {
                   m_estate = state_auth_login;
                   write("AUTH LOGIN\r\n");
@@ -99,7 +99,7 @@ namespace sockets
       }
       else if(m_estate == state_data)
       {
-         if(code.Mid(0, 1) == "3")
+         if(code.substr(0, 1) == "3")
          {
             m_estate = state_body;
             write("Subject:  =?utf-8?B?" + ::apexacmesystem()->base64().encode(m_email.m_strSubject) + "?=\r\n");
@@ -113,7 +113,7 @@ namespace sockets
             stra.add_tokens(strBody, "\n", true);
             for(int i = 0; i < stra.get_count(); i++)
             {
-               if(stra[i].Mid(0, 1) == ".")
+               if(stra[i].substr(0, 1) == ".")
                {
                   write("." + stra[i] + "\r\n");
                }

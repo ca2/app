@@ -51,7 +51,7 @@ public:
    index find_first(const ::scoped_string & scopedstr, index find = 0, index last = -1) const;
    index find_first(const ::payload & payload, index find = 0, index last = -1) const;
 
-   bool contains_ci(const ::scoped_string & str, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+   bool case_insensitive_contains(const ::scoped_string & str, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
 
    bool contains(const ::scoped_string & str, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
 

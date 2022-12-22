@@ -611,7 +611,7 @@ void thread::thread_loop()
 
          string strType = __type_name(this);
 
-//         if (strType.contains_ci("session"))
+//         if (strType.case_insensitive_contains("session"))
 //         {
 //
 //            auto bShouldRun = task_get_run();
@@ -637,7 +637,7 @@ void thread::thread_loop()
 
 //            string strType = __type_name(this);
 //
-//            if (strType.contains_ci("session"))
+//            if (strType.case_insensitive_contains("session"))
 //            {
 //
 //               auto bShouldRun = task_get_run();
@@ -874,7 +874,7 @@ bool thread::pump_message()
 
          string strType = __type_name(this);
 
-         if (strType.contains_ci("session"))
+         if (strType.case_insensitive_contains("session"))
          {
 
             auto bShouldRun = task_get_run();
@@ -2324,7 +2324,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //   string strId = m_atom;
 //
-//   if (strId.contains_ci("forking_thread"))
+//   if (strId.case_insensitive_contains("forking_thread"))
 //   {
 //
 //#if 0
@@ -2690,7 +2690,7 @@ void thread::task_osinit()
    if (m_bMessageThread)
    {
 
-      if (__type_name(this).contains_ci("out"))
+      if (__type_name(this).case_insensitive_contains("out"))
       {
 
          output_debug_string("out");
@@ -3006,7 +3006,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
          string strType = __type_name(this);
 
-         if (strType.contains_ci("::application"))
+         if (strType.case_insensitive_contains("::application"))
          {
 
             output_debug_string("application_shouldn't_run?");
@@ -3021,7 +3021,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             }
 
          }
-         else if (strType.contains_ci("session"))
+         else if (strType.case_insensitive_contains("session"))
          {
 
             auto bShouldRun = task_get_run();
@@ -3034,7 +3034,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
             }
 
          }
-         else if (strType.contains_ci("system"))
+         else if (strType.case_insensitive_contains("system"))
          {
 
             auto bShouldRun = task_get_run();
@@ -3530,7 +3530,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////
 ////      estatus = set_finish_composites();
 ////
-////      if (strTypeName.contains_ci("app_app::window"))
+////      if (strTypeName.case_insensitive_contains("app_app::window"))
 ////      {
 ////
 ////         output_debug_string("set_finish at app_window");
@@ -3627,7 +3627,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////
 ////         string strType = __type_name(this);
 ////
-////         if (strType.contains_ci("session"))
+////         if (strType.case_insensitive_contains("session"))
 ////         {
 ////
 ////            auto bShouldRun = task_get_run();
@@ -3640,7 +3640,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 ////            }
 ////
 ////         }
-////         else if (strType.contains_ci("application"))
+////         else if (strType.case_insensitive_contains("application"))
 ////         {
 ////
 ////            auto bShouldRun = task_get_run();

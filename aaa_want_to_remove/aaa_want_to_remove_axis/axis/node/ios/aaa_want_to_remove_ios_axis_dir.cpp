@@ -142,7 +142,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->is(str.Left(iLast));
+pacmedirectory->is(str.left(iLast));
 
          return bIsDir;
 

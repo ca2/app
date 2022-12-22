@@ -479,7 +479,7 @@ namespace database
 
       m_datakeyModifier = key;
 
-      m_datakey.m_strDataKey.Empty();
+      m_datakey.m_strDataKey.empty();
 
       update_data_key();
 

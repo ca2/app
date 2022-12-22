@@ -206,7 +206,7 @@ namespace sockets
          string tmp = buf + ptr;
          ptr += len;
          ptr++; // skip trailing 0x0
-         tmp = tmp.Left(len);
+         tmp = tmp.left(len);
          return tmp;
       }
       return "";

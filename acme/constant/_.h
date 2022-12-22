@@ -14,6 +14,14 @@
 
 //#include "_enumeration.h"
 
+
+enum enum_zero_initialize
+{
+
+   e_zero_initialize,
+
+};
+
 class eimpact;
 
 

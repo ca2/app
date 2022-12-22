@@ -238,7 +238,7 @@ namespace user
          if (m_strFontFamily.case_insensitive_order(format.m_strFontFamily) != 0)
          {
 
-            m_strFontFamily.Empty();
+            m_strFontFamily.empty();
 
          }
 

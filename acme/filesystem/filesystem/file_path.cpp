@@ -103,7 +103,7 @@ string url_dir_name_for_relative(const ::file::path & path)
 
 #define CHECK_NATIVE_FILE_SEP(ch) \
    \
-   if (bOnlyNativeFileSep && psz[iPos] == '/') \
+   if (bOnlyNativeFileSep && (ch) == '/') \
    { \
    \
       bOnlyNativeFileSep = false; \
@@ -604,7 +604,7 @@ string file_path_folder(const ::file::path & path)
 
    }
 
-   auto range = path(p);
+   auto range = path(0, p);
 
    auto pFolderLastCharacter = range.rear_skip_any_character_in("\\/");
 
@@ -904,7 +904,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
       && strPath.begins_eat("/"))
    {
 
-      //strPath = strPath.Mid(1);
+      //strPath = strPath.substr(1);
 
    }
 
@@ -917,8 +917,8 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       bUrl = false;
 
-      //strPath = ::file::path(acmesystem()->url().::url::decode(strPath.Mid(7)));
-      strPath = ::file::path(::url::decode(strPath.Mid(7)));
+      //strPath = ::file::path(acmesystem()->url().::url::decode(strPath.substr(7)));
+      strPath = ::file::path(::url::decode(strPath.substr(7)));
 
       return bCertainlySyntathicallyDir;
 

@@ -129,11 +129,11 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //
 //      if(iFind == -1)
 //      {
-//         strDecode += str.Mid(iStart);
+//         strDecode += str.substr(iStart);
 //         break;
 //      }
 //
-//      strDecode += str.Mid(iStart,iFind - iStart);
+//      strDecode += str.substr(iStart,iFind - iStart);
 //
 //      if(str[iFind + 1] == '%')
 //      {
@@ -145,7 +145,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.Mid(iFind + 1,2),nullptr,16);
+//         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
 //
 //         if(ch != 0)
 //         {
@@ -465,7 +465,7 @@ namespace url
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.Right(2);
+//      str += "%" + strChar.right(2);
 //   }
 //
 //   psz++;
@@ -702,11 +702,11 @@ void openURL(const string& url_str)
 //
 //      if (iFind == -1)
 //      {
-//         strDecode += str.Mid(iStart);
+//         strDecode += str.substr(iStart);
 //         break;
 //      }
 //
-//      strDecode += str.Mid(iStart, iFind - iStart);
+//      strDecode += str.substr(iStart, iFind - iStart);
 //
 //      if (str[iFind + 1] == '%')
 //      {
@@ -718,7 +718,7 @@ void openURL(const string& url_str)
 //      else
 //      {
 //
-//         char ch = (char)strtol(str.Mid(iFind + 1, 2), nullptr, 16);
+//         char ch = (char)strtol(str.substr(iFind + 1, 2), nullptr, 16);
 //
 //         if (ch != 0)
 //         {
@@ -1016,7 +1016,7 @@ void openURL(const string& url_str)
 //   else
 //   {
 //      strChar.format("%02X", *psz);
-//      str += "%" + strChar.Right(2);
+//      str += "%" + strChar.right(2);
 //   }
 //
 //   psz++;

@@ -297,7 +297,7 @@ pacmedirectory->is(strPath))
       if (::is_set(pFind) || iFind2 >= 2)
       {
 
-         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
+         string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
 
          i32 i = 0;
 

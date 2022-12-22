@@ -150,7 +150,7 @@ namespace account
       }
 
       m_iPasswordOriginalLength = -1;
-      m_strPassword.Empty();
+      m_strPassword.empty();
 
       ASSERT(m_strToken.has_char());
       ASSERT(m_strTitle.has_char());
@@ -247,16 +247,16 @@ namespace account
             if (bBadUser)
             {
 
-               m_puser->m_strLogin.Empty();
+               m_puser->m_strLogin.empty();
 
             }
 
             if (bBadUser || bBadHash)
             {
 
-               m_strPasshash.Empty();
+               m_strPasshash.empty();
 
-               m_strPassword.Empty();
+               m_strPassword.empty();
 
                m_iPasswordOriginalLength = -1;
 

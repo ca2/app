@@ -476,6 +476,14 @@ public:
 
 };
 
+//template < primitive_character CHARACTER >
+//class argument_of < CHARACTER >
+//{
+//public:
+//
+//   using type = CHARACTER;
+//
+//};
 
 
 template < typename T, typename ARG_T = typename argument_of < T >::type >

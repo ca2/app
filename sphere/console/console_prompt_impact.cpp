@@ -45,7 +45,7 @@ namespace console
    void prompt_impact::clear()
    {
 
-      m_strCommand.Empty();
+      m_strCommand.empty();
 
       m_iCursor = 0;
 
@@ -338,7 +338,7 @@ namespace console
       for( i = 0; i < m_strCommand.length(); i++)
       {
 
-         pgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.Mid(i,1));
+         pgraphics->text_out(iLeftMargin +m_sizeChar.cx *i,0,m_strCommand.substr(i,1));
 
       }
 

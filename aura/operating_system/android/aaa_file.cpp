@@ -49,7 +49,7 @@ namespace android
       if (!windows_full_path(wstrFullName, wstrFileName))
       {
 
-         rStatus.m_strFullName.Empty();
+         rStatus.m_strFullName.empty();
 
          return false;
 
@@ -173,7 +173,7 @@ namespace android
       }
 
       m_iFile = (::u32)hFileNull;
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
       m_strFileName     = lpszFileName;
 
@@ -514,7 +514,7 @@ namespace android
          bError = ::close(m_iFile) == -1;
 
       m_iFile = (::u32) hFileNull;
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
       if (bError)
          ::file::throw_os_error( (::i32)::get_last_error());
@@ -530,7 +530,7 @@ namespace android
    //      ::close(m_iFile);
    //      m_iFile = (::u32)hFileNull;
    //   }
-   //   m_strFileName.Empty();
+   //   m_strFileName.empty();
    //}
 
    void file::lock(filesize dwPos, filesize dwCount)

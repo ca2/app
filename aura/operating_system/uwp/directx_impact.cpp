@@ -260,9 +260,9 @@ namespace universal_windows
       wstring wstrText = get_input_text();
 
       // Modify the internal text store.
-      wstrText = wstrText.Left(modifiedRange.StartCaretPosition) +
+      wstrText = wstrText.left(modifiedRange.StartCaretPosition) +
          text->Begin() +
-         wstrText.Mid(modifiedRange.EndCaretPosition);
+         wstrText.substr(modifiedRange.EndCaretPosition);
 
       // Move the caret to the end of the replacement text.
       m_selection.StartCaretPosition = modifiedRange.StartCaretPosition + wstrText.length();
@@ -319,7 +319,7 @@ namespace universal_windows
 
       wide_string wstrText = get_input_text();
 
-      wstrText = wstrText.Mid(
+      wstrText = wstrText.substr(
          request->Range.StartCaretPosition,
          minimum(request->Range.EndCaretPosition, wstrText.length()) - request->Range.StartCaretPosition);
 
@@ -354,7 +354,7 @@ namespace universal_windows
 
       wide_string wstrText = get_input_text();
 
-      string strText = wstrText.Left( range.StartCaretPosition) + newText + wstrText.Mid(range.EndCaretPosition);
+      string strText = wstrText.left( range.StartCaretPosition) + newText + wstrText.substr(range.EndCaretPosition);
 
       m_strNewText = newText;
 
@@ -541,9 +541,9 @@ namespace universal_windows
 
       auto pfocusui = m_puserinteraction->get_keyboard_focus();
 
-      //m_strText.Empty();
+      //m_strText.empty();
 
-      //m_strNewText.Empty();
+      //m_strNewText.empty();
 
       if (pfocusui)
       {
@@ -633,7 +633,7 @@ namespace universal_windows
          //   range.StartCaretPosition = maximum(0, range.StartCaretPosition - 1);
          //   ReplaceText(range, "");
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
 
          // Left arrow
@@ -667,7 +667,7 @@ namespace universal_windows
          //      SetSelectionAndNotify(range);
          //   }
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
 
          // Right arrow
@@ -701,7 +701,7 @@ namespace universal_windows
          //      SetSelectionAndNotify(range);
          //   }
          //}
-         //m_strNewText.Empty();
+         //m_strNewText.empty();
          break;
       }
    }

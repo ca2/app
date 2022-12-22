@@ -945,7 +945,7 @@ namespace file
    //         straParam.add(str);
    //         break;
    //      }
-   //      string str = strPath.Mid(iFind, iFind3 - iFind);
+   //      string str = strPath.substr(iFind, iFind3 - iFind);
    //      straParam.add(str);
    //      iFind = iFind3 + 1;
    //   }
@@ -1155,7 +1155,7 @@ namespace file
 //
 //      string str = path;
 //
-//      if (strPath.Right(3) == "://")
+//      if (strPath.right(3) == "://")
 //      {
 //
 //         return operator = (::file::path(strPath + str, m_epath));
@@ -1532,7 +1532,7 @@ namespace file
    inline path path::relative() const
    {
 
-      return Mid(maximum(0, m_iBasePathLength));
+      return substr(maximum(0, m_iBasePathLength));
 
    }
 
@@ -1650,6 +1650,13 @@ inline ::file::path operator +(const ::file::path & path, const ::inline_string 
 }
 
 
+template < strsize c >
+inline ::file::path operator +(const ::file::path & path, const ::ansi_character(&cha)[c])
+{
+
+   return ((const ::string &)path) + ::string(cha);
+
+}
 
 
 inline ::file::path operator+(const ::string & str, const ::file::path & path)

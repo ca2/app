@@ -306,12 +306,12 @@ inline bool myspace(char ch)
 //      {
 //         if(iFolderBeg > iFolderEnd)
 //            return "";
-//         return strFolder.Mid(iFolderBeg, iFolderEnd - iFolderBeg + 1);
+//         return strFolder.substr(iFolderBeg, iFolderEnd - iFolderBeg + 1);
 //      }
 //      else
 //      {
 //         if(iFolderBeg > iFolderEnd)
-//            return str2.Mid(iBeg2, iEnd2 - iBeg2 + 1);
+//            return str2.substr(iBeg2, iEnd2 - iBeg2 + 1);
 //         string strPath;
 //         string_STRCAT2_beg_char_end(strPath, '\\', strFolder, str2, iFolderBeg, iFolderEnd, iBeg2, iEnd2);
 //         return strPath;
@@ -1011,7 +1011,7 @@ bool dir_context::is(const ::file::path& pathParam)
    if (pathParam.case_insensitive_begins("appmatter://"))
    {
 
-      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.Mid(12);
+      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.substr(12);
 
    }
    else
@@ -1306,13 +1306,13 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            if (iFind3 < 0)
 //            {
 //
-//               find.m_str = path.Mid(iFind0);
+//               find.m_str = path.substr(iFind0);
 //
 //            }
 //            else
 //            {
 //
-//               find.m_str = path.Mid(iFind0, iFind3 - iFind0);
+//               find.m_str = path.substr(iFind0, iFind3 - iFind0);
 //
 //            }
 //
@@ -1541,11 +1541,11 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            iFind3 = minimum_non_negative(iFind1, iFind2);
 //            if (iFind3 < 0)
 //            {
-//               pfind->m_str = strPath.Mid(iFind0);
+//               pfind->m_str = strPath.substr(iFind0);
 //            }
 //            else
 //            {
-//               pfind->m_str = strPath.Mid(iFind0, iFind3 - iFind0);
+//               pfind->m_str = strPath.substr(iFind0, iFind3 - iFind0);
 //            }
 //
 //            auto pFind = pdir->predicate_binary_search(pfind, [&](auto & t1, auto & t2)
@@ -1566,11 +1566,11 @@ bool dir_context::name_is(const ::file::path& strPath)
 //                  iFind3 = minimum_non_negative(iFind1, iFind2);
 //                  if (iFind3 < 0)
 //                  {
-//                     pfind->m_str = strPath.Mid(iFind0);
+//                     pfind->m_str = strPath.substr(iFind0);
 //                  }
 //                  else
 //                  {
-//                     pfind->m_str = strPath.Mid(iFind0, iFind3 - iFind0);
+//                     pfind->m_str = strPath.substr(iFind0, iFind3 - iFind0);
 //                  }
 //                  pfind->m_iIsDir = bIsDir ? 1 : (iFind3 >= 0 ? -1 : 0);
 //
@@ -2126,7 +2126,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             }
 
-            path.Empty();
+            path.empty();
 
          }
 
@@ -2138,7 +2138,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
             if (strFinal.case_insensitive_begins("appmatter://"))
             {
 
-               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
+               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.substr(12);
 
             }
 
@@ -2677,7 +2677,7 @@ ret:
 
       strsize iStart = maximum(iFind1 + 1, iFind2 + 1);
 
-      strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative(pFind + 1);
+      strRelative = strRelative.left(iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative(pFind + 1);
 
    }
 

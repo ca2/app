@@ -862,12 +862,12 @@ namespace dynamic_source
             //   {
             //      if (strLine.length() < i + iColCount + 10)
             //      {
-            //         FORMATTED_TRACE(strLine.Mid(i));
+            //         FORMATTED_TRACE(strLine.substr(i));
             //         break;
             //      }
             //      else
             //      {
-            //         FORMATTED_TRACE(strLine.Mid(i, iColCount) + "\\...");
+            //         FORMATTED_TRACE(strLine.substr(i, iColCount) + "\\...");
             //      }
             //   }
 
@@ -1137,28 +1137,28 @@ namespace dynamic_source
       strsize iStart = 0;
       strsize iPos = 0;
       strsize iLastEnd = 0;
-      if(strSource.Mid(0, 4) == "<?ss")
+      if(strSource.substr(0, 4) == "<?ss")
       {
          iLastEnd = strSource.find("?>", iPos);
          if(iLastEnd > 0)
          {
             iLastEnd += 2;
-            strDest += cppize2(strSource.Mid(iPos + 4, iLastEnd - iPos - 6), false, straId);
+            strDest += cppize2(strSource.substr(iPos + 4, iLastEnd - iPos - 6), false, straId);
             iStart = iLastEnd;
          }
       }
-      else if(strSource.Mid(0, 7) == "<? //ss")
+      else if(strSource.substr(0, 7) == "<? //ss")
       {
          iLastEnd = strSource.find("?>", iPos);
          if(iLastEnd > 0)
          {
             iLastEnd += 2;
-            strDest += cppize2(strSource.Mid(iPos + 7, iLastEnd - iPos - 7 - 2), false, straId);
+            strDest += cppize2(strSource.substr(iPos + 7, iLastEnd - iPos - 7 - 2), false, straId);
             iStart = iLastEnd;
          }
       }
       string strDs;
-      if(strSource.Mid(iStart, 4) == "<?ds")
+      if(strSource.substr(iStart, 4) == "<?ds")
       {
          iStart +=4;
          while(true)
@@ -1167,19 +1167,19 @@ namespace dynamic_source
             iLastEnd = strSource.find("ds?>", iStart);
             if(iMid > 0 && iMid < iLastEnd)
             {
-               strDs += cppize2(strSource.Mid(iStart, iMid - iStart), true, straId);
+               strDs += cppize2(strSource.substr(iStart, iMid - iStart), true, straId);
                iStart = iMid + 2;
                iMid = strSource.find("<?", iStart);
                if(iMid < iLastEnd)
                {
-                  strDs += get_ds_print(strSource.Mid(iStart, iMid - iStart));
+                  strDs += get_ds_print(strSource.substr(iStart, iMid - iStart));
                }
                iStart = iMid + 2;
                continue;
             }
             if(iLastEnd > 0)
             {
-               strDs += cppize2(strSource.Mid(iStart, iLastEnd - iStart), true, straId);
+               strDs += cppize2(strSource.substr(iStart, iLastEnd - iStart), true, straId);
                iStart = iLastEnd + 4;
                iLastEnd = iStart;
             }
@@ -1222,19 +1222,19 @@ namespace dynamic_source
       {
          if(iPos > iLastEnd)
          {
-            strDest += get_ds_print(strSource.Mid(iLastEnd, iPos - iLastEnd));
+            strDest += get_ds_print(strSource.substr(iLastEnd, iPos - iLastEnd));
          }
          iLastEnd = strSource.find("?>", iPos);
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
          i32 iShift = 0;
-         if(strSource.Mid(iPos, 5).case_insensitive_order("<?php") == 0)
+         if(strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
-         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
+         strDest += cppize2(strSource.substr(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
          iStart = iLastEnd;
       }
-      strDest += get_ds_print(strSource.Mid(iStart));
+      strDest += get_ds_print(strSource.substr(iStart));
 
       strDest += "//End parsed user script\r\n";
       //strDest += "return ::success;\r\n";
@@ -1246,7 +1246,7 @@ namespace dynamic_source
          strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
-      strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
+      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
 
       string strCppPath =  pscript->m_strCppPath;
@@ -1866,21 +1866,21 @@ auto tickStart = ::time::now();
       {
          if(iPos > iLastEnd && bCode)
          {
-            strDest += get_ds_print(strSource.Mid(iLastEnd, iPos - iLastEnd));
+            strDest += get_ds_print(strSource.substr(iLastEnd, iPos - iLastEnd));
          }
          iLastEnd = strSource.find("?>", iPos);
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
          i32 iShift = 0;
-         if(strSource.Mid(iPos, 5).case_insensitive_order("<?php") == 0)
+         if(strSource.substr(iPos, 5).case_insensitive_order("<?php") == 0)
             iShift = 3;
          bCode = true;
-         strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false, straId);
+         strDest += cppize2(strSource.substr(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), false, straId);
          iStart = iLastEnd;
       }
       /*   strDest += "   print(\"" ;
-      strDest += escape(strSource.Mid(iStart));
+      strDest += escape(strSource.substr(iStart));
       strDest += "\");\r\n";
       strDest += "//End parsed user script\r\n";
       strDest += "}\r\n";*/
@@ -1891,7 +1891,7 @@ auto tickStart = ::time::now();
          strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
-      strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
+      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
       //file()->put_text_utf8(lpcszDest, strDest);
       file()->put_text(lpcszDest, strDest);
@@ -1902,7 +1902,7 @@ auto tickStart = ::time::now();
 
    void add_var_id(string & strResult, strsize & iArroba, string_array & straId, bool bMakeKeyLower)
    {
-      string strKey = strResult.Mid(iArroba);
+      string strKey = strResult.substr(iArroba);
       if(bMakeKeyLower)
       {
          strKey.make_lower();
@@ -1913,7 +1913,7 @@ auto tickStart = ::time::now();
          straId.add(strKey);
          iFind = straId.get_upper_bound();
       }
-      strResult = strResult.Left(iArroba) + " lscript_id" + as_string(iFind);
+      strResult = strResult.left(iArroba) + " lscript_id" + as_string(iFind);
       iArroba = -1;
    }
 
@@ -1956,7 +1956,7 @@ auto tickStart = ::time::now();
          bInserted = false;
          ch = str[i];
          chNext = str[i + 1];
-         if(string_begins(str.Mid(i), "bk_filter_active1"))
+         if(string_begins(str.substr(i), "bk_filter_active1"))
          {
             //debug_break();
          }
@@ -2476,7 +2476,7 @@ ch_comma:
          else
          {
 ch_else:
-            if(bScript &&str[i-1] != '_' && is_id(&str[i], str.length() - i,  "return", 6,  iIdLen) && next_nonspace(str.Mid(i + iIdLen))[0] != ';')
+            if(bScript &&str[i-1] != '_' && is_id(&str[i], str.length() - i,  "return", 6,  iIdLen) && next_nonspace(str.substr(i + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
@@ -2500,7 +2500,7 @@ ch_else:
                strSpec1 = "echo";
                i += iIdLen - 1;
             }
-            else if(str.Mid(i, 2) == "[]")
+            else if(str.substr(i, 2) == "[]")
             {
                bInSpec2 = true;
                i += 2 - 1;
@@ -2850,13 +2850,13 @@ ch_else:
             if(strSource[iLen] == '\n')
                iLen++;
          }
-         string str = strSource.Left(iLen);
+         string str = strSource.left(iLen);
          //strDest += "   ds_print(unitext(\"";
          strDest += "\r\n   ds_print(\"";
          strDest += escape(str);
          //strDest += "\"));\r\n";
          strDest += "\");\r\n";
-         strSource = strSource.Mid(iLen);
+         strSource = strSource.substr(iLen);
       }
       return strDest;
    }

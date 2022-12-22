@@ -4455,12 +4455,12 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.length() - iUnderline - 1;
-               pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.Right(iCount).c_str(), (i32)iCount });
+               pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.right(iCount).c_str(), (i32)iCount });
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
                rectangle.left + sz.cx,
                rectangle.top,
-               str.Right(iCount),
+               str.right(iCount),
                iCount);*/
             }
 
@@ -4555,7 +4555,7 @@ namespace draw2d
 
                   iSampleLen--;
 
-                  str = strSource.Left(iSampleLen) + "...";
+                  str = strSource.left(iSampleLen) + "...";
 
                   sz = pgraphics->get_text_extent(str);
 
@@ -4682,12 +4682,12 @@ namespace draw2d
          if (str[iIndex + 1] == L'&')
          {
             iIndex++;
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+            str = str.left(iIndex) + str.right(iLen - iIndex - 1);
          }
          else
          {
             // Found !
-            str = str.Left(iIndex) + str.Right(iLen - iIndex - 1);
+            str = str.left(iIndex) + str.right(iLen - iIndex - 1);
             return iIndex;
          }
 

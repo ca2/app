@@ -130,7 +130,7 @@ namespace sockets
             if (iPos >= 0)
             {
 
-               strStatus = str.Mid(iPos + 1);
+               strStatus = str.substr(iPos + 1);
 
             }
 

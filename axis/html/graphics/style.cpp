@@ -1189,7 +1189,7 @@ namespace html
          return true;
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
-      str = str.Mid(i);
+      str = str.substr(i);
       if(string_begins_ci(str, "::point_f32"))
       {
          str.trim();

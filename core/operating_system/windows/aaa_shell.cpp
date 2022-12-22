@@ -599,7 +599,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
 
       imagekey.set_extension(pathTarget);
 
-      imagekey.m_strPath.Empty();
+      imagekey.m_strPath.empty();
 
       imagekey.m_iIcon = 0;
 
@@ -937,7 +937,7 @@ pacmedirectory->is(strPath))
       if (::is_set(pFind) || iFind2 >= 2)
       {
 
-         string strProtocol = imagekey.m_strPath.Left(maximum(iFind, iFind2));
+         string strProtocol = imagekey.m_strPath.left(maximum(iFind, iFind2));
 
          i32 i = 0;
 

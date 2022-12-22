@@ -99,7 +99,7 @@ void api::on_login_response()
    if (!m_bAuthenticated)
    {
 
-      m_strToken.Empty();
+      m_strToken.empty();
 
       if (m_papiclient->m_papi == this)
       {
@@ -187,7 +187,7 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
    void api::on_login_authentication_failed()
    {
 
-      m_strToken.Empty();
+      m_strToken.empty();
 
       save_profile();
 

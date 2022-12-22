@@ -32,7 +32,7 @@ paged_memory::paged_memory(const memory_base & s)
 paged_memory::paged_memory(const ::scoped_string & scopedstr)
 {
 
-   from_string(psz);
+   from_string(scopedstr);
 
 }
 

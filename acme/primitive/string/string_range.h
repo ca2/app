@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -66,6 +66,9 @@ public:
     using SCOPED_STRING = scoped_string_base<ITERATOR_TYPE>;
 
 
+    using ARG_ITEM = BASE_RANGE::ARG_ITEM;
+
+
     template<::std::size_t count>
     constexpr string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
 
@@ -74,6 +77,8 @@ public:
                                                                               (this_iterator) (begin + count)) {}
 
     string_range(enum_no_initialize) : BASE_RANGE(e_no_initialize) {}
+
+    string_range(enum_zero_initialize) : BASE_RANGE(e_zero_initialize) {}
 
     string_range(nullptr_t) : BASE_RANGE(nullptr) {}
 
@@ -128,6 +133,14 @@ public:
     }
 
 
+    template < primitive_integral START >
+    SCOPED_STRING operator()(START start) const {
+
+       return SCOPED_STRING(this->begin() + start, this->end());
+
+    }
+
+
     SCOPED_STRING operator()() const {
 
        return SCOPED_STRING(*this);
@@ -137,7 +150,7 @@ public:
 
     bool has_char() const { return !this->is_empty(); }
 
-    inline bool is_empty() const noexcept { return *this->data() == '\0'; }
+    inline bool is_empty() const noexcept { return this->m_end <= this->m_begin; }
     inline memsize length_in_bytes() const{return this->size() * sizeof(CHARACTER);}
 
     //inline bool has_char() const noexcept { return !this->is_empty(); }
@@ -164,9 +177,9 @@ public:
 
     inline const CHARACTER *ptr_at(::index i) const { return this->data() + i; }
 
-    inline const CHARACTER *reverse_ptr(::index i) { return this->data() + this->length() + i; }
+    inline const CHARACTER *reverse_ptr(::index i) { return this->data() + this->size() + i; }
 
-    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + this->length() + i; }
+    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + this->size() + i; }
 
     inline const CHARACTER &operator[](index i) const { return this->data()[i]; }
 
@@ -199,36 +212,36 @@ public:
 
     ::std::strong_ordering case_insensitive_collate(const SCOPED_STRING &range) const noexcept;
 
-    ::std::strong_ordering order(const SCOPED_STRING &range, strsize n) const noexcept;
+    //::std::strong_ordering order(const SCOPED_STRING &range, strsize n) const noexcept;
 
-    ::std::strong_ordering case_insensitive_order(const SCOPED_STRING &range, strsize n) const noexcept;
+    //::std::strong_ordering case_insensitive_order(const SCOPED_STRING &range, strsize n) const noexcept;
 
-    ::std::strong_ordering collate(const SCOPED_STRING &range, strsize n) const noexcept;
+    //::std::strong_ordering collate(const SCOPED_STRING &range, strsize n) const noexcept;
 
-    ::std::strong_ordering case_insensitive_collate(const SCOPED_STRING &range, strsize n) const noexcept;
+    //::std::strong_ordering case_insensitive_collate(const SCOPED_STRING &range, strsize n) const noexcept;
 
-    ::std::strong_ordering order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
+    //::std::strong_ordering order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-    ::std::strong_ordering case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
+    //::std::strong_ordering case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-    ::std::strong_ordering collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
+    //::std::strong_ordering collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-    ::std::strong_ordering
-    case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
+    //::std::strong_ordering
+    //case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range) const noexcept;
 
-    ::std::strong_ordering
-    order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
+    //::std::strong_ordering
+    //order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
 
-    ::std::strong_ordering
-    case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
-                           strsize iCount2) const noexcept;
+    //::std::strong_ordering
+    //case_insensitive_order(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+    //                       strsize iCount2) const noexcept;
 
-    ::std::strong_ordering
-    collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
+    //::std::strong_ordering
+    //collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept;
 
-    ::std::strong_ordering
-    case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
-                             strsize iCount2) const noexcept;
+    //::std::strong_ordering
+    //case_insensitive_collate(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+    //                         strsize iCount2) const noexcept;
 
     //inline int operator<=>(const string_range &range) const { return order(range); }
     //inline bool operator==(const string_range &range) const { return size() != range.size() ? false : !order(range); }
@@ -296,45 +309,45 @@ public:
 
     }
 
-    bool equals(const SCOPED_STRING &range, strsize n) const noexcept {
+    //bool equals(const SCOPED_STRING &range, strsize n) const noexcept {
 
-       return this->equals_start_count(range, 0, n, ::comparison::comparison<ITEM>());
+    //   return this->equals_start_count(range, 0, n, ::comparison::comparison<ITEM>());
 
-    }
+    //}
 
-    bool case_insensitive_equals(const SCOPED_STRING &range, strsize n) const noexcept {
+    //bool case_insensitive_equals(const SCOPED_STRING &range, strsize n) const noexcept {
 
-       return this->equals_start_count(range, 0, n, ::comparison::case_insensitive<ITEM>());
+    //   return this->equals_start_count(range, 0, n, ::comparison::case_insensitive<ITEM>());
 
-    }
+    //}
 
-    bool equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
+    //bool equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
 
-       return this->equals_start_count(range, start, count, ::comparison::comparison<ITEM>());
+    //   return this->equals_start_count(range, start, count, ::comparison::comparison<ITEM>());
 
-    }
+    //}
 
-    bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
+    //bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range) const noexcept {
 
-       return this->equals_start_count(range, start, count, ::comparison::case_insensitive<ITEM>());
+    //   return this->equals_start_count(range, start, count, ::comparison::case_insensitive<ITEM>());
 
-    }
+    //}
 
-    bool
-    equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept {
+    //bool
+    //equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2, strsize iCount2) const noexcept {
 
-       return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
-                                       ::comparison::comparison<ITEM>());
+    //   return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
+    //                                   ::comparison::comparison<ITEM>());
 
-    }
+    //}
 
-    bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
-                                 strsize iCount2) const noexcept {
+    //bool case_insensitive_equals(strsize start, strsize count, const SCOPED_STRING &range, strsize iStart2,
+    //                             strsize iCount2) const noexcept {
 
-       return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
-                                       ::comparison::case_insensitive<ITEM>());
+    //   return this->equals_start_count(range.start_count(iStart2, iCount2), start, count,
+    //                                   ::comparison::case_insensitive<ITEM>());
 
-    }
+    //}
 
 
 
@@ -392,6 +405,11 @@ public:
     constexpr const_iterator find(const SCOPED_STRING &range) const {
 
        return this->find(range, ::comparison::comparison<ITEM>());
+
+    }
+    constexpr strsize find_index(const SCOPED_STRING & range, strsize start = 0) const {
+
+       return this->offset_of(start <= 0 ? this->find(range) : (*this)(start).find(range));
 
     }
 
@@ -453,6 +471,50 @@ public:
 
     }
 
+    constexpr strsize _rear_find_index(const SCOPED_STRING & range) const {
+
+       return this->offset_of(this->_rear_find(range));
+
+    }
+
+
+    constexpr strsize rear_find_index(const SCOPED_STRING & range) const {
+
+       return this->offset_of(this->rear_find(range));
+
+    }
+
+    const_iterator case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+    {
+       return this->find(scopedstr, ::comparison::comparison<ITEM>());
+    }
+
+    strsize case_insensitive_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+    {
+       return this->offset_of(case_insensitive_find(scopedstr));
+    }
+
+    constexpr const_iterator _case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const {
+
+       return this->_rear_find(scopedstr, ::comparison::case_insensitive<ITEM>());
+
+    }
+
+    strsize _case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+    {
+       return this->offset_of(_case_insensitive_rear_find(scopedstr));
+    }
+
+    constexpr const_iterator case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const {
+
+       return this->rear_find(scopedstr, ::comparison::case_insensitive<ITEM>());
+
+    }
+
+    strsize case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+    {
+       return this->offset_of(case_insensitive_rear_find(scopedstr));
+    }
 
 //   using BASE_RANGE::_rear_find_start;
 //
@@ -502,6 +564,9 @@ public:
 
     }
 
+    constexpr strsize _find_first_character_in_index(const SCOPED_STRING & range) const {
+       return this->offset_of(_find_first_character_in(range));
+    }
 
     using BASE_RANGE::find_first_character_in;
 
@@ -509,6 +574,9 @@ public:
 
        return this->find_first_character_in(range, ::comparison::comparison<ITEM>());
 
+    }
+    constexpr strsize find_first_character_in_index(const SCOPED_STRING & range) const {
+       return this->offset_of(find_first_character_in(range));
     }
 
 
@@ -660,7 +728,7 @@ public:
 
     using BASE_RANGE::_skip;
 
-    constexpr const_iterator _skip(const ITEM &item) const {
+    constexpr const_iterator _skip(CHARACTER item) const {
 
        return this->_skip(item, ::comparison::comparison<ITEM>());
 
@@ -669,7 +737,7 @@ public:
 
     using BASE_RANGE::skip;
 
-    constexpr const_iterator skip(const ITEM &item) const {
+    constexpr const_iterator skip(CHARACTER item) const {
 
        return this->skip(item, ::comparison::comparison<ITEM>());
 
@@ -718,20 +786,33 @@ public:
 
 
 
-    using BASE_RANGE::_rear_find_item;
+    //using BASE_RANGE::_rear_find;
 
-    constexpr const_iterator _rear_find_item(const ITEM &item) const {
+    constexpr const_iterator _rear_find(ARG_ITEM item) const {
 
-       return this->_rear_find_item(item, ::comparison::comparison<ITEM>());
+       return this->_rear_find(item, ::comparison::comparison<ITEM>());
 
     }
 
 
-    using BASE_RANGE::rear_find_item;
+    //using BASE_RANGE::rear_find;
 
-    constexpr const_iterator rear_find_item(const ITEM &item) const {
+    constexpr const_iterator rear_find(ARG_ITEM item) const {
 
-       return this->rear_find_item(item, ::comparison::comparison<ITEM>());
+       return this->rear_find(item, ::comparison::comparison<ITEM>());
+
+    }
+
+    constexpr strsize _rear_find_index(ARG_ITEM item) const {
+
+       return this->offset_of(this->_rear_find(item));
+
+    }
+
+
+    constexpr strsize rear_find_index(ARG_ITEM item) const {
+
+       return this->offset_of(this->rear_find(item));
 
     }
 
@@ -990,7 +1071,8 @@ public:
     inline bool contains(const SCOPED_STRING &scopedstr = 0) const;
 
     //inline bool contains(const string_base &str = 0) const;
-    //inline bool contains(CHARACTER ch, const CHARACTER ** ppszBeg) const;
+    inline bool contains(CHARACTER ch) const { return ::is_set(find(ch)); }
+
     inline bool
     contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
     //inline bool contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
@@ -1001,36 +1083,36 @@ public:
     template<primitive_array STRING_ARRAY>
     inline bool contains_all(const STRING_ARRAY &stra) const;
 
-    //inline bool contains_ci(CHARACTER ch = 0) const;
-    inline bool contains_ci(const SCOPED_STRING &scopedstr = 0) const;
+    //inline bool case_insensitive_contains(CHARACTER ch = 0) const;
+    inline bool case_insensitive_contains(const SCOPED_STRING &scopedstr = 0) const;
 
-    //inline bool contains_ci(const string_base &str = 0) const;
-    //inline bool contains_ci(CHARACTER ch, const CHARACTER ** ppszBeg) const;
+    //inline bool case_insensitive_contains(const string_base &str = 0) const;
+    //inline bool case_insensitive_contains(CHARACTER ch, const CHARACTER ** ppszBeg) const;
     inline bool
-    contains_ci(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
-    //inline bool contains_ci(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
+    case_insensitive_contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
+    //inline bool case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
     template<primitive_array STRING_ARRAY>
-    inline bool contains_any_ci(const STRING_ARRAY &stra) const;
+    inline bool case_insensitive_contains_at_least_one_of(const STRING_ARRAY &stra) const;
 
     template<primitive_array STRING_ARRAY>
-    inline bool contains_all_ci(const STRING_ARRAY &stra) const;
+    inline bool case_insensitive_contains_all(const STRING_ARRAY &stra) const;
 
 
-    //inline bool contains_wci(CHARACTER ch = 0) const;
-    inline bool contains_wci(const SCOPED_STRING &scopedstr = 0) const;
+    //inline bool unicode_case_insensitive_contains(CHARACTER ch = 0) const;
+    inline bool unicode_case_insensitive_contains(const SCOPED_STRING &scopedstr = 0) const;
 
-    //inline bool contains_wci(const string_base &str = 0) const;
-    //inline bool contains_wci(CHARACTER ch, const CONST_STRING_RANGE &* ppszBeg) const;
+    //inline bool unicode_case_insensitive_contains(const string_base &str = 0) const;
+    //inline bool unicode_case_insensitive_contains(CHARACTER ch, const CONST_STRING_RANGE &* ppszBeg) const;
     inline bool
-    contains_wci(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
-    //inline bool contains_wci(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
+    unicode_case_insensitive_contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
+    //inline bool unicode_case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
 
     template<primitive_array STRING_ARRAY>
-    inline bool contains_any_wci(const STRING_ARRAY &stra) const;
+    inline bool unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY &stra) const;
 
     template<primitive_array STRING_ARRAY>
-    inline bool contains_all_wci(const STRING_ARRAY &stra) const;
+    inline bool unicode_case_insensitive_contains_all(const STRING_ARRAY &stra) const;
 
 
     template<::comparison::equality<CHARACTER> EQUALITY>
@@ -1077,7 +1159,16 @@ public:
 
 //   strsize find(CHARACTER ch) const RELEASENOTHROW;
 //   strsize find(CHARACTER ch) const RELEASENOTHROW;
-    const_iterator case_insensitive_find(CHARACTER ch = 0) const RELEASENOTHROW;
+    const_iterator case_insensitive_find(CHARACTER ch) const RELEASENOTHROW;
+
+    // find routines
+
+// find the first occurrence of character 'ch', starting at index 'iStart'
+    strsize find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(this->find(ch)); }
+
+    //   strsize find(CHARACTER ch) const RELEASENOTHROW;
+    //   strsize find(CHARACTER ch) const RELEASENOTHROW;
+    strsize case_insensitive_find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(case_insensitive_find(ch)); }
 
     const_iterator find_skip_or_end(CHARACTER ch = 0) const RELEASENOTHROW
     {
@@ -1103,13 +1194,13 @@ public:
     }
 
 
-    const_iterator find_first_whitespace() const RELEASENOTHROW;
+    const_iterator find_first_whitespace() const RELEASENOTHROW { return this->find_first_character_in("\t\r\n "); }
 
-    const_iterator skip_whitespace() const RELEASENOTHROW;
+    const_iterator skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in("\t\r\n "); }
 
-    const_iterator rear_find_first_whitespace() const RELEASENOTHROW;
+    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
 
-    const_iterator rear_skip_whitespace() const RELEASENOTHROW;
+    const_iterator rear_skip_whitespace() const RELEASENOTHROW { return this->rear_skip_any_character_in("\t\r\n "); }
 
 
 
@@ -1129,20 +1220,18 @@ public:
     // find the first occurrence of string_base 'block', starting at index 'iStart'
     //const_iterator find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-    const_iterator case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+
 
     const_iterator unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-    const_iterator case_insensitive_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    const_iterator unicode_case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
     // find the first occurrence of string_base 'block', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
     //const_iterator rear_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-    const_iterator rear_case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    const_iterator unicode_rear_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
-    const_iterator rear_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
-
-    const_iterator rear_case_insensitive_unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    const_iterator unicode_case_insensitive_rear_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
     // find the first occurrence of any of the characters in string_base 'pszCharSet'
     //const_iterator find_first_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
@@ -1166,7 +1255,7 @@ public:
     //const_iterator skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
     //strsize skip_any_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW;
-    const_iterator skip(CHARACTER chSkip) const RELEASENOTHROW;
+    // const_iterator skip(CHARACTER chSkip) const RELEASENOTHROW;
 
     //const_iterator
     //_skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
@@ -1174,7 +1263,7 @@ public:
     //const_iterator _skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
     //strsize _skip_any_character_in(const CHARACTER * pszCharacters) const RELEASENOTHROW;
-    const_iterator _skip(CHARACTER chSkip) const RELEASENOTHROW;
+    //const_iterator _skip(CHARACTER chSkip) const RELEASENOTHROW;
 
 
 //strsize find_last_not_in(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
@@ -1209,7 +1298,7 @@ public:
     //const_iterator rear_skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
     //strsize rear_skip_any_character_in(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
 
-    const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW;
+    //const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW;
     //const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW;
 
 
@@ -1217,13 +1306,26 @@ public:
     //const_iterator _rear_skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
 
 
-    const_iterator _rear_skip_any_character_in(CHARACTER ca) const RELEASENOTHROW;
-    //const_iterator _rear_skip_any_character_in(CHARACTER ca) const RELEASENOTHROW;
+    using BASE_RANGE::_rear_skip;
 
+
+    //const_iterator _rear_skip_any_character_in(CHARACTER ca) const RELEASENOTHROW;
+    const_iterator _rear_skip(CHARACTER ca) const RELEASENOTHROW
+    {
+
+       return this->_rear_skip(ca, ::comparison::comparison < CHARACTER >());
+
+    }
+
+    using BASE_RANGE::rear_skip;
 
     //strsize _rear_skip_any_character_in(const CHARACTER * psz, strsize pos = -1) const RELEASENOTHROW;
-    //strsize _rear_skip(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
+    const_iterator rear_skip(CHARACTER ca) const RELEASENOTHROW
+    {
 
+       return this->rear_skip(ca, ::comparison::comparison < CHARACTER> ());
+
+    }
 
     //strsize find_last_of(const string_base &str, strsize pos = -1) const RELEASENOTHROW;
     //strsize find_last_of(const string_base &str) const RELEASENOTHROW;
@@ -1231,7 +1333,7 @@ public:
     //strsize find_last_of(CHARACTER ca, strsize pos = -1) const RELEASENOTHROW;
 
     // find the last occurrence of character 'ch'
-    const_iterator rear_find(CHARACTER ch) const RELEASENOTHROW;
+    //const_iterator rear_find(CHARACTER ch) const RELEASENOTHROW;
 
     // find the last occurrence of string_base 'sz'
     //const_iterator rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW;
@@ -1246,14 +1348,14 @@ public:
     inline const_iterator unichar_at(strsize iUnicharIndex) const;
 
 
-    const_iterator __replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr)
-    {
+    //const_iterator __replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr)
+    //{
 
-       ::memmove(start, start + scopedstr.size(), this->end() - end);
+    //   ::memmove((void *)start, start + scopedstr.size(), this->end() - end);
 
-       string_count_copy(start, scopedstr.begin(), scopedstr.size());
+    //   string_count_copy(start, scopedstr.begin(), scopedstr.size());
 
-    }
+    //}
 
 
     //bool equals(const string_base &str) const;
@@ -1265,11 +1367,11 @@ public:
     inline bool operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
 
     //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
-    inline bool operator==(const ::ansi_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+    inline bool operator==(const ::ansi_character *psz) const { return this->equals(psz); }
 
-    inline bool operator==(const ::wd16_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+    inline bool operator==(const ::wd16_character *psz) const { return this->equals(psz); }
 
-    inline bool operator==(const ::wd32_character *psz) const { return *this == ((const SCOPED_STRING &) psz); }
+    inline bool operator==(const ::wd32_character *psz) const { return this->equals(psz); }
 
     inline bool operator==(const ::inline_number_string &inline_number_string) const {
        return this->equals((const SCOPED_STRING &) inline_number_string);

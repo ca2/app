@@ -59,7 +59,7 @@ namespace turboc
 
          string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
 
-         str = str.Left(84);
+         str = str.left(84);
 
          get_typed_impact < edit_impact >()->_001SetText(str,::e_source_user);
 

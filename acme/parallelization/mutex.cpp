@@ -1375,7 +1375,7 @@ mutex::~mutex()
 //
 //#ifdef _DEBUG
 //
-//   m_strThread.Empty();
+//   m_strThread.empty();
 //   m_itask = -1;
 //   ::output_debug_string("");
 //

@@ -193,7 +193,7 @@ namespace universal_windows
 
       if (!windows_full_path(wstrFullName, wstrnative_bufferName))
       {
-         rStatus.m_strFullName.Empty();
+         rStatus.m_strFullName.empty();
          return false;
       }
       unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
@@ -346,7 +346,7 @@ pacmedirectory->create(path.folder());
 
       m_bCloseOnDelete = false;
       //m_hnative_buffer = (::u32)hnative_bufferNull;
-      m_strFileName.Empty();
+      m_strFileName.empty();
 
       m_strFileName  = path;
       //      m_wstrnative_bufferName    = utf8_to_unicode(m_strFileName);
@@ -587,7 +587,7 @@ pacmedirectory->create(path.folder());
    //   //   ::CloseHandle((HANDLE)m_hnative_buffer);
    //   //   m_hnative_buffer = (::u32)hnative_bufferNull;
    //   //}
-   //   //m_strFileName.Empty();
+   //   //m_strFileName.empty();
    //}
 
    void native_buffer::lock(filesize dwPos,filesize dwCount)

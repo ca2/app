@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename CONTAINER, typename LIST_ITEM >
@@ -76,7 +76,28 @@ LIST_ITEM list_predicateicate_find(LIST_ITEM&& plist, PRED pred)
 
 
 template < typename LIST_ITEM, typename LIST_ITEM2 >
-::index list_find_first(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
+bool list_contains_item(LIST_ITEM && pitem, LIST_ITEM2 && pitemItem)
+{
+
+   for (auto p = pitem->m_phead; ::is_set(p); p = p->m_pnext)
+   {
+
+      if (p == pitemItem)
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+template < typename LIST_ITEM, typename LIST_ITEM2 >
+::index list_item_index(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
 {
 
    ::index i = 0;
@@ -98,15 +119,15 @@ template < typename LIST_ITEM, typename LIST_ITEM2 >
 }
 
 
-template < typename LIST_ITEM, typename LIST_ITEM2 >
-bool list_contains(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
-{
-
-   auto pFind = list_find_first(pitem, pitemItem);
-
-   return ::is_set(pFind);
-
-}
+//template < typename LIST_ITEM, typename LIST_ITEM2 >
+//bool list_contains(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
+//{
+//
+//   auto pFind = list_find_first(pitem, pitemItem);
+//
+//   return ::is_set(pFind);
+//
+//}
 
 
 template < typename LIST_ITEM, typename LIST_ITEM2, typename LIST_ITEM3 >

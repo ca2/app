@@ -4,7 +4,7 @@
 //void * __node_library_open(const ::string & pszPath, string & strMessage)
 //{
 //
-//   strMessage.Empty();
+//   strMessage.empty();
 //
 //   string strError;
 //
@@ -228,7 +228,7 @@
 //void * __node_library_touch(const ::string & pszPath, string & strMessage)
 //{
 //
-//   strMessage.Empty();
+//   strMessage.empty();
 //
 //   string strError;
 //

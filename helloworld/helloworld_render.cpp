@@ -997,8 +997,8 @@ namespace helloworld
    //         {
    // auto m_tick23 = ::time::now();
    //            m_uiCurrent23 = 0;
-   //            m_strLast23.Empty();
-   //            m_strCurrent23.Empty();
+   //            m_strLast23.empty();
+   //            m_strCurrent23.empty();
    //            m_bFirst23 = true;
    //            t = 0;
    //         }
@@ -1020,7 +1020,7 @@ namespace helloworld
    //               if (m_stra23.get_size() <= 0)
    //               {
 
-   //                  m_strCurrent23.Empty();
+   //                  m_strCurrent23.empty();
 
    //               }
    //               else

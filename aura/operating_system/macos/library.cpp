@@ -44,7 +44,7 @@
 //void * __node_library_open(const ::string & pszPath, string & strMessage)
 //{
 //
-//   strMessage.Empty();
+//   strMessage.empty();
 //
 //   string strPath(pszPath);
 //

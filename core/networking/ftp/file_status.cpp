@@ -131,21 +131,21 @@ namespace ftp
    void file_status::reset()
    {
 
-      m_strName.Empty();
-      m_strPath.Empty();
+      m_strName.empty();
+      m_strPath.empty();
       m_bCwdEnabled = false;
       m_bRetrEnabled = false;
       m_esize = size_unknown;
       m_filesize = -1;
       m_etimeModification = time_unknown;
       m_timeModification = 0;
-      m_strAttributes.Empty();
-      m_strUID.Empty();
-      m_strGID.Empty();
-      m_strLink.Empty();
+      m_strAttributes.empty();
+      m_strUID.empty();
+      m_strGID.empty();
+      m_strLink.empty();
       m_eid = id_unknown;
-      m_strID.Empty();
-      m_strModificationTime.Empty();
+      m_strID.empty();
+      m_strModificationTime.empty();
 
    }
 

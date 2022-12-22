@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-10-22 22:21 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
@@ -20,7 +20,7 @@
 //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
 
 
-//bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const ::wide_character * pcsz);
+//bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const ::wide_character * scopedstr);
 //
 //
 //bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr);
@@ -74,7 +74,7 @@ bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string &
 
 #ifdef WINDOWS
 
-return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz);
+return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, scopedstr);
 
 #else
 
@@ -84,34 +84,34 @@ throw ::exception(todo, "multibyte");
 
 }
 
-
-bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr, strsize nCount)
-{
-
-#ifdef WINDOWS
-
-return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
-
-#else
-
-throw ::exception(todo, "multibyte");
-
-#endif
-
-}
+//
+//bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const ::scoped_string & scopedstr)
+//{
+//
+//#ifdef WINDOWS
+//
+//return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, scopedstr);
+//
+//#else
+//
+//throw ::exception(todo, "multibyte");
+//
+//#endif
+//
+//}
 
 
 //bool OemToUtf8(memory & str, const ::scoped_string & scopedstr)
 
 //{
-//   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz);
+//   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, scopedstr);
 
 //}
 
 //bool OemToUtf8(memory & str, const ::scoped_string & scopedstr, strsize nCount)
 
 //{
-//   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz, nCount);
+//   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, scopedstr, nCount);
 
 //}
 
@@ -125,7 +125,7 @@ bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & sc
 //bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount)
 //
 //{
-//return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
+//return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, scopedstr, nCount);
 //
 //}
 

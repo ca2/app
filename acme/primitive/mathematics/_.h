@@ -311,16 +311,6 @@ constexpr largest_type<TYPE1, TYPE2> maximum(const TYPE1 & a, const TYPE2 & b)
 }
 
 
-//#include "count.h"
-//#include "index.h"
-
-
-template < primitive_signed SIGNED >
-inline bool is_found(SIGNED i) { return i >= 0; }
-template < primitive_signed SIGNED >
-inline bool not_found(SIGNED i) { return !is_found(i); }
-
-
 CLASS_DECL_ACME i64 ceil_div(i64 num, i64 den);
 
 

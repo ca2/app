@@ -348,7 +348,7 @@ namespace sockets
 
                acmesystem()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
 
-               response().m_strFile.Empty();
+               response().m_strFile.empty();
 
             }
             else

@@ -2109,7 +2109,7 @@ auto tickStart = ::time::now();
    int client_socket::FileModificationTime(const string& strPath, string& strModificationTime)
    {
       
-      strModificationTime.Empty();
+      strModificationTime.empty();
 
       reply Reply;
 

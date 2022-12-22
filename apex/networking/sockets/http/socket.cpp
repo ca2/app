@@ -87,9 +87,9 @@ namespace sockets
                switch (m_chunk_state)
                {
                case 4:
-                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.Mid(m_chunk_line.get_length() - 2) != "\r\n"))
+                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.substr(m_chunk_line.get_length() - 2) != "\r\n"))
                      m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
+                  if (m_chunk_line.get_length() > 1 && m_chunk_line.substr(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      OnDataComplete();
                      // prepare for next request(or response)
@@ -112,12 +112,12 @@ namespace sockets
                   }
                   break;
                case 0:
-                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.Mid(m_chunk_line.get_length() - 2) != "\r\n"))
+                  while (ptr < len && (m_chunk_line.get_length() < 2 || m_chunk_line.substr(m_chunk_line.get_length() - 2) != "\r\n"))
                      m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
+                  if (m_chunk_line.get_length() > 1 && m_chunk_line.substr(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      
-                     m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
+                     m_chunk_line = m_chunk_line.left(m_chunk_line.get_length() - 2);
                      
                      ::parse pa(m_chunk_line, ";");
 
@@ -350,7 +350,7 @@ namespace sockets
          {
             iLen--;
          }
-         value = line.Mid(iFind, iLen - iFind);
+         value = line.substr(iFind, iLen - iFind);
       }
 
       strKey.make_lower();
@@ -543,7 +543,7 @@ namespace sockets
 
          string strFile = response().m_strFile;
 
-         response().m_strFile.Empty();
+         response().m_strFile.empty();
 
          file_pointer spfile(e_create, this);
 

@@ -333,9 +333,9 @@ void CProcessEnvReader::SeparateVariablesAndValues(const string_array& EnvStrArr
       EnvVariableValuePair ValPair;
 
       // get the LHS of "=" in the string
-      ValPair.element1()= csVal.Left(nIndex);
+      ValPair.element1()= csVal.left(nIndex);
 
-      ValPair.element2() = csVal.Right(csVal.length() - nIndex - 1);
+      ValPair.element2() = csVal.right(csVal.length() - nIndex - 1);
 
       varValArr.push_back(ValPair);
 

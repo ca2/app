@@ -243,7 +243,7 @@ namespace html
 
                m_straWordSpace.add(strLine);
 
-               strLine.Empty();
+               strLine.empty();
 
             }
 
@@ -266,7 +266,7 @@ namespace html
 
                m_straWordSpace.add(strLine);
 
-               strLine.Empty();
+               strLine.empty();
 
             }
 
@@ -470,7 +470,7 @@ namespace html
                else if (iLastSpace > 0)
                {
 
-                  sizeText = pgraphics->get_text_extent(strLine.Left(iLastSpace));
+                  sizeText = pgraphics->get_text_extent(strLine.left(iLastSpace));
 
                   ::write_text::text_metric textmetric;
 
@@ -478,9 +478,9 @@ namespace html
 
                   sizeText.cy = (float) textmetric.get_line_spacing();
 
-                  m_straLines.add(strLine.Left(iLastSpace));
+                  m_straLines.add(strLine.left(iLastSpace));
 
-                  strLine = strLine.Mid(iLastSpace);
+                  strLine = strLine.substr(iLastSpace);
 
                }
                else
@@ -488,7 +488,7 @@ namespace html
 
                   m_straLines.add(strLine);
 
-                  strLine.Empty();
+                  strLine.empty();
 
                }
 
@@ -866,9 +866,9 @@ namespace html
                   strsize i3 = iCursor - lim;
                   strsize iStart = maximum(0,i1);
                   strsize iEnd = minimum(i2,strLine.length());
-                  str1 = strLine.Mid(0,iStart);
-                  str2 = strLine.Mid(iStart,iEnd - iStart);
-                  str3 = strLine.Mid(iEnd);
+                  str1 = strLine.substr(0,iStart);
+                  str2 = strLine.substr(iStart,iEnd - iStart);
+                  str3 = strLine.substr(iEnd);
                   strExtent1 = str1;
                   strExtent2 = str2;
                   strExtent3 = str3;

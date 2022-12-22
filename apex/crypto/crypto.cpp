@@ -563,7 +563,7 @@ namespace crypto
          if (!file()->exists(payloadFile))
          {
             
-            str.Empty();
+            str.empty();
 
             return;
 
@@ -632,16 +632,16 @@ namespace crypto
       string crypto::v5_get_password_hash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iOrder)
       {
 
-         string strHash(pszPassword);
+         string strHash(scopedstrPassword);
 
-         string strSalt(pszSalt);
+         string strSalt(scopedstrSalt);
 
-         strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
+         strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
 
          for (i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
          {
 
-            string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
+            string strStepSalt = strSalt.substr(i) + strSalt.left(i);
 
             strHash = nessie(strStepSalt + strHash).lowered();
 
@@ -655,16 +655,16 @@ namespace crypto
       string crypto::v5_get_passhash(const ::scoped_string & scopedstrSalt, const ::scoped_string & scopedstrPassword, i32 iMaxOrder)
       {
 
-         string strHash(pszPassword);
+         string strHash(scopedstrPassword);
 
-         string strSalt(pszSalt);
+         string strSalt(scopedstrSalt);
 
-         strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
+         strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
 
          for (i32 i = 0; i < iMaxOrder; i++)
          {
 
-            string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
+            string strStepSalt = strSalt.substr(i) + strSalt.left(i);
 
             strHash = nessie(strStepSalt + strHash).lowered();
 
@@ -678,11 +678,11 @@ namespace crypto
       bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, i32 iOrder)
       {
 
-         string strHash(pszHash);
+         string strHash(scopedstrHash);
 
-         string strSalt = strHash.Left(CA4_CRYPT_V5_SALT_BYTES);
+         string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
 
-         return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
+         return strHash == v5_get_password_hash(strSalt, scopedstrPassword, iOrder);
 
       }
 
@@ -690,7 +690,7 @@ namespace crypto
       bool crypto::v5_validate_plain_password(const ::scoped_string & scopedstrPassword)
       {
 
-         string str(pszPassword);
+         string str(scopedstrPassword);
          
          if (str.length() < 6)
          {
@@ -699,7 +699,7 @@ namespace crypto
 
          }
 
-         return ::str().has_all_v1(pszPassword);
+         return ::str().has_all_v1(scopedstrPassword);
 
       }
 
@@ -707,7 +707,7 @@ namespace crypto
       string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, i32 iOrder)
       {
 
-         return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
+         return v5_get_password_hash(v5_get_password_salt(), scopedstrPassword, iOrder);
 
       }
 
@@ -996,7 +996,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 
@@ -1027,7 +1027,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 
@@ -1047,6 +1047,8 @@ namespace crypto
          return memory.to_hex();
 
       }
+
+
       string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
@@ -1054,7 +1056,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 
@@ -1075,6 +1077,7 @@ namespace crypto
 
       }
 
+
       string crypto::spa_auth_decrypt(const ::scoped_string & scopedstr, const string& strRsa)
       {
 
@@ -1084,7 +1087,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 
@@ -1113,7 +1116,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 
@@ -1135,7 +1138,6 @@ namespace crypto
       }
 
 
-
       string crypto::txt_encrypt(const ::scoped_string & scopedstr, rsa* prsa)
       {
 
@@ -1143,7 +1145,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.assign(psz, strlen(psz));
+         memIn.assign(scopedstr, scopedstr.size());
 
          memory.set_size(2048);
 
@@ -1172,7 +1174,7 @@ namespace crypto
 
          ::memory memIn;
 
-         memIn.from_hex(psz);
+         memIn.from_hex(scopedstr);
 
          memory.set_size(2048);
 

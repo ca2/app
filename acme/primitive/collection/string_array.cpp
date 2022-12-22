@@ -37,7 +37,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const char * & psz)
 
    }
 
-   str.Empty();
+   str.empty();
 
    char chStart = *psz;
 

@@ -178,7 +178,7 @@ strsize lite_html_reader::parseDocument()
       {
          UngetChar();
 
-         strComment.Empty();
+         strComment.empty();
          if (!parseComment(strComment))
          {
             bIsOpeningTag = false;
@@ -210,7 +210,7 @@ strsize lite_html_reader::parseDocument()
                if (bAbort)   goto LEndParse;
             }
 
-            strCharacters.Empty();
+            strCharacters.empty();
          }
 
          dwCharDataLen = 0L;
@@ -301,7 +301,7 @@ LEndParse:
    if (getEventNotify(notifyStartStop))
       m_pEventHandler->EndParse(m_dwAppData, bAbort);
 
-   m_strBuffer.Empty();
+   m_strBuffer.empty();
    return (m_dwBufPos);
 }
 

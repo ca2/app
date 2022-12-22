@@ -863,7 +863,7 @@ namespace core
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
 
-         strSize.Empty();
+         strSize.empty();
 
          return false;
 

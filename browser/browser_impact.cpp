@@ -104,7 +104,7 @@ namespace browser
 
 
 
-      bool bAlternate = string(m_atom).contains_ci("switcher");
+      bool bAlternate = string(m_atom).case_insensitive_contains("switcher");
 
       m_prender = __new(render(get_app(), bAlternate));
 
@@ -495,7 +495,7 @@ namespace browser
       if(::is_set(pFind) && (iFind == 0 || !character_isalnum(str[iFind-1])))
       {
 
-         bool bData = str.Mid(iFind + strlen("image:")).case_insensitive_begins("data:");
+         bool bData = str.substr(iFind + strlen("image:")).case_insensitive_begins("data:");
 
          strsize iFindEnd = str.find(",", iFind + 1);
 
@@ -521,7 +521,7 @@ namespace browser
 
          strsize iFindImage = iFind + 6;
 
-         string strImage = str.Mid(iFindImage, iFindEnd - iFindImage);
+         string strImage = str.substr(iFindImage, iFindEnd - iFindImage);
 
          if (m_strImage != strImage)
          {
@@ -548,7 +548,7 @@ namespace browser
 
          strsize iLeft = iFind > 0 ? iFind - 1 : iFind;
 
-         str = str.Left(iLeft) + str.Mid(iFindEnd);
+         str = str.left(iLeft) + str.substr(iFindEnd);
 
       }
 

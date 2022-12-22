@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_iterator.h"
@@ -651,7 +651,7 @@ public:
    ::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->size() ? i : -1; }
 
 
-   bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return is_found(erase_at(i)); }
+   bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
    template < typename ITERATOR2 > iterator erase(ITERATOR2 it) { return ::acme::iterator::erase(*this, it); }

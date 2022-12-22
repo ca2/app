@@ -61,7 +61,7 @@ namespace user
 
             //psubitem->m_iListItem = -1;
 
-            psubitem->m_strText.Empty();
+            psubitem->m_strText.empty();
 
             psubitem->m_bOk = false;
 

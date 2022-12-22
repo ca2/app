@@ -707,7 +707,7 @@ namespace html
          return open_document(strPath);
 
       }
-      else if (strPath.Left(1) == "/" || strPath.Left(1) == "\\")
+      else if (strPath.left(1) == "/" || strPath.left(1) == "\\")
       {
 
          return open_document(strPath);

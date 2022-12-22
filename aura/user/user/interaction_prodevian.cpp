@@ -250,7 +250,7 @@ namespace user
 
       ::task_set_name("prodevian," + strType);
 
-//      if (strType.contains_ci("list_box"))
+//      if (strType.case_insensitive_contains("list_box"))
 //      {
 //
 //         output_debug_string("list_box");
@@ -406,7 +406,7 @@ namespace user
 
          synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
-         if (strType.contains_ci("filemanager"))
+         if (strType.case_insensitive_contains("filemanager"))
          {
 
             //INFORMATION("filemanager frame... ");
@@ -483,7 +483,7 @@ namespace user
 
             }
 
-//            if (strType.contains_ci("list_box"))
+//            if (strType.case_insensitive_contains("list_box"))
 //            {
 //
 //               output_debug_string("list_box");
@@ -597,7 +597,7 @@ namespace user
 
       // e_message_redraw
 
-      if(strType.contains_ci("filemanager"))
+      if(strType.case_insensitive_contains("filemanager"))
       {
 
          //INFORMATION("filemanager");
@@ -1328,7 +1328,7 @@ namespace user
 
          string strType = __type_name(m_puserinteraction);
 
-         if(strType.contains_ci("list_box"))
+         if(strType.case_insensitive_contains("list_box"))
          {
 
             output_debug_string("We're on the list_box update_screen");

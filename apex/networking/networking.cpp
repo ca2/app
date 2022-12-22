@@ -824,7 +824,7 @@ namespace networking
 //         {
 //            if (i == host.get_length() || host[i] == ':')
 //            {
-//               string s = host.Mid(x, i - x);
+//               string s = host.substr(x, i - x);
 //               //
 //               if (strstr(s, ".")) // x.x.x.x
 //               {

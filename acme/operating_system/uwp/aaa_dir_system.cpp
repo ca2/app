@@ -95,7 +95,7 @@ namespace universal_windows
    //      string strDir = psz.folder();
 
    //      string str;
-   //      str = strDir.Left(2);
+   //      str = strDir.left(2);
    //      str += "\\trash_that_is_not_trash\\";
    //      string strFormat;
    //      ::earth::time time;
@@ -104,11 +104,11 @@ namespace universal_windows
    //      str += strFormat;
    //      if (strDir.m_pszData[2] == '\\')
    //      {
-   //         str += strDir.Mid(3);
+   //         str += strDir.substr(3);
    //      }
    //      else
    //      {
-   //         str += strDir.Mid(2);
+   //         str += strDir.substr(2);
    //      }
    //      return str;
    //   }

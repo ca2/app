@@ -15,7 +15,7 @@ string_list::~string_list()
 void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index start, ::count count) const
 {
 
-   str.Empty();
+   str.empty();
 
    if(start < 0)
    {
@@ -78,7 +78,7 @@ void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparato
 
 {
 
-   str.Empty();
+   str.empty();
 
    if(start < 0)
    {

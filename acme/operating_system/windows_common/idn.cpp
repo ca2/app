@@ -8,13 +8,13 @@ string idn_to_punycode(const ::string & str)
 
    wstring wstr(str);
 
-   int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.get_length(), nullptr, 0);
+   int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.length(), nullptr, 0);
 
    wstring wstrTarget;
 
    WCHAR * pwszTarget = wstrTarget.get_string_buffer(iSize);
 
-   IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.get_length(), pwszTarget, iSize);
+   IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int)wstr.length(), pwszTarget, iSize);
 
    wstrTarget.release_string_buffer();
 
@@ -30,13 +30,13 @@ string idn_from_punycode(const ::string & str)
 
    wstring wstrSource(str);
 
-   int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), nullptr, 0);
+   int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.length(), nullptr, 0);
 
    wstring wstrTarget;
 
    auto pwszTarget = wstrTarget.get_string_buffer(iSize);
 
-   IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), pwszTarget, iSize);
+   IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.length(), pwszTarget, iSize);
 
    wstrTarget.release_string_buffer(iSize);
 

@@ -1232,7 +1232,7 @@ bool simple_frame_window::pre_create_window(::user::system* pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
 {
 
-   if (__type_name(this).contains_ci("child_frame"))
+   if (__type_name(this).case_insensitive_contains("child_frame"))
    {
 
       output_debug_string("%child_frame%\n");

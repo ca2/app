@@ -1369,7 +1369,7 @@ namespace aura
       if (pkey->m_strText == "\n" || pkey->m_strText == "\r\n" || pkey->m_strText == "\r")
       {
 
-         pkey->m_strText.Empty();
+         pkey->m_strText.empty();
 
          pkey->m_ekey = ::user::e_key_return;
 

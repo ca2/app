@@ -134,7 +134,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 
    iChars = -1;
 
-   m_str.Empty();
+   m_str.empty();
 
    m_iIndent = 0;
 
@@ -259,19 +259,19 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                break;
             if (iLink >= m_iaLinkStart.get_size())
             {
-               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(iChar));
-               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.length() - iChar, dBlend);
+               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.left(iChar));
+               embossed_text_out(pgraphics, strFinal.substr(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.length() - iChar, dBlend);
                break;
             }
             else if (m_iaLinkStart[iLink] > iChar)
             {
-               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(iChar));
-               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
+               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.left(iChar));
+               embossed_text_out(pgraphics, strFinal.substr(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
             }
             pgraphics->set(m_pfontLink);
-            const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(m_iaLinkStart[iLink]));
+            const ::size_i32 & size = pgraphics->get_text_extent(strFinal.left(m_iaLinkStart[iLink]));
 
-            embossed_text_out(pgraphics, strFinal.Mid(m_iaLinkStart[iLink]), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
+            embossed_text_out(pgraphics, strFinal.substr(m_iaLinkStart[iLink]), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
             iChar = m_iaLinkEnd[iLink] + 1;
             iLink++;
          }
@@ -313,8 +313,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                ::rectangle_i32 rectanglePlacement;
                GetPlacement(rectanglePlacement);
                ::rectangle_i32 rectangle = rectanglePlacement;
-               size_i32 size1 = pgraphics->get_text_extent(strFinal.Left(iStart));
-               size_i32 size2 = pgraphics->get_text_extent(strFinal.Left(iEnd + 1));
+               size_i32 size1 = pgraphics->get_text_extent(strFinal.left(iStart));
+               size_i32 size2 = pgraphics->get_text_extent(strFinal.left(iEnd + 1));
                rectangle.left = rectanglePlacement.left + size1.cx;
                rectangle.right = rectanglePlacement.left + size2.cx;
                ::image_pointer pimage;
@@ -391,7 +391,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       ::draw2d::region_pointer prgn(this);
 
       string strFinal(m_str);
-      string strLeft = strFinal.Right(strFinal.length() - i);
+      string strLeft = strFinal.right(strFinal.length() - i);
       i32 iLeftOffset;
       iLeftOffset = iLastLeftDiff - (i32)m_dAnimateProgress;
       ::rectangle_i32 rectangleTextOut;
@@ -420,7 +420,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                break;
             }
          }
-         string strRight = strFinal.Left(i);
+         string strRight = strFinal.left(i);
          rectangleTextOut.left = iRight;
          if (bDraw)
          {
@@ -538,7 +538,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   }*/
 
       string strFinal(m_str);
-      string strLeft = strFinal.Right(strFinal.length() - i);
+      string strLeft = strFinal.right(strFinal.length() - i);
       i32 iLeftOffset;
       iLeftOffset = iLeftDiff - (i32)m_dAnimateProgress;
 
@@ -585,7 +585,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                      break;
                  }
              }*/
-         //string strRight = strFinal.Left(i);
+         //string strRight = strFinal.left(i);
          string strRight = strFinal;
          rectangleTextOut.left = iRight;
          if (bDraw)
@@ -828,9 +828,9 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      m_strPrefix = m_str.Left(maximum(0, m_str.find(":")));
+      m_strPrefix = m_str.left(maximum(0, m_str.find(":")));
 
-      m_strRoot = m_str.Mid(maximum(0, m_str.find(":") + 1));
+      m_strRoot = m_str.substr(maximum(0, m_str.find(":") + 1));
 
       m_strRoot.trim_left();
 
@@ -1658,7 +1658,7 @@ void xfplayer_impact_line::PrepareURLLinks()
    for(auto & range : rangea)
    {
 
-      m_straLink.add(m_str.Mid(range.begin(), range.count()));
+      m_straLink.add(m_str.substr(range.begin(), range.count()));
       m_iaLinkStart.add(range.begin());
       m_iaLinkEnd.add(range.upper_bound());
 

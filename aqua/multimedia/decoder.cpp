@@ -79,7 +79,7 @@ namespace multimedia
    void decoder::impl_multimedia_close()
    {
 
-      m_pathOrigin.Empty();
+      m_pathOrigin.empty();
 
       //return ::success;
 

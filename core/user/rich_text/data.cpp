@@ -612,7 +612,7 @@ namespace user
 
                }
 
-               pspanBeg->m_str = pspanBeg->m_str.Left(iSelBeg - pspanBeg->m_iPosBeg) + pspanBeg->m_str.Mid(iSelEnd - pspanBeg->m_iPosBeg);
+               pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg) + pspanBeg->m_str.substr(iSelEnd - pspanBeg->m_iPosBeg);
 
                if (pspanBeg->m_str.is_empty())
                {
@@ -632,7 +632,7 @@ namespace user
             if (iSelBeg > pspanBeg->m_iPosBeg)
             {
 
-               pspanBeg->m_str = pspanBeg->m_str.Left(iSelBeg - pspanBeg->m_iPosBeg);
+               pspanBeg->m_str = pspanBeg->m_str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                pspanBeg->m_iPosEnd = (int) iSelBeg;
 
@@ -643,7 +643,7 @@ namespace user
             if (iSelEnd <= iEndEnd)
             {
 
-               pspanEnd->m_str = pspanEnd->m_str.Mid(iSelEnd - iEndBeg);
+               pspanEnd->m_str = pspanEnd->m_str.substr(iSelEnd - iEndBeg);
 
                pspanEnd->m_iPosBeg = (int) iSelEnd;
 
@@ -795,7 +795,7 @@ namespace user
                if (iLine >= straLines.get_upper_bound())
                {
 
-                  pspan->m_str = pspan->m_str.Left(iMid) + strLine + pspan->m_str.Mid(iMid);
+                  pspan->m_str = pspan->m_str.left(iMid) + strLine + pspan->m_str.substr(iMid);
 
                }
                else
@@ -805,7 +805,7 @@ namespace user
 
                      auto pspanLast = create_span(ealignNewLine);
 
-                     pspanLast->m_str = straLines.last() + pspan->m_str.Mid(iMid);
+                     pspanLast->m_str = straLines.last() + pspan->m_str.substr(iMid);
 
                      pspanLast->m_ealignNewLine = pspan->get_align();
 
@@ -815,7 +815,7 @@ namespace user
 
                   }
 
-                  pspan->m_str = pspan->m_str.Left(iMid) + strLine;
+                  pspan->m_str = pspan->m_str.left(iMid) + strLine;
 
                }
 
@@ -882,17 +882,17 @@ namespace user
 
                   str = pspanBeg->m_str;
 
-                  pspanBeg->m_str = str.Left(iSelBeg - pspanBeg->m_iPosBeg);
+                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                   auto pspan2 = pspanBeg->fork(pformat, eattribute);
-                  pspan2->m_str = str.Mid(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
+                  pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg, iSelEnd - iSelBeg + 1);
                   m_spana.insert_at(iBeg + 1, pspan2);
 
                   if (iSelEnd < pspanBeg->m_iPosEnd)
                   {
 
                      auto pspan3 = pspanBeg->fork();
-                     pspan3->m_str = str.Mid(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     pspan3->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
                      m_spana.insert_at(iBeg + 2, pspan3);
 
                   }
@@ -907,10 +907,10 @@ namespace user
                      str = pspanBeg->m_str;
 
                      auto pspan2 = pspanBeg->fork();
-                     pspan2->m_str = str.Mid(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     pspan2->m_str = str.substr(iSelEnd - pspanBeg->m_iPosBeg + 1);
                      m_spana.insert_at(iBeg + 1, pspan2);
 
-                     pspanBeg->m_str = str.Left(iSelEnd - pspanBeg->m_iPosBeg + 1);
+                     pspanBeg->m_str = str.left(iSelEnd - pspanBeg->m_iPosBeg + 1);
 
                   }
 
@@ -929,10 +929,10 @@ namespace user
 
                   str = pspanBeg->m_str;
 
-                  pspanBeg->m_str = str.Left(iSelBeg - pspanBeg->m_iPosBeg);
+                  pspanBeg->m_str = str.left(iSelBeg - pspanBeg->m_iPosBeg);
 
                   auto pspan2 = pspanBeg->fork(pformat, eattribute);
-                  pspan2->m_str = str.Mid(iSelBeg - pspanBeg->m_iPosBeg);
+                  pspan2->m_str = str.substr(iSelBeg - pspanBeg->m_iPosBeg);
                   m_spana.insert_at(iBeg + 1, pspan2);
 
                }
@@ -950,11 +950,11 @@ namespace user
                   str = pspanEnd->m_str;
 
                   auto pspan3 = pspanEnd->fork(pformat, eattribute);
-                  pspan3->m_str = str.Left(iSelEnd - iEndBeg + 1);
+                  pspan3->m_str = str.left(iSelEnd - iEndBeg + 1);
 
                   m_spana.insert_at(iEnd, pspan3);
 
-                  pspanEnd->m_str = str.Mid(iSelEnd - iEndBeg + 1);
+                  pspanEnd->m_str = str.substr(iSelEnd - iEndBeg + 1);
 
                }
                else
@@ -1090,7 +1090,7 @@ namespace user
 
          }
 
-         strSlice = strWord.Left(m);
+         strSlice = strWord.left(m);
 
          dPosition = pdaPosition[m - 1];
 
@@ -1279,7 +1279,7 @@ namespace user
 
          restart_span:
 
-            strSlice.Empty();
+            strSlice.empty();
 
             //if (spanaMultiWordFormat.is_empty() &&
             if((pspan->is_new_line() || iSpanChar > 0))
@@ -1388,7 +1388,7 @@ namespace user
 
             }
 
-            strSlice.Empty();
+            strSlice.empty();
 
             cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 
@@ -1446,7 +1446,7 @@ namespace user
 
                string strWord = straWords[0];
 
-               strSlice.Empty();
+               strSlice.empty();
 
                longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 

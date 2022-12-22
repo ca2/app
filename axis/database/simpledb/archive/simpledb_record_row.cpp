@@ -33,7 +33,7 @@ namespace simpledb
                      {
                         strsize iLen = minimum(255, payload.get_string().get_length());
                         stream << (char)iLen;
-                        stream.write(payload.get_string().Left(iLen), iLen);
+                        stream.write(payload.get_string().left(iLen), iLen);
                         if (iLen < item.m_iSize)
                         {
                            string str(' ', item.m_iSize - iLen);

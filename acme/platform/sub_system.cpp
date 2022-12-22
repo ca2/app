@@ -308,7 +308,7 @@ string sub_system::get_env(const ::scoped_string & scopedstrVariableName) const
    if (m_wenvp)
    {
 
-      wstring wstrPrefix(pszVariableName);
+      wstring wstrPrefix(scopedstrVariableName);
 
       wstrPrefix += "=";
 

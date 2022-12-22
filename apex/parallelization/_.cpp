@@ -775,7 +775,7 @@ namespace apex
    //
    //      iFind = strName.find("::", iFindLast);
    //
-   //      stra.add(strName.Mid(iFindLast, iFind - iFindLast + 1));
+   //      stra.add(strName.substr(iFindLast, iFind - iFindLast + 1));
    //
    //      iFindLast = iFind + 2;
    //

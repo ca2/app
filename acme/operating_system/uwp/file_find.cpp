@@ -79,7 +79,7 @@ namespace universal_windows
       ASSERT(pstr != nullptr);
       if (pstr == nullptr)
       {
-         m_strRoot.Empty();
+         m_strRoot.empty();
          close();
          ::set_last_error(ERROR_INVALID_NAME);
          return false;

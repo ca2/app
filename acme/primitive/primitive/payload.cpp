@@ -4930,9 +4930,9 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
    case e_type_i32_array:
       return ia().contains(atoi(scopedstr), find, last);
    case e_type_string_array:
-      return stra().contains_ci(scopedstr, find, last);
+      return stra().case_insensitive_contains(scopedstr, find, last);
    case e_type_payload_array:
-      return payloada().contains_ci(scopedstr, find, last);
+      return payloada().case_insensitive_contains(scopedstr, find, last);
    case e_type_property_set:
       return propset().contains_value_ci(scopedstr, find, last);
    default:
@@ -6306,7 +6306,7 @@ block payload::block () const
 bool payload::has_property(const ::atom & atom) const
 {
 
-   return is_found(property_index(atom));
+   return found(property_index(atom));
 
 }
 
@@ -7489,11 +7489,11 @@ bool is_return_ok(para_return eret)
 //
 //   strsize iLen = strSuffix.length();
 //
-//   if(str.Right(iLen) == pcszSuffix)
+//   if(str.right(iLen) == pcszSuffix)
 //
 //   {
 //
-//      return str.Left(str.length() - iLen);
+//      return str.left(str.length() - iLen);
 //
 //   }
 //
@@ -7524,13 +7524,13 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (get_type() == ::e_type_property_set)
    {
 
-      return propset().get_network_payload(str, bNewLine);
+      return property_set_reference().get_network_payload(str, bNewLine);
 
    }
    else if (get_type() == ::e_type_string_array)
    {
 
-      return stra().get_network_payload(str, bNewLine);
+      return string_array_reference().get_network_payload(str, bNewLine);
 
    }
    else if (get_type() == ::e_type_i32_array)
@@ -7548,7 +7548,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (get_type() == ::e_type_payload_array)
    {
 
-      return payloada().get_network_payload(str, bNewLine);
+      return payload_array_reference().get_network_payload(str, bNewLine);
 
    }
    else if (get_type() == ::e_type_hls)

@@ -935,7 +935,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      CFStringRef name = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowName);
 //
-//      strName.Empty();
+//      strName.empty();
 //
 //      if(name)
 //      {
@@ -946,7 +946,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      CFStringRef appname = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowOwnerName);
 //
-//      strAppName.Empty();
+//      strAppName.empty();
 //
 //      if(appname)
 //      {
@@ -1175,7 +1175,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      CFStringRef name = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowName);
 //
-//      strName.Empty();
+//      strName.empty();
 //
 //      if(name)
 //      {
@@ -1186,7 +1186,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      CFStringRef appname = (CFStringRef) CFDictionaryGetValue(dict, kCGWindowOwnerName);
 //
-//      strAppName.Empty();
+//      strAppName.empty();
 //
 //      if(appname)
 //      {

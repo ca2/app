@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
  * Copyright (ca) 2002, Leo Seib, Hannover
  *
  * Project:SQLiteDataset C++ Dynamic Library
@@ -43,20 +43,20 @@ string str_helper::before(string s, bool &is_found)
     
    is_found = false;
    
-   strsize pos = work_str.find(s);
+   strsize pos = work_str.find_index(s);
    
-   strsize idx = pos + s.get_length();
+   strsize idx = pos + s.length();
     
    is_found = pos >= 0;
    
-   if (idx == work_str.get_length()) 
+   if (idx == work_str.length()) 
    {
-      return work_str.Mid(0,pos); 
+      return work_str.substr(0,pos); 
    }
    else
    {
       if ((pos >= 0) && (!( (work_str[idx]>48 && work_str[idx]<58) || (work_str[idx]>64 && work_str[idx]<91) || (work_str[idx]>97 && work_str[idx]<123) || work_str[idx]==95 )))
-         return work_str.Mid(0,pos); 
+         return work_str.substr(0,pos); 
       else //return (string)nullptr;
       {
          string tmp(""); 
@@ -66,7 +66,7 @@ string str_helper::before(string s, bool &is_found)
 
 }
 
-string str_helper::after(string s) {return work_str.Mid(work_str.find(s)+s.get_length(),work_str.get_length());}
+string str_helper::after(string s) {return work_str.substr(work_str.find(s)+s.length(),work_str.length());}
 
 string str_helper::replace(string pattern, string by_what) {
     bool is_found;

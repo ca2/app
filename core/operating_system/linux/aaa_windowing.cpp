@@ -3815,7 +3815,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
             switch(status_return)
             {
                case XLookupNone:
-                  strText.Empty();
+                  strText.empty();
                   keysym = 0;
                break;
 
@@ -3825,7 +3825,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                break;
 
                case XLookupKeySym:
-                  strText.Empty();
+                  strText.empty();
                break;
 
                case XLookupBoth:
@@ -3853,7 +3853,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
          || keysym == XK_End)
          {
 
-            strText.Empty();
+            strText.empty();
 
          }
 

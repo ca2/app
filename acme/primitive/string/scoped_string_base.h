@@ -18,22 +18,59 @@ public:
    using this_iterator = typename RANGE::this_iterator;
    using iterator = typename RANGE::iterator;
    using const_iterator = typename RANGE::const_iterator;
+   using STRING = ::string_base < ITERATOR_TYPE >;
 
 
-   ::string_base < ITERATOR_TYPE > m_str;
+   STRING m_str;
 
-   scoped_string_base() {}
-   scoped_string_base(nullptr_t): RANGE(nullptr) {}
-   scoped_string_base(const ::ansi_string & str) :m_str(str), RANGE(m_str) {}
-   scoped_string_base(const ::wd16_string & str) :m_str(str), RANGE(m_str) {}
-   scoped_string_base(const ::wd32_string & str) :m_str(str), RANGE(m_str) {}
-   scoped_string_base(const ::block & block) :m_str(e_no_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
-   scoped_string_base(const ::ansi_character * psz) :m_str(e_no_initialize), RANGE(e_no_initialize) { _construct1(psz); }
-   scoped_string_base(const ::wd16_character * psz) :m_str(e_no_initialize), RANGE(e_no_initialize) { _construct1(psz); }
-   scoped_string_base(const ::wd32_character * psz) :m_str(e_no_initialize), RANGE(e_no_initialize) { _construct1(psz); }
-   scoped_string_base(const ::const_ansi_range & range) :m_str(e_no_initialize), RANGE(range) { }
-   scoped_string_base(const ::const_wd16_range & range) :m_str(e_no_initialize), RANGE(range) { }
-   scoped_string_base(const ::const_wd32_range & range) :m_str(e_no_initialize), RANGE(range) { }
+   scoped_string_base():m_str(e_zero_initialize),RANGE(e_zero_initialize) {}
+   scoped_string_base(nullptr_t) :m_str(e_zero_initialize), RANGE(e_zero_initialize) {}
+   scoped_string_base(const ::ansi_string & str) :
+      m_str(e_zero_initialize), RANGE(e_zero_initialize)
+   {
+      if constexpr (sizeof(CHARACTER) == 1)
+      {
+         RANGE::operator=(str);
+      }
+      else
+      {
+         m_str = str;
+         RANGE::operator=(m_str);
+      }
+   }
+   scoped_string_base(const ::wd16_string & str) :
+      m_str(e_zero_initialize), RANGE(e_zero_initialize)
+   {
+      if constexpr (sizeof(CHARACTER) == 2)
+      {
+         RANGE::operator=(str);
+      }
+      else
+      {
+         m_str = str;
+         RANGE::operator=(m_str);
+      }
+   }
+   scoped_string_base(const ::wd32_string & str) :
+      m_str(e_zero_initialize), RANGE(e_zero_initialize)
+   {
+      if constexpr (sizeof(CHARACTER) == 4)
+      {
+         RANGE::operator=(str);
+      }
+      else
+      {
+         m_str = str;
+         RANGE::operator=(m_str);
+      }
+   }
+   scoped_string_base(const ::block & block) :m_str(e_zero_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
+   scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+   scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+   scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), RANGE(range) { }
+   scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), RANGE(range) { }
+   scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), RANGE(range) { }
    //explicit scoped_string_base(const ::atom & atom);
    //explicit scoped_string_base(const ::payload & payload);
    //explicit scoped_string_base(const ::property & property) : scoped_string_base((const ::payload &)property) {}
@@ -43,7 +80,7 @@ public:
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
-   scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :m_str(e_no_initialize), RANGE(start, end) { }
+   scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :m_str(e_zero_initialize), RANGE(start, end) { }
 
 
    template < primitive_character CHARACTER2 >

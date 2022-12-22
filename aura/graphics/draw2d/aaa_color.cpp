@@ -915,7 +915,7 @@ bool color::parse_color(const ::string & psz)
    string str(psz);
    str.trim();
    str += " ";
-   if (str.Left(1) == "#" && str.length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
+   if (str.left(1) == "#" && str.length() >= 7 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]) && ishexdigit(str[4])
          && ishexdigit(str[5]) && ishexdigit(str[6]))
    {
       if (str.length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
@@ -933,7 +933,7 @@ bool color::parse_color(const ::string & psz)
          return true;
       }
    }
-   else if (str.Left(1) == "#" && str.length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
+   else if (str.left(1) == "#" && str.length() >= 4 && ishexdigit(str[1]) && ishexdigit(str[2]) && ishexdigit(str[3]))
    {
       if (str.length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
       {

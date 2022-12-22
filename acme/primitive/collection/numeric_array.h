@@ -242,7 +242,7 @@ public:
 
    ::index add(const TYPE & newElement)
    {
-      ::auto pFind = 0;
+      ::index iFind = 0;
       if(find(newElement, iFind))
       {
          return -1;
@@ -416,8 +416,11 @@ void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const ::sco
    }
    else
    {
-      str.Empty();
+
+      str.empty();
+
    }
+
 }
 
 
@@ -684,7 +687,7 @@ template < typename TYPE, ::enum_type m_etypeContainer >
 
    TYPE tMax = this->element_at(0);
 
-   ::auto pFind = 0;
+   ::index iFind = 0;
 
    for(::index i = 1; i < this->get_size(); i++)
    {
@@ -719,7 +722,7 @@ template < typename TYPE, ::enum_type m_etypeContainer >
 
    TYPE tMin = this->element_at(0);
 
-   ::auto pFind = 0;
+   ::index iFind = 0;
 
    for (::index i = 1; i < this->get_size(); i++)
    {
@@ -1109,7 +1112,7 @@ namespace acme
       ::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE), INDEX_ARRAY & ia)
       {
          ::count ca = 0;
-         ::auto pFind = 0;
+         ::index iFind = 0;
          while(binary_search(a,t, iFind, fCompare, ia))
          {
             a.erase_at(iFind);

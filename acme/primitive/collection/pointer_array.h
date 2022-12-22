@@ -421,7 +421,7 @@ public:
 
       ::count ca = 0;
 
-      ::auto pFind = 0;
+      ::index iFind = 0;
 
       while((iFind = this->find_first(p, iFind)) >= 0)
       {
@@ -1344,7 +1344,7 @@ public:
 //
 //      ::count ca = 0;
 //
-//      ::auto pFind = 0;
+//      ::index iFind = 0;
 //
 //      while((iFind = this->find_first(p,iFind)) >= 0)
 //      {
@@ -1744,9 +1744,9 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_CO
 
    }
 
-   auto pFind = this->find_first(p);
+   auto iFind = this->find_first(p);
 
-   if (::is_null(pFind))
+   if (iFind < 0)
    {
 
       this->insert_at(i, p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);

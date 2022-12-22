@@ -173,19 +173,19 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
    
    substring(strMid);
 
-   if((i = strMid.find_first_character_in(strSeparator)) >= 0)
+   if(found(i = strMid.find_first_character_in_index(strSeparator)))
    {
 
       if (bWithSeparator)
       {
 
-         strToken = strMid.Left(i + 1);
+         strToken = strMid.left(i + 1);
 
       }
       else
       {
 
-         strToken = strMid.Left(i);
+         strToken = strMid.left(i);
 
       }
 
@@ -194,7 +194,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
       if(bSkipAdjacent)
       {
 
-         strMid.begins_eat_any_character_in(strSeparator, i);
+         m_iterator = (*this)(m_iterator).skip_any_character_in(strSeparator);
 
       }
 
@@ -251,7 +251,7 @@ bool tokenizer::ExtractFolderPath(const ::scoped_string & scopedstrFilePath)
 
    }
 
-   operator=(strFilePath.Left(i));
+   operator=(strFilePath.left(i));
 
    return b;
 

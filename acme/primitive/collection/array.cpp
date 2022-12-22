@@ -43,7 +43,7 @@ namespace acme
       if(str.is_empty())
       	return string_array();
 		str.replace_with(",", "><");
-		str = str.Mid(1, str.length() - 2);
+		str = str.substr(1, str.length() - 2);
 		string_array stra;
       stra.explode(",", str);;
 		return stra;

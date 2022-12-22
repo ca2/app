@@ -72,7 +72,7 @@ namespace file
    void memory_map::construct()
    {
 
-      m_strName.Empty();
+      m_strName.empty();
       m_hfile = INVALID_HANDLE_VALUE;
       m_hfilemap = nullptr;
       m_pdata = nullptr;

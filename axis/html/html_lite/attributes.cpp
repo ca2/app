@@ -123,7 +123,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 
    {
       m_strName = strAttrName;
-      m_strValue.Empty();
+      m_strValue.empty();
       return (pszEnd - pszString);
 
    }
@@ -174,7 +174,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
       // open attribute value i.e. not wrapped in quotes?
       else
       {
-         strChar.Empty();
+         strChar.empty();
          do
          {
             pszEnd++;
@@ -192,7 +192,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
       m_strName = strAttrName;
       if (pszEnd == pszBegin)   // is_empty attribute value?
 
-         m_strValue.Empty();
+         m_strValue.empty();
       else
          // use putValue() instead of direct assignment;
          // this will automatically normalize data before
@@ -368,12 +368,12 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = preader->m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = preader->m_phtml->resolve_entity(m_strValue.substr(iCurPos), strChar);
 
       if (iParseLen)
       {
 
-         m_strValue.replace_with(strChar, m_strValue.Mid(iCurPos, iParseLen));
+         m_strValue.replace_with(strChar, m_strValue.substr(iCurPos, iParseLen));
 
       }
 
@@ -488,7 +488,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
    else if (isHexColorValue())
    {
 
-      color.u32 = (::u32) ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color.u32 = (::u32) ::strtoul(m_strValue.substr(1), nullptr, 16);
 
       color.m_estatus = ::success;
 
@@ -507,7 +507,7 @@ string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
    if(isHexColorValue())
    {
 
-      strColorHex = m_strValue.Mid(1);
+      strColorHex = m_strValue.substr(1);
 
    }
    else

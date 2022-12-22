@@ -24,7 +24,7 @@ namespace windows
       if (wstr.case_insensitive_begins(::str().windows_bb(wstr)))
       {
 
-         wstr = ::str().windows_bbqbunc(wstr) + wstr.Mid(1);
+         wstr = ::str().windows_bbqbunc(wstr) + wstr.substr(1);
 
       }
       else
@@ -289,7 +289,7 @@ void create_directory(const ::file::path & path)
 
             strDetails.format("Failed to create directory (2) \"%s\"", string(wstr).c_str());
 
-            throw ::exception(estatus, nullptr, strDetails);
+            throw ::exception(estatus, strDetails);
 
          }
 
@@ -303,7 +303,7 @@ void create_directory(const ::file::path & path)
 
          strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
 
-         throw ::exception(estatus, nullptr, strDetails);
+         throw ::exception(estatus, strDetails);
 
       }
 
@@ -360,7 +360,7 @@ namespace windows
 
       wstring wstrRoot;
 
-      auto iLength = wstrPath.get_length();
+      auto iLength = wstrPath.length();
 
       unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
 

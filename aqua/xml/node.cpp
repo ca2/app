@@ -2807,7 +2807,7 @@ namespace xml
       if(str2a.get_size() <= 0)
       {
 
-         m_strValue.Empty();
+         m_strValue.empty();
 
          set_attribute("column_count", 0);
 

@@ -222,7 +222,7 @@ namespace userfs
             if (path.m_iDir > 0)
             {
 
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
 
             }
             else

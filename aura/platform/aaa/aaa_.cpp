@@ -43,7 +43,7 @@ namespace aura
          if (pszFullString == nullptr)
 
          {
-            rString.Empty();        // return is_empty string as well
+            rString.empty();        // return is_empty string as well
             return false;
          }
          pszFullString++;       // point past the separator

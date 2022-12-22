@@ -427,7 +427,7 @@ void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 //
 //      ::file::path pathDib = m_pathCache;
 //
-//      m_pathCache.Empty();
+//      m_pathCache.empty();
 //
 //      ::image * pimage = this;
 //

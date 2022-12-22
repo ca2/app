@@ -142,7 +142,7 @@ namespace graphics
    void bitmap_source_buffer::clear_bitmap_source()
    {
 
-      m_strBitmapSource.Empty();
+      m_strBitmapSource.empty();
 
       if (m_pmemorymap)
       {

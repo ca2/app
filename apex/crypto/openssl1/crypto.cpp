@@ -950,7 +950,7 @@ namespace crypto
 
       if (!file()->exists(payloadFile))
       {
-         str.Empty();
+         str.empty();
          return success_not_found;
       }
 
@@ -960,7 +960,7 @@ namespace crypto
       }
       if (!decrypt(str, memoryEncrypt, pszSalt))
       {
-         str.Empty();
+         str.empty();
          return error_decryption;
       }
       return ::success;
@@ -1006,10 +1006,10 @@ namespace crypto
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
-      strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
+      strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
       for (i32 i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i++)
       {
-         string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
+         string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
       }
       return strSalt + strHash;
@@ -1019,10 +1019,10 @@ namespace crypto
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
-      strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
+      strSalt = strSalt.left(CA4_CRYPT_V5_SALT_BYTES);
       for (i32 i = 0; i < iMaxOrder; i++)
       {
-         string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
+         string strStepSalt = strSalt.substr(i) + strSalt.left(i);
          strHash = nessie(strStepSalt + strHash).lowered();
       }
       return strSalt + strHash;
@@ -1031,7 +1031,7 @@ namespace crypto
    bool crypto::v5_compare_password(const ::scoped_string & scopedstrPassword, const ::scoped_string & scopedstrHash, i32 iOrder)
    {
       string strHash(pszHash);
-      string strSalt = strHash.Left(CA4_CRYPT_V5_SALT_BYTES);
+      string strSalt = strHash.left(CA4_CRYPT_V5_SALT_BYTES);
       return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
    }
 
@@ -1599,7 +1599,7 @@ namespace crypto
             strsize iEnd = strOthers(pFind).find(strEnd);
             if (iEnd < 0)
                break;
-            strCertificate = strOthers.Mid(iFind, iEnd + iEndLen - iFind);
+            strCertificate = strOthers.substr(iFind, iEnd + iEndLen - iFind);
             X509* x;
             BIO* pbio = BIO_new(BIO_s_mem());
             BIO_puts(pbio, strCertificate);

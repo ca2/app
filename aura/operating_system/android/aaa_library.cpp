@@ -13,7 +13,7 @@ CLASS_DECL_AURA void * __node_library_touch(const ::string & pszPath, string & s
 CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strPath(pszPath);
 
@@ -88,7 +88,7 @@ CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & st
 CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
    void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW);

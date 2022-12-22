@@ -119,7 +119,7 @@ namespace linux
       }
 
       m_iFile = INVALID_FILE;
-      m_path.Empty();
+      m_path.empty();
 
       m_path     = pszFileName;
 
@@ -348,7 +348,7 @@ namespace linux
 
       m_iFile = INVALID_FILE;
 
-      m_path.Empty();
+      m_path.empty();
 
       if (bError)
          throw ::file::exception(errno_status(errno), -1, errno, m_path);
@@ -368,7 +368,7 @@ namespace linux
 
       }
 
-      m_path.Empty();
+      m_path.empty();
 
    }
 

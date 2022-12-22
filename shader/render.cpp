@@ -124,9 +124,9 @@ namespace app_shader
       if (string(pszPathPrefix) == "default")
       {
 
-         m_strProjection.Empty();
+         m_strProjection.empty();
 
-         m_strFragment.Empty();
+         m_strFragment.empty();
 
          defer_update_shader();
 

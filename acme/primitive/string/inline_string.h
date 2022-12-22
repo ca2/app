@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "string_range.h"
+//#include "string_range.h"
 
 
 template < primitive_character CHARACTER, strsize m_sizeMaximumLength >

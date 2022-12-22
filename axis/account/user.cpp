@@ -19,7 +19,7 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
    while(pos < body.get_length())
    {
       iRead = minimum(chunklen,body.get_length() - pos);
-      strRet += body.Mid(pos,iRead);
+      strRet += body.substr(pos,iRead);
       strRet += end;
       pos += iRead;
    }
@@ -360,7 +360,7 @@ namespace account
          
          defer_failed(m_estatusAuthentication, error_authentication);
 
-         pcredentials->m_strPassword.Empty();
+         pcredentials->m_strPassword.empty();
 
          throw exception;
 

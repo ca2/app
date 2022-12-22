@@ -2497,7 +2497,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 //   if (i < 0 || i >= m_pitema->get_count())
 //   {
 //
-//      str.Empty();
+//      str.empty();
 //
 //      return;
 //

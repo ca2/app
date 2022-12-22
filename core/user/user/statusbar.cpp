@@ -460,7 +460,7 @@ namespace user
             pSBP->strText = pszNewText;
 
          else
-            pSBP->strText.Empty();
+            pSBP->strText.empty();
       }
       catch(::exception *)
       {

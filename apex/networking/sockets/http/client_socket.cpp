@@ -387,7 +387,7 @@ namespace sockets
          for (int i = 0; i < str.length(); i+=32 * 100)
          {
 
-            ::OutputDebugStringA(str.Mid(i, 32*100));
+            ::OutputDebugStringA(str.substr(i, 32*100));
 
          }
 

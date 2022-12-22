@@ -37,7 +37,7 @@ namespace account
    void network_authenticator::pre_authenticate(credentials * pcredentials)
    {
 
-      pcredentials->m_puser->m_strAccountServer.Empty();
+      pcredentials->m_puser->m_strAccountServer.empty();
 
       get_account_server(pcredentials);
 

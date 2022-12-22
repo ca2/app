@@ -45,7 +45,7 @@ CLASS_DECL_AXIS int_bool defer_aura_term();
 //         if (pszFullString == nullptr)
 //
 //         {
-//            rString.Empty();        // return is_empty string as well
+//            rString.empty();        // return is_empty string as well
 //            return false;
 //         }
 //         pszFullString++;       // point_i32 past the separator

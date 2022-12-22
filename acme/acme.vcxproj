@@ -1812,7 +1812,7 @@
     <ClCompile Include="primitive\datetime\date_span.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
-    <ClCompile Include="primitive\datetime\time_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />

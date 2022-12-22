@@ -369,12 +369,12 @@ namespace html
          if ((iCurPos = str.find('&', ++iCurPos)) == -1)
             break;
 
-         iParseLen = resolve_entity(str.Mid(iCurPos), strChar);
+         iParseLen = resolve_entity(str.substr(iCurPos), strChar);
 
          if (iParseLen)
          {
 
-            str.replace_with(strChar, str.Mid(iCurPos, iParseLen));
+            str.replace_with(strChar, str.substr(iCurPos, iParseLen));
 
          }
 
@@ -701,7 +701,7 @@ namespace html
 
       strHtml = payload.as_string();
 
-      if (strHtml.Left(2048).trimmed().contains_ci("<html"))
+      if (strHtml.left(2048).trimmed().case_insensitive_contains("<html"))
       {
 
          bHtml = true;
@@ -711,7 +711,7 @@ namespace html
       if (!bHtml)
       {
 
-         strHtml.Empty();
+         strHtml.empty();
 
          pathHtml = payload.file_path();
 
@@ -722,7 +722,7 @@ namespace html
       if (!bHtml)
       {
 
-         pathHtml.Empty();
+         pathHtml.empty();
 
       }
 

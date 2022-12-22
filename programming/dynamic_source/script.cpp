@@ -198,7 +198,7 @@ namespace dynamic_source
 
       m_streamError.m_pfile->set_size(0);
 
-      m_strError.Empty();
+      m_strError.empty();
 
       Unload();
 

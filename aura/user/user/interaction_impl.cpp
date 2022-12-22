@@ -2411,7 +2411,7 @@ namespace user
          //
          //            s_iMotionNotify++;
          //
-         //            if (strUserInteractionType.contains_ci("button"))
+         //            if (strUserInteractionType.case_insensitive_contains("button"))
          //            {
          //
          //               output_debug_string("mouse_move::userinteraction=button");
@@ -2577,7 +2577,7 @@ namespace user
 
          string strType = __type_name(m_puserinteraction);
 
-         if (strType.contains_ci("list_box"))
+         if (strType.case_insensitive_contains("list_box"))
          {
 
             ::output_debug_string("list_box e_message_left_button_down");
@@ -2604,7 +2604,7 @@ namespace user
 
          string strType;
 
-         if (strType.contains_ci("list_box"))
+         if (strType.case_insensitive_contains("list_box"))
          {
 
             ::output_debug_string("list_box e_message_non_client_left_button_down");
@@ -2645,7 +2645,7 @@ namespace user
 
             strType = __type_name(m_puserinteraction);
 
-            if (strType.contains_ci("list_box"))
+            if (strType.case_insensitive_contains("list_box"))
             {
 
                //::output_debug_string("list_box e_message_mouse_move");
@@ -2689,13 +2689,13 @@ namespace user
 
          string strType = __type_name(pchild);
 
-         if (strType.contains_ci("button"))
+         if (strType.case_insensitive_contains("button"))
          {
 
             output_debug_string("mouse move on button");
 
          }
-         else if (strType.contains_ci("tab"))
+         else if (strType.case_insensitive_contains("tab"))
          {
 
             output_debug_string("mouse move on tab");
@@ -5185,7 +5185,7 @@ namespace user
 
       string strType = __type_name(m_puserinteraction);
 
-      if(strType.contains_ci("list_box"))
+      if(strType.case_insensitive_contains("list_box"))
       {
 
          auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
@@ -5296,7 +5296,7 @@ namespace user
    void interaction_impl::clear_bitmap_source()
    {
 
-      m_strBitmapSource.Empty();
+      m_strBitmapSource.empty();
 
       if (m_pgraphics)
       {
@@ -6812,7 +6812,7 @@ namespace user
 
       string strType = __type_name(m_puserinteraction);
 
-      if (strType.contains_ci("filemanager"))
+      if (strType.case_insensitive_contains("filemanager"))
       {
 
          INFORMATION("filemanager apply visual");

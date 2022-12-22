@@ -206,7 +206,7 @@ namespace simple_ui
          }
          else
          {
-            strLine.Empty();
+            strLine.empty();
          }
          string_array stra;
          strsize i1 = iSelStart - lim;
@@ -215,9 +215,9 @@ namespace simple_ui
          strsize iStart = maximum(0,i1);
          strsize iEnd = minimum(i2,strLine.length());
          ::str().fill(strLine,'*');
-         str1 = strLine.Mid(0,iStart);
-         str2 = strLine.Mid(iStart,iEnd - iStart);
-         str3 = strLine.Mid(iEnd);
+         str1 = strLine.substr(0,iStart);
+         str2 = strLine.substr(iStart,iEnd - iStart);
+         str3 = strLine.substr(iEnd);
          strExtent1 = str1;
          strExtent2 = str2;
          strExtent3 = str3;

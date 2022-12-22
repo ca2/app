@@ -94,7 +94,7 @@
 //
 //   /*auto estatus = */ ::file::file::destroy();
 //
-//   m_str.Empty();
+//   m_str.empty();
 //
 //   m_iPos = 0;
 //

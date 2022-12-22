@@ -523,7 +523,7 @@ namespace sphere
    //   //      while (pos != nullptr)
    //   //      {
    //   //
-   //   //         strId.Empty();
+   //   //         strId.empty();
    //   //
    //   //         pcaapp = nullptr;
    //   //

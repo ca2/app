@@ -260,7 +260,7 @@ namespace sockets
 
                compress.gz(pfile, pcontext->m_papexcontext->file()->get_reader(response().m_strFile));
 
-               response().m_strFile.Empty();
+               response().m_strFile.empty();
 
             }
             else

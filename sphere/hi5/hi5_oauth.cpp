@@ -516,8 +516,8 @@ namespace hi5
       string pureUrl;
       property_set post;
 
-      m_nonce.Empty();
-      m_timeStamp.Empty();
+      m_nonce.empty();
+      m_timeStamp.empty();
 
       if (set.has_property("post") || eType == eOAuthHttpPost)
       {
@@ -530,10 +530,10 @@ namespace hi5
       if(nPos >= 0)
       {
          /* Get only URL */
-         pureUrl = rawUrl.Mid( 0, nPos );
+         pureUrl = rawUrl.substr( 0, nPos );
 
          /* Get only key=value data part */
-         string dataPart = rawUrl.Mid( nPos + 1 );
+         string dataPart = rawUrl.substr( nPos + 1 );
 
          property_set setUrl;
          setUrl.parse_network_arguments(dataPart);
@@ -630,7 +630,7 @@ namespace hi5
                if(::is_set(pFind))
                {
 
-                  str = urlencode(keyValueList[i](0, pFind)) + "=" + urlencode(keyValueList[i].Mid(iFind+ 1));
+                  str = urlencode(keyValueList[i](0, pFind)) + "=" + urlencode(keyValueList[i].substr(iFind+ 1));
 
                   keyValueList[i] = str;
 
@@ -678,14 +678,14 @@ namespace hi5
 
             nPos = nPos + OAUTHLIB_TOKEN_KEY.get_length() + strlen( "=" );
 
-            strDummy = requestTokenResponse.Mid( nPos );
+            strDummy = requestTokenResponse.substr( nPos );
 
             nPos = strDummy.find( "&" );
 
             if( nPos >= 0)
             {
 
-               m_oAuthTokenKey = strDummy.Mid( 0, nPos );
+               m_oAuthTokenKey = strDummy.substr( 0, nPos );
 
             }
 
@@ -700,14 +700,14 @@ namespace hi5
 
             nPos = nPos + OAUTHLIB_TOKENSECRET_KEY.get_length() + strlen( "=" );
 
-            strDummy = requestTokenResponse.Mid( nPos );
+            strDummy = requestTokenResponse.substr( nPos );
 
             nPos = strDummy.find( "&" );
 
             if( nPos >= 0 )
             {
 
-               m_oAuthTokenSecret = strDummy.Mid( 0, nPos );
+               m_oAuthTokenSecret = strDummy.substr( 0, nPos );
 
             }
 
@@ -721,7 +721,7 @@ namespace hi5
 
             nPos = nPos + OAUTHLIB_SCREENNAME_KEY.get_length() + strlen( "=" );
 
-            strDummy = requestTokenResponse.Mid( nPos );
+            strDummy = requestTokenResponse.substr( nPos );
 
             m_oAuthScreenName = strDummy;
 

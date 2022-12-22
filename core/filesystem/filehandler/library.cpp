@@ -26,7 +26,7 @@ namespace filehandler
 
       get_extension_list(stra);
 
-      if(!stra.contains_ci(pszExtension))
+      if(!stra.case_insensitive_contains(pszExtension))
          return false;
 
       return true;
@@ -41,7 +41,7 @@ namespace filehandler
 
       get_mime_type_list(stra);
 
-      if(!stra.contains_ci(pszMimeType))
+      if(!stra.case_insensitive_contains(pszMimeType))
          return false;
 
       return true;

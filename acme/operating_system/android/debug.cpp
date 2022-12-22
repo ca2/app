@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::pointer< ::particle > g_pmutexOutputDebugStringA;
 
-void output_debug_string(const char * lpOutputString)
+void output_debug_string(const ::scoped_string & scopedstr)
 {
 
    synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);

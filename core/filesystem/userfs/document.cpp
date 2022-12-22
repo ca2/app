@@ -126,9 +126,9 @@ namespace userfs
 
          listingUser.m_straIgnoreName = m_listingRoot.m_straIgnoreName;
 
-         listingUser.m_pathUser.Empty();
+         listingUser.m_pathUser.empty();
 
-         listingUser.m_pathFinal.Empty();
+         listingUser.m_pathFinal.empty();
 
       }
       else

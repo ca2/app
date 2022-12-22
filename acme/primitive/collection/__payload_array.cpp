@@ -246,7 +246,7 @@ index payload_array::find_first(const ::payload & payload, index find, index las
 }
 
 
-bool payload_array::contains_ci(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
@@ -337,7 +337,7 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 
    ::count count = 0;
 
-   if (contains_ci(scopedstr, find, last, countMin, countMax))
+   if (case_insensitive_contains(scopedstr, find, last, countMin, countMax))
    {
     
       while (conditional(countMax >= 0, count < countMax)

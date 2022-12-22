@@ -42,7 +42,7 @@
 //   {
 //      strsize iStart   = matches.s[i];
 //      strsize iEnd     = matches.e[i];
-//      stra.add(str.Mid(iStart, iEnd - iStart));
+//      stra.add(str.substr(iStart, iEnd - iStart));
 //   }
 //
 //   return bMatch;

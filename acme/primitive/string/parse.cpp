@@ -106,7 +106,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    i16 parse::issplit(const char ca)
    {
-      for (i32 i = 0; i < pa_splits.get_length(); i++)
+      for (i32 i = 0; i < pa_splits.length(); i++)
          if (pa_splits[i] == ca)
             return 1;
       return 0;
@@ -207,7 +207,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       else
       {
 
-         m_strWord.Empty();
+         m_strWord.empty();
 
       }
 
@@ -240,7 +240,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       else
       {
 
-         m_strWord.Empty();
+         m_strWord.empty();
 
       }
 
@@ -327,7 +327,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       else
       {
 
-         m_strWord.Empty();
+         m_strWord.empty();
 
       }
       return m_strWord;
@@ -359,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
       parse::getword();
       s = "";
-      while (s.get_length() + m_strWord.length() < (index)l)
+      while (s.length() + m_strWord.length() < (index)l)
          s += fill;
       s += m_strWord;
    }
@@ -384,7 +384,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       else
       {
 
-         s.Empty();
+         s.empty();
 
       }
 
@@ -455,7 +455,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       else
       {
 
-         m_strWord.Empty();
+         m_strWord.empty();
 
       }
 
@@ -513,7 +513,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    void parse::get_expandable_line()
    {
 
-      m_strWord.Empty();
+      m_strWord.empty();
       _get_expandable_line(m_strWord);
 
    }
@@ -527,7 +527,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    CLASS_DECL_ACME string consume_token(::string & str, const ::string_array & straSeparator)
    {
 
-      ::auto pFind = -1;
+      ::index iFind = -1;
 
       ::index iSeparator = -1;
 
@@ -541,9 +541,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          }
 
-         ::index iFindSeparator = str.find(straSeparator[i]);
+         ::index iFindSeparator = str.find_index(straSeparator[i]);
 
-         if (::is_null(pFind) || (iFindSeparator > 0 && iFindSeparator < iFind))
+         if (::not_found(iFind) || (iFindSeparator > 0 && iFindSeparator < iFind))
          {
 
             iFind = iFindSeparator;
@@ -556,12 +556,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       ::string strToken;
 
-      if (::is_set(pFind))
+      if (::found(iFind))
       {
 
-         strToken = str(0, pFind);
+         strToken = str(0, iFind);
 
-         str = str.Mid(iFind + straSeparator[iSeparator].get_length());
+         str = str.substr(iFind + straSeparator[iSeparator].length());
 
       }
 

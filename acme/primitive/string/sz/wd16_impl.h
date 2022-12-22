@@ -210,7 +210,7 @@ inline strsize wd16string_format(::wd16_character * pszBuffer, strsize nlength, 
 inline const ::wd16_character * string_rear_find_character(const ::wd16_character * psz, ::wd16_character ch) noexcept
 {
 
-   return _string_range(psz).rear_find_item(ch, ::comparison::comparison < ::wd16_character >());
+   return _string_range(psz).rear_find(ch, ::comparison::comparison < ::wd16_character >());
 
 }
 

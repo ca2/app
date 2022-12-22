@@ -290,7 +290,7 @@ namespace iter
    typename ITERABLE::iterator find_first_begins_eat_ci(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr, ::count countMin = 1, ::count countMax = -1);
+   bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr, ::count countMin = 1, ::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
    bool icontains_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::count count = -1, ::count countMin = 1, ::count countMax = -1);
@@ -408,7 +408,7 @@ namespace iter
    bool contains(const ITERABLE & iterable, const ITYPE & value);
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains_ci(const ITERABLE & iterable, const ITYPE & value);
+   bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & value);
 
 
 
@@ -435,7 +435,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains_ci(const ITERABLE & iterable, const ITYPE & value)
+   bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & value)
    {
 
       for (auto & item : iterable)
@@ -857,7 +857,7 @@ namespace iter
    ::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::count countMin, ::count countMax)
    {
       ::count count = 0;
-      if (contains_ci(iterable, t, first, last, countMin, countMax))
+      if (case_insensitive_contains(iterable, t, first, last, countMin, countMax))
          while (conditional(countMax >= 0, count < countMax) && erase_first_ci(iterable, t, first, last))
             count++;
       return count;
@@ -1134,7 +1134,7 @@ namespace iter
    void reverse_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & lpcszSeparator, typename ITERABLE::iterator first, ::count last)
    {
 
-      str.Empty();
+      str.empty();
 
       string strSeparator(lpcszSeparator);
 
@@ -1215,7 +1215,7 @@ namespace iter
 
       iterable.prepare_first_last(first, last);
 
-      str.Empty();
+      str.empty();
 
       ITYPE strSeparator(lpcszSeparator);
 
@@ -1244,7 +1244,7 @@ namespace iter
    //template < typename ITERABLE, typename ITYPE >
    //void reverse_implode(ITYPE & str, const ITYPE & lpcszSeparator, typename ITERABLE::iterator start, ::count count)
    //{
-   //   str.Empty();
+   //   str.empty();
    //   ITYPE strSeparator(lpcszSeparator);
    //   if (start < 0)
    //   {
@@ -1548,7 +1548,7 @@ end:
    template < typename ITERABLE, typename ITYPE >
    void get_format_string(const ITERABLE & iterable, ITYPE & str, const ITYPE & lpcszSeparator)
    {
-      str.Empty();
+      str.empty();
       if (iterable.m_nSize > 0)
       {
          str = get_at(0);
@@ -1614,7 +1614,7 @@ end:
    bool add_unique_ci(ITERABLE & iterable, const ITYPE & str)
    {
 
-      if (::iter::contains_ci(iterable, str))
+      if (::iter::case_insensitive_contains(iterable, str))
       {
 
          return false;
@@ -1977,7 +1977,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
 
       return find;
 
@@ -2029,7 +2029,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Mid(strlen(pcsz));
+      str = element_at(find).substr(strlen(pcsz));
 
       return find;
 
@@ -2046,7 +2046,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Mid(strlen(pcsz));
+      str = element_at(find).substr(strlen(pcsz));
 
       return find;
 
@@ -2285,7 +2285,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
 
       return find;
 
@@ -2302,7 +2302,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Left(element_at(find).length() - strlen(pcsz));
+      str = element_at(find).left(element_at(find).length() - strlen(pcsz));
 
       return find;
 
@@ -2354,7 +2354,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Mid(strlen(pcsz));
+      str = element_at(find).substr(strlen(pcsz));
 
       return find;
 
@@ -2371,7 +2371,7 @@ end:
       if (find < 0)
          return find;
 
-      str = element_at(find).Mid(strlen(pcsz));
+      str = element_at(find).substr(strlen(pcsz));
 
       return find;
 
@@ -2921,7 +2921,7 @@ end:
    void surround_and_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & lpcszSeparator, const ITYPE3 & pszPrefix, const ITYPE4 & pszSuffix, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
-      str.Empty();
+      str.empty();
 
       typedef ITERABLE::BASE_TYPE STRING_TYPE;
 
@@ -3609,7 +3609,7 @@ end:
       for (auto & item : iterable)
       {
 
-         if (stra.contains_ci(item))
+         if (stra.case_insensitive_contains(item))
             c--;
 
       }
@@ -3686,7 +3686,7 @@ end:
    void implode_ex(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & lpcszSeparator, const ITYPE3 & lpcszLastSeparator, typename ITERABLE::const_iterator start, typename ITERABLE::const_iterator end)
    {
 
-      str.Empty();
+      str.empty();
 
       ITYPE strSeparator(lpcszSeparator);
 
@@ -3744,7 +3744,7 @@ end:
    void if_prefix_implode_ex(const ITERABLE & iterable, ITYPE & str, const ITYPE & lpcszIfHasElementPrefix, const ITYPE & lpcszSeparator, const ITYPE & lpcszLastSeparator, bool bUseLast, typename ITERABLE::iterator start, ::count count)
    {
 
-      str.Empty();
+      str.empty();
 
       ITYPE strSeparator(lpcszSeparator);
 
@@ -4069,7 +4069,7 @@ public:
    bool contains_iter_ci(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::count countMin = 1, ::count countMax = -1) const
    {
 
-      return ::iter::contains_ci(*this, str, find, last, countMin, countMax);
+      return ::iter::case_insensitive_contains(*this, str, find, last, countMin, countMax);
 
    }
 

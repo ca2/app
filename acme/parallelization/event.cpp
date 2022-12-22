@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "event.h"
 #include "acme/primitive/string/string.h"
 ////#include "acme/exception/exception.h"
@@ -103,7 +103,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
    m_hsynchronization = ::CreateEventW(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       bManualReset, 
-      bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
+      bInitiallyOwn, scopedstrName.is_empty() ? nullptr : wstring(scopedstrName).c_str());
 
    if (m_hsynchronization == NULL)
    {

@@ -50,6 +50,7 @@ public:
 
    string_base() { }
    string_base(enum_no_initialize) : NATURAL_POINTER(e_no_initialize) { }
+   string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
    string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
@@ -239,7 +240,11 @@ public:
    string_base to_string_base() const { return *this; }
    const RANGE & to_string_base() { return *this; }
 
+   using RANGE::operator ==;
+   using RANGE::operator <=>;
 
+   bool operator==(const string_base & str) const { return this->equals(str); }
+   ::std::strong_ordering operator<=>(const string_base & str) const { return this->order(str); }
 
    //string_base & operator = (const string_base & str);
 //   {
@@ -489,6 +494,10 @@ public:
    inline string_base & append(const ::wd16_character * psz, strsize size) { return append(::const_wd16_range(psz, size)); }
    inline string_base & append(const ::wd32_character * psz, strsize size) { return append(::const_wd32_range(psz, size)); }
 
+
+   template < primitive_character CHARACTER2 >
+   inline string_base < ITERATOR_TYPE > & _append(const CHARACTER2 * pszSrc, strsize count);
+
    //inline string_base & append(const ::wd16_character * pszSrc);
    //inline string_base & append(const ::wd16_character * pszSrc, strsize nLength);
    //inline string_base & append(const wd16_string & ansistrSrc);
@@ -504,7 +513,7 @@ public:
    inline string_base & append(const ::property & property);
 
 
-   inline void Empty()
+   inline void empty()
    {
 
       ASSERT(this->metadata()->m_countReference >= 1);
@@ -517,6 +526,8 @@ public:
       }
 
    }
+
+
 
 
    inline CHARACTER * get_string_buffer()
@@ -620,16 +631,11 @@ public:
 
    inline static string_base empty_string() { return string_base(); }
 
-   inline void empty() { Empty(); }
-
-
    string_base & release_string_buffer(strsize nNewLength = -1);
-   //   inline void release_string_buffer(strsize nNewLength);
    inline this_iterator & truncate(this_iterator p);
    template < primitive_integral INTEGRAL >
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
 
-   ///
    inline this_iterator & erase_beginning(this_iterator p);
 
    inline void set_at(strsize iChar, CHARACTER ch);
@@ -655,67 +661,43 @@ public:
    string_base if_empty(string_base ansistr) { return this->is_empty() ? ansistr : *this; }
 
 
-   //#if defined(_UWP) && defined(__cplusplus_winrt)
-   //   inline operator String ^ () const;
-   //   inline operator String ^ ();
-   //#endif
-   //
-
-      //void construct() noexcept;
-
-
    void push_back(CHARACTER ch);
 
 
 
    void reserve(strsize res_arg = 0);
 
-   // Delete 'nCount' characters, starting at index 'iIndex'
-   string_base & erase(strsize iIndex = 0, strsize nCount = -1);
+   string_base & erase(strsize start = 0, strsize count = -1);
 
-   //string_base& erase(strsize start = 0);
+   const_iterator insert(strsize iIndex, CHARACTER ch);
 
+   const_iterator insert(strsize iIndex, const string_base & str);
 
+   const_iterator replace_character(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
 
-   // Insert character 'ch' before index 'iIndex'
-   const_iterator Insert(strsize iIndex, CHARACTER ch);
-
-   // Insert string_base 'psz' before index 'iIndex'
-   const_iterator Insert(strsize iIndex, const string_base & str);
-
-   // replace all occurrences of character 'chOld' with character 'chNew'
-   const_iterator replace_character(CHARACTER charNew, CHARACTER charOld, strsize iStart = 0);
-
-   // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
    template < typename EQUALITY >
-   ::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, EQUALITY equality);
+   ::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality);
 
 
-   ::count replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld)
+   ::count replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
    {
 
-      return _replace_with(scopedstrNew, scopedstrOld, ::comparison::comparison<CHARACTER>());
+      return _replace_with(scopedstrNew, scopedstrOld, start, ::comparison::comparison<CHARACTER>());
 
    }
 
 
-   ::count case_insensitive_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld)
+   ::count case_insensitive_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
    {
 
-      return _replace_with(scopedstrNew, scopedstrOld, ::comparison::case_insensitive<CHARACTER>());
+      return _replace_with(scopedstrNew, scopedstrOld, start, ::comparison::case_insensitive<CHARACTER>());
 
    }
-
-   // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
 
    ::count replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
 
-   //template < raw_pointer_castable < CHARACTER_TYPE > PCHARNEW, raw_pointer_castable < CHARACTER_TYPE > PCHAROLD >
-
    ::count replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
 
-   // replace all occurrences of character 'chOld' with character 'chNew'
    ::count find_replace(CHARACTER charOld, CHARACTER charNew, strsize iStart = 0)
    {
 
@@ -723,21 +705,18 @@ public:
 
    }
 
-   // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   ::count find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew)
+   ::count find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
    {
 
-      return _replace_with(scopedstrNew, scopedstrOld, comparison::comparison<CHARACTER>());
+      return _replace_with(scopedstrNew, scopedstrOld, start, comparison::comparison<CHARACTER>());
 
    }
 
 
-   //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   ::count case_insensitive_find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew)
+   ::count case_insensitive_find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
    {
 
-      return _replace_with(scopedstrNew, scopedstrOld, comparison::case_insensitive<CHARACTER>());
+      return _replace_with(scopedstrNew, scopedstrOld, start, comparison::case_insensitive<CHARACTER>());
 
    }
 
@@ -1003,24 +982,15 @@ public:
    string_base left_trimmed(const SCOPED_STRING & scopedstrTargets) const;
 
 
-   // Convert the string_base to the OEM character set
-   void AnsiToOem();
-
-   // Convert the string_base to the ANSI character set
-   void OemToAnsi();
-
-   // Very simple sub-string_base extraction
-
-   // Return the substring starting at index 'iFirst'
-   string_base Mid(strsize iFirst) const;
-
    string_base substr(strsize iFirst) const;
 
-   // Return the substring starting at index 'iFirst', with length 'nCount'
-   string_base Mid(strsize iFirst, strsize nCount) const;
+   string_base substr(const_iterator p) const { return ::move(substr(p, -1)); }
+   string_base substr(const_iterator p, strsize count) const { return ::move(substr(p - this->begin(), count)); }
 
-
-   string_base substr(strsize iFirst, strsize nCount) const;
+   template < primitive_integral START, primitive_integral COUNT >
+   string_base substr(START start, COUNT count) const;
+   template < primitive_integral START >
+   string_base substr(START start, const_iterator p) const { return substr(start, (p - this->m_begin) - start); }
 
 
    inline memsize get_storage_size_in_bytes() const { return this->metadata()->memsize(); }
@@ -1032,16 +1002,14 @@ public:
    inline memsize length_in_bytes() const;
    inline memsize length_in_bytes_with_null_terminator() const;
 
-   // Return the substring consisting of the rightmost 'nCount' characters
-   string_base Right(strsize nCount) const;
+   string_base right(strsize nCount) const;
 
-   // Return the substring consisting of the leftmost 'nCount' characters
-   string_base Left(strsize nCount) const;
+   string_base left(strsize count) const;
 
-   // Return the substring consisting of the leftmost characters in the set 'pszCharSet'
+   string_base left(const_iterator p) const { return ::move(this->left(p - this->begin())); }
+
    string_base left_including_any_character_in(const SCOPED_STRING & scopedstrCharSet) const;
 
-   // Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
    string_base left_skipping_any_character_in(const SCOPED_STRING & scopedstrCharSet) const;
 
 

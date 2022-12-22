@@ -145,7 +145,7 @@ namespace user
    bool list_box::_001GetListText(index iSel, string& str)
    {
 
-      str.Empty();
+      str.empty();
 
       if (iSel < 0)
       {

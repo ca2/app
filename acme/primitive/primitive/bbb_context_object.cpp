@@ -168,7 +168,7 @@ void object::process_exit_status(const ::e_status & estatus)
       //
       //   string strType = __type_name(this);
       //
-      //   if (strType.contains_ci("session"))
+      //   if (strType.case_insensitive_contains("session"))
       //   {
       //
       //      if (m_pobjrefdbg->m_iStep == 39)

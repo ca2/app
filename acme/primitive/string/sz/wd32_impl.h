@@ -191,7 +191,7 @@ inline strsize wd32tring_format(::wd32_character * pszBuffer, strsize nlength, c
 inline const ::wd32_character * string_rear_find_character(const ::wd32_character * psz, ::wd32_character ch) noexcept
 {
 
-   return _string_range(psz).rear_find_item(ch, ::comparison::comparison < ::wd32_character >());
+   return _string_range(psz).rear_find(ch, ::comparison::comparison < ::wd32_character >());
 
 }
 

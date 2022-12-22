@@ -113,7 +113,7 @@ namespace aura
 
       synchronous_lock synchronouslock(::auraacmesystem()->m_pmutexLibrary);
 
-      m_strMessage.Empty();
+      m_strMessage.empty();
 
       auto pfnNewAuraLibrary = get_get_new_aura_library(pszPath);
 

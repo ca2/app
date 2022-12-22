@@ -128,7 +128,7 @@ namespace mysql
 
          mysql_options(m_pmysql, MYSQL_OPT_PROTOCOL, &m_protocol);
 
-         m_strHost.Empty();
+         m_strHost.empty();
 
       }
 

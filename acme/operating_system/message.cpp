@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-02 05:09 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-02 05:09 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/primitive/primitive/tuple.h"
@@ -203,7 +203,7 @@ namespace operating_system
    CLASS_DECL_ACME const char * get_message_text(enum_message emessage)
    {
 
-      ::auto pFind = (::i32)emessage;
+      auto iFind = (::i32)emessage;
 
       auto pmessagename =
          tuple_array_find(

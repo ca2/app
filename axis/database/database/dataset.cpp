@@ -66,10 +66,10 @@ namespace database
       case e_sql_none:
          break;
       case       e_sql_execute:
-         m_strSqlExecute.Empty();
+         m_strSqlExecute.empty();
          break;
       case e_sql_select:
-         m_strSqlSelect.Empty();
+         m_strSqlSelect.empty();
          break;
       case e_sql_update:
          m_straSqlUpdate.erase_all();

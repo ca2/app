@@ -56,7 +56,7 @@ namespace prompt
          iFind2++;
          if(iFind > iFind2 && iFind2 >= m_iCompromised)
          {
-            string strLine = str.Mid(iFind2, iFind - iFind2 - 1);
+            string strLine = str.substr(iFind2, iFind - iFind2 - 1);
             if(strLine.has_char())
             {
                bool bOk = false;

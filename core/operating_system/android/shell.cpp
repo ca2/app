@@ -1302,7 +1302,7 @@ pacmedirectory->is(strPath))
       strsize iFind2 = imagekey.m_strPath.case_insensitive_find(":");
       if (::is_set(pFind) || iFind2 >= 2)
       {
-         string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
+         string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));
          i32 i = 0;
 
          while (i < strProtocol.length() && character_isalnum(strProtocol[i]))

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "string.h"
 //#include "acme/primitive/collection/string_array.h"
 
@@ -23,9 +23,9 @@
    bool whole_word_contains(string str, string strFind)
    {
 
-      auto pFind = 0;
+      ::index iFind = 0;
 
-      while ((iFind = str(pFind).case_insensitive_find(strFind)) >= 0)
+      while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
       {
 
          bool bLowerBound1 = iFind == 0;
@@ -74,15 +74,15 @@
    void whole_word_erase(string & str, string strFind)
    {
 
-      auto pFind = 0;
+      ::index iFind = 0;
 
-      while ((iFind = str(pFind).case_insensitive_find(strFind)) >= 0)
+      while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
       {
 
          if (iFind == 0 || !ansi_char_isalpha(str[iFind - 1]))
          {
 
-            str = str(0, pFind) + str.Mid(iFind + strFind.length());
+            str = str(0, iFind) + str.substr(iFind + strFind.length());
 
          }
          else

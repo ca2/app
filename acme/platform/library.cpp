@@ -140,7 +140,7 @@ namespace acme
 
       critical_section_lock synchronouslock(&psystem->m_psubsystem->m_criticalsection);
 
-      m_strMessage.Empty();
+      m_strMessage.empty();
 
       //auto pfnNewAuraLibrary = psystem->load_(pszPath);
 

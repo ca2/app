@@ -2059,10 +2059,10 @@ filesize hfile_get_size(HANDLE h)
 //
 
 
-bool get_file_time_set(const ::scoped_string & scopedstr, file_time& creation, file_time& modified)
+bool get_file_time_set(const ::file::path & path, file_time& creation, file_time& modified)
 {
 
-   HANDLE hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+   HANDLE hfile = hfile_create(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
    bool bOk = false;
 

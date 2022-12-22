@@ -599,7 +599,7 @@ namespace user
          return true;
       }
 
-      str.Empty();
+      str.empty();
 
       if(ptool->BaseToolTipGetText(str))
       {

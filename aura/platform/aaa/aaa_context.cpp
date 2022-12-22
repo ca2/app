@@ -1017,7 +1017,7 @@ string context::matter_locator(string strApp)
 
    string strMatterLocator = strApp;
 
-   if (!strMatterLocator.contains_ci("/_matter/"))
+   if (!strMatterLocator.case_insensitive_contains("/_matter/"))
    {
 
       string_array stra;

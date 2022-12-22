@@ -5,12 +5,13 @@
 #include "acme_file.h"
 #include "acme_directory.h"
 #include "acme_path.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/io.h"
 #include "acme/filesystem/file/stdio_file.h"
+#include "acme/platform/ini.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/memory.h"
-#include "acme/exception/interface_only.h"
-#include "acme/exception/io.h"
 //#include "acme/primitive/collection/string_array.h"
 ////#include "acme/primitive/datetime/earth_time.h"
 
@@ -464,7 +465,7 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
 }
 
 
-string acme_file::get_temporary_file_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension)
+string acme_file::get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
 {
 
    throw interface_only();
@@ -736,7 +737,7 @@ void acme_file::copy(const ::file::path & pathDup, const ::file::path & pathSrc,
 
 #ifdef WINDOWS
 
-   FILE * in = _wfopen(wstring(pszSrc), L"r"); //create the input file for reading
+   FILE * in = _wfopen(wstring(pathSrc), L"r"); //create the input file for reading
 
 #else
 
@@ -749,7 +750,7 @@ void acme_file::copy(const ::file::path & pathDup, const ::file::path & pathSrc,
 
 #ifdef WINDOWS
 
-   FILE * out = _wfopen(wstring(pszDup), L"w"); // create the output file for writing
+   FILE * out = _wfopen(wstring(pathDup), L"w"); // create the output file for writing
 
 #else
 
@@ -1532,6 +1533,37 @@ void acme_file::_erase(const ::file::path & path)
 
 }
 
+
+::pointer<::handle::ini>acme_file::get_ini(const ::payload & payloadFile)
+{
+
+   auto preader = this->open(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
+
+   if (preader.nok())
+   {
+
+      throw ::io_exception(error_io);
+
+   }
+
+   string str;
+
+   preader->as(str);
+
+   auto pini = __create_new < handle::ini >();
+
+   if (!pini)
+   {
+
+      return pini;
+
+   }
+
+   pini->parse_ini(str);
+
+   return ::move(pini);
+
+}
 
 
 

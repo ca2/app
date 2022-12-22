@@ -296,7 +296,7 @@ pacmedirectory->roaming() / "home";
       {
          if(string_begins(strPath,"\\\\"))
          {
-            strPath = "\\\\?\\UNC" + strPath.Mid(1);
+            strPath = "\\\\?\\UNC" + strPath.substr(1);
          }
          else
          {
@@ -616,7 +616,7 @@ try1:;
          string strDir = psz.folder();
 
          string str;
-         str = strDir.Left(2);
+         str = strDir.left(2);
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::earth::time time;
@@ -625,11 +625,11 @@ try1:;
          str += strFormat;
          if(strDir[2] == '\\')
          {
-            str += strDir.Mid(3);
+            str += strDir.substr(3);
          }
          else
          {
-            str += strDir.Mid(2);
+            str += strDir.substr(2);
          }
          return str;
       }

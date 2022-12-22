@@ -22,8 +22,8 @@ CLASS_DECL_ACME const char * file_path_all_extensions(const ::file::path & path)
 CLASS_DECL_ACME string file_path_folder(const ::file::path & path);
 CLASS_DECL_ACME string file_path_title(const ::file::path & path);
 
-CLASS_DECL_ACME bool file_path_is_relative(const ::file::path & path);
-CLASS_DECL_ACME bool file_path_is_absolute(const ::file::path & path);
+CLASS_DECL_ACME bool file_path_is_relative(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME bool file_path_is_absolute(const ::scoped_string & scopedstr);
 
 
 CLASS_DECL_ACME bool file_path_is_dots(const ::file::path & path);

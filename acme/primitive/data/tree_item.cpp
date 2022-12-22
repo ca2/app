@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tree_item.h"
 #include "item.h"
 #include "listener.h"
@@ -71,7 +71,7 @@ namespace data
       if(m_pparent)
       {
 
-         if(list_contains(m_pparent, this))
+         if(list_contains_item(m_pparent, this))
          {
 
             list_erase(m_pparent, this);
@@ -134,7 +134,7 @@ namespace data
 
       }
 
-      if (!list_contains(pitem->m_pparent, pitem))
+      if (!list_contains_item(pitem->m_pparent, pitem))
       {
 
          // self healing?
@@ -196,9 +196,7 @@ namespace data
 
          }
 
-         auto pFind = list_find_first(m_pparent, this);
-
-         if (::is_null(pFind))
+         if(!list_contains_item(m_pparent, this))
          {
 
             // self-healinng
@@ -208,19 +206,11 @@ namespace data
 
          }
 
-         if (iFind > 0)
-         {
-
-            iFind--;
-
-         }
-
          list_insert_before(m_pparent, this, pitemNew);
 
          pitemNew->m_iLevel = m_iLevel;
 
          pitemNew->m_pparent = m_pparent;
-
 
       }
       else if(erelative == e_relative_next_sibling)
@@ -233,9 +223,7 @@ namespace data
 
          }
 
-         auto pFind = list_find_first(m_pparent, this);
-
-         if (::is_null(pFind))
+         if(!list_contains_item(m_pparent, this))
          {
 
             // self-healing
@@ -265,9 +253,7 @@ namespace data
       else if(erelative == e_relative_replace)
       {
 
-         auto pFind = list_find_first(m_pparent,this);
-
-         if(::is_null(pFind))
+         if(!list_contains_item(m_pparent,this))
          {
 
             m_pparent = nullptr;
@@ -487,7 +473,7 @@ namespace data
 
       }
 
-      return list_find_first(m_pparent, this);
+      return list_item_index(m_pparent, this);
 
    }
 

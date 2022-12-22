@@ -237,23 +237,23 @@ namespace filemanager
             switch(psubitem->m_iSubItem)
             {
             case SubItemId:
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
                break;
             case SubItemTitle:
                psubitem->m_strText = m_itema[psubitem->m_pitem->m_iItem]->m_strTitle;
                break;
             case SubItemArtist:
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
                break;
             case SubItemFileName:
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
                break;;
             case SubItemFilePath:
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
                break;
             default:
                //ASSERT(false);
-               psubitem->m_strText.Empty();
+               psubitem->m_strText.empty();
                break;
             }
             psubitem->m_bOk = true;

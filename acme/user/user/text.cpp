@@ -85,7 +85,7 @@ namespace user
 
       __sort(iBeg, iEnd);
 
-      str = strText.Mid(iBeg, iEnd - iBeg);
+      str = strText.substr(iBeg, iEnd - iBeg);
 
    }
 

@@ -58,7 +58,7 @@ namespace http
 
       infil->seek_to_begin();
 
-      if (content-type.get_length() >= 19 && content-type.Mid(0, 19) == "multipart/form-data")
+      if (content-type.get_length() >= 19 && content-type.substr(0, 19) == "multipart/form-data")
       {
          
          ::parse pa(content-type,";=");
@@ -138,7 +138,7 @@ namespace http
                                  if (!h.is_empty() && h[0] == '"')
                                  {
 
-                                    current_name = h.Mid(1, h.get_length() - 2);
+                                    current_name = h.substr(1, h.get_length() - 2);
 
                                  }
                                  else
@@ -155,7 +155,7 @@ namespace http
                                  if (!h.is_empty() && h[0] == '"')
                                  {
 
-                                    current_filename = h.Mid(1, h.get_length() - 2);
+                                    current_filename = h.substr(1, h.get_length() - 2);
 
                                  }
                                  else
@@ -182,7 +182,7 @@ namespace http
                                  if (x)
                                  {
 
-                                    current_filename = current_filename.Mid(x);
+                                    current_filename = current_filename.substr(x);
 
                                  }
 
@@ -223,7 +223,7 @@ namespace http
                      while (!val.is_empty() && (val[val.get_length() - 1] == 13 || val[val.get_length() - 1] == 10))
                      {
 
-                        val = val.Mid(0,val.get_length() - 1);
+                        val = val.substr(0,val.get_length() - 1);
 
                      }
 
@@ -323,7 +323,7 @@ namespace http
                            {
 
                               if (!ansi_count_compare(tempcmp.sz() + tc + extra, m_strBoundary, iBoundaryLength - tc) &&
-                                    !ansi_count_compare(tempcmp.sz(), m_strBoundary.Mid(iBoundaryLength - tc), tc))
+                                    !ansi_count_compare(tempcmp.sz(), m_strBoundary.substr(iBoundaryLength - tc), tc))
                               {
 
                                  break;
@@ -455,7 +455,7 @@ namespace http
    void form::clear()
    {
       m_bRaw = false;
-      m_strBoundary.Empty();
+      m_strBoundary.empty();
       m_setGet.clear();
       m_setPost.clear();
       m_setRequest.clear();

@@ -87,7 +87,7 @@ namespace networking
 
       }
 
-      string strDomain = strEmailAddress.Mid(iAt + 1);
+      string strDomain = strEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {
@@ -129,7 +129,7 @@ namespace networking
 
       }
 
-      string strDomain = strEmailAddress.Mid(iAt + 1);
+      string strDomain = strEmailAddress.substr(iAt + 1);
 
       if (strDomain.is_empty())
       {

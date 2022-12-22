@@ -179,7 +179,7 @@ bool file_context::exists(const ::file::path &pathParam)
       if (::is_set(pFind))
       {
 
-         if (!exists(path.Mid(0, iFind + 4)))
+         if (!exists(path.substr(0, iFind + 4)))
          {
 
             return ::file::e_type_doesnt_exist;
@@ -346,7 +346,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    restart:
 
-   str.Empty();
+   str.empty();
 
    str = psz;
 
@@ -533,7 +533,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
          }
 
-         iIndex = atoi(str.Mid(0, 2));
+         iIndex = atoi(str.substr(0, 2));
 
          if (iIndex > iMax)
          {
@@ -2003,37 +2003,6 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 }
 
 
-::pointer<::handle::ini>file_context::get_ini(const ::payload& payloadFile)
-{
-
-   auto preader = file()->get_reader(payloadFile, ::file::e_open_share_deny_none);
-
-   if (preader.nok())
-   {
-
-      throw ::io_exception(error_io);
-
-   }
-
-   string str;
-
-   preader->as(str);
-
-   auto pini = __create_new < handle::ini >();
-
-   if (!pini)
-   {
-
-      return pini;
-
-   }
-
-   pini->parse_ini(str);
-
-   return ::move(pini);
-
-}
-
 
 void file_context::get_status(::file::file_status & status, const ::file::path &path)
 {
@@ -2335,7 +2304,7 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 
    }
 
-   path = path.Left(iEnd) + ::str().has_char(pszExtension, ".");
+   path = path.left(iEnd) + ::str().has_char(pszExtension, ".");
 
 }
 
@@ -2351,11 +2320,11 @@ void file_context::normalize(string &str)
    }
 
    while (str.has_char() &&
-          (str.Right(1) == "\\" ||
-           str.Right(1) == "/"))
+          (str.right(1) == "\\" ||
+           str.right(1) == "/"))
    {
       
-      str = str.Left(str.length() - 1);
+      str = str.left(str.length() - 1);
 
    }
 
@@ -2927,7 +2896,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
    ASSERT(strData.case_insensitive_begins("data:"));
 
-   string strSample = strData.Left(4096);
+   string strSample = strData.left(4096);
 
    auto pFind = strSample.find(";", 5);
 
@@ -2943,9 +2912,9 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
       if (iFind > 5 && iEncoding > iFind)
       {
 
-         string strMimeType = strData.Mid(5, iFind - 5);
+         string strMimeType = strData.substr(5, iFind - 5);
 
-         string strEncoding = strData.Mid(iFind + 1, iEncoding - iFind - 1);
+         string strEncoding = strData.substr(iFind + 1, iEncoding - iFind - 1);
 
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
@@ -2956,7 +2925,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
             auto pbase64 = psystem->base64();
 
-            if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
+            if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.substr(iEncoding + 1)))
             {
 
                INFORMATION("::file::file_context::data_get_file Succeeded");

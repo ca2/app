@@ -41,7 +41,7 @@ namespace acme
          if (pszFullString == nullptr)
 
          {
-            rString.Empty();        // return is_empty string as well
+            rString.empty();        // return is_empty string as well
             return false;
          }
          pszFullString++;       // point_i32 past the separator

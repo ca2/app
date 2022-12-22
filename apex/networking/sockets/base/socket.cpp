@@ -1011,7 +1011,7 @@ namespace sockets
       //psocket->m_psslcontext->m_iSslCtxRetry = 0;
       //psocket->m_psslcontext->m_ssl = nullptr;
       //psocket->m_psslcontext->m_sbio = nullptr;
-      //psocket->m_password.Empty();
+      //psocket->m_password.empty();
 
    }
 

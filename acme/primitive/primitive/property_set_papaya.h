@@ -225,14 +225,14 @@ namespace acme
 
       //         }
 
-      //         string strKey = str.Mid(iPos + 2, iEnd - iPos - 2);
+      //         string strKey = str.substr(iPos + 2, iEnd - iPos - 2);
 
       //         string strEval;
 
       //         if (get_string(strEval, set, strKey))
       //         {
 
-      //            str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
+      //            str = str.left(iPos) + strEval + str.substr(iEnd + 1);
 
       //            iPos += strEval.length() - 1;
 
@@ -276,14 +276,14 @@ namespace acme
 
       //         }
 
-      //         string strExpression = str.Mid(iStart, iEnd - iStart);
+      //         string strExpression = str.substr(iStart, iEnd - iStart);
 
       //         string strEval;
 
       //         if (get_evaluation(strEval, set, strExpression))
       //         {
 
-      //            str = str.Left(iPos) + strEval + str.Mid(iEnd);
+      //            str = str.left(iPos) + strEval + str.substr(iEnd);
 
       //            iPos += strEval.length() - 1;
 

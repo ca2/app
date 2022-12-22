@@ -2329,7 +2329,7 @@ struct context_object_test_struct :
 //
 //   string strType = __type_name(pusermessage);
 //
-//   if (strType.contains_ci("user::thread"))
+//   if (strType.case_insensitive_contains("user::thread"))
 //   {
 //
 //      //debug_break();
@@ -2706,7 +2706,7 @@ void object::initialize(::particle * pparticle)
    //
    //   string strType = __type_name(this);
    //
-   //   if (strType.contains_ci("session"))
+   //   if (strType.case_insensitive_contains("session"))
    //   {
    //
    //      if (m_pobjrefdbg->m_iStep == 39)

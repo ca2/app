@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //namespace str
@@ -62,7 +62,7 @@
 
       //bool CLASS_DECL_ACME unicode_to_utf8(string & str, const wchar_t * pcsz);
 
-      CLASS_DECL_ACME wstring utf8_to_unicode(const ::string & str);
+      CLASS_DECL_ACME wstring utf8_to_unicode(const ::scoped_string & scopedstr);
 
       //CLASS_DECL_ACME wstring utf8_to_unicode(const ::scoped_string & scopedstr, strsize iCount);
 

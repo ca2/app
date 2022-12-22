@@ -213,7 +213,7 @@ string module_path_from_pid(unsigned int iPid)
 //
 //         stra.add(strArg);
 //
-//         strArg.Empty();
+//         strArg.empty();
 //
 //      }
 //      else

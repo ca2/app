@@ -93,13 +93,13 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
       fs->FullPath(strModuleFolder, strModuleFolder);
       for(::u32 dw = 0; dw < (dwNeeded / sizeof(HMODULE)); dw++)
       { 
-         strModule.Empty();
+         strModule.empty();
          GetModuleFileName(pmodulea[dw], strModule.get_string_buffer(4096), 4096); 
          strModule.ReleaseBuffer(); 
          fs->FullPath(strModule, strModule);
          if(genstring_begins_ci(strModule, strModuleFolder))
          { 
-            if(!straSourceSalt.contains_ci(strModule)) 
+            if(!straSourceSalt.case_insensitive_contains(strModule)) 
             {
                 return ""; 
             }

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "str.h"
 #include "string.h"
 #include "ch_class.h"
@@ -88,9 +88,9 @@ void * gen_ch_class_reference_tables()
                cc->fill();
                cc->clear_class(cc_temp);
             }
-            else if(categ.get_length())
+            else if(categ.length())
                cc->add_category(string(*categ, 1));
-            pos += categ.get_length() + 1;
+            pos += categ.length() + 1;
             prev_char = BAD_WCHAR;
             continue;
          }
@@ -332,8 +332,8 @@ void * gen_ch_class_reference_tables()
       for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
          i32 ci;
-         for(ci = 0; ci < cat.get_length() && cat[ci] == char_category_names[pos][ci]; ci++);
-         if(ci == cat.get_length()) clear_category(ECharCategory(pos));
+         for(ci = 0; ci < cat.length() && cat[ci] == char_category_names[pos][ci]; ci++);
+         if(ci == cat.length()) clear_category(ECharCategory(pos));
       }
    }
 

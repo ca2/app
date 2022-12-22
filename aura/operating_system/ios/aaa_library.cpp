@@ -13,7 +13,7 @@ void * __node_library_open(const ::string & pszPath, string & strMessage)
 
    string strPath(pszPath);
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strError;
 
@@ -165,7 +165,7 @@ void * __node_library_raw_get(void * plibrary, const ::string & pszElement)
 void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 {
 
-   strMessage.Empty();
+   strMessage.empty();
 
    string strError;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
@@ -42,9 +42,9 @@ namespace aqua
    string game::sound_path(const ::scoped_string & scopedstr)
    {
    
-      string strFileName = string(psz) + string(".wav");
+      auto strFileName = scopedstr + ".wav";
 
-      string strFilePath = dir()->matter(strFileName);
+      auto strFilePath = dir()->matter(strFileName);
 
       return strFilePath;
 

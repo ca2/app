@@ -80,7 +80,7 @@ namespace sockets
          else
          if (line.get_length() && line[0] == '.')
          {
-            OnData(line.Mid(1));
+            OnData(line.substr(1));
          }
          else
          {

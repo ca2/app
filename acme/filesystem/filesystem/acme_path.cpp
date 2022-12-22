@@ -132,7 +132,7 @@ bool acme_path::final_begins_eat_ci(string & str, const ::scoped_string & scoped
    if (str == path || str == strPath)
    {
 
-      str.Empty();
+      str.empty();
 
       return true;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "parallelization.h"
 //#include "api.h"
 ////#include "acme/exception/exception.h"
@@ -84,14 +84,14 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scoped
    if (pfn_set_thread_description)
    {
 
-      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(pszName)));
+      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(scopedstrName)));
 
    }
 
    if (!bOk1 && ::is_debugger_attached())
    {
 
-      bOk1 = SetThreadName(GetThreadId((HANDLE) htask), pszName) != false;
+      bOk1 = SetThreadName(GetThreadId((HANDLE) htask), scopedstrName) != false;
 
    }
 
@@ -298,7 +298,7 @@ CLASS_DECL_ACME int get_processor_count()
 void task_set_name(const ::scoped_string & scopedstrThreadName)
 {
 
-   /*return*/ task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);
+   /*return*/ task_set_name((htask_t) ::GetCurrentThread(), scopedstrThreadName);
 
 }
 

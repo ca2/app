@@ -2218,7 +2218,7 @@ namespace apex
 
       }
 
-      string strRoot = m_strAppId.Left(m_strAppId.find('/'));
+      string strRoot = m_strAppId.left(m_strAppId.find('/'));
 
       //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
 
@@ -9468,7 +9468,7 @@ namespace apex
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
 
-         strSize.Empty();
+         strSize.empty();
 
          return false;
 

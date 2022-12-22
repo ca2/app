@@ -45,7 +45,7 @@
 
          }
 
-         return WideCharToMultiByte2(uCodePage, 0, scopedwstr.begin(), scopedwstr.size(), pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != false;
+         return WideCharToMultiByte2(uCodePage, 0, scopedwstr.begin(), (i32) scopedwstr.size(), pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != false;
 
       }
 
@@ -58,7 +58,7 @@
          if (srclen <= 0)
          {
 
-            str.Empty();
+            str.empty();
 
             return true;
 
@@ -81,7 +81,7 @@
 
             str.release_string_buffer(0);
 
-            str.Empty();
+            str.empty();
 
             return false;
 
@@ -98,7 +98,7 @@
 //         if(pcsz == nullptr || *pcsz == '\0' || iCount <= 0)
 //         {
 //
-//            str.Empty();
+//            str.empty();
 //
 //            return true;
 //
@@ -121,7 +121,7 @@
 //
 //            str.release_string_buffer(0);
 //
-//            str.Empty();
+//            str.empty();
 //
 //            return false;
 //
@@ -213,7 +213,7 @@
       strsize multibyte_to_unicode_count(::u32 uCodePage, const ::scoped_string & scopedstr)
       {
 
-         return MultiByteToWideChar2(uCodePage, 0, scopedstr, scopedstr.size(), nullptr, 0);
+         return MultiByteToWideChar2(uCodePage, 0, scopedstr, (i32) scopedstr.size(), nullptr, 0);
 
       }
 

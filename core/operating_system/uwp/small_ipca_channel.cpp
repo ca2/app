@@ -80,7 +80,7 @@ namespace aura
          if (m_strBaseChannel.is_empty())
             return true;
 
-         m_strBaseChannel.Empty();
+         m_strBaseChannel.empty();
 
          return true;
 
@@ -183,7 +183,7 @@ namespace aura
          }
 
 
-         m_strBaseChannel.Empty();
+         m_strBaseChannel.empty();
 
          return true;
 

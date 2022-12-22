@@ -66,12 +66,12 @@ namespace html
 
          auto pstyle = __create_new < class style >();
 
-         string strStyle = str.Left(psz - pszStart);
+         string strStyle = str.left(psz - pszStart);
 
          if(*psz == '.')
          {
 
-            str = str.Mid(psz - pszStart + 1);
+            str = str.substr(psz - pszStart + 1);
 
             pstyle->m_etag = tag_none;
 
@@ -90,7 +90,7 @@ namespace html
             if (pstyle->m_etag == tag_unknown)
                pstyle->m_etag = tag_none;
 
-            str.Empty();
+            str.empty();
 
          }
 
@@ -104,14 +104,14 @@ namespace html
             {
                psz++;
             }
-            pstyle->m_strName = str.Left(psz - pszStart);
+            pstyle->m_strName = str.left(psz - pszStart);
             if(*psz == ':')
             {
-               str = str.Mid(psz - pszStart + 1);
+               str = str.substr(psz - pszStart + 1);
             }
             else
             {
-               str.Empty();
+               str.empty();
             }
             pstyle->m_strSubClass = str;
          }

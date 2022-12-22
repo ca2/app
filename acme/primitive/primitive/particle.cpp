@@ -168,7 +168,7 @@ const char * particle::topic_text() const
 //
 //   }
 //
-//   return strTypeName.Mid(findLastColonColon + 2);
+//   return strTypeName.substr(findLastColonColon + 2);
 //
 //}
 

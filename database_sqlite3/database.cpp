@@ -203,7 +203,7 @@ namespace sqlite
 
       }
 
-      m_strLastError.Empty();
+      m_strLastError.empty();
 
       ::pointer<::database::result_set>presultset = __new(::database::result_set());
 

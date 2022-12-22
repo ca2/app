@@ -712,7 +712,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////#define memory_new ACME_NEW
 //
 ////string::string(const ::string & strSrc,strsize -1,strsize len) :
-////   string(strSrc.Mid(-1,len),::str().GetDefaultManager())
+////   string(strSrc.substr(-1,len),::str().GetDefaultManager())
 ////{
 ////}
 //
@@ -1295,7 +1295,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_ci(char ch,strsize iStart,strsize nCount) const
+//bool string::case_insensitive_contains(char ch,strsize iStart,strsize nCount) const
 //{
 //
 //   return case_insensitive_find(ch,iStart,nCount) >= 0;
@@ -1303,23 +1303,23 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_ci(unichar wch,strsize iStart,strsize nCount) const
+//bool string::case_insensitive_contains(unichar wch,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_wci(::str().uni_to_utf8(wch),iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(::str().uni_to_utf8(wch),iStart,nCount) >= 0;
 //
 //}
 //
 //
-//bool string::contains_ci(i32 i,strsize iStart,strsize nCount) const// utf8 char index
+//bool string::case_insensitive_contains(i32 i,strsize iStart,strsize nCount) const// utf8 char index
 //{
 //
-//   return find_wci(::str().uni_to_utf8(i),iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(::str().uni_to_utf8(i),iStart,nCount) >= 0;
 //
 //}
 //
 //
-//bool string::contains_ci(const ::scoped_string & scopedstr,strsize iStart,strsize nCount) const
+//bool string::case_insensitive_contains(const ::scoped_string & scopedstr,strsize iStart,strsize nCount) const
 //{
 //
 //   return case_insensitive_find(psz,iStart,nCount) >= 0;
@@ -1327,7 +1327,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_ci(const ::string & str,strsize iStart,strsize nCount) const
+//bool string::case_insensitive_contains(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return case_insensitive_find(str,iStart,nCount) >= 0;
@@ -1335,13 +1335,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_any_ci(const string_array & stra) const
+//bool string::case_insensitive_contains_at_least_one_of(const string_array & stra) const
 //{
 //
 //   for (auto & str : stra)
 //   {
 //
-//      if (contains_ci(str))
+//      if (case_insensitive_contains(str))
 //      {
 //
 //         return true;
@@ -1355,13 +1355,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_all_ci(const string_array & stra) const
+//bool string::case_insensitive_contains_all(const string_array & stra) const
 //{
 //
 //   for (auto & str : stra)
 //   {
 //
-//      if (!contains_ci(str))
+//      if (!case_insensitive_contains(str))
 //      {
 //
 //         return false;
@@ -1375,44 +1375,44 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_wci(unichar wch,strsize iStart,strsize nCount) const
+//bool string::unicode_case_insensitive_contains(unichar wch,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_wci(::str().uni_to_utf8(wch),iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(::str().uni_to_utf8(wch),iStart,nCount) >= 0;
 //
 //}
 //
 //
-//bool string::contains_wci(i32 i,strsize iStart,strsize nCount) const// utf8 char index
+//bool string::unicode_case_insensitive_contains(i32 i,strsize iStart,strsize nCount) const// utf8 char index
 //{
 //
-//   return find_wci(::str().uni_to_utf8(i),iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(::str().uni_to_utf8(i),iStart,nCount) >= 0;
 //
 //}
 //
 //
-//bool string::contains_wci(const ::scoped_string & scopedstr,strsize iStart,strsize nCount) const
+//bool string::unicode_case_insensitive_contains(const ::scoped_string & scopedstr,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_wci(psz,iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(psz,iStart,nCount) >= 0;
 //
 //}
 //
 //
-//bool string::contains_wci(const ::string & str,strsize iStart,strsize nCount) const
+//bool string::unicode_case_insensitive_contains(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
-//   return find_wci(str,iStart,nCount) >= 0;
+//   return unicode_case_insensitive_find(str,iStart,nCount) >= 0;
 //
 //}
 //
-//bool string::contains_any_wci(const string_array & stra) const
+//bool string::unicode_case_insensitive_contains_at_least_one_of(const string_array & stra) const
 //{
 //
 //   for (auto & str : stra)
 //   {
 //
-//      if (contains_wci(str))
+//      if (unicode_case_insensitive_contains(str))
 //      {
 //
 //         return true;
@@ -1426,13 +1426,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_all_wci(const string_array & stra) const
+//bool string::unicode_case_insensitive_contains_all(const string_array & stra) const
 //{
 //
 //   for (auto & str : stra)
 //   {
 //
-//      if (!contains_wci(str))
+//      if (!unicode_case_insensitive_contains(str))
 //      {
 //
 //         return false;
@@ -2130,7 +2130,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //// find the first occurrence of string 'pszSub', starting at strsize 'iStart'
-//strsize string::find_wci(const ::scoped_string & scopedstrSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
+//strsize string::unicode_case_insensitive_find(const ::scoped_string & scopedstrSub,strsize iStart,strsize nCount,const char ** pszTail) const RELEASENOTHROW
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
@@ -2226,7 +2226,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   const ::scoped_string & scopedstrTail = nullptr;
 //
-//   if(find_wci(pszSub,start,count,&pszTail) < 0)
+//   if(unicode_case_insensitive_find(pszSub,start,count,&pszTail) < 0)
 //      return -1;
 //
 //   return pszTail - m_pszData;

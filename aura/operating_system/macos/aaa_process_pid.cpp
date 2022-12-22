@@ -357,7 +357,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //         stra.add(strArg);
 //
-//         strArg.Empty();
+//         strArg.empty();
 //
 //      }
 //      else if(strChar == " ")
@@ -365,7 +365,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //         stra.add(strArg);
 //
-//         strArg.Empty();
+//         strArg.empty();
 //
 //      }
 //      else if(strChar == "\\")

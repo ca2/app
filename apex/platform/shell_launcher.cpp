@@ -51,15 +51,21 @@ namespace apex
    }
 
 
-   void shell_launcher::setup(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, const class time & timeTimeout)
+   void shell_launcher::setup(
+      oswindow oswindow, 
+      const ::scoped_string & scopedstrOperation,
+      const ::scoped_string & scopedstrFile, 
+      const ::scoped_string & scopedstrParameters, 
+      const ::scoped_string & scopedstrDirectory, 
+      ::e_display edisplay, const class time & timeTimeout)
    {
 
       m_iMode = 0;
       m_oswindow = oswindow;
-      m_strOperation = pszOperation;
-      m_strFile = pszFile;
-      m_strParameters = pszParameters;
-      m_strDirectory = pszDirectory;
+      m_strOperation = scopedstrOperation;
+      m_strFile = scopedstrFile;
+      m_strParameters = scopedstrParameters;
+      m_strDirectory = scopedstrDirectory;
       m_edisplay = edisplay;
 
       //return ::success;

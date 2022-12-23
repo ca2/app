@@ -58,7 +58,7 @@ namespace apex
    string context::get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId)
    {
 
-      string strConfiguration(pszConfiguration);
+      string strConfiguration(scopedstrConfiguration);
 
       auto psystem = acmesystem()->m_papexsystem;
 
@@ -108,7 +108,7 @@ namespace apex
 
       iRetry++;
 
-      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(pszAppId));
+      strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(scopedstrAppId));
 
       ::str()._008Trim(strBuild);
 
@@ -406,7 +406,7 @@ namespace apex
    ::file::path context::defer_process_path(::file::path path)
    {
 
-      if (path & ::file::e_flag_final_path)
+      if (path.flags() & ::file::e_flag_final_path)
       {
 
          return path;
@@ -415,7 +415,7 @@ namespace apex
 
       path = _defer_process_path(path);
 
-      if (path & ::file::e_flag_resolve_alias)
+      if (path.flags() & ::file::e_flag_resolve_alias)
       {
 
          while (true)
@@ -446,7 +446,7 @@ namespace apex
 
       }
 
-      path.set(::file::e_flag_final_path);
+      path.flags().set(::file::e_flag_final_path);
 
       return path;
 
@@ -458,12 +458,12 @@ namespace apex
 
       ::file::path pathProcess = __defer_process_path(path);
 
-      if ((path & ::file::e_flag_required)
+      if (path.flags().is(::file::e_flag_required)
          && pathProcess.is_empty()
-         && !(path & ::file::e_flag_bypass_cache))
+         && path.flags().is_clear(::file::e_flag_bypass_cache))
       {
 
-         path |= ::file::e_flag_bypass_cache;
+         path.flags() += ::file::e_flag_bypass_cache;
 
          pathProcess = __defer_process_path(path);
 
@@ -606,10 +606,10 @@ namespace apex
    ::file::path context::full_process_path(::file::path path)
    {
 
-      if (!(path & ::file::e_flag_dont_resolve_alias))
+      if (path.flags().is_clear(::file::e_flag_dont_resolve_alias))
       {
 
-         path |= ::file::e_flag_resolve_alias;
+         path.flags().set(::file::e_flag_resolve_alias);
 
       }
 
@@ -698,8 +698,8 @@ namespace apex
 
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
-         if ((path & ::file::e_flag_get_local_path)
-            || (!(path & ::file::e_flag_bypass_cache)
+         if (path.flags().has(::file::e_flag_get_local_path)
+            || (path.flags().is_clear( ::file::e_flag_bypass_cache)
                && ::is_file_or_folder(acmepath()->get_type(pathCache))))
          {
 
@@ -711,12 +711,12 @@ namespace apex
 
          retry retry(500_ms, 1_minute);
 
-         if (!(path & ::file::e_flag_bypass_cache))
+         if (path.flags().is_clear(::file::e_flag_bypass_cache))
          {
 
             string strFirstLine = acmefile()->line(pathMeta, 0);
 
-            if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
+            if (strFirstLine == "itdoesntexist" && path.flags().is_clear(::file::e_flag_required))
             {
 
                return "";
@@ -944,14 +944,14 @@ namespace apex
    bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
-      if (_os_resolve_alias(path, psz, bNoUI, bNoMount))
+      if (_os_resolve_alias(path, scopedstr, bNoUI, bNoMount))
       {
 
          return true;
 
       }
 
-      if (_os_has_alias_in_path(psz))
+      if (_os_has_alias_in_path(scopedstr))
       {
 
          ::file::path_array patha;
@@ -993,7 +993,7 @@ namespace apex
    bool context::_os_has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
-      return os_context()->has_alias_in_path(psz);
+      return os_context()->has_alias_in_path(scopedstr);
 
    }
 
@@ -1002,10 +1002,10 @@ namespace apex
    bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
 
-      if (os_is_alias(psz))
+      if (os_is_alias(scopedstr))
       {
 
-         return os_context()->resolve_link(path, psz, nullptr, nullptr);
+         return os_context()->resolve_link(path, scopedstr, nullptr, nullptr);
 
       }
 
@@ -1019,7 +1019,7 @@ namespace apex
    bool context::os_is_alias(const ::scoped_string & scopedstr)
    {
 
-      return os_context()->is_alias(psz);
+      return os_context()->is_alias(scopedstr);
 
       //return string_ends_ci(psz, ".lnk");
 
@@ -1197,7 +1197,7 @@ namespace apex
    bool context::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile)
    {
 
-      string strUrl = pszUrl;
+      string strUrl = scopedstrUrl;
 
       property_set set;
 
@@ -1205,7 +1205,7 @@ namespace apex
 
       set["disable_common_name_cert_check"] = true;
 
-      return http().download(strUrl, pszFile, set);
+      return http().download(strUrl, scopedstrFile, set);
 
    }
 
@@ -1223,7 +1223,7 @@ namespace apex
 
       string strResponse;
 
-      http().get(strResponse, pszUrl, set);
+      http().get(strResponse, scopedstrUrl, set);
 
       //if (!http().get(strResponse, pszUrl, set))
       //{
@@ -1265,7 +1265,7 @@ namespace apex
    string context::load_string(const ::scoped_string & scopedstr)
    {
 
-      return psz;
+      return scopedstr;
 
    }
 

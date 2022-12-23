@@ -961,7 +961,7 @@ bool task::has_message() const
       else
       {
 
-         m_atom = __type_name(this);
+         m_atom = __type_name(*this);
 
       }
 

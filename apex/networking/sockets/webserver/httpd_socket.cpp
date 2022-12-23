@@ -128,7 +128,7 @@ namespace sockets
 
       /* 1997-12-16 09:50:40 */
 
-      if (dt.get_length() == 19)
+      if (dt.length() == 19)
       {
          tp.tm_year = atoi(dt.substr(0,4)) - 1900;
          i = atoi(dt.substr(5,2)) - 1;

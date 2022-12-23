@@ -104,9 +104,9 @@ namespace VistaTools
    int_bool CLASS_DECL_ACME
    RunElevated(
    __in      oswindow   hwnd,
-   __in      const ::file::path & path,
-   __in_opt   const ::scoped_string & scopedstrParameters   = nullptr,
-   __in_opt   const ::scoped_string & scopedstrDirectory   = nullptr,
+   __in      const char * pszPath,
+   __in_opt   const char * pszParameters   = nullptr,
+   __in_opt   const char * pszDirectory   = nullptr,
    __out_opt   HANDLE *phProcess      = nullptr );
 
    /*

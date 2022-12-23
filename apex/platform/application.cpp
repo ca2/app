@@ -657,29 +657,6 @@ namespace apex
    }
 
 
-   ::file::path application::get_app_localconfig_folder()
-   {
-
-      ::file::path pathFolder = acmedirectory()->roaming() / m_strAppId;
-
-      return pathFolder;
-
-   }
-
-
-   ::pointer<::handle::ini>application::get_ini()
-   {
-
-      auto pathFolder = get_app_localconfig_folder();
-
-      auto pathIni = pathFolder / "this.ini";
-
-      auto pini = file()->get_ini(pathIni);
-
-      return pini;
-
-   }
-
 
    //bool application::app_data_set(const ::atom & atom, stream & os)
    //{
@@ -1131,9 +1108,9 @@ namespace apex
 
       ::pointer<string_to_string>pmap;
 
-      auto pFind = 0;
+      ::index iFind = 0;
 
-      if ((iFind = strId.find(':')) <= 0)
+      if ((iFind = strId.find_index(':')) <= 0)
       {
 
          strTable = "";
@@ -1144,9 +1121,9 @@ namespace apex
       else
       {
 
-         strTable = strId(0, pFind);
+         strTable = strId(0, iFind);
 
-         strString = strId(pFind + 1);
+         strString = strId(iFind + 1);
 
       }
 
@@ -10194,7 +10171,7 @@ void application_on_menu_action(void * pApplication, const ::scoped_string & sco
 
    auto papp = (::apex::application *)pApplication;
 
-   papp->on_application_menu_action(pszCommand);
+   papp->on_application_menu_action(scopedstrCommand);
 
 }
 

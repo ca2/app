@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -84,9 +84,13 @@ void blob::write(FILE * file)
 
 blob & blob::operator = (const ::scoped_string & scopedstr)
 {
-   m_sizet = ansi_length(psz) + 1;
-   m_pchData = (char *) ansi_duplicate(psz);
+
+   m_sizet = scopedstr.size() + 1;
+
+   m_pchData = (char *) ansi_duplicate(scopedstr);
+
    return *this;
+
 }
 
 

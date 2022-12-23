@@ -1081,30 +1081,35 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      try
+      if (acmeapplication()->m_bCrypto)
       {
 
-         auto& pfactoryCrypto = factory("crypto", "openssl");
+         try
+         {
 
-         //if (!pfactoryCrypto)
-         //{
+            auto & pfactoryCrypto = factory("crypto", "openssl");
 
-         //   WARNING("Could not open crypto openssl plugin.");
+            //if (!pfactoryCrypto)
+            //{
 
-         //   //return pfactoryCrypto;
+            //   WARNING("Could not open crypto openssl plugin.");
 
-         //}
+            //   //return pfactoryCrypto;
 
-         pfactoryCrypto->merge_to_global_factory();
+            //}
 
-         //estatus = 
-         pfactoryCrypto->__construct(this, m_pcrypto);
+            pfactoryCrypto->merge_to_global_factory();
 
-      }
-      catch (...)
-      {
+            //estatus = 
+            pfactoryCrypto->__construct(this, m_pcrypto);
 
-         FORMATTED_ERROR("No crypto library!!");
+         }
+         catch (...)
+         {
+
+            FORMATTED_ERROR("No crypto library!!");
+
+         }
 
       }
 
@@ -2087,7 +2092,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   i32 system::_debug_logging_report(i32 iReportType, const ::string& pszFileName, i32 iLineNumber, const ::string& pszModuleName, const ::string& pszFormat, va_list list)
+   i32 system::_debug_logging_report(i32 iReportType, const ::string& strFileName, i32 iLineNumber, const ::string& strModuleName, const char * pszFormat, va_list list)
    {
 
       //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2099,22 +2104,22 @@ pacmedirectory->create("/ca2core");
 
       string str;
 
-      if (pszFileName != nullptr || pszModuleName != nullptr)
+      if (strFileName.has_char() || strModuleName.has_char())
       {
 
          string_array stra;
 
-         if (pszFileName != nullptr)
+         if (strFileName.has_char())
          {
 
-            stra.add(pszFileName);
+            stra.add(strFileName);
 
          }
 
-         if (pszModuleName != nullptr)
+         if (strModuleName.has_char())
          {
 
-            stra.add(pszFileName);
+            stra.add(strModuleName);
 
          }
 
@@ -3928,12 +3933,12 @@ pacmedirectory->create("/ca2core");
             if (strUrl.has_char())
             {
 
-               auto pFind = strParam.find("%1");
+               auto iFind = strParam.find_index("%1");
 
-               if (::is_set(pFind))
+               if (::found(iFind))
                {
 
-                  strParam = strParam(0, pFind) + strUrl + strParam.substr(iFind + 2) + " ";
+                  strParam = strParam(0, iFind) + strUrl + strParam.substr(iFind + 2) + " ";
 
                }
                else

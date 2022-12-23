@@ -377,8 +377,6 @@ namespace apex
       //// void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::file::path get_app_localconfig_folder();
-      virtual ::pointer<::handle::ini>get_ini();
 
 
       //virtual bool app_data_set(const ::atom & atom, stream & os);

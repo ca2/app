@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/platform/log.h"
@@ -68,7 +68,7 @@ namespace apex
    };
 
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32, const char *, i32, const char *, const ::scoped_string & scopedstrFormat, va_list list);
+   CLASS_DECL_APEX i32 SimpleDebugReport(i32, const char *, i32, const char *, const char * pszFormat, va_list list);
 
 
 } // namespace apex

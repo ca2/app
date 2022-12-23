@@ -54,7 +54,7 @@ namespace xml
    }
 
 
-   //void document::load_location(const ::scoped_string & scopedstr)
+   //void document::load_location(const ::ansi_character * psz)
    //{
 
    //   m_pathLocation = psz;
@@ -147,7 +147,7 @@ namespace xml
 //// Coder    Date                      Desc
 //// bro      2002-10-29
 ////========================================================
-//   void document::_load(const char * & xml, const ::scoped_string & scopedstrXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
+//   void document::_load(const char * & xml, const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
 //   {
 //
 //      // close it
@@ -252,7 +252,7 @@ namespace xml
    //// Coder    Date                      Desc
    //// bro      2002-10-29
    ////========================================================
-   //void document::parse_xml_text(const ::scoped_string & scopedstrXmlText)
+   //void document::parse_xml_text(const ::ansi_character * pszXmlText)
    //{
 
    //   m_nodea.erase_all();
@@ -261,14 +261,14 @@ namespace xml
 
    //   m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 
-   //   const ::scoped_string & scopedstrXml = (const char *) m_memoryData.data();
+   //   const ::ansi_character * pszXml = (const char *) m_memoryData.data();
 
    //   ensure_root();
 
-   //   const ::scoped_string & scopedstrNext = pszXml;
+   //   const ::ansi_character * pszNext = pszXml;
 
    //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-   //   const ::scoped_string & scopedstrRet;
+   //   const ::ansi_character * pszRet;
 
    //   bool bRet = false;
 
@@ -341,7 +341,7 @@ namespace xml
    string document::consume_entity_ref(const char * & pszXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
    {
 
-      const ::scoped_string & scopedstrXml = pszXmlParam;
+      const ::ansi_character * pszXml = pszXmlParam;
 
       if(*pszXml == '\0')
       {
@@ -451,7 +451,7 @@ namespace xml
       // pszXml must be a valid portion of and point_i32 to an entity ref in:
       // m_strData of this document
 
-      const ::scoped_string & scopedstrOldData = (const char *) m_memoryData.data();
+      const ::ansi_character * pszOldData = (const char *) m_memoryData.data();
 
       strsize iPos = pszXml - pszOldData;
 

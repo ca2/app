@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -20,7 +20,7 @@ namespace apex
       history();
          
    
-      virtual bool hist(const char *psz);
+      virtual bool hist(const ::scoped_string & scopedstr);
 
    };
 

@@ -575,8 +575,15 @@ public:
 
    }
 
+   write_text_stream & operator <<(const ::string & str)
+   {
+
+      return this->operator <<((const ::scoped_string &)str);
+
+   }
+
    //text_stream & operator <<(const ::atom & atom) ;
-   write_text_stream& operator <<(const ::string& str)
+   write_text_stream& operator <<(const ::scoped_string & scopedstr)
    {
 
       if (m_fmtflags & ::file::network_payload)
@@ -586,7 +593,7 @@ public:
 
       }
 
-      print(str);
+      print(scopedstr);
 
       if (m_fmtflags & ::file::network_payload)
       {

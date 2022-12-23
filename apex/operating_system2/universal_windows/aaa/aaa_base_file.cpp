@@ -1831,7 +1831,7 @@ bool file_as_memory(memory_base & memory,const ::file::path & path, iptr iReadAt
 
 
 
-int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
+int_bool file_path_is_equal(const ::file::path & pathParam1,const ::file::path & pathParam2)
 {
 
    return normalize_path(psz1).case_insensitive_order(normalize_path(psz2)) == 0;

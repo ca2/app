@@ -231,9 +231,9 @@ namespace fs
 
       enumerate(listing);
 
-      auto pFind = listing.find_first_ci(path.name());
+      auto iFind = listing.find_first_ci(path.name());
 
-      if (::is_null(pFind))
+      if (not_found(iFind))
       {
 
          return payload(::e_type_null);

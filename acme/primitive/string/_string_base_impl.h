@@ -1813,20 +1813,11 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(str
 
 
 template < typename ITERATOR_TYPE >
-template < class InputIterator >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(InputIterator first, InputIterator last)
+template < primitive_character CHARACTER2 >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHARACTER2 * start, const CHARACTER2 * end)
 {
 
-   this->empty();
-
-   for (auto it = first; it <= last; it++)
-   {
-
-      *this += *it;
-
-   }
-
-   return *this;
+   return assign(start, end - start);
 
 }
 
@@ -5306,7 +5297,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
 //string_base < ITERATOR_TYPE >& string_base < ITERATOR_TYPE >::trim_right(PCHAR szTargets)
 {
 
-   auto p = this->rear_find_first_character_in(scopedstrCharacters);
+   auto p = this->rear_skip_any_character_in(scopedstrCharacters);
 
    if (p < this->end() - 1)
    {
@@ -6716,7 +6707,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    CHARACTER * pLastNewEnd = pszBuffer;
 
-   auto rangeOld = *this;
+   RANGE rangeOld = *this;
 
    rangeOld.begin() += start;
 
@@ -6741,7 +6732,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    memcpy(pLastNewEnd,rangeOld.begin(), rangeOld.end() - rangeOld.begin());
 
-   this->release_string_buffer(nNewLength);
+   str.release_string_buffer(nNewLength);
 
    *this = ::move(str);
 

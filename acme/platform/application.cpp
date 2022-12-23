@@ -5,6 +5,8 @@
 #include "framework.h"
 #include "application.h"
 #include "acme.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -632,6 +634,32 @@ namespace acme
       return false;
 
    }
+
+
+   ::file::path application::get_app_localconfig_folder()
+   {
+
+      ::file::path pathFolder = acmedirectory()->roaming() / m_strAppId;
+
+      return pathFolder;
+
+   }
+
+
+   ::pointer<::handle::ini>application::get_ini()
+   {
+
+      auto pathFolder = get_app_localconfig_folder();
+
+      auto pathIni = pathFolder / "this.ini";
+
+      auto pini = acmefile()->get_ini(pathIni);
+
+      return pini;
+
+   }
+
+
 
 
 } // namespace acme

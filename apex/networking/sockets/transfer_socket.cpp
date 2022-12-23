@@ -48,7 +48,7 @@ namespace sockets
 
    transfer_socket_exception::transfer_socket_exception(const ::scoped_string & scopedstrMessage) :
       //m_nError(get_error()),
-      ::exception(pszMessage)
+      ::exception(error_http, scopedstrMessage)
    {
    }
 

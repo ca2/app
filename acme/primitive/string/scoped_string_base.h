@@ -176,4 +176,30 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 }
 
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const string_base < ITERATOR_TYPE > & str)
+{
+
+   return ::move(::string(scopedstr) + str);
+
+}
+
+template < typename ITERATOR_TYPE1, typename ITERATOR_TYPE2 >
+inline string_base < ITERATOR_TYPE1 > operator + (const scoped_string_base < ITERATOR_TYPE1 > & scopedstr1, const scoped_string_base < ITERATOR_TYPE2 > & scopedstr2)
+{
+
+   return ::move(::string(scopedstr1) + ::string(scopedstr2));
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & str, const ::ansi_character * psz)
+{
+
+   return ::move(::string(str) + psz);
+
+}
+
+
 

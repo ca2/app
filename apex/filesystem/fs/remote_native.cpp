@@ -18,7 +18,7 @@ namespace fs
    remote_native::remote_native(const ::scoped_string & scopedstrRoot)
    {
 
-      m_strRoot = pszRoot;
+      m_strRoot = scopedstrRoot;
 
    }
 

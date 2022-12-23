@@ -10,7 +10,7 @@ namespace xml
    {
    }
 
-   entity::entity(char chEntity, const ::scoped_string & scopedstrReference)
+   entity::entity(char chEntity, const char * pszReference)
    {
       m_chEntity  = chEntity;
       if(*pszReference == '&')
@@ -36,7 +36,7 @@ namespace xml
    }
 
 
-   void entities::add_entity(char chEntity, const ::scoped_string & scopedstrReference)
+   void entities::add_entity(char chEntity, const char * pszReference)
    {
       add(entity(chEntity, pszReference));
    }
@@ -51,12 +51,12 @@ namespace xml
       return nullptr;
    }
 
-   entity * entities::get_entity(const ::scoped_string & scopedstrEntity)
+   entity * entities::get_entity(const char * pszEntity)
    {
       for( i32 i = 0 ; i < this->get_size(); i ++ )
       {
-         const ::scoped_string & scopedstrRef = this->element_at(i).m_strRef;
-         const ::scoped_string & scopedstr = pszEntity;
+         const ::ansi_character * pszRef = this->element_at(i).m_strRef;
+         const ::ansi_character * psz = pszEntity;
          while(*pszRef)
             if(*pszRef++ != *psz++)
                break;
@@ -186,7 +186,7 @@ namespace xml
          if( ent )
          {
             // copy m_chEntity string
-            const ::scoped_string & scopedstrRef = ent->m_strRef;
+            const ::ansi_character * pszRef = ent->m_strRef;
             *pes++ = '&';
             while(*pszRef )
                *pes++ = *pszRef++;
@@ -201,7 +201,7 @@ namespace xml
       return (i32) (pes-estr);
    }
 
-   string entities::ref_to_entity(const ::scoped_string & scopedstrSrc)
+   string entities::ref_to_entity(const ::ansi_character * pszSrc)
    {
 
       string strRet;
@@ -233,7 +233,7 @@ namespace xml
       return s;
    }
 
-   void entities::ref_to_entity(string & str, const ::scoped_string & scopedstrSrc)
+   void entities::ref_to_entity(string & str, const ::ansi_character * pszSrc)
    {
       if(pszSrc != nullptr)
       {

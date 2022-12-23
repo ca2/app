@@ -279,6 +279,13 @@ namespace file
 
       }
 
+      template < strsize n >
+      bool operator == (const char (&cha)[n]) const
+      {
+
+         return operator ==(::string(cha));
+
+      }
 
       bool operator == (const ::string & str) const;
       /*{

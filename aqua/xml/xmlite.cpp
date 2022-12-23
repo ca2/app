@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace xml
@@ -15,7 +15,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsechr(const ::scoped_string & scopedstr,i32 ch,i32 escape)
+   char * _tcsechr(const ::ansi_character * psz,i32 ch,i32 escape)
    {
       char * pch = (char *)psz;
 
@@ -143,7 +143,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsepbrk(const ::scoped_string & scopedstr,const char * chset,i32 escape)
+   char * _tcsepbrk(const ::ansi_character * psz,const char * chset,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -171,7 +171,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   i32 _tcsenicmp(const ::scoped_string & scopedstr,const char * str,strsize len,i32 escape)
+   i32 _tcsenicmp(const ::ansi_character * psz,const char * str,strsize len,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -209,7 +209,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcsenistr(const ::scoped_string & scopedstr,const char * str,strsize len,i32 escape)
+   char * _tcsenistr(const ::ansi_character * psz,const char * str,strsize len,i32 escape)
    {
       char * pch = (char *)psz;
       char * prev_escape = nullptr;
@@ -240,7 +240,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   char * _tcseistr(const ::scoped_string & scopedstr,const char * str,i32 escape)
+   char * _tcseistr(const ::ansi_character * psz,const char * str,i32 escape)
    {
       strsize len = strlen(str);
       return _tcsenistr(psz,str,len,escape);

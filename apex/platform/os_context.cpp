@@ -617,7 +617,7 @@
    bool os_context::has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
    {
       
-      ::file::path pathSource(psz);
+      ::file::path pathSource(scopedstr);
 
       ::file::path_array patha;
 
@@ -647,7 +647,7 @@
    bool os_context::is_alias(const ::scoped_string & scopedstr)
    {
 
-      return m_pcontext->m_papexcontext->os_is_alias(psz);
+      return m_pcontext->m_papexcontext->os_is_alias(scopedstr);
 
    }
 

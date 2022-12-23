@@ -173,7 +173,7 @@ namespace xml
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
 
-         if (m_nodea[i]->m_strName == pcszName && m_nodea[i]->m_set.contains(set))
+         if (m_nodea[i]->m_strName == scopedstrName && m_nodea[i]->m_set.contains(set))
          {
 
             return i;
@@ -193,7 +193,7 @@ namespace xml
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
 
-         if (m_nodea[i]->m_strName == pcszName && m_nodea[i]->attribute(atom) == payload)
+         if (m_nodea[i]->m_strName == scopedstrName && m_nodea[i]->attribute(atom) == payload)
          {
 
             return m_nodea[i]->get_xml_node();
@@ -213,7 +213,7 @@ namespace xml
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
 
-         if (m_nodea[i]->m_strName == pcszName)
+         if (m_nodea[i]->m_strName == scopedstrName)
          {
 
             return i;
@@ -280,7 +280,7 @@ namespace xml
    }
 
 
-   const char * node::LoadDocType( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
+   const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
 
       auto pxml = acmesystem()->xml();
@@ -392,7 +392,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   const char * node::LoadAttributes( const ::scoped_string & scopedstrAttrs, parse_info * pparseinfo)
+   const char * node::LoadAttributes(const ::ansi_character * pszAttrs, parse_info * pparseinfo)
    {
 
       if(pparseinfo == nullptr)
@@ -572,7 +572,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadProcessingInstruction( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
+   const char * node::LoadProcessingInstruction(const ::ansi_character * pszXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -634,7 +634,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadAttributes( const ::scoped_string & scopedstrAttrs, const ::ansi_character * pszEnd, parse_info * pparseinfo)
+   const char * node::LoadAttributes(const ::ansi_character * pszAttrs, const ::ansi_character * pszEnd, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -746,7 +746,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadComment( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
+   const char * node::LoadComment(const ::ansi_character * pszXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -799,7 +799,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadCDATA( const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
+   const char * node::LoadCDATA(const ::ansi_character * pszXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -853,7 +853,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadOtherNodes(bool* pbRet, const ::scoped_string & scopedstrXml, parse_info * pparseinfo)
+   const char * node::LoadOtherNodes(bool* pbRet,const ::ansi_character * pszXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -960,7 +960,7 @@ namespace xml
 
       auto pszEnd = pszStart + strXml.length();
 
-      const ::scoped_string & scopedstrNext = nullptr;
+     const ::ansi_character * pszNext = nullptr;
 
       close();
 
@@ -984,7 +984,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::_load(const char *& xml, const ::scoped_string & scopedstrXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
+   void node::_load(const char *& xml,const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
    {
 
       ////// close it
@@ -1791,51 +1791,95 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-12-26
    //========================================================
-   ::count node::get_children_count(const char * lpszName )
+   ::count node::get_children_count(const ::scoped_string & scopedstrName)
    {
-      if(lpszName == nullptr || *lpszName == '\0')
+
+      if(scopedstrName.is_empty())
       {
+
          return get_children_count();
+
       }
-      else
+
+      ::count count = 0;
+
+      for(i32 i = 0; i < m_nodea.get_count(); i++)
       {
-         ::count count = 0;
-         for(i32 i = 0; i < m_nodea.get_count(); i++)
+
+         if (m_nodea[i]->m_strName == scopedstrName)
          {
-            if(m_nodea[i]->m_strName == lpszName)
-               count++;
+
+            count++;
+
          }
-         return count;
+
       }
-   }
-   ::count node::get_children_count()
-   {
-      return m_nodea.get_count();
+
+      return count;
+
    }
 
-   ::count node::get_children_count(const char * lpszName, index iDepth)
+
+   ::count node::get_children_count()
    {
-      if(iDepth == 0)
+      
+      return m_nodea.get_count();
+
+   }
+
+
+   ::count node::get_children_count(const ::scoped_string & scopedstrName, index iDepth)
+   {
+
+      if (iDepth == 0)
+      {
+
          return 0;
+
+      }
+
       ::count count = 0;
+
       for(index i = 0; i < m_nodea.get_count(); i++)
       {
-         if(lpszName == nullptr || *lpszName == '\0')
+
+         if(scopedstrName.is_empty())
          {
+
             count++;
+
          }
          else
          {
-            if(m_nodea[i]->m_strName == lpszName)
+
+            if (m_nodea[i]->m_strName == scopedstrName)
+            {
+
                count++;
+
+            }
+
          }
-         if(iDepth < 0)
-            count += m_nodea[i]->get_xml_node()->get_children_count(lpszName, -1);
+
+         if (iDepth < 0)
+         {
+
+            count += m_nodea[i]->get_xml_node()->get_children_count(scopedstrName, -1);
+
+         }
          else
-            count += m_nodea[i]->get_xml_node()->get_children_count(lpszName, iDepth - 1);
+         {
+
+            count += m_nodea[i]->get_xml_node()->get_children_count(scopedstrName, iDepth - 1);
+
+         }
+
       }
+
       return count;
+
    }
+
 
    //========================================================
    // Name   : get_child
@@ -1848,32 +1892,57 @@ namespace xml
    //========================================================
    node * node::get_child(const char * lpszName)
    {
+
       index iStart = 0;
+
       return get_child(lpszName, iStart);
+
    }
 
-   node *        node::get_node_from_attr_path(const ::file::path & path, const char * lpszName, const ::scoped_string & scopedstrAttr)
+
+   node * node::get_node_from_attr_path(const ::file::path & path, const scoped_string & strName, const scoped_string & strAttr)
    {
+
       string_array stra;
+
       stra.explode("/", path);
+
       ::xml::node  * pnode = this;
-      if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].get_length() == 0))
+
+      if (stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].length() == 0))
+      {
+
          return this;
+
+      }
+
       for(i32 i = 0; i < stra.get_size(); i++)
       {
-         pnode = pnode->get_child_with_attribute(lpszName, pszAttr, stra[i]);
-         if(pnode == nullptr)
+
+         pnode = pnode->get_child_with_attribute(strName, strAttr, stra[i]);
+
+         if (pnode == nullptr)
+         {
+
             return nullptr;
+
+         }
+
       }
+
       return pnode;
+
    }
 
-   string                  node::get_child_simple_attr_path(node * pnode, const ::scoped_string & scopedstrAttr)
+
+   string node::get_child_simple_attr_path(node * pnode, const ::scoped_string & scopedstrAttr)
    {
+
       string str;
+
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(pszAttr) + ::str().has_char(str, "/");
+         str = pnode->attribute(scopedstrAttr) + ::str().has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)
@@ -1890,7 +1959,7 @@ namespace xml
       string_array stra;
       stra.explode("/", path);
       ::xml::node  * pnode = this;
-      if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].get_length() == 0))
+      if(stra.get_size() <= 0 || (stra.get_size() == 1 && stra[0].length() == 0))
          return this;
       for(i32 i = 0; i < stra.get_size(); i++)
       {
@@ -2062,13 +2131,13 @@ namespace xml
    }
 
 
-   node * node::rear_find(const char * lpszName, const property_set & set, index iDepth)
+   node * node::rear_find(const ::scoped_string & scopedstrName, const property_set & set, index iDepth)
    {
 
       for (auto & pnode : m_nodea)
       {
 
-         if (pnode->m_strName == lpszName && pnode->get_xml_node()->contains(set))
+         if (pnode->m_strName == scopedstrName && pnode->get_xml_node()->contains(set))
          {
 
             return pnode->get_xml_node();
@@ -2094,7 +2163,7 @@ namespace xml
       for (auto & pnode : m_nodea)
       {
 
-         auto pnodeChild = pnode->get_xml_node()->rear_find(lpszName, set, iDepth);
+         auto pnodeChild = pnode->get_xml_node()->rear_find(scopedstrName, set, iDepth);
 
          if (pnodeChild != nullptr)
          {
@@ -2118,7 +2187,7 @@ namespace xml
          
          auto pnode = m_nodea[iNode];
          
-         if(pnode->m_strName == pszName && pnode->m_strValue == pszValue)
+         if(pnode->m_strName == scopedstrName && pnode->m_strValue == scopedstrValue)
          {
             
             return iNode;
@@ -2135,7 +2204,7 @@ namespace xml
    node * node::child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
    {
 
-      auto iIndex = find_child_with_name_and_value(pszName, pszValue);
+      auto iIndex = find_child_with_name_and_value(scopedstrName, scopedstrValue);
       
       if(!m_nodea.is_index_ok(iIndex))
       {
@@ -2154,7 +2223,7 @@ namespace xml
    string node::plist_get(const ::scoped_string & scopedstrKey)
    {
       
-      auto iKey = find_child_with_name_and_value("key", pszKey);
+      auto iKey = find_child_with_name_and_value("key", scopedstrKey);
       
       if(iKey < 0)
       {
@@ -2196,7 +2265,7 @@ namespace xml
       
       pnode->m_strName = strName;
 
-      pnode->m_strValue = pszValue;
+      pnode->m_strValue = scopedstrValue;
 
       m_nodea.add(pnode);
 
@@ -2216,7 +2285,7 @@ namespace xml
 
       pnode->m_set = set;
 
-      pnode->m_strValue = pszValue;
+      pnode->m_strValue = scopedstrValue;
 
       m_nodea.add(pnode);
 
@@ -2506,26 +2575,35 @@ namespace xml
    }
 
 
-   node *                  node::get_child_at(const char * lpszName, index iIndex, index iDepth)
+   node * node::get_child_at(const ::scoped_string & scopedstrName, index iIndex, index iDepth)
    {
-      if(iDepth == 0)
+
+      if (iDepth == 0)
+      {
+
          return 0;
 
-      if(iIndex < 0)
+      }
+
+      if (iIndex < 0)
+      {
+       
          return nullptr;
+
+      }
 
       for(i32 i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i]->m_strName == lpszName)
+         if(m_nodea[i]->m_strName == scopedstrName)
          {
             if(iIndex <= 0)
                return m_nodea.element_at(i)->get_xml_node();
             iIndex--;
          }
          if(iDepth > 0)
-            m_nodea[i]->get_xml_node()->get_child_at(lpszName, iIndex, iDepth - 1);
+            m_nodea[i]->get_xml_node()->get_child_at(scopedstrName, iIndex, iDepth - 1);
          else if(iDepth < 0)
-            m_nodea[i]->get_xml_node()->get_child_at(lpszName, iIndex, -1);
+            m_nodea[i]->get_xml_node()->get_child_at(scopedstrName, iIndex, -1);
       }
       return nullptr;
 
@@ -2533,7 +2611,7 @@ namespace xml
 
 
 
-   node* node::get_child_at_grow(const char* lpszName, index iIndex)
+   node* node::get_child_at_grow(const ::scoped_string & scopedstrName, index iIndex)
    {
 
       if (iIndex < 0)
@@ -2546,7 +2624,7 @@ namespace xml
       for (i32 i = 0; i < m_nodea.get_size(); i++)
       {
 
-         if (m_nodea[i]->m_strName == lpszName)
+         if (m_nodea[i]->m_strName == scopedstrName)
          {
 
             if (iIndex <= 0)
@@ -2567,7 +2645,7 @@ namespace xml
       do
       {
 
-         pchild = add_child(lpszName);
+         pchild = add_child(scopedstrName);
 
          iIndex--;
 
@@ -2583,7 +2661,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::get_child_attr_value(string_array & stra, const char * lpszName, const ::scoped_string & scopedstrAttrName, index iDepth)
+   ::count node::get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, index iDepth)
    {
 
       if(iDepth == 0)
@@ -2600,10 +2678,10 @@ namespace xml
             i--;
             continue;
          }
-         if(m_nodea[i]->m_strName == lpszName)
+         if(m_nodea[i]->m_strName == scopedstrName)
          {
 
-            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+            strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
             
             if(strValue.has_char())
             {
@@ -2616,9 +2694,9 @@ namespace xml
 
          }
          if(iDepth > 0)
-            count += m_nodea[i]->get_xml_node()->get_child_attr_value(stra, lpszName, pszAttrName, iDepth - 1);
+            count += m_nodea[i]->get_xml_node()->get_child_attr_value(stra, scopedstrName, scopedstrAttrName, iDepth - 1);
          else if(iDepth < 0)
-            count += m_nodea[i]->get_xml_node()->get_child_attr_value(stra, lpszName, pszAttrName, -1);
+            count += m_nodea[i]->get_xml_node()->get_child_attr_value(stra, scopedstrName, scopedstrAttrName, -1);
       }
       return count;
    }
@@ -2628,7 +2706,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::erase_child_with_attr(const char * lpszName, const ::scoped_string & scopedstrAttrName, index iIndex, ::count iCount, index iDepth)
+   ::count node::erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
       ::count nRemoveCount = 0;
@@ -2640,10 +2718,10 @@ namespace xml
       ::count count = 0;
       for(index i = 0; i < m_nodea.get_size(); )
       {
-         if(m_nodea[i]->m_strName == lpszName)
+         if(m_nodea[i]->m_strName == scopedstrName)
          {
 
-            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+            strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
 
             if(strValue.has_char())
             {
@@ -2668,9 +2746,9 @@ namespace xml
             }
          }
          if(iDepth > 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, iDepth - 1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(scopedstrName, scopedstrAttrName, iIndex, iCount, iDepth - 1);
          else if(iDepth < 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, -1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(scopedstrName, scopedstrAttrName, iIndex, iCount, -1);
          if(nRemoveCount > 0)
          {
             count    += nRemoveCount;
@@ -2686,17 +2764,18 @@ namespace xml
       return count;
    }
 
-   node * node::GetChildByAttr(const char * lpszName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue)
+
+   node * node::GetChildByAttr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue)
    {
       string strValue;
       for(i32 i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i]->get_xml_node()->m_strName == lpszName)
+         if(m_nodea[i]->get_xml_node()->m_strName == scopedstrName)
          {
             
-            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+            strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
 
-            if(strValue.has_char() && ansi_compare_ci(strValue, pszAttrValue) == 0)
+            if(strValue.has_char() && ansi_compare_ci(strValue, scopedstrAttrValue) == 0)
             {
 
                return m_nodea[i]->get_xml_node();
@@ -2708,7 +2787,7 @@ namespace xml
       return nullptr;
    }
 
-   node * node::GetChildByAnyAttr(const char * lpszName, string_array & straAttrName, string_array & straAttrValue)
+   node * node::GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array & straAttrName, string_array & straAttrValue)
    {
       
       string strValue;
@@ -2716,7 +2795,7 @@ namespace xml
       for(i32 i = 0; i < m_nodea.get_size(); i++)
       {
 
-         if(m_nodea[i]->m_strName == lpszName)
+         if(m_nodea[i]->m_strName == scopedstrName)
          {
 
             for(i32 j = 0; j < straAttrName.get_size(); j++)
@@ -2742,7 +2821,7 @@ namespace xml
    }
 
 
-   node * node::GetChildByAllAttr(const char * lpszName, string_array & straAttrName, string_array & straAttrValue)
+   node * node::GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array & straAttrName, string_array & straAttrValue)
    {
       
       string strValue;
@@ -2750,7 +2829,7 @@ namespace xml
       for(i32 i = 0; i < m_nodea.get_size(); i++)
       {
          
-         if(m_nodea[i]->m_strName == lpszName)
+         if(m_nodea[i]->m_strName == scopedstrName)
          {
             
             bool bAll = true;
@@ -2866,7 +2945,7 @@ namespace xml
 
       ::count iColCount;
 
-      iColCount = attribute("column_count");
+      iColCount = attribute("column_count").iptr();
 
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
@@ -2888,7 +2967,7 @@ namespace xml
 
          auto pcol = pheader->m_nodea.element_at(iCol);
 
-         str2a[iCol].set_size(pcol->attribute("row_count").i32());
+         str2a[iCol].set_size(pcol->attribute("row_count").as_i32());
 
       }
 

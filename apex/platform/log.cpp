@@ -234,7 +234,7 @@ namespace apex
 
 //   extern ::pointer<::apex::application>g_papp;
 
-   CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const ::file::path & path,i32 iLine,const char *,const ::scoped_string & scopedstrFormat, va_list list)
+   CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const ::file::path & path,i32 iLine,const char *,const char * pszFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -248,7 +248,7 @@ namespace apex
 
             str += "\r\nAssertion Failed \r\n";
             str += "File : ";
-            str += pszFileName;
+            str += pszFormat;
             str += "\r\nLine : ";
             str += as_string(iLine);
             str += "\r\n";
@@ -290,7 +290,7 @@ namespace apex
    void log::success(const ::scoped_string & scopedstr)
    {
 
-      INFORMATION(psz);
+      INFORMATION(scopedstr);
 
    }
 

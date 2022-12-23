@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSorensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
@@ -133,6 +133,10 @@ namespace acme
 
       bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
       virtual bool handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset);
+
+
+      virtual ::file::path get_app_localconfig_folder();
+      virtual ::pointer<::handle::ini>get_ini();
 
 
    };

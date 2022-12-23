@@ -14,7 +14,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcschrs( const ::scoped_string & scopedstr, const ::scoped_string & scopedstrchs );
+   CLASS_DECL_AQUA char * _tcschrs( const ::ansi_character * psz, const ::ansi_character * pszchs );
 
    //========================================================
    // Name   : _tcsskip
@@ -25,7 +25,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsskip( const ::scoped_string & scopedstr );
+   CLASS_DECL_AQUA char * _tcsskip( const ::ansi_character * psz );
 
    //========================================================
    // Name   : _tcsechr
@@ -36,7 +36,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsechr( const ::scoped_string & scopedstr, i32 ch, i32 escape );
+   CLASS_DECL_AQUA char * _tcsechr( const ::ansi_character * psz, i32 ch, i32 escape );
 
    //========================================================
    // Name   : _tcselen
@@ -70,7 +70,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsepbrk( const ::scoped_string & scopedstr, const char * chset, i32 escape );
+   CLASS_DECL_AQUA char * _tcsepbrk( const ::ansi_character * psz, const char * chset, i32 escape );
 
    //========================================================
    // Name   : _tcsenicmp
@@ -81,7 +81,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA i32 _tcsenicmp( const ::scoped_string & scopedstr, const char * str, strsize len, i32 escape );
+   CLASS_DECL_AQUA i32 _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
 
    //========================================================
    // Name   : _tcsenistr
@@ -92,7 +92,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsenistr( const ::scoped_string & scopedstr, const char * str, strsize len, i32 escape );
+   CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -103,7 +103,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcseistr( const ::scoped_string & scopedstr, const char * str, i32 escape );
+   CLASS_DECL_AQUA char * _tcseistr( const ::ansi_character * psz, const char * str, i32 escape );
 
    //========================================================
    // Name   : _SetString
@@ -114,9 +114,9 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end, string* ps, bool trim, i32 escape);
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end,string* ps,bool trim); // no escape
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end,string* ps); // no trim, no escape
+   inline void _SetString(const ::ansi_character * psz, const char * end, string* ps, bool trim, i32 escape);
+   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim); // no escape
+   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps); // no trim, no escape
 
 
 
@@ -138,7 +138,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end,string* ps,bool trim,i32 escape)
+   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim,i32 escape)
    {
 
       if(trim)
@@ -187,7 +187,7 @@ namespace xml
    }
 
 
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end,string* ps,bool trim)
+   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim)
    {
 
       if(trim)
@@ -214,7 +214,7 @@ namespace xml
    }
 
 
-   inline void _SetString(const ::scoped_string & scopedstr, const char * end,string* ps)
+   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps)
    {
 
       ps->assign(psz,end - psz);
@@ -248,7 +248,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline char * _tcschrs(const ::scoped_string & scopedstr,const ::scoped_string & scopedstrchs)
+   inline char * _tcschrs(const ::ansi_character * psz,const ::ansi_character * pszchs)
    {
       while(*psz)
       {
@@ -268,7 +268,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline char * _tcsskip(const ::scoped_string & scopedstr)
+   inline char * _tcsskip(const ::ansi_character * psz)
    {
 
       while(ansi_char_isspace((uchar)*psz)) psz++;
@@ -291,7 +291,7 @@ namespace xml
    //   return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
    //}
 
-   //inline const char * end_open_tag_name(const ::scoped_string & scopedstr)
+   //inline const char * end_open_tag_name(const ::ansi_character * psz)
    //{
    //   while(!is_end_open_tag_name_char(*psz))
    //   {

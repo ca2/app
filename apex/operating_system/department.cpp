@@ -60,7 +60,7 @@ namespace operating_system
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, time, pbPotentialTimeout, &strRead);
+      pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -75,7 +75,7 @@ namespace operating_system
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, time, pbPotentialTimeout);
+      pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
       return pprocessor->m_exitstatus;
 
@@ -87,7 +87,7 @@ namespace operating_system
 
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, time, pbPotentialTimeout);
+      pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout);
 
       return pprocessor->m_exitstatus;
 
@@ -99,7 +99,7 @@ namespace operating_system
 
       const ::ansi_character * pszEnd = nullptr;
 
-      string strBin = consume_command_line_parameter(pszCmdLine,&pszEnd);
+      string strBin = consume_command_line_parameter(scopedstrCmdLine,&pszEnd);
 
 #ifndef _UWP
 
@@ -108,7 +108,7 @@ namespace operating_system
       auto pnode = psystem->node();
 
       //auto estatus =
-      pnode->call_async(strBin,pszEnd,pszDir,edisplay, false);
+      pnode->call_async(strBin,pszEnd, scopedstrDir,edisplay, false);
 
       //return ::succeeded(estatus);
 
@@ -132,7 +132,7 @@ namespace operating_system
       
       auto pprocessor = __create_new < process_processor >();
       
-      pprocessor->process(pszCmdLine, time, pbPotentialTimeout, nullptr, true);
+      pprocessor->process(scopedstrCmdLine, time, pbPotentialTimeout, nullptr, true);
 
       return pprocessor->m_exitstatus;
 

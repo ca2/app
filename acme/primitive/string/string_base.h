@@ -448,6 +448,10 @@ public:
       //inline string_base & assign(::ansi_character ansich);
       //inline string_base & assign(::wd16_character wd16ch);
       //inline string_base & assign(::wd32_character wd32ch);
+   
+   template < primitive_character CHARACTER2 >
+   inline string_base & assign(const CHARACTER2 * start, const CHARACTER2 * end);
+
    template < primitive_character CHARACTER2 >
    inline string_base & assign(const CHARACTER2 * pszSrc, strsize len);
    //inline string_base& assign(const wd16_string& wd16str);
@@ -469,8 +473,8 @@ public:
    //   inline string_base & assign(::wd16_character wd16ch, strsize repeat);
    //   inline string_base & assign(::wd32_character wd32ch, strsize repeat);
 
-   template <class InputIterator>
-   inline string_base & assign(InputIterator first, InputIterator last);
+   //template <class InputIterator>
+   //inline string_base & assign(InputIterator first, InputIterator last);
 
    //template < int t_nSize >
    //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);

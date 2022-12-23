@@ -828,12 +828,12 @@ bool file_path_is_dots(const ::scoped_string & scopedstr)
 }
 
 
-bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+bool file_path_is_equal(const ::file::path & pathParam1, const ::scoped_string & pathParam2)
 {
 
-   auto path1 = file_path_normalize(scopedstr1);
+   auto path1 = file_path_normalize(pathParam1);
 
-   auto path2 = file_path_normalize(scopedstr2);
+   auto path2 = file_path_normalize(pathParam2);
 
    return path1.case_insensitive_order(path2) == 0;
 

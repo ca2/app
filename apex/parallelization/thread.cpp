@@ -1850,6 +1850,12 @@ void thread::main()
             //estatus = acmesystem()->m_estatus;
 
          }
+         else if (acmeapplication()->m_bConsole)
+         {
+
+            acmeapplication()->main();
+
+         }
          else
          {
 
@@ -3001,7 +3007,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (atom.umessage() == e_message_quit)
+      if (atom.as_umessage() == e_message_quit)
       {
 
          string strType = __type_name(this);
@@ -3050,7 +3056,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.umessage(), wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.as_umessage(), wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -3887,7 +3893,7 @@ void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam,
    if (m_htask && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(__hwnd(oswindow), atom.u32(), wparam, lparam))
+      if (::PostMessage(__hwnd(oswindow), atom.as_u32(), wparam, lparam))
       {
 
          return;

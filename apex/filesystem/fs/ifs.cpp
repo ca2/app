@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "ifs.h"
 #include "ifs_file.h"
 ////#include "acme/exception/exception.h"
@@ -12,7 +12,7 @@
 ifs::ifs(const ::scoped_string & scopedstrRoot)
 {
 
-   m_strRoot = pszRoot;
+   m_strRoot = scopedstrRoot;
    m_bInitialized = false;
 
 }
@@ -323,9 +323,9 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   auto pFind = dir.name_find_first_ci(path.name());
+   auto iFind = dir.name_find_first_ci(path.name());
 
-   if(::is_null(pFind))
+   if(::not_found(iFind))
    {
 
       return 0;

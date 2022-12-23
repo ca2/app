@@ -104,7 +104,7 @@ namespace sockets
       if (strTest.case_insensitive_ends_eat(".ca2.software"))
       {
 
-         if (strTest.find('.') > 0)
+         if (strTest.find_index('.') > 0)
          {
 
             output_debug_string("!!!!!!!!!! -> " + strTest + "\n");
@@ -113,7 +113,7 @@ namespace sockets
 
       }
 
-      if(m_request.attr("request_uri").as_string().find("/passthrough/") >= 0)
+      if(m_request.attr("request_uri").as_string().find_index("/passthrough/") >= 0)
       {
          
          INFORMATION("Passthrough");
@@ -203,8 +203,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader("content-type").as_string().find("text") >= 0
-            || outheader("content-type").as_string().find("javascript") >= 0)
+      if(outheader("content-type").as_string().contains("text")
+            || outheader("content-type").as_string().contains("javascript"))
       {
 
          on_compress();
@@ -336,7 +336,7 @@ namespace sockets
 
          string str = outheader("content-type");
 
-         if (str.case_insensitive_contains("text" || str.case_insensitive_contais("javascript"))
+         if (str.case_insensitive_contains("text") || str.case_insensitive_contains("javascript"))
          {
 
             m_response.m_propertysetHeader.set_at("content-encoding", "gzip");

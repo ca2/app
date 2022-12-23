@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "exception.h"
 
 
@@ -7,7 +7,7 @@ namespace multimedia
 
 
    exception::exception(enum_exception eexception, const ::e_status & estatus, const ::scoped_string & scopedstrMessage) :
-      ::exception(estatus, pszMessage)
+      ::exception(estatus, scopedstrMessage)
    {
 
       m_eexception = eexception;

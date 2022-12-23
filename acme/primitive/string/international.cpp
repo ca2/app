@@ -133,11 +133,11 @@
       bool unicode_to_utf8(string & str, const ::scoped_wstring & scopedwstr)
       {
 
-         auto lenTarget = unichar_to_utf8_len(scopedwstr);
+         auto lenTarget = unichar_to_utf8_len(scopedwstr, scopedwstr.size());
 
          char * psz = str.get_string_buffer(lenTarget); // worst guess?!?
 
-         strsize iLen = unichar_to_utf8(psz, scopedwstr);
+         strsize iLen = unichar_to_utf8(psz, scopedwstr, scopedwstr.size());
 
          str.release_string_buffer(iLen);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tree_schema.h"
 
 
@@ -21,10 +21,11 @@ namespace xml
       return m_stra[iNameIndex];
    }
 
-   void tree_schema::set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrName)
 
+   void tree_schema::set_node_name(i32 iNameIndex, const ::scoped_string & scopedstrName)
    {
-      m_stra.set_at_grow(iNameIndex, pcszName);
+
+      m_stra.set_at_grow(iNameIndex, scopedstrName);
 
    }
 

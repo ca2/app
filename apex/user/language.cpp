@@ -192,7 +192,7 @@ namespace user
 
       bool bOk = false;
 
-      const ::scoped_string & scopedstr = nullptr;
+      const ::ansi_character * psz = nullptr;
 
       const ::ansi_character * pszEnd = nullptr;
 

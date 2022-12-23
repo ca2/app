@@ -84,7 +84,7 @@ namespace xml
    protected:
 
 
-      virtual void _load(const char * & pszNext, const ::scoped_string & scopedstrXml, const ::ansi_character * pszEndXml, parse_info * pi = nullptr);
+      virtual void _load(const char * & pszNext, const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pi = nullptr);
 
 
    public:
@@ -93,18 +93,18 @@ namespace xml
       string get_xml(disp_option * opt = nullptr) const;
       string get_text(disp_option * opt = nullptr) const;
 
-      bool consume(const char * & pszXml, const ::scoped_string & scopedstr);
+      bool consume(const char * & pszXml, const ::ansi_character * psz);
       bool consume_whitespaces(const char * & pszXml, i32 iMinimumCount = 1);
 
-      const char * LoadOtherNodes(bool* pbRet, const ::scoped_string & scopedstrXml, parse_info * pparseinfo = nullptr);
+      const char * LoadOtherNodes(bool* pbRet, const ::ansi_character * pszXml, parse_info * pparseinfo = nullptr);
 
       // internal load functions
-      const char *   LoadAttributes( const ::scoped_string & scopedstrAttrs, parse_info * pi = nullptr);
-      const char *   LoadAttributes( const ::scoped_string & scopedstrAttrs, const ::ansi_character * pszEnd, parse_info * pi = nullptr);
-      const char *   LoadProcessingInstruction( const ::scoped_string & scopedstrXml, parse_info * pi = nullptr);
-      const char *   LoadDocType( const ::scoped_string & scopedstrXml, parse_info * pi = nullptr);
-      const char *   LoadComment( const ::scoped_string & scopedstrXml, parse_info * pi = nullptr);
-      const char *   LoadCDATA( const ::scoped_string & scopedstrXml, parse_info * pi = nullptr);
+      const char *   LoadAttributes( const ::ansi_character * pszAttrs, parse_info * pi = nullptr);
+      const char *   LoadAttributes( const ::ansi_character * pszAttrs, const ::ansi_character * pszEnd, parse_info * pi = nullptr);
+      const char *   LoadProcessingInstruction( const ::ansi_character * pszXml, parse_info * pi = nullptr);
+      const char *   LoadDocType( const ::ansi_character * pszXml, parse_info * pi = nullptr);
+      const char *   LoadComment( const ::ansi_character * pszXml, parse_info * pi = nullptr);
+      const char *   LoadCDATA( const ::ansi_character * pszXml, parse_info * pi = nullptr);
 
       
       node *                  get_child( const char * name);
@@ -115,7 +115,7 @@ namespace xml
       void                    get_indexed_path(index_array & iaPath) const;
       node *                  get_node_from_simple_path(const ::file::path & path);
       node *                  get_node_from_indexed_path(const index_array & ia);
-      node *                  get_node_from_attr_path(const ::file::path & path, const char * lpszName, const ::scoped_string & scopedstrAttr);
+      node *                  get_node_from_attr_path(const ::file::path & path, const scoped_string & scopedstrName, const ::scoped_string & scopedstrAttr);
       index_array             get_child_indexed_path(const node * pnode) const;
       void                    get_child_indexed_path(index_array & iaPath, const node * pnode) const;
       string                  get_child_simple_path(const node * pnode) const;
@@ -129,15 +129,15 @@ namespace xml
 
       ::property *            GetChildAttr(const char * name, const char * attrname);
       string                  GetChildAttrValue(const char * name, const char * attrname);
-      node *                  GetChildByAttr(const char * lpszName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue);
-      node *                  GetChildByAnyAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
-      node *                  GetChildByAllAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
+      node *                  GetChildByAttr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, const ::scoped_string & scopedstrAttrValue);
+      node *                  GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
+      node *                  GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
 
       node * get_child_at( index iIndex);
-      node * get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
-      node * get_child_at_grow(const char* lpszName, index iIndex);
-      ::count get_child_attr_value(string_array & stra, const char * lpszName, const ::scoped_string & scopedstrAttrName, index iDepth = 1);
-      ::count erase_child_with_attr(const char * lpszName, const ::scoped_string & scopedstrAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
+      node * get_child_at(const ::scoped_string & scopedstrName, index iIndex, index iDepth = 0);
+      node * get_child_at_grow(const ::scoped_string & scopedstrName, index iIndex);
+      ::count get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, index iDepth = 1);
+      ::count erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
 
       // search node
       node *                  rear_find( const char * name, i32 iDepth = -1);
@@ -150,12 +150,12 @@ namespace xml
 
       // modify DOM
       ::count get_children_count();
-      ::count get_children_count(const char * lpszName);
-      ::count get_children_count(const char * lpszName, index iDepth);
+      ::count get_children_count(const ::scoped_string & scopedstrName);
+      ::count get_children_count(const ::scoped_string & scopedstrName, index iDepth);
       node *                  child_at(index i);
       //node *                create_node( const char * name = nullptr, const char * value = nullptr );
-      node *                  add_child(const ::string & strName = nullptr, const char * value = nullptr);
-      node *                  add_child(const ::string & strName, const property_set & set, const char * value = nullptr);
+      node *                  add_child(const ::string & strName = nullptr, const ::scoped_string & scopedstrValue = nullptr);
+      node *                  add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue = nullptr);
       node *                  add_child( node * node );
       bool                    erase_child( node * node );
       node *                  detach_child( node * node );

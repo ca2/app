@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "history.h"
@@ -12,7 +12,7 @@ public:
    os_history(::particle * pparticle);
          
    
-   virtual bool hist(const char *psz);
+   virtual bool hist(const scoped_string & scopedstr);
 
 };
 

@@ -526,7 +526,7 @@ int_bool file_delete(const ::string & pszFileName)
 
 
 
-int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
+int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
 {
 
    const i32 iBufSize = MAX_PATH * 8;

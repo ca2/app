@@ -130,7 +130,7 @@ namespace xml
    void output_tree::set_value(const ::scoped_string & scopedstrValue)
    {
 
-      m_pnode->set_value(pszValue);
+      m_pnode->set_value(scopedstrValue);
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "http_batch_buffer.h"
 
 
@@ -17,8 +17,7 @@ namespace sockets
    void http_batch_buffer::open(const ::file::path & path, ::u32 nOpenFlags)
    {
 
-      m_strPath = pszFileName;
-
+      m_strPath = path;
 
       m_nOpenFlags = nOpenFlags;
 
@@ -32,6 +31,7 @@ namespace sockets
       //return ::success;
 
    }
+
 
    void http_batch_buffer::close()
    {

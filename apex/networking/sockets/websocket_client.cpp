@@ -653,7 +653,7 @@ namespace sockets
 
       int iHttpStatusCode;
 
-      iHttpStatusCode = outattr("http_status_code");
+      iHttpStatusCode = outattr("http_status_code").as_i32();
 
       string strStatus;
       

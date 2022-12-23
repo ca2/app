@@ -114,7 +114,7 @@ namespace xml
    string xml::special_chars(const ::scoped_string & scopedstr)
    {
 
-      string str(psz);
+      string str(scopedstr);
 
       str.replace_with("&amp;", "&");
       str.replace_with("&quot;", "\"");      // quando ENT_NOQUOTES n縊 est・definida.

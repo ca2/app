@@ -2,7 +2,7 @@
 
 #include "acme/operating_system.h"
 #include "acme/platform/version.h"
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 //#include "acme/primitive/collection/string_array.h"
 
 

@@ -2,7 +2,7 @@
 // Created by camilo on 2022-11-05 23:07 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 
 
 CLASS_DECL_ACME ::string & copy(::string & str, const integral_byte & memsize)

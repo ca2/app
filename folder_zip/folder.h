@@ -41,15 +41,15 @@ namespace folder_zip
 
       bool locate(const ::function < bool(const char*) >& function) override;
 
-      bool has_sub_folder(const ::scoped_string & scopedstrDir = nullptr) override;
+      bool has_sub_folder(const ::file::path & pathDir = nullptr) override;
 
-      void extract(memory& m, const ::scoped_string & scopedstrFile = nullptr) override;
+      void extract(memory& m, const ::file::path & pathFile = nullptr) override;
 
-      bool is_compressed(const ::scoped_string & scopedstrItem = nullptr) override;
+      bool is_compressed(const ::file::path & pathItem = nullptr) override;
 
-      ::file_pointer get_file(const ::scoped_string & scopedstrFile = nullptr) override;
+      ::file_pointer get_file(const ::file::path & pathFile = nullptr) override;
 
-      void e_extract_all(const ::scoped_string & scopedstrTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 
       void open_for_writing(file_pointer pfile) override;
 

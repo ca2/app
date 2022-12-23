@@ -1,9 +1,5 @@
 #include "framework.h"
-#include "string.h"
-
-
-
-
+//#include "string.h"
 
 
 template < >
@@ -15,6 +11,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __
    return &s_wd16stringNil;
 
 }
+
 
 template < >
 CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __nil < natural_meta_data < string_meta_data < ::wd32_character > > >()

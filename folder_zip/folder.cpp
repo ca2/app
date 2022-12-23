@@ -209,7 +209,7 @@ namespace folder_zip
          if (strPrefix.is_empty() || strTitle.case_insensitive_begins_eat(strPrefix))
          {
 
-            if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.length() - 1))
+            if (listing.m_bRecursive || !strTitle.contains("/") || strTitle.find_index("/") == (strTitle.length() - 1))
             {
                
                if (strTitle.has_char())
@@ -217,7 +217,7 @@ namespace folder_zip
 
                   path = pathBaseFolder / strTitle;
 
-                  path.m_iBasePathLength = pathBaseFolder.get_length() + 1;
+                  path.m_iBasePathLength = pathBaseFolder.length() + 1;
 
                   path.m_iDir = strTitle.ends("/") || strTitle.ends("\\") || strTitle.ends(".zip");
 
@@ -240,15 +240,15 @@ namespace folder_zip
    }
 
    
-   ::file_pointer folder::get_file(const ::scoped_string & scopedstrFile)
+   ::file_pointer folder::get_file(const ::file::path & pathFile)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (::is_set(scopedstrFile))
+      if (::is_set(pathFile))
       {
 
-         if (!locate_file(scopedstrFile))
+         if (!locate_file(pathFile))
          {
 
             return nullptr;
@@ -266,10 +266,10 @@ namespace folder_zip
    }
 
 
-   void folder::extract(memory& m, const ::scoped_string & scopedstrFile)
+   void folder::extract(memory& m, const ::file::path & pathFile)
    {
 
-      auto pfile = get_file(scopedstrFile);
+      auto pfile = get_file(pathFile);
 
       m = pfile->as_memory();
 
@@ -284,7 +284,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const ::scoped_string & scopedstrTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
       ::file::listing listing;
@@ -293,7 +293,7 @@ namespace folder_zip
 
       ::file::path pathTargetFolder;
 
-      pathTargetFolder = scopedstrTargetDir;
+      pathTargetFolder = pathTargetDir;
 
       for (auto & path : listing)
       {
@@ -316,12 +316,12 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_file(const ::file::path & path)
+   bool folder::locate_file(const ::file::path & pathFileName)
    {
 
       m_iFilePosition = -1;
 
-      string strFile(scopedstrFileName);
+      string strFile(pathFileName);
 
       auto pFind = strFile.find(":");
 
@@ -427,17 +427,17 @@ namespace folder_zip
    }
 
 
-   bool folder::locate_folder(const ::scoped_string & scopedstrFolderName)
+   bool folder::locate_folder(const ::file::path & pathFolderName)
    {
 
-      if (::is_empty(scopedstrFolderName))
+      if (pathFolderName.is_empty())
       {
 
          throw exception(::error_bad_argument);
 
       }
 
-      string strPrefix(scopedstrFolderName);
+      string strPrefix(pathFolderName);
 
       strPrefix.trim("\\/");
 
@@ -478,17 +478,17 @@ namespace folder_zip
    }
 
 
-   bool folder::has_sub_folder(const ::scoped_string & scopedstrFolderName)
+   bool folder::has_sub_folder(const ::file::path & pathFolderName)
    {
 
-      if (scopedstrFolderName.is_empty())
+      if (pathFolderName.is_empty())
       {
 
          throw exception(::error_bad_argument);
 
       }
 
-      string strPrefix(scopedstrFolderName);
+      string strPrefix(pathFolderName);
 
       strPrefix.trim("\\/");
 

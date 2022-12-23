@@ -1118,51 +1118,34 @@ public:
 //}
 
 
-inline ::string operator+(const ::string & str, const ::const_ansi_range & range)
-{
-
-   auto strResult = str;
-
-   strResult.append(range);
-
-   return ::move(strResult);
-
-}
-
-
-inline ::string operator + (const ::string & str, char ch)
-{
-
-   return str + ::string(ch);
-
-}
+//inline ::string operator+(const ::string & str, const ::const_ansi_range & range)
+//{
+//
+//   auto strResult = str;
+//
+//   strResult.append(range);
+//
+//   return ::move(strResult);
+//
+//}
 
 
-inline ::string operator +(const ::string & str, const ::ansi_character * psz)
-{
+inline ::string operator + (const ::string & str, char ch);
 
-   return str + ::string(psz);
-
-}
+//inline ::string operator +(const ::string & str, const ::ansi_character * psz)
+//{
+//
+//   return str + ::string(psz);
+//
+//}
 
 
 template < ::count c >
-inline ::string operator +(const ::string & str, const char(&sz)[c])
-{
-
-   return str + ::string(sz);
-
-}
+inline ::string operator +(const ::string & str, const char(&sz)[c]);
 
 
 template < strsize m_sizeMaximumLength >
-inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
-{
-
-   return str + ::string(inlinestring);
-
-}
-
+inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
 //inline ::string operator +(const scoped_string & scopedstr, const ::string & str)
 //{
@@ -1172,12 +1155,7 @@ inline ::string operator +(const ::string & str, const ::inline_string < char, m
 //}
 
 
-inline ::string operator +(char ch, const ::string & str)
-{
-
-   return ::string(ch) + str;
-
-}
+inline ::string operator +(char ch, const ::string & str);
 
 
 // For MSVC, but not for GCC?
@@ -1234,14 +1212,14 @@ inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
 //}
 
 
-inline ::wstring operator + (::wstring wstrA, ::wstring wstrB)
-{
-
-   wstrA += wstrB;
-
-   return wstrA;
-
-}
+//inline ::wstring operator + (::wstring wstrA, ::wstring wstrB)
+//{
+//
+//   wstrA += wstrB;
+//
+//   return wstrA;
+//
+//}
 
 
 inline ::wstring operator +(const ::wide_character * pwsz, ::wstring wstr)
@@ -1271,23 +1249,11 @@ inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
 
 
 template < ::count c, strsize m_sizeMaximumLength >
-inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
-{
-
-   return ::move(::string(sz) + ::string(inlinestring));
-
-}
-
+inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
 
 template < ::count c, strsize m_sizeMaximumLength >
-inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
-{
-
-   return ::move(::string(inlinestring) + ::string(sz));
-
-}
-
+inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
 
 
 CLASS_DECL_ACME::string _(const ::string & str);

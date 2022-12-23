@@ -2,7 +2,7 @@
 
 
 #include "acme/operating_system/error_code.h"
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 //#include "acme/primitive/collection/array.h"
 
 
@@ -38,9 +38,9 @@ public:
 //#ifdef ANDROID
 //   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 //#else
-   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
 //#endif
-   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status & estatus, const ::array < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
    virtual ~exception();
 
 

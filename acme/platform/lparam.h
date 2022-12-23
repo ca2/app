@@ -130,12 +130,12 @@ public:
 };
 
 
-template < class T >
-   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) == pointer.m_pparticle; }
-
-
-template < class T >
-   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) != pointer.m_pparticle; }
-
+//template < class T >
+//   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) == pointer.m_pparticle; }
+//
+//
+//template < class T >
+//   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) != pointer.m_pparticle; }
+//
 
 

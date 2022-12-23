@@ -71,9 +71,9 @@ public:
    scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), RANGE(range) { }
    scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), RANGE(range) { }
    scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), RANGE(range) { }
-   //explicit scoped_string_base(const ::atom & atom);
-   //explicit scoped_string_base(const ::payload & payload);
-   //explicit scoped_string_base(const ::property & property) : scoped_string_base((const ::payload &)property) {}
+   scoped_string_base(const ::atom & atom):m_str(atom.as_string()), RANGE(m_str) { }
+   scoped_string_base(const ::payload & payload):m_str(payload.as_string()), RANGE(m_str) { }
+   scoped_string_base(const ::property & property):m_str(property.as_string()), RANGE(m_str) { }
    scoped_string_base(const ::inline_number_string & inline_number_string) : RANGE(inline_number_string) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, string_safe_length(start)) {}
@@ -193,13 +193,37 @@ inline string_base < ITERATOR_TYPE1 > operator + (const scoped_string_base < ITE
 }
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & str, const ::ansi_character * psz)
+inline ::ansi_string operator + (const ::scoped_ansi_string & scopedstr1, const ::scoped_ansi_string & scopedstr2)
 {
 
-   return ::move(::string(str) + psz);
+   ::ansi_string str(scopedstr1);
+
+   str.append(scopedstr2);
+
+   return ::move(str);
 
 }
 
 
-
+//inline ::wd16_string operator + (const ::scoped_wd16_string & scopedstr1, const ::scoped_wd16_string & scopedstr2)
+//{
+//
+//   ::wd16_string str(scopedstr1);
+//
+//   str.append(scopedstr2);
+//
+//   return ::move(str);
+//
+//}
+//
+//
+//inline ::wd32_string operator + (const ::scoped_wd32_string & scopedstr1, const ::scoped_wd32_string & scopedstr2)
+//{
+//
+//   ::wd32_string str(scopedstr1);
+//
+//   str.append(scopedstr2);
+//
+//   return ::move(str);
+//
+//}

@@ -48,8 +48,8 @@ public:
    inline property & payload(const atom & atom) { return get(atom); }
    inline const property & payload(const atom & atom) const { return *find(atom); }
 
-   inline property & payload(const ::scoped_string & scopedstrName) { return operator [](::atom(scopedstrName)); }
-   inline const property & payload(const ::scoped_string & scopedstrName) const { return operator [](::atom(scopedstrName)); }
+   inline property & payload(const ::scoped_string & scopedstrName);
+   inline const property & payload(const ::scoped_string & scopedstrName) const;
 
    inline property & payload(const ::string & strName) { return operator [](::atom(strName)); }
    inline const property & payload(const ::string & strName) const { return operator [](::atom(strName)); }

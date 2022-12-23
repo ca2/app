@@ -40,7 +40,7 @@ public:
    operator f64 ()const { return m_payload.as_f64(); }
 
    operator class ::time ()const { return m_payload.time(); }
-   operator earth::time()const { return m_payload.earth_time(); }
+   operator earth::time()const { return m_payload.as_earth_time(); }
 
 
    operator string ()const { return m_payload.as_string(); }
@@ -52,7 +52,7 @@ public:
    operator ::string_array ()const { return m_payload.stra(); }
    operator ::payload_array() const { return m_payload.payloada(); }
    operator ::property_set() const { return m_payload.propset(); }
-   operator ::file::path() const { return m_payload.file_path(); }
+   operator ::file::path() const { return m_payload.as_file_path(); }
 
 
 };

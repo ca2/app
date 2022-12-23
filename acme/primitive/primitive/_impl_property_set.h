@@ -1,8 +1,11 @@
 //
-// Created by camilo on 23/12/22.
+// Created by camilo on 23/12/2022 01:54 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef BASIS__IMPL_PROPERTY_SET_H
-#define BASIS__IMPL_PROPERTY_SET_H
 
-#endif //BASIS__IMPL_PROPERTY_SET_H
+inline property & property_set::payload(const ::scoped_string & scopedstrName) { return operator [](::atom(scopedstrName)); }
+inline const property & property_set::payload(const ::scoped_string & scopedstrName) const { return operator [](::atom(scopedstrName)); }
+
+
+

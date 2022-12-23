@@ -116,7 +116,6 @@
 
 
 #include  "acme/primitive/string/string.h"
-#include "_string.h"
 #include  "acme/primitive/primitive/payload.h"
 #include  "acme/primitive/primitive/object.h"
 #include  "acme/exception/exception.h"
@@ -124,6 +123,12 @@
 #include  "acme/platform/factory_function.h"
 
 
+#include "acme/primitive/string/scoped_string_base.h"
+
+#include "_string.h"
+
+
+#include "acme/primitive/string/_impl.h"
 #include "_impl.h"
 #include "acme/primitive/time/_impl.h"
 #include "acme/primitive/mathematics/_impl.h"

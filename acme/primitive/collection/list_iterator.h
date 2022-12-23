@@ -277,30 +277,7 @@ public:
    }
 
 
-   constexpr ::count operator - (const_iterator iterator) const
-   {
-
-      ::count c;
-
-      if (difference(c, *this, iterator))
-      {
-
-         return c;
-
-      }
-
-      if (difference(c, iterator, *this))
-      {
-
-         return -c;
-
-      }
-
-      throw_exception(error_failed, "iterators aren't from same list");
-
-      return -1;
-
-   }
+   constexpr ::count operator - (const_iterator iterator) const;
 
 
    THIS_ITERATOR & operator += (::count c)

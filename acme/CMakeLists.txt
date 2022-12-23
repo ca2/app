@@ -570,6 +570,7 @@ list(APPEND library_source
         #primitive/primitive/_factory_impl.h
         #primitive/primitive/_factory_prefix.h
         primitive/primitive/_impl.h
+        primitive/primitive/_impl_atom.h
         #primitive/primitive/_memory.h
         primitive/primitive/_papaya.h
         primitive/primitive/_papaya_impl.h
@@ -1191,6 +1192,7 @@ list(APPEND library_source
         filesystem/file/_defer_payload_stream.h
         filesystem/file/_file.h
         filesystem/file/_impl.h
+        filesystem/file/_impl_text_stream.h
         filesystem/file/_papaya.h
         filesystem/file/_papaya_impl.h
         filesystem/file/_payload_stream_impl.h
@@ -2267,7 +2269,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source} filesystem/file/write_text_stream.h filesystem/file/_impl_write_text_stream.h filesystem/file/read_sz_stream.h filesystem/file/_impl_read_sz_stream.h primitive/primitive/_impl_primitive.h primitive/primitive/_impl_pointer.h filesystem/filesystem/_impl_path.h primitive/collection/_impl_string_array.h primitive/collection/_impl_payload.h primitive/primitive/_impl_payload.h primitive/primitive/_impl_property_set.h primitive/collection/_list_iterator.h primitive/collection/_impl_factory.h primitive/primitive/_impl_type.h)
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

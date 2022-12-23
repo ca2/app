@@ -1,16 +1,18 @@
 ﻿#pragma once
 
 
-#include "c/_impl.h"
-#include "sz/_impl.h"
+//#include "c/_impl.h"
+//#include "sz/_impl.h"
 
 #include "unicode.h"
-#include "unicode_impl.h"
+//#include "unicode_impl.h"
 
 //#include "__unicode_character.h"
 
-#include "_string_range_impl.h"
-#include "_string_base_impl.h"
+//#include "_string_range_impl.h"
+//#include "_string_base_impl.h"
+//#include "_impl.h"
+
 
 //#include "_ch_impl.h"
 
@@ -23,8 +25,6 @@
 //#include "__sz_impl.h"
 
 //#include "__unicode_impl.h"
-
-#include "_impl.h"
 
 //#include "_c_impl.h"
 

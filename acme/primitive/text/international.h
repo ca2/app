@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 
 
 CLASS_DECL_ACME string str_get_system_default_locale_dup();

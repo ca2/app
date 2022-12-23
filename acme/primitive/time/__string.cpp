@@ -1,6 +1,6 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2022-11-05 15:48 BRT.
 #include "framework.h"
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 
 
 ::string & copy(::string & str, const INTEGRAL_NANOSECOND & integral)

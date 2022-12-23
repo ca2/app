@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/hex.h"
-#include "acme/primitive/string/string.h"
+// #include "acme/primitive/string/string.h"
 #include <stdio.h>
 
 
@@ -1053,7 +1053,7 @@ namespace color
                str.trim();
                ::payload a;
                a.stra().explode(",", str);
-               i32_array & ia = __reference(a);
+               auto & ia = a.i32_array_reference();
                if (ia.get_count() == 3)
                {
                   set_COLORREF(argb(255, ia[0], ia[1], ia[2]));

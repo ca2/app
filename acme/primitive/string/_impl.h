@@ -1,6 +1,15 @@
 ﻿#pragma once
 
 
+#include "_string_range_impl.h"
+#include "_impl_string_base.h"
+
+#include "c/_impl.h"
+#include "sz/_impl.h"
+
+#include "unicode_impl.h"
+
+
 #include "_u32hash.h"
 #include "_conv.h"
 
@@ -127,7 +136,7 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 //#include "__c_wd16_impl.h"
 
 
-#include "_string_base_impl.h"
+//#include "_string_base_impl.h"
 
 
 template < typename CHAR_TYPE1, typename CHAR_TYPE2 >

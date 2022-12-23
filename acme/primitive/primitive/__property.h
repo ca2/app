@@ -337,7 +337,7 @@ namespace file
 
 
    inline path::path(const ::property & property) :
-      path(property.file_path())
+      path(property.as_file_path())
    {
 
    }

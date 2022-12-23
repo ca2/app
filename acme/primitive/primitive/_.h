@@ -57,10 +57,10 @@ namespace url
 {
 
 
-   CLASS_DECL_ACME string encode(const ::block& block);
+   CLASS_DECL_ACME string encode(const ::scoped_string & scopedstr);
 
 
-   CLASS_DECL_ACME string decode(const ::block& block);
+   CLASS_DECL_ACME string decode(const ::scoped_string & scopedstr);
 
 
    CLASS_DECL_ACME bool query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl);

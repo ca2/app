@@ -17,4 +17,7 @@ CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
 //CLASS_DECL_ACME void output_debug_string(const ::wd32_character * psz);
 
 
+CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);
+
+
 

@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/collection/map.h"
-#include "acme/primitive/string/string.h"
+//// #include "acme/primitive/string/string.h"
 
 
 template < class VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, typename PAIR = pair < string, VALUE, typename argument_of < string >::type, ARG_VALUE > >

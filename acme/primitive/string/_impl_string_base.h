@@ -7069,3 +7069,60 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
    return ::move(scopedstr);
 
 }
+
+
+
+template < strsize m_sizeMaximumLength >
+inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+{
+
+   return str + ::string(inlinestring);
+
+}
+
+
+template < ::count c >
+inline ::string operator +(const ::string & str, const char(&sz)[c])
+{
+
+   return str + ::string(sz);
+
+}
+
+
+
+
+
+inline ::string operator +(char ch, const ::string & str)
+{
+
+   return ::string(ch) + str;
+
+}
+
+
+template < ::count c, strsize m_sizeMaximumLength >
+inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+{
+
+   return ::move(::string(sz) + ::string(inlinestring));
+
+}
+
+
+
+template < ::count c, strsize m_sizeMaximumLength >
+inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
+{
+
+   return ::move(::string(inlinestring) + ::string(sz));
+
+}
+
+
+inline ::string operator + (const ::string & str, char ch)
+{
+
+   return str + ::string(ch);
+
+}

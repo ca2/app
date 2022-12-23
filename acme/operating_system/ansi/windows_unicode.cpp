@@ -55,15 +55,15 @@ i32      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (i32) (wstr.get_length() + 1);
+           return (i32) (wstr.length() + 1);
         }
         else
         {
-           return (i32) wstr.get_length();
+           return (i32) wstr.length();
         }
      }
 
-     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -180,15 +180,15 @@ i32      cchWideChar)
      {
         if(cbMultiByte < 0)
         {
-           return (i32) (wstr.get_length() + 1);
+           return (i32) (wstr.length() + 1);
         }
         else
         {
-           return (i32) wstr.get_length();
+           return (i32) wstr.length();
         }
      }
 
-     i32 iLen = (i32) minimum(cchWideChar, wstr.get_length());
+     i32 iLen = (i32) minimum(cchWideChar, wstr.length());
 
      if(pWideCharStr != nullptr)
      {
@@ -309,12 +309,12 @@ int_bool *  pUsedDefaultChar)
   else
   {
 
-     size_t sIn = wstr.get_length() * 2;
+     size_t sIn = wstr.length() * 2;
 
      char * psz = str.get_string_buffer(sIn);
 
 
-     size_t sOut = wstr.get_length() * 8;
+     size_t sOut = wstr.length() * 8;
 
      string strCodePage = iconv_charset_from_windows_code_page(CodePage);
 

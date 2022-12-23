@@ -26,7 +26,7 @@ CLASS_DECL_ACME bool file_path_is_relative(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME bool file_path_is_absolute(const ::scoped_string & scopedstr);
 
 
-CLASS_DECL_ACME bool file_path_is_dots(const ::file::path & path);
+CLASS_DECL_ACME bool file_path_is_dots(const ::scoped_string & scopedstr);
 
 CLASS_DECL_ACME bool file_path_is_equal(const ::file::path & path1, const ::file::path & path2);
 

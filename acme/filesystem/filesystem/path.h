@@ -1617,11 +1617,12 @@ inline ::file::path operator+(const ::file::path & path1, const ::file::path & p
 }
 
 
-inline ::file::path operator+(const ::file::path & path, const ::string & str)
-{
-
-   return ((const::string &)path) + str;
-}
+// For MSVC, but not for GCC?
+//inline ::file::path operator+(const ::file::path & path, const ::string & str)
+//{
+//
+//   return ((const::string &)path) + str;
+//}
 
 
 //inline ::file::path operator+ (const ::file::path & path, const ::scoped_string & scopedstr)

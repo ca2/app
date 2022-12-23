@@ -1105,23 +1105,27 @@ public:
 };
 
 
-
-inline ::string operator + (const ::string & strA, const ::string & strB)
-{
-
-   auto str = strA;
-
-   str += strB;
-
-   return str;
-
-}
+// For MSVC, but not for GCC?
+//inline ::string operator + (const ::string & strA, const ::string & strB)
+//{
+//
+//   auto str = strA;
+//
+//   str += strB;
+//
+//   return str;
+//
+//}
 
 
 inline ::string operator+(const ::string & str, const ::const_ansi_range & range)
 {
 
-   return str + ::string(range);
+   auto strResult = str;
+
+   strResult.append(range);
+
+   return ::move(strResult);
 
 }
 
@@ -1176,13 +1180,14 @@ inline ::string operator +(char ch, const ::string & str)
 }
 
 
-template < ::count c >
-inline ::string operator +(const char(&sz)[c], const ::string & str)
-{
-
-   return ::string(sz) + str;
-
-}
+// For MSVC, but not for GCC?
+//template < ::count c >
+//inline ::string operator +(const char(&sz)[c], const ::string & str)
+//{
+//
+//   return ::string(sz) + str;
+//
+//}
 
 
 template < ::count c >
@@ -1194,12 +1199,13 @@ inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
 }
 
 
-inline ::string operator+(const ::const_ansi_range & range, const ::string & str)
-{
-
-   return ::string(range) + str;
-
-}
+// For MSVC, but not for GCC?
+//inline ::string operator+(const ::const_ansi_range & range, const ::string & str)
+//{
+//
+//   return ::string(range) + str;
+//
+//}
 
 
 //template < primitive_character CHARACTER, typename CHARACTER2 >
@@ -1332,22 +1338,25 @@ inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const s
 }
 
 
-template < typename ITERATOR_TYPE >
-inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
-{
+// For MSVC, but not for GCC?
+//template < typename ITERATOR_TYPE >
+//inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
+//{
+//
+//   return ::move(::string_base < ITERATOR_TYPE >(psz) + str);
+//
+//}
 
-   return ::move(::string_base < ITERATOR_TYPE >(psz) + str);
-
-}
 
 
-template < strsize n, typename ITERATOR_TYPE >
-inline ::string_base < ITERATOR_TYPE > operator + (const char(&cha)[n], const string_base < ITERATOR_TYPE > & str)
-{
-
-   return ::move(::string_base < ITERATOR_TYPE >(cha) + str);
-
-}
+// For MSVC, but not for GCC?
+//template < strsize n, typename ITERATOR_TYPE >
+//inline ::string_base < ITERATOR_TYPE > operator + (const char(&cha)[n], const string_base < ITERATOR_TYPE > & str)
+//{
+//
+//   return ::move(::string_base < ITERATOR_TYPE >(cha) + str);
+//
+//}
 
 
 

@@ -2993,6 +2993,9 @@
     <ClInclude Include="include\_string.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\write_text_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

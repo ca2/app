@@ -818,6 +818,7 @@
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="filesystem\file\write_text_stream.h" />
     <ClInclude Include="filesystem\file\__string.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />

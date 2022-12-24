@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/2022. <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -588,10 +588,6 @@ public:
 //
 
 };
-
-
-
-#include "_impl_write_text_stream.h"
 
 
 

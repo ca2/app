@@ -65,7 +65,21 @@ public:
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
-   scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :m_str(e_zero_initialize), RANGE(start, end) { }
+   scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :
+      m_str(e_zero_initialize), RANGE(e_zero_initialize) 
+   { 
+   
+      if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
+      {
+         this->m_begin = start;
+         this->m_end = end;
+      }
+      else
+      {
+         m_str.assign(start, end - start);
+         RANGE::operator=(m_str);
+      }
+   }
    //template < strsize n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
 

@@ -27,7 +27,11 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_
 #include "acme/primitive/collection/_impl_string_array.h"
 #include "acme/primitive/primitive/_impl_atom.h"
 #include "acme/primitive/primitive/_impl_payload.h"
+#include "acme/filesystem/file/_impl_write_text_stream.h"
 #include "acme/filesystem/filesystem/_impl_path.h"
+
+
+
 
 
 

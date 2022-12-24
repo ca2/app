@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/2022 <3ThomasBorregaardSorensen!!!
 //
 #pragma once
@@ -1381,46 +1381,46 @@ inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
 }
 
 
-template < >
-inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
-{
-
-   if (atom.is_text())
-   {
-
-      this->m_begin =  atom.m_str.m_begin;
-      this->m_end = atom.m_str.m_end;
-
-   }
-   else
-   {
-
-      this->m_begin = nullptr;
-      this->m_end = nullptr;
-
-   }
-
-}
-
-
-template < >
-inline string_range <  const ::ansi_character * >::string_range(const block & block)
-{
-
-   this->m_begin = (const ::ansi_character *) block.m_begin;
-   this->m_end = (const ::ansi_character *)block.m_end;
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const atom & atom)
-{
-
-   throw_exception(error_not_supported);
+//template < >
+//inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
+//{
+//
+//   if (atom.is_text())
+//   {
+//
+//      this->m_begin =  atom.m_str.m_begin;
+//      this->m_end = atom.m_str.m_end;
+//
+//   }
+//   else
+//   {
+//
+//      this->m_begin = nullptr;
+//      this->m_end = nullptr;
+//
+//   }
+//
+//}
+//
+//
+//template < >
+//inline string_range <  const ::ansi_character * >::string_range(const block & block)
+//{
+//
+//   this->m_begin = (const ::ansi_character *) block.m_begin;
+//   this->m_end = (const ::ansi_character *)block.m_end;
+//
+//}
 
 
-}
+//template < typename ITERATOR_TYPE >
+//inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const atom & atom)
+//{
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
 
 
 template <  >
@@ -1453,21 +1453,22 @@ inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator
 
    throw_exception(error_not_supported);
 
-
-}
-
-
-template <  >
-inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
-{
-
-
-   this->m_begin = (const ::ansi_character *)block.m_begin;
-   this->m_end = (const ::ansi_character *)block.m_end;
-
    return *this;
 
 }
+
+
+//template <  >
+//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
+//{
+//
+//
+//   this->m_begin = (const ::ansi_character *)block.m_begin;
+//   this->m_end = (const ::ansi_character *)block.m_end;
+//
+//   return *this;
+//
+//}
 
 
 template < typename ITERATOR_TYPE >

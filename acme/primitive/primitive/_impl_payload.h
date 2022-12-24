@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/2022 01:48 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -593,21 +593,21 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 
 
-inline ::payload operator + (::payload payload, const ::procedure & procedure)
-{
-
-   if (payload.get_type() != e_type_property_set)
-   {
-
-      payload["message"] = payload;
-
-   }
-
-   payload["routine"] = procedure.m_p;
-
-   return payload;
-
-}
+//inline ::payload operator + (::payload payload, const ::procedure & procedure)
+//{
+//
+//   if (payload.get_type() != e_type_property_set)
+//   {
+//
+//      payload["message"] = payload;
+//
+//   }
+//
+//   payload["routine"] = procedure.m_p;
+//
+//   return payload;
+//
+//}
 
 
 

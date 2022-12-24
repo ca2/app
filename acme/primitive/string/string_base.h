@@ -1358,9 +1358,15 @@ inline u32hash u32_hash < wide_string >(wide_string widestr);
 
 
 
-template < primitive_character CHARACTER, typed_range < const ::ansi_character * > ANSI_RANGE >
-string_base < const CHARACTER * > operator + (const CHARACTER * psz, const ANSI_RANGE & range)
-{ string_base < const CHARACTER * > str(psz); return ::move(str + range); }
+template < primitive_character CHARACTER, character_range RANGE >
+string_base < const CHARACTER * > operator + (const CHARACTER * psz, const RANGE & range)
+{ 
+   
+   string_base < const CHARACTER * > str(psz); 
+   
+   return ::move(str + range); 
+
+}
 
 
 

@@ -61,7 +61,7 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 //}
 //
 
-void output_debug_string(::scoped_string str)
+void output_debug_string(const ::scoped_string & str)
 {
 
    ::wstring wstr(str);

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "string.h"
+//#include "string.h"
 
 
 template < typename CHAR_TYPE >

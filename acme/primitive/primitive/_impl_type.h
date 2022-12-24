@@ -4,6 +4,17 @@
 #pragma once
 
 
+type::type(const ::std::type_info & typeinfo) :
+#ifdef WINDOWS
+        atom(c_demangle(typeinfo.name()))
+#else
+        atom(demangle(typeinfo.name()))
+#endif
+{
+
+}
+
+
 inline bool type::name_contains(const ::ansi_character * psz) const
 {
 
@@ -11,6 +22,37 @@ inline bool type::name_contains(const ::ansi_character * psz) const
 
 }
 
+
+inline bool type::operator == (const ::atom& atom) const
+{
+
+   return ::atom::operator ==(atom);
+
+}
+
+
+template < typename BASE >
+inline type::type(const ::pointer<BASE>& point)
+{
+
+   auto name = typeid(*((BASE *)point.m_p)).name();
+
+   ::atom::operator = (demangle(name));
+
+}
+
+
+template < typename TYPE >
+inline string __type_name()
+{
+
+   auto pszType = typeid(TYPE).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
 
 
 

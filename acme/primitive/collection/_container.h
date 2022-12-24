@@ -2,6 +2,11 @@
 #pragma once
 
 
+void copy(::string & str, const ::payload & payload);
+void copy(::payload & payload, const int & i);
+void copy(::payload & payload, const ::string & str);
+
+
 namespace acme
 {
 

@@ -2,10 +2,6 @@
 
 
 
-#include "_impl_text_stream.h"
-#include "_impl_write_text_stream.h"
-#include "_impl_read_sz_stream.h"
-
 
 //template < typename TYPE >
 //inline void __string_exchange(::binary_stream < FILE > & s, TYPE & t)

@@ -630,7 +630,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 #endif
 
 
-::string memory_base::as_string() const
+::string memory_base::get_string() const
 {
 
    if(size() >= 2 && data()[0] == 255 && data()[1] == 60)
@@ -1348,7 +1348,7 @@ void memory_base::from_string(const ::string & str)
 void memory_base::from_string(const ::payload & payload)
 {
 
-   from_string((const string &)payload.as_string());
+   from_string((const string &)payload.get_string());
 
 }
 
@@ -1393,7 +1393,7 @@ void memory_base::append_from_string(const ::string & str)
 void memory_base::append_from_string(const ::payload & payload)
 {
 
-   append_from_string((const string &)payload.as_string());
+   append_from_string((const string &)payload.get_string());
 
 }
 
@@ -1406,7 +1406,7 @@ void memory_base::append_from_string(const ::payload & payload)
 //}
 
 
-string memory_base::as_string(memsize iStart, memsize iCount) const
+string memory_base::get_string(memsize iStart, memsize iCount) const
 {
 
    string str;

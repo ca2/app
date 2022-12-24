@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "str.h"
-#include "string.h"
+//#include "string.h"
 #include "ch_class.h"
 #include "x/x_charcategory2.h"
 #include "x/x_charcategory_names.h"

@@ -1,8 +1,26 @@
 //
-// Created by camilo on 24/12/22.
+// Created by camilo on 24/12/2022 02:35 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef BASIS__IMPL_MEMORY_H
-#define BASIS__IMPL_MEMORY_H
 
-#endif //BASIS__IMPL_MEMORY_H
+
+template < typename BLOCK_TYPE >
+inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
+{
+
+   if (block.size() < size())
+   {
+
+      throw_exception(error_bad_argument);
+
+   }
+
+   ::memcpy_dup(data(), block.data(), (size_t)size());
+
+   return *data();
+
+}
+
+
+

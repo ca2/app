@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 //#include "character.h"
-#include "string.h"
+//#include "string.h"
 
 
 //character::utf8_char(u64 u)

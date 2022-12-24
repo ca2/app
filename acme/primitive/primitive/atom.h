@@ -349,12 +349,19 @@ public:
    template < primitive_unsigned UNSIGNED >
    atom(UNSIGNED u);
    atom(const ::string & str);
-   atom(const const_ansi_range & range);
-   atom(const_ansi_range && range);
-   atom(const const_ansi_range && range);
+   //atom(const const_ansi_range & range);
+   //atom(const_ansi_range && range);
+   //atom(const const_ansi_range && range);
    //atom(const type & type);
-   atom(const ::payload & payload);
-   atom(const ::lparam & lparam);
+   template < character_range RANGE >
+   atom(const RANGE & range);
+   template < has_as_string HAS_AS_STRING >
+   atom(const HAS_AS_STRING & has_as_string);
+   //atom(const ::scoped_string & str);
+   //atom(const ::payload & payload);
+   //atom(const ::lparam & lparam);
+   template < primitive_payload PAYLOAD  >
+   atom(const PAYLOAD & payload);
    atom(::atom && atom) { m_etype = atom.m_etype; m_u = atom.m_u; atom.m_etype = e_type_integer; atom.m_u = 0; }
    ~atom()
    {
@@ -453,9 +460,9 @@ public:
    inline ::std::strong_ordering operator <=> (const ::string & str) const;
 
    template < strsize n >
-   inline bool operator == (const ::ansi_character (&cha)[n]) const { return *this == ::scoped_string(cha); }
+   inline bool operator == (const ::ansi_character (&cha)[n]) const;
    template < strsize n >
-   inline ::std::strong_ordering operator <=> (const ::ansi_character (&cha)[n]) const { return *this <=> ::scoped_string(cha); }
+   inline ::std::strong_ordering operator <=> (const ::ansi_character (&cha)[n]) const;
 
    //inline ::std::strong_ordering order(const ::scoped_string & scopedstr) const;
    //inline bool operator == (const ::scoped_string & scopedstr) const;
@@ -573,8 +580,8 @@ public:
 //   atom & operator = (const ::string & str);
 //
 //
-//   template < primitive_integer INTEGER >
-//   atom & operator = (INTEGER i);
+   //template < primitive_integer INTEGRAL >
+   //atom & operator = (INTEGER i);
 //   template < primitive_natural NATURAL >
 //   atom & operator = (NATURAL u);
 //
@@ -591,7 +598,7 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-   inline operator ::iptr() const;
+   //inline operator ::iptr() const;
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
    inline ::i32 as_i32() const { return (::i32) i64(); }

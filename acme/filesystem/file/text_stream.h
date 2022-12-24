@@ -59,30 +59,6 @@ public:
 };
 
 
-template < typename FILE >
-inline write_text_stream < FILE >::write_text_stream()
-{
-
-
-}
-
-
-template < typename FILE >
-inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
-{
-
-   m_pfile = pfile;
-
-   set_ok_flag();
-
-   //if (pfile->has_storing_flag())
-   //{
-
-   //   defer_set_storing_flag();
-
-   //}
-
-}
 
 
 //template < typename FILE >
@@ -118,12 +94,12 @@ inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
 //}
 
 
-template < typename FILE >
-inline write_text_stream < FILE >::~write_text_stream()
-{
-
-
-}
+//template < typename FILE >
+//inline write_text_stream < FILE >::~write_text_stream()
+//{
+//
+//
+//}
 
 
 //template < typename FILE >

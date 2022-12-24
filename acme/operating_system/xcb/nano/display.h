@@ -70,7 +70,7 @@ namespace xcb
       xcb_colormap_t                         m_colormap;
       xcb_window_t                           m_windowRoot;
       xcb_window_t                           m_windowHelper;
-      atom                                   m_atoma[::x11::e_atom_count];
+      xcb_atom_t                             m_atoma[::x11::e_atom_count];
 
       acme::malloc < xcb_render_query_pict_formats_reply_t * > m_prender_query_pict_formats_reply2;
       visual_pictformat_map                                    m_mapVisualPictFormat;

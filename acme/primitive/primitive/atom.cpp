@@ -4,45 +4,6 @@
 
 
 
-atom::atom(const ::payload & payload)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = 0;
-
-   if (payload.is_null())
-   {
-
-      operator = (e_type_null);
-
-   }
-   else if (payload.is_empty())
-   {
-
-      operator = (e_type_empty);
-
-   }
-   else if (payload.get_type() == ::e_type_atom)
-   {
-
-      operator = (payload.m_atom);
-
-   }
-   else if (payload.is_integer())
-   {
-
-      operator = (payload.iptr());
-
-   }
-   else
-   {
-
-      operator = (payload);
-
-   }
-
-}
 
 
 
@@ -108,7 +69,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 
    }
 
-   return is_impact_subgroup(atom, FILEMANAGER_IMPACT + iGroup);
+   return is_impact_subgroup(atom.as_i64(), FILEMANAGER_IMPACT + iGroup);
 
 }
 
@@ -117,7 +78,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 bool is_color_sel(const ::atom & atom)
 {
    
-   return is_impact_group(atom, COLORSEL_IMPACT);
+   return is_impact_group(atom.as_i64(), COLORSEL_IMPACT);
 
 }
 
@@ -125,7 +86,7 @@ bool is_color_sel(const ::atom & atom)
 bool is_font_sel(const ::atom & atom) 
 {
    
-   return is_impact_group(atom, FONTSEL_IMPACT);
+   return is_impact_group(atom.as_i64(), FONTSEL_IMPACT);
 
 }
 

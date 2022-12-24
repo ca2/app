@@ -142,7 +142,7 @@ public:
 
    virtual void get_temporary_file_name_template(char * szRet, strsize iBufferSize, const scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 
-   //virtual string file_final_extension_dup(const ::file::path & path);
+   //virtual string file_path_final_extension(const ::file::path & path);
    //virtual string url_dir_name_for_relative(const ::file::path & path);
    //virtual string solve_relative(const ::string & str, bool * pbUrl = nullptr);
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash

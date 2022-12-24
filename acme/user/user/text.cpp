@@ -168,7 +168,7 @@ namespace user
    string text::as_string() const
    { 
       
-      return m_linkedpropertyText->as_string();
+      return m_linkedpropertyText->get_string();
    
    }
 

@@ -256,19 +256,28 @@ namespace http
 
    string cookies::get_cookie_header()
    {
+
       string strCookie;
+
       for(index i = 0; i < this->get_size(); i++)
       {
+
          strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue);
+
          strCookie += ";";
+
       }
+
       return strCookie;
+
    }
 
 
    strsize cookies::get_length( const char * name)
    {
-      return cookie(name).m_varValue.as_string().length();
+
+      return cookie(name).m_varValue.get_string().length();
+
    }
 
 

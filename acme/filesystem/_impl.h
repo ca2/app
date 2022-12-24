@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 
+
+#include "file/_impl.h"
+#include "filesystem/_impl.h"
+
+
 namespace file
 {
 
@@ -735,7 +740,7 @@ inline const char * FormatArgument(const ::file::path & value) noexcept
 
 
 template<>
-inline uptr u32_hash < const ::file::path & >(const ::file::path & key)
+inline u32hash u32_hash < const ::file::path & >(const ::file::path & key)
 {
 
    return u32_hash < const string & >(key);

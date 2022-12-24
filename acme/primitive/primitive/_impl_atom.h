@@ -101,10 +101,6 @@ inline atom::atom(enum_timer etimer) :
 }
 
 
-
-
-
-
 //inline atom::atom(enum_topic etopic) :
 //   m_etype(e_type_subject),
 //   m_etopic(etopic)
@@ -127,7 +123,6 @@ inline atom::atom(enum_happening eevent) :
 {
 
 }
-
 
 
 // This constructor shouldn't change the primitive type of
@@ -163,8 +158,6 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 }
 
 
-
-
 inline atom::atom(const atom & atom)
 {
 
@@ -187,6 +180,17 @@ inline atom::atom(const atom & atom)
 }
 
 
+inline atom::atom(const ::ansi_character * psz) :
+   atom()
+{
+
+   m_etype = e_type_text;
+
+   new(&m_str) ::string(psz);
+
+}
+
+
 //inline atom::atom(const ::scoped_string & scopedstr, atom_space *)
 //{
 //
@@ -196,15 +200,17 @@ inline atom::atom(const atom & atom)
 //
 //}
 
+
 #ifndef NO_TEMPLATE
+
 
 template < primitive_signed SIGNED >
 inline atom::atom(SIGNED i)
 {
 
-m_etype = e_type_integer;
+   m_etype = e_type_integer;
 
-m_i = (::iptr) i;
+   m_i = (::iptr) i;
 
 }
 
@@ -213,9 +219,9 @@ template < primitive_unsigned UNSIGNED >
 inline atom::atom(UNSIGNED u)
 {
 
-m_etype = e_type_integer;
+   m_etype = e_type_integer;
 
-m_u = u;
+   m_u = u;
 
 }
 
@@ -244,8 +250,6 @@ inline ::std::strong_ordering atom::operator <=>(const atom & atom) const
            );
 
 }
-
-
 
 
 //inline bool atom::operator != (const atom & atom) const
@@ -885,12 +889,12 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 //}
 //
 
-inline atom::operator ::iptr () const
-{
-
-   return as_iptr();
-
-}
+//inline atom::operator ::iptr () const
+//{
+//
+//   return as_iptr();
+//
+//}
 
 
 inline ::i64 atom::as_i64() const
@@ -1178,69 +1182,69 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 }
 
 
-inline atom::atom(const ::ansi_character * psz) :
-        m_str(psz)
-{
-
-   m_etype = e_type_text;
-
-   //m_str.::string::string(psz);
-
-}
-
-
-inline atom::atom(const ::lparam & lparam)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = lparam.m_lparam;
-
-}
+//inline atom::atom(const ::ansi_character * psz) :
+//        m_str(psz)
+//{
+//
+//   m_etype = e_type_text;
+//
+//   //m_str.::string::string(psz);
+//
+//}
 
 
-inline atom::atom(const ::string& str) :
-        m_str(str)
-{
-
-   m_etype = e_type_text;
-
-}
-
-
-inline atom::atom(const const_ansi_range & range) :
-        m_range(range)
-{
-
-   m_etype = e_type_range;
-
-}
-
-inline atom::atom(const_ansi_range && range) :
-        m_range(::move(range))
-{
-
-   m_etype = e_type_range;
-
-}
-
-
-inline atom::atom(const const_ansi_range && range) :
-        m_range(::move(range))
-{
-
-   m_etype = e_type_range;
-
-}
-
-
-inline atom::atom(const ::inline_number_string& inlinenumberstring) :
-        m_str(inlinenumberstring)
-{
-
-   m_etype = e_type_text;
-
-}
+//inline atom::atom(const ::lparam & lparam)
+//{
+//
+//   m_etype = e_type_integer;
+//
+//   m_u = lparam.m_lparam;
+//
+//}
+//
+//
+//inline atom::atom(const ::string& str) :
+//        m_str(str)
+//{
+//
+//   m_etype = e_type_text;
+//
+//}
+//
+//
+//inline atom::atom(const const_ansi_range & range) :
+//        m_range(range)
+//{
+//
+//   m_etype = e_type_range;
+//
+//}
+//
+//inline atom::atom(const_ansi_range && range) :
+//        m_range(::move(range))
+//{
+//
+//   m_etype = e_type_range;
+//
+//}
+//
+//
+//inline atom::atom(const const_ansi_range && range) :
+//        m_range(::move(range))
+//{
+//
+//   m_etype = e_type_range;
+//
+//}
+//
+//
+//inline atom::atom(const ::inline_number_string& inlinenumberstring) :
+//        m_str(inlinenumberstring)
+//{
+//
+//   m_etype = e_type_text;
+//
+//}
 
 
 //template < typename CHAR >
@@ -1320,13 +1324,13 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-template < ::count c >
-inline ::string operator +(const char(&sz)[c], const ::atom & atom)
-{
-
-   return ::string(sz) + atom.as_string();
-
-}
+//template < ::count c >
+//inline ::string operator +(const char(&sz)[c], const ::atom & atom)
+//{
+//
+//   return ::string(sz) + atom.as_string();
+//
+//}
 
 
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
@@ -1520,6 +1524,64 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //}
 
 
+template < strsize n >
+inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this == ::scoped_string(cha);
+
+}
+
+
+template < strsize n >
+inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this <=> ::scoped_string(cha);
+
+}
+
+
+template < primitive_payload PAYLOAD >
+atom::atom(const PAYLOAD & payload)
+{
+
+   m_etype = e_type_integer;
+
+   m_u = 0;
+
+   if (payload.is_null())
+   {
+
+      operator = (e_type_null);
+
+   }
+   else if (payload.is_empty())
+   {
+
+      operator = (e_type_empty);
+
+   }
+   else if (payload.get_type() == ::e_type_atom)
+   {
+
+      operator = (payload.m_atom);
+
+   }
+   else if (payload.is_integer())
+   {
+
+      operator = (payload.iptr());
+
+   }
+   else
+   {
+
+      operator = (payload);
+
+   }
+
+}
 
 
 

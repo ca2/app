@@ -70,12 +70,7 @@ public:
     //}
 
 
-    void print(const ::string& str)
-    {
-
-       m_pfile->write(str.c_str(), str.length_in_bytes());
-
-    }
+    void print(const ::scoped_string& str);
 
 
     template < primitive_number NUMBER >
@@ -136,24 +131,24 @@ public:
     template < typename TYPE >
     void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
-    void append_format(const ::ansi_character * pszFormat, ...)
-    {
-
-       ::string strText;
-
-       ASSERT(__is_valid_string(pszFormat));
-
-       va_list argList;
-
-       va_start(argList, pszFormat);
-
-       strText.format_arguments(pszFormat, argList);
-
-       va_end(argList);
-
-       print(strText);
-
-    }
+    void append_format(const ::ansi_character * pszFormat, ...);
+//    {
+//
+//       ::string strText;
+//
+//       ASSERT(__is_valid_string(pszFormat));
+//
+//       va_list argList;
+//
+//       va_start(argList, pszFormat);
+//
+//       strText.format_arguments(pszFormat, argList);
+//
+//       va_end(argList);
+//
+//       print(strText);
+//
+//    }
 
 
     //bool is_stream_null();
@@ -161,178 +156,178 @@ public:
 
     //void close() {}
 
-    void new_line()
-    {
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          m_pfile->unget_if(m_chSeparator);
-
-       }
-
-       print(m_pszEolSeparator);
-
-    }
-
-
-    write_text_stream& operator <<(bool b)
-    {
-
-       if(b)
-       {
-
-          print("1");
-
-       }
-       else
-       {
-
-          print("0");
-
-       }
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    void new_line();
+//    {
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          m_pfile->unget_if(m_chSeparator);
+//
+//       }
+//
+//       print(m_pszEolSeparator);
+//
+//    }
 
 
-    write_text_stream& operator <<(char ch)
-    {
+    write_text_stream& operator <<(bool b);
+//    {
+//
+//       if(b)
+//       {
+//
+//          print("1");
+//
+//       }
+//       else
+//       {
+//
+//          print("0");
+//
+//       }
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
-       write(&ch, 1);
 
-       if (m_fmtflags & ::file::separated)
-       {
+    write_text_stream& operator <<(char ch);
+//    {
+//
+//       write(&ch, 1);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
-
-    write_text_stream& operator <<(enum_start_reference)
-    {
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(enum_start_reference);
+//    {
+//
+//       return *this;
+//
+//    }
 
 
-    write_text_stream& operator <<(uchar uch)
-    {
-
-       write(&uch, 1);
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(uchar uch);
+//    {
+//
+//       write(&uch, 1);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
 
 #ifdef WINDOWS
 
 
-    write_text_stream& operator <<(unichar wch)
-   {
-
-      char sz[10];
-
-      wd16_to_ansi(sz, &wch, 1);
-
-      print(sz);
-
-      if (m_fmtflags & ::file::separated)
-      {
-
-         print(m_chSeparator);
-
-      }
-
-      return *this;
-
-   }
+    write_text_stream& operator <<(unichar wch);
+//   {
+//
+//      char sz[10];
+//
+//      wd16_to_ansi(sz, &wch, 1);
+//
+//      print(sz);
+//
+//      if (m_fmtflags & ::file::separated)
+//      {
+//
+//         print(m_chSeparator);
+//
+//      }
+//
+//      return *this;
+//
+//   }
 
 
 #endif
 
     template < primitive_signed_not_8bit SIGNED >
-    write_text_stream& operator <<(SIGNED i)
-    {
-
-       write_number(i);
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(SIGNED i);
+//    {
+//
+//       write_number(i);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
 
     template < primitive_unsigned_not_8bit UNSIGNED >
-    write_text_stream& operator <<(UNSIGNED u)
-    {
-
-       write_number(u);
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(UNSIGNED u);
+//    {
+//
+//       write_number(u);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
     template < typename T >
-    void print_string_copy(const T& t)
-    {
+    void print_string_copy(const T& t);
+//    {
+//
+//       ::string str;
+//
+//       ::copy(str, t);
+//
+//       print(str);
+//
+//    }
 
-       ::string str;
-
-       ::copy(str, t);
-
-       print(str);
-
-    }
-
-    write_text_stream& operator <<(integral_byte integralbyte)
-    {
-
-       print_string_copy(integralbyte);
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(integral_byte integralbyte);
+//    {
+//
+//       print_string_copy(integralbyte);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
     //write_text_stream& operator <<(i32 i)
     //{
@@ -383,21 +378,21 @@ public:
 
 
     template < primitive_floating FLOATING >
-    write_text_stream& operator <<(FLOATING f)
-    {
-
-       write_number(f);
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(FLOATING f);
+//    {
+//
+//       write_number(f);
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
 //#ifdef _MSC_VER
 //
@@ -431,123 +426,123 @@ public:
     // void write(const SIZE_I32 & size) ;
     // void write(const ::rectangle_i32 &rectangle) ;
 
-    write_text_stream& operator <<(const ::ansi_character * psz)
-    {
+    write_text_stream& operator <<(const ::ansi_character * psz);
+//    {
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       print(psz);
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       print(psz);
-
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
-
-    write_text_stream & operator <<(const ::string & str)
-    {
-
-       return this->operator <<((const ::scoped_string &)str);
-
-    }
+    write_text_stream & operator <<(const ::string & str);
+//    {
+//
+//       return this->operator <<((const ::scoped_string &)str);
+//
+//    }
 
     //text_stream & operator <<(const ::atom & atom) ;
-    write_text_stream& operator <<(const ::scoped_string & scopedstr)
-    {
-
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       print(scopedstr);
-
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(const ::scoped_string & scopedstr);
+//    {
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       print(scopedstr);
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
 
 
     template < primitive_character CHARACTER2, strsize sizeMaximumLength >
-    write_text_stream& operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
-    {
-
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       write(inlinestring.data(), inlinestring.size());
-
-       if (m_fmtflags & ::file::network_payload)
-       {
-
-          print("\"");
-
-       }
-
-       if (m_fmtflags & ::file::separated)
-       {
-
-          print(m_chSeparator);
-
-       }
-
-       return *this;
-
-    }
+    write_text_stream& operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring);
+//    {
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       write(inlinestring.data(), inlinestring.size());
+//
+//       if (m_fmtflags & ::file::network_payload)
+//       {
+//
+//          print("\"");
+//
+//       }
+//
+//       if (m_fmtflags & ::file::separated)
+//       {
+//
+//          print(m_chSeparator);
+//
+//       }
+//
+//       return *this;
+//
+//    }
     //text_stream & operator <<(const property_set& set) ;
     template < typename TYPE >
-    write_text_stream & write(const TYPE& t)
-    {
-
-       return *this << t;
-
-    }
+    write_text_stream & write(const TYPE& t);
+//    {
+//
+//       return *this << t;
+//
+//    }
 
     // void network_payload_write(const ::matter & matter);
 
 
-    void raw_print(const ::string& str)
-    {
-
-       print(str);
-
-    }
+    void raw_print(const ::string& str);
+//    {
+//
+//       print(str);
+//
+//    }
 
 
     //void print_number(const ::string& str)
@@ -560,12 +555,12 @@ public:
     //::string get_location() const;
 
     //::filesize get_position() const ;
-    void write(const void* psz, strsize s)
-    {
-
-       m_pfile->write(psz, s);
-
-    }
+    void write(const void* psz, strsize s);
+//    {
+//
+//       m_pfile->write(psz, s);
+//
+//    }
 
     //operator void* () { return this; }
 
@@ -593,3 +588,10 @@ public:
 //
 
 };
+
+
+
+#include "_impl_write_text_stream.h"
+
+
+

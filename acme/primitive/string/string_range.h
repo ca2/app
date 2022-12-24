@@ -16,11 +16,6 @@ class string_range;
 //class scoped_string_base;
 
 
-template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
-class inline_string;
-
-
-using inline_number_string = inline_string<char, 64>;
 
 
 template<primitive_character CHARACTER>
@@ -85,10 +80,10 @@ public:
     string_range() {}
 
     template<typed_range<iterator> RANGE>
-    string_range(const RANGE &range) : BASE_RANGE(range) {}
+    explicit string_range(const RANGE &range) : BASE_RANGE(range) {}
 
     template<typed_range<const_iterator> RANGE>
-    string_range(const RANGE &range) : BASE_RANGE(range) {}
+    explicit string_range(const RANGE &range) : BASE_RANGE(range) {}
 
     string_range(const THIS_RANGE &range) : BASE_RANGE(range) {}
 
@@ -96,11 +91,11 @@ public:
 
     string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 
-    string_range(const ::atom &atom);
+    explicit string_range(const ::atom &atom);
 
-    string_range(const ::block &block);
+    explicit string_range(const ::block &block);
 
-    string_range(const CHARACTER *psz) : string_range(psz, 0, string_safe_length(psz)) {}
+    explicit string_range(const CHARACTER *psz) : string_range(psz, 0, string_safe_length(psz)) {}
 
     string_range(const CHARACTER *psz, strsize len) : string_range(psz, 0, len) {}
 
@@ -113,37 +108,37 @@ public:
     //auto subrange(strsize start, strsize count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
 
-    SCOPED_STRING operator()(strsize start, strsize count) const {
+    THIS_RANGE operator()(strsize start, strsize count) const {
 
        return ::_start_count_range(*this, start, count);
 
     }
 
-    SCOPED_STRING operator()(strsize start, const_iterator end) const {
+    THIS_RANGE operator()(strsize start, const_iterator end) const {
 
        return ::_start_end_range(*this, start, end);
 
     }
 
 
-    SCOPED_STRING operator()(const_iterator start) const {
+    THIS_RANGE operator()(const_iterator start) const {
 
-       return SCOPED_STRING(start, this->end());
+       return THIS_RANGE(start, this->end());
 
     }
 
 
     template < primitive_integral START >
-    SCOPED_STRING operator()(START start) const {
+    THIS_RANGE operator()(START start) const {
 
-       return SCOPED_STRING(this->begin() + start, this->end());
+       return THIS_RANGE(this->begin() + start, this->end());
 
     }
 
 
-    SCOPED_STRING operator()() const {
+    THIS_RANGE operator()() const {
 
-       return SCOPED_STRING(*this);
+       return THIS_RANGE(*this);
 
     }
 
@@ -1579,7 +1574,7 @@ inline u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 template<>
 inline u32hash u32_hash<const_ansi_range>(const_ansi_range range) {
 
-   return _string_range_u32_hash<::ansi_character>(range);
+   return _string_range_u32_hash<::ansi_character>((::string_range<const ::ansi_character *>) range);
 
 }
 
@@ -1587,7 +1582,7 @@ inline u32hash u32_hash<const_ansi_range>(const_ansi_range range) {
 template<>
 inline u32hash u32_hash<const_wd16_range>(const_wd16_range range) {
 
-   return _string_range_u32_hash<::wd16_character>(range);
+   return _string_range_u32_hash<::wd16_character>((::string_range<const ::wd16_character *>) range);
 
 }
 
@@ -1595,7 +1590,7 @@ inline u32hash u32_hash<const_wd16_range>(const_wd16_range range) {
 template<>
 inline u32hash u32_hash<const_wd32_range>(const_wd32_range range) {
 
-   return _string_range_u32_hash<::wd32_character>(range);
+   return _string_range_u32_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
 
 }
 

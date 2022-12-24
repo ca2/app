@@ -134,7 +134,7 @@ public:
       for (auto & item : *this)
       {
 
-         stra.add(item.as_string());
+         stra.add(item.get_string());
 
       }
 

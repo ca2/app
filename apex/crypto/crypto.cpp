@@ -595,7 +595,7 @@ namespace crypto
 
          decrypt(memoryDecrypt, blockEncrypt, blockSalt);
 
-         strDecrypt = memoryDecrypt.as_string();
+         strDecrypt = memoryDecrypt.get_string();
 
       }
 
@@ -1193,7 +1193,7 @@ namespace crypto
 
          string str;
 
-         str = memory.as_string();
+         str = memory.get_string();
 
          return str;
 

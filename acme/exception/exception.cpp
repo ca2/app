@@ -482,10 +482,16 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
    string strDetails;
 
+   auto pacmenode = pparticle->acmenode();
+
+   auto processid = pacmenode->get_current_process_id();
+
+   auto strProcessId = ::as_string(processid);
+
    strDetails += strMessage + "\n";
    strDetails += exception.m_strDetails + "\n\n";
    strDetails += "\n";
-   strDetails += "PID: " + as_string(pparticle->acmenode()->get_current_process_id()) + "\n";
+   strDetails += "PID: " + strProcessId + ::string("\n");
    //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
    
    if (strMoreDetails.has_char())

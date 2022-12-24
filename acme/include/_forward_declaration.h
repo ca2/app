@@ -371,6 +371,7 @@ struct PRIMITIVE_CONTAINER_TAG_TYPE { };
 struct PRIMITIVE_PAYLOAD_TAG_TYPE { };
 struct PRIMITIVE_ATOM_TAG_TYPE { };
 struct PRIMITIVE_STRING_TAG_TYPE { };
+struct PRIMITIVE_SCOPED_STRING_TAG_TYPE { };
 
 //class handler;
 class manager;

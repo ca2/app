@@ -294,25 +294,6 @@ template < typename TYPE >
 constexpr bool is_const < const TYPE > = true;
 
 
-template < typename FROM, typename TO_POINTER >
-concept raw_pointer_castable =
-::std::is_convertible < FROM, TO_POINTER * >::value ||
-::std::is_convertible < FROM, const TO_POINTER * >::value;
-
-
-template < typename T >
-concept primitive_character =
-std::is_same < T, char >::value ||
-std::is_same < T, wchar_t >::value ||
-std::is_same < T, ::ansi_character >::value ||
-std::is_same < T, ::wd16_character >::value ||
-std::is_same < T, ::wd32_character >::value ||
-std::is_same < T, const char >::value ||
-std::is_same < T, const wchar_t >::value ||
-std::is_same < T, const ::ansi_character >::value ||
-std::is_same < T, const ::wd16_character >::value ||
-std::is_same < T, const ::wd32_character >::value;
-
 
 template < typename T >
 concept const_c_string =
@@ -511,38 +492,6 @@ template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
 
-template < typename BLOCK >
-concept primitive_block = requires(BLOCK block)
-{
-
-   block.data();
-   block.size();
-   block.length_in_bytes();
-
-};
-
-
-template < typename TYPED_BLOCK, typename ITEM_TYPE >
-concept typed_block = requires(TYPED_BLOCK typed_block, ITEM_TYPE item_type)
-{
-
-   { typed_block.data() }->::std::convertible_to<ITEM_TYPE*>;
-   typed_block.size();
-   typed_block.length_in_bytes();
-
-};
-
-template < typename CONTAINER >
-concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
-
-template < typename PAYLOAD >
-concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
-
-template < typename ATOM >
-concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
-
-template < typename STRING >
-concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
 
 using item_pointer = ::pointer < ::item >;
 
@@ -1355,7 +1304,11 @@ template < typename T >
 using dereference = typename dereference_struct < T >::type;
 
 
+template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
+class inline_string;
 
+
+using inline_number_string = inline_string<char, 64>;
 
 
 

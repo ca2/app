@@ -299,29 +299,14 @@ namespace file
       //bool operator == (const ::ansi_string & str) const;
 
 
-      bool operator == (const ::scoped_string & scopedstr) const
-      {
-
-         return operator == (string(scopedstr));
-
-      }
+      bool operator == (const ::scoped_string & scopedstr) const;
 
 
-      bool operator != (const path & path) const
-      {
-
-         return !operator==(path);
-
-      }
+      bool operator != (const path & path) const;
 
       bool operator != (const ::ansi_string & str) const;
 
-      bool operator != (const ::scoped_string & scopedstr) const
-      {
-
-         return operator != (string(scopedstr));
-
-      }
+      bool operator != (const ::scoped_string & scopedstr) const;
       //      bool operator == (const path & path) const;
 
       //      bool operator == (const ::ansi_string & str) const;
@@ -345,10 +330,10 @@ namespace file
 
       //template < typename T > path slashed_path(const T & t) const {return ::move(_slashed_path(::file::path(t)));}
       path slashed_path(const ::scoped_string & scopedstr) const;
-      path operator / (const ::scoped_string & scopedstr) const { return ::move(slashed_path(scopedstr)); }
-      path operator / (const path & path) const;
-      path operator / (const ::ansi_character * psz) const;
-      path operator / (const ::string & str) const;
+      path operator / (const ::scoped_string & scopedstr) const;
+      //path operator / (const path & path) const;
+      //path operator / (const ::ansi_character * psz) const;
+      //path operator / (const ::string & str) const;
 
       path slash_path(const ::scoped_string & scopedstr) const;
       //path & operator /= (const path & path);
@@ -362,8 +347,8 @@ namespace file
       bool has_char() const;
 
 
-      
-      
+//      template <
+//
 
       //::file::path & file_cat(const ::ansi_string & str) { return *this + str; }
 
@@ -460,30 +445,7 @@ namespace file
       //inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
 
 
-      ::file::path & patch_base_path(const ::file::path & pathBase)
-      {
-
-         auto iBasePathLength = m_iBasePathLength;
-
-         if (iBasePathLength < 0)
-         {
-
-            iBasePathLength = 0;
-
-         }
-
-         auto pszRelative = c_str() + iBasePathLength;
-
-         *this = pathBase / pszRelative;
-
-         m_iBasePathLength = pathBase.length() + 1;
-
-         return *this;
-
-      }
-
-
-
+      ::file::path & patch_base_path(const ::file::path & pathBase);
 
 
    };
@@ -517,16 +479,16 @@ inline u32hash u32_hash < const ::file::path & >(const ::file::path & key);
 
 
 
-inline ::file::path operator / (const ::ansi_character * psz, const ::file::path & pathConcat)
-{
-
-   string str(psz);
-
-   ::file::path path(str);
-
-   return path / pathConcat;
-
-}
+//inline ::file::path operator / (const ::ansi_character * psz, const ::file::path & pathConcat)
+//{
+//
+//   string str(psz);
+//
+//   ::file::path path(str);
+//
+//   return path / pathConcat;
+//
+//}
 
 
 

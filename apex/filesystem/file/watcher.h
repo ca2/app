@@ -45,7 +45,7 @@ namespace file
 
       watch_map            m_watchmap;
 
-      watch_id             m_atomLast;
+      watch_id             m_watchidLast;
 
       bool                 m_bCreateWatchThread;
 

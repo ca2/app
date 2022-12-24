@@ -252,7 +252,7 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 
 
 template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower)
+inline inline_number_string as_string(UNSIGNED u, int radix, enum_digit_case edigitcase)
 {
 
    inline_number_string numberstring;
@@ -265,7 +265,7 @@ inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_cas
 
 
 template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower)
+inline inline_number_string as_string(SIGNED i, int radix, enum_digit_case edigitcase)
 {
 
    inline_number_string numberstring;
@@ -286,8 +286,8 @@ inline inline_number_string as_string(SIGNED i, int radix = 10, enum_digit_case 
 //}
 
 
-template < primitive_floating FLOATING, int len >
-inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f")
+template < primitive_floating FLOATING >
+inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 {
 
    ::string str;

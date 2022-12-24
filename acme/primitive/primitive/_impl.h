@@ -5,6 +5,11 @@
 //#include "particle_factory.h"
 #include "acme/exception/no_memory.h"
 
+
+#include "_impl_pointer.h"
+
+
+
 inline bool __enum_is_failed(const ::e_status & e)
 {
 

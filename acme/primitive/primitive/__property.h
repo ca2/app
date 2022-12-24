@@ -278,7 +278,7 @@ using property_ptra = auto_ptr_array < ::property >;
 
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
-   string_base(property.as_string())
+   string_base(property.get_string())
 {
 
 
@@ -300,7 +300,7 @@ template < strsize n >
 ::string operator + (const ::property & property, const char (&cha)[n])
 {
 
-   return ::move(property.as_string() + cha);
+   return ::move(property.get_string() + cha);
 
 }
 
@@ -309,7 +309,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)
 {
 
-   return operator=(property.as_string());
+   return operator=(property.get_string());
 
 }
 

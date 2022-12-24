@@ -8,28 +8,28 @@ namespace file
 {
 
 
-    inline path path::operator/(const path &path) const
-    {
-
-       return ::move(*this / ::scoped_string(path));
-
-    }
-
-
-    inline path path::operator/(const ::ansi_character *psz) const
-    {
-
-       return ::move(*this / ::scoped_string(psz));
-
-    }
+//    inline path path::operator/(const path &path) const
+//    {
+//
+//       return ::move(*this / ::scoped_string(path));
+//
+//    }
 
 
-    inline path path::operator/(const ::string &str) const
-    {
+//    inline path path::operator/(const ::ansi_character *psz) const
+//    {
+//
+//       return ::move(*this / ::scoped_string(psz));
+//
+//    }
 
-       return ::move(*this / ::scoped_string(str));
 
-    }
+//    inline path path::operator/(const ::string &str) const
+//    {
+//
+//       return ::move(*this / ::scoped_string(str));
+//
+//    }
 
 
     inline path path::slashed_path(const ::scoped_string & scopedstr) const
@@ -984,16 +984,6 @@ namespace file
     }
 
 
-    //void path::calc_name() const
-    //{
-    //   m_iName = find_file_name();
-    //   m_strName = Mid(m_iName);
-    //}
-
-
-
-
-
     inline path::const_iterator path::find_name() const
     {
 
@@ -1091,13 +1081,6 @@ namespace file
 
     }
 
-//
-//   inline bool path::operator == (const ::ansi_string& str) const
-//   {
-//
-//      return operator == (path(str));
-//
-//   }
 
     inline bool path::operator == (const ::string & str) const
     {
@@ -1105,6 +1088,7 @@ namespace file
        return operator == (path(str));
 
     }
+
 
     inline bool path::operator != (const ::ansi_string& str) const
     {
@@ -1114,15 +1098,71 @@ namespace file
     }
 
 
+    inline path path::operator / (const ::scoped_string & scopedstr) const
+    {
+
+       return ::move(slashed_path(scopedstr));
+
+    }
+
+
+    inline ::file::path & path::patch_base_path(const ::file::path & pathBase)
+    {
+
+       auto iBasePathLength = m_iBasePathLength;
+
+       if (iBasePathLength < 0)
+       {
+
+          iBasePathLength = 0;
+
+       }
+
+       auto pszRelative = c_str() + iBasePathLength;
+
+       *this = pathBase / pszRelative;
+
+       m_iBasePathLength = pathBase.length() + 1;
+
+       return *this;
+
+    }
+
+
+    inline bool path::operator == (const ::scoped_string & scopedstr) const
+    {
+
+       return operator == (string(scopedstr));
+
+    }
+
+
+    inline bool path::operator != (const path & path) const
+    {
+
+       return !operator==(path);
+
+    }
+
+
+    inline bool path::operator != (const ::scoped_string & scopedstr) const
+    {
+
+       return operator != (string(scopedstr));
+
+    }
+
+
+
 } // namespace file
 
 
-inline ::file::path operator+(const ::file::path & path1, const ::file::path & path2)
-{
-
-   return ::move(::file::path(((const::string &)path1) + ((const ::string&)path2)));
-
-}
+//inline ::file::path operator+(const ::file::path & path1, const ::file::path & path2)
+//{
+//
+//   return ::move(::file::path(((const::string &)path1) + ((const ::string&)path2)));
+//
+//}
 
 
 // For MSVC, but not for GCC?
@@ -1140,66 +1180,95 @@ inline ::file::path operator+(const ::file::path & path1, const ::file::path & p
 //}
 
 
-inline ::file::path operator+ (const ::file::path & path, const ::atom & atom)
-{
-
-   return ((const::string &)path) + atom;
-
-}
-
-
-inline ::file::path operator+(const ::file::path & path, const ::file::path::RANGE & range)
-{
-
-   return ((const::string &)path) + ::string(range);
-
-}
-
-
-
-template < strsize m_sizeMaximumLength >
-inline ::file::path operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
-{
-
-   return ((const ::string &)path) + ::string(inlinestring);
-
-}
-
-
-template < strsize c >
-inline ::file::path operator +(const ::file::path & path, const ::ansi_character(&cha)[c])
-{
-
-   return ((const ::string &)path) + ::string(cha);
-
-}
-
-
-inline ::file::path operator+(const ::string & str, const ::file::path & path)
-{
-
-   return str + ((const::string &)path);
-}
-
-
-inline ::file::path operator+(const ::const_ansi_range & range, const ::file::path & path)
-{
-
-   return ::string(range) + ((const::string &)path);
-
-}
+//inline ::file::path operator+ (const ::file::path & path, const ::atom & atom)
+//{
+//
+//   return ((const::string &)path) + atom;
+//
+//}
+//
+//
+//inline ::file::path operator+(const ::file::path & path, const ::file::path::RANGE & range)
+//{
+//
+//   return ((const::string &)path) + ::string(range);
+//
+//}
 
 
 
-template < ::count c >
-inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
-{
+//template < strsize m_sizeMaximumLength >
+//inline ::file::path operator +(const ::file::path & path, const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
+//{
+//
+//   return ((const ::string &)path) + ::string(inlinestring);
+//
+//}
+//
+//
+//template < strsize c >
+//inline ::file::path operator +(const ::file::path & path, const ::ansi_character(&cha)[c])
+//{
+//
+//   return ((const ::string &)path) + ::string(cha);
+//
+//}
+//
+//
+//inline ::file::path operator+(const ::string & str, const ::file::path & path)
+//{
+//
+//   return str + ((const::string &)path);
+//}
+//
+//
+//inline ::file::path operator+(const ::const_ansi_range & range, const ::file::path & path)
+//{
+//
+//   return ::string(range) + ((const::string &)path);
+//
+//}
+//
+//
+//
+//template < ::count c >
+//inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
+//{
+//
+//   return ::string(sz) + ((const::string &)path);
+//
+//}
 
-   return ::string(sz) + ((const::string &)path);
 
-}
-
-
-
+//namespace file
+//{
+//
+//    //   inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
+//    //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+//    //inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
+//    //inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
+//    //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+//    //inline path & path::operator += (const property & property) { return operator += ((const ::payload &) property); }
+//    //inline path path::operator + (const ::payload & payload) const { return operator + (payload.get_string()); }
+//    //inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
+//    //inline path path::operator + (const atom & atom) const { return operator + (atom.str()); }
+//    //inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
+//    //inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
+//    //inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+//    //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+//    inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
+//    inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(path)), m_epath }; }
+//    inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + ::string(this->separator()) + ::string(::sz::trim_left_path_sep(str)), m_epath }; }
+//    //inline path path::sibling(const ::string & psz) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+//    //inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rear_find(sep()) + 1)]; }
+//    inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
+//    //inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
+//    //inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//    //   inline path path::folder() const { return ::file_path_folder(*this); }
+//    //inline bool path::operator == (const ::payload & payload) const { return operator == (string(payload)); }
+//    //inline bool path::operator != (const ::payload & payload) const { return operator != (string(payload)); }
+//
+//} // namespace file
+//
 
 

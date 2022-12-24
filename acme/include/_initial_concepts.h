@@ -81,6 +81,72 @@ concept typed_range = requires(T t, ITERATOR_TYPE iterator)
 };
 
 
+
+
+template < typename FROM, typename TO_POINTER >
+concept raw_pointer_castable =
+::std::is_convertible < FROM, TO_POINTER * >::value ||
+::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+
+template < typename T >
+concept primitive_character =
+std::is_same < T, ::byte >::value ||
+std::is_same < T, char >::value ||
+std::is_same < T, wchar_t >::value ||
+std::is_same < T, ::ansi_character >::value ||
+std::is_same < T, ::wd16_character >::value ||
+std::is_same < T, ::wd32_character >::value ||
+std::is_same < T, const ::byte >::value ||
+std::is_same < T, const char >::value ||
+std::is_same < T, const wchar_t >::value ||
+std::is_same < T, const ::ansi_character >::value ||
+std::is_same < T, const ::wd16_character >::value ||
+std::is_same < T, const ::wd32_character >::value;
+
+
+template < typename T >
+concept primitive_character_iterator =
+std::is_same < T, ::byte * >::value ||
+std::is_same < T, char * >::value ||
+std::is_same < T, wchar_t * >::value ||
+std::is_same < T, ::ansi_character * >::value ||
+std::is_same < T, ::wd16_character * >::value ||
+std::is_same < T, ::wd32_character * >::value ||
+std::is_same < T, const ::byte * >::value ||
+std::is_same < T, const char * >::value ||
+std::is_same < T, const wchar_t * >::value ||
+std::is_same < T, const ::ansi_character * >::value ||
+std::is_same < T, const ::wd16_character * >::value ||
+std::is_same < T, const ::wd32_character * >::value;
+
+
+template < typename T >
+concept primitive_character_iterator_reference =
+std::is_same < T, ::byte * & >::value ||
+std::is_same < T, char * & >::value ||
+std::is_same < T, wchar_t * & >::value ||
+std::is_same < T, ::ansi_character * & >::value ||
+std::is_same < T, ::wd16_character * & >::value ||
+std::is_same < T, ::wd32_character * & >::value ||
+std::is_same < T, const ::byte * & >::value ||
+std::is_same < T, const char * & >::value ||
+std::is_same < T, const wchar_t * & >::value ||
+std::is_same < T, const ::ansi_character * & >::value ||
+std::is_same < T, const ::wd16_character * & >::value ||
+std::is_same < T, const ::wd32_character * & >::value;
+
+
+template < typename T >
+concept character_range = requires(T t)
+{
+
+   { t.begin() } -> primitive_character_iterator_reference;
+   { t.end() } -> primitive_character_iterator_reference;
+
+};
+
+
 struct ITERATOR_TYPE_TAG {};
 
 template < typename ITERATOR >
@@ -150,4 +216,50 @@ namespace comparison
 //|| ::std::convertible_to<COMPARE_ITEM,::std::function< ::std::strong_ordering(const ITEM &, const ITEM &)>>;
 //
 //
+
+
+template < typename BLOCK >
+concept primitive_block = requires(BLOCK block)
+{
+
+   block.data();
+   block.size();
+   block.length_in_bytes();
+
+};
+
+
+template < typename TYPED_BLOCK, typename ITEM_TYPE >
+concept typed_block = requires(TYPED_BLOCK typed_block, ITEM_TYPE item_type)
+{
+
+   { typed_block.data() }->::std::convertible_to<ITEM_TYPE*>;
+   typed_block.size();
+   typed_block.length_in_bytes();
+
+};
+
+template < typename CONTAINER >
+concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
+
+template < typename PAYLOAD >
+concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
+
+template < typename ATOM >
+concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
+
+template < typename STRING >
+concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
+
+template < typename SCOPED_STRING >
+concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
+
+
+template < typename T >
+concept character_range_not_string = character_range<T> && !primitive_string<T>;
+
+
+template < typename T >
+concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+
 

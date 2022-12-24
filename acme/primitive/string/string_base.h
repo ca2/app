@@ -54,6 +54,9 @@ public:
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
    string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
+   //string_base(const ::ansi_character * psz);
+   //string_base(const ::wd16_character * psz);
+   //string_base(const ::wd32_character * psz);
    string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
    string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
    string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
@@ -75,19 +78,19 @@ public:
 
 
    template<typed_range<::ansi_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
    template<typed_range<::wd16_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
    template<typed_range<::wd32_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
 
 
    template<typed_range<const ::ansi_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
    template<typed_range<const ::wd16_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
    template<typed_range<const ::wd32_character *> RANGE>
-   string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(e_no_initialize) { construct5(str); }
 
 
 
@@ -107,9 +110,9 @@ public:
    //   string_base(const ::const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize){construct2(ansirange);}
 //   string_base(const ::const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize){construct2(wd16range);}
 //   string_base(const ::const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize){construct2(wd32range);}
-   //string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange, 0, -1); }
-   //string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range, 0, -1); }
-   //string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range, 0, -1); }
+   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(e_no_initialize) { construct2(ansirange.begin(), ansirange.size()); }
+   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(e_no_initialize) { construct2(wd16range.begin(), wd16range.size()); }
+   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(e_no_initialize) { construct2(wd32range.begin(), wd32range.size()); }
    //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, 0, len); }
    //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, 0, len); }
    //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
@@ -370,7 +373,11 @@ public:
 //   inline string_base & operator +=(const TYPE & t);
 //
 
-   // maybe it doesn't because of ambiguity with global
+   template < primitive_character CHARACTER2 >
+   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::move(str); }
+
+
+    // maybe it doesn't because of ambiguity with global
    // + operators... (in all compilers MSVC++, LLVM, GCC...)
    //template < typename TYPE >
    //inline string_base operator +(const TYPE & t) const;
@@ -480,6 +487,9 @@ public:
    //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
    inline string_base & append(strsize len, CHARACTER ch);
+   template < primitive_character CHARACTER2 >
+   inline string_base & append_character_array(const CHARACTER2 * psz, strsize len)
+   { auto pszEnd = psz + len; if(*(pszEnd - 1) == 0) pszEnd--; append(psz, pszEnd - psz); }
 
    inline string_base & append_character(::wd32_character wch);
    inline string_base & append_character(::ansi_character ch);
@@ -1130,7 +1140,7 @@ public:
 //}
 
 
-inline ::string operator + (const ::string & str, char ch);
+//inline ::string operator + (const ::string & str, char ch);
 
 //inline ::string operator +(const ::string & str, const ::ansi_character * psz)
 //{
@@ -1140,12 +1150,12 @@ inline ::string operator + (const ::string & str, char ch);
 //}
 
 
-template < ::count c >
-inline ::string operator +(const ::string & str, const char(&sz)[c]);
-
-
-template < strsize m_sizeMaximumLength >
-inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
+//template < ::count c >
+//inline ::string operator +(const ::string & str, const char(&sz)[c]);
+//
+//
+//template < strsize m_sizeMaximumLength >
+//inline ::string operator +(const ::string & str, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
 //inline ::string operator +(const scoped_string & scopedstr, const ::string & str)
 //{
@@ -1155,7 +1165,7 @@ inline ::string operator +(const ::string & str, const ::inline_string < char, m
 //}
 
 
-inline ::string operator +(char ch, const ::string & str);
+//inline ::string operator +(char ch, const ::string & str);
 
 
 // For MSVC, but not for GCC?
@@ -1168,13 +1178,13 @@ inline ::string operator +(char ch, const ::string & str);
 //}
 
 
-template < ::count c >
-inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
-{
-
-   return ::string(str) + sz;
-
-}
+//template < ::count c >
+//inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
+//{
+//
+//   return ::string(str) + sz;
+//
+//}
 
 
 // For MSVC, but not for GCC?
@@ -1222,21 +1232,21 @@ inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
 //}
 
 
-inline ::wstring operator +(const ::wide_character * pwsz, ::wstring wstr)
-{
-
-   return ::wstring(pwsz) + wstr;
-
-}
-
-
-template < ::count c >
-inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
-{
-
-   return ::wstring(wsz) + wstr;
-
-}
+//inline ::wstring operator +(const ::wide_character * pwsz, ::wstring wstr)
+//{
+//
+//   return ::wstring(pwsz) + wstr;
+//
+//}
+//
+//
+//template < ::count c >
+//inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
+//{
+//
+//   return ::wstring(wsz) + wstr;
+//
+//}
 
 //
 //block::block(const string_base &str)
@@ -1248,12 +1258,12 @@ inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
 //}
 
 
-template < ::count c, strsize m_sizeMaximumLength >
-inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
+//template < ::count c, strsize m_sizeMaximumLength >
+//inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
 
-template < ::count c, strsize m_sizeMaximumLength >
-inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
+//template < ::count c, strsize m_sizeMaximumLength >
+//inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
 
 
 CLASS_DECL_ACME::string _(const ::string & str);
@@ -1267,41 +1277,41 @@ class argument_of < ::string_base < const CHARACTER * > >
 {
 public:
 
-   using type = ::string_range < const CHARACTER * >;
+   using type = ::scoped_string_base < const CHARACTER * >;
 
 };
 
 
 
 
-template < typename ITERATOR_TYPE >
-inline ::string_base < ITERATOR_TYPE > operator + (const string_range < ITERATOR_TYPE > & scopedstrA, const string_range < ITERATOR_TYPE > & scopedstrB )
-{
+//template < typename ITERATOR_TYPE >
+//inline ::string_base < ITERATOR_TYPE > operator + (const string_range < ITERATOR_TYPE > & scopedstrA, const string_range < ITERATOR_TYPE > & scopedstrB )
+//{
+//
+//   string_base < ITERATOR_TYPE > str;
+//
+//   auto len = scopedstrA.size() + scopedstrB.size();
+//
+//   auto p = str.get_string_buffer(len);
+//
+//   memcpy(p, scopedstrA, scopedstrA.size());
+//
+//   memcpy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
+//
+//   str.release_string_buffer(len);
+//
+//   return ::move(str);
+//
+//}
 
-   string_base < ITERATOR_TYPE > str;
 
-   auto len = scopedstrA.size() + scopedstrB.size();
-
-   auto p = str.get_string_buffer(len);
-
-   memcpy(p, scopedstrA, scopedstrA.size());
-
-   memcpy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
-
-   str.release_string_buffer(len);
-
-   return ::move(str);
-
-}
-
-
-template < strsize n, typename ITERATOR_TYPE >
-inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const string_range < ITERATOR_TYPE > & scopedstr)
-{
-
-   return ::move(::string_base < ITERATOR_TYPE >(cha) + scopedstr);
-
-}
+//template < strsize n, typename ITERATOR_TYPE >
+//inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const string_range < ITERATOR_TYPE > & scopedstr)
+//{
+//
+//   return ::move(::string_base < ITERATOR_TYPE >(cha) + scopedstr);
+//
+//}
 
 
 // For MSVC, but not for GCC?
@@ -1324,5 +1334,104 @@ inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const s
 //
 //}
 
+
+
+template < primitive_floating FLOATING >
+inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
+
+
+
+template < >
+inline u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr);
+
+
+template < >
+inline u32hash u32_hash < const wide_string & >(const wide_string & widestr);
+
+
+template < >
+inline u32hash u32_hash < ansi_string >(ansi_string ansistr);
+
+
+template < >
+inline u32hash u32_hash < wide_string >(wide_string widestr);
+
+
+
+template < primitive_character CHARACTER, typed_range < const ::ansi_character * > ANSI_RANGE >
+string_base < const CHARACTER * > operator + (const CHARACTER * psz, const ANSI_RANGE & range)
+{ string_base < const CHARACTER * > str(psz); return ::move(str + range); }
+
+
+
+template < character_range RANGE1, character_range RANGE2 >
+string_base < typename RANGE1::const_iterator > operator + (const RANGE1 & range1, const RANGE2 & range2)
+{
+
+   string_base < typename RANGE1::const_iterator > str(range1.begin(), range1.size());
+
+   str.append(range2.begin(), range2.size());
+
+   return str;
+
+}
+
+
+//template < typed_range < ::wd16_character * > WD16_RANGE >
+//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//
+//template < typed_range < ::wd32_character * > WD32_RANGE >
+//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//
+//template < typed_range < const ::ansi_character * > ANSI_RANGE >
+//string_base operator + (const ANSI_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//
+//template < typed_range < const ::wd16_character * > WD16_RANGE >
+//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//
+//template < typed_range < const ::wd32_character * > WD32_RANGE >
+//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+
+
+template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
+::string operator + (const CHARACTER2 * psz, const HAS_AS_STRING & has_as_string)
+{
+
+   return ::move(::string(psz) + has_as_string.as_string());
+
+}
+
+
+template < character_range RANGE, has_as_string HAS_AS_STRING >
+::string operator + (const RANGE & range, const HAS_AS_STRING & has_as_string)
+{
+
+   return ::move(::string(range) + has_as_string.as_string());
+
+}
+
+
+//template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+//::string_base < const CHARACTER * > operator + (const CHARACTER * psz, const CHARACTER2 * psz2)
+//{
+//
+//   return ::move(::string_base < const CHARACTER * >(psz) + ::string_base < const CHARACTER * >(psz2));
+//
+//}
+
+
+//template < typename T >
+//concept primitive_string =
+//::std::is_base_of<T, ::ansi_string >::value ||
+//::std::is_base_of<T, ::wd16_string >::value ||
+//::std::is_base_of<T, ::wd32_string >::value;
+
+
+//template < typename T >
+//concept character_range_not_string = character_range<T> && !primitive_string<T>;
+//
+//
+//template < typename T >
+//concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 

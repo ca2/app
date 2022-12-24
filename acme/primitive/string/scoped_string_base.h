@@ -10,11 +10,13 @@ class scoped_string_base :
 public:
 
 
+
+   using PRIMITIVE_SCOPED_STRING_TAG = PRIMITIVE_SCOPED_STRING_TAG_TYPE;
+
    using RANGE = string_range < ITERATOR_TYPE >;
    using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;
-   //using RANGE = ::string_range < ITERATOR_TYPE >;
    using this_iterator = typename RANGE::this_iterator;
    using iterator = typename RANGE::iterator;
    using const_iterator = typename RANGE::const_iterator;
@@ -25,62 +27,47 @@ public:
 
    scoped_string_base():m_str(e_zero_initialize),RANGE(e_zero_initialize) {}
    scoped_string_base(nullptr_t) :m_str(e_zero_initialize), RANGE(e_zero_initialize) {}
-   scoped_string_base(const ::ansi_string & str) :
-      m_str(e_zero_initialize), RANGE(e_zero_initialize)
-   {
-      if constexpr (sizeof(CHARACTER) == 1)
-      {
-         RANGE::operator=(str);
-      }
-      else
-      {
-         m_str = str;
-         RANGE::operator=(m_str);
-      }
-   }
-   scoped_string_base(const ::wd16_string & str) :
-      m_str(e_zero_initialize), RANGE(e_zero_initialize)
-   {
-      if constexpr (sizeof(CHARACTER) == 2)
-      {
-         RANGE::operator=(str);
-      }
-      else
-      {
-         m_str = str;
-         RANGE::operator=(m_str);
-      }
-   }
-   scoped_string_base(const ::wd32_string & str) :
-      m_str(e_zero_initialize), RANGE(e_zero_initialize)
-   {
-      if constexpr (sizeof(CHARACTER) == 4)
-      {
-         RANGE::operator=(str);
-      }
-      else
-      {
-         m_str = str;
-         RANGE::operator=(m_str);
-      }
-   }
-   scoped_string_base(const ::block & block) :m_str(e_zero_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
-   scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
-   scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
-   scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
-   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), RANGE(range) { }
-   scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), RANGE(range) { }
-   scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), RANGE(range) { }
-   scoped_string_base(const ::atom & atom):m_str(atom.as_string()), RANGE(m_str) { }
-   scoped_string_base(const ::payload & payload):m_str(payload.as_string()), RANGE(m_str) { }
-   scoped_string_base(const ::property & property):m_str(property.as_string()), RANGE(m_str) { }
-   scoped_string_base(const ::inline_number_string & inline_number_string) : RANGE(inline_number_string) {}
+   scoped_string_base(const scoped_ansi_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd16_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd32_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
+
+   template < primitive_string STRING >
+   scoped_string_base(const STRING & str) : m_str(str), RANGE(m_str) { }
+
+   template < has_as_string HAS_AS_STRING >
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : m_str(has_as_string.as_string()), RANGE(m_str) { }
+
+   template < primitive_payload PAYLOAD >
+   scoped_string_base(const PAYLOAD & payload) : m_str(payload.get_string()), RANGE(m_str) { }
+
+   template < primitive_character CHARACTER2 >
+   scoped_string_base(CHARACTER2 character) : m_str(character), RANGE(m_str) { }
+
+   template < character_range_not_string_neither_scoped_string CHARACTER_RANGE >
+   scoped_string_base(const CHARACTER_RANGE & range) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(range); }
+
+    //   scoped_string_base(const ::block & block) :m_str(e_zero_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
+//   scoped_string_base(const ::ansi_character ch) :m_str(ch), RANGE(m_str) { }
+//   scoped_string_base(const ::wd16_character ch) :m_str(ch), RANGE(m_str) { }
+//   scoped_string_base(const ::wd32_character ch) :m_str(ch), RANGE(m_str) { }
+   //scoped_string_base(const ::ansi_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+   //scoped_string_base(const ::wd16_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+   //scoped_string_base(const ::wd32_character * psz) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(psz); }
+//   scoped_string_base(const ::const_ansi_range & range) :m_str(e_zero_initialize), RANGE(range) { }
+//   scoped_string_base(const ::const_wd16_range & range) :m_str(e_zero_initialize), RANGE(range) { }
+//   scoped_string_base(const ::const_wd32_range & range) :m_str(e_zero_initialize), RANGE(range) { }
+//   scoped_string_base(const ::atom & atom):m_str(atom.as_string()), RANGE(m_str) { }
+//   scoped_string_base(const ::payload & payload):m_str(payload.as_string()), RANGE(m_str) { }
+//   scoped_string_base(const ::property & property):m_str(property.as_string()), RANGE(m_str) { }
+//   scoped_string_base(const ::inline_number_string & inline_number_string) : RANGE(inline_number_string) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :m_str(e_zero_initialize), RANGE(start, end) { }
+   //template < strsize n >
+   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
 
 
    template < primitive_character CHARACTER2 >
@@ -98,15 +85,36 @@ public:
       }
    }
 
+   template < typename GENERIC_RANGE >
+   void construct_range(const GENERIC_RANGE & range)
+   {
+
+      if constexpr (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
+      {
+
+         RANGE::operator = (range);
+
+      }
+      else
+      {
+
+         m_str = range;
+
+         RANGE::operator = (m_str);
+
+      }
+
+   }
+
    inline bool operator ==(const ::ansi_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::wd16_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::wd32_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::ansi_character * psz) const { return this->equals(psz); }
    inline bool operator ==(const ::wd16_character * psz) const { return this->equals(psz); }
    inline bool operator ==(const ::wd32_character * psz) const { return this->equals(psz); }
-   //inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals(scoped_string_base(str)); }
-   //inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
-   //inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
+   inline bool operator ==(const ::scoped_ansi_string & str) const { return this->equals(scoped_string_base(str)); }
+   inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
+   inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
 
 
    operator CHARACTER * () { return this->begin(); }
@@ -184,25 +192,26 @@ inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITER
 
 }
 
-template < typename ITERATOR_TYPE1, typename ITERATOR_TYPE2 >
-inline string_base < ITERATOR_TYPE1 > operator + (const scoped_string_base < ITERATOR_TYPE1 > & scopedstr1, const scoped_string_base < ITERATOR_TYPE2 > & scopedstr2)
-{
+//template < typename ITERATOR_TYPE1, typename ITERATOR_TYPE2 >
+//inline string_base < ITERATOR_TYPE1 > operator + (const scoped_string_base < ITERATOR_TYPE1 > & scopedstr1, const scoped_string_base < ITERATOR_TYPE2 > & scopedstr2)
+//{
+//
+//   return ::move(::string(scopedstr1) + ::string(scopedstr2));
+//
+//}
 
-   return ::move(::string(scopedstr1) + ::string(scopedstr2));
 
-}
-
-
-inline ::ansi_string operator + (const ::scoped_ansi_string & scopedstr1, const ::scoped_ansi_string & scopedstr2)
-{
-
-   ::ansi_string str(scopedstr1);
-
-   str.append(scopedstr2);
-
-   return ::move(str);
-
-}
+//template < primitive_character CHARACTER1, primitive_character CHARACTER2 >
+//inline ::ansi_string operator + (const ::range < const CHARACTER1 * > & scopedstr1, const ::range < const CHARACTERE & scopedstr2)
+//{
+//
+//   ::ansi_string str(scopedstr1);
+//
+//   str.append(scopedstr2);
+//
+//   return ::move(str);
+//
+//}
 
 
 //inline ::wd16_string operator + (const ::scoped_wd16_string & scopedstr1, const ::scoped_wd16_string & scopedstr2)
@@ -227,3 +236,49 @@ inline ::ansi_string operator + (const ::scoped_ansi_string & scopedstr1, const 
 //   return ::move(str);
 //
 //}
+
+
+
+template<primitive_character CHARACTER>
+inline u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *> scopedstr) {
+
+   if (scopedstr.is_empty()) {
+
+      return {0};
+
+   }
+
+   u32 uHash = 0;
+
+   while (scopedstr.m_begin < scopedstr.m_end) uHash = (uHash << 5) + *(scopedstr.m_begin++);
+
+   return {uHash};
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_ansi_string>(scoped_ansi_string scopedstr) {
+
+   return _scoped_string_u32_hash<::ansi_character>((::scoped_string_base<const ::ansi_character *>) scopedstr);
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_wd16_string>(scoped_wd16_string scopedstr) {
+
+   return _scoped_string_u32_hash<::wd16_character>((::scoped_string_base<const ::wd16_character *>) scopedstr);
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_wd32_string>(scoped_wd32_string scopedstr) {
+
+   return _scoped_string_u32_hash<::wd32_character>((::scoped_string_base<const ::wd32_character *>) scopedstr);
+
+}
+
+
+

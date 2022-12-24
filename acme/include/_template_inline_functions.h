@@ -757,4 +757,8 @@ bool not_found(const T * p)
 }
 
 
+//template < primitive_floating FLOATING, int len >
+//inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
+
+
 

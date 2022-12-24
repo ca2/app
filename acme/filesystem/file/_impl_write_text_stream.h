@@ -3,10 +3,13 @@
 //
 #pragma once
 
-xxxxxx        public PARTICLE_FLAGS,
-        public print_formatting
-{
-public:
+
+
+
+//    public PARTICLE_FLAGS,
+//        public print_formatting
+//{
+//public:
 
 
 //    FILE *         m_pfile;
@@ -18,13 +21,41 @@ public:
 //#endif
 
 template < typename FILE >
-write_text_stream < FILE >::write_text_stream();
+inline write_text_stream < FILE >::write_text_stream()
+{
+
+
+}
+
+
 template < typename FILE >
-write_text_stream < FILE >write_text_stream(FILE* pfile);
+inline write_text_stream < FILE >::write_text_stream(FILE* pfile)
+{
+
+   m_pfile = pfile;
+
+   set_ok_flag();
+
+   //if (pfile->has_storing_flag())
+   //{
+
+   //   defer_set_storing_flag();
+
+   //}
+
+}
+
+
+
+//template < typename FILE >
+//write_text_stream < FILE > write_text_stream(const write_text_stream& stream) = delete;
+
 template < typename FILE >
-write_text_stream < FILE > write_text_stream(const write_text_stream& stream) = delete;
-template < typename FILE >
-write_text_stream < FILE >~write_text_stream();
+write_text_stream < FILE >::~write_text_stream()
+{
+
+
+}
 
 
     // void destroy() ;
@@ -69,22 +100,32 @@ write_text_stream < FILE >~write_text_stream();
 
     //}
 
-template < typename FILE >
-void write_text_stream < FILE >::print(const ::string& str)
-    {
-
-       m_pfile->write(str.c_str(), str.length_in_bytes());
-
-    }
+//template < typename FILE >
+//void write_text_stream < FILE >::print(const ::string& str)
+//{
+//
+//   m_pfile->write(str.c_str(), str.length_in_bytes());
+//
+//}
 
 template < typename FILE >
 template < primitive_number NUMBER >
-void write_text_stream < FILE >::
-    write_number(NUMBER number) { print(as_string(number)); }
+void write_text_stream < FILE >::write_number(NUMBER number)
+{
+
+   print(as_string(number));
+
+}
+
 
 template < typename FILE >
-    template < primitive_number NUMBER >
-void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_character * pszFormat) { print(as_string(number, pszFormat)); }
+template < primitive_number NUMBER >
+void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_character * pszFormat)
+{
+
+   print(as_string(number, pszFormat));
+
+}
 
     /*template < typename TYPE >
     void number_exchange(TYPE& t)
@@ -138,25 +179,25 @@ void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_charac
     template < typename TYPE >
     void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
-    template < typename FILE >
-    void write_text_stream < FILE >::append_format(const ::ansi_character * pszFormat, ...)
-    {
+ template < typename FILE >
+ void write_text_stream < FILE >::append_format(const ::ansi_character * pszFormat, ...)
+ {
 
-       ::string strText;
+    ::string strText;
 
-       ASSERT(__is_valid_string(pszFormat));
+    ASSERT(__is_valid_string(pszFormat));
 
-       va_list argList;
+    va_list argList;
 
-       va_start(argList, pszFormat);
+    va_start(argList, pszFormat);
 
-       strText.format_arguments(pszFormat, argList);
+    strText.format_arguments(pszFormat, argList);
 
-       va_end(argList);
+    va_end(argList);
 
-       print(strText);
+    print(strText);
 
-    }
+ }
 
 
     //bool is_stream_null();
@@ -164,92 +205,95 @@ void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_charac
 
     //void close() {}
 
+
 template < typename FILE >
 void write_text_stream < FILE >::new_line()
-    {
+{
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          m_pfile->unget_if(m_chSeparator);
+      m_pfile->unget_if(m_chSeparator);
 
-       }
+   }
 
-       print(m_pszEolSeparator);
+   print(m_pszEolSeparator);
 
-    }
+}
+
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(bool b)
-    {
+{
 
-       if(b)
-       {
+   if(b)
+   {
 
-          print("1");
+      print("1");
 
-       }
-       else
-       {
+   }
+   else
+   {
 
-          print("0");
+      print("0");
 
-       }
+   }
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
 
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(char ch)
-    {
+{
 
-       write(&ch, 1);
+   write(&ch, 1);
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
+
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(enum_start_reference)
-    {
+{
 
-       return *this;
+   return *this;
 
-    }
+}
 
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(uchar uch)
-    {
+{
 
-       write(&uch, 1);
+   write(&uch, 1);
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
 
 
 #ifdef WINDOWS
@@ -257,160 +301,164 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(uchar uch)
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(unichar wch)
+{
+
+   char sz[10];
+
+   wd16_to_ansi(sz, &wch, 1);
+
+   print(sz);
+
+   if (m_fmtflags & ::file::separated)
    {
 
-      char sz[10];
-
-      wd16_to_ansi(sz, &wch, 1);
-
-      print(sz);
-
-      if (m_fmtflags & ::file::separated)
-      {
-
-         print(m_chSeparator);
-
-      }
-
-      return *this;
+      print(m_chSeparator);
 
    }
+
+   return *this;
+
+}
 
 
 #endif
 
-    template < primitive_signed_not_8bit SIGNED >
-    template < typename FILE >
-    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(SIGNED i)
-    {
 
-       write_number(i);
+template < typename FILE >
+template < primitive_signed_not_8bit SIGNED >
+write_text_stream < FILE > & write_text_stream < FILE >::operator <<(SIGNED i)
+{
 
-       if (m_fmtflags & ::file::separated)
-       {
+   write_number(i);
 
-          print(m_chSeparator);
+   if (m_fmtflags & ::file::separated)
+   {
 
-       }
+      print(m_chSeparator);
 
-       return *this;
+   }
 
-    }
+   return *this;
+
+}
 
 
-    template < primitive_unsigned_not_8bit UNSIGNED >
-    template < typename FILE >
-    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(UNSIGNED u)
-    {
+template < typename FILE >
+template < primitive_unsigned_not_8bit UNSIGNED >
+write_text_stream < FILE > & write_text_stream < FILE >::operator <<(UNSIGNED u)
+{
 
-       write_number(u);
+   write_number(u);
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
 
-    template < typename T >
-    template < typename FILE >
-    write_text_stream < FILE > & write_text_stream < FILE >::print_string_copy(const T& t)
-    {
 
-       ::string str;
+template < typename FILE >
+template < typename T >
+void write_text_stream < FILE >::print_string_copy(const T& t)
+{
 
-       ::copy(str, t);
+   ::string str;
 
-       print(str);
+   ::copy(str, t);
 
-    }
+   print(str);
+
+}
+
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(integral_byte integralbyte)
-    {
+{
 
-       print_string_copy(integralbyte);
+   print_string_copy(integralbyte);
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
 
-    //write_text_stream& operator <<(i32 i)
-    //{
+ //write_text_stream& operator <<(i32 i)
+ //{
 
-    //   write_integer(i);
+ //   write_integer(i);
 
-    //   print(m_chSeparator);
+ //   print(m_chSeparator);
 
-    //   return *this;
+ //   return *this;
 
-    //}
-
-
-    //write_text_stream& operator <<(u32 u)
-    //{
-
-    //   write_natural(u);
-
-    //   print(m_chSeparator);
-
-    //   return *this;
-
-    //}
+ //}
 
 
-    //write_text_stream& operator <<(i64 i)
-    //{
+ //write_text_stream& operator <<(u32 u)
+ //{
 
-    //   write_integer(i);
+ //   write_natural(u);
 
-    //   print(m_chSeparator);
+ //   print(m_chSeparator);
 
-    //   return *this;
+ //   return *this;
 
-    //}
-
-
-    //write_text_stream& operator <<(u64 u)
-    //{
-
-    //   write_natural(u);
-
-    //   print(m_chSeparator);
-
-    //   return *this;
-
-    //}
+ //}
 
 
-    template < primitive_floating FLOATING >
-    template < typename FILE >
-    write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
-    {
+ //write_text_stream& operator <<(i64 i)
+ //{
 
-       write_number(f);
+ //   write_integer(i);
 
-       if (m_fmtflags & ::file::separated)
-       {
+ //   print(m_chSeparator);
 
-          print(m_chSeparator);
+ //   return *this;
 
-       }
+ //}
 
-       return *this;
 
-    }
+ //write_text_stream& operator <<(u64 u)
+ //{
+
+ //   write_natural(u);
+
+ //   print(m_chSeparator);
+
+ //   return *this;
+
+ //}
+
+
+template < typename FILE >
+template < primitive_floating FLOATING >
+write_text_stream < FILE > & write_text_stream < FILE >::operator <<(FLOATING f)
+{
+
+   write_number(f);
+
+   if (m_fmtflags & ::file::separated)
+   {
+
+      print(m_chSeparator);
+
+   }
+
+   return *this;
+
+}
+
 
 //#ifdef _MSC_VER
 //
@@ -444,36 +492,38 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(integral_by
     // void write(const SIZE_I32 & size) ;
     // void write(const ::rectangle_i32 &rectangle) ;
 
+
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
-    {
+{
 
-       if (m_fmtflags & ::file::network_payload)
-       {
+   if (m_fmtflags & ::file::network_payload)
+   {
 
-          print("\"");
+      print("\"");
 
-       }
+   }
 
-       print(psz);
+   print(psz);
 
-       if (m_fmtflags & ::file::network_payload)
-       {
+   if (m_fmtflags & ::file::network_payload)
+   {
 
-          print("\"");
+      print("\"");
 
-       }
+   }
 
-       if (m_fmtflags & ::file::separated)
-       {
+   if (m_fmtflags & ::file::separated)
+   {
 
-          print(m_chSeparator);
+      print(m_chSeparator);
 
-       }
+   }
 
-       return *this;
+   return *this;
 
-    }
+}
+
 
 template < typename FILE >
 write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
@@ -516,8 +566,8 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
     }
 
 
-    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
     template < typename FILE >
+    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
     write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
     {
 
@@ -547,9 +597,13 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
        return *this;
 
     }
+
+
     //text_stream & operator <<(const property_set& set) ;
+
+
+   template < typename FILE >
     template < typename TYPE >
-    template < typename FILE >
     write_text_stream < FILE > & write_text_stream < FILE >::write(const TYPE& t)
     {
 
@@ -561,7 +615,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::str
 
 
 template < typename FILE >
-write_text_stream < FILE > & write_text_stream < FILE >::raw_print(const ::string& str)
+void write_text_stream < FILE >::raw_print(const ::string& str)
     {
 
        print(str);
@@ -580,7 +634,7 @@ write_text_stream < FILE > & write_text_stream < FILE >::raw_print(const ::strin
 
     //::filesize get_position() const ;
     template < typename FILE >
-    write_text_stream < FILE > & write_text_stream < FILE >::write(const void* psz, strsize s)
+    void write_text_stream < FILE >::write(const void* psz, strsize s)
     {
 
        m_pfile->write(psz, s);
@@ -613,3 +667,144 @@ write_text_stream < FILE > & write_text_stream < FILE >::raw_print(const ::strin
 //
 
 //};
+
+
+//template < typename FILE >
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::ansi_character * psz)
+//{
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   print(psz);
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   if (m_fmtflags & ::file::separated)
+//   {
+//
+//      print(m_chSeparator);
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+//template < typename FILE >
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::string & str)
+//{
+//
+//   return this->operator <<((const ::scoped_string &)str);
+//
+//}
+
+
+template < typename FILE >
+void write_text_stream < FILE >::print(const ::scoped_string& str)
+{
+
+   m_pfile->write(str.c_str(), str.length_in_bytes());
+
+}
+
+//
+//template < typename FILE >
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::scoped_string & scopedstr)
+//{
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   print(scopedstr);
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   if (m_fmtflags & ::file::separated)
+//   {
+//
+//      print(m_chSeparator);
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename FILE >
+//template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+//write_text_stream < FILE > & write_text_stream < FILE >::operator <<(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring)
+//{
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   write(inlinestring.data(), inlinestring.size());
+//
+//   if (m_fmtflags & ::file::network_payload)
+//   {
+//
+//      print("\"");
+//
+//   }
+//
+//   if (m_fmtflags & ::file::separated)
+//   {
+//
+//      print(m_chSeparator);
+//
+//   }
+//
+//   return *this;
+//
+//}
+////text_stream & operator <<(const property_set& set) ;
+//template < typename FILE >
+//write_text_stream < FILE > & write_text_stream < FILE >::write(const TYPE& t)
+//{
+//
+//   return *this << t;
+//
+//}
+//
+//// void network_payload_write(const ::matter & matter);
+//
+//template < typename FILE >
+//void write_text_stream < FILE >::raw_print(const ::string& str)
+//{
+//
+//   print(str);
+//
+//}
+//
+//
+////#include "_impl_write_text_stream.h"
+//
+//
+//
+//
+//

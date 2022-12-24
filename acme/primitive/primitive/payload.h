@@ -168,8 +168,8 @@ public:
    payload(::particle * pparticle);
    payload(class ::time * ptime);
    payload(const ::scoped_string & scopedstr);
-   template < ::count count >
-   payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
+   //template < ::count count >
+   //payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
    template < primitive_integral INTEGRAL >
    payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
    payload(const ::ansi_character * begin, const ::ansi_character * end) : payload(::range < const ::ansi_character * >(begin, end)) {}
@@ -189,11 +189,11 @@ public:
    payload(const ::property & prop);
    payload(const class time & time);
 
-   payload(const ::block & block)
-   {
-      m_etype = e_type_new;
-      operator = (block);
-   }
+//   payload(const ::block & block)
+//   {
+//      m_etype = e_type_new;
+//      operator = (block);
+//   }
 
    template < class T >
    payload(const ::pointer < T > & p)
@@ -225,11 +225,11 @@ public:
       operator = (memorytemplate.block());
    }
 
-   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
-   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
-      payload(::string(inlinestring))
-   {
-   }
+//   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+//   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
+//      payload(::string(inlinestring))
+//   {
+//   }
 
    //template < typename ENUM >
    //payload(const ::enumeration < ENUM > & eflag)
@@ -410,10 +410,11 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::procedure get_procedure() const;
 
 
-   ::string as_string(const ::scoped_string & scopedstrOnNull) const;
-   ::string as_string() const;
+   ::string get_string(const ::scoped_string & scopedstrOnNull) const;
+   ::string get_string() const;
    ::string get_recursive_string() const;
-   ::atom atom(const ::atom & idDefault = nullptr)   const;
+   ::atom as_atom() const;
+   ::atom as_atom(const ::atom & idDefault) const;
 
    ::memory memory() const;
    ::string_array stra() const;
@@ -501,12 +502,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    payload & operator ++(::i32);
 
-   payload operator +(const ::payload & payload) const;
+   //payload operator +(const ::payload & payload) const;
    payload operator -(const ::payload & payload) const;
    payload operator *(const ::payload & payload) const;
    payload operator /(const ::payload & payload) const;
 
-   payload & operator +=(const ::payload & payload);
+   //payload & operator +=(const ::payload & payload);
    payload & operator -=(const ::payload & payload);
    payload & operator *=(const ::payload & payload);
    payload & operator /=(const ::payload & payload);
@@ -1030,9 +1031,9 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < primitive_floating FLOATING >
    ::payload operator + (FLOATING f) const;
 
-   ::payload operator + (const ::scoped_string & scopedstr) const;
-   ::payload operator + (const ::string & str) const;
-   ::payload operator + (const ::inline_number_string & inline_number_string) const;
+   //::payload operator + (const ::scoped_string & scopedstr) const;
+   //::payload operator + (const ::string & str) const;
+   //::payload operator + (const ::inline_number_string & inline_number_string) const;
 
    template < primitive_integral INTEGRAL >
    ::payload operator / (INTEGRAL i) const;
@@ -1059,11 +1060,11 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < primitive_floating FLOATING >
    ::payload & operator += (FLOATING f);
 
-   ::payload & operator += (const ::scoped_string & scopedstr);
-   ::payload & operator += (const ::string & str);
-   ::payload & operator += (const ::inline_number_string & inline_number_string);
-   template < strsize n >
-   ::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
+   //::payload & operator += (const ::scoped_string & scopedstr);
+   //::payload & operator += (const ::string & str);
+   //::payload & operator += (const ::inline_number_string & inline_number_string);
+   //template < strsize n >
+   //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
 
    template < primitive_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);
@@ -1380,4 +1381,18 @@ inline ::payload __visible(::payload varOptions, bool bVisible);
 inline payload __visible(bool bVisible = true);
 
 
+template < character_range RANGE, primitive_payload PAYLOAD >
+::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
 
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline PAYLOAD1 operator +(const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
+{
+
+   auto payload = payload1;
+
+   payload.addition(payload2);
+
+   return ::move(payload);
+
+}

@@ -52,7 +52,7 @@ namespace file
    {
 
       m_pThis = nullptr;
-      m_atomLast = 0;
+      m_watchidLast = 0;
       m_bCreateWatchThread = true;
 
    }
@@ -102,9 +102,9 @@ namespace file
 
       pwatch->m_pwatcher = this;
 
-      pwatch->m_atom = ++m_atomLast;
+      pwatch->m_watchid = ++m_watchidLast;
 
-      m_watchmap[pwatch->m_atom] = pwatch;
+      m_watchmap[pwatch->m_watchid] = pwatch;
 
       //if (m_bCreateWatchThread)
       //{
@@ -121,7 +121,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchmap.erase_key(pwatch->m_atom);
+         m_watchmap.erase_key(pwatch->m_watchid);
 
          return -1;
 
@@ -150,7 +150,7 @@ namespace file
 
       pwatch->m_pathFolder = pathFolder;
 
-      return pwatch->m_atom;
+      return pwatch->m_watchid;
 
    }
 

@@ -437,32 +437,6 @@ string numeric_array < TYPE, m_etypeContainer >::implode(const ::scoped_string &
 }
 
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-string numeric_array < TYPE, m_etypeContainer >::surround_and_implode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::index iStart, ::count iCount)
-{
-   string str;
-   string strSeparator(strSeparator);
-   string strPrefix(strPrefix);
-   string strSuffix(strSuffix);
-   ::index iEnd;
-   if(iStart < 0)
-      iStart = this->get_size() + iStart;
-   if(iCount < 0)
-      iEnd = this->get_size() + iCount;
-   else
-      iEnd = iStart + iCount - 1;
-   if(iStart <= iEnd)
-   {
-      ::index i = iStart;
-      str = strPrefix + as_string(this->element_at(i)) + strSuffix;
-      i++;
-      for(; i <= iEnd; i++)
-      {
-         str += strSeparator + strPrefix + as_string(this->element_at(i)) + strSuffix;
-      }
-   }
-   return str;
-}
 
 //template < typename TYPE, ::enum_type m_etypeContainer >
 //void numeric_array < TYPE, m_etypeContainer >::each_add(const TYPE & t,::index i, ::count iEnd)
@@ -1368,6 +1342,272 @@ using float2a = array < float_array >;
 using double2a = array < double_array >;
 
 
+
+
+
+namespace acme
+{
+
+
+    namespace array
+    {
+
+
+        template < typename ARRAY1, typename ARRAY2 >
+        inline bool is_equal(const ARRAY1 & a1, const ARRAY2 & a2)
+        {
+
+           if (a1.get_count() != a2.get_count())
+           {
+
+              return false;
+
+           }
+
+           for (int i = 0; i < a1.get_count(); i++)
+           {
+
+              if (a1[i] != a2[i])
+              {
+
+                 return false;
+
+              }
+
+           }
+
+           return true;
+
+        }
+
+
+        template < typename ARRAY_TYPE, typename PRED >
+        void predicate_sort(ARRAY_TYPE  & a, PRED pred)
+        {
+
+           index_array stackLowerBound;
+
+           index_array stackUpperBound;
+
+           iptr iLowerBound;
+
+           iptr iUpperBound;
+
+           iptr iLPos, iUPos, iMPos;
+
+           if (a.get_size() >= 2)
+           {
+
+              stackLowerBound.push(0);
+
+              stackUpperBound.push(a.get_size() - 1);
+
+              while (true)
+              {
+
+                 iLowerBound = stackLowerBound.pop();
+
+                 iUpperBound = stackUpperBound.pop();
+
+                 iLPos = iLowerBound;
+
+                 iMPos = iLowerBound;
+
+                 iUPos = iUpperBound;
+
+                 while (true)
+                 {
+
+                    while (true)
+                    {
+
+                       if (iMPos >= iUPos)
+                       {
+
+                          goto break_mid_loop;
+
+                       }
+
+                       if (!pred(a[iUPos], a[iMPos]))
+                       {
+
+                          iUPos--;
+
+                       }
+                       else
+                       {
+
+                          a.__swap(iMPos, iUPos);
+
+                          break;
+
+                       }
+
+                    }
+
+                    iMPos = iUPos;
+
+                    while (true)
+                    {
+
+                       if (iLPos >= iMPos)
+                       {
+
+                          goto break_mid_loop;
+
+                       }
+
+                       if (!pred(a[iMPos], a[iLPos]))
+                       {
+
+                          iLPos++;
+
+                       }
+                       else
+                       {
+
+                          a.__swap(iLPos, iMPos);
+
+                          break;
+
+                       }
+
+
+                    }
+
+                    iMPos = iLPos;
+
+                 }
+
+                 break_mid_loop:
+
+                 if (iLowerBound < iMPos - 1)
+                 {
+
+                    stackLowerBound.push(iLowerBound);
+
+                    stackUpperBound.push(iMPos - 1);
+
+                 }
+
+                 if (iMPos + 1 < iUpperBound)
+                 {
+
+                    stackLowerBound.push(iMPos + 1);
+
+                    stackUpperBound.push(iUpperBound);
+
+                 }
+
+                 if (stackLowerBound.count() == 0)
+                 {
+
+                    break;
+
+                 }
+
+              }
+
+           }
+
+        }
+
+        template < typename ARRAY_TYPE, typename T, typename PRED >
+        iptr predicate_binary_search(const ARRAY_TYPE & a, const T & t, PRED pred)
+        {
+
+           iptr iLPos, iUPos, iMPos;
+
+           iLPos = 0;
+
+           iUPos = a.get_upper_bound();
+
+           while(iLPos <= iUPos)
+           {
+
+              iMPos = (iLPos + iUPos) / 2;
+
+              if (pred(a[iMPos], t))
+              {
+
+                 if (pred(t, a[iMPos]))
+                 {
+
+                    return iMPos;
+
+                 }
+                 else
+                 {
+
+                    iLPos = iMPos + 1;
+
+                 }
+
+              }
+              else
+              {
+
+                 if (!pred(t, a[iMPos]))
+                 {
+
+                    return iMPos;
+
+                 }
+                 else
+                 {
+
+                    iUPos = iMPos - 1;
+
+                 }
+
+              }
+
+           }
+
+           return -1;
+
+        }
+
+
+
+    } // namespace array
+
+
+} // namespace acme
+
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename PRED >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_sort(PRED pred)
+{
+
+   ::acme::array::predicate_sort(*this, pred);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+template < typename T, typename PRED >
+index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
+{
+
+   return ::acme::array::predicate_binary_search(*this, t, pred);
+
+}
+
+
+template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+CONTAINER1 operator + (const CONTAINER1 & container1, const CONTAINER2 & container2)
+{
+
+   auto container = container1;
+
+   container.append(container2);
+
+   return ::move(container);
+
+}
 
 
 

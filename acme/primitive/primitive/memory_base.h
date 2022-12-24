@@ -276,8 +276,8 @@ public:
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
    //::string as_string(memsize iStart = 0, memsize uiSize = -1) const;
-   virtual string as_string() const;
-   virtual string as_string(memsize iStart, memsize uiSize = -1) const;
+   virtual string get_string() const;
+   virtual string get_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);
    void eat_begin(void * pdata, memsize iSize);

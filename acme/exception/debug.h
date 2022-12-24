@@ -86,12 +86,6 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName, int iLineNu
 
 
 
-CLASS_DECL_ACME void throw_resource_exception(const ::scoped_string & scopedstrMessage);
-
-
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip = -1);
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage);
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus);
 
 
 

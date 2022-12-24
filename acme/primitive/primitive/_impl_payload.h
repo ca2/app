@@ -4,34 +4,31 @@
 #pragma once
 
 
-inline ::property & payload::operator[] (const ::scoped_string & scopedstr) { return get_property(scopedstr); }
-inline ::payload payload::operator[] (const ::scoped_string & scopedstr) const { return find_property(scopedstr); }
+//inline ::property & payload::operator[] (const ::scoped_string & scopedstr) { return get_property(scopedstr); }
+//inline ::payload payload::operator[] (const ::scoped_string & scopedstr) const { return find_property(scopedstr); }
+
 
 //inline ::property & operator[] (const ::string & str) { return get_property(::atom(str)); }
 //inline ::payload operator[] (const ::string & str) const { return find_property(::atom(str)); }
 
-inline ::property & payload::operator[] (::iptr i) { return get_property(i); }
-inline ::payload payload::operator[] (::iptr i) const { return find_property(i); }
+
+//inline ::property & payload::operator[] (::iptr i) { return get_property(i); }
+//inline ::payload payload::operator[] (::iptr i) const { return find_property(i); }
 
 
-
-inline ::payload payload::operator + (const ::string & str) const { return ::move(*this + ::scoped_string(str)); }
-inline ::payload payload::operator + (const ::inline_number_string & inline_number_string) const { return ::move(*this + ::scoped_string(inline_number_string)); }
-
+//inline ::payload payload::operator + (const ::string & str) const { return ::move(*this + ::scoped_string(str)); }
+//inline ::payload payload::operator + (const ::inline_number_string & inline_number_string) const { return ::move(*this + ::scoped_string(inline_number_string)); }
 
 
-inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this = (*this + scopedstr); }
-inline ::payload & payload::operator += (const ::string & str) { return *this += ::scoped_string(str); }
-inline ::payload & payload::operator += (const ::inline_number_string & inline_number_string) { return *this = (*this + inline_number_string); }
+//inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this = (*this + scopedstr); }
+//inline ::payload & payload::operator += (const ::string & str) { return *this += ::scoped_string(str); }
+//inline ::payload & payload::operator += (const ::inline_number_string & inline_number_string) { return *this = (*this + inline_number_string); }
 
 
-
-
-
-inline ::string payload::as_string() const
+inline ::string payload::get_string() const
 {
 
-   return this->as_string(nullptr);
+   return this->get_string(nullptr);
 
 }
 
@@ -217,7 +214,7 @@ payload m_payload;
 
 inline payload __visible(payload varOptions, bool bVisible = true);
 
-inline payload __visible(bool bVisible = true) { return __visible(::e_type_new, bVisible); }
+inline payload __visible(bool bVisible) { return __visible(::e_type_new, bVisible); }
 
 
 
@@ -717,13 +714,13 @@ namespace file
 //}
 
 
-//template < primitive_payload PAYLOAD >
-inline payload payload::operator +(const ::payload & payload) const
-{
-
-   return ::move(addition(payload));
-
-}
+////template < primitive_payload PAYLOAD >
+//inline payload payload::operator +(const ::payload & payload) const
+//{
+//
+//   return ::move(addition(payload));
+//
+//}
 
 
 //template < primitive_payload PAYLOAD >
@@ -753,13 +750,13 @@ inline payload payload:: operator /(const ::payload & payload) const
 }
 
 
-//template < primitive_payload PAYLOAD >
-inline payload & payload::operator +=(const ::payload & payload)
-{
-
-   return add(payload);
-
-}
+////template < primitive_payload PAYLOAD >
+//inline payload & payload::operator +=(const ::payload & payload)
+//{
+//
+//   return add(payload);
+//
+//}
 
 
 inline payload & payload::operator -=(const ::payload & payload)
@@ -787,11 +784,12 @@ inline payload & payload::operator /=(const ::payload & payload)
 
 }
 
+
 template < typename CHAR_TYPE >
 inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload& payload)
 {
 
-   string = payload.as_string();
+   string = payload.get_string();
 
    return string;
 
@@ -802,7 +800,7 @@ template < primitive_integral INTEGRAL >
 inline void copy(INTEGRAL& integral, const ::payload& payload)
 {
 
-integral = (INTEGRAL)payload.as_i64();
+   integral = (INTEGRAL)payload.as_i64();
 
 }
 
@@ -922,7 +920,7 @@ inline ::file::path operator + (const ::file::path & path, const ::payload& payl
 
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-        string(payload.as_string())
+        string(payload.get_string())
 {
 
 
@@ -933,7 +931,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
 {
 
-   assign(payload.as_string());
+   assign(payload.get_string());
 
    return *this;
 
@@ -962,7 +960,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::pa
    else
    {
 
-      return append(payload.as_string());
+      return append(payload.get_string());
 
    }
 
@@ -1021,5 +1019,18 @@ namespace file
 //
 //}
 
+
+
+template < character_range RANGE, primitive_payload PAYLOAD >
+::string operator + (const RANGE & range, const PAYLOAD & payload)
+{
+
+   string str(range);
+
+   str.append(payload.get_string());
+
+   return str;
+
+}
 
 

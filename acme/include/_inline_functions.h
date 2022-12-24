@@ -390,3 +390,8 @@ inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** p
 //
 //}
 
+
+CLASS_DECL_ACME void throw_exception(enum_status estatus);
+
+
+

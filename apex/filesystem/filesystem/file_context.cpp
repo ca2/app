@@ -1452,8 +1452,8 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
-   if (dir()->is(varSource.file_path()) &&
-       (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.file_path(), ".zip"))))
+   if (dir()->is(varSource.as_file_path()) &&
+       (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.as_file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1464,8 +1464,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::file::path strDst;
       ::file::path strSrc;
-      ::file::path strDirSrc(varSource.file_path());
-      ::file::path strDirDst(varTarget.file_path());
+      ::file::path strDirSrc(varSource.as_file_path());
+      ::file::path strDirDst(varTarget.as_file_path());
 
       if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends(strDirSrc, ".zip")))
       {
@@ -1489,7 +1489,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
 
             if ((eextract == e_extract_first || eextract == e_extract_none) &&
-                (string_ends_ci(varSource.file_path(), ".zip")))
+                (string_ends_ci(varSource.as_file_path(), ".zip")))
             {
             }
             else
@@ -1512,13 +1512,13 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    else
    {
 
-      if (varTarget.file_path().has_char() && varSource.file_path().has_char())
+      if (varTarget.as_file_path().has_char() && varSource.as_file_path().has_char())
       {
 
-         if (!dir()->is(varTarget.file_path().folder()))
+         if (!dir()->is(varTarget.as_file_path().folder()))
          {
 
-            dir()->create(varTarget.file_path().folder());
+            dir()->create(varTarget.as_file_path().folder());
 
          }
 
@@ -1526,9 +1526,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          auto pacmefile = psystem->m_pacmefile;
 
-         auto pathTarget = psystem->defer_process_path(varTarget.file_path());
+         auto pathTarget = psystem->defer_process_path(varTarget.as_file_path());
 
-         auto pathSource = psystem->defer_process_path(varSource.file_path());
+         auto pathSource = psystem->defer_process_path(varSource.as_file_path());
 
          if (exists(pathSource))
          {
@@ -1555,10 +1555,10 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::payload varNew;
 
-      if (dir()->is(varTarget) && varSource.file_path().name().has_char())
+      if (dir()->is(varTarget) && varSource.as_file_path().name().has_char())
       {
 
-         varNew = ::file::path(varTarget) / varSource.file_path().name();
+         varNew = ::file::path(varTarget) / varSource.as_file_path().name();
 
       }
       else
@@ -1580,7 +1580,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          string strError;
 
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
-                         varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
+                         varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
 
@@ -1599,7 +1599,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
 
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
-                            varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
+                            varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
 
@@ -1621,7 +1621,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             bStatusFail = true;
 
             INFORMATION("During copy, failed to get status from input file \"" <<
-                  varSource.file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+                  varSource.as_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
 
          }
 
@@ -1639,7 +1639,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                bStatusFail = true;
 
                INFORMATION("During copy, failed to set status to output file \""
-                  << varTarget.file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
+                  << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
             }
 
@@ -1677,14 +1677,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
             strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
-               varSource.file_path().c_str(), varTarget.file_path().c_str(), bFailIfExists);
+               varSource.as_file_path().c_str(), varTarget.as_file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
          else
          {
             string strError;
             strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
-                            varSource.file_path().c_str(), bFailIfExists);
+                            varSource.as_file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
       }
@@ -1692,7 +1692,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       {
          string strError;
          strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
-                         varTarget.file_path().c_str(), bFailIfExists);
+                         varTarget.as_file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
 
@@ -3009,7 +3009,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    }
 
-   ::file::path path = payloadFile.file_path();
+   ::file::path path = payloadFile.as_file_path();
 
    ::url_domain domain;
 
@@ -3254,7 +3254,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    }
 
-   ::file::path path = payloadFile.file_path();
+   ::file::path path = payloadFile.as_file_path();
 
    if (path.case_insensitive_begins("data:"))
    {
@@ -4001,7 +4001,7 @@ void set_bypass_cache_if_empty(::payload & payloadFile)
       if(etype != e_type_property_set)
       {
 
-         auto path = payloadFile.file_path();
+         auto path = payloadFile.as_file_path();
 
          payloadFile["url"] = path;
 

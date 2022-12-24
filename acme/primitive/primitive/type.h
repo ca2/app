@@ -120,16 +120,7 @@ public:
    }
 
 
-   type(const ::std::type_info & typeinfo) :
-#ifdef WINDOWS
-      atom(c_demangle(typeinfo.name()))
-#else
-      atom(demangle(typeinfo.name()))
-#endif
-   {
-
-   }
-
+   type(const ::std::type_info & typeinfo);
    type(const ::particle * pparticle);
 
    template < typename BASE >
@@ -204,48 +195,15 @@ template < typename TYPE >
 
 
 template < typename TYPE >
-inline string __type_name()
-{
-
-   auto pszType = typeid(TYPE).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
+inline string __type_name();
 
 
 template < typename TYPE >
-inline string __type_name(const TYPE & t)
-{
-
-   auto pszType = typeid(t).name();
-
-   string strName = demangle(pszType);
-
-   return strName;
-
-}
+inline string __type_name(const TYPE & t);
 
 
-inline bool type::operator == (const ::atom& atom) const
-{
-
-   return ::atom::operator ==(atom);
-
-}
-
-
-template < typename BASE >
-inline type::type(const ::pointer<BASE>& point)
-{
-
-   auto name = typeid(*((BASE *)point.m_p)).name();
-
-   ::atom::operator = (demangle(name));
-
-}
+//template < typename BASE >
+//inline type::type(const ::pointer<BASE>& point);
 
 
 

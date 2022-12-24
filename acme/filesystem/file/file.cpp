@@ -731,7 +731,7 @@ namespace file
 
       as(memory);
 
-      str = memory.as_string();
+      str = memory.get_string();
 
    }
 

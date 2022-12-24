@@ -537,7 +537,7 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
    pbutton->m_functionClose = [this](nano_window * pwindow)
    {
 
-      auto result = pwindow->m_payloadResult.atom();
+      auto result = pwindow->m_payloadResult.as_atom();
 
       if (result == e_dialog_result_yes)
       {

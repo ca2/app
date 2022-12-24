@@ -359,3 +359,6 @@ inline  read_sz_stream& read_sz_stream::operator >>(string& str)
 
 
 //};
+
+
+#include "_impl_read_sz_stream.h"

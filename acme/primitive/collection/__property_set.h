@@ -51,14 +51,14 @@ public:
    inline property & payload(const ::scoped_string & scopedstrName);
    inline const property & payload(const ::scoped_string & scopedstrName) const;
 
-   inline property & payload(const ::string & strName) { return operator [](::atom(strName)); }
-   inline const property & payload(const ::string & strName) const { return operator [](::atom(strName)); }
+   inline property & payload(const ::string & strName);
+   inline const property & payload(const ::string & strName) const;
 
-   inline property & payload(::index iIndex) { return operator [](::atom(iIndex)); }
-   inline const property & payload(::index iIndex) const { return operator [](::atom(iIndex)); }
+   inline property & payload(::index iIndex);
+   inline const property & payload(::index iIndex) const;
 
-   inline property & payload(const ::payload & payload) { return operator [](::atom(payload)); }
-   inline const property & payload(const ::payload & payload) const { return operator [](::atom(payload)); }
+   inline property & payload(const ::payload & payload);
+   inline const property & payload(const ::payload & payload) const;
 
 #ifdef OS64BIT
 

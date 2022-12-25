@@ -1400,28 +1400,28 @@ string_base < typename RANGE1::const_iterator > operator + (const RANGE1 & range
 
 
 template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
-::string operator + (const CHARACTER2 * psz, const HAS_AS_STRING & has_as_string)
+::string_base < const CHARACTER2 * > operator + (const CHARACTER2 * psz, const HAS_AS_STRING & has_as_string)
 {
 
-   return ::move(::string(psz) + has_as_string.as_string());
+   return ::move(::string_base < const CHARACTER2 * >(psz) + has_as_string.as_string());
 
 }
 
 
 template < character_range RANGE, has_as_string HAS_AS_STRING >
-::string operator + (const RANGE & range, const HAS_AS_STRING & has_as_string)
+::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const HAS_AS_STRING & has_as_string)
 {
 
-   return ::move(::string(range) + has_as_string.as_string());
+   return ::move(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());
 
 }
 
 
 template < character_range RANGE, primitive_character CHARACTER >
-::string operator + (const RANGE & range, const CHARACTER * psz)
+::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const CHARACTER * psz)
 {
 
-   return ::move(::string(range) + ::string(psz));
+   return ::move(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(psz));
 
 }
 

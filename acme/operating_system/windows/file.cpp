@@ -62,42 +62,42 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 }
 
 
-bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
-{
+// bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
+// {
 
-   wstring wstr1(pathParam1);
+//    wstring wstr1(pathParam1);
 
-   wstring wstr2(pathParam2);
+//    wstring wstr2(pathParam2);
 
-   unichar * pwszFile1;
+//    unichar * pwszFile1;
 
-   unichar * pwszFile2;
+//    unichar * pwszFile2;
 
-   ::acme::malloc < unichar * > pwszPath1;
+//    ::acme::malloc < unichar * > pwszPath1;
 
-   ::acme::malloc < unichar * > pwszPath2;
+//    ::acme::malloc < unichar * > pwszPath2;
 
-   pwszPath1.alloc((size_t)(wstr1.length() * 2 * sizeof(unichar)));
+//    pwszPath1.alloc((size_t)(wstr1.length() * 2 * sizeof(unichar)));
 
-   pwszPath2.alloc((size_t)(wstr2.length() * 2 * sizeof(unichar)));
+//    pwszPath2.alloc((size_t)(wstr2.length() * 2 * sizeof(unichar)));
 
-   i32 iCmp = -1;
+//    i32 iCmp = -1;
 
-   if (GetFullPathNameW(wstr1, (DWORD)(pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
-   {
+//    if (GetFullPathNameW(wstr1, (DWORD)(pwszPath1.m_iSize / sizeof(unichar)), pwszPath1, &pwszFile1))
+//    {
 
-      if (GetFullPathNameW(wstr2, (DWORD)(pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
-      {
+//       if (GetFullPathNameW(wstr2, (DWORD)(pwszPath2.m_iSize / sizeof(unichar)), pwszPath2, &pwszFile2))
+//       {
 
-         iCmp = _wcsicmp(pwszPath1, pwszPath2);
+//          iCmp = _wcsicmp(pwszPath1, pwszPath2);
 
-      }
+//       }
 
-   }
+//    }
 
-   return iCmp == 0;
+//    return iCmp == 0;
 
-}
+// }
 
 
 

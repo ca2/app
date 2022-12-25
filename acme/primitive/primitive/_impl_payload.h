@@ -875,23 +875,23 @@ payload1 = payload2;
 //   return str.operator += ((::string) payload);
 //
 //}
-
-
-template < ::count c >
-inline ::string operator +(const char(&sz)[c], const ::payload & payload)
-{
-
-   return ::move(::string(sz) + payload);
-
-}
-
-
-inline ::file::path operator + (const ::file::path & path, const ::payload& payload)
-{
-
-   return path + payload.as_file_path();
-
-}
+//
+//
+//template < ::count c >
+//inline ::string operator +(const char(&sz)[c], const ::payload & payload)
+//{
+//
+//   return ::move(::string(sz) + payload);
+//
+//}
+//
+//
+//inline ::file::path operator + (const ::file::path & path, const ::payload& payload)
+//{
+//
+//   return path + payload.as_file_path();
+//
+//}
 
 
 //inline ::file::path operator / (const ::file::path& path, const ::payload& payload)

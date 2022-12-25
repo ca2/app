@@ -7188,12 +7188,12 @@ namespace apex
    //}
 
 
-   bool application::is_local_data()
-   {
-
-      return m_datakey.m_bLocalData;
-
-   }
+//   bool application::is_local_data()
+//   {
+//
+//      return m_datakey.m_bLocalData;
+//
+//   }
 
 
 
@@ -7434,7 +7434,7 @@ namespace apex
 
       // handle certain messages in thread
 
-      switch (pmessage->m_atom)
+      switch (pmessage->m_atom.m_emessage)
       {
       case e_message_create:
       case e_message_paint:
@@ -9757,7 +9757,7 @@ namespace apex
 
 
 
-   void application::data_on_after_change(::database::client * pclient, const ::database::key & key, const ::payload & payload, ::topic * ptopic)
+   void application::data_on_after_change(::database::client * pclient, const ::scoped_string & str, const ::payload & payload, ::topic * ptopic)
    {
 
 
@@ -9865,7 +9865,7 @@ namespace apex
    string application::as_string(const ::payload & payload)
    {
 
-      auto path = payload.file_path();
+      auto path = payload.as_file_path();
 
       if (path.has_char())
       {

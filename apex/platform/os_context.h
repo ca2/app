@@ -89,7 +89,7 @@ public:
    virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
    virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, string * pstrIcon = nullptr, int * piIcon = nullptr);
    virtual bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
-   virtual bool is_alias(const ::scoped_string & scopedstr);
+   virtual bool is_alias(const ::file::path & path);
 
    virtual void initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 

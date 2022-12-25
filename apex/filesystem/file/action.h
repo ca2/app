@@ -14,11 +14,11 @@ namespace file
    // by CAMILO <3tbs
    class CLASS_DECL_APEX action
    {
-      public:
+   public:
 
 
-      watch * m_pwatch;
-      watch_id                         m_atom;
+      watch *                          m_pwatch;
+      watch_id                         m_watchid;
       ::file::path                     m_pathFolder;
       ::file::path                     m_pathFile;
       enumeration < enum_action >      m_eaction;

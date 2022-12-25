@@ -373,8 +373,8 @@ public:
 //   inline string_base & operator +=(const TYPE & t);
 //
 
-   template < primitive_character CHARACTER2 >
-   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::move(str); }
+//   template < primitive_character CHARACTER2 >
+//   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::move(str); }
 
 
     // maybe it doesn't because of ambiguity with global
@@ -409,37 +409,37 @@ public:
    //string_base operator + (const ATOM & atom) const { return *this + atom.as_string(); }
 
 
-   template < typename TYPE >
-   inline string_base & operator /=(const TYPE & t)
-      //  template < typename TYPE >
-     //inline string_base & operator /=(const ::string_base < CHARACTER > & str)
-   {
+//   template < typename TYPE >
+//   inline string_base & operator /=(const TYPE & t)
+//      //  template < typename TYPE >
+//     //inline string_base & operator /=(const ::string_base < CHARACTER > & str)
+//   {
+//
+//      string_base strRight(t);
+//
+//      trim_right(string_base("\\/"));
+//
+//      strRight.trim_left(string_base("\\/"));
+//
+//      return this->operator += ("/" + strRight);
+//
+//   }
 
-      string_base strRight(t);
 
-      trim_right(string_base("\\/"));
-
-      strRight.trim_left(string_base("\\/"));
-
-      return this->operator += ("/" + strRight);
-
-   }
-
-
-   template < typename TYPE >
-   inline string_base operator /(const TYPE & t) const
-      //inline string_base operator /(const ::string_base < CHARACTER > & str) const
-   {
-
-      string_base strRight(t);
-
-      string_base str(*this);
-
-      str /= strRight;
-
-      return str;
-
-   }
+//   template < typename TYPE >
+//   inline string_base operator /(const TYPE & t) const
+//      //inline string_base operator /(const ::string_base < CHARACTER > & str) const
+//   {
+//
+//      string_base strRight(t);
+//
+//      string_base str(*this);
+//
+//      str /= strRight;
+//
+//      return str;
+//
+//   }
 
    inline string_base & assign(const string_base & str);
    inline string_base & assign(string_base && str);
@@ -1413,6 +1413,15 @@ template < character_range RANGE, has_as_string HAS_AS_STRING >
 {
 
    return ::move(::string(range) + has_as_string.as_string());
+
+}
+
+
+template < character_range RANGE, primitive_character CHARACTER >
+::string operator + (const RANGE & range, const CHARACTER * psz)
+{
+
+   return ::move(::string(range) + ::string(psz));
 
 }
 

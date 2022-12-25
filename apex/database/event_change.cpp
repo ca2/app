@@ -29,7 +29,7 @@ namespace database
       if(m_pserver != nullptr)
       {
 
-         return m_pclient->data_get_payload(m_datakey, payload);
+         return m_pclient->data_get_payload(m_strDataKey, payload);
 
       }
 

@@ -644,10 +644,10 @@
    }
 
 
-   bool os_context::is_alias(const ::scoped_string & scopedstr)
+   bool os_context::is_alias(const ::file::path & path)
    {
 
-      return m_pcontext->m_papexcontext->os_is_alias(scopedstr);
+      return m_pcontext->m_papexcontext->os_is_alias(path);
 
    }
 

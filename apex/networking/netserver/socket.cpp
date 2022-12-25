@@ -102,7 +102,7 @@ namespace netserver
       for (auto& item : m_request.headers())
       {
 
-         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->as_string().c_str());
+         FORMATTED_INFORMATION("Headers %s=%s\n", item->m_atom.as_string().c_str(), item->get_string().c_str());
 
       }
 

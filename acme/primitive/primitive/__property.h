@@ -296,14 +296,14 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
 //}
 
 
-template < strsize n >
-::string operator + (const ::property & property, const char (&cha)[n])
-{
-
-   return ::move(property.get_string() + cha);
-
-}
-
+//template < strsize n >
+//::string operator + (const ::property & property, const char (&cha)[n])
+//{
+//
+//   return ::move(property.get_string() + cha);
+//
+//}
+//
 
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::property & property)

@@ -2024,61 +2024,65 @@ CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr)
 ////#include "acme/operating_system.h"
 
 
-//CLASS_DECL_ACME string ::url::decode(const & strParam)
-//{
-//
-//   return ::url::decode(strParam, strParam.length());
-//
-//   /*string str(strParam);
-//
-//   string strDecode;
-//
-//   str.replace_with(" ", "+");
-//
-//   strsize iStart = 0;
-//
-//   while(true)
-//   {
-//
-//      auto pFind = str.find("%",iStart);
-//
-//      if(iFind == -1)
-//      {
-//         strDecode += str.substr(iStart);
-//         break;
-//      }
-//
-//      strDecode += str.substr(iStart,iFind - iStart);
-//
-//      if(str[iFind + 1] == '%')
-//      {
-//
-//         strDecode += "%";
-//         iStart = iFind + 2;
-//
-//      }
-//      else
-//      {
-//
-//         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
-//
-//         if(ch != 0)
-//         {
-//            strDecode += ch;
-//         }
-//
-//         iStart = iFind + 3;
-//
-//      }
-//
-//
-//   }
-//
-//   return strDecode;*/
-//
-//
-//}
-//
+string url::decode(const ::scoped_string & strParam)
+{
+
+   //return ::url::decode(strParam, strParam.size());
+
+   string str(strParam);
+
+   string strDecode;
+
+   str.replace_with(" ", "+");
+
+   strsize iStart = 0;
+
+   while(true)
+   {
+
+      auto iFind = str.find_index("%",iStart);
+
+      if(iFind == -1)
+      {
+
+         strDecode += str.substr(iStart);
+
+         break;
+
+      }
+
+      strDecode += str.substr(iStart, iFind - iStart);
+
+      if(str[iFind + 1] == '%')
+      {
+
+         strDecode += "%";
+
+         iStart = iFind + 2;
+
+      }
+      else
+      {
+
+         char ch = (char)strtol(str.substr(iFind + 1,2),nullptr,16);
+
+         if(ch != 0)
+         {
+
+            strDecode += ch;
+
+         }
+
+         iStart = iFind + 3;
+
+      }
+
+
+   }
+
+   return strDecode;
+
+}
 
 
 namespace url
@@ -2840,73 +2844,77 @@ void openURL(const string& url_str)
 
 
 
-//CLASS_DECL_ACME string ::url::encode(const ::ansi_character * psz)
-//{
-//
-//   string str;
-//
-//   char sz[256];
-//
-//   while (*psz != '\0')
-//   {
-//
-//      char uch = *psz;
-//
-//      if (ansi_char_isdigit(uch)
-//         || ansi_char_isalpha(uch)
-//         || uch == '.'
-//         || uch == '-'
-//         || uch == '_')
-//      {
-//
-//         str += uch;
-//
-//      }
-//      else if (uch == ' ')
-//      {
-//
-//         str += "+";
-//
-//      }
-//      else
-//      {
-//
-//         ansi_from_i64(sz, uch, 16);
-//
-//         ansi_upper(sz);
-//
-//         if (ansi_length(sz) == 0)
-//         {
-//
-//            str += "%00";
-//
-//         }
-//         else if (ansi_length(sz) == 1)
-//         {
-//
-//            str += "%0";
-//
-//            str += sz;
-//
-//         }
-//         else if (ansi_length(sz) == 2)
-//         {
-//
-//            str += "%";
-//
-//            str += sz;
-//
-//         }
-//
-//      }
-//
-//      psz++;
-//
-//   }
-//
-//   return str;
-//
-//}
+CLASS_DECL_ACME string url::encode(const ::scoped_string & scopedstr)
+{
+
+   string str;
+
+   char sz[256];
+
+   auto psz = scopedstr.m_begin;
+
+   auto pszEnd = scopedstr.m_end;
+
+   while (psz < pszEnd)
+   {
+
+      char uch = *psz;
+
+      if (ansi_char_isdigit(uch)
+         || ansi_char_isalpha(uch)
+         || uch == '.'
+         || uch == '-'
+         || uch == '_')
+      {
+
+         str += uch;
+
+      }
+      else if (uch == ' ')
+      {
+
+         str += "+";
+
+      }
+      else
+      {
+
+         ansi_from_i64(sz, uch, 16);
+
+         ansi_upper(sz);
+
+         if (ansi_length(sz) == 0)
+         {
+
+            str += "%00";
+
+         }
+         else if (ansi_length(sz) == 1)
+         {
+
+            str += "%0";
+
+            str += sz;
+
+         }
+         else if (ansi_length(sz) == 2)
+         {
+
+            str += "%";
+
+            str += sz;
+
+         }
+
+      }
+
+      psz++;
+
+   }
+
+   return str;
+
+}
 
 
 //string str;

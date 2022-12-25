@@ -466,16 +466,18 @@ public:
 
     }
 
-    constexpr strsize _rear_find_index(const SCOPED_STRING & range) const {
+    constexpr strsize _rear_find_index(const SCOPED_STRING & range, strsize start = 0) const
+    {
 
-       return this->offset_of(this->_rear_find(range));
+       return this->offset_of(this->_rear_find({range.begin() + start, range.end()}));
 
     }
 
 
-    constexpr strsize rear_find_index(const SCOPED_STRING & range) const {
+    constexpr strsize rear_find_index(const SCOPED_STRING & range, strsize start = 0) const
+    {
 
-       return this->offset_of(this->rear_find(range));
+       return this->offset_of(this->rear_find({range.begin() + start, range.end()}));
 
     }
 

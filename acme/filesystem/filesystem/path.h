@@ -164,6 +164,11 @@ namespace file
       path(const ::atom & atom);
       path(const ::payload & payload);
       path(const ::property & property);
+
+      template < character_range RANGE >
+      path(const RANGE & range) : path(::string(range)) { }
+
+
       //template < has_as_string HAS_AS_STRING >
       //path(const HAS_AS_STRING & has_as_string) : path(has_as_string.as_string()) {}
       //inline ~path() {}
@@ -229,6 +234,15 @@ namespace file
 
 
       path & operator = (const ::file::path & path);
+
+      template < character_range RANGE >
+      path & operator = (const RANGE & range)
+      {
+
+         return operator = (::file::path(range));
+
+      }
+
 
       //path & operator = (const ::ansi_string & str);
 
@@ -491,6 +505,32 @@ inline u32hash u32_hash < const ::file::path & >(const ::file::path & key);
 //}
 
 
+template < character_range RANGE1, character_range RANGE2 >
+::file::path operator / (const RANGE1 & range1, const RANGE2 & range2)
+{
+
+   return ::move(::file::path(range1).slashed_path(range2));
+
+}
+
+
+
+template < primitive_character CHARACTER2, character_range RANGE >
+::file::path operator / (const CHARACTER2 * psz, const RANGE & range)
+{
+
+   return ::move(::file::path(psz) / ::string(range));
+
+}
+
+
+template < character_range RANGE1, primitive_character CHARACTER2 >
+::file::path operator / (const RANGE1 & range1, const CHARACTER2 * psz)
+{
+
+   return ::move(::file::path(range1) / ::file::path(psz));
+
+}
 
 
 

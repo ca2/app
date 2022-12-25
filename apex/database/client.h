@@ -16,9 +16,9 @@ namespace database
    protected:
 
       /// Value to be add to data key on defer_update_data_id
-      ::database::key            m_datakeyModifier;
+      ::string                   m_strKeyModifier;
       /// Cached Value from calc_data_id
-      ::database::key            m_datakey;
+      ::string                   m_strKey;
 
 
    public:
@@ -44,12 +44,12 @@ namespace database
       DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
 
-      virtual void data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic);
-      virtual void data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic);
+      virtual void data_on_before_change(client* pclient, const ::scoped_string & strKey, ::payload& payload, ::topic * ptopic);
+      virtual void data_on_after_change(client* pclient, const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic);
 
 
-      virtual void _data_set(const key& key, const ::payload & payload, ::topic * ptopic = nullptr);
-      virtual void _data_set(const selection & selection, const ::payload & payload, ::topic * ptopic = nullptr);
+      virtual void _data_set(const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic = nullptr);
+      virtual void _data_set(const ::string_array & straKey, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
       inline stream * datastream() { return m_pstream; }
@@ -96,7 +96,7 @@ namespace database
 
       //}
 
-      virtual bool _data_get(const key& key, ::payload payload);
+      virtual bool _data_get(const ::scoped_string & strKey, ::payload payload);
 
 
       //template < typename TYPE >
@@ -108,18 +108,18 @@ namespace database
       //}
 
 
-      virtual bool data_get_block(const key & key, ::block & block);
-      virtual void data_set_block(const key & key, const ::block & block);
+      virtual bool data_get_block(const ::scoped_string & strKey, ::block & block);
+      virtual void data_set_block(const ::scoped_string & strKey, const ::block & block);
 
-      virtual bool data_get_payload(const key & key, ::payload & payload);
-      virtual void data_set_payload(const key & key, const ::payload & payload);
+      virtual bool data_get_payload(const ::scoped_string & strKey, ::payload & payload);
+      virtual void data_set_payload(const ::scoped_string & strKey, const ::payload & payload);
 
-      virtual bool data_get_memory(const key & key, ::memory_base & memory);
-      virtual void data_set_memory(const key & key, const block & block);
+      virtual bool data_get_memory(const ::scoped_string & strKey, ::memory_base & memory);
+      virtual void data_set_memory(const ::scoped_string & strKey, const block & block);
 
 
       //template < typename TYPE >
-      //inline bool datastream()->get(const key & key, TYPE & t)
+      //inline bool datastream()->get(const ::scoped_string & strKey, TYPE & t)
       //{
 
       //   memory_file memoryfile;
@@ -150,22 +150,22 @@ namespace database
 
       virtual void default_data_save_handling(const ::atom & atom);
 
-      virtual bool data_pulse_change(const key & key, ::topic * ptopic);
+      virtual bool data_pulse_change(const ::scoped_string & strKey, ::topic * ptopic);
 
 
-      virtual void set_data_key_modifier(const key & key);
-      virtual key get_data_key_modifier();
+      virtual void set_data_key_modifier(const ::scoped_string & strKey);
+      virtual ::string get_data_key_modifier();
 
 
-      virtual key calc_data_key(const key & key);
+      virtual ::string calc_data_key(const ::scoped_string & strKey);
 
 
-      virtual key calc_parent_data_key();
-      virtual key calc_data_key();
+      virtual ::string calc_parent_data_key();
+      virtual ::string calc_data_key();
       virtual void defer_update_data_key();
       virtual void update_data_key();
-      virtual bool is_local_data();
-      virtual void set_local_data(bool bLocalData = true);
+      //virtual bool is_local_data();
+      //virtual void set_local_data(bool bLocalData = true);
 
 
 

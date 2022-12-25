@@ -151,7 +151,7 @@ namespace aqua
       if (!pnodeRoot)
       {
 
-         return atom;
+         return false;
 
       }
 

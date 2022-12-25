@@ -828,7 +828,7 @@ bool file_path_is_dots(const ::scoped_string & scopedstr)
 }
 
 
-bool file_path_is_equal(const ::file::path & pathParam1, const ::scoped_string & pathParam2)
+bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path & pathParam2)
 {
 
    auto path1 = file_path_normalize(pathParam1);

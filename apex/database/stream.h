@@ -21,7 +21,7 @@ namespace database
 
 
       template < typename TYPE >
-      inline void set(const key & key, const TYPE & t)
+      inline void set(const ::scoped_string & scopedstr, const TYPE & t)
       {
 
          memory_file memoryfile;
@@ -32,18 +32,18 @@ namespace database
 
          stream << t;
 
-         m_pclient->data_set_memory(key, memoryfile.memory());
+         m_pclient->data_set_memory(scopedstr, memoryfile.memory());
 
       }
 
 
       template < typename TYPE >
-      inline bool get(const key & key, TYPE & t)
+      inline bool get(const ::scoped_string & scopedstr, TYPE & t)
       {
 
          memory_file memoryfile;
 
-         if (!m_pclient->data_get_memory(key, memoryfile.memory()))
+         if (!m_pclient->data_get_memory(scopedstr, memoryfile.memory()))
          {
 
             return false;

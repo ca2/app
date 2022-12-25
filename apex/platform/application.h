@@ -365,7 +365,7 @@ namespace apex
       virtual void hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
 
-      virtual bool is_local_data() override;
+      //virtual bool is_local_data() override;
 
       application_menu & applicationmenu();
 
@@ -1057,15 +1057,7 @@ namespace apex
       virtual void userfs_process_init();
 
 
-
-
-
-
-
-
-      virtual void data_on_after_change(::database::client * pclient, const ::database::key & atom, const ::payload & payload, ::topic * ptopic) override;
-
-
+      virtual void data_on_after_change(::database::client * pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic) override;
 
 
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);

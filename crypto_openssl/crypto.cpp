@@ -1165,9 +1165,9 @@ namespace crypto_openssl
          string strCertificate;
          strsize iEndLen = strEnd.length();
          ::count iCount = 0;
-         while ((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
+         while ((iFind = strOthers.find_index("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
-            strsize iEnd = strOthers(pFind).find(strEnd);
+            strsize iEnd = strOthers.find_index(strEnd, iFind);
             if (iEnd < 0)
                break;
             strCertificate = strOthers.substr(iFind, iEnd + iEndLen - iFind);
@@ -1206,14 +1206,18 @@ namespace crypto_openssl
 
       i2d_PKCS7_bio(output, pkcs7);
 
-      char* pchData = nullptr;
+      char * pchData = nullptr;
+
       long count = BIO_get_mem_data(output, &pchData);
 
       file()->put_memory(strDir / "META-INF/zigbert.rsa", { pchData, count });
 
       BIO_free(output);
+
       PKCS7_free(pkcs7);
+
 #endif
+
    }
 
       

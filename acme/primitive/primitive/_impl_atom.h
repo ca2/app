@@ -181,24 +181,51 @@ inline atom::atom(const atom & atom)
 
 
 inline atom::atom(const ::ansi_character * psz) :
-   atom()
+   m_str(psz)
 {
 
    m_etype = e_type_text;
 
-   new(&m_str) ::string(psz);
+}
+
+
+inline atom::atom(const ::string & str) :
+   m_str(str)
+{
+
+   m_etype = e_type_text;
 
 }
 
 
-//inline atom::atom(const ::scoped_string & scopedstr, atom_space *)
-//{
-//
-//   m_etype = e_type_text;
-//
-//   m_i = (::i64) (::iptr) psz;
-//
-//}
+inline atom::atom(const ::inline_number_string & inline_number_string) :
+   m_str(inline_number_string)
+{
+
+   m_etype = e_type_text;
+
+}
+
+
+template < character_range RANGE >
+atom::atom(const RANGE & range) :
+   m_str(range)
+{
+
+   m_etype = e_type_text;
+
+}
+
+
+template < has_as_string HAS_AS_STRING >
+atom::atom(const HAS_AS_STRING & has_as_string) :
+   m_str(has_as_string)
+{
+
+   m_etype = e_type_text;
+
+}
+
 
 
 #ifndef NO_TEMPLATE

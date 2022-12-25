@@ -134,12 +134,12 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 //}
 
 
-CLASS_DECL_ACME void output_error_message(const ::ansi_character * pszMessage, const ::ansi_character * pszTitle, int iMessageBox)
+CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessageParam, const ::scoped_string & strTitleParam, int iMessageBox)
 {
 
-   string strMessage(pszMessage);
+   string strMessage(strMessageParam);
 
-   string strTitle(pszTitle);
+   string strTitle(strTitleParam);
 
    if (strTitle.is_empty())
    {

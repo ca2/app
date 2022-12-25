@@ -2624,6 +2624,14 @@ string & payload::string_reference(const char * pszOnNull)
 //}
 
 
+::atom payload::as_atom() const
+{
+
+   return this->as_atom({});
+
+}
+
+
 ::atom payload::as_atom(const ::atom & idDefault) const
 {
 
@@ -5054,12 +5062,12 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //}
 
 
-::payload payload::operator + (const ::scoped_string & scopedstr) const
-{
-   
-   return *this + ::string(scopedstr);
-
-}
+//::payload payload::operator + (const ::scoped_string & scopedstr) const
+//{
+//
+//   return *this + ::string(scopedstr);
+//
+//}
 
 
 
@@ -11109,6 +11117,35 @@ CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 
 }
 
+bool payload::begins(const ::string & strPrefix) const
+{
+
+   return string().begins(strPrefix);
+
+}
+
+
+bool payload::ends(const ::string & strSuffix) const
+{
+
+   return string().ends(strSuffix);
+
+}
+
+
+bool payload::case_insensitive_begins(const ::string & strPrefix) const
+{
+
+   return string().case_insensitive_begins(strPrefix);
+
+}
+
+bool payload::case_insensitive_ends(const ::string & strSuffix) const
+{
+
+   return string().case_insensitive_ends(strSuffix);
+
+}
 
 
 //template < primitive_payload PAYLOAD, primitive_number NUMBER >
@@ -11131,3 +11168,4 @@ void test_payload()
 
 
 }
+

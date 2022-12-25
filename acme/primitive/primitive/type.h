@@ -199,6 +199,10 @@ inline string __type_name();
 
 
 template < typename TYPE >
+inline string __type_name(const TYPE * p);
+
+
+template < typename TYPE >
 inline string __type_name(const TYPE & t);
 
 

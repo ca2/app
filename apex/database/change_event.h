@@ -22,7 +22,7 @@ namespace database
 
       server *                m_pserver;
       client *                m_pclient;
-      key                     m_datakey;
+      ::string                m_strDataKey;
       ::topic *               m_pupdate;
       bool                    m_bOk;
       ::payload *             m_ppayload;

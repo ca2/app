@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   void client::data_set_memory(const key & key, const ::block & block)
+   void client::data_set_memory(const ::scoped_string & strKey, const ::block & block)
    {
 
       if (!m_pdataserver)
@@ -74,12 +74,12 @@ namespace database
 
       }
 
-      m_pdataserver->_data_server_save(this, key, block);
+      m_pdataserver->_data_server_save(this, strKey, block);
 
    }
 
    
-   bool client::data_get_memory(const key & key, ::memory_base & memory)
+   bool client::data_get_memory(const ::scoped_string & strKey, ::memory_base & memory)
    {
 
       if (!m_pdataserver)
@@ -89,7 +89,7 @@ namespace database
 
       }
 
-      if (!m_pdataserver->_data_server_load(this, key, memory))
+      if (!m_pdataserver->_data_server_load(this, strKey, memory))
       {
 
          return false;
@@ -101,7 +101,7 @@ namespace database
    }
 
 
-   void client::data_set_block(const key & key, const ::block & block)
+   void client::data_set_block(const ::scoped_string & strKey, const ::block & block)
    {
 
       if (!m_pdataserver)
@@ -111,12 +111,12 @@ namespace database
 
       }
 
-      m_pdataserver->_data_server_save(this, key, block);
+      m_pdataserver->_data_server_save(this, strKey, block);
 
    }
 
 
-   bool client::data_get_block(const key & key, ::block & block)
+   bool client::data_get_block(const ::scoped_string & strKey, ::block & block)
    {
 
       if (!m_pdataserver)
@@ -126,7 +126,7 @@ namespace database
 
       }
 
-      if (!m_pdataserver->_data_server_load(this, key, block))
+      if (!m_pdataserver->_data_server_load(this, strKey, block))
       {
 
          return false;
@@ -138,18 +138,18 @@ namespace database
    }
 
 
-   void client::data_set_payload(const key & key, const ::payload & payload)
+   void client::data_set_payload(const ::scoped_string & strKey, const ::payload & payload)
    {
 
-      _data_set(key, payload);
+      _data_set(strKey, payload);
 
    }
    
    
-   bool client::data_get_payload(const key & key, ::payload & payload)
+   bool client::data_get_payload(const ::scoped_string & strKey, ::payload & payload)
    {
 
-      return _data_get(key, payload);
+      return _data_get(strKey, payload);
 
    }
 
@@ -271,7 +271,7 @@ namespace database
    //}
 
 
-   void client::_data_set(const key & key, const ::payload & payload, ::topic * ptopic)
+   void client::_data_set(const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic)
    {
 
       if(::is_null(m_pdataserver))
@@ -287,12 +287,12 @@ namespace database
 
       stream << payload;
 
-      m_pdataserver->_data_server_save(this, key, pmemoryfile->memory(), ptopic);
+      m_pdataserver->_data_server_save(this, strKey, pmemoryfile->memory(), ptopic);
 
    }
 
 
-   void client::_data_set(const selection & selection, const ::payload & payload, ::topic * ptopic)
+   void client::_data_set(const ::string_array & straKey, const ::payload & payload, ::topic * ptopic)
    {
 
       if (::is_null(m_pdataserver))
@@ -308,30 +308,17 @@ namespace database
 
       stream << payload;
 
-      ::count iCount = selection.get_item_count();
-
-      bool bOk = true;
-
-      for (index iItem = 0; iItem < iCount; iItem++)
+      for (auto & strKey : straKey)
       {
 
-         auto & item = selection.get_item(iItem);
-
-         m_pdataserver->_data_server_save(this, item.m_datakey, pmemoryfile->memory(), ptopic);
-         //{
-
-         //   bOk = false;
-
-         //}
+         m_pdataserver->_data_server_save(this, strKey, pmemoryfile->memory(), ptopic);
 
       }
-
-      //return bOk;
 
    }
 
 
-   bool client::_data_get(const key & key, ::payload payload)
+   bool client::_data_get(const ::scoped_string & strKey, ::payload payload)
    {
 
       if (m_pdataserver == nullptr)
@@ -344,7 +331,7 @@ namespace database
       if (payload.get_type() == ::e_type_memory)
       {
 
-         if (!m_pdataserver->_data_server_load(this, key, *payload.m_pmemory))
+         if (!m_pdataserver->_data_server_load(this, strKey, *payload.m_pmemory))
          {
 
             return false;
@@ -357,7 +344,7 @@ namespace database
 
          ::memory_file memoryfile;
 
-         if (!m_pdataserver->_data_server_load(this, key, memoryfile.memory()))
+         if (!m_pdataserver->_data_server_load(this, strKey, memoryfile.memory()))
          {
 
             return false;
@@ -379,13 +366,6 @@ namespace database
 
          }
 
-         //if (is.fail())
-         //{
-
-         //   return false;
-
-         //}
-
       }
 
       return true;
@@ -393,21 +373,14 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::topic * ptopic)
+   bool client::data_pulse_change(const ::scoped_string & strKey, ::topic * ptopic)
    {
 
       if(m_pdataserver != nullptr)
       {
 
 
-         m_pdataserver->data_pulse_change(this, key, ptopic);
-
-         //if (!m_pdataserver->data_pulse_change(this, key, ptopic))
-         //{
-
-         //   return false;
-
-         //}
+         m_pdataserver->data_pulse_change(this, strKey, ptopic);
 
          return true;
 
@@ -474,37 +447,37 @@ namespace database
    }
 
 
-   void client::set_data_key_modifier(const key & key)
+   void client::set_data_key_modifier(const ::scoped_string & strKey)
    {
 
-      m_datakeyModifier = key;
+      m_strKeyModifier = strKey;
 
-      m_datakey.m_strDataKey.empty();
+      m_strKey.empty();
 
       update_data_key();
 
    }
 
 
-   key client::get_data_key_modifier()
+   ::string client::get_data_key_modifier()
    {
 
-      return m_datakeyModifier;
+      return m_strKeyModifier;
 
    }
 
 
-   key client::calc_data_key(const key & datakey)
+   ::string client::calc_data_key(const ::scoped_string & strKey)
    {
 
       defer_update_data_key();
 
-      return m_datakey + datakey;
+      return m_strKey + strKey;
 
    }
 
 
-   key client::calc_parent_data_key()
+   ::string client::calc_parent_data_key()
    {
 
       return get_app()->m_papexapplication->calc_data_key();
@@ -512,16 +485,16 @@ namespace database
    }
 
 
-   key client::calc_data_key()
+   ::string client::calc_data_key()
    {
 
-      ::database::key key(calc_parent_data_key(), is_local_data());
+      ::string strKey = calc_parent_data_key();
 
       defer_update_object_id();
 
-      key.m_strDataKey += "/" + m_atom;
+      strKey += "/" + m_atom;
 
-      return key;
+      return strKey;
 
    }
 
@@ -529,7 +502,7 @@ namespace database
    void client::update_data_key()
    {
 
-      m_datakey = key(calc_data_key()) + m_datakeyModifier;
+      m_strKey = calc_data_key() + "/" + m_strKeyModifier;
 
    }
 
@@ -537,7 +510,7 @@ namespace database
    void client::defer_update_data_key()
    {
 
-      if(m_datakey.m_strDataKey.is_empty())
+      if(m_strKey.is_empty())
       {
 
          update_data_key();
@@ -547,34 +520,34 @@ namespace database
    }
 
 
-   bool client::is_local_data()
-   {
+//   bool client::is_local_data()
+//   {
+//
+//      return m_strKey.m_bLocalData;
+//
+//   }
+//
+//
+//   void client::set_local_data(bool bLocalData)
+//   {
+//
+//      return m_strKey.set_local_data(bLocalData);
+//
+//   }
 
-      return m_datakey.m_bLocalData;
 
-   }
-
-
-   void client::set_local_data(bool bLocalData)
-   {
-
-      return m_datakey.set_local_data(bLocalData);
-
-   }
-
-
-   void client::data_on_before_change(client* pclient, const key& atom, ::payload& payload, ::topic * ptopic)
+   void client::data_on_before_change(client* pclient, const ::scoped_string & strKey, ::payload& payload, ::topic * ptopic)
    {
 
       //return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& atom, const ::payload & payload, ::topic * ptopic)
+
+   void client::data_on_after_change(client* pclient, const ::scoped_string & strKey, const ::payload & payload, ::topic * ptopic)
    {
 
    }
-
 
 
 } // namespace database

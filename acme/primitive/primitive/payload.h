@@ -1396,3 +1396,61 @@ inline PAYLOAD1 operator +(const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
    return ::move(payload);
 
 }
+
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
+{
+
+   return payload1 = ::move(payload1 + payload2);
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_character CHARACTER >
+inline ::string operator +(const PAYLOAD & payload, const CHARACTER * psz)
+{
+
+   ::string str(payload);
+
+   str.append(psz);
+
+   return ::move(str);
+
+}
+
+
+template < primitive_payload PAYLOAD, primitive_character CHARACTER >
+inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
+{
+
+   payload = payload.get_string() + ::string(psz);
+
+   return payload;
+
+}
+
+
+template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
+{
+
+   ::string str(psz);
+
+   str.append(payload.get_string());
+
+   return ::move(str);
+
+}
+
+
+template < primitive_payload PAYLOAD, character_range RANGE >
+::string operator + (const PAYLOAD & payload, const RANGE & range)
+{
+
+   return ::move(::string(payload) + ::string(range));
+
+}
+
+
+

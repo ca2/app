@@ -145,6 +145,8 @@ namespace apex
    {
 
       m_papexsystem = this;
+      factory()->add_factory_item < ::apex::session, ::apex::session >();
+
 
       //factory()->add_factory_item < ::thread >();
 
@@ -233,202 +235,9 @@ namespace apex
    void system::initialize(::particle* pparticle)
    {
 
-
-
-
-      //auto estatus = 
       ::apex::context::initialize(pparticle);
 
-      factory()->add_factory_item < ::apex::session, ::apex::session >();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
       m_pcontext = this;
-
-      __construct_new(m_pthreading);
-
-      ::earth::time timeNow = ::earth::time::now();
-
-      auto pnode = node();
-
-      if (pnode)
-      {
-
-         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
-         {
-
-            pnode->set_simple_ui_darkness(0);
-
-         }
-         else
-         {
-
-            pnode->set_simple_ui_darkness(255);
-
-         }
-
-      }
-
-
-      //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
-
-#if !defined(_UWP) && !defined(ANDROID)
-
-      m_pmutexMatter = acmenode()->create_local_named_mutex(this, false, "ca2-appmatter");
-
-#endif
-
-      //estatus =
-
-      __construct_new(m_pbase64);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      __construct_new(m_poperatingsystem);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      if (m_bPreferLessGraphicsParallelization)
-      {
-
-         m_bThreadToolsForIncreasedFps = false;
-
-      }
-      else
-      {
-
-         m_bThreadToolsForIncreasedFps = false;
-
-      }
-
-#ifdef __DEBUG
-
-      //estatus = 
-      //__construct_new(m_pdumpcontext);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-#endif
-
-//#if def WINDOWS
-//
-//      exception_translator::attach();
-//
-//#endif
-
-      m_nSafetyPoolSize = 512;        // default size_i32
-
-      //estatus = 
-      __construct_new(m_pgeometry);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      string strId;
-      strId = "ca2log";
-
-      initialize_log(strId);
-      //{
-
-      //   throw ::exception("failed to initialize log");
-
-      //}
-
-      // {
-
-      //    bool bGlobalEnableStackTrace = true;
-
-      //    ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
-
-      //    if (acmefile()->exists(pathNoExceptionStackTrace))
-      //    {
-
-      //       bGlobalEnableStackTrace = false;
-
-      //    }
-
-      //    ::exception::enable_call_stack_back_trace(bGlobalEnableStackTrace);
-
-      // }
-
-      //add_factory_item < ::stdio_file, ::file::text_file >();
-      //add_factory_item < ::stdio_file, ::file::file >();
-      factory()->add_factory_item < ::i64_array >();
-      factory()->add_factory_item < ::double_array >();
-      factory()->add_factory_item < ::acme::library >();
-
-      factory()->add_factory_item < ::file::path_object >();
-
-      factory()->add_factory_item < string_array >();
-      factory()->add_factory_item < memory >();
-      factory()->add_factory_item < memory_file >();
-      factory()->add_factory_item < int_array >();
-
-      //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::i64_array >();
-      //factory()->add_factory_item < ::double_array >();
-      //factory()->add_factory_item < ::acme::library >();
-
-      //factory()->add_factory_item < ::file::path_object >();
-
-      //factory()->add_factory_item < string_array >();
-      //factory()->add_factory_item < memory >();
-      //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < int_array >();
-
-      ///estatus = 
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      thread::s_bAllocReady = true;
-
-      //estatus = 
-      __construct_new(m_purl);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      m_uiWindowsTaskbarCreatedMessage = 0;
-//
-//#endif
-
-      //return estatus;
 
    }
 
@@ -557,6 +366,187 @@ namespace apex
 
       //auto estatus = 
       ::acme::system::process_init();
+
+      __construct_new(m_pthreading);
+
+      ::earth::time timeNow = ::earth::time::now();
+
+      auto pnode = node();
+
+      if (pnode)
+      {
+
+         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
+         {
+
+            pnode->set_simple_ui_darkness(0);
+
+         }
+         else
+         {
+
+            pnode->set_simple_ui_darkness(255);
+
+         }
+
+      }
+
+
+      //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
+
+#if !defined(_UWP) && !defined(ANDROID)
+
+      m_pmutexMatter = acmenode()->create_local_named_mutex(this, false, "ca2-appmatter");
+
+#endif
+
+      //estatus =
+
+      __construct_new(m_pbase64);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus =
+      __construct_new(m_poperatingsystem);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      if (m_bPreferLessGraphicsParallelization)
+      {
+
+         m_bThreadToolsForIncreasedFps = false;
+
+      }
+      else
+      {
+
+         m_bThreadToolsForIncreasedFps = false;
+
+      }
+
+#ifdef __DEBUG
+
+      //estatus =
+      //__construct_new(m_pdumpcontext);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+#endif
+
+//#if def WINDOWS
+//
+//      exception_translator::attach();
+//
+//#endif
+
+      m_nSafetyPoolSize = 512;        // default size_i32
+
+      //estatus =
+      __construct_new(m_pgeometry);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      string strId;
+      strId = "ca2log";
+
+      initialize_log(strId);
+      //{
+
+      //   throw ::exception("failed to initialize log");
+
+      //}
+
+      // {
+
+      //    bool bGlobalEnableStackTrace = true;
+
+      //    ::file::path pathNoExceptionStackTrace = acmedirectory()->config() / "system/no_exception_stack_trace.txt";
+
+      //    if (acmefile()->exists(pathNoExceptionStackTrace))
+      //    {
+
+      //       bGlobalEnableStackTrace = false;
+
+      //    }
+
+      //    ::exception::enable_call_stack_back_trace(bGlobalEnableStackTrace);
+
+      // }
+
+      //add_factory_item < ::stdio_file, ::file::text_file >();
+      //add_factory_item < ::stdio_file, ::file::file >();
+      factory()->add_factory_item < ::i64_array >();
+      factory()->add_factory_item < ::double_array >();
+      factory()->add_factory_item < ::acme::library >();
+
+      factory()->add_factory_item < ::file::path_object >();
+
+      factory()->add_factory_item < string_array >();
+      factory()->add_factory_item < memory >();
+      factory()->add_factory_item < memory_file >();
+      factory()->add_factory_item < int_array >();
+
+      //factory()->add_factory_item < ::file::path_object >();
+      //factory()->add_factory_item < ::i64_array >();
+      //factory()->add_factory_item < ::double_array >();
+      //factory()->add_factory_item < ::acme::library >();
+
+      //factory()->add_factory_item < ::file::path_object >();
+
+      //factory()->add_factory_item < string_array >();
+      //factory()->add_factory_item < memory >();
+      //factory()->add_factory_item < memory_file >();
+      //factory()->add_factory_item < int_array >();
+
+      ///estatus =
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      thread::s_bAllocReady = true;
+
+      //estatus =
+      __construct_new(m_purl);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_uiWindowsTaskbarCreatedMessage = 0;
+//
+//#endif
+
+      //return estatus;
+
 
       //if (!estatus)
       //{

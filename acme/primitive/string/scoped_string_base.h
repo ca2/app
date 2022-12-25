@@ -32,16 +32,16 @@ public:
    scoped_string_base(const scoped_wd32_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
-   scoped_string_base(const STRING & str) : m_str(str), RANGE(m_str) { }
+   scoped_string_base(const STRING & str) : m_str(str), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
 
    template < has_as_string HAS_AS_STRING >
-   scoped_string_base(const HAS_AS_STRING & has_as_string) : m_str(has_as_string.as_string()), RANGE(m_str) { }
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : m_str(has_as_string.as_string()), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
 
    template < primitive_payload PAYLOAD >
-   scoped_string_base(const PAYLOAD & payload) : m_str(payload.get_string()), RANGE(m_str) { }
+   scoped_string_base(const PAYLOAD & payload) : m_str(payload.get_string()), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
 
    template < primitive_character CHARACTER2 >
-   scoped_string_base(CHARACTER2 character) : m_str(character), RANGE(m_str) { }
+   scoped_string_base(CHARACTER2 character) : m_str(character), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
 
    template < character_range_not_string_neither_scoped_string CHARACTER_RANGE >
    scoped_string_base(const CHARACTER_RANGE & range) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(range); }

@@ -223,7 +223,7 @@ public:
 
    using iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::iterator >;
    using const_iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::const_iterator >;
-   using THIS_ITERATOR = ::make_list_iterator < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
+   using THIS_ITERATOR = ::make_list_iterator < BASE_ITERATOR_TYPE >;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM;
@@ -275,9 +275,6 @@ public:
       return b.is_set();
 
    }
-
-
-   constexpr ::count operator - (const_iterator iterator) const;
 
 
    THIS_ITERATOR & operator += (::count c)
@@ -334,11 +331,67 @@ public:
 
    }
 
+
+   constexpr ::count operator - (THIS_ITERATOR iterator) const
+   {
+
+      {
+
+         auto i = *this;
+
+         ::count c = 0;
+
+         while (i.is_set())
+         {
+
+            if (i == iterator)
+            {
+
+               return c;
+
+            }
+
+            i--;
+
+            c++;
+
+         }
+
+      }
+
+      {
+
+         auto i = iterator;
+
+         ::count c = 0;
+
+         while (i.is_set())
+         {
+
+            if (i == *this)
+            {
+
+               return -c;
+
+            }
+
+            i--;
+
+            c++;
+
+         }
+
+      }
+
+      throw "iterator is not part of list";
+
+   }
+
+
    THIS_ITERATOR & operator =(ITEM_POINTER p) { this->m_p = p;  return *this; }
    THIS_ITERATOR & operator =(const iterator & iterator) { this->m_p = iterator.m_p;  return *this;}
    THIS_ITERATOR & operator =(const const_iterator & iterator) { this->m_p = iterator.m_p;  return *this; }
    THIS_ITERATOR & operator =(nullptr_t) { this->m_p = nullptr;  return *this; }
-
 
 
    constexpr bool operator == (THIS_ITERATOR iterator) const

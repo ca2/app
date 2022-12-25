@@ -5302,7 +5302,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
    if (p < this->end() - 1)
    {
 
-      truncate(p);
+      truncate(p + 1);
 
    }
 

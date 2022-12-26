@@ -347,7 +347,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      if (!papp->datastream()->get(key, windowrectangle))
+      if (!papp->datastream()->get(strDataKey, windowrectangle))
       {
 
          return false;
@@ -477,7 +477,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      if (!papp->datastream()->get(key, windowrectangle))
+      if (!papp->datastream()->get(strDataKey, windowrectangle))
       {
 
          return false;
@@ -593,7 +593,7 @@ namespace user
 
          auto papp = get_app();
 
-         papp->datastream()->get(key, m_windowrectangleStore);
+         papp->datastream()->get(strDataKey, m_windowrectangleStore);
 
       }
 
@@ -657,7 +657,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      papp->datastream()->set(key, windowrect);
+      papp->datastream()->set(strDataKey, windowrect);
       //{
 
       //   return false;
@@ -828,34 +828,34 @@ namespace user
    //}
 
 
-   bool box::parent_is_local_data()
-   {
+   //bool box::parent_is_local_data()
+   //{
 
-      ::user::interaction * puiParent = get_parent();
+   //   ::user::interaction * puiParent = get_parent();
 
-      ::pointer<::database::client>pclient = puiParent;
+   //   ::pointer<::database::client>pclient = puiParent;
 
-      if(pclient.is_set())
-      {
+   //   if(pclient.is_set())
+   //   {
 
-         if(pclient->is_local_data())
-         {
+   //      if(pclient->is_local_data())
+   //      {
 
-            return true;
+   //         return true;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //bool box::is_local_data()
@@ -929,19 +929,6 @@ namespace user
 
 
 } // namespace user
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

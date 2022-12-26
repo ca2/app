@@ -12,7 +12,19 @@ struct memory_template
    BLOCK_TYPE * data() { return (BLOCK_TYPE *)this; }
    memsize size() const { return (memsize) sizeof(BLOCK_TYPE); }
 
-   BLOCK_TYPE & operator = (const block & block);
+   BLOCK_TYPE & operator = (const block & block)
+   {
+
+      if ((const void *) this != (const void *)  & block)
+      {
+
+         memcpy(this, block.data(), minimum(sizeof(*this), block.size()));
+
+      }
+
+      return *this;
+
+   }
 
    ::block block() const { return ::block(data(), size()); }
 

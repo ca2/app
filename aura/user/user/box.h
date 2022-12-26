@@ -84,7 +84,7 @@ namespace user
       virtual bool on_before_set_parent(::user::primitive * pinterface) override;
 
 
-      virtual bool parent_is_local_data();
+      //virtual bool parent_is_local_data();
 
 
       void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored) override;

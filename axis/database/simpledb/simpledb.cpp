@@ -87,7 +87,7 @@ namespace simpledb
 
       }
 
-      string strKey = key.m_strDataKey;
+      string strKey = strDataKey;
 
       strKey.replace_with("/", "\\");
 
@@ -113,7 +113,7 @@ namespace simpledb
       if (pserver->m_pdatabaseUser.is_set())
       {
 
-         string strKey = key.m_strDataKey;
+         string strKey = strDataKey;
 
          auto pdatabase = pserver->m_pdatabaseUser;
 
@@ -142,11 +142,12 @@ namespace simpledb
 
       }
 
-      string strKey = key.m_strDataKey;
+      string strKey = strDataKey;
 
       strKey.replace_with("/", "\\");
 
-      if (!pserver->m_bRemote || key.m_bLocalData)
+      //if (!pserver->m_bRemote || key.m_bLocalData)
+      if (!pserver->m_bRemote)
       {
 
          auto ppair = pstorage->m_map.plookup(strKey);
@@ -285,7 +286,7 @@ namespace simpledb
 
                stritem.m_tick.Now();
 
-               stritem.m_memory.from_base64(strValue, strValue.length());
+               stritem.m_memory.from_base64(strValue);
 
                synchronouslock.lock();
 
@@ -332,7 +333,7 @@ namespace simpledb
       if (pserver->m_pdatabaseUser.is_set())
       {
 
-         string strKey = key.m_strDataKey;
+         string strKey = strDataKey;
 
          strKey.replace_with("/", "\\");
 
@@ -363,11 +364,12 @@ namespace simpledb
 
       }
 
-      string strKey = key.m_strDataKey;
+      string strKey = strDataKey;
 
       strKey.replace_with("/", "\\");
 
-      if (!pserver->m_bRemote || key.m_bLocalData)
+      //if (!pserver->m_bRemote || key.m_bLocalData)
+      if (!pserver->m_bRemote)
       {
 
          if (pserver->get_local_database().is_null())

@@ -18,7 +18,7 @@ namespace database
       /// Value to be add to data key on defer_update_data_id
       ::string                   m_strKeyModifier;
       /// Cached Value from calc_data_id
-      ::string                   m_strKey;
+      ::string                   m_strDataKey;
 
 
    public:

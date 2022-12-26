@@ -972,7 +972,7 @@ namespace html
 
             string strUrl(get_tag()->get_attr_value("href"));
 
-            if(strUrl.find(":") >= 0)
+            if(strUrl.contains(":"))
             {
 
             }
@@ -1051,7 +1051,7 @@ namespace html
 
    bool element::parse(html_data * phtmldata, const char * & pszParam)
    {
-      const ::scoped_string & scopedstr = pszParam;
+      const char * psz = pszParam;
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
@@ -1066,7 +1066,7 @@ namespace html
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
-      const ::scoped_string & scopedstrTag = psz;
+      const char * pszTag = psz;
       // skip valid char
       while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
@@ -1115,7 +1115,7 @@ namespace html
 
       }
 
-      const ::scoped_string & scopedstrBody = psz;
+      const char * pszBody = psz;
 
       while (true)
       {
@@ -1154,7 +1154,7 @@ namespace html
       // skip white space
       while (*psz != '\0' && character_isspace(*psz))
          psz++;
-      const ::scoped_string & scopedstrCloseTag = psz;
+      const char * pszCloseTag = psz;
       // skip valid char
       while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
          psz++;
@@ -1185,7 +1185,7 @@ namespace html
             psz--;
             return;
          }
-         const ::scoped_string & scopedstrKey = psz;
+         const char * pszKey = psz;
          // skip valid char
          while (*psz != '\0' && !character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
             psz++;
@@ -1214,7 +1214,7 @@ namespace html
          while (*psz != '\0' && character_isspace(*psz))
             psz++;
 
-         const ::scoped_string & scopedstrValue;
+         const char * pszValue;
          if (*psz == '\"' || *psz == '\'')
          {
             chQuote = *psz;
@@ -1685,7 +1685,7 @@ namespace html
 
             str += "\"";
 
-            str += pproperty->as_string();
+            str += pproperty->get_string();
 
             str += "\"";
 

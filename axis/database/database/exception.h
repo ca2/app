@@ -1,4 +1,4 @@
-// From definition.h by camilo on 2022-09-06 17:19 <3ThomasBorregaardSorensen!!
+﻿// From definition.h by camilo on 2022-09-06 17:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -16,7 +16,7 @@ namespace database
 
 
       exception();
-      exception(const ::scoped_string & scopedstrFormat, ...);
+      exception(const char * pszFormat, ...);
 
 
    };

@@ -16,9 +16,9 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
    strsize pos = 0;
    string strRet;
    strsize iRead;
-   while(pos < body.get_length())
+   while(pos < body.length())
    {
-      iRead = minimum(chunklen,body.get_length() - pos);
+      iRead = minimum(chunklen,body.length() - pos);
       strRet += body.substr(pos,iRead);
       strRet += end;
       pos += iRead;

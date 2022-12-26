@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/account/interactive.h"
@@ -45,7 +45,7 @@ namespace axis
 
       //virtual ::user::style* get_user_style() const;
     
-      virtual ::database::key calc_data_key() override;
+      virtual ::string calc_data_key() override;
 
 
 

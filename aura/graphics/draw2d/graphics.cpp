@@ -3526,10 +3526,10 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetTextBegin(const ::scoped_string & scopedstr)
+   size_f64 graphics::GetTextBegin(const ::scoped_string & scopedstr, strsize iIndex)
    {
 
-      return get_text_extent(scopedstr);
+      return get_text_extent(scopedstr, iIndex);
 
    }
 

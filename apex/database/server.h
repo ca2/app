@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "client.h"
@@ -9,7 +9,7 @@ namespace database
 {
 
 
-   class key;
+   //class key;
 
 
    class CLASS_DECL_APEX server :

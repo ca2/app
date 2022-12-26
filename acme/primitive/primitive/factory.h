@@ -356,21 +356,21 @@ namespace factory
    //CLASS_DECL_ACME critical_section * &m_criticalsection;
 
 
-//   template <  typename ORIGIN_TYPE>
-//   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::add_factory_item(const ::atom & atom)
-//   {
-//
-//      critical_section_lock lock(&m_criticalsection);
-//
-//      auto pfactoryitem = __new(::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE >());
-//
-//      set_at(atom, pfactoryitem);
-//
-//      //factory()->set_at(atom, pfactory);
-//
-//      return pfactoryitem;
-//
-//   }
+   template <  typename ORIGIN_TYPE>
+   inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > factory::add_factory_item(const ::atom & atom)
+   {
+
+      critical_section_lock lock(&m_criticalsection);
+
+      auto pfactoryitem = __new(::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE >());
+
+      set_at(atom, pfactoryitem);
+
+      //factory()->set_at(atom, pfactory);
+
+      return pfactoryitem;
+
+   }
 
 
    CLASS_DECL_ACME::factory::factory * loading_library_factory();

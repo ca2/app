@@ -335,7 +335,7 @@ namespace account
 
       auto timeEnd = ::time::now();
 
-      INFORMATION(set["http_get_serial"].as_string() << "> get_account_login HTTP GET time = " << (timeEnd - timeStart).integral_millisecond());
+      INFORMATION(set["http_get_serial"].get_string() << "> get_account_login HTTP GET time = " << (timeEnd - timeStart).integral_millisecond());
 
       strNode.trim();
 

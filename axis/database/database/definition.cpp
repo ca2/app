@@ -22,7 +22,7 @@ namespace database
    }
 
 
-   exception::exception(const ::scoped_string & scopedstrFormat, ...)
+   exception::exception(const char * pszFormat, ...)
    {
 
       string str;

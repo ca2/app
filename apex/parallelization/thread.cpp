@@ -3007,7 +3007,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (atom.as_umessage() == e_message_quit)
+      if (atom == e_message_quit)
       {
 
          string strType = __type_name(this);
@@ -3056,7 +3056,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.as_umessage(), wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessage((DWORD) m_itask, atom.as_emessage(), wparam, lparam) != false;
 
       if (!bOk)
       {

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "server.h"
 #include "storage.h"
 #include "simpledb.h"
@@ -239,7 +239,7 @@ namespace simpledb
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
-         if (item.i32() <= 0)
+         if (item.as_i32() <= 0)
          {
 
             pdatabase->exec("create table '" + strTable + "' (id TEXT primary key, value BLOB)");
@@ -290,12 +290,10 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_load(::database::client * pclient, const ::database::key & atom, get_memory getmemory, ::topic * ptopic)
+   bool server::_data_server_load(::database::client * pclient, const ::scoped_string & scopedstrDataKey, get_memory getmemory, ::topic * ptopic)
    {
 
-      ::database::key key;
-
-      key = pclient->calc_data_key(atom);
+      string strDataKey = pclient->calc_data_key(scopedstrDataKey);
 
       string strType = __type_name(pclient);
 
@@ -306,7 +304,7 @@ namespace simpledb
 
       }
 
-      if (!m_psimpledb->load(key, getmemory))
+      if (!m_psimpledb->load(strDataKey, getmemory))
       {
 
          return false;
@@ -318,12 +316,10 @@ namespace simpledb
    }
 
 
-   void server::_data_server_save(::database::client * pclient, const ::database::key & atom, block block, ::topic * ptopic)
+   void server::_data_server_save(::database::client * pclient, const ::scoped_string & scopedstrDataKey, block block, ::topic * ptopic)
    {
 
-      ::database::key key;
-
-      key = pclient->calc_data_key(atom);
+      auto strDataKey = pclient->calc_data_key(scopedstrDataKey);
 
       string strType = __type_name(pclient);
 
@@ -334,7 +330,7 @@ namespace simpledb
 
       }
 
-      m_psimpledb->save(key, block);
+      m_psimpledb->save(strDataKey, block);
       //{
 
       //   return false;

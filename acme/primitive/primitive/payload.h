@@ -531,36 +531,36 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
 
-   bool b() const;
+   bool as_bool() const;
 
-//   operator bool() const { return this->b(); }
-//
-//   operator ::i8() const { return this->i8(); }
-//   operator ::u8() const { return this->u8(); }
-//   operator ::i16() const { return this->i16(); }
-//   operator ::u16() const { return this->u16(); }
-//   operator ::i32() const { return this->i32(); }
-//   operator ::u32() const { return this->u32(); }
-//   operator ::i64() const { return this->i64(); }
-//   operator ::u64() const { return this->u64(); }
-//
-//
-//
-//   operator ::f32() const { return this->f32(); }
-//   operator ::f64() const { return this->f64(); }
+   operator bool() const { return this->as_bool(); }
+
+   operator ::i8() const { return this->as_i8(); }
+   operator ::u8() const { return this->as_u8(); }
+   operator ::i16() const { return this->as_i16(); }
+   operator ::u16() const { return this->as_u16(); }
+   operator ::i32() const { return this->as_i32(); }
+   operator ::u32() const { return this->as_u32(); }
+   operator ::i64() const { return this->as_i64(); }
+   operator ::u64() const { return this->as_u64(); }
+
+
+
+   operator ::f32() const { return this->as_f32(); }
+   operator ::f64() const { return this->as_f64(); }
    //operator ::string() const;
    //::memory memory() const;
+   operator ::file::path() const { return this->as_file_path(); }
+
+
+   //operator ::string() const { return this->as_string(); }
    //operator ::file::path() const { return this->file_path(); }
 
-
-   //operator ::string() const { return this->string(); }
-   //operator ::file::path() const { return this->file_path(); }
-
-   //operator ::file_time() const { return this->file_time(); }
-   //operator ::earth::time() const { return this->earth_time(); }
-   //operator ::color::color() const { return this->color(); }
-   //operator ::color::hls() const { return this->hls(); }
-   //operator ::block() const { return this->block(); }
+   operator ::file_time() const { return this->as_file_time(); }
+   operator ::earth::time() const { return this->as_earth_time(); }
+   operator ::color::color() const { return this->as_color(); }
+   operator ::color::hls() const { return this->as_hls(); }
+   operator ::block() const { return this->as_block(); }
 
    ::string & string_reference(const char * scopedstrOnNull = nullptr);
 

@@ -130,7 +130,7 @@ namespace html
 
       }
 
-      f = parse_dimension(m_propertyset[rangeName].as_string());
+      f = parse_dimension(m_propertyset[rangeName].get_string());
 
       return true;
 
@@ -205,7 +205,7 @@ namespace html
       if(pstyle != nullptr)
       {
 
-         f = parse_dimension(pstyle->m_propertyset[rangeName].as_string());
+         f = parse_dimension(pstyle->m_propertyset[rangeName].get_string());
 
       }
 
@@ -217,7 +217,7 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].as_string());
+            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].get_string());
 
          }
          else
@@ -237,7 +237,7 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].as_string());
+            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_string());
 
          }
          else
@@ -257,7 +257,7 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].as_string());
+            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_string());
 
          }
          else
@@ -277,7 +277,7 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].as_string());
+            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_string());
 
          }
          else
@@ -360,8 +360,8 @@ namespace html
       if(pstyleLeft != nullptr)
          iLeft = pstyleLeft->m_propertyset.find_index(puser->m_phtml->concat(rangeName, "html_css_suffix_left"));
 
-      if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_left_width")
-                                     && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left_width")], fLeftW)))
+      if (m_propertyset.has_property(puser->m_phtml->concat(rangeName, "html_css_suffix_left_width"))
+                                     && parse_border_width(m_propertyset[puser->m_phtml->concat(rangeName, "html_css_suffix_left_width")], fLeftW))
          pstyleLeftW = this;
       else
          pstyleLeftW = pdata->m_pcoredata->m_stylesheeta.rfind_border_width(etag, strClass, strSubClass, puser->m_phtml->concat(rangeName, "html_css_suffix_left_width"), fLeftW);
@@ -438,28 +438,28 @@ namespace html
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, fLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, fLeftW);
-      rectangle.left          = (float) (double) varCur.f64();
+      rectangle.left          = (float) (double) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, fTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, fTopW);
-      rectangle.top           = (float) (double) varCur.f64();
+      rectangle.top           = (float) (double) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, fRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, fRightW);
-      rectangle.right         = (float) (double) varCur.f64();
+      rectangle.right         = (float) (double) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, fBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, fBottomW);
-      rectangle.bottom        = (float) (double) varCur.f64();
+      rectangle.bottom        = (float) (double) varCur;
 
       return true;
 

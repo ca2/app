@@ -8025,7 +8025,7 @@ namespace user
 
       strText.translate_index(iEnd);
 
-      strText.replace(iBeg, iEnd, strText);
+      strText.replace_index(iBeg, iEnd, strText);
 
       if (m_pappearance)
       {
@@ -8338,7 +8338,7 @@ namespace user
       if (m_pgraphicscalla) m_pgraphicscalla->destroy();
       if (m_puserinteractionCustomWindowProc) m_puserinteractionCustomWindowProc->destroy();
       if (m_puiLabel) m_puiLabel->destroy();
-      m_pitema->destroy_all();
+      if(m_pitema) m_pitema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
       if (m_palphasource) m_palphasource->destroy();
@@ -8367,7 +8367,7 @@ namespace user
       m_pgraphicscalla.release();
       m_puserinteractionCustomWindowProc.release();
       m_puiLabel.release();
-      m_pitema->erase_all();
+      if(m_pitema) m_pitema->erase_all();
       m_pform.release();
       m_palphasource.release();
       //m_pdrawableBackground.release();
@@ -12631,7 +12631,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::size_f64 size;
 
-      pgraphics->get_text_extent(size, unitext("Ág"));
+      size = pgraphics->get_text_extent(unitext("Ág"));
 
       return size.cy;
 
@@ -16949,7 +16949,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       wstring wstr(m_strWindowText);
 
-      n = (int)minimum(wstr.get_length() + 1, n);
+      n = (int)minimum(wstr.length() + 1, n);
 
       wcsncpy(pwsz, wstr.c_str(), n);
 
@@ -16964,7 +16964,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    {
       wstring wstr(m_strWindowText);
 
-      return wstr.get_length();
+      return wstr.length();
 
    }
 
@@ -17249,7 +17249,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_down " + ::as_string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_down " + ::string(pszType));
 
       if (!is_window_enabled())
       {
@@ -17483,7 +17483,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pszType = typeid(*this).name();
       
-      ::output_debug_string("interaction::on_message_left_button_up " + ::as_string(pszType));
+      ::output_debug_string("interaction::on_message_left_button_up " + ::string(pszType));
       
       auto pappearance = get_appearance();
 
@@ -19401,7 +19401,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      if (strClass.find(',') < 0)
+      if (!strClass.contains(','))
       {
 
          strClass.trim();
@@ -19461,7 +19461,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::set_class_style(string strClass, string strStyle)
    {
 
-      if (strClass.find(",") >= 0)
+      if (strClass.contains(","))
       {
 
          throw ::exception(error_bad_argument);
@@ -20169,7 +20169,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::set_ddx_dbflags(::database::key datakey, iptr value)
+   void interaction::set_ddx_dbflags(const ::scoped_string & scopestr, iptr value)
    {
 
       m_eddx = ::user::e_control_ddx_dbflags;

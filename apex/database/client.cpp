@@ -452,7 +452,7 @@ namespace database
 
       m_strKeyModifier = strKey;
 
-      m_strKey.empty();
+      m_strDataKey.empty();
 
       update_data_key();
 
@@ -472,7 +472,7 @@ namespace database
 
       defer_update_data_key();
 
-      return m_strKey + strKey;
+      return m_strDataKey + strKey;
 
    }
 
@@ -502,7 +502,7 @@ namespace database
    void client::update_data_key()
    {
 
-      m_strKey = calc_data_key() + "/" + m_strKeyModifier;
+      m_strDataKey = calc_data_key() + "/" + m_strKeyModifier;
 
    }
 
@@ -510,7 +510,7 @@ namespace database
    void client::defer_update_data_key()
    {
 
-      if(m_strKey.is_empty())
+      if(m_strDataKey.is_empty())
       {
 
          update_data_key();

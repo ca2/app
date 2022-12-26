@@ -11,7 +11,7 @@ namespace database
 
 
    class server;
-   class key;
+   //class key;
 
 
    class CLASS_DECL_APEX change_event :

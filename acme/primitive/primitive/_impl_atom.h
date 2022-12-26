@@ -940,14 +940,14 @@ inline ::iptr atom::as_iptr() const
 }
 
 
-//inline atom::operator enum_message () const
-//{
-//
-//   return m_etype == e_type_message ? m_emessage : e_message_undefined;
-//
-//}
-//
-//
+inline enum_message atom::as_emessage() const
+{
+
+   return m_etype == e_type_message ? m_emessage : (enum_message) MESSAGE_UNDEFINED;
+
+}
+
+
 //inline atom::operator enum_dialog_result () const
 //{
 //

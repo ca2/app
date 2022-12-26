@@ -659,7 +659,7 @@ namespace write_text
    void font_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::enum_id eid = (::enum_id)ptopic->m_atom.i64();
+      ::enum_id eid = (::enum_id)ptopic->m_atom.as_i64();
 
       if (eid == id_font_enumeration)
       {

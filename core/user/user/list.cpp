@@ -5821,12 +5821,12 @@ namespace user
 
 
 
-   bool list::_001HasConfigId(const ::database::key & key)
+   bool list::_001HasConfigId(const ::scoped_string & strDataKey)
    {
       return _001ConfigIdToColumnKey(key) >= 0;
    }
 
-   index list::_001ConfigIdToSubItem(const ::database::key & key)
+   index list::_001ConfigIdToSubItem(const ::scoped_string & strDataKey)
    {
       list_column * column = m_pcolumna->get_by_config_id(key);
       if (column == nullptr)
@@ -5835,7 +5835,7 @@ namespace user
    }
 
 
-   index list::config_id_index(const ::database::key & key)
+   index list::config_id_index(const ::scoped_string & strDataKey)
    {
 
       return m_pcolumna->config_id_index(key);
@@ -5844,7 +5844,7 @@ namespace user
 
 
 
-   list_column * list_column_array::get_by_config_id(const ::database::key & key)
+   list_column * list_column_array::get_by_config_id(const ::scoped_string & strDataKey)
    {
       index iKey = config_id_index(key);
       if (iKey >= 0)
@@ -5855,7 +5855,7 @@ namespace user
    }
 
 
-   index list_column_array::config_id_index(const ::database::key & key)
+   index list_column_array::config_id_index(const ::scoped_string & strDataKey)
    {
 
       for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
@@ -5875,7 +5875,7 @@ namespace user
    }
 
 
-   index list_column_array::config_id_visible_index(const ::database::key & key)
+   index list_column_array::config_id_visible_index(const ::scoped_string & strDataKey)
    {
 
       ::count cVisible = 0;

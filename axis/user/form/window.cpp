@@ -873,7 +873,7 @@ throw_todo();
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
+   void form_window::data_on_after_change(::database::client* pclient, const ::scoped_string & strDataKey, const ::payload & payload, ::topic * ptopic)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

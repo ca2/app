@@ -64,7 +64,7 @@ namespace simpledb
 
 
    //// true if deleted
-   bool simpledb::erase(const ::database::key & key)
+   bool simpledb::erase(const ::scoped_string & strDataKey)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -96,7 +96,7 @@ namespace simpledb
    }
 
 
-   bool simpledb::load(const ::database::key & key, get_memory getmemory)
+   bool simpledb::load(const ::scoped_string & strDataKey, get_memory getmemory)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -315,7 +315,7 @@ namespace simpledb
    }
 
 
-   void simpledb::save(const ::database::key & key, block block)
+   void simpledb::save(const ::scoped_string & strDataKey, block block)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

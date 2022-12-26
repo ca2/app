@@ -697,7 +697,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile)
 {
 
-   ::file::path path = payloadFile.file_path();
+   ::file::path path = payloadFile.as_file_path();
 
    //if (!pimage->create_thumbnail(path))
    pimage->create_thumbnail(path);
@@ -1026,7 +1026,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    pimage->m_estatus = ::error_failed;
 
-   ::file::path path = payload.file_path();
+   ::file::path path = payload.as_file_path();
 
    memory memory;
 
@@ -1047,7 +1047,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    output_debug_string("file_as_memory time "+::as_string(dt.floating_millisecond().m_d) + "ms");
 
-   const ::scoped_string & scopedstr = (const char *)memory.data();
+   const ::ansi_character * psz = (const char *)memory.data();
 
    auto size = memory.size();
 
@@ -1147,7 +1147,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 ::image_pointer context_image::get_cache_image(const ::payload & payloadFile)
 {
 
-   ::file::path path = payloadFile.file_path();
+   ::file::path path = payloadFile.as_file_path();
 
    if (path.is_empty())
    {

@@ -246,7 +246,7 @@ namespace user
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
-      ::database::key                           m_datakey;
+      ::string                                  m_strDataKey;
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
@@ -480,7 +480,7 @@ namespace user
       virtual bool has_function(enum_control_function enum_control_function);
       virtual enum_control_data_type get_data_type();
       virtual void set_data_type(enum_control_data_type enum_control_data_type);
-      virtual void set_ddx_dbflags(::database::key datakey, iptr value);
+      virtual void set_ddx_dbflags(const ::scoped_string & scopedstr, iptr value);
 
       //index find_control(::user::interaction * pinteraction);
 

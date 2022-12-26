@@ -37,7 +37,7 @@ namespace write_text
       virtual void draw(const ::write_text::text_out_array& textouta);
 
 
-      virtual ::size_f64 get_text_extent(const ::block& block);
+      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstr);
 
 
       virtual ::write_text::text_metric get_text_metrics();

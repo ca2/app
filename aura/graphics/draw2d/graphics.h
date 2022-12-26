@@ -867,19 +867,19 @@ namespace draw2d
 
       virtual ::count get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
 
-      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
+      //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString);
 
-      ::size_f64 get_text_extent(const ::block & block) override;
+      ::size_f64 get_text_extent(const ::scoped_string & scopedstr) override;
 
-      virtual ::size_f64 GetTextBegin(const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
+      virtual ::size_f64 GetTextBegin(const ::scoped_string & scopedstrString);
 
-      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount);
+      //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount);
 
-      virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
+      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount, strsize iIndex);
 
-      virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount);
+      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstrString, strsize nCount);
 
-      virtual void get_text_extent(::size_f64 & size, const ::string & str);
+      //virtual void get_text_extent(::size_f64 & size, const ::scoped_string & scopedstr);
       //virtual ::size_f64 GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount);
 
       //virtual ::size_f64 GetOutputTextExtent(const ::string & str);

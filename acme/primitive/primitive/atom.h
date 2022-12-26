@@ -598,7 +598,7 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-   //inline operator ::iptr() const;
+   inline operator ::iptr() const { return as_iptr(); }
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
    inline ::i32 as_i32() const { return (::i32) i64(); }

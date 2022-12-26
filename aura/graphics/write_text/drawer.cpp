@@ -96,7 +96,7 @@ namespace write_text
    }
 
 
-   ::size_f64 drawer::get_text_extent(const ::block & block)
+   ::size_f64 drawer::get_text_extent(const ::scoped_string & scopedstr)
    {
 
       return ::size_f64();
@@ -195,7 +195,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const ::scoped_string & scopedstrStart = str;
+      const ::ansi_character * pszStart = str;
 
       auto pszEnd = pszStart;
 
@@ -323,7 +323,7 @@ namespace write_text
 
       string str = stra[i];
 
-      const ::scoped_string & scopedstrStart = str;
+      const ::ansi_character * pszStart = str;
 
       auto pszEnd = pszStart;
 

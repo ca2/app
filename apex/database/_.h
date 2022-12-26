@@ -8,7 +8,7 @@ namespace database
 {
 
    
-   class key;
+///   class key;
    class client;
    class server;
    class client_array;

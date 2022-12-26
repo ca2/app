@@ -20,7 +20,7 @@ public:
 
 
    void Initialize(list * plist);
-   //index MapConfigIdToKey(const ::database::key & key);
+   //index MapConfigIdToKey(const ::scoped_string & strDataKey);
 
    void clear_cache();
 
@@ -64,10 +64,10 @@ public:
    index order_index(index iOrder);
 
    //      index subitem_index(index iSubItem);
-   index config_id_index(const ::database::key & key);
+   index config_id_index(const ::scoped_string & strDataKey);
 
    //      index subitem_visible_index(index iSubItem);
-   index config_id_visible_index(const ::database::key & key);
+   index config_id_visible_index(const ::scoped_string & strDataKey);
    index visible_index(index iKeyVisible);
 
    ::index get_index(const list_column * pcolumn) const;
@@ -77,7 +77,7 @@ public:
    list_column * get_by_subitem(index iSubItem);
    list_column * get_by_control_id(const ::atom & atom);
    list_column * get_by_control(::user::interaction * pinteraction);
-   list_column * get_by_config_id(const ::database::key & key);
+   list_column * get_by_config_id(const ::scoped_string & strDataKey);
 
 
    /// ::user::interaction * get_control();

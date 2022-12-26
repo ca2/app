@@ -435,9 +435,9 @@ namespace gpu
 
       stra.add_lines(strFragment);
 
-      auto pFind = stra.find_first_begins_ci("#version ");
+      auto iFind = stra.find_first_begins_ci("#version ");
 
-      if (::is_set(pFind))
+      if (found(iFind))
       {
 
          stra[iFind] = get_shader_version_text();

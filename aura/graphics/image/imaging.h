@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -147,7 +147,7 @@ public:
    //i32 cx,
    //i32 cy);
 
-   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const ::string & pcsz, i32 len, ::color32_t color32, double dBlend);
+   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const ::scoped_string & scopedstr, ::color32_t color32, double dBlend);
 
 
    /*

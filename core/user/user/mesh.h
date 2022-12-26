@@ -356,9 +356,9 @@ namespace user
       virtual void _001EnsureVisible(index iItem,bool bRedraw = true);
       virtual void _001EnsureVisible(index iItem, range& rangeRedraw);
       virtual void _001ItemScroll(index iItem,bool bRedraw = true);
-      virtual index _001ConfigIdToColumnKey(const ::database::key & key);
-      virtual index _001ConfigIdToSubItem(const ::database::key & key);
-      virtual bool _001HasConfigId(const ::database::key & key);
+      virtual index _001ConfigIdToColumnKey(const ::scoped_string & strDataKey);
+      virtual index _001ConfigIdToSubItem(const ::scoped_string & strDataKey);
+      virtual bool _001HasConfigId(const ::scoped_string & strDataKey);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
 
       virtual void set_data_interface(mesh_data * pinterface);

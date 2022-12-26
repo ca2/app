@@ -302,7 +302,7 @@ namespace draw2d
    enum_format draw2d::file_extension_to_format(const ::payload & payloadFile)
    {
 
-      return text_to_format(payloadFile.file_path().final_extension());
+      return text_to_format(payloadFile.as_file_path().final_extension());
 
    }
 
@@ -433,7 +433,7 @@ namespace draw2d
 
          ::pointer<::aura::system>psystem = acmesystem();
 
-         eformat = pdraw2d->file_extension_to_format(payloadFile.file_path());
+         eformat = pdraw2d->file_extension_to_format(payloadFile.as_file_path());
 
       }
 
@@ -448,13 +448,13 @@ namespace draw2d
          || varOptions["quality"].get_type() == e_type_f32)
       {
 
-         psaveimage->m_iQuality = (int)(varOptions["quality"].f64() * 100.0);
+         psaveimage->m_iQuality = (int)(varOptions["quality"].as_f64() * 100.0);
 
       }
       else
       {
 
-         psaveimage->m_iQuality = varOptions["quality"].i32();
+         psaveimage->m_iQuality = varOptions["quality"].as_i32();
 
       }
 
@@ -465,7 +465,7 @@ namespace draw2d
 
       }
 
-      psaveimage->m_iDpi = varOptions["dpi"];
+      psaveimage->m_iDpi = varOptions["dpi"].as_i32();
 
       if (psaveimage->m_iDpi == 0)
       {

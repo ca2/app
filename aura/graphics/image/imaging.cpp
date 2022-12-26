@@ -6939,10 +6939,10 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 //}
 
 
-void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const ::string & pcsz,i32 len,::color32_t color32,double dBlend)
+void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const ::scoped_string & scopedstr,::color32_t color32,double dBlend)
 {
 
-   string str(pcsz,len);
+   string str(scopedstr);
 
    if (dBlend <= 0.0)
    {
@@ -7088,7 +7088,7 @@ void imaging::free_work_image(::image * pimage)
 void context_image::load_svg(::image * pimage, memory & memory)
 {
 
-   const ::scoped_string & scopedstr = (const char *)memory.data();
+   const char * psz = (const char *)memory.data();
 
    auto size = memory.size();
 

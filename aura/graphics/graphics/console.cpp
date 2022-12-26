@@ -278,10 +278,10 @@ namespace graphics
 
 #ifdef WINDOWS
 
-      string str((const ::string &)pdata, minimum(strnlen_s((const ::string &)pdata, (size_t)nCount), nCount));
+      string str((const char *)pdata, minimum(strnlen_s((const char *)pdata, (size_t)nCount), nCount));
 
 #else
-      string str((const ::string &)pdata, minimum(strnlen((const ::string &)pdata, (size_t)nCount), nCount));
+      string str((const char *)pdata, minimum(strnlen((const char *)pdata, (size_t)nCount), nCount));
 
 #endif
       write(str);

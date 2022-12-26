@@ -26,11 +26,11 @@ namespace simpledb
       virtual void initialize_simpledb(server * pserver);
 
 
-      virtual bool load(const ::database::key & key, get_memory getmemory);
-      virtual void save(const ::database::key & key, block block);
+      virtual bool load(const ::scoped_string & strDataKey, get_memory getmemory);
+      virtual void save(const ::scoped_string & strDataKey, block block);
 
 
-      virtual bool erase(const ::database::key & key);
+      virtual bool erase(const ::scoped_string & strDataKey);
 
       virtual class server * server();
 

@@ -41,7 +41,7 @@ public:
    virtual i32 image_integer(const ::file::path & path);
    virtual i32 create_image_integer(int w, int h, const color32_t * pcolor, int iScan = -1);
    virtual image_pointer integer_image(i32 i);
-   virtual image_pointer path_image(const char *);
+   virtual image_pointer path_image(const ::file::path & pathImage);
 
 
    virtual ::draw2d::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());

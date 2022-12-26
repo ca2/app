@@ -16,7 +16,7 @@ namespace user
 
 
       string                        m_strDisplay;
-      ::database::key               m_databasekey;
+      ::string                      m_strDataKey;
       struct window_rectangle       m_windowrectangle;
       struct window_rectangle       m_windowrectangleStore;
 
@@ -71,9 +71,9 @@ namespace user
 
       virtual string window_data_key_modifier();
 
-      virtual bool FancyLoadWindowRect_(const ::database::key & key, bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool LoadWindowRect_(const ::database::key& key);
-      virtual void SaveWindowRect_(const ::database::key & key);
+      virtual bool FancyLoadWindowRect_(const ::scoped_string & strDataKey, bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool LoadWindowRect_(const ::scoped_string & strDataKey);
+      virtual void SaveWindowRect_(const ::scoped_string & strDataKey);
 
 
       void on_simple_command(::message::simple_command * psimplecommand) override;

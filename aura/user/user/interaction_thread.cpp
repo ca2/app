@@ -714,7 +714,7 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            ::i64 iMessage = pmessage->m_atom;
+            ::i64 iMessage = pmessage->m_atom.as_i64();
 
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));

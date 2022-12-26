@@ -18,9 +18,9 @@ namespace user
    box::box()
    {
 
-      m_databasekey.m_strDataKey = "WindowRect";
+      m_strDataKey = "WindowRect";
 
-      m_databasekey.m_bLocalData = true;
+      //m_strDataKey.m_bLocalData = true;
 
       m_windowrectangleStore.m_edisplay = ::e_display_undefined;
 
@@ -45,7 +45,7 @@ namespace user
 
       }
 
-      m_databasekey.m_strDataKey = m_atom;
+      m_strDataKey = m_atom;
 
    }
 
@@ -215,7 +215,7 @@ namespace user
 
          defer_update_display();
 
-         SaveWindowRect_(m_databasekey + window_data_key_modifier());
+         SaveWindowRect_(m_strDataKey + window_data_key_modifier());
 
       }
 
@@ -248,7 +248,7 @@ namespace user
 
       defer_update_display();
 
-      auto key = m_databasekey + window_data_key_modifier();
+      auto key = m_strDataKey + window_data_key_modifier();
 
       bLoad = LoadWindowRect_(key);
 
@@ -294,7 +294,7 @@ namespace user
 
       defer_update_display();
 
-      auto key = m_databasekey + window_data_key_modifier();
+      auto key = m_strDataKey + window_data_key_modifier();
 
       bLoad = FancyLoadWindowRect_(key, bForceRestore, bInitialFramePosition);
 
@@ -331,7 +331,7 @@ namespace user
    }
 
 
-   bool box::LoadWindowRect_(const ::database::key& key)
+   bool box::LoadWindowRect_(const ::scoped_string & strDataKey)
    {
 
       if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
@@ -461,7 +461,7 @@ namespace user
    }
 
 
-   bool box::FancyLoadWindowRect_(const ::database::key & key, bool bForceRestore, bool bInitialFramePosition)
+   bool box::FancyLoadWindowRect_(const ::scoped_string & strDataKey, bool bForceRestore, bool bInitialFramePosition)
    {
 
       if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   void box::SaveWindowRect_(const ::database::key & key)
+   void box::SaveWindowRect_(const ::scoped_string & strDataKey)
    {
 
       if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))

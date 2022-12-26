@@ -4364,12 +4364,12 @@ namespace user
 
 
 
-   bool mesh::_001HasConfigId(const ::database::key & key)
+   bool mesh::_001HasConfigId(const ::scoped_string & strDataKey)
    {
       return _001ConfigIdToColumnKey(key) >= 0;
    }
 
-   index mesh::_001ConfigIdToSubItem(const ::database::key & key)
+   index mesh::_001ConfigIdToSubItem(const ::scoped_string & strDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4378,7 +4378,7 @@ namespace user
       return -1;
    }
 
-   index mesh::_001ConfigIdToColumnKey(const ::database::key & key)
+   index mesh::_001ConfigIdToColumnKey(const ::scoped_string & strDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4387,7 +4387,7 @@ namespace user
       return -1;
    }
 
-   //mesh_column * mesh_column_array::_001GetByConfigId(const ::database::key & key)
+   //mesh_column * mesh_column_array::_001GetByConfigId(const ::scoped_string & strDataKey)
    //{
    //   //index iKey = MapConfigIdToKey(key);
    //   //if(iKey >= 0)
@@ -4399,7 +4399,7 @@ namespace user
 
    //}
 
-   //index mesh_column_array::MapConfigIdToKey(const ::database::key & key)
+   //index mesh_column_array::MapConfigIdToKey(const ::scoped_string & strDataKey)
    //{
    //   for(index iKey = 0; iKey < this->get_size(); iKey++)
    //   {

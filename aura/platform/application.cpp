@@ -5447,12 +5447,12 @@ retry_license:
       //}
 
 
-   bool application::is_local_data()
-   {
+   //bool application::is_local_data()
+   //{
 
-      return m_datakey.m_bLocalData;
+   //   return m_datakey.m_bLocalData;
 
-   }
+   //}
 
 
 
@@ -5753,7 +5753,7 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_atom)
+      switch (pusermessage->m_atom.m_emessage)
       {
       case e_message_create:
       case e_message_paint:
@@ -7990,7 +7990,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
+   void application::data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic)
    {
 
    }

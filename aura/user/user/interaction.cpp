@@ -20174,7 +20174,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_eddx = ::user::e_control_ddx_dbflags;
 
-      //m_databasekey = datakey;
+      //m_strDataKey = datakey;
 
       m_iDataValue = (int)value;
 

@@ -137,7 +137,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
             memory_set(lpszNameBuf, 0, ttRecord.uStringLength + 1);
             f->read(lpszNameBuf, ttRecord.uStringLength);
             csTemp.release_string_buffer();
-            if (csTemp.get_length() > 0)
+            if (csTemp.length() > 0)
             {
 
                csRetVal = csTemp;

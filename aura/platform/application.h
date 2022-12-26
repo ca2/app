@@ -365,7 +365,7 @@ namespace aura
       //virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6) override;
 
 
-      virtual bool is_local_data() override;
+      //virtual bool is_local_data() override;
 
 
       //application();
@@ -1009,7 +1009,7 @@ namespace aura
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::topic * ptopic) override;
+      void data_on_after_change(::database::client* pclient, const ::scoped_string & scopedstr, const ::payload & payload, ::topic * ptopic) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);

@@ -150,9 +150,9 @@ namespace user
       void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
       void _001EnsureVisible(index iItem, range & rangeRedraw) override;
       void _001ItemScroll(index iItem, bool bRedraw = true) override;
-      virtual index config_id_index(const ::database::key & key);
-      index _001ConfigIdToSubItem(const ::database::key & key) override;
-      bool _001HasConfigId(const ::database::key & key) override;
+      virtual index config_id_index(const ::scoped_string & strDataKey);
+      index _001ConfigIdToSubItem(const ::scoped_string & strDataKey) override;
+      bool _001HasConfigId(const ::scoped_string & strDataKey) override;
       void _001GetSelection(::database::key & key, ::database::selection & selection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);

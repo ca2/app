@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "notify_icon.h"
 #include "acme/exception/interface_only.h"
 
@@ -133,10 +133,10 @@ namespace user
    }
 
 
-   void notify_icon::call_notification_area_action(const ::scoped_string & scopedstrId)
+   void notify_icon::call_notification_area_action(const ::scoped_string & scopedstr)
    {
 
-      ::atom atom(pszId);
+      ::atom atom(scopedstr);
 
       auto pcommand = __new(::message::command(atom));
 

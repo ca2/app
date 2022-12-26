@@ -309,7 +309,7 @@ bool db_server::data_server_save(::database::client * pclient, ::database::key k
 }
 
 
-bool db_server::load(const ::database::key & key, string & str)
+bool db_server::load(const ::scoped_string & strDataKey, string & str)
 {
 
    if(get_db_str_set() == nullptr)
@@ -325,7 +325,7 @@ bool db_server::load(const ::database::key & key, string & str)
 
 
 
-bool db_server::load(const ::database::key & key, memory & mem)
+bool db_server::load(const ::scoped_string & strDataKey, memory & mem)
 {
 
    string str;
@@ -355,7 +355,7 @@ bool db_server::load(const ::database::key & key, memory & mem)
 }
 
 
-bool db_server::save(const ::database::key & key, const ::string & pcsz)
+bool db_server::save(const ::scoped_string & strDataKey, const ::string & pcsz)
 
 {
 
@@ -374,7 +374,7 @@ bool db_server::save(const ::database::key & key, const ::string & pcsz)
 }
 
 
-bool db_server::save(const ::database::key & key, memory & mem)
+bool db_server::save(const ::scoped_string & strDataKey, memory & mem)
 {
 
    synchronous_lock synchronouslock(this->synchronization());

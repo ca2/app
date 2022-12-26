@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interaction_child.h"
 #include "interaction.h"
 #include "acme/constant/message.h"
@@ -519,9 +519,7 @@ namespace user
       }
 
 
-      ::u32 message;
-
-      message = pmessage->m_atom.umessage();
+      auto message = pmessage->m_atom.m_emessage;
 
       //if (m_puserinteraction != nullptr)
       //{

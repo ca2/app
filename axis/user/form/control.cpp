@@ -994,7 +994,7 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::topic * ptopic)
+   void form_control::data_on_after_change(::database::client* pclient, const ::scoped_string & strDataKey, const ::payload & payload, ::topic * ptopic)
    {
 
       for(auto pinteraction : proper_children())

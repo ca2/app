@@ -60,7 +60,7 @@
 ////namespace str
 ////{
 //
-//   inline string & assign(string & str, const ::database::key & key)
+//   inline string & assign(string & str, const ::scoped_string & strDataKey)
 //   {
 //
 //      return str = key.m_strDataKey;

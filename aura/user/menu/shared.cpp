@@ -78,10 +78,10 @@ void * menu_shared::find_item(const ::scoped_string & scopedstrParent, const ::s
    for(int i = 0; i < m_iCount; i++)
    {
 
-      if(!strcmp(pszParent, m_ppszParent[i]))
+      if(!strcmp(scopedstrParent, m_ppszParent[i]))
       {
 
-         if(!strcmp(pszId, m_ppszId[i]))
+         if(!strcmp(scopedstrId, m_ppszId[i]))
          {
 
             return m_ositema[i];

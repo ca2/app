@@ -100,13 +100,13 @@ namespace user
    void shell::image_key::set_extension(const ::string & strPath)
    {
 
-      strsize iFind1 = strPath.rear_find('/');
+      strsize iFind1 = strPath.rear_find_index('/');
 
-      strsize iFind2 = strPath.rear_find('\\');
+      strsize iFind2 = strPath.rear_find_index('\\');
 
-      auto pFind = maximum(iFind1, iFind2) + 1;
+      auto iFind = maximum(iFind1, iFind2) + 1;
 
-      strsize iDot = strPath.find('.', iFind);
+      strsize iDot = strPath.find_index('.', iFind);
 
       if (iDot < 0)
       {

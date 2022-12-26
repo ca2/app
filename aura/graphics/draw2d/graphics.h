@@ -871,6 +871,8 @@ namespace draw2d
 
       ::size_f64 get_text_extent(const ::scoped_string & scopedstr) override;
 
+      virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstr, ::index iIndex);
+
       virtual ::size_f64 GetTextBegin(const ::scoped_string & scopedstrString);
 
       //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString, strsize nCount);

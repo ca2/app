@@ -3564,6 +3564,20 @@ namespace draw2d
    }
 
 
+   size_f64 graphics::get_text_extent(const scoped_string & scopedstr, ::index iIndex)
+   {
+
+      throw interface_only();
+
+      //::size_f64 size;
+
+      //get_text_extent(size, scopedstr);
+
+      return {};
+
+   }
+
+
    //void graphics::get_text_extent(size_f64 & size, const ::ansi_character * pszString)
    //{
 

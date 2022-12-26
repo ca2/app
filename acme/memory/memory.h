@@ -22,7 +22,7 @@ struct memory_template
 
       }
 
-      return *this;
+      return (BLOCK_TYPE &) *this;
 
    }
 

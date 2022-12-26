@@ -53,7 +53,7 @@ namespace aura
       while (true)
       {
 
-         iData = str.find("data:", iData + 1);
+         iData = str.find_index("data:", iData + 1);
 
          if (iData < 0 || !(iData == 0 || !character_isalnum(str[iData - 1])))
          {
@@ -62,7 +62,7 @@ namespace aura
 
          }
 
-         strsize iMime = str.find(';', iData + 1);
+         strsize iMime = str.find_index(';', iData + 1);
 
          if (iMime <= iData)
          {
@@ -71,9 +71,9 @@ namespace aura
 
          }
 
-         strsize iEncoding1 = str.find(',', iMime + 1);
+         strsize iEncoding1 = str.find_index(',', iMime + 1);
 
-         strsize iEncoding2 = str.find(';', iMime + 1);
+         strsize iEncoding2 = str.find_index(';', iMime + 1);
 
          strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
 
@@ -978,7 +978,7 @@ namespace user
       if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       {
 
-         _001SetText(m_linkedpropertyText->as_string(), ::e_source_initialize);
+         _001SetText(m_linkedpropertyText->get_string(), ::e_source_initialize);
 
       }
 
@@ -2279,9 +2279,9 @@ namespace user
 
       //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-      //   const ::scoped_string & scopedstrStart = strLine;
+      //   const ::ansi_character * pszStart = strLine;
 
-      //   const ::scoped_string & scopedstr = pszStart;
+      //   const ::ansi_character * psz = pszStart;
 
       //   strsize iLen = 0;
 
@@ -2289,7 +2289,7 @@ namespace user
 
       //   iPos = 0;
 
-      //   const ::scoped_string & scopedstrNext = pszStart;
+      //   const ::ansi_character * pszNext = pszStart;
 
       //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -2735,7 +2735,7 @@ namespace user
       //
       //         strLineGraphics = strLine;
       //
-      //         bool bTabs = strLine.find('\t') >= 0;
+      //         bool bTabs = strLine.find_index('\t') >= 0;
       //
       //         if (bTabs)
       //         {
@@ -2744,9 +2744,9 @@ namespace user
       //
       //         }
       //
-      //         const ::scoped_string & scopedstrStart = strLine;
+      //         const ::ansi_character * pszStart = strLine;
       //
-      //         const ::scoped_string & scopedstr = pszStart;
+      //         const ::ansi_character * psz = pszStart;
       //
       //         strsize iLen = 0;
       //
@@ -2754,7 +2754,7 @@ namespace user
       //
       //         iPos = 0;
       //
-      //         const ::scoped_string & scopedstrNext = pszStart;
+      //         const ::ansi_character * pszNext = pszStart;
       //
       //         ::size_i32 sizeLast(0, 0);
       //
@@ -3142,9 +3142,9 @@ namespace user
 
       //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-      //   const ::scoped_string & scopedstrStart = strLine;
+      //   const ::ansi_character * pszStart = strLine;
 
-      //   const ::scoped_string & scopedstr = pszStart;
+      //   const ::ansi_character * psz = pszStart;
 
       //   strsize iLen = 0;
 
@@ -3152,7 +3152,7 @@ namespace user
 
       //   iPos = 0;
 
-      //   const ::scoped_string & scopedstrNext = pszStart;
+      //   const ::ansi_character * pszNext = pszStart;
 
       //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -3508,9 +3508,9 @@ namespace user
 
          replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
-         const ::scoped_string & scopedstrStart = strLine;
+         const ::ansi_character * pszStart = strLine;
 
-         const ::scoped_string & scopedstr = pszStart;
+         const ::ansi_character * psz = pszStart;
 
          strsize iLen = 0;
 
@@ -3518,7 +3518,7 @@ namespace user
 
          strsize iPos = 0;
 
-         const ::scoped_string & scopedstrNext = pszStart;
+         const ::ansi_character * pszNext = pszStart;
 
          double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -3543,7 +3543,7 @@ namespace user
 
                }
 
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
+               size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
 
                for (int j = 0; j < iLen; j++)
                {
@@ -3764,7 +3764,7 @@ namespace user
 
       string strLine = plain_edit_get_expanded_line(pgraphics, iLine, { &iChar });
 
-      size_f64 size = pgraphics->get_text_extent(strLine, (i32)strLine.length(), (i32)iChar);
+      size_f64 size = pgraphics->get_text_extent(strLine, (i32)iChar);
 
       return size.cx;
 
@@ -4096,11 +4096,11 @@ namespace user
 
       i32 lim1;
 
-      const ::scoped_string & scopedstr = strLine;
+      const ::ansi_character * psz = strLine;
 
       const ::ansi_character * pszEnd = psz;
 
-      const ::scoped_string & scopedstrPrevious = psz;
+      const ::ansi_character * pszPrevious = psz;
 
       //string strLineGraphics = strLine;
 
@@ -4720,7 +4720,7 @@ namespace user
 
             const char * pdata = str.c_str();
 
-            const ::scoped_string & scopedstr = pdata;
+            const ::ansi_character * psz = pdata;
 
             for (strsize i = 0; i < afterLength; i++)
             {
@@ -4748,7 +4748,7 @@ namespace user
 
             _001GetText(strSel, i1, i2);
 
-            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
             if (!bFullUpdate)
             {
@@ -4782,7 +4782,7 @@ namespace user
 
             _001GetText(str, 0, iSelBeg);
 
-            const ::scoped_string & scopedstr = str.c_str() + iSelBeg;
+            const ::ansi_character * psz = str.c_str() + iSelBeg;
 
             const char * pdata = psz;
 
@@ -4812,7 +4812,7 @@ namespace user
 
             _001GetText(strSel, i1, i2);
 
-            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
             if (!bFullUpdate)
             {
@@ -4883,7 +4883,7 @@ namespace user
 
             _001GetText(strSel, i1, i2);
 
-            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
             if (!bFullUpdate)
             {
@@ -4932,7 +4932,7 @@ namespace user
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
-            const ::scoped_string & scopedstr = unicode_next(buf);
+            const ::ansi_character * psz = unicode_next(buf);
 
             strsize iMultiByteUtf8DeleteCount = psz - buf;
 
@@ -4944,7 +4944,7 @@ namespace user
 
             _001GetText(strSel, i1, i2);
 
-            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
             if (!bFullUpdate)
             {
@@ -5047,7 +5047,7 @@ namespace user
 
       _001GetText(strSel, i1, i2);
 
-      bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+      bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
       if (!bFullUpdate)
       {
@@ -5152,7 +5152,7 @@ namespace user
 
       _001GetText(strSel, i1, i2);
 
-      bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+      bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
       ::draw2d::graphics_pointer pgraphics;
 
@@ -5694,7 +5694,7 @@ namespace user
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                         m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                         m_ptree->m_peditfile->read(buf, sizeof(buf));
-                        const ::scoped_string & scopedstr;
+                        const ::ansi_character * psz;
                         strsize iMultiByteUtf8DeleteCount;
                         if (iCur > 1 && buf[iCur - 1] == '\n' && buf[iCur - 2] == '\r')
                         {
@@ -5726,7 +5726,7 @@ namespace user
 
                         _001GetText(strSel, i1, i2);
 
-                        bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+                        bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
                         if (!bFullUpdate)
                         {
@@ -6714,7 +6714,7 @@ namespace user
 
                      wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
 
-                     iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
+                     iOffset = wd16_to_ansi_len(wstrFull, wstrFull.length() + iNewCursorPosition);
 
                   }
 
@@ -6954,7 +6954,7 @@ namespace user
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const ::scoped_string & scopedstr = unicode_prior(&buf[iCur], buf);
+               const ::ansi_character * psz = unicode_prior(&buf[iCur], buf);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
@@ -8265,7 +8265,7 @@ namespace user
 
       strsize i2 = m_ptree->m_iSelEnd;
 
-      bFullUpdate = strText.find('\n') >= 0 || strText.find('\r') >= 0;
+      bFullUpdate = strText.find_index('\n') >= 0 || strText.find_index('\r') >= 0;
 
       if (!bForceNewStep && !bFullUpdate && i1 == i2 && i1 >= 0 && m_pinsert != nullptr
          && m_pinsert->m_position + m_pinsert->m_memstorage.size() == i1
@@ -8309,7 +8309,7 @@ namespace user
 
             _001GetSelText(strSel);
 
-            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
          }
 

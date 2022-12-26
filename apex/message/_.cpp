@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/operating_system/message.h"
@@ -105,7 +105,7 @@ namespace message
 //   }
 
 
-   enum_prototype get_message_prototype(enum_message emessage, ::u32 uCode)
+   enum_prototype get_message_prototype(enum_message emessage, ::u32 /* uCode */ )
    {
 
       switch (emessage)

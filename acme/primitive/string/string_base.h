@@ -774,6 +774,12 @@ public:
    //::count utf8_replace(const string_base &scopedstrOld, const string_base &scopedstrNew, strsize iStart = 0);
 
    string_base & replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr);
+   string_base & replace_index(strsize start, strsize end, const SCOPED_STRING & scopedstr)
+   {
+
+      return replace(this->begin() + start, this->begin() + end, scopedstr);
+
+   }
    //string_base & replace(strsize iStart, strsize nCount, const SCOPED_STRING & scopedstr, strsize nLen);
 
    // erase all occurrences of character 'chRemove'

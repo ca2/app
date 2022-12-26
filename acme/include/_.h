@@ -110,6 +110,7 @@
 #include "acme/primitive/primitive/e_status.h"
 #include "acme/primitive/logic/tristate.h"
 #include "acme/primitive/primitive/logic.h"
+#include "acme/primitive/mathematics/c_number.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 #include "acme/primitive/primitive/e_check.h"
 #include "acme/primitive/primitive/move.h"

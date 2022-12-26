@@ -262,7 +262,32 @@ namespace comparison
       constexpr ::std::strong_ordering order(T t, F f) const
       {
 
+#if defined(__GNUC__) && !defined(__clang__)
+
+         if(t > f)
+         {
+
+            return ::std::strong_ordering::greater;
+
+         }
+         else if(t < f)
+         {
+
+            return ::std::strong_ordering::less;
+
+         }
+         else
+         {
+
+            return ::std::strong_ordering::equal;
+
+         }
+
+#else
+
          return ::std::strong_order((F) t, f);
+
+#endif
 
       }
 

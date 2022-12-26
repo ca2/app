@@ -5,7 +5,7 @@
 #include "context_image.h"
 #include "array.h"
 ////#include "acme/exception/exception.h"
-#include "acme/memory/_memory.h"
+//#include "acme/memory/_memory.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"

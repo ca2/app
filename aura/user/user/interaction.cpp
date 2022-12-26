@@ -1730,9 +1730,9 @@ namespace user
    bool interaction::pre_message_handler(::message::key *& pkey, bool & bKeyMessage, ::message::message * pmessage)
    {
 
-      ::u32 message = pmessage->m_atom.umessage();
+      auto emessage = pmessage->m_atom.as_emessage();
 
-      if (message == e_message_left_button_down)
+      if (emessage == e_message_left_button_down)
       {
 
          auto psession = get_session();
@@ -1749,7 +1749,7 @@ namespace user
          }
 
       }
-      else if (message == e_message_left_button_up)
+      else if (emessage == e_message_left_button_up)
       {
 
          auto psession = get_session();
@@ -1766,7 +1766,7 @@ namespace user
          }
 
       }
-      else if (message == e_message_right_button_down)
+      else if (emessage == e_message_right_button_down)
       {
 
          auto psession = get_session();
@@ -1783,7 +1783,7 @@ namespace user
          }
 
       }
-      else if (message == e_message_right_button_up)
+      else if (emessage == e_message_right_button_up)
       {
 
          auto psession = get_session();
@@ -1800,7 +1800,7 @@ namespace user
          }
 
       }
-      else if (message == e_message_middle_button_down)
+      else if (emessage == e_message_middle_button_down)
       {
 
          auto psession = get_session();
@@ -1817,7 +1817,7 @@ namespace user
          }
 
       }
-      else if (message == e_message_middle_button_up)
+      else if (emessage == e_message_middle_button_up)
       {
 
          auto psession = get_session();
@@ -1835,12 +1835,12 @@ namespace user
 
       }
 
-      bKeyMessage = message == e_message_key_down ||
-         message == e_message_key_up ||
-         message == e_message_char ||
-         message == e_message_text_composition
+      bKeyMessage = emessage == e_message_key_down ||
+              emessage == e_message_key_up ||
+              emessage == e_message_char ||
+              emessage == e_message_text_composition
 #ifdef WINDOWS_DESKTOP
-         || message == e_message_sys_key_down
+         || emessage == e_message_sys_key_down
          || message == e_message_sys_key_up
          || message == e_message_sys_char
          || message == e_message_ime_key_down

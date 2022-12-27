@@ -1253,13 +1253,13 @@ i32 xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen *
    return true;
 }
 
-i32 xfplayer_impact_line::SetLyricColors(::color::color crLeft, ::color::color crRight)
+i32 xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::color colorRight)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   m_colorLyricLeft = crLeft;
-   m_colorLyricRight = crRight;
+   m_colorLyricLeft = colorLeft;
+   m_colorLyricRight = colorRight;
    return true;
 
 }

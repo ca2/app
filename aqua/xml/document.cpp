@@ -3,6 +3,7 @@
 #include "xml.h"
 #include "exception.h"
 #include "acme/exception/interface_only.h"
+#include "acme/exception/parsing.h"
 #include "acme/primitive/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -338,47 +339,50 @@ namespace xml
    //}
 
 
-   string document::consume_entity_ref(const char * & pszXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
+   string document::consume_entity_ref(::const_ansi_range & rangeXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
    {
 
-      const ::ansi_character * pszXml = pszXmlParam;
+      auto rangeXml = rangeXmlParam;
 
-      if(*pszXml == '\0')
+      if(*rangeXml.m_begin == '\0' || rangeXml.is_empty())
       {
 
-         throw ::exception(error_parsing, "No Entity");
+         throw ::parsing_exception("No Entity");
 
       }
 
-      ::str().consume(pszXml, "&");
+      ::str::consume(rangeXml, "&");
 
-      strName.empty();
+      //strName.empty();
 
-      while(*pszXml != ';')
+      auto pszStart = rangeXml.m_begin;
+
+      while(*rangeXml.m_begin != ';')
       {
 
-         if(*pszXml == '\0'
-               || *pszXml == '<'
-               || *pszXml == '>'
-               || *pszXml == ' '
-               || *pszXml == '\n'
-               || *pszXml == '\r'
-               || *pszXml == ','
-               || *pszXml == '.'
-               || *pszXml == '=')
+         if(*rangeXml.m_begin == '\0'
+            || rangeXml.is_empty()
+               || *rangeXml.m_begin == '<'
+               || *rangeXml.m_begin == '>'
+               || *rangeXml.m_begin == ' '
+               || *rangeXml.m_begin == '\n'
+               || *rangeXml.m_begin == '\r'
+               || *rangeXml.m_begin == ','
+               || *rangeXml.m_begin == '.'
+               || *rangeXml.m_begin == '=')
          {
 
-            throw ::exception(error_parsing, "Not expected character on Entity Reference");
+            throw ::parsing_exception("Not expected character on Entity Reference");
 
          }
 
-         strName += *pszXml;
-
-         unicode_increment(pszXml);
+         unicode_increment(rangeXml.m_begin);
 
       }
 
-      pszXml++;
+      strName.assign(pszStart, rangeXml.m_begin - pszStart);
+
+      rangeXml.m_begin++;
 
       string ent = (*m_pentitiesHash)[strName];
 
@@ -394,7 +398,7 @@ namespace xml
       if(ent.is_empty() && extEnt.is_empty() && (strName.is_empty() || strName[0] != '#'))
       {
 
-         throw ::exception(error_parsing, "Undefined Entity Reference");
+         throw ::parsing_exception("Undefined Entity Reference");
 
       }
 
@@ -403,7 +407,7 @@ namespace xml
 
          bExt = false;
 
-         pszXmlParam = pszXml;
+         //pszXmlParam = pszXml;
 
          return ent;
 
@@ -414,13 +418,13 @@ namespace xml
 
          bExt = true;
 
-         pszXmlParam = pszXml;
+         //pszXmlParam = pszXml;
 
          return pacmecontext->m_papexcontext->file()->as_string(m_pathLocation.sibling(extEnt));
 
       }
 
-      string strEntityReference(pszXmlParam, pszXml - pszXmlParam);
+      string strEntityReference(rangeXmlParam.m_begin, rangeXml.m_begin - rangeXmlParam.m_begin);
 
       if(strEntityReference.case_insensitive_begins_eat("&#"))
       {
@@ -436,7 +440,7 @@ namespace xml
 
       }
 
-      pszXmlParam = pszXml;
+      rangeXmlParam.m_begin = rangeXml.m_begin;
 
       return strEntityReference;
 
@@ -445,7 +449,7 @@ namespace xml
 
    // the additional parameter must end with , nullptr
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
-   char * document::patch_entity_ref(const char * & pszXml, int bUseExtEnt, ::acme::context * pacmecontext)
+   char * document::patch_entity_ref(::const_ansi_range & rangeXml, int bUseExtEnt, ::acme::context * pacmecontext)
    {
 
       // pszXml must be a valid portion of and point_i32 to an entity ref in:
@@ -453,7 +457,7 @@ namespace xml
 
       const ::ansi_character * pszOldData = (const char *) m_memoryData.data();
 
-      strsize iPos = pszXml - pszOldData;
+      strsize iPos = rangeXml.m_begin - pszOldData;
 
       ASSERT(iPos < m_memoryData.size() - 1 && iPos >= 0);
 
@@ -461,18 +465,18 @@ namespace xml
 
       bool bExt = false;
 
-      string strValue = pszXml[0];
+      string strValue = rangeXml.m_begin[0];
 
       try
       {
 
-         strValue = consume_entity_ref(pszXml, strName, bUseExtEnt, bExt, pacmecontext);
+         strValue = consume_entity_ref(rangeXml, strName, bUseExtEnt, bExt, pacmecontext);
 
       }
       catch(...)
       {
 
-         pszXml++;
+         rangeXml.m_begin++;
 
       }
 

@@ -61,15 +61,15 @@ namespace data
 
       virtual ::xml::document* get_xml_document() const;
 
-      property& attribute(const ::atom & atomAttributeName) { return m_set[atomAttributeName]; }
-      const property& attribute(const ::atom & atomAttributeName) const { return m_set[atomAttributeName]; }
+
+
+      payload attribute(const ::scoped_string & scopedstr) const { return m_set.payload_text_key(scopedstr); }
+      property& attribute(const ::scoped_string & scopedstr) { return m_set.payload_text_key(scopedstr); }
+
 
 
       node* node_at(::index i) { return m_nodea[i]; }
       ::count get_node_count() const { return m_nodea.get_count(); }
-
-
-
 
 
    };

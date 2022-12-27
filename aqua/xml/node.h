@@ -84,7 +84,7 @@ namespace xml
    protected:
 
 
-      virtual void _load(const char * & pszNext, const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pi = nullptr);
+      virtual void _load(const char * & pszNext,::const_ansi_range & rangeXml,parse_info * pi = nullptr);
 
 
    public:
@@ -93,18 +93,18 @@ namespace xml
       string get_xml(disp_option * opt = nullptr) const;
       string get_text(disp_option * opt = nullptr) const;
 
-      bool consume(const char * & pszXml, const ::ansi_character * psz);
-      bool consume_whitespaces(const char * & pszXml, i32 iMinimumCount = 1);
+      //bool consume(::const_ansi_range & rangeXml, const ::ansi_character * psz);
+      //bool consume_whitespaces(::const_ansi_range & rangeXml, i32 iMinimumCount = 1);
 
-      const char * LoadOtherNodes(bool* pbRet, const ::ansi_character * pszXml, parse_info * pparseinfo = nullptr);
+      void LoadOtherNodes(bool* pbRet,::const_ansi_range & rangeXml, parse_info * pparseinfo = nullptr);
 
       // internal load functions
-      const char *   LoadAttributes( const ::ansi_character * pszAttrs, parse_info * pi = nullptr);
-      const char *   LoadAttributes( const ::ansi_character * pszAttrs, const ::ansi_character * pszEnd, parse_info * pi = nullptr);
-      const char *   LoadProcessingInstruction( const ::ansi_character * pszXml, parse_info * pi = nullptr);
-      const char *   LoadDocType( const ::ansi_character * pszXml, parse_info * pi = nullptr);
-      const char *   LoadComment( const ::ansi_character * pszXml, parse_info * pi = nullptr);
-      const char *   LoadCDATA( const ::ansi_character * pszXml, parse_info * pi = nullptr);
+      //void LoadAttributes(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadAttributes(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadProcessingInstruction(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadDocType(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadComment(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadCDATA(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
 
       
       node *                  get_child( const char * name);
@@ -168,7 +168,7 @@ namespace xml
 
       bool contains(const ::property_set & set) const { return m_set.contains(set); }
       
-      ::property *            find_attribute(const ::atom & atom) { return m_set.find_property(atom); }
+      ::property *            find_attribute(const ::scoped_string & scopedstr) { return m_set.find_property_text_key(scopedstr); }
 
       //template < typename TYPE >
       //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }

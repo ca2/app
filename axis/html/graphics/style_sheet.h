@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/primitive/collection/pointer_array.h"
@@ -23,10 +23,10 @@ namespace html
       virtual void initialize(::particle * pparticle) override;
 
 
-      void parse(html_data * pdocument, const ::string & psz);
+      void parse(html_data * pdocument, ::const_ansi_range & range);
 
-      style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName);
-      const style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName) const;
+      style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr);
+      const style * rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr) const;
 
       style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f);
       const style * rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const atom & idName, float & f) const;

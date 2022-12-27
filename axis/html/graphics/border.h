@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -21,10 +21,10 @@ namespace html
       };
 
 
-      ::color::color    crLeft;
-      ::color::color    crTop;
-      ::color::color    crRight;
-      ::color::color    crBottom;
+      ::color::color    colorLeft;
+      ::color::color    colorTop;
+      ::color::color    colorRight;
+      ::color::color    colorBottom;
       
       e_style     styleLeft;
       e_style     styleTop;

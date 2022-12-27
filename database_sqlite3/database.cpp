@@ -783,7 +783,7 @@ namespace sqlite
 
             }
 
-            res = sqlite3_bind_blob(m_pstmtReplace, m_iReplaceValue, block.get_data(), (int) block.get_size(), SQLITE_TRANSIENT);
+            res = sqlite3_bind_blob(m_pstmtReplace, m_iReplaceValue, block.data(), (int) block.size(), SQLITE_TRANSIENT);
 
             if (res != SQLITE_OK)
             {

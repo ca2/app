@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 //#include "acme/primitive/string/as_string.h"
 #include "payload.h"
+#include "acme/exception/parsing.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/parallelization/task.h"
 //#include "acme/platform/acme.h"
@@ -3241,7 +3242,7 @@ bool & payload::bool_reference()
 }
 
 
-bool payload::b() const
+bool payload::as_bool() const
 {
 
    return get_bool();
@@ -4803,25 +4804,69 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-::property * payload::find_property(const ::atom & atom) const
+
+
+
+
+property * payload::find_property_index(::iptr i) const
+{
+
+   if (!casts_to(e_type_property_set))
+   {
+
+      return nullptr;
+
+   }
+
+   return propset().find(i);
+
+}
+
+
+property & payload::get_property_index(::iptr i)
+{
+
+   return propset().get(i);
+
+}
+
+
+//
+//property * payload::find_property(const char * psz) const
+//{
+//
+//   if (!casts_to(e_type_property_set))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return propset().find(psz);
+//
+//}
+//
+
+
+::property * payload::find_property_text_key(const ::scoped_string & scopedstr) const
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->find_property(atom);
+      return m_ppayload->find_property_text_key(scopedstr);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->find_property(atom);
+      return m_pproperty->find_property_text_key(scopedstr);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_ppropertyset->find_property(atom);
+      return m_ppropertyset->find_property_text_key(scopedstr);
 
    }
 
@@ -4830,46 +4875,19 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::index payload::property_index(const ::atom & atom) const
+property & payload::get_property_text_key(const ::scoped_string & scopedstr)
 {
 
    if (m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->property_index(atom);
+      return m_ppayload->get_property(scopedstr);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->property_index(atom);
-
-   }
-   else if (m_etype == e_type_property_set)
-   {
-
-      return m_ppropertyset->find_index(atom);
-
-   }
-
-   return -1;
-
-}
-
-
-property & payload::get_property(const ::atom & atom)
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      return m_ppayload->get_property(atom);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      return m_pproperty->get_property(atom);
+      return m_pproperty->get_property(scopedstr);
 
    }
    else
@@ -4884,11 +4902,41 @@ property & payload::get_property(const ::atom & atom)
 
       }
 
-      return m_ppropertyset->get(atom);
+      return m_ppropertyset->get(scopedstr);
 
    }
 
 }
+
+
+
+::index payload::index_of(const ::atom & atom) const
+{
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      return m_ppayload->index_of(atom);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      return m_pproperty->index_of(atom);
+
+   }
+   else if (m_etype == e_type_property_set)
+   {
+
+      return m_ppropertyset->index_of(atom);
+
+   }
+
+   return -1;
+
+}
+
+
 
 
 ::payload payload::at(index i)
@@ -5019,7 +5067,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //   if (varRet.is_floating())
 //   {
 //
-//      if (::str().is_integer(str))
+//      if (::str::is_integer(str))
 //      {
 //
 //         varRet += strtod(str, nullptr);
@@ -5036,7 +5084,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //   else if (varRet.is_integer())
 //   {
 //
-//      if (::str().is_integer(str))
+//      if (::str::is_integer(str))
 //      {
 //
 //         varRet += ansi_to_i64(str);
@@ -6339,36 +6387,34 @@ block payload::as_block () const
 bool payload::has_property(const ::atom & atom) const
 {
 
-   return found(property_index(atom));
+   return found(index_of(atom));
 
 }
 
 
-void payload::consume_identifier(const char * & psz)
+//void payload::consume_identifier(::const_ansi_range & range)
+//{
+//
+//   consume_number(psz, psz + strlen(psz) - 1);
+//
+//}
+
+
+void payload::consume_identifier(::const_ansi_range & range)
 {
 
-   consume_number(psz, psz + strlen(psz) - 1);
+   ::str::consume_spaces(range, 0);
 
-}
+   const ::ansi_character * pszStart = range.m_begin;
 
-
-void payload::consume_identifier(const char * & psz, const ::ansi_character * pszEnd)
-{
-
-   const ::ansi_character * pszParse = psz;
-
-   ::str().consume_spaces(pszParse, 0, pszEnd);
-
-   const ::ansi_character * pszStart = pszParse;
-
-   while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
+   while (ansi_char_isalpha(*range.m_begin) && range.has_char())
    {
 
-      pszParse++;
+      range.m_begin++;
 
    }
 
-   ::string str(pszStart, pszParse - pszStart);
+   ::string str(pszStart, range.m_begin - pszStart);
 
    if (str.case_insensitive_order("false") == 0)
    {
@@ -6380,104 +6426,111 @@ void payload::consume_identifier(const char * & psz, const ::ansi_character * ps
    {
 
       operator = (true);
+
    }
    else if (str.case_insensitive_order("null") == 0)
    {
+
       set_type(::e_type_null);
+
    }
    else
    {
-      throw ::exception(error_parsing, "not expected identifier");
+
+      throw ::parsing_exception("not expected identifier");
+
    }
-   psz = pszParse;
+
 }
 
-void payload::consume_number(const char * & psz)
-{
-   consume_number(psz, psz + strlen(psz) - 1);
-}
+//
+//void payload::consume_number(const char * & psz)
+//{
+//
+//   consume_number(psz, psz + strlen(psz) - 1);
+//
+//}
 
-void payload::consume_number(const char * & psz, const ::ansi_character * pszEnd)
+void payload::consume_number(::const_ansi_range & range)
 {
-   const ::ansi_character * pszParse = psz;
    bool bSigned = false;
    bool bFloat = false;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
-   const ::ansi_character * pszStart = pszParse;
-   if(*pszParse == '-')
+   ::str::consume_spaces(range, 0);
+   const ::ansi_character * pszStart = range.m_begin;
+   if(*range.m_begin == '-')
    {
       bSigned = true;
-      pszParse++;
+      range.m_begin++;
    }
-   if(*pszParse == '.')
+   if(*range.m_begin == '.')
    {
       bFloat = true;
-      pszParse++;
+      range.m_begin++;
    }
-   while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   while(*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   if(*pszParse == 'e' || *pszParse == 'E')
+   if(*range.m_begin == 'e' || *range.m_begin == 'E')
    {
-      pszParse++;
+      range.m_begin++;
       bFloat = true;
-      if(*pszParse == '-')
+      if(*range.m_begin == '-')
       {
          bSigned = true;
-         pszParse++;
+         range.m_begin++;
       }
-      if(*pszParse == '.')
+      if(*range.m_begin == '.')
       {
          bFloat = true;
-         pszParse++;
+         range.m_begin++;
       }
-      while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      while(*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
       {
-         pszParse++;
+         range.m_begin++;
       }
       goto end;
    }
-   if(*pszParse == '.')
+   if(*range.m_begin == '.')
    {
       bFloat = true;
-      pszParse++;
+      range.m_begin++;
    }
-   while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   while(*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   if(*pszParse == 'e' || *pszParse == 'E')
+   if(*range.m_begin == 'e' || *range.m_begin == 'E')
    {
-      pszParse++;
+      range.m_begin++;
       bFloat = true;
-      if(*pszParse == '-')
+      if(*range.m_begin == '-')
       {
          bSigned = true;
-         pszParse++;
+         range.m_begin++;
       }
-      if(*pszParse == '.')
+      if(*range.m_begin == '.')
       {
          bFloat = true;
-         pszParse++;
+         range.m_begin++;
       }
-      while(*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      while(*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
       {
-         pszParse++;
+         range.m_begin++;
       }
       goto end;
    }
 
 end:
 
-   if(pszParse == pszStart)
+   if(range.m_begin == pszStart)
    {
 
-      throw ::exception(error_parsing, "empty string : not a number");
+      throw ::parsing_exception("empty string : not a number");
 
    }
 
-   ::string strNumber(pszStart, pszParse - pszStart);
+   ::string strNumber(pszStart, range.m_begin - pszStart);
 
    if(bFloat)
    {
@@ -6504,37 +6557,36 @@ end:
 
    }
 
-   psz = pszParse;
+   //psz = pszParse;
 
 }
 
 
+//
+//void payload::parse_network_payload(const char * & pszJson)
+//{
+//
+//   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//
+//}
 
-void payload::parse_network_payload(const char * & pszJson)
+
+
+
+
+//void var_skip_identifier(const char *& psz)
+//{
+//   var_skip_number(psz, psz + strlen(psz) - 1);
+//}
+
+
+void var_skip_identifier(::const_ansi_range & range)
 {
-
-   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
-
-}
-
-
-
-
-
-void var_skip_identifier(const char *& psz)
-{
-   var_skip_number(psz, psz + strlen(psz) - 1);
-}
-
-
-void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
-{
-   const ::ansi_character * pszParse = psz;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
-   const ::ansi_character * pszStart = pszParse;
-   while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
-      pszParse++;
-   strsize iLen = pszParse - pszStart;
+   ::str::consume_spaces(range, 0);
+   const ::ansi_character * pszStart = range.m_begin;
+   while (ansi_char_isalpha(*range.m_begin) && range.has_char())
+      range.m_begin++;
+   strsize iLen = range.m_begin - pszStart;
    if (iLen == 5 && ansi_count_compare_ci(pszStart, "false", 5) == 0)
    {
    }
@@ -6548,133 +6600,136 @@ void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
       }
       else
       {
-         throw ::exception(error_parsing, "not expected identifier");
+         throw ::parsing_exception("not expected identifier");
       }
    }
    else
    {
-      throw ::exception(error_parsing, "not expected identifier");
+      throw ::parsing_exception("not expected identifier");
    }
-   psz = pszParse;
+   
+   //psz = pszParse;
+
 }
 
 
 
-void var_skip_number(const char *& psz)
-{
-   var_skip_number(psz, psz + strlen(psz) - 1);
-}
+//void var_skip_number(const char *& psz)
+//{
+//   var_skip_number(psz, psz + strlen(psz) - 1);
+//}
 
-void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
+void var_skip_number(::const_ansi_range & range)
 {
-   const ::ansi_character * pszParse = psz;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
-   const ::ansi_character * pszStart = pszParse;
-   if (*pszParse == '-')
+
+   ::str::consume_spaces(range, 0);
+
+   const ::ansi_character * pszStart = range.m_begin;
+
+   if (*range.m_begin == '-')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   if (*pszParse == '.')
+   if (*range.m_begin == '.')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   while (*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   if (*pszParse == 'e' || *pszParse == 'E')
+   if (*range.m_begin == 'e' || *range.m_begin == 'E')
    {
-      pszParse++;
-      if (*pszParse == '-')
+      range.m_begin++;
+      if (*range.m_begin == '-')
       {
-         pszParse++;
+         range.m_begin++;
       }
-      if (*pszParse == '.')
+      if (*range.m_begin == '.')
       {
-         pszParse++;
+         range.m_begin++;
       }
-      while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      while (*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
       {
-         pszParse++;
+         range.m_begin++;
       }
       goto end;
    }
-   if (*pszParse == '.')
+   if (*range.m_begin == '.')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   while (*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
    {
-      pszParse++;
+      range.m_begin++;
    }
-   if (*pszParse == 'e' || *pszParse == 'E')
+   if (*range.m_begin == 'e' || *range.m_begin == 'E')
    {
-      pszParse++;
-      if (*pszParse == '-')
+      range.m_begin++;
+      if (*range.m_begin == '-')
       {
-         pszParse++;
+         range.m_begin++;
       }
-      if (*pszParse == '.')
+      if (*range.m_begin == '.')
       {
-         pszParse++;
+         range.m_begin++;
       }
-      while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      while (*range.m_begin != '\0' && *range.m_begin >= '0' && *range.m_begin <= '9')
       {
-         pszParse++;
+         range.m_begin++;
       }
       goto end;
    }
 end:
-   if (pszParse == pszStart)
+   if (range.m_begin == pszStart)
    {
-      throw ::exception(error_parsing, "empty string : not a number");
+      throw ::parsing_exception("empty string : not a number");
    }
-   psz = pszParse;
 }
 
 
-void var_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
+void var_skip_network_payload(::const_ansi_range & range)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   if (*pszJson == '{')
+   if (*range.m_begin == '{')
    {
 
-      property_set_skip_network_payload(pszJson, pszEnd);
+      property_set_skip_network_payload(range);
 
    }
-   else if (*pszJson == '\"')
+   else if (*range.m_begin == '\"')
    {
 
-      ::str().skip_quoted_value_ex(pszJson, pszEnd);
+      ::str::skip_quoted_value_ex(range);
 
    }
-   else if (*pszJson == '\'')
+   else if (*range.m_begin == '\'')
    {
 
-      ::str().skip_quoted_value_ex(pszJson, pszEnd);
+      ::str::skip_quoted_value_ex(range);
 
    }
-   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin == '.')
    {
 
-      var_skip_number(pszJson, pszEnd);
+      var_skip_number(range);
 
    }
-   else if (*pszJson == '[')
+   else if (*range.m_begin == '[')
    {
 
-      var_array_skip_network_payload(pszJson, pszEnd);
+      var_array_skip_network_payload(range);
 
    }
-   else if (*pszJson == ']')
+   else if (*range.m_begin == ']')
    {
 
       ::output_debug_string("");
 
    }
-   else if (*pszJson == '\0')
+   else if (*range.m_begin == '\0')
    {
 
       ::output_debug_string("");
@@ -6683,48 +6738,48 @@ void var_skip_network_payload(const char *& pszJson, const ::ansi_character * ps
    else
    {
 
-      var_skip_identifier(pszJson, pszEnd);
+      var_skip_identifier(range);
 
    }
 
 }
 
 
-void var_skip_network_payload(const char *& pszJson)
+//void var_skip_network_payload(const char *& pszJson)
+//{
+//   var_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//}
+
+
+
+
+const char * payload::parse_network_payload(const ::string & strNetworkPayload)
 {
-   var_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+
+   auto range = strNetworkPayload();
+
+   parse_network_payload(range);
+
+   return range.m_begin;
+
 }
 
 
-
-
-const char * payload::parse_network_payload(const ::string & strJson)
+void payload::parse_network_payload(::const_ansi_range & range)
 {
 
-   const ::ansi_character * pszJson = strJson;
+   ::str::consume_spaces(range, 0);
 
-   parse_network_payload(pszJson, pszJson + strJson.length());
-
-   return pszJson;
-
-}
-
-
-void payload::parse_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
-{
-
-   ::str().consume_spaces(pszJson, 0, pszEnd);
-
-   if (*pszJson == '{')
+   if (*range.m_begin == '{')
    {
 
-      property_set_reference().parse_network_payload(pszJson, pszEnd);
+      property_set_reference().parse_network_payload(range);
 
    }
-   else if (*pszJson == '\"')
+   else if (*range.m_begin == '\"')
    {
 
-      ::string str = ::str().consume_quoted_value_ex(pszJson, pszEnd);
+      ::string str = ::str::consume_quoted_value_ex(range);
 
       if(str.case_insensitive_begins_eat("hls://"))
       {
@@ -6762,19 +6817,19 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
       operator=(str);
 
    }
-   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin == '.')
    {
 
-      consume_number(pszJson, pszEnd);
+      consume_number(range);
 
    }
-   else if (*pszJson == '[')
+   else if (*range.m_begin == '[')
    {
 
-      payload_array_reference().parse_network_payload(pszJson, pszEnd);
+      payload_array_reference().parse_network_payload(range);
 
    }
-   else if (*pszJson == ']')
+   else if (*range.m_begin == ']')
    {
 
       ::output_debug_string("");
@@ -6782,7 +6837,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
       //pszJson++;
 
    }
-   else if (*pszJson == '\0')
+   else if (*range.m_begin == '\0')
    {
 
       ::output_debug_string("");
@@ -6791,38 +6846,54 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else
    {
 
-      consume_identifier(pszJson, pszEnd);
+      consume_identifier(range);
 
    }
 
 }
 
 
-::enum_type payload::find_network_payload_child(const char *& pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(::const_ansi_range & range, const ::payload & varChild)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   if (*pszJson == '{')
+   if (range.is_empty())
+   {
+      
+      ::output_debug_string("");
+
+      return ::e_type_new;
+
+   }
+   else if (*range.m_begin == '\0')
    {
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::output_debug_string("");
 
-      if (*pszJson == '\0')
+      return ::e_type_new;
+
+   }
+   else if (*range.m_begin == '{')
+   {
+
+      ::str::consume_spaces(range, 0);
+
+      if (range.is_empty())
       {
 
          return ::e_type_new;
 
       }
 
-      ::str().consume(pszJson, "{", 1, pszEnd);
+      ::str::consume(range, "{");
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (*pszJson == '}')
+      if (*range.m_begin == '}')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          return ::e_type_new;
 
@@ -6833,31 +6904,31 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
       while (true)
       {
 
-         property_parse_network_payload_id(atom, pszJson, pszEnd);
+         property_parse_network_payload_id(atom, range);
 
-         if (varChild.case_insensitive_order(atom) == 0)
+         if (varChild.case_insensitive_equals(atom))
          {
 
-            ::str().consume_spaces(pszJson, 0, pszEnd);
-            ::str().consume(pszJson, ":", 1, pszEnd);
+            ::str::consume_spaces(range, 0);
 
+            ::str::consume(range, ":");
 
             return ::e_type_property_set;
 
          }
 
-         property_skip_network_payload_value(pszJson, pszEnd);
+         property_skip_network_payload_value(range);
 
-         ::str().consume_spaces(pszJson, 0, pszEnd);
+         ::str::consume_spaces(range, 0);
 
-         if (*pszJson == ',')
+         if (*range.m_begin == ',')
          {
-            pszJson++;
+            range.m_begin++;
             continue;
          }
-         else if (*pszJson == '}')
+         else if (*range.m_begin == '}')
          {
-            pszJson++;
+            range.m_begin++;
             return ::e_type_new;
          }
          else
@@ -6865,18 +6936,18 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
             ::string str = "not expected character : ";
 
-            str += pszJson;
+            str += range.m_begin;
 
-            throw ::exception(error_parsing, str);
+            throw ::parsing_exception(str);
 
          }
 
       }
 
    }
-   else if (*pszJson == '\"')
+   else if (*range.m_begin == '\"')
    {
-      operator=(::str().consume_quoted_value_ex(pszJson, pszEnd));
+      operator=(::str::consume_quoted_value_ex(range));
       if (operator == (varChild))
       {
          return ::e_type_string;
@@ -6886,9 +6957,9 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
          return ::e_type_new;
       }
    }
-   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin== '.')
    {
-      consume_number(pszJson, pszEnd);
+      consume_number(range);
       if (operator == (varChild))
       {
          return get_type();
@@ -6898,11 +6969,11 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
          return ::e_type_new;
       }
    }
-   else if (*pszJson == '[')
+   else if (*range.m_begin == '[')
    {
-      ::str().consume_spaces(pszJson, 0, pszEnd);
-      ::str().consume(pszJson, "[", 1, pszEnd);
-      ::enum_type etype = find_network_payload_id(pszJson, pszEnd, varChild);
+      //::str::consume_spaces(range, 0);
+      ::str::consume(range, "[");
+      ::enum_type etype = find_network_payload_id(range, varChild);
       if (etype == ::e_type_new)
       {
 
@@ -6910,11 +6981,11 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
       }
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (*pszJson == ']')
+      if (*range.m_begin == ']')
       {
-         pszJson++;
+         range.m_begin++;
 
          return etype;
 
@@ -6923,19 +6994,14 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
       return ::e_type_new;
 
    }
-   else if (*pszJson == ']')
-   {
-      ::output_debug_string("");
-      return ::e_type_new;
-   }
-   else if (*pszJson == '\0')
+   else if (*range.m_begin == ']')
    {
       ::output_debug_string("");
       return ::e_type_new;
    }
    else
    {
-      consume_identifier(pszJson, pszEnd);
+      consume_identifier(range);
       if (operator==(varChild))
       {
          return get_type();
@@ -6949,21 +7015,27 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 }
 
 
-::enum_type payload::find_network_payload_id(const char * & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(::const_ansi_range & range, const ::payload & varChild)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   if (*pszJson == '{')
+   if (range.is_empty())
+   {
+
+      return e_type_new;
+
+   }
+   else if (*range.m_begin == '{')
    {
 
       return ::e_type_new;
 
 
    }
-   else if (*pszJson == '\"')
+   else if (*range.m_begin == '\"')
    {
-      operator=(::str().consume_quoted_value_ex(pszJson, pszEnd));
+      operator=(::str::consume_quoted_value_ex(range));
       if (operator == (varChild))
       {
          return ::e_type_string;
@@ -6973,9 +7045,9 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
          return ::e_type_new;
       }
    }
-   else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin == '.')
    {
-      consume_number(pszJson, pszEnd);
+      consume_number(range);
       if (operator == (varChild))
       {
          return get_type();
@@ -6985,23 +7057,23 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
          return ::e_type_new;
       }
    }
-   else if (*pszJson == '[')
+   else if (*range.m_begin == '[')
    {
 
       return ::e_type_new;
 
    }
-   else if (*pszJson == ']')
+   else if (*range.m_begin == ']')
    {
       return ::e_type_new;
    }
-   else if (*pszJson == '\0')
+   else if (*range.m_begin == '\0')
    {
       return ::e_type_new;
    }
    else
    {
-      consume_identifier(pszJson, pszEnd);
+      consume_identifier(range);
       if (operator==(varChild))
       {
          return get_type();
@@ -11169,3 +11241,10 @@ void test_payload()
 
 }
 
+//
+//property & payload::get_property(const char * psz)
+//{
+//
+//   return propset().get(psz);
+//
+//}

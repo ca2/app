@@ -355,6 +355,15 @@ concept has_as_string = requires(HAS_AS_STRING has_as_string)
 
 };
 
+template < typename HAS_GET_STRING >
+concept has_get_string = requires(HAS_GET_STRING has_get_string)
+{
+
+   { has_get_string.get_string() } -> ::std::same_as <::string>;
+
+};
+
+
 template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >
 class string_array_base;
 

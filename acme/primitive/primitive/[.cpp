@@ -5841,7 +5841,7 @@ void payload::consume_identifier(const char * & psz, const ::ansi_character * ps
    }
    else
    {
-      throw ::exception(error_parsing, "not expected identifier");
+      throw ::parsing_exception("not expected identifier");
    }
    psz = pszParse;
 }
@@ -5927,7 +5927,7 @@ end:
    if(pszParse == pszStart)
    {
 
-      throw ::exception(error_parsing, "empty string : not a number");
+      throw ::parsing_exception("empty string : not a number");
 
    }
 
@@ -6002,12 +6002,12 @@ void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
       }
       else
       {
-         throw ::exception(error_parsing, "not expected identifier");
+         throw ::parsing_exception("not expected identifier");
       }
    }
    else
    {
-      throw ::exception(error_parsing, "not expected identifier");
+      throw ::parsing_exception("not expected identifier");
    }
    psz = pszParse;
 }
@@ -6081,7 +6081,7 @@ void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
 end:
    if (pszParse == pszStart)
    {
-      throw ::exception(error_parsing, "empty string : not a number");
+      throw ::parsing_exception("empty string : not a number");
    }
    psz = pszParse;
 }
@@ -6321,7 +6321,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
             str += pszJson;
 
-            throw ::exception(error_parsing, str);
+            throw ::parsing_exception(str);
 
          }
 

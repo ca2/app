@@ -572,8 +572,8 @@ public:
        return this->find_first_character_in(range, ::comparison::comparison<ITEM>());
 
     }
-    constexpr strsize find_first_character_in_index(const SCOPED_STRING & range) const {
-       return this->offset_of(find_first_character_in(range));
+    constexpr strsize find_first_character_in_index(const SCOPED_STRING & range, ::strsize start = 0) const {
+       return this->offset_of((*this)(start).find_first_character_in(range));
     }
 
 

@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::scoped_string & scopedstrMe
 
    }
 
-   throw ::exception(error_parsing, scopedstrMessage);
+   throw ::parsing_exception(scopedstrMessage);
 
    return true;
 

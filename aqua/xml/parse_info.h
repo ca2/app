@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -20,7 +20,7 @@ namespace xml
       bool                 m_bTrimValue;        // [set] do trim when parse?
       bool                 m_bEntityValue;      // [set] do convert from object to entity? ( &lt; -> < )
       ::pointer<entities> m_pentities;         // [set] entity table for entity decode
-      char                 m_chEscapeValue;     // [set] escape value (default '\\')
+      char                 m_chEscape;          // [set] escape character (default '\\')
       bool                 m_bForceParse;       // [set] force parse even if xml is not welformed
 
       string               m_strXml;            // [get] xml source

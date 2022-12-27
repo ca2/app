@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "payload.h"
+#include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
 //#include "acme/filesystem/file/file.h"
 //#include "acme/networking/as_string.h"
@@ -117,7 +118,7 @@ bool property_set::has_properties(::count countMinimum) const
 property * property_set::find_value_ci(const ::payload & payload) const
 {
 
-   for(auto & pproperty : *this)
+   for (auto & pproperty : *this)
    {
 
       if (pproperty->case_insensitive_order(payload) == 0)
@@ -159,7 +160,7 @@ property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 property * property_set::find_value(const ::payload & payload) const
 {
 
-   for(auto & pproperty : *this)
+   for (auto & pproperty : *this)
    {
 
       if (*pproperty == payload)
@@ -199,7 +200,7 @@ property * property_set::find_value(const ::scoped_string & scopedstr) const
 bool property_set::contains_value_ci(const ::payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -210,7 +211,7 @@ bool property_set::contains_value_ci(const ::payload & payload, ::count countMin
 bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(scopedstr) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -219,7 +220,7 @@ bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::count 
 bool property_set::contains_value(const ::payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(payload)) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(payload)) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -228,7 +229,7 @@ bool property_set::contains_value(const ::payload & payload, ::count countMin, :
 bool property_set::contains_value(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value(scopedstr) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -239,7 +240,7 @@ bool property_set::erase_first_value_ci(const ::payload & payload)
 
    property * pproperty = find_value_ci(payload);
 
-   if(pproperty != nullptr)
+   if (pproperty != nullptr)
    {
 
       return erase_by_name(pproperty->m_atom);
@@ -256,7 +257,7 @@ bool property_set::erase_first_value_ci(const ::scoped_string & scopedstr)
 
    property * pproperty = find_value_ci(scopedstr);
 
-   if(pproperty != nullptr)
+   if (pproperty != nullptr)
    {
 
       return erase_by_name(pproperty->m_atom);
@@ -273,7 +274,7 @@ bool property_set::erase_first_value(const ::payload & payload)
 
    property * pproperty = find_value(payload);
 
-   if(pproperty != nullptr)
+   if (pproperty != nullptr)
    {
 
       return erase_by_name(pproperty->m_atom);
@@ -290,7 +291,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    property * pproperty = find_value(scopedstr);
 
-   if(pproperty != nullptr)
+   if (pproperty != nullptr)
    {
 
       return erase_by_name(pproperty->m_atom);
@@ -329,10 +330,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count count = 0;
 
-   if(contains_value_ci(scopedstr,countMin,countMax))
+   if (contains_value_ci(scopedstr, countMin, countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax) && erase_first_value_ci(scopedstr))
+      while (conditional(countMax >= 0, count < countMax) && erase_first_value_ci(scopedstr))
       {
 
          count++;
@@ -351,10 +352,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count count = 0;
 
-   if(contains_value(payload,countMin,countMax))
+   if (contains_value(payload, countMin, countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax && erase_first_value(payload)))
+      while (conditional(countMax >= 0, count < countMax && erase_first_value(payload)))
       {
 
          count++;
@@ -373,10 +374,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count count = 0;
 
-   if(contains_value(scopedstr,countMin,countMax))
+   if (contains_value(scopedstr, countMin, countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax) && erase_first_value(scopedstr))
+      while (conditional(countMax >= 0, count < countMax) && erase_first_value(scopedstr))
       {
 
          count++;
@@ -400,7 +401,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
    while (true)
    {
 
-      iFind = find_index(idName, iFind);
+      iFind = index_of(idName, iFind);
 
       if (iFind < 0)
       {
@@ -514,57 +515,57 @@ void property_set::_008ParseCommandArguments(string_array & straArguments, ::pay
 
 void property_set::_008AddArgumentPairs(::string_array & straArguments)
 {
-   
+
    for (::index i = 0; i < straArguments.get_size() - 1; i++)
    {
 
       string strThisArgument = straArguments[i];
-      
+
       string strNextArgument = straArguments[i + 1];
-      
-      if(strThisArgument.begins_eat("-"))
+
+      if (strThisArgument.begins_eat("-"))
       {
-         
-         if(strThisArgument.has_char())
+
+         if (strThisArgument.has_char())
          {
-         
-            if(strNextArgument.case_insensitive_order("YES") == 0)
+
+            if (strNextArgument.case_insensitive_order("YES") == 0)
             {
-       
+
                _008Add(strThisArgument, "true");
-               
+
                straArguments.erase(i, 2);
-               
-               i--;
-               
-            }
-            else if(strNextArgument.case_insensitive_order("NO") == 0)
-            {
-       
-               _008Add(strThisArgument, "false");
-               
-               straArguments.erase(i, 2);
-               
+
                i--;
 
             }
-            else if(strNextArgument.case_insensitive_order("TRUE") == 0)
+            else if (strNextArgument.case_insensitive_order("NO") == 0)
             {
-       
-               _008Add(strThisArgument, "true");
-               
-               straArguments.erase(i, 2);
-               
-               i--;
-               
-            }
-            else if(strNextArgument.case_insensitive_order("FALSE") == 0)
-            {
-       
+
                _008Add(strThisArgument, "false");
-               
+
                straArguments.erase(i, 2);
-               
+
+               i--;
+
+            }
+            else if (strNextArgument.case_insensitive_order("TRUE") == 0)
+            {
+
+               _008Add(strThisArgument, "true");
+
+               straArguments.erase(i, 2);
+
+               i--;
+
+            }
+            else if (strNextArgument.case_insensitive_order("FALSE") == 0)
+            {
+
+               _008Add(strThisArgument, "false");
+
+               straArguments.erase(i, 2);
+
                i--;
 
             }
@@ -580,7 +581,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 
 void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument)
 {
-   
+
    if (strArgument == ":")
    {
 
@@ -590,7 +591,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
 
    }
 
-   if(strArgument.case_insensitive_begins("-"))
+   if (strArgument.case_insensitive_begins("-"))
    {
 
       _008AddArgument(strArgument.substr(1));
@@ -604,7 +605,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
    }
    else
    {
-      
+
       if (payloadFile.is_empty())
       {
 
@@ -619,30 +620,30 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
       }
 
    }
-   
+
 }
 
 
-      void property_set::_008AddArgument(const ::string & strArg)
+void property_set::_008AddArgument(const ::string & strArg)
 {
 
    auto pFindEqual = strArg.find('=');
 
    auto pFindQuote = strArg.find('\"');
 
-   if(::is_set(pFindEqual))
+   if (::is_set(pFindEqual))
    {
 
       string strValue;
 
       strValue = strArg(pFindEqual + 1);
 
-      if(pFindEqual + 1 == pFindQuote)
+      if (pFindEqual + 1 == pFindQuote)
       {
 
-         const char *pszValue = strValue;
+         auto range = strValue();
 
-         strValue = ::str().consume_quoted_value(pszValue);
+         strValue = ::str::consume_quoted_value(range);
 
       }
 
@@ -679,7 +680,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 
    i32 i = 0;
 
-   while(i  < straKey.get_upper_bound())
+   while (i < straKey.get_upper_bound())
    {
 
       pset = &(*pset)[straKey[i]].property_set_reference();
@@ -694,7 +695,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
       pset->operator[](straKey[i]).set_type(::e_type_key_exists, false);
 
    }
-   else if(pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != scopedstrValue)
+   else if (pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != scopedstrValue)
    {
 
       pset->operator[](straKey[i]).stra().add(scopedstrValue);
@@ -703,7 +704,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
    else
    {
 
-      pset->operator[](straKey[i])= scopedstrValue;
+      pset->operator[](straKey[i]) = scopedstrValue;
 
    }
 
@@ -722,11 +723,14 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
 
    //string_array stra = get_c_args_for_c(pszCmdLine);
    //string_array stra = get_c_args_from_c(pszCmdLine);
-   auto straArguments = get_c_args_from_string(scopedstrCmdLine);
+
+   auto range = scopedstrCmdLine();
+
+   auto straArguments = get_c_args_from_string(range);
 
    int i = 0;
 
-   if(bApp && straArguments.get_count() > 0)
+   if (bApp && straArguments.get_count() > 0)
    {
 
       strApp = straArguments[0];
@@ -734,16 +738,16 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
       i++;
 
    }
-   
+
    _008AddArgumentPairs(straArguments);
-   
+
    bool bColon = false;
 
-   for(; i < straArguments.get_size(); i++)
+   for (; i < straArguments.get_size(); i++)
    {
-         
+
       string strArgument = straArguments[i];
-      
+
       _008AddArgumentOrFile(bColon, payloadFile, strArgument);
 
    }
@@ -764,7 +768,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
       i++;
 
    }
-      
+
    _008AddArgumentPairs(straArguments);
 
    bool bColon = false;
@@ -773,7 +777,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
    {
 
       string strArgument = straArguments[i];
-      
+
       _008AddArgumentOrFile(bColon, payloadFile, strArgument);
 
    }
@@ -781,34 +785,34 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 }
 
 
-void property_set_skip_network_payload(const char *& pszJson)
+//void property_set_skip_network_payload(const char *& pszJson)
+//{
+//
+//   property_set_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//
+//}
+
+
+void property_set_skip_network_payload(::const_ansi_range & range)
 {
 
-   property_set_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+   ::str::consume_spaces(range, 0);
 
-}
-
-
-void property_set_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
-{
-
-   ::str().consume_spaces(pszJson, 0, pszEnd);
-
-   if (*pszJson == '\0')
+   if (*range.m_begin == '\0')
    {
 
       return;
 
    }
 
-   ::str().consume(pszJson, "{", 1, pszEnd);
+   ::str::consume(range, "{");
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   if (*pszJson == '}')
+   if (*range.m_begin == '}')
    {
 
-      pszJson++;
+      range.m_begin++;
 
       return;
 
@@ -819,24 +823,24 @@ void property_set_skip_network_payload(const char *& pszJson, const ::ansi_chara
 
       ::atom atom;
 
-      property_skip_network_payload_id(pszJson, pszEnd);
+      property_skip_network_payload_id(range);
 
-      property_skip_network_payload_value(pszJson, pszEnd);
+      property_skip_network_payload_value(range);
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (*pszJson == ',')
+      if (*range.m_begin == ',')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          continue;
 
       }
-      else if (*pszJson == '}')
+      else if (*range.m_begin == '}')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          return;
 
@@ -846,7 +850,7 @@ void property_set_skip_network_payload(const char *& pszJson, const ::ansi_chara
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += range.m_begin;
 
          throw ::exception(error_failed, str);
 
@@ -866,19 +870,19 @@ void property_set::parse_ini(const ::string & strIni)
 
    property_set * pset = this;
 
-   for(auto & strLine : stra)
+   for (auto & strLine : stra)
    {
 
       strLine.trim();
 
-      if(strLine.is_empty())
+      if (strLine.is_empty())
       {
 
          continue;
 
       }
 
-      if(strLine.begins_eat("["))
+      if (strLine.begins_eat("["))
       {
 
          strLine.trim_right("]");
@@ -891,9 +895,9 @@ void property_set::parse_ini(const ::string & strIni)
 
          string strKey;
 
-         strKey = ::str().token(strLine, "=");
+         strKey = ::str::token(strLine, "=");
 
-         if(strKey.has_char())
+         if (strKey.has_char())
          {
 
             strKey.trim();
@@ -911,7 +915,7 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
-void property_set::parse_network_payload(const ::string & strJson)
+void property_set::parse_network_payload(const ::string & strNetworkPayload)
 {
 
 #ifdef LINUX
@@ -920,64 +924,80 @@ void property_set::parse_network_payload(const ::string & strJson)
 
 #endif
 
-   const ::ansi_character * pszJson = strJson;
+   auto range = strNetworkPayload();
 
-   parse_network_payload(pszJson, pszJson + strJson.length() - 1);
+   parse_network_payload(range);
 
 }
 
 
-void property_set::parse_network_payload(const char * & pszJson)
+//void property_set::parse_network_payload(::const_ansi_range & range)
+//{
+//
+//#ifdef LINUX
+//   uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
+//#endif
+//
+//   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//
+//}
+
+
+void property_set::parse_network_payload(::const_ansi_range & range)
 {
+
 
 #ifdef LINUX
    uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
 #endif
 
-   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+   ::str::consume_spaces(range, 0);
 
-}
-
-
-void property_set::parse_network_payload(const char * & pszJson, const ::ansi_character * pszEnd)
-{
-   ::str().consume_spaces(pszJson, 0, pszEnd);
-   if (*pszJson == '\0')
+   if (*range.m_begin == '\0')
    {
+
       return;
+
    }
-   ::str().consume(pszJson, "{", 1, pszEnd);
-   ::str().consume_spaces(pszJson, 0, pszEnd);
-   if (*pszJson == '}')
+
+   ::str::consume(range, "{");
+
+   ::str::consume_spaces(range, 0);
+
+   if (*range.m_begin == '}')
    {
-      pszJson++;
+      
+      range.m_begin++;
+
       return;
+
    }
-   while(true)
+
+   while (true)
    {
 
       ::atom atom;
 
-      ::property_parse_network_payload_id(atom, pszJson,pszEnd);
+      ::property_parse_network_payload_id(atom, range);
 
       auto & property = operator[](atom);
 
-      ::property_parse_network_payload_value(property,pszJson,pszEnd);
+      ::property_parse_network_payload_value(property, range);
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if(*pszJson == ',')
+      if (*range.m_begin == ',')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          continue;
 
       }
-      else if(*pszJson == '}')
+      else if (*range.m_begin == '}')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          return;
 
@@ -987,9 +1007,9 @@ void property_set::parse_network_payload(const char * & pszJson, const ::ansi_ch
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += range.m_begin;
 
-         throw ::exception(error_parsing, str);
+         throw ::parsing_exception(str);
 
       }
 
@@ -1056,104 +1076,104 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
 void property_set::parse_network_arguments(const ::scoped_string & scopedstrUriOrNetworkArguments)
 {
-   
-   if(scopedstrUriOrNetworkArguments.is_empty())
+
+   if (scopedstrUriOrNetworkArguments.is_empty())
    {
-      
+
       return;
-   
+
    }
-   
+
    const char * pszNetworkArguments = strchr(scopedstrUriOrNetworkArguments.begin(), '?');
-   
-   if(::is_empty(pszNetworkArguments))
+
+   if (::is_empty(pszNetworkArguments))
    {
-      
+
       return _parse_network_arguments(scopedstrUriOrNetworkArguments);
-      
+
    }
    else
    {
 
       return _parse_network_arguments(pszNetworkArguments + 1);
-      
+
    }
-   
+
 }
 
 
 void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNetworkArguments)
 {
-   
-   if(scopedstrNetworkArguments.is_empty())
+
+   if (scopedstrNetworkArguments.is_empty())
    {
-    
+
       return;
-      
+
    }
-   
+
    const ::ansi_character * pszArgument = scopedstrNetworkArguments.begin();
-   
+
    const ::ansi_character * pszArgumentEnd;
-   
+
    const ::ansi_character * pszKeyEnd;
-   
+
    string strKey;
-   
-   while(true)
+
+   while (true)
    {
-      
+
       pszArgumentEnd = strchr(pszArgument, '&');
-      
-      pszKeyEnd   = strchr(pszArgument, '=');
-      
-      if(pszArgumentEnd == nullptr)
+
+      pszKeyEnd = strchr(pszArgument, '=');
+
+      if (pszArgumentEnd == nullptr)
       {
-         
-         if(pszKeyEnd == nullptr)
+
+         if (pszKeyEnd == nullptr)
          {
-            
+
             strKey = ::url::decode({ pszArgument, scopedstrNetworkArguments.size() - (pszArgument - scopedstrNetworkArguments.begin()) });
-            
+
             _008Add(strKey, "");
-            
+
          }
          else
          {
-            
+
             string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
-            
-            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size()- (pszKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
-            
+
+            string strValue = ::url::decode({ pszKeyEnd + 1, scopedstrNetworkArguments.size() - (pszKeyEnd + 1 - scopedstrNetworkArguments.begin()) });
+
             _008Add(strKey, strValue);
-            
+
          }
-         
+
          return;
-         
+
       }
 
-      if(pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
+      if (pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
       {
-      
+
          strKey = ::url::decode({ pszArgument, pszArgumentEnd - pszArgument });
-         
+
          _008Add(strKey, "");
-      
+
       }
       else
       {
-      
+
          string strKey = ::url::decode({ pszArgument, pszKeyEnd - pszArgument });
-         
+
          string strValue = ::url::decode({ pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1) });
-         
+
          _008Add(strKey, strValue);
-         
+
       }
-      
+
       pszArgument = pszArgumentEnd + 1;
-      
+
    }
 
 }
@@ -1161,19 +1181,19 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
 void property_set::parse_network_headers(const ::scoped_string & scopedstrHeaders)
 {
-   
+
    string_array stra;
-   
+
    stra.add_tokens(scopedstrHeaders, "\r\n", true);
-   
+
    string strName;
-   
-   for(i32 i = 0; i < stra.get_size(); i++)
+
+   for (i32 i = 0; i < stra.get_size(); i++)
    {
-      
+
       auto pPos = stra[i].find(":");
-      
-      if(::is_null(pPos))
+
+      if (::is_null(pPos))
       {
 
          strName = stra[i].make_lower();
@@ -1213,26 +1233,26 @@ string property_set::_001Replace(const ::string & str) const
 
 ::count property_set::erase_by_name(const atom & idName)
 {
-   
+
    return unset(idName);
-   
+
 }
 
 
 ::count property_set::erase_by_name(string_array & stra)
 {
-   
+
    ::count count = 0;
-   
-   for(i32 i = 0; i < stra.get_count(); i++)
+
+   for (i32 i = 0; i < stra.get_count(); i++)
    {
-      
+
       count += erase_by_name(stra[i]);
-      
+
    }
-   
+
    return count;
-   
+
 }
 
 
@@ -1280,10 +1300,10 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
    auto p = begin();
 
-   if(p)
+   if (p)
    {
 
-      while(true)
+      while (true)
       {
 
          str += **p;
@@ -1398,7 +1418,7 @@ property & property_set::at(index iIndex)
 }
 
 
-property_set& property_set::operator = (const ::payload & payload)
+property_set & property_set::operator = (const ::payload & payload)
 {
 
    if (payload.m_etype == e_type_property_set)
@@ -1425,9 +1445,9 @@ property_set& property_set::operator = (const ::payload & payload)
       //else
       //{
 
-         ::acme::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
+      ::acme::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
 
-//      }
+      //      }
 
    }
    else if (payload.m_etype == e_type_property)
@@ -1456,7 +1476,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::acme::copy((property_ptra & )*this, (const property_ptra & ) set);
+      ::acme::copy((property_ptra &)*this, (const property_ptra &)set);
 
    }
 
@@ -1471,7 +1491,7 @@ property_set & property_set::append(const property_set & set)
    if (&set != this)
    {
 
-      for(auto & pproperty : set)
+      for (auto & pproperty : set)
       {
 
          add_item(memory_new property(*pproperty));
@@ -1491,29 +1511,29 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for(auto & pproperty : set)
+      for (auto & pproperty : set)
       {
 
          atom idName = pproperty->name();
 
          auto ppropertyThis = find(idName);
 
-         if(!pproperty->is_new())
+         if (!pproperty->is_new())
          {
 
-            if(ppropertyThis != nullptr)
+            if (ppropertyThis != nullptr)
             {
 
-               if(ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
+               if (ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
                {
 
                   operator[](pproperty->name()) = *pproperty;
 
                }
-               else if(ppropertyThis->get_type() == ::e_type_property_set)
+               else if (ppropertyThis->get_type() == ::e_type_property_set)
                {
 
-                  if(pproperty->get_type() == ::e_type_property_set)
+                  if (pproperty->get_type() == ::e_type_property_set)
                   {
 
                      ppropertyThis->propset().merge(pproperty->propset());
@@ -1524,10 +1544,10 @@ property_set & property_set::merge(const property_set & set)
 
                      index i = 0;
 
-                     while(true)
+                     while (true)
                      {
 
-                        if(!has_property(::as_string(i)))
+                        if (!has_property(::as_string(i)))
                         {
 
                            operator[](::as_string(i)) = *pproperty;
@@ -1543,7 +1563,7 @@ property_set & property_set::merge(const property_set & set)
                   }
 
                }
-               else if(operator[](pproperty->name()).is_empty())
+               else if (operator[](pproperty->name()).is_empty())
                {
 
                   operator[](pproperty->name()) = *pproperty;
@@ -1555,7 +1575,7 @@ property_set & property_set::merge(const property_set & set)
                   try
                   {
 
-                     if(operator[](pproperty->name()) == *pproperty)
+                     if (operator[](pproperty->name()) == *pproperty)
                      {
 
                         continue;
@@ -1563,7 +1583,7 @@ property_set & property_set::merge(const property_set & set)
                      }
 
                   }
-                  catch(...)
+                  catch (...)
                   {
 
                   }
@@ -1591,8 +1611,8 @@ property_set & property_set::merge(const property_set & set)
 }
 
 
-property_set & property_set::merge(const property & property) 
-{ 
+property_set & property_set::merge(const property & property)
+{
 
    if (property.get_type() == e_type_property_set)
    {
@@ -1739,7 +1759,7 @@ bool property_set::contains(const property_set & set) const
 
    }
 
-   for(auto & p : *this)
+   for (auto & p : *this)
    {
 
       if (*ptraMatch[offset_of(&p)] != *p)
@@ -1761,7 +1781,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
    auto p = begin();
 
-   if(p)
+   if (p)
    {
 
       while (p)
@@ -1934,19 +1954,19 @@ string property_set::get_command_line(const string_array & straKeys) const
 
    string str;
 
-   for(auto & strKey : straKeys)
+   for (auto & strKey : straKeys)
    {
 
       property * pproperty = find(strKey);
 
-      if(pproperty == nullptr)
+      if (pproperty == nullptr)
       {
 
          continue;
 
       }
 
-      if(str.has_char())
+      if (str.has_char())
       {
 
          str += " ";
@@ -1955,7 +1975,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       string strItem = pproperty->m_atom;
 
-      if(strItem.contains(" ") || strItem.contains("\'"))
+      if (strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -1963,7 +1983,7 @@ string property_set::get_command_line(const string_array & straKeys) const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.contains("\""))
+      else if (strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -1978,7 +1998,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       }
 
-      if(pproperty->is_empty())
+      if (pproperty->is_empty())
       {
 
          continue;
@@ -1989,7 +2009,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       strItem = *pproperty;
 
-      if(strItem.contains(" ") || strItem.contains("\'"))
+      if (strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -1997,7 +2017,7 @@ string property_set::get_command_line(const string_array & straKeys) const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.contains("\""))
+      else if (strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2024,10 +2044,10 @@ string property_set::get_command_line() const
 
    string str;
 
-   for(auto & pproperty : *this)
+   for (auto & pproperty : *this)
    {
 
-      if(str.has_char())
+      if (str.has_char())
       {
 
          str += " ";
@@ -2036,7 +2056,7 @@ string property_set::get_command_line() const
 
       string strItem(pproperty->m_atom);
 
-      if(strItem.contains(" ") || strItem.contains("\'"))
+      if (strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -2044,7 +2064,7 @@ string property_set::get_command_line() const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.contains("\""))
+      else if (strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2059,7 +2079,7 @@ string property_set::get_command_line() const
 
       }
 
-      if(pproperty->is_empty())
+      if (pproperty->is_empty())
       {
 
          continue;
@@ -2070,7 +2090,7 @@ string property_set::get_command_line() const
 
       strItem = *pproperty;
 
-      if(strItem.contains(" ") || strItem.contains("\'"))
+      if (strItem.contains(" ") || strItem.contains("\'"))
       {
 
          strItem.replace_with("\\\"", "\"");
@@ -2078,7 +2098,7 @@ string property_set::get_command_line() const
          str = "\"" + strItem + "\"";
 
       }
-      else if(strItem.contains("\""))
+      else if (strItem.contains("\""))
       {
 
          strItem.replace_with("\\\'", "\'");
@@ -2132,7 +2152,7 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
 
 bool property_set::payload_bool(const atom & atom, bool bDefault) const
 {
-   
+
    auto pproperty = find(atom);
 
    if (::is_null(pproperty))
@@ -2141,7 +2161,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
       return bDefault;
 
    }
-   
+
    return pproperty->get_bool(bDefault);
 
 }
@@ -2201,12 +2221,12 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 //}
 
 
-::index property_set::find_index(const ::atom & atom, ::index i) const
+::index property_set::index_of(const ::atom & atom, ::index i) const
 {
 
    auto p = this->m_begin + i;
 
-   for(; p < this->m_end; p++)
+   for (; p < this->m_end; p++)
    {
 
       if (p[i]->m_atom == atom)
@@ -2223,16 +2243,37 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 }
 
 
-
-property & property_set::get(const ::atom & atom)
+::property * property_set::find_text_key(const ::scoped_string & scopedstr, ::index iStart) const
 {
 
-   auto pproperty = find(atom);
+   auto p = this->m_begin + iStart;
+
+   for (; p < this->m_end; p++)
+   {
+
+      if ((*p)->m_atom == scopedstr)
+      {
+
+         return *p;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
+
+property & property_set::get_text_key(const ::scoped_string & scopedstr, ::index iStart)
+{
+
+   auto pproperty = find_text_key(scopedstr, iStart);
 
    if (!pproperty)
    {
 
-      pproperty = memory_new property(atom);
+      pproperty = memory_new property(scopedstr);
 
       add_item(pproperty);
 
@@ -2242,21 +2283,35 @@ property & property_set::get(const ::atom & atom)
 
 }
 
-//#define memory_new ACME_NEW
 
-::property * property_set::find(const ::atom & atom) const
+::property * property_set::find_index(::iptr i) const
 {
 
-   auto iFind = find_index(atom);
-
-   if(iFind < 0)
+   if (i < 0 || i >= this->size())
    {
 
       return nullptr;
 
    }
 
-   return (const_cast < property_set * > (this))->m_begin[iFind];
+   return (const_cast <property_set *> (this))->m_begin[i];
+
+}
+
+
+property & property_set::get_index(::iptr i)
+{
+
+   while (i >= this->size())
+   {
+
+      auto pproperty = memory_new property(::as_string(this->size()));
+
+      add_item(pproperty);
+
+   }
+
+   return *(const_cast <property_set *> (this))->m_begin[i];
 
 }
 
@@ -2308,29 +2363,7 @@ property & property_set::get(const ::atom & atom)
 }
 
 
-//#define memory_new ACME_NEW
 
-//property * payload::find_property(const ::atom & atom) const
-//{
-//
-//   if (!casts_to(e_type_property_set))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return propset().find(atom);
-//
-//}
-
-
-//property & payload::get_property(const ::atom & atom)
-//{
-//
-//   return propset().get(atom);
-//
-//}
 
 
 
@@ -2500,7 +2533,7 @@ string property_set::evaluate(const ::string & strSource) const
 
       ch = *pPos;
 
-      if (pPos + 1 <str.end())
+      if (pPos + 1 < str.end())
       {
 
          chNext = *(pPos + 1);

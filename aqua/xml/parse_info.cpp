@@ -18,7 +18,7 @@ namespace xml
       m_bErrorOccur     = false;
       m_pszErrorPointer = nullptr;
       m_eparseerror     = e_parse_error_welformed;
-      m_chEscapeValue   = '\\';
+      m_chEscape        = '\\';
    }
 
 

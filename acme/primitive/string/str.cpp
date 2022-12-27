@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "hex.h"
 #include "international.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/parsing.h"
 #include "acme/filesystem/file/file.h"
 //#include "acme/filesystem/file/text_stream.h"
 //#include "acme/primitive/collection/string_array.h"
@@ -49,7 +49,7 @@ u32 decode_utf16_pair(u16 * units)
 //namespace str
 //{
 //
-//    enum_error g_eerror = ::str().e_error_none;
+//    enum_error g_eerror = ::str::e_error_none;
 
 
 //    const char trailingBytesForUTF8[256] =
@@ -822,7 +822,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
       if (iFind < iStart)
       {
 
-         throw ::exception(error_parsing, "random replace error");
+         throw ::parsing_exception("random replace error");
 
          return "";
 
@@ -2142,7 +2142,7 @@ strsize unicode_to_utf8_length(::i64 i)
 //
 //   strsize count = 0;
 //
-//   ::str().utf8_inc_slide(&count, pchSrc);
+//   ::str::utf8_inc_slide(&count, pchSrc);
 //
 //   ::memcpy_dup(pchDst, pchSrc, count);
 //
@@ -2415,6 +2415,18 @@ const char * utf8_dec(const ::ansi_character * pszBeg, const ::ansi_character * 
    }
 
    return psz - 1;
+
+}
+
+
+::const_ansi_range get_utf8_char(::const_ansi_range & range)
+{
+
+   auto pszStart = range.m_begin;
+
+   range.m_begin = unicode_next(range.m_begin);
+
+   return { pszStart, minimum(range.m_begin, range.m_end) };
 
 }
 
@@ -2738,114 +2750,114 @@ bool str::is_integer(const ::string & strParam)
 }
 
 
-void str::consume(const char *& pszParse, const ::string & strToConsume)
+void str::consume(::const_ansi_range & range, const char * pszToConsume)
 {
 
-   strsize len = strToConsume.length();
-
-   if (strncmp(pszParse, strToConsume, len) != 0)
+   while(*pszToConsume)
    {
+      
+      if (*range.m_begin != *pszToConsume)
+      {
 
-      throw ::exception(error_parsing, "Name does not match expected");
+         throw ::parsing_exception("Name does not match expected");
+
+      }
+
+      range.m_begin++;
+
+      pszToConsume++;
 
    }
-
-   pszParse += len;
 
 }
 
 
-bool str::eats(const char *& pszParse, const ::string & strParam)
+bool str::begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr)
 {
 
-   if (strncmp(pszParse, strParam, strParam.length()) != 0)
+   if (!range.begins(scopedstr))
    {
 
       return false;
 
    }
 
-   pszParse += strParam.length();
+   range.m_begin += scopedstr.size();
 
    return true;
 
 }
 
 
-bool str::eats_ci(const char *& pszParse, const ::string & strParam)
+bool str::case_insensitive_begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr)
 {
 
-   if (strnicmp(pszParse, strParam, strParam.length()) != 0)
+   if (!range.case_insensitive_begins(scopedstr))
    {
 
       return false;
 
    }
 
-   pszParse += strParam.length();
+   range.m_begin += scopedstr.size();
 
    return true;
 
 }
 
+//
+//void str::consume(::const_ansi_range & range, const ::ansi_character * psz)
+//{
+//
+//   for (idx = 0; idx < len; idx++)
+//   {
+//      if (ra[idx] != psz[idx])
+//      {
+//         throw ::parsing_exception("Name does not match expected");
+//         break;
+//      }
+//   }
+//
+//   pszParse += len;
+//
+//}
 
-void str::consume(const char *& pszParse, const ::ansi_character * psz, const ::ansi_character * pszEnd)
+
+void str::consume(::const_ansi_range & range, const ::scoped_string & scopedstr)
 {
 
-   __UNREFERENCED_PARAMETER(pszEnd);
-   strsize idx;
-   strsize len = strlen(psz);
-   for (idx = 0; idx < len; idx++)
-   {
-      if (pszParse[idx] != psz[idx])
-      {
-         throw ::exception(error_parsing, "Name does not match expected");
-         break;
-      }
-   }
+   auto rangeToConsume = scopedstr();
 
-   pszParse += len;
-
-}
-
-
-void str::consume(const char *& pszParse, const ::ansi_character * psz, strsize len, const ::ansi_character * pszEnd)
-{
-
-   __UNREFERENCED_PARAMETER(pszEnd);
-
-   i32 idx;
-
-   for (idx = 0; idx < len; idx++)
+   while(rangeToConsume.has_char())
    {
 
-      if (pszParse[idx] != psz[idx])
+      if(range.is_empty() || (*range.m_begin != *rangeToConsume.m_begin))
       {
 
-         throw ::exception(error_parsing, "Name does not match expected");
+         throw ::parsing_exception("Name does not match expected");
 
          break;
 
       }
 
-   }
+      rangeToConsume.m_begin++;
 
-   pszParse += len;
+      range.m_begin++;
+
+   }
 
 }
 
 
-void str::consume_spaces(const char *& pszParse, ::count iMinimumCount)
+void str::consume_spaces(::const_ansi_range & range, ::count iMinimumCount)
 {
-
-   auto psz = pszParse;
 
    i32 i = 0;
 
-   while (unicode_is_whitespace(psz))
+   while (unicode_is_whitespace(range.m_begin))
    {
 
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
       i++;
 
@@ -2854,30 +2866,24 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount)
    if (i < iMinimumCount)
    {
 
-      throw ::exception(error_parsing, "Space is required");
+      throw ::parsing_exception("At least "+ ::as_string(iMinimumCount) + " space(s) is(are) required. Found " + ::as_string(i) + " whitespace(s).");
 
    }
 
-   pszParse = psz;
-
 }
 
 
-u64 str::consume_natural(string & strParse, u64 uMax, u64 uMin)
-{
-
-   const ::ansi_character * pszParse = strParse;
-
-   auto u = consume_natural(pszParse, uMax, uMin);
-
-   strParse = pszParse;
-
-   return u;
-
-}
+//u64 str::consume_natural(::const_ansi_range & range, u64 uMax, u64 uMin)
+//{
+//
+//   auto u = consume_natural(range.m_begin, uMax, uMin);
+//
+//   return u;
+//
+//}
 
 
-u64 str::consume_natural(const char *& pszParse, u64 uMax, u64 uMin)
+u64 str::consume_natural(::const_ansi_range & range, u64 uMax, u64 uMin)
 {
 
    if (uMax < uMin)
@@ -2887,106 +2893,100 @@ u64 str::consume_natural(const char *& pszParse, u64 uMax, u64 uMin)
 
    }
 
-   auto psz = pszParse;
+   auto pszStart = range.m_begin;
 
    i32 i = 0;
 
    u64 u;
 
-   while (unicode_is_digit(psz))
+   while (unicode_is_digit(range.m_begin))
    {
 
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
       i++;
 
    }
 
-   if (psz == pszParse)
+   if (range.m_begin == pszStart)
    {
 
-      throw ::exception(error_parsing, "empty natural found");
+      throw ::parsing_exception("empty natural found");
 
    }
 
-   u = ::str().to_u32(string(pszParse, psz - pszParse));
+   u = ::str::to_u32({ pszStart, range.m_begin - pszStart });
 
    if (u < uMin)
    {
 
-      throw ::exception(error_parsing, "natural less than minimum");
+      throw ::parsing_exception("natural less than minimum");
 
    }
    else if (u > uMax)
    {
 
-      throw ::exception(error_parsing, "natural greater than maximum");
+      throw ::parsing_exception("natural greater than maximum");
 
    }
-
-   pszParse = psz;
 
    return u;
 
 }
 
+//
+//void str::consume_spaces(::const_ansi_range & range, ::count iMinimumCount)
+//{
+//
+//   i32 i = 0;
+//
+//   while (unicode_is_whitespace(range.m_begin))
+//   {
+//
+//      unicode_increment(range.m_begin);
+//
+//      if (range.m_begin > range.m_end)
+//      {
+//
+//         throw ::parsing_exception("premature end");
+//
+//         break;
+//
+//      }
+//
+//      i++;
+//
+//   }
+//
+//   if (i < iMinimumCount)
+//   {
+//
+//      throw ::parsing_exception("At least " + ::as_string(iMinimumCount) + " space(s) is(are) required");
+//
+//   }
+//
+//}
 
-void str::consume_spaces(const char *& pszParse, ::count iMinimumCount, const ::ansi_character * pszEnd)
+
+//string str::consume_non_spaces(const ::ansi_character *& psz)
+//{
+//
+//   return consume_non_spaces(psz, psz + strlen(psz));
+//
+//}
+//
+
+string str::consume_non_spaces(::const_ansi_range & range)
 {
 
-   auto psz = pszParse;
+   auto pszStart = range.m_begin;
 
-   i32 i = 0;
-
-   while (unicode_is_whitespace(psz))
-   {
-
-      unicode_increment(psz);
-
-      if (psz > pszEnd)
-      {
-
-         throw ::exception(error_parsing, "premature end");
-
-         break;
-
-      }
-
-      i++;
-
-   }
-
-   if (i < iMinimumCount)
-   {
-
-      throw ::exception(error_parsing, "Space is required");
-
-   }
-
-   pszParse = psz;
-
-}
-
-
-string str::consume_non_spaces(const ::ansi_character *& psz)
-{
-
-   return consume_non_spaces(psz, psz + strlen(psz));
-
-}
-
-
-string str::consume_non_spaces(const ::ansi_character *& pszParse, const ::ansi_character * pszEnd)
-{
-
-   auto psz = pszParse;
-
-   while (!unicode_is_whitespace(psz))
+   while (!unicode_is_whitespace(range.m_begin))
    {
       
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
-      if (psz >= pszEnd)
+      if (range.is_empty())
       {
 
          break;
@@ -2995,91 +2995,101 @@ string str::consume_non_spaces(const ::ansi_character *& pszParse, const ::ansi_
 
    }
 
-   string str(pszParse, psz - pszParse);
-
-   pszParse = psz;
-
-   return str;
+   return { pszStart, range.m_begin - pszStart };
 
 }
 
 
-string str::consume_hex(const char *& pszParse)
+string str::consume_hex(::const_ansi_range & range)
 {
-   auto psz = pszParse;
-   //      i32 i = 0;
-   while (*psz != '\0')
+   
+   auto pszStart = range.m_begin;
+
+   while (range.is_empty())
    {
+
+      ::i32 len;
       
-      i64 i = unicode_index(pszParse);
+      i64 i = unicode_index_length(range.m_begin, len);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {
 
-         unicode_increment(psz);
+         range.m_begin += len;
 
-      }
-
-   }
-
-   if (psz == pszParse)
-   {
-      throw ::exception(error_parsing, "no hex consumed");
-      return "";
-   }
-   string str(pszParse, psz - pszParse);
-   pszParse = psz;
-   return psz;
-}
-
-
-string str::consume_nc_name(const char *& pszParse)
-{
-   auto psz = pszParse;
-   bool start = true;
-   while (true)
-   {
-      const char * ca = psz;
-      // first char
-      if (start)
-      {
-         if (!unicode_is_letter(ca) || *ca == '\0')
-         {
-            throw ::exception(error_parsing, "NCName required here");
-            return "";
-         }
-         start = false;
       }
       else
       {
-         if (!unicode_is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
-         {
-            break;
-         }
-         unicode_increment(psz);
+
+         break;
+      
       }
+
    }
-   string str(pszParse, psz - pszParse);
-   pszParse = psz;
-   return str;
+
+   if (range.m_begin == pszStart)
+   {
+
+      throw ::parsing_exception("no hex consumed");
+      
+      return "";
+
+   }
+   
+   return { pszStart, range.m_begin - pszStart };
+
 }
+
+
+string str::consume_nc_name(::const_ansi_range & range)
+{
+   
+   auto pszStart = range.m_begin;
+   
+   if (range.is_empty() || !unicode_is_letter(range.m_begin))
+   {
+
+      throw ::parsing_exception("NCName required here");
+
+      return "";
+
+   }
+   
+   while(true)
+   {
+
+      unicode_increment(range.m_begin);
+
+      if (range.is_empty() || !unicode_is_letter_or_digit(range.m_begin) && *range.m_begin != '_' && *range.m_begin != '-')
+      {
+
+         break;
+
+      }
+
+   }
+   
+   return { pszStart, range.m_begin - pszStart };
+
+}
+
 
 //string consume_quoted_value(const char * & pszParse)
 //{
 
-//   ::str().utf8_char utf8char;
+//   ::str::utf8_char utf8char;
 
 //   auto psz = pszParse;
 //   utf8char.parse(psz); // quote character
 //   if(utf8char.m_chLen != 1)
 //   {
-//      throw ::exception(error_parsing, "Quote character is required here");
+//      throw ::parsing_exception("Quote character is required here");
 //      return "";
 //   }
 //   char strUtf8Char = utf8char.m_sz[0];
 //   if(strUtf8Char != '\"' && strUtf8Char != '\\')
 //   {
-//      throw ::exception(error_parsing, "Quote character is required here");
+//      throw ::parsing_exception("Quote character is required here");
 //      return "";
 //   }
 //   int iPos = utf8char.m_chLen;
@@ -3090,7 +3100,7 @@ string str::consume_nc_name(const char *& pszParse)
 //      iPos += utf8char.parse(&psz[iPos]);
 //      if(utf8char.m_chLen <= 0)
 //      {
-//         throw ::exception(error_parsing, "Quote character is required here, premature end");
+//         throw ::parsing_exception("Quote character is required here, premature end");
 //         return "";
 //      }
 //      if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == strUtf8Char)
@@ -3103,53 +3113,51 @@ string str::consume_nc_name(const char *& pszParse)
 //}
 
 
-string str::consume_quoted_value(const char *& pszParse, const ::ansi_character * pszEnd)
+string str::consume_quoted_value(::const_ansi_range & range)
 {
 
-   auto psz = pszParse;
+   auto pszStart = range.m_begin;
 
-   pszEnd = psz + strlen(pszParse);
-
-   if (*psz != '\"' && *psz != '\'')
+   if (*pszStart != '\"' && *pszStart != '\'')
    {
 
-      throw ::exception(error_parsing, "Quote character is required here");
+      throw ::parsing_exception("Quote character is required here");
 
       return "";
 
    }
 
-   char qc = *psz;
+   char quoting_character = *range.m_begin;
 
-   psz++;
+   range.m_begin++;
 
-   const ::ansi_character * pszValueStart = psz;
+   const ::ansi_character * pszValueStart = range.m_begin;
 
-   while (*psz != qc)
+   while (*range.m_begin != quoting_character)
    {
 
    skip:
 
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
-      if (psz > pszEnd || *psz == '\0')
+      if (range.is_empty() || *range.m_begin == '\0')
       {
 
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
+         throw ::parsing_exception("Quote character is required here, premature end");
 
          return "";
 
       }
 
-      if (*psz == '\\')
+      if (*range.m_begin == '\\')
       {
 
-         unicode_increment(psz);
+         unicode_increment(range.m_begin);
 
-         if (psz > pszEnd)
+         if (range.is_empty())
          {
 
-            throw ::exception(error_parsing, "Quote character is required here, premature end");
+            throw ::parsing_exception("Quote character is required here, premature end");
 
             return "";
 
@@ -3161,11 +3169,9 @@ string str::consume_quoted_value(const char *& pszParse, const ::ansi_character 
 
    }
 
-   psz++;
+   string str(pszValueStart, range.m_begin - pszValueStart);
 
-   pszParse = psz;
-
-   string str(pszValueStart, psz - pszValueStart - 1);
+   range.m_begin++;
 
    auto p = str.get_string_buffer();
 
@@ -3202,35 +3208,99 @@ string str::consume_quoted_value(const char *& pszParse, const ::ansi_character 
 }
 
 
-void str::no_escape_consume_quoted_value(const char *& pszParse, const ::ansi_character * pszEnd, char ** ppsz, strsize & iBufferSize)
+//void str::no_escape_consume_quoted_value(::const_ansi_range & range, char ** ppsz, strsize & iBufferSize)
+//{
+//
+//   const ::ansi_character * pszStart = range.m_begin;
+//
+//   if (*pszStart != '\"' && *pszStart != '\\')
+//   {
+//
+//      throw ::parsing_exception("Quote character is required here");
+//
+//      return;
+//
+//   }
+//
+//   char quoting_character = *range.m_begin;
+//
+//   range.m_begin++;
+//
+//   const ::ansi_character * pszValueStart = range.m_begin;
+//
+//   while (*range.m_begin != quoting_character)
+//   {
+//
+//      unicode_increment(range.m_begin);
+//
+//      if (range.is_empty())
+//      {
+//
+//         throw ::parsing_exception("Quote character is required here, premature end");
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//   strsize iNewBufferSize = range.m_begin - pszValueStart;
+//
+//   if (iNewBufferSize > iBufferSize)
+//   {
+//
+//      *ppsz = (char *)memory_allocate(iNewBufferSize + 1);
+//
+//   }
+//
+//   ansi_count_copy(*ppsz, pszValueStart, iNewBufferSize);
+//
+//   (*ppsz)[iNewBufferSize] = '\0';
+//
+//   iBufferSize = iNewBufferSize;
+//
+//   range.m_begin++;
+//
+//}
+
+
+string str::no_escape_consume_quoted_value(::const_ansi_range & range)
 {
 
-   const ::ansi_character * psz = pszParse;
+   const ::ansi_character * pszStart = range.m_begin;
 
-   if (*psz != '\"' && *psz != '\\')
+   no_escape_skip_quoted_value(range);
+
+   return { pszStart + 1, range.m_begin - pszStart - 2 };
+
+}
+
+
+void str::no_escape_skip_quoted_value(::const_ansi_range & range)
+{
+
+   if (*range.m_begin != '\"' && *range.m_begin != '\\')
    {
 
-      throw ::exception(error_parsing, "Quote character is required here");
+      throw ::parsing_exception("Quote character is required here");
 
       return;
 
    }
 
-   char qc = *psz;
+   char quoting_character = *range.m_begin;
 
-   psz++;
+   range.m_begin++;
 
-   const ::ansi_character * pszValueStart = psz;
-
-   while (*psz != qc)
+   while (*range.m_begin != quoting_character)
    {
 
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
-      if (psz > pszEnd)
+      if (range.is_empty())
       {
 
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
+         throw ::parsing_exception("Quote character is required here, premature end");
 
          return;
 
@@ -3238,118 +3308,10 @@ void str::no_escape_consume_quoted_value(const char *& pszParse, const ::ansi_ch
 
    }
 
-   strsize iNewBufferSize = psz - pszValueStart;
-
-   if (iNewBufferSize > iBufferSize)
-   {
-
-      *ppsz = (char *)memory_allocate(iNewBufferSize + 1);
-
-   }
-
-   ansi_count_copy(*ppsz, pszValueStart, iNewBufferSize);
-
-   (*ppsz)[iNewBufferSize] = '\0';
-
-   iBufferSize = iNewBufferSize;
-
-   psz++;
-
-   pszParse = psz;
+   range.m_begin++;
 
 }
 
-
-string str::no_escape_consume_quoted_value(const char *& pszParse, const ::ansi_character * pszEnd)
-{
-
-   const ::ansi_character * psz = pszParse;
-
-   if (*psz != '\"' && *psz != '\\')
-   {
-
-      throw ::exception(error_parsing, "Quote character is required here");
-
-      return{};
-
-   }
-
-   char qc = *psz;
-
-   psz++;
-
-   const ::ansi_character * pszStart = psz;
-
-   while (*psz != qc)
-   {
-
-      unicode_increment(psz);
-
-      if (psz > pszEnd)
-      {
-
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-
-         return{};
-
-      }
-
-   }
-
-   string str(pszStart, psz - pszStart);
-
-   psz++;
-
-   pszParse = psz;
-
-   return ::move(str);
-
-}
-
-
-void str::skip_quoted_value_ex2(const char *& pszParse, const ::ansi_character * pszEnd)
-{
-
-   auto psz = pszParse;
-
-   if (*psz != '\"' && *psz != '\\')
-   {
-
-      throw ::exception(error_parsing, "Quote character is required here");
-
-      return;
-
-   }
-
-   char qc = *psz;
-
-   psz++;
-
-   const ::ansi_character * pszValueStart = psz;
-
-   while (*psz != qc)
-   {
-
-      unicode_increment(psz);
-
-      if (psz > pszEnd)
-      {
-
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-
-         return;
-
-      }
-
-   }
-
-   memsize iNewBufferSize = psz - pszValueStart;
-
-   psz++;
-
-   pszParse = psz;
-
-}
 
 template < const strsize m_iSize = 1024 >
 class mini_str_buffer
@@ -3464,90 +3426,171 @@ public:
 
 };
 
-string str::consume_quoted_value_ex(const char *& pszParse, const ::ansi_character * pszEnd)
+
+template < bool bWriteOutput >
+void _consume_quoted_value_ex(string * pstrOut, ::const_ansi_range & range)
 {
-   auto psz = pszParse;
-   char qc = *psz; // quote character
-   if (qc != '\"' && qc != '\'')
+
+   char quoting_character = *range.m_begin;
+
+   if (quoting_character != '\"' && quoting_character != '\'')
    {
-      throw ::exception(error_parsing, "Quote character is required here, premature end");
-      return "";
+
+      throw ::parsing_exception("Quote character is required here, premature end");
+
+      return;
+
    }
-   psz++;
-   const ::ansi_character * pszValueStart = psz;
-   //const ::ansi_character * pszValueEnd = psz;
-   const ::ansi_character * pszNext = psz;
-   string str;
+
+   range.m_begin++;
+
+   const ::ansi_character * pszNext = range.m_begin;
+
    while (true)
    {
-      pszNext = unicode_next(psz);
-      if (pszNext > pszEnd)
+
+      pszNext = unicode_next(range.m_begin);
+
+      if (pszNext > range.m_end)
       {
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-         return "";
+
+         throw ::parsing_exception("Quote character is required here, premature end");
+
+         if (bWriteOutput)
+         {
+
+            *pstrOut = "";
+
+         }
+         
       }
-      if (*psz == '\0')
+
+      if (*range.m_begin == '\0')
       {
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-         return "";
+
+         throw ::parsing_exception("Quote character is required here, premature end");
+
+         if (bWriteOutput)
+         {
+
+            *pstrOut = "";
+
+         }
+
       }
-      else if (*psz == qc)
+      else if (*range.m_begin == quoting_character)
       {
-         psz++;
+
+         range.m_begin++;
+
          break;
+
       }
-      else if (*psz == '\\')
+      else if (*range.m_begin == '\\')
       {
-         psz = pszNext;
-         pszNext = unicode_next(psz);
-         if (pszNext > pszEnd)
+
+         range.m_begin = pszNext;
+
+         pszNext = unicode_next(range.m_begin);
+
+         if (pszNext > range.m_end)
          {
-            throw ::exception(error_parsing, "Quote character is required here, premature end");
-            return "";
+
+            throw ::parsing_exception("Quote character is required here, premature end");
+
+            if (bWriteOutput)
+            {
+
+               *pstrOut = "";
+
+            }
+
          }
-         if (*psz == 'n')
+
+         if (*range.m_begin == 'n')
          {
-            str += '\n';
+            
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\n');
+
+            }
+
          }
-         else if (*psz == 't')
+         else if (*range.m_begin == 't')
          {
-            str += '\t';
+            
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\t');
+
+            }
+
          }
-         else if (*psz == 'r')
+         else if (*range.m_begin == 'r')
          {
-            str += '\r';
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\r');
+
+            }
+
          }
-         else if (*psz == 'u')
+         else if (*range.m_begin == 'u')
          {
-            psz++;
+
+            range.m_begin++;
+
             u16 u[2];
-            u[0] = ::hex::parse_u16_exc(psz, pszEnd);
+
+            u[0] = ::hex::parse_u16_exc(range);
+
             if (utf16_is_1st_surrogate(u[0]))
             {
-               if (*psz != '\\')
+
+               if (*range.m_begin != '\\')
                {
-                  throw ::exception(error_parsing, "expect back slash here (for low surrogate)");
+
+                  throw ::parsing_exception("expect back slash here (for low surrogate)");
+
                }
-               psz++;
-               if (*psz != 'u' && *psz != 'U')
+
+               range.m_begin++;
+
+               if (*range.m_begin != 'u' && *range.m_begin != 'U')
                {
-                  throw ::exception(error_parsing, "expect 'u' character here (for low surrogate)");
+
+                  throw ::parsing_exception("expect 'u' character here (for low surrogate)");
+
                }
-               psz++;
-               u[1] = ::hex::parse_u16_exc(psz, pszEnd);
+
+               range.m_begin++;
+
+               u[1] = ::hex::parse_u16_exc(range);
 
                if (!utf16_is_2nd_surrogate(u[1]))
                {
 
-                  throw ::exception(error_parsing, "expect low surrogate");
+                  throw ::parsing_exception("expect low surrogate");
 
                }
                else
                {
 
-                  ::wd32_character uni = (::wd32_character)decode_utf16_pair(u);
-                  string strUtf8 = wd32_to_ansi_str(&uni, 1);
-                  str += strUtf8;
+                  if (bWriteOutput)
+                  {
+
+                     ::wd32_character uni = (::wd32_character)decode_utf16_pair(u);
+                  
+                     string strUtf8 = wd32_to_ansi_str(&uni, 1);
+
+                     pstrOut->append(strUtf8);
+
+                  }
 
                }
 
@@ -3555,398 +3598,288 @@ string str::consume_quoted_value_ex(const char *& pszParse, const ::ansi_charact
             else
             {
 
-               ::wd32_character uni = u[0];
-               string strUtf8 = wd32_to_ansi_str(&uni, 1);
-               str += strUtf8;
+               if (bWriteOutput)
+               {
+
+                  ::wd32_character uni = u[0];
+                  
+                  string strUtf8 = wd32_to_ansi_str(&uni, 1);
+
+                  pstrOut->append(strUtf8);
+
+               }
 
             }
-            pszNext = psz;
+            
+            pszNext = range.m_begin;
+
          }
-         else if (*psz == '\"')
+         else if (*range.m_begin == '\"')
          {
-            str += '\"';
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\"');
+
+            }
+
          }
          else
          {
-            str.append(psz, pszNext - psz);
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append(range.m_begin, pszNext - range.m_begin);
+             
+            }
+
          }
+
       }
       else
       {
-         str.append(psz, pszNext - psz);
+
+         if (bWriteOutput)
+         {
+
+            pstrOut->append(range.m_begin, pszNext - range.m_begin);
+
+         }
+
       }
 
-      psz = pszNext;
-
-      //pszValueEnd = psz;
+      range.m_begin = pszNext;
 
    }
 
-   pszParse = psz;
+}
+
+
+string str::consume_quoted_value_ex(::const_ansi_range & range)
+{
+
+   string str;
+
+   _consume_quoted_value_ex<true>(&str, range);
 
    return str;
 
 }
 
-void str::skip_quoted_value_ex(const char *& pszParse, const ::ansi_character * pszEnd)
+
+void str::skip_quoted_value_ex(::const_ansi_range & range)
 {
-   auto psz = pszParse;
-   char qc = *pszParse; // quote character
-   if (qc != '\"' && qc != '\'')
-   {
-      throw ::exception(error_parsing, "Quote character is required here, premature end");
-      return;
-   }
-   psz++;
-   const ::ansi_character * pszValueStart = psz;
-   //const ::ansi_character * pszValueEnd = psz;
-   const ::ansi_character * pszNext = psz;
-   while (true)
-   {
-      pszNext = unicode_next(psz);
-      if (pszNext > pszEnd)
-      {
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-         return;
-      }
-      if (*psz == '\0')
-      {
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
-         return;
-      }
-      else if (*psz == '\"')
-      {
-         psz++;
-         break;
-      }
-      else if (*psz == '\\')
-      {
-         psz = pszNext;
-         pszNext = unicode_next(psz);
-         if (pszNext > pszEnd)
-         {
-            throw ::exception(error_parsing, "Quote character is required here, premature end");
-            return;
-         }
-         if (*psz == 'n')
-         {
-         }
-         else if (*psz == 't')
-         {
-         }
-         else if (*psz == 'r')
-         {
-         }
-         else if (*psz == 'u')
-         {
-            string strUni;
-            for (index i = 0; i < 4; i++)
-            {
-               psz = pszNext;
-               pszNext = unicode_next(psz);
-               if (pszNext > pszEnd)
-               {
-                  throw ::exception(error_parsing, "Quote character is required here, premature end");
-                  return;
-               }
-               if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
-               {
-               }
-               else
-               {
-                  throw ::exception(error_parsing, "16 bit unicode expect here");
-                  return;
-               }
-
-            }
-         }
-         else if (*psz == '\"')
-         {
-         }
-         else
-         {
-         }
-      }
-      else
-      {
-      }
-
-      psz = pszNext;
-
-      //pszValueEnd = psz;
-
-   }
-
-   pszParse = psz;
+   
+   _consume_quoted_value_ex<false>(nullptr, range);
 
 }
 
 
-string str::consume_spaced_value(string & str)
+string str::consume_spaced_value(::const_ansi_range & range)
 {
 
-   strsize i = 0;
+   ::str::consume_spaces(range, 0);
 
-   while (i < str.length() && ansi_char_isspace(str[i]))
+   if (range.is_empty())
    {
 
-      i++;
+      return {};
 
    }
 
-   if (i >= str.length())
+   auto pszStart = range.m_begin;
+
+   while (range.has_char() && !ansi_char_isspace(*range.m_begin))
    {
-
-      str.empty();
-
-      return "";
+      
+      range.m_begin++;
 
    }
 
-   strsize iStart = i;
-
-   while (i < str.length() && !ansi_char_isspace(str[i]))
+   if (range.m_begin == pszStart)
    {
-      i++;
+
+      throw ::parsing_exception("No spaced value to consumer");
+
    }
 
-   string strResult = str.substr(iStart, i - iStart);
-
-   str = str.substr(i);
-
-   return strResult;
-
-
-}
-
-string str::consume_spaced_value(const char *& psz)
-{
-
-   string str(psz);
-
-   strsize iOldLen = str.length();
-
-   string strResult = consume_spaced_value(str);
-
-   psz += iOldLen - str.length();
-
-   return strResult;
-
-}
-
-string str::consume_spaced_value(const char *& psz, const ::ansi_character * pszEnd)
-{
-
-   string str(psz, pszEnd - psz);
-
-   strsize iOldLen = str.length();
-
-   string strResult = consume_spaced_value(str);
-
-   psz += iOldLen - str.length();
-
-   return strResult;
+   return { pszStart, range.m_begin - pszStart };
 
 }
 
 
-string str::consume_command_line_argument(string & str)
+//string str::consume_spaced_value(const char *& psz)
+//{
+//
+//   string str(psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_spaced_value(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+//string str::consume_spaced_value(const char *& psz, const ::ansi_character * pszEnd)
+//{
+//
+//   string str(psz, pszEnd - psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_spaced_value(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+
+string str::consume_command_line_argument(::const_ansi_range & range)
 {
 
-   string strResult;
+   ::str::consume_spaces(range, 0);
 
-   strsize iFind1 = str.find_index('\"');
-
-   strsize iFind2 = str.find_index('\'');
-
-   auto iFind = minimum_non_negative(iFind1, iFind2);
-
-   if (::not_found(iFind))
+   if (*range.m_begin == '\"' || *range.m_begin == '\'')
    {
 
-      strResult = consume_spaced_value(str);
+      return consume_quoted_value(range);
 
    }
    else
    {
 
-      char chSeparator = str[iFind];
-
-      strsize i = 0;
-
-      while (i < iFind && ansi_char_isspace(str[i]))
-      {
-         i++;
-      }
-
-      if (i < iFind)
-      {
-
-         strsize iStart = i;
-
-         while (i < iFind && !ansi_char_isspace(str[i]))
-         {
-            i++;
-         }
-
-         strResult = str.substr(iStart, i - iStart);
-
-         str = str.substr(i);
-
-      }
-      else
-      {
-
-         iFind++;
-
-         strsize iFind2 = str(iFind).find_index(chSeparator);
-
-         if (iFind2 < 0)
-         {
-
-            strsize iStart = iFind;
-
-            i = iStart;
-
-            while (i < str.length() && !ansi_char_isspace(str[i]))
-            {
-               i++;
-            }
-
-            strResult = str.substr(iStart, i - iStart);
-
-            str = str.substr(i);
-
-         }
-         else
-         {
-
-            strResult = str.substr(iFind, iFind2 - iFind);
-
-            str = str.substr(iFind2 + 1);
-
-         }
-
-      }
+      return consume_spaced_value(range);
 
    }
 
-   return strResult;
-
 }
 
 
-string str::consume_command_line_argument(const char *& psz)
+void str::consume_until_any_character_in(::const_ansi_range & range, const ::scoped_string & scopedstr)
 {
 
-   string str(psz);
+   range.m_begin = range.find_first_character_in(scopedstr);
 
-   strsize iOldLen = str.length();
-
-   string strResult = consume_command_line_argument(str);
-
-   psz += iOldLen - str.length();
-
-   return strResult;
-
-}
-
-string str::consume_command_line_argument(const char *& psz, const ::ansi_character * pszEnd)
-{
-
-   string str(psz, pszEnd - psz);
-
-   strsize iOldLen = str.length();
-
-   string strResult = consume_command_line_argument(str);
-
-   psz += iOldLen - str.length();
-
-   return strResult;
-
-}
-
-
-string str::consume_c_quoted_value(const char *& pszParse, const ::ansi_character * pszEnd)
-{
-
-   auto psz = pszParse;
-
-   if (pszEnd == nullptr)
+   if (not_found(range.m_begin))
    {
 
-      pszEnd = pszParse + strlen(pszParse);
+      throw ::parsing_exception("Not found any character in \"" + scopedstr + "\"");
 
    }
 
-   string strQuoteChar = get_utf8_char(psz);
+}
 
-   if (strQuoteChar != "\"" && strQuoteChar != "\\")
+
+//string str::consume_command_line_argument(const char *& psz)
+//{
+//
+//   string str(psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_command_line_argument(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+//
+//string str::consume_command_line_argument(const char *& psz, const ::ansi_character * pszEnd)
+//{
+//
+//   string str(psz, pszEnd - psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_command_line_argument(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+
+string str::consume_c_quoted_value(::const_ansi_range & range)
+{
+
+   auto pszStart = range.m_begin;
+
+   if (*range.m_begin != '\"' && *range.m_begin != '\\')
    {
 
-      throw ::exception(error_parsing, "Quote character is required here");
+      throw ::parsing_exception("Quote character is required here");
 
       return "";
 
    }
 
-   string strCurrentChar;
+   auto quoting_character = range.m_begin;
+
+   ::const_ansi_range rangeCurrentChar;
 
    string str;
 
-   string strPreviousChar;
+   ::const_ansi_range rangePreviousChar;
 
-   while (psz < pszEnd)
+   while (range.has_char())
    {
 
-      unicode_increment(psz);
+      unicode_increment(range.m_begin);
 
-      strPreviousChar = strCurrentChar;
+      rangePreviousChar = rangeCurrentChar;
 
-      strCurrentChar = get_utf8_char(psz);
+      rangeCurrentChar = get_utf8_char(range);
 
       //string str = utf8_to_unicode(qc2);
 
-      if (strCurrentChar.is_empty())
+      if (rangeCurrentChar.is_empty())
       {
 
-         throw ::exception(error_parsing, "Quote character is required here, premature end");
+         throw ::parsing_exception("Quote character is required here, premature end");
 
          return "";
 
       }
 
-      if (strPreviousChar == "\\")
+      if (rangePreviousChar == "\\")
       {
 
-         str += strCurrentChar;
+         str += rangeCurrentChar;
 
-         strCurrentChar.empty();
+         rangeCurrentChar.m_begin = nullptr;
+         rangeCurrentChar.m_end = nullptr;
 
       }
-      else if (strCurrentChar == "\\")
+      else if (rangeCurrentChar == "\\")
       {
 
       }
       else
       {
 
-         if (strCurrentChar == strQuoteChar)
+         if (rangeCurrentChar == quoting_character)
          {
 
             break;
 
          }
 
-         str += strCurrentChar;
+         str += rangeCurrentChar;
 
       }
 
    }
 
-   unicode_increment(psz);
-
-   pszParse = psz;
+   unicode_increment(range.m_begin);
 
    return str;
 
@@ -4048,25 +3981,25 @@ string str::line(string & str, bool bNewLine)
 }
 
 
-bool str::begins_consume(const char *& pszParse, const ::string & str)
-{
-
-   //strsize idx;
-
-   strsize len = str.length();
-
-   if (strncmp(pszParse, str, len) != 0)
-   {
-
-      return false;
-
-   }
-
-   pszParse += len;
-
-   return true;
-
-}
+//bool str::begins_consume(::const_ansi_range & range, const ::string & str)
+//{
+//
+//   //strsize idx;
+//
+//   strsize len = str.length();
+//
+//   if (strncmp(pszParse, str, len) != 0)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   pszParse += len;
+//
+//   return true;
+//
+//}
 
 
 bool str::xml_is_comment(const ::string & strParse)
@@ -4077,32 +4010,30 @@ bool str::xml_is_comment(const ::string & strParse)
 }
 
 
-string str::xml_consume_comment(const char *& pszParse)
+string str::xml_consume_comment(::const_ansi_range & range)
 {
 
-   string str;
+   ::str::consume(range, "<!--");
 
-   ::str().consume(pszParse, "<!--");
+   auto pszStart = range.m_begin;
 
-   while (pszParse[0] != '-' || pszParse[1] != '-' || pszParse[2] != '>')
+   while (range.m_begin[0] != '-' || range.m_begin[1] != '-' || range.m_begin[2] != '>')
    {
 
-      if (*pszParse == '\0')
+      if (range.is_empty() || *range.m_begin == '\0')
       {
 
          break;
 
       }
 
-      str += *pszParse;
-
-      unicode_increment(pszParse);
+      unicode_increment(range.m_begin);
 
    }
 
-   consume(pszParse, "-->");
+   range.m_begin += 3;
 
-   return str;
+   return { pszStart, range.m_begin - pszStart - 3 };
 
 }
 
@@ -4234,10 +4165,10 @@ i32 str::to_i32(const ::string & str)
 }
 
 
-u32 str::to_u32(const ::string & str)
+u32 str::to_u32(const ::scoped_string & scopedstr)
 {
 
-   return (u32)ansi_to_i64(str);
+   return (u32)ansi_to_i64(scopedstr);
 
 }
 
@@ -5495,3 +5426,176 @@ public:
 //
 //
 
+
+ //========================================================
+// Name   : _tcsechr
+// Desc   : similar with strchr with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+void str::escape_find_character(::const_ansi_range & rangeXml, i32 ch, i32 escape)
+{
+
+   while (rangeXml.has_char() && *rangeXml.m_begin)
+   {
+
+      if (escape != 0 && *rangeXml.m_begin == escape)
+         rangeXml.m_begin++;
+      else
+         if (*rangeXml.m_begin == ch)
+            return;
+      rangeXml.m_begin++;
+   }
+   //return pch;
+}
+
+
+//========================================================
+   // Name   : _tcsepbrk
+   // Desc   : similar with ansi_scan with escape process
+   // Param  : escape - will be escape character
+   // Return :
+   //--------------------------------------------------------
+   // Coder    Date                      Desc
+   // bro      2002-10-29
+   //========================================================
+//========================================================
+   // Name   : _tcsepbrk
+   // Desc   : similar with ansi_scan with escape process
+   // Param  : escape - will be escape character
+   // Return :
+   //--------------------------------------------------------
+   // Coder    Date                      Desc
+   // bro      2002-10-29
+   //========================================================
+void str::escape_skip_any_character_in(::const_ansi_range & rangeXml, const char * chset, i32 escape)
+{
+   
+   const char * prev_escape = nullptr;
+
+   while (rangeXml.has_char() && *rangeXml.m_begin)
+   {
+      
+      if (escape != 0 && *rangeXml.m_begin == escape && prev_escape == nullptr)
+      {
+
+         prev_escape = rangeXml.m_begin;
+
+      }
+      else
+      {
+         
+         prev_escape = nullptr;
+
+         if (strchr(chset, *rangeXml.m_begin))
+         {
+            return;
+
+         }
+
+      }
+
+      rangeXml.m_begin++;
+
+   }
+   
+}
+//========================================================
+// Name   : _tcsenicmp
+// Desc   : similar with ansi_count_compare_ci with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+::std::strong_ordering str::escape_case_insensitive_count_order(::const_ansi_range & range, const ::const_ansi_range & rangeCompareParam, i32 escape)
+{
+
+   auto rangeCompare = rangeCompareParam;
+
+   ::std::strong_ordering order = ::std::strong_ordering::equal;
+
+   const char * prev_escape = nullptr;
+
+   while (range.has_char() && *range.m_begin && rangeCompare.has_char())
+   {
+      
+      if (escape != 0 && *range.m_begin == escape && prev_escape == nullptr)
+      {
+
+         prev_escape = range.m_begin;
+
+      }
+      else
+      {
+
+         prev_escape = nullptr;
+
+         order = tolower(*range.m_begin) <=> tolower(*rangeCompare.m_begin);
+
+         if (order != 0)
+         {
+
+            break;
+
+         }
+
+         rangeCompare.m_begin++;
+
+      }
+
+      range.m_begin++;
+
+   }
+
+   return order;
+
+}
+
+
+//========================================================
+// Name   : _tcsenistr
+// Desc   : similar with _tcsistr with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+void str::escape_case_insensitive_find(::const_ansi_range & range, const ::const_ansi_range & rangeFind, i32 escape)
+{
+   
+   const char * prev_escape = nullptr;
+
+   while (range.has_char() && *range.m_begin)
+   {
+
+      if (escape != 0 && *range.m_begin == escape && prev_escape == nullptr)
+      {
+
+         prev_escape = range.m_begin;
+
+      }
+      else
+      {
+         
+         prev_escape = nullptr;
+         
+         if (escape_case_insensitive_count_order(range, rangeFind, escape) == 0)
+         {
+
+            return;
+
+         }
+
+      }
+      
+      range.m_begin++;
+
+   }
+   
+}

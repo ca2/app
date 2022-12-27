@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "node.h"
@@ -42,8 +42,8 @@ namespace xml
       void create_root(const ::string & strName);
 
    
-      string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext);
-      char * patch_entity_ref(const char * & pszXml, int bUseExtEnt, ::acme::context * pacmecontext);
+      string consume_entity_ref(::const_ansi_range & rangeXml, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext);
+      char * patch_entity_ref(::const_ansi_range & rangeXml, int bUseExtEnt, ::acme::context * pacmecontext);
 
       node* root() { return first_xml_node(); }
       const node * root() const { return first_xml_node(); }

@@ -23,28 +23,26 @@ public:
    using STRING = ::string_base < ITERATOR_TYPE >;
 
 
-   STRING m_str;
-
-   scoped_string_base():m_str(e_zero_initialize),RANGE(e_zero_initialize) {}
-   scoped_string_base(nullptr_t) :m_str(e_zero_initialize), RANGE(e_zero_initialize) {}
-   scoped_string_base(const scoped_ansi_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
-   scoped_string_base(const scoped_wd16_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
-   scoped_string_base(const scoped_wd32_string & scopedstr) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base():RANGE(e_zero_initialize) {}
+   scoped_string_base(nullptr_t) :RANGE(e_zero_initialize) {}
+   scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
-   scoped_string_base(const STRING & str) : m_str(str), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
+   scoped_string_base(const STRING & str) : RANGE(e_no_initialize) { this->str(str); }
 
    template < has_as_string HAS_AS_STRING >
-   scoped_string_base(const HAS_AS_STRING & has_as_string) : m_str(has_as_string.as_string()), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : RANGE(e_no_initialize) { this->str(has_as_string.as_string()); }
 
-   template < primitive_payload PAYLOAD >
-   scoped_string_base(const PAYLOAD & payload) : m_str(payload.get_string()), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
+   template < has_get_string HAS_GET_STRING >
+   scoped_string_base(const HAS_GET_STRING & has_get_string) : RANGE(e_no_initialize) { this->str(has_get_string.get_string()); }
 
    template < primitive_character CHARACTER2 >
-   scoped_string_base(CHARACTER2 character) : m_str(character), RANGE(e_no_initialize) { RANGE::operator=(m_str); }
+   scoped_string_base(CHARACTER2 character) : RANGE(e_no_initialize) { this->str(character); }
 
    template < character_range_not_string_neither_scoped_string CHARACTER_RANGE >
-   scoped_string_base(const CHARACTER_RANGE & range) : m_str(e_zero_initialize), RANGE(e_zero_initialize) { construct_range(range); }
+   scoped_string_base(const CHARACTER_RANGE & range) : RANGE(e_zero_initialize) { construct_range(range); }
 
     //   scoped_string_base(const ::block & block) :m_str(e_zero_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
 //   scoped_string_base(const ::ansi_character ch) :m_str(ch), RANGE(m_str) { }
@@ -66,38 +64,54 @@ public:
    scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :
-      m_str(e_zero_initialize), RANGE(e_zero_initialize) 
+      RANGE(e_zero_initialize) 
    { 
    
       if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
       {
+
          this->m_begin = start;
          this->m_end = end;
+
       }
       else
       {
-         m_str.assign(start, end - start);
-         RANGE::operator=(m_str);
+
+         this->str({ start, end - start });
+
       }
+
    }
+
+
    //template < strsize n >
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
+
+
+   STRING & str() { return (STRING &)*this; }
+   STRING & str(const STRING & str) { return (this->str()) = str; }
 
 
    template < primitive_character CHARACTER2 >
    void _construct1(const CHARACTER2 * psz)
    {
+      
       if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
       {
+
          this->m_begin = psz;
          this->m_end = psz + string_safe_length(psz);
+
       }
       else
       {
-         m_str = psz;
-         RANGE::operator=(m_str);
+
+         this->str(psz);
+
       }
+
    }
+
 
    template < typename GENERIC_RANGE >
    void construct_range(const GENERIC_RANGE & range)
@@ -112,9 +126,7 @@ public:
       else
       {
 
-         m_str = range;
-
-         RANGE::operator = (m_str);
+         this->str(range);
 
       }
 

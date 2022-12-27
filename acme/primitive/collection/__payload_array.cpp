@@ -552,34 +552,37 @@ payload_array & payload_array::operator = (const payload_array & payloada)
    return *this;
 }
 
-void payload_array::parse_network_payload(const char * & pszJson)
-{
-   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
-}
+
+//void payload_array::parse_network_payload(::const_ansi_range & range)
+//{
+//
+//   parse_network_payload(range);
+//
+//}
 
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(const char * & pszJson, const char * pszEnd)
+void payload_array::parse_network_payload(::const_ansi_range & range)
 {
 
-   if(pszJson > pszEnd)
+   if(range.is_empty())
    {
 
       return;
 
    }
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   ::str().consume(pszJson, "[", 1, pszEnd);
+   ::str::consume(range, "[");
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
 
-   if (*pszJson == ']')
+   if (*range.m_begin == ']')
    {
 
-      pszJson++;
+      range.m_begin++;
 
       return;
 
@@ -614,22 +617,22 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
       ::payload & payload = add_new();
 
-      payload.parse_network_payload(pszJson, pszEnd);
+      payload.parse_network_payload(range);
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if(*pszJson == ',')
+      if(*range.m_begin == ',')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          continue;
 
       }
-      else if(*pszJson == ']')
+      else if(*range.m_begin == ']')
       {
 
-         pszJson++;
+         range.m_begin++;
 
          return;
 
@@ -639,7 +642,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
          string str = "not expected character : ";
 
-         str += pszJson;
+         str += range.m_begin;
 
          throw_exception(error_parsing, str);
 
@@ -650,40 +653,40 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 }
 
 
-void var_array_skip_network_payload(const char *& pszJson)
-{
+//void var_array_skip_network_payload(const char *& pszJson)
+//{
+//
+//   var_array_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
+//
+//}
 
-   var_array_skip_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
 
-}
-
-
-void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
+void var_array_skip_network_payload(::const_ansi_range & range)
 {
    
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(range, 0);
    
-   ::str().consume(pszJson, "[", 1, pszEnd);
+   ::str::consume(range, "[");
 
    while (true)
    {
       
-      var_skip_network_payload(pszJson, pszEnd);
+      var_skip_network_payload(range);
       
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (*pszJson == ',')
+      if (*range.m_begin == ',')
       {
          
-         pszJson++;
+         range.m_begin++;
          
          continue;
 
       }
-      else if (*pszJson == ']')
+      else if (*range.m_begin == ']')
       {
          
-         pszJson++;
+         range.m_begin++;
          
          return;
 
@@ -693,7 +696,7 @@ void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
          
          string str = "not expected character : ";
          
-         str += pszJson;
+         str += range.m_begin;
 
          throw_exception(error_parsing, str);
 
@@ -748,8 +751,6 @@ string & payload_array::get_network_payload(string & str, bool bNewLine) const
    return str;
 
 }
-
-
 
 
 

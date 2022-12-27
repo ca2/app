@@ -550,7 +550,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::f64() const { return this->as_f64(); }
    //operator ::string() const;
    //::memory memory() const;
-   operator ::file::path() const { return this->as_file_path(); }
+   //operator ::file::path() const { return this->as_file_path(); }
 
 
    //operator ::string() const { return this->as_string(); }
@@ -981,14 +981,49 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::count get_count() const;
 
 
+   ::payload at(index i);
+   inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
+
+
+   ::count array_get_count() const;
+   ::index array_get_upper_bound() const;
+   bool array_contains(const ::scoped_string & scopedstr, ::index find = 0, ::count count = -1) const;
+   bool array_contains_ci(const ::scoped_string & scopedstr, ::index find = 0, ::count count = -1) const;
+   bool array_is_empty() const { return array_get_count() <= 0; }
+
+
+   ::index index_of(const ::atom & atom) const;
+   ::property * find_property_index(::iptr i) const;
+   ::property & get_property_index(::iptr i);
+   ::property * find_property_text_key(const ::scoped_string & scopedstr) const;
+   ::property & get_property_text_key(const ::scoped_string & scopedstr);
+   ::property * find_property(const ::atom & atom) const { return atom.is_text() ? find_property_text_key((const ::scoped_string & ) atom.m_str) : find_property_index(atom.m_i); }
+   ::property & get_property(const ::atom & atom) { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
+
+
+   template < primitive_character CHARACTER >
+   inline ::property & operator[] (const CHARACTER * psz) { return get_property_text_key((const ::scoped_string &)psz); }
+   template < primitive_character CHARACTER >
+   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_text_key((const ::scoped_string &)psz); }
+
    inline ::property & operator[] (const ::atom & atom) { return get_property(atom); }
    inline ::payload operator[] (const ::atom & atom) const { return find_property(atom); }
 
-   //inline ::property & operator[] (const ::scoped_string & scopedstr);
-   //inline ::payload operator[] (const ::scoped_string & scopedstr) const;
+   template < character_range RANGE >
+   inline ::property & operator[] (const RANGE & range) { return get_property_text_key((const ::scoped_string &)range); }
+   template < character_range RANGE >
+   inline ::payload operator[] (const RANGE & range) const { return find_property_text_key((const ::scoped_string &)range); }
 
-   //inline ::property & operator[] (const ::string & str) { return get_property(::atom(str)); }
-   //inline ::payload operator[] (const ::string & str) const { return find_property(::atom(str)); }
+   template < has_as_string HAS_AS_STRING >
+   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property_text_key((const ::scoped_string &)has_as_string.as_string()); }
+   template < has_as_string HAS_AS_STRING >
+   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property_text_key((const ::scoped_string &)has_as_string.as_string()); }
+
+   template < has_get_string HAS_GET_STRING >
+   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property_text_key((const ::scoped_string &)has_get_string.get_string()); }
+   template < has_get_string HAS_GET_STRING >
+   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property_text_key((const ::scoped_string &)has_get_string.get_string()); }
+
 
    //inline ::property & operator[] (::iptr i);
    //inline ::payload operator[] (::iptr i) const;
@@ -1000,22 +1035,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 //
 //#endif
 
-   ::index property_index(const ::atom & atom) const;
-   //::property * find_property(::iptr i) const;
-   //::property & get_property(::iptr i);
-   ::property * find_property(const ::atom & atom) const;
-   ::property & get_property(const ::atom & atom);
-
-
-   ::payload at(index i);
-   inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
-
-
-   ::count array_get_count() const;
-   ::index array_get_upper_bound() const;
-   bool array_contains(const ::scoped_string & scopedstr,::index find = 0,::count count = -1) const;
-   bool array_contains_ci(const ::scoped_string & scopedstr,::index find = 0,::count count = -1) const;
-   bool array_is_empty() const { return array_get_count() <= 0; }
 
    ::payload equals_ci_get(const ::scoped_string & scopedstrCompare,::payload varOnEqual,payload varOnDifferent) const;
    ::payload equals_ci_get(const ::scoped_string & scopedstrCompare,::payload varOnEqual) const;
@@ -1077,18 +1096,18 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::payload & operator *= (FLOATING d);
 
 
-   void consume_number(const char * & psz);
-   void consume_number(const char * & psz,const ::ansi_character * pszEnd);
-   void consume_identifier(const char * & psz);
-   void consume_identifier(const char * & psz,const ::ansi_character * pszEnd);
-   void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const ::ansi_character * pszEnd);
+   void consume_number(::const_ansi_range & range);
+   //void consume_number((::const_ansi_range & range);
+   void consume_identifier(::const_ansi_range & range);
+   //void consume_identifier((::const_ansi_range & range);
+   void parse_network_payload(::const_ansi_range & range);
+   //void parse_network_payload((::const_ansi_range & range);
    const char * parse_network_payload(const ::string & strJson);
-   ::enum_type find_network_payload_child(const char * & pszJson, const payload & payload);
-   ::enum_type find_network_payload_child(const char * & pszJson, const ::ansi_character * pszEnd, const payload & payload);
-   ::enum_type find_network_payload_id(const char * & pszJson, const ::ansi_character * pszEnd, const payload & payload);
-   bool parse_network_payload_step(const char * & pszJson);
-   bool parse_network_payload_step(const char * & pszJson, const ::ansi_character * pszEnd);
+   ::enum_type find_network_payload_child(::const_ansi_range & range, const payload & payload);
+   //::enum_type find_network_payload_child((::const_ansi_range & range, const payload & payload);
+   ::enum_type find_network_payload_id(::const_ansi_range & range, const payload & payload);
+   bool parse_network_payload_step(::const_ansi_range & range);
+   // bool parse_network_payload_step(const char *& pszJson, const ::ansi_character * pszEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
    ::string get_network_payload(bool bNewLine = true) const;
@@ -1138,12 +1157,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 //} // namespace str
 
 
-CLASS_DECL_ACME void var_skip_number(const char *& psz);
-CLASS_DECL_ACME void var_skip_number(const char *& psz, const ::ansi_character * pszEnd);
-CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
-CLASS_DECL_ACME void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd);
-CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd);
+//CLASS_DECL_ACME void var_skip_number(const char *& psz);
+CLASS_DECL_ACME void var_skip_number(::const_ansi_range & range);
+//CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
+CLASS_DECL_ACME void var_skip_identifier(::const_ansi_range & range);
+//CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void var_skip_network_payload(::const_ansi_range & range);
 
 
 

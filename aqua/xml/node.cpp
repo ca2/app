@@ -8,6 +8,7 @@
 #include "parse_info.h"
 #include "disp_option.h"
 #include "exception.h"
+#include "acme/exception/parsing.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/string/str.h"
 #include "acme/exception/extended_status.h"
@@ -21,10 +22,10 @@ namespace xml
 
 
 
-   static const char chXMLTagOpen      = '<';
-   static const char chXMLTagClose   = '>';
-   static const char chXMLTagPre   = '/';
-   static const char chXMLEscape = '\\';   // for m_strValue field escape
+   //static const char '<'      = ;
+   //static const char '>'   = '>';
+   //static const char '/'   = '/';
+   //static const char '\\' = '\\';   // for m_strValue field escape
 
 
    node::node()
@@ -255,7 +256,7 @@ namespace xml
       if (i < 0)
       {
 
-         throw ::exception(error_parsing, "strange: this is not child of this->parent");
+         throw ::parsing_exception("strange: this is not child of this->parent");
 
       }
       i++;
@@ -280,7 +281,7 @@ namespace xml
    }
 
 
-   const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
+   void node::LoadDocType(::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       auto pxml = acmesystem()->xml();
@@ -292,63 +293,63 @@ namespace xml
 
       }
 
-      if (pszXml[0] != '<' || pszXml[1] != '!')
+      if (rangeXml.m_begin[0] != '<' || rangeXml.m_begin[1] != '!')
       {
 
-         return pszXml;
+         return;
 
       }
 
-      ::str().consume(pszXml, "<!DOCTYPE");
-      ::str().consume_spaces(pszXml);
-      ::str().consume_nc_name(pszXml);
+      ::str::consume(rangeXml, "<!DOCTYPE");
+      ::str::consume_spaces(rangeXml);
+      ::str::consume_nc_name(rangeXml);
 
-      ::str().consume_spaces(pszXml, 0);
-      if(::str().begins_consume(pszXml, "SYSTEM"))
+      ::str::consume_spaces(rangeXml, 0);
+      if(::str::begins_consume(rangeXml, "SYSTEM"))
       {
-         ::str().consume_spaces(pszXml);
-         ::str().consume_quoted_value(pszXml);
+         ::str::consume_spaces(rangeXml);
+         ::str::consume_quoted_value(rangeXml);
       }
-      else if(::str().begins_consume(pszXml, "PUBLIC"))
+      else if(::str::begins_consume(rangeXml, "PUBLIC"))
       {
-         ::str().consume_spaces(pszXml);
-         ::str().consume_quoted_value(pszXml);
-         ::str().consume_spaces(pszXml);
-         ::str().consume_quoted_value(pszXml);
+         ::str::consume_spaces(rangeXml);
+         ::str::consume_quoted_value(rangeXml);
+         ::str::consume_spaces(rangeXml);
+         ::str::consume_quoted_value(rangeXml);
       }
 
-      ::str().consume_spaces(pszXml, 0);
+      ::str::consume_spaces(rangeXml, 0);
 
       //markup decl
-      if(*pszXml == '[')
+      if(*rangeXml.m_begin == '[')
       {
-         ::str().consume(pszXml, "[");
+         ::str::consume(rangeXml, "[");
 
-         while(*pszXml != ']')
+         while(*rangeXml.m_begin != ']')
          {
-            if(::str().begins_consume(pszXml, "<!ENTITY"))
+            if(::str::begins_consume(rangeXml, "<!ENTITY"))
             {
-               ::str().consume_spaces(pszXml);
+               ::str::consume_spaces(rangeXml);
                string entity_name;
-               entity_name = ::str().consume_nc_name(pszXml);
-               ::str().consume_spaces(pszXml);
+               entity_name = ::str::consume_nc_name(rangeXml);
+               ::str::consume_spaces(rangeXml);
                string entity_value;
                string ext_entity_value;
-               if(::str().begins_consume(pszXml, "SYSTEM"))
+               if(::str::begins_consume(rangeXml, "SYSTEM"))
                {
-                  ::str().consume_spaces(pszXml);
-                  ext_entity_value = ::str().consume_quoted_value(pszXml);
+                  ::str::consume_spaces(rangeXml);
+                  ext_entity_value = ::str::consume_quoted_value(rangeXml);
                }
-               else if (::str().begins_consume(pszXml, "PUBLIC"))
+               else if (::str::begins_consume(rangeXml, "PUBLIC"))
                {
-                  ::str().consume_spaces(pszXml);
-                  ::str().consume_quoted_value(pszXml);
-                  ::str().consume_spaces(pszXml);
-                  ext_entity_value = ::str().consume_quoted_value(pszXml);
+                  ::str::consume_spaces(rangeXml);
+                  ::str::consume_quoted_value(rangeXml);
+                  ::str::consume_spaces(rangeXml);
+                  ext_entity_value = ::str::consume_quoted_value(rangeXml);
                }
                else
                {
-                  entity_value = ::str().consume_quoted_value(pszXml);
+                  entity_value = ::str::consume_quoted_value(rangeXml);
                }
                if(entity_value.has_char())
                {
@@ -362,21 +363,21 @@ namespace xml
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }
-            else if(::str().xml_is_comment(pszXml))
+            else if(::str::xml_is_comment(rangeXml))
             {
-               ::str().xml_consume_comment(pszXml);
+               ::str::xml_consume_comment(rangeXml);
             }
-            pszXml++;
+            rangeXml.m_begin++;
          }
-         ::str().consume(pszXml, "]");
-         ::str().consume_spaces(pszXml, 0);
+         ::str::consume(rangeXml, "]");
+         ::str::consume_spaces(rangeXml, 0);
       }
 
 
-      ::str().consume(pszXml, ">");
+      ::str::consume(rangeXml, ">");
 
 
-      return (char *) pszXml;
+      //return (char *) pszXml;
    }
 
 
@@ -392,7 +393,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   const char * node::LoadAttributes(const ::ansi_character * pszAttrs, parse_info * pparseinfo)
+   void node::LoadAttributes(::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if(pparseinfo == nullptr)
@@ -402,97 +403,117 @@ namespace xml
 
       }
 
-      const char * xml = pszAttrs;
-
-      while(*xml != '\0')
+      while(rangeXml.has_char() && *rangeXml.m_begin != '\0')
       {
 
-         if((xml = _tcsskip( xml )) != nullptr)
+         ::str::consume_spaces(rangeXml, 0);
+
+         if (rangeXml.is_empty())
          {
 
-            // close tag
-            if(*xml == chXMLTagClose || *xml == chXMLTagPre)
+            break;
+
+         }
+
+         // close tag
+         if(*rangeXml.m_begin == '>' || *rangeXml.m_begin == '/')
+         {
+
+            // wel-formed tag
+            return;
+
+         }
+
+         // XML Attr Name
+         const ::ansi_character * pszEnd = rangeXml.skip_any_character_in(" =" );
+
+         if( pszEnd == nullptr )
+         {
+
+            //// error
+            //if( pparseinfo->m_bErrorOccur == false )
+            //{
+
+            //   pparseinfo->m_bErrorOccur = true;
+            //   pparseinfo->m_pszErrorPointer = xml;
+            //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
+            //   pparseinfo->m_strError.format("<%s> attr has error ", m_strName.c_str());
+
+            //   
+
+
+            //}
+
+            string strError;
+
+            strError.format("<%s> attr has error ", m_strName.c_str());
+
+            throw ::xml::exception(e_parse_error_attr_no_value, strError, rangeXml.m_begin);
+
+            return;
+
+         }
+
+         string strName;
+
+         // XML Attr Name
+         _SetString(rangeXml, &strName);
+
+         //m_ppropertyset.defer_create_new();
+
+         // add memory_new attr
+         auto & property = m_set.get(strName);
+
+         rangeXml.m_begin = pszEnd;
+
+         // XML Attr Value
+         ::str::consume_spaces(rangeXml, 0);
+
+         if (rangeXml.is_empty())
+         {
+
+            break;
+
+         }
+         //if( xml = strchr( xml, '=' ) )
+         if(::str::begins_consume(rangeXml, '='))
+         {
+
+            ::str::consume_spaces(rangeXml, 0);
+
+            if (rangeXml.is_empty())
             {
 
-               // wel-formed tag
-               return xml;
+               break;
 
             }
 
-            // XML Attr Name
-            const ::ansi_character * pszEnd = ansi_scan( xml, " =" );
+            auto pszStart = rangeXml.m_begin;
 
-            if( pszEnd == nullptr )
+            // if " or '
+            // or none quote
+            i32 quote = *rangeXml.m_begin;
+            if( quote == '"' || quote == '\'' )
+               //pszEnd = _tcsechr( ++xml, quote, '\\' );
+               ::str::escape_find_character(rangeXml, quote, pparseinfo->m_chEscape);
+            else
             {
-
-               //// error
-               //if( pparseinfo->m_bErrorOccur == false )
-               //{
-
-               //   pparseinfo->m_bErrorOccur = true;
-               //   pparseinfo->m_pszErrorPointer = xml;
-               //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
-               //   pparseinfo->m_strError.format("<%s> attr has error ", m_strName.c_str());
-
-               //   
-
-
-               //}
-
-               string strError;
-
-               strError.format("<%s> attr has error ", m_strName.c_str());
-
-               throw ::xml::exception(e_parse_error_attr_no_value, strError, xml);
-
-               return nullptr;
-
+               //attr= m_strValue>
+               // none quote mode
+               //pszEnd = _tcsechr( xml, ' ', '\\' );
+               //pszEnd = _tcsepbrk( xml, " >", '\\' );
+               ::str::escape_skip_any_character_in(rangeXml, " >", pparseinfo->m_chEscape);
             }
 
-            string strName;
+            bool trim = pparseinfo->m_bTrimValue;
 
-            // XML Attr Name
-            _SetString(xml, pszEnd, &strName);
+            //char escape = pparseinfo->m_chEscapeValue;
 
-            //m_ppropertyset.defer_create_new();
+            string strValue;
 
-            // add memory_new attr
-            auto & property = m_set.get(strName);
+            _SetString({ pszStart, rangeXml.m_begin }, & strValue, trim, pparseinfo->m_chEscape);
 
-            xml = pszEnd;
-
-            // XML Attr Value
-            if( (xml = _tcsskip( xml )) )
-            {
-               //if( xml = strchr( xml, '=' ) )
-               if( *xml == '=' )
-               {
-                  if( ((xml = _tcsskip( ++xml )) ))
-                  {
-                     // if " or '
-                     // or none quote
-                     i32 quote = *xml;
-                     if( quote == '"' || quote == '\'' )
-                        //pszEnd = _tcsechr( ++xml, quote, chXMLEscape );
-                        pszEnd = _tcsechr( ++xml, quote, 0 );
-                     else
-                     {
-                        //attr= m_strValue>
-                        // none quote mode
-                        //pszEnd = _tcsechr( xml, ' ', '\\' );
-                        //pszEnd = _tcsepbrk( xml, " >", chXMLEscape );
-                        pszEnd = _tcsepbrk( xml, " >", 0 );
-                     }
-
-                     bool trim = pparseinfo->m_bTrimValue;
-
-                     //char escape = pparseinfo->m_chEscapeValue;
-
-                     string strValue;
-
-                     _SetString( xml, pszEnd, &strValue, trim, chXMLEscape );
-
-                     property = strValue;
+            property = strValue;
 
 //                     {
 //
@@ -524,39 +545,37 @@ namespace xml
 //
 //                     }
 
-                     xml = pszEnd;
-                     // ATTRVALUE
-                     if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
-                     {
+            //xml = pszEnd;
+            // ATTRVALUE
+            if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
+            {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
+               property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
 
-                     }
+            }
 
-                     if( quote == '"' || quote == '\'' )
-                     {
+            if( quote == '"' || quote == '\'' )
+            {
 
-                        if(*xml == '\0')
-                        {
+               if(rangeXml.is_empty() || *rangeXml.m_begin == '\0')
+               {
 
-                           return xml;
+                  return ;
 
-                           break;
-                           // resilliency
-                        }
-                        else
-                        {
-                           xml++;
-                        }
-                     }
-                  }
+                  //break;
+                  // resilliency
+               }
+               else
+               {
+                  rangeXml.m_begin++;
                }
             }
          }
       }
 
+      throw parsing_exception("Not wel-formed tag");
       // not wel-formed tag
-      return nullptr;
+      //return nullptr;
    }
 
 
@@ -572,7 +591,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadProcessingInstruction(const ::ansi_character * pszXml, parse_info * pparseinfo)
+   void node::LoadProcessingInstruction(::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -582,157 +601,199 @@ namespace xml
 
       }
 
+      auto pszStart = rangeXml.m_begin;
+
       // find the end of pparseinfo
-      const char * end = _tcsenistr( pszXml, "?>", 2, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if(end == nullptr)
-         return nullptr;
+      ::str::escape_case_insensitive_find( rangeXml, "?>", pparseinfo ? pparseinfo->m_chEscape : 0 );
 
-      while(*end != '\0' && character_isspace(*end))
-         end++;
+      if (rangeXml.is_empty())
+      {
 
-      if(*end == '\0')
-         return nullptr;
+         return;
+
+      }
+
+      auto pszEnd = rangeXml.m_begin;
+
+      ::str::consume_spaces(rangeXml);
+
+      if (rangeXml.is_empty())
+      {
+
+         throw parsing_exception("Not wel-formed Processing Instruction");
+
+      }
 
       // process pparseinfo
       if( m_pdocument )
       {
-         const char * xml = pszXml;
 
          ::pointer<node>pnode = __new(node(this));
          pnode->m_pnodeParent = this;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
 
-         xml += 2; // "<?";
-         const char* pTagEnd = ansi_scan( xml, " ?>" );
-         _SetString( xml, pTagEnd, &pnode->m_strName );
-         xml = pTagEnd;
+         const char* pTagEnd = ::const_ansi_range(pszStart, rangeXml.m_end).find_first_character_in(" ?>");
 
-         pnode->LoadAttributes( xml, end, pparseinfo );
+         _SetString({ pszStart, pTagEnd }, &pnode->m_strName);
+
+         rangeXml.m_begin = pTagEnd;
+
+         pnode->LoadAttributes(rangeXml, pparseinfo);
 
          m_pdocument->m_nodea.add( pnode );
 
       }
 
-      end += 2; // "?>";
+      rangeXml.m_begin += 2; // "?>";
 
-      return end;
+      //return end;
 
    }
 
 
-   // attr1="value1" attr2='value2' attr3=value3 />
-   //                                            ^- return pointer
-   //========================================================
-   // Name   : LoadAttributes
-   // Desc   : loading attr plain xml text
-   // Param  : pszAttrs - xml of attributes
-   //          pszEnd - last string
-   //          pparseinfo = parser information
-   // Return : advanced string pointer. (error return nullptr)
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2004-06-14
-   //========================================================
-   const char * node::LoadAttributes(const ::ansi_character * pszAttrs, const ::ansi_character * pszEnd, parse_info * pparseinfo)
-   {
-      
-      if (pparseinfo == nullptr)
-      {
-
-         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
-
-      }
-
-      const char * xml = pszAttrs;
-
-      while( xml && *xml )
-      {
-         if( (xml = _tcsskip( xml )) )
-         {
-            // close tag
-            if( xml >= pszEnd )
-               // wel-formed tag
-               return xml;
-
-            // XML Attr Name
-            const ::ansi_character * pszEnd = ansi_scan( xml, " =" );
-            if( pszEnd == nullptr )
-            {
-               //// error
-               //if( pparseinfo->m_bErrorOccur == false )
-               //{
-               //   pparseinfo->m_bErrorOccur = true;
-               //   pparseinfo->m_pszErrorPointer = xml;
-               //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
-               //   pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
-               //}
-
-               string strError;
-
-               strError.format("<%s> attr has error ", m_strName.c_str());
-
-               throw ::xml::exception(e_parse_error_attr_no_value, strError, xml);
-
-               return nullptr;
-            }
-
-            string strName;
-            // XML Attr Name
-            _SetString( xml, pszEnd, &strName );
-
-            // add memory_new attr
-            auto & property = m_set.get(strName);
-
-            xml = pszEnd;
-
-            // XML Attr Value
-            if( (xml = _tcsskip( xml )) )
-            {
-               //if( xml = strchr( xml, '=' ) )
-               if( *xml == '=' )
-               {
-                  if( (xml = _tcsskip( ++xml )) )
-                  {
-                     // if " or '
-                     // or none quote
-                     i32 quote = *xml;
-                     if( quote == '"' || quote == '\'' )
-                        pszEnd = _tcsechr( ++xml, quote, chXMLEscape );
-                     else
-                     {
-                        //attr= m_strValue>
-                        // none quote mode
-                        //pszEnd = _tcsechr( xml, ' ', '\\' );
-                        pszEnd = _tcsepbrk( xml, " >", chXMLEscape );
-                     }
-
-                     bool trim = pparseinfo->m_bTrimValue;
-                     char escape = pparseinfo->m_chEscapeValue;
-                     //_SetString( xml, pszEnd, &attr->m_strValue, trim, chXMLEscape );
-                     string strValue;
-                     _SetString( xml, pszEnd, &strValue, trim, escape );
-                     property = strValue;
-                     xml = pszEnd;
-
-                     // ATTRVALUE
-                     if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
-                     {
-
-                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
-
-                     }
-                     if( quote == '"' || quote == '\'' )
-                        xml++;
-                  }
-               }
-            }
-         }
-      }
-
-      // not wel-formed tag
-      return nullptr;
-   }
+//   // attr1="value1" attr2='value2' attr3=value3 />
+//   //                                            ^- return pointer
+//   //========================================================
+//   // Name   : LoadAttributes
+//   // Desc   : loading attr plain xml text
+//   // Param  : pszAttrs - xml of attributes
+//   //          pszEnd - last string
+//   //          pparseinfo = parser information
+//   // Return : advanced string pointer. (error return nullptr)
+//   //--------------------------------------------------------
+//   // Coder    Date                      Desc
+//   // bro      2004-06-14
+//   //========================================================
+//   void node::LoadAttributes(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+//   {
+//      
+//      if (pparseinfo == nullptr)
+//      {
+//
+//         pparseinfo = acmesystem()->xml()->m_pparseinfoDefault;
+//
+//      }
+//
+//      while(rangeXml.has_char() && *rangeXml.m_begin)
+//      {
+//
+//         ::str::consume_spaces(rangeXml, 0);
+//
+//         if (rangeXml.is_empty())
+//         {
+//
+//            // close tag
+//            // wel-formed tag
+//            return;
+//
+//         }
+//
+//         const char * pszStart = rangeXml.m_begin;
+//
+//         // XML Attr Name
+//         auto pszEnd = rangeXml.find_first_character_in(" =");
+//
+//         if(::not_found(pszEnd))
+//         {
+//            //// error
+//            //if( pparseinfo->m_bErrorOccur == false )
+//            //{
+//            //   pparseinfo->m_bErrorOccur = true;
+//            //   pparseinfo->m_pszErrorPointer = xml;
+//            //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
+//            //   pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
+//            //}
+//
+//            string strError;
+//
+//            strError.format("<%s> attr has error ", m_strName.c_str());
+//
+//            throw ::xml::exception(e_parse_error_attr_no_value, strError, rangeXml.m_begin);
+//
+//            return;
+//
+//         }
+//
+//         string strName;
+//         // XML Attr Name
+//         _SetString({ pszStart, pszEnd }, &strName);
+//
+//         // add memory_new attr
+//         auto & property = m_set.get(strName);
+//
+//         ::str::consume_spaces(rangeXml, 0);
+//
+//         // XML Attr Value
+////         if( (xml = _tcsskip( xml )) )
+//  //       {
+//            //if( xml = strchr( xml, '=' ) )
+//         if( *rangeXml.m_begin == '=' )
+//         {
+//
+//            ::str::consume_spaces(rangeXml, 0);
+//            //if( (xml = _tcsskip( ++xml )) )
+//            //{
+//               // if " or '
+//               // or none quote
+//               i32 quote = *rangeXml.m_begin;
+//
+//               pszStart = rangeXml.m_begin;
+//
+//               if (quote == '"' || quote == '\'')
+//               {
+//
+//                  pszStart++;
+//
+//                  ::str::escape_find_character(rangeXml, quote, pparseinfo->m_chEscape);
+//
+//               }
+//               else
+//               {
+//                  
+//                  //attr= m_strValue>
+//                  // none quote mode
+//                  //pszEnd = _tcsechr( xml, ' ', '\\' );
+//                  ::str::escape_skip_any_character_in(rangeXml, " >", pparseinfo->m_chEscape);
+//
+//               }
+//
+//               bool trim = pparseinfo->m_bTrimValue;
+//
+//               char escape = pparseinfo->m_chEscape;
+//
+//               //_SetString( xml, pszEnd, &attr->m_strValue, trim, '\\' );
+//               
+//               _SetString({ pszStart, rangeXml.m_begin }, &property.string_reference(), trim, escape);
+//
+////               pszStart = pszEnd;
+//
+//               // ATTRVALUE
+//               if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+//               {
+//
+//                  property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
+//
+//               }
+//
+//               if (quote == '"' || quote == '\'')
+//               {
+//
+//                  rangeXml.m_begin++;
+//
+//               }
+//
+//            }
+//         //}
+//   //     }
+//      }
+//
+//      // not wel-formed tag
+//      //return nullptr;
+//
+//      throw ::parsing_exception("Not wel-formed tag");
+//
+//   }
 
    // <!-- comment -->
    //                 ^- return pointer
@@ -746,7 +807,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadComment(const ::ansi_character * pszXml, parse_info * pparseinfo)
+   void node::LoadComment(::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -756,34 +817,48 @@ namespace xml
 
       }
 
+      auto pszStart = rangeXml.m_begin;
+
       // find the end of comment
-      const char * end = _tcsenistr( pszXml, "-->", 3, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if( end == nullptr )
-         return nullptr;
-
-      // process comment
-      node * par = __xml(m_pnodeParent);
-      if( m_pnodeParent == nullptr && m_pdocument )
-         par = m_pdocument;
-      if( par )
+      ::str::escape_case_insensitive_find(rangeXml, "-->", pparseinfo ? pparseinfo->m_chEscape : 0 );
+      
+      if (rangeXml.is_empty())
       {
-         const char * xml =pszXml;
-         xml += 4; // "<!--";
 
-         auto pnode = __new(node(this));
-         pnode->m_pnodeParent = par;
-         pnode->m_pdocument = m_pdocument;
-         pnode->m_enode = ::data::e_node_xml_comment;
-         pnode->m_strName = "#COMMENT";
-         _SetString( xml, end, &pnode->m_strValue, false );
-
-         par->m_nodea.add( pnode );
+         throw parsing_exception("Not wel-formed Comment");
 
       }
 
-      end += 3; // "-->"
+      // process comment
+      node * pnodeParent = __xml(m_pnodeParent);
 
-      return end;
+      if (::is_null(pnodeParent) && m_pdocument)
+      {
+      
+         pnodeParent = m_pdocument;
+
+      }
+
+      if(pnodeParent)
+      {
+
+         //const char * xml =pszXml;
+         //xml += 4; // "<!--";
+
+         auto pnode = __new(node(this));
+         pnode->m_pnodeParent = pnodeParent;
+         pnode->m_pdocument = m_pdocument;
+         pnode->m_enode = ::data::e_node_xml_comment;
+         pnode->m_strName = "#COMMENT";
+         _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strValue, false);
+
+         pnodeParent->m_nodea.add( pnode );
+
+      }
+
+      rangeXml.m_begin += 3; // "-->"
+
+      //return end;
 
    }
 
@@ -799,7 +874,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadCDATA(const ::ansi_character * pszXml, parse_info * pparseinfo)
+   void node::LoadCDATA(::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -809,10 +884,19 @@ namespace xml
 
       }
 
+      auto pszStart = rangeXml.m_begin;
+
       // find the end of CDATA
-      const char * end = _tcsenistr( pszXml, "]]>", 3, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
-      if( end == nullptr )
-         return nullptr;
+      ::str::escape_case_insensitive_find( rangeXml, "]]>", pparseinfo ? pparseinfo->m_chEscape : 0 );
+
+      auto pszEnd = rangeXml.m_begin;
+      
+      if (rangeXml.is_empty())
+      {
+
+         throw parsing_exception("Not wel-formed CDATA");
+
+      }
 
       // process CDATA
       node * pnodeParent = __xml(m_pnodeParent);
@@ -820,22 +904,22 @@ namespace xml
          pnodeParent = (node *)&m_pdocument;
       if( pnodeParent )
       {
-         const char * xml = pszXml;
-         xml += 9;  // "<![CDATA["
+         //const char * xml = pszXml;
+         //xml += 9;  // "<![CDATA["
 
          auto pnode = __new(node(this));
          pnode->m_pnodeParent = this;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_cdata;
          pnode->m_strName = "#CDATA";
-         _SetString( xml, end, &pnode->m_strValue, false );
+         _SetString({pszStart, pszEnd}, &pnode->m_strValue, false );
 
          pnodeParent->m_nodea.add( pnode );
       }
 
-      end += 3; // "]]>"
+      rangeXml.m_begin += 3; // "]]>"
       
-      return end;
+      //return end;
 
    }
 
@@ -853,7 +937,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   const char * node::LoadOtherNodes(bool* pbRet,const ::ansi_character * pszXml, parse_info * pparseinfo)
+   void node::LoadOtherNodes(bool* pbRet, const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -863,108 +947,111 @@ namespace xml
 
       }
 
-      const char * xml = pszXml;
+      auto pszStart = rangeXml.m_begin;
+
+      //const char * xml = pszXml;
       bool do_other_type = true;
       *pbRet = false;
 
-      while( xml && do_other_type )
+      while( rangeXml.has_char() && do_other_type)
       {
          do_other_type = false;
 
-         xml = _tcsskip( xml );
-         const char * prev = xml;
+         ::str::consume_spaces(rangeXml, 0);
+         const char * prev = rangeXml.m_begin;
          // is PI( Processing Instruction ) Node?
-         if(ansi_count_compare_ci( xml, "<?", 2 ) == 0 )
+         if(::str::begins_consume(rangeXml, "<?"))
          {
             // processing instrunction parse
             // return pointer is next node of pparseinfo
-            xml = LoadProcessingInstruction( xml, pparseinfo );
-            if( xml == nullptr )
-               return nullptr;
+            LoadProcessingInstruction(rangeXml, pparseinfo);
+            if( rangeXml.is_empty())
+               return;
             // restart xml parse
          }
 
-         if( xml != prev )
+         if( rangeXml.m_begin != prev )
             do_other_type = true;
-         xml = _tcsskip( xml );
-         prev = xml;
+         ::str::consume_spaces(rangeXml, 0);
+         prev = rangeXml.m_begin;
 
          //if(m_pnodeParent != nullptr && m_pnodeParent->m_enode == ::data::e_node_xml_document)
          if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(string_begins(xml, "<!DOCTYPE"))
+            if(::str::case_insensitive_begins_consume(rangeXml, "<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
-               xml = LoadDocType( xml, pparseinfo );
-               if( xml == nullptr )
-                  return nullptr;
+               LoadDocType( rangeXml, pparseinfo );
+               //if( rangeXml.is_empty())
+                 // return nullptr;
                // restart xml parse
             }
 
-            if( xml != prev )
+            if( rangeXml.m_begin != prev )
                do_other_type = true;
-            xml = _tcsskip( xml );
-            prev = xml;
+            ::str::consume_spaces(rangeXml, 0);
+            prev = rangeXml.m_begin;
          }
 
          // is comment Node?
-         if(ansi_count_compare_ci( xml, "<!--", 4) == 0 )
+         if (::str::begins_consume(rangeXml, "<!--"))
          {
             // processing comment parse
             // return pointer is next node of comment
-            xml = LoadComment( xml, pparseinfo );
+            LoadComment( rangeXml, pparseinfo );
             // comment node is terminal node
-            if(m_enode != ::data::e_node_xml_document && xml != prev )
+            if(m_enode != ::data::e_node_xml_document && rangeXml.m_begin != prev )
             {
                *pbRet = true;
-               xml = _tcsskip( xml );
-               return xml;
+               ::str::consume_spaces(rangeXml, 0);
+               //return xml;
+               return;
             }
             // restart xml parse when this node is root m_pdocument node
          }
 
-         if( xml != prev )
+         if( rangeXml.m_begin != prev )
             do_other_type = true;
 
-         xml = _tcsskip( xml );
-         prev = xml;
+         ::str::consume_spaces(rangeXml, 0);
+         prev = rangeXml.m_begin;
          // is CDATA Node?
-         if(ansi_count_compare_ci( xml, "<![CDATA[", 9) == 0 )
+         if(::str::case_insensitive_begins_consume(rangeXml, "<![CDATA["))
          {
             // processing CDATA parse
             // return pointer is next node of CDATA
-            xml = LoadCDATA( xml, pparseinfo );
+            LoadCDATA(rangeXml, pparseinfo );
             // CDATA node is terminal node
-            if(m_enode != ::data::e_node_xml_document && xml != prev )
+            if(m_enode != ::data::e_node_xml_document && rangeXml.m_begin != prev )
             {
                *pbRet = true;
-               return xml;
+               //return xml;
+
+               return;
             }
             // restart xml parse when this node is root m_pdocument node
          }
 
-         if( xml != prev )
+         if( rangeXml.m_begin != prev )
             do_other_type = true;
       }
 
-      return xml;
+      //return xml;
    }
 
    
    void node::load(const ::string & strXml, parse_info * pparseinfo)
    {
 
-      auto pszStart = strXml.c_str();
+      auto rangeXml = strXml();
 
-      auto pszEnd = pszStart + strXml.length();
-
-     const ::ansi_character * pszNext = nullptr;
+      const ::ansi_character * pszNext = nullptr;
 
       close();
 
-      _load(pszNext, pszStart, pszEnd, pparseinfo);
+      _load(pszNext, rangeXml, pparseinfo);
 
    }
 
@@ -984,7 +1071,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::_load(const char *& xml,const ::ansi_character * pszXml, const ::ansi_character * pszEndXml, parse_info * pparseinfo)
+   void node::_load(const char *& xml,::const_ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       ////// close it
@@ -994,7 +1081,6 @@ namespace xml
       // Changed xmlite node loading...
       // XML does accept only one root one
       // This implementation allow multiple nodes in the root (apart other nodes)
-      xml = pszXml;
 
 
 
@@ -1008,9 +1094,9 @@ namespace xml
 
          }
 
-         xml = strchr(xml, chXMLTagOpen);
+         rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
 
-         if (xml == nullptr)
+         if (rangeXml.m_begin == nullptr)
          {
 
             return;
@@ -1018,7 +1104,7 @@ namespace xml
          }
 
          //// close Tag
-         if (*(xml + 1) == chXMLTagPre) // </close
+         if (*(rangeXml.m_begin + 1) == '/') // </close
          {
 
             return;
@@ -1029,16 +1115,7 @@ namespace xml
 
          bool bRet = false;
 
-         const char * ret = nullptr;
-
-         ret = LoadOtherNodes(&bRet, xml, pparseinfo);
-
-         if (ret != nullptr)
-         {
-
-            xml = ret;
-
-         }
+         LoadOtherNodes(&bRet, rangeXml, pparseinfo);
 
          if (bRet)
          {
@@ -1067,264 +1144,284 @@ namespace xml
          //pnode->m_enode = m_enode;
 
          // XML Node Tag Name open
-         xml++;
+         rangeXml.m_begin++;
 
-         const char * pTagEnd = ansi_scan(xml, " />\t\r\n");
-         _SetString(xml, pTagEnd, &pnode->m_strName);
-         xml = pTagEnd;
+         auto pszStart = rangeXml.m_begin;
+
+         ::str::consume_until_any_character_in(rangeXml, " />\t\r\n");
+         _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strName);
+         //rangeXml.m_begin = pTagEnd;
          // Generate XML Attributte List
-         if ((xml = pnode->LoadAttributes(xml, pparseinfo)))
-         {
+         //if ((xml = pnode->LoadAttributes(rangeXml, pparseinfo)))
+         pnode->LoadAttributes(rangeXml, pparseinfo);
+         //{
             // alone tag <TAG ... />
-            if (*xml == chXMLTagPre)
+
+         if (*rangeXml.m_begin == '/')
+         {
+
+            auto pszStart = rangeXml.m_begin;
+
+            rangeXml.m_begin++;
+
+            if (*xml == '>')
             {
-               xml++;
-               if (*xml == chXMLTagClose)
+
+               // wel-formed tag
+               rangeXml.m_begin++;
+
+               //return;
+
+            }
+            else
+            {
+               //// error: <TAG ... / >
+               //if( pparseinfo->m_bErrorOccur == false )
+               //{
+               //   pparseinfo->m_bErrorOccur = true;
+               //   pparseinfo->m_pszErrorPointer = xml;
+               //   pparseinfo->m_eparseerror = e_parse_error_alone_not_closed;
+               //   pparseinfo->m_strError = "Element must be closed.";
+               //}
+
+               string strError;
+
+               strError = "Element must be closed.";
+
+               throw ::xml::exception(e_parse_error_alone_not_closed, strError, pszStart);
+
+               // not wel-formed tag
+               return;
+
+            }
+
+         }
+         else if (*rangeXml.m_begin)
+            // open/close tag <TAG ..> ... </TAG>
+            //                        ^- current pointer
+         {
+            // if text m_strValue is not exist, then assign m_strValue
+            //if( this->m_strValue.is_empty() || this->m_strValue == "" )
+            if (::str::trimmed_is_empty(pnode->m_strValue))
+            {
+
+               // Text Value
+               rangeXml.m_begin++;
+
+               auto pszStart = rangeXml.m_begin;
+
+               ::str::escape_find_character(rangeXml, '<', '\\');
+
+               if (rangeXml.is_empty())
                {
-
-                  // wel-formed tag
-                  xml++;
-
-                  //return;
-
-               }
-               else
-               {
-                  //// error: <TAG ... / >
                   //if( pparseinfo->m_bErrorOccur == false )
                   //{
                   //   pparseinfo->m_bErrorOccur = true;
                   //   pparseinfo->m_pszErrorPointer = xml;
-                  //   pparseinfo->m_eparseerror = e_parse_error_alone_not_closed;
-                  //   pparseinfo->m_strError = "Element must be closed.";
+                  //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
+                  //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
                   //}
 
                   string strError;
 
-                  strError = "Element must be closed.";
+                  strError.format(" % s must be closed with < / % s>", pnode->m_strName.c_str());
 
-                  throw ::xml::exception(e_parse_error_alone_not_closed, strError, xml);
+                  throw ::xml::exception(e_parse_error_not_closed, strError, pszStart);
 
-                  // not wel-formed tag
+                  // error cos not exist CloseTag </TAG>
                   return;
 
                }
 
+               bool trim = pparseinfo->m_bTrimValue;
+               char escape = pparseinfo->m_chEscape;
+               //_SetString( xml, pszEnd, &m_strValue, trim, '\\' );
+               //pszEnd = xml;
+               //rangeXml.m_begin = strchr(rangeXml.m_begin, '<');
+               //while (*pszEnd != '<' && *pszEnd != '\0')
+               //{
+               //   //   if(pszEnd[0] == '&')
+               //   ////   {
+               //   ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
+               //   ////   }
+               //   ////   else
+               //   ////   {
+               //   unicode_increment(pszEnd);
+               //   //   }
+               //}
+               _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strValue, trim, escape);
+               //xml = pszEnd;
+
+               // TEXTVALUE object
+               if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+                  pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
             }
-            else if (*xml)
-               // open/close tag <TAG ..> ... </TAG>
-               //                        ^- current pointer
+
+            // generate child nodes
+            if(rangeXml.has_char() && *rangeXml.m_begin)
             {
-               // if text m_strValue is not exist, then assign m_strValue
-               //if( this->m_strValue.is_empty() || this->m_strValue == "" )
-               if (::str().trimmed_is_empty(pnode->m_strValue))
+               //::pointer<node>pnode = __new(node(this));
+               //if (m_pdocument == this)
+               //{
+               //   if (!m_pdocument->m_pnodeRoot)
+               //   {
+
+               //      m_pdocument->m_pnodeRoot = pnode;
+
+               //   }
+
+               //}
+               //pnode->m_pnodeParent = this;
+               //pnode->m_pdocument = m_pdocument;
+               //pnode->m_enode = m_enode;
+
+               pnode->_load(xml, rangeXml, pparseinfo);
+               //if (pnode->m_strName.has_char())
+               //{
+               //   m_nodea.add(pnode);
+
+               //   //                  ::release(pnode);
+               //}
+               //else
+               //{
+               //   //delete pnode;
+               //   pnode.release();
+               //}
+
+               // open/close tag <TAG ..> ... </TAG>
+               //                             ^- current pointer
+               // CloseTag case
+               if (rangeXml.has_char() && *rangeXml.m_begin && *(rangeXml.m_begin + 1) && *rangeXml.m_begin == '<' && *(rangeXml.m_begin + 1) == '/')
                {
-                  // Text Value
-                  const ::ansi_character * pszEnd = _tcsechr(++xml, chXMLTagOpen, chXMLEscape);
-                  if (pszEnd == nullptr)
+                  // </close>
+                  rangeXml.m_begin += 2; // C
+
+                  ::str::consume_spaces(rangeXml, 0);
+
+                  //if ((xml = _tcsskip(xml)))
                   {
-                     //if( pparseinfo->m_bErrorOccur == false )
-                     //{
-                     //   pparseinfo->m_bErrorOccur = true;
-                     //   pparseinfo->m_pszErrorPointer = xml;
-                     //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
-                     //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
-                     //}
 
-                     string strError;
+                     auto pszStart = rangeXml.m_begin;
+                     
+                     string closename;
 
-                     strError.format(" % s must be closed with < / % s>", pnode->m_strName.c_str());
+                     const char * pszEnd = rangeXml.find_first_character_in(" >");
 
-                     throw ::xml::exception(e_parse_error_not_closed, strError, xml);
-
-                     // error cos not exist CloseTag </TAG>
-                     return;
-
-                  }
-
-                  bool trim = pparseinfo->m_bTrimValue;
-                  char escape = pparseinfo->m_chEscapeValue;
-                  //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
-                  pszEnd = xml;
-                  pszEnd = strchr(pszEnd, '<');
-                  //while (*pszEnd != '<' && *pszEnd != '\0')
-                  //{
-                  //   //   if(pszEnd[0] == '&')
-                  //   ////   {
-                  //   ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
-                  //   ////   }
-                  //   ////   else
-                  //   ////   {
-                  //   unicode_increment(pszEnd);
-                  //   //   }
-                  //}
-                  _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);
-                  xml = pszEnd;
-
-                  // TEXTVALUE object
-                  if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
-                     pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
-               }
-
-               // generate child nodes
-               if(xml && *xml)
-               {
-                  //::pointer<node>pnode = __new(node(this));
-                  //if (m_pdocument == this)
-                  //{
-                  //   if (!m_pdocument->m_pnodeRoot)
-                  //   {
-
-                  //      m_pdocument->m_pnodeRoot = pnode;
-
-                  //   }
-
-                  //}
-                  //pnode->m_pnodeParent = this;
-                  //pnode->m_pdocument = m_pdocument;
-                  //pnode->m_enode = m_enode;
-
-                  pnode->_load(xml, xml, pszEndXml, pparseinfo);
-                  //if (pnode->m_strName.has_char())
-                  //{
-                  //   m_nodea.add(pnode);
-
-                  //   //                  ::release(pnode);
-                  //}
-                  //else
-                  //{
-                  //   //delete pnode;
-                  //   pnode.release();
-                  //}
-
-                  // open/close tag <TAG ..> ... </TAG>
-                  //                             ^- current pointer
-                  // CloseTag case
-                  if (xml && *xml && *(xml + 1) && *xml == chXMLTagOpen && *(xml + 1) == chXMLTagPre)
-                  {
-                     // </close>
-                     xml += 2; // C
-
-                     if ((xml = _tcsskip(xml)))
+                     if (pszEnd == nullptr)
                      {
-                        string closename;
-                        const  char * pszEnd = ansi_scan(xml, " >");
-                        if (pszEnd == nullptr)
+                        //if( pparseinfo->m_bErrorOccur == false )
+                        //{
+                        //   pparseinfo->m_bErrorOccur = true;
+                        //   pparseinfo->m_pszErrorPointer = xml;
+                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                        //}
+                        //// error
+
+                        string strError;
+
+                        strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
+
+                        throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
+                        return;
+
+                     }
+
+                     _SetString({ pszStart, pszEnd }, & closename);
+
+                     if (closename == pnode->m_strName)
+                     {
+                        // wel-formed open/close
+                        xml = pszEnd + 1;
+                        // return '>' or ' ' after pointer
+                        //return;
+                     }
+                     else
+                     {
+                        xml = pszEnd + 1;
+                        // 2004.6.15 - example <B> alone tag
+                        // now it can parse with attr 'force_arse'
+                        if (pparseinfo->m_bForceParse == false)
                         {
+                           // not welformed open/close
                            //if( pparseinfo->m_bErrorOccur == false )
                            //{
                            //   pparseinfo->m_bErrorOccur = true;
                            //   pparseinfo->m_pszErrorPointer = xml;
-                           //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                           //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                           //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
+                           //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
                            //}
-                           //// error
 
                            string strError;
 
-                           strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
+                           strError.format("'<%s> ... </%s>' is not wel-formed.", pnode->m_strName.c_str(), closename.c_str());
 
-                           throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+                           throw ::xml::exception(e_parse_error_not_nested, strError, pszStart);
 
                            return;
-
-                        }
-
-                        _SetString(xml, pszEnd, &closename);
-
-                        if (closename == pnode->m_strName)
-                        {
-                           // wel-formed open/close
-                           xml = pszEnd + 1;
-                           // return '>' or ' ' after pointer
-                           //return;
-                        }
-                        else
-                        {
-                           xml = pszEnd + 1;
-                           // 2004.6.15 - example <B> alone tag
-                           // now it can parse with attr 'force_arse'
-                           if (pparseinfo->m_bForceParse == false)
-                           {
-                              // not welformed open/close
-                              //if( pparseinfo->m_bErrorOccur == false )
-                              //{
-                              //   pparseinfo->m_bErrorOccur = true;
-                              //   pparseinfo->m_pszErrorPointer = xml;
-                              //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
-                              //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
-                              //}
-
-                              string strError;
-
-                              strError.format("'<%s> ... </%s>' is not wel-formed.", pnode->m_strName.c_str(), closename.c_str());
-
-                              throw ::xml::exception(e_parse_error_not_nested, strError, xml);
-
-                              return;
-
-                           }
 
                         }
 
                      }
 
                   }
-                  else if (xml && *xml)  // Alone child Tag Loaded
-                     // else 해야하는지 말아야하는지 의심간다.
+
+               }
+               else if (rangeXml.has_char() && *rangeXml.m_begin)  // Alone child Tag Loaded
+                  // else 해야하는지 말아야하는지 의심간다.
+               {
+
+                  //if( xml && this->m_strValue.is_empty() && *xml !='<' )
+                  if (rangeXml.has_char() && ::str::trimmed_is_empty(pnode->m_strValue) && *rangeXml.m_begin != '<')
                   {
-
-                     //if( xml && this->m_strValue.is_empty() && *xml !=chXMLTagOpen )
-                     if (xml && ::str().trimmed_is_empty(pnode->m_strValue) && *xml != chXMLTagOpen)
+                     // Text Value
+                     auto pszStart = rangeXml.m_begin;
+                     ::str::escape_find_character(rangeXml, '<', '\\');
+                     if (rangeXml.is_empty())
                      {
-                        // Text Value
-                        const ::ansi_character * pszEnd = _tcsechr(xml, chXMLTagOpen, chXMLEscape);
-                        if (pszEnd == nullptr)
-                        {
-                           // error cos not exist CloseTag </TAG>
-                           //if( pparseinfo->m_bErrorOccur == false )
-                           //{
-                           //   pparseinfo->m_bErrorOccur = true;
-                           //   pparseinfo->m_pszErrorPointer = xml;
-                           //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                           //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
-                           //}
-                           string strError;
-
-                           strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
-
-                           throw ::xml::exception(e_parse_error_not_closed, strError, xml);
-
-                           return;
-
-                        }
-
-                        bool trim = pparseinfo->m_bTrimValue;
-                        char escape = pparseinfo->m_chEscapeValue;
-                        //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
-                        pszEnd = xml;
-                        //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
+                        // error cos not exist CloseTag </TAG>
+                        //if( pparseinfo->m_bErrorOccur == false )
                         //{
-                        //   if(pszEnd[0] == '&')
-                        //   {
-                        //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
-                        //   }
-                        //   else
-                        //   {
-                        //      pszEnd = (char *) ::str().__utf8_inc(pszEnd);
-                        //   }
+                        //   pparseinfo->m_bErrorOccur = true;
+                        //   pparseinfo->m_pszErrorPointer = xml;
+                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
                         //}
-                        if (pszEnd > pszEndXml)
-                           pszEnd = (char *)pszEndXml;
-                        _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);
-                        xml = pszEnd;
-                        //TEXTVALUE
-                        if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
-                        {
+                        string strError;
 
-                           pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
+                        strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
 
-                        }
+                        throw ::xml::exception(e_parse_error_not_closed, strError, pszStart);
+
+                        return;
+
+                     }
+
+                     bool trim = pparseinfo->m_bTrimValue;
+                     char escape = pparseinfo->m_chEscape;
+                     //_SetString( xml, pszEnd, &m_strValue, trim, '\\' );
+                     //pszEnd = xml;
+                     //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
+                     //{
+                     //   if(pszEnd[0] == '&')
+                     //   {
+                     //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
+                     //   }
+                     //   else
+                     //   {
+                     //      pszEnd = (char *) ::str::__utf8_inc(pszEnd);
+                     //   }
+                     //}
+                     //if (pszEnd > pszEndXml)
+                       // pszEnd = (char *)pszEndXml;
+                     _SetString({pszStart, rangeXml.m_begin}, &pnode->m_strValue, trim, escape);
+                     //xml = pszEnd;
+                     //TEXTVALUE
+                     if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+                     {
+
+                        pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
 
                      }
 
@@ -1335,6 +1432,8 @@ namespace xml
             }
 
          }
+
+//         }
 
          if (pnode->m_strName.has_char())
          {
@@ -1942,7 +2041,7 @@ namespace xml
 
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(scopedstrAttr) + ::str().has_char(str, "/");
+         str = pnode->attribute(scopedstrAttr) + ::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)
@@ -2004,7 +2103,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->m_strName + ::str().has_char(str, "/");
+         str = pnode->m_strName + ::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)

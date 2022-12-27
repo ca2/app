@@ -601,7 +601,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
    if (bCreate)
    {
 
-      return { &get_property_set().get_property(atom), this };
+      return { &get_property_set().get(atom), this };
 
    }
 

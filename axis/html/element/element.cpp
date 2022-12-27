@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "element.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/parsing.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/geometry2d/_collection.h"
@@ -221,7 +221,9 @@ namespace html
          if (!str.is_empty())
          {
 
-            m_pstyle->parse(phtmldata, str);
+            auto range = str();
+
+            m_pstyle->parse(phtmldata, range);
 
          }
 
@@ -1002,9 +1004,16 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(strUrl));
+            ::string str = pcontext->m_papexcontext->file()->as_string(strUrl);
+
+            auto range = str();
+
+            pstylesheet->parse(phtmldata, range);
+
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
+
          }
+
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
             auto pelemental  = __new(element);
@@ -1025,9 +1034,17 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_atomTagName == "html_style")
          {
+            
             ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
-            pstylesheet->parse(phtmldata, pvalue->get_value());
+
+            ::string str(pvalue->get_value());
+
+            auto range = str();
+
+            pstylesheet->parse(phtmldata, range);
+
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
+
          }
          else if (m_atomTagName == "html_link"
                   && m_pparent->get_tag()->get_attr_value("rel").case_insensitive_order("stylesheet") == 0)
@@ -1037,7 +1054,11 @@ namespace html
 
             auto pcontext = get_context();
 
-            pstylesheet->parse(phtmldata, pcontext->m_papexcontext->file()->as_string(m_pparent->get_tag()->get_attr_value("href")));
+            string str = pcontext->m_papexcontext->file()->as_string(m_pparent->get_tag()->get_attr_value("href"));
+
+            auto range = str();
+
+            pstylesheet->parse(phtmldata, range);
 
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
 
@@ -1049,63 +1070,104 @@ namespace html
       }
    }
 
-   bool element::parse(html_data * phtmldata, const char * & pszParam)
+
+   bool element::parse(html_data * phtmldata, ::const_ansi_range & range)
    {
-      const char * psz = pszParam;
+
+      const char * pszStart = range.m_begin;
+
       // skip white space
-      while (*psz != '\0' && character_isspace(*psz))
-         psz++;
-      if (*psz != '<')
+      ::str::consume_spaces(range, 0);
+
+      if (*range.m_begin != '<')
       {
-         while (*psz != '<')
-            psz++;
-         pszParam = psz;
+
+         while (*range.m_begin != '<')
+         {
+
+            range.m_begin++;
+
+         }
+
          return false;
+
       }
-      psz++;
+
+      range.m_begin++;
+      
       // skip white space
-      while (*psz != '\0' && character_isspace(*psz))
-         psz++;
-      const char * pszTag = psz;
+      ::str::consume_spaces(range, 0);
+
+      const char * pszTag = range.m_begin;
+
       // skip valid char
-      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
-         psz++;
-      string strTag(pszTag, psz - pszTag);
+      while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
+      {
+      
+         range.m_begin++;
+
+      }
+
+      string strTag(pszTag, range.m_begin - pszTag);
+
       if (strTag[0] == '/')
+      {
+      
          return false;
-      m_atomTagName = (atom) ::str().ansi_lower(strTag);
+
+      }
+
+      m_atomTagName = (atom) ::str::ansi_lower(strTag);
+
       if (strTag == "!DOCTYPE")
       {
-         // skip white space
-         while (*psz != '\0' && *psz != '>')
-            psz++;
+         
+         while (*range.m_begin != '\0' && *range.m_begin != '>')
+         {
+         
+            range.m_begin++;
+
+         }
+
       }
       else
       {
+         
          // skip white space
-         while (*psz != '\0' && character_isspace(*psz))
-            psz++;
+         ::str::consume_spaces(range, 0);
+         
          // Parse Attributes
-         parse_attributes(phtmldata, psz);
+         parse_attributes(phtmldata, range);
+         
          // skip white space
-         while (*psz != '\0' && character_isspace(*psz))
-            psz++;
-         if (*psz != '/' && *psz != '>')
+         ::str::consume_spaces(range, 0);
+
+         if (*range.m_begin != '/' && *range.m_begin != '>')
          {
-            throw ::exception(error_parsing, "run tag fixer tabjs");
+
+            throw ::parsing_exception("run tag fixer tabjs");
+
          }
-         if (*psz == '/')
+
+         if (*range.m_begin == '/')
          {
+
             // skip white space
-            while (*psz != '\0' && character_isspace(*psz))
-               psz++;
-            if (*psz != '>')
+            ::str::consume_spaces(range, 0);
+
+            if (*range.m_begin != '>')
             {
-               throw ::exception(error_parsing, "run tag fixer tabjs");
+
+               throw ::parsing_exception("run tag fixer tabjs");
+
             }
+
             return true;
+
          }
-         psz++;
+
+         range.m_begin++;
+
       }
 
       if (m_atomTagName == "html_br")
@@ -1115,7 +1177,7 @@ namespace html
 
       }
 
-      const char * pszBody = psz;
+      const char * pszBody = range.m_begin;
 
       while (true)
       {
@@ -1124,115 +1186,169 @@ namespace html
 
          pelemental->initialize_html_elemental(phtmldata, this);
 
-         if (!pelemental->parse(phtmldata, psz))
+         if (!pelemental->parse(phtmldata, range))
          {
-
-            pszParam = psz;
 
             break;
 
          }
 
          m_elementalptra.add(pelemental);
+
       }
 
-      string strBody(pszBody, psz - pszBody);
+      string strBody(pszBody, range.m_begin - pszBody);
 
       m_strBody = strBody;
 
       if (strTag == "!DOCTYPE")
+      {
+
          return true;
 
-      // skip white space
-      while (*psz != '\0' && character_isspace(*psz))
-         psz++;
-      if (*psz != '<')
-      {
-         throw ::exception(error_parsing, "run tag fixer tabjs");
       }
-      psz++;
+
       // skip white space
-      while (*psz != '\0' && character_isspace(*psz))
-         psz++;
-      const char * pszCloseTag = psz;
+      ::str::consume_spaces(range, 0);
+
+      if (*range.m_begin != '>')
+      {
+
+         throw ::parsing_exception("run tag fixer tabjs");
+
+      }
+
+      range.m_begin++;
+      
+      // skip white space
+      ::str::consume_spaces(range, 0);      
+
+      const char * pszCloseTag = range.m_begin;
+
       // skip valid char
-      while (*psz != '\0' && !character_isspace(*psz) && *psz != '>')
-         psz++;
-
-      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
+      while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '>')
       {
-         psz++;
-         pszParam = psz;
-         return true;
+
+         range.m_begin++;
+
       }
 
-      throw ::exception(error_parsing, "invalid xml file");
+      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
+      {
+
+         range.m_begin++;
+
+         return true;
+
+      }
+
+      throw ::parsing_exception("invalid xml file");
 
    }
 
 
-   void element::parse_attributes(html_data * phtmldata, const char * & psz)
+   void element::parse_attributes(html_data * phtmldata, ::const_ansi_range & range)
    {
+
       __UNREFERENCED_PARAMETER(phtmldata);
+
       char chQuote;
-      while (*psz != '\0' && *psz != '/' && *psz != '>')
+
+      while (*range.m_begin != '\0' && *range.m_begin != '/' && *range.m_begin != '>')
       {
+
          // skip white space
-         while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
-            psz++;
-         if (*psz != '/' && *psz != '>')
+         while (*range.m_begin != '\0' && character_isspace(*range.m_begin) && *range.m_begin != '/' && *range.m_begin != '>')
          {
-            psz--;
-            return;
+
+            range.m_begin++;
+
          }
-         const char * pszKey = psz;
+
+         if (*range.m_begin != '/' && *range.m_begin != '>')
+         {
+
+            range.m_begin--;
+
+            return;
+
+         }
+
+         const char * pszKey = range.m_begin;
+
          // skip valid char
-         while (*psz != '\0' && !character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
-            psz++;
-         string strKey(pszKey, psz - pszKey);
-
-         if (*psz == '/' || *psz == '>')
+         while (*range.m_begin != '\0' && !character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
          {
-            m_propertyset[strKey] = "";
-            return;
+
+            range.m_begin++;
+
          }
+
+         string strKey(pszKey, range.m_begin - pszKey);
+
+         if (*range.m_begin == '/' || *range.m_begin == '>')
+         {
+
+            m_propertyset[strKey] = "";
+
+            return;
+
+         }
+
          // skip valid char
-         while (*psz != '\0' && character_isspace(*psz) && *psz != '=' && *psz != '/' && *psz != '>')
-            psz++;
-
-         if (*psz == '/' || *psz == '>')
+         while (*range.m_begin != '\0' && character_isspace(*range.m_begin) && *range.m_begin != '=' && *range.m_begin != '/' && *range.m_begin != '>')
          {
-            m_propertyset[strKey] = "";
-            return;
+
+            range.m_begin++;
+
          }
 
-         if (*psz != '=')
+         if (*range.m_begin == '/' || *range.m_begin == '>')
          {
+
+            m_propertyset[strKey] = "";
+
+            return;
+
+         }
+
+         if (*range.m_begin != '=')
+         {
+
             continue;
+
          }
+
          // skip space
-         while (*psz != '\0' && character_isspace(*psz))
-            psz++;
+         while (*range.m_begin != '\0' && character_isspace(*range.m_begin))
+            range.m_begin++;
 
          const char * pszValue;
-         if (*psz == '\"' || *psz == '\'')
+         if (*range.m_begin == '\"' || *range.m_begin == '\'')
          {
-            chQuote = *psz;
-            psz++;
-            pszValue = psz;
+            chQuote = *range.m_begin;
+            range.m_begin++;
+            pszValue = range.m_begin;
             // skip space
-            while (*psz != chQuote)
-               psz++;
+            while (*range.m_begin != chQuote)
+               range.m_begin++;
          }
          else
          {
-            pszValue = psz;
+
+            pszValue = range.m_begin;
+
             // skip space
-            while (*psz != '\0' && character_isspace(*psz) && *psz != '/' && *psz != '>')
-               psz++;
+            while (*range.m_begin != '\0' && character_isspace(*range.m_begin) && *range.m_begin != '/' && *range.m_begin != '>')
+            {
+             
+               range.m_begin++;
+
+            }
+
          }
 
-         string strValue(pszValue, psz - pszValue);
+         string strValue(pszValue, range.m_begin - pszValue);
 
          m_propertyset[strKey] = strValue;
 
@@ -1241,21 +1357,39 @@ namespace html
    }
 
 
-
-
    element * element::get_element_by_name(atom atom)
    {
+
       if (m_phtmlbase->get_type() == ::html::base::type_value)
+      {
+
          return nullptr;
+
+      }
+
       ::html::tag * ptag = m_phtmlbase->get_tag();
+
       if (atom == ptag->get_attr_value("name"))
+      {
+
          return this;
+
+      }
+
       element * pelemental = nullptr;
+
       for (i32 i = 0; i < m_elementalptra.get_size(); i++)
       {
+
          pelemental = m_elementalptra[i]->get_element_by_name(atom);
+
          if (pelemental != nullptr)
+         {
+
             break;
+
+         }
+
       }
 
       return pelemental;

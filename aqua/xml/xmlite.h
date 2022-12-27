@@ -25,7 +25,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsskip( const ::ansi_character * psz );
+   //CLASS_DECL_AQUA char * _tcsskip(::const_ansi_range & rangeXml);
 
    //========================================================
    // Name   : _tcsechr
@@ -36,7 +36,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_AQUA char * _tcsechr( const ::ansi_character * psz, i32 ch, i32 escape );
+   //CLASS_DECL_AQUA char * _tcsechr(::const_ansi_range & rangeXml, i32 ch, i32 escape );
 
    //========================================================
    // Name   : _tcselen
@@ -59,40 +59,30 @@ namespace xml
    // bro      2002-10-29
    //========================================================
    CLASS_DECL_AQUA void _tcsecpy(char * psz, i32 escape, const char * srt, const char * end = nullptr);
-   CLASS_DECL_AQUA void _tcsecpy2(char * psz, char escape, const char * srt, const char * * end = nullptr);
+   CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, ::const_ansi_range & range);
 
-   //========================================================
-   // Name   : _tcsepbrk
-   // Desc   : similar with ansi_scan with escape process
-   // Param  : escape - will be escape character
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   CLASS_DECL_AQUA char * _tcsepbrk( const ::ansi_character * psz, const char * chset, i32 escape );
+   
+   ////========================================================
+   //// Name   : _tcsenicmp
+   //// Desc   : similar with ansi_count_compare_ci with escape process
+   //// Param  : escape - will be escape character
+   //// Return :
+   ////--------------------------------------------------------
+   //// Coder    Date                      Desc
+   //// bro      2002-10-29
+   ////========================================================
+   //CLASS_DECL_AQUA i32 _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
 
-   //========================================================
-   // Name   : _tcsenicmp
-   // Desc   : similar with ansi_count_compare_ci with escape process
-   // Param  : escape - will be escape character
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   CLASS_DECL_AQUA i32 _tcsenicmp( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
-
-   //========================================================
-   // Name   : _tcsenistr
-   // Desc   : similar with _tcsistr with escape process
-   // Param  : escape - will be escape character
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
+   ////========================================================
+   //// Name   : _tcsenistr
+   //// Desc   : similar with _tcsistr with escape process
+   //// Param  : escape - will be escape character
+   //// Return :
+   ////--------------------------------------------------------
+   //// Coder    Date                      Desc
+   //// bro      2002-10-29
+   ////========================================================
+   //CLASS_DECL_AQUA char * _tcsenistr( const ::ansi_character * psz, const char * str, strsize len, i32 escape );
 
    //========================================================
    // Name   : _tcseistr
@@ -114,9 +104,9 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(const ::ansi_character * psz, const char * end, string* ps, bool trim, i32 escape);
-   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim); // no escape
-   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps); // no trim, no escape
+   inline void _SetString(::const_ansi_range range, string* ps, bool trim, i32 escape);
+   inline void _SetString(::const_ansi_range range, string* ps,bool trim); // no escape
+   inline void _SetString(::const_ansi_range range, string* ps); // no trim, no escape
 
 
 
@@ -129,6 +119,48 @@ namespace xml
 {
 
 
+   void _trim(::const_ansi_range & range)
+   {
+
+      while (range.has_char() && character_isspace(*range.m_begin))
+      {
+
+         range.m_begin++;
+
+      }
+
+      while (range.has_char() && character_isspace(*(range.m_end - 1)))
+      {
+
+         range.m_begin--;
+
+      }
+
+   }
+
+
+   void _defer_escape(string * ps, ::const_ansi_range & range, i32 escape)
+   {
+
+      if (escape)
+      {
+
+         auto rangeOut = ps->get_string_buffer_range(range.size());
+
+         _tcsecpy2(rangeOut, escape, range);
+
+         ps->release_string_buffer_range(rangeOut);
+
+      }
+      else
+      {
+
+         ps->assign(range);
+
+      }
+
+   }
+
    //========================================================
    // Name   : _SetString
    // Desc   : put string of (psz~end) on ps string
@@ -138,86 +170,47 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim,i32 escape)
+   inline void _SetString(::const_ansi_range range,string* ps,bool trim,i32 escape)
    {
 
       if(trim)
       {
 
-         while(psz < end && character_isspace(*psz))
-         {
-
-            psz++;
-
-         }
-
-         while((end - 1) && psz < (end - 1) && character_isspace(*(end - 1)))
-         {
-
-            end--;
-
-         }
+         _trim(range);
 
       }
 
-      if(psz >= end)
+      if(range.is_empty())
       {
 
          return;
 
       }
 
-      if(escape)
-      {
-
-         char * pss = ps->get_string_buffer(end - psz);
-
-         _tcsecpy2(pss,escape,psz,&end);
-
-         ps->release_string_buffer(end - pss);
-
-      }
-      else
-      {
-
-         ps->assign(psz,end - psz);
-
-      }
+      _defer_escape(ps, range, escape);
 
    }
 
 
-   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps,bool trim)
+   inline void _SetString(::const_ansi_range range,string* ps,bool trim)
    {
 
       if(trim)
       {
 
-         while(psz < end && character_isspace(*psz))
-         {
-
-            psz++;
-
-         }
-
-         while((end - 1) && psz < (end - 1) && character_isspace(*(end - 1)))
-         {
-
-            end--;
-
-         }
+         _trim(range);
 
       }
 
-      ps->assign(psz,end - psz);
+      ps->assign(range);
 
    }
 
 
-   inline void _SetString(const ::ansi_character * psz, const char * end,string* ps)
+   inline void _SetString(::const_ansi_range range,string* ps)
    {
 
-      ps->assign(psz,end - psz);
+      ps->assign(range);
 
    }
 
@@ -268,14 +261,14 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   inline char * _tcsskip(const ::ansi_character * psz)
-   {
+   //inline char * _tcsskip(const ::ansi_character * psz)
+   //{
 
-      while(ansi_char_isspace((uchar)*psz)) psz++;
+   //   while(ansi_char_isspace((uchar)*psz)) psz++;
 
-      return (char *)psz;
+   //   return (char *)psz;
 
-   }
+   //}
 
 } // namespace xml
 

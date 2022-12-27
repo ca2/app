@@ -561,7 +561,7 @@ namespace networking
 ////      else
 ////      {
 ////
-////         throw ::exception(error_parsing, "Unrecognized networking IP address");
+////         throw ::parsing_exception("Unrecognized networking IP address");
 ////
 ////      }
 ////

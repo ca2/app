@@ -147,15 +147,15 @@ public:
 
    virtual char * c_str();
 
-   virtual bool begins(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).begins(scopedstr); }
+   virtual bool begins(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->begins(scopedstr); }
    //virtual bool begins(const ::scoped_string & scopedstr, strsize iCount = -1) const;
-   virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ::scoped_string(*this).case_insensitive_begins(scopedstr); }
+   virtual bool case_insensitive_begins(const ::scoped_string & scopedstr, strsize iCount = -1) const{ return ((::const_ansi_range *)this)->case_insensitive_begins(scopedstr); }
    //virtual bool begins(const ::string & str, strsize iCount = -1) const;
    //virtual bool case_insensitive_begins(const ::string & str, strsize iCount = -1) const;
 
-   virtual bool ends(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).ends(scopedstr); }
+   virtual bool ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->ends(scopedstr); }
    //virtual bool ends(const ::scoped_string & scopedstr, strsize iCount = -1) const;
-   virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ::scoped_string(*this).case_insensitive_ends(scopedstr); }
+   virtual bool case_insensitive_ends(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->case_insensitive_ends(scopedstr); }
    //virtual bool ends(const ::string & str, strsize iCount = -1) const;
    //virtual bool case_insensitive_ends(const ::string & str, strsize iCount = -1) const;
 

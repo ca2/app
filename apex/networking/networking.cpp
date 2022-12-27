@@ -1,6 +1,7 @@
 ﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
+#include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
@@ -274,7 +275,7 @@ namespace networking
       else
       {
 
-         throw ::exception(error_parsing, "Unrecognized networking IP address");
+         throw ::parsing_exception("Unrecognized networking IP address");
 
       }
 

@@ -599,6 +599,24 @@ public:
    }
 
 
+   inline string_range < CHARACTER * > get_string_buffer_range(strsize size)
+   {
+
+      auto p = get_string_buffer(size);
+
+      return { p, p };
+
+   }
+
+
+   inline void release_string_buffer_range(const string_range < CHARACTER * > & range)
+   {
+
+      release_string_buffer(range.size());
+
+   }
+
+
    inline CHARACTER * defer_get_string_buffer(strsize size, const string_base & str)
    {
 

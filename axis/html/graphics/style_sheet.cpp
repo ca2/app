@@ -37,41 +37,39 @@ namespace html
    }
 
 
-   void style_sheet::parse(html_data * pdata, const ::string & strParam)
+   void style_sheet::parse(html_data * pdata, const_ansi_range & range)
    {
 
-      const ::scoped_string & scopedstr = strParam;
-
-      while(*psz != '\0')
+      while(range.has_char())
       {
-         const ::scoped_string & scopedstrStart = psz;
-         while(*psz != '{' && *psz != '\0')
+         const ::ansi_character * pszStart = range.m_begin;
+         while(*range.m_begin != '{' && *range.m_begin != '\0')
          {
-            psz++;
+            range.m_begin++;
          }
-         if(*psz == '\0')
+         if(range.is_empty())
             return;
-         const ::scoped_string & scopedstrRestart = psz + 1;
-         string str(pszStart, psz - pszStart);
+         const ::ansi_character * pszRestart = range.m_begin + 1;
+         string str(pszStart, pszRestart - pszStart);
          str.trim();
          if(str.length() <= 0)
             return;
 
          pszStart = str;
-         psz = pszStart;
-         while(*psz != '.' && *psz != '\0')
+         range.m_begin = pszStart;
+         while(*range.m_begin != '.' && *range.m_begin != '\0')
          {
-            psz++;
+            range.m_begin++;
          }
 
          auto pstyle = __create_new < class style >();
 
-         string strStyle = str.left(psz - pszStart);
+         string strStyle = str.left(range.m_begin - pszStart);
 
-         if(*psz == '.')
+         if(*range.m_begin == '.')
          {
 
-            str = str.substr(psz - pszStart + 1);
+            str = str.substr(range.m_begin - pszStart + 1);
 
             pstyle->m_etag = tag_none;
 
@@ -99,15 +97,15 @@ namespace html
          if(str.length() > 0)
          {
             pszStart = str;
-            psz = pszStart;
-            while(*psz != ':' && *psz != '\0')
+            range.m_begin = pszStart;
+            while(*range.m_begin != ':' && *range.m_begin != '\0')
             {
-               psz++;
+               range.m_begin++;
             }
-            pstyle->m_strName = str.left(psz - pszStart);
-            if(*psz == ':')
+            pstyle->m_strName = str.left(range.m_begin - pszStart);
+            if(*range.m_begin == ':')
             {
-               str = str.substr(psz - pszStart + 1);
+               str = str.substr(range.m_begin - pszStart + 1);
             }
             else
             {
@@ -116,10 +114,10 @@ namespace html
             pstyle->m_strSubClass = str;
          }
 
-         psz = pstyle->parse(pdata, pszRestart);
+         pstyle->parse(pdata, range(pszRestart));
 
-         if(*psz == '}')
-            psz++;
+         if(*range.m_begin == '}')
+            range.m_begin++;
 
          m_stylea.add(pstyle);
 
@@ -136,8 +134,12 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches(etag, strClass, strSubClass, idName))
+         if (style.matches(etag, strClass, strSubClass, idName))
+         {
+
             return &style;
+
+         }
 
       }
 

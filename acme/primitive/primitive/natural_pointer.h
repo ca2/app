@@ -157,7 +157,7 @@ public:
    {
 
       //if (this->is_natural_pointer() && ::is_set(this->begin()))
-      if (::is_set(this->begin()))
+      if (this->is_string() && ::is_set(this->begin()))
       {
 
          //if (this->is_string())
@@ -184,12 +184,12 @@ public:
       if (this != &natural_pointer)
       {
 
-         //if (natural_pointer.is_string())
-         //{
+         if (natural_pointer.is_string())
+         {
 
             natural_pointer.metadata()->natural_add_ref();
 
-         //}
+         }
 
          destroy();
 
@@ -228,7 +228,7 @@ public:
 
       this->m_end = (iterator) p->end();
 
-      //this->set_string_flag();
+      this->set_string_flag();
 
    }
 
@@ -292,7 +292,7 @@ public:
 
       this->m_end = (iterator) p->end();
       
-      //this->set_string_flag();
+      this->set_string_flag();
 
    }
 
@@ -317,7 +317,7 @@ public:
 
             }
 
-            //this->set_string_flag();
+            this->set_string_flag();
 
          }
 
@@ -335,14 +335,14 @@ public:
    void natural_release()
    {
 
-      DATA * pdataOld = (DATA *)this->m_begin;
+      DATA * pdataOld = nullptr;
       
-      //if (this->is_string())
-      //{
+      if (this->is_string())
+      {
 
-      //   pdataOld = (DATA *)this->m_begin;
+         pdataOld = (DATA *)this->m_begin;
 
-      //}
+      }
 
       auto p = default_construct_natural_pointer();
 
@@ -350,14 +350,14 @@ public:
 
       this->m_end = (iterator)p->end();
 
-      //this->set_string_flag();
+      this->set_string_flag();
 
-      //if (::is_null(pdataOld))
-      //{
+      if (::is_set(pdataOld))
+      {
 
          natural_release(pdataOld);
 
-      //}
+      }
 
    }
 

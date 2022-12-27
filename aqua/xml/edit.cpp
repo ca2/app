@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "edit.h"
 #include "document.h"
+#include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -134,7 +135,7 @@ namespace xml
       if (pnode->get_document() != m_pdocument)
       {
 
-         throw ::exception(error_parsing, "unmatched xml document");
+         throw ::parsing_exception("unmatched xml document");
 
       }
 

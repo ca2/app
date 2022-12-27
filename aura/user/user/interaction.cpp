@@ -1841,19 +1841,19 @@ namespace user
               emessage == e_message_text_composition
 #ifdef WINDOWS_DESKTOP
          || emessage == e_message_sys_key_down
-         || message == e_message_sys_key_up
-         || message == e_message_sys_char
-         || message == e_message_ime_key_down
-         || message == e_message_ime_key_up
-         || message == e_message_ime_char
-         || message == e_message_ime_select
-         || message == e_message_ime_set_context
-         || message == e_message_ime_start_composition
-         || message == e_message_ime_composition
-         || message == e_message_ime_composition_full
-         || message == e_message_ime_notify
-         || message == e_message_ime_end_composition
-         || message == e_message_input_language
+         || emessage == e_message_sys_key_up
+         || emessage == e_message_sys_char
+         || emessage == e_message_ime_key_down
+         || emessage == e_message_ime_key_up
+         || emessage == e_message_ime_char
+         || emessage == e_message_ime_select
+         || emessage == e_message_ime_set_context
+         || emessage == e_message_ime_start_composition
+         || emessage == e_message_ime_composition
+         || emessage == e_message_ime_composition_full
+         || emessage == e_message_ime_notify
+         || emessage == e_message_ime_end_composition
+         || emessage == e_message_input_language
 #endif
          ;
 
@@ -1869,7 +1869,7 @@ namespace user
 
          }
 
-         if (message == e_message_key_down || message == e_message_sys_key_down)
+         if (emessage == e_message_key_down || emessage == e_message_sys_key_down)
          {
 
             auto psession = get_session();
@@ -1886,7 +1886,7 @@ namespace user
             }
 
          }
-         else if (message == e_message_key_up || message == e_message_sys_key_up)
+         else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
          {
 
             auto psession = get_session();
@@ -1905,7 +1905,6 @@ namespace user
          }
 
       }
-
 
       if (::is_set(m_puserinteraction))
       {
@@ -4922,7 +4921,7 @@ namespace user
 
       ::pointer<::message::message>pmessage;
 
-      auto eprototype = ::message::get_message_prototype((enum_message)atom.i64(), 0);
+      auto eprototype = ::message::get_message_prototype(atom, 0);
 
       switch (eprototype)
       {
@@ -7730,7 +7729,7 @@ namespace user
 
       auto puserinteractionpointeraChild = pparent->m_puserinteractionpointeraChild;
 
-      ::auto pFind = puserinteractionpointeraChild->find_first_interaction(this);
+      auto iFind = puserinteractionpointeraChild->find_first_interaction(this);
 
       if (iFind + 1 >= puserinteractionpointeraChild->interaction_count())
       {
@@ -7793,9 +7792,9 @@ namespace user
 
       }
 
-      auto pFind = puserinteractionpointeraChild->find_first_interaction(this);
+      auto iFind = puserinteractionpointeraChild->find_first_interaction(this);
 
-      if (::is_null(pFind))
+      if (::not_found(iFind))
       {
 
          return nullptr;

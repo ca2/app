@@ -97,10 +97,9 @@ public:
    payload_array & operator = (const payload_array & payloada);
 
 
-   void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const char * pszEnd);
-
-   void find_network_payload_child(const char * & pszJson, const ::ansi_character * pszEnd, const ::payload & payload);
+   //void parse_network_payload(const char * & pszJson);
+   void parse_network_payload(::const_ansi_range & range);
+   void find_network_payload_child(::const_ansi_range & range, const ::payload & payload);
 
 
    string & get_network_payload(string & str, bool bNewLine = true) const;
@@ -178,8 +177,8 @@ inline std::strong_ordering payload_array::case_insensitive_order(const ::payloa
 }
 
 
-CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd);
+//CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void var_array_skip_network_payload(::const_ansi_range & range);
 
 
 inline ::payload payload_array::value_at(::index i) const

@@ -699,9 +699,9 @@ namespace apex
    void log::load_flags(const ::property_set & set)
    {
 
-      auto & log = set["log"];
+      auto log = set["log"];
 
-      if (::is_set(&log))
+      if (log.is_set())
       {
 
          m_bLogThreadName = log["threadname"].is_true();
@@ -713,13 +713,6 @@ namespace apex
       }
 
    }
-
-
-   //void log::initialize(e_traceid atom)
-   //{
-
-
-   //}
 
 
    void log::destroy()

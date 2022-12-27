@@ -192,9 +192,9 @@ namespace user
 
       bool bOk = false;
 
-      const ::ansi_character * psz = nullptr;
+      //const ::ansi_character * psz = nullptr;
 
-      const ::ansi_character * pszEnd = nullptr;
+      //const ::ansi_character * pszEnd = nullptr;
 
       string strName;
 
@@ -207,16 +207,14 @@ namespace user
 
          strLine = stra[i];
 
-         psz = strLine;
+         auto range = strLine();
 
-         pszEnd = psz + strLine.length();
-
-         ::str().consume_spaces(psz, 0, pszEnd);
+         ::str::consume_spaces(range, 0);
 
          try
          {
 
-            strName = ::str().consume_nc_name(psz);
+            strName = ::str::consume_nc_name(range);
 
             if (strName == "msgid")
             {
@@ -237,9 +235,9 @@ namespace user
 
             }
 
-            ::str().consume_spaces(psz, 1, pszEnd);
+            ::str::consume_spaces(range, 1);
 
-            str = ::str().consume_quoted_value_ex(psz, pszEnd);
+            str = ::str::consume_quoted_value_ex(range);
 
             i++;
 
@@ -248,13 +246,11 @@ namespace user
 
                strLine = stra[i];
 
-               psz = strLine;
+               range = strLine();
 
-               pszEnd = psz + strLine.length();
+               ::str::consume_spaces(range, 0);
 
-               ::str().consume_spaces(psz, 0, pszEnd);
-
-               strName = ::str().consume_nc_name(psz);
+               strName = ::str::consume_nc_name(range);
 
                if (strName.has_char())
                {
@@ -274,7 +270,7 @@ namespace user
                      try
                      {
 
-                        strHeader = ::str().consume_quoted_value_ex(psz, pszEnd);
+                        strHeader = ::str::consume_quoted_value_ex(range);
 
                         if (strHeader.has_char())
                         {
@@ -315,9 +311,9 @@ namespace user
                else
                {
 
-                  ::str().consume_spaces(psz, 0, pszEnd);
+                  ::str::consume_spaces(range, 0);
 
-                  str += ::str().consume_quoted_value_ex(psz, pszEnd);
+                  str += ::str::consume_quoted_value_ex(range);
 
                }
 

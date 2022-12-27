@@ -4,7 +4,7 @@
 
 
 numeric_parsing_exception::numeric_parsing_exception(const ::string & strMessage):
-   ::exception(error_parsing, strMessage)
+   ::parsing_exception(strMessage)
 {
 
    output_debug_string("numeric_parsing_exception");

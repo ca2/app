@@ -2,16 +2,16 @@
 #pragma once
 
 
-//enum enum_range
-//{
-//
-//   e_range_none,
-//   e_range_string,
-//
-//};
-//
-//
-//DECLARE_ENUMERATION(e_range, enum_range);
+enum enum_range : ::i32
+{
+
+   e_range_none,
+   e_range_string,
+
+};
+
+
+DECLARE_ENUMERATION(e_range, enum_range);
 
 
 template < primitive_range RANGE >
@@ -151,7 +151,7 @@ public:
 
    this_iterator     m_begin;
    this_iterator     m_end;
-   //e_range           m_erange = e_range_none;
+   e_range           m_erange = e_range_none;
 
 
    constexpr range(enum_no_initialize)
@@ -175,12 +175,12 @@ public:
    constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end) { range.m_begin = nullptr; range.m_end = nullptr; }
 
    template<typed_range<iterator> RANGE>
-   constexpr range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end())/*, m_erange(range.m_erange)*/
+   constexpr range(const RANGE &range) : m_begin((this_iterator) range.begin()), m_end((this_iterator) range.end()), m_erange(range.m_erange)
    {
    }
 
    template<typed_range<const_iterator> RANGE>
-   constexpr range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end)/*, m_erange(range.m_erange)*/
+   constexpr range(const RANGE &range) : m_begin((this_iterator) range.m_begin), m_end((this_iterator) range.m_end), m_erange(range.m_erange)
    {
    }
 
@@ -217,7 +217,7 @@ public:
 
       m_begin = range.m_begin;
       m_end = range.m_end;
-      /*m_erange = range.m_erange;*/
+      m_erange = range.m_erange;
 
       return *this;
 
@@ -245,9 +245,9 @@ public:
    }
 
 
-   /*bool is_string() const { return m_erange & e_range_string; }
+   bool is_string() const { return m_erange & e_range_string; }
    void set_string_flag() { m_erange |= e_range_string; }
-   void clear_string_flag() { m_erange -= e_range_string; }*/
+   void clear_string_flag() { m_erange -= e_range_string; }
 
 
    constexpr auto offset_of(const_iterator p) const

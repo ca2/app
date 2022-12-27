@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "hex.h"
 //#include "string.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/parsing.h"
 
 
 i32 alphadigit_weight(char ch)
@@ -101,32 +101,54 @@ namespace hex
 {
 
 
-   u16 parse_u16_exc(const char *& psz, const char * pszEnd)
+   u16 parse_u16_exc(::const_ansi_range & range)
    {
+      
       string strUni;
-      const char * pszNext = psz;
+      
+      const char * pszNext = range.m_begin;
+
       for (index i = 0; i < 4; i++)
       {
-         psz = pszNext;
-         pszNext = unicode_next(psz);
-         if (pszNext > pszEnd)
+         
+         range.m_begin = pszNext;
+
+         pszNext = unicode_next(range.m_begin);
+
+         if (range.is_empty())
          {
-            throw ::exception(error_parsing, "hexadecimal digit expected, premature end");
+            
+            throw ::parsing_exception("hexadecimal digit expected, premature end");
+            
             return -1;
+
          }
-         if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
+
+         if ((pszNext - range.m_begin == 1) &&
+            ((*range.m_begin >= '0' && *range.m_begin <= '9') 
+               || (*range.m_begin >= 'A' && *range.m_begin <= 'F')
+               || (*range.m_begin >= 'a' && *range.m_begin <= 'f')))
          {
-            strUni += *psz;
+
+            strUni += *range.m_begin;
+
          }
          else
          {
-            throw ::exception(error_parsing, "hexadecimal digit expect expected here");
+
+            throw ::parsing_exception("hexadecimal digit expect expected here");
+
             return -1;
+
          }
+
       }
-      psz = pszNext;
+
       return ::hex::to_u32(strUni);
 
    }
 
 }
+
+
+

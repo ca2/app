@@ -1,4 +1,4 @@
-// argcargv.cpp
+﻿// argcargv.cpp
 
 // based on:
 // LIBCTINY - Matt Pietrek 2001
@@ -8,6 +8,7 @@
 
 #include "framework.h"
 //#include "acme/primitive/collection/string_array.h"
+#include "acme/exception/parsing.h"
 #include "acme/primitive/string/str.h"
 //#include "acme/primitive/string/ch12.h"
 ////#include "acme/exception/exception.h"
@@ -22,12 +23,12 @@
 //#define memory_new ACME_NEW
 
 
-string_array get_c_args_from_string(const ::scoped_string & scopedstr)
+string_array get_c_args_from_string(::const_ansi_range & range)
 {
 
    string_array stra;
 
-   if (scopedstr.is_empty())
+   if (range.is_empty())
    {
 
       return stra;
@@ -38,72 +39,68 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
    string_array straAfterColon;
 
-   const char * psz = scopedstr.begin();
-
-   const char * pszEnd = scopedstr.end();
-
    string str;
 
    int i = 0;
 
    bool bColon = false;
 
-   while (psz < pszEnd)
+   while (range.has_char())
    {
 
-      ::str().consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (is_empty(psz))
+      if (range.is_empty())
       {
 
          break;
 
       }
-      if (*psz == '\"')
+      if (*range.m_begin == '\"')
       {
 
-         str = ::str().consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(range);
 
       }
-      else if (*psz == '\'')
+      else if (*range.m_begin == '\'')
       {
 
-         str = ::str().consume_quoted_value(psz, pszEnd);
+         str = ::str::consume_quoted_value(range);
 
       }
       else
       {
 
-         const char * pszValueStart = psz;
+         const char * pszValueStart = range.begin();
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(psz);
+            unicode_increment(range.m_begin);
 
-            if (::is_empty(psz))
+            if (range.is_empty())
             {
 
                break;
 
             }
 
-            if (*psz == '\"')
+            if (*range.m_begin == '\"')
             {
 
-               ::str().consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(range);
 
             }
-            else if (*psz == '\'')
+            else if (*range.m_begin == '\'')
             {
 
-               ::str().consume_quoted_value_ex(psz, pszEnd);
+               ::str::consume_quoted_value_ex(range);
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(pszValueStart, range.m_begin - pszValueStart);
 
       }
 
@@ -162,9 +159,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 
    string_array straAfterColon;
 
-   const char * psz = scopedstr.begin();
-
-   const char * pszEnd = scopedstr.end();
+   auto range = scopedstr();
 
    string str;
 
@@ -172,49 +167,49 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 
    bool bColon = false;
 
-   while (psz < pszEnd)
+   while (range.is_empty())
    {
 
-      ::str().consume_spaces(psz, 0, pszEnd);
+      ::str::consume_spaces(range, 0);
 
-      if (psz >= pszEnd)
+      if (range.is_empty())
       {
 
          break;
 
       }
-      if (*psz == '\"')
+      if (*range.m_begin == '\"')
       {
 
-         str = ::str().no_escape_consume_quoted_value(psz, pszEnd);
+         str = ::str::no_escape_consume_quoted_value(range);
 
       }
-      else if (*psz == '\'')
+      else if (*range.m_begin == '\'')
       {
 
-         str = ::str().no_escape_consume_quoted_value(psz, pszEnd);
+         str = ::str::no_escape_consume_quoted_value(range);
 
       }
       else
       {
 
-         const char * pszValueStart = psz;
+         const char * pszValueStart = range.m_begin;
 
          char chQuote = '\0';
 
-         while (!unicode_is_whitespace(psz))
+         while (!unicode_is_whitespace(range.m_begin))
          {
 
-            unicode_increment(psz);
+            unicode_increment(range.m_begin);
 
-            if (psz >= pszEnd)
+            if (range.is_empty())
             {
 
                break;
 
             }
 
-            if (*psz == '\"')
+            if (*range.m_begin == '\"')
             {
 
                if (chQuote == '\"')
@@ -232,14 +227,14 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str().no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
 
-                  throw ::exception(error_parsing, "Quote character not expected here");
+                  throw ::parsing_exception("Quote character not expected here");
 
                }
 
             }
-            else if (*psz == '\'')
+            else if (*range.m_begin == '\'')
             {
 
                if (chQuote == '\'')
@@ -257,21 +252,21 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
                else
                {
 
-                  //::str().no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
 
-                  throw ::exception(error_parsing, "Quote character not expected here");
+                  throw ::parsing_exception("Quote character not expected here");
 
                }
 
-               ////::str().no_escape_consume_quoted_value(psz, pszEnd);
+               ////::str::no_escape_consume_quoted_value(psz, pszEnd);
 
-               //throw ::exception(error_parsing, "Quote character not expected here");
+               //throw ::parsing_exception("Quote character not expected here");
 
             }
 
          }
 
-         str = string(pszValueStart, psz - pszValueStart);
+         str = string(pszValueStart, range.m_begin - pszValueStart);
 
       }
 

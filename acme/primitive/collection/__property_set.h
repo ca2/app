@@ -45,30 +45,61 @@ public:
 
    inline string format(const ::string & str) const { return _001Replace(str); }
 
-   inline property & payload(const atom & atom) { return get(atom); }
-   inline const property & payload(const atom & atom) const { return *find(atom); }
 
-   inline property & payload(const ::scoped_string & scopedstrName);
-   inline const property & payload(const ::scoped_string & scopedstrName) const;
+   ::index index_of(const ::atom & atom, ::index iStart = 0) const;
 
-   inline property & payload(const ::string & strName);
-   inline const property & payload(const ::string & strName) const;
 
-   inline property & payload(::index iIndex);
-   inline const property & payload(::index iIndex) const;
+   property * find(const ::atom & atom, ::index iStart = 0) const { return atom.is_text() ? find_text_key((const ::scoped_string &) atom.m_str, iStart) : find_index(atom.m_i); }
+   property & get(const ::atom & atom, ::index iStart = 0) { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
 
-   inline property & payload(const ::payload & payload);
-   inline const property & payload(const ::payload & payload) const;
+   
+   property * find_index(::iptr i) const;
+   property & get_index(::iptr i);
 
-#ifdef OS64BIT
 
-   inline property & payload(i32 iIndex) { return operator []((::index) iIndex); }
-   inline const property & payload(i32 iIndex) const { return operator []((::index) iIndex); }
+   property * find_text_key(const scoped_string & scopedstr, ::index iStart = 0) const;
+   property & get_text_key(const scoped_string & scopedstr, ::index iStart = 0);
 
-#endif
 
-   inline property & operator[](const atom & atom) { return payload(atom); }
-   inline const property & operator[](const atom & atom) const { return payload(atom); }
+   inline property * find_property_index(::index iIndex, ::index iStart = 0) const { return find_index(iIndex); }
+   inline property & get_property_index(::index iIndex, ::index iStart = 0) { return get_index(iIndex); }
+
+
+   inline property * find_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
+   inline property & get_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_text_key(scopedstr, iStart); }
+
+
+   inline property * payload_index(::iptr iIndex, ::index iStart = 0) const { return find_property_index(iIndex); }
+   inline property & payload_index(::iptr iIndex, ::index iStart = 0) { return get_property_index(iIndex); }
+
+
+   inline property * payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
+   inline property & payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
+
+
+
+   inline ::payload operator[](const ::atom & atom) const { return atom.is_text() ? payload_text_key((const scoped_string &)atom.m_str) : payload_index(atom.as_iptr()); }
+   inline ::property & operator[](const ::atom & atom) { return atom.is_text() ? payload_text_key((const scoped_string & ) atom.m_str) : payload_index(atom.as_iptr()); }
+
+
+
+   //template < character_range RANGE >
+   //inline property & operator[](const RANGE & range) { return payload(r(const ::scoped_string_base &)range); }
+   //template < character_range RANGE >
+   //inline const property & operator[](const RANGE & range) const { return payload((const ::scoped_string_base &)range); }
+
+   //template < has_get_string HAS_GET_STRING >
+   //inline property & operator[](const HAS_GET_STRING & has_get_string) { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
+   //template < has_get_string HAS_GET_STRING >
+   //inline const property & operator[](const HAS_GET_STRING & has_get_string) const { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
+
+   //template < has_as_string HAS_AS_STRING >
+   //inline property & operator[](const HAS_AS_STRING & has_as_string) { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
+   //template < has_as_string HAS_AS_STRING >
+   //inline const property & operator[](const HAS_AS_STRING & has_as_string) const { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
+
+   //inline property & operator[](const atom & atom) { return payload(atom); }
+   //inline const property & operator[](const atom & atom) const { return payload(atom); }
 
    //inline property & operator[](const ::scoped_string & scopedstrName) { return payload(pszName); }
    //inline const property & operator[](const ::scoped_string & scopedstrName) const { return payload(pszName); }
@@ -251,16 +282,6 @@ public:
 
    bool is_empty(const atom & idName) const;
 
-   ::index find_index(const ::atom & atom, ::index iStart = 0) const;
-
-   property * find(const ::atom & atom) const;
-
-   property & get(const ::atom & atom);
-
-
-   inline property * find_property(const atom & atom) const { return find(atom); }
-   inline property & get_property(const ::atom & atom) { return get(atom); }
-
 
    //template < typename TYPE >
    //bool find(const ::atom & atom, TYPE & t)
@@ -312,9 +333,8 @@ public:
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_network_payload(const ::string & strJson);
-   void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(const char * & pszJson, const ::ansi_character * pszEnd);
+   void parse_network_payload(const ::string & strNetworkPayload);
+   void parse_network_payload(::const_ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);
    void parse_network_headers(const ::scoped_string & scopedstrHeaders);
@@ -381,8 +401,8 @@ public:
 };
 
 
-CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd);
+//CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
+CLASS_DECL_ACME void property_set_skip_network_payload(::const_ansi_range & range);
 
 
 //inline ::pointer<::handle::ini>operator ""_pini(const ::scoped_string & scopedstr, size_t s);
@@ -401,16 +421,16 @@ CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson, co
 inline bool property_set::get_string(string & strResult, const atom & idKey) const
 {
 
-   auto pproperty = find_property(idKey);
+   auto property = operator[](idKey);
 
-   if (::is_null(pproperty))
+   if (property.is_empty())
    {
 
       return false;
 
    }
 
-   strResult = *pproperty;
+   strResult = property.get_string();
 
    return true;
 

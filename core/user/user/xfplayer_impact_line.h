@@ -163,7 +163,7 @@ public:
    //void AddVmsFont(::write_text::font * pfont);
    //i32 GetVmsFontCount();
    void SetPlacement(const ::rectangle_i32 & rectangle);
-   i32 SetLyricColors(::color::color crLeft, ::color::color crRight);
+   i32 SetLyricColors(::color::color colorLeft, ::color::color colorRight);
    i32 SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);

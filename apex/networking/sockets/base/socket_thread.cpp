@@ -72,7 +72,7 @@ namespace sockets
    }
 
 
-   //void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
+   //void socket_thread::transfer(socket_map::association * passociation, socket_map * psocketmap)
    //{
 
    //   //auto estatus = initialize(passociation->m_psocket);
@@ -86,7 +86,7 @@ namespace sockets
 
    //   //}
 
-   //   m_psockethandler = ::move(__create_new < socket_handler > ());
+   //   m_psockethandler = ::transfer(__create_new < socket_handler > ());
 
    //   //psocket->m_psockethandler.release();
 
@@ -96,7 +96,7 @@ namespace sockets
 
    //   //m_psocket->SetSlaveHandler(m_psockethandler);
 
-   //   m_psockethandler->move(passociation, psocketmap);
+   //   m_psockethandler->transfer(passociation, psocketmap);
 
    //   branch();
 

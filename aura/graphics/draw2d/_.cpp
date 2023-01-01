@@ -87,7 +87,7 @@ namespace draw2d
 
 
 //image::image(::image_pointer && pimpl) :
-//   m_pimpl(::move(pimpl))
+//   m_pimpl(::transfer(pimpl))
 //{
 //
 //}
@@ -101,7 +101,7 @@ namespace draw2d
 //}
 
 //image::image(image && image) :
-//   m_pimpl(::move(pimage)), m_dynamic(pimage->m_dynamic)
+//   m_pimpl(::transfer(pimage)), m_dynamic(pimage->m_dynamic)
 //{
 //
 //}

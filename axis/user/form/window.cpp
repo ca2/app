@@ -798,9 +798,11 @@ throw_todo();
 
 
 
-   void form_window::_001GetSelection(::database::key & atom, ::database::selection &selection)
+   void form_window::_001GetSelection(::string & strAtom, string_array & stra)
    {
-      selection.add_item(atom);
+
+      stra.add_item(strAtom);
+
    }
 
 

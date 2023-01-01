@@ -1350,7 +1350,7 @@ bool particle::is_branch_current() const
    
    ptopic->initialize(pparticleCall);
 
-   return ::move(ptopic);
+   return ::transfer(ptopic);
 
 }
 
@@ -1358,7 +1358,7 @@ bool particle::is_branch_current() const
 ::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   return ::move(pparticleCall->acmesystem()->create_extended_topic(atom));
+   return ::transfer(pparticleCall->acmesystem()->create_extended_topic(atom));
 
 }
 
@@ -1795,7 +1795,7 @@ CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
 
    lparam.m_lparam = 0;
 
-   return ::move(p);
+   return ::transfer(p);
 
 }
 

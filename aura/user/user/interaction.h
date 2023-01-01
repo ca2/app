@@ -320,7 +320,7 @@ namespace user
       ::atom                                       m_atomImpact;
       ::color::color                               m_colorBackground;
       point_i32                                    m_pointScroll;
-      // if high frequency mouse move notification is required
+      // if high frequency mouse transfer notification is required
       // create a fast path/low latency callback system
       class ::time                                   m_timeMouseMove;
       class ::time                                   m_timeMouseMoveIgnore;

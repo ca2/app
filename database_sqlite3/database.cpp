@@ -894,7 +894,7 @@ namespace sqlite
 
       }
 
-      const ::scoped_string & scopedstr = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
+      const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
 
       strsize iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
 

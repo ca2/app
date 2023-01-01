@@ -137,7 +137,7 @@ public:
 
       }
 
-      return ::move(stra);
+      return ::transfer(stra);
 
    }
 

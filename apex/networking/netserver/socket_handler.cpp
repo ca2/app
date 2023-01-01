@@ -37,7 +37,7 @@ namespace netserver
    //void socket_handler::move2(::sockets::socket_pointer && psocket)
    //{
 
-   //   m_pcomposite->move2(::move(psocket));
+   //   m_pcomposite->move2(::transfer(psocket));
 
    //}
 

@@ -41,7 +41,7 @@ void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index
 
    index i = start;
 
-   auto iterator = this->begin() + start;
+   auto p = this->begin() + start;
 
    for(; i <= last; i++)
    {
@@ -53,9 +53,9 @@ void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index
 
       }
 
-      str += iterator->element();
+      str += *p;
 
-      iterator++;
+      p++;
 
    }
 
@@ -104,7 +104,7 @@ void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparato
 
    index i = last;
 
-   auto iterator = this->end() - i;
+   auto p = this->end() - i;
 
    for(index i = last; i >= start; i--)
    {
@@ -114,9 +114,9 @@ void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparato
          str += rangeSeparator;
       }
 
-      str += iterator->element();
+      str += *p;
 
-      iterator--;
+      p--;
 
    }
 

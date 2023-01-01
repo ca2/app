@@ -206,6 +206,8 @@ public:
 
 
    static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
+   static bool begins_consume(::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(range.m_begin++, true): false;}
+   static bool begins_consume(::ansi_character & characterReturn, ::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(characterReturn = ansich, range.m_begin++, true): false;}
    static bool case_insensitive_begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
    static void consume(::const_ansi_range & range, const ::ansi_character * pszToConsume);
    //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
@@ -380,7 +382,7 @@ public:
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   static void escape_skip_any_character_in(::const_ansi_range & range, const char * chset, i32 escape);
+   static void escape_find_any_character_in(::const_ansi_range & range, const char * chset, i32 escape);
 
    //========================================================
 // Name   : _tcsenicmp
@@ -403,6 +405,17 @@ public:
    // bro      2002-10-29
    //========================================================
    static void escape_case_insensitive_find(::const_ansi_range & range, const ::const_ansi_range & rangeFind, i32 escape);
+//========================================================
+    // Name   : _tcsecpy
+    // Desc   : similar with _tcscpy with escape process
+    // Param  : escape - will be escape character
+    // Return :
+    //--------------------------------------------------------
+    // Coder    Date                      Desc
+    // bro      2002-10-29
+    //========================================================
+   static void escape_copy(::ansi_range & rangeTarget, char escape, const ::const_ansi_range & rangeSource);
+
 
 }; // class str
 

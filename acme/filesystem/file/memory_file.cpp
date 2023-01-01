@@ -56,9 +56,9 @@ memory_file::memory_file(const memory_file & m) :
 }
 
 memory_file::memory_file(memory_file && m) :
-   ::matter(::move(m)),
-   file(::move(m)),
-   memory_container(::move(m))
+   ::matter(::transfer(m)),
+   file(::transfer(m)),
+   memory_container(::transfer(m))
 {
 
    m_position = m.m_position;
@@ -495,7 +495,7 @@ filesize memory_file::get_position() const
 }
 
 
-filesize memory_file::translate(filesize offset, ::enum_seek eseek)
+void memory_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    ASSERT(is_valid());
@@ -551,7 +551,8 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
       }
       break;
    default:
-      return m_position;
+      return;
+      //return m_position;
    }
 
    m_position = dwNew;
@@ -559,7 +560,7 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
    //if(dwNew > this->size())
    //allocate((memsize) dwNew);
 
-   return (filesize)dwNew;
+   //return (filesize)dwNew;
 }
 
 

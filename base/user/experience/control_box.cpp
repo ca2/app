@@ -639,11 +639,11 @@ if(rectangle.left > 400)
       if (bCreate)
       {
 
-         __defer_construct_new(ppair->m_pitem);
+         __defer_construct_new(ppair->m_element2);
 
       }
 
-      return ppair->m_pitem;
+      return ppair->m_element2;
 
    }
 
@@ -828,9 +828,11 @@ if(rectangle.left > 400)
    void control_box::set_control_box_button_id(enum_button ebutton, atom atom)
    {
 
+      auto & pitem = m_itemmap[ebutton];
+
       //auto estatus =
       
-      __defer_construct_new(m_itemmap[ebutton]);
+      __defer_construct_new(pitem);
 
       //if (!estatus)
       //{
@@ -839,7 +841,7 @@ if(rectangle.left > 400)
 
       //}
 
-      m_itemmap[ebutton]->m_atom = atom;
+      pitem->m_atom = atom;
 
       m_idmap[atom] = ebutton;
 
@@ -999,8 +1001,10 @@ if(rectangle.left > 400)
 
       ::count cVisible = 0;
 
-      for (auto ebutton : m_itemmap.keys())
+      for (auto & pair : m_itemmap)
       {
+
+         auto & ebutton = pair.m_element1;
          
          if (should_show_button(ebutton))
          {

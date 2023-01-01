@@ -2663,7 +2663,7 @@
     <ClInclude Include="primitive\collection\map_to_smart_pointer.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\map_association.h">
+    <ClInclude Include="primitive\collection\set_node.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\map.h">

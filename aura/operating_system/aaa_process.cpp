@@ -65,7 +65,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 //
 //   }
 //
-//   ::str()._008Trim(strValue);
+//   ::str::_008Trim(strValue);
 //
 //   return strValue;
 //
@@ -119,7 +119,7 @@ string consume_command_line_parameter(const ::string & pszCommandLine, const ::s
 //
 //   }
 //
-//   return ::str().trim_any_quotes(strValue.trimmed());
+//   return ::str::trim_any_quotes(strValue.trimmed());
 //
 //
 //}
@@ -276,7 +276,7 @@ bool get_command_line_parameter(string & wstrValue, const ::string & psz, const 
 
    }
 
-   ::str().trim_any_quotes(wstrValue);
+   ::str::trim_any_quotes(wstrValue);
 
    return true;
 

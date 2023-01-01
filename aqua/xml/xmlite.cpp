@@ -68,44 +68,48 @@ namespace xml
    }
 
 
-   void _tcsecpy2(::ansi_range & rangeOut, char escape, ::const_ansi_range & range)
-   {
-      
-      const char * pch = range.m_begin;
-      
-      bool bEscaping = false;
-
-      while(pch < range.m_end)
-      {
-
-         if(bEscaping)
-         {
-
-            bEscaping = false;
-
-            *rangeOut.m_end++ = *range.m_begin;
-
-         }
-         else if(*pch == escape)
-         {
-
-            bEscaping = true;
-
-         }
-         else
-         {
-            
-            *rangeOut.m_end++ = *range.m_begin;
-
-         }
-
-         pch++;
-
-      }
-
-      *rangeOut.m_end = '\0';
-
-   }
+//   void _tcsecpy2(::ansi_range & rangeTarget, char escape, const ::const_ansi_range & rangeSource)
+//   {
+//
+//      auto pTarget = rangeTarget.m_begin;
+//
+//      auto pSource = rangeSource.m_begin;
+//
+//      bool bEscaping = false;
+//
+//      while(pSource < rangeSource.m_end && pTarget < rangeTarget.m_end)
+//      {
+//
+//         if(bEscaping)
+//         {
+//
+//            bEscaping = false;
+//
+//            *pTarget++ = *pSource;
+//
+//         }
+//         else if(*pSource == escape)
+//         {
+//
+//            bEscaping = true;
+//
+//         }
+//         else
+//         {
+//
+//            *pTarget++ = *pSource;
+//
+//         }
+//
+//         pSource++;
+//
+//      }
+//
+//      *pTarget = '\0';
+//
+//      rangeTarget.m_end = pTarget;
+//
+//   }
 
 
    

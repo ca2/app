@@ -14,23 +14,23 @@ namespace windows
    CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
    {
 
-      if (wstr.case_insensitive_begins(::str().windows_bbqb(wstr)))
+      if (wstr.case_insensitive_begins(::str::windows_bbqb(wstr)))
       {
 
          return false;
 
       }
 
-      if (wstr.case_insensitive_begins(::str().windows_bb(wstr)))
+      if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
       {
 
-         wstr = ::str().windows_bbqbunc(wstr) + wstr.substr(1);
+         wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
 
       }
       else
       {
 
-         wstr = ::str().windows_bbqb(wstr) + wstr;
+         wstr = ::str::windows_bbqb(wstr) + wstr;
 
       }
 
@@ -444,7 +444,7 @@ namespace windows
 
       }
 
-      return ::move(wstrRoot);
+      return ::transfer(wstrRoot);
 
    }
 

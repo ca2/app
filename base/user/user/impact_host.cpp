@@ -136,7 +136,7 @@ namespace user
       while (find_impact_kit(pimpactkit->m_atom))
       {
 
-         pimpactkit->m_atom = pimpactkit->m_atom.i64() + 1;
+         pimpactkit->m_atom = pimpactkit->m_atom.as_i64() + 1;
 
       }
 
@@ -298,7 +298,7 @@ namespace user
 
          }
 
-         throw ::move(impactexception);
+         throw ::transfer(impactexception);
 
 
       }
@@ -524,7 +524,7 @@ namespace user
 
    //      }
 
-   //      throw ::move(exception);
+   //      throw ::transfer(exception);
 
    //   }
    //   catch (const ::exception & exception)
@@ -868,7 +868,7 @@ namespace user
    void impact_host::hide_all_except(const atom_array & ida)
    {
 
-      auto ppair = m_impactdatamap.get_start();
+      auto ppair = m_impactdatamap.begin();
 
       while(ppair != nullptr)
       {
@@ -905,7 +905,7 @@ namespace user
 
          }
 
-         ppair = m_impactdatamap.get_next(ppair);
+         ppair++;
 
       }
 

@@ -199,7 +199,7 @@ index payload_array::find_first_ci(const ::scoped_string & scopedstr, index find
    for(; find < this->get_count(); find++)
    {
 
-      if (this->element_at(find).case_insensitive_order(scopedstr) == 0)
+      if (this->element_at(find).case_insensitive_equals(scopedstr))
       {
 
          return find;

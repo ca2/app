@@ -84,8 +84,8 @@ public:
 
    image_source(image_source && imagesource) :
       m_esubimage(imagesource.m_esubimage),
-      m_rectangleSubImage(::move(imagesource.m_rectangleSubImage)),
-      m_pimagesource(::move(imagesource.m_pimagesource))
+      m_rectangleSubImage(::transfer(imagesource.m_rectangleSubImage)),
+      m_pimagesource(::transfer(imagesource.m_pimagesource))
    {
 
 

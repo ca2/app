@@ -33,8 +33,8 @@ CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index a
       return bParam;
    }
 
-   ia.m_ba.erase_key(bParam);
-   ia.m_ab.erase_key(aOld);
+   ia.m_ba.erase_item(bParam);
+   ia.m_ab.erase_item(aOld);
    ia.m_iMaxA = ia.calc_max_a();
    ia.m_iMaxB = ia.calc_max_b();
    //if (aNew > aOld)
@@ -81,8 +81,8 @@ CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index a
          b = ia.get_b(a);
          if (b != ia.m_iEmptyB)
          {
-            ia.m_ba.erase_key(b);
-            ia.m_ab.erase_key(a);
+            ia.m_ba.erase_item(b);
+            ia.m_ab.erase_item(a);
             ia.m_ba.set_at(b, a + 1);
             ia.m_ab.set_at(a + 1, b);
          }
@@ -167,9 +167,9 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
    for (index i = 0; i < c; i++)
    {
 
-      ia.m_ba.erase_key(iaB[i]);
+      ia.m_ba.erase_item(iaB[i]);
 
-      ia.m_ab.erase_key(iaOld[i]);
+      ia.m_ab.erase_item(iaOld[i]);
 
    }
 
@@ -231,9 +231,9 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
             else if (b != ia.m_iEmptyB)
             {
 
-               ia.m_ba.erase_key(b);
+               ia.m_ba.erase_item(b);
 
-               ia.m_ab.erase_key(a);
+               ia.m_ab.erase_item(a);
 
                ia.m_ba.set_at(b, a + iOffset);
 

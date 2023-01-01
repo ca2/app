@@ -95,7 +95,7 @@ namespace sockets_bsd
       /** add socket instance to socket ::map. Removal is always automatic. */
       virtual void add(const ::sockets::socket_pointer& psocket) override = 0;
       virtual void move2(::sockets::socket_pointer && psocket) = 0;
-      virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
+      virtual void transfer(socket_map::node * pnode, socket_map * psocketmap = nullptr) = 0;
       virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:

@@ -37,9 +37,9 @@ namespace sockets
          if (m_header)
          {
 
-            if (!line.get_length())
+            if (!line.length())
             {
-               if (m_header_line.get_length())
+               if (m_header_line.length())
                {
                   ::parse pa(m_header_line, ":");
                   string key = pa.getword();
@@ -57,7 +57,7 @@ namespace sockets
             }
             else
             {
-               if (m_header_line.get_length())
+               if (m_header_line.length())
                {
                   ::parse pa(m_header_line, ":");
                   string key = pa.getword();
@@ -78,7 +78,7 @@ namespace sockets
                print("550 Failed\r\n");
          }
          else
-         if (line.get_length() && line[0] == '.')
+         if (line.length() && line[0] == '.')
          {
             OnData(line.substr(1));
          }
@@ -135,14 +135,14 @@ namespace sockets
 
          ::networking::email_address addr( strEmailAddress );
 
-         if (addr.get_name().get_length() > 64)
+         if (addr.get_name().length() > 64)
          {
             OnAbort(SMTP_NAME_TOO_LONG);
             print("500 Name too long.\r\n");
             return;
          }
 
-         if (addr.get_domain().get_length() > 64)
+         if (addr.get_domain().length() > 64)
          {
             OnAbort(SMTP_DOMAIN_TOO_LONG);
             print("500 Domain too long.\r\n");
@@ -172,14 +172,14 @@ namespace sockets
 
          ::networking::email_address addr(strEmailAddress);
 
-         if(addr.get_name().get_length() > 64)
+         if(addr.get_name().length() > 64)
          {
             OnAbort(SMTP_NAME_TOO_LONG);
             print("500 Name too long.\r\n");
             return;
          }
 
-         if (addr.get_domain().get_length() > 64)
+         if (addr.get_domain().length() > 64)
          {
             OnAbort(SMTP_DOMAIN_TOO_LONG);
             print("500 Domain too long.\r\n");

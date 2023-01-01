@@ -36,6 +36,9 @@ void acme_directory::initialize(::particle * pparticle)
 
    m_pathInstallFolder = default_install();
 
+   m_pathFolder = get_current();
+
+
 //   m_pathModuleFolder = dir_ca2_module();
 
 }

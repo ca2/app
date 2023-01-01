@@ -214,7 +214,7 @@ namespace simple_ui
          strsize i3 = iCursor - lim;
          strsize iStart = maximum(0,i1);
          strsize iEnd = minimum(i2,strLine.length());
-         ::str().fill(strLine,'*');
+         ::str::fill(strLine,'*');
          str1 = strLine.substr(0,iStart);
          str2 = strLine.substr(iStart,iEnd - iStart);
          str3 = strLine.substr(iEnd);
@@ -224,9 +224,9 @@ namespace simple_ui
          strExtent1.replace("\t","   ");
          strExtent2.replace("\t","   ");
          strExtent3.replace("\t","   ");
-         ::str().fill(strExtent1,'*');
-         ::str().fill(strExtent2,'*');
-         ::str().fill(strExtent3,'*');
+         ::str::fill(strExtent1,'*');
+         ::str::fill(strExtent2,'*');
+         ::str::fill(strExtent3,'*');
 
          pbrushText->create_solid(color32);
          pgraphics->set(pbrushText);

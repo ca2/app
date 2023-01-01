@@ -706,7 +706,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLine = ::str().block('*', i32(strLine.length()));
+               strLine = ::str::block('*', i32(strLine.length()));
 
             }
 
@@ -730,7 +730,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLineGraphics = ::str().block('*', i32(strLineGraphics.length()));
+               strLineGraphics = ::str::block('*', i32(strLineGraphics.length()));
 
             }
 
@@ -2277,7 +2277,7 @@ namespace user
 
       //   strLineGraphics = strLine;
 
-      //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
       //   const ::ansi_character * pszStart = strLine;
 
@@ -2740,7 +2740,7 @@ namespace user
       //         if (bTabs)
       //         {
       //
-      //            ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+      //            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
       //
       //         }
       //
@@ -3140,7 +3140,7 @@ namespace user
 
       //   strLineGraphics = strLine;
 
-      //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
       //   const ::ansi_character * pszStart = strLine;
 

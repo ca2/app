@@ -99,7 +99,7 @@ namespace acme
 
       auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
-      string str = _ansi_stack_trace(stack, minimum(iCount, frames), strFormat, iSkip);
+      string str = _ansi_stack_trace(stack, minimum_non_negative(iCount, frames), strFormat, iSkip);
 
       return str;
 

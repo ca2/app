@@ -26,7 +26,7 @@ public:
 
    /// in bytes, without meta, with null(s)
    inline ::memsize memsize() const { return (::memsize) this->m_memsize; }
-   //inline ::strsize memsize_in_chars() const { return (::strsize) ::str().byte_length_to_char_length(&this->get_data()[0], (::strsize) this->m_memsize); }
+   //inline ::strsize memsize_in_chars() const { return (::strsize) ::str::byte_length_to_char_length(&this->get_data()[0], (::strsize) this->m_memsize); }
    inline ::strsize memsize_in_chars() const;
 
    /// always char count (before first [and possibly final, but not necessarily final] null terminator)

@@ -106,7 +106,7 @@ namespace factory
 
        }
 
-       auto pparticle = ::move(pfactoryitem->create_particle());
+       auto pparticle = ::transfer(pfactoryitem->create_particle());
 
        if (!pparticle)
        {
@@ -133,16 +133,16 @@ namespace factory
 
        critical_section_lock cs(&((factory*)this)->m_criticalsection);
 
-       auto iterator = this->plookup(atom);
+       auto p = this->plookup(atom);
 
-       if (iterator.is_null())
+       if (!p)
        {
 
           return nullptr;
 
        }
 
-       return iterator->m_element2;
+       return p->load();
 
     }
 
@@ -378,7 +378,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory)
 
    __raw_construct(p, pfactory);
 
-   return ::move(p);
+   return ::transfer(p);
 
 }
 

@@ -69,8 +69,8 @@ namespace user
       };
 
 
-      template < typename VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE > >
-      using image_key_map = map< image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE, PAIR >;
+      template < typename PAYLOAD, class ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE > >
+      using image_key_map = map< image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE, PAIR >;
 
 
    protected:

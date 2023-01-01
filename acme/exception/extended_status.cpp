@@ -53,7 +53,7 @@ namespace extended
 
     //status::status(status&& status) :
     //   m_estatus(status.m_estatus),
-    //   m_pexceptiona(move(status.m_pexceptiona))
+    //   m_pexceptiona(transfer(status.m_pexceptiona))
     //{
 
     //}

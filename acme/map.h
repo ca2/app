@@ -9,8 +9,8 @@ namespace acme
    {
 
 
-      template < typename MAP, typename VALUE >
-      inline bool contains_value(const MAP & map, const VALUE & value);
+      template < typename MAP, typename PAYLOAD >
+      inline bool contains_payload(const MAP & map, const PAYLOAD & payload);
       
 
    } // namespace map
@@ -32,8 +32,8 @@ namespace acme
    {
 
 
-      template < typename MAP, typename VALUE >
-      inline contains_value(const MAP & map, const VALUE & value)
+      template < typename MAP, typename PAYLOAD >
+      inline contains_payload(const MAP & map, const PAYLOAD & payload)
       {
 
          if (&m != &attribmap)

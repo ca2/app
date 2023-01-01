@@ -3624,7 +3624,7 @@ namespace user
 //      break;
 //      case ::message::PrototypeMove:
 //      {
-//         pmessage = __new(::message::move);
+//         pmessage = __new(::message::transfer);
 //      }
 //      break;
 //      case ::message::PrototypeEraseBkgnd:

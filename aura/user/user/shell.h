@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/filesystem/filesystem/path.h"
+//#include "acme/filesystem/filesystem/path.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
@@ -88,8 +88,8 @@ namespace user
       };
 
 
-      template < typename VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE > >
-      using image_key_map = map< image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE, PAIR >;
+      template < typename PAYLOAD, class ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE > >
+      using image_key_map = map< image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE, PAIR >;
 
       bool m_bGetFileImageByIconPath : 1;
       bool m_bGetFileImageByFileTypeImage : 1;
@@ -97,9 +97,9 @@ namespace user
 
    protected:
 
-      ::i32_map < ::pointer<::image_list >>                               m_pimagelist; // int is the size_i32
-      ::i32_map < ::pointer<::image_list >>                               m_pimagelistHover; // int is the size;
-      map < ::user::interaction *, ::string_array >                             m_mapInterest;
+      ::i32_map < ::pointer<::image_list >>                          m_pimagelist; // int is the size_i32
+      ::i32_map < ::pointer<::image_list >>                          m_pimagelistHover; // int is the size;
+      map < ::user::interaction *, ::string_array >                  m_mapInterest;
 
 
    public:

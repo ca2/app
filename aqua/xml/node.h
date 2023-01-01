@@ -84,7 +84,7 @@ namespace xml
    protected:
 
 
-      virtual void _load(const char * & pszNext,::const_ansi_range & rangeXml,parse_info * pi = nullptr);
+      virtual void _load(::const_ansi_range & rangeXml,parse_info * pi = nullptr);
 
 
    public:

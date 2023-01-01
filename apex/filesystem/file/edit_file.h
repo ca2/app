@@ -185,7 +185,7 @@ namespace file
       //void load_string(string & str);
       //void create(memsize iSize = -1);
       //void seek_to_begin();
-      filesize seek(filesize lOff,::enum_seek eseek);
+      void seek(filesize lOff,::enum_seek eseek);
       filesize get_position() const;
 
       //virtual string GetFilePath() const;

@@ -347,7 +347,7 @@ namespace acme
    //   //   try
    //   //   {
 
-   //   //      m_pca2library = ::move(pfnNewAuraLibrary());
+   //   //      m_pca2library = ::transfer(pfnNewAuraLibrary());
 
    //   //   }
    //   //   catch (...)

@@ -502,7 +502,7 @@
 //void stream::write(const ::ansi_character * psz)
 //{
 //
-//   auto len = ::str().string_safe_length(psz);
+//   auto len = ::str::string_safe_length(psz);
 //
 //   write_buffer_length(len);
 //

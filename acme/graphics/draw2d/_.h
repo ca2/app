@@ -49,7 +49,7 @@ inline byte clampAndConvert(double v)
 
 
 
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
+template < class PAYLOAD, typename ARG_VALUE = argument_of < PAYLOAD >::type >
 
 
 

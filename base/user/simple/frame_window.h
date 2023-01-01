@@ -28,7 +28,7 @@ public:
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
    ::image_pointer                                 m_pimageAlpha;
-   ::database::key                                 m_datakeyFrame;
+   ::string                                        m_strDataKeyFrame;
    ::pointer<::windowing::icon>                    m_piconNotify;
    ::pointer<::user::notify_icon>                  m_pnotifyicon;
    ::payload                                       m_varFrame;

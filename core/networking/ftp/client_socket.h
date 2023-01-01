@@ -803,7 +803,7 @@ printing, the receiving host must know how the vertical
 format control is represented.  In the second case, it must
 be possible to store a file at a host and then retrieve it
 later in exactly the same form.  Finally, it should be
-possible to move a file from one host to another and process
+possible to transfer a file from one host to another and process
 the file at the second host without undue trouble.  A single
 ASCII or EBCDIC format does not satisfy all these
 conditions.  Therefore, these types have a second parameter

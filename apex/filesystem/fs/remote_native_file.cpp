@@ -59,7 +59,8 @@ namespace fs
       }
    }
 
-   filesize remote_native_file::seek(filesize lOff, ::enum_seek eseek)
+
+   void remote_native_file::seek(filesize lOff, ::enum_seek eseek)
    {
 
       if((m_nOpenFlags & ::file::e_open_read) != 0)

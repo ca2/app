@@ -12,7 +12,7 @@ public:
 
 
    auto_ptr_array() { }
-   auto_ptr_array(auto_ptr_array && array) : pointer_array_process < comparable_array < POINTER_TYPE * >, POINTER_TYPE >(::move(array)) { }
+   auto_ptr_array(auto_ptr_array && array) : pointer_array_process < comparable_array < POINTER_TYPE * >, POINTER_TYPE >(::transfer(array)) { }
    ~auto_ptr_array() override { this->erase_all(); }
 
 

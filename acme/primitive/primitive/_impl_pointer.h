@@ -1028,7 +1028,7 @@ inline ::pointer<TYPE> __create_new(::particle* pparticle)
 
    }
 
-   return ::move(p);
+   return ::transfer(p);
 
 }
 

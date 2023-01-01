@@ -48,7 +48,7 @@ public:
 
    pointer_array(const pointer_array & a) : BASE_ARRAY(a) { }
 
-   pointer_array(pointer_array && a) : BASE_ARRAY(::move(a)) { }
+   pointer_array(pointer_array && a) : BASE_ARRAY(::transfer(a)) { }
 
 
    template < typename OTHER >
@@ -181,7 +181,7 @@ public:
 
       this->allocate(nIndex + 1);
 
-      this->last() = ::move(p);
+      this->last() = ::transfer(p);
 
       return nIndex;
 
@@ -215,7 +215,7 @@ public:
    ::index add(pointer < T > && p)
    {
 
-      return this->add_item(::move(p));
+      return this->add_item(::transfer(p));
 
    }
 
@@ -602,7 +602,7 @@ public:
    pointer < T > pop_first(::index n = 0)
    {
 
-      auto p = ::move(this->comparable_array < ::pointer<T > > ::first(n));
+      auto p = ::transfer(this->comparable_array < ::pointer<T > > ::first(n));
       
       this->comparable_array < ::pointer<T > > ::erase_at(n);
       
@@ -901,7 +901,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ::pointer<T > > ::operator = (::move(a));
+      comparable_array < ::pointer<T > > ::operator = (::transfer(a));
 
       return *this;
 

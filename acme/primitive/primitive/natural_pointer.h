@@ -71,7 +71,7 @@ public:
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
-      return (natural_meta_data < BASE_META_DATA >*)(void*)((byte*)(void*)pdata - BASE_META_DATA::natural_offset());
+      return ::is_null(pdata) ? nullptr : ((natural_meta_data < BASE_META_DATA >*)(void*)((byte*)(void*)pdata - BASE_META_DATA::natural_offset()));
 
    }
 
@@ -136,7 +136,7 @@ public:
    inline natural_pointer(natural_pointer && natural_pointer)
    {
 
-      RANGE_TYPE::operator = (::move(natural_pointer));
+      RANGE_TYPE::operator = (::transfer(natural_pointer));
 
    }
    inline natural_pointer() : natural_pointer(e_no_initialize)
@@ -210,7 +210,7 @@ public:
 
          destroy();
 
-         RANGE_TYPE::operator = (::move(natural_pointer));
+         RANGE_TYPE::operator = (::transfer(natural_pointer));
 
       }
       

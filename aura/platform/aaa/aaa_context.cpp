@@ -57,7 +57,7 @@ RetryBuildNumber:
 
    strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
 
-   ::str()._008Trim(strBuild);
+   ::str::_008Trim(strBuild);
 
    if (strBuild.length() != 19)
    {
@@ -528,7 +528,7 @@ pacmedirectory->system() / path;
 ::file::path context::get_matter_cache_path(::file::path path)
 {
 
-   if (::str().case_insensitive_begins_eat((string &) path, "appmatter://"))
+   if (::str::case_insensitive_begins_eat((string &) path, "appmatter://"))
    {
 
       ::file::path pathCache = ::auraacmesystem()->m_pdirsystem->m_pathLocalAppMatterFolder / path;

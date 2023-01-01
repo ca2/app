@@ -181,9 +181,9 @@ namespace html
             if (!m_pelemental->m_propertyset.is_new_or_null("width"))
             {
 
-               string strWidth(m_pelemental->m_propertyset["width"].as_string());
+               string strWidth(m_pelemental->m_propertyset["width"].get_string());
 
-               if (strWidth.find("%") > 0)
+               if (strWidth.find_index("%") > 0)
                {
 
                   m_flags.add(FlagWidthPercent);
@@ -211,7 +211,7 @@ namespace html
          if (m_border.top < 1.f && bTableBorder)
          {
             m_border.top = get_table()->m_iBorder;
-            m_border.crTop = argb(255, 90, 90, 90);
+            m_border.colorTop = argb(255, 90, 90, 90);
             m_border.styleTop = ::html::border::style_solid;
          }
          if (m_border.right < 1.f && bTableBorder)
@@ -223,7 +223,7 @@ namespace html
          if (m_border.bottom < 1.f && bTableBorder)
          {
             m_border.bottom = get_table()->m_iBorder;
-            m_border.crBottom = argb(255, 192, 192, 192);
+            m_border.colorBottom = argb(255, 192, 192, 192);
             m_border.styleBottom = ::html::border::style_solid;
          }
 
@@ -574,7 +574,7 @@ namespace html
                   if(!pelement->m_propertyset.is_new_or_null("colspan"))
                   {
 
-                     iMinCol += pelement->m_propertyset["colspan"].i32();
+                     iMinCol += pelement->m_propertyset["colspan"].as_i32();
 
                   }
                   else

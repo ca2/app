@@ -148,7 +148,7 @@ void apple_accumulate_on_open_file(const ::string &* psza, int iCount, const ::s
    for(index i = 0; i < stra.get_count(); i++)
    {
 
-      if(::str().case_insensitive_begins_eat(stra[i], "file://"))
+      if(::str::case_insensitive_begins_eat(stra[i], "file://"))
       {
 
          if(!string_begins(stra[i], "/"))

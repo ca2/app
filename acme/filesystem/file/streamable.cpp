@@ -18,7 +18,7 @@ namespace file
    }
 
 
-   ::filesize streamable::translate(filesize offset, ::enum_seek eseek)
+   void streamable::translate(filesize offset, ::enum_seek eseek)
    {
 
       throw error_interface_only;

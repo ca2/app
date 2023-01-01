@@ -15,11 +15,11 @@ public:
 
    inline address_array() {}
    inline address_array(const address_array & a) { this->operator = (a); }
-   inline address_array(address_array && a) { this->operator = (::move(a)); }
+   inline address_array(address_array && a) { this->operator = (::transfer(a)); }
 
 
    inline address_array & operator = (const address_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   inline address_array & operator = (address_array && a) { this->ARRAY_TYPE::operator = (::move(a)); return *this; }
+   inline address_array & operator = (address_array && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
 
 
    ::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }
@@ -60,11 +60,11 @@ public:
 //   inline object_ptra(::particle * pparticle) : ::matter(pparticle) { }
 //   inline object_ptra(const object_ptra & a) : ::matter(a), BASE_TYPE(a) { }
 //   inline object_ptra(const BASE_TYPE & a) : ::matter((const ::matter & )a), BASE_TYPE(a) { }
-//   inline object_ptra(object_ptra && a): ::matter(a), BASE_TYPE(::move(a)) { }
+//   inline object_ptra(object_ptra && a): ::matter(a), BASE_TYPE(::transfer(a)) { }
 //
 //   inline object_ptra & operator = (const object_ptra & a) { this->BASE_TYPE::operator = (a); return *this; }
 //   inline object_ptra & operator = (const BASE_TYPE & a) { this->BASE_TYPE::operator = (a); return *this; }
-//   inline object_ptra & operator = (object_ptra && a) { this->BASE_TYPE::operator = (::move(a)); return *this; }
+//   inline object_ptra & operator = (object_ptra && a) { this->BASE_TYPE::operator = (::transfer(a)); return *this; }
 //
 //
 //};

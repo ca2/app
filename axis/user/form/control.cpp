@@ -820,7 +820,7 @@ namespace user
 
       //}
 
-      bData = (payload.i32() != 0) ? 1 : 0;
+      bData = (payload.as_i32() != 0) ? 1 : 0;
 
       return true;
 
@@ -886,7 +886,7 @@ namespace user
    }
 
 
-   void form_control::_001GetSelection(::database::key & atom,::database::selection &selection)
+   void form_control::_001GetSelection(::string & atom,::string_array &selection)
    {
 
       selection.add_item(atom);

@@ -725,9 +725,9 @@ namespace acme
 
 #endif
 
-      m_taskmap.erase_key(itask);
+      m_taskmap.erase_item(itask);
 
-      m_taskidmap.erase_key(ptask);
+      m_taskidmap.erase_item(ptask);
 
    }
 
@@ -852,7 +852,7 @@ namespace acme
 
       synchronous_lock synchronouslock(m_pmutexTaskOn);
 
-      m_mapTaskOn.erase_key(atom);
+      m_mapTaskOn.erase_item(atom);
 
    }
 
@@ -1572,7 +1572,7 @@ namespace acme
 
       auto psession = m_sessionmap[iEdge];
 
-      m_sessionmap.erase_key(iEdge);
+      m_sessionmap.erase_item(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
@@ -2480,11 +2480,16 @@ namespace acme
 
 #if !defined(WINDOWS)
 
-      m_pexceptiontranslator->detach();
+      if(::is_set(m_pexceptiontranslator))
+      {
 
-      m_pexceptiontranslator->destroy();
+         m_pexceptiontranslator->detach();
 
-      m_pexceptiontranslator.release();
+         m_pexceptiontranslator->destroy();
+
+         m_pexceptiontranslator.release();
+
+      }
 
 #endif
 
@@ -2683,7 +2688,7 @@ void system_on_open_file(void * pSystem, const ::scoped_string & scopedstrFile)
 //
 //   //psystem->m_strAppId = strAppId;
 //
-//   return ::move(psystem);
+//   return ::transfer(psystem);
 //
 //}
 //

@@ -8870,7 +8870,7 @@
     <frame>
       <ip>0x5867DC7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;id, pointer&lt;pointer_array&lt;message::route&gt; &gt;, id const&amp;, pointer&lt;pointer_array&lt;message::route&gt; &gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -9172,7 +9172,7 @@
     <frame>
       <ip>0x5AE351D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::free_assoc(map_association&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
+      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::free_assoc(set_node&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1298</line>
@@ -9180,7 +9180,7 @@
     <frame>
       <ip>0x5ADF662</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::erase_assoc(map_association&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
+      <fn>map&lt;unsigned long, unsigned long, unsigned long, unsigned long, pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;::erase_assoc(set_node&lt;pair&lt;unsigned long, unsigned long, unsigned long, unsigned long&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -14921,7 +14921,7 @@
     <frame>
       <ip>0x5DA0A93</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::free_assoc(map_association&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
+      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::free_assoc(set_node&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1298</line>
@@ -14929,7 +14929,7 @@
     <frame>
       <ip>0x5DA014E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::erase_assoc(map_association&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
+      <fn>map&lt;oswindow_data*, oswindow_data*, user::interaction_impl*, user::interaction_impl*, pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;::erase_assoc(set_node&lt;pair&lt;oswindow_data*, user::interaction_impl*, oswindow_data*, user::interaction_impl*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -15120,7 +15120,7 @@
     <frame>
       <ip>0x5DA0BCB</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::free_assoc(map_association&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
+      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::free_assoc(set_node&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1298</line>
@@ -15128,7 +15128,7 @@
     <frame>
       <ip>0x5DA0210</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::erase_assoc(map_association&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
+      <fn>map&lt;user::interaction_impl*, user::interaction_impl*, oswindow_data*, oswindow_data*, pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;::erase_assoc(set_node&lt;pair&lt;user::interaction_impl*, oswindow_data*, user::interaction_impl*, oswindow_data*&gt; &gt;*)</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map.h</file>
       <line>1490</line>
@@ -17368,7 +17368,7 @@
     <frame>
       <ip>0x120060C5</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;experience::experience&gt;, string const&amp;, pointer&lt;experience::experience&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -27833,7 +27833,7 @@
     <frame>
       <ip>0x5AABFF7</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;e_cursor, pointer&lt;draw2d::cursor&gt;, e_cursor, pointer&lt;draw2d::cursor&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -30014,7 +30014,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -30412,7 +30412,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -30611,7 +30611,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -30810,7 +30810,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -31009,7 +31009,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -31208,7 +31208,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -31407,7 +31407,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -31606,7 +31606,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -31805,7 +31805,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32004,7 +32004,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32203,7 +32203,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32402,7 +32402,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32601,7 +32601,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32800,7 +32800,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -32999,7 +32999,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -33198,7 +33198,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -33397,7 +33397,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -33596,7 +33596,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -33795,7 +33795,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -33994,7 +33994,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -34193,7 +34193,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -34392,7 +34392,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -34591,7 +34591,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -34790,7 +34790,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -34989,7 +34989,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -35188,7 +35188,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -35387,7 +35387,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -35586,7 +35586,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -35785,7 +35785,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -35984,7 +35984,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -36183,7 +36183,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -36382,7 +36382,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -36581,7 +36581,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -36780,7 +36780,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -36979,7 +36979,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -37178,7 +37178,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -37377,7 +37377,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -37576,7 +37576,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -37775,7 +37775,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -37974,7 +37974,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -38173,7 +38173,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -38372,7 +38372,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -38571,7 +38571,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -38770,7 +38770,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -38969,7 +38969,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -39168,7 +39168,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -39367,7 +39367,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -39566,7 +39566,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -39765,7 +39765,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -39964,7 +39964,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -40163,7 +40163,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -40362,7 +40362,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -40561,7 +40561,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -40760,7 +40760,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -40959,7 +40959,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -41158,7 +41158,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -41357,7 +41357,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -41556,7 +41556,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -41755,7 +41755,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -41954,7 +41954,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -42153,7 +42153,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -42352,7 +42352,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -42551,7 +42551,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -42750,7 +42750,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -42949,7 +42949,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -43148,7 +43148,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -43347,7 +43347,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -43546,7 +43546,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -43745,7 +43745,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -43944,7 +43944,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -44143,7 +44143,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -44342,7 +44342,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -44541,7 +44541,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -44740,7 +44740,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -44939,7 +44939,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -45138,7 +45138,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -45337,7 +45337,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -45536,7 +45536,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -45735,7 +45735,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -45934,7 +45934,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -46133,7 +46133,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -46332,7 +46332,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -46531,7 +46531,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -46730,7 +46730,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -46929,7 +46929,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -47128,7 +47128,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -47327,7 +47327,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -47526,7 +47526,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -47725,7 +47725,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -47924,7 +47924,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -48123,7 +48123,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -48322,7 +48322,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -48521,7 +48521,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -48720,7 +48720,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -48919,7 +48919,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -49118,7 +49118,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -49317,7 +49317,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -49516,7 +49516,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -49715,7 +49715,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -49914,7 +49914,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -50113,7 +50113,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -50312,7 +50312,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -50511,7 +50511,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -50710,7 +50710,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -50909,7 +50909,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -51108,7 +51108,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -51307,7 +51307,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -51506,7 +51506,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -51705,7 +51705,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -51904,7 +51904,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -52103,7 +52103,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -52302,7 +52302,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -52501,7 +52501,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -52700,7 +52700,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -52899,7 +52899,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -53098,7 +53098,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -53297,7 +53297,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -53496,7 +53496,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -53695,7 +53695,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -53894,7 +53894,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -54093,7 +54093,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -54292,7 +54292,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -54491,7 +54491,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -54690,7 +54690,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -54889,7 +54889,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -55088,7 +55088,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -55287,7 +55287,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -55486,7 +55486,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -55685,7 +55685,7 @@
     <frame>
       <ip>0x582A6DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;alloc_interface&gt;, string const&amp;, pointer&lt;alloc_interface&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -56882,7 +56882,7 @@
     <frame>
       <ip>0x5D5DA7D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;string, pointer&lt;user::language&gt;, string const&amp;, pointer&lt;user::language&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -57254,7 +57254,7 @@
     <frame>
       <ip>0x5830141</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;id, aura::str_schema, id const&amp;, aura::str_schema const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -57294,7 +57294,7 @@
     <frame>
       <ip>0x583D8DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -57444,7 +57444,7 @@
     <frame>
       <ip>0x583D8DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -57650,7 +57650,7 @@
     <frame>
       <ip>0x583D8DF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;id, aura::str_locale, id const&amp;, aura::str_locale const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>
@@ -59662,7 +59662,7 @@
     <frame>
       <ip>0x583E72D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>map_association&lt;pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::~map_association()</fn>
+      <fn>set_node&lt;pair&lt;long, pointer&lt;aura::session&gt;, long, pointer&lt;aura::session&gt; const&amp;&gt; &gt;::~set_node()</fn>
       <dir>/xcore/app/aura/../aura/primitive/collection</dir>
       <file>collection_map_association.h</file>
       <line>5</line>

@@ -2184,7 +2184,7 @@ void __NANO2D_API(Arc)(NANO2D_CONTEXT * ctx, float cx, float cy, float r, float 
 	//float px = 0, py = 0, ptanx = 0, ptany = 0;
 	//float vals[3 + 5 * 7 + 100];
 	//int i, ndivs, nvals;
-	//int move = __NANO2D_CONTEXT(ctx)->ncommands > 0 ? NVG_LINETO : NVG_MOVETO;
+	//int transfer = __NANO2D_CONTEXT(ctx)->ncommands > 0 ? NVG_LINETO : NVG_MOVETO;
 
 	//// Clamp angles
 	//da = a1 - a0;
@@ -2224,7 +2224,7 @@ void __NANO2D_API(Arc)(NANO2D_CONTEXT * ctx, float cx, float cy, float r, float 
 	//	tany = Δx * r * kappa;
 
 	//	if (i == 0) {
-	//		vals[nvals++] = (float)move;
+	//		vals[nvals++] = (float)transfer;
 	//		vals[nvals++] = x;
 	//		vals[nvals++] = y;
 	//	}

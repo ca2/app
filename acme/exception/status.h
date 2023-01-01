@@ -28,7 +28,7 @@ public:
 
 
    status(const TYPE&& _, const ::e_status & estatus = ::success) :
-      TYPE(::move(_)),
+      TYPE(::transfer(_)),
       m_estatus(estatus)
    {
 
@@ -147,7 +147,7 @@ public:
 //   }
 //
 //   holding_status(const HOLDING&& _, const ::e_status & estatus = ::success) :
-//      m_holding(::move(_)),
+//      m_holding(::transfer(_)),
 //      m_estatus(estatus)
 //   {
 //
@@ -227,7 +227,7 @@ public:
 //
 //      m_estatus = ::success;
 //
-//      m_holding = ::move(holding);
+//      m_holding = ::transfer(holding);
 //
 //      return *this;
 //

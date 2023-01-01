@@ -2,6 +2,9 @@
 
 
 
+#include "comparable_eq_list.h"
+
+
 template < class TYPE, class ARG_TYPE = const TYPE &, class LIST_TYPE = comparable_eq_list < TYPE, ARG_TYPE > >
 class comparable_list :
    public LIST_TYPE
@@ -39,19 +42,19 @@ TYPE comparable_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 maximum(TYPE maximum)
 {
 
-   auto pnode = this->get_head();
-   
-   while(pnode != nullptr)
+   auto p = this->begin();
+
+   while(p)
    {
 
-      if(pnode->m_value > maximum)
+      if(*p > maximum)
       {
 
-         maximum = pnode->m_value;
+         maximum = *p;
 
       }
 
-      pnode = pnode->m_pnext;
+      p++;
 
    }
 

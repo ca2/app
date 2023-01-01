@@ -31,7 +31,7 @@ namespace fs
       void write(const void * pdata, memsize nCount) override;
 
 
-      filesize seek(filesize lOff, ::enum_seek eseek);
+      void seek(filesize lOff, ::enum_seek eseek);
 
       filesize size() const override;
 

@@ -52,7 +52,7 @@ namespace zip
 
       index iStart = 0;
 
-      while((iFind = ::str().find_file_extension("zip:",pszFileName,iStart)) >= 0)
+      while((iFind = ::str::find_file_extension("zip:",pszFileName,iStart)) >= 0)
 
       {
 

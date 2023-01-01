@@ -331,7 +331,7 @@ namespace sockets
 //
 //      }
 //
-//      auto tmp = ::move(create_listen_socket());
+//      auto tmp = ::transfer(create_listen_socket());
 //
 //      tmp->initialize(this);
 //
@@ -397,9 +397,9 @@ namespace sockets
 //      }
 ////      auto passociation = m_psockethandler->new_association(tmp);
 //
-//      //socket_handler()->move(passociation);
+//      //socket_handler()->transfer(passociation);
 //
-//      socket_handler()->move2(::move(tmp));
+//      socket_handler()->move2(::transfer(tmp));
 
    }
 

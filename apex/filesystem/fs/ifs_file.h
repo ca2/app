@@ -27,7 +27,7 @@ public:
    virtual void write(const void * pdata, memsize nCount) override;
 
 
-   filesize translate(filesize offset, ::enum_seek eseek) override;
+   void translate(filesize offset, ::enum_seek eseek) override;
 
    virtual filesize size() const override;
 

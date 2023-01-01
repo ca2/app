@@ -89,6 +89,16 @@ int main(int argc, char * argv[], char * envp[])
    ::acme::acme::g_p->initialize(argc, argv, envp);
 #endif
 
+#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
+
+   ::acme::acme::g_p->m_psubsystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+
+#elif defined(ANDROID)
+
+   subsystem.set_resource_block(p1, p2);
+
+#endif
+
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;
@@ -147,15 +157,6 @@ int main(int argc, char * argv[], char * envp[])
 //
 //      subsystem.m_envp = envp;
 //
-//      #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
-//   
-//         subsystem.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-//   
-//      #elif defined(ANDROID)
-//   
-//         subsystem.set_resource_block(p1, p2);
-//
-//      #endif   
 //
 //   #endif
 //

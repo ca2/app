@@ -57,7 +57,7 @@ namespace earth
       _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
-      _TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
+      //_TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
       _TIME_COMPARISON_WITH(::INTEGRAL_MINUTE);
       _TIME_COMPARISON_WITH(::INTEGRAL_HOUR);
       _TIME_COMPARISON_WITH(::INTEGRAL_DAY);
@@ -65,7 +65,7 @@ namespace earth
       _TIME_COMPARISON_WITH(::integral_nanosecond);
       _TIME_COMPARISON_WITH(::integral_microsecond);
       _TIME_COMPARISON_WITH(::integral_millisecond);
-      _TIME_COMPARISON_WITH(::integral_second);
+      //_TIME_COMPARISON_WITH(::integral_second);
       _TIME_COMPARISON_WITH(::integral_minute);
       _TIME_COMPARISON_WITH(::integral_hour);
       _TIME_COMPARISON_WITH(::integral_day);

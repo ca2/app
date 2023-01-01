@@ -73,19 +73,21 @@ long   c_zip_file_seek_file_func(voidpf opaque, voidpf stream, uptr offset, i32 
    __UNREFERENCED_PARAMETER(stream);
 
    auto* pfile = (::file::file*)stream;
-
-   if (pfile->translate(offset, (::enum_seek)origin) == 0xffffffff)
+   try
    {
 
-      return -1;
 
-   }
-   else
-   {
+      pfile->translate(offset, (::enum_seek)origin);
 
       return 0;
 
    }
+   catch(...)
+   {
+
+   }
+
+   return -1;
 
 }
 

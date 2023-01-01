@@ -18,7 +18,7 @@ public:
 
    pointer_array_process() { }
    pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
-   pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::move(array)) { }
+   pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::transfer(array)) { }
 
    //inline auto ptra(index iStart = 0, index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
 

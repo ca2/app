@@ -26,7 +26,7 @@ namespace file
 
       virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen) override;
 
-      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void translate(filesize offset, ::enum_seek eseek) override;
 
       virtual memsize read(void * pdata, memsize nCount) override;
 

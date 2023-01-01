@@ -64,16 +64,16 @@ namespace sockets_bsd
    void ssl_client_context::set_context(const ::scoped_string & scopedstrContext)
    {
 
-      __UNREFERENCED_PARAMETER(pszContext);
+      __UNREFERENCED_PARAMETER(scopedstrContext);
 
    }
 
    void ssl_client_context::set_context(const ::scoped_string & scopedstrFontopus, const ::scoped_string & scopedstrSessId)
    {
 
-      __UNREFERENCED_PARAMETER(pszFontopus);
+      __UNREFERENCED_PARAMETER(scopedstrFontopus);
 
-      __UNREFERENCED_PARAMETER(pszSessId);
+      __UNREFERENCED_PARAMETER(scopedstrSessId);
 
    }
 

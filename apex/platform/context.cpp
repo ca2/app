@@ -110,7 +110,7 @@ namespace apex
 
       strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&id=" + string(scopedstrAppId));
 
-      ::str()._008Trim(strBuild);
+      ::str::_008Trim(strBuild);
 
       if (strBuild.length() != 19)
       {

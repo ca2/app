@@ -3727,9 +3727,9 @@ namespace draw2d_cairo
          PFN_CAIRO_TEXT ftext)
    {
 
-      string str((const char *)block.get_data(), block.get_size());
+      string str((const char *)block.data(), block.size());
 
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
@@ -3870,7 +3870,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
+            const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
             FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -3978,7 +3978,7 @@ namespace draw2d_cairo
 
       PangoFontDescription * pdesc = pfont->m_pdesc;
 
-      string strText((const char *) block.m_pdata, block.m_iSize);
+      string strText((const char *) block.data(), block.size());
 
       draw2d_cairo::font::pango_layout * ppangolayout = nullptr;
 
@@ -4116,7 +4116,7 @@ namespace draw2d_cairo
 
    //    string str((const char *) block.get_data(), block.get_size());
 
-   //    str = ::str().q_valid(str);
+   //    str = ::str::q_valid(str);
 
    //    if (str.is_empty())
    //    {
@@ -4255,7 +4255,7 @@ namespace draw2d_cairo
    //        if (status != CAIRO_STATUS_SUCCESS)
    //        {
 
-   //            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
+   //            const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
    //            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
@@ -4286,48 +4286,45 @@ namespace draw2d_cairo
    }
 
 
-   size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
+//   size_f64 graphics::get_text_extent(const ::scoped_string & scopedstr, strsize iIndex)
+//   {
+//
+//      size_f64 size;
+//
+//      size = get_text_extent(scopedstr, iIndex);
+//
+//      return size;
+//
+//   }
+
+
+//   size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
+//   {
+//
+//      return get_text_extent(lpszString, nCount, -1);
+//
+//   }
+
+
+//   size_f64 graphics::get_text_extent(const block & block)
+//   {
+//
+//      return get_text_extent((const char *) block.get_data(), block.get_size());
+//
+//   }
+
+
+   ::size_f64 graphics::get_text_extent(const ::scoped_string & scopedstr, strsize iIndex)
    {
 
-      size_f64 size;
+      string str(scopedstr.m_begin, minimum_non_negative(iIndex, scopedstr.size()));
 
-      get_text_extent(size, lpszString, nCount, iIndex);
-
-      return size;
-
-   }
-
-
-   size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
-   {
-
-      return get_text_extent(lpszString, nCount, -1);
-
-   }
-
-
-   size_f64 graphics::get_text_extent(const block & block)
-   {
-
-      return get_text_extent((const char *) block.get_data(), block.get_size());
-
-   }
-
-
-   void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
-   {
-
-      string str(lpszString, minimum_non_negative(iIndex, nCount));
-
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
 
-         size.cx = 0;
-         size.cy = 0;
-
-         return;
+         return {};
 
       }
 
@@ -4352,11 +4349,11 @@ namespace draw2d_cairo
       if (iIndex < 0)
       {
 
-         iIndex = (i32) nCount;
+         iIndex = (i32) scopedstr.size();
 
       }
 
-      if (str.find('\n') < 0 && str.find('\r') < 0)
+      if (not_found(str.find_first_character_in("\n\r")))
       {
 
 
@@ -4371,8 +4368,8 @@ namespace draw2d_cairo
 
             playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
 
-            pango_layout_set_text(playout, lpszString,
-                                  -1);          // sets the text to be associated with the layout (final arg is length, -1
+            pango_layout_set_text(playout, scopedstr.m_begin,
+                                  scopedstr.size());          // sets the text to be associated with the layout (final arg is length, -1
 
             // to calculate automatically when passing a nul-terminated string)
             pango_layout_set_font_description(playout,
@@ -4392,11 +4389,13 @@ namespace draw2d_cairo
 
             pango_layout_get_pixel_size(playout, &width, &height);
 
-            size.cx = (double) pos.x / (double) PANGO_SCALE;
+            //size.cx = ;
 
-            size.cy = height;
+            //size.cy = height;
 
             g_object_unref(playout);                         // free the layout
+
+            return {(double) pos.x / (double) PANGO_SCALE, (double) height};
 
          }
          else
@@ -4415,21 +4414,25 @@ namespace draw2d_cairo
 
             cairo_font_extents(m_pdc, &fontextents);
 
-            size.cx = textextents.x_advance;
+            //size.cx = x;
 
-            size.cy = textextents.height;
+            //size.cy = x;
+
+            return {textextents.x_advance, textextents.height} ;
 
          }
 
          //return true;
 
-         return;
+         //xx
 
       }
 
       string_array straLines;
 
       straLines.add_lines(str, true);
+
+      ::size_f64 size;
 
       size.cx = 0.0;
 
@@ -4438,17 +4441,15 @@ namespace draw2d_cairo
       for (auto & strLine: straLines)
       {
 
-         size_f64 s0(0.0, 0.0);
+         auto sizeLine = get_text_extent(strLine, str.length());
 
-         get_text_extent(s0, strLine, str.length(), str.length());
+         size.cx = maximum(size.cx, sizeLine.cx);
 
-         size.cx = maximum(size.cx, s0.cx);
-
-         size.cy += s0.cy;
+         size.cy += sizeLine.cy;
 
       }
 
-      //return true;
+      return size;
 
    }
 
@@ -4465,7 +4466,7 @@ namespace draw2d_cairo
 
       string str(lpszString, minimum(iIndex, nCount));
 
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
@@ -4563,7 +4564,7 @@ namespace draw2d_cairo
          if (status != CAIRO_STATUS_SUCCESS)
          {
 
-            const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
+            const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
             FORMATTED_TRACE("cairo error : graphics::_GetTextExtent %d %s", status, pszStatus);
 
@@ -4580,20 +4581,20 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount)
+   ::size_f64 graphics::get_text_extent(const ::scoped_string & scopedstr)
    {
 
-      return get_text_extent(size, lpszString, nCount, -1);
+      return get_text_extent(scopedstr, -1);
 
    }
 
 
-   void graphics::get_text_extent(size_f64 & size, const ::string & str)
-   {
-
-      return get_text_extent(size, str, str.length());
-
-   }
+//   void graphics::get_text_extent(size_f64 & size, const ::string & str)
+//   {
+//
+//      return get_text_extent(size, str, str.length());
+//
+//   }
 
 
    void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
@@ -6334,7 +6335,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
+         const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
          FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -6370,7 +6371,7 @@ namespace draw2d_cairo
       if (status != CAIRO_STATUS_SUCCESS)
       {
 
-         const ::scoped_string & scopedstrStatus = cairo_status_to_string(status);
+         const ::ansi_character * pszStatus = cairo_status_to_string(status);
 
          FORMATTED_TRACE("cairo error : graphics::set(string_path) %d %s", status, pszStatus);
 
@@ -6389,7 +6390,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::set(const ::draw2d_cairo::path::move & p)
+//void graphics::set(const ::draw2d_cairo::path::transfer & p)
 //{
 //
 //    _synchronous_lock ml(cairo_mutex());
@@ -6961,7 +6962,7 @@ namespace draw2d_cairo
 
          auto ftlibrary = __ftlibrary();
 
-         const ::scoped_string & scopedstr = path;
+         const char * psz = path;
 
          FT_Error error = FT_New_Face(ftlibrary, psz, 0, &ftface);
 
@@ -7001,7 +7002,9 @@ namespace draw2d_cairo
 
 } // namespace draw2d_cairo
 
+
 FT_Library g_ftlibrary = nullptr;
+
 
 FT_Library __ftlibrary()
 {

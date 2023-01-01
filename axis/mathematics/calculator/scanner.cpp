@@ -34,7 +34,7 @@ namespace calculator
    scanner::scanner()
    {
 
-      input       = nullptr;
+      //m_range.m_begin       = nullptr;
 
    }
 
@@ -44,27 +44,32 @@ namespace calculator
    }
 
 
-   void scanner::initialize(const ::string & psz)
+   void scanner::initialize(const ::string & str)
    {
-      input          = psz;
-      next_input     = input;
+      
+      //m_range.m_begin          = psz;
+      
+      m_range        = str;
+      
+      next_input     = m_range.m_begin;
+      
    }
 
 
    void scanner::peek()
    {
       const char *beginning;
-      if(input != next_input && next_input != nullptr)
+      if(m_range.m_begin != next_input && next_input != nullptr)
          return;
-      beginning = input;
+      beginning = m_range.m_begin;
       look_ahead();
-      next_input = input;
-      input = beginning;
+      next_input = m_range.m_begin;
+      m_range.m_begin = beginning;
    }
 
    void scanner::next()
    {
-      input = next_input;
+      m_range.m_begin = next_input;
    }
 
    token * scanner::look_ahead()
@@ -79,14 +84,14 @@ namespace calculator
 
       }
 
-      while (unicode_is_space_char(input))
+      while (unicode_is_space_char(m_range.m_begin))
       {
 
-         unicode_increment(input);
+         unicode_increment(m_range.m_begin);
 
       }
 
-      if(*input == '\0')
+      if(*m_range.m_begin == '\0')
       {
 
          m_ptoken->m_etype = token::type_end;
@@ -95,9 +100,9 @@ namespace calculator
 
       }
 
-      const char * nextinput = unicode_next(input);
+      const char * nextinput = unicode_next(m_range.m_begin);
 
-      if((*input == 'j' || *input == 'i') && unicode_is_digit(nextinput))
+      if((*m_range.m_begin == 'j' || *m_range.m_begin == 'i') && unicode_is_digit(nextinput))
       {
 
          m_ptoken->m_etype = token::type_imaginary;
@@ -108,21 +113,21 @@ namespace calculator
 
          m_ptoken->m_str = string(nextinput, endptr - nextinput);
 
-         input = endptr;
+         m_range.m_begin = endptr;
 
          return m_ptoken;
 
       }
-      else if(unicode_is_digit(input))
+      else if(unicode_is_digit(m_range.m_begin))
       {
 
          m_ptoken->m_etype = token::type_number;
 
          char * endptr;
 
-         strtod(input, &endptr);
+         strtod(m_range.m_begin, &endptr);
 
-         m_ptoken->m_str = string(input, endptr - input);
+         m_ptoken->m_str = string(m_range.m_begin, endptr - m_range.m_begin);
 
          if((*endptr == 'i' || *endptr == 'j') && !(ansi_char_isdigit(*(endptr + 1)) || ansi_char_isalpha(*(endptr + 1))))
          {
@@ -133,65 +138,65 @@ namespace calculator
 
          }
 
-         input = endptr;
+         m_range.m_begin = endptr;
 
          return m_ptoken;
 
       }
-      else if(*input == '+')
+      else if(*m_range.m_begin == '+')
       {
          m_ptoken->m_etype = token::type_addition;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == '-')
+      else if(*m_range.m_begin == '-')
       {
          m_ptoken->m_etype = token::type_subtraction;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == '*')
+      else if(*m_range.m_begin == '*')
       {
          m_ptoken->m_etype = token::type_multiplication;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == '/')
+      else if(*m_range.m_begin == '/')
       {
          m_ptoken->m_etype = token::type_division;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == '(')
+      else if(*m_range.m_begin == '(')
       {
          m_ptoken->m_etype = token::type_open_paren;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == ',')
+      else if(*m_range.m_begin == ',')
       {
          m_ptoken->m_etype = token::type_virgula;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
-      else if(*input == ')')
+      else if(*m_range.m_begin == ')')
       {
          m_ptoken->m_etype = token::type_close_paren;
-         input++;
+         m_range.m_begin++;
          return m_ptoken;
       }
       else
       {
 
-         m_ptoken->m_str = ::str().consume_nc_name(input);
+         m_ptoken->m_str = ::str::consume_nc_name(m_range);
 
-         while (unicode_is_space_char(input))
+         while (unicode_is_space_char(m_range.m_begin))
          {
 
-            unicode_increment(input);
+            unicode_increment(m_range.m_begin);
 
          }
-         if(*input == '(')
+         if(*m_range.m_begin == '(')
          {
             m_ptoken->m_etype = token::type_function;
          }

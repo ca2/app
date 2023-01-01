@@ -60,17 +60,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_char())
             {
-               m_iBorder         = (float) ::str().to_u32(ptag->get_attr_value("border"));
+               m_iBorder         = (float) ::str::to_u32(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_char())
             {
-               m_iCellSpacing    = (float) ::str().to_u32(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (float) ::str::to_u32(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_char())
             {
-               m_iCellPadding    = (float) ::str().to_u32(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (float) ::str::to_u32(ptag->get_attr_value("cellpadding"));
             }
 
          }
@@ -86,7 +86,7 @@ namespace html
          if(m_border.top == 0.f && bTableBorder)
          {
             m_border.top = m_iBorder;
-            m_border.crTop = argb(255, 192, 192, 192);
+            m_border.colorTop = argb(255, 192, 192, 192);
             m_border.styleTop = ::html::border::style_solid;
          }
          if(m_border.right == 0.f && bTableBorder)
@@ -98,7 +98,7 @@ namespace html
          if(m_border.bottom == 0.f && bTableBorder)
          {
             m_border.bottom = m_iBorder;
-            m_border.crBottom = argb(255, 90, 90, 90);
+            m_border.colorBottom = argb(255, 90, 90, 90);
             m_border.styleBottom = ::html::border::style_solid;
          }
 

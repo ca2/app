@@ -447,7 +447,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         auto pFind = ::str().case_insensitive_find(".zip:", str);
+         auto pFind = ::str::case_insensitive_find(".zip:", str);
 
          if (thread_set(e_task_flag_compress_is_dir) && ::is_set(pFind) && iFind < iLast)
          {

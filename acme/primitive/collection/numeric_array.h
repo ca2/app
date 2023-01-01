@@ -73,7 +73,7 @@ public:
    numeric_array(numeric_array && array)
    {
 
-      this->move(::move(array));
+      this->transfer(::transfer(array));
 
    }
 
@@ -214,14 +214,14 @@ public:
 
    numeric_array & operator = (numeric_array && a)
    {
-      move(::move(a));
+      transfer(::transfer(a));
       return *this;
    }
 
 
-   numeric_array & move (numeric_array && a)
+   numeric_array & transfer (numeric_array && a)
    {
-      BASE_ARRAY::move(::move(a));
+      BASE_ARRAY::transfer(::transfer(a));
       return *this;
    }
 
@@ -1605,7 +1605,7 @@ CONTAINER1 operator + (const CONTAINER1 & container1, const CONTAINER2 & contain
 
    container.append(container2);
 
-   return ::move(container);
+   return ::transfer(container);
 
 }
 

@@ -25,7 +25,7 @@ namespace aura
       if(acmefile()->exists(path))
       {
 
-         return ::move(path);
+         return ::transfer(path);
 
       }
 
@@ -46,7 +46,7 @@ namespace aura
       if (pcontext->m_papexcontext->file()->exists(pathCandidate))
       {
 
-         return ::move(pathCandidate);
+         return ::transfer(pathCandidate);
 
       }
 

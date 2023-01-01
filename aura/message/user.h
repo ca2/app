@@ -75,14 +75,14 @@ namespace message
 
    };
 
-   class CLASS_DECL_AURA move : public ::user::message
+   class CLASS_DECL_AURA transfer : public ::user::message
    {
    public:
 
 
       point_i32 m_point;
 
-      move() { }
+      transfer() { }
 
       using ::user::message::set;
 

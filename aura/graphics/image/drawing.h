@@ -90,8 +90,8 @@ public:
 
 
    image_drawing(::image_drawing && imagedrawing) noexcept:
-      image_drawing_options(::move(imagedrawing)),
-      image_source(::move(imagedrawing))
+      image_drawing_options(::transfer(imagedrawing)),
+      image_source(::transfer(imagedrawing))
    {
 
    }

@@ -157,7 +157,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
    ASSERT(__is_valid_string(pszEntity));
 
 
-   const ::scoped_string & scopedstrBegin = pszEntity;
+   const ::ansi_character * pszBegin = pszEntity;
 
    const ::ansi_character * pszEnd = ::strchr(pszEntity, ';');
 
@@ -220,20 +220,20 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
       // because some character entity references are
       // case-sensitive, we must fix them manually
-      if (!strKey.case_insensitive_order("eth") ||
-            !strKey.case_insensitive_order("thorn"))
+      if (strKey.case_insensitive_equals("eth") ||
+            !strKey.case_insensitive_equals("thorn"))
       {
          if (::isupper(strKey[0]))
             strKey.make_upper();
          else
             strKey.make_lower();
       }
-      else if (!strKey.case_insensitive_order("Oslash"))
+      else if (strKey.case_insensitive_equals("Oslash"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'O');
       }
-      else if (!strKey.case_insensitive_order("AElig"))
+      else if (strKey.case_insensitive_equals("AElig"))
       {
          strKey.make_lower();
          strKey.set_at(0, 'A');
@@ -243,13 +243,13 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       {
          string   strT = strKey.substr(1);
          strKey.make_lower();
-         if (strT.case_insensitive_order("grave") == 0 ||
-               strT.case_insensitive_order("acute") == 0 ||
-               strT.case_insensitive_order("circ")  == 0 ||
-               strT.case_insensitive_order("uml")   == 0 ||
-               strT.case_insensitive_order("tilde") == 0 ||
-               strT.case_insensitive_order("cedil") == 0 ||
-               strT.case_insensitive_order("ring")  == 0)
+         if (strT.case_insensitive_equals("grave") == 0 ||
+               strT.case_insensitive_equals("acute") == 0 ||
+               strT.case_insensitive_equals("circ")  == 0 ||
+               strT.case_insensitive_equals("uml")   == 0 ||
+               strT.case_insensitive_equals("tilde") == 0 ||
+               strT.case_insensitive_equals("cedil") == 0 ||
+               strT.case_insensitive_equals("ring")  == 0)
          {
             strKey.set_at(0, strT[0]);
          }

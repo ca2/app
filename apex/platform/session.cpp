@@ -2142,7 +2142,7 @@ namespace apex
       //         if (e.is < ::exit_exception>())
       //         {
 
-      //            __rethrow(::move(e));
+      //            __rethrow(::transfer(e));
 
       //         }
 
@@ -2160,7 +2160,7 @@ namespace apex
       //   if (e.is < ::exit_exception>())
       //   {
 
-      //      __rethrow(::move(e));
+      //      __rethrow(::transfer(e));
 
       //   }
 

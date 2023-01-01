@@ -285,8 +285,8 @@ namespace sockets
 
             string strQuery = purl->object_get_query(strRequestUri);
 
-            //m_request.m_strRequestUri = ::url::decode(strScript) + ::str().has_char(strQuery, "?");
-            m_request.m_strRequestUri = strScript + ::str().has_char(strQuery, "?");
+            //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_char(strQuery, "?");
+            m_request.m_strRequestUri = strScript + ::str::has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
             m_request.attr("http_version") = pa.getword();
             m_b_http_1_1 = m_request.attr("http_version").get_string().ends("/1.1");

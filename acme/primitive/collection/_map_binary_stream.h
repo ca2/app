@@ -4,8 +4,8 @@
 
 
 
-template < typename FILE, typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > & m)
+template < typename FILE, typename KEY, typename PAYLOAD, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const map < KEY, PAYLOAD, ARG_KEY, ARG_VALUE, PAIR > & m)
 {
 
 
@@ -33,8 +33,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE, typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR > & m)
+template < typename FILE, typename KEY, typename PAYLOAD, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, map < KEY, PAYLOAD, ARG_KEY, ARG_VALUE, PAIR > & m)
 {
 
    ::count c = 0;
@@ -48,8 +48,8 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, map
 
       i--;
 
-      typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::BASE_KEY element1;
-      //typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::BASE_VALUE element2;
+      typename map < KEY, PAYLOAD, ARG_KEY, ARG_VALUE, PAIR >::BASE_KEY element1;
+      //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
       
       stream >> element1;
 

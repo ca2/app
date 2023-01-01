@@ -136,7 +136,7 @@ namespace sockets
                if (strContentType.case_insensitive_find("application/json") < 0)
                {
 
-                  inheader("content-type") = "application/json" + ::str().has_char(strContentType, ";", strContentType);
+                  inheader("content-type") = "application/json" + ::str::has_char(strContentType, ";", strContentType);
 
                }
 
@@ -165,7 +165,7 @@ namespace sockets
             if (inheader("content-type").string().case_insensitive_find("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader("content-type") = "application/x-www-form-urlencoded" + ::str().has_char(inheader("content-type").string(), "; ");
+               inheader("content-type") = "application/x-www-form-urlencoded" + ::str::has_char(inheader("content-type").string(), "; ");
 
             }
 

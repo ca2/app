@@ -268,7 +268,7 @@ namespace url
 
       strDecode.release_string_buffer(sizeLen);
 
-      return ::move(strDecode);
+      return ::transfer(strDecode);
 
    }
 
@@ -434,7 +434,7 @@ namespace url
 
       strEncoded.release_string_buffer(pszEncoded - pszEncodedStart);
 
-      return ::move(strEncoded);
+      return ::transfer(strEncoded);
 
    }
 
@@ -732,7 +732,7 @@ void openURL(const string& url_str)
 //
 //   }
 //
-//   return ::move(strDecode);
+//   return ::transfer(strDecode);
 //
 //
 //}

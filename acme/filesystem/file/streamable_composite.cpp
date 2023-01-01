@@ -35,7 +35,7 @@ namespace file
    }
 
 
-   filesize streamable_composite::translate(filesize offset, ::enum_seek eseek)
+   void streamable_composite::translate(filesize offset, ::enum_seek eseek)
    { 
       
       return m_pstreamable->translate(offset, eseek); 

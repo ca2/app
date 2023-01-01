@@ -63,7 +63,7 @@ namespace file
    }
 
 
-   filesize reference::translate(filesize offset, ::enum_seek eseek)
+   void reference::translate(filesize offset, ::enum_seek eseek)
    {
 
       return m_pfile->translate(offset, eseek);

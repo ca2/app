@@ -83,7 +83,7 @@ namespace file
 
 
    inline path_object::path_object(::file::path&& path) :
-      ::file::path(::move(path))
+      ::file::path(::transfer(path))
    {
 
       //g_interlockedcountFilePathObject++;

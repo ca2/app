@@ -579,7 +579,7 @@ namespace dynamic_source
    ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strNameParam)
    {
 
-      string strName = ::str().get_word(strNameParam, "?");
+      string strName = ::str::get_word(strNameParam, "?");
 
       if(strName.is_empty())
       {

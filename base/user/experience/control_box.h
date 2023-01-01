@@ -36,7 +36,7 @@ namespace experience
       };
 
 
-      __declare_map(enum_button_item_map, enum_button_item, enum_button, m_ebutton, ::pointer<item>, m_pitem);
+      using enum_button_item_map = ::map < enum_button, ::pointer < item > >;
 
 
       ::experience::frame_window *           m_pframewindow;

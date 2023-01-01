@@ -67,7 +67,7 @@ namespace apex
       if(acmefile()->exists(path))
       {
 
-         return ::move(path);
+         return ::transfer(path);
 
       }
 
@@ -86,7 +86,7 @@ namespace apex
       if (file()->exists(pathCandidate))
       {
 
-         return ::move(pathCandidate);
+         return ::transfer(pathCandidate);
 
       }
 

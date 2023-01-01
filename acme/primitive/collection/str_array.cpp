@@ -22,7 +22,7 @@ CLASS_DECL_ACME string_array stringa_from_strdup(::ansi_character ** ppParam)
 
    free(ppParam);
 
-   return ::move(stra);
+   return ::transfer(stra);
 
 }
 
@@ -35,7 +35,7 @@ CLASS_DECL_ACME ::count explode_command_line(string_array & stra, const ::string
    while (strParse.has_char())
    {
 
-      stra.add((::string)::str().consume_command_line_argument(strParse));
+      stra.add((::string)::str::consume_command_line_argument(strParse));
 
    }
 
@@ -78,12 +78,12 @@ CLASS_DECL_ACME string_array & csstidy_explode_ws(string_array & stra, char sep,
       switch (status)
       {
       case 1:
-         if (istring[i] == sep && !::str().simple_escaped(istring, i))
+         if (istring[i] == sep && !::str::simple_escaped(istring, i))
          {
             ++num;
             stra.add("");
          }
-         else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str().simple_escaped(istring, i))
+         else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str::simple_escaped(istring, i))
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];
@@ -96,7 +96,7 @@ CLASS_DECL_ACME string_array & csstidy_explode_ws(string_array & stra, char sep,
          break;
 
       case 2:
-         if (istring[i] == to && !::str().simple_escaped(istring, i))
+         if (istring[i] == to && !::str::simple_escaped(istring, i))
          {
             status = 1;
          }

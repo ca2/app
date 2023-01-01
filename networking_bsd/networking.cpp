@@ -449,25 +449,37 @@ namespace networking_bsd
       ::parse pa(str, ":.");
 
       string tmp = pa.getword();
-      while (tmp.get_length())
+
+      while (tmp.length())
       {
-         if (tmp.get_length() > 4)
+
+         if (tmp.length() > 4)
          {
+
             return false;
+
          }
-         for (i32 i = 0; i < tmp.get_length(); i++)
+
+         for (i32 i = 0; i < tmp.length(); i++)
          {
-            if (tmp[i] < '0' || (tmp[i] > '9' && tmp[i] < 'A') ||
-               (tmp[i] > 'F' && tmp[i] < 'a') || tmp[i] > 'f')
+
+            if (tmp[i] < '0' || (tmp[i] > '9' && tmp[i] < 'A') || (tmp[i] > 'F' && tmp[i] < 'a') || tmp[i] > 'f')
             {
+
                return false;
+
             }
+
          }
-         //
+
          tmp = pa.getword();
+
       }
+
       return true;
+
    }
+
 
    bool networking::convert(in_addr& l, const string& str, i32 ai_flags)
    {
@@ -1358,8 +1370,8 @@ namespace networking_bsd
    i32 networking::service_port(const string& str, i32 flags)
    {
 
-      if (::str().is_simple_natural(str))
-         return ::str().to_i32(str);
+      if (::str::is_simple_natural(str))
+         return ::str::to_i32(str);
 
       if (str.case_insensitive_equals("http"))
       {
@@ -2711,8 +2723,8 @@ namespace networking_bsd
 //   i32 networking::service_port(const ::string & str, i32 flags)
 //   {
 //
-//      if (::str().is_simple_natural(str))
-//         return ::str().to_i32(str);
+//      if (::str::is_simple_natural(str))
+//         return ::str::to_i32(str);
 //
 //      if (str.case_insensitive_order("http"))
 //      {
@@ -2984,7 +2996,7 @@ namespace networking_bsd
 //
 //         m_socketidlist.add_tail(SOCKET);
 //
-//         m_socketmap.move(passociationAdd, &m_socketmapAdd);
+//         m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
 //
 //         socket_id_list_add(SOCKET, e_list_close);
 //
@@ -3028,7 +3040,7 @@ namespace networking_bsd
 //
 //      m_socketidlist.add_tail(SOCKET);
 //
-//      m_socketmap.move(passociationAdd, &m_socketmapAdd);
+//      m_socketmap.transfer(passociationAdd, &m_socketmapAdd);
 //
 //      if (passociationAdd->m_psocket_id->IsDetach())
 //      {

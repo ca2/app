@@ -832,7 +832,7 @@
 		9A68AD9F25114434008DABD2 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* factory.h */; };
 		9A68ADA225114434008DABD2 /* packset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59A2511442F008DABD2 /* packset.h */; };
 		9A68ADA425114434008DABD2 /* string_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59C2511442F008DABD2 /* string_list.h */; };
-		9A68ADA625114434008DABD2 /* map_association.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59E2511442F008DABD2 /* map_association.h */; };
+		9A68ADA625114434008DABD2 /* set_node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59E2511442F008DABD2 /* set_node.h */; };
 		9A68ADA725114434008DABD2 /* bitset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59F2511442F008DABD2 /* bitset.h */; };
 		9A68ADAA25114434008DABD2 /* std_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5A22511442F008DABD2 /* std_iterator.h */; };
 		9A68ADAB25114434008DABD2 /* insert_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5A32511442F008DABD2 /* insert_iterator.h */; };
@@ -2250,7 +2250,7 @@
 		9AD690AF251A753A00C0EBD7 /* compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A6E22511442F008DABD2 /* compare.h */; };
 		9AD690B6251A753A00C0EBD7 /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7ED25114430008DABD2 /* console_common.h */; };
 		9AD690B8251A753A00C0EBD7 /* definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5492511442E008DABD2 /* definition.h */; };
-		9AD690BB251A753A00C0EBD7 /* map_association.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59E2511442F008DABD2 /* map_association.h */; };
+		9AD690BB251A753A00C0EBD7 /* set_node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59E2511442F008DABD2 /* set_node.h */; };
 		9AD690BD251A753A00C0EBD7 /* from_integer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A73A2511442F008DABD2 /* from_integer.h */; };
 		9AD690BF251A753A00C0EBD7 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A77C2511442F008DABD2 /* composite.h */; };
 		9AD690CA251A753A00C0EBD7 /* exclusive.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5862511442F008DABD2 /* exclusive.h */; };
@@ -3026,7 +3026,7 @@
 		9A68A5952511442F008DABD2 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
 		9A68A59A2511442F008DABD2 /* packset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packset.h; sourceTree = "<group>"; };
 		9A68A59C2511442F008DABD2 /* string_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_list.h; sourceTree = "<group>"; };
-		9A68A59E2511442F008DABD2 /* map_association.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map_association.h; sourceTree = "<group>"; };
+		9A68A59E2511442F008DABD2 /* set_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = set_node.h; sourceTree = "<group>"; };
 		9A68A59F2511442F008DABD2 /* bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitset.h; sourceTree = "<group>"; };
 		9A68A5A22511442F008DABD2 /* std_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = std_iterator.h; sourceTree = "<group>"; };
 		9A68A5A32511442F008DABD2 /* insert_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = insert_iterator.h; sourceTree = "<group>"; };
@@ -4599,7 +4599,7 @@
 				9A68A5FD2511442F008DABD2 /* iterable.h */,
 				9A68A5F62511442F008DABD2 /* iterator.h */,
 				9A68A5D52511442F008DABD2 /* list.h */,
-				9A68A59E2511442F008DABD2 /* map_association.h */,
+				9A68A59E2511442F008DABD2 /* set_node.h */,
 				9A68A5D72511442F008DABD2 /* map_test_51778915.cpp */,
 				9A68A5B42511442F008DABD2 /* map_to_smart_pointer.h */,
 				9A68A5B32511442F008DABD2 /* map.h */,
@@ -6532,7 +6532,7 @@
 				9A0843A329366D3A009F7FF4 /* _impl.h in Headers */,
 				9A08410E29348AAB009F7FF4 /* second.h in Headers */,
 				9A0842C12935E694009F7FF4 /* _container.h in Headers */,
-				9A68ADA625114434008DABD2 /* map_association.h in Headers */,
+				9A68ADA625114434008DABD2 /* set_node.h in Headers */,
 				9AA8F90B27BA7268008FF9AA /* text.h in Headers */,
 				9ADD64C326B5CB3800D11298 /* simple_log.h in Headers */,
 				9A0B8D1A27AA1F3300760D34 /* serialization.h in Headers */,
@@ -7376,7 +7376,7 @@
 				9AD690B6251A753A00C0EBD7 /* console_common.h in Headers */,
 				9AA8FE0827BA729C008FF9AA /* _pthread.h in Headers */,
 				9AD690B8251A753A00C0EBD7 /* definition.h in Headers */,
-				9AD690BB251A753A00C0EBD7 /* map_association.h in Headers */,
+				9AD690BB251A753A00C0EBD7 /* set_node.h in Headers */,
 				9A787BAD264BB13F003DF8A0 /* timer_event.h in Headers */,
 				9AD690BD251A753A00C0EBD7 /* from_integer.h in Headers */,
 				9AD690BF251A753A00C0EBD7 /* composite.h in Headers */,

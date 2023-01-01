@@ -26,7 +26,7 @@ namespace simpledb
    item::item(item && item)
    {
 
-      operator = (::move(item));
+      operator = (::transfer(item));
 
    }
 
@@ -58,7 +58,7 @@ namespace simpledb
 
          m_tick = item.m_tick;
 
-         m_memory = ::move(item.m_memory);
+         m_memory = ::transfer(item.m_memory);
 
          m_bData = item.m_bData;
 

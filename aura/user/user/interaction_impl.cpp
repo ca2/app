@@ -30,6 +30,11 @@
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 
+#if defined(LINUX)
+bool is_ubunt() {return true;}
+#else
+bool is_ubunt() {return false;}
+#endif
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1568,7 +1573,7 @@ namespace user
 //         if (statusPointCursor.m_estatus != success)
 //         {
 //
-//            uia = ::move(m_uiptraMouseHover);
+//            uia = ::transfer(m_uiptraMouseHover);
 //
 //         }
 //         else
@@ -2319,7 +2324,7 @@ namespace user
          {
 
             // We are at the message handler routine.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
@@ -2627,7 +2632,7 @@ namespace user
          string strType = __type_name(m_puserinteraction);
 
          // We are at the message handler procedure.
-         // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
@@ -2658,7 +2663,7 @@ namespace user
       else if (pmouse->m_atom == e_message_non_client_mouse_move)
       {
          // We are at the message handler procedure.
-         // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+         // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
@@ -2692,13 +2697,13 @@ namespace user
          if (strType.case_insensitive_contains("button"))
          {
 
-            output_debug_string("mouse move on button");
+            output_debug_string("mouse transfer on button");
 
          }
          else if (strType.case_insensitive_contains("tab"))
          {
 
-            output_debug_string("mouse move on tab");
+            output_debug_string("mouse transfer on tab");
 
          }
 
@@ -6459,24 +6464,82 @@ namespace user
 
       ::zorder zorderNew = (bZ ? zOutput : ::zorder());
 
-      if (edisplayWindow == e_display_zoomed)
-      {
+//      if (edisplayWindow == e_display_zoomed)
+//      {
+//
+//         if (edisplayOutput != e_display_zoomed)
+//         {
+//
+//            auto puserinteraction = m_puserinteraction;
+//
+//            if (puserinteraction)
+//            {
+//
+//               puserinteraction->_001OnExitZoomed();
+//
+//            }
+//
+//         }
+//
+//      }
 
-         if (edisplayOutput != e_display_zoomed)
+      //int iVisibilityChageBefore = (is_ubunt() && edisplayOutput == e_display_zoomed);
+
+      int iVisibilityChageBefore = true;
+
+      if(iVisibilityChageBefore) {
+         if (edisplayOutput != edisplayWindow)
+            //&& !::conditional(bLayered, bHasSetWindowPosition)
+            //)
          {
 
-            auto puserinteraction = m_puserinteraction;
+//#ifdef WINDOWS
+//
+//         bool bShowOutput = windows_show_window(edisplayOutput, eactivationOutput);
+//
+//         bool bShowWindow = windows_show_window(edisplayWindow, eactivationWindow);
+//
+//         if (is_different(bShowOutput, bShowWindow))
+//#endif
+//         {
 
-            if (puserinteraction)
-            {
+            m_puserinteraction->window_show_change_visibility();
 
-               puserinteraction->_001OnExitZoomed();
+            //}
 
-            }
+         }
+      }
+
+      //if(is_ubunt())
+      {
+
+         if(edisplayOutput == e_display_zoomed)
+         {
+
+            bMove = true;
+            bSize = true;
 
          }
 
       }
+
+//#endif
+      //m_puserinteraction->_on_show_window();
+//
+//               if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+//            m_puserinteraction->is_this_visible())
+//            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+//               m_puserinteraction->is_window_screen_visible()))
+//         {
+//
+//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+//
+//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+//
+//            m_puserinteraction->_on_show_window();
+//
+//         }
+
 
       bool bHasSetWindowPosition = false;
 
@@ -6540,6 +6603,8 @@ namespace user
          if(sizeOutput != m_sizeDrawn)
          {
 
+            m_puserinteraction->set_need_layout();
+
             m_puserinteraction->set_need_redraw();
 
             m_puserinteraction->post_redraw();
@@ -6582,10 +6647,12 @@ namespace user
 
       }
 
-      if (edisplayOutput != edisplayWindow)
-        //&& !::conditional(bLayered, bHasSetWindowPosition)
-        //)
-      {
+if(!iVisibilityChageBefore) {
+
+   if (edisplayOutput != edisplayWindow)
+      //&& !::conditional(bLayered, bHasSetWindowPosition)
+      //)
+   {
 
 //#ifdef WINDOWS
 //
@@ -6597,11 +6664,13 @@ namespace user
 //#endif
 //         {
 
-            m_puserinteraction->window_show_change_visibility();
+      m_puserinteraction->window_show_change_visibility();
 
-         //}
+      //}
 
-      }
+   }
+
+}
 
       if (eactivationOutput & e_activation_set_foreground)
       {
@@ -6864,7 +6933,7 @@ namespace user
 //
 //      }
 
-      ::pointer<::message::move>pmove(pmessage);
+      ::pointer<::message::transfer>pmove(pmessage);
 
 //      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
 //      {
@@ -7006,6 +7075,8 @@ namespace user
       //m_pwindow->m_size = psize->m_size;
 
       m_puserinteraction->set_size(psize->m_size, e_layout_window);
+
+      m_sizeSetWindowSizeRequest = psize->m_size;
 
       if ((m_puserinteraction->const_layout().sketch().size()
            != m_puserinteraction->const_layout().window().size()))

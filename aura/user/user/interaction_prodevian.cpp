@@ -1353,20 +1353,20 @@ namespace user
 
          }
 
-         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
-            m_puserinteraction->is_this_visible())
-            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
-               m_puserinteraction->is_window_screen_visible()))
-         {
+//         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+//            m_puserinteraction->is_this_visible())
+//            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+//               m_puserinteraction->is_window_screen_visible()))
+//         {
+//
+//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
+//
+//            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
+//
+//            m_puserinteraction->_on_show_window();
+//
+//         }
 
-            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
-
-            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
-
-            m_puserinteraction->_on_show_window();
-
-         }
-         
          profiling_on_after_update_screen();
 
       }

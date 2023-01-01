@@ -4978,7 +4978,7 @@ namespace user
       break;
       case ::message::e_prototype_move:
       {
-         pmessage = __new(::message::move);
+         pmessage = __new(::message::transfer);
       }
       break;
       case ::message::e_prototype_erase_background:
@@ -13813,7 +13813,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          else if (edisplaySketch != e_display_zoomed && edisplayDesign == e_display_zoomed)
          {
 
-            _001OnExitZoomed();
+            //_001OnExitZoomed();
 
          }
          else if (
@@ -16494,10 +16494,21 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::_001OnDeiconify(::e_display edisplay)
+   void interaction::_001OnDeiconify(::e_display edisplayPrevious)
    {
 
-      display(e_display_restored);
+      if (edisplayPrevious == ::e_display_iconic)
+      {
+
+         display(::e_display_restored);
+
+      }
+      else
+      {
+
+         display(edisplayPrevious);
+
+      }
 
    }
 

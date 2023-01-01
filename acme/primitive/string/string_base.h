@@ -13,7 +13,7 @@ using string_natural_pointer =
 ::natural_pointer < ::string_range < ITERATOR_TYPE >,
    ::string_meta_data <
    dereference <
-   typename get_type_item_pointer < ITERATOR_TYPE >::type
+   get_type_item_pointer < ITERATOR_TYPE >
    >
    >, string_memory_allocator >;
 
@@ -37,7 +37,7 @@ public:
    using NATURAL_POINTER = string_natural_pointer < ITERATOR_TYPE >;
    using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
-   using ITEM_POINTER = typename get_type_item_pointer< ITERATOR_TYPE>::type;
+   using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;
    using RANGE = ::string_range < ITERATOR_TYPE >;
@@ -277,7 +277,7 @@ public:
 //      }
 //      return *this;
 //   }
-//   string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::move(string_base)); return *this; }
+//   string_base & operator = (string_base && string_base) { NATURAL_POINTER::operator=(::transfer(string_base)); return *this; }
    string_base & operator = (ansi_character ansich) { assign(ansich); return *this; }
    string_base & operator = (wd16_character wd16ch) { assign(wd16ch); return *this; }
    string_base & operator = (wd32_character wd32ch) { assign(wd32ch); return *this; }
@@ -374,7 +374,7 @@ public:
 //
 
 //   template < primitive_character CHARACTER2 >
-//   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::move(str); }
+//   string_base operator + (const CHARACTER2 * psz) const { auto str = *this; str.append(psz); return ::transfer(str); }
 
 
     // maybe it doesn't because of ambiguity with global
@@ -500,13 +500,13 @@ public:
    inline string_base & append(const ::const_wd16_range & range);
    inline string_base & append(const ::const_wd32_range & range);
    
-   inline string_base & append(const ::ansi_character * psz) { return append(::const_ansi_range(psz)); }
-   inline string_base & append(const ::wd16_character * psz) { return append(::const_wd16_range(psz)); }
-   inline string_base & append(const ::wd32_character * psz) { return append(::const_wd32_range(psz)); }
+   inline string_base & append(const ::ansi_character * psz) { return _append(psz, string_safe_length(psz)); }
+   inline string_base & append(const ::wd16_character * psz) { return _append(psz, string_safe_length(psz)); }
+   inline string_base & append(const ::wd32_character * psz) { return _append(psz, string_safe_length(psz)); }
 
-   inline string_base & append(const ::ansi_character * psz, strsize size) { return append(::const_ansi_range(psz, size)); }
-   inline string_base & append(const ::wd16_character * psz, strsize size) { return append(::const_wd16_range(psz, size)); }
-   inline string_base & append(const ::wd32_character * psz, strsize size) { return append(::const_wd32_range(psz, size)); }
+   inline string_base & append(const ::ansi_character * psz, strsize size) { return _append(psz, size); }
+   inline string_base & append(const ::wd16_character * psz, strsize size) { return _append(psz, size); }
+   inline string_base & append(const ::wd32_character * psz, strsize size) { return _append(psz, size); }
 
 
    template < primitive_character CHARACTER2 >
@@ -571,7 +571,7 @@ public:
 
       auto p = this->metadata();
 
-      ASSERT(p->m_countReference >= 1);
+      ASSERT(::is_null(p) || p->m_countReference >= 1);
 
       if (::is_null(p) || p->natural_is_shared() || size > p->length())
       {
@@ -604,7 +604,7 @@ public:
 
       auto p = get_string_buffer(size);
 
-      return { p, p };
+      return { p, p + size };
 
    }
 
@@ -705,7 +705,7 @@ public:
 
    const_iterator insert(strsize iIndex, const string_base & str);
 
-   const_iterator replace_character(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
+   const_iterator replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
 
    template < typename EQUALITY >
    ::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality);
@@ -1022,8 +1022,8 @@ public:
 
    string_base substr(strsize iFirst) const;
 
-   string_base substr(const_iterator p) const { return ::move(substr(p, -1)); }
-   string_base substr(const_iterator p, strsize count) const { return ::move(substr(p - this->begin(), count)); }
+   string_base substr(const_iterator p) const { return ::transfer(substr(p, -1)); }
+   string_base substr(const_iterator p, strsize count) const { return ::transfer(substr(p - this->begin(), count)); }
 
    template < primitive_integral START, primitive_integral COUNT >
    string_base substr(START start, COUNT count) const;
@@ -1044,7 +1044,7 @@ public:
 
    string_base left(strsize count) const;
 
-   string_base left(const_iterator p) const { return ::move(this->left(p - this->begin())); }
+   string_base left(const_iterator p) const { return ::transfer(this->left(p - this->begin())); }
 
    string_base left_including_any_character_in(const SCOPED_STRING & scopedstrCharSet) const;
 
@@ -1159,7 +1159,7 @@ public:
 //
 //   strResult.append(range);
 //
-//   return ::move(strResult);
+//   return ::transfer(strResult);
 //
 //}
 
@@ -1224,7 +1224,7 @@ public:
 //constexpr ::string_base < const CHARACTER * > operator +(CHARACTER ch, ::str < const CHARACTER2 * > str)
 //{
 //
-//   return ::move(::string_base < const CHARACTER * >(ch) + ::string_base < const CHARACTER * >(str));
+//   return ::transfer(::string_base < const CHARACTER * >(ch) + ::string_base < const CHARACTER * >(str));
 //
 //}
 
@@ -1241,7 +1241,7 @@ public:
 //constexpr ::string_base < const CHARACTER * > operator + (::str < const CHARACTER * > str, const CHARACTER2 * psz)
 //{
 //
-//   return ::move(::string_base < const CHARACTER * >(str) + ::string_base < const CHARACTER * >(psz));
+//   return ::transfer(::string_base < const CHARACTER * >(str) + ::string_base < const CHARACTER * >(psz));
 //
 //}
 
@@ -1297,7 +1297,7 @@ CLASS_DECL_ACME::string _(const ::string & str);
 
 
 template < primitive_character CHARACTER >
-class argument_of < ::string_base < const CHARACTER * > >
+class argument_of_struct < ::string_base < const CHARACTER * > >
 {
 public:
 
@@ -1324,7 +1324,7 @@ public:
 //
 //   str.release_string_buffer(len);
 //
-//   return ::move(str);
+//   return ::transfer(str);
 //
 //}
 
@@ -1333,7 +1333,7 @@ public:
 //inline ::string_base < ITERATOR_TYPE > operator + (const char (&cha)[n], const string_range < ITERATOR_TYPE > & scopedstr)
 //{
 //
-//   return ::move(::string_base < ITERATOR_TYPE >(cha) + scopedstr);
+//   return ::transfer(::string_base < ITERATOR_TYPE >(cha) + scopedstr);
 //
 //}
 
@@ -1343,7 +1343,7 @@ public:
 //inline ::string_base < ITERATOR_TYPE > operator + (const char * psz, const string_base < ITERATOR_TYPE > & str)
 //{
 //
-//   return ::move(::string_base < ITERATOR_TYPE >(psz) + str);
+//   return ::transfer(::string_base < ITERATOR_TYPE >(psz) + str);
 //
 //}
 
@@ -1354,7 +1354,7 @@ public:
 //inline ::string_base < ITERATOR_TYPE > operator + (const char(&cha)[n], const string_base < ITERATOR_TYPE > & str)
 //{
 //
-//   return ::move(::string_base < ITERATOR_TYPE >(cha) + str);
+//   return ::transfer(::string_base < ITERATOR_TYPE >(cha) + str);
 //
 //}
 
@@ -1388,7 +1388,7 @@ string_base < const CHARACTER * > operator + (const CHARACTER * psz, const RANGE
    
    string_base < const CHARACTER * > str(psz); 
    
-   return ::move(str + range); 
+   return ::transfer(str + range); 
 
 }
 
@@ -1408,26 +1408,26 @@ string_base < typename RANGE1::const_iterator > operator + (const RANGE1 & range
 
 
 //template < typed_range < ::wd16_character * > WD16_RANGE >
-//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
 //template < typed_range < ::wd32_character * > WD32_RANGE >
-//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
 //template < typed_range < const ::ansi_character * > ANSI_RANGE >
-//string_base operator + (const ANSI_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//string_base operator + (const ANSI_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
 //template < typed_range < const ::wd16_character * > WD16_RANGE >
-//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//string_base operator + (const WD16_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 //
 //template < typed_range < const ::wd32_character * > WD32_RANGE >
-//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::move(str); }
+//string_base operator + (const WD32_RANGE & range) const { auto str = *this; str.append(range.begin(), range.end()); return ::transfer(str); }
 
 
 template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 ::string_base < const CHARACTER2 * > operator + (const CHARACTER2 * psz, const HAS_AS_STRING & has_as_string)
 {
 
-   return ::move(::string_base < const CHARACTER2 * >(psz) + has_as_string.as_string());
+   return ::transfer(::string_base < const CHARACTER2 * >(psz) + has_as_string.as_string());
 
 }
 
@@ -1436,7 +1436,7 @@ template < character_range RANGE, has_as_string HAS_AS_STRING >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const HAS_AS_STRING & has_as_string)
 {
 
-   return ::move(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());
+   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());
 
 }
 
@@ -1445,7 +1445,7 @@ template < character_range RANGE, primitive_character CHARACTER >
 ::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const CHARACTER * psz)
 {
 
-   return ::move(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(psz));
+   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(psz));
 
 }
 
@@ -1454,7 +1454,7 @@ template < character_range RANGE, primitive_character CHARACTER >
 //::string_base < const CHARACTER * > operator + (const CHARACTER * psz, const CHARACTER2 * psz2)
 //{
 //
-//   return ::move(::string_base < const CHARACTER * >(psz) + ::string_base < const CHARACTER * >(psz2));
+//   return ::transfer(::string_base < const CHARACTER * >(psz) + ::string_base < const CHARACTER * >(psz2));
 //
 //}
 

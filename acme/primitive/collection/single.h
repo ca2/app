@@ -1,94 +1,61 @@
 #pragma once
 
 
-#ifdef CPP17
 
-
-#define SINGLE_IMPL(T, ARG_T, ARG_DATA) \
+#define MAKE_SINGLE(SINGLE, T, MEMBER) \
+class SINGLE                                    \
+{                                               \
 public: \
  \
  \
-   typedef T         TYPE; \
-   typedef ARG_T     ARG_TYPE; \
-   typedef T2         TYPE2; \
-   typedef ARG_T2     ARG_TYPE2; \
- \
- \
-   T       DATA; \
-   T2       DATA2; \
- \
- \
-   inline T & element() { return DATA; } \
-   inline T2 & element2() { return DATA2; } \
- \
-   inline const T & element() const { return DATA; } \
-   inline const T2 & element2() const { return DATA2; } \
-template<std::size_t N> \
-auto & get() const { \
-   if constexpr (N == 0) return element(); \
-   else if constexpr (N == 1) return element2(); }  \
+      using TYPE = T; \
+      using ARG_TYPE = argument_of < TYPE >; \
 \
-template<std::size_t N> \
-auto & get()  { \
-   \
-      if constexpr (N == 0) return element(); \
-      else if constexpr (N == 1) return element2(); \
+\
+      T  MEMBER; \
+\
+\
+      TYPE & element() { return MEMBER; } \
+      const TYPE & element() const { return MEMBER; }       \
+                                       \
+                                       \
+SINGLE() {} \
+SINGLE(ARG_TYPE t) : MEMBER(t) {} \
+\
+\
 }
 
 
-#else
+template < typename T >
+MAKE_SINGLE(single, T, m_element);
 
 
-#define SINGLE_IMPL(T, ARG_T, DATA) \
-public: \
- \
- \
-   typedef T         TYPE; \
-   typedef ARG_T     ARG_TYPE; \
- \
- \
-   T       DATA; \
- \
- \
-   inline T & element() { return DATA; } \
-   inline T & key() { return DATA; } \
- \
-   inline const T & element() const { return DATA; } \
-inline const T& key() const { return DATA; }
-
-
-#endif
-
-
-#define SINGLE_DEFAULT_CONSTRUCTORS(SINGLE, T, ARG_T, DATA) \
-   SINGLE()\
-   { \
-   } \
- \
-   SINGLE(ARG_T element) : \
-      DATA(element) \
-   { \
- \
-   } \
- \
-
-#define SINGLE_DEFAULT_IMPL(SINGLE, T, ARG_T, ARG_DATA) \
-SINGLE_IMPL(T, ARG_T, ARG_DATA) \
-SINGLE_DEFAULT_CONSTRUCTORS(SINGLE, T, ARG_T, ARG_DATA)
-
-
-template < typename T, typename ARG_T >
-class single
+template < typename SINGLE >
+struct make_single :
+   public SINGLE
 {
+public:
 
-   SINGLE_DEFAULT_IMPL(single, T, ARG_T, m_element)
 
-   single & get_single(T & t)
-   {
+   using TYPE = typename SINGLE::TYPE;
+   using ARG_TYPE = typename SINGLE::ARG_TYPE;
 
-      t = m_element;
 
-   }
+   using ITEM = TYPE;
+   using ARG_ITEM = ARG_TYPE;
+
+
+   inline auto & topic() { return *this;}
+   inline auto & item() { return this->element(); }
+
+   inline auto & topic() const { return *this; }
+   inline auto & item() const { return this->element(); }
+
+
+   make_single() {}
+   make_single(ARG_TYPE t) : SINGLE(t) {}
+
+   operator ::u32hash () const {return ::u32_hash(this->item());}
 
 
 };
@@ -109,8 +76,8 @@ namespace std
 {
 
 
-   template < typename T, typename ARG_T >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::single <T, ARG_T > > : integral_constant<size_t, 1> {};
+   template < typename T >
+   ALIENATED_ANDROID_ANARCHY tuple_size< ::single <T > > : integral_constant<size_t, 1> {};
 
 
 } // namespace std

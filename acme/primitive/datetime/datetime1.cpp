@@ -82,7 +82,7 @@ namespace datetime
 //      string strText1;
 //      for(i32 i = 0; *psz; unicode_increment(psz))
 //      {
-//         string strChar = ::str().get_utf8_char(psz);
+//         string strChar = ::str::get_utf8_char(psz);
 //         if(unicode_is_whitespace(psz))
 //         {
 //            i++;
@@ -288,7 +288,7 @@ namespace datetime
 //            Sys(pparticle).datetime().international().parse_str(str,set);
 //            string strWord = str.substr(19);
 //            strWord.trim_left();
-//            strWord = ::str().get_word(strWord," ");
+//            strWord = ::str::get_word(strWord," ");
 //            if(strWord.case_insensitive_order("UTC") == 0
 //                  || strWord.case_insensitive_order("GMT") == 0
 //                  || bUTC)

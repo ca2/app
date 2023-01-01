@@ -95,7 +95,7 @@ public:
    virtual void set_size(FILE * pfile, filesize iSize);
 
 
-   virtual void move(const ::file::path & pathNewName, const ::file::path & pathOldName);
+   virtual void transfer(const ::file::path & pathNewName, const ::file::path & pathOldName);
 
    virtual void erase(const ::file::path & path);
 

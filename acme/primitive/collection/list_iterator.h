@@ -113,92 +113,99 @@
 ////         const_iterator_base < non_const < TYPE > >, 
 ////         iterator_base < non_const < TYPE > > >;
 
+
 template < typename BASE_ITERATOR_TYPE >
-class list_iterator_item :
+class list_iterator_node :
    public BASE_ITERATOR_TYPE
 {
 public:
 
 
-   using iterator = ::list_iterator_item < typename BASE_ITERATOR_TYPE::iterator >;
-   using const_iterator = ::list_iterator_item < typename BASE_ITERATOR_TYPE::const_iterator >;
-   using THIS_ITERATOR = ::list_iterator_item < BASE_ITERATOR_TYPE >;
+   using iterator = ::list_iterator_node < typename BASE_ITERATOR_TYPE::iterator >;
+   using const_iterator = ::list_iterator_node < typename BASE_ITERATOR_TYPE::const_iterator >;
+   using this_iterator = ::list_iterator_node < BASE_ITERATOR_TYPE >;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM;
+   using node = BASE_ITERATOR_TYPE;
 
 
+   using ITEM_POINTER = typename BASE_ITERATOR_TYPE::ITEM_POINTER;
+   using CONST_ITEM_POINTER = typename BASE_ITERATOR_TYPE::CONST_ITEM_POINTER;
    using THIS_ITEM_POINTER = typename BASE_ITERATOR_TYPE::THIS_ITEM_POINTER;
 
 
    using BASE_ITERATOR_TYPE::BASE_ITERATOR_TYPE;
 
 
-   list_iterator_item(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
-   list_iterator_item(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_node(CONST_ITEM_POINTER p) : BASE_ITERATOR_TYPE(p) {}
+   list_iterator_node(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_node(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   auto item() { return this->get(); }
-   auto item() const { return this->get(); }
+   auto & topic() { return BASE_ITERATOR_TYPE::topic(); }
+   auto & topic() const { return BASE_ITERATOR_TYPE::topic(); }
 
 
 };
 
 
 template < typename BASE_ITERATOR_TYPE >
-class list_iterator_first_item :
+class list_iterator_element1 :
    public BASE_ITERATOR_TYPE
 {
 public:
 
 
-   using iterator = ::list_iterator_first_item < typename BASE_ITERATOR_TYPE::iterator >;
-   using const_iterator = ::list_iterator_first_item < typename BASE_ITERATOR_TYPE::const_iterator >;
-   using THIS_ITERATOR = ::list_iterator_first_item < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
+   using iterator = ::list_iterator_element1 < typename BASE_ITERATOR_TYPE::iterator >;
+   using const_iterator = ::list_iterator_element1 < typename BASE_ITERATOR_TYPE::const_iterator >;
+   using THIS_ITERATOR = ::list_iterator_element1 < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM::ELEMENT1;
+   using node = ITEM;
 
 
    using BASE_ITERATOR_TYPE::BASE_ITERATOR_TYPE;
 
 
-   list_iterator_first_item(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
-   list_iterator_first_item(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_element1(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_element1(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   ITEM * item() { return &this->get()->first(); }
-   const ITEM * item() const { return &this->get()->first(); }
+   auto & topic() { return this->m_p->m_element1; }
+   auto & topic() const { return this->m_p->m_element1; }
 
 
 };
 
 
 template < typename BASE_ITERATOR_TYPE >
-class list_iterator_second_item :
+class list_iterator_element2 :
    public BASE_ITERATOR_TYPE
 {
 public:
 
 
 
-   using iterator = ::list_iterator_second_item < typename BASE_ITERATOR_TYPE::iterator >;
-   using const_iterator = ::list_iterator_second_item < typename BASE_ITERATOR_TYPE::const_iterator >;
-   using THIS_ITERATOR = ::list_iterator_second_item < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
+   using iterator = ::list_iterator_element2 < typename BASE_ITERATOR_TYPE::iterator >;
+   using const_iterator = ::list_iterator_element2 < typename BASE_ITERATOR_TYPE::const_iterator >;
+   using THIS_ITERATOR = ::list_iterator_element2 < typename BASE_ITERATOR_TYPE::THIS_ITERATOR >;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM::ELEMENT2;
+   using node = ITEM;
 
 
    using BASE_ITERATOR_TYPE::BASE_ITERATOR_TYPE;
 
 
-   list_iterator_second_item(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
-   list_iterator_second_item(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_element2(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_element2(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   ITEM * item() { return &this->get()->second(); }
-   const ITEM * item() const { return &this->get()->second(); }
+   auto & topic() { return this->m_p->m_element2; }
+   auto & topic() const { return this->m_p->m_element2; }
 
 
 };
@@ -215,15 +222,22 @@ public:
 
 
    using ITEM_POINTER = typename ITERATOR_TYPE::ITEM_POINTER;
+   using CONST_ITEM_POINTER = typename ITERATOR_TYPE::CONST_ITEM_POINTER;
    using LIST_ITEM_POINTER = typename ITERATOR_TYPE::ITEM_POINTER;
+
 
    using BASE_ITERATOR = typename BASE_ITERATOR_TYPE::iterator;
    using BASE_CONST_ITERATOR = typename BASE_ITERATOR_TYPE::const_iterator;
    using BASE_THIS_ITERATOR = typename BASE_ITERATOR_TYPE::THIS_ITERATOR;
 
+
    using iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::iterator >;
    using const_iterator = ::make_list_iterator < typename BASE_ITERATOR_TYPE::const_iterator >;
    using THIS_ITERATOR = ::make_list_iterator < BASE_ITERATOR_TYPE >;
+
+
+   using node = typename BASE_ITERATOR_TYPE::node;
+   using const_node = const node;
 
 
    using ITEM = typename BASE_ITERATOR_TYPE::ITEM;
@@ -233,6 +247,7 @@ public:
    using BASE_ITERATOR_TYPE::BASE_ITERATOR_TYPE;
 
 
+   make_list_iterator(CONST_ITEM_POINTER itempointer) : BASE_ITERATOR_TYPE(itempointer) {}
    make_list_iterator(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
    make_list_iterator(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
@@ -277,7 +292,8 @@ public:
    }
 
 
-   THIS_ITERATOR & operator += (::count c)
+   template < primitive_integral INTEGRAL >
+   THIS_ITERATOR & operator += (INTEGRAL c)
    { 
       
       while (c-- > 0)
@@ -293,7 +309,8 @@ public:
    }
 
 
-   constexpr THIS_ITERATOR operator + (::count c) const
+   template < primitive_integral INTEGRAL >
+   constexpr THIS_ITERATOR operator + (INTEGRAL c) const
    {
 
       auto iterator = *this;
@@ -305,7 +322,8 @@ public:
    }
 
 
-   THIS_ITERATOR & operator -= (::count c)
+   template < primitive_integral INTEGRAL >
+   THIS_ITERATOR & operator -= (INTEGRAL c)
    { 
       
       while (c-- > 0)
@@ -320,7 +338,8 @@ public:
    }
 
 
-   constexpr THIS_ITERATOR operator - (::count c) const
+   template < primitive_integral INTEGRAL >
+   constexpr THIS_ITERATOR operator - (INTEGRAL c) const
    {
 
       auto iterator = *this;
@@ -389,8 +408,8 @@ public:
 
 
    THIS_ITERATOR & operator =(ITEM_POINTER p) { this->m_p = p;  return *this; }
-   THIS_ITERATOR & operator =(const iterator & iterator) { this->m_p = iterator.m_p;  return *this;}
-   THIS_ITERATOR & operator =(const const_iterator & iterator) { this->m_p = iterator.m_p;  return *this; }
+   THIS_ITERATOR & operator =(const iterator & iterator) { this->m_p = (ITEM_POINTER) iterator.get();  return *this;}
+   THIS_ITERATOR & operator =(const const_iterator & iterator) { this->m_p = (ITEM_POINTER) iterator.get();  return *this; }
    THIS_ITERATOR & operator =(nullptr_t) { this->m_p = nullptr;  return *this; }
 
 
@@ -476,22 +495,22 @@ public:
    }
 
 
-   bool operator !() const { return ::is_set(this->get()); }
+   bool operator !() const { return ::is_null(this->get()); }
 
 
-   auto & operator *() { return *this->item(); }
-   auto & operator *() const { return *this->item(); }
+   auto & operator *() { return this->topic(); }
+   auto & operator *() const { return this->topic(); }
 
 
-   auto operator ->() { return this->item(); }
-   auto operator ->() const { return this->item(); }
+   auto operator ->() { return &this->topic(); }
+   auto operator ->() const { return &this->topic(); }
 
 
-   THIS_ITERATOR back() { return this->get()->back(); }
-   THIS_ITERATOR back() const { return this->get()->back(); }
+   auto & back() { return this->get()->back(); }
+   auto & back() const { return this->get()->back(); }
 
-   THIS_ITERATOR next() { return this->get()->next(); }
-   THIS_ITERATOR next() const { return this->get()->next(); }
+   auto & next() { return this->get()->next(); }
+   auto & next() const { return this->get()->next(); }
 
 
 };
@@ -506,30 +525,34 @@ template < typename ITERATOR_TYPE >
 }
 
 
+//template < typename LIST_ITEM >
+//using list_iterator = ::make_list_iterator < ::list_iterator_item < ::iterator_base < LIST_ITEM > > >;
+
+//template < typename LIST_ITEM >
+//using const_list_iterator = ::make_list_iterator < ::list_iterator_item < ::const_iterator_base < LIST_ITEM > > >;
 
 
 template < typename LIST_ITEM >
-using list_iterator = ::make_list_iterator < ::list_iterator_item < ::iterator_base < LIST_ITEM > > >;
+using list_iterator = ::make_list_iterator < ::list_iterator_node < ::iterator_base < LIST_ITEM > > >;
 
 template < typename LIST_ITEM >
-using const_list_iterator = ::make_list_iterator < ::list_iterator_item < ::const_iterator_base < LIST_ITEM > > >;
-
-
-
-
-template < typename LIST_ITEM >
-using first_item_list_iterator = ::make_list_iterator < ::list_iterator_first_item < ::iterator_base < LIST_ITEM > > >;
-
-template < typename LIST_ITEM >
-using const_first_item_list_iterator = ::make_list_iterator < ::list_iterator_first_item < ::const_iterator_base < LIST_ITEM > > >;
+using const_list_iterator = ::make_list_iterator < ::list_iterator_node < ::const_iterator_base < LIST_ITEM > > >;
 
 
 
 template < typename LIST_ITEM >
-using second_item_list_iterator = ::make_list_iterator < ::list_iterator_second_item < ::iterator_base < LIST_ITEM > > >;
+using element1_list_iterator = ::make_list_iterator < ::list_iterator_element1 < ::iterator_base < LIST_ITEM > > >;
 
 template < typename LIST_ITEM >
-using const_second_item_list_iterator = ::make_list_iterator < ::list_iterator_second_item < ::const_iterator_base < LIST_ITEM > > >;
+using const_element1_list_iterator = ::make_list_iterator < ::list_iterator_element1 < ::const_iterator_base < LIST_ITEM > > >;
+
+
+
+template < typename LIST_ITEM >
+using element2_list_iterator = ::make_list_iterator < ::list_iterator_element2 < ::iterator_base < LIST_ITEM > > >;
+
+template < typename LIST_ITEM >
+using const_element2_list_iterator = ::make_list_iterator < ::list_iterator_element2 < ::const_iterator_base < LIST_ITEM > > >;
 
 
 

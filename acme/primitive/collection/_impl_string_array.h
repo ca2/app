@@ -2432,7 +2432,7 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::implode(const RawTy
    if (!this->prepare_first_in_count_last_out(i, inCountLastOut))
    {
 
-      return ::move(str);
+      return ::transfer(str);
 
    }
 
@@ -2456,7 +2456,7 @@ Type string_array_base < Type, RawType, m_etypeContainer > ::implode(const RawTy
 
    }
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 

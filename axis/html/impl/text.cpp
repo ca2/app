@@ -1184,7 +1184,7 @@ namespace html
 
          }
 
-         auto pFind = 0;
+         auto iFind = 0;
 
          strsize iLen = 0;
 
@@ -1193,7 +1193,7 @@ namespace html
 
             string str = m_straLines[i];
 
-            const ::scoped_string & scopedstrStart = str;
+            const ::ansi_character * pszStart = str;
 
             const ::ansi_character * pszEnd = pszStart;
 

@@ -486,7 +486,7 @@ namespace draw2d
 
       pgraphics->m_pdraw2dhost = pdraw2dhost;
 
-      return ::move(pgraphics);
+      return ::transfer(pgraphics);
 
    }
 

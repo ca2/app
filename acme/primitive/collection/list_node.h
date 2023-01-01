@@ -6,27 +6,32 @@
 //#include "list_iterator.h"
 
 
-template < class TYPE, class ARG_TYPE >
+template < class TYPE >
 class list_node
 {
 public:
 
 
    using ITEM = TYPE;
+   using ARG_ITEM = argument_of < TYPE >;
 
-   using iterator = ::list_iterator < list_node < TYPE, ARG_TYPE > * >;
+   using this_iterator = ::list_iterator < list_node < TYPE > * >;
 
 
-   iterator          m_next;
-   iterator          m_back;
+   this_iterator     m_next;
+   this_iterator     m_back;
    TYPE              m_element;
 
 
-   list_node(ARG_TYPE t, iterator back, iterator next) :
-      m_element(t), m_back(back), m_next(next)
+   list_node(ARG_ITEM t) :
+      m_element(t)
    {
 
    }
+
+
+   operator TYPE & () { return m_element; }
+   operator const TYPE & () const { return (const TYPE & ) m_element; }
 
 
    auto & back() { return m_back; }
@@ -36,12 +41,13 @@ public:
    auto & next()const { return m_next; }
 
 
-   auto item() { return &m_element; }
-   auto item() const { return &m_element; }
+   auto & item() { return m_element; }
+   auto & item() const { return m_element; }
 
     
-   auto & element() { return m_element; }
-   auto & element() const { return m_element; }
+   auto & topic() { return m_element; }
+   auto & topic() const { return m_element; }
+
 
 };
 

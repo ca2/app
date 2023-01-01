@@ -113,7 +113,7 @@ namespace app_shader
 
       auto next = listing.get_next(strPath);
 
-      return ::move(next);
+      return ::transfer(next);
 
    }
 

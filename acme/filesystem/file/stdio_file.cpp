@@ -175,7 +175,7 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 }
 
 
-filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
+void stdio_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    int nFrom = SEEK_SET;
@@ -228,13 +228,13 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
       
       throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
 
-      return -1;
+      //return -1;
 
    }
 
 #endif
 
-   return ftell(m_pfile);
+   //return ftell(m_pfile);
 
 }
 
@@ -388,7 +388,9 @@ filesize stdio_file::size() const
 
    auto position = get_position();
 
-   auto size = ((stdio_file *)this)->seek_to_end();
+   ((stdio_file *)this)->seek_to_end();
+
+   auto size = get_position();
 
    ((stdio_file *)this)->set_position(position);
 

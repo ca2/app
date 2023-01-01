@@ -218,15 +218,15 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
 
 *
 *          1. NAME
-*          2. NAME=VALUE
-*          3. NAME='VALUE'
-*          4. NAME="VALUE"
+*          2. NAME=PAYLOAD
+*          3. NAME='PAYLOAD'
+*          4. NAME="PAYLOAD"
 *
 *        NAME consist of letters, digits, underscores,
 *        colons, hyphens, and periods
 *
 *        NOTE that white-spaces between NAME and equal-sign AND
-*        equal-sign and VALUE is allowed.
+*        equal-sign and PAYLOAD is allowed.
 *
 * @return number of TCHARs successfully parsed
 * @since 1.0
@@ -365,7 +365,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
    do
    {
 
-      if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
+      if ((iCurPos = m_strValue.find_index('&', ++iCurPos)) == -1)
          break;
 
       iParseLen = preader->m_phtml->resolve_entity(m_strValue.substr(iCurPos), strChar);

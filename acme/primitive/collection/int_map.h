@@ -4,17 +4,17 @@
 #include "map.h"
 
 
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using i32_map = map < i32, VALUE, typename argument_of < i32 >::type, ARG_VALUE >;
+template < class PAYLOAD >
+using i32_map = map < i32, PAYLOAD >;
 
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using i64_map = map < i64, VALUE, typename argument_of < i64 >::type, ARG_VALUE >;
+template < class PAYLOAD >
+using i64_map = map < i64, PAYLOAD >;
 
-template < class VALUE,typename ARG_VALUE = typename argument_of < VALUE >::type >
-using iptr_map = map < iptr, VALUE, typename argument_of < iptr >::type, ARG_VALUE >;
+template < class PAYLOAD >
+using iptr_map = map < iptr, PAYLOAD >;
 
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using index_map = map < index, VALUE, typename argument_of < index >::type, ARG_VALUE >;
+template < class PAYLOAD >
+using index_map = map < index, PAYLOAD >;
 
 using int_to_int = i32_map < int >;
 

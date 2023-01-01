@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/file.h"
 
 
 #include <FreeImage.h>
@@ -52,18 +52,17 @@ i32 _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, i32 origin)
 
    }
 
-   if (pfile->translate(offset, (::enum_seek) origin) == 0xFFFFFFFF)
-   {
+   try {
 
-      return -1;
-
-   }
-   else
-   {
-
+      pfile->translate(offset, (::enum_seek) origin);
       return 0;
+   }
+   catch(...)
+   {
+
 
    }
+   return -1;
 
 }
 

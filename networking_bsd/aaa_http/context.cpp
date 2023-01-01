@@ -227,7 +227,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str().find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).case_insensitive_find("/matter/") < 0)
+      if (::str::find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).case_insensitive_find("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -312,7 +312,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str().to_i64(strCache);
+               return ::str::to_i64(strCache);
 
             }
 
@@ -1874,7 +1874,7 @@ namespace http
 
             string strCookie = set[__id(cookie)];
 
-            set[__id(cookie)] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+            set[__id(cookie)] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 

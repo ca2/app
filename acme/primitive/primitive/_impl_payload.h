@@ -16,8 +16,8 @@
 //inline ::payload payload::operator[] (::iptr i) const { return find_property(i); }
 
 
-//inline ::payload payload::operator + (const ::string & str) const { return ::move(*this + ::scoped_string(str)); }
-//inline ::payload payload::operator + (const ::inline_number_string & inline_number_string) const { return ::move(*this + ::scoped_string(inline_number_string)); }
+//inline ::payload payload::operator + (const ::string & str) const { return ::transfer(*this + ::scoped_string(str)); }
+//inline ::payload payload::operator + (const ::inline_number_string & inline_number_string) const { return ::transfer(*this + ::scoped_string(inline_number_string)); }
 
 
 //inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this = (*this + scopedstr); }
@@ -56,7 +56,7 @@ inline class payload & payload::operator = (const ::string & str)
 inline class payload & payload::operator = (::string && str)
 {
 
-   set_string(::move(str));
+   set_string(::transfer(str));
 
    return *this;
 
@@ -718,7 +718,7 @@ namespace file
 //inline payload payload::operator +(const ::payload & payload) const
 //{
 //
-//   return ::move(addition(payload));
+//   return ::transfer(addition(payload));
 //
 //}
 
@@ -727,7 +727,7 @@ namespace file
 inline payload payload::operator -(const ::payload & payload) const
 {
 
-   return ::move(subtraction(payload));
+   return ::transfer(subtraction(payload));
 
 }
 
@@ -737,7 +737,7 @@ inline payload payload::operator *(const payload & payload) const
 
 {
 
-   return ::move(multiplication(payload));
+   return ::transfer(multiplication(payload));
 
 }
 
@@ -745,7 +745,7 @@ inline payload payload::operator *(const payload & payload) const
 inline payload payload:: operator /(const ::payload & payload) const
 {
 
-   return ::move(division(payload));
+   return ::transfer(division(payload));
 
 }
 
@@ -855,7 +855,7 @@ payload1 = payload2;
 //inline ::string operator +(const ::string & str, const ::payload & payload)
 //{
 //
-//   return ::move(str + payload.as_string());
+//   return ::transfer(str + payload.as_string());
 //
 //}
 
@@ -881,7 +881,7 @@ payload1 = payload2;
 //inline ::string operator +(const char(&sz)[c], const ::payload & payload)
 //{
 //
-//   return ::move(::string(sz) + payload);
+//   return ::transfer(::string(sz) + payload);
 //
 //}
 //

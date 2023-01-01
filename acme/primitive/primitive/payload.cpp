@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "acme/primitive/string/as_string.h"
+//#include "acme/primitive/string/get_string.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
 #include "acme/filesystem/file/file.h"
@@ -149,14 +149,14 @@ payload::payload(std::nullptr_t)
 
 
 
-payload::payload(const ::scoped_string & scopedstr)
-{
-
-   m_etype = e_type_new;
-
-   set_string(scopedstr);
-
-}
+//payload::payload(const ::scoped_string & scopedstr)
+//{
+//
+//   m_etype = e_type_new;
+//
+//   set_string(scopedstr);
+//
+//}
 
 
 payload::payload(::particle * pelement)
@@ -179,15 +179,17 @@ payload::payload(const ::particle & particle)
 }
 
 
-payload::payload(::range < const ::ansi_character * > ansirange) :
-   payload(e_no_initialize)
-{
 
-   m_etype = e_type_ansi_range;
-   m_ansirange = ansirange;
 
+payload::payload(const ::ansi_character * start, const ::ansi_character * end) {
+m_etype = e_type_new;
+set_string({start, end});
 }
 
+
+payload::payload(const ::ansi_character * psz) {m_etype = e_type_new;
+set_string(psz);
+}
 
 payload::payload(const ::string & str)
 {
@@ -579,7 +581,7 @@ bool payload::convert(const ::payload & payload)
 strsize payload::length() const
 {
 
-   return string().length();
+   return this->get_string().length();
 
 }
 
@@ -587,7 +589,7 @@ strsize payload::length() const
 void payload::as(::string & str) const
 {
 
-   str = string();
+   str = this->get_string();
 
 }
 
@@ -741,10 +743,10 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->as_f64();
             break;
          case e_type_string:
-            m_str = ::move(this->get_string());
+            m_str = ::transfer(this->get_string());
             break;
          case e_type_atom:
-            m_atom = ::move(this->as_atom());
+            m_atom = ::transfer(this->as_atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -779,19 +781,19 @@ void payload::set_type(enum_type etype, bool bConvert)
 //   if (get_type() == e_type_pstring)
 //   {
 //
-//      *m_pstr = ::move(str);
+//      *m_pstr = ::transfer(str);
 //
 //   }
 //   else if (get_type() == e_type_payload_pointer)
 //   {
 //
-//      m_ppayload->set_string(::move(str));
+//      m_ppayload->set_string(::transfer(str));
 //
 //   }
 //   else if (get_type() == e_type_property)
 //   {
 //
-//      m_pproperty->set_string(::move(str));
+//      m_pproperty->set_string(::transfer(str));
 //
 //   }
 //   else
@@ -799,7 +801,7 @@ void payload::set_type(enum_type etype, bool bConvert)
 //
 //      set_type(e_type_string, false);
 //
-//      m_str = ::move(str);
+//      m_str = ::transfer(str);
 //
 //   }
 //
@@ -851,25 +853,25 @@ inline void payload::set_string(::string && str)
    if (get_type() == e_type_string)
    {
 
-      m_str = ::move(str);
+      m_str = ::transfer(str);
 
    }
    else if (get_type() == e_type_pstring)
    {
 
-      m_pstr->assign(::move(str));
+      m_pstr->assign(::transfer(str));
 
    }
    else if (get_type() == e_type_payload_pointer)
    {
 
-      m_ppayload->set_string(::move(str));
+      m_ppayload->set_string(::transfer(str));
 
    }
    else if (get_type() == e_type_property)
    {
 
-      m_pproperty->set_string(::move(str));
+      m_pproperty->set_string(::transfer(str));
 
    }
    else
@@ -877,7 +879,7 @@ inline void payload::set_string(::string && str)
 
       set_type(e_type_string, false);
 
-      ::new(&m_str) ::string(::move(str));
+      ::new(&m_str) ::string(::transfer(str));
 
    }
 
@@ -1935,19 +1937,19 @@ bool payload::is_new_or_null() const
    //else if (is_integer())
    //{
 
-   //   return string().order(payload.string());
+   //   return this->get_string().order(payload.string());
 
    //}
    //else if (is_floating())
    //{
 
-   //   return string().order(payload.string());
+   //   return this->get_string().order(payload.string());
 
    //}
    else
    {
 
-      return string().case_insensitive_order(payload.get_string());
+      return this->get_string().case_insensitive_order(payload.get_string());
 
    }
 
@@ -2063,7 +2065,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
    else
    {
 
-      return string().order(payload.get_string());
+      return this->get_string().order(payload.get_string());
 
    }
 
@@ -2140,27 +2142,27 @@ bool payload::operator == (const ::scoped_string & scopedstr) const
 
 //bool payload::operator < (const ::scoped_string & scopedstr) const
 //{
-//   return as_string() < psz;
+//   return get_string() < psz;
 //}
 //
 //bool payload::operator <= (const ::scoped_string & scopedstr) const
 //{
-//   return as_string() <= psz;
+//   return get_string() <= psz;
 //}
 //
 //bool payload::operator >= (const ::scoped_string & scopedstr) const
 //{
-//   return as_string() >= psz;
+//   return get_string() >= psz;
 //}
 //
 //bool payload::operator > (const ::scoped_string & scopedstr) const
 //{
-//   return as_string() > psz;
+//   return get_string() > psz;
 //}
 //
 //bool payload::operator != (const ::scoped_string & scopedstr) const
 //{
-//   return as_string() != psz;
+//   return get_string() != psz;
 //}
 
 
@@ -2182,27 +2184,27 @@ bool payload::operator == (const ::string & str) const
 
 //bool payload::operator != (const ::string & str) const
 //{
-//   return as_string() != str;
+//   return get_string() != str;
 //}
 //
 //bool payload::operator < (const ::string & str) const
 //{
-//   return as_string() < str;
+//   return get_string() < str;
 //}
 //
 //bool payload::operator <= (const ::string & str) const
 //{
-//   return as_string() <= str;
+//   return get_string() <= str;
 //}
 //
 //bool payload::operator >= (const ::string & str) const
 //{
-//   return as_string() >= str;
+//   return get_string() >= str;
 //}
 //
 //bool payload::operator > (const ::string & str) const
 //{
-//   return as_string() > str;
+//   return get_string() > str;
 //}
 
 bool payload::operator == (::i32 i) const
@@ -2446,7 +2448,7 @@ string payload::get_recursive_string() const
    else
    {
       
-      return string();
+      return this->get_string();
 
    }
 
@@ -2575,7 +2577,7 @@ string payload::get_string(const ::scoped_string & scopedstrOnNull) const
 }
 
 
-//string & payload::as_string(const ::scoped_string & scopedstrOnNull)
+//string & payload::get_string(const ::scoped_string & scopedstrOnNull)
 string & payload::string_reference(const char * pszOnNull)
 {
 
@@ -2787,7 +2789,7 @@ string & payload::string_reference(const char * pszOnNull)
 
       set_type(e_type_atom, false);
 
-      m_atom = ::move(atom);
+      m_atom = ::transfer(atom);
 
       return m_atom;
 
@@ -4986,7 +4988,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::co
    case e_type_payload_array:
       return payloada().contains(scopedstr, find, count);
    case e_type_property_set:
-      return propset().contains_value(scopedstr, find, count);
+      return propset().contains_payload(scopedstr, find, count);
    default:
    {
       index upperbound = minimum(array_get_upper_bound(), find + count - 1);
@@ -5076,7 +5078,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //      else
 //      {
 //
-//         varRet.set_string(varRet.as_string() + str);
+//         varRet.set_string(varRet.get_string() + str);
 //
 //      }
 //
@@ -5093,7 +5095,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //      else
 //      {
 //
-//         varRet.set_string(varRet.as_string() + str);
+//         varRet.set_string(varRet.get_string() + str);
 //
 //      }
 //
@@ -5101,7 +5103,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //   else
 //   {
 //
-//      varRet.set_string(varRet.as_string() + str);
+//      varRet.set_string(varRet.get_string() + str);
 //
 //   }
 //
@@ -5672,7 +5674,7 @@ bool payload::is_floating() const
    else
    {
 
-      ::string str(::move(string()));
+      ::string str(::transfer(string()));
 
 //#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 //      if(is_scalar()
@@ -5823,7 +5825,7 @@ bool payload::is_integer() const
    else
    {
       
-      ::string str(::move(string()));
+      ::string str(::transfer(string()));
 
       str.trim();
       if(str.length() == 0)
@@ -5859,7 +5861,7 @@ bool payload::is_natural() const
    else
    {
       
-      ::string str(::move(string()));
+      ::string str(::transfer(string()));
 
          str.trim();
          if(str.length() == 0)
@@ -6222,7 +6224,7 @@ bool payload::is_property_false(const ::atom & atom) const
 bool payload::begins_eat(const ::string & strPrefix)
 {
 
-   ::string str(::move(string()));
+   ::string str(::transfer(string()));
 
    if(!str.begins_eat(strPrefix))
    {
@@ -6241,7 +6243,7 @@ bool payload::begins_eat(const ::string & strPrefix)
 bool payload::ends_eat(const ::string & strSuffix)
 {
 
-   ::string str(::move(string()));
+   ::string str(::transfer(string()));
 
    if(!str.ends_eat(strSuffix))
    {
@@ -6260,7 +6262,7 @@ bool payload::ends_eat(const ::string & strSuffix)
 bool payload::case_insensitive_begins_eat(const ::string & strPrefix)
 {
 
-   ::string str(::move(string()));
+   ::string str(::transfer(string()));
 
    if(!str.case_insensitive_begins_eat(strPrefix))
    {
@@ -6279,7 +6281,7 @@ bool payload::case_insensitive_begins_eat(const ::string & strPrefix)
 bool payload::case_insensitive_ends_eat(const ::string & strSuffix)
 {
 
-   ::string str(::move(string()));
+   ::string str(::transfer(string()));
 
    if(!str.case_insensitive_ends_eat(strSuffix))
    {
@@ -7671,7 +7673,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (is_numeric())
    {
 
-      return str += string();
+      return str += this->get_string();
 
    }
    else if (get_type() == ::e_type_bool)
@@ -7683,7 +7685,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else
    {
 
-      ::string strValue(::move(string()));
+      ::string strValue(::transfer(string()));
 
       strValue.replace_with("\\\"", "\"");
 
@@ -7771,7 +7773,7 @@ void payload::null()
 
    }
 
-   return ::file::path(string());
+   return ::file::path(this->get_string());
 
 }
 
@@ -8798,14 +8800,14 @@ unsigned long & payload::unsigned_long_reference()
 #endif
 
 
-CLASS_DECL_ACME ::string as_string(const ::payload & payload)
+CLASS_DECL_ACME ::string get_string(const ::payload & payload)
 {
 
    ::string str;
 
    payload.as(str);
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 
@@ -9135,7 +9137,7 @@ bool payload::is_array() const
 //bool operator == (const string& str, const ::payload & payload)
 //{
 //
-//   return str == payload.as_string();
+//   return str == payload.get_string();
 //
 //}
 
@@ -9159,7 +9161,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      return operator = (payload.as_string());
+//      return operator = (payload.get_string());
 //   }
 //
 //}
@@ -9218,7 +9220,7 @@ bool payload::is_array() const
 //
 //         payload = *this;
 //
-//         payload.stra().erase(payload2.as_string());
+//         payload.stra().erase(payload2.get_string());
 //
 //      }
 //
@@ -9249,7 +9251,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      payload = atoi(as_string()) - atoi(payload2.as_string());
+//      payload = atoi(get_string()) - atoi(payload2.get_string());
 //   }
 //   return payload;
 //}
@@ -9309,7 +9311,7 @@ bool payload::is_array() const
 //
 //            payload = *this;
 //
-//            payload.stra().add(payload2.as_string());
+//            payload.stra().add(payload2.get_string());
 //
 //         }
 //
@@ -9319,7 +9321,7 @@ bool payload::is_array() const
 //
 //         payload = payload2;
 //
-//         payload.stra().add(as_string());
+//         payload.stra().add(get_string());
 //
 //      }
 //
@@ -9377,7 +9379,7 @@ bool payload::is_array() const
 //   else
 //   {
 //
-//      payload = as_string() + payload2.as_string();
+//      payload = get_string() + payload2.get_string();
 //
 //   }
 //
@@ -9417,7 +9419,7 @@ bool payload::is_array() const
 //      else
 //      {
 //         payload = *this;
-//         payload.stra().erase(payload2.as_string());
+//         payload.stra().erase(payload2.get_string());
 //      }
 //   }
 //   else if (m_etype == ::e_type_payload_array)
@@ -9446,7 +9448,7 @@ bool payload::is_array() const
 //   }
 //   else
 //   {
-//      payload = atoi(as_string()) / atoi(payload2.as_string());
+//      payload = atoi(get_string()) / atoi(payload2.get_string());
 //   }
 //   return payload;
 //}
@@ -9576,10 +9578,10 @@ bool payload::is_array() const
 //payload::operator ::as_f64() const { return this->as_f64(); }
 //
 //
-//payload::operator ::as_string() const
+//payload::operator ::get_string() const
 //{
 //
-//   return this->as_string();
+//   return this->get_string();
 //
 //}
 
@@ -9633,7 +9635,7 @@ payload payload::addition(const ::payload & payload) const
 
    payloadResult += payload;
 
-   return ::move(payloadResult);
+   return ::transfer(payloadResult);
 
 }
 
@@ -9645,7 +9647,7 @@ payload  payload::subtraction(const ::payload & payload) const
 
    payloadResult -= payload;
 
-   return ::move(payloadResult);
+   return ::transfer(payloadResult);
 
 }
 
@@ -9657,7 +9659,7 @@ payload payload::multiplication(const ::payload & payload) const
 
    payloadResult *= payload;
 
-   return ::move(payloadResult);
+   return ::transfer(payloadResult);
 
 }
 
@@ -9669,7 +9671,7 @@ payload  payload::division(const ::payload & payload) const
 
    payloadResult /= payload;
 
-   return ::move(payloadResult);
+   return ::transfer(payloadResult);
 
 }
 
@@ -10230,7 +10232,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (string() + payload.get_string());
+         operator= (this->get_string() + payload.get_string());
 
       }
       else
@@ -10310,7 +10312,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (string() + payload.get_string());
+         operator= (this->get_string() + payload.get_string());
 
       }
       else
@@ -10324,7 +10326,7 @@ payload & payload::add(const ::payload & payload)
    else if(payload.is_text())
    {
 
-      operator= (string() + payload.get_string());
+      operator= (this->get_string() + payload.get_string());
 
    }
    else
@@ -11192,7 +11194,7 @@ CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 bool payload::begins(const ::string & strPrefix) const
 {
 
-   return string().begins(strPrefix);
+   return this->get_string().begins(strPrefix);
 
 }
 
@@ -11200,7 +11202,7 @@ bool payload::begins(const ::string & strPrefix) const
 bool payload::ends(const ::string & strSuffix) const
 {
 
-   return string().ends(strSuffix);
+   return this->get_string().ends(strSuffix);
 
 }
 
@@ -11208,14 +11210,14 @@ bool payload::ends(const ::string & strSuffix) const
 bool payload::case_insensitive_begins(const ::string & strPrefix) const
 {
 
-   return string().case_insensitive_begins(strPrefix);
+   return this->get_string().case_insensitive_begins(strPrefix);
 
 }
 
 bool payload::case_insensitive_ends(const ::string & strSuffix) const
 {
 
-   return string().case_insensitive_ends(strSuffix);
+   return this->get_string().case_insensitive_ends(strSuffix);
 
 }
 

@@ -1196,7 +1196,7 @@ namespace user
 
          }
 
-         _001EnsureVisible(m_pcombo->m_pitemHover);
+         _001EnsureVisible(m_pcombo->m_pitemHover->m_iItem);
 
          if (i < 0)
          {
@@ -1313,11 +1313,25 @@ namespace user
 
    }
 
+    void list_box::set_current_item_by_index(::index iIndex, const ::action_context& context)
+    {
 
-   string list_box::get_current_item_string_value()
+       if (iIndex < 0 || iIndex >= m_straValue.get_size())
+       {
+
+          return;
+
+       }
+
+       set_current_item(__new(::item(::e_element_item, iIndex)), context);
+
+    }
+
+
+    string list_box::get_current_item_string_value()
    {
 
-      index iSel = current_item();
+      index iSel = current_item()->m_iItem;
 
       if (iSel < 0)
       {
@@ -1372,9 +1386,9 @@ namespace user
 
                auto puser = psession->user();
 
-               ::auto pFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
+               auto iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
-               if (__found(iFind))
+               if (found(iFind))
                {
 
                   puser->m_uiptraToolWindow.erase_at(iFind);

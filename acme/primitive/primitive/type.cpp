@@ -101,7 +101,7 @@ string demangle(const char* name)
 
    }
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 

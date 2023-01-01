@@ -88,7 +88,7 @@ namespace user
    void menu_item::menu_item_destruct()
    {
 
-      for (auto & pitemChild : m_pmenuitema->ptra())
+      for (auto & pitemChild : *m_pmenuitema)
       {
 
          pitemChild->menu_item_destruct();
@@ -177,7 +177,7 @@ namespace user
 
          m_strTitle = strText;
 
-         string strImage (pnode->attribute("image").as_string());
+         string strImage (pnode->attribute("image").get_string());
 
          if (strImage.has_char())
          {
@@ -253,7 +253,7 @@ namespace user
 
       }
 
-      for (auto & pitemChild : m_pmenuitema->ptra())
+      for (auto & pitemChild : *m_pmenuitema)
       {
 
          if (pitemChild->contains_menu_item(pitem))

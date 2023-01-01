@@ -1,16 +1,16 @@
 #pragma once
 
 
-template < typename CONTAINER, typename VALUE >
-inline bool contains_value(const CONTAINER & container, const VALUE & value);
+template < typename CONTAINER, typename PAYLOAD >
+inline bool contains_payload(const CONTAINER & container, const PAYLOAD & payload);
 
       
-template < typename ITERATOR >
-void erase(ITERATOR & iterator);
+//template < typename ITERATOR >
+//void erase(ITERATOR & iterator);
 
 
-template < typename ITERATOR >
-void delete_erase(ITERATOR & iterator);
+//template < typename ITERATOR >
+//void delete_erase(ITERATOR & iterator);
 
 
 template < typename CONTAINER, typename ITERATOR >

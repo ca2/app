@@ -249,7 +249,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str().find_wwci("ca2", purl->get_server(scopedstrUrl)) < 0 && purl->get_object(scopedstrUrl).case_insensitive_find_index("/matter/") < 0)
+      if (::str::find_wwci("ca2", purl->get_server(scopedstrUrl)) < 0 && purl->get_object(scopedstrUrl).case_insensitive_find_index("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -334,7 +334,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str().to_i64(strCache);
+               return ::str::to_i64(strCache);
 
             }
 
@@ -654,7 +654,7 @@ namespace http
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(scopedstrUrl);
+            m_mapPac.erase_item(scopedstrUrl);
          }
 
          auto ppac = __create_new < class pac >();
@@ -731,7 +731,7 @@ namespace http
          if (ppair != nullptr)
          {
             //            delete ppair->element2();
-            m_mapPac.erase_key(scopedstrUrl);
+            m_mapPac.erase_item(scopedstrUrl);
          }
 
          auto pproxy = __create_new < class ::http::context::proxy >();
@@ -1912,7 +1912,7 @@ namespace http
 
             string strCookie = set["cookie"];
 
-            set["cookie"] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+            set["cookie"] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 

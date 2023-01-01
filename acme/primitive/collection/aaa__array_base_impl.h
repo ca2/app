@@ -464,7 +464,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index
 
    m_nSize -= nCount;
 
-   return ::move(t);
+   return ::transfer(t);
 
 }
 

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/move.h"
+#include "acme/primitive/primitive/transfer.h"
 
 #include "acme/primitive/primitive/ptr.h"
 
@@ -136,7 +136,7 @@ public:
 
 
    function(ptr < ::particle > && p) :
-      ptr < ::particle >(::move(p))
+      ptr < ::particle >(::transfer(p))
    {
 
    }
@@ -188,7 +188,7 @@ public:
 
 
    function(function && function) :
-      ptr < ::particle >(::move(function))
+      ptr < ::particle >(::transfer(function))
    {
 
    }
@@ -221,7 +221,7 @@ public:
 //   function & operator = (function && function)
 //   {
 //
-//      ptr < ::element >::operator=(::move(function));
+//      ptr < ::element >::operator=(::transfer(function));
 //
 //      return *this;
 //
@@ -294,7 +294,7 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_ppredicate.move(memory_new class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.transfer(memory_new class predicate <PREDICATE >(predicateParam));
 
    }
 
@@ -307,7 +307,7 @@ public:
 
 
    function(function && function) :
-      m_ppredicate(::move(function.m_ppredicate))
+      m_ppredicate(::transfer(function.m_ppredicate))
    {
 
    }
@@ -335,7 +335,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_ppredicate.move(memory_new class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.transfer(memory_new class predicate <PREDICATE >(predicateParam));
 
       return *this;
 
@@ -438,7 +438,7 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pfunctionbase.move(memory_new class implementation < FUNCTION >(functionParam));
+      m_pfunctionbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -451,7 +451,7 @@ public:
 
 
    function(function && function) :
-      m_pfunctionbase(::move(function.m_pfunctionbase))
+      m_pfunctionbase(::transfer(function.m_pfunctionbase))
    {
 
    }
@@ -480,7 +480,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pfunctionbase.move ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pfunctionbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -576,7 +576,7 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pfunctionbase.move(memory_new class implementation < FUNCTION >(functionParam));
+      m_pfunctionbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -589,7 +589,7 @@ public:
 
 
    function(function && function) :
-      m_pfunctionbase(::move(function.m_pfunctionbase))
+      m_pfunctionbase(::transfer(function.m_pfunctionbase))
    {
 
    }
@@ -618,7 +618,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pfunctionbase.move ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pfunctionbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 

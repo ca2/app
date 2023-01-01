@@ -32,7 +32,7 @@ namespace file
 
 
       bool is_valid() const override;
-      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void translate(filesize offset, ::enum_seek eseek) override;
       filesize get_position() const override;
       filesize size() const override;
 

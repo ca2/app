@@ -1053,14 +1053,14 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::DetachSocket(socket_map::association * passociation, socket_map * psocketmap)
+   void base_socket::DetachSocket(socket_map::node * pnode, socket_map * psocketmap)
    {
 
       SetDetached();
 
       auto psocketthread = __new(socket_thread);
 
-      psocketthread->move(passociation, psocketmap);
+      psocketthread->transfer(pnode, psocketmap);
 
    }
 
@@ -1881,7 +1881,7 @@ namespace sockets_bsd
    bool base_socket::SetSoBindtodevice(const string & intf)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.length()) == -1)
       {
 
          FATAL("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));

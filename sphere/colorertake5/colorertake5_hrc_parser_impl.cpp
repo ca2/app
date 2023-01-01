@@ -742,7 +742,7 @@ namespace colorertake5
             if(worddiv.has_char())
             {
                string entWordDiv = useEntities(worddiv);
-               next->worddiv = ::str().ch_class::createCharClass(entWordDiv, 0, nullptr);
+               next->worddiv = ::str::ch_class::createCharClass(entWordDiv, 0, nullptr);
                if(next->worddiv == nullptr)
                {
                   if (errorHandler != nullptr) errorHandler->warning(string("fault compiling worddiv regexp '")+entWordDiv+"' in scheme '"+scheme->schemeName+"'");
@@ -791,7 +791,7 @@ namespace colorertake5
                pIDs[pos].region = rgn;
                pIDs[pos].isSymbol = (type == 2);
                pIDs[pos].ssShorter = -1;
-               next->kwList->firstChar->add_char(::str().get_utf8_char(param));
+               next->kwList->firstChar->add_char(::str::get_utf8_char(param));
                if (!isCase)
                {
                   next->kwList->firstChar->add_char(unicode_to_lower_case(param));

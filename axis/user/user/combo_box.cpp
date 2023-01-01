@@ -103,7 +103,7 @@ namespace user
       else
       {
 
-         _001GetListText(current_item(), strText);
+         _001GetListText(current_item()->m_iItem, strText);
 
       }
 
@@ -844,13 +844,13 @@ namespace user
    void combo_box::set_current_item(::item * pitem, const ::action_context & actioncontext)
    {
 
-      if (::is_same_item(m_pitemCurrent, pitem))
+      if (::is_same_item(current_item(), pitem))
       {
 
          return;
 
       }
-      
+
       ::user::plain_edit::set_current_item(pitem, actioncontext);
 
       if(m_plistbox)
@@ -1063,7 +1063,7 @@ namespace user
 
    //::count combo_box::get_count()
    // { ASSERT(is_window()); return (count)send_message( CB_GETCOUNT, 0, 0); }
-   //index combo_box::current_item()
+   //index combo_box::current_index()
    // { ASSERT(is_window()); return (index)send_message( CB_GETCURSEL, 0, 0); }
    //index combo_box::set_current_item(index nSelect)
    // { ASSERT(is_window()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
@@ -1520,6 +1520,14 @@ namespace user
    {
 
       m_plistbox->set_current_item_by_string_value(strValue, actioncontext);
+
+   }
+
+
+   void combo_box::set_current_item_by_index(::index iIndex, const ::action_context & action_context)
+   {
+
+      m_plistbox->set_current_item_by_index(iIndex, action_context);
 
    }
 

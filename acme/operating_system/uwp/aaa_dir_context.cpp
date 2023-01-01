@@ -361,7 +361,7 @@ pacmedirectory->roaming() / "home";
 
       }
 
-      auto pFind = ::str().case_insensitive_find(".zip:",str);
+      auto pFind = ::str::case_insensitive_find(".zip:",str);
 
       string strPath(str.c_str(), iLast + 1);
 
@@ -369,11 +369,11 @@ pacmedirectory->roaming() / "home";
       {
          if(string_begins(strPath,"\\\\"))
          {
-            //::str().begin(strPath,"\\\\?\\UNC");
+            //::str::begin(strPath,"\\\\?\\UNC");
          }
          else
          {
-            //::str().begin(strPath,"\\\\?\\");
+            //::str::begin(strPath,"\\\\?\\");
          }
       }
 

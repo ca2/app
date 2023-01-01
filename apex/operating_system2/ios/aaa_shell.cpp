@@ -182,8 +182,8 @@ namespace ios
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      auto pFind = ::str().case_insensitive_find("://", imagekey.m_strPath);
-      strsize iFind2 = ::str().case_insensitive_find(":", imagekey.m_strPath);
+      auto pFind = ::str::case_insensitive_find("://", imagekey.m_strPath);
+      strsize iFind2 = ::str::case_insensitive_find(":", imagekey.m_strPath);
       if (::is_set(pFind) || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).left(maximum(iFind, iFind2));

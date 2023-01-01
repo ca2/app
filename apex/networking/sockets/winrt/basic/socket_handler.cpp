@@ -723,14 +723,14 @@ namespace sockets
 
       socket_pointer psocket = pbasesocket;
 
-      if (::contains_value(m_sockets, psocket))
+      if (::contains_payload(m_sockets, psocket))
       {
 
          return true;
 
       }
 
-      if (::contains_value(m_add, psocket))
+      if (::contains_payload(m_add, psocket))
       {
 
          return true;

@@ -1047,10 +1047,10 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
-      str.find_replace("%SOURCE%",::str().find_replace("\\","/",string(strName)));
-      str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
+      str.find_replace("%SOURCE%",::str::find_replace("\\","/",string(strName)));
+      str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
-      str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
+      str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
       str.find_replace("%VS_VARS%",m_strEnv);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1265,9 +1265,9 @@ auto tickStart = ::time::now();
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
 
 
-         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
+         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
-         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);

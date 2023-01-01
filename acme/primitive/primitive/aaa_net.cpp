@@ -144,7 +144,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen)
 
    strDecode.release_string_buffer(iLen);
 
-   return ::move(strDecode);
+   return ::transfer(strDecode);
 
 }
 
@@ -627,7 +627,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //
 //   }
 //
-//   return ::move(strDecode);
+//   return ::transfer(strDecode);
 //
 //
 //}

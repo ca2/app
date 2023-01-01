@@ -5112,7 +5112,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
    while(true)
    {
 
-      auto iFindNext = str(iLast+1).find_index('\n');
+      auto iFindNext = str.find_index('\n', iLast + 1);
 
       if(iFindNext < 0)
       {
@@ -5471,7 +5471,7 @@ void str::escape_find_character(::const_ansi_range & rangeXml, i32 ch, i32 escap
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-void str::escape_skip_any_character_in(::const_ansi_range & rangeXml, const char * chset, i32 escape)
+void str::escape_find_any_character_in(::const_ansi_range & rangeXml, const char * chset, i32 escape)
 {
    
    const char * prev_escape = nullptr;
@@ -5599,3 +5599,58 @@ void str::escape_case_insensitive_find(::const_ansi_range & range, const ::const
    }
    
 }
+
+
+
+//========================================================
+// Name   : _tcsecpy
+// Desc   : similar with _tcscpy with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+void str::escape_copy(::ansi_range & rangeTarget, char escape, const ::const_ansi_range & rangeSource)
+{
+
+   auto pTarget = rangeTarget.m_begin;
+
+   auto pSource = rangeSource.m_begin;
+
+   bool bEscaping = false;
+
+   while(pSource < rangeSource.m_end && pTarget < rangeTarget.m_end)
+   {
+
+      if(bEscaping)
+      {
+
+         bEscaping = false;
+
+         *pTarget++ = *pSource;
+
+      }
+      else if(*pSource == escape)
+      {
+
+         bEscaping = true;
+
+      }
+      else
+      {
+
+         *pTarget++ = *pSource;
+
+      }
+
+      pSource++;
+
+   }
+
+   *pTarget = '\0';
+
+   rangeTarget.m_end = pTarget;
+
+}
+

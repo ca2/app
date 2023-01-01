@@ -106,7 +106,7 @@ namespace user
 
       }
 
-      return get_current_image()->extension()->payload("read_only_link").as_string();
+      return get_current_image()->extension()->payload("read_only_link").get_string();
 
    }
 
@@ -144,7 +144,7 @@ namespace user
          if (m_pitemCurrent.is_set())
          {
 
-            for (index i = m_pitemCurrent; i <= pitem->m_iItem; i++)
+            for (index i = m_pitemCurrent->m_iItem; i <= pitem->m_iItem; i++)
             {
 
                iaSel.add_unique(i);

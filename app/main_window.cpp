@@ -80,7 +80,14 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+      if (acmenode()->background_color().get_luminance() < 0.5) {
+
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
+
+      }else{
+
+
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));}
       
       auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
 

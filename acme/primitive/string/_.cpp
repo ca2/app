@@ -56,7 +56,7 @@ int debug_string_iterator()
 //
 //   va_end(argList);
 //
-//   return ::move(str);
+//   return ::transfer(str);
 //
 //}
 //

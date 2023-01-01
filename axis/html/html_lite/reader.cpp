@@ -477,7 +477,7 @@ bool lite_html_reader::parseComment(string &rComment)
    {
       rComment = pszBegin;
 
-      m_dwBufPos += (4 + rComment.get_length());
+      m_dwBufPos += (4 + rComment.length());
       return (true);
    }
 

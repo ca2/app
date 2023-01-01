@@ -18,7 +18,7 @@ public:
 
 
    ptr_array() { }
-   ptr_array(ptr_array && array) : pointer_array_process < comparable_array < TYPE * >, TYPE >(::move(array)) { }
+   ptr_array(ptr_array && array) : pointer_array_process < comparable_array < TYPE * >, TYPE >(::transfer(array)) { }
 
 
    TYPE & object_at(::index i) { return *this->element_at(i); }

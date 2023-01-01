@@ -256,7 +256,7 @@ namespace imaging_freeimage
 
       {
 
-         auto tmp = payloadFile.file_path();
+         auto tmp = payloadFile.as_file_path();
 
          if (tmp.case_insensitive_ends(".gif"))
          {
@@ -269,19 +269,19 @@ namespace imaging_freeimage
 
       set_bypass_cache_if_empty(payloadFile);
 
-      ::file::path path = payloadFile.file_path();
+      ::file::path path = payloadFile.as_file_path();
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
       file()->as_memory(payloadFile, memory);
 
-      auto p1 = memory.get_data();
+      auto p1 = memory.data();
 
-      auto s1 = memory.get_size();
+      auto s1 = memory.size();
 
       //file()->non_empty_memory(payloadFile, *pmemory);
 
-      const ::scoped_string & scopedstr = (const char *)memory.get_data();
+      const char * psz = (const char *)memory.data();
 
       if (::is_null(psz))
       {
@@ -314,28 +314,28 @@ namespace imaging_freeimage
 
       auto pcontextimage = pcontext->context_image();
 
-      auto pszData = memory.get_data();
+      auto pszData = memory.data();
 
-      auto size = memory.get_size();
+      auto size = memory.size();
 
       char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
 
       bool bPng = size > sizeof(pszPngSignature)
       && strncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
 
-      bool bJpegBegins = memory.begins("\x0FF\x0D8", 2);
+      bool bJpegBegins = memory.begins("\x0FF\x0D8");
 
-      bool bJpegEnds = memory.ends("\x0FF\x0D9", 2);
+      bool bJpegEnds = memory.ends("\x0FF\x0D9");
 
-      bool bGif87a = memory.begins("GIF87a", 6);
+      bool bGif87a = memory.begins("GIF87a");
 
-      bool bGif89a = memory.begins("GIF89a", 6);
+      bool bGif89a = memory.begins("GIF89a");
 
       bool bJpeg =  bJpegBegins && bJpegEnds;
 
-      bool bJfif = memory.begins("JFIF", 4);
+      bool bJfif = memory.begins("JFIF");
 
-      bool bExif = memory.begins("Exif", 4);
+      bool bExif = memory.begins("Exif");
 
       bool bGif = bGif87a || bGif89a;
 
@@ -390,7 +390,7 @@ namespace imaging_freeimage
 
       }
 
-      FIMEMORY * pmem = FreeImage_OpenMemory(memory.get_data(), (::u32) memory.get_size());
+      FIMEMORY * pmem = FreeImage_OpenMemory(memory.data(), (::u32) memory.size());
 
       if (pmem == nullptr)
       {

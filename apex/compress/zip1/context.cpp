@@ -81,7 +81,7 @@ namespace str
          strZip += ":";
 
       }
-      else if(::str().find_file_extension("zip:", listing.m_pathUser) >= 0)
+      else if(::str::find_file_extension("zip:", listing.m_pathUser) >= 0)
       {
 
          listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -241,7 +241,7 @@ namespace str
          strZip += ":";
 
       }
-      else if (::str().find_file_extension("zip:", strPath) >= 0)
+      else if (::str::find_file_extension("zip:", strPath) >= 0)
       {
 
          pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);

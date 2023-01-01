@@ -23,7 +23,7 @@ namespace file
 
 
    item_array::item_array(item_array && itema) :
-      pointer_array < item >(::move(itema))
+      pointer_array < item >(::transfer(itema))
    {
 
    }
@@ -160,7 +160,7 @@ namespace file
    item_array & item_array::operator = (item_array && itema)
    {
 
-      pointer_array < item >::operator = (::move(itema));
+      pointer_array < item >::operator = (::transfer(itema));
 
       return *this;
 

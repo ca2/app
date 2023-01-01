@@ -88,7 +88,7 @@ namespace sockets_bsd
 
       void add(const ::sockets::socket_pointer & psocket) override;
       void move2(::sockets::socket_pointer && psocket) override;
-      void move(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
+      void transfer(socket_map::node * pnode, socket_map* psocketmap = nullptr) override;
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
       void erase(const ::sockets::socket_pointer & psocket) override;
 

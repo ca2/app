@@ -64,13 +64,13 @@ namespace file
 
       inline translatable & position() {return *this;}
       virtual filesize get_position() const;
-      virtual filesize set_position(filesize position);
-      virtual filesize increment_position(filesize offset = 1);
-      virtual filesize decrement_position(filesize offset = 1);
-      virtual filesize seek_to_begin();
-      virtual filesize seek_to_end();
-      virtual filesize seek_from_end(filesize offset);
-      filesize translate(filesize offset, ::enum_seek eseek) override;
+      virtual void set_position(filesize position);
+      virtual void increment_position(filesize offset = 1);
+      virtual void decrement_position(filesize offset = 1);
+      virtual void seek_to_begin();
+      virtual void seek_to_end();
+      virtual void seek_from_end(filesize offset);
+      void translate(filesize offset, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
 

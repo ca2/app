@@ -42,7 +42,7 @@
 //   array_range(nullptr_t):BASE_RANGE(nullptr){}
 //   array_range():BASE_RANGE(){}
 //   array_range(const array_range & array_range) : BASE_RANGE(array_range) {}
-//   array_range(array_range && array_range) : BASE_RANGE(::move(array_range)) {}
+//   array_range(array_range && array_range) : BASE_RANGE(::transfer(array_range)) {}
 //   template<typed_range<iterator> RANGE>
 //   array_range(const RANGE &range) : BASE_RANGE(range) {}
 //   template<typed_range<const_iterator> RANGE>
@@ -68,7 +68,7 @@
 //
 // 
 //   array_range & operator = (const array_range & array_range) { RANGE_TYPE::operator=(array_range); return *this; }
-//   array_range & operator = (array_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
+//   array_range & operator = (array_range && range) { BASE_RANGE::operator=(::transfer(range)); return *this; }
 //
 //
 //   //array_range(const ITEM * data) :range(data) { }

@@ -350,7 +350,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //   while(*psz != '\0')
 //   {
 //
-//      strChar = ::str().get_utf8_char(psz);
+//      strChar = ::str::get_utf8_char(psz);
 //
 //      if(strChar.is_empty())
 //      {
@@ -367,7 +367,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //         while(*psz != '\0')
 //         {
 //
-//            strChar = ::str().get_utf8_char(psz);
+//            strChar = ::str::get_utf8_char(psz);
 //
 //            if(strChar.is_empty())
 //            {
@@ -388,7 +388,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //            if(strChar == "\\")
 //            {
 //
-//               strChar = ::str().get_utf8_char(psz);
+//               strChar = ::str::get_utf8_char(psz);
 //
 //               if(strChar.is_empty())
 //               {
@@ -438,7 +438,7 @@ string_array cmdline_from_pid(unsigned int uiPid)
 //      else if(strChar == "\\")
 //      {
 //
-//         strChar = ::str().get_utf8_char(psz);
+//         strChar = ::str::get_utf8_char(psz);
 //
 //         if(strChar.is_empty())
 //         {

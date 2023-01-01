@@ -279,7 +279,7 @@
 //
 // MessageText:
 //
-// The system Cannot move the file to a different disk drive.
+// The system Cannot transfer the file to a different disk drive.
 //
 #define ERROR_NOT_SAME_DEVICE            17L
 
@@ -1018,7 +1018,7 @@
 //
 // MessageText:
 //
-// An attempt was made to move the file pointer before the beginning of the file.
+// An attempt was made to transfer the file pointer before the beginning of the file.
 //
 #define ERROR_NEGATIVE_SEEK              131L
 
@@ -5571,7 +5571,7 @@
 //
 // MessageText:
 //
-// Unable to move the replacement file to the file to be replaced. The file to be replaced has retained its original name.
+// Unable to transfer the replacement file to the file to be replaced. The file to be replaced has retained its original name.
 //
 #define ERROR_UNABLE_TO_MOVE_REPLACEMENT 1176L
 
@@ -5580,7 +5580,7 @@
 //
 // MessageText:
 //
-// Unable to move the replacement file to the file to be replaced. The file to be replaced has been renamed using the backup name.
+// Unable to transfer the replacement file to the file to be replaced. The file to be replaced has been renamed using the backup name.
 //
 #define ERROR_UNABLE_TO_MOVE_REPLACEMENT_2 1177L
 
@@ -6448,7 +6448,7 @@
 // MessageText:
 //
 // The requested file operation failed because the storage quota was exceeded.
-// To free up disk space, move files to a different loCAtion or delete unnecessary files. For more information, contact your system administrator.
+// To free up disk space, transfer files to a different loCAtion or delete unnecessary files. For more information, contact your system administrator.
 //
 #define ERROR_DISK_QUOTA_EXCEEDED        1295L
 
@@ -12289,7 +12289,7 @@
 //
 // MessageText:
 //
-// You Cannot bring the group online because the owner of the group is not in the preferred list for the group. To change the owner node for the group, move the group.
+// You Cannot bring the group online because the owner of the group is not in the preferred list for the group. To change the owner node for the group, transfer the group.
 //
 #define ERROR_CLUSTER_OWNER_NOT_IN_PREFLIST 5082L
 
@@ -15237,7 +15237,7 @@
 //
 // MessageText:
 //
-// The requested cross-domain move operation could not be performed.
+// The requested cross-domain transfer operation could not be performed.
 //
 #define ERROR_DS_CROSS_DOM_MOVE_ERROR    8216L
 
@@ -17282,7 +17282,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the object's epoch number. Either source or destination does not have the latest version of the object.
+// Source and destination of a cross-domain transfer do not agree on the object's epoch number. Either source or destination does not have the latest version of the object.
 //
 #define ERROR_DS_EPOCH_MISMATCH          8483L
 
@@ -17291,7 +17291,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the object's current name. Either source or destination does not have the latest version of the object.
+// Source and destination of a cross-domain transfer do not agree on the object's current name. Either source or destination does not have the latest version of the object.
 //
 #define ERROR_DS_SRC_NAME_MISMATCH       8484L
 
@@ -17300,7 +17300,7 @@
 //
 // MessageText:
 //
-// Source and destination for the cross-domain move operation are identiCAl. caller should use loCAl move operation instead of cross-domain move operation.
+// Source and destination for the cross-domain transfer operation are identiCAl. caller should use loCAl transfer operation instead of cross-domain transfer operation.
 //
 #define ERROR_DS_SRC_AND_DST_NC_IDENTICAL 8485L
 
@@ -17309,7 +17309,7 @@
 //
 // MessageText:
 //
-// Source and destination for a cross-domain move are not in agreement on the naming contexts in the forest. Either source or destination does not have the latest version of the Partitions container.
+// Source and destination for a cross-domain transfer are not in agreement on the naming contexts in the forest. Either source or destination does not have the latest version of the Partitions container.
 //
 #define ERROR_DS_DST_NC_MISMATCH         8486L
 
@@ -17318,7 +17318,7 @@
 //
 // MessageText:
 //
-// Destination of a cross-domain move is not authoritative for the destination naming action_context.
+// Destination of a cross-domain transfer is not authoritative for the destination naming action_context.
 //
 #define ERROR_DS_NOT_AUTHORITIVE_FOR_DST_NC 8487L
 
@@ -17327,7 +17327,7 @@
 //
 // MessageText:
 //
-// Source and destination of a cross-domain move do not agree on the identity of the source object. Either source or destination does not have the latest version of the source object.
+// Source and destination of a cross-domain transfer do not agree on the identity of the source object. Either source or destination does not have the latest version of the source object.
 //
 #define ERROR_DS_SRC_GUID_MISMATCH       8488L
 
@@ -17354,7 +17354,7 @@
 //
 // MessageText:
 //
-// A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be erased to restore the system to a consistent state.
+// A cross-domain transfer operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be erased to restore the system to a consistent state.
 //
 #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491L
 
@@ -17363,7 +17363,7 @@
 //
 // MessageText:
 //
-// This object may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the object has some special characteristics, e.g.: trust account or restricted RID, which prevent its move.
+// This object may not be moved across domain boundaries either because cross-domain moves for this class are disallowed, or the object has some special characteristics, e.g.: trust account or restricted RID, which prevent its transfer.
 //
 #define ERROR_DS_ILLEGAL_XDOM_MOVE_OPERATION 8492L
 
@@ -17372,7 +17372,7 @@
 //
 // MessageText:
 //
-// can't move objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the object from any account group memberships and retry.
+// can't transfer objects with memberships across domain boundaries as once moved, this would violate the membership conditions of the account group. Remove the object from any account group memberships and retry.
 //
 #define ERROR_DS_CANT_WITH_ACCT_GROUP_MEMBERSHPS 8493L
 
@@ -17417,7 +17417,7 @@
 //
 // MessageText:
 //
-// Cross-domain move of non-empty account groups is not allowed.
+// Cross-domain transfer of non-empty account groups is not allowed.
 //
 #define ERROR_DS_CANT_MOVE_ACCOUNT_GROUP 8498L
 
@@ -17426,7 +17426,7 @@
 //
 // MessageText:
 //
-// Cross-domain move of non-empty resource groups is not allowed.
+// Cross-domain transfer of non-empty resource groups is not allowed.
 //
 #define ERROR_DS_CANT_MOVE_RESOURCE_GROUP 8499L
 
@@ -17842,7 +17842,7 @@
 //
 // MessageText:
 //
-// The replication update could not be applied because either the source or the destination has not yet received information regarding a recent cross-domain move operation.
+// The replication update could not be applied because either the source or the destination has not yet received information regarding a recent cross-domain transfer operation.
 //
 #define ERROR_DS_DRA_OBJ_NC_MISMATCH     8545L
 
@@ -18150,7 +18150,7 @@
 //
 // MessageText:
 //
-// Rename or move operations on naming action_context heads or read-only objects are not allowed.
+// Rename or transfer operations on naming action_context heads or read-only objects are not allowed.
 //
 #define ERROR_DS_MODIFYDN_DISALLOWED_BY_INSTANCE_TYPE 8579L
 
@@ -18411,7 +18411,7 @@
 //
 // MessageText:
 //
-// Cross-domain move of non-empty basic appliCAtion groups is not allowed.
+// Cross-domain transfer of non-empty basic appliCAtion groups is not allowed.
 //
 #define ERROR_DS_CANT_MOVE_APP_BASIC_GROUP 8608L
 
@@ -18420,7 +18420,7 @@
 //
 // MessageText:
 //
-// Cross-domain move of non-empty query based appliCAtion groups is not allowed.
+// Cross-domain transfer of non-empty query based appliCAtion groups is not allowed.
 //
 #define ERROR_DS_CANT_MOVE_APP_QUERY_GROUP 8609L
 
@@ -34059,7 +34059,7 @@
 //
 // MessageText:
 //
-// The component move was disallowed, because the source or destination appliCAtion is either a system appliCAtion or currently locked against changes
+// The component transfer was disallowed, because the source or destination appliCAtion is either a system appliCAtion or currently locked against changes
 //
 #define COMADMIN_E_COMP_MOVE_LOCKED      _HRESULT_TYPEDEF_(0x8011042DL)
 
@@ -34068,7 +34068,7 @@
 //
 // MessageText:
 //
-// The component move failed because the destination appliCAtion no longer exists
+// The component transfer failed because the destination appliCAtion no longer exists
 //
 #define COMADMIN_E_COMP_MOVE_BAD_DEST    _HRESULT_TYPEDEF_(0x8011042EL)
 

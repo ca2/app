@@ -40,7 +40,7 @@ namespace file
    }
 
 
-   filesize buffered_file::translate(filesize offset, ::enum_seek eseek)
+   void buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
       u64 uiBegBufPosition = m_uiBufLPos;
@@ -105,7 +105,9 @@ namespace file
       else
       {
 
-         m_uiPosition = m_pfile->set_position(uiNewPos);
+         m_pfile->set_position(uiNewPos);
+
+         m_uiPosition = m_pfile->get_position();
 
          if (m_bDirty)
          {
@@ -121,7 +123,7 @@ namespace file
 
       }
 
-      return m_uiPosition;
+      //return m_uiPosition;
 
    }
 

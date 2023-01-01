@@ -66,7 +66,7 @@ void clear_message_queue(itask_t idthread)
 
    critical_section_lock synchronouslock(&g_criticalsectionMq);
 
-   g_pmapMq->erase_key(idthread);
+   g_pmapMq->erase_item(idthread);
 
 }
 

@@ -76,7 +76,7 @@ namespace file
 
       path_os(const path_os & path) : m_idlist(path.m_idlist) {}
 
-      path_os(path_os && path) : m_idlist(::move(path.m_idlist)) {}
+      path_os(path_os && path) : m_idlist(::transfer(path.m_idlist)) {}
 
 #else
 

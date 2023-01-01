@@ -34,8 +34,8 @@ namespace data
    };
 
 
-   template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < listener *, VALUE > >
-   using listener_map = ::map < listener *, VALUE, ARG_VALUE, PAIR >;
+   template < class PAYLOAD, class PAIR = pair < listener *, PAYLOAD > >
+   using listener_map = ::map < listener *, PAYLOAD, PAIR >;
 
 
 } // namespace data

@@ -744,8 +744,10 @@ string_array get_c_args_from_c(::const_ansi_range & range)
 }
 
 
-string_array get_c_args_for_c(::const_ansi_range & range)
+string_array get_c_args_for_c(const ::scoped_string & scopedstr)
 {
+
+   auto range = scopedstr();
 
    string_array stra;
 

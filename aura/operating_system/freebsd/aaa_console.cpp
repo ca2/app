@@ -150,7 +150,7 @@ namespace linux
 
    void console::SetCursorPosition(int y,int x)
    {
-      move(y, x);
+      transfer(y, x);
    }
 
    void console::SetTextColor(int color)

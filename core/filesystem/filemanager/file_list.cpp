@@ -1940,7 +1940,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         pcontext->m_papexcontext->file()->move(fs_list_item(strict)->final_path(), strPath);
+         pcontext->m_papexcontext->file()->transfer(fs_list_item(strict)->final_path(), strPath);
 
       }
       else

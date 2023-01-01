@@ -710,7 +710,7 @@ string apple_get_bundle_identifier();
 ////
 ////    str.replace(".", "/");
 ////
-////    m_lpCmdLine = ::str().dup("app : app=" + str);
+////    m_lpCmdLine = ::str::dup("app : app=" + str);
 ////
 //// }
 ////
@@ -764,7 +764,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //   //   //const ::scoped_string & scopedstr = str1;
 //
-//   //   //string str = ::str().consume_quoted_value(psz);
+//   //   //string str = ::str::consume_quoted_value(psz);
 //
 //   //   //output_debug_string(str);
 //

@@ -32,6 +32,14 @@ inline atom::atom(enum_id eid) :
 }
 
 
+inline atom::atom(const ::e_command & ecommand) :
+        m_etype(e_type_command),
+        m_i((::iptr) ecommand) // used m_i to reset 64-bit field
+{
+
+}
+
+
 inline atom::atom(ENUM_ID EID) :
         atom((::enum_id)EID) // used m_i to reset 64-bit field
 {
@@ -607,7 +615,7 @@ inline bool atom::operator == (::enum_id eid) const
    return ::comparison::tuple
            (
                    [&]() { return m_etype == e_type_atom; },
-                   [&]() { return m_i == eid; }
+                   [&]() { return m_eid == eid; }
            );
 
 }
@@ -620,6 +628,54 @@ inline ::std::strong_ordering atom::operator <=>(::enum_id eid) const
            (
                    [&]() { return m_etype <=> e_type_atom; },
                    [&]() { return m_eid <=> eid; }
+           );
+
+}
+
+
+inline bool atom::operator == (::enum_command ecommand) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype == e_type_command; },
+                   [&]() { return m_ecommand == ecommand; }
+           );
+
+}
+
+
+inline ::std::strong_ordering atom::operator <=>(::enum_command ecommand) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype <=> e_type_command; },
+                   [&]() { return m_ecommand <=> ecommand; }
+           );
+
+}
+
+
+inline bool atom::operator == (::enum_impact eimpact) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype == e_type_impact; },
+                   [&]() { return m_eimpact == eimpact; }
+           );
+
+}
+
+
+inline ::std::strong_ordering atom::operator <=>(::enum_impact eimpact) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype <=> e_type_impact; },
+                   [&]() { return m_eimpact <=> eimpact; }
            );
 
 }
@@ -1248,7 +1304,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //}
 //
 //inline atom::atom(const_ansi_range && range) :
-//        m_range(::move(range))
+//        m_range(::transfer(range))
 //{
 //
 //   m_etype = e_type_range;
@@ -1257,7 +1313,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 //
 //
 //inline atom::atom(const const_ansi_range && range) :
-//        m_range(::move(range))
+//        m_range(::transfer(range))
 //{
 //
 //   m_etype = e_type_range;
@@ -1552,22 +1608,6 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //}
 
 
-template < strsize n >
-inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
-{
-
-   return *this == ::scoped_string(cha);
-
-}
-
-
-template < strsize n >
-inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
-{
-
-   return *this <=> ::scoped_string(cha);
-
-}
 
 
 template < primitive_payload PAYLOAD >
@@ -1596,6 +1636,12 @@ atom::atom(const PAYLOAD & payload)
       operator = (payload.m_atom);
 
    }
+   else if (payload.get_type() == ::e_type_enum_command)
+   {
+
+      operator = (payload.m_ecommand);
+
+   }
    else if (payload.is_integer())
    {
 
@@ -1605,7 +1651,7 @@ atom::atom(const PAYLOAD & payload)
    else
    {
 
-      operator = (payload);
+      operator = (payload.get_string());
 
    }
 

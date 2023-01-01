@@ -1077,7 +1077,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////template < typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 & >
 ////class pair;
 ////
-////template < class KEY, class ARG_KEY, class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
+////template < class KEY, class ARG_KEY, class PAYLOAD, ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < KEY, PAYLOAD, ARG_KEY, ARG_VALUE > >
 ////class map;
 ////
 ////template < class ENUM >

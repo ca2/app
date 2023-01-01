@@ -235,13 +235,22 @@ bool acme_path::has_custom_icon(const ::file::path & path)
 
 
 
-::file::path acme_path::defer_process_relative_path(const ::file::path & path)
+::file::path acme_path::defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolderParam)
 {
+
+   auto pathFolder = pathFolderParam;
+
+   if(pathFolder.is_empty())
+   {
+
+      pathFolder = m_pacmedirectory->m_pathFolder;
+
+   }
 
    if(path.is_empty())
    {
 
-      return {};
+      return pathFolder;
 
    }
 
@@ -252,7 +261,7 @@ bool acme_path::has_custom_icon(const ::file::path & path)
 
    }
 
-   auto pathFolderCurrent = acmedirectory()->get_current();
+   auto pathFolderCurrent = pathFolder;
 
    ::file::path pathAbsolute = pathFolderCurrent / path;
 

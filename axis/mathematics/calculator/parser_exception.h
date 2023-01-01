@@ -1,12 +1,12 @@
 ﻿#pragma once
 
 
-////#include "acme/exception/exception.h"
+#include "acme/exception/parsing.h"
 #include "acme/parallelization/task_flag.h"
 
 
 class CLASS_DECL_AXIS numeric_parsing_exception:
-   public ::exception
+   public ::parsing_exception
 {
 public:
 

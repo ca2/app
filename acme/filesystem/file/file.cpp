@@ -114,7 +114,7 @@ namespace file
 //      if (::is_null(pfile))
 //      {
 //
-//         ::move(pfile);
+//         ::transfer(pfile);
 //
 //      }
 //
@@ -129,19 +129,19 @@ namespace file
 //
 //      //}
 //
-//      /* return */ ::move(pfile);
+//      /* return */ ::transfer(pfile);
 
    }
 
 
-   filesize file::translate(filesize offset, ::enum_seek eseek)
+   void file::translate(filesize offset, ::enum_seek eseek)
    {
 
       __UNREFERENCED_PARAMETER(offset);
 
       __UNREFERENCED_PARAMETER(eseek);
 
-      return 0;
+      //return 0;
 
    }
 
@@ -194,28 +194,32 @@ namespace file
    filesize file::get_position() const
    {
 
-      return ((file *) this)->translate(0, ::e_seek_current);
+      throw interface_only();
+
+      return 0;
+
+      //return ((file *) this)->translate(0, ::e_seek_current);
 
    }
 
 
-   filesize file::set_position(filesize position)
+   void file::set_position(filesize position)
    {
 
-      return ((file *) this)->translate(position, ::e_seek_set);
+      ((file *) this)->translate(position, ::e_seek_set);
 
    }
 
 
-   filesize file::increment_position(filesize offset)
+    void file::increment_position(filesize offset)
    {
 
-      return translate(offset, ::e_seek_current);
+      translate(offset, ::e_seek_current);
 
    }
 
 
-   filesize file::decrement_position(filesize offset)
+    void file::decrement_position(filesize offset)
    {
 
       return translate(-offset, ::e_seek_current);
@@ -223,7 +227,7 @@ namespace file
    }
 
 
-   filesize file::seek_from_end(filesize offset)
+    void file::seek_from_end(filesize offset)
    {
 
       return translate(offset, ::e_seek_from_end);
@@ -719,7 +723,7 @@ namespace file
       
       as(memory);
       
-      return ::move(memory);
+      return ::transfer(memory);
       
    }
 
@@ -743,7 +747,7 @@ namespace file
       
       as(string);
       
-      return ::move(string);
+      return ::transfer(string);
       
    }
 
@@ -864,7 +868,7 @@ namespace file
    }
 
 
-   filesize file::seek_to_begin()
+   void file::seek_to_begin()
    {
 
       return set_position(0);
@@ -872,7 +876,7 @@ namespace file
    }
 
 
-   filesize file::seek_to_end()
+   void file::seek_to_end()
    {
 
       return translate(0, e_seek_from_end);

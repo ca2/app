@@ -25,7 +25,7 @@ namespace sockets_bsd
       ~socket_thread() override;
 
 
-      virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
+      virtual void transfer(socket_map::node * pnode, socket_map * psocketmap = nullptr);
 
       //virtual void init_thread() override;
 

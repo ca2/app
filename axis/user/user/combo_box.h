@@ -125,13 +125,14 @@ namespace user
       //virtual bool create_interaction(::user::interaction * puiParent, const ::atom & atom) override;
 
       //::count get_count();
-      //::item current_item() override;
-      void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
+      //virtual ::index current_index();
+      virtual void set_current_item(::item * pitem, const ::action_context & actioncontext);
 
 
       virtual string get_current_item_string_value();
       virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       virtual void set_current_item_by_string_value(const ::string & strValue, const ::action_context & action_context);
+      virtual void set_current_item_by_index(::index iIndex, const ::action_context & action_context);
 
 
 //      LCID GetLocale();

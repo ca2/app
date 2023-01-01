@@ -274,15 +274,15 @@ inline value::value(const object &o) : type_(object_type), u_() {
 
 #if QUITE_COMPACT_NETWORK_PAYLOAD_USE_RVALUE_REFERENCE
 inline value::value(std::string &&s) : type_(string_type), u_() {
-  u_.string_ = memory_new std::string(std::move(s));
+  u_.string_ = memory_new std::string(std::transfer(s));
 }
 
 inline value::value(array &&a) : type_(array_type), u_() {
-  u_.array_ = memory_new array(std::move(a));
+  u_.array_ = memory_new array(std::transfer(a));
 }
 
 inline value::value(object &&o) : type_(object_type), u_() {
-  u_.object_ = memory_new object(std::move(o));
+  u_.object_ = memory_new object(std::transfer(o));
 }
 #endif
 
@@ -418,9 +418,9 @@ SET(int64_t, int64, u_.int64_ = _val;)
     type_ = jtype##_type;                                                                                                          \
     setter                                                                                                                         \
   }
-MOVESET(std::string, string, u_.string_ = memory_new std::string(std::move(_val));)
-MOVESET(array, array, u_.array_ = memory_new array(std::move(_val));)
-MOVESET(object, object, u_.object_ = memory_new object(std::move(_val));)
+MOVESET(std::string, string, u_.string_ = memory_new std::string(std::transfer(_val));)
+MOVESET(array, array, u_.array_ = memory_new array(std::transfer(_val));)
+MOVESET(object, object, u_.object_ = memory_new object(std::transfer(_val));)
 #undef MOVESET
 #endif
 

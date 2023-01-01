@@ -1250,7 +1250,7 @@ namespace ios
          if(pusermessage->m_atom == e_message_mouse_move)
          {
             // We are at the message handler procedure.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the procedure starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.

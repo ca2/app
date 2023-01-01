@@ -82,7 +82,7 @@ namespace sockets
 
       auto p = m_eventplist.begin();
 
-      if(p)
+      if(p.is_ok())
       {
 
          Event * pe = *p;
@@ -118,7 +118,7 @@ namespace sockets
 
       auto p = m_eventplist.begin();
 
-      for(; p.ok(); p = m_eventplist.begin())
+      for(; p.is_ok(); p++)
       {
 
          Event * pevent = *p;
@@ -144,7 +144,7 @@ namespace sockets
 
          }
 
-         for (p = m_eventplist.begin(); p.ok(); p++)
+         for (p = m_eventplist.begin(); p.is_ok(); p++)
          {
 
             Event * peventItem = *p;
@@ -177,12 +177,12 @@ namespace sockets
 
       Event * peventNew = memory_new Event(from, sec, usec);
 
-      auto pevent = m_eventplist.begin();
+      auto p = m_eventplist.begin();
 
-      for(;pevent; pevent++)
+      for(;p.is_ok(); p++)
       {
 
-         if (!(**pevent < *peventNew))
+         if (!(**p < *peventNew))
          {
 
             break;
@@ -191,7 +191,7 @@ namespace sockets
 
       }
 
-      m_eventplist.insert_before(pevent, peventNew);
+      m_eventplist.insert_before(p, peventNew);
 
       if (m_ptcpsocket)
       {
@@ -215,15 +215,15 @@ namespace sockets
 
          repeat = false;
 
-         auto ppevent = m_eventplist.begin();
+         auto p = m_eventplist.begin();
 
-         for(; ppevent; ppevent++)
+         for(; p.is_ok(); p++)
          {
 
-            if((*ppevent)->GetFrom() == from)
+            if((*p)->GetFrom() == from)
             {
 
-               delete * ppevent;
+               delete *p;
 
                repeat = true;
 
@@ -266,15 +266,15 @@ namespace sockets
    void EventHandler::RemoveEvent(IEventOwner * pownerFrom, long lEid)
    {
 
-      auto pevent = m_eventplist.begin();
+      auto p = m_eventplist.begin();
 
-      for(; pevent; pevent++)
+      for(; p.is_ok(); p++)
       {
 
-         if(pownerFrom == (*pevent)->GetFrom() && lEid == (*pevent)->GetID())
+         if(pownerFrom == (*p)->GetFrom() && lEid == (*p)->GetID())
          {
 
-            delete (*pevent);
+            delete (*p);
 
             break;
 

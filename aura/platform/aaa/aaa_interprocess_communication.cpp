@@ -557,7 +557,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      ::i64 iCall = ::str().consume_natural(str);
+      ::i64 iCall = ::str::consume_natural(str);
 
       if(!str.begins_eat(" from "))
       {
@@ -566,9 +566,9 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      string strFrom = ::str().consume_non_spaces(str);
+      string strFrom = ::str::consume_non_spaces(str);
 
-      string strAppFrom = ::str().token(strFrom, ":");
+      string strAppFrom = ::str::token(strFrom, ":");
 
       if(strAppFrom.is_empty())
       {

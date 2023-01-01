@@ -111,13 +111,13 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_after(typenam
 //   if (::is_set(startAfter))
 //   {
 //
-//      return ::find_value(*this, searchValue, iterator(startAfter, this));
+//      return ::find_payload(*this, searchValue, iterator(startAfter, this));
 //
 //   }
 //   else
 //   {
 //
-//      return ::find_value(*this, searchValue);
+//      return ::find_payload(*this, searchValue);
 //
 //   }
 //

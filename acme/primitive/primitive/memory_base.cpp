@@ -120,7 +120,7 @@ memory memory_base::detach_as_primitive_memory()
    if (this->m_ememory == e_memory_primitive && this->m_pprimitivememory)
    {
 
-      return ::move(*this->m_pprimitivememory);
+      return ::transfer(*this->m_pprimitivememory);
 
    }
 
@@ -1481,12 +1481,12 @@ string memory_base::get_string(memsize iStart, memsize iCount) const
 void memory_base::move_and_grow(memsize offset)
 {
 
-   move(offset, true);
+   transfer(offset, true);
 
 }
 
 
-void memory_base::move(memsize offset, bool bGrow)
+void memory_base::transfer(memsize offset, bool bGrow)
 {
 
    if (offset > 0)

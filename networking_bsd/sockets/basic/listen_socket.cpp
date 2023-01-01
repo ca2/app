@@ -395,7 +395,7 @@ namespace sockets_bsd
 
       }
 
-      auto tmp1 = ::move(create_listen_socket());
+      auto tmp1 = ::transfer(create_listen_socket());
 
       tmp1->initialize(this);
 
@@ -467,9 +467,9 @@ namespace sockets_bsd
       }
 //      auto passociation = m_psockethandler->new_association(tmp);
 
-      //socket_handler()->move(passociation);
+      //socket_handler()->transfer(passociation);
 
-      __Handler(m_psockethandler)->move2(::move(tmp));
+      __Handler(m_psockethandler)->move2(::transfer(tmp));
 
    }
 

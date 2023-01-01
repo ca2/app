@@ -437,7 +437,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 
-      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', '" + m_pcore->m_pmysqldbUser->escape(lpcsz) + "')";
+      string strSql = "REPLACE INTO fun_user_str_set PAYLOAD('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', '" + m_pcore->m_pmysqldbUser->escape(lpcsz) + "')";
 
       TRACE(strSql);
 

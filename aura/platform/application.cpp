@@ -522,7 +522,7 @@ namespace aura
 
    //         //         pbase64->decode(m, ::url::decode(str(pFind + 1)));
 
-   //         //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
+   //         //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::transfer(m));
 
    //         //      }
 
@@ -1045,7 +1045,7 @@ namespace aura
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str().get_window_text_timeout(hwnd, 1000);
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
 //      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
@@ -1066,7 +1066,7 @@ namespace aura
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str().get_window_text_timeout(hwnd);
+//      string str = ::str::get_window_text_timeout(hwnd);
 //
 //      if (string_ends_ci(str, penum->m_strTopic))
 //      {
@@ -1086,7 +1086,7 @@ namespace aura
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
 //
-//      string str = ::str().get_window_text_timeout(hwnd, 1000);
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
 //      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
@@ -2606,7 +2606,7 @@ retry_license:
    //string application::get_locale_schema_dir()
    //{
 
-   //   return ::str()._001Concat(get_locale(), "/", get_schema());
+   //   return ::str::_001Concat(get_locale(), "/", get_schema());
 
    //}
 
@@ -2614,7 +2614,7 @@ retry_license:
    //string application::get_locale_schema_dir(const ::string & strLocale)
    //{
 
-   //   return ::str()._001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
 
    //}
 
@@ -2683,7 +2683,7 @@ retry_license:
    //string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
    //{
 
-   //  return ::str()._001Concat(strLocale, "/", strSchema);
+   //  return ::str::_001Concat(strLocale, "/", strSchema);
 
    //}
 
@@ -3255,7 +3255,7 @@ retry_license:
 //
 //      wstr.trim();
 //
-//      ::str().trim_any_quotes(wstr);
+//      ::str::trim_any_quotes(wstr);
 //
 //      wstr.trim();
 //

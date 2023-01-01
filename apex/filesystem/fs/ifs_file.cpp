@@ -57,19 +57,19 @@ filesize ifs_file::size() const
 }
 
 
-filesize ifs_file::translate(filesize offset, ::enum_seek eseek)
+void ifs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_phttpfile->translate(offset, eseek);
+      m_phttpfile->translate(offset, eseek);
 
    }
    else
    {
 
-      return m_pmemfile->translate(offset, eseek);
+      m_pmemfile->translate(offset, eseek);
 
    }
 

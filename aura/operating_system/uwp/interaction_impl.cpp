@@ -1115,7 +1115,7 @@ namespace universal_windows
          if(pusermessage->m_atom == e_message_mouse_move)
          {
             // We are at the message handler procedure.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the procedure starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
@@ -2646,7 +2646,7 @@ return true;
       ////int xLeft = (rcCenter.left + rcCenter.right) / 2 - rcDlg.width() / 2;
       ////int yTop = (rcCenter.top + rcCenter.bottom) / 2 - rcDlg.height() / 2;
 
-      ////// if the dialog is outside the screen, move it inside
+      ////// if the dialog is outside the screen, transfer it inside
       ////if (xLeft < rcArea.left)
       ////   xLeft = rcArea.left;
       ////else if (xLeft + rcDlg.width() > rcArea.right)
@@ -5544,7 +5544,7 @@ __STATIC void CLASS_DECL_AURA __post_init_dialog(
    if (WIN_WINDOW(pWnd)->GetStyle() & (WS_VISIBLE|WS_CHILD))
       return;
 
-   // must not move during WM_INITDIALOG
+   // must not transfer during WM_INITDIALOG
    ::rectangle_i32 rectangle;
    WIN_WINDOW(pWnd)->get_window_rect(rectangle);
    if (rectangleOld.left != rectangle.left || rectangleOld.top != rectangle.top)

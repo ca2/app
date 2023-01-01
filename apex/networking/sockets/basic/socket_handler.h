@@ -85,7 +85,7 @@ namespace sockets
 
       //void add2(const socket_pointer & psocket) override;
       //void move2(socket_pointer && psocket) override;
-      //void move(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
+      //void transfer(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
 
       //virtual bool contains(base_socket *) override;

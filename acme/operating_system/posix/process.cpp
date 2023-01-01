@@ -163,7 +163,7 @@
 //
 //            }
 //
-//            ::str().get_lines(straOutput, strOutput, "I: ", false, &singlelock, pfileLog);
+//            ::str::get_lines(straOutput, strOutput, "I: ", false, &singlelock, pfileLog);
 //
 //         }
 //
@@ -185,7 +185,7 @@
 //
 //            }
 //
-//            ::str().get_lines(straOutput, strError, "E: ", false, &singlelock, pfileLog);
+//            ::str::get_lines(straOutput, strError, "E: ", false, &singlelock, pfileLog);
 //
 //         }
 //
@@ -263,9 +263,9 @@
 ////
 ////   }
 //
-//   ::str().get_lines(straOutput, strOutput, "I: ", true, &singlelock, pfileLog);
+//   ::str::get_lines(straOutput, strOutput, "I: ", true, &singlelock, pfileLog);
 //
-//   ::str().get_lines(straOutput, strError, "E: ", true, &singlelock, pfileLog);
+//   ::str::get_lines(straOutput, strError, "E: ", true, &singlelock, pfileLog);
 //
 //}
 

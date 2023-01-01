@@ -40,7 +40,7 @@ public:
 
     using THIS_RANGE = ::string_range<ITERATOR_TYPE>;
 
-    using ITEM_POINTER = typename get_type_item_pointer<ITERATOR_TYPE>::type;
+    using ITEM_POINTER = get_type_item_pointer<ITERATOR_TYPE>;
     using ITEM = non_const<dereference<ITEM_POINTER> >;
     using CHARACTER = ITEM;
 
@@ -87,7 +87,7 @@ public:
 
     string_range(const THIS_RANGE &range) : BASE_RANGE(range) {}
 
-    string_range(THIS_RANGE &&range) : BASE_RANGE(::move(range)) {}
+    string_range(THIS_RANGE &&range) : BASE_RANGE(::transfer(range)) {}
 
     string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 
@@ -187,7 +187,7 @@ public:
     }
 
     string_range &operator=(string_range &&range) {
-       BASE_RANGE::operator=(::move(range));
+       BASE_RANGE::operator=(::transfer(range));
        return *this;
     }
 
@@ -405,6 +405,11 @@ public:
     constexpr strsize find_index(const SCOPED_STRING & range, strsize start = 0) const {
 
        return this->offset_of(start <= 0 ? this->find(range) : (*this)(start).find(range));
+
+    }
+    constexpr strsize find_index(CHARACTER ch, strsize start = 0) const {
+
+       return this->offset_of(start <= 0 ? this->find(ch) : (*this)(start).find(ch));
 
     }
 
@@ -1161,7 +1166,7 @@ public:
     // find routines
 
 // find the first occurrence of character 'ch', starting at index 'iStart'
-    strsize find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(this->find(ch)); }
+    //strsize find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(this->find(ch)); }
 
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
@@ -1357,7 +1362,12 @@ public:
 
     //bool equals(const string_base &str) const;
     //bool case_insensitive_equals(const string_base &str) const;
-    inline bool operator==(const ::ansi_string &str) const { return this->equals(string_base(str)); }
+    inline bool operator==(const ::ansi_string &str) const
+    {
+
+       return this->equals(string_base(str));
+
+    }
 
     inline bool operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
 

@@ -72,7 +72,7 @@ inline polygon_base < POINT_TYPE >::polygon_base(const polygon_base& polygon_i32
 
 template < typename POINT_TYPE >
 inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon_i32) :
-   point_array_base < POINT_TYPE >(::move(polygon_i32))
+   point_array_base < POINT_TYPE >(::transfer(polygon_i32))
 {
    
    m_bDirty = polygon_i32.m_bDirty;
@@ -144,7 +144,7 @@ polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&
    if (&polygon_i32 != this)
    {
 
-      point_array_base < POINT_TYPE >::operator = (::move(polygon_i32));
+      point_array_base < POINT_TYPE >::operator = (::transfer(polygon_i32));
       m_bDirty = polygon_i32.m_bDirty;
       m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
       m_rectangleBounding = polygon_i32.m_rectangleBounding;

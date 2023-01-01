@@ -555,7 +555,7 @@ namespace html
 
       auto psystem = acmesystem()->m_paurasystem;
 
-      if (strUrl.find(":") >= 0)
+      if (strUrl.contains(":"))
       {
 
       }
@@ -595,7 +595,7 @@ namespace html
 
       auto pimage = m_pcontext->context_image()->get_image(strUrl);
 
-      return ::move(pimage);
+      return ::transfer(pimage);
 
    }
 
@@ -701,13 +701,13 @@ namespace html
 
       }
 
-      if (strPath.find(":") >= 0)
+      if (strPath.contains(":"))
       {
 
          return open_document(strPath);
 
       }
-      else if (strPath.left(1) == "/" || strPath.left(1) == "\\")
+      else if (strPath.begins("/") || strPath.begins("\\"))
       {
 
          return open_document(strPath);
@@ -745,11 +745,11 @@ namespace html
 
       //payload = 3;
 
-      ::file::path pathUrl = payloadFile.file_path();
+      ::file::path pathUrl = payloadFile.as_file_path();
 
       payloadFile["url"] = pathUrl;
 
-      string strDebugUrl1 = payloadFile.file_path();
+      string strDebugUrl1 = payloadFile.as_file_path();
 
       if (m_strPathName.has_char())
       {
@@ -790,7 +790,7 @@ namespace html
 
       payloadFile["nocache"] = bNoCache;
 
-      string strDebugUrl2 = payloadFile.file_path();
+      string strDebugUrl2 = payloadFile.as_file_path();
 
       auto pcontext = get_context();
 
@@ -822,7 +822,7 @@ namespace html
 
       if (str.is_empty())
       {
-         string strCandidate = m_strPathName / payloadFile.file_path();
+         string strCandidate = m_strPathName / payloadFile.as_file_path();
          str = pcontext->m_papexcontext->file()->as_string(strCandidate);
          if (str.is_empty())
          {

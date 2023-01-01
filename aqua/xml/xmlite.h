@@ -1,5 +1,9 @@
 ﻿#pragma once
 
+
+#include "acme/primitive/string/_str.h"
+
+
 namespace xml
 {
 
@@ -59,7 +63,7 @@ namespace xml
    // bro      2002-10-29
    //========================================================
    CLASS_DECL_AQUA void _tcsecpy(char * psz, i32 escape, const char * srt, const char * end = nullptr);
-   CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, ::const_ansi_range & range);
+   //CLASS_DECL_AQUA void _tcsecpy2(::ansi_range & rangeOut, char escape, const ::const_ansi_range & range);
 
    
    ////========================================================
@@ -147,7 +151,7 @@ namespace xml
 
          auto rangeOut = ps->get_string_buffer_range(range.size());
 
-         _tcsecpy2(rangeOut, escape, range);
+         ::str::escape_copy(rangeOut, escape, range);
 
          ps->release_string_buffer_range(rangeOut);
 

@@ -30,7 +30,8 @@ numbers:
    public:
 
 
-      const char * input;
+      //const char * input;
+      const_ansi_range m_range;
       const char * next_input;
       ::pointer<class token> m_ptoken;
 

@@ -265,7 +265,7 @@ namespace message
    }
 
 
-   void move::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   void transfer::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);

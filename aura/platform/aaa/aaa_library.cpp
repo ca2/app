@@ -293,7 +293,7 @@ namespace aura
          try
          {
 
-            m_pca2library = ::move(pfnNewAuraLibrary());
+            m_pca2library = ::transfer(pfnNewAuraLibrary());
 
          }
          catch (...)
@@ -763,7 +763,7 @@ namespace aura
 
       }
 
-      auto pparticle = ::move(p);
+      auto pparticle = ::transfer(p);
       
       if (::is_null(pparticle))
       {
@@ -894,7 +894,7 @@ namespace aura
 
       auto p = pallocator->new_object(pparticle);
 
-      auto pparticle = ::move(p);
+      auto pparticle = ::transfer(p);
 
       if (!pparticle)
       {

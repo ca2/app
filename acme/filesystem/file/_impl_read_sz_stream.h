@@ -77,7 +77,7 @@ inline   ::string read_sz_stream::read_find_first_character_in(const ::ansi_char
 
        m_psz += size;
 
-       return ::move(str);
+       return ::transfer(str);
 
     }
 

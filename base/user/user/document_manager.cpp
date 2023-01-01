@@ -902,7 +902,7 @@ namespace user
 
       auto templateptra = m_templateptra;
 
-      for(auto & ptemplate : templateptra.ptra())
+      for(auto & ptemplate : templateptra)
       {
 
          ptemplate->handle(ptopic, pcontext);

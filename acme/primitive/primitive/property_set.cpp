@@ -157,7 +157,7 @@ property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
 
 
 
-property * property_set::find_value(const ::payload & payload) const
+property * property_set::find_payload(const ::payload & payload) const
 {
 
    for (auto & pproperty : *this)
@@ -177,7 +177,7 @@ property * property_set::find_value(const ::payload & payload) const
 }
 
 
-property * property_set::find_value(const ::scoped_string & scopedstr) const
+property * property_set::find_payload(const ::scoped_string & scopedstr) const
 {
 
    for (auto & pproperty : *this)
@@ -217,19 +217,19 @@ bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::count 
 }
 
 
-bool property_set::contains_value(const ::payload & payload, ::count countMin, ::count countMax) const
+bool property_set::contains_payload(const ::payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(payload)) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (find_payload(payload)) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::contains_value(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
+bool property_set::contains_payload(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value(scopedstr) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_payload(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -272,7 +272,7 @@ bool property_set::erase_first_value_ci(const ::scoped_string & scopedstr)
 bool property_set::erase_first_value(const ::payload & payload)
 {
 
-   property * pproperty = find_value(payload);
+   property * pproperty = find_payload(payload);
 
    if (pproperty != nullptr)
    {
@@ -289,7 +289,7 @@ bool property_set::erase_first_value(const ::payload & payload)
 bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 {
 
-   property * pproperty = find_value(scopedstr);
+   property * pproperty = find_payload(scopedstr);
 
    if (pproperty != nullptr)
    {
@@ -352,7 +352,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count count = 0;
 
-   if (contains_value(payload, countMin, countMax))
+   if (contains_payload(payload, countMin, countMax))
    {
 
       while (conditional(countMax >= 0, count < countMax && erase_first_value(payload)))
@@ -374,7 +374,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 
    ::count count = 0;
 
-   if (contains_value(scopedstr, countMin, countMax))
+   if (contains_payload(scopedstr, countMin, countMax))
    {
 
       while (conditional(countMax >= 0, count < countMax) && erase_first_value(scopedstr))
@@ -1328,7 +1328,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-//property * property_set::find_value(const ::scoped_string & scopedstr) const
+//property * property_set::find_payload(const ::scoped_string & scopedstr) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)
@@ -1376,7 +1376,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   property_ptra(::move(set))
+   property_ptra(::transfer(set))
 {
 
 }
@@ -1646,6 +1646,15 @@ property_set & property_set::operator |= (const property_set & set)
    return merge(set);
 
 }
+
+
+bool property_set::contains_value_ci(const ::payload & payload) const { return find_value_ci(payload) != nullptr; }
+bool property_set::contains_value_ci(const ::scoped_string & scopedstr) const { return find_value_ci(scopedstr) != nullptr; }
+
+bool property_set::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
+bool property_set::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }
+
+
 
 
 //property_set & property_set::operator = (const pair_set_interface & set)
@@ -2287,14 +2296,21 @@ property & property_set::get_text_key(const ::scoped_string & scopedstr, ::index
 ::property * property_set::find_index(::iptr i) const
 {
 
-   if (i < 0 || i >= this->size())
+   auto p = this->m_begin;
+
+   for (; p < this->m_end; p++)
    {
 
-      return nullptr;
+      if ((*p)->m_atom.as_iptr() == i)
+      {
+
+         return *p;
+
+      }
 
    }
 
-   return (const_cast <property_set *> (this))->m_begin[i];
+   return nullptr;
 
 }
 

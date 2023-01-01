@@ -136,7 +136,7 @@ public:
 
    memory_base() { }
    memory_base(const memory_base & base) : MEMORY(base) {}
-   memory_base(memory_base && base) : MEMORY(::move(base)) {}
+   memory_base(memory_base && base) : MEMORY(::transfer(base)) {}
    ~memory_base() override;
 
 
@@ -307,7 +307,7 @@ public:
    void splice(const memory_base & memory, memsize iStartDst = 0, memsize iCountDst = 0, memsize iStartSrc = 0, memsize iCountSrc = -1);
 
    void move_and_grow(memsize offset);
-   void move(memsize offset, bool bGrow = false);
+   void transfer(memsize offset, bool bGrow = false);
 
    //void assign(const ::scoped_string & scopedstr);
    //void append(const ::scoped_string & scopedstr);

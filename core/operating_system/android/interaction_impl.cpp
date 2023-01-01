@@ -1211,7 +1211,7 @@ namespace android
          if(pmessage->m_atom == e_message_mouse_move)
          {
             // We are at the message handler procedure.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the procedure starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
@@ -1220,7 +1220,7 @@ namespace android
          else if(pmessage->m_atom == e_message_non_client_mouse_move)
          {
             // We are at the message handler procedure.
-            // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+            // mouse messages originated from message handler and that are mouse transfer events should end up with the correct cursor.
             // So the procedure starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
@@ -2196,7 +2196,7 @@ namespace android
       //      i32 xLeft = (rcCenter.left + rcCenter.right) / 2 - rcDlg.width() / 2;
       //      i32 yTop = (rcCenter.top + rcCenter.bottom) / 2 - rcDlg.height() / 2;
       //
-      //      // if the dialog is outside the screen, move it inside
+      //      // if the dialog is outside the screen, transfer it inside
       //      if (xLeft < rcarea.left)
       //         xLeft = rcarea.left;
       //      else if (xLeft + rcDlg.width() > rcarea.right)

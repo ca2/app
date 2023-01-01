@@ -11,7 +11,7 @@ namespace file
 //    inline path path::operator/(const path &path) const
 //    {
 //
-//       return ::move(*this / ::scoped_string(path));
+//       return ::transfer(*this / ::scoped_string(path));
 //
 //    }
 
@@ -19,7 +19,7 @@ namespace file
 //    inline path path::operator/(const ::ansi_character *psz) const
 //    {
 //
-//       return ::move(*this / ::scoped_string(psz));
+//       return ::transfer(*this / ::scoped_string(psz));
 //
 //    }
 
@@ -27,7 +27,7 @@ namespace file
 //    inline path path::operator/(const ::string &str) const
 //    {
 //
-//       return ::move(*this / ::scoped_string(str));
+//       return ::transfer(*this / ::scoped_string(str));
 //
 //    }
 
@@ -193,13 +193,6 @@ namespace file
 
     }
 
-    inline path::path(const ::scoped_string & scopedstr, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::ansi_string(scopedstr), epath, iDir, bNormalizePath, iSize)
-    {
-
-
-    }
-
 
     inline path_meta::~path_meta()
     {
@@ -329,9 +322,9 @@ namespace file
 
 
     //   path::path(path && path) :
-    //      string(::move(path)),
+    //      string(::transfer(path)),
     //      path_meta((path_meta &) path),
-    //      path_os(::move(path))
+    //      path_os(::transfer(path))
     //   {
     //
     //   }
@@ -725,12 +718,6 @@ namespace file
 //   }
 
 
-    inline path& path::operator /= (const ::scoped_string & scopedstr)
-    {
-
-       return *this = (*this / scopedstr);
-
-    }
 
 
     //::file::path path::replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension)
@@ -812,7 +799,7 @@ namespace file
 
        path.set_all_extensions(strNewExtension);
 
-       return ::move(path);
+       return ::transfer(path);
 
     }
 
@@ -824,7 +811,7 @@ namespace file
 
        path.set_final_extension(strNewExtension);
 
-       return ::move(path);
+       return ::transfer(path);
 
     }
 
@@ -948,7 +935,6 @@ namespace file
     }
 
     inline path path::operator * (const ::ansi_string& str) const { return operator * (::file::path(str)); }
-    inline path path::operator * (const ::scoped_string & scopedstr) const { return operator * (::file::path(scopedstr)); }
 
     inline path& path::operator *= (const path& path)
     {
@@ -965,7 +951,6 @@ namespace file
     }
 
     inline path& path::operator *= (const ::ansi_string& str) { return operator *= (::file::path(str)); }
-    inline path& path::operator *= (const ::scoped_string & scopedstr) { return operator *= (::file::path(scopedstr)); }
 
 
     inline ::file::path path::title() const
@@ -1101,7 +1086,7 @@ namespace file
     inline path path::operator / (const ::scoped_string & scopedstr) const
     {
 
-       return ::move(slashed_path(scopedstr));
+       return ::transfer(slashed_path(scopedstr));
 
     }
 
@@ -1129,14 +1114,6 @@ namespace file
     }
 
 
-    inline bool path::operator == (const ::scoped_string & scopedstr) const
-    {
-
-       return operator == (string(scopedstr));
-
-    }
-
-
     inline bool path::operator != (const path & path) const
     {
 
@@ -1144,13 +1121,6 @@ namespace file
 
     }
 
-
-    inline bool path::operator != (const ::scoped_string & scopedstr) const
-    {
-
-       return operator != (string(scopedstr));
-
-    }
 
 
 
@@ -1160,7 +1130,7 @@ namespace file
 //inline ::file::path operator+(const ::file::path & path1, const ::file::path & path2)
 //{
 //
-//   return ::move(::file::path(((const::string &)path1) + ((const ::string&)path2)));
+//   return ::transfer(::file::path(((const::string &)path1) + ((const ::string&)path2)));
 //
 //}
 

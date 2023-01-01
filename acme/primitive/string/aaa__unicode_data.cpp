@@ -63,7 +63,7 @@
 //    if (size == 0)
 //      return false;
 //    
-//    // move to the next character
+//    // transfer to the next character
 //    pos += size;
 //  }
 //

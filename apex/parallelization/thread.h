@@ -584,7 +584,7 @@ public:
 
    thread_ptra();
    thread_ptra(const thread_ptra & ptra):pointer_array < thread >(ptra) {}
-   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::move(ptra)) {}
+   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::transfer(ptra)) {}
    virtual ~thread_ptra();
 
    virtual ::count get_count_except_current_thread();
@@ -593,7 +593,7 @@ public:
    virtual void wait(const class time & timeWait, ::particle & particleSynchronousLock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
-   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }
+   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::transfer(ptra)); return *this; }
 
 };
 

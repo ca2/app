@@ -68,7 +68,7 @@ namespace html
          if (pelement->m_phtmlbase->get_type() == ::html::base::type_tag)
          {
 
-            string strSrc(pelement->m_propertyset["src"].as_string());
+            string strSrc(pelement->m_propertyset["src"].get_string());
 
             m_pimage = pdata->get_image(strSrc);
 

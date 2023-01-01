@@ -174,7 +174,7 @@ bool file_context::exists(const ::file::path &pathParam)
    if (::task_flag().is_set(e_task_flag_compress_is_dir))
    {
 
-      auto iFind = ::str().find_file_extension("zip:", path);
+      auto iFind = ::str::find_file_extension("zip:", path);
 
       if (found(iFind))
       {
@@ -767,7 +767,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
+      pfile = get_file(payloadFile, ::file::e_open_file | ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
 
       if (!pfile)
       {
@@ -813,7 +813,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    
    as_memory(payloadFile, memory);
    
-   return ::move(memory);
+   return ::transfer(memory);
    
 }
 
@@ -825,7 +825,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    
    safe_get_memory(payloadFile, memory);
    
-   return ::move(memory);
+   return ::transfer(memory);
    
 }
 
@@ -903,7 +903,7 @@ memory file_context::beginning(const ::payload& payloadFile, memsize size, bool 
 
    mem.set_size(sizeRead);
 
-   return ::move(mem);
+   return ::transfer(mem);
 
 }
 
@@ -1005,7 +1005,8 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary
+      pfile = get_file(payloadFile, ::file::e_open_file |
+      ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary
       |(bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
 
       if (bNoExceptionIfFailToOpen)
@@ -1136,7 +1137,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 
       string strContents((const char *) block.data(), block.size());
 
-      ::str().fix_eol(strContents);
+      ::str::fix_eol(strContents);
 
       return put_memory(payloadFile, strContents);
 
@@ -1220,7 +1221,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
 
    string strContents((const char *) block.data(), block.size());
 
-   ::str().fix_eol(strContents);
+   ::str::fix_eol(strContents);
 
    pfile->write(strContents);
 
@@ -1397,7 +1398,7 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-   return ::move(*pfile->memory().m_pprimitivememory);
+   return ::transfer(*pfile->memory().m_pprimitivememory);
 
 }
 
@@ -1709,7 +1710,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 //
 //}
 
-void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
+void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 {
 
    throw ::interface_only();
@@ -1741,7 +1742,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //               string strError;
 //
-//               strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
+//               strError.Format("Failed to delete the file to transfer \"%s\" error=%d", psz, dwError);
 //
 //               TRACE("%s", strError);
 //
@@ -1757,7 +1758,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      string strError;
 //
-//      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//      strError.Format("Failed to transfer file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //
 //      throw ::exception(io_exception(::error_io, strError));
 //
@@ -1772,7 +1773,7 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //
 //      //output_debug_string("test");
 //
-//      throw ::exception(::exception("file::file_context::move Could not move file, could not open source file"));
+//      throw ::exception(::exception("file::file_context::transfer Could not transfer file, could not open source file"));
 //
 //   }
 //
@@ -1966,7 +1967,7 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 
    dir()->create(strDir);
 
-   move(strDir / psz.name(), psz);
+   transfer(strDir / psz.name(), psz);
 
 }
 
@@ -1989,7 +1990,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
    for (i32 i = 0; i < stra.size(); i++)
    {
 
-      move(strDir / stra[i].name(), stra[i]);
+      transfer(strDir / stra[i].name(), stra[i]);
 
    }
 
@@ -2052,7 +2053,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
          // ::exception like (::file::exception) (I supposed ::file::exception is already based on ::exception OMG CAMILO!!!)
          // and may be then replace could do replace for example on HTTP servers and return may io_exception and not tighted
          // to a barely translated io exception into a empty ::file::exception with improper filled members....
-         move(pathContext / strNewName, pathContext / strOldName);
+         transfer(pathContext / strNewName, pathContext / strOldName);
 
       }
 
@@ -2297,7 +2298,7 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 
    }
 
-   path = path.left(iEnd) + ::str().has_char(scopedstrExtension, ".");
+   path = path.left(iEnd) + ::str::has_char(scopedstrExtension, ".");
 
 }
 
@@ -2350,8 +2351,8 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
    }
 
-   //if (move(pszNew, psz).failed())
-   move(pszNew, psz);
+   //if (transfer(pszNew, psz).failed())
+   transfer(pszNew, psz);
    //{
 
    //   return ::error_failed;
@@ -2558,7 +2559,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      MD5_Update((MD5_CTX *)pctx, &ch, 1);
 //   }
 //
-//   iNumber = ::str().to_i64(str);
+//   iNumber = ::str::to_i64(str);
 //
 //}
 
@@ -2739,7 +2740,7 @@ void file_context::init_context()
 //   while (true)
 //   {
 
-//      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(as_string(iTry), 20);
+//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(as_string(iTry), 20);
 
 //      fileOut = papp->file()->get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -3256,6 +3257,33 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    ::file::path path = payloadFile.as_file_path();
 
+   if(path.is_empty())
+   {
+
+      if(eopen & ::file::e_open_file)
+      {
+
+         if(eopen & ::file::e_open_no_exception_on_open)
+         {
+
+            pfile = __new(::file::file);
+
+            pfile->m_estatus = error_not_a_file;
+
+            return pfile;
+
+         }
+         else
+         {
+
+            throw ::exception(error_not_a_file);
+
+         }
+
+      }
+
+   }
+
    if (path.case_insensitive_begins("data:"))
    {
 
@@ -3316,7 +3344,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
    
    path = pathProcessed;
    
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       //auto pfile = get_reader(path);
@@ -3547,10 +3575,10 @@ bool file_context::is_link(string strPath)
 //}
 
 //
-//::extended::status file_context::move(const ::file::path & pszNew, const ::file::path & pszOld)
+//::extended::status file_context::transfer(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //
-//   return psystem->m_spfile->move(pszNew, pszOld, get_app());
+//   return psystem->m_spfile->transfer(pszNew, pszOld, get_app());
 //
 //}
 

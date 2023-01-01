@@ -68,9 +68,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;
-      void _001GetSelection(::database::key & key,::database::selection & selection) override;
-
-      DECLARE_MESSAGE_HANDLER(_001OnNotify);
+      void _001GetSelection(::database::key & key,::string_array & stra);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);

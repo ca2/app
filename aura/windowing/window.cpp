@@ -962,6 +962,7 @@ namespace windowing
    }
 
 
+    /// this function should be called in user/main thread
    void window::show_window(const ::e_display &edisplay, const ::e_activation &eactivation)
    {
 

@@ -44,12 +44,12 @@ public:
    template < primitive_integral INTEGRAL >
    array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >(::move(a)) { }
+   array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >(::transfer(a)) { }
    ~array() override;
 
 
    array & operator = (const array & array) { BASE_ARRAY::operator=(array); return *this; }
-   array & operator = (array && array) { BASE_ARRAY::operator=(::move(array)); return *this; }
+   array & operator = (array && array) { BASE_ARRAY::operator=(::transfer(array)); return *this; }
 
 
 
@@ -88,7 +88,7 @@ public:
 
       array.append(container);
 
-      return ::move(array);
+      return ::transfer(array);
 
    }
 
@@ -104,7 +104,7 @@ public:
    inline array & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
 
 
-   // Operations that move elements around
+   // Operations that transfer elements around
    //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
    //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound
@@ -598,7 +598,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
 
 
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::move(array && a)
+//inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::transfer(array && a)
 //{
 //
 //   if(&a != this)
@@ -626,7 +626,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::add_new_at
 //inline array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator = (array && a)
 //{
 //
-//   move(::move(a));
+//   transfer(::transfer(a));
 //
 //   return *this;
 //

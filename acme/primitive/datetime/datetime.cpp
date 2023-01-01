@@ -112,7 +112,7 @@ namespace datetime
    }
 
 
-//   void datetime::str().initialize(::particle * pparticle)
+//   void datetime::str::initialize(::particle * pparticle)
 //   {
 //
 //      /* auto estatus = */ ::object::initialize(pparticle);
@@ -509,7 +509,7 @@ namespace datetime
    //}
 
 
-//   datetime::str().str()
+//   datetime::str::str()
 //   {
 //      
 //      m_pdatetime = nullptr;
@@ -517,7 +517,7 @@ namespace datetime
 //   }
 //
 //
-//   string datetime::str().get_date_time(const ::earth::time_shift& timeshift)
+//   string datetime::str::get_date_time(const ::earth::time_shift& timeshift)
 //   {
 //
 //      return m_pdatetime->international().get_date_time(::earth::time::now(), timeshift);
@@ -1455,7 +1455,7 @@ namespace datetime
 
             string strWord = str.substr(19);
             strWord.trim_left();
-            strWord = ::str().get_word(strWord, " ");
+            strWord = ::str::get_word(strWord, " ");
             if (strWord.case_insensitive_order("UTC") == 0
                || strWord.case_insensitive_order("GMT") == 0)
             {

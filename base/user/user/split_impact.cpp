@@ -234,7 +234,7 @@ namespace user
 
       //}
 
-      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_atom.index()];
+      split_pane * ppane = m_splitpanecompositea[pimpactdata->m_atom.as_index()];
 
       if (ppane != nullptr)
       {

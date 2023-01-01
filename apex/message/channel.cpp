@@ -482,7 +482,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    auto passociation = m_dispatchermap.plookup(pcommand->m_atom);
 
-   if (!passociation)
+   if (passociation.is_null())
    {
 
       return false;

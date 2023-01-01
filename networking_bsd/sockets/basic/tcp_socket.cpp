@@ -12,7 +12,7 @@
 #include "networking_bsd/sockets/ssl/client_context_map.h"
 
 
-::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+//::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
 
 
 #if defined(LINUX) || defined(FREEBSD)
@@ -1033,7 +1033,7 @@ namespace sockets_bsd
    void tcp_socket::OnRead()
    {
 
-      char * buf = (char *) m_memRead.get_data();
+      char * buf = (char *) m_memRead.data();
 
       int n = 0;
 
@@ -1246,27 +1246,41 @@ namespace sockets_bsd
 
          if(n == -1)
          {
+
             i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
+
             if(errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE)
             {
+
                if(errnr == SSL_ERROR_SYSCALL)
                {
+
                   int iError = errno;
 
-                  const ::scoped_string & scopedstrError = strerror(iError);
+                  const ::ansi_character * pszError = strerror(iError);
+
                   INFORMATION(pszError);
+
                }
+
                OnDisconnect();
+
                SetCloseAndDelete(true);
+
                SetFlushBeforeClose(false);
+
                SetLost();
-               const char *errbuf = ERR_error_string(errnr,nullptr);
+
+               const char * errbuf = ERR_error_string(errnr,nullptr);
 
                FATAL("OnWrite / SSL_write " << errnr << errbuf);
 
                //throw ::exception(io_exception(errbuf));
+
             }
+
             //return 0;
+
          }
          else if(!n)
          {
@@ -1516,35 +1530,46 @@ namespace sockets_bsd
             /// \todo warn
          }
       }
+
       strcpy(request + 8,GetSocks4Userid());
-      ::count length = GetSocks4Userid().get_length() + 8 + 1;
+
+      ::count length = GetSocks4Userid().length() + 8 + 1;
+
       write(request,length);
+
       m_socks4_state = 0;
+
    }
 
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
 
-
       WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
-
 
       if(!__Handler(m_psockethandler)->Socks4TryDirect())
       {
+
          set_connecting(false);
+
          SetCloseAndDelete();
+
          OnConnectFailed(); // just in case
+
       }
       else
       {
+
          SetRetryClientConnect();
+
       }
+
    }
 
 
    bool tcp_socket::OnSocks4Read()
    {
+
       switch(m_socks4_state)
       {
       case 0:
@@ -2148,7 +2173,7 @@ namespace sockets_bsd
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
 
-      if (strCipherList.find("ECDH") >= 0)
+      if (strCipherList.contains("ECDH"))
       {
 
          //EVP_PKEY_CTX_new_from_name(nullptr, )
@@ -2209,9 +2234,8 @@ namespace sockets_bsd
 
       }
 
-
-
    }
+
 
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
@@ -2254,10 +2278,20 @@ namespace sockets_bsd
       // session atom
       int iSetSessionResult = -1;
       u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
-      if (context.get_length())
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, minimum((u32)context.get_length(), uSessionIdMaxLen));
+
+      if (context.length())
+      {
+         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                            (const uchar *) (const char *) context,
+                                                            minimum((u32) context.length(), uSessionIdMaxLen));
+
+      }
       else
-         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
+      {
+
+         iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
+                                                            (const uchar *) "--is_empty--", 9);
+      }
 
       if (keyfile.case_insensitive_begins("cat://") || keyfile.case_insensitive_ends(".cat"))
       {
@@ -2468,8 +2502,8 @@ namespace sockets_bsd
       SSL_CTX_set_mode(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_MODE_AUTO_RETRY | SSL_MODE_RELEASE_BUFFERS);
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
-      if (context.get_length())
-         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, (u32)context.get_length());
+      if (context.length())
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)(const  char *)context, (u32)context.length());
       else
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar *)"--is_empty--", 9);
 

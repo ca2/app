@@ -1355,7 +1355,7 @@ namespace user
 
                _001GetLayoutText(str);
 
-               strsize iIncLen = ::str().utf8_inc_len(&str[i1]);
+               strsize iIncLen = ::str::utf8_inc_len(&str[i1]);
 
                m_pdata->_001Delete(i1, i1 + iIncLen);
 
@@ -1575,7 +1575,7 @@ namespace user
 
                               _001GetLayoutText(str);
 
-                              strsize iDecLen = ::str().utf8_dec_len(str, &str[i1]);
+                              strsize iDecLen = ::str::utf8_dec_len(str, &str[i1]);
 
                               m_pdata->_001Delete(i1, i1 - iDecLen);
 

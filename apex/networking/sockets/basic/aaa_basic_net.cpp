@@ -1107,8 +1107,8 @@ bool net::u2service(const string & name, i32& service, i32 ai_flags)
 i32 net::service_port(const ::string & str, i32 flags)
 {
 
-   if(::str().is_simple_natural(str))
-      return ::str().to_i32(str);
+   if(::str::is_simple_natural(str))
+      return ::str::to_i32(str);
 
    if(str.case_insensitive_order("http"))
    {

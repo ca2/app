@@ -13,14 +13,14 @@ namespace app_net
 
    };
 
-   template < typename VALUE >
+   template < typename PAYLOAD >
    class node
    {
    public:
 
       node* m_pprevious;
       node* m_pnext;
-      VALUE m_value;
+      PAYLOAD m_value;
 
 
    };*/

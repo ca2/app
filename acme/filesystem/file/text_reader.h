@@ -471,7 +471,7 @@ public:
 
       str.release_string_buffer(i);
 
-      return ::move(str);
+      return ::transfer(str);
 
    }
 

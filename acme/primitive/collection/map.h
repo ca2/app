@@ -303,7 +303,7 @@ public:
    }
 
 
-   bool unhash(iterator iterator);
+   //bool unhash(iterator iterator);
 
    //removing existing (item, ?) node
    //inline bool erase_item(ARG_ITEM item) { auto p = this->find_item(item);  return p ? this->erase(p) : false; }
@@ -578,7 +578,7 @@ pair_map < PAIR > & pair_map < PAIR >::operator = (const pair_map & m)
    if(this != &m)
    {
 
-      erase_all();
+      this->erase_all();
 
       for(auto & node : m)
       {
@@ -696,63 +696,63 @@ pair_map < PAIR >::pair_map(const pair_map & m)
 
 }
 
+//
+//template < typename PAIR >
+//void pair_map < PAIR >::erase_all()
+//{
+//
+//   //ASSERT_VALID(this);
+//
+//   if(::is_set(this->m_begin))
+//   {
+//      // destroy elements (values and keys)
+//      iterator iteratorNext;
+//
+//      for (auto iterator = this->begin(); this->iterator_ok(iterator); iterator = iteratorNext)
+//      {
+//
+//         iteratorNext = iterator + 1;
+//
+//         delete iterator.get();
+//
+//      }
+//
+//   }
+//
+//   this->m_hashtable.erase_all();
+//
+//   this->m_nCount = 0;
+//   //this->m_pnodeFree = nullptr;
+//
+//   //if(m_pplex != nullptr)
+//   //{
+//
+//   //   m_pplex->FreeDataChain();
+//   //   m_pplex = nullptr;
+//
+//   //}
+//
+//   this->m_begin = nullptr;
+//
+//}
 
-template < typename PAIR >
-void pair_map < PAIR >::erase_all()
-{
 
-   //ASSERT_VALID(this);
-
-   if(::is_set(this->m_begin))
-   {
-      // destroy elements (values and keys)
-      iterator iteratorNext;
-
-      for (auto iterator = this->begin(); this->iterator_ok(iterator); iterator = iteratorNext)
-      {
-
-         iteratorNext = iterator + 1;
-
-         delete iterator.get();
-
-      }
-
-   }
-
-   this->m_hashtable.erase_all();
-
-   this->m_nCount = 0;
-   //this->m_pnodeFree = nullptr;
-
-   //if(m_pplex != nullptr)
-   //{
-
-   //   m_pplex->FreeDataChain();
-   //   m_pplex = nullptr;
-
-   //}
-
-   this->m_begin = nullptr;
-
-}
-
-
-template < typename PAIR >
-inline void pair_map < PAIR >::clear()
-{
-   erase_all();
-}
-
-template < typename PAIR >
-inline void pair_map < PAIR >::Empty()
-{
-   clear();
-}
+//template < typename PAIR >
+//inline void pair_map < PAIR >::clear()
+//{
+//   erase_all();
+//}
+//
+//template < typename PAIR >
+//inline void pair_map < PAIR >::Empty()
+//{
+//   clear();
+//}
 
 template < typename PAIR >
 pair_map < PAIR >::~pair_map()
 {
-   erase_all();
+   this->erase_all();
    ASSERT(this->m_nCount == 0);
 }
 
@@ -908,7 +908,11 @@ void pair_map < PAIR >::detach(iterator iterator)
 
    // if no more elements, cleanup completely
    if (this->m_nCount == 0)
-      erase_all();
+   {
+
+      this->erase_all();
+
+   }
 
 }
 
@@ -1089,15 +1093,15 @@ typename pair_map < PAIR >::PAYLOAD * pair_map < PAIR >::pget(ARG_ITEM item)
 }
 
 
-template < typename PAIR >
-inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_key(ARG_ITEM item) const
-{
-
-   ::u32 nHashBucket, nHashValue;
-
-   return node_at(item, nHashBucket, nHashValue);
-
-}
+//template < typename PAIR >
+//inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_key(ARG_ITEM item) const
+//{
+//
+//   ::u32 nHashBucket, nHashValue;
+//
+//   return node_at(item, nHashBucket, nHashValue);
+//
+//}
 
 
 template < typename PAIR >
@@ -1124,24 +1128,24 @@ inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(cons
 }
 
 
-template < typename PAIR >
-inline typename pair_map < PAIR >::iterator pair_map < PAIR >::get_node(ARG_ITEM item)
-{
-
-   ::u32 nHashBucket,nHashValue;
-
-   iterator p;
-
-   if(!(p = node_at(item,nHashBucket,nHashValue)))
-   {
-
-      p = this->new_node(item, nHashBucket, nHashValue);
-
-   }
-
-   return p;
-
-}
+//template < typename PAIR >
+//inline typename pair_map < PAIR >::iterator pair_map < PAIR >::get_item(ARG_ITEM item)
+//{
+//
+//   ::u32 nHashBucket,nHashValue;
+//
+//   iterator p;
+//
+//   if(!(p = node_at(item,nHashBucket,nHashValue)))
+//   {
+//
+//      p = this->new_node(item, nHashBucket, nHashValue);
+//
+//   }
+//
+//   return p;
+//
+//}
 
 
 template < typename PAIR >
@@ -1170,24 +1174,24 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
 }
 
-
-template < typename PAIR >
-inline bool pair_map < PAIR >::unhash(iterator iterator)
-// erase - return true if erased
-{
-
-   if(::is_set(iterator->m_nextHash))
-   {
-
-      iterator->m_nextHash->m_pbackHash = iterator->m_pbackHash;
-
-   }
-
-   *iterator->m_pbackHash = iterator->m_nextHash;
-
-   return true;
-
-}
+//
+//template < typename PAIR >
+//inline bool pair_map < PAIR >::unhash(iterator iterator)
+//// erase - return true if erased
+//{
+//
+//   if(::is_set(iterator->m_nextHash))
+//   {
+//
+//      iterator->m_nextHash->m_pbackHash = iterator->m_pbackHash;
+//
+//   }
+//
+//   *iterator->m_pbackHash = iterator->m_nextHash;
+//
+//   return true;
+//
+//}
 
 
 template < typename PAIR >

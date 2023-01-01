@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022.
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
@@ -290,14 +290,14 @@ namespace acme
 
          //pnode->start_application(pnode, psystem);
 
-         if (m_iExitCode == 0 && m_iExitCode != 0)
-         {
-
-            m_iExitCode = m_iExitCode;
-
-         //}
-
-         }
+//         if (m_iExitCode == 0 && m_iExitCode != 0)
+//         {
+//
+//            m_iExitCode = m_iExitCode;
+//
+//         //}
+//
+//         }
 
          ::task_release();
 

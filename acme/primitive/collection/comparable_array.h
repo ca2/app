@@ -14,6 +14,8 @@ public:
    using BASE_ARRAY = ARRAY_TYPE;
 
    using BASE_RANGE = ARRAY_TYPE;
+   
+   using RAW_RANGE = typename ARRAY_TYPE::RAW_RANGE;
 
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
@@ -55,7 +57,7 @@ public:
 
       using BASE_RANGE::_order;
    
-      constexpr ::std::strong_ordering _order(CONST_RAW_RANGE range) const
+      constexpr ::std::strong_ordering _order(const RAW_RANGE & range) const
       {
    
          return _order(range, ::comparison::comparison < TYPE >());
@@ -65,18 +67,17 @@ public:
    
       using BASE_RANGE::order;
    
-      constexpr ::std::strong_ordering order(const CONST_RAW_RANGE & range) const
+      constexpr ::std::strong_ordering order(const RAW_RANGE & range) const
       {
    
          return BASE_RANGE::order(range, ::comparison::comparison < TYPE >());
    
       }
    
-   
-      constexpr ::std::strong_ordering operator<=>(const CONST_RAW_RANGE & range) const
+      constexpr ::std::strong_ordering operator<=>(const comparable_array & array) const
       {
    
-         return this->order(range);
+         return this->order(array);
    
       }
    

@@ -13,34 +13,34 @@
 #include <execinfo.h>
 #include <cxxabi.h>
 
-
-namespace acme
-{
-
-
-   void node::defer_update_callstack()
-   {
-
-
-   }
-
-
-   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
-   {
-
-      const size_t iMaximumFramesToCapture = 64;
-
-      void * stack[iMaximumFramesToCapture];
-
-      auto frames = ::backtrace(stack, iMaximumFramesToCapture);
-      
-      return _ansi_stack_trace(stack, frames, scopedstrFormat);
-
-   }
-
-
-} // namespace acme
-
+//
+//namespace acme
+//{
+//
+//
+//   void node::defer_update_callstack()
+//   {
+//
+//
+//   }
+//
+//
+//   string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
+//   {
+//
+//      const size_t iMaximumFramesToCapture = 64;
+//
+//      void * stack[iMaximumFramesToCapture];
+//
+//      auto frames = ::backtrace(stack, iMaximumFramesToCapture);
+//
+//      return _ansi_stack_trace(stack, frames, scopedstrFormat);
+//
+//   }
+//
+//
+//} // namespace acme
+//
 //
 //void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
 //{

@@ -2321,7 +2321,7 @@ bool payload::operator == (bool b) const
 
 ::std::strong_ordering payload::operator <=> (bool b) const
 {
-   return ::std::strong_order(::comparison::get_bool_int(get_bool()), ::comparison::get_bool_int(b));
+   return ::comparison::get_bool_int(get_bool()) <=> ::comparison::get_bool_int(b);
 }
 
 //bool payload::operator != (bool b) const

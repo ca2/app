@@ -285,11 +285,11 @@ public:
    iterator set_at(ARG_ITEM item, ARG_PAYLOAD newValue)
    {
 
-      iterator iterator = get_node(item);
+      auto p = this->get_item(item);
 
-      iterator->element2() = newValue;
+      p->load() = newValue;
 
-      return iterator;
+      return p;
 
    }
 
@@ -864,7 +864,7 @@ template < typename PAIR >
 void pair_map < PAIR >::detach(iterator iterator)
 {
 
-   unhash(iterator);
+   this->unhash(iterator);
 
    auto next = iterator->m_next;
 
@@ -1152,7 +1152,7 @@ template < typename PAIR >
 inline typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_ITEM item)
 {
 
-   return get_node(item)->element2();
+   return this->get_item(item)->element2();
 
 }
 
@@ -1161,7 +1161,7 @@ template < typename PAIR >
 inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_ITEM item) const
 {
 
-   auto p = find_item(item);
+   auto p = this->find_item(item);
 
    if(!p)
    {

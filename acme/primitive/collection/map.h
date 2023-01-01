@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "set.h"
@@ -12,8 +12,8 @@ class pair_map :
 public:
 
 
-   using ITEM = ::make_pair < PAIR >::TYPE1;
-   using PAYLOAD = ::make_pair < PAIR >::TYPE2;
+   using ITEM = typename ::make_pair < PAIR >::TYPE1;
+   using PAYLOAD = typename ::make_pair < PAIR >::TYPE2;
    using BASE_SET = typename ::node_set < ::make_pair < PAIR > >;
    using HASH_TABLE = BASE_SET::HASH_TABLE;
    using BASE_ITEM = typename ::make_pair < PAIR >::TYPE1;
@@ -296,7 +296,9 @@ public:
    //add a memory_new (item, value) node
    void set_payload(const PAIR & pair)
    {
-      set_at(pair.item(), pair.value());
+      
+      set_at(pair.element1(), pair.element2());
+
    }
 
 
@@ -1153,7 +1155,7 @@ template < typename PAIR >
 inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[](ARG_ITEM item) const
 {
 
-   auto p = find_node(item);
+   auto p = find_item(item);
 
    if(!p)
    {

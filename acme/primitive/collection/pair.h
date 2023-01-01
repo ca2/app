@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/transfer.h"
@@ -51,8 +51,9 @@
 
 
 #define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
-struct PAIR \
-{ \
+class PAIR \
+{  \
+public: \
 \
 \
    using TYPE1 = T1;                               \

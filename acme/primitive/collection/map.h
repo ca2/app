@@ -406,7 +406,7 @@ public:
 
    //inline iterator find_item(ARG_ITEM item) const { return find_node(item); }
 
-   using node_set::find_item;
+   using BASE_SET::find_item;
    inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map *) this)->find_item(item); }
 
 

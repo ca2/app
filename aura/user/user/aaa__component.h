@@ -430,7 +430,7 @@ protected:
 
 
 typedef u32 DROPEFFECT;
-class COleDataObject;   // forward object (see afxole.h)
+class COleDataObject;   // forward object (see ::windows_definition::ole.h)
 
 */
 

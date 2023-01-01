@@ -241,7 +241,7 @@ namespace user
    //class control_bar;
 
 
-   struct PrintThumbnailState;  // forward object (see afxext.h)
+   
 
 
    class user;
@@ -312,14 +312,14 @@ namespace user
 } // namespace user
 
 
-struct CPrintThumbnailState;  // forward object (see afxext.h)
+
 namespace user
 {
-   class control_bar;          // forward object (see afxext.h)
+   
 }
 
 
-class mini_dock_frame_window;    // forward object (see afxpriv.h)
+
 struct __SIZEPARENTPARAMS;
 
 

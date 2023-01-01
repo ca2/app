@@ -138,7 +138,7 @@
 //      int aaaGetThreadPriority();
 //      bool aaaSetThreadPriority(int nPriority);
 //
-//   // Operations
+//   
 //      ::u32 SuspendThread();
 //      ::u32 ResumeThread();
 //      bool post_message(::user::interaction * pguie, const ::atom & atom, WPARAM wParam, LPARAM lParam);

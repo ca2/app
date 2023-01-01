@@ -502,8 +502,8 @@ namespace universal_windows
 #endif
 
          // should also be in the permanent or temporary handle ::map
-         //single_lock synchronouslock(afxMutexHwnd(),true);
-         //hwnd_map * pMap = afxMapHWND();
+         //single_lock synchronouslock(::windows_definition::MutexHwnd(),true);
+         //hwnd_map * pMap = ::windows_definition::MapHWND();
          //if(pMap == nullptr) // inside thread not having windows
          //   return; // let go
          //ASSERT(pMap != nullptr);
@@ -844,7 +844,7 @@ namespace universal_windows
       /*
       application* pApp = ::auraacmesystem();
       ASSERT_VALID(pApp);
-      if (pApp->m_eHelpType == afxHTMLHelp)
+      if (pApp->m_eHelpType == ::windows_definition::HTMLHelp)
       {
       // translate from WinHelp commands and data to to HtmlHelp
       ASSERT((nCmd == HELP_CONTEXT) || (nCmd == HELP_CONTENTS) || (nCmd == HELP_FINDER));
@@ -1265,7 +1265,7 @@ namespace universal_windows
 pMessageMap = (*pMessageMap->pfnGetBaseMap)())
 {
 // Note: catch not so common but fatal mistake!!
-//       // BEGIN_MESSAGE_MAP(CMyWnd, CMyWnd)
+//       // 
 ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
 if (message < 0xC000)
 {
@@ -2038,8 +2038,8 @@ return true;
    {
       return false;
       //// get the ::map, and if no ::map, then this message does not need reflection
-      //single_lock synchronouslock(afxMutexHwnd(),true);
-      //hwnd_map * pMap = afxMapHWND();
+      //single_lock synchronouslock(::windows_definition::MutexHwnd(),true);
+      //hwnd_map * pMap = ::windows_definition::MapHWND();
       //if(pMap == nullptr)
       //   return false;
 
@@ -2174,7 +2174,7 @@ return true;
       if (pApp != nullptr && pApp->GetMainWnd() == this)
       {
       // recolor global brushes used by control bars
-      afxData.UpdateSysColors();
+      ::windows_definition::Data.UpdateSysColors();
       }
 
       // forward this message to all other child windows
@@ -2243,7 +2243,7 @@ return true;
       //if(::auraacmesystem()->GetMainWnd() == this)
       //{
       //   // update any system metrics cache
-      //   //         afxData.UpdateSysMetrics();
+      //   //         ::windows_definition::Data.UpdateSysMetrics();
       //}
 
       // forward this message to all other child windows
@@ -5301,7 +5301,7 @@ run:
       ASSERT(lpcs != nullptr);
 
       ::user::interaction * pWndInit = pThreadState->m_pWndInit;
-      bool bContextIsDLL = afxContextIsDLL;
+      bool bContextIsDLL = ::windows_definition::ContextIsDLL;
       if (pWndInit != nullptr || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
       {
          // Note: special check to avoid subclassing the IME interaction_impl
@@ -5353,11 +5353,11 @@ run:
             ASSERT(pOldWndProc != nullptr);
 
             // subclass the interaction_impl with standard __window_procedure
-            WNDPROC afxWndProc = __get_window_procedure();
+            WNDPROC ::windows_definition::WndProc = __get_window_procedure();
             oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
-                                                   (dword_ptr)afxWndProc);
+                                                   (dword_ptr)::windows_definition::WndProc);
             ASSERT(oldWndProc != nullptr);
-            if (oldWndProc != afxWndProc)
+            if (oldWndProc != ::windows_definition::WndProc)
                *pOldWndProc = oldWndProc;
 
             pThreadState->m_pWndInit = nullptr;
@@ -5461,7 +5461,7 @@ lCallNextHook:
 /////////////////////////////////////////////////////////////////////////////
 // Map from oswindow to ::user::interaction_impl *
 
-//hwnd_map* afxMapHWND(bool bCreate)
+//hwnd_map* ::windows_definition::MapHWND(bool bCreate)
 //{
 //   __UNREFERENCED_PARAMETER(bCreate);
 //   try
@@ -5478,7 +5478,7 @@ lCallNextHook:
 //}
 
 
-//::pointer< ::mutex > afxMutexHwnd()
+//::pointer< ::mutex > ::windows_definition::MutexHwnd()
 //{
 //   try
 //   {
@@ -5502,10 +5502,7 @@ lCallNextHook:
 
 LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam)
 {
-   // special message which identifies the interaction_impl as using __window_procedure
-   if (nMsg == WM_QUERYAFXWNDPROC)
-      return 1;
-
+   
    // all other messages route through message ::map
    ::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::FromHandlePermanent(hWnd);
    //ASSERT(pWnd != nullptr);
@@ -5735,7 +5732,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
    memory_set(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.hInstance = Sys(::universal_windows::get_task()->get_app()).m_hInstance;
-   //wndcls.hCursor = afxData.hcurArrow;
+   //wndcls.hCursor = ::windows_definition::Data.hcurArrow;
 
    INITCOMMONCONTROLSEX init;
    init.dwSize = sizeof(init);
@@ -5923,7 +5920,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 
    bool bRet = true;
 
-   if (afxContextIsDLL)
+   if (::windows_definition::ContextIsDLL)
    {
 
       try

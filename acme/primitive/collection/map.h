@@ -275,8 +275,9 @@ public:
    inline PAYLOAD & operator[](ARG_ITEM item);
    inline const PAYLOAD & operator[](ARG_ITEM item) const;
 
-   inline iterator get_node(ARG_ITEM item);
-   iterator find_key(ARG_ITEM item) const;
+   //inline iterator get_node(ARG_ITEM item);
+   //iterator find_key(ARG_ITEM item) const;
+
    template < typename PAYLOAD2 >
    iterator find_payload(const PAYLOAD2 & payload) const;
 
@@ -305,29 +306,30 @@ public:
    bool unhash(iterator iterator);
 
    //removing existing (item, ?) node
-   inline bool erase_item(ARG_ITEM item) { auto p = find_item(item);  return p ? erase(p) : false; }
+   //inline bool erase_item(ARG_ITEM item) { auto p = this->find_item(item);  return p ? this->erase(p) : false; }
 
-   inline bool erase_payload(ARG_PAYLOAD payload) { auto p = find_payload(payload);  return p ? erase(p) : false; }
+   template < typename PAYLOAD2 >
+   inline bool erase_payload(const PAYLOAD2 payload) { auto p = find_payload(payload);  return p ? erase(p) : false; }
 
-   template < typename ITERATOR >
-   inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
+   //template < typename ITERATOR >
+   //inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
-   template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last)
-   {
+   //template < typename ITERATOR >
+   //inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   //{
 
-      for(auto it = begin; it != last; it++)
-      {
+     // for(auto it = begin; it != last; it++)
+      //{
 
-         erase(it);
+        // erase(it);
 
-      }
+      //}
 
-   }
+   //}
 
-   void erase_all();
-   void clear();
-   void Empty();
+   //void erase_all();
+   //void clear();
+   //void Empty();
 
    inline auto keys() { return ::range<key_iterator>(*(const_key_iterator *)&this->begin(), *(const_key_iterator *)&this->end()); }
    inline auto values() { return ::range<value_iterator>(*(const_value_iterator *)&this->begin(), *(const_value_iterator *)&this->end()); }
@@ -408,8 +410,8 @@ public:
 
    //inline iterator find_item(ARG_ITEM item) const { return find_node(item); }
 
-   using BASE_SET::find_item;
-   inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map *) this)->find_item(item); }
+   //using BASE_SET::find_item;
+   //inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map *) this)->find_item(item); }
 
 
    iterator new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue);

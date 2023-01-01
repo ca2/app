@@ -908,7 +908,7 @@ namespace android
       /*      application* pApp = System;
       ASSERT_VALID(pApp);
       ASSERT(pApp->m_pszHelpFilePath != nullptr);
-      ASSERT(pApp->m_eHelpType == afxWinHelp);
+      ASSERT(pApp->m_eHelpType == ::windows_definition::WinHelp);
 
       wait_cursor wait(this);
 
@@ -936,7 +936,7 @@ namespace android
    ASSERT(pApp->m_pszHelpFilePath != nullptr);
    // to call HtmlHelp the m_fUseHtmlHelp must be set in
    // the application's constructor
-   ASSERT(pApp->m_eHelpType == afxHTMLHelp);
+   ASSERT(pApp->m_eHelpType == ::windows_definition::HTMLHelp);
 
    wait_cursor wait(this);
 
@@ -999,7 +999,7 @@ namespace android
       /*
       application* pApp = System;
       ASSERT_VALID(pApp);
-      if (pApp->m_eHelpType == afxHTMLHelp)
+      if (pApp->m_eHelpType == ::windows_definition::HTMLHelp)
       {
       // translate from WinHelp commands and data to to HtmlHelp
       ASSERT((nCmd == HELP_CONTEXT) || (nCmd == HELP_CONTENTS) || (nCmd == HELP_FINDER));
@@ -1598,8 +1598,8 @@ namespace android
 //bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //{
 //   // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//   /*      single_lock synchronouslock(afxMutexHwnd(), true);
-//   hwnd_map * pMap = afxMapHWND();
+//   /*      single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+//   hwnd_map * pMap = ::windows_definition::MapHWND();
 //   if (pMap == nullptr)
 //   return false;
 //

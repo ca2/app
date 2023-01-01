@@ -20,7 +20,7 @@ namespace draw2d_gdiplus
 
       bool CreateHalftonePalette(::image * pimage);
 
-      // Attributes
+      
       operator HPALETTE() const;
       i32 GetEntryCount();
       ::u32 GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
@@ -30,7 +30,7 @@ namespace draw2d_gdiplus
                              LPPALETTEENTRY pPaletteColors);
 
 
-      // Operations
+      
       void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries,
                           LPPALETTEENTRY pPaletteColors);
 

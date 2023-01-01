@@ -29,7 +29,7 @@
 
 namespace file_watcher
 {
-	/// Implementation for Linux based on inotify.
+	/ for Linux based on inotify.
 	/// @class os_file_watcher
 	class os_file_watcher : public file_watcher_impl
 	{

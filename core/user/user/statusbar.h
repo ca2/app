@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class status_bar_control;   // forward object (see afxcmn.h for definition)
+   class status_bar_control;   // forward object (see ::windows_definition::cmn.h for definition)
 
 
    struct __STATUSPANE :

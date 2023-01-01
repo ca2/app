@@ -1,41 +1,30 @@
-﻿// This is apex API library.
-//
-//
-//
-//
-//
-//
-//
-//
-
-// Inlines for AFXMT.H
-
+﻿
 #pragma once
 
-#ifdef _AFXMT_INLINE
+#ifdef inline
 
-_AFXMT_INLINE int_bool semaphore::Unlock()
+inline int_bool semaphore::Unlock()
 { return Unlock(1, nullptr); }
 
-_AFXMT_INLINE int_bool CEvent::SetEvent()
+inline int_bool CEvent::SetEvent()
 { ASSERT(m_hObject != nullptr); return ::SetEvent(m_hObject); }
-_AFXMT_INLINE int_bool CEvent::PulseEvent()
+inline int_bool CEvent::PulseEvent()
 { ASSERT(m_hObject != nullptr); return ::PulseEvent(m_hObject); }
-_AFXMT_INLINE int_bool CEvent::ResetEvent()
+inline int_bool CEvent::ResetEvent()
 { ASSERT(m_hObject != nullptr); return ::ResetEvent(m_hObject); }
 
-_AFXMT_INLINE CSingleLock::~CSingleLock()
+inline CSingleLock::~CSingleLock()
 { Unlock(); }
-_AFXMT_INLINE int_bool CSingleLock::IsLocked()
+inline int_bool CSingleLock::IsLocked()
 { return m_bAcquired; }
 
-_AFXMT_INLINE int_bool CMultiLock::IsLocked(::u32 dwObject)
+inline int_bool CMultiLock::IsLocked(::u32 dwObject)
 {
    ASSERT(dwObject < m_dwCount);
    return m_bLockedArray[dwObject];
 }
 
-_AFXMT_INLINE int_bool critical_section::Init()
+inline int_bool critical_section::Init()
 {
    __try
    {
@@ -49,7 +38,7 @@ _AFXMT_INLINE int_bool critical_section::Init()
    return true;
 }
 
-_AFXMT_INLINE critical_sectioncritical_section() : synchronization < HANDLE > (nullptr)
+inline critical_sectioncritical_section() : synchronization < HANDLE > (nullptr)
 {
    int_bool bSuccess;
 
@@ -58,11 +47,11 @@ _AFXMT_INLINE critical_sectioncritical_section() : synchronization < HANDLE > (n
       throw ::exception(error_no_memory);
 }
 
-_AFXMT_INLINE critical_section::operator CRITICAL_SECTION*()
+inline critical_section::operator CRITICAL_SECTION*()
 { return (CRITICAL_SECTION*) &m_sect; }
-_AFXMT_INLINE critical_section::~critical_section()
+inline critical_section::~critical_section()
 { ::DeleteCriticalSection(&m_sect); }
-_AFXMT_INLINE int_bool critical_section::Lock()
+inline int_bool critical_section::Lock()
 {
    __try
    {
@@ -74,12 +63,12 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    }
    return true;
 }
-_AFXMT_INLINE int_bool critical_section::Lock(::u32 tickTimeout)
+inline int_bool critical_section::Lock(::u32 tickTimeout)
 { ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
-_AFXMT_INLINE int_bool critical_section::Unlock()
+inline int_bool critical_section::Unlock()
 { ::LeaveCriticalSection(&m_sect); return true; }
 
-#endif //_AFXMT_INLINE
+#endif //inline
 
 
 

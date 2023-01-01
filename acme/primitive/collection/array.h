@@ -104,7 +104,7 @@ public:
    inline array & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
 
 
-   // Operations that transfer elements around
+    that transfer elements around
    //inline ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
    //void erase_indexes(const index_array & ia); // erase indexes from ::index array upper bound to ::index array lower bound

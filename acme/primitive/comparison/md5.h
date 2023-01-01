@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////
 // MD5.cpp
-// Implementation file for MD5 class
+ file for MD5 class
 //
 // This C++ Class implementation of the original RSA Data Security, Inc.
 // MD5 Message-Digest Algorithm is copyright (c) 2002, Gary McNickle.

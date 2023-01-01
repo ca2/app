@@ -41,7 +41,7 @@
 //#include "interaction_impl.h"
 //
 //
-//CLASS_DECL_CORE void AfxProcessWndProcException(::exception*, ::message::message * pmessage);
+//CLASS_DECL_CORE void ::windows_definition::ProcessWndProcException(::exception*, ::message::message * pmessage);
 //
 //CLASS_DECL_CORE void __cdecl __pre_translate_message(::message::message * pmessage);
 //

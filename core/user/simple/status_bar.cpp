@@ -14,15 +14,14 @@ simple_status_bar::~simple_status_bar()
 }
 
 /*
- // BEGIN_MESSAGE_MAP(simple_status_bar, ::user::status_bar)
+ // 
    //{{__MSG_MAP(simple_status_bar)
    ON_WM_ERASEBKGND()
    //}}__MSG_MAP
- // END_MESSAGE_MAP()
+ // 
 */
 
-/////////////////////////////////////////////////////////////////////////////
-// simple_status_bar message handlers
+
 
 
 /*

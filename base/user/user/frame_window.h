@@ -210,7 +210,7 @@ namespace user
 
       bool IsTracking() const;
 
-      // Operations
+      
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void ActivateFrame(::e_display edisplay = e_display_undefined) override;
       virtual void prepare_frame(::user::document * pdocument, bool bMakeVisible);

@@ -8,7 +8,7 @@
 //struct CLASS_DECL_ACME memory_state :
 //   public MEMORY_STATE
 //{
-//// Attributes
+//
 //   enum blockUsage
 //   {
 //      freeBlock,    // memory not used
@@ -22,7 +22,7 @@
 //
 //   memory_state();
 //
-//// Operations
+//
 //   void Checkpoint();  // fill with current state
 //   bool Difference(const memory_state& oldState,
 //               const memory_state& newState);  // fill with difference

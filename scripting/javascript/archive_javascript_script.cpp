@@ -26,7 +26,7 @@
 /*
  * This is a simple program showing how to use TinyJS
  */
-#include "StdAfx.h"
+#include "framework.h"
 
 #if defined(_MSC_VER) && defined(__DEBUG)
 #	define memory_new DEBUG_NEW

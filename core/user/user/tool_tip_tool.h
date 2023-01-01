@@ -17,7 +17,7 @@ namespace user
       tool_tip_tool();
       ~tool_tip_tool() override;
 
-      // Attributes
+      
       void BaseToolTipSetHandler(tool_tip_window * phandler);
 
       // Message handling

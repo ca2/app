@@ -369,7 +369,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // frame_window
 
-   // // BEGIN_MESSAGE_MAP(frame_window, user::frame_window)
+   // // 
    //{{__MSG_MAP(frame_window)
    /* xxx   ON_WM_INITMENU()
    ON_WM_INITMENUPOPUP()
@@ -424,7 +424,7 @@ namespace user
    ON_MESSAGE(WM_DDE_EXECUTE, &frame_window::OnDDEExecute)
    ON_MESSAGE(WM_DDE_TERMINATE, &frame_window::OnDDETerminate)
    ON_REGISTERED_MESSAGE(gen_MsgMouseWheel, &frame_window::OnRegisteredMouseWheel) */
-   // // END_MESSAGE_MAP()
+   // // 
 
    /////////////////////////////////////////////////////////////////////////////
    // frame_window construction/destruction
@@ -1353,7 +1353,7 @@ namespace user
 
       // there are cases where destroying the documents may destroy the
       //  main interaction_impl of the application.
-      if (!afxContextIsDLL && pApp->m_puiMain == nullptr)
+      if (!::windows_definition::ContextIsDLL && pApp->m_puiMain == nullptr)
       {
       __post_quit_message(0);
       return;

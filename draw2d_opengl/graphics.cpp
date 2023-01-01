@@ -2956,7 +2956,7 @@ namespace draw2d_opengl
 //      }
 //      else
 //      {
-//         // map against logical inch for non-constrained mapping modes
+//         
 //         i32 cxPerInch, cyPerInch;
 //         if (this != nullptr)
 //         {
@@ -2967,8 +2967,7 @@ namespace draw2d_opengl
 //         }
 //         else
 //         {
-////            cxPerInch = afxData.cxPixelsPerInch;
-//            //          cyPerInch = afxData.cyPixelsPerInch;
+
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
 //         LPSIZE32->cx = MulDiv(LPSIZE32->cx, HIMETRIC_INCH, cxPerInch);
@@ -2992,7 +2991,7 @@ namespace draw2d_opengl
 //      }
 //      else
 //      {
-//         // map against logical inch for non-constrained mapping modes
+//         
 //         i32 cxPerInch, cyPerInch;
 //         if (this != nullptr)
 //         {
@@ -3003,8 +3002,7 @@ namespace draw2d_opengl
 //         }
 //         else
 //         {
-////            cxPerInch = afxData.cxPixelsPerInch;
-//            //          cyPerInch = afxData.cyPixelsPerInch;
+
 //         }
 //         ASSERT(cxPerInch != 0 && cyPerInch != 0);
 //         LPSIZE32->cx = MulDiv(LPSIZE32->cx, cxPerInch, HIMETRIC_INCH);
@@ -3183,7 +3181,7 @@ namespace draw2d_opengl
 
    //::draw2d::graphics * ::draw2d_opengl::graphics::from_handle(HDC hDC)
    //{
-   //hdc_map* pMap = afxMapHDC(true); //create map if not exist
+   //hdc_map* pMap = ::windows_definition::MapHDC(true); //create map if not exist
    //ASSERT(pMap != nullptr);
 //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
    //    ASSERT(pgraphics == nullptr || (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc == hDC);
@@ -3231,7 +3229,7 @@ namespace draw2d_opengl
       }
       // remember early to avoid leak
       set_handle1(hDC);
-      hdc_map* pMap = afxMapHDC(true); // create map if not exist
+      hdc_map* pMap = ::windows_definition::MapHDC(true); // create map if not exist
       ASSERT(pMap != nullptr);
       pMap->set_permanent(m_hdc, this);
 
@@ -3415,7 +3413,7 @@ namespace draw2d_opengl
    void graphics::SetOutputDC(HDC hDC)  // set the Output DC
    {
 #ifdef _DEBUG
-      /*      hdc_map* pMap = afxMapHDC();
+      /*      hdc_map* pMap = ::windows_definition::MapHDC();
             if (pMap != nullptr && pMap->lookup_permanent(m_hdc) == this)
             {
                TRACE(trace_category_appmsg, 0, "Cannot set Output hDC on Attached graphics.\n");
@@ -3435,7 +3433,7 @@ namespace draw2d_opengl
    void graphics::ReleaseOutputDC()     // Release the Output DC
    {
 #ifdef _DEBUG
-      /*      hdc_map* pMap = afxMapHDC();
+      /*      hdc_map* pMap = ::windows_definition::MapHDC();
             if (pMap != nullptr && pMap->lookup_permanent(m_hdc) == this)
             {
                TRACE(trace_category_appmsg, 0, "Cannot Release Output hDC on Attached graphics.\n");

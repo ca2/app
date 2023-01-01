@@ -2069,8 +2069,8 @@ namespace linux
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock synchronouslock(afxMutexHwnd(), true);
-//            hwnd_map * pMap = afxMapHWND();
+//      /*      single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+//            hwnd_map * pMap = ::windows_definition::MapHWND();
 //            if (pMap == nullptr)
 //               return false;
 //

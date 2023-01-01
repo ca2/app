@@ -72,7 +72,7 @@ namespace draw2d
       virtual ::size_i32 get_size() const;
       virtual ::size_i32 size() const;
 
-      // Operations
+      
       virtual u32 SetBitmapBits(u32 dwCount, const void * pBits);
 
       virtual u32 GetBitmapBits(u32 dwCount, void * pBits) const;

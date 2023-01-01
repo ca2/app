@@ -86,8 +86,7 @@ void html_form_impact::on_form_implemented()
 //   ::user::show <::html_form>::dump(dumpcontext);
 //}
 
-/////////////////////////////////////////////////////////////////////////////
-// html_form_impact message handlers
+
 
 // vmpLightImpact.cpp : implementation of the html_form_impact class
 //

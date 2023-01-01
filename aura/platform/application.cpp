@@ -5891,7 +5891,7 @@ namespace aura
 
 
 
-   // // BEGIN_MESSAGE_MAP(application, channel)
+   // // 
    //{{__MSG_MAP(application)
    // Global File commands
    //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
@@ -5899,7 +5899,7 @@ namespace aura
    //   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
    //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
    //}}__MSG_MAP
-   // // END_MESSAGE_MAP()
+   // // 
 
    /*#ifdef WINDOWS
 
@@ -7441,7 +7441,7 @@ namespace aura
    //      return;     // only do subset if called from different thread
 
    //   ASSERT(::get_task() == this);
-   //   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
+   //   //ASSERT(::windows_definition::CurrentInstanceHandle == m_hInstance);
 
    //   /*      if (m_pdocmanager != nullptr)
    //   ASSERT_VALID(m_pdocmanager);*/

@@ -74,7 +74,7 @@ namespace file
 
    };
 
-   ///// Implementation for Win based on StorageFolder::CreateFileQueryWithOptions.
+   /// for Win based on StorageFolder::CreateFileQueryWithOptions.
    ///// @class os_file_watcher
    //class os_file_watcher :
    //   public file_watcher_impl

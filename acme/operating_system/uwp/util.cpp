@@ -19,7 +19,7 @@
       // get point_i32 size_i32 and convert to pixels
       pLogFont->lfHeight = _ttoi(lpszSize+1);
       pLogFont->lfHeight =
-         MulDiv(pLogFont->lfHeight, afxData.cyPixelsPerInch, 72);
+         MulDiv(pLogFont->lfHeight, ::windows_definition::Data.cyPixelsPerInch, 72);
       *lpszSize = '\0';
    }
    ::ca2::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNCATE);

@@ -25,10 +25,10 @@ class BaseDockState;
 class BaseControlBarInfo
 {
 public:
-   // Implementation
+   
    BaseControlBarInfo();
 
-   // Attributes
+   
    ::u32 m_nBarID;      // ID of this bar
    bool m_bVisible;    // visibility of this bar
    bool m_bFloating;   // whether floating or not
@@ -108,7 +108,7 @@ namespace user
       virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
       virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 nMode);
 
-      // Operations
+      
       void EnableDocking(u32 dwDockStyle);
 
       // Overridables

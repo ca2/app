@@ -40,7 +40,7 @@ namespace gen
       template < class TYPE, class ARG_TYPE >
       bool CopySafeArray(array < TYPE, ARG_TYPE > & ar, VARIANT * ::payload)
       {
-      //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
+      //    WINDOWS_DEFINITION_MANAGE_STATE(::windows_definition::GetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));
           ar.erase_all();
           ::u32 uDim;

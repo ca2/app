@@ -2,13 +2,13 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx AfxCustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
+/*int_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
  {
  ENSURE_ARG(pLogFont != nullptr);
  ASSERT(nIDS != 0);
 
  char szFontInfo[256];
- if (!AfxLoadString(nIDS, szFontInfo,_countof(szFontInfo)))
+ if (!::windows_definition::LoadString(nIDS, szFontInfo,_countof(szFontInfo)))
  return false;
 
  char * lpszSize = _tcschr(szFontInfo, '\n');
@@ -17,7 +17,7 @@
  // get point_i32 size_i32 and convert to pixels
  pLogFont->lfHeight = _ttoi(lpszSize+1);
  pLogFont->lfHeight =
- MulDiv(pLogFont->lfHeight, afxData.cyPixelsPerInch, 72);
+ MulDiv(pLogFont->lfHeight, ::windows_definition::Data.cyPixelsPerInch, 72);
  *lpszSize = '\0';
  }
  _template::checked::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNCATE);
@@ -25,7 +25,7 @@
  }*/
 
 /*
- int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, ::u32 nStyle)
+ int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, ::u32 nStyle)
  {
  if (hWnd == nullptr)
  return false;
@@ -36,18 +36,18 @@
  // do expensive classname compare next
  char szCompare[_countof("combobox")+1];
  ::GetClassName(hWnd, szCompare, _countof(szCompare));
- return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
+ return ::::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
  }
 
- int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
+ int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const char * lpszClassName)
  {
  ASSERT(::is_window(hWnd));
  char szTemp[32];
  ::GetClassName(hWnd, szTemp, _countof(szTemp));
- return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
+ return ::::windows_definition::InvariantStrICmp(szTemp, lpszClassName) == 0;
  }
 
- oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT_I32 point_i32)
+ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWnd, POINT_I32 point_i32)
  {
  ASSERT(hWnd != nullptr);
 
@@ -56,7 +56,7 @@
  oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
  for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
  {
- if (_AfxGetDlgCtrlID(hWndChild) != (::u16)0 &&
+ if (_::windows_definition::GetDlgCtrlID(hWndChild) != (::u16)0 &&
  (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
  {
  // see if point_i32 hits the child ::window
@@ -70,7 +70,7 @@
  return nullptr;    // not found
  }
 
- void CLASS_DECL_lnx AfxSetWindowText(::user::interaction * hWndCtrl, const char * lpszNew)
+ void CLASS_DECL_lnx ::windows_definition::SetWindowText(::user::interaction * hWndCtrl, const char * lpszNew)
  {
  hWndCtrl->set_window_text(lpszNew);
 ENSURE(hWndCtrl);
@@ -89,7 +89,7 @@ ENSURE(hWndCtrl);
 //}
 
 /*
- void CLASS_DECL_lnx AfxDeleteObject(HGDIOBJ* pObject)
+ void CLASS_DECL_lnx ::windows_definition::DeleteObject(HGDIOBJ* pObject)
  {
  ENSURE_ARG(pObject != nullptr);
  if (*pObject != nullptr)
@@ -100,7 +100,7 @@ ENSURE(hWndCtrl);
  }*/
 
 /*
- void CLASS_DECL_lnx AfxCancelModes(oswindow hWndRcvr)
+ void CLASS_DECL_lnx ::windows_definition::CancelModes(oswindow hWndRcvr)
  {
  // if we receive a message destined for a ::window, cancel any combobox
  //  popups that could be in toolbars or dialog bars
@@ -112,14 +112,14 @@ ENSURE(hWndCtrl);
  return;     // let input go to ::window with focus
 
  // focus is in part of a combo-box
- if (!_AfxIsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWNLIST))
+ if (!_::windows_definition::IsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWNLIST))
  {
  // check as a dropdown
  hWndCancel = ::get_parent(hWndCancel);   // parent of edit is combo
  if (hWndCancel == hWndRcvr)
  return;     // let input go to part of combo
 
- if (!_AfxIsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWN))
+ if (!_::windows_definition::IsComboBoxControl(hWndCancel, (::u32)CBS_DROPDOWN))
  return;     // not a combo-box that is active
  }
 
@@ -134,7 +134,7 @@ ENSURE(hWndCtrl);
  }*/
 
 /*
- void CLASS_DECL_lnx AfxGlobalFree(HGLOBAL hGlobal)
+ void CLASS_DECL_lnx ::windows_definition::GlobalFree(HGLOBAL hGlobal)
  {
  if (hGlobal == nullptr)
  return;

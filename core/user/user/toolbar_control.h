@@ -104,7 +104,7 @@ namespace user
       ::color::color GetInsertMarkColor();
       ::color::color SetInsertMarkColor(::color::color clrNew);
 
-   // Operations
+   
    public:
       bool EnableButton(i32 nID, bool bEnable = true);
       bool CheckButton(i32 nID, bool bCheck = true);

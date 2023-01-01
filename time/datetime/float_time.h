@@ -40,7 +40,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
 namespace datetime
 {
 
-   // Attributes
+   
    enum enum_status
    {
       e_status_error = -1,
@@ -104,7 +104,7 @@ namespace datetime
       ::i32 GetMinutes() const RELEASENOTHROW;    // component minutes in span (-59 to 59)
       ::i32 GetSeconds() const RELEASENOTHROW;    // component seconds in span (-59 to 59)
 
-      // Operations
+      
       float_time_span& operator=(double dblSpanSrc) RELEASENOTHROW;
 
       bool operator==(const float_time_span& dateSpan) const RELEASENOTHROW;
@@ -133,7 +133,7 @@ namespace datetime
       string Format(LPCTSTR pFormat) const;
       string Format(::u32 nID) const;
 
-      // Implementation
+      
       void check_range();
 
       static const double FLOAT_TIME_HALF_SECOND;
@@ -199,7 +199,7 @@ namespace datetime
       // Days since start of year (1 = January 1)
       int32_t GetDayOfYear() const RELEASENOTHROW;
 
-      // Operations
+      
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
 #if defined(ANDROID)
       float_time& operator=(const time_t & timeSrc) RELEASENOTHROW;

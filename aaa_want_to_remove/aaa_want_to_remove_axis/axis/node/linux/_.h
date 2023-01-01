@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_AXIS void AfxProcessWndProcException(::exception*, ::message::message * pmessage);
+CLASS_DECL_AXIS void ::windows_definition::ProcessWndProcException(::exception*, ::message::message * pmessage);
 CLASS_DECL_AXIS void __cdecl __pre_translate_message(::message::message * pmessage);
 
 

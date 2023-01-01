@@ -23,7 +23,7 @@ namespace media_library
       virtual ::file::path get_path();
 
 
-      /// Attributes
+      /
       virtual ::string get_title();
       virtual ::string get_artist();
 

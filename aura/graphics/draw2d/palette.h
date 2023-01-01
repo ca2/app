@@ -30,7 +30,7 @@ namespace draw2d
 
 
 
-// Operations
+
 
 
       //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);

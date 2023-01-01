@@ -258,7 +258,7 @@ namespace user
    //   u32 uStyle = GetStyle();
    //   if (uStyle & WS_VSCROLL)
    //   {
-   //   i32 nAdjust = afxData.cxVScroll;
+   //   i32 nAdjust = ::windows_definition::Data.cxVScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CX_BORDER;
    //   pClientRect->right += nAdjust;
@@ -266,7 +266,7 @@ namespace user
    //   }
    //   if (uStyle & WS_HSCROLL)
    //   {
-   //   i32 nAdjust = afxData.cyHScroll;
+   //   i32 nAdjust = ::windows_definition::Data.cyHScroll;
    //   if (uStyle & WS_BORDER)
    //   nAdjust -= CY_BORDER;
    //   pClientRect->bottom += nAdjust;
@@ -1362,7 +1362,7 @@ namespace user
 
    ::pointer<::user::impact>pimpact =  (pimpact);
    pimpact->handle(::topic * ptopic, ::context * pcontext);
-   if (afxData.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
+   if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.
@@ -1398,7 +1398,7 @@ namespace user
    }
 
    ( (pimpact))->handle(::topic * ptopic, ::context * pcontext);
-   if (afxData.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
+   if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.

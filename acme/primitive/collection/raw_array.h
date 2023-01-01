@@ -96,7 +96,7 @@ public:
    //inline const TYPE& operator[](::index nIndex) const;
    //inline TYPE& operator[](::index nIndex);
 
-   // Operations that transfer elements around
+    that transfer elements around
    ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //::index erase_at(::index nIndex, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);

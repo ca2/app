@@ -1,5 +1,5 @@
 // xkeyboard.cpp
-// Implementation of a class to get keyboard on_layout information and change layouts
+ of a class to get keyboard on_layout information and change layouts
 // Copyright (C) 2008 by Jay Bromley <jbromley@gmail.com>
 //
 // This program is free software; you can redistribute it and/or modify it

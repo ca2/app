@@ -26,7 +26,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       const ::scoped_string & scopedstrCommands = (const char *)::GlobalLock(hCommands);
 
-      ENSURE_THROW(pszCommands != nullptr, ::AfxThrowMemoryException() );
+      ENSURE_THROW(pszCommands != nullptr, ::::windows_definition::ThrowMemoryException() );
 
 //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", pszPrefix, pszCommands);
 
@@ -50,7 +50,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 
       DDEADVISE* pAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
 
-      ENSURE_THROW(pAdvise != nullptr, ::AfxThrowMemoryException() );
+      ENSURE_THROW(pAdvise != nullptr, ::::windows_definition::ThrowMemoryException() );
 
       char szItem[80];
       szItem[0] = '\0';
@@ -74,7 +74,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
          // format names.
       }
 
-      AfxTrace(
+      ::windows_definition::Trace(
          "%s: Advise item='%s', Format='%s', Ack=%d, Defer Update= %d\n",
           pszPrefix, szItem, szFormat, lpAdvise->fAckReq,
 
@@ -89,7 +89,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage)
 
 //{
-////   ENSURE_ARG(AfxIsValidString(pszPrefix));
+////   ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
@@ -186,7 +186,7 @@ static void TraceDDE(const ::scoped_string & scopedstrPrefix, const MESSAGE* pMs
 //void __trace_message(const ::scoped_string & scopedstrPrefix, MESSAGE * lpmsg)
 
 //{
-//   //ENSURE_ARG(AfxIsValidString(pszPrefix));
+//   //ENSURE_ARG(::windows_definition::IsValidString(pszPrefix));
 
 //   ENSURE_ARG(pmsg != nullptr);
 

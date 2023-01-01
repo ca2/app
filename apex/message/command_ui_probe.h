@@ -46,8 +46,8 @@
 ////
 ////enum __DISPMAP_FLAGS
 ////{
-////   afxDispCustom = 0,
-////   afxDispStock = 1
+////   ::windows_definition::DispCustom = 0,
+////   ::windows_definition::DispStock = 1
 ////};
 //
 ////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size_i32

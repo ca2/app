@@ -27,9 +27,7 @@ namespace draw2d_cairo
       bool LoadBitmap(const ::string & lpszResourceName);
       bool LoadBitmap(::u32 nIDResource);
       bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
-   #ifndef ___NO_AFXCMN_SUPPORT
-// xxx      bool LoadMappedBitmap(::u32 nIDBitmap, ::u32 nFlags = 0, LPCOLORMAP lpColorMap = nullptr, i32 nMapSize = 0);
-   #endif
+   
       bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 iStride);
 //      bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
       void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight) override;

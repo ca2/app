@@ -819,7 +819,7 @@ namespace base
 //      // document template to it.
 //      //virtual void on_request(::create* pcreate) override;
 //
-//      // overrides for implementation
+//       for implementation
 //      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 //
@@ -950,7 +950,7 @@ namespace base
 //      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
 //      void OnHelpUsing();     // ID_HELP_USING
 //
-//      // Implementation
+//      
 //
 //      void UpdatePrinterSelection(bool bForceDefaults);
 //      void SaveStdProfileSettings();  // save options to .INI file
@@ -985,7 +985,7 @@ namespace base
 //      // System Policy Settings
 //      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that aura API loads.
 //      bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
-//      bool _LoadSysPolicies() noexcept; // Implementation helper
+//      bool _LoadSysPolicies() noexcept;  helper
 //      static const char gen_FileSection[];
 //      static const char gen_FileEntry[];
 //      static const char gen_ThumbnailSection[];

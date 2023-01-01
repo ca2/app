@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "ca2/radix/cafxdllx.h"
+#include "framework.h"
+#include "ca2/radix/c::windows_definition::dllx.h"
 
 #define sclip1(v, c) \
 { \
@@ -123,7 +123,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
 
 
 
-static AFX_EXTENSION_MODULE VmscdadecDLL = { nullptr, nullptr };
+static WINDOWS_DEFINITION_EXTENSION_MODULE VmscdadecDLL = { nullptr, nullptr };
 
 extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
@@ -136,7 +136,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       ::output_debug_string("salt.DLL Initializing!\n");
       
       // Extension DLL one-time initialization
-      if (!AfxInitExtensionModule(VmscdadecDLL, hInstance))
+      if (!::windows_definition::InitExtensionModule(VmscdadecDLL, hInstance))
          return 0;
 
       // Insert this DLL into the resource chain
@@ -157,7 +157,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    {
       ::output_debug_string("salt.DLL Terminating!\n");
       // Terminate the library before destructors are called
-      AfxTermExtensionModule(VmscdadecDLL);
+      ::windows_definition::TermExtensionModule(VmscdadecDLL);
    }
    return 1;   // ok
 }

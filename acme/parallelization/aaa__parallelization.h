@@ -185,9 +185,9 @@ class _synchronous_lock;
 //
 //
 //#ifdef ___ENABLE_INLINES
-//#define _AFXMT_INLINE inline
+//#define inline inline
 //#include "_impl.h"
-//#undef _AFXMT_INLINE
+//#undef inline
 //#endif
 //
 //

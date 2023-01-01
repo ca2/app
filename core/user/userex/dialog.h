@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/form_callback.h"
@@ -35,16 +35,10 @@ public:
    virtual int_bool on_init_dialog();
 
 
-   // MFC dialog compatibility : TODO, ca2fy, at least the member function names
    virtual void OnCancel();
    virtual void OnOK();
-   //virtual bool update_data(bool bSave);
-   // update_data true
    virtual void form_from_user();
-   // update_data false
    virtual void form_to_user();
-   //virtual bool OnInitDialog();
-   // substituir, replace _001Initialize
    
    void handle(::topic * ptopic, ::context * pcontext) override;
 

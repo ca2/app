@@ -358,8 +358,8 @@ namespace ios
 
       if (hWndNew == nullptr)
          return false;
-      //single_lock synchronouslock(afxMutexHwnd(), true);
-      //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
+      //single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+      //hwnd_map * pMap = ::windows_definition::MapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
       //pMap->set_permanent(set_handle(hWndNew), this);
@@ -379,8 +379,8 @@ namespace ios
       oswindow hWnd = (oswindow) get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock synchronouslock(afxMutexHwnd(), true);
-         //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
+         //         single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+         //  ;;       hwnd_map * pMap = ::windows_definition::MapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
          //      pMap->erase_handle(get_handle());
          //         set_handle(nullptr);
@@ -813,8 +813,8 @@ namespace ios
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock synchronouslock(afxMutexHwnd(), true);
-       hwnd_map * pMap = afxMapHWND();
+       single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+       hwnd_map * pMap = ::windows_definition::MapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
        ASSERT(pMap != nullptr);
@@ -1711,8 +1711,8 @@ namespace ios
    bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
    {
       // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-      /*      single_lock synchronouslock(afxMutexHwnd(), true);
-       hwnd_map * pMap = afxMapHWND();
+      /*      single_lock synchronouslock(::windows_definition::MutexHwnd(), true);
+       hwnd_map * pMap = ::windows_definition::MapHWND();
        if (pMap == nullptr)
        return false;
 
@@ -1848,7 +1848,7 @@ namespace ios
        if (pApp != nullptr && pApp->GetMainWnd() == this)
        {
        // recolor global brushes used by control bars
-       afxData.UpdateSysColors();
+       ::windows_definition::Data.UpdateSysColors();
        }
 
        // forward this message to all other child windows

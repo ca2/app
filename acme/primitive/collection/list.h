@@ -326,7 +326,7 @@ public:
 
 
       //void Serialize(CArchive&);
-   // Attributes (head and tail)
+    (head and tail)
       // ::count of elements
    ::count get_count() const;
    ::count get_size() const;
@@ -342,7 +342,7 @@ public:
    TYPE & tail();
    const TYPE & tail() const;
 
-   // Operations
+   
    // get head or tail (and erase it) - don't call on is_empty list !
    void erase_head();
    void erase_tail();

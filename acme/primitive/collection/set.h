@@ -1009,11 +1009,11 @@ typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
 
       }
 
-      p->m_nextHash        = m_hashtable.m_ppHash[nHashBucket];
+      p->m_nextHash        = m_hashtable.m_ppHash[nHashBucket].get();
 
       m_hashtable.m_ppHash[nHashBucket] = p;
 
-      p->m_pbackHash       = &m_hashtable.m_ppHash[nHashBucket];
+      p->m_pbackHash       = &m_hashtable.m_ppHash[nHashBucket].get();
 
    }
 

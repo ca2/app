@@ -509,7 +509,7 @@ namespace draw2d_cairo
 
 
 
-      // Implementation
+      
    //public:
 
       //      HGDIOBJ SelectObject(HGDIOBJ) override;      // do not use for regions

@@ -11,7 +11,7 @@
 // winres.h - Windows resource definitions
 //  extracted from WINUSER.H and COMMCTRL.H
 
-#ifdef _AFX_MINREBUILD
+#ifdef _WINDOWS_DEFINITION_MINREBUILD
 #pragma component(minrebuild, off)
 #endif
 
@@ -40,6 +40,6 @@
 #endif
 #define IDC_STATIC      (-1)
 
-#ifdef _AFX_MINREBUILD
+#ifdef _WINDOWS_DEFINITION_MINREBUILD
 #pragma component(minrebuild, on)
 #endif

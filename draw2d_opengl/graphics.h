@@ -501,7 +501,7 @@ namespace draw2d_opengl
 
 
 
-      // Implementation
+      
    public:
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

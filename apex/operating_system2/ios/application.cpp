@@ -233,10 +233,10 @@ namespace apex
 
 //   void application::SetCurrentHandles()
 //   {
-//      //ASSERT(this == afxCurrentWinApp);
-//      //if(afxCurrentAppName != nullptr)
+//      //ASSERT(this == ::windows_definition::CurrentWinApp);
+//      //if(::windows_definition::CurrentAppName != nullptr)
 //      // return;
-//      //ASSERT(afxCurrentAppName == nullptr);
+//      //ASSERT(::windows_definition::CurrentAppName == nullptr);
 //
 //
 //      // Note: there are a number of _tcsdup (aka _strdup) calls that are

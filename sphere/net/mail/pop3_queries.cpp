@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "framework.h"
 
 
 #ifdef USE_SSL

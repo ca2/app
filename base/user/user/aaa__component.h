@@ -237,14 +237,14 @@
 //
 //
 //
-//struct CPrintThumbnailState;  // forward object (see afxext.h)
+//
 //namespace user
 //{
-//   class control_bar;          // forward object (see afxext.h)
+//   
 //}
 //
 //
-//class mini_dock_frame_window;    // forward object (see afxpriv.h)
+//
 //
 //
 ////#include "button.h"
@@ -319,7 +319,7 @@
 //
 //
 //typedef u32 DROPEFFECT;
-//class COleDataObject;   // forward object (see afxole.h)
+//class COleDataObject;   // forward object (see ::windows_definition::ole.h)
 //
 //*/
 //

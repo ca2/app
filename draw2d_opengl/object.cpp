@@ -71,7 +71,7 @@ namespace draw2d_opengl
    {
       //::object::assert_ok();
       //ASSERT(get_handle() == nullptr ||
-        // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
+        // (::windows_definition::Data.bWin95 || ::GetObjectType(get_handle()) != 0));
    }
 
 

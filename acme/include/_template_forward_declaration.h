@@ -522,6 +522,15 @@ struct argument_of_struct
 };
 
 
+template < typename TYPE >
+struct argument_of_struct < TYPE * >
+{
+
+   using type = const TYPE *;
+
+};
+
+
 template < primitive_number NUMBER >
 struct argument_of_struct < NUMBER >
 {

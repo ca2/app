@@ -912,7 +912,7 @@ namespace apex
       // document template to it.
       //virtual void on_request(::create* pcreate) override;
 
-      // overrides for implementation
+       for implementation
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage) override;
 

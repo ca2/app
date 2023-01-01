@@ -98,7 +98,7 @@ namespace user
 
       // default border style translation for Win4
       //  (you can turn off this translation by setting CBRS_BORDER_3D)
-      //   if (afxData.bWin4 && (m_dwStyle & CBRS_BORDER_3D) == 0)
+      //   if (::windows_definition::Data.bWin4 && (m_dwStyle & CBRS_BORDER_3D) == 0)
       if ((m_dwStyle & CBRS_BORDER_3D) == 0)
       {
          u32 dwNewStyle = 0;
@@ -214,7 +214,7 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // Attributes
+   
 
    size_i32 control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
@@ -604,13 +604,13 @@ namespace user
 
       // force black text on gray background all the time
       /*      if (!interaction_impl::GrayCtlColor((HDC)pctlcolor->m_pdc->get_os_data(), pctlcolor->m_puserinteraction->get_os_data(), pctlcolor->m_nCtlType,
-               afxData.hbrBtnFace, afxData.clrBtnText))
+               ::windows_definition::Data.hbrBtnFace, ::windows_definition::Data.clrBtnText))
             {
                pctlcolor->set_lresult(Default());
                pctlcolor->m_bRet = true;
                return;
             }*/
-      //pctlcolor->set_lresult((LRESULT) afxData.hbrBtnFace);
+      //pctlcolor->set_lresult((LRESULT) ::windows_definition::Data.hbrBtnFace);
       pctlcolor->m_bRet = true;
    }
 
@@ -930,8 +930,8 @@ namespace user
       ::rectangle_i32 rect1, rect2;
       rect1 = rectangle;
       rect2 = rectangle;
-      //   ::color::color clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
-//      ::color::color clr = afxData.clrBtnShadow;
+      //   ::color::color clr = ::windows_definition::Data.bWin4 ? ::windows_definition::Data.clrBtnShadow : ::windows_definition::Data.clrWindowFrame;
+//      ::color::color clr = ::windows_definition::Data.clrBtnShadow;
       ::color::color clr;
       clr = rgb(128, 128, 123);
 
@@ -949,10 +949,10 @@ namespace user
       }
       if (uStyle & CBRS_BORDER_TOP)
          rect2.top += 2;
-      //rect2.top += afxData.cyBorder2;
+      //rect2.top += ::windows_definition::Data.cyBorder2;
       if (uStyle & CBRS_BORDER_BOTTOM)
          rect2.bottom -= 2;
-      //rect2.bottom -= afxData.cyBorder2;
+      //rect2.bottom -= ::windows_definition::Data.cyBorder2;
 
       // draw left and top
       if (uStyle & CBRS_BORDER_LEFT)
@@ -1014,7 +1014,7 @@ namespace user
       if (uStyle & CBRS_BORDER_3D)
       {
          // prepare for hilite lines
-//         clr = afxData.clrBtnHilite;
+//         clr = ::windows_definition::Data.clrBtnHilite;
          clr = rgb(250, 250, 245);
 
          // draw left and top
@@ -1037,16 +1037,16 @@ namespace user
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
-         //rectangle.left += afxData.cxBorder2;
+         //rectangle.left += ::windows_definition::Data.cxBorder2;
          rectangle.left += 2;
       if (uStyle & CBRS_BORDER_TOP)
-         //rectangle.top += afxData.cyBorder2;
+         //rectangle.top += ::windows_definition::Data.cyBorder2;
          rectangle.top += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-         //rectangle.right -= afxData.cxBorder2;
+         //rectangle.right -= ::windows_definition::Data.cxBorder2;
          rectangle.right -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-         //rectangle.bottom -= afxData.cyBorder2;
+         //rectangle.bottom -= ::windows_definition::Data.cyBorder2;
          rectangle.bottom -= 2;
 
 #else
@@ -1067,13 +1067,13 @@ namespace user
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(ix);
       __UNREFERENCED_PARAMETER(iy);
-      /*      pgraphics->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
-            pgraphics->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
-            pgraphics->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);
-            pgraphics->SetPixel(ix + 2, iy    , afxData.clrBtnShadow);
-            pgraphics->SetPixel(ix + 3, iy + 1, afxData.clrBtnShadow);
-            pgraphics->SetPixel(ix + 3, iy + 2, afxData.clrBtnShadow);
-            pgraphics->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
+      /*      pgraphics->SetPixel(ix    , iy + 1, ::windows_definition::Data.clrBtnHilite);
+            pgraphics->SetPixel(ix + 1, iy + 1, ::windows_definition::Data.clrBtnHilite);
+            pgraphics->SetPixel(ix + 1, iy    , ::windows_definition::Data.clrBtnHilite);
+            pgraphics->SetPixel(ix + 2, iy    , ::windows_definition::Data.clrBtnShadow);
+            pgraphics->SetPixel(ix + 3, iy + 1, ::windows_definition::Data.clrBtnShadow);
+            pgraphics->SetPixel(ix + 3, iy + 2, ::windows_definition::Data.clrBtnShadow);
+            pgraphics->SetPixel(ix + 2, iy + 3, ::windows_definition::Data.clrBtnShadow);*/
    }
 
 
@@ -1089,7 +1089,7 @@ namespace user
             //pgraphics->draw_inset_3d_rectangle(rectangle.left+CX_BORDER_GRIPPER,
             //   rectangle.top+m_rectangleBorder.top,
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
-            //   afxData.clrBtnHilite, afxData.clrBtnShadow);
+            //   ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
             i32 Δx = CX_GRIPPER / 2;
             i32 Δy = CY_GRIPPER / 2;
             i32 ix = rectangle.left + CX_BORDER_GRIPPER;
@@ -1109,7 +1109,7 @@ namespace user
             //         pgraphics->draw_inset_3d_rectangle(rectangle.left+m_rectangleBorder.top,
             //            rectangle.top+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
-            //            afxData.clrBtnHilite, afxData.clrBtnShadow);
+            //            ::windows_definition::Data.clrBtnHilite, ::windows_definition::Data.clrBtnShadow);
             i32 Δx = CX_GRIPPER / 2;
             i32 Δy = CY_GRIPPER / 2;
             i32 ix = rectangle.left + m_rectangleBorder.top + Δx / 2;
@@ -1134,16 +1134,16 @@ namespace user
       u32 uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)
-//         rectangle.left += afxData.cxBorder2;
+//         rectangle.left += ::windows_definition::Data.cxBorder2;
          rectangle.left += 2;
       if (uStyle & CBRS_BORDER_TOP)
-//         rectangle.top += afxData.cyBorder2;
+//         rectangle.top += ::windows_definition::Data.cyBorder2;
          rectangle.top += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-//         rectangle.right -= afxData.cxBorder2;
+//         rectangle.right -= ::windows_definition::Data.cxBorder2;
          rectangle.right -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-//         rectangle.bottom -= afxData.cyBorder2;
+//         rectangle.bottom -= ::windows_definition::Data.cyBorder2;
          rectangle.bottom -= 2;
 
       // insert_at the top and bottom.

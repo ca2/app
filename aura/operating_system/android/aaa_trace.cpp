@@ -2,7 +2,7 @@
 
 void __trace_message(const ::scoped_string & scopedstrPrefix, LPMESSAGE lpmsg)
 {
-   //ENSURE_ARG(AfxIsValidString(lpszPrefix));
+   //ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
    ENSURE_ARG(lpmsg != nullptr);
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||

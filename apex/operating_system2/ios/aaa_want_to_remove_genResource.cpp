@@ -22,7 +22,7 @@ namespace gen
       const char * lpcszType)
    {
 
-      HINSTANCE hinst = ::AfxFindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
+      HINSTANCE hinst = ::::windows_definition::FindResourceHandle(MAKEINTRESOURCE(nID), lpcszType);
       if(hinst == nullptr)
          return false;
       return ReadResource(hinst, storage, nID, lpcszType);
@@ -62,7 +62,7 @@ namespace gen
 
          #ifdef __DEBUG
               
-              //afxdump << "File could not be opened " << (*pe)->m_cause << "\n";
+              //::windows_definition::dump << "File could not be opened " << (*pe)->m_cause << "\n";
 
          #endif
          

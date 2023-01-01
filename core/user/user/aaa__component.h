@@ -162,14 +162,14 @@
 ////#include "user_windowing.h"
 //
 //
-////// Note: afxData.cxBorder and afxData.cyBorder aren't used anymore
+////// Note: ::windows_definition::Data.cxBorder and ::windows_definition::Data.cyBorder aren't used anymore
 ////#define CX_BORDER   1
 ////#define CY_BORDER   1
 //
 //
 //
 //
-//// Implementation structures
+// structures
 //struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 //
 //// Classes declared in this file
@@ -234,7 +234,7 @@
 //   class control_bar;
 //
 //
-//   struct PrintThumbnailState;  // forward object (see afxext.h)
+//   
 //
 //
 //}
@@ -415,16 +415,16 @@
 //
 //
 //
-//struct CPrintThumbnailState;  // forward object (see afxext.h)
+//
 //namespace user
 //{
-//   class control_bar;          // forward object (see afxext.h)
+//   
 //}
-//class CReBar;               // forward object (see afxext.h)
+//
 //class simple_frame_window;
-//class CDockBar;             // forward object (see afxpriv.h)
-//class mini_dock_frame_window;    // forward object (see afxpriv.h)
-//class CDockState;           // forward object (see afxpriv.h)
+//
+//
+//
 //
 //
 //

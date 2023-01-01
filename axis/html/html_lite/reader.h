@@ -264,7 +264,7 @@ public:
    // sets a memory_new value for the specified option
    bool setBoolOption(ReaderOptionsEnum option, bool bNewVal);
 
-// Operations
+
    // parses an HTML document from the specified string
    strsize read_form_document(const ::string & str);
 

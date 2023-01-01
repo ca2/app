@@ -347,9 +347,6 @@ typedef struct
 #define WM_HANDHELDFIRST                0x0358
 #define WM_HANDHELDLAST                 0x035F
 
-#define WM_AFXFIRST                     0x0360
-#define WM_AFXLAST                      0x037F
-#endif /* WINVER >= 0x0400 */
 
 #define WM_PENWINFIRST                  0x0380
 #define WM_PENWINLAST                   0x038F
@@ -2105,10 +2102,6 @@ typedef struct
 
 #define WM_HANDHELDFIRST                0x0358
 #define WM_HANDHELDLAST                 0x035F
-
-#define WM_AFXFIRST                     0x0360
-#define WM_AFXLAST                      0x037F
-//#endif /* WINVER >= 0x0400 */
 
 #define WM_PENWINFIRST                  0x0380
 #define WM_PENWINLAST                   0x038F

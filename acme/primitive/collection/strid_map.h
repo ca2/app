@@ -69,7 +69,7 @@ public:
    }
 
 
-   // Operations
+   
    // lookup and add if not there
    T * & operator[](string key)
    {

@@ -60,8 +60,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 }
 
 
-/////////////////////////////////////////////////////////////////////////////
-// simple_menu_bar message handlers
+
 
 bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
 {

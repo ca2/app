@@ -89,7 +89,7 @@ namespace user
 
       virtual bool is_new_document();
 
-      // Operations
+      
       void add_impact(::user::impact * pimpact);
       void erase_impact(::user::impact * pimpact);
       virtual ::count get_impact_count() const;

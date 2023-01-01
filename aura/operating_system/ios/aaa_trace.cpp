@@ -33,7 +33,7 @@
  ASSERT(hCommands != nullptr);
 
  const char * lpszCommands = (const ::string &)::GlobalLock(hCommands);
- ENSURE_THROW(lpszCommands != nullptr, ::AfxThrowMemoryException() );
+ ENSURE_THROW(lpszCommands != nullptr, ::::windows_definition::ThrowMemoryException() );
  //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
  }
@@ -54,7 +54,7 @@
  ASSERT(hAdvise != nullptr);
 
  DDEADVISE* lpAdvise = (DDEADVISE*)::GlobalLock(hAdvise);
- ENSURE_THROW(lpAdvise != nullptr, ::AfxThrowMemoryException() );
+ ENSURE_THROW(lpAdvise != nullptr, ::::windows_definition::ThrowMemoryException() );
  char szItem[80];
  szItem[0] = '\0';
 
@@ -74,7 +74,7 @@
  // format names.
  }
 
- AfxTrace(
+ ::windows_definition::Trace(
  "%s: Advise item='%s', Format='%s', Ack=%d, Defer Update= %d\n",
  lpszPrefix, szItem, szFormat, lpAdvise->fAckReq,
  lpAdvise->fDeferUpd);
@@ -86,7 +86,7 @@
 //
 //void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage)
 //{
-//   //   ENSURE_ARG(AfxIsValidString(lpszPrefix));
+//   //   ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
@@ -170,7 +170,7 @@
 //
 //void __trace_message(const ::string & lpszPrefix, MESSAGE * lpmsg)
 //{
-//   //ENSURE_ARG(AfxIsValidString(lpszPrefix));
+//   //ENSURE_ARG(::windows_definition::IsValidString(lpszPrefix));
 //   ENSURE_ARG(lpmsg != nullptr);
 //
 //   if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||

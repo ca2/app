@@ -286,10 +286,10 @@ namespace user
 
       index nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
-         //         cyHeight -= afxData.cyBorder2;
+         //         cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
       if (m_dwStyle & CBRS_BORDER_BOTTOM)
-         //cyHeight -= afxData.cyBorder2;
+         //cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
 
       m_rectangleBorder.bottom = (::i32)((cyHeight - m_sizeButton.cy) / 2);
@@ -1689,7 +1689,7 @@ namespace user
 //      //  m_nCount and m_pData to be in synchronization, which they are not in toolbar.
 //
 //      /*      ASSERT(m_hbmImageWell == nullptr ||
-//               (afxData.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
+//               (::windows_definition::Data.bWin95 || ::GetObjectType(m_hbmImageWell) == OBJ_BITMAP));
 //
 //            if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
 //               ASSERT(m_hRsrcImageWell != nullptr);*/

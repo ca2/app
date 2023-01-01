@@ -27,7 +27,7 @@
 //   ::extended::status stdio_file::open(const ::file::path & lpszFileName, ::u32 nOpenFlags)
 //   {
 //      ASSERT(lpszFileName != nullptr);
-//      //ASSERT(AfxIsValidString(lpszFileName));
+//      //ASSERT(::windows_definition::IsValidString(lpszFileName));
 //
 //      if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
 //      {
@@ -171,7 +171,7 @@
 //
 //      ASSERT_VALID(this);
 //
-//      //rString = &afxWchNil;    // is_empty string without deallocating
+//      //rString = &::windows_definition::WchNil;    // is_empty string without deallocating
 //      rString.empty();
 //      const i32 nMaxSize = 128;
 //      char * lpsz = rString.get_string_buffer(nMaxSize);

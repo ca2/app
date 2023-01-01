@@ -58,7 +58,7 @@ public:
 
    virtual ~lite_html_tag();
 
-// Attributes
+
 public:
    /**
     * @return name of the tag

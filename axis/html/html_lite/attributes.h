@@ -316,7 +316,7 @@ public:
    strsize parseFromStr(::lite_html_reader * papp, const ::string & pszString, strsize iLen);
 
 
-// Attributes
+
 public:
    /**
     * Returns the ::count of LiteHTMLElemAttr items in this collection
@@ -453,7 +453,7 @@ public:
    { return ((*this)[pszAttributeName].m_strValue); }
 
 
-// Operations
+
 public:
    /**
     * Adds a memory_new LiteHTMLElemAttr item to the collection

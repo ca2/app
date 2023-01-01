@@ -65,7 +65,7 @@ public:
 // Constructors
    LiteHTMLEntityResolver();
 
-// Operations
+
    /**
     * Resolves a character or numeric entity object.
     *

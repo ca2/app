@@ -173,7 +173,7 @@ namespace user
 
       bool GetDroppedState();
 
-      // Operations
+      
       // for drop-down combo boxes
       void ShowDropDown(bool bShowIt = true);
 

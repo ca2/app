@@ -75,7 +75,7 @@ namespace draw2d_opengl
 /*      if (get_handle() == nullptr)
          return;
 
-      if (!afxData.bWin95 && ::GetObjectType(get_handle()) != OBJ_PEN)
+      if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_PEN)
       {
          // not a valid object
          dumpcontext << "has ILLEGAL HPEN!";

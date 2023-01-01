@@ -305,7 +305,23 @@ public:
 
    iterator detach(iterator iterator);
 
-   template < typename ITERATOR > inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
+   /*inline iterator erase(iterator it) 
+   {
+
+      auto pnext = p;
+
+      if (p)
+      {
+
+         pnext++;
+
+         this->erase(p);
+
+      }
+
+      return pnext;
+
+   }*/
 
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & end)

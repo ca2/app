@@ -654,7 +654,14 @@ public:
    bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
-   template < typename ITERATOR2 > iterator erase(ITERATOR2 it) { return ::acme::iterator::erase(*this, it); }
+   iterator erase(iterator p) 
+   { 
+
+      this->erase_at(index_of(p));
+   
+      return p;
+   
+   }
 
    template < typename ITERATOR2 >
    inline void erase(const ITERATOR2 & begin, const ITERATOR2 & last);

@@ -94,24 +94,24 @@ namespace acme
    {
 
 
-      template < typename CONTAINER, typename ITERATOR >
-      ITERATOR erase(CONTAINER & container, ITERATOR p)
-      {
+      //template < typename CONTAINER, typename ITERATOR >
+      //ITERATOR erase(CONTAINER & container, ITERATOR p)
+      //{
 
-         auto pnext = p;
+      //   auto pnext = p;
 
-         if(p)
-         {
+      //   if(p)
+      //   {
 
-            pnext++;
+      //      pnext++;
 
-            container.erase(p);
+      //      container.erase(p);
 
-         }
+      //   }
 
-         return pnext;
+      //   return pnext;
 
-      }
+      //}
 
 
    } // namespace iterator

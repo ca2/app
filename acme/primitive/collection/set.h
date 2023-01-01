@@ -301,8 +301,8 @@ public:
    //removing existing (item, ?) node
    inline bool erase_item(ARG_ITEM item) { auto p = this->find_item(item);  return p ? this->erase(p) : false; }
 
-   template < typename iterator >
-   inline iterator erase(iterator it) { return ::acme::iterator::erase(*this, it); }
+   //template < typename iterator >
+   //inline iterator erase(iterator it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename iterator >
    inline void erase(const iterator & begin, const iterator & last)

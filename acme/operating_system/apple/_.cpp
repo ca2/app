@@ -137,6 +137,20 @@ string apple_get_executable_path()
 }
 
 
+::file::path get_module_path()
+{
+   
+   return apple_get_executable_path();
+   
+}
+
+
+::file::path get_module_folder()
+{
+   
+   return get_module_path().folder();
+   
+}
 
 //void apple_on_app_activate()
 //{

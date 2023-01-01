@@ -65,7 +65,7 @@ public:
    
       using BASE_RANGE::order;
    
-      constexpr ::std::strong_ordering order(CONST_RAW_RANGE range) const
+      constexpr ::std::strong_ordering order(const CONST_RAW_RANGE & range) const
       {
    
          return BASE_RANGE::order(range, ::comparison::comparison < TYPE >());

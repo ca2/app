@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "international_locale_schema.h"
 #include "acme/primitive/collection/atom_map.h"
@@ -613,12 +613,12 @@ namespace text
       inline atom rl_id(const ::atom & atom)
       {
 
-         auto ppair = g_pmapRTL->plookup(atom);
+         auto p = g_pmapRTL->plookup(atom);
 
-         if (ppair != nullptr)
+         if (p)
          {
 
-            return ppair->element2();
+            return p->element2();
 
          }
 

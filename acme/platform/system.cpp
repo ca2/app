@@ -2576,7 +2576,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const ::scoped_string & scopedstrFile);
+void system_on_open_file(void * pSystem, const char * pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -2599,12 +2599,12 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const ::scoped_string & scopedstrFile)
+void system_on_open_file(void * pSystem, const char * pszFile)
 {
 
    auto psystem = (::acme::system *)pSystem;
 
-   psystem->on_open_file(scopedstrFile);
+   psystem->on_open_file(pszFile);
 
 
 }

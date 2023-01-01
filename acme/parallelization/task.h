@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/operating_system/error_code.h"
@@ -292,8 +292,8 @@ CLASS_DECL_ACME string get_task_name(htask_t htask);
 
 CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
 
-CLASS_DECL_ACME void task_set_name(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scopedstrName);
+CLASS_DECL_ACME void task_set_name(const char * pszName);
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName);
 
 
 CLASS_DECL_ACME string task_get_name();

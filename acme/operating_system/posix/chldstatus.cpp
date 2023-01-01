@@ -98,14 +98,14 @@ void ansios_sigchld_handler(int sig)
 
          critical_section_lock synchronouslock(get_chldstatus_cs());
 
-         auto ppair = g_pchldstatusmap->plookup(iPid);
+         auto p = g_pchldstatusmap->plookup(iPid);
 
-         if(ppair != nullptr)
+         if(p)
          {
 
-            ppair->element2().m_bRet = true;
+            p->element2().m_bRet = true;
 
-            ppair->element2().m_iExitCode = iExitCode;
+            p->element2().m_iExitCode = iExitCode;
 
          }
 

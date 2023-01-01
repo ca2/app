@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-11 21:16 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-11 21:16 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -27,6 +27,7 @@ struct u32hash
 namespace comparison
 {
 
+constexpr int get_bool_int( bool b){return b? 1:0;}
 
    template < typename TYPE >
    class comparison
@@ -43,6 +44,22 @@ namespace comparison
 
 
    };
+
+template <  >
+class comparison < bool >
+{
+public:
+
+
+   using EQUALITY = for_type < bool >;
+   using ORDERING = for_type < bool >;
+
+
+   constexpr bool equals(bool a, bool b) const { return get_bool_int(a) == get_bool_int(b); }
+   constexpr ::std::strong_ordering order(bool a, bool b) const { return get_bool_int(a) <=> get_bool_int(b); }
+
+
+};
 
 
    template < primitive_fundamental TYPE >

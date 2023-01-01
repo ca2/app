@@ -5,17 +5,18 @@
 
 //CLASS_DECL_ACME ::acme::system * acmesystem();
 
+namespace acme
+{
+//void * __node_library_open(const ::file::path & path, string & strMessage);
 
-void * __node_library_open(const ::file::path & path, string & strMessage);
-
-void * __node_library_touch(const ::file::path & path, string & strMessage)
+void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
 {
 
-   return __node_library_open(pszPath, strMessage);
+   return operating_system_library_open(pszPath, strMessage);
 
 }
 
-void * __node_library_open(const ::file::path & path, string & strMessage)
+void * system::operating_system_node_library_open(const ::file::path & path, string & strMessage)
 {
    
    auto psystem = acmesystem();
@@ -144,7 +145,7 @@ finished:
 }
 
 
-bool __node_library_close(void * plibrary)
+bool system::operating_system_node_library_close(void * plibrary)
 {
 
    if(plibrary != nullptr)
@@ -159,7 +160,7 @@ bool __node_library_close(void * plibrary)
 }
 
 
-void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
+void * system::operating_system_node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
 {
 
    return dlsym(plibrary, pszElement);
@@ -171,7 +172,7 @@ void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstr
 
 
 
-void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
+void * system::operating_system_node_library_open_ca2(const ::file::path & path, string & strMessage)
 {
 
    strMessage.empty();
@@ -215,5 +216,6 @@ finished:
 
 }
 
+} // namespace acme
 
 

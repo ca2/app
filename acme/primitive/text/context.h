@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/collection/atom_map.h"
@@ -37,10 +37,18 @@ namespace text
 
       inline const schema * get_schema(const ::atom & idSchema) const
       {
-         auto ppair = plookup(idSchema);
-         if (ppair == nullptr)
+         
+         auto p = plookup(idSchema);
+         
+         if (!p)
+         {
+            
             return nullptr;
-         return &ppair->element2();
+            
+         }
+         
+         return &p->element2();
+         
       }
 
 
@@ -68,16 +76,16 @@ namespace text
       inline const locale * get_locale(const ::atom & idLocale) const
       {
          
-         auto ppair = m_map.plookup(idLocale);
+         auto p = m_map.plookup(idLocale);
 
-         if (ppair == nullptr)
+         if (!p)
          {
 
             return nullptr;
 
          }
 
-         return &ppair->element2();
+         return &p->element2();
 
       }
 

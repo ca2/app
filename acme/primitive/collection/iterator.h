@@ -76,9 +76,17 @@ public:
    auto & topic() { return this->m_p->topic(); }
    auto & topic() const { return this->m_p->topic(); }
 
+//https://www.artima.com/articles/the-safe-bool-idiom BEGIN
+private:
 
-   operator bool() const { return ::is_set(m_p); }
+   typedef void (const_iterator:: * bool_type)() const;
 
+   void this_type_does_not_support_comparisons() const {}
+
+public:
+
+   operator bool_type() const { return ::is_set(m_p) ? &const_iterator::this_type_does_not_support_comparisons : 0; }
+   //https://www.artima.com/articles/the-safe-bool-idiom END
 
    auto & operator= (TYPE * p) { m_p = p; return *this; }
    auto & operator= (iterator p) { m_p = p.get(); return *this; }
@@ -126,9 +134,17 @@ public:
    const_iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
    const_iterator_base(const const_iterator & iterator) : m_p(iterator.m_p) {}
 
+   //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
+private:
 
-   operator bool() const { return ::is_set(m_p); }
+   typedef void (const_iterator:: * bool_type)() const;
 
+   void this_type_does_not_support_comparisons() const {}
+
+public:
+
+   operator bool_type() const { return ::is_set(m_p) ? &const_iterator::this_type_does_not_support_comparisons : 0; }
+   //https://www.artima.com/articles/the-safe-bool-idiom END
 
    auto & get() { return m_p; }
    auto & get() const { return m_p; }

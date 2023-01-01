@@ -421,7 +421,7 @@ public:
    }
 
    
-   constexpr std::strong_ordering operator <=> (const_iterator iterator) const
+   constexpr std::strong_ordering operator <=> (const const_iterator & iterator) const
    {
 
       return this->index() <=> iterator.index();

@@ -1026,16 +1026,16 @@ bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
 
    ::u32 nHashBucket, nHashValue;
 
-   iterator iterator = node_at(item, nHashBucket, nHashValue);
+   auto p = node_at(item, nHashBucket, nHashValue);
 
-   if (iterator == nullptr)
+   if (p)
    {
 
       return false;  // not in pair_map
 
    }
 
-   rValue = iterator->element2();
+   rValue = p->element2();
 
    return true;
 
@@ -1204,7 +1204,7 @@ template < typename PAIR >
 inline ::count pair_map < PAIR >::count(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 

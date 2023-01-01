@@ -251,7 +251,7 @@ intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
       if(!a.contains(*p))
       {
 
-         this->erase(*p);
+         this->erase_item(*p);
 
       }
 
@@ -327,7 +327,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const TYPE & t)
 {
 
-   this->erase(t);
+   this->erase_item(t);
 
    return *this;
 
@@ -339,7 +339,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   this->erase(l);
+   this->erase_list(l);
 
    return *this;
 
@@ -353,7 +353,7 @@ operator - (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l) const
 
    comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> aRet(*this);
 
-   aRet.erase(l);
+   aRet.erase_list(l);
 
    return aRet;
 

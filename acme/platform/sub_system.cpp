@@ -433,16 +433,16 @@ bool sub_system::has_factory_item(const ::atom& atom)
 
    critical_section_lock cs(&m_criticalsection);
 
-   auto iterator = m_pfactory->find_node(atom);
+   auto p = m_pfactory->find_item(atom);
 
-   if (iterator.is_null())
+   if (!p)
    {
 
       return false;
 
    }
 
-   if (iterator->element2())
+   if (!p->element2())
    {
 
       return false;

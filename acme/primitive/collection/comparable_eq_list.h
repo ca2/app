@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "list.h"
@@ -113,7 +113,7 @@ find_last_item(const TYPE & t, iterator start, iterator p) const
    if(!p)
    {
 
-      p = this->get_tail();
+      p = this->end();
 
    }
 
@@ -152,7 +152,7 @@ get_count(const TYPE & t, iterator start, iterator end, ::count countMax) const
 
    ::count count = 0;
 
-   while((countMax >= 0 && count <= countMax) && (start = find_first(t, start, end)))
+   while((countMax >= 0 && count <= countMax) && (start = find_first_item(t, start, end)))
    {
 
       count++;
@@ -190,7 +190,7 @@ rear_contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::coun
 
    ::count count = 0;
 
-   while((count < countMin || (countMax >= 0 && count <= countMax))  && (p = find_last(t, p, end)))
+   while((count < countMin || (countMax >= 0 && count <= countMax))  && (p = find_last_item(t, p, end)))
    {
 
       count++;
@@ -243,19 +243,19 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 intersect(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & a)
 {
 
-   auto pnode = this->get_head();
+   auto p = this->begin();
 
-   while (pnode)
+   while (p)
    {
 
-      if(!a.contains(pnode->m_value))
+      if(!a.contains(*p))
       {
 
-         this->erase(pnode->m_value);
+         this->erase(*p);
 
       }
 
-      pnode = pnode->m_pnext;
+      p++;
 
    }
 
@@ -267,19 +267,19 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 merge_tail(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   auto pnode = l.get_head();
+   auto p = l.begin();
 
-   while(pnode)
+   while(p)
    {
 
-      if(!contains(pnode->m_value))
+      if(!contains(*p))
       {
 
-         this->add_tail(pnode->m_value);
+         this->add_tail(*p);
 
       }
 
-      pnode = pnode->m_pnext;
+      p++;
 
    }
 
@@ -291,19 +291,19 @@ void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 merge_head(const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   auto pnode = l.get_tail();
+   auto p = l.end();
 
-   while(pnode)
+   while(p)
    {
 
-      if(!contains(pnode->m_value))
+      if(!contains(*p))
       {
 
-         add_head(pnode->m_value);
+         this->add_head(*p);
 
       }
 
-      pnode = pnode->m_pprevious;
+      p--;
 
    }
 
@@ -315,7 +315,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator &= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   intersect(l);
+   this->intersect(l);
 
    return *this;
 
@@ -327,7 +327,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const TYPE & t)
 {
 
-   erase(t);
+   this->erase(t);
 
    return *this;
 
@@ -339,7 +339,7 @@ inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE,
 operator -= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
 
-   erase(l);
+   this->erase(l);
 
    return *this;
 
@@ -377,7 +377,7 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 erase_first_item(const TYPE & t)
 {
 
-   iterator p = this->find_first(t);
+   iterator p = this->find_first_item(t);
 
    if (!p)
    {
@@ -386,7 +386,7 @@ erase_first_item(const TYPE & t)
 
    }
 
-   this->erase_item(p);
+   this->erase(p);
 
    return true;
 
@@ -472,7 +472,7 @@ erase_last_item(const TYPE & t, iterator & p, iterator end)
 
       p--;
 
-      this->erase_item(pErase);
+      this->erase(pErase);
 
       return true;
 
@@ -493,7 +493,7 @@ rear_erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::co
    if(contains(t, p, end, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && erase_last(t, p, end))
+      while (conditional(countMax >= 0, count < countMax) && erase_last_item(t, p, end))
       {
 
          count++;
@@ -513,12 +513,12 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 
    ::count count = 0;
 
-   auto p = l.get_head();
+   auto p = l.begin();
 
    while(p)
    {
 
-      count += erase(*p);
+      count += erase_item(*p);
 
       p++;
 

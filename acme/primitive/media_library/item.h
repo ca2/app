@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-28 02:30 <3ThomasBorregaardS�rensen
+﻿// Created by camilo on 2022-05-28 02:30 <3ThomasBorregaardS�rensen
 #pragma once
 
 
@@ -23,7 +23,6 @@ namespace media_library
       virtual ::file::path get_path();
 
 
-      /
       virtual ::string get_title();
       virtual ::string get_artist();
 

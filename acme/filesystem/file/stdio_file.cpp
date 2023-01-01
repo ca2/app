@@ -208,10 +208,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
 
       throw ::file::exception(estatus, errorcode, m_path, "fseek != 0", m_eopen);
 
-      return -1;
-
    }
-
 
 #else
 

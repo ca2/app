@@ -583,7 +583,7 @@ pair_map < PAIR > & pair_map < PAIR >::operator = (const pair_map & m)
       for(auto & node : m)
       {
 
-         set_at(node.element1(),node.element2());
+         set_at((ARG_ITEM) node.element1(), (ARG_PAYLOAD) node.element2());
 
       }
 
@@ -591,16 +591,22 @@ pair_map < PAIR > & pair_map < PAIR >::operator = (const pair_map & m)
    return *this;
 }
 
+
 template < typename PAIR >
 inline bool pair_map < PAIR >::is_empty() const
 {
+
    return this->m_nCount == 0;
+
 }
+
 
 template < typename PAIR >
 inline bool pair_map < PAIR >::empty() const
 {
+
    return this->m_nCount == 0;
+
 }
 
 
@@ -690,7 +696,7 @@ pair_map < PAIR >::pair_map(const pair_map & m)
    for(auto & pair : m)
    {
 
-      set_at(pair.element1(), pair.element2());
+      set_at((ARG_ITEM) pair.element1(), (ARG_PAYLOAD) pair.element2());
 
    }
 
@@ -1406,7 +1412,6 @@ void pair_map < PAIR >::InitHashTable(
 //}
 //
 //
-
 
 
 

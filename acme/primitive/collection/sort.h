@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "numeric_array.h"
@@ -636,145 +636,157 @@
    }
 
 
-   template<typename TYPE, ::enum_type m_etypeContainer = e_type_element>
-   void QuickSortAsc(numeric_array<TYPE, m_etypeContainer> &a)
+   template<primitive_range RANGE>
+   void QuickSortAsc(RANGE & range)
    {
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      iptr iLowerBound;
-      iptr iUpperBound;
-      iptr iLPos, iUPos, iMPos;
-
-      if (a.get_size() >= 2)
+      
+      if (range.size() < 2)
       {
-         stackLowerBound.push(0);
-         stackUpperBound.push(a.get_upper_bound());
+
+         return;
+
+      }
+      
+      ::array < typename RANGE::iterator > stackLowerBound;
+      ::array < typename RANGE::iterator > stackUpperBound;
+      typename RANGE::iterator iLowerBound;
+      typename RANGE::iterator iUpperBound;
+      typename RANGE::iterator iLPos, iUPos, iMPos;
+
+      stackLowerBound.push(range.begin());
+      stackUpperBound.push(range.end());
+      while (true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
          while (true)
          {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
             while (true)
             {
-               while (true)
-               {
-                  if (iMPos == iUPos)
-                     break;
-                  if (a.element_at(iMPos) <= a.element_at(iUPos))
-                     iUPos--;
-                  else
-                  {
-                     a.__swap(iMPos, iUPos);
-                     break;
-                  }
-               }
                if (iMPos == iUPos)
                   break;
-               iMPos = iUPos;
-               while (true)
+               if (*iMPos <= *iUPos)
+                  iUPos--;
+               else
                {
-                  if (iMPos == iLPos)
-                     break;
-                  if (a.element_at(iLPos) <= a.element_at(iMPos))
-                     iLPos++;
-                  else
-                  {
-                     a.__swap(iLPos, iMPos);
-                     break;
-                  }
+                  ::swap(*iMPos, *iUPos);
+                  break;
                }
+            }
+            if (iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while (true)
+            {
                if (iMPos == iLPos)
                   break;
-               iMPos = iLPos;
+               if (*iLPos <= *iMPos)
+                  iLPos++;
+               else
+               {
+                  ::swap(*iLPos, *iMPos);
+                  break;
+               }
             }
-            if (iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if (iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if (stackLowerBound.get_size() == 0)
+            if (iMPos == iLPos)
                break;
+            iMPos = iLPos;
          }
+         if (iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if (iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if (stackLowerBound.get_size() == 0)
+            break;
       }
+
    }
 
 
-   template<typename TYPE, ::enum_type m_etypeContainer = e_type_element>
-   void QuickSortDesc(numeric_array<TYPE, m_etypeContainer> &a)
+   template<primitive_range RANGE>
+   void QuickSortDesc(RANGE & range)
    {
 
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      iptr iLowerBound;
-      iptr iUpperBound;
-      iptr iLPos, iUPos, iMPos;
-
-      if (a.get_size() >= 2)
+      if (range.size() < 2)
       {
-         stackLowerBound.push(0);
-         stackUpperBound.push(a.get_upper_bound());
+
+         return;
+
+      }
+
+      ::array < typename RANGE::iterator > stackLowerBound;
+      ::array < typename RANGE::iterator > stackUpperBound;
+      typename RANGE::iterator iLowerBound;
+      typename RANGE::iterator iUpperBound;
+      typename RANGE::iterator iLPos, iUPos, iMPos;
+
+      stackLowerBound.push(range.begin());
+      stackUpperBound.push(range.end());
+      while (true)
+      {
+         iLowerBound = stackLowerBound.pop();
+         iUpperBound = stackUpperBound.pop();
+         iLPos = iLowerBound;
+         iMPos = iLowerBound;
+         iUPos = iUpperBound;
          while (true)
          {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
             while (true)
             {
-               while (true)
-               {
-                  if (iMPos == iUPos)
-                     break;
-                  if (a.element_at(iUPos) < a.element_at(iMPos))
-                     iUPos--;
-                  else
-                  {
-                     a.__swap(iMPos, iUPos);
-                     break;
-                  }
-               }
                if (iMPos == iUPos)
                   break;
-               iMPos = iUPos;
-               while (true)
+               if (*iUPos <= *iMPos)
+                  iUPos--;
+               else
                {
-                  if (iMPos == iLPos)
-                     break;
-                  if (a.element_at(iMPos) < a.element_at(iLPos))
-                     iLPos++;
-                  else
-                  {
-                     a.__swap(iLPos, iMPos);
-                     break;
-                  }
+                  ::swap(*iMPos, *iUPos);
+                  break;
                }
+            }
+            if (iMPos == iUPos)
+               break;
+            iMPos = iUPos;
+            while (true)
+            {
                if (iMPos == iLPos)
                   break;
-               iMPos = iLPos;
+               if (*iMPos <= *iLPos)
+                  iLPos++;
+               else
+               {
+                  ::swap(*iLPos, *iMPos);
+                  break;
+               }
             }
-            if (iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if (iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if (stackLowerBound.get_size() == 0)
+            if (iMPos == iLPos)
                break;
+            iMPos = iLPos;
          }
+         if (iLowerBound < iMPos - 1)
+         {
+            stackLowerBound.push(iLowerBound);
+            stackUpperBound.push(iMPos - 1);
+         }
+         if (iMPos + 1 < iUpperBound)
+         {
+            stackLowerBound.push(iMPos + 1);
+            stackUpperBound.push(iUpperBound);
+         }
+         if (stackLowerBound.get_size() == 0)
+            break;
       }
+
    }
+
 
    template<class KEY, class TYPE, class ARG_TYPE>
    void QuickSortByKey(

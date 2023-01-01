@@ -88,8 +88,8 @@ namespace user
       };
 
 
-      template < typename PAYLOAD, class ARG_VALUE = argument_of < PAYLOAD >, class PAIR = pair < image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE > >
-      using image_key_map = map< image_key, PAYLOAD, argument_of < image_key >, ARG_VALUE, PAIR >;
+      template < typename PAYLOAD, class PAIR = pair < image_key, PAYLOAD > >
+      using image_key_map = map< image_key, PAYLOAD, PAIR >;
 
       bool m_bGetFileImageByIconPath : 1;
       bool m_bGetFileImageByFileTypeImage : 1;

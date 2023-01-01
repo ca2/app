@@ -51,7 +51,7 @@ namespace filemanager
       //    callback   *                        m_pfilemanager;
 //      callback *                          m_pcallback;
 //      bool                                m_bTransparentBackground;
-      ::database::key                     m_datakey;
+      ::string                            m_strDataKey;
       ::user::place_holder *              m_pholderFileList;
       ::user::tree *                      m_ptreeFileTreeMerge;
       bool                                m_bSetBergedgeTopicFile;
@@ -71,7 +71,7 @@ namespace filemanager
       atom                                  m_atomExpandBox;
       atom                                  m_atomCollapseBox;
 
-      ::database::key                     m_dataidStatic;
+      ::string                     m_strDataKeyStatic;
 
 
       ::pointer<file_list_callback>      m_pfilelistcallback;

@@ -526,7 +526,7 @@ template < typename TYPE >
 struct argument_of_struct < TYPE * >
 {
 
-   using type = const TYPE *;
+   using type = TYPE *;
 
 };
 

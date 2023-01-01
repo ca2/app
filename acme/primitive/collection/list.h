@@ -88,7 +88,7 @@ public:
    //   make_iterator & operator ++ ()
    //   {
 
-   //      this->m_pnode = this->m_pnode->m_next;
+   //      this->m_pnode = this->m_pnode.next();
 
    //      return *this;
 
@@ -100,7 +100,7 @@ public:
 
    //      make_iterator iterator = this->m_pnode;
 
-   //      this->m_pnode = this->m_pnode->m_next;
+   //      this->m_pnode = this->m_pnode.next();
 
    //      return iterator;
 
@@ -192,8 +192,8 @@ public:
    //using dereferenced_iterator = dereferenced_value_iterator;
 
 
-   //iterator         this->m_begin;
-   //iterator         this->m_end;
+   //iterator         this->begin();
+   //iterator         this->end();
    ::count        m_count;
 
 
@@ -241,9 +241,9 @@ public:
 
 
    // getting/modifying an matter at a given position
-   TYPE & get_at(iterator iterator) { return iterator->m_element; }
-   const TYPE & get_at(iterator iterator) const { return iterator->m_element; }
-   void set_at(iterator iterator, ARG_TYPE newElement) { iterator->m_element = newElement; }
+   TYPE & get_at(iterator p) { return *p; }
+   const TYPE & get_at(iterator p) const { return *p; }
+   void set_at(iterator p, ARG_TYPE newElement) { *p = newElement; }
 
    // iteration
    //iterator begin() const;
@@ -301,17 +301,17 @@ public:
 
    bool erase(iterator iterator);
 
-   bool erase_item(ARG_ITEM item);
+   //bool erase_item(ARG_ITEM item);
 
    iterator detach(iterator iterator);
 
    template < typename ITERATOR > inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
-   inline void erase(const ITERATOR & begin, const ITERATOR & last)
+   inline void erase(const ITERATOR & begin, const ITERATOR & end)
    {
 
-      for (auto it = begin; it != last; it++)
+      for (auto it = begin; it != end; it++)
       {
 
          erase(it);
@@ -326,7 +326,7 @@ public:
 
 
       //void Serialize(CArchive&);
-    (head and tail)
+    //(head and tail)
       // ::count of elements
    ::count get_count() const;
    ::count get_size() const;
@@ -388,48 +388,48 @@ public:
    //iterator detach(iterator position);
    //iterator detach(iterator it);
 
-   ::count detach(iterator first, iterator last);
+   ::count detach(iterator p, iterator end);
 
    iterator insert(iterator position, ARG_TYPE newElement);
    //iterator insert(iterator position, iterator it);
    iterator insert(iterator position, iterator iterator);
    iterator insert(iterator position, list < TYPE, ARG_TYPE > & l);
-   iterator insert(iterator position, iterator first, iterator last);
+   iterator insert(iterator position, iterator p, iterator end);
 
    iterator insert_before(iterator position, ARG_TYPE newElement);
    //iterator insert_before(iterator position, iterator it);
    iterator insert_before(iterator position, iterator iterator);
    iterator insert_before(iterator position, list < TYPE, ARG_TYPE > & l);
-   iterator insert_before(iterator position, iterator first, iterator last);
+   iterator insert_before(iterator position, iterator p, iterator end);
 
    iterator insert_after(iterator position, ARG_TYPE newElement);
    //iterator insert_after(iterator position, iterator it);
    iterator insert_after(iterator position, iterator iterator);
    iterator insert_after(iterator position, list < TYPE, ARG_TYPE > & l);
-   iterator insert_after(iterator position, iterator first, iterator last);
+   iterator insert_after(iterator position, iterator p, iterator end);
 
    //iterator insert(iterator position, ARG_TYPE newElement);
    ////iterator insert(iterator position, iterator it);
    //iterator insert(iterator position, iterator iterator);
    //iterator insert(iterator position, list < TYPE, ARG_TYPE > & l);
-   //iterator insert(iterator position, iterator first, iterator last);
+   //iterator insert(iterator position, iterator p, iterator end);
 
    //iterator insert_before(iterator position, ARG_TYPE newElement);
    ////iterator insert_before(iterator position, iterator it);
    //iterator insert_before(iterator position, iterator iterator);
    //iterator insert_before(iterator position, list < TYPE, ARG_TYPE > & l);
-   //iterator insert_before(iterator position, iterator first, iterator last);
+   //iterator insert_before(iterator position, iterator p, iterator end);
 
    //iterator insert_after(iterator position, ARG_TYPE newElement);
    ////iterator insert_after(iterator position, iterator it);
    //iterator insert_after(iterator position, iterator iterator);
    //iterator insert_after(iterator position, list < TYPE, ARG_TYPE > & l);
-   //iterator insert_after(iterator position, iterator first, iterator last);
+   //iterator insert_after(iterator position, iterator p, iterator end);
 
 
    void splice(iterator position, list & l);
    void splice(iterator position, list & l, iterator i);
-   void splice(iterator position, list & l, iterator first, iterator last);
+   void splice(iterator position, list & l, iterator p, iterator end);
    void __swap(iterator position1, iterator position2);
 
 
@@ -478,8 +478,8 @@ inline list < TYPE, ARG_TYPE >::list()
 {
 
    this->m_count = 0;
-   this->m_begin = nullptr;
-   this->m_end = nullptr;
+   this->begin() = nullptr;
+   this->end() = nullptr;
 
 }
 
@@ -489,8 +489,8 @@ list<TYPE, ARG_TYPE>::list(const list & l)
 {
 
    this->m_count = 0;
-   this->m_begin = nullptr;
-   this->m_end = nullptr;
+   this->begin() = nullptr;
+   this->end() = nullptr;
 
    copy(l);
 
@@ -498,31 +498,35 @@ list<TYPE, ARG_TYPE>::list(const list & l)
 
 
 template<class TYPE, class ARG_TYPE>
-inline void list < TYPE, ARG_TYPE >::from(list < TYPE, ARG_TYPE > & l, iterator iterator)
+inline void list < TYPE, ARG_TYPE >::from(list < TYPE, ARG_TYPE > & l, iterator p)
 {
 
-   l.m_end = nullptr;
+   l.end() = nullptr;
 
-   l.m_begin = iterator;
+   l.begin() = p;
 
    l.m_count = 0;
 
-   if (iterator == nullptr)
+   if (!p)
+   {
+
       return;
+
+   }
 
    while (true)
    {
 
-      if (iterator->m_next == nullptr)
+      if (!p.next())
       {
 
-         l.m_end = iterator;
+         l.end() = p;
 
          break;
 
       }
 
-      iterator++;
+      p++;
 
       l.m_count++;
 
@@ -537,7 +541,9 @@ inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(iterator p)
 {
 
    list < TYPE, ARG_TYPE >  l;
+
    from(l, p);
+
    return l;
 
 }
@@ -597,32 +603,32 @@ inline bool list<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
 template<class TYPE, class ARG_TYPE>
 inline TYPE & list<TYPE, ARG_TYPE>::head()
 {
-   return this->m_begin->m_element;
+   return this->begin().topic();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE & list<TYPE, ARG_TYPE>::head() const
 {
-   return this->m_begin->m_element;
+   return this->begin().topic();
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE & list<TYPE, ARG_TYPE>::tail()
 {
-   return this->m_end->m_element;
+   return this->end().topic();
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE & list<TYPE, ARG_TYPE>::tail() const
 {
-   return this->m_end->m_element;
+   return this->end().topic();
 }
 //template<class TYPE, class ARG_TYPE>
 //inline typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::begin() const
 //{
-//   return this->m_begin;
+//   return this->begin();
 //}
 //template<class TYPE, class ARG_TYPE>
 //inline typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::end() const
 //{
-//   return (iterator) this->m_end;
+//   return (iterator) this->end();
 //}
 
 template<class TYPE, class ARG_TYPE>
@@ -660,7 +666,7 @@ template<class TYPE, class ARG_TYPE>
 inline TYPE & list < TYPE, ARG_TYPE >::back()
 {
 
-   return *this->m_end;
+   return *this->end();
 
 }
 
@@ -669,7 +675,7 @@ template<class TYPE, class ARG_TYPE>
 inline const TYPE & list < TYPE, ARG_TYPE >::back() const
 {
 
-   return *this->m_end;
+   return *this->end();
 
 }
 
@@ -679,11 +685,11 @@ list<TYPE, ARG_TYPE>::list(class list && l)
 {
 
    this->m_count = l.m_count;
-   this->m_begin = l.m_begin;
-   this->m_end = l.m_end;
+   this->begin() = l.begin();
+   this->end() = l.end();
 
-   l.m_begin = nullptr;
-   l.m_end = nullptr;
+   l.begin() = nullptr;
+   l.end() = nullptr;
 
 }
 
@@ -694,7 +700,7 @@ void list<TYPE, ARG_TYPE>::erase_all()
 
    iterator pnext;
 
-   for (auto p = this->m_begin; p.is_set(); p = pnext)
+   for (auto p = this->begin(); p.is_set(); p = pnext)
    {
 
       pnext = p + 1;
@@ -712,9 +718,9 @@ void list<TYPE, ARG_TYPE>::erase_all()
 
    }
 
-   this->m_begin = nullptr;
+   this->begin() = nullptr;
 
-   this->m_end = nullptr;
+   this->end() = nullptr;
 
    this->m_count = 0;
 
@@ -759,14 +765,14 @@ void list<TYPE, ARG_TYPE>::copy_head(const list < TYPE, ARG_TYPE > & l)
 
    ASSERT_VALID(this);
 
-   auto iterator = l.m_end;
+   auto p = l.end();
 
-   while (iterator.is_set())
+   while (p)
    {
 
-      add_head(iterator->m_element);
+      add_head(p.topic());
 
-      iterator--;
+      p--;
 
    }
 
@@ -778,14 +784,14 @@ void list<TYPE, ARG_TYPE>::copy_tail(const list < TYPE, ARG_TYPE > & l)
 
    ASSERT_VALID(this);
 
-   auto iterator = l.m_end;
+   auto p = l.end();
 
-   while (iterator.is_null())
+   while (p)
    {
 
-      add_tail(iterator->m_element);
+      add_tail(*p);
 
-      iterator++;
+      p++;
 
    }
 
@@ -807,7 +813,7 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE > & l)
 
    erase_all();
 
-   auto p = l.m_end;
+   auto p = l.end();
 
    while (p)
    {
@@ -825,17 +831,28 @@ template<class TYPE, class ARG_TYPE>
 TYPE list<TYPE, ARG_TYPE>::pick_head()
 {
    ASSERT_VALID(this);
-   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->begin().is_set());  // don't call on is_empty list !!!
 
-   auto pnodeOld = this->m_begin;
-   TYPE returnValue = *pnodeOld;
+   auto old = this->begin();
+   
+   auto returnValue = *old;
 
-   this->m_begin = pnodeOld.m_p->m_next;
-   if (this->m_begin.is_set())
-      this->m_begin.m_p->m_back = nullptr;
+   this->begin() = old.next();
+   
+   if (this->begin())
+   {
+
+      this->begin().back() = nullptr;
+
+   }
    else
-      this->m_end = nullptr;
-   delete pnodeOld.get();
+   {
+
+      this->end() = nullptr;
+
+   }
+
+   delete old.get();
 
    this->m_count--;
 
@@ -848,19 +865,30 @@ template<class TYPE, class ARG_TYPE>
 TYPE list<TYPE, ARG_TYPE>::pick_tail()
 {
    ASSERT_VALID(this);
-   ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->end().is_set());  // don't call on is_empty list !!!
 
-   auto pnodeOld = this->m_end;
-   TYPE returnValue = pnodeOld->m_element;
+   auto old = this->end();
 
-   this->m_end = pnodeOld->m_back;
-   if (this->m_end.is_set())
-      this->m_end->m_next = nullptr;
+   auto returnValue = old.topic();
+
+   this->end() = old.back();
+
+   if (this->end())
+   {
+
+      this->end().next() = nullptr;
+
+   }
    else
-      this->m_begin = nullptr;
+   {
+
+      this->begin() = nullptr;
+
+   }
+
    this->m_count--;
 
-   delete pnodeOld.get();
+   delete old.get();
 
    return returnValue;
 
@@ -870,17 +898,28 @@ TYPE list<TYPE, ARG_TYPE>::pick_tail()
 template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::erase_head()
 {
+
    ASSERT_VALID(this);
-   ASSERT(this->m_begin.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->begin().is_set());  // don't call on is_empty list !!!
 
-   auto pnodeOld = this->m_begin;
+   auto pOld = this->begin();
 
-   this->m_begin = pnodeOld->m_next;
-   if (this->m_begin.is_set())
-      this->m_begin->m_back = nullptr;
+   this->begin() = pOld.next();
+
+   if (this->begin())
+   {
+
+      this->begin().back() = nullptr;
+
+   }
    else
-      this->m_end = nullptr;
-   delete pnodeOld.get();
+   {
+
+      this->end() = nullptr;
+
+   }
+
+   delete pOld.get();
 
    this->m_count--;
 
@@ -890,17 +929,29 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::erase_tail()
 {
    ASSERT_VALID(this);
-   ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
+   ASSERT(this->end().is_set());  // don't call on is_empty list !!!
 
-   auto pnodeOld = this->m_end;
+   auto old = this->end();
 
-   this->m_end = pnodeOld->m_back;
-   if (this->m_end.is_set())
-      this->m_end->m_next = nullptr;
+   this->end() = old.back();
+
+   if (!this->end())
+   {
+
+      this->end().next() = nullptr;
+   }
+      
    else
-      this->m_begin = nullptr;
+   {
+
+      this->begin() = nullptr;
+
+   }
+
    this->m_count--;
-   delete pnodeOld.get();
+
+   delete old.get();
+
 }
 
 
@@ -914,28 +965,26 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
    this->m_count += l.m_count;
 
-   iterator iterator = position;
-
-   if (iterator.is_set())
+   if (position)
    {
 
-      if (iterator->m_back.is_set())
+      if (position.back())
       {
 
-         iterator->m_back->m_next = l.m_begin;
+         position.back().next() = l.begin();
 
       }
 
-      l.m_begin->m_back = iterator->m_back;
+      l.begin().back() = position.back();
 
-      iterator->m_back = l.m_end;
+      position.back() = l.end();
 
-      if (iterator == this->m_begin)
+      if (position == this->begin())
       {
 
-         this->m_begin = l.m_begin;
+         this->begin() = l.begin();
 
-         this->m_begin->m_back = nullptr;
+         this->begin().back() = nullptr;
 
       }
 
@@ -943,31 +992,31 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
    else
    {
 
-      l.m_begin->m_back = this->m_end;
+      l.begin().back() = this->end();
 
-      this->m_end = l.m_begin;
+      this->end() = l.begin();
 
-      if (this->m_begin == nullptr)
+      if (!this->begin())
       {
 
-         this->m_begin = l.m_begin;
+         this->begin() = l.begin();
 
       }
 
    }
 
-   l.m_end->m_next = iterator;
+   l.end().next() = position;
 
-   return l.m_begin;
+   return l.begin();
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator first, iterator last)
+typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator p, iterator end)
 {
 
-   ::count count = last - first;
+   ::count count = end - p;
 
    if (count < 0)
    {
@@ -978,28 +1027,26 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 
    this->m_count += count;
 
-   auto iterator = position;
-
-   if (iterator.is_set())
+   if (position.is_set())
    {
 
-      if (iterator->m_back.is_set())
+      if (position.back())
       {
 
-         iterator->m_back->m_next = first;
+         position.back().next() = p;
 
       }
 
-      first->m_back = iterator->m_back;
+      p.back() = position.back();
 
-      iterator->m_back = last;
+      position.back() = end;
 
-      if (iterator == this->m_begin)
+      if (position == this->begin())
       {
 
-         this->m_begin = first;
+         this->begin() = p;
 
-         this->m_begin->m_back = nullptr;
+         this->begin().back() = nullptr;
 
       }
 
@@ -1007,22 +1054,22 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
    else
    {
 
-      first->m_back = this->m_end;
+      p.back() = this->end();
 
-      this->m_end = first;
+      this->end() = p;
 
-      if (this->m_begin == nullptr)
+      if (!this->begin())
       {
 
-         this->m_begin = first;
+         this->begin() = p;
 
       }
 
    }
 
-   last->m_next = iterator;
+   end.next() = position;
 
-   return first;
+   return p;
 
 }
 
@@ -1063,28 +1110,26 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
    this->m_count += l.m_count;
 
-   iterator iterator = position;
-
-   if (iterator.is_set())
+   if (position.is_set())
    {
 
-      if (iterator->m_next.is_set())
+      if (position.next())
       {
 
-         iterator->m_next->m_back = l.m_end;
+         position.next().back() = l.end();
 
       }
 
-      l.m_end->m_next = iterator->m_next;
+      l.end().next() = position.next();
 
-      iterator->m_next = l.m_begin;
+      position.next() = l.begin();
 
-      if (iterator == this->m_end)
+      if (position == this->end())
       {
 
-         this->m_end = l.m_end;
+         this->end() = l.end();
 
-         this->m_end->m_next = nullptr;
+         this->end().next() = nullptr;
 
       }
 
@@ -1092,31 +1137,31 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
    else
    {
 
-      l.m_begin->m_next = this->m_begin;
+      l.begin().next() = this->begin();
 
-      this->m_begin = l.m_end;
+      this->begin() = l.end();
 
-      if (this->m_end == nullptr)
+      if (this->end() == nullptr)
       {
 
-         this->m_end = l.m_end;
+         this->end() = l.end();
 
       }
 
    }
 
-   l.m_begin->m_back = iterator;
+   l.begin().back() = position;
 
-   return l.m_begin;
+   return l.begin();
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator first, iterator last)
+typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator p, iterator end)
 {
 
-   ::count count = last - first;
+   ::count count = end - p;
 
    if (count <= 0)
    {
@@ -1127,28 +1172,26 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
    this->m_count += count;
 
-   auto iterator = position;
-
-   if (iterator.is_set())
+   if (position)
    {
 
-      if (iterator->m_next.is_set())
+      if (position.next())
       {
 
-         iterator->m_next->m_back = last;
+         position.next().back() = end;
 
       }
 
-      last->m_next = iterator->m_next;
+      end.next() = position.next();
 
-      iterator->m_next = first;
+      position.next() = p;
 
-      if (iterator == this->m_end)
+      if (position == this->end())
       {
 
-         this->m_end = last;
+         this->end() = end;
 
-         this->m_end->m_next = nullptr;
+         this->end().next() = nullptr;
 
       }
 
@@ -1156,22 +1199,22 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
    else
    {
 
-      first->m_next = this->m_begin;
+      p.next() = this->begin();
 
-      this->m_begin = last;
+      this->begin() = end;
 
-      if (this->m_end == nullptr)
+      if (this->end() == nullptr)
       {
 
-         this->m_end = last;
+         this->end() = end;
 
       }
 
    }
 
-   first->m_back = iterator;
+   p.back() = position;
 
-   return first;
+   return p;
 
 }
 
@@ -1199,90 +1242,93 @@ void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
       }
       else
       {
-         iterator iterator = position2;
-         if (iterator != this->m_begin)
+         
+         if (position2 != this->begin())
          {
-            if (this->m_end == iterator)
+            if (this->end() == position2)
             {
-               this->m_end = iterator->m_back;
+               this->end() = position2.back();
             }
-            if (iterator->m_back.is_set())
+            if (position2.back())
             {
-               iterator->m_back->m_next = iterator->m_next;
+               position2.back().next() = position2.next();
             }
-            if (iterator->m_next.is_set())
+            if (position2.next())
             {
-               iterator->m_next->m_back = iterator->m_back;
+               position2.next().back() = position2.back();
             }
-            iterator->m_back = nullptr;
-            iterator->m_next = this->m_begin;
-            this->m_begin = iterator;
+            position2.back() = nullptr;
+            position2.next() = this->begin();
+            this->begin() = position2;
          }
       }
    }
    else if (position2 == nullptr)
    {
-      iterator iterator = position1;
-      if (iterator != this->m_end)
+      if (position1 != this->end())
       {
-         if (this->m_begin == iterator)
+         if (this->begin() == position1)
          {
-            this->m_begin = iterator->m_next;
+            this->begin() = position1.next();
          }
-         if (iterator->m_next.is_set())
+         if (position1.back())
          {
-            iterator->m_back->m_back = iterator->m_back;
+            position1.back().next() = position1.next();
          }
-         if (iterator->m_next.is_set())
+         if (position1.next())
          {
-            iterator->m_back->m_next = iterator->m_next;
+            position1.next().back() = position1.next();
          }
-         iterator->m_next = nullptr;
-         iterator->m_back = this->m_end;
-         this->m_end = iterator;
+         position1.next() = nullptr;
+         position1.back() = this->end();
+
+         this->end() = position1;
+
       }
+
    }
    else
    {
-      iterator pnode1 = (iterator)position1;
-      iterator pnode2 = (iterator)position2;
-      iterator pnodeSwapPrev = pnode1->m_back;
-      iterator pnodeSwapNext = pnode1->m_next;
-      if (pnode1->m_back.is_set())
+      
+      iterator position1Back = position1.back();
+      
+      iterator position1Next = position1.next();
+
+      if (position1.back())
       {
-         pnode1->m_back->m_next = pnode2;
+         position1.back().next() = position2;
       }
-      if (pnode1->m_next.is_set())
+      if (position1.next())
       {
-         pnode1->m_next->m_back = pnode2;
+         position1.next().back() = position2;
       }
-      if (pnode2->m_back.is_set())
+      if (position2.back())
       {
-         pnode2->m_back->m_next = pnode1;
+         position2.back().next() = position1;
       }
-      if (pnode2->m_next.is_set())
+      if (position2.next())
       {
-         pnode2->m_next->m_back = pnode1;
+         position2.next().back() = position1;
       }
-      pnode1->m_back = pnode2->m_back;
-      pnode1->m_next = pnode2->m_next;
-      pnode2->m_back = pnodeSwapPrev;
-      pnode2->m_next = pnodeSwapNext;
-      if (pnode1 == this->m_begin)
+      position1.back() = position2.back();
+      position1.next() = position2.next();
+      position2.back() = position1Back;
+      position2.next() = position1Next;
+      if (position1 == this->begin())
       {
-         this->m_begin = pnode2;
+         this->begin() = position2;
       }
-      if (pnode1 == this->m_end)
+      if (position1 == this->end())
       {
-         this->m_end = pnode2;
+         this->end() = position2;
       }
-      if (pnode2 == this->m_begin)
+      if (position2 == this->begin())
       {
-         this->m_begin = pnode1;
+         this->begin() = position1;
       }
-      if (pnode2 == this->m_end)
+      if (position2 == this->end())
       {
-         this->m_end = pnode1;
+         this->end() = position1;
       }
    }
 
@@ -1342,94 +1388,104 @@ bool list<TYPE, ARG_TYPE>::erase(iterator pErase)
 
 
 template < class TYPE, class ARG_TYPE >
-typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator iterator)
+typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator p)
 {
 
    ASSERT_VALID(this);
 
-   if (iterator == nullptr)
+   if (!p)
+   {
+
       return nullptr;
 
-   if (iterator == this->m_begin)
-   {
-      this->m_begin = iterator.m_p->m_next;
    }
 
-   if (iterator.m_p->m_back.is_set())
+   if (p == this->begin())
    {
-      iterator.m_p->m_back.m_p->m_next = iterator.m_p->m_next;
+
+      this->begin() = p.next();
+
    }
 
-   if (iterator == this->m_end)
+   if (p.back())
    {
-      this->m_end = iterator.m_p->m_back;
+      
+      p.back().next() = p.next();
+
    }
 
-   if (iterator.m_p->m_next.is_set())
+   if (p == this->end())
    {
-      iterator.m_p->m_next.m_p->m_back = iterator.m_p->m_back;
+      this->end() = p.back();
    }
 
-   iterator.m_p->m_back = nullptr;
+   if (p.next())
+   {
+      p.next().back() = p.back();
+   }
 
-   iterator.m_p->m_next = nullptr;
+   p.back() = nullptr;
+
+   p.next() = nullptr;
 
    this->m_count--;
 
-   return iterator;
+   return p;
 
 }
 
 
 template < class TYPE, class ARG_TYPE >
-::count list<TYPE, ARG_TYPE>::detach(iterator first, iterator last)
+::count list<TYPE, ARG_TYPE>::detach(iterator p, iterator end)
 {
 
    ASSERT_VALID(this);
 
-   iterator pnodeFirst = first;
-
-   iterator pnodeLast = (iterator)last;
-
-   if (pnodeLast.is_set())
+   if (end)
    {
 
-      if (pnodeLast == this->m_end)
+      if (end == this->end())
       {
-         this->m_end = pnodeLast->m_back;
+         
+         this->end() = end.back();
+
       }
       else
       {
-         pnodeLast->m_next->m_back = pnodeLast->m_back;
+
+         end.next().back() = end.back();
+
       }
 
    }
    else
    {
-      this->m_end = pnodeFirst->m_back;
+
+      this->end() = p.back();
+
    }
 
-   if (pnodeFirst == this->m_begin)
+   if (p == this->begin())
    {
-      this->m_begin = pnodeFirst->m_next;
+
+      this->begin() = p.next();
+
    }
    else
    {
-      pnodeFirst->m_back->m_next = pnodeFirst->m_next;
+      
+      p.back().next() = p.next();
+
    }
 
    ::count count = 0;
 
-   iterator back;
-
-   iterator iterator = pnodeFirst;
-
-   while (iterator != pnodeLast)
+   while (p != end)
    {
 
-      back = iterator;
+      //back = iterator;
 
-      iterator++;
+      p++;
 
       count++;
 
@@ -1449,10 +1505,10 @@ template < class TYPE, class ARG_TYPE >
 //}
 
 //template < class TYPE, class ARG_TYPE >
-//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator first, const_iterator last)
+//typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::splice(const_iterator position, const_iterator p, const_iterator end)
 //{
 //
-//   return splice(position, *((list *) first.m_pcontainer), first, last);
+//   return splice(position, *((list *) p.m_pcontainer), p, end);
 //
 //}
 
@@ -1461,13 +1517,13 @@ template < class TYPE, class ARG_TYPE >
 void list<TYPE, ARG_TYPE>::splice(iterator position, list & l)
 {
 
-   auto first = l.begin();
+   auto p = l.begin();
 
-   auto last = l.end();
+   auto end = l.end();
 
-   l.detach(first, last);
+   l.detach(p, end);
 
-   insert_before(position, first, last);
+   insert_before(position, p, end);
 
 }
 
@@ -1483,12 +1539,12 @@ void list<TYPE, ARG_TYPE>::splice(iterator position, list & l, iterator i)
 }
 
 template < class TYPE, class ARG_TYPE >
-void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator last)
+void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end)
 {
 
-   l.detach(first, last);
+   l.detach(p, end);
 
-   insert_before(i, first, last);
+   insert_before(i, p, end);
 
 }
 
@@ -1506,12 +1562,12 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator
 //
 //   }
 //
-//   auto iterator = this->m_begin;
+//   auto iterator = this->begin();
 //
 //   while (index > 0)
 //   {
 //
-//      iterator = iterator->m_next;
+//      iterator = iterator.next();
 //
 //      index--;
 //
@@ -1528,7 +1584,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator
 //
 //   ASSERT_VALID(this);
 //
-//   auto iterator = this->m_begin;
+//   auto iterator = this->begin();
 //
 //   index i = 0;
 //
@@ -1542,7 +1598,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator
 //
 //      }
 //
-//      iterator = iterator->m_next;
+//      iterator = iterator.next();
 //
 //      i++;
 //
@@ -1566,12 +1622,12 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator
 //
 //   }
 //
-//   auto iterator = this->m_end;
+//   auto iterator = this->end();
 //
 //   while (index > 0)
 //   {
 //
-//      iterator = iterator->m_back;
+//      iterator = position1.back();
 //
 //      index--;
 //
@@ -1593,16 +1649,16 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator
 //
 //      // is_empty list
 //
-//      ASSERT(this->m_begin == nullptr);
-//      ASSERT(this->m_end == nullptr);
+//      ASSERT(this->begin() == nullptr);
+//      ASSERT(this->end() == nullptr);
 //
 //   }
 //   else
 //   {
 //
 //      // non-is_empty list
-//      ASSERT(::is_set(this->m_begin));
-//      ASSERT(::is_set(this->m_end));
+//      ASSERT(::is_set(this->begin()));
+//      ASSERT(::is_set(this->end()));
 //
 //   }
 //
@@ -1637,8 +1693,8 @@ list<TYPE, ARG_TYPE>::operator = (class list && l)
    {
 
       this->m_count = l.m_count;
-      this->m_begin = l.m_begin;
-      this->m_end = l.m_end;
+      this->begin() = l.begin();
+      this->end() = l.end();
 
    }
 
@@ -1666,24 +1722,32 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(ARG_TYPE 
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::iterator pnodeNew;
+   typename list < TYPE, ARG_TYPE >::iterator p;
 
-   pnodeNew.m_p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
 
-   pnodeNew.m_p->m_back = nullptr;
+   p.back() = nullptr;
 
-   pnodeNew.m_p->m_next = this->m_begin;
+   p.next() = this->begin();
 
-   if (this->m_begin.is_set())
-      this->m_begin.m_p->m_back = pnodeNew;
+   if (this->begin())
+   {
+
+      this->begin().back() = p;
+
+   }
    else
-      this->m_end = pnodeNew;
+   {
 
-   this->m_begin = pnodeNew;
+      this->end() = p;
+
+   }
+
+   this->begin() = p;
 
    this->m_count++;
 
-   return pnodeNew;
+   return p;
 
 }
 
@@ -1694,30 +1758,32 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE 
 
    ASSERT_VALID(this);
 
-   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
+   typename list < TYPE, ARG_TYPE >::iterator p;
 
-   pnodeNew->m_back = this->m_end;
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
 
-   pnodeNew->m_next = nullptr;
+   p.back() = this->end();
+
+   p.next() = nullptr;
 
    //pnodeNew->m_element = newElement;
 
-   if (this->m_end.is_set())
-      this->m_end.m_p->m_next = pnodeNew;
+   if (this->end())
+      this->end().next() = p;
    else
-      this->m_begin = pnodeNew;
+      this->begin() = p;
 
-   this->m_end = pnodeNew;
+   this->end() = p;
 
    this->m_count++;
 
-   return pnodeNew;
+   return p;
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(typename list<TYPE, ARG_TYPE>::iterator position, ARG_TYPE newElement)
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iterator position, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
@@ -1725,30 +1791,33 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(type
       return add_head(newElement); // insert before nothing -> head of the list
 
    // Insert it before position
-   auto pOldNode = position;
-   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
-   pnodeNew->m_back = pOldNode.m_p->m_back;
-   pnodeNew->m_next = pOldNode;
-   //pnodeNew->m_element = newElement;
+   auto old = position;
+   iterator p;
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
+   p.back() = old.back();
+   p.next() = old;
+   p.topic() = newElement;
 
-   if (pOldNode.m_p->m_back.is_set())
+   if (old.back())
    {
 //      ASSERT(__is_valid_address(pOldNode->m_back, sizeof(typename list < TYPE, ARG_TYPE >::node)));
-      pOldNode.m_p->m_back.m_p->m_next = pnodeNew;
+      old.back().next() = p;
    }
    else
    {
-      ASSERT(pOldNode == this->m_begin);
-      this->m_begin = pnodeNew;
+      ASSERT(old == this->begin());
+      this->begin() = p;
    }
-   pOldNode.m_p->m_back = pnodeNew;
-   return pnodeNew;
+   
+   old.back() = p;
+
+   return p;
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(typename list<TYPE, ARG_TYPE>::iterator position, ARG_TYPE newElement)
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(iterator position, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
 
@@ -1756,25 +1825,29 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(typen
       return add_tail(newElement); // insert after nothing -> tail of the list
 
    // Insert it before position
-   auto pOldNode = position;
-   ASSERT(__is_valid_address(pOldNode.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
-   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
-   pnodeNew->m_back = pOldNode;
-   pnodeNew->m_next = pOldNode->m_next;
-   pnodeNew->m_element = newElement;
+   auto old = position;
+   ASSERT(__is_valid_address(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+   iterator p;
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
+   p.back() = old;
+   p.next() = old.next();
+   p.topic() = newElement;
 
-   if (pOldNode->m_next.is_set())
+   if (old.next())
    {
-      ASSERT(__is_valid_address(pOldNode->m_next.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
-      pOldNode->m_next->m_back = pnodeNew;
+      ASSERT(__is_valid_address(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+      old.next().back() = p;
    }
    else
    {
-      ASSERT(pOldNode == this->m_end);
-      this->m_end = pnodeNew;
+      ASSERT(old == this->end());
+      this->end() = p;
    }
-   pOldNode->m_next = pnodeNew;
-   return pnodeNew;
+
+   old.next() = p;
+
+   return p;
+
 }
 
 
@@ -1828,14 +1901,14 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, iterator first, iterator last)
+//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator i, iterator p, iterator end)
 //{
 //
 //   
 //
 //   
 //
-//   return insert_before(i, first, last);
+//   return insert_before(i, p, end);
 //
 //}
 //
@@ -1885,11 +1958,11 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator first, iterator last)
+//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator i, iterator p, iterator end)
 //{
 //
 //   
-//   return insert_before(i, first, last);
+//   return insert_before(i, p, end);
 //
 //}
 
@@ -1939,14 +2012,14 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator first, iterator last)
+//typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator i, iterator p, iterator end)
 //{
 //
 //   
 //
 //   
 //
-//   return insert_after(i, first, last);
+//   return insert_after(i, p, end);
 //
 //}
 
@@ -1989,10 +2062,10 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iter
 
 
 template<class TYPE, class ARG_TYPE>
-typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, iterator first, iterator last) // same as insert before
+typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert(iterator position, iterator p, iterator end) // same as insert before
 {
 
-   return insert_before(position, first, last);
+   return insert_before(position, p, end);
 
 }
 
@@ -2055,7 +2128,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_befo
 //
 //   //      dump_elements(dumpcontext, &iterator->m_element, 1);
 //
-//   //      iterator = iterator->m_next;
+//   //      iterator = iterator.next();
 //
 //   //   }
 //

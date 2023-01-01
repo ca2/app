@@ -700,7 +700,7 @@ void node_set < NODE >::erase_all()
 
    //ASSERT_VALID(this);
 
-   if(this->m_begin != nullptr)
+   if(this->begin())
    {
       // destroy elements (items and loads - item load pair)
 
@@ -786,7 +786,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
 
    //zero_pointer(iterator);
 
-   if(this->m_begin != nullptr)
+   if(this->begin())
    {
 
       this->m_begin->m_back   = iterator.get();

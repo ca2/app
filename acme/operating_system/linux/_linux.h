@@ -71,7 +71,7 @@ CLASS_DECL_ACME const char * __get_app_name();
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_ACME void ::windows_definition::ProcessWndProcException(::exception*, ::message::message * pmessage);
+//CLASS_DECL_ACME void ::windows_definition::ProcessWndProcException(::exception*, ::message::message * pmessage);
 
 CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessage);
 

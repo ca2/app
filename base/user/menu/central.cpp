@@ -4,6 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/definition.h"
 #include "aqua/xml/document.h"
+#include "acme/platform/debug.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/context_image.h"

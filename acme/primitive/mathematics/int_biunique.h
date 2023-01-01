@@ -6,7 +6,7 @@
 #include "acme/primitive/collection/int_map.h"
 
 
-template < class T, class T_to_T = map < T, T, T, T > >
+template < class T, class T_to_T = map < T, T > >
 class biunique :
    virtual public ::matter
 {

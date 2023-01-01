@@ -1008,7 +1008,7 @@ namespace crypto
       string str(pszPassword);
       if (str.length() < 6)
          return false;
-      return ::str().has_all_v1(pszPassword);
+      return ::str::has_all_v1(pszPassword);
    }
 
    string crypto::v5_get_password_hash(const ::scoped_string & scopedstrPassword, i32 iOrder)

@@ -51,7 +51,7 @@ public:
 
 
 template <  typename ELEMENT >
-inline typename ELEMENT::TYPE2& __value(const set_element_item<ELEMENT>& pair)
+inline typename ELEMENT::TYPE2& payload_of(const set_element_item<ELEMENT>& pair)
 {
 
    return (typename ELEMENT::TYPE2 &) pair.element2();
@@ -61,7 +61,7 @@ inline typename ELEMENT::TYPE2& __value(const set_element_item<ELEMENT>& pair)
 
 
 //template <  typename TYPE >
-//inline ::pointer<TYPE>& __value(const ::pointer<TYPE> p)
+//inline ::pointer<TYPE>& payload_of(const ::pointer<TYPE> p)
 //{
 //
 //   return (::pointer<TYPE>&) p;

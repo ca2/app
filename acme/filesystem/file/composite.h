@@ -35,7 +35,7 @@ namespace file
 
       void open(const ::file::path & path, const ::file::e_open & eopen) override;
 
-      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;
       filesize size() const override;
 

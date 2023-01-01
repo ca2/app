@@ -58,7 +58,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
    bool bNegative;
 
-   return ::pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
+   return ::make_pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
 //::std::pair<int, int> ia;

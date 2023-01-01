@@ -94,7 +94,7 @@ namespace experience
    void menu_manager::message_handler(::user::interaction * pframewindow, ::user::message * pusermessage)
    {
 
-      switch(pusermessage->m_atom)
+      switch(pusermessage->m_atom.as_emessage())
       {
       case e_message_left_button_double_click:
       {

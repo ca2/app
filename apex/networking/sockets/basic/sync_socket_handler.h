@@ -30,7 +30,7 @@ namespace sockets
          //virtual void OnRawData(base_socket * psocket, void * pdata, memsize len) override;
          virtual void OnRawData(base_socket * psocket, void * pdata, memsize len);
 
-         //virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
+         //virtual void transfer(socket_map::association * passociation, socket_map * psocketmap = nullptr);
 
          virtual void write(string & str);
          virtual void write(const void * pdata, i32 len);

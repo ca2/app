@@ -3509,12 +3509,12 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_erase_playlist(sp_playlistcontainer 
  * @param[in]  pc           Playlist container
  * @param[in]  index        Index of playlist to be moved
  * @param[in]  new_position New position for the playlist
- * @param[in]  dry_run      Do not execute the move, only check if it possible
+ * @param[in]  dry_run      Do not execute the transfer, only check if it possible
 
  * @return     error        One of the following errors, from ::sp_error
  *                          SP_ERROR_OK
  *                          SP_ERROR_INDEX_OUT_OF_RANGE
- *                          SP_ERROR_INVALID_INDATA - If trying to move a folder into itself
+ *                          SP_ERROR_INVALID_INDATA - If trying to transfer a folder into itself
  */
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_move_playlist(sp_playlistcontainer *pc, int index, int new_position, bool dry_run);
 

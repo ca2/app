@@ -4242,7 +4242,7 @@ namespace draw2d
 
       string strParam(strArg);
 
-      strParam = ::str().q_valid(strParam);
+      strParam = ::str::q_valid(strParam);
 
       if (strParam.is_empty())
       {

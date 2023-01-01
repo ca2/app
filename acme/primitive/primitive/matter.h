@@ -388,7 +388,7 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //
 //   //}
 //
-//   return ::move(p);
+//   return ::transfer(p);
 //
 //}
 //

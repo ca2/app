@@ -501,7 +501,7 @@ namespace openssl
 
       memory.set_size(md_len);
 
-      return ::move(memory);
+      return ::transfer(memory);
 
    }
 

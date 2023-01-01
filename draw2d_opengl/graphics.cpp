@@ -4641,7 +4641,7 @@ namespace draw2d_opengl
       const ::scoped_string & scopedstr = lpszString;
       while(i < iIndex)
       {
-         iLen = ::str().get_utf8_char(psz).length();
+         iLen = ::str::get_utf8_char(psz).length();
          iRange++;
          i += iLen;
          unicode_increment(psz);

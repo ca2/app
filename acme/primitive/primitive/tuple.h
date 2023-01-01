@@ -16,7 +16,7 @@ public:
    }
    tuple_item(TYPE&& t)
    {
-      tuple_item<i, TYPE>::m_element = ::move(t);
+      tuple_item<i, TYPE>::m_element = ::transfer(t);
    }
    TYPE& get()
    {

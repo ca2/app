@@ -342,7 +342,7 @@ namespace file
       //path & operator += (const ::const_ansi_range & ansirange);
       //using path_meta::operator+=;
 
-      //template < typename T > path slashed_path(const T & t) const {return ::move(_slashed_path(::file::path(t)));}
+      //template < typename T > path slashed_path(const T & t) const {return ::transfer(_slashed_path(::file::path(t)));}
       path slashed_path(const ::scoped_string & scopedstr) const;
       path operator / (const ::scoped_string & scopedstr) const;
       //path operator / (const path & path) const;
@@ -509,7 +509,7 @@ template < character_range RANGE1, character_range RANGE2 >
 ::file::path operator / (const RANGE1 & range1, const RANGE2 & range2)
 {
 
-   return ::move(::file::path(range1).slashed_path(range2));
+   return ::transfer(::file::path(range1).slashed_path(range2));
 
 }
 
@@ -519,7 +519,7 @@ template < primitive_character CHARACTER2, character_range RANGE >
 ::file::path operator / (const CHARACTER2 * psz, const RANGE & range)
 {
 
-   return ::move(::file::path(psz) / ::string(range));
+   return ::transfer(::file::path(psz) / ::string(range));
 
 }
 
@@ -528,7 +528,7 @@ template < character_range RANGE1, primitive_character CHARACTER2 >
 ::file::path operator / (const RANGE1 & range1, const CHARACTER2 * psz)
 {
 
-   return ::move(::file::path(range1) / ::file::path(psz));
+   return ::transfer(::file::path(range1) / ::file::path(psz));
 
 }
 

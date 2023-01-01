@@ -179,7 +179,7 @@ namespace axis
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str().get_window_text_timeout(hwnd, 1000);
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
 //      if (string_ends_ci(str, penum->m_strWindowEnd))
 //      {
@@ -200,7 +200,7 @@ namespace axis
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str().get_window_text_timeout(hwnd);
+//      string str = ::str::get_window_text_timeout(hwnd);
 //
 //      if (string_ends_ci(str, penum->m_strTopic))
 //      {
@@ -220,7 +220,7 @@ namespace axis
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
 //
-//      string str = ::str().get_window_text_timeout(hwnd, 1000);
+//      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
 //      if (string_ends_ci(str, penum->m_strCounterTopic))
 //      {
@@ -1605,10 +1605,12 @@ namespace axis
    //}
 
 
-   ::database::key application::calc_data_key()
+   ::string application::calc_data_key()
    {
 
-      return ::database::key("app://" + m_strDatabaseAppId, is_local_data());
+      //return ::database::key("app://" + m_strDatabaseAppId, is_local_data());
+
+      return "app://" + m_strDatabaseAppId;
 
    }
 
@@ -1790,7 +1792,7 @@ namespace axis
    bool application::assert_user_logged_in()
    {
 
-      const ::scoped_string & scopedstrRequestUrl = nullptr;
+      const char * pszRequestUrl = nullptr;
 
       string strRequestUrl;
 

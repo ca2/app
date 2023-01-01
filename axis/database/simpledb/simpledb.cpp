@@ -256,7 +256,7 @@ namespace simpledb
 
             }
 
-            string strFirstLine = ::str().line(strValue);
+            string strFirstLine = ::str::line(strValue);
 
             if (!strFirstLine.case_insensitive_begins_eat(strApi + ":"))
             {
@@ -345,7 +345,7 @@ namespace simpledb
 
          strValue = base64.encode(block);
 
-         string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pserver->m_strUser + "', '" + pdatabase->escape(strKey) + "', '" + strValue + "')";
+         string strSql = "REPLACE INTO fun_user_str_set PAYLOAD('" + pserver->m_strUser + "', '" + pdatabase->escape(strKey) + "', '" + strValue + "')";
 
          TRACE(strSql);
 

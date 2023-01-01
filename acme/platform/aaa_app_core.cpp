@@ -189,7 +189,7 @@ void app_core::system_prep()
 //
 //    str.replace(".", "/");
 //
-//    m_lpCmdLine = ::str().dup("app : app=" + str);
+//    m_lpCmdLine = ::str::dup("app : app=" + str);
 //
 // }
 //
@@ -243,7 +243,7 @@ void app_core::system_init()
 
    //   //const ::scoped_string & scopedstr = str1;
 
-   //   //string str = ::str().consume_quoted_value(psz);
+   //   //string str = ::str::consume_quoted_value(psz);
 
    //   //output_debug_string(str);
 

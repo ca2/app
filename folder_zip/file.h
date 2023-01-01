@@ -85,7 +85,7 @@ namespace folder_zip
       ::folder_zip::folder * get_folder();
 
       
-      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;
       filesize size() const override;
 

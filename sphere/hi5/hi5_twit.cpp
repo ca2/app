@@ -583,7 +583,7 @@ namespace hi5
 
       string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
-      //strUrl += "?command=APPEND&segment_index=" + ::str().from(iIndex);
+      //strUrl += "?command=APPEND&segment_index=" + ::str::from(iIndex);
 
       bool bOk = performMultiPartPost(strUrl, post, true);
 

@@ -50,7 +50,7 @@ public:
    virtual bool has_custom_icon(const ::file::path & path);
 
 
-   ::file::path defer_process_relative_path(const ::file::path & path);
+   ::file::path defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolder = "");
 
    
 

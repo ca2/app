@@ -3302,7 +3302,7 @@ namespace aura
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
+   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
 
    //   }
 
@@ -3368,7 +3368,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
    //      }
 
@@ -5274,8 +5274,8 @@ namespace aura
   //
   //      string strId;
   //      //strId = m_strAppName;
-  //      //strId += ::str().has_char(m_XstrAppId, ".");
-  //      //strId += ::str().has_char(m_strBaseSupportId, ".");
+  //      //strId += ::str::has_char(m_XstrAppId, ".");
+  //      //strId += ::str::has_char(m_strBaseSupportId, ".");
   //
   //
   //

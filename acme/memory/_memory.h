@@ -43,7 +43,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 inline const void * _memory_find(const void* l, memsize l_len, const void* s, memsize s_len)
 {
 
-   return memory_find(l, l_len, s, s_len);
+   return memmem(l, l_len, s, s_len);
 
 }
 

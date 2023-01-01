@@ -3777,7 +3777,7 @@ namespace draw2d_cairo
 
       string str((const char *)block.get_data(), block.get_size());
 
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
@@ -4134,7 +4134,7 @@ namespace draw2d_cairo
 
    //    string str((const char *) block.get_data(), block.get_size());
 
-   //    str = ::str().q_valid(str);
+   //    str = ::str::q_valid(str);
 
    //    if (str.is_empty())
    //    {
@@ -4364,7 +4364,7 @@ namespace draw2d_cairo
 
       string str(lpszString, minimum_non_negative(iIndex, nCount));
 
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
@@ -4510,7 +4510,7 @@ namespace draw2d_cairo
 
       string str(lpszString, minimum(iIndex, nCount));
 
-      str = ::str().q_valid(str);
+      str = ::str::q_valid(str);
 
       if (str.is_empty())
       {
@@ -6259,7 +6259,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::set(const ::draw2d_cairo::path::move & p)
+//void graphics::set(const ::draw2d_cairo::path::transfer & p)
 //{
 //
 //    _synchronous_lock ml(cairo_mutex());

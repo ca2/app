@@ -3,6 +3,8 @@
 #include "log.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/application.h"
 
 
 log::log()
@@ -57,6 +59,9 @@ void log::initialize(::particle * pparticle)
 
    //return estatus;
 
+   ::acme::acme::g_p->m_bOutputDebugString = m_bLog;
+
+
 }
 
 
@@ -64,6 +69,9 @@ void log::initialize_log(enum_trace_level etracelevelMin, const ::atom& atom)
 {
 
    //return ::success;
+
+
+
 
 }
 
@@ -96,20 +104,22 @@ bool log::get_extended_log()
 
 
 
-bool g_bVerboseLog = false;
-
-
-void set_verbose_log(bool bVerbose)
-{
-
-   g_bVerboseLog = bVerbose;
-
-}
+//bool g_bVerboseLog = true;
+//
+//
+//void set_verbose_log(bool bVerbose)
+//{
+//
+//   g_bVerboseLog = bVerbose;
+//
+//}
 
 
 bool is_verbose_log()
 {
 
-   return g_bVerboseLog;
+   //return g_bVerboseLog;
+
+   return ::acme::acme::g_p->m_pacmeapplication->m_bVerbose;
 
 }

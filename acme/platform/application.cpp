@@ -22,7 +22,14 @@
 CLASS_DECL_ACME::file::path get_module_path(HMODULE hmodule);
 
 
+#else
+
+
+CLASS_DECL_ACME ::file::path get_module_path();
+
+
 #endif
+
 
 CLASS_DECL_ACME void set_main_user_thread();
 
@@ -326,6 +333,13 @@ namespace acme
    void application::initialize_application_flags()
    {
 
+      if(m_bVerbose.undefined())
+      {
+
+         m_bVerbose = true;
+
+      }
+
       if (m_bConsole.undefined())
       {
 
@@ -479,7 +493,9 @@ namespace acme
 
 #else
 
-         throw ::exception(todo);
+         //throw ::exception(todo);
+         //m_pathModule = acmefile()->module();
+         m_pathModule = ::get_module_path();
 
 #endif
 

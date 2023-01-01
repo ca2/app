@@ -1,10 +1,6 @@
 #pragma once
 
 
-//#define memory_new ACME_NEW
-
-
-//#include "_iterator.h"
 #include "hash_table.h"
 #include "list_iterator.h"
 #include "range.h"
@@ -12,33 +8,33 @@
 #include "acme/primitive/primitive/particle.h"
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-class set :
+template < typename NODE >
+class node_set :
    virtual public ::particle,
-   virtual public ::range < ::list_iterator < ::map_association < PAYLOAD > * > >
+   public ::range < ::list_iterator < ::set_node < NODE > * > >
 {
 public:
 
 
-   typedef set_dynamic_hash_table < PAYLOAD >      HASH_TABLE;
-   typedef KEY                                     BASE_KEY;
-   typedef ARG_KEY                                 BASE_ARG_KEY;
+   using HASH_TABLE = set_dynamic_hash_table < NODE >;
+   using ITEM = typename ::set_node < NODE >::ITEM;
+   using ARG_ITEM = typename ::set_node < NODE >::ARG_ITEM;
 
 
-   using association= ::map_association < PAYLOAD > ;
-   using single = association ;
+   using node = ::set_node < NODE > ;
+   using single = node;
 
-   using ITEM_TYPE = association;
+   using ITEM_TYPE = node;
 
-   using BASE_RANGE = ::range < ::list_iterator < association * > >;
+   using BASE_RANGE = ::range < ::list_iterator < node * > >;
 
-   using CONTAINER_ITEM_TYPE = association;
+   using CONTAINER_ITEM_TYPE = node;
 
    using iterator = typename BASE_RANGE::iterator;
    using const_iterator = typename BASE_RANGE::const_iterator;
 
 
-   //__declare_iterator_struct_ok(set, iterator, m_passociation, ::is_set(this->m_passociation));
+   //__declare_iterator_struct_ok(set, iterator, m_pnode, ::is_set(this->m_pnode));
 
 
 //   template < typename iterator > struct make_iterator : iterator
@@ -50,27 +46,27 @@ public:
 //
 //      make_iterator()
 //      {
-//         this->m_passociation = (iterator)nullptr;
+//         this->m_pnode = (iterator)nullptr;
 //         this->m_pcontainer = (CONTAINER*)nullptr;
-//         this->m_passociationBeg = (iterator)nullptr;
-//         this->m_passociationEnd = (iterator) nullptr;
+//         this->m_pnodeBeg = (iterator)nullptr;
+//         this->m_pnodeEnd = (iterator) nullptr;
 //      }
 //
 //      make_iterator(const iterator iterator, const CONTAINER * pset = nullptr)
 //      {
-//         this->m_passociation = (iterator) iterator;
+//         this->m_pnode = (iterator) iterator;
 //         this->m_pcontainer = (CONTAINER *) pset;
-//         this->m_passociationBeg = (iterator) iterator;
-//         this->m_passociationEnd = (iterator) nullptr;
+//         this->m_pnodeBeg = (iterator) iterator;
+//         this->m_pnodeEnd = (iterator) nullptr;
 //      }
 //
 //
 //      make_iterator(const make_iterator & iterator)
 //      {
-//         this->m_passociation = iterator.m_passociation;
+//         this->m_pnode = iterator.m_pnode;
 //         this->m_pcontainer = iterator.m_pcontainer;
-//         this->m_passociationBeg = (iterator) iterator.m_passociationBeg;
-//         this->m_passociationEnd = (iterator) iterator.m_passociationEnd;
+//         this->m_pnodeBeg = (iterator) iterator.m_pnodeBeg;
+//         this->m_pnodeEnd = (iterator) iterator.m_pnodeEnd;
 //      }
 //
 //
@@ -93,7 +89,7 @@ public:
 //      make_iterator & operator ++ ()
 //      {
 //
-//         this->m_passociation = this->m_passociation->m_next;
+//         this->m_pnode = this->m_pnode->m_next;
 //
 //         return *this;
 //
@@ -139,9 +135,9 @@ public:
 //      make_iterator operator ++ (i32)
 //      {
 //
-//         make_iterator iterator = this->m_passociation;
+//         make_iterator iterator = this->m_pnode;
 //
-//         this->m_passociation = this->m_passociation->m_next;
+//         this->m_pnode = this->m_pnode->m_next;
 //
 //         return iterator;
 //
@@ -158,7 +154,7 @@ public:
 //
 //         }
 //
-//         if (this->m_passociation == nullptr && it.m_passociation == nullptr && it.m_pcontainer == nullptr)
+//         if (this->m_pnode == nullptr && it.m_pnode == nullptr && it.m_pcontainer == nullptr)
 //         {
 //
 //            return true;
@@ -172,7 +168,7 @@ public:
 //
 //         }
 //
-//         return this->m_passociation == it.m_passociation;
+//         return this->m_pnode == it.m_pnode;
 //
 //      }
 //
@@ -194,7 +190,7 @@ public:
 //
 //            this->m_pcontainer = it.m_pcontainer;
 //
-//            this->m_passociation = it.m_passociation;
+//            this->m_pnode = it.m_pnode;
 //
 //         }
 //
@@ -205,10 +201,10 @@ public:
 //   };
 //
 //
-//   //__declare_iterator(dereferenced_value_iterator, this->m_passociation->key());
-//   //__declare_iterator(value_iterator, &this->m_passociation->key());
-//   __declare_iterator(key_iterator, &this->m_passociation->key());
-//   __declare_iterator(iterator, this->m_passociation);
+//   //__declare_iterator(dereferenced_value_iterator, this->m_pnode->key());
+//   //__declare_iterator(value_iterator, &this->m_pnode->key());
+//   __declare_iterator(key_iterator, &this->m_pnode->key());
+//   __declare_iterator(iterator, this->m_pnode);
 //
 
    //using deferenced_iterator = dereferenced_value_iterator;
@@ -220,11 +216,11 @@ public:
    //iterator              m_begin;
 
 
-   set();
-   set(association singles[], i32 iCount);
-   set(const ::std::initializer_list < PAYLOAD > & list);
-   set(const set & m);
-   virtual ~set();
+   node_set();
+   node_set(node singles[], i32 iCount);
+   node_set(const ::std::initializer_list < NODE > & list);
+   node_set(const node_set & m);
+   virtual ~node_set();
 
    void construct();
 
@@ -245,12 +241,12 @@ public:
 
 
    //lookup
-   bool lookup(ARG_KEY key, KEY& rValue) const;
-   const iterator plookup(ARG_KEY key) const;
-   iterator plookup(ARG_KEY key);
+   bool lookup(ARG_ITEM key, ITEM& rValue) const;
+   const_iterator plookup(ARG_ITEM key) const;
+   iterator plookup(ARG_ITEM key);
 
 
-   bool should_set(ARG_KEY key)
+   bool should_set(ARG_ITEM key)
    { 
       
       if (has(key))
@@ -268,11 +264,11 @@ public:
 
 
    
-   KEY * pget(ARG_KEY key);
+   ITEM * pget(ARG_ITEM key);
 
 
-   template < typename TKEY >
-   auto pop(const TKEY & key)
+   template < typename TITEM >
+   auto pop(const TITEM & key)
    {
 
       auto value = operator[](key);
@@ -285,29 +281,25 @@ public:
 
    //Operations
    //lookup and add if not there
-   KEY & operator[](ARG_KEY key);
-   const KEY & operator[](ARG_KEY key) const;
+   ITEM & operator[](ARG_ITEM key);
+   const ITEM & operator[](ARG_ITEM key) const;
 
-   iterator get_association(ARG_KEY key);
-   iterator get_association(ARG_KEY key) const
-   {
-      return ((set *) this)->get_association(key);
-   }
-   iterator find_association(ARG_KEY key) const;
+   iterator get_node(ARG_ITEM key);
+   const_iterator find_node(ARG_ITEM key) const;
 
-   //add a memory_new (key) association
-   inline iterator set_at(ARG_KEY key);
+   //add a memory_new (key) node
+   inline iterator set_at(ARG_ITEM key);
 
-   //add a memory_new (key, value) association
-   virtual void set_payload(const PAYLOAD& payload)
+   //add a memory_new (key, value) node
+   void set_payload(const NODE& payload)
    {
       set_at(payload.key());
    }
 
-   bool erase_item(iterator iterator);
+   bool erase(iterator iterator);
 
-   //removing existing (key, ?) association
-   inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
+   //removing existing (key, ?) node
+   inline bool erase_item(ARG_ITEM key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
 
    template < typename iterator >
    inline iterator erase(iterator it) { return ::acme::iterator::erase(*this, it); }
@@ -336,9 +328,9 @@ public:
 
 
 
-   ::count count(const KEY & t) const;
-   bool has(const KEY & t) const;
-   bool contains(const KEY & t) const;
+   ::count count(const ITEM & t) const;
+   bool has(const ITEM & t) const;
+   bool contains(const ITEM & t) const;
 
    //iterating all (key, value) singles
 //   POSITION get_start_position() const;
@@ -346,10 +338,10 @@ public:
    //const iterator get_start() const;
    //iterator get_start();
 
-   //void get_next(iterator & rNextPosition, KEY& rKey, KEY& rValue) const;
+   //void get_next(iterator & rNextPosition, ITEM& rKey, ITEM& rValue) const;
 
-   //const iterator get_next(const iteratorpassociationRet) const;
-   //iterator get_next(const iteratorpassociationRet);
+   //const iterator get_next(const iteratorpnodeRet) const;
+   //iterator get_next(const iteratorpnodeRet);
 
    //advanced features for derived classes
    ::u32 GetHashTableSize() const
@@ -363,7 +355,7 @@ public:
    void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
-   KEY get(ARG_KEY argkey, ARG_KEY valueDefault);
+   ITEM get(ARG_ITEM argkey, ARG_ITEM valueDefault);
 
 
    //iterator next(iterator & iterator)
@@ -393,7 +385,7 @@ public:
    //}
 
 
-   void _set(set & set)
+   void assign(node_set & set)
    {
 
       auto it = set.begin();
@@ -410,15 +402,15 @@ public:
    }
    
 
-   inline iterator find_item(ARG_KEY key) const { return find_association(key); }
+   inline iterator find_item(ARG_ITEM key) const { return find_node(key); }
 
-   inline iterator find(ARG_KEY key) { return find_item(key); }
-   const_iterator find (ARG_KEY key) const { return find_item(key); }
+   inline iterator find(ARG_ITEM key) { return find_item(key); }
+   const_iterator find (ARG_ITEM key) const { return find_item(key); }
 
 
-   iterator new_association(ARG_KEY key);
-   void free_association(iterator iterator);
-   iterator get_association_at(ARG_KEY, ::u32&, ::u32&) const;
+   iterator new_node(ARG_ITEM key);
+   void free_node(iterator iterator);
+   iterator get_node_at(ARG_ITEM, ::u32&, ::u32&) const;
 
 
    //// void assert_ok() const override;
@@ -444,7 +436,7 @@ public:
    }
 
    template < class ARRAY >
-   ::count erase_association_array(ARRAY a)
+   ::count erase_node_array(ARRAY a)
    {
 
       ::count countRemoved = 0;
@@ -452,7 +444,7 @@ public:
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         if(erase_association(a[i]))
+         if(erase_node(a[i]))
          {
 
             countRemoved++;
@@ -465,7 +457,7 @@ public:
 
    }
 
-   virtual void on_after_read() {}
+//   virtual void on_after_read() {}
 
    //::range < iterator > elements()
    //{
@@ -477,13 +469,13 @@ public:
    //   return range < const_iterator >(begin(),end());
    //}
 
-   //PAYLOAD & element_at(::index iIndex)
+   //NODE & element_at(::index iIndex)
    //{
    //   return elements().element_at(iIndex);
    //}
 
    template < typename PRED >
-   typename set < KEY, ARG_KEY, PAYLOAD >::iterator predicate_find(PRED pred)
+   typename node_set < NODE >::iterator predicate_find(PRED pred)
    {
 
       auto point = this->get_start();
@@ -506,7 +498,7 @@ public:
 
    }
 
-   set & operator = (const set & m);
+   node_set & operator = (const node_set & m);
 
 
    template < typename TYPE >
@@ -544,42 +536,42 @@ public:
 };
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline ::count set < KEY, ARG_KEY, PAYLOAD >::get_count() const
+template < typename NODE >
+inline ::count node_set < NODE >::get_count() const
 {
    return m_nCount;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline ::count set < KEY, ARG_KEY, PAYLOAD >::get_size() const
+template < typename NODE >
+inline ::count node_set < NODE >::get_size() const
 {
    return m_nCount;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline ::count set < KEY, ARG_KEY, PAYLOAD >::count() const
+template < typename NODE >
+inline ::count node_set < NODE >::count() const
 {
    return m_nCount;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline ::count set < KEY, ARG_KEY, PAYLOAD >::size() const
+template < typename NODE >
+inline ::count node_set < NODE >::size() const
 {
    return m_nCount;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set< KEY, ARG_KEY, PAYLOAD > & set < KEY, ARG_KEY, PAYLOAD >::operator = (const set & m)
+template < typename NODE >
+node_set < NODE > & node_set < NODE >::operator = (const node_set & m)
 {
    if(this != &m)
    {
 
       erase_all();
 
-      for(auto & association : m)
+      for(auto & node : m)
       {
 
-         set_at(association.key());
+         set_at(node.key());
 
       }
 
@@ -587,24 +579,24 @@ set< KEY, ARG_KEY, PAYLOAD > & set < KEY, ARG_KEY, PAYLOAD >::operator = (const 
    return *this;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline bool set < KEY, ARG_KEY, PAYLOAD >::is_empty() const
+template < typename NODE >
+inline bool node_set < NODE >::is_empty() const
 {
    return m_nCount == 0;
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline bool set < KEY, ARG_KEY, PAYLOAD >::empty() const
+template < typename NODE >
+inline bool node_set < NODE >::empty() const
 {
    return m_nCount == 0;
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::set_at(ARG_KEY key)
+template < typename NODE >
+inline typename node_set < NODE >::iterator node_set < NODE >::set_at(ARG_ITEM key)
 {
 
-   iterator iterator = get_association(key);
+   iterator iterator = get_node(key);
 
    //iterator->key() = newValue;
 
@@ -613,22 +605,22 @@ inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYL
 }
 
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::get_start() const
+//template < typename NODE >
+//inline typename node_set < NODE >::iterator node_set < NODE >::get_start() const
 //{
 //   return (m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
 //}
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//const typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::get_start() const
+//template < typename NODE >
+//const typename node_set < NODE >::iterator node_set < NODE >::get_start() const
 //{
 //
 //   return this->m_begin;
 //
 //}
 //
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::get_start()
+//template < typename NODE >
+//typename node_set < NODE >::iterator node_set < NODE >::get_start()
 //{
 //
 //   return this->m_begin;
@@ -636,9 +628,9 @@ inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYL
 //}
 
 /////////////////////////////////////////////////////////////////////////////
-// set < KEY, ARG_KEY, PAYLOAD > out-of-line functions
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::construct()
+// node_set < NODE > out-of-line functions
+template < typename NODE >
+void node_set < NODE >::construct()
 {
 
    m_nCount          = 0;
@@ -648,8 +640,8 @@ void set < KEY, ARG_KEY, PAYLOAD >::construct()
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set < KEY, ARG_KEY, PAYLOAD >::set()
+template < typename NODE >
+node_set < NODE >::node_set()
 {
 
    construct();
@@ -657,8 +649,8 @@ set < KEY, ARG_KEY, PAYLOAD >::set()
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set < KEY, ARG_KEY, PAYLOAD >::set(const ::std::initializer_list < PAYLOAD > & list)
+template < typename NODE >
+node_set < NODE >::node_set(const ::std::initializer_list < NODE > & list)
 {
 
    construct();
@@ -672,8 +664,8 @@ set < KEY, ARG_KEY, PAYLOAD >::set(const ::std::initializer_list < PAYLOAD > & l
 
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set < KEY, ARG_KEY, PAYLOAD >::set(association singles[], i32 iCount)
+template < typename NODE >
+node_set < NODE >::node_set(node singles[], i32 iCount)
 {
    construct();
    for(i32 i = 0; i < iCount; i++)
@@ -683,8 +675,8 @@ set < KEY, ARG_KEY, PAYLOAD >::set(association singles[], i32 iCount)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set < KEY, ARG_KEY, PAYLOAD >::set(const set & m)
+template < typename NODE >
+node_set < NODE >::node_set(const node_set & m)
 {
    
    construct();
@@ -699,24 +691,24 @@ set < KEY, ARG_KEY, PAYLOAD >::set(const set & m)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
+template < typename NODE >
+void node_set < NODE >::erase_all()
 {
 
    //ASSERT_VALID(this);
 
    if(this->m_begin != nullptr)
    {
-      // destroy elements (values and keys)
+      // destroy elements (items and loads - item load pair)
 
-      iterator iteratorNext;
+      iterator pnext;
 
-      for (auto iterator = this->m_begin; iterator.is_set(); iterator = iteratorNext)
+      for (auto p = this->begin(); p; p = pnext)
       {
 
-         iteratorNext = iterator->m_next;
+         pnext = p + 1;
 
-         delete iterator.get();
+         delete p.get();
 
       }
 
@@ -725,7 +717,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
    m_hashtable.erase_all();
 
    m_nCount = 0;
-   //this->m_passociationFree = nullptr;
+   //this->m_pnodeFree = nullptr;
 
    //if(m_pplex != nullptr)
    //{
@@ -740,54 +732,54 @@ void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline void set < KEY, ARG_KEY, PAYLOAD >::clear()
+template < typename NODE >
+inline void node_set < NODE >::clear()
 {
    erase_all();
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline void set < KEY, ARG_KEY, PAYLOAD >::Empty()
+template < typename NODE >
+inline void node_set < NODE >::Empty()
 {
    clear();
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-set < KEY, ARG_KEY, PAYLOAD >::~set()
+template < typename NODE >
+node_set < NODE >::~node_set()
 {
    erase_all();
    ASSERT(m_nCount == 0);
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-typename set < KEY, ARG_KEY, PAYLOAD >::iterator
-set < KEY, ARG_KEY, PAYLOAD >::new_association(ARG_KEY key)
+template < typename NODE >
+typename node_set < NODE >::iterator
+node_set < NODE >::new_node(ARG_ITEM key)
 {
 
-   //if(this->m_passociationFree == nullptr)
+   //if(this->m_pnodeFree == nullptr)
    //{
    //   // add another block
-   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::association));
+   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::node));
    //   //// chain them into free list
    //   //set::iterator iterator = (set::iterator) newBlock->data();
    //   //// free in reverse order to make it easier to debug
    //   //index i = m_nBlockSize - 1;
    //   //for (iterator = &iterator[i]; i >= 0; i--, iterator--)
    //   //{
-   //   //   iterator->m_next = this->m_passociationFree;
-   //   //   this->m_passociationFree = iterator;
+   //   //   iterator->m_next = this->m_pnodeFree;
+   //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_passociationFree = memory_new association();
+   //   this->m_pnodeFree = memory_new node();
 
    //}
 
-   //ENSURE(this->m_passociationFree != nullptr);  // we must have something
+   //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   typename set < KEY, ARG_KEY, PAYLOAD >::iterator iterator =
-   memory_new association(key);
+   typename node_set < NODE >::iterator iterator =
+   memory_new node(key);
 
-   //this->m_passociationFree  = this->m_passociationFree->m_next;
+   //this->m_pnodeFree  = this->m_pnodeFree->m_next;
 
    //zero_pointer(iterator);
 
@@ -813,8 +805,8 @@ set < KEY, ARG_KEY, PAYLOAD >::new_association(ARG_KEY key)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::free_association(iterator iterator)
+template < typename NODE >
+void node_set < NODE >::free_node(iterator iterator)
 {
 
    auto next = iterator->m_next;
@@ -849,9 +841,9 @@ void set < KEY, ARG_KEY, PAYLOAD >::free_association(iterator iterator)
 
    delete iterator.get();
 
-   //iterator->m_next = this->m_passociationFree;
+   //iterator->m_next = this->m_pnodeFree;
 
-   //this->m_passociationFree = iterator;
+   //this->m_pnodeFree = iterator;
 
    m_nCount--;
 
@@ -868,30 +860,29 @@ void set < KEY, ARG_KEY, PAYLOAD >::free_association(iterator iterator)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-typename set < KEY, ARG_KEY, PAYLOAD >::iterator
-set < KEY, ARG_KEY, PAYLOAD >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
-// find association (or return nullptr)
+template < typename NODE >
+typename node_set < NODE >::iterator
+node_set < NODE >::get_node_at(ARG_ITEM item, ::u32& nHashBucket, ::u32& nHashValue) const
 {
 
-   nHashValue = u32_hash<ARG_KEY>(key).m_u;
-
-   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
-
-   if (get_count() <= 0)
+   if (is_empty())
    {
 
       return nullptr;
 
    }
 
-   for(auto iterator = m_hashtable.m_ppassociationHash[nHashBucket]; ::is_set(iterator); iterator = iterator->m_nextHash)
+   nHashValue = u32_hash<ARG_ITEM>(item).m_u;
+
+   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
+
+   for(auto p = m_hashtable.m_ppHash[nHashBucket]; p; p = p->m_nextHash)
    {
 
-      if (EqualElements<ARG_KEY>(iterator->key(), key))
+      if (EqualElements<ARG_ITEM>(p->item(), item))
       {
 
-         return iterator;
+         return p;
 
       }
 
@@ -901,157 +892,156 @@ set < KEY, ARG_KEY, PAYLOAD >::get_association_at(ARG_KEY key, ::u32& nHashBucke
 
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-bool set < KEY, ARG_KEY, PAYLOAD >::lookup(ARG_KEY key, KEY& rValue) const
+
+template < typename NODE >
+bool node_set < NODE >::lookup(ARG_ITEM key, ITEM& rValue) const
 {
-   //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
-   auto iterator = get_association_at(key, nHashBucket, nHashValue);
+   auto p = get_node_at(key, nHashBucket, nHashValue);
 
-   if (iterator.is_null())
+   if (!p)
    {
 
       return false;  // not in set
 
    }
 
-   rValue = iterator->key();
+   rValue = p->item();
 
    return true;
 
 }
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::find (ARG_KEY key)
+
+//template < typename NODE >
+//typename node_set < NODE >::iterator node_set < NODE >::find (ARG_ITEM key)
 //{
 //   return iterator(plookup(key), this);
 //}
 //
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//typename set < KEY, ARG_KEY, PAYLOAD >::const_iterator set < KEY, ARG_KEY, PAYLOAD >::find (ARG_KEY key) const
+//template < typename NODE >
+//typename node_set < NODE >::const_iterator node_set < NODE >::find (ARG_ITEM key) const
 //{
 //   return const_iterator((iterator) plookup(key), (set *) this);
 //}
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-const typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::plookup(ARG_KEY key) const
+template < typename NODE >
+typename node_set < NODE >::const_iterator node_set < NODE >::plookup(ARG_ITEM key) const
 {
-   //ASSERT_VALID(this);
 
-   ::u32 nHashBucket, nHashValue;
-
-   auto iterator = get_association_at(key, nHashBucket, nHashValue);
-
-   return iterator;
+   return find_node(key);
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::plookup(ARG_KEY key)
+template < typename NODE >
+typename node_set < NODE >::iterator node_set < NODE >::plookup(ARG_ITEM key)
 {
 
    ::u32 nHashBucket, nHashValue;
 
-   auto iterator = get_association_at(key, nHashBucket, nHashValue);
+   auto p = get_node_at(key, nHashBucket, nHashValue);
 
-   return iterator;
+   return p;
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-KEY * set < KEY, ARG_KEY, PAYLOAD >::pget(ARG_KEY key)
+template < typename NODE >
+typename node_set < NODE >::ITEM * node_set < NODE >::pget(ARG_ITEM key)
 {
 
-   auto iterator = plookup(key);
+   auto p = plookup(key);
 
-   if (iterator.is_null())
+   if (!p)
    {
 
       return nullptr;
 
    }
       
-   return &iterator->key();
+   return &p->key();
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::find_association(ARG_KEY key) const
+template < typename NODE >
+inline typename node_set < NODE >::const_iterator node_set < NODE >::find_node(ARG_ITEM key) const
 {
 
    ::u32 nHashBucket, nHashValue;
 
-   return get_association_at(key, nHashBucket, nHashValue);
+   return get_node_at(key, nHashBucket, nHashValue);
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::get_association(ARG_KEY key)
+template < typename NODE >
+typename node_set < NODE >::iterator node_set < NODE >::get_node(ARG_ITEM key)
 {
 
    ::u32 nHashBucket,nHashValue;
 
-   iterator iterator;
+   iterator p = get_node_at(key,nHashBucket,nHashValue);
 
-   if((iterator = get_association_at(key,nHashBucket,nHashValue)) == nullptr)
+   if(!p)
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if (::is_null(m_hashtable.m_ppassociationHash))
+      if (::is_null(m_hashtable.m_ppHash))
       {
 
          InitHashTable(m_hashtable.GetHashTableSize());
 
       }
 
-      ENSURE(m_hashtable.m_ppassociationHash);
+      ENSURE(m_hashtable.m_ppHash);
 
-      iterator = new_association(key);
+      p = new_node(key);
 
-      if(m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
+      if(!m_hashtable.m_ppHash[nHashBucket])
       {
-         m_hashtable.m_ppassociationHash[nHashBucket]->m_pbackHash = &iterator->m_nextHash;
+
+         m_hashtable.m_ppHash[nHashBucket]->m_pbackHash = &p->m_nextHash;
+
       }
 
-      iterator->m_nextHash        = m_hashtable.m_ppassociationHash[nHashBucket];
+      p->m_nextHash        = m_hashtable.m_ppHash[nHashBucket];
 
-      m_hashtable.m_ppassociationHash[nHashBucket] = iterator.get();
+      m_hashtable.m_ppHash[nHashBucket] = p;
 
-      iterator->m_pbackHash       = &m_hashtable.m_ppassociationHash[nHashBucket];
+      p->m_pbackHash       = &m_hashtable.m_ppHash[nHashBucket];
 
    }
 
-   return iterator;
+   return p;
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-KEY& set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key)
+template < typename NODE >
+typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM key)
 {
 
-   return get_association(key)->key();  // return memory_new matter
+   return get_node(key)->key();
 
 }
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-const KEY & set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key) const
+
+template < typename NODE >
+const typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM key) const
 {
 
-   return get_association(key)->key();  // return memory_new matter
+   return get_node(key)->key();
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline bool set < KEY, ARG_KEY, PAYLOAD >::erase_item(iterator iterator)
+template < typename NODE >
+inline bool node_set < NODE >::erase(iterator iterator)
 // erase - return true if erased
 {
 
@@ -1064,15 +1054,15 @@ inline bool set < KEY, ARG_KEY, PAYLOAD >::erase_item(iterator iterator)
 
    *iterator->m_pbackHash = iterator->m_nextHash;
 
-   free_association(iterator);
+   free_node(iterator);
 
    return true;
 
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-inline ::count set < KEY, ARG_KEY, PAYLOAD >::count(const KEY & key) const
+template < typename NODE >
+inline ::count node_set < NODE >::count(const ITEM & key) const
 {
 
    return this->plookup(key) != nullptr ? 1 : 0;
@@ -1080,8 +1070,8 @@ inline ::count set < KEY, ARG_KEY, PAYLOAD >::count(const KEY & key) const
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-bool set < KEY, ARG_KEY, PAYLOAD >::has(const KEY & key) const
+template < typename NODE >
+bool node_set < NODE >::has(const ITEM & key) const
 {
 
    return this->plookup(key) != nullptr ? 1 : 0;
@@ -1089,8 +1079,8 @@ bool set < KEY, ARG_KEY, PAYLOAD >::has(const KEY & key) const
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
+template < typename NODE >
+bool node_set < NODE >::contains(const ITEM & key) const
 {
 
    return this->plookup(key) != nullptr ? 1 : 0;
@@ -1098,9 +1088,9 @@ bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
 }
 
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//void set < KEY, ARG_KEY, PAYLOAD >::get_next(iterator & iterator,
-//      KEY& rKey, KEY& rValue) const
+//template < typename NODE >
+//void node_set < NODE >::get_next(iterator & iterator,
+//      ITEM& rKey, ITEM& rValue) const
 //{
 //
 //   rKey = iterator->key();
@@ -1112,9 +1102,9 @@ bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
 //}
 //
 //
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//inline const typename set < KEY, ARG_KEY, PAYLOAD >::iterator
-//set < KEY, ARG_KEY, PAYLOAD >::get_next(const iterator iterator) const
+//template < typename NODE >
+//inline const typename node_set < NODE >::iterator
+//node_set < NODE >::get_next(const iterator iterator) const
 //{
 //
 //   return iterator->m_next;
@@ -1122,9 +1112,9 @@ bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
 //}
 //
 //
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//inline typename set < KEY, ARG_KEY, PAYLOAD >::iterator
-//set < KEY, ARG_KEY, PAYLOAD >::get_next(const iterator iterator)
+//template < typename NODE >
+//inline typename node_set < NODE >::iterator
+//node_set < NODE >::get_next(const iterator iterator)
 //{
 //
 //   return iterator->m_next;
@@ -1132,9 +1122,9 @@ bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
 //}
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-KEY set < KEY, ARG_KEY, PAYLOAD > ::
-get(ARG_KEY argkey, ARG_KEY valueDefault)
+template < typename NODE >
+typename node_set < NODE >::ITEM node_set < NODE > ::
+get(ARG_ITEM argkey, ARG_ITEM valueDefault)
 {
    iterator iterator = plookup(argkey);
    if(iterator == nullptr)
@@ -1144,15 +1134,15 @@ get(ARG_KEY argkey, ARG_KEY valueDefault)
 }
 
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
+//template < typename NODE >
+//void node_set < NODE >::assert_ok() const
 //{
 //
 //   ::matter::assert_ok();
 //
 //   ASSERT(GetHashTableSize() > 0);
 //
-//   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
+//   ASSERT(m_nCount == 0 || m_hashtable.m_ppHash != nullptr);
 //   // non-empty set should have hash table
 //
 //}
@@ -1164,37 +1154,37 @@ using dword_set = set < ::u32 >;
 
 using uptr_set = set < ::uptr >;
 
-template < typename KEY_TYPE >
+template < typename ITEM_TYPE >
 class key
 {
 public:
 
 
-   using KEY = KEY_TYPE;
-   using TYPE = KEY;
-   using ARG_TYPE = typename argument_of < KEY & >::type;
+   using ITEM = ITEM_TYPE;
+   using TYPE = ITEM;
+   using ARG_TYPE = argument_of < ITEM & >;
 
 
    // Contract
-   // KEY & key();
-   // KEY & key();
-   // const KEY & key() const;
-   // const KEY & key() const;
+   // ITEM & key();
+   // ITEM & key();
+   // const ITEM & key() const;
+   // const ITEM & key() const;
 
 };
 
 
-template < typename PAYLOAD >
-using key_set = set <  typename PAYLOAD::TYPE, typename PAYLOAD::ARG_TYPE, PAYLOAD >;
+template < typename NODE >
+using key_set = node_set < NODE >;
 
 
 #define __declare_key(xkeytype, xkey) \
 struct xkeytype : public ::key < xkeytype > \
 { \
 \
-   PAIR_DEFAULT_IMPL(xkeytype, KEY, const KEY &, xkey); \
-   KEY & key() { return xkey; } \
-   const KEY & key() const { return xkey; } \
+   PAIR_DEFAULT_IMPL(xkeytype, ITEM, const ITEM &, xkey); \
+   ITEM & key() { return xkey; } \
+   const ITEM & key() const { return xkey; } \
 }
 
 
@@ -1233,8 +1223,8 @@ using string_set = set < string >;
 //#pragma once
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
+template < typename NODE >
+void node_set < NODE >::InitHashTable(
    ::u32 nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
@@ -1250,8 +1240,8 @@ void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
 }
 
 
-//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-//void set < KEY, ARG_KEY, PAYLOAD >::dump(dump_context& dumpcontext) const
+//template < typename NODE >
+//void node_set < NODE >::dump(dump_context& dumpcontext) const
 //{
 //
 //   ::matter::dump(dumpcontext);
@@ -1266,7 +1256,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
 //   //   {
 //   //      iterator = get_next(iterator);
 //   //      dumpcontext << "\n\t[";
-//   //      dump_elements<KEY>(dumpcontext, &iterator->key(), 1);
+//   //      dump_elements<ITEM>(dumpcontext, &iterator->key(), 1);
 //   //   }
 //   //}
 //

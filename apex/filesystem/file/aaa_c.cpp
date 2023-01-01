@@ -136,7 +136,7 @@ int_bool is_absolute_path(const ::scoped_string & scopedstr)
 CLASS_DECL_APEX int_bool file_is_true_dup(const ::file::path & path)
 {
 
-   return ::str().is_true(::acmefile()->as_string(path));
+   return ::str::is_true(::acmefile()->as_string(path));
 
 }
 

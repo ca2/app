@@ -13,7 +13,7 @@
 //
 //   has_string_getter.as(str);
 //
-//   return ::move(str);
+//   return ::transfer(str);
 //
 //}
 //

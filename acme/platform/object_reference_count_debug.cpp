@@ -202,7 +202,7 @@ void matter::check_pending_releases()
          try
          {
 
-            ::output_debug_string(::str().pad(as_string(iIndex), 4, " ", ::str().pad_left) + ": " + ::str().pad(as_string(iStep), 4, " ", ::str().pad_left) + ": " + str + "\n");
+            ::output_debug_string(::str::pad(as_string(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(as_string(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
 
          }
          catch (...)

@@ -83,7 +83,7 @@ string get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * 
 
    }
    
-   return ::move(str);
+   return ::transfer(str);
 
 }
 

@@ -202,7 +202,7 @@ namespace sockets
 
    //   //passociation->m_psocket = psocket;
 
-   //   //move(passociation, &m_socketmapAdd);
+   //   //transfer(passociation, &m_socketmapAdd);
 
    //}
 
@@ -212,14 +212,14 @@ namespace sockets
 
    //   //auto passociation = m_socketmapAdd.get_association(psocket->get_socket_id());
 
-   //   //passociation->m_psocket = ::move(psocket);
+   //   //passociation->m_psocket = ::transfer(psocket);
 
-   //   //move(passociation, &m_socketmapAdd);
+   //   //transfer(passociation, &m_socketmapAdd);
 
    //}
 
 
-   //void socket_handler::move(socket_id_map::association* passociation, socket_id_map* psocket_idmap)
+   //void socket_handler::transfer(socket_id_map::association* passociation, socket_id_map* psocket_idmap)
    //{
 
    //   socket_id* psocket = dynamic_cast <socket_id*> (passociation->m_psocket.m_p);
@@ -295,7 +295,7 @@ namespace sockets
 
    //   psocket->m_estatus = ::success;
 
-   //   m_socketmapAdd.move(passociation, psocket_idmap);
+   //   m_socketmapAdd.transfer(passociation, psocket_idmap);
 
    //}
 
@@ -330,7 +330,7 @@ namespace sockets
 
    //   passociation->m_psocket->m_estatus = ::success;
 
-   //   m_socketmapAdd.move(passociation, &m_socketmap);
+   //   m_socketmapAdd.transfer(passociation, &m_socketmap);
 
    //}
 
@@ -445,14 +445,14 @@ namespace sockets
 
    //   //socket_pointer psocket = pbasesocket_id;
 
-   //   //if (::contains_value(m_socketmap, psocket))
+   //   //if (::contains_payload(m_socketmap, psocket))
    //   //{
 
    //   //  return true;
 
    //   //}
 
-   //   //if (::contains_value(m_socketmapAdd, psocket))
+   //   //if (::contains_payload(m_socketmapAdd, psocket))
    //   //{
 
    //   //  return true;
@@ -1154,7 +1154,7 @@ namespace sockets
 //
 //                    }
 //
-//                    move(ppairsocket_id, &m_socketmap);
+//                    transfer(ppairsocket_id, &m_socketmap);
 //
 //                    m_socketidlistErase.add_tail(nn);
 //
@@ -1284,7 +1284,7 @@ namespace sockets
 //
 //                    ptcpsocket->ResetConnectionRetryCount();
 //
-//                    move(ppairsocket_id, psocket_idmap);
+//                    transfer(ppairsocket_id, psocket_idmap);
 //
 //                    m_socketidlistErase.add_tail(ptcpsocket->m_socket_id);
 //
@@ -1920,7 +1920,7 @@ namespace sockets
 //
 //        }
 //
-////         if (!::contains_value(m_delete, *p))
+////         if (!::contains_payload(m_delete, *p))
 ////         {
 ////
 ////            FORMATTED_INFORMATION("CheckList failed for \"%s\": fd %d\n", listname.c_str(), *p));

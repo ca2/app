@@ -46,7 +46,7 @@ public:
 
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
-   virtual void move(const ::file::path & pathNew, const ::file::path & path);
+   virtual void transfer(const ::file::path & pathNew, const ::file::path & path);
    virtual void erase(const ::file::path & path);
    virtual ::file::path duplicate(const ::file::path & path);
    virtual ::file::path paste(const ::file::path & pathLocation, const ::file::path & path);
@@ -169,7 +169,7 @@ public:
 
        get_lines(straLines, payloadFile, bAddEmpty, bNoExceptionOnFail);
 
-       return ::move(straLines);
+       return ::transfer(straLines);
 
    }
 
@@ -266,7 +266,7 @@ public:
    virtual ::file::path onedrive_cid_ini();
 
 //   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
-   //virtual ::extended::status move(const ::file::path & pszNew, const ::file::path & psz);
+   //virtual ::extended::status transfer(const ::file::path & pszNew, const ::file::path & psz);
    //virtual ::extended::status del(const ::file::path & psz);
    //virtual ::extended::status rename(const ::file::path & pszNew, const ::file::path & psz);
 

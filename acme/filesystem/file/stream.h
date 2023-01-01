@@ -822,8 +822,8 @@ public:
 //
 //inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, e_set_loading) { s->set_loading(); return s; }
 //
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > & m);
+//template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
+//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template <  typename TYPE >
 //inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, pointer_array < TYPE > & a);
@@ -901,8 +901,8 @@ public:
 
 
 //
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > & m);
+//template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
+//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m);
 //
 //template < typename TYPE >
 //inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const pointer_array < TYPE > & a);

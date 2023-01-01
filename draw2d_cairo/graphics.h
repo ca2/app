@@ -379,13 +379,13 @@ namespace draw2d_cairo
       //virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
       void draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
-      size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
-      size_f64 get_text_extent(const block & block) override;
+      size_f64 get_text_extent(const ::scoped_string & scopedstr, strsize iIndex) override;
+      size_f64 get_text_extent(const ::scoped_string & scopedstr) override;
+      //size_f64 get_text_extent(const block & block) override;
       bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
-      void get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
-      void get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
-      void get_text_extent(size_f64 & size_f64, const ::string & str) override;
+      //size_f64 get_text_extent(const ::scoped_string & scopedstr, strsize iIndex) override;
+      //size_f64 get_text_extent(const ::scoped_string & scopedstr) override;
+      ///size_f64 get_text_extent(const ::string & str) override;
       //size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       //size_f64 GetOutputTextExtent(const ::string & str) override;
       //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;

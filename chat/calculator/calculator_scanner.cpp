@@ -143,7 +143,7 @@ namespace calculator
       }
       else
       {
-         token->m_str = ::str().consume_nc_name(input);
+         token->m_str = ::str::consume_nc_name(input);
          while(unicode_is_space_char(input))
             unicode_increment(input);
          if(*input == '(')

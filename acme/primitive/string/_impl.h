@@ -233,7 +233,7 @@ inline STRING& copy(STRING& string, const FLOATING& number)
 //
 //	::copy(str, t);
 //
-//	return ::move(str);
+//	return ::transfer(str);
 //
 //}
 
@@ -246,7 +246,7 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 
    str.format(pszFormat, number);
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 
@@ -297,6 +297,108 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
    return str;
 
 }
+
+
+template < character_range CHARACTER_RANGE >
+payload::payload(const CHARACTER_RANGE & range) :
+   payload(e_no_initialize)
+{
+
+   m_etype = e_type_ansi_range;
+   zero(m_all);
+   m_str = range;
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_ansi_string>(scoped_ansi_string scopedstr) {
+
+   return _scoped_string_u32_hash<::ansi_character>((::scoped_string_base<const ::ansi_character *>) scopedstr);
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_wd16_string>(scoped_wd16_string scopedstr) {
+
+   return _scoped_string_u32_hash<::wd16_character>((::scoped_string_base<const ::wd16_character *>) scopedstr);
+
+}
+
+
+template<>
+inline u32hash u32_hash<scoped_wd32_string>(scoped_wd32_string scopedstr) {
+
+   return _scoped_string_u32_hash<::wd32_character>((::scoped_string_base<const ::wd32_character *>) scopedstr);
+
+}
+
+
+template < strsize n >
+inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this == ::scoped_string(cha);
+
+}
+
+
+template < strsize n >
+inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this <=> ::scoped_string(cha);
+
+}
+
+
+namespace file
+{
+
+
+    inline path::path(const ::scoped_string & scopedstr, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+            path(::ansi_string(scopedstr), epath, iDir, bNormalizePath, iSize)
+    {
+
+
+    }
+
+
+    inline path& path::operator /= (const ::scoped_string & scopedstr)
+    {
+
+       return *this = (*this / scopedstr);
+
+    }
+
+
+    inline path path::operator * (const ::scoped_string & scopedstr) const { return operator * (::file::path(scopedstr)); }
+
+
+    inline path& path::operator *= (const ::scoped_string & scopedstr) { return operator *= (::file::path(scopedstr)); }
+
+
+    inline bool path::operator == (const ::scoped_string & scopedstr) const
+    {
+
+       return operator == (string(scopedstr));
+
+    }
+
+
+    inline bool path::operator != (const ::scoped_string & scopedstr) const
+    {
+
+       return operator != (string(scopedstr));
+
+    }
+
+
+
+
+} // namespace file
+
 
 
 

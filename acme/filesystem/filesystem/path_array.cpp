@@ -40,7 +40,7 @@ CLASS_DECL_ACME ::file::path_array operator / (const ::file::path & pathBase, co
 
    }
 
-   return ::move(patha);
+   return ::transfer(patha);
 
 }
 
@@ -154,7 +154,7 @@ CLASS_DECL_ACME::file::path_array ascendants_path(const ::file::path& pathBase)
 
    ascendants_path(patha, pathBase);
 
-   return ::move(patha);
+   return ::transfer(patha);
 
 }
 
@@ -166,7 +166,7 @@ CLASS_DECL_ACME::string_array ascendants_name(const ::file::path& pathBase)
 
    ascendants_name(stra, pathBase);
 
-   return ::move(stra);
+   return ::transfer(stra);
 
 }
 

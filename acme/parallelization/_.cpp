@@ -557,27 +557,27 @@ void thread_name_abbreviate(string & strName, int len)
 
    strsize iFindLast = 0;
 
-   auto pFind = 0;
-
    string strOnlyAlnum;
 
    auto range = strName();
 
+   auto pfind = range.m_begin;
+
    while (range.is_set())
    {
 
-      auto pfind = range.find("::");
+      auto pfindNext = range(pfind).find("::");
 
-      if(::is_null(pfind))
+      if(::not_found(pfindNext))
       {
 
          break;
 
       }
 
-      stra.add(range(0, pfind + 1));
+      stra.add({ pfind, pfindNext + 1 });
 
-      pfind += 2;
+      pfind = pfindNext + 2;
 
    }
 

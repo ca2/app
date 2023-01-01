@@ -115,13 +115,13 @@ bool is_font_sel(const ::atom & atom)
    else if (is_integer())
    {
 
-      return ::move(::as_string(m_i));
+      return ::transfer(::as_string(m_i));
 
    }
    else
    {
 
-      return ::move(::string("(atom : type:") + ::as_string(m_etype) + ",body:" + ::as_string(m_u) + ")");
+      return ::transfer(::string("(atom : type:") + ::as_string(m_etype) + ",body:" + ::as_string(m_u) + ")");
 
    }
 

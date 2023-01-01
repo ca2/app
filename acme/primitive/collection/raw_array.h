@@ -96,7 +96,7 @@ public:
    //inline const TYPE& operator[](::index nIndex) const;
    //inline TYPE& operator[](::index nIndex);
 
-   // Operations that move elements around
+   // Operations that transfer elements around
    ::index insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    //::index erase_at(::index nIndex, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
@@ -149,7 +149,7 @@ public:
 
    using array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator =;
    inline raw_array & operator = (raw_array && a);
-   inline raw_array & move(raw_array && a);
+   inline raw_array & transfer(raw_array && a);
 
 
    operator TYPE *() { return this->m_begin;  }
@@ -370,7 +370,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::raw_array(const raw_a
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) noexcept :
-   ARRAY_BASE(::move(a))
+   ARRAY_BASE(::transfer(a))
 {
 
 }
@@ -826,7 +826,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator =(raw_array && a)
 {
 
-   return move(::move(a));
+   return transfer(::transfer(a));
 
 }
 
@@ -835,7 +835,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::move(raw_array && a)
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::transfer(raw_array && a)
 {
 
    if (&a != this)
@@ -1532,7 +1532,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 //inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator =(raw_array && a)
 //{
 //
-//   return move(::move(a));
+//   return transfer(::transfer(a));
 //
 //}
 //
@@ -1541,7 +1541,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::move(raw_array && a)
+//inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::transfer(raw_array && a)
 //{
 //
 //   if (&a != this)

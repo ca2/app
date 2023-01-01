@@ -2,8 +2,8 @@
 
 
 //
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-//void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG_KEY key,ARG_VALUE newValue)
+//template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
+//void sort_map < KEY,ARG_KEY,PAYLOAD,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG_KEY key,ARG_VALUE newValue)
 //{
 //
 //   if(m_pnode == nullptr)
@@ -69,8 +69,8 @@
 //}
 //
 //
-//template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE, bool m_bMultiKey >
-//void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::insert(const pair < KEY,VALUE > & pair)
+//template < class KEY,class ARG_KEY,class PAYLOAD,class ARG_VALUE,class COMPARE, bool m_bMultiKey >
+//void sort_map < KEY,ARG_KEY,PAYLOAD,ARG_VALUE,COMPARE, m_bMultiKey >::insert(const pair < KEY,PAYLOAD > & pair)
 //{
 //
 //   add_pair(pair.element1(),pair.element2());

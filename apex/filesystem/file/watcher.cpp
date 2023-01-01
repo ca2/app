@@ -121,7 +121,7 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchmap.erase_key(pwatch->m_watchid);
+         m_watchmap.erase_item(pwatch->m_watchid);
 
          return -1;
 
@@ -246,7 +246,7 @@ restart:
 
                pair.element2()->m_listenera.clear();
 
-               m_watchmap.erase_key(pair.element1());
+               m_watchmap.erase_item(pair.element1());
 
                goto restart;
 

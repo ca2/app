@@ -2043,7 +2043,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
          rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", ::as_string(const_layout().sketch().display().eflag()).c_str());
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string(const_layout().sketch().display().eflag())).c_str());
 
          if (wfi_has_up_down())
          {
@@ -2093,7 +2093,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
       //pusersystem->set_rect(rectangleFrame);
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", ::as_string(const_layout().sketch().display().eflag()).c_str());
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string(const_layout().sketch().display().eflag())).c_str());
 
 
    }
@@ -3767,7 +3767,7 @@ void simple_frame_window::data_on_after_change(::message::message* pmessage)
 
    ::pointer<database::change_event>pupdate(pmessage);
 
-   if (pupdate->m_datakey == "ca2.savings")
+   if (pupdate->m_strDataKey == "ca2.savings")
    {
 
       //defer_synch_layered();
@@ -4140,7 +4140,7 @@ void simple_frame_window::on_select_user_style()
    if (m_puserstyle.is_null())
    {
 
-      string strSchema(m_varFrame["experience"].as_string());
+      string strSchema(m_varFrame["experience"].get_string());
 
       if (strSchema.has_char() || is_top_level_window())
       {

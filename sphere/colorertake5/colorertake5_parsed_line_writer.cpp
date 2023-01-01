@@ -38,8 +38,8 @@ namespace colorertake5
          class region *region = l1->region;
          while(region != nullptr)
          {
-            string token0 = ::str().replace(":", "-", region->getName());
-            string token = ::str().replace(".", "-", token0);
+            string token0 = ::str::replace(":", "-", region->getName());
+            string token = ::str::replace(".", "-", token0);
             markupWriter << token;
             region = region->getParent();
             if (region != nullptr)

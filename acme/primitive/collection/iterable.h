@@ -53,7 +53,7 @@ namespace iter
    template < typename ITERABLE, typename ITYPE, typename ITYPE2 >
    ITERABLE & replace(ITERABLE & iterable, const ITYPE & lpszSearch, const ITYPE2 & lpszReplace);
 
-   // if ITYPE is found, move it to specified position
+   // if ITYPE is found, transfer it to specified position
    template < typename ITERABLE, typename ITYPE, typename ITERABLE2 >
    bool move_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex);
 
@@ -156,7 +156,7 @@ namespace iter
    template < typename ITERABLE >
    ITERABLE & trim(ITERABLE & iterable);
 
-   // move preferred in order
+   // transfer preferred in order
    template < typename ITERABLE, typename ITYPE >
    ITERABLE & preferred(ITERABLE & iterable, const ITYPE & pcsz);
 
@@ -456,7 +456,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename PAIR >
-   bool contains(ITERABLE & iterable, const map_association < PAIR > & assoc)
+   bool contains(ITERABLE & iterable, const set_node < PAIR > & assoc)
    {
 
       for (auto item : iterable1)
@@ -598,7 +598,7 @@ namespace iter
 
 
    template < typename ITERABLE >
-   typename ITERABLE::const_iterator find_first_value(const ITERABLE & iterable, const typename ITERABLE::VALUE & value)
+   typename ITERABLE::const_iterator find_first_value(const ITERABLE & iterable, const typename ITERABLE::PAYLOAD & value)
    {
 
       for (auto & item : iterable)
@@ -626,7 +626,7 @@ namespace iter
    }
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains_value(const ITERABLE & iterable, const ITYPE & value)
+   bool contains_payload(const ITERABLE & iterable, const ITYPE & value)
    {
 
       return find_first_value(iterable, value) != iterable.end();
@@ -1079,7 +1079,7 @@ namespace iter
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //bool contains_value(const ITERABLE & map, const ITYPE & value)
+   //bool contains_payload(const ITERABLE & map, const ITYPE & value)
    //{
 
 
@@ -1329,7 +1329,7 @@ namespace iter
       while (strParse.has_char())
       {
 
-         iterable.add((ITYPE)::str().consume_command_line_argument(strParse));
+         iterable.add((ITYPE)::str::consume_command_line_argument(strParse));
 
       }
 
@@ -2748,12 +2748,12 @@ end:
          switch (status)
          {
          case 1:
-            if (istring[i] == sep && !::str().simple_escaped(istring, i))
+            if (istring[i] == sep && !::str::simple_escaped(istring, i))
             {
                ++num;
                add("");
             }
-            else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str().simple_escaped(istring, i))
+            else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str::simple_escaped(istring, i))
             {
                status = 2;
                to = (istring[i] == '(') ? ')' : istring[i];
@@ -2766,7 +2766,7 @@ end:
             break;
 
          case 2:
-            if (istring[i] == to && !::str().simple_escaped(istring, i))
+            if (istring[i] == to && !::str::simple_escaped(istring, i))
             {
                status = 1;
             }
@@ -4237,7 +4237,7 @@ public:
 
 
 
-   // move preferred in order
+   // transfer preferred in order
    template < typename ITYPE >
    Container & preferred(const ITYPE & pcsz)
    {
@@ -4576,10 +4576,10 @@ public:
 
 
    template < typename ITYPE >
-   bool contains_value(const ITYPE & value) const
+   bool contains_payload(const ITYPE & value) const
    {
 
-      return ::iter::contains_value(*this, value);
+      return ::iter::contains_payload(*this, value);
 
    }
 

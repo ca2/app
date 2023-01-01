@@ -39,7 +39,7 @@ constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize c
 
 
 template<typename ITERATOR_TYPE>
-struct get_iterator_item
+struct get_iterator_item_struct
 {
 
    using ITEM = typename ITERATOR_TYPE::ITEM;
@@ -48,7 +48,7 @@ struct get_iterator_item
 
 
 template<typename ITEM_TYPE>
-struct get_iterator_item<ITEM_TYPE *>
+struct get_iterator_item_struct<ITEM_TYPE *>
 {
 
    using ITEM = ITEM_TYPE;
@@ -56,8 +56,12 @@ struct get_iterator_item<ITEM_TYPE *>
 };
 
 
+template<typename ITEM_TYPE>
+using get_iterator_item = typename get_iterator_item_struct < ITEM_TYPE >::ITEM;
+
+
 template<typename TYPE>
-struct get_type_item_pointer
+struct get_type_item_pointer_struct
 {
 
    using type = typename TYPE::ITEM_POINTER;
@@ -66,7 +70,7 @@ struct get_type_item_pointer
 
 
 template<typename TYPE>
-struct get_type_item_pointer<TYPE *>
+struct get_type_item_pointer_struct<TYPE *>
 {
 
    using type = non_const<TYPE> *;
@@ -75,7 +79,7 @@ struct get_type_item_pointer<TYPE *>
 
 
 template<typename TYPE>
-struct get_type_item_pointer<const TYPE *>
+struct get_type_item_pointer_struct<const TYPE *>
 {
 
    using type = TYPE *;
@@ -83,8 +87,13 @@ struct get_type_item_pointer<const TYPE *>
 };
 
 
+template<typename TYPE>
+using get_type_item_pointer = typename get_type_item_pointer_struct < TYPE >::type;
+
+
+
 template<typename iterator>
-struct get_iterator
+struct get_iterator_struct
 {
 
    using type = typename iterator::iterator;
@@ -93,16 +102,20 @@ struct get_iterator
 
 
 template<typename TYPE>
-struct get_iterator<TYPE *>
+struct get_iterator_struct<TYPE *>
 {
 
    using type = non_const<TYPE> *;
 
 };
 
+template<typename TYPE >
+using get_iterator = typename get_iterator_struct < TYPE >::type;
+
+
 
 template<typename iterator>
-struct get_const_iterator
+struct get_const_iterator_struct
 {
 
    using type = typename iterator::const_iterator;
@@ -111,12 +124,17 @@ struct get_const_iterator
 
 
 template<typename TYPE>
-struct get_const_iterator<TYPE *>
+struct get_const_iterator_struct<TYPE *>
 {
 
    using type = const non_const<TYPE> *;
 
 };
+
+
+template<typename TYPE >
+using get_const_iterator = typename get_const_iterator_struct < TYPE >::type;
+
 
 
 template<typename ITERATOR_TYPE>
@@ -126,8 +144,8 @@ public:
 
 
    using this_iterator = ITERATOR_TYPE;
-   using iterator = typename get_iterator<ITERATOR_TYPE>::type;
-   using const_iterator = typename get_const_iterator<iterator>::type;
+   using iterator = get_iterator<ITERATOR_TYPE>;
+   using const_iterator = get_const_iterator<iterator>;
 
 
    using THIS_RAW_RANGE = ::range<ITERATOR_TYPE>;
@@ -140,13 +158,13 @@ public:
    using CONST_RANGE = ::range<const_iterator>;
 
 
-   using ITEM_POINTER = typename get_type_item_pointer<iterator>::type;
+   using ITEM_POINTER = get_type_item_pointer<iterator>;
 
 
-   using THIS_ITEM = typename get_iterator_item<ITERATOR_TYPE>::ITEM;
+   using THIS_ITEM = get_iterator_item<ITERATOR_TYPE>;
    using ITEM = non_const<THIS_ITEM>;
    using CONST_ITEM = add_const<THIS_ITEM>;
-   using ARG_ITEM = typename argument_of < ITEM >::type;
+   using ARG_ITEM = argument_of < ITEM >;
 
 
    this_iterator     m_begin;
@@ -410,7 +428,7 @@ public:
 
          b = false;
 
-         return false;
+         return true;
 
       } else if (range.is_empty())
       {
@@ -851,7 +869,7 @@ public:
 
          }
 
-         range.begin()--;
+         range.end()--;
 
       } while (!range.is_before_begin(range.end()));
 
@@ -1114,7 +1132,7 @@ public:
       if (rangeBlock.is_empty())
       {
 
-         p = range.end();
+         p = range.begin();
 
          return true;
 
@@ -1163,7 +1181,7 @@ public:
 // and didn't find any matching items...
 // return address immediately after end of find_first_character_inning range....
 
-      return range.begin();
+      return nullptr;
 
    }
 

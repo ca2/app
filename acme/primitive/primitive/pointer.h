@@ -534,7 +534,7 @@ inline void destruct(T * p)
 //   guard____pointer(const lparam& lparam) : pointer<T>(lparam) {}
 //
 //   guard____pointer(const pointer < T > & t): pointer< T>(t) {}
-//   guard____pointer(guard____pointer < T > && t): pointer<T>(::move(t)) {}
+//   guard____pointer(guard____pointer < T > && t): pointer<T>(::transfer(t)) {}
 //   //guard____pointer(const allocer & allocer): pointer<T>(allocer) {}
 //   template < class T2 >
 //   guard____pointer(T2 * p) : pointer<T>(p) {}
@@ -550,7 +550,7 @@ inline void destruct(T * p)
 //
 //   template < class T2 >
 //   guard____pointer(guard____pointer < T2 > && t) :
-//      pointer<T>(::move(t)) {}
+//      pointer<T>(::transfer(t)) {}
 //
 //
 //   ~guard__pointer <  >

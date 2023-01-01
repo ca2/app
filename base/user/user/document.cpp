@@ -927,7 +927,7 @@ namespace user
 
       m_bModified = false;
 
-      m_path = payloadFile.file_path();
+      m_path = payloadFile.as_file_path();
 
       m_strTitle = m_path.name();
 
@@ -1081,7 +1081,7 @@ namespace user
       if(pwriter.nok())
       {
 
-         ::file::path path = payloadFile.file_path();
+         ::file::path path = payloadFile.as_file_path();
 
          FORMATTED_TRACE("Failed to save document : file path : %s", path.c_str());
 
@@ -1145,7 +1145,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         for (auto & pimpact : m_impacta.ptra())
+         for (auto & pimpact : m_impacta)
          {
 
             ::user::frame * pframe = pimpact->parent_frame();
@@ -1163,7 +1163,7 @@ namespace user
 
       }
 
-      for (auto & pframe : frameptra.ptra())
+      for (auto & pframe : frameptra)
       {
 
          pre_close_frame(pframe);
@@ -1196,7 +1196,7 @@ namespace user
 
       synchronouslock.unlock();
 
-      for(auto & pimpact : viewptra.ptra())
+      for(auto & pimpact : viewptra)
       {
 
          auto pframe = pimpact->parent_frame();
@@ -1212,7 +1212,7 @@ namespace user
 
       }
 
-      for(auto & pimpact : viewptra.ptra())
+      for(auto & pimpact : viewptra)
       {
 
          auto pframe = pimpact->parent_frame();
@@ -1575,24 +1575,30 @@ namespace user
 
             newName = m_strTitle;
             // check for dubious filename
-            strsize iBad = newName.as_string().FindOneOf(":/\\");
+            strsize iBad = newName.get_string().find_first_character_in_index(":/\\");
 
             if (iBad != -1)
             {
 
-               newName = newName.as_string().left(iBad);
+               newName = newName.get_string().left(iBad);
 
             }
 
             // append the default suffix if there is one
             string strExt;
+
             if (ptemplate->GetDocString(strExt, impact_system::filterExt) &&
                   !strExt.is_empty())
             {
+
                ASSERT(strExt[0] == '.');
+
                strsize iStart = 0;
-               newName += strExt.Tokenize(";", iStart);
+
+               newName = newName.get_string() + strExt.Tokenize(";", iStart);
+
             }
+
          }
 
          //if (!papp->do_prompt_file_name(newName, as_string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
@@ -1970,7 +1976,7 @@ namespace user
 
       ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
 
-      for (auto & pimpact : m_impacta.ptra())
+      for (auto & pimpact : m_impacta)
       {
 
          ASSERT_VALID(pimpact);

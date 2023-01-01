@@ -26,7 +26,7 @@ namespace handle
 
 
       ini & operator =(const ini & ini) { if (this != &ini) ::property_set::operator=(ini); return *this; }
-      ini & operator =(ini && ini) { if (this != &ini) ::property_set::operator=(::move(ini)); return *this; }
+      ini & operator =(ini && ini) { if (this != &ini) ::property_set::operator=(::transfer(ini)); return *this; }
 
 
    };

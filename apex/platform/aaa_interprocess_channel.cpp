@@ -33,7 +33,7 @@ namespace interprocess_channel
    //   if (pdispatchitem->is_text_message())
    //   {
 
-   //      on_interprocess_receive(prx, ::move(pdispatchitem->m_strMessage));
+   //      on_interprocess_receive(prx, ::transfer(pdispatchitem->m_strMessage));
 
    //   }
    //   else
@@ -42,7 +42,7 @@ namespace interprocess_channel
    //      on_interprocess_receive(
    //         prx,
    //         (int) pdispatchitem->m_uData, 
-   //         ::move(pdispatchitem->m_memory));
+   //         ::transfer(pdispatchitem->m_memory));
 
    //   }
 
@@ -316,7 +316,7 @@ namespace interprocess_channel
       //   if (m_preceiver != nullptr)
       //   {
 
-      return m_preceiver->on_interprocess_receive(this, ::move(strMessage));
+      return m_preceiver->on_interprocess_receive(this, ::transfer(strMessage));
 
       //   }
 
@@ -324,7 +324,7 @@ namespace interprocess_channel
       //else
       //{
 
-      //   dispatch_message(::move(strMessage));
+      //   dispatch_message(::transfer(strMessage));
       //   //get_app()->fork([this, prx, strMessage]()
       //   //{
 
@@ -351,7 +351,7 @@ namespace interprocess_channel
 
    //   ///memory memory(pdata, len);
 
-   //   dispatch_message(message, ::move(memory));
+   //   dispatch_message(message, ::transfer(memory));
 
    //   //if (m_preceiver != nullptr)
    //   //{
@@ -403,9 +403,9 @@ namespace interprocess_channel
    //void handler::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __new(class dispatch_item(::move(strMessage)));
+   //   auto pdispatchitem = __new(class dispatch_item(::transfer(strMessage)));
 
-   //   dispatch_item(::move(pdispatchitem));
+   //   dispatch_item(::transfer(pdispatchitem));
 
    //}
 
@@ -413,9 +413,9 @@ namespace interprocess_channel
    //void handler::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __new(class dispatch_item(uData, ::move(memory)));
+   //   auto pdispatchitem = __new(class dispatch_item(uData, ::transfer(memory)));
 
-   //   dispatch_item(::move(pdispatchitem));
+   //   dispatch_item(::transfer(pdispatchitem));
 
    //}
 
@@ -427,7 +427,7 @@ namespace interprocess_channel
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
-   //   m_dispatchitema.add(::move(pdispatchitem));
+   //   m_dispatchitema.add(::transfer(pdispatchitem));
 
    //   if (bWasEmpty)
    //   {
@@ -467,7 +467,7 @@ namespace interprocess_channel
    //               try
    //               {
 
-   //                  m_preceiver->on_interprocess_receive(this, ::move(pdispatchitem));
+   //                  m_preceiver->on_interprocess_receive(this, ::transfer(pdispatchitem));
 
    //               }
    //               catch (...)

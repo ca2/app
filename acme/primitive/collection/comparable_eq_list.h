@@ -1,179 +1,242 @@
 #pragma once
 
+
+#include "list.h"
+
+
 template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = ::list < TYPE, ARG_TYPE > >
 class comparable_eq_list :
    public LIST_TYPE
 {
 public:
 
+
    using node = typename ::list < TYPE, ARG_TYPE >::node;
+   using base_list = LIST_TYPE;
+   using iterator = typename base_list::iterator;
+   using const_iterator = typename base_list::const_iterator;
+
 
    comparable_eq_list();
    comparable_eq_list(const comparable_eq_list & array);
 
-   node * find_first(const TYPE &t, node * pnode = nullptr, node * pnodeLast = nullptr) const;
-   node * find_last(const TYPE &t, node * pnode = nullptr, node * pnodeLast = nullptr) const;
+
+   iterator find_first_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
+   iterator find_last_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
    ::count get_count() const;
-   ::count get_count(const TYPE & t, node * start = nullptr, node * pnodeLast = nullptr, ::count countMax = -1) const;
-   bool contains(const TYPE & t, node * pnodeStart = nullptr, node * pnodeLast = nullptr, ::count countMin = 1, ::count countMax = -1) const;
-   bool rcontains(const TYPE & t, node * pnodeStart = nullptr, node * pnodeLast = nullptr, ::count countMin = 1, ::count countMax = -1) const;
-   bool erase_first(const TYPE & t);
-   bool erase_last(const TYPE & t);
-   bool erase_first(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
-   bool erase_last(const TYPE & t, node * & pnode, node * pnodeLast = nullptr);
-   ::count erase(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count rerase(const TYPE & t, node * pnode = nullptr, node * pnodeLast = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count erase(const comparable_eq_list & l);
+   ::count get_count(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMax = -1) const;
+   bool contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 1, ::count countMax = -1) const;
+   bool rear_contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 1, ::count countMax = -1) const;
+   bool erase_first_item(const TYPE & t);
+   bool erase_last_item(const TYPE & t);
+   bool erase_first_item(const TYPE & t, iterator & p, iterator end = nullptr);
+   bool erase_last_item(const TYPE & t, iterator & p, iterator end = nullptr);
+   ::count erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 0, ::count countMax = -1);
+   ::count rear_erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_list(const comparable_eq_list & l);
 
 
-
-   // add
    bool add_tail_unique(ARG_TYPE t);
    bool add_head_unique(ARG_TYPE t);
 
 
-   // set
    void merge_tail(const comparable_eq_list & l); // add_tail
    void merge_head(const comparable_eq_list & l); // add_tail
    void intersect(const comparable_eq_list & l);
 
-   // set operators
+
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const TYPE & t);
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator &= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator -= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
-   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator |= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l); // add_tail
+   comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & operator |= (const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l);
+
 
    comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > operator -(const comparable_eq_list< TYPE, ARG_TYPE, LIST_TYPE > & l) const;
 
-   //// helper functions (note: O(n) speed)
-   //iterator pnodeFind(ARG_TYPE searchValue, iterator startAfter = nullptr);
-   //// defaults to starting at the HEAD, return nullptr if not found
-   //void erase(ARG_TYPE elem);
-
-
-   //const_iterator pnodeFind(ARG_TYPE searchValue, const_iterator startAfter = nullptr) const
-   //{
-
-   //   return ((comparable_list *) this)->pnodeFind(searchValue, startAfter);
-
-   //}
 
 };
-
-
 
 
 template < class TYPE, class ARG_TYPE, class LIST_TYPE>
 comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 comparable_eq_list()
 {
+
 }
+
 
 template < class TYPE, class ARG_TYPE, class LIST_TYPE>
 comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE>::
 comparable_eq_list(const comparable_eq_list<  TYPE,  ARG_TYPE,  LIST_TYPE> & l) :
 LIST_TYPE(l)
 {
+
 }
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::node * comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-find_first(const TYPE & t, node * pnode, node * pnodeLast) const
+typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::iterator comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+find_first_item(const TYPE & t, iterator p, iterator end) const
 {
-   if(pnode == nullptr)
-      pnode = this->get_head();
-   if(pnode == nullptr)
-      pnode = this->get_tail();
-   while(pnode)
+
+   if(!p)
    {
-      if(pnode->m_value == t)
-         return pnode;
-      if(pnode == pnodeLast)
-         break;
-      pnode = pnode->m_pnext;
+
+      p = this->begin();
+
    }
+
+   while(p != end)
+   {
+
+      if(*p == t)
+      {
+
+         return p;
+
+      }
+
+      p++;
+
+   }
+
    return nullptr;
+
 }
 
+
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::node * comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-find_last(const TYPE & t, node * pnode, node * pnodeLast) const
+typename comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::iterator comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+find_last_item(const TYPE & t, iterator start, iterator p) const
 {
-   if(pnode == nullptr)
-      pnode = this->get_tail();
-   if(pnode == nullptr)
-      pnode = this->get_head();
-   while(pnode)
+
+   if(!p)
    {
-      if(pnode->m_value == t)
-         return pnode;
-      if(pnode == pnodeLast)
-         break;
-      pnode->m_pprevious;
+
+      p = this->get_tail();
+
    }
+
+   while(p != start)
+   {
+
+      if(*p == t)
+      {
+
+         return p;
+
+      }
+
+      p--;
+   }
+
    return nullptr;
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 inline ::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 get_count() const
 {
+
    return LIST_TYPE::get_count();
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 ::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-get_count(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMax) const
+get_count(const TYPE & t, iterator start, iterator end, ::count countMax) const
 {
+
    ::count count = 0;
-   while((countMax >= 0 && count <= countMax)
-      && (pnodeFind = find_first(t, pnodeFind, pnodeLast)) >= 0)
+
+   while((countMax >= 0 && count <= countMax) && (start = find_first(t, start, end)))
+   {
+
       count++;
+
+   }
+
    return count;
+
 }
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-contains(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax) const
+contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax) const
 {
+
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax))
-      && (pnodeFind = find_first(t, pnodeFind, pnodeLast)) != nullptr)
+
+   while((count < countMin || (countMax >= 0 && count <= countMax)) && (p = find_first_item(t, p, end)))
+   {
+
       count++;
+
+   }
+   
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-rcontains(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax) const
+rear_contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax) const
 {
+
    ::count count = 0;
-   while((count < countMin || (countMax >= 0 && count <= countMax))
-      && (pnodeFind = find_last(t, pnodeFind, pnodeLast)) != nullptr)
+
+   while((count < countMin || (countMax >= 0 && count <= countMax))  && (p = find_last(t, p, end)))
+   {
+
       count++;
+
+   }
+
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
 }
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_tail_unique(ARG_TYPE t)
 {
+
    if(contains(t))
+   {
+
       return false;
+
+   }
+
    this->add_tail(t);
+
    return true;
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_head_unique(ARG_TYPE t)
 {
+
    if(contains(t))
+   {
+
       return false;
+
+   }
+
    this->add_head(t);
+
    return true;
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 void comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
@@ -287,114 +350,183 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 operator - (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l) const
 {
+
    comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> aRet(*this);
+
    aRet.erase(l);
+
    return aRet;
+
 }
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 inline comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> &  comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::
 operator |= (const comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE> & l)
 {
+
    merge_tail(l);
+
    return *this;
-}
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_first(const TYPE & t)
-{
-   node * pnodeFind = this->find_first(t);
-   if(pnodeFind != nullptr)
-   {
-      this->erase_item(pnodeFind);
-      return true;
-   }
-   return false;
 }
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_first(const TYPE & t, node * & pnodeFind, node * pnodeLast)
+erase_first_item(const TYPE & t)
 {
-   if((pnodeFind = this->find_first(t, pnodeFind, pnodeLast)) != nullptr)
+
+   iterator p = this->find_first(t);
+
+   if (!p)
    {
-      node * pnodeRemove = pnodeFind;
-      pnodeFind = pnodeFind->m_pnext;
-      this->erase_item(pnodeRemove);
-      return true;
+
+      return false;
+
    }
-   return false;
+
+   this->erase_item(p);
+
+   return true;
+
 }
+
+
+template <class TYPE, class ARG_TYPE, class LIST_TYPE>
+bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const TYPE & t, iterator & p, iterator end)
+{
+
+   if((p = this->find_first(t, p, end)) != nullptr)
+   {
+
+      auto pErase = p;
+
+      p = p->m_next.get();
+
+      this->erase(pErase);
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 ::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
+erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax)
 {
+
    ::count count = 0;
-   if(contains(t, pnodeFind, pnodeLast, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax) && erase_first(t, pnodeFind, pnodeLast))
+
+   if(contains(t, p, end, countMin, countMax))
+   {
+
+      while (conditional(countMax >= 0, count < countMax) && erase_first_item(t, p, end))
+      {
+
          count++;
+
+      }
+
+   }
+
    return count;
-}
 
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_last(const TYPE & t)
-{
-   node * pnodeFind = find_last(t);
-   if(pnodeFind != nullptr)
-   {
-      this->erase_item(pnodeFind);
-      return true;
-   }
-   return false;
 }
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_last(const TYPE & t, node * & pnodeFind, node * pnodeLast)
+erase_last_item(const TYPE & t)
 {
-   if((pnodeFind = find_last(t, pnodeFind, pnodeLast)) != nullptr)
+
+   auto p = find_last_item(t);
+
+   if(p != nullptr)
    {
-      node * pnodeRemove = pnodeFind;
-      pnodeFind = pnodeFind->m_pprevious;
-      this->erase_item(pnodeRemove);
+
+      this->erase_item(p);
+
       return true;
+
    }
+
    return false;
+
 }
+
+
+template <class TYPE, class ARG_TYPE, class LIST_TYPE>
+bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
+erase_last_item(const TYPE & t, iterator & p, iterator end)
+{
+
+   if((p = find_last_item(t, p, end)) != nullptr)
+   {
+
+      auto pErase = p;
+
+      p--;
+
+      this->erase_item(pErase);
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 ::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-rerase(const TYPE & t, node * pnodeFind, node * pnodeLast, ::count countMin, ::count countMax)
-{
-   ::count count = 0;
-   if(contains(t, pnodeFind, pnodeLast, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax) && erase_last(t, pnodeFind, pnodeLast))
-         count++;
-   return count;
-}
-
-template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase(const comparable_eq_list & l)
+rear_erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
 
-   auto pnode = l.get_head();
-
-   while(pnode != nullptr)
+   if(contains(t, p, end, countMin, countMax))
    {
 
-      count += erase(pnode->m_value);
+      while (conditional(countMax >= 0, count < countMax) && erase_last(t, p, end))
+      {
 
-      pnode = pnode->m_pnext;
+         count++;
+
+      }
 
    }
 
    return count;
 
 }
+
+
+template <class TYPE, class ARG_TYPE, class LIST_TYPE>
+::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_list(const comparable_eq_list & l)
+{
+
+   ::count count = 0;
+
+   auto p = l.get_head();
+
+   while(p)
+   {
+
+      count += erase(*p);
+
+      p++;
+
+   }
+
+   return count;
+
+}
+
+
+

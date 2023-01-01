@@ -564,7 +564,7 @@ namespace acme
    bool node::erase_exclusive(const ::string & strName)
    {
 
-      return m_mapExclusive.erase_key(strName);
+      return m_mapExclusive.erase_item(strName);
 
    }
 
@@ -856,6 +856,18 @@ namespace acme
       m_dLuminance = m_colorBackground.get_luminance();
 
       m_bDarkMode = m_dLuminance < 0.5;
+
+      if(m_bDarkMode)
+      {
+
+         ::output_debug_string("background_color :: Dark\n");
+
+      } else
+      {
+
+         ::output_debug_string("background_color :: Lite\n");
+
+      }
 
       on_operating_system_user_color_change();
 
@@ -1362,7 +1374,7 @@ namespace acme
 
       auto path = pathFolder / (strName + ".filememorymap");
 
-      return ::move(path);
+      return ::transfer(path);
 
    }
 

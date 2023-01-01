@@ -492,7 +492,7 @@ void payload::as(::atom & atom) const
 
    as(str);
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 
@@ -504,7 +504,7 @@ void payload::as(::atom & atom) const
 
    as(memory);
 
-   return ::move(memory);
+   return ::transfer(memory);
 
 }
 
@@ -516,7 +516,7 @@ void payload::as(::atom & atom) const
 
    as(atom);
 
-   return ::move(atom);
+   return ::transfer(atom);
 
 }
 
@@ -674,10 +674,10 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->f64();
             break;
          case e_type_string:
-            m_str = ::move(this->string());
+            m_str = ::transfer(this->string());
             break;
          case e_type_id:
-            m_atom = ::move(this->atom());
+            m_atom = ::transfer(this->atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -706,19 +706,19 @@ void payload::set_string(::string && str)
    if (get_type() == e_type_pstring)
    {
 
-      *m_pstr = ::move(str);
+      *m_pstr = ::transfer(str);
 
    }
    else if (get_type() == e_type_payload_pointer)
    {
 
-      m_ppayload->set_string(::move(str));
+      m_ppayload->set_string(::transfer(str));
 
    }
    else if (get_type() == e_type_property)
    {
 
-      m_pproperty->set_string(::move(str));
+      m_pproperty->set_string(::transfer(str));
 
    }
    else
@@ -726,7 +726,7 @@ void payload::set_string(::string && str)
 
       set_type(e_type_string, false);
 
-      m_str = ::move(str);
+      m_str = ::transfer(str);
 
    }
 
@@ -2491,7 +2491,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 
       set_type(e_type_id, false);
 
-      m_atom = ::move(atom);
+      m_atom = ::transfer(atom);
 
       return m_atom;
 
@@ -4463,7 +4463,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::co
    case e_type_payload_array:
       return payloada().contains(psz, find, count);
    case e_type_property_set:
-      return propset().contains_value(psz, find, count);
+      return propset().contains_payload(psz, find, count);
    default:
    {
       index upperbound = minimum(array_get_upper_bound(), find + count - 1);
@@ -4543,7 +4543,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
    if (varRet.is_floating())
    {
 
-      if (::str().is_integer(str))
+      if (::str::is_integer(str))
       {
 
          varRet += strtod(str, nullptr);
@@ -4560,7 +4560,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
    else if (varRet.is_integer())
    {
 
-      if (::str().is_integer(str))
+      if (::str::is_integer(str))
       {
 
          varRet += ansi_to_i64(str);
@@ -5811,7 +5811,7 @@ void payload::consume_identifier(const char * & psz, const ::ansi_character * ps
 
    const ::scoped_string & scopedstrParse = psz;
 
-   ::str().consume_spaces(pszParse, 0, pszEnd);
+   ::str::consume_spaces(pszParse, 0, pszEnd);
 
    const ::scoped_string & scopedstrStart = pszParse;
 
@@ -5856,7 +5856,7 @@ void payload::consume_number(const char * & psz, const ::ansi_character * pszEnd
    const ::scoped_string & scopedstrParse = psz;
    bool bSigned = false;
    bool bFloat = false;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
+   ::str::consume_spaces(pszParse, 0, pszEnd);
    const ::scoped_string & scopedstrStart = pszParse;
    if(*pszParse == '-')
    {
@@ -5984,7 +5984,7 @@ void var_skip_identifier(const char *& psz)
 void var_skip_identifier(const char *& psz, const ::ansi_character * pszEnd)
 {
    const ::scoped_string & scopedstrParse = psz;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
+   ::str::consume_spaces(pszParse, 0, pszEnd);
    const ::scoped_string & scopedstrStart = pszParse;
    while (ansi_char_isalpha(*pszParse) && pszParse <= pszEnd)
       pszParse++;
@@ -6022,7 +6022,7 @@ void var_skip_number(const char *& psz)
 void var_skip_number(const char *& psz, const ::ansi_character * pszEnd)
 {
    const ::scoped_string & scopedstrParse = psz;
-   ::str().consume_spaces(pszParse, 0, pszEnd);
+   ::str::consume_spaces(pszParse, 0, pszEnd);
    const ::scoped_string & scopedstrStart = pszParse;
    if (*pszParse == '-')
    {
@@ -6090,7 +6090,7 @@ end:
 void var_skip_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '{')
    {
@@ -6101,13 +6101,13 @@ void var_skip_network_payload(const char *& pszJson, const ::ansi_character * ps
    else if (*pszJson == '\"')
    {
 
-      ::str().skip_quoted_value_ex(pszJson, pszEnd);
+      ::str::skip_quoted_value_ex(pszJson, pszEnd);
 
    }
    else if (*pszJson == '\'')
    {
 
-      ::str().skip_quoted_value_ex(pszJson, pszEnd);
+      ::str::skip_quoted_value_ex(pszJson, pszEnd);
 
    }
    else if (ansi_char_isdigit(*pszJson) || *pszJson == '-' || *pszJson == '.')
@@ -6167,7 +6167,7 @@ const char * payload::parse_network_payload(const ::string & strJson)
 void payload::parse_network_payload(const char *& pszJson, const ::ansi_character * pszEnd)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '{')
    {
@@ -6178,7 +6178,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else if (*pszJson == '\"')
    {
 
-      ::string str = ::str().consume_quoted_value_ex(pszJson, pszEnd);
+      ::string str = ::str::consume_quoted_value_ex(pszJson, pszEnd);
 
       if(str.case_insensitive_begins_eat("hls://"))
       {
@@ -6255,12 +6255,12 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 ::enum_type payload::find_network_payload_child(const char *& pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '{')
    {
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == '\0')
       {
@@ -6269,9 +6269,9 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
       }
 
-      ::str().consume(pszJson, "{", 1, pszEnd);
+      ::str::consume(pszJson, "{", 1, pszEnd);
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == '}')
       {
@@ -6292,8 +6292,8 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
          if (varChild.string().case_insensitive_order(atom) == 0)
          {
 
-            ::str().consume_spaces(pszJson, 0, pszEnd);
-            ::str().consume(pszJson, ":", 1, pszEnd);
+            ::str::consume_spaces(pszJson, 0, pszEnd);
+            ::str::consume(pszJson, ":", 1, pszEnd);
 
 
             return ::e_type_property_set;
@@ -6302,7 +6302,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
          property_skip_network_payload_value(pszJson, pszEnd);
 
-         ::str().consume_spaces(pszJson, 0, pszEnd);
+         ::str::consume_spaces(pszJson, 0, pszEnd);
 
          if (*pszJson == ',')
          {
@@ -6330,7 +6330,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    }
    else if (*pszJson == '\"')
    {
-      operator=(::str().consume_quoted_value_ex(pszJson, pszEnd));
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
       if (operator == (varChild))
       {
          return ::e_type_string;
@@ -6354,8 +6354,8 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    }
    else if (*pszJson == '[')
    {
-      ::str().consume_spaces(pszJson, 0, pszEnd);
-      ::str().consume(pszJson, "[", 1, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume(pszJson, "[", 1, pszEnd);
       ::enum_type etype = find_network_payload_id(pszJson, pszEnd, varChild);
       if (etype == ::e_type_new)
       {
@@ -6364,7 +6364,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 
       }
 
-      ::str().consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == ']')
       {
@@ -6406,7 +6406,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
 ::enum_type payload::find_network_payload_id(const char * & pszJson, const ::ansi_character * pszEnd, const ::payload & varChild)
 {
 
-   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '{')
    {
@@ -6417,7 +6417,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    }
    else if (*pszJson == '\"')
    {
-      operator=(::str().consume_quoted_value_ex(pszJson, pszEnd));
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
       if (operator == (varChild))
       {
          return ::e_type_string;

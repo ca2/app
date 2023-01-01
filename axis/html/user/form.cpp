@@ -537,7 +537,7 @@ void html_form::set_need_load_form_data()
 bool html_form::open_document(const ::payload & payloadFile)
 {
 
-   auto path = payloadFile.file_path();
+   auto path = payloadFile.as_file_path();
 
    auto psystem = acmesystem()->m_paurasystem;
 

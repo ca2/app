@@ -7,7 +7,7 @@
 
 
 memory::memory(memory && memory) :
-   memory_base(::move(memory))
+   memory_base(::transfer(memory))
 {
 
 }

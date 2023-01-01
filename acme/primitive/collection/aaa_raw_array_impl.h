@@ -282,7 +282,7 @@
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 //raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) noexcept :
-//   ARRAY_BASE(::move(a))
+//   ARRAY_BASE(::transfer(a))
 //{
 //
 //}
@@ -743,7 +743,7 @@
 //inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator =(raw_array && a)
 //{
 //
-//   return move(::move(a));
+//   return transfer(::transfer(a));
 //
 //}
 //
@@ -752,7 +752,7 @@
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-//inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::move(raw_array && a)
+//inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::transfer(raw_array && a)
 //{
 //
 //   if (&a != this)

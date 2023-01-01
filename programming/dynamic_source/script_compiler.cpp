@@ -631,7 +631,7 @@ namespace dynamic_source
          if(file()->exists(pscript->m_strScriptPath))
          {
 
-            file()->move(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
+            file()->transfer(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
 
          }
 
@@ -684,7 +684,7 @@ namespace dynamic_source
 
       string strObjFile;
 
-      string strItemName = ::str().find_replace("\\", "/", string(strTransformName));
+      string strItemName = ::str::find_replace("\\", "/", string(strTransformName));
 
       string strItemTitle = strTransformName.name();
 
@@ -722,7 +722,7 @@ namespace dynamic_source
       str = file()->as_string(strBuildCmd);
       str.find_replace("%ITEM_NAME%",strItemName);
       str.find_replace("%ITEM_TITLE%",strItemTitle);
-      str.find_replace("%ITEM_DIR%",::str().replace_with("\\","/",string(strTransformName.folder())) + "/");
+      str.find_replace("%ITEM_DIR%",::str::replace_with("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
       str.find_replace("%VS_VARS%",m_strEnv);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -888,9 +888,9 @@ namespace dynamic_source
 #endif
 
          str = file()->as_string(strBuildCmd);
-         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
+         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
-         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1299,7 +1299,7 @@ namespace dynamic_source
       string strTransfer = path;
 
       // does not transfer
-      if(::str().case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
+      if(::str::case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
       auto psystem = acmesystem()->m_paurasystem;
@@ -1429,7 +1429,7 @@ namespace dynamic_source
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
-               || ::str().case_insensitive_find(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
+               || ::str::case_insensitive_find(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
                || dir()->is(l.m_straLibIncludePath[i]))
          {
             l.m_straLibIncludePath.erase_at(i);
@@ -1538,9 +1538,9 @@ namespace dynamic_source
          string str = file()->as_string(strCmd);
 
 
-         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(l.m_straLibCppPath[i])));
+         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i])));
          str.find_replace("%ITEM_TITLE%",l.m_straLibCppPath[i].name());
-         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1557,8 +1557,8 @@ namespace dynamic_source
          //str.find_replace("%DVP%", strDVP_B);
 
 
-         //str.find_replace("%ITEM_NAME%",::str().replace("\\","/",string(str1)));
-         //str.find_replace("%ITEM_DIR%",::str().replace("\\", "/", string(str1.folder())) +"/" );
+         //str.find_replace("%ITEM_NAME%",::str::replace("\\","/",string(str1)));
+         //str.find_replace("%ITEM_DIR%",::str::replace("\\", "/", string(str1.folder())) +"/" );
          str.find_replace("%PLATFORM%",m_strPlatform);
          str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
          str.find_replace("%NETNODE_ROOT%",strN);
@@ -2682,7 +2682,7 @@ ch_else:
    {
       string str(psz);
 
-      if(::str().case_insensitive_find("pstr_set", psz) && string_ends_ci(psz, ".txt"))
+      if(::str::case_insensitive_find("pstr_set", psz) && string_ends_ci(psz, ".txt"))
       {
 
          parse_pstr_set();
@@ -2885,7 +2885,7 @@ ch_else:
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
-         if(::str().case_insensitive_find(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
+         if(::str::case_insensitive_find(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
             continue;
          strFile = file()->as_string(strFile);
          string_array straLine;
@@ -2897,19 +2897,19 @@ ch_else:
             const ::scoped_string & scopedstr = strLine;
             try
             {
-               ::str().consume_spaces(psz,0);
-               string strId = ::str().consume_c_quoted_value(psz);
-               ::str().consume_spaces(psz,1);
-               string strLocale = ::str().consume_c_quoted_value(psz);
-               ::str().consume_spaces(psz,1);
-               string strSchema = ::str().consume_c_quoted_value(psz);
-               ::str().consume_spaces(psz,1);
-               string strValue = ::str().consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,0);
+               string strId = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strLocale = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strSchema = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(psz,1);
+               string strValue = ::str::consume_c_quoted_value(psz);
                strExtra = "";
                try
                {
-                  ::str().consume_spaces(psz,1);
-                  strExtra = ::str().consume_c_quoted_value(psz);
+                  ::str::consume_spaces(psz,1);
+                  strExtra = ::str::consume_c_quoted_value(psz);
                }
                catch(...)
                {

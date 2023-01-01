@@ -45,7 +45,7 @@
 //
 //      template < typename TYPE >
 //      transport(::pointer<TYPE>& p) :
-//         pointer<T>(::move(p)),
+//         pointer<T>(::transfer(p)),
 //         ::extended::status(::is_null(this->m_p) ? error_null_result : ::success)
 //      {
 //
@@ -54,8 +54,8 @@
 //
 //      template < typename TYPE >
 //      transport(transport < TYPE > && p) :
-//         pointer<T>(::move(p)),
-//         ::extended::status(::move(p))
+//         pointer<T>(::transfer(p)),
+//         ::extended::status(::transfer(p))
 //      {
 //
 //
@@ -125,8 +125,8 @@
 //
 //
 //      transport(transport && transport) :
-//         pointer < T >(::move(transport)),
-//         status(::move(transport))
+//         pointer < T >(::transfer(transport)),
+//         status(::transfer(transport))
 //      {
 //
 //      }
@@ -194,7 +194,7 @@
 //
 //         this->release();
 //
-//         status::operator=(::move(status));
+//         status::operator=(::transfer(status));
 //
 //         if (succeeded())
 //         {
@@ -228,9 +228,9 @@
 //      transport & operator =(transport && transport)
 //      {
 //
-//         pointer < T >::operator =(::move(transport));
+//         pointer < T >::operator =(::transfer(transport));
 //
-//         status::operator=(::move(transport));
+//         status::operator=(::transfer(transport));
 //
 //         return *this;
 //

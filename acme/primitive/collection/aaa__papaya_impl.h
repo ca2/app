@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < typename CONTAINER, typename VALUE >
-inline bool contains_value(const CONTAINER & container, const VALUE & value)
+template < typename CONTAINER, typename PAYLOAD >
+inline bool contains_payload(const CONTAINER & container, const PAYLOAD & payload)
 {
 
    auto values = container.values();
@@ -24,8 +24,8 @@ inline bool contains_value(const CONTAINER & container, const VALUE & value)
 }
 
 
-template < typename CONTAINER, typename VALUE, typename START >
-inline auto find_value(const CONTAINER & container, const VALUE & value, const START & start)
+template < typename CONTAINER, typename PAYLOAD, typename START >
+inline auto find_payload(const CONTAINER & container, const PAYLOAD & payload, const START & start)
 {
 
    auto p = start;
@@ -33,7 +33,7 @@ inline auto find_value(const CONTAINER & container, const VALUE & value, const S
    for(; p.ok(); p++)
    {
 
-      if (__value(*p) == value)
+      if (payload_of(*p) == value)
       {
 
          return p;
@@ -47,20 +47,20 @@ inline auto find_value(const CONTAINER & container, const VALUE & value, const S
 }
 
 
-template < typename CONTAINER, typename VALUE >
-inline auto find_value(const CONTAINER & container, const VALUE & value)
+template < typename CONTAINER, typename PAYLOAD >
+inline auto find_payload(const CONTAINER & container, const PAYLOAD & payload)
 {
 
-   return find_value(container, value, ((CONTAINER &)container).begin());
+   return find_payload(container, value, ((CONTAINER &)container).begin());
 
 }
 
 
-template < typename CONTAINER, typename VALUE >
-inline bool erase_value(CONTAINER & container, const VALUE & value)
+template < typename CONTAINER, typename PAYLOAD >
+inline bool erase_value(CONTAINER & container, const PAYLOAD & payload)
 {
 
-   auto p = find_value(container, value);
+   auto p = find_payload(container, value);
 
    if (!p.ok())
    {
@@ -71,33 +71,33 @@ inline bool erase_value(CONTAINER & container, const VALUE & value)
 
    auto pnonconst = (non_const < decltype(p)>) p;
 
-   erase(pnonconst);
+   container.erase(pnonconst);
 
    return true;
 
 }
 
 
-template < typename ITERATOR >
-void delete_erase(ITERATOR & iterator)
-{
-
-   auto p = iterator.operator->();
-
-   ::acme::del(p);
-
-   ::erase(iterator);
-
-}
-
-
-template < typename ITERATOR >
-void erase(ITERATOR & iterator)
-{
-
-   iterator.m_pcontainer->erase_item(iterator.item());
-
-}
+//template < typename ITERATOR >
+//void delete_erase(ITERATOR & iterator)
+//{
+//
+//   auto p = iterator.operator->();
+//
+//   ::acme::del(p);
+//
+//   ::erase(iterator);
+//
+//}
+//
+//
+//template < typename ITERATOR >
+//void erase(ITERATOR & iterator)
+//{
+//
+//   iterator.m_pcontainer->erase_item(iterator.item());
+//
+//}
 
 
 

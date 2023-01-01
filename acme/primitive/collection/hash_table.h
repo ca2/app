@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "map_association.h"
+#include "set_node.h"
 
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
@@ -11,24 +11,24 @@ class set_dynamic_hash_table
 public:
 
 
-   using association = map_association < PAYLOAD >;
+   using node = set_node < PAYLOAD >;
 
-   using ITEM = association;
+   using ITEM = node;
 
    using ITEM_POINTER = ITEM *;
 
    using iterator = ::list_iterator < ITEM_POINTER >;
 
 
-   ITEM_POINTER      m_passociationHashDefault[DEFAULT_HASH_TABLE_SIZE];
-   ITEM_POINTER *    m_ppassociationHash;
+   iterator          m_pHashDefault[DEFAULT_HASH_TABLE_SIZE];
+   iterator *        m_ppHash;
    ::u32             m_nHashTableSize;
 
 
    set_dynamic_hash_table()
    {
 
-      m_ppassociationHash = nullptr;
+      m_ppHash = nullptr;
 
       m_nHashTableSize = DEFAULT_HASH_TABLE_SIZE;
 
@@ -53,14 +53,14 @@ public:
 
       }
 
-      if (m_ppassociationHash != nullptr && m_ppassociationHash != m_passociationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+      if (m_ppHash != nullptr && m_ppHash != m_pHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
       {
 
-         delete[] m_ppassociationHash;
+         delete[] m_ppHash;
 
       }
 
-      m_ppassociationHash = nullptr;
+      m_ppHash = nullptr;
 
       if (bAllocNow)
       {
@@ -68,19 +68,19 @@ public:
          if (nHashSize <= DEFAULT_HASH_TABLE_SIZE)
          {
 
-            m_ppassociationHash = m_passociationHashDefault;
+            m_ppHash = m_pHashDefault;
 
          }
          else
          {
 
-            m_ppassociationHash = memory_new ITEM_POINTER[nHashSize];
+            m_ppHash = memory_new iterator[nHashSize];
 
-            ENSURE(m_ppassociationHash != nullptr);
+            ENSURE(m_ppHash != nullptr);
 
          }
 
-         ::zero(m_ppassociationHash, sizeof(ITEM_POINTER) * nHashSize);
+         ::zero(m_ppHash, sizeof(iterator) * nHashSize);
 
       }
 
@@ -92,14 +92,14 @@ public:
    void erase_all()
    {
 
-      if (m_ppassociationHash != nullptr && m_ppassociationHash != m_passociationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+      if (m_ppHash != nullptr && m_ppHash != m_pHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
       {
 
-         delete[] m_ppassociationHash;
+         delete[] m_ppHash;
 
       }
 
-      m_ppassociationHash = nullptr;
+      m_ppHash = nullptr;
 
    }
 
@@ -113,10 +113,10 @@ class set_fixed_hash_table
 public:
 
 
-   typedef map_association < PAYLOAD > association;
+   typedef set_node < PAYLOAD > node;
 
 
-   association * m_ppassociationHash[m_nHashTableSize];
+   node * m_ppHash[m_nHashTableSize];
 
 
    set_fixed_hash_table()
@@ -124,7 +124,7 @@ public:
 
       ASSERT(m_nHashTableSize > 0);
 
-      zero(m_ppassociationHash, sizeof(m_ppassociationHash));
+      zero(m_ppHash, sizeof(m_ppHash));
 
    }
 
@@ -143,7 +143,7 @@ public:
    void erase_all()
    {
 
-      zero(m_ppassociationHash, sizeof(m_ppassociationHash));
+      zero(m_ppHash, sizeof(m_ppHash));
 
    }
 

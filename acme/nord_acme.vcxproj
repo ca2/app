@@ -1012,7 +1012,7 @@
     <ClInclude Include="primitive\collection\list.h" />
     <ClInclude Include="primitive\collection\logic_array.h" />
     <ClInclude Include="primitive\collection\map.h" />
-    <ClInclude Include="primitive\collection\map_association.h" />
+    <ClInclude Include="primitive\collection\set_node.h" />
     <ClInclude Include="primitive\collection\map_to_smart_pointer.h" />
     <ClInclude Include="primitive\collection\numeric_array.h" />
     <ClInclude Include="primitive\collection\numeric_array_range.h" />

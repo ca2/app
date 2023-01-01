@@ -1412,7 +1412,7 @@ namespace draw2d_cairo
 
       FT_Face ftface{};
 
-      FT_Error fterror = FT_New_Memory_Face(__ftlibrary(), (const FT_Byte *) block.get_data(), (FT_Long) block.get_size(), 0, &ftface);
+      FT_Error fterror = FT_New_Memory_Face(__ftlibrary(), (const FT_Byte *) block.data(), (FT_Long) block.size(), 0, &ftface);
 
       if(fterror != 0)
       {
@@ -1446,7 +1446,7 @@ namespace draw2d_cairo
 
       _synchronous_lock synchronouslock(cairo_mutex());
 
-      ::file::path pathFile = payloadFile.file_path();
+      ::file::path pathFile = payloadFile.as_file_path();
 
       auto & pprivatefont = m_mapPrivateFont[pathFile];
 

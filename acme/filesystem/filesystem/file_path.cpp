@@ -133,7 +133,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    bUrl = false;
 
-   bool bDup = false;
+   //bool bDup = false;
 
    strsize iLen = str.length();
 
@@ -196,6 +196,8 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                iaSlash.erase_at(iaSlash.get_upper_bound());
 
                p--; // erase trailing slash
+
+               iLen--;
 
             }
 
@@ -263,14 +265,14 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   CHECK_NATIVE_FILE_SEP(*p);
 
-                  if (!bDup)
-                  {
-
-                     psz = str.get_string_buffer();
-
-                     bDup = true;
-
-                  }
+//                  if (!bDup)
+//                  {
+//
+//                     psz = str.get_string_buffer();
+//
+//                     bDup = true;
+//
+//                  }
 
                   auto iSlashCount = iaSlash.size() - 2;
 
@@ -320,14 +322,14 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                CHECK_NATIVE_FILE_SEP(*p);
 
-               if (!bDup)
-               {
-
-                  psz = str.get_string_buffer();
-
-                  bDup = true;
-
-               }
+//               if (!bDup)
+//               {
+//
+//                  psz = str.get_string_buffer();
+//
+//                  bDup = true;
+//
+//               }
 
                auto iSlashCount = iaSlash.size() - 1;
 
@@ -415,18 +417,22 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
 ret:
 
-   if (bDup)
-   {
+   //if (bDup)
+   //{
 
-      str.release_string_buffer(p - psz);
+      //str.release_string_buffer(p - psz);
 
-   }
-   else if (p < pend)
-   {
+      auto iLenDebug = p - psz;
 
-      str.truncate(p);
+   str.release_string_buffer(iLen);
 
-   }
+  // }
+//   else if (p < pend)
+//   {
+//
+//      str.truncate(p);
+//
+//   }
 
    return bCertainlySyntathicallyDir;
 

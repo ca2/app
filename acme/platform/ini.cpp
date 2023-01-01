@@ -44,7 +44,7 @@ namespace handle
 
 
    ini::ini(::property_set && set) : 
-      ::property_set(::move(set))
+      ::property_set(::transfer(set))
    {
    
    }
@@ -59,7 +59,7 @@ namespace handle
 
    
    ini::ini(ini && ini) : 
-      property_set(::move(ini)) 
+      property_set(::transfer(ini)) 
    {
    
    

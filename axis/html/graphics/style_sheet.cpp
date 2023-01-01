@@ -126,7 +126,7 @@ namespace html
    }
 
 
-   style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr)
+   style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -134,7 +134,7 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if (style.matches(etag, strClass, strSubClass, scopedstr))
+         if (style.matches(etag, strClass, strSubClass, scopedstrName))
          {
 
             return &style;
@@ -148,15 +148,15 @@ namespace html
    }
 
 
-   const style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr) const
+   const style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName) const
    {
 
-      return ((style_sheet *) this)->rear_find(etag, strClass, strSubClass, scopedstr);
+      return ((style_sheet *) this)->rear_find(etag, strClass, strSubClass, scopedstrName);
 
    }
 
 
-   style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, float & f)
+   style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName, float & f)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -164,8 +164,11 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches_border_width(etag, strClass, strSubClass, scopedstr, f))
+         if(style.matches_border_width(etag, strClass, strSubClass, scopedstrName, f)) {
+
             return &style;
+
+         }
 
       }
 
@@ -174,15 +177,15 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, float & f) const
+   const style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName, float & f) const
    {
 
-      return ((style_sheet *) this)->rfind_border_width(etag, strClass, strSubClass, scopedstr, f);
+      return ((style_sheet *) this)->rfind_border_width(etag, strClass, strSubClass, scopedstrName, f);
 
    }
 
 
-   style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, ::color::color & color32)
+   style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName, ::color::color & color32)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -190,8 +193,11 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches_border_color(etag, strClass, strSubClass, scopedstr, color32))
+         if(style.matches_border_color(etag, strClass, strSubClass, scopedstrName, color32)) {
+
             return &style;
+
+         }
 
       }
 
@@ -200,10 +206,10 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstr, ::color::color & color32) const
+   const style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopestrName, ::color::color & color32) const
    {
 
-      return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, scopedstr, color32);
+      return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, scopestrName, color32);
 
    }
 

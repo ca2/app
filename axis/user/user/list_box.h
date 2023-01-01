@@ -106,6 +106,7 @@ namespace user
       void set_current_item(::item * pitem, const ::action_context & context) override;
       virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
       virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
+      virtual void set_current_item_by_index(::index iIndex, const ::action_context& context);
       virtual string get_current_item_string_value();
 
 

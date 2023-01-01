@@ -8,7 +8,7 @@ namespace colorertake5
    void text_lines::replaceTabs(index lno)
    {
 
-      lines.set_at(lno, ::str().replace("\t", "    ", lines.element_at(lno)));
+      lines.set_at(lno, ::str::replace("\t", "    ", lines.element_at(lno)));
 
    }
 

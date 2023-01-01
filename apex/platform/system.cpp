@@ -10,6 +10,7 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+//#include "log.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/exception/dump_context.h"
@@ -147,6 +148,7 @@ namespace apex
       m_papexsystem = this;
       factory()->add_factory_item < ::apex::session, ::apex::session >();
 
+//      factory()->add_factory_item<::apex::log, ::logger>();
 
       //factory()->add_factory_item < ::thread >();
 
@@ -3134,7 +3136,7 @@ pacmedirectory->create("/ca2core");
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
 
    //   }
 
@@ -3200,7 +3202,7 @@ pacmedirectory->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
       //   }
 
@@ -3751,7 +3753,7 @@ pacmedirectory->create("/ca2core");
          }
 
 
-         //strOpenUrl = strUrl + ::str().has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + ::str::has_char(strOpenUrl, ";");
 
          //if (strOpenUrl.has_char())
          {

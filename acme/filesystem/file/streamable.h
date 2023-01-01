@@ -41,7 +41,7 @@ namespace file
 
       virtual enum_status _open(const ::scoped_string & scopedstrFilePath, const ::file::enum_open & eopen);
 
-      virtual filesize translate(filesize offset, ::enum_seek eseek);
+      void translate(filesize offset, ::enum_seek eseek) override;
 
       virtual void flush();
       virtual void close();

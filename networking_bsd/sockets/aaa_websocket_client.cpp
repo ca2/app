@@ -99,7 +99,7 @@ CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned i
 
    m.allocate_add_up(iSize);
 
-   m.move(iSize);
+   m.transfer(iSize);
 
    //auto iSize2 = ::u32_pack(u, m.get_data());
    

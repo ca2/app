@@ -27,7 +27,7 @@ namespace sockets
    }
 
 
-   //void sync_socket_handler::move(socket_map::association * passociation, socket_map * psocketmap)
+   //void sync_socket_handler::transfer(socket_map::association * passociation, socket_map * psocketmap)
    //{
 
    //   if(m_psocket != nullptr)
@@ -41,7 +41,7 @@ namespace sockets
 
    //   m_psocket->m_pcallback = this;
 
-   //   m_phandler->move(passociation, psocketmap);
+   //   m_phandler->transfer(passociation, psocketmap);
 
    //}
 

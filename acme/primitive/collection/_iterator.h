@@ -95,21 +95,21 @@ namespace acme
 
 
       template < typename CONTAINER, typename ITERATOR >
-      ITERATOR erase(CONTAINER & container, ITERATOR it)
+      ITERATOR erase(CONTAINER & container, ITERATOR p)
       {
 
-         auto itnext = it;
+         auto pnext = p;
 
-         if(it.is_set())
+         if(p)
          {
 
-            itnext++;
+            pnext++;
 
-            container.erase_item(it);
+            container.erase(p);
 
          }
 
-         return itnext;
+         return pnext;
 
       }
 

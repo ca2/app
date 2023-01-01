@@ -41,7 +41,7 @@
 //   template<typed_range<const_iterator> RANGE>
 //   comparable_range(const RANGE &range) : BASE_RANGE(range) {}
 //   explicit comparable_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
-//   explicit comparable_range(THIS_RANGE && range) : BASE_RANGE(::move(range)) {}
+//   explicit comparable_range(THIS_RANGE && range) : BASE_RANGE(::transfer(range)) {}
 //   template < primitive_integral INTEGRAL >
 //   comparable_range(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
 //   comparable_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
@@ -51,7 +51,7 @@
 //   //template < primitive_range RANGE >
 //   //comparable_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
 //   comparable_range & operator = (const comparable_range & range) { BASE_RANGE::operator=(range); return *this; }
-//   comparable_range & operator = (comparable_range && range) { BASE_RANGE::operator=(::move(range)); return *this; }
+//   comparable_range & operator = (comparable_range && range) { BASE_RANGE::operator=(::transfer(range)); return *this; }
 //
 //
 //   using BASE_RANGE::_order;

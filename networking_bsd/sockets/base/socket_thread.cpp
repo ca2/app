@@ -73,12 +73,12 @@ namespace sockets_bsd
    }
 
 
-   void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
+   void socket_thread::transfer(socket_map::node * pnode, socket_map * psocketmap)
    {
 
       //auto estatus = initialize(passociation->m_psocket);
 
-      initialize(passociation->element2());
+      initialize(pnode->element2());
 
       //if (!estatus)
       //{
@@ -87,17 +87,17 @@ namespace sockets_bsd
 
       //}
 
-      m_psockethandler = ::move(__create_new < socket_handler > ());
+      m_psockethandler = ::transfer(__create_new < socket_handler > ());
 
       //psocket->m_psockethandler.release();
 
-      __Socket(passociation->element2())->m_psocketthread = this;
+      __Socket(pnode->element2())->m_psocketthread = this;
 
       //m_psockethandler->SetSlave();
 
       //m_psocket->SetSlaveHandler(m_psockethandler);
 
-      m_psockethandler->move(passociation, psocketmap);
+      m_psockethandler->transfer(pnode, psocketmap);
 
       branch();
 

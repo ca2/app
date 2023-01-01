@@ -514,7 +514,7 @@ bool dir_context::_enumerate(::file::listing& listing)
       return true;
 
    }
-   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.case_insensitive_ends(".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
+   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (listing.m_pathFinal.case_insensitive_ends(".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
       auto& pfactory = acmesystem()->folder_factory();
@@ -592,7 +592,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //      return true;
 //
 //   }
-//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str().find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
 //      auto & pfactory = acmesystem()->folder_factory();
@@ -877,7 +877,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
       return true;
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -1092,7 +1092,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -1167,7 +1167,7 @@ bool dir_context::name_is(const ::file::path& strPath)
       //            m_isdirmap.set(strPath, true, 0);
       return true;
    }
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", strPath) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
    {
       bool bHasSubFolder;
 

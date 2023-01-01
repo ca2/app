@@ -267,7 +267,7 @@ namespace fs
    bool native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
 
-      file()->move(pszDst, pszSrc);
+      file()->transfer(pszDst, pszSrc);
 
       return true;
 

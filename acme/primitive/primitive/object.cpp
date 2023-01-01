@@ -293,7 +293,7 @@ string object::as_string() const
 
    pextendedtopic->initialize(this);
 
-   return ::move(pextendedtopic);
+   return ::transfer(pextendedtopic);
 
 }
 

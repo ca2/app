@@ -103,7 +103,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   ::i64 iCall = ::str().consume_natural(strMessage);
+   //   //   ::i64 iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -285,7 +285,7 @@ namespace interprocess
    //   //else
    //   //{
 
-   //   //   dispatch_message(::move(strMessage));
+   //   //   dispatch_message(::transfer(strMessage));
    //   //   //get_app()->fork([this, prx, strMessage]()
    //   //   //{
 
@@ -312,7 +312,7 @@ namespace interprocess
 
    //   ///memory memory(pdata, len);
 
-   //   dispatch_message(message, ::move(memory));
+   //   dispatch_message(message, ::transfer(memory));
 
    //   //if (m_phandler != nullptr)
    //   //{
@@ -364,9 +364,9 @@ namespace interprocess
    //void target::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __new(class dispatch_item(::move(strMessage)));
+   //   auto pdispatchitem = __new(class dispatch_item(::transfer(strMessage)));
 
-   //   dispatch_item(::move(pdispatchitem));
+   //   dispatch_item(::transfer(pdispatchitem));
 
    //}
 
@@ -374,9 +374,9 @@ namespace interprocess
    //void target::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __new(class dispatch_item(uData, ::move(memory)));
+   //   auto pdispatchitem = __new(class dispatch_item(uData, ::transfer(memory)));
 
-   //   dispatch_item(::move(pdispatchitem));
+   //   dispatch_item(::transfer(pdispatchitem));
 
    //}
 
@@ -388,7 +388,7 @@ namespace interprocess
 
    //   bool bWasEmpty = m_dispatchitema.is_empty();
 
-   //   m_dispatchitema.add(::move(pdispatchitem));
+   //   m_dispatchitema.add(::transfer(pdispatchitem));
 
    //   if (bWasEmpty)
    //   {
@@ -428,7 +428,7 @@ namespace interprocess
    //               try
    //               {
 
-   //                  m_phandler->on_interprocess_receive(this, ::move(pdispatchitem));
+   //                  m_phandler->on_interprocess_receive(this, ::transfer(pdispatchitem));
 
    //               }
    //               catch (...)

@@ -97,7 +97,7 @@ namespace core
 
       pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
 
-      return ::move(pprogresscontrol);
+      return ::transfer(pprogresscontrol);
 
    }
 

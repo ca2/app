@@ -85,7 +85,9 @@ namespace acme
 
       string strPath(path);
 
-      if (strPath == "os")
+      string strOs("os");
+
+      if (strPath == strOs)
       {
 
          strPath = "ca2os";

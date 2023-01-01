@@ -245,7 +245,7 @@ namespace folder_zip
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (::is_set(pathFile))
+      if (pathFile.has_char())
       {
 
          if (!locate_file(pathFile))
@@ -325,7 +325,7 @@ namespace folder_zip
 
       auto pFind = strFile.find(":");
 
-      if (::is_set(pFind))
+      if (::found(pFind))
       {
 
          strFile = strFile(0, pFind);
@@ -396,6 +396,8 @@ namespace folder_zip
 
       unz_file_info unzfileinfo;
 
+      int i = 0;
+
       while (err == UNZ_OK)
       {
 
@@ -411,6 +413,42 @@ namespace folder_zip
             nullptr, // comment
             0);
 
+         if(i == 237) {
+
+            printf("237 %s\n", szItem);
+
+            const_ansi_range range("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
+
+            const_ansi_range rangeBlock(szItem);
+
+            auto equality = ::comparison::comparison < char >();
+
+            while (range.begin() < range.end())
+            {
+
+               if (!equality.equals(*range.begin(), *rangeBlock.begin()))
+               {
+
+                  printf("237 different\n");
+
+                  break;
+
+               }
+
+               range.begin()++;
+
+               rangeBlock.begin()++;
+
+            }
+
+            printf("237 equal if not different\n");
+
+         } else{
+
+            printf("%05d %s\n", i, szItem);
+
+         }
+
          if (function(szItem))
          {
 
@@ -419,6 +457,8 @@ namespace folder_zip
          }
 
          err = unzGoToNextFile(pf);
+
+         i++;
 
       }
 

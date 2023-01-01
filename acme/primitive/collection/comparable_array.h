@@ -36,7 +36,7 @@ public:
    comparable_array() { }
    comparable_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
    comparable_array(const comparable_array & array) : BASE_ARRAY(array) {}
-   comparable_array(comparable_array && array) : BASE_ARRAY(::move(array)) {}
+   comparable_array(comparable_array && array) : BASE_ARRAY(::transfer(array)) {}
    template < primitive_integral INTEGRAL >
    comparable_array(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    comparable_array(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
@@ -85,7 +85,7 @@ public:
    comparable_array & operator = (comparable_array && array)
    {
 
-      BASE_ARRAY::operator = (::move(array));
+      BASE_ARRAY::operator = (::transfer(array));
 
       return *this;
 

@@ -354,7 +354,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   }
 //
-//   ::i64 iCall = ::str().consume_natural(strMessage);
+//   ::i64 iCall = ::str::consume_natural(strMessage);
 //
 //   if(!strMessage.begins_eat(" from "))
 //   {

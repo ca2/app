@@ -20,13 +20,13 @@ public:
 
    tokenizer():m_iterator(nullptr) {}
    tokenizer(const tokenizer & range) : const_ansi_range(range) {}
-   tokenizer(tokenizer && range) : const_ansi_range(::move(range)) { }
+   tokenizer(tokenizer && range) : const_ansi_range(::transfer(range)) { }
    tokenizer(const ::string & str) : RANGE(str), m_iterator(str.begin()) {}
    ~tokenizer() {}
 
 
    tokenizer & operator = (const tokenizer & tokenizer) { ::const_ansi_range::operator=(tokenizer); return *this; }
-   tokenizer & operator = (tokenizer && tokenizer) { ::const_ansi_range::operator=(::move(tokenizer)); return *this; }
+   tokenizer & operator = (tokenizer && tokenizer) { ::const_ansi_range::operator=(::transfer(tokenizer)); return *this; }
 
 
    //strsize size() const { return m_range.size(); }

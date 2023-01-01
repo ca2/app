@@ -106,7 +106,7 @@ namespace xml
    //   
    //   auto pxmldocument = __create_new < ::xml::document >(); 
 
-   //   return ::move(pxmldocument);
+   //   return ::transfer(pxmldocument);
 
    //}
 

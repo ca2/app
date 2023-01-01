@@ -822,7 +822,7 @@ namespace mysql
          }
          else
          {
-            ::str().increment_digit_letter(strId);
+            ::str::increment_digit_letter(strId);
          }
          strSql = "INSERT INTO " + strTable + "(`atom`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
          if (!query(strSql))

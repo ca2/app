@@ -77,7 +77,7 @@ public:
 //
 //       m_psz += size;
 //
-//       return ::move(str);
+//       return ::transfer(str);
 //
 //    }
 

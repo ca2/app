@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using file_path_map = map < ::file::path, VALUE, typename argument_of < ::file::path >::type, ARG_VALUE > ;
+template < class PAYLOAD, typename ARG_VALUE = argument_of < PAYLOAD > >
+using file_path_map = map < ::file::path, PAYLOAD, argument_of < ::file::path >, ARG_VALUE > ;
 
 using file_path_to_intptr = file_path_map < iptr, iptr > ;
 

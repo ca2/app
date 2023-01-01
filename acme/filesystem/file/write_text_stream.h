@@ -71,6 +71,9 @@ public:
 
 
     void print(const ::scoped_string& str);
+    void print(::ansi_character ansicharacter) { write(&ansicharacter, 1); }
+    void print(::wd16_character wd16character) { char sz[8]; write(&sz, wd16_to_ansi(sz, &wd16character, 1)); }
+    void print(::wd32_character wd32character) { char sz[8]; write(&sz, wd32_to_ansi(sz, &wd32character, 1)); }
 
 
     template < primitive_number NUMBER >

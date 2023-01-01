@@ -167,13 +167,14 @@ public:
    payload(::property * pproperty);
    payload(::particle * pparticle);
    payload(class ::time * ptime);
-   payload(const ::scoped_string & scopedstr);
+   template < character_range CHARACTER_RANGE >
+   payload(const CHARACTER_RANGE & range);
    //template < ::count count >
    //payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
    template < primitive_integral INTEGRAL >
    payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
-   payload(const ::ansi_character * begin, const ::ansi_character * end) : payload(::range < const ::ansi_character * >(begin, end)) {}
-   payload(::range < const ::ansi_character * > ansirange);
+   payload(const ::ansi_character * begin, const ::ansi_character * end);
+   payload(const ::ansi_character * psz);
    payload(const ::string & str);
    payload(const ::type & type);
    payload(const ::atom & atom);
@@ -1412,7 +1413,7 @@ inline PAYLOAD1 operator +(const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 
    payload.addition(payload2);
 
-   return ::move(payload);
+   return ::transfer(payload);
 
 }
 
@@ -1421,7 +1422,7 @@ template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
 inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
-   return payload1 = ::move(payload1 + payload2);
+   return payload1 = ::transfer(payload1 + payload2);
 
 }
 
@@ -1434,7 +1435,7 @@ inline ::string operator +(const PAYLOAD & payload, const CHARACTER * psz)
 
    str.append(psz);
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 
@@ -1458,7 +1459,7 @@ inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
 
    str.append(payload.get_string());
 
-   return ::move(str);
+   return ::transfer(str);
 
 }
 
@@ -1467,7 +1468,7 @@ template < primitive_payload PAYLOAD, character_range RANGE >
 ::string operator + (const PAYLOAD & payload, const RANGE & range)
 {
 
-   return ::move(::string(payload) + ::string(range));
+   return ::transfer(::string(payload) + ::string(range));
 
 }
 

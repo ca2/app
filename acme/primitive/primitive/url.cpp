@@ -259,7 +259,7 @@ namespace url
 
       string strQuery = object_get_query(strObject);
 
-      return object_get_script(strObject) + ::str().has_char(query_set(strQuery, strKeyParam, payload), "?");
+      return object_get_script(strObject) + ::str::has_char(query_set(strQuery, strKeyParam, payload), "?");
 
    }
 
@@ -714,7 +714,7 @@ namespace url
       if(not_found(pPos))
          return strUrl;
 
-      return strUrl.left(pPos) + ::str().has_char(query_erase(strUrl.substr(pPos + 1), strKeyParam), "?");
+      return strUrl.left(pPos) + ::str::has_char(query_erase(strUrl.substr(pPos + 1), strKeyParam), "?");
 
    }
 
@@ -1747,7 +1747,7 @@ namespace url
    string url::set_script(const ::string & strUrl, const ::string & strScript)
    {
 
-      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str().has_char(get_query(strUrl), "?");
+      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str::has_char(get_query(strUrl), "?");
 
    }
 
@@ -1779,7 +1779,7 @@ namespace url
       if (!string_begins(strScript, "/"))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
 
    }
 
@@ -1811,7 +1811,7 @@ namespace url
       if (!string_begins(strScript, "/"))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
    }
 
 
@@ -2187,7 +2187,7 @@ namespace url
 
       strDecode.release_string_buffer(sizeLen);
 
-      return ::move(strDecode);
+      return ::transfer(strDecode);
 
    }
 
@@ -2353,7 +2353,7 @@ namespace url
 
       strEncoded.release_string_buffer(pszEncoded - pszEncodedStart);
 
-      return ::move(strEncoded);
+      return ::transfer(strEncoded);
 
    }
 
@@ -2651,7 +2651,7 @@ void openURL(const string& url_str)
 //
 //   }
 //
-//   return ::move(strDecode);
+//   return ::transfer(strDecode);
 //
 //
 //}

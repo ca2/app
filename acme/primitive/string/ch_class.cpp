@@ -75,7 +75,7 @@ void * gen_ch_class_reference_tables()
          if(ccs[pos] == '{')
          {
             string categ;
-            if(!::str().get_curly_content(&ccs[pos], categ))
+            if(!::str::get_curly_content(&ccs[pos], categ))
                return 0;
             if(categ == "ALL")
                cc->fill();
@@ -139,7 +139,7 @@ void * gen_ch_class_reference_tables()
             default:
                strsize retEnd;
                prev_char = unicode_to_utf8(
-                  ::str().get_escaped_char(ccs, pos, retEnd));
+                  ::str::get_escaped_char(ccs, pos, retEnd));
                if(prev_char.is_empty())
                   break;
                cc->add_char(prev_char);
@@ -207,7 +207,7 @@ void * gen_ch_class_reference_tables()
 
             strsize retEnd;
 
-            string nextc = unicode_to_utf8(::str().get_escaped_char(ccs, pos+1, retEnd));
+            string nextc = unicode_to_utf8(::str::get_escaped_char(ccs, pos+1, retEnd));
 
             if(nextc.is_empty())
                break;

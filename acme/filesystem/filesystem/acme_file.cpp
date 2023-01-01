@@ -676,7 +676,7 @@ void acme_file::set_size(FILE * pfile, filesize size)
 }
 
 
-void acme_file::move(const ::file::path & pathNewName, const ::file::path & pathOldName)
+void acme_file::transfer(const ::file::path & pathNewName, const ::file::path & pathOldName)
 {
 
    copy(pathNewName, pathOldName, true);
@@ -1051,7 +1051,7 @@ string_array acme_file::lines(const ::file::path & pathParam)
 
       }
 
-      return ::move(straLines);
+      return ::transfer(straLines);
 
    }
    catch (const ::exception & exception)
@@ -1293,7 +1293,7 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 //         if (delete_file(path))
 //         {
 //
-//            return ::move(path);
+//            return ::transfer(path);
 //
 //         }
 //
@@ -1301,7 +1301,7 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 //      else
 //      {
 //
-//         return ::move(path);
+//         return ::transfer(path);
 //
 //      }
 //
@@ -1561,7 +1561,7 @@ void acme_file::_erase(const ::file::path & path)
 
    pini->parse_ini(str);
 
-   return ::move(pini);
+   return ::transfer(pini);
 
 }
 

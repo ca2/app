@@ -54,7 +54,7 @@ namespace dynamic_source
 
       pscript->m_strName = strName;
 
-      return ::move(pscript);
+      return ::transfer(pscript);
 
    }
 

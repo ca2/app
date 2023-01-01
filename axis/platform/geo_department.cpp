@@ -222,7 +222,7 @@ namespace geo
 
                v.parse_network_payload(pszJson);
 
-               string strLine = v["name"].as_string() + ", " + v["country"].as_string();
+               string strLine = v["name"] + ", " + v["country"];
 
                m_straCity.add(strLine);
 
@@ -234,11 +234,11 @@ namespace geo
 
                m_iaIds.add(iId);
 
-               double dLon = v["coord"]["lon"].f64();
+               double dLon = v["coord"]["lon"].as_f64();
 
                m_daLon.add(dLon);
 
-               double dLat = v["coord"]["lat"].f64();
+               double dLat = v["coord"]["lat"].as_f64();
 
                m_daLat.add(dLat);
 
@@ -390,7 +390,7 @@ namespace geo
 
       }
 
-      if (::is_set(pFind))
+      if (found(iFind))
       {
 
          goto found;
@@ -436,7 +436,7 @@ namespace geo
 
       }
 
-      if (::is_set(pFind))
+      if (::found(iFind))
       {
 
          goto found;
@@ -509,7 +509,7 @@ namespace geo
 
       }
 
-      if (::is_set(pFind))
+      if (::found(iFind))
       {
 
          goto found;
@@ -551,7 +551,7 @@ namespace geo
 
       }
 
-      const ::scoped_string & scopedstrId =
+      const char * pszId =
 #include "sensitive/openweather.txt"
          ;
 
@@ -581,9 +581,9 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::earth::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
+      ::earth::zonetime timeSunrise(v["sys"]["sunrise"].as_i64(), iTimeZone);
 
-      ::earth::zonetime timeSunset(v["sys"]["sunset"].i64(), iTimeZone);
+      ::earth::zonetime timeSunset(v["sys"]["sunset"].as_i64(), iTimeZone);
 
       iRise = (int)timeSunrise.GetZoneTimeOfDay();
 
@@ -1046,7 +1046,7 @@ namespace geo
       else if (utc_offset_invalid(dUTCOffset))
       {
 
-         return "(" + ::str().signed_double(dUTCOffset) + " : invalid UTC?)";
+         return "(" + ::str::signed_double(dUTCOffset) + " : invalid UTC?)";
 
       }
       else
@@ -1054,7 +1054,7 @@ namespace geo
 
          string strUTCOffset;
 
-         strUTCOffset = "UTC " + ::str().signed_int((int)dUTCOffset);
+         strUTCOffset = "UTC " + ::str::signed_int((int)dUTCOffset);
 
          double dMod = fmod(fabs(dUTCOffset), 1.0);
 
@@ -1525,7 +1525,7 @@ namespace geo
 
          timezone.m_strZone = payload["zone_name"];
 
-         timezone.m_dZone = payload["zone_offset"].f64();
+         timezone.m_dZone = payload["zone_offset"].as_f64();
 
       }
       catch (...)

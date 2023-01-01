@@ -75,7 +75,7 @@ matter::~matter()
 ::topic_pointer matter::create_topic(const ::atom & atom)
 {
 
-   return ::move(::create_topic(this, atom));
+   return ::transfer(::create_topic(this, atom));
 
 }
 
@@ -86,7 +86,7 @@ matter::~matter()
 ::extended_topic_pointer matter::create_extended_topic(const ::atom & atom)
 {
 
-   return ::move(::create_extended_topic(this, atom));
+   return ::transfer(::create_extended_topic(this, atom));
 
 }
 
@@ -772,7 +772,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //
 //   ptopic->m_pcontext = acmesystem();
 //
-//   return ::move(ptopic);
+//   return ::transfer(ptopic);
 //
 //}
 

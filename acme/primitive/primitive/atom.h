@@ -6,7 +6,7 @@
 // #include "acme/primitive/string/string.h"
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
-#include "acme/primitive/primitive/move.h"
+#include "acme/primitive/primitive/transfer.h"
 
 
 enum enum_id : ::uptr;
@@ -55,10 +55,10 @@ int __atom_sgn(T x)
 }
 
 
-//#define __atom_safe_strcmp(a, b) ::str().order(a, b)
+//#define __atom_safe_strcmp(a, b) ::str::order(a, b)
 //
 //
-//#define __atom_safe_stricmp(a, b) ::str().case_insensitive_order(a, b)
+//#define __atom_safe_stricmp(a, b) ::str::case_insensitive_order(a, b)
 //
 //
 //#define __atom_str_begins(a, b) string_begins(a, b)
@@ -300,6 +300,8 @@ public:
       ::uptr               m_u;
       ::iptr               m_i;
       enum_id              m_eid;
+      enum_command         m_ecommand;
+      enum_impact          m_eimpact;
       enum_property        m_eproperty;
       enum_factory         m_efactory;
       enum_task_tool       m_etasktool;
@@ -329,6 +331,7 @@ public:
    inline atom(enum_type etype);
    inline atom(enum_id eid);
    inline atom(ENUM_ID EID);
+   inline atom(const ::e_command & ecommand);
    inline atom(enum_message emessage);
    inline atom(ENUM_MESSAGE EMESSAGE);
    inline atom(enum_impact eimpact);
@@ -524,8 +527,16 @@ public:
    //inline bool operator > (ENUM_ID EID) const { return operator>((::enum_id)EID); }
    //inline bool operator >= (ENUM_ID EID) const { return operator>=((::enum_id)EID); }
 
+    inline bool operator == (::enum_command ecommand) const;
+    inline ::std::strong_ordering operator <=> (::enum_command ecommand) const;
 
-   //inline ::std::strong_ordering order(::enum_message emessage) const;
+    inline bool operator == (::enum_impact eimpact) const;
+    inline ::std::strong_ordering operator <=> (::enum_impact eid) const;
+
+    inline bool operator == (::ENUM_IMPACT EIMPACT) const { return *this == (::enum_impact)EIMPACT; }
+    inline ::std::strong_ordering operator <=> (::ENUM_IMPACT EIMPACT) const { return *this <=> (::enum_impact)EIMPACT; }
+
+    //inline ::std::strong_ordering order(::enum_message emessage) const;
    inline bool operator == (::enum_message emessage) const;
    inline ::std::strong_ordering operator <=> (::enum_message emessage) const;
    //inline bool operator < (::enum_message emessage) const;

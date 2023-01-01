@@ -162,7 +162,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //
 //   template < class... OTHER >
 //   tuple(tuple<OTHER...>&& right)
-//      : BASE_TYPE(::move(right.get_rest())),m_val(::move(right.m_val))
+//      : BASE_TYPE(::transfer(right.get_rest())),m_val(::transfer(right.m_val))
 //   {
 //   }
 //
@@ -173,7 +173,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //   }
 //
 //   explicit tuple(TYPE && val,const REST &&... rest)
-//      : BASE_TYPE(::move(rest...)),m_val(::move(val))
+//      : BASE_TYPE(::transfer(rest...)),m_val(::transfer(val))
 //   {
 //   }
 //
@@ -189,8 +189,8 @@ void __swap(TYPE & t1,TYPE & t2)
 //   template<class... OTHER>
 //   TUPLE_TYPE& operator=(tuple<OTHER...>&& right)
 //   {
-//      m_val = ::move(right.m_val);
-//      BASE_TYPE::operator = (::move(right.get_rest()));
+//      m_val = ::transfer(right.m_val);
+//      BASE_TYPE::operator = (::transfer(right.get_rest()));
 //      return *this;
 //   }
 //
@@ -242,8 +242,8 @@ void __swap(TYPE & t1,TYPE & t2)
 //
 //   template < class TYPE1, class TYPE2 >
 //   tuple(pair < TYPE1, TYPE2 > && right) :
-//      BASE_TYPE(tuple<TYPE2>(::move(right.second))),
-//      m_val(::move(right.first))
+//      BASE_TYPE(tuple<TYPE2>(::transfer(right.second))),
+//      m_val(::transfer(right.first))
 //   {
 //
 //   }
@@ -252,9 +252,9 @@ void __swap(TYPE & t1,TYPE & t2)
 //   TUPLE_TYPE & operator=(TUPLE_TYPE&& right)
 //   {
 //
-//      m_val = ::move(right.m_val);
+//      m_val = ::transfer(right.m_val);
 //
-//      BASE_TYPE::operator = (::move(right.get_rest()));
+//      BASE_TYPE::operator = (::transfer(right.get_rest()));
 //
 //      return (*this);
 //
@@ -265,9 +265,9 @@ void __swap(TYPE & t1,TYPE & t2)
 //   TUPLE_TYPE& operator=(pair<TYPE1,TYPE2>&& right)
 //   {
 //
-//      m_val = ::move(right.element1());
+//      m_val = ::transfer(right.element1());
 //
-//      BASE_TYPE::operator = (tuple<TYPE2>(::move(right.second)));
+//      BASE_TYPE::operator = (tuple<TYPE2>(::transfer(right.second)));
 //
 //      return *this;
 //
@@ -374,7 +374,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //
 //   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
 //   //typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  _RRtype;
-//   return (::move(((TUPLE_TYPE&)TUPLE).m_val));
+//   return (::transfer(((TUPLE_TYPE&)TUPLE).m_val));
 //
 //}
 //
@@ -383,7 +383,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //tuple < TYPES&&... > make_tuple(TYPES&&... args)
 //{
 //
-//   return ::move(args...);
+//   return ::transfer(args...);
 //
 //}
 //

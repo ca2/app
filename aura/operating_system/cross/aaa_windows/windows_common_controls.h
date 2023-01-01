@@ -729,7 +729,7 @@ typedef struct tagREBARINFO
 #define RBBS_CHILDEDGE      0x00000004  // edge around top & bottom of child window
 #define RBBS_HIDDEN         0x00000008  // don't show
 #define RBBS_NOVERT         0x00000010  // don't show when vertical
-#define RBBS_FIXEDBMP       0x00000020  // bitmap doesn't move during band resize
+#define RBBS_FIXEDBMP       0x00000020  // bitmap doesn't transfer during band resize
 #define RBBS_VARIABLEHEIGHT 0x00000040  // allow autosizing of this child vertically
 #define RBBS_GRIPPERALWAYS  0x00000080  // always show the gripper
 #define RBBS_NOGRIPPER      0x00000100  // never show the gripper

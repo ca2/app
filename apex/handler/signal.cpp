@@ -283,7 +283,7 @@ void signal::erase_handler(const ::signal_handler & signalhandler)
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   m_signalhandlercontext.erase_key(signalhandler);
+   m_signalhandlercontext.erase_item(signalhandler);
 
 }
 

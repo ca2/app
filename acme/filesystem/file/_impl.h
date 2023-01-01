@@ -167,8 +167,8 @@
 ////}
 //
 //
-//template < class STREAM, class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-//inline void __exchange(STREAM & s, map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > & m)
+//template < class STREAM, class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class PAIR >
+//inline void __exchange(STREAM & s, map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR > & m)
 //{
 //
 //   if (s.is_storing())
@@ -205,8 +205,8 @@
 //      {
 //
 //         c--;
-//         typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::BASE_KEY element1;
-//         //typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::BASE_VALUE element2;
+//         typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_KEY element1;
+//         //typename map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, PAIR >::BASE_VALUE element2;
 //         s >> element1;
 //         //if (s.fail())
 //           // break;
@@ -400,26 +400,26 @@
 
 
 
-template < typename FILE >
-inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & time)
-{
+//template < typename FILE >
+//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & time)
+//{
+//
+//   s << time.m_i;
+//
+//   return s;
+//
+//}
 
-   s << time.m_i;
 
-   return s;
-
-}
-
-
-template < typename FILE >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & time)
-{
-
-   s >> time.m_i;
-
-   return s;
-
-}
+//template < typename FILE >
+//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & time)
+//{
+//
+//   s >> time.m_i;
+//
+//   return s;
+//
+//}
 
 //
 //

@@ -28,50 +28,115 @@ using scoped_string = scoped_ansi_string;
 using scoped_wstring = scoped_wide_string;
 
 
+template<typename TYPE>
+struct const_of_struct
+{
+   using CONST_OF_TYPE = const TYPE;
+};
+template<typename TYPE>
+struct const_of_struct<TYPE &>
+{
+   using CONST_OF_TYPE = const TYPE &;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE *>
+{
+   using CONST_OF_TYPE = const TYPE *;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE const &>
+{
+   using CONST_OF_TYPE = const TYPE &;
+};
+template<typename TYPE>
+struct const_of_struct < TYPE * const>
+{
+   using CONST_OF_TYPE = const TYPE *;
+};
+template<typename TYPE>
+struct const_of_struct< TYPE const && >
+{
+   using CONST_OF_TYPE = const TYPE &&;
+};
+template<typename TYPE>
+using const_of = typename const_of_struct<TYPE>::CONST_OF_TYPE;
 
 
 // erase_const
 // erase_const
 // erase_const
-
 
 template<typename TYPE>
 struct erase_const
 {
-
-   // erase top-level const qualifier
    using NON_CONST_TYPE = TYPE;
-
-
 };
-
 template<typename TYPE>
 struct erase_const<TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
-
-
 template<typename TYPE>
 struct erase_const<const TYPE>
 {
    using NON_CONST_TYPE = TYPE;
 };
-
 template<typename TYPE>
 struct erase_const<const TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
-
 template<typename TYPE>
 struct erase_const<const TYPE *>
 {
    using NON_CONST_TYPE = TYPE *;
 };
-
-template<class TYPE>
+template<typename TYPE>
+struct erase_const<const TYPE &&>
+{
+   using NON_CONST_TYPE = TYPE &&;
+};
+template<typename TYPE>
 using non_const = typename erase_const<TYPE>::NON_CONST_TYPE;
+
+
+
+
+template<typename TYPE>
+struct erase_reference
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<TYPE &>
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<const TYPE &>
+{
+   using NON_REFERENCE_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<TYPE &&>
+{
+   using NON_REFERENCE_TYPE = TYPE;
+};
+
+template<typename TYPE>
+struct erase_reference<const TYPE &&>
+{
+   using NON_REFERENCE_TYPE = const TYPE;
+};
+
+template<typename TYPE>
+using non_reference = typename erase_reference<TYPE>::NON_REFERENCE_TYPE;
+
+
+
 
 
 
@@ -447,10 +512,10 @@ class function;
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class list;
 
+
 template < typename ARGUMENT >
-class argument_of
+struct argument_of_struct
 {
-public:
 
    using type = const ARGUMENT &;
 
@@ -458,39 +523,44 @@ public:
 
 
 template < primitive_number NUMBER >
-class argument_of < NUMBER >
+struct argument_of_struct < NUMBER >
 {
-public:
 
    using type = NUMBER;
 
 };
 
-//template < primitive_character CHARACTER >
-//class argument_of < CHARACTER >
-//{
-//public:
-//
-//   using type = CHARACTER;
-//
-//};
+
+template < typename ARGUMENT >
+using argument_of = typename argument_of_struct < ARGUMENT >::type;
 
 
-template < typename T, typename ARG_T = typename argument_of < T >::type >
+template < typename T >
 class single;
 
 
+template < typename SINGLE >
+struct make_single ;
 
-template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
-class set;
+
+template < typename NODE >
+class node_set;
 
 
-template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
+template < typename KEY, typename NODE = single < KEY > >
+using set = node_set < ::make_single < NODE > >;
+
+
+template < typename T1, typename T2 >
 class pair;
 
 
-template < class KEY, class VALUE, class ARG_KEY = typename argument_of < KEY >::type, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
-class map;
+template < typename PAIR >
+class pair_map;
+
+
+template < typename TYPE1, typename TYPE2, class PAIR = pair < TYPE1, TYPE2 > >
+using map = pair_map < PAIR >;
 
 
 template<class ENUM>
@@ -506,8 +576,8 @@ using item_pointer = ::pointer < ::item >;
 
 using memory_pointer = ::pointer < ::memory >;
 
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
-using atom_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
+template < typename TYPE, typename PAIR = pair < ::atom, TYPE > >
+using atom_map = ::map < atom, TYPE, PAIR >;
 
 
 

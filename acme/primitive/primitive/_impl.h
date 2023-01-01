@@ -1402,7 +1402,7 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 //
 //      }
 //
-//      auto pelement = ::move(pfactory->create_element());
+//      auto pelement = ::transfer(pfactory->create_element());
 //
 //      if (!pelement)
 //      {

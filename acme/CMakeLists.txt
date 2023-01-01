@@ -1463,7 +1463,7 @@ list(APPEND library_source
         primitive/collection/iterator.h
         primitive/collection/list.h
         primitive/collection/map.h
-        primitive/collection/map_association.h
+        primitive/collection/set_node.h
         primitive/collection/map_to_smart_pointer.h
         primitive/collection/numeric_array.h
         primitive/collection/numeric_array_range.h

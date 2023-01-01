@@ -143,7 +143,7 @@ namespace interprocess
       //
       //   }
       //
-      //   ::i64 iCall = ::str().consume_natural(strMessage);
+      //   ::i64 iCall = ::str::consume_natural(strMessage);
       //
       //   if(!strMessage.begins_eat(" from "))
       //   {
@@ -551,7 +551,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   ::i64 iCall = ::str().consume_natural(strMessage);
+   //   //   ::i64 iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {

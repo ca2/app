@@ -120,7 +120,7 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //      {
 //
 //         m_estatus = status.m_estatus;
-//         m_pexceptiona = ::move(status.m_pexceptiona);
+//         m_pexceptiona = ::transfer(status.m_pexceptiona);
 //
 //         return *this;
 //

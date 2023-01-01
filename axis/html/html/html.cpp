@@ -241,7 +241,7 @@ namespace html
    string html::entities(const ::string & strParam)
    {
       
-      const ::scoped_string & scopedstr = strParam;
+      const char * psz = strParam;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -293,7 +293,7 @@ namespace html
    string html::htmlpre(const ::string & strParam)
    {
 
-      const ::scoped_string & scopedstr = strParam;
+      const char * psz = strParam;
 
       if (psz == nullptr || *psz == '\0')
       {
@@ -366,7 +366,7 @@ namespace html
       do
       {
 
-         if ((iCurPos = str.find('&', ++iCurPos)) == -1)
+         if ((iCurPos = str.find_index('&', ++iCurPos)) == -1)
             break;
 
          iParseLen = resolve_entity(str.substr(iCurPos), strChar);
@@ -699,7 +699,7 @@ namespace html
 
       bool bHtml = false;
 
-      strHtml = payload.as_string();
+      strHtml = payload.get_string();
 
       if (strHtml.left(2048).trimmed().case_insensitive_contains("<html"))
       {
@@ -713,7 +713,7 @@ namespace html
 
          strHtml.empty();
 
-         pathHtml = payload.file_path();
+         pathHtml = payload.as_file_path();
 
          bHtml = pathHtml.case_insensitive_ends(".html") || pathHtml.case_insensitive_ends(".htm") || pathHtml.case_insensitive_ends(".xhtml");
 
@@ -737,7 +737,7 @@ namespace html
       if(varDisplay.is_empty())
          return tag_to_display(e_tag);
 
-      string strDisplay = varDisplay.as_string();
+      string strDisplay = varDisplay.get_string();
 
       if(strDisplay.has_char())
       {

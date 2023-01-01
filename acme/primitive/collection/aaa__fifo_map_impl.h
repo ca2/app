@@ -2,8 +2,8 @@
 
 
 
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-//index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_key(ARG_KEY key)
+//template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class COMPARE >
+//index fifo_map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, COMPARE >::add_key(ARG_KEY key)
 //{
 //
 //   index i;
@@ -23,8 +23,8 @@
 //
 //
 //
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-//index fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key, ARG_VALUE newValue)
+//template < class KEY, class ARG_KEY, class PAYLOAD, class ARG_VALUE, class COMPARE >
+//index fifo_map < KEY, ARG_KEY, PAYLOAD, ARG_VALUE, COMPARE >::add_pair(ARG_KEY key, ARG_VALUE newValue)
 //{
 //
 //   index i;

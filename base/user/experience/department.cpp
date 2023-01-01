@@ -58,7 +58,7 @@ namespace experience
 
       pexperience->m_strExperience = strExperience;
 
-      return ::move(pexperience);
+      return ::transfer(pexperience);
 
    }
 
@@ -83,7 +83,7 @@ namespace experience
 
             auto psystem = acmesystem()->m_pbasesystem;
 
-            auto strExperience = psystem->payload("experience").as_string();
+            auto strExperience = psystem->payload("experience").get_string();
 
             straExperience.add(strExperience);
 

@@ -95,7 +95,7 @@ public:
    property(const ::atom& atom) : m_atom(atom) { on_property_construct(this); }
    property(const ::atom& atom, const ::payload& varValue) : m_atom(atom), ::payload(varValue) { on_property_construct(this); }
    property(const ::property& property) : m_atom(property.m_atom), ::payload(property) { on_property_construct(this); }
-   property(::property&& property) : m_atom(::move(property.m_atom)), ::payload(::move(property)) { on_property_construct(this); }
+   property(::property&& property) : m_atom(::transfer(property.m_atom)), ::payload(::transfer(property)) { on_property_construct(this); }
    ~property() { on_property_destruct(this); }
 
 
@@ -300,7 +300,7 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
 //::string operator + (const ::property & property, const char (&cha)[n])
 //{
 //
-//   return ::move(property.get_string() + cha);
+//   return ::transfer(property.get_string() + cha);
 //
 //}
 //

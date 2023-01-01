@@ -413,7 +413,7 @@ namespace aura
 //   ::file::path context::get_matter_cache_path(::file::path path)
 //   {
 //
-//      if (::str().case_insensitive_begins_eat((string&)path, "appmatter://"))
+//      if (::str::case_insensitive_begins_eat((string&)path, "appmatter://"))
 //      {
 //
 //         auto psystem = acmesystem()->m_papexsystem;
@@ -1016,7 +1016,7 @@ namespace aura
 
       }
 
-      return ::move(pimage);
+      return ::transfer(pimage);
 
    }
 
@@ -1052,7 +1052,7 @@ namespace aura
 
       //}
 
-      return ::move(pimage);
+      return ::transfer(pimage);
 
    }
 

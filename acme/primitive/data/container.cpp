@@ -89,7 +89,7 @@ namespace data
    bool data_container_base::erase_data(::data::data * pdata)
    {
 
-      auto bRemove = m_datamap.erase_key(pdata->m_atom);
+      auto bRemove = m_datamap.erase_item(pdata->m_atom);
 
       return bRemove;
 

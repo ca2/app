@@ -239,7 +239,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
          return false;
       }
 
-      *plValue = ::str().to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = *plValue;
@@ -337,7 +337,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + as_string(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set PAYLOAD('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + as_string(lValue) + ")";
 
       TRACE(strSql);
 

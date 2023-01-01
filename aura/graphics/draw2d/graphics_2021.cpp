@@ -4185,7 +4185,7 @@ namespace draw2d
 
       string strParam(strArg);
 
-      strParam = ::str().q_valid(strParam);
+      strParam = ::str::q_valid(strParam);
 
       if (strParam.is_empty())
       {
@@ -4319,7 +4319,7 @@ namespace draw2d
                if ((int) sz.cx > rectangleClip.width())
                {
 
-                  i = ::str().uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
+                  i = ::str::uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
 
                   if (i <= 0)
                   {
@@ -4627,7 +4627,7 @@ namespace draw2d
                break;
             }
 
-            psz = ::str().uni_dec(pszSource, psz);
+            psz = ::str::uni_dec(pszSource, psz);
 
             pszEnd = psz;
 

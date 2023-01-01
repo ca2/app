@@ -150,7 +150,7 @@ namespace acme
 
       }
 
-      return ::move(strCallstack);
+      return ::transfer(strCallstack);
 
    }
 

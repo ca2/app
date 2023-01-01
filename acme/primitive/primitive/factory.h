@@ -274,7 +274,7 @@ namespace factory
 //
 //#else
 //
-//      auto strTypename = ::move(demangle(pszTypename));
+//      auto strTypename = ::transfer(demangle(pszTypename));
 //
 //      return strTypename;
 //
@@ -539,7 +539,7 @@ namespace factory
 //
 //      }
 //
-//      auto pparticle = ::move(pfactoryitem->create_particle());
+//      auto pparticle = ::transfer(pfactoryitem->create_particle());
 //
 //      if (!pparticle)
 //      {
@@ -811,7 +811,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //
 //   __raw_construct(p, pfactory);
 //
-//   return ::move(p);
+//   return ::transfer(p);
 //
 //}
 

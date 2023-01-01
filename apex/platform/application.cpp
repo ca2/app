@@ -4862,7 +4862,7 @@ namespace apex
 
       wstr.trim();
 
-      ::str().trim_any_quotes(wstr);
+      ::str::trim_any_quotes(wstr);
 
       wstr.trim();
 

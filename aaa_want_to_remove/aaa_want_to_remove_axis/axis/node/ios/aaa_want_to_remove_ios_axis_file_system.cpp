@@ -341,7 +341,7 @@ namespace ios
 //         else
 //         {
 //            string strFilePath(payloadFile);
-//            if(papp->m_bZipIsDir && (::str().case_insensitive_find(".zip:", strFilePath) >= 0))
+//            if(papp->m_bZipIsDir && (::str::case_insensitive_find(".zip:", strFilePath) >= 0))
 //            {
 //               ::memory_file memfile(papp, &storage);
 //               zip::InFile infile(this);
@@ -815,7 +815,7 @@ namespace ios
 //
 //      }
 //
-//      void file_system::move(const ::string & pszNew, const ::string & psz)
+//      void file_system::transfer(const ::string & pszNew, const ::string & psz)
 //      {
 //#ifdef WINDOWS_DESKTOP
 //         if(!::MoveFileW(
@@ -824,7 +824,7 @@ namespace ios
 //         {
 //            u32 dwError = ::get_last_error();
 //            string strError;
-//            strError.format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//            strError.format("Failed to transfer file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
 //            throw ::exception(strError);
 //         }
 //#elif defined(_UWP)
@@ -832,7 +832,7 @@ namespace ios
 //         ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //         if(file == nullptr)
-//            throw ::exception(::exception("file::file_system::move Could not move file, could not open source file"));
+//            throw ::exception(::exception("file::file_system::transfer Could not transfer file, could not open source file"));
 //
 //         string strDirOld     = pcontext->m_papexcontext->dir()->name(psz);
 //         string strDirNew     = pcontext->m_papexcontext->dir()->name(pszNew);
@@ -945,11 +945,11 @@ namespace ios
 //      bool file_system::exists(const ::string & pszPath, ::aura::application *  papp)
 //      {
 //
-//         if(::str().begins_ci_iws(pszPath, "uifs://"))
+//         if(::str::begins_ci_iws(pszPath, "uifs://"))
 //         {
 //            return AppUser(pparticle).m_pifs->acmefile()->exists(pszPath);
 //         }
-//         else if(::str().begins_ci_iws(pszPath, "http://") || ::str().begins_ci_iws(pszPath, "https://"))
+//         else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
 //         {
 //
 //            property_set set;
@@ -961,7 +961,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            auto pFind = ::str().case_insensitive_find(".zip:", pszPath);
+//            auto pFind = ::str::case_insensitive_find(".zip:", pszPath);
 //
 //            zip::Util ziputil;
 //
@@ -997,13 +997,13 @@ namespace ios
 //      bool file_system::exists(const ::string & strPath, ::aura::application *  papp)
 //      {
 //
-//         if(::str().begins_ci_iws(strPath, "uifs://"))
+//         if(::str::begins_ci_iws(strPath, "uifs://"))
 //         {
 //            return AppUser(pparticle).m_pifs->acmefile()->exists(strPath);
 //         }
 //
-//         if(::str().begins_ci_iws(strPath, "http://")
-//            || ::str().begins_ci_iws(strPath, "https://"))
+//         if(::str::begins_ci_iws(strPath, "http://")
+//            || ::str::begins_ci_iws(strPath, "https://"))
 //         {
 //
 //            property_set set;
@@ -1016,7 +1016,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            auto pFind = ::str().case_insensitive_find(".zip:", strPath);
+//            auto pFind = ::str::case_insensitive_find(".zip:", strPath);
 //
 //            zip::Util ziputil;
 //
@@ -1088,7 +1088,7 @@ namespace ios
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
 //#ifdef WINDOWS
-//            move(pcontext->m_papexcontext->dir()->path(strDir, name_(stra[i])), stra[i]);
+//            transfer(pcontext->m_papexcontext->dir()->path(strDir, name_(stra[i])), stra[i]);
 //#else
 //            ::rename(stra[i], pcontext->m_papexcontext->dir()->path(strDir, name_(stra[i])));
 //#endif
@@ -1105,7 +1105,7 @@ namespace ios
 //
 //#ifdef WINDOWS
 //         //         ::MoveFile(psz, pcontext->m_papexcontext->dir()->path(strDir, name_(psz)));
-//         move(pcontext->m_papexcontext->dir()->path(strDir, name_(psz)), psz);
+//         transfer(pcontext->m_papexcontext->dir()->path(strDir, name_(psz)), psz);
 //#else
 //         ::rename(psz, pcontext->m_papexcontext->dir()->path(strDir, name_(psz)));
 //#endif
@@ -1129,7 +1129,7 @@ namespace ios
 //               //               ::MoveFileW(
 //               //                utf8_to_unicode(pcontext->m_papexcontext->dir()->path(pszContext, strOld)),
 //               //              utf8_to_unicode(pcontext->m_papexcontext->dir()->path(pszContext, strNew)));
-//               move(pcontext->m_papexcontext->dir()->path(pszContext, strNew), pcontext->m_papexcontext->dir()->path(pszContext, strOld));
+//               transfer(pcontext->m_papexcontext->dir()->path(pszContext, strNew), pcontext->m_papexcontext->dir()->path(pszContext, strOld));
 //#else
 //               ::rename(
 //                        pcontext->m_papexcontext->dir()->path(pszContext, strOld),
@@ -1241,7 +1241,7 @@ namespace ios
 //         strsize iEnd = strFile.rear_find('.');
 //         if(iEnd < 0)
 //            iEnd = strFile.length();
-//         strFile = strFile.left(iEnd) + ::str().has_char(pszExtension, ".");
+//         strFile = strFile.left(iEnd) + ::str::has_char(pszExtension, ".");
 //      }
 
       file_pointer file_system::get_file(::payload payloadFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)

@@ -15,10 +15,11 @@ namespace file
    public:
 
 
-      virtual filesize translate(filesize offset, enum_seek eseek) = 0;
+      virtual void translate(filesize offset, enum_seek eseek) = 0;
+      virtual ::filesize get_position() const = 0;
 
 
-      filesize operator++()
+      void operator++()
       {
 
          return translate(1, ::e_seek_current);
@@ -26,7 +27,7 @@ namespace file
       }
 
 
-      filesize operator--()
+      void operator--()
       {
 
          return translate(-1, ::e_seek_current);
@@ -34,7 +35,7 @@ namespace file
       }
 
 
-      filesize operator+=(filesize offset)
+      void operator+=(filesize offset)
       {
 
          return translate(offset, ::e_seek_current);
@@ -42,7 +43,7 @@ namespace file
       }
 
 
-      filesize operator-=(filesize offset)
+      void operator-=(filesize offset)
       {
 
          return translate(-offset, ::e_seek_current);
@@ -53,7 +54,7 @@ namespace file
       explicit operator filesize() const
       {
 
-         return ((translatable *)this)->translate(0, ::e_seek_current);
+         return this->get_position();
 
       }
 

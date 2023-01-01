@@ -126,7 +126,7 @@ namespace universal_windows
       //   // focus elements. That is the extent of our integration with XAML focus.
       //   Focus(FocusState.Programmatic);
 
-      //   // A more complete custom control would move the caret to the
+      //   // A more complete custom control would transfer the caret to the
       //   // pointer position. It would also provide some way to select
       //   // text via touch. We do neither in this sample.
 

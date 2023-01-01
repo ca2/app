@@ -28,7 +28,7 @@ public:
    comparable_eq_array():BASE_RANGE(){}
    comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
    comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}
-   comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::move(array)) { }
+   comparable_eq_array(comparable_eq_array && array) noexcept : BASE_RANGE(::transfer(array)) { }
    comparable_eq_array(::range < const_iterator > constrange) : BASE_RANGE(constrange) {}
    template < primitive_integral INTEGRAL >
    comparable_eq_array(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
@@ -108,17 +108,17 @@ public:
    comparable_eq_array & operator = (comparable_eq_array && array)
    {
       
-      move(::move(array));
+      transfer(::transfer(array));
       
       return *this;
       
    }
    
    
-   comparable_eq_array & move(comparable_eq_array && array)
+   comparable_eq_array & transfer(comparable_eq_array && array)
    {
       
-      BASE_ARRAY::move(::move(array));
+      BASE_ARRAY::transfer(::transfer(array));
       
       return *this;
       
@@ -192,7 +192,7 @@ public:
 //comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 //{
 //
-//	move(::move(a));
+//	transfer(::transfer(a));
 //
 //}
 

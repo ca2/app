@@ -722,7 +722,7 @@ namespace sockets_bsd
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(::sockets::base_socket_handler *) override;
       /** create memory_new thread for this base_socket to run detached in. */
-      virtual void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
+      virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
       //@}
 
 

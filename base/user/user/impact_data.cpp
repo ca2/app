@@ -30,7 +30,7 @@ namespace user
    void impact_data::impact_data_common_construct()
    {
 
-      m_iId = m_atom.is_integer() ? m_atom.i64() : -1;
+      m_iId = m_atom.is_integer() ? m_atom.as_i64() : -1;
       m_iExtendOnParent = 0;
       m_pimpactdata = nullptr;
       m_bOk = false;

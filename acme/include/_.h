@@ -113,7 +113,7 @@
 #include "acme/primitive/mathematics/c_number.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 #include "acme/primitive/primitive/e_check.h"
-#include "acme/primitive/primitive/move.h"
+#include "acme/primitive/primitive/transfer.h"
 
 
 #include  "acme/primitive/string/string.h"
@@ -166,7 +166,7 @@
 //
 //
 //
-//#include "acme/primitive/primitive/move.h"
+//#include "acme/primitive/primitive/transfer.h"
 //
 //
 //#include "acme/platform/_synchronization.h"

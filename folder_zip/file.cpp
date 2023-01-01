@@ -294,7 +294,7 @@ void file::write(const void* pdata, memsize nCount)
    }
 
 
-   filesize file::translate(filesize offset, ::enum_seek eseek)
+   void file::translate(filesize offset, ::enum_seek eseek)
    {
 
       synchronous_lock synchronouslock(m_pfolder->synchronization());
@@ -332,14 +332,14 @@ void file::write(const void* pdata, memsize nCount)
          if (unzCloseCurrentFile(m_pfolder->m_unzfile) != UNZ_OK)
          {
 
-            return -1;
+            throw exception(error_failed);
 
          }
 
          if (unzOpenCurrentFile(m_pfolder->m_unzfile) != UNZ_OK)
          {
 
-            return -1;
+            throw exception(error_failed);
 
          }
 
@@ -382,7 +382,7 @@ void file::write(const void* pdata, memsize nCount)
 
       m_iPosition = iNewPosition;
 
-      return iNewPosition;
+      //return iNewPosition;
 
    }
 

@@ -632,9 +632,9 @@ namespace linux
                try
                {
 
-                  strCommand = ::str().consume_quoted_value(psz);
-                  ::str().consume_spaces(psz);
-                  ::str().consume(psz, "\"%L\"");
+                  strCommand = ::str::consume_quoted_value(psz);
+                  ::str::consume_spaces(psz);
+                  ::str::consume(psz, "\"%L\"");
                   strParam = psz;
 
                }

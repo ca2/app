@@ -83,7 +83,7 @@
 //      }
 //
 //      static char_type*
-//      move(char_type* __s1, const char_type* __s2, size_t __n)
+//      transfer(char_type* __s1, const char_type* __s2, size_t __n)
 //      { return (char_type*) memmove(__s1, __s2, __n * sizeof(char_type)); }
 //
 //      static char_type*
@@ -153,7 +153,7 @@
 //       { return wmemchr(__s, __a, __n); }
 //
 //       static char_type*
-//       move(char_type* __s1, const char_type* __s2, int_type __n)
+//       transfer(char_type* __s1, const char_type* __s2, int_type __n)
 //       { return wmemmove(__s1, __s2, __n); }
 //
 //       static char_type*

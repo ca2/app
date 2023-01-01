@@ -44,10 +44,12 @@ public:
 
 
    using ITEM_POINTER = non_const < ITERATOR_TYPE >;
-   using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
-   using THIS_ITEM_POINTER = ITEM_POINTER;
+   using CONST_ITEM_POINTER = const_of < ITERATOR_TYPE >;
+   using THIS_ITEM_POINTER = ITERATOR_TYPE;
+
 
    using ITEM = dereference < ITEM_POINTER >;
+
 
    using TYPE = ITERATOR_TYPE;
 
@@ -63,24 +65,31 @@ public:
    iterator_base(enum_no_initialize) {};
    iterator_base(nullptr_t) { m_p = nullptr; }
    iterator_base() { m_p = nullptr; }
-   iterator_base(ITEM_POINTER p) : m_p(p) {}
+   iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
    iterator_base(const const_iterator & iterator) : m_p((ITEM_POINTER)iterator.get()) {}
 
 
-   auto get() { return m_p; }
-   auto get() const { return m_p; }
+   auto & get() { return m_p; }
+   auto & get() const { return m_p; }
+
+
+   auto & topic() { return this->m_p->topic(); }
+   auto & topic() const { return this->m_p->topic(); }
+
+
+   operator bool() const { return ::is_set(m_p); }
 
 
    auto & operator= (TYPE * p) { m_p = p; return *this; }
    auto & operator= (iterator p) { m_p = p.get(); return *this; }
 
 
-   auto & operator *() { return *get(); }
-   auto & operator *() const { return *get(); }
+   auto & operator *() { return *topic(); }
+   auto & operator *() const { return *topic(); }
 
 
-   auto operator ->() { return get(); }
-   auto operator ->() const { return get(); }
+   auto operator ->() { return topic(); }
+   auto operator ->() const { return topic(); }
 
 
 };
@@ -96,8 +105,8 @@ public:
 
 
    using ITEM_POINTER = non_const < ITERATOR_TYPE >;
-   using CONST_ITEM_POINTER = add_const < ITERATOR_TYPE >;
-   using THIS_ITEM_POINTER = CONST_ITEM_POINTER;
+   using CONST_ITEM_POINTER = const_of < ITERATOR_TYPE >;
+   using THIS_ITEM_POINTER = ITERATOR_TYPE;
 
 
    using ITEM = dereference < ITEM_POINTER >;
@@ -114,12 +123,19 @@ public:
    const_iterator_base(enum_no_initialize) {};
    const_iterator_base(nullptr_t) { m_p = nullptr; }
    const_iterator_base() { m_p = nullptr; }
-   const_iterator_base(CONST_ITEM_POINTER p) : m_p(p) {}
+   const_iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
    const_iterator_base(const const_iterator & iterator) : m_p(iterator.m_p) {}
 
 
-   auto get() { return m_p; }
-   auto get() const { return m_p; }
+   operator bool() const { return ::is_set(m_p); }
+
+
+   auto & get() { return m_p; }
+   auto & get() const { return m_p; }
+
+
+   auto & topic() { return this->m_p->topic(); }
+   auto & topic() const { return this->m_p->topic(); }
 
 
    auto & operator = (const ITEM_POINTER p) { m_p = p; return *this; }
@@ -127,12 +143,12 @@ public:
    auto & operator = (const const_iterator & p) { m_p = p.get(); return *this; }
 
 
-   auto & operator *() { return *get(); }
-   auto & operator *() const { return *get(); }
+   auto & operator *() { return *topic(); }
+   auto & operator *() const { return *topic(); }
 
 
-   auto operator ->() { return get(); }
-   auto operator ->() const { return get(); }
+   auto operator ->() { return topic(); }
+   auto operator ->() const { return topic(); }
 
 
 };

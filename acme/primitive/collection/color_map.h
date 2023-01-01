@@ -9,7 +9,7 @@
 #pragma once
 
 
-using colorrefmap = map < ::color::color, VALUE, typename argument_of < ::color::color >::type, ARG_VALUE >;
+using colorrefmap = map < ::color::color, PAYLOAD, argument_of < ::color::color >, ARG_VALUE >;
 
 
 using colorref_set = ::set < ::color::color >;

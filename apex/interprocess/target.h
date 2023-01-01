@@ -28,7 +28,7 @@ namespace interprocess
 
 
       //   dispatch_item(::string && strMessage) : m_uData(0x80000000), m_strMessage(strMessage) {}
-      //   dispatch_item(u64 uData, ::memory && memory) : m_uData(0x80000000), m_memory(::move(memory)) {}
+      //   dispatch_item(u64 uData, ::memory && memory) : m_uData(0x80000000), m_memory(::transfer(memory)) {}
 
       //   bool is_text_message() const {
       //      return m_uData == 0x80000000

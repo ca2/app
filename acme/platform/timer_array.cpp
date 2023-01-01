@@ -115,7 +115,7 @@ namespace acme
 
       auto ptimer = pair->element2();
 
-      m_map.erase_key(uEvent);
+      m_map.erase_item(uEvent);
 
       ptimer->destroy();
 
@@ -148,7 +148,7 @@ namespace acme
          if(ptimerMapped == ptimer)
          {
 
-            m_map.erase_key(uEvent);
+            m_map.erase_item(uEvent);
 
          }
 

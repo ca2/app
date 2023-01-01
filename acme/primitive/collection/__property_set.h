@@ -132,22 +132,22 @@ public:
    property * find_value_ci(const ::payload & payload) const;
    property * find_value_ci(const ::scoped_string & scopedstr) const;
 
-   property * find_value(const ::payload & payload) const;
-   property * find_value(const ::scoped_string & scopedstr) const;
+   property * find_payload(const ::payload & payload) const;
+   property * find_payload(const ::scoped_string & scopedstr) const;
 
    property * str_find(const property & property) const;
 
-   bool contains_value_ci(const ::payload & payload) const { return find_value_ci(payload) != nullptr; }
-   bool contains_value_ci(const ::scoped_string & scopedstr) const { return find_value_ci(scopedstr) != nullptr; }
+   bool contains_value_ci(const ::payload & payload) const;
+   bool contains_value_ci(const ::scoped_string & scopedstr) const;
 
-   bool contains_value(const ::payload & payload) const { return find_value(payload) != nullptr; }
-   bool contains_value(const ::scoped_string & scopedstr) const { return find_value(scopedstr) != nullptr; }
+   bool contains_payload(const ::payload & payload) const;
+   bool contains_payload(const ::scoped_string & scopedstr) const;
 
    bool contains_value_ci(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
    bool contains_value_ci(const ::scoped_string & scopedstr, ::count countMin = 1, ::count countMax = -1) const;
 
-   bool contains_value(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains_value(const ::scoped_string & scopedstr, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_payload(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_payload(const ::scoped_string & scopedstr, ::count countMin = 1, ::count countMax = -1) const;
 
    bool str_contains(const property_set & set) const;
    bool contains(const property_set & set) const;

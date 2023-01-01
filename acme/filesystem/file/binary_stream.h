@@ -106,7 +106,7 @@ public:
    //inline void set_loading() { m_bStoring = false; }
 
    //stream & operator = (const binary_stream & base) { m_pfile = base.m_pfile; return *this; }
-   //stream & operator = (binary_stream & base) { m_pfile = ::move(base.m_pfile); return *this; }
+   //stream & operator = (binary_stream & base) { m_pfile = ::transfer(base.m_pfile); return *this; }
 
    //   FILE_POINTER & operator ->() { m_pfile; }
 
@@ -556,7 +556,7 @@ public:
 
 
    //binary_stream(binary_stream & base) :
-   //   m_pfile(::move(base.m_pfile))
+   //   m_pfile(::transfer(base.m_pfile))
    //{
 
    //   set_ok_flag();

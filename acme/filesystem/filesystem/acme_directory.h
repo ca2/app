@@ -78,6 +78,7 @@ public:
    ::media_library::item_map                       m_medialibraryitemmap;
    
    ::pointer < ::mutex >                           m_pmutexMediaLibrary;
+    ::file::path                                                      m_pathFolder;
 
 
    acme_directory();

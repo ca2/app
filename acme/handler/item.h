@@ -148,9 +148,9 @@ public:
 
 
    item_base(item_base && itembase) :
-      PARTICLE(::move(itembase)),
-      particle(::move(itembase)),
-      ITEM_BASE_ADDITIONS(::move(itembase))
+      PARTICLE(::transfer(itembase)),
+      particle(::transfer(itembase)),
+      ITEM_BASE_ADDITIONS(::transfer(itembase))
    {
 
    }
@@ -220,11 +220,11 @@ public:
 
 
    item_data(item_data && itemdata) :
-      PARTICLE(::move(itemdata)),
-      particle(::move(itemdata)),
-      ITEM_BASE_ADDITIONS(::move(itemdata)),
-      item_base(::move(itemdata)),
-      ITEM_DATA_ADDITIONS(::move(itemdata))
+      PARTICLE(::transfer(itemdata)),
+      particle(::transfer(itemdata)),
+      ITEM_BASE_ADDITIONS(::transfer(itemdata)),
+      item_base(::transfer(itemdata)),
+      ITEM_DATA_ADDITIONS(::transfer(itemdata))
    {
 
    }
@@ -355,13 +355,13 @@ public:
 
 
    item(item && item) :
-      PARTICLE(::move(item)),
-      particle(::move(item)),
-      ITEM_BASE_ADDITIONS(::move(item)),
-      item_base(::move(item)),
-      ITEM_DATA_ADDITIONS(::move(item)),
-      item_data(::move(item)),
-      matter(::move(item))
+      PARTICLE(::transfer(item)),
+      particle(::transfer(item)),
+      ITEM_BASE_ADDITIONS(::transfer(item)),
+      item_base(::transfer(item)),
+      ITEM_DATA_ADDITIONS(::transfer(item)),
+      item_data(::transfer(item)),
+      matter(::transfer(item))
    {
 
    }

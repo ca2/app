@@ -868,7 +868,7 @@ namespace html
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                auto ppen = pdata->__create < ::draw2d::pen >();
-               ppen->create_solid(m_border.top, m_border.crTop);
+               ppen->create_solid(m_border.top, m_border.colorTop);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
@@ -880,7 +880,7 @@ namespace html
                pa[2] = ::point_f64(bIn.right, bIn.top);
                pa[3] = ::point_f64(bIn.left, bIn.top);
                auto pbrush = pdata->__create < ::draw2d::brush >();
-               pbrush->create_solid(m_border.crTop);
+               pbrush->create_solid(m_border.colorTop);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
@@ -916,7 +916,7 @@ namespace html
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->__create < ::draw2d::pen >();
-               ppen->create_solid(m_border.bottom, m_border.crBottom);
+               ppen->create_solid(m_border.bottom, m_border.colorBottom);
                pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
@@ -928,7 +928,7 @@ namespace html
                pa[2] = ::point_f64(bOut.right, bOut.bottom);
                pa[3] = ::point_f64(bOut.left, bOut.bottom);
                auto pbrush = pdata->__create < ::draw2d::brush >();
-               pbrush->create_solid(m_border.crBottom);
+               pbrush->create_solid(m_border.colorBottom);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
 
@@ -970,15 +970,22 @@ namespace html
 
       string element::link()
       {
+
          if (m_pelemental->m_pparent != nullptr)
          {
+
             return m_pelemental->m_pparent->m_pimpl->link();
+
          }
          else
          {
+
             return "";
+
          }
+
       }
+
 
       void element::on_change_layout(html_data* pdata)
       {

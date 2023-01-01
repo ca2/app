@@ -722,11 +722,11 @@ namespace android
    //   {
    //      if(string_begins(wstrPath, L"\\\\"))
    //      {
-   //         ::str().begin(wstrPath, L"\\\\?\\UNC");
+   //         ::str::begin(wstrPath, L"\\\\?\\UNC");
    //      }
    //      else
    //      {
-   //         ::str().begin(wstrPath, L"\\\\?\\");
+   //         ::str::begin(wstrPath, L"\\\\?\\");
    //      }
    //   }
 

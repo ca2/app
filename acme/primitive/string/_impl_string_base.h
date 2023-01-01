@@ -876,7 +876,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += psz;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -889,7 +889,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += pwsz;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -902,7 +902,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += pwsz;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 
@@ -915,7 +915,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += ansiscopedstr;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -928,7 +928,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += scopedstr;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -941,7 +941,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += scopedstr;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 
@@ -955,7 +955,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr.append(inlinenumberstring);
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -968,7 +968,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += ansich;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -981,7 +981,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   ansistr += wd16ch;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -995,7 +995,7 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 //   scopedstr += wd32ch;
 //
-//   return ::move(scopedstr);
+//   return ::transfer(scopedstr);
 //
 //}
 //
@@ -1016,7 +1016,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(string_base && scopedstr)
 {
 
-   NATURAL_POINTER::operator=(::move(scopedstr));
+   NATURAL_POINTER::operator=(::transfer(scopedstr));
 
    return *this;
 
@@ -2486,7 +2486,7 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    auto pOld = this->NATURAL_POINTER::metadata();
 
-   ASSERT(pOld->m_countReference >= 1);
+   ASSERT(::is_null(pOld) || pOld->m_countReference >= 1);
 
    if (::is_set(pOld))
    {
@@ -3712,7 +3712,7 @@ inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITER
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::replace_character(CHARACTER charNew, CHARACTER charOld, strsize start)
+inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
 {
 
    strsize count = 0;
@@ -4078,7 +4078,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
    str.release_string_buffer(finalLen);
 
-   *this = ::move(str);
+   *this = ::transfer(str);
 
    return *this;
 
@@ -5505,7 +5505,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::trimmed(const SCOPE
 
    scopedstr.trim(scopedstrCharacters);
 
-   return ::move(scopedstr);
+   return ::transfer(scopedstr);
 
 }
 
@@ -5521,7 +5521,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right_trimmed(CHARA
 
    scopedstr.trim_right(chTarget);
 
-   return ::move(scopedstr);
+   return ::transfer(scopedstr);
 
 }
 
@@ -5535,7 +5535,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::right_trimmed(const
 
    scopedstr.trim_right(scopedstrCharacters);
 
-   return ::move(scopedstr);
+   return ::transfer(scopedstr);
 
 }
 
@@ -5563,7 +5563,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::left_trimmed(const 
 
    scopedstr.trim_left(scopedstrCharacters);
 
-   return ::move(scopedstr);
+   return ::transfer(scopedstr);
 
 }
 
@@ -6734,7 +6734,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    str.release_string_buffer(nNewLength);
 
-   *this = ::move(str);
+   *this = ::transfer(str);
 
    return count;
 
@@ -7066,7 +7066,7 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
    str.append(strNumber);
 
-   return ::move(scopedstr);
+   return ::transfer(scopedstr);
 
 }
 
@@ -7105,7 +7105,7 @@ inline ::string operator +(char ch, const ::string & str)
 //inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 //{
 //
-//   return ::move(::string(sz) + ::string(inlinestring));
+//   return ::transfer(::string(sz) + ::string(inlinestring));
 //
 //}
 //
@@ -7115,7 +7115,7 @@ inline ::string operator +(char ch, const ::string & str)
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
 //{
 //
-//   return ::move(::string(inlinestring) + ::string(sz));
+//   return ::transfer(::string(inlinestring) + ::string(sz));
 //
 //}
 

@@ -810,13 +810,15 @@ namespace file
    }
 
 
-   filesize edit_file::seek(filesize lOff,::enum_seek eseek)
+   void edit_file::seek(filesize offset,::enum_seek eseek)
    {
 
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return m_position = m_pfile->translate(lOff, eseek);
+         m_pfile->translate(offset, eseek);
+
+         return;
 
       }
 
@@ -825,6 +827,8 @@ namespace file
       ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
 
       filesize dwNew = (u32)-1;
+
+      auto lOff = this->get_position();
 
       switch(eseek)
       {
@@ -866,7 +870,9 @@ namespace file
 
       default:
 
-         return (filesize)-1;
+         //return (filesize)-1;
+
+         return;
 
       }
 
@@ -890,9 +896,9 @@ namespace file
 
       }
 
-      ASSERT(m_position == dwNew);
+      //ASSERT(m_position == dwNew);
 
-      return dwNew;
+      //return dwNew;
 
    }
 

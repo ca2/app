@@ -451,7 +451,7 @@ namespace user
 
 
       //ASSERT(m_hAccelTable == nullptr);  // only do once
-      ASSERT(pszResourceName != nullptr);
+      //ASSERT(pszResourceName != nullptr);
 
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
 
@@ -2055,7 +2055,7 @@ namespace user
    }
 
 
-   void frame_window::UpdateFrameTitleForDocument(const ::string & pszDocName)
+   void frame_window::UpdateFrameTitleForDocument(const ::string & strDocName)
 
    {
 
@@ -2065,10 +2065,10 @@ namespace user
       if(m_bPrefixTitle)
       {
          // get name of currently active ::user::impact
-         if (pszDocName != nullptr)
+         if (strDocName.has_char())
 
          {
-            WindowText += pszDocName;
+            WindowText += strDocName;
 
 
             // add current interaction_impl # if needed
@@ -2093,11 +2093,11 @@ namespace user
       {
          // get name of currently active ::user::impact
          WindowText += m_strFrameTitle;
-         if (pszDocName != nullptr)
+         if (strDocName.has_char())
 
          {
             WindowText += " - ";
-            WindowText += pszDocName;
+            WindowText += strDocName;
 
 
             // add current interaction_impl # if needed

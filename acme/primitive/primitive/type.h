@@ -114,7 +114,7 @@ public:
 
 
    type(::type && type):
-      atom((::atom &&)::move(type))
+      atom((::atom &&)::transfer(type))
    {
 
    }

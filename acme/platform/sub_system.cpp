@@ -192,7 +192,7 @@ string_array sub_system::get_arguments()
 
    }
 
-   return ::move(stra);
+   return ::transfer(stra);
 
 }
 
@@ -433,7 +433,7 @@ bool sub_system::has_factory_item(const ::atom& atom)
 
    critical_section_lock cs(&m_criticalsection);
 
-   auto iterator = m_pfactory->get_association(atom);
+   auto iterator = m_pfactory->find_node(atom);
 
    if (iterator.is_null())
    {

@@ -64,12 +64,12 @@ namespace sockets
             string strWord = pa.getword();
             string strRequest = ::apexacmesystem()->base64().decode(strWord);
             string strResponse;
-            if(::str().case_insensitive_find("username", strRequest) >= 0)
+            if(::str::case_insensitive_find("username", strRequest) >= 0)
             {
                strResponse = ::apexacmesystem()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
                write(strResponse + "\r\n");
             }
-            else if(::str().case_insensitive_find("password", strRequest) >= 0)
+            else if(::str::case_insensitive_find("password", strRequest) >= 0)
             {
                strResponse = ::apexacmesystem()->base64().encode(acmefile()->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
                write(strResponse + "\r\n");

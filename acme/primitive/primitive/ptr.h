@@ -150,7 +150,7 @@ class ptr
    }
    
    
-   ptr & move(TYPE * p)
+   ptr & transfer(TYPE * p)
    {
       
       m_p = p;

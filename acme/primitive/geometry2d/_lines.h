@@ -46,7 +46,7 @@ inline lines_base < POINT_TYPE >::lines_base(const lines_base& lines) :
 
 template < typename POINT_TYPE >
 inline lines_base < POINT_TYPE >::lines_base(lines_base&& lines) :
-   point_array_base < POINT_TYPE >(::move(lines))
+   point_array_base < POINT_TYPE >(::transfer(lines))
 {
 
 

@@ -231,11 +231,11 @@ public:
     void splice(const string_array_base & stra,::index i,string_array_base & straRemoved,::count ca = -1);
 
 
-// if Type is found, move it to specified position
+// if Type is found, transfer it to specified position
     bool move_ci(const RawType &str,::index iIndex);
 
 
-// move preferred in order
+// transfer preferred in order
     bool preferred(const RawType &str);
 
     ::count preferred(string_array_base & stra);

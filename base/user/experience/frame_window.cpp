@@ -1484,7 +1484,7 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            INFORMATION("e_message_mouse_move during window move ignored!!");
+            INFORMATION("e_message_mouse_move during window transfer ignored!!");
 
          }
          else if (pmouse->m_eflagMessage & ::message::e_flag_synthesized)
@@ -1593,7 +1593,7 @@ namespace experience
    //      if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
    //      {
 
-   //         INFORMATION("e_message_mouse_move during window move ignored!!");
+   //         INFORMATION("e_message_mouse_move during window transfer ignored!!");
 
    //      }
    //      else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)

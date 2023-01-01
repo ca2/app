@@ -151,7 +151,7 @@ public:
       if (this != &array_base)
       {
 
-         move(::move(array_base));
+         transfer(::transfer(array_base));
 
       }
       
@@ -173,7 +173,7 @@ public:
    }
 
 
-   inline array_base & move(array_base && a)
+   inline array_base & transfer(array_base && a)
    {
 
       if (this != &a)
@@ -181,7 +181,7 @@ public:
 
          destroy();
 
-         ARRAY_RANGE::operator=(::move(a));
+         ARRAY_RANGE::operator=(::transfer(a));
 
          m_nGrowBy = a.m_nGrowBy;
 
@@ -641,8 +641,8 @@ public:
 
 
    TYPE pick_at(::index nIndex);
-   TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
-   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(this->size() + nIndex)); }
+   TYPE pick_first(::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
+   TYPE pick_last(::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 
@@ -1406,7 +1406,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::copy(const arra
 //
 //   a.append(array);
 //
-//   return ::move(a);
+//   return ::transfer(a);
 //
 //}
 
@@ -1588,7 +1588,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pick_at(::index
 
    this->m_end -= nCount;
 
-   return ::move(t);
+   return ::transfer(t);
 
 }
 
@@ -2624,7 +2624,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop_first(::index i)
 {
 
-   auto t = ::move(this->first(i));
+   auto t = ::transfer(this->first(i));
 
    this->erase_at(i);
 

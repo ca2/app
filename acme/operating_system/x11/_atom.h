@@ -16,7 +16,7 @@ namespace x11
       e_atom_net_wm_state_below,
       e_atom_net_wm_state_hidden,
       e_atom_net_wm_state_maximized_horz,
-      e_atom_net_wm_state_maximized_vert,
+      e_atom_net_wm_state_maximized_penn,
       e_atom_net_wm_state_fullscreen,
       e_atom_net_wm_state_skip_taskbar,
       e_atom_wm_name,

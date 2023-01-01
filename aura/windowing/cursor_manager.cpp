@@ -125,7 +125,7 @@ namespace windowing
          else if (strCursor == "vertical") { return e_cursor_size_vertical; }
          else if (strCursor == "horizontal") { return e_cursor_size_horizontal; }
       }
-      else if (strCursor == "move") { return e_cursor_move; }
+      else if (strCursor == "transfer") { return e_cursor_move; }
 
 
       return e_cursor_none;
@@ -483,7 +483,7 @@ namespace windowing
 
       //}
 
-      //if (set_cursor_file(e_cursor_move, pathDir / "move.png", false))
+      //if (set_cursor_file(e_cursor_move, pathDir / "transfer.png", false))
       //{
 
       //   countSuccess++;

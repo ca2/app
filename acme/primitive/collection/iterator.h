@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -77,13 +77,9 @@ public:
    auto & topic() const { return this->m_p->topic(); }
 
 //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
-private:
-
    typedef void (const_iterator:: * bool_type)() const;
 
    void this_type_does_not_support_comparisons() const {}
-
-public:
 
    operator bool_type() const { return ::is_set(m_p) ? &const_iterator::this_type_does_not_support_comparisons : 0; }
    //https://www.artima.com/articles/the-safe-bool-idiom END
@@ -135,13 +131,10 @@ public:
    const_iterator_base(const const_iterator & iterator) : m_p(iterator.m_p) {}
 
    //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
-private:
 
    typedef void (const_iterator:: * bool_type)() const;
 
    void this_type_does_not_support_comparisons() const {}
-
-public:
 
    operator bool_type() const { return ::is_set(m_p) ? &const_iterator::this_type_does_not_support_comparisons : 0; }
    //https://www.artima.com/articles/the-safe-bool-idiom END

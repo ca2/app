@@ -406,8 +406,8 @@ public:
 
    //inline iterator find_item(ARG_ITEM item) const { return find_node(item); }
 
-   inline iterator find_item(ARG_ITEM item) { return find_node(item); }
-   inline const_iterator find_item(ARG_ITEM item) const { return find_node(item); }
+   inline iterator find_item(ARG_ITEM item);
+   inline const_iterator find_item(ARG_ITEM item) const { return ((pair_map *) this)->find_item(item); }
 
 
    iterator new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue);
@@ -426,7 +426,6 @@ public:
    //// void dump(dump_context & dumpcontext) const override;
 
 
-
    template < class ARRAY >
    bool erase_key_array(ARRAY a)
    {
@@ -443,6 +442,7 @@ public:
       return bRemoved;
 
    }
+
 
    template < class ARRAY >
    ::count erase_node_array(ARRAY a)

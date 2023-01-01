@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "set.h"
@@ -15,7 +15,7 @@ public:
    using ITEM = typename ::make_pair < PAIR >::TYPE1;
    using PAYLOAD = typename ::make_pair < PAIR >::TYPE2;
    using BASE_SET = typename ::node_set < ::make_pair < PAIR > >;
-   using HASH_TABLE = BASE_SET::HASH_TABLE;
+   using HASH_TABLE = typename BASE_SET::HASH_TABLE;
    using BASE_ITEM = typename ::make_pair < PAIR >::TYPE1;
    using BASE_PAYLOAD = typename ::make_pair < PAIR >::TYPE2;
    using ARG_ITEM = typename ::make_pair < PAIR >::ARG_TYPE1;
@@ -1172,7 +1172,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
    if(!p)
    {
 
-      throw ::exception(error_wrong_state);
+      throw_exception(error_wrong_state);
 
    }
 

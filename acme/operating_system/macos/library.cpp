@@ -19,20 +19,24 @@ void * __node_library_open(const ::file::path & path, string & strMessage);
 
 void * __node_library_touch(const ::file::path & path, string & strMessage)
 {
+   
+   auto strTitle = path.title();
+   
+   auto strLibTitle = "lib" + strTitle;
 
    for (i32 i = _dyld_image_count(); i >= 0 ; i--)
    {
 
       const char *image_name = _dyld_get_image_name(i);
 
-      if(::file::path(image_name).title().case_insensitive_order(::file::path(pszPath).title()) == 0)
+      if(::file_path_title(image_name).case_insensitive_equals(strTitle))
       {
 
          goto found;
 
       }
 
-      if(::file::path(image_name).title().case_insensitive_order(("lib" + ::file::path(pszPath).title())) == 0)
+      if(::file_path_title(image_name).case_insensitive_equals(strLibTitle))
       {
 
          goto found;
@@ -42,8 +46,10 @@ void * __node_library_touch(const ::file::path & path, string & strMessage)
    }
 
    return nullptr;
+   
 found:
-   return __node_library_open(pszPath, strMessage);
+   
+   return __node_library_open(path, strMessage);
 
 }
 
@@ -51,12 +57,12 @@ found:
 ::file::path get_module_folder();
 
 
-void * __node_library_open(const ::file::path & path, string & strMessage)
+void * __node_library_open(const ::file::path & pathParam, string & strMessage)
 {
 
    strMessage.empty();
 
-   string strPath(pszPath);
+   string strPath(pathParam);
 
    string strError;
 
@@ -69,7 +75,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    }
 
-   if(strPath.find('/') < 0 && !ansi_begins(strPath, "lib"))
+   if(!strPath.contains('/') && !strPath.case_insensitive_begins("lib"))
    {
 
       strPath = "lib" + strPath;
@@ -127,7 +133,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    strMessage += "\n(3) dlopen: " + path + " with the error: \"" + strError + "\"";
 
-   if(strPath.find('/') >= 0)
+   if(strPath.contains('/'))
    {
 
       path = ::file::path(strPath).name();
@@ -152,7 +158,7 @@ finished:
    if(plibrary != nullptr)
    {
 
-      strMessage = "__node_library_open Succeeded " + string(pszPath);
+      strMessage = "__node_library_open Succeeded " + pathParam;
       
       if(is_verbose_log())
       {
@@ -191,22 +197,18 @@ bool __node_library_close(void * plibrary)
 }
 
 
-void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrElement)
+void * __node_library_raw_get(void * plibrary, const ::scoped_string & scopedstrSymbol)
 {
 
-   return dlsym(plibrary, pszElement);
+   return dlsym(plibrary, scopedstrSymbol);
 
 }
 
 
-
-
-
-
-void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
+void * __node_library_open_ca2(const ::file::path & pathParam, string & strMessage)
 {
 
-   string strPath(pszPath);
+   string strPath(pathParam);
    
    if(!strPath.case_insensitive_begins("lib"))
    {

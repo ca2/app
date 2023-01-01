@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "hex.h"
 #include "international.h"
 #include "acme/exception/parsing.h"
@@ -3055,19 +3055,14 @@ string str::consume_nc_name(::const_ansi_range & range)
 
    }
    
-   while(true)
+   do
    {
 
       unicode_increment(range.m_begin);
 
-      if (range.is_empty() || !unicode_is_letter_or_digit(range.m_begin) && *range.m_begin != '_' && *range.m_begin != '-')
-      {
-
-         break;
-
-      }
-
-   }
+   } while(range.has_char() &&
+           (unicode_is_letter_or_digit(range.m_begin)
+            || *range.m_begin == '_' || *range.m_begin == '-'));
    
    return { pszStart, range.m_begin - pszStart };
 

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-18 20:33 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-18 20:33 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -24,6 +24,15 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_
 CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip = -1);
 
 
+template < typename TYPE, enum_type m_etypeContainer >
+inline void implode(const numeric_array < TYPE, m_etypeContainer > & a, string & rwstr, const ::scoped_string & scopedstrSeparator = nullptr, ::index start = 0, ::count count = -1);
+
+template < typename TYPE, enum_type m_etypeContainer >
+   inline string implode(const numeric_array < TYPE, m_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, ::index iStart = 0, ::count iCount = -1);
+
+template < typename TYPE, enum_type m_etypeContainer >
+   string surround_and_implode(const numeric_array < TYPE, m_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::index iStart = 0, ::count iCount = -1);
+
 #include "acme/primitive/collection/_impl_string_array.h"
 #include "acme/primitive/primitive/_impl_atom.h"
 #include "acme/primitive/collection/_impl_factory.h"
@@ -31,6 +40,7 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_
 #include "acme/primitive/primitive/_impl_type.h"
 #include "acme/filesystem/file/_impl_write_text_stream.h"
 #include "acme/filesystem/filesystem/_impl_path.h"
+
 
 
 

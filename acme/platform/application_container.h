@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "application_exit.h"
@@ -41,7 +41,7 @@ namespace acme
       virtual ::pointer<::acme::application > create_application(const ::string & strAppId, ::request * prequest);
 
 
-      virtual void exit_application();
+      virtual void exit_application() override;
 
 
       application_array & applicationa();

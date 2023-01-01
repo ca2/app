@@ -1,4 +1,4 @@
-﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -24,57 +24,57 @@ void copy_character_per_character(char * pszTarget, const char * pszSource)
 }
 
 
-const char * file_path_name(const ::file::path & path)
+::scoped_string file_path_name(const ::scoped_string & scopedstrPath)
 {
 
-   auto p = path.rear_find_first_character_in("\\/");
+   auto p = scopedstrPath.rear_find_first_character_in("\\/");
 
    if(::is_null(p))
    {
 
-      return path.begin();
+      return scopedstrPath;
 
    }
 
-   return p + 1;
+   return {p + 1, scopedstrPath.end() };
 
 }
 
 
-const char * file_path_final_extension(const ::file::path & path)
+::scoped_string file_path_final_extension(const ::scoped_string & scopedstrPath)
 {
 
-   auto name = file_path_name(path);
+   auto scopedstrName = file_path_name(scopedstrPath);
 
-   auto final_extension = strrchr(name, '.');
+   auto last_dot = scopedstrName.rear_find('.');
 
-   if (!final_extension)
+   if (!last_dot)
    {
 
-      return nullptr;
+      return {};
 
    }
 
-   return final_extension + 1;
+   return {last_dot + 1, scopedstrName.end()};
 
 }
 
 
-const char * file_path_all_extensions(const ::file::path & path)
+::scoped_string file_path_all_extensions(const ::scoped_string & scopedstrPath)
 {
 
-   auto name = file_path_name(path);
+   auto scopedstrName = file_path_name(scopedstrPath);
 
-   auto final_extension = strchr(name, '.');
+   auto name_first_dot = scopedstrName.find('.');
 
-   if (!final_extension)
+   if (!name_first_dot)
    {
 
-      return nullptr;
+      return {};
 
    }
 
-   return final_extension + 1;
+   return {name_first_dot + 1, scopedstrName.end()};
 
 }
 
@@ -598,10 +598,10 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //}
 
 
-string file_path_folder(const ::file::path & path)
+::scoped_string file_path_folder(const ::scoped_string & scopedstrPath)
 {
 
-   auto p = path.rear_find_first_character_in("\\/");
+   auto p = scopedstrPath.rear_find_first_character_in("\\/");
 
    if(::is_null(p))
    {
@@ -610,7 +610,7 @@ string file_path_folder(const ::file::path & path)
 
    }
 
-   auto range = path(0, p);
+   auto range = scopedstrPath(0, p);
 
    auto pFolderLastCharacter = range.rear_skip_any_character_in("\\/");
 
@@ -621,7 +621,7 @@ string file_path_folder(const ::file::path & path)
 
    }
 
-   return {path.begin(), p - path.begin() };
+   return {scopedstrPath.begin(), p };
 
 }
 
@@ -720,21 +720,21 @@ string file_path_folder(const ::file::path & path)
 //}
 
 
-string file_path_title(const ::file::path & path)
+::scoped_string file_path_title(const ::scoped_string & scopedstrPath)
 {
 
-   auto start = file_path_name(path);
+   auto scopedstrName = file_path_name(scopedstrPath);
 
-   auto end = const_ansi_range(start, path.end()).find('.');
+   auto end = scopedstrName.find('.');
 
    if (::is_null(end))
    {
 
-      return start;
+      return scopedstrName;
 
    }
 
-   return { start, end };
+   return scopedstrName(0, end);
 
 }
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //////#include "acme/primitive/primitive/object.h"
@@ -63,7 +63,7 @@ namespace file
       virtual bool is_seekable();
 
       inline translatable & position() {return *this;}
-      virtual filesize get_position() const;
+      virtual filesize get_position() const override;
       virtual void set_position(filesize position);
       virtual void increment_position(filesize offset = 1);
       virtual void decrement_position(filesize offset = 1);

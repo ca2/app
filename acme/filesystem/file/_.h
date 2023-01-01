@@ -97,7 +97,7 @@ class memory_base;
 
 
 //CLASS_DECL_ACME string file_path_title(const ::file::path & path);
-CLASS_DECL_ACME const char * file_path_name(const ::file::path & path);
+//CLASS_DECL_ACME const char * file_path_name(const ::file::path & path);
 
 
 

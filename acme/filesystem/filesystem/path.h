@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "file_path.h"
@@ -422,19 +422,19 @@ namespace file
 
       /// return index just after first dot in file name
       /// -1 if not found
-      const_iterator find_all_extensions() const;
+      ::scoped_string find_all_extensions() const;
 
       /// return index just after last dot in file name
       /// -1 if not found
-      const_iterator find_final_extension() const;
+      ::scoped_string find_final_extension() const;
 
       //      bool is_equal(const ::file::path & path2) const;
 
-      string all_extensions() const;
+      ::scoped_string all_extensions() const;
 
       //string ext() const;
 
-      string final_extension() const;
+      ::scoped_string final_extension() const;
 
       //void split(string_array & patha) const;
       bool is_relative();

@@ -10,7 +10,7 @@
 void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const property_set & setUserInfo)
 {
 
-   throw ns_exception(estatus, pszName, pszDescription, setUserInfo);
+   throw ns_exception(estatus, scopedstrName, scopedstrDescription, setUserInfo);
 
 }
 
@@ -62,7 +62,7 @@ int __node_is_debugger_attached()
 void output_debug_string(const ::scoped_string & scopedstrOutputString)
 {
    
-   printf("%s", pszOutputString);
+   fwrite(scopedstrOutputString.begin(), 1, scopedstrOutputString.size(), stdout);
 
 //   string strOutputString(pszOutputString);
 //

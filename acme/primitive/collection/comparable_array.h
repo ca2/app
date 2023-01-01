@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
@@ -73,7 +73,7 @@ public:
       }
    
    
-      constexpr ::std::strong_ordering operator<=>(CONST_RAW_RANGE range) const
+      constexpr ::std::strong_ordering operator<=>(const CONST_RAW_RANGE & range) const
       {
    
          return this->order(range);

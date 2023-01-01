@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/transfer.h"
@@ -97,10 +97,10 @@ class make_pair :
 public: 
    
 
-   using TYPE1 = PAIR::TYPE1;
-   using TYPE2 = PAIR::TYPE2;
-   using ARG_TYPE1 = PAIR::ARG_TYPE1;
-   using ARG_TYPE2 = PAIR::ARG_TYPE2;
+   using TYPE1 = typename PAIR::TYPE1;
+   using TYPE2 = typename PAIR::TYPE2;
+   using ARG_TYPE1 = typename PAIR::ARG_TYPE1;
+   using ARG_TYPE2 = typename PAIR::ARG_TYPE2;
 
 
    using ITEM = TYPE1;

@@ -34,7 +34,7 @@ namespace acme
 
       auto frames = ::backtrace(stack, iMaximumFramesToCapture);
       
-      return _ansi_stack_trace(stack, frames, pszFormat);
+      return _ansi_stack_trace(stack, frames, scopedstrFormat);
 
    }
 

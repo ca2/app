@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "raw_array.h"
@@ -149,15 +149,6 @@ public:
    numeric_array unique() const;
    void unique();
 
-
-
-   void implode(string & rwstr, const ::scoped_string & scopedstrSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
-
-   string implode(const ::scoped_string & scopedstrSeparator = nullptr, ::index iStart = 0, ::count iCount = -1) const;
-
-
-
-   string surround_and_implode(const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::index iStart = 0, ::count iCount = -1);
 
 
 
@@ -384,57 +375,57 @@ public:
 //}
 
 
-template < typename TYPE, ::enum_type m_etypeContainer >
-void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count) const
+//template < typename TYPE, ::enum_type m_etypeContainer >
+//void numeric_array < TYPE, m_etypeContainer >::implode(string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count) const
+//
+//{
+//   if(start < 0)
+//   {
+//      start += this->get_size();
+//   }
+//   ::index last;
+//   if(count < 0)
+//   {
+//      last = this->get_size() + count;
+//   }
+//   else
+//   {
+//      last = start + count - 1;
+//   }
+//   if(start <= last)
+//   {
+//
+//      ::index i = start;
+//
+//      ::copy(str, this->element_at(i));
+//
+//      i++;
+//      for(; i <= last; i++)
+//      {
+//         str += scopedstrSeparator + as_string(this->element_at(i));
+//      }
+//   }
+//   else
+//   {
+//
+//      str.empty();
+//
+//   }
+//
+//}
 
-{
-   if(start < 0)
-   {
-      start += this->get_size();
-   }
-   ::index last;
-   if(count < 0)
-   {
-      last = this->get_size() + count;
-   }
-   else
-   {
-      last = start + count - 1;
-   }
-   if(start <= last)
-   {
 
-      ::index i = start;
-      
-      ::copy(str, this->element_at(i));
-
-      i++;
-      for(; i <= last; i++)
-      {
-         str += scopedstrSeparator + as_string(this->element_at(i));
-      }
-   }
-   else
-   {
-
-      str.empty();
-
-   }
-
-}
-
-
-template < typename TYPE, ::enum_type m_etypeContainer >
-string numeric_array < TYPE, m_etypeContainer >::implode(const ::scoped_string & scopedstrSeparator, ::index iStart, ::index iEnd) const
-{
-
-   string str;
-
-   implode(str, scopedstrSeparator, iStart, iEnd);
-
-   return str;
-
-}
+//template < typename TYPE, ::enum_type m_etypeContainer >
+//string numeric_array < TYPE, m_etypeContainer >::implode(const ::scoped_string & scopedstrSeparator, ::index iStart, ::index iEnd) const
+//{
+//
+//   string str;
+//
+//   implode(str, scopedstrSeparator, iStart, iEnd);
+//
+//   return str;
+//
+//}
 
 
 
@@ -512,7 +503,7 @@ string numeric_array < TYPE, m_etypeContainer >::implode(const ::scoped_string &
 //      i += get_size();
 //
 //   }
-//
+
 //   if(i < 0)
 //   {
 //

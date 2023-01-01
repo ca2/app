@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "simple_log.h"
 #include "trace.h"
 #include "acme/platform/debug.h"
@@ -217,7 +217,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr)
+void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrPath, int iLine, const ::scoped_string & scopedstr)
 {
 
    if (!m_bLog)
@@ -243,7 +243,7 @@ void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracec
       else
       {
 
-         str.format("%c %s %d %s\n", trace_level_char(etracelevel), scopedstrFunction, iLine, scopedstr);
+         str.format("%c %s %d %s\n", trace_level_char(etracelevel), scopedstrFunction.c_str(), iLine, scopedstr.c_str());
 
       }
 
@@ -290,13 +290,13 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
       strTopic.case_insensitive_begins_eat("struct ");
 
-      strMessage.format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr);
+      strMessage.format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.c_str());
 
    }
    else
    {
 
-      strMessage.format("%c> %s", trace_level_char(elevel), scopedstr);
+      strMessage.format("%c> %s", trace_level_char(elevel), scopedstr.c_str());
 
    }
 

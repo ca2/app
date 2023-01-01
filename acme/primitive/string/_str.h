@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "string.h"
@@ -206,8 +206,8 @@ public:
 
 
    static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
-   static bool begins_consume(::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(range.m_begin++, true): false;}
-   static bool begins_consume(::ansi_character & characterReturn, ::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(characterReturn = ansich, range.m_begin++, true): false;}
+   static bool begins_consume(::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(static_cast<void>(range.m_begin++),true): false;}
+   static bool begins_consume(::ansi_character & characterReturn, ::const_ansi_range & range, ansi_character ansich) {return (bool)(*range.m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(range.m_begin++), true): false;}
    static bool case_insensitive_begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
    static void consume(::const_ansi_range & range, const ::ansi_character * pszToConsume);
    //static void consume(::const_ansi_range & range, const ::ansi_character * psz);

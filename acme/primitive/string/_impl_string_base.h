@@ -1,4 +1,4 @@
-﻿//
+//
 //  _string_base_impl.h
 //  acme
 //
@@ -4205,7 +4205,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
    //ASSERT(start >= 0);
 
    // nLength is in XCHARs
-   strsize nLength = this->size();
+   //strsize nLength = this->size();
 //   if (start < 0 || start >= nLength)
 //   {
 //      return(-1);
@@ -4621,7 +4621,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
    while(::is_set(pszEnd))
    {
 
-      bool bFound = true;
+      //bool bFound = true;
 
       const CHARACTER * pszSub2 = pszBlockEnd;
 
@@ -4700,7 +4700,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
    while (::is_set(pszEnd))
    {
 
-      bool bFound = true;
+      //bool bFound = true;
 
       const CHARACTER * pszSub2 = pszBlockEnd;
 

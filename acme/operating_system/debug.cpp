@@ -51,7 +51,7 @@ void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, con
 
    strTag = string(' ', maximum(0, 23 - strTag.length()));
 
-   strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), scopedstr);
+   strMessage.format("-%c- %s %s\n", trace_level_char(elevel), strTag.c_str(), ::string(scopedstr).c_str());
 
    output_debug_string(strMessage);
 

@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 23/12/2022 01:48 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -668,8 +668,8 @@ namespace file
     inline path path::sibling(const path & path) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
     inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(scopedstr.begin()), m_epath }; }
     inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &) str); }
-    inline string path::all_extensions() const { return (*this)(rear_find(separator()) + 1).find_skip_or_end('.'); }
-    inline string path::final_extension() const { return file_path_final_extension(c_str()); }
+    inline ::scoped_string path::all_extensions() const { return (*this)(rear_find(separator()) + 1).find_skip_or_end('.'); }
+    inline ::scoped_string path::final_extension() const { return file_path_final_extension(c_str()); }
     //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
     //inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
 

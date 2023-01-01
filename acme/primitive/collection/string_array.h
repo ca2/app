@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "array.h"
@@ -483,7 +483,7 @@ public:
 //template < CHARACTER chSeparator, bool bAddEmpty >
 //typename Type::const_iterator _____add_lines(const SCOPED_STRING & scopedstr);
     template < bool bAddEmpty >
-    void __add_lines_suffix(Type::const_iterator start, Type::const_iterator end)
+    void __add_lines_suffix(typename Type::const_iterator start, typename Type::const_iterator end)
     {
 
        if (start < end)

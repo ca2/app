@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "hash_table.h"
@@ -1043,7 +1043,7 @@ const typename node_set < NODE >::ITEM & node_set < NODE >::operator[](ARG_ITEM 
    if (!p)
    {
 
-      throw ::exception(error_key_not_found);
+      throw_exception(error_key_not_found);
 
    }
 

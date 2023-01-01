@@ -10,9 +10,9 @@
 
 
 ns_exception::ns_exception(const ::e_status & estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & setUserInfo) :
-exception(estatus, pszName, pszDescription),
-m_strName(pszName),
-m_strDescription(pszDescription),
+exception(estatus, scopedstrName, scopedstrDescription),
+m_strName(scopedstrName),
+m_strDescription(scopedstrDescription),
 m_setUserInfo(setUserInfo)
 {
 

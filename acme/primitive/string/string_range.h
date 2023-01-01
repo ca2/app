@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -61,7 +61,7 @@ public:
     using SCOPED_STRING = scoped_string_base<ITERATOR_TYPE>;
 
 
-    using ARG_ITEM = BASE_RANGE::ARG_ITEM;
+    using ARG_ITEM = typename BASE_RANGE::ARG_ITEM;
 
 
     template<::std::size_t count>
@@ -1362,16 +1362,11 @@ public:
 
     //bool equals(const string_base &str) const;
     //bool case_insensitive_equals(const string_base &str) const;
-    inline bool operator==(const ::ansi_string &str) const
-    {
+           inline bool operator==(const ::ansi_string &str) const;
 
-       return this->equals(string_base(str));
+           inline bool operator==(const ::wd16_string &str) const;
 
-    }
-
-    inline bool operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
-
-    inline bool operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+           inline bool operator==(const ::wd32_string &str) const;
 
     //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
     inline bool operator==(const ::ansi_character *psz) const { return this->equals(psz); }

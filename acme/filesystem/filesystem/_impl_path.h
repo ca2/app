@@ -749,12 +749,12 @@ namespace file
 
        strExtension.case_insensitive_begins_eat(".");
 
-       auto pFind = find_all_extensions();
+       auto range = find_all_extensions();
 
-       if (pFind >= this->begin() + 1)
+       if (range.begin() >= this->begin() + 1)
        {
 
-          this->operator = ((*this)(0, pFind) + strExtension);
+          this->operator = ((*this)(0, range.begin()) + strExtension);
 
        }
        else
@@ -774,12 +774,12 @@ namespace file
 
        strExtension.case_insensitive_begins_eat(".");
 
-       auto pFind = find_final_extension();
+       auto range = find_final_extension();
 
-       if (pFind >= this->begin() + 1)
+       if (range.begin() >= this->begin() + 1)
        {
 
-          this->operator = ((*this)(0, pFind) + strExtension);
+          this->operator = ((*this)(0, range.begin()) + strExtension);
 
        }
        else
@@ -977,36 +977,18 @@ namespace file
     }
 
 
-    inline path::const_iterator path::find_final_extension() const
+    inline ::scoped_string path::find_final_extension() const
     {
 
-       auto p = file_path_final_extension(c_str());
-
-       if (::is_null(p))
-       {
-
-          return nullptr;
-
-       }
-
-       return p + 1;
+       return ::file_path_final_extension(*this);
 
     }
 
 
-    inline path::const_iterator path::find_all_extensions() const
+    inline ::scoped_string path::find_all_extensions() const
     {
 
-       auto p = file_path_all_extensions(c_str());
-
-       if(::is_null(p))
-       {
-
-          return nullptr;
-
-       }
-
-       return p + 1;
+       return file_path_all_extensions(*this);
 
     }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -817,7 +817,7 @@ namespace acme
 
       synchronous_lock synchronouslock(m_pmutexTaskOn);
 
-      return m_mapTaskOn.plookup(atom) != nullptr;
+      return m_mapTaskOn.plookup(atom);
 
    }
 

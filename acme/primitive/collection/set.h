@@ -833,7 +833,7 @@ void node_set < NODE >::free_node(iterator iterator)
 
       this->m_begin = next;
 
-      if(this->m_begin != nullptr)
+      if(this->m_begin)
       {
 
          this->m_begin->m_back = nullptr;

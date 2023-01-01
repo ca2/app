@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "numeric_array.h"
+//#include "numeric_array.h"
 #include "acme/primitive/comparison/less.h"
 
 

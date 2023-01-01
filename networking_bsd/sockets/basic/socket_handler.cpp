@@ -206,7 +206,7 @@ namespace sockets_bsd
 
       auto psocket2 = __Socket(psocket);
 
-      auto iterator = m_socketmapAdd.get_node(psocket2->GetSocketId());
+      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
 
       iterator->m_psocket = psocket2;
 
@@ -220,7 +220,7 @@ namespace sockets_bsd
 
       auto psocket2 = __Socket(psocket);
 
-      auto iterator = m_socketmapAdd.get_node(psocket2->GetSocketId());
+      auto iterator = m_socketmapAdd.get_item(psocket2->GetSocketId());
 
       iterator->m_psocket = psocket2;
 

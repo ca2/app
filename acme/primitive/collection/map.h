@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "set.h"
@@ -1213,7 +1213,7 @@ template < typename PAIR >
 bool pair_map < PAIR >::has(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 
@@ -1222,7 +1222,7 @@ template < typename PAIR >
 bool pair_map < PAIR >::contains(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 

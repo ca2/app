@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "hash_table.h"
@@ -1077,7 +1077,7 @@ template < typename NODE >
 inline ::count node_set < NODE >::count(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 
@@ -1086,7 +1086,7 @@ template < typename NODE >
 bool node_set < NODE >::has(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 
@@ -1095,7 +1095,7 @@ template < typename NODE >
 bool node_set < NODE >::contains(const ITEM & item) const
 {
 
-   return this->plookup(item) != nullptr ? 1 : 0;
+   return this->plookup(item) ? 1 : 0;
 
 }
 
@@ -1138,11 +1138,18 @@ template < typename NODE >
 typename node_set < NODE >::ITEM node_set < NODE > ::
 get(ARG_ITEM argkey, ARG_ITEM valueDefault)
 {
-   iterator iterator = plookup(argkey);
-   if(iterator == nullptr)
+   
+   auto p = plookup(argkey);
+
+   if (!p)
+   {
+
       return valueDefault;
-   else
-      return iterator->item();
+
+   }
+
+   return p->item();
+
 }
 
 

@@ -1,4 +1,4 @@
-﻿// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
+// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -472,30 +472,16 @@ public:
 
    }
 
+   constexpr bool is_set() const { return ::is_set(this) && ::is_set(this->get());  }
+   constexpr bool is_null() const { return !is_set(); }
+   constexpr bool is_ok() const { return is_set(); }
+   constexpr bool operator !() const { return this->is_null(); }
+   //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
+   typedef void (const_iterator:: * bool_type)() const;
+   constexpr void this_type_does_not_support_comparisons() const {}
+   constexpr operator bool_type() const { return this->is_set() ? &const_iterator::this_type_does_not_support_comparisons : 0; }
+   //https://www.artima.com/articles/the-safe-bool-idiom END
 
-   constexpr bool is_set() const
-   {
-
-      return ::is_set(this) && ::is_set(this->get());
-
-   }
-
-   constexpr bool is_null() const
-   {
-
-      return !is_set();
-
-   }
-
-   constexpr bool is_ok() const
-   {
-
-      return is_set();
-
-   }
-
-
-   bool operator !() const { return ::is_null(this->get()); }
 
 
    auto & operator *() { return this->topic(); }

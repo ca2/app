@@ -317,6 +317,9 @@ public:
 
    }
 
+
+   inline bool unhash(iterator iterator);
+
    void erase_all();
    void clear();
    void Empty();
@@ -1273,3 +1276,25 @@ void node_set < NODE >::InitHashTable(
 //
 //
 //
+
+
+
+
+template < typename NODE >
+inline bool node_set < NODE >::unhash(iterator iterator)
+// erase - return true if erased
+{
+
+   if(::is_set(iterator->m_nextHash))
+   {
+
+      iterator->m_nextHash->m_pbackHash = iterator->m_pbackHash;
+
+   }
+
+   *iterator->m_pbackHash = iterator->m_nextHash;
+
+   return true;
+
+}
+

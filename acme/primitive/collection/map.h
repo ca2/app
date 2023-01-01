@@ -1106,7 +1106,7 @@ inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(cons
    while(p != this->end())
    {
 
-      if(p->payload == payload)
+      if(p->load() == payload)
       {
 
          return p;

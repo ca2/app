@@ -399,7 +399,7 @@ namespace experience
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::on_message_move);
+      MESSAGE_LINK(e_message_reposition, pframewindow, this, &control_box::on_message_move);
       MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::on_message_size);
 
    }

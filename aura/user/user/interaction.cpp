@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
 #include "alpha_source.h"
@@ -2083,7 +2083,7 @@ namespace user
 
          MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction::on_message_move);
          MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
             &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
@@ -4978,7 +4978,7 @@ namespace user
       break;
       case ::message::e_prototype_move:
       {
-         pmessage = __new(::message::transfer);
+         pmessage = __new(::message::reposition);
       }
       break;
       case ::message::e_prototype_erase_background:

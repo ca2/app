@@ -52,6 +52,11 @@ public:
       BASE_ARRAY::operator = (array);
       return *this;
    }
+   comparable_array & operator = (comparable_array && array)
+   {
+      BASE_ARRAY::operator = (::transfer(array));
+      return *this;
+   }
 
 
 
@@ -82,15 +87,15 @@ public:
       }
    
 
-
-   comparable_array & operator = (comparable_array && array)
-   {
-
-      BASE_ARRAY::operator = (::transfer(array));
-
-      return *this;
-
-   }
+//
+//   comparable_array & operator = (comparable_array && array)
+//   {
+//
+//      BASE_ARRAY::operator = (::transfer(array));
+//
+//      return *this;
+//
+//   }
 
 
 

@@ -1051,13 +1051,14 @@ inline void __construct_new(::particle* pparticle, ::pointer<TYPE>& p)
 }
 
 
-template < typename TYPE1, typename TYPE2 >
-inline void copy(::pointer < TYPE1 >& p1, const ::pointer < TYPE2 >& p2)
+template < typename TARGET, typename SOURCE >
+inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pSource)
 {
 
-p1 = ((TYPE2 *)p2.get());
+   pTarget = pSource;
 
 }
+
 
 
 

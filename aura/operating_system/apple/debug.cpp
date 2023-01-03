@@ -6,13 +6,14 @@
 //
 
 #include "debug.h"
-
-void throw_ns_exception()
-{
-   
-   throw ns_exception();
-   
-}
+//#include "acme/exception/e."
+//
+//void throw_ns_exception(int iErrorCode)
+//{
+//
+//   throw error_code(e_error_code_type_ns_exception, iErrorCode);
+//
+//}
 
 //
 //char * mm_error_string(OSStatus status);

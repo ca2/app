@@ -700,7 +700,7 @@ namespace linux
          //MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
          // linux
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
 

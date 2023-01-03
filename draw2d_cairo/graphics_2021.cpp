@@ -3945,7 +3945,7 @@ namespace draw2d_cairo
 
       rectangle_f64 rectangle;
 
-      __copy(rectangle, rectangleParam);
+      copy(rectangle, rectangleParam);
 
       internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
@@ -6745,7 +6745,7 @@ namespace draw2d_cairo
 
       cairo_get_matrix(m_pdc, &cairomatrix);
 
-      __copy(matrix, cairomatrix);
+      copy(matrix, cairomatrix);
 
       //return true;
 
@@ -6766,7 +6766,7 @@ namespace draw2d_cairo
 
       cairo_matrix_t cairomatrix;
 
-      __copy(cairomatrix, matrix);
+      copy(cairomatrix, matrix);
 
       cairo_set_matrix(m_pdc, &cairomatrix);
 

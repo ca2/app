@@ -1,6 +1,9 @@
-﻿// Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "nano.h"
+#include "window.h"
+#include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/department.h"
 
@@ -123,6 +126,23 @@ namespace nano
 
    }
 
+
+   void nano::handle(::topic* ptopic, ::context* pcontext)
+   {
+      
+      if (ptopic->m_atom == id_set_dark_mode)
+      {
+         
+         for(auto & pnanowindow : m_nanowindowa)
+         {
+            
+            pnanowindow->handle(ptopic, pcontext);
+            
+         }
+         
+      }
+      
+   }
 
 
 } // namespace nano

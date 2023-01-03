@@ -614,7 +614,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image__copy(::image * pimage)
+   //void imagecopy(::image * pimage)
    //{
    //   // If DibSize Wrong Re-create image
    //   if (pimage->get_size() != m_size)

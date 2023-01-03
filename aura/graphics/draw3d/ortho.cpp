@@ -289,7 +289,7 @@ namespace draw3d
 
       int_array iaf;
 
-      throw ::exception(todo);
+      //throw ::exception(todo);
 
       //::acme::array::set_sequence(iaf,0,5);
 

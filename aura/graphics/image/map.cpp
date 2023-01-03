@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "map.h"
 #include "image.h"
 #include "acme/platform/system.h"
@@ -34,7 +34,7 @@
 void image_descriptor_map::erase_bigger()
 {
 
-   image_header keyFind;
+   image_header itemFind;
 
    u64 uAreaMax = 0;
 
@@ -48,7 +48,7 @@ void image_descriptor_map::erase_bigger()
 
          uAreaMax = iterator->element2()->area();
 
-         keyFind = iterator->element1();
+         itemFind = iterator->element1();
 
       }
 
@@ -59,13 +59,13 @@ void image_descriptor_map::erase_bigger()
    if (uAreaMax > 0)
    {
 
-      erase_key(keyFind);
+      erase_item(itemFind);
 
    }
    else
    {
 
-      erase_key(this->begin()->element1());
+      erase_item(this->begin()->item());
 
    }
 

@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -7,6 +7,8 @@
 #include "device.h"
 #include "child.h"
 #include "button.h"
+#include "nano.h"
+#include "acme/handler/topic.h"
 #include "acme/user/nano/font.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -44,6 +46,7 @@ nano_window::nano_window()
 nano_window::~nano_window()
 {
 
+   acmesystem()->m_pnano->m_nanowindowa.erase_item(this);
 
 }
 
@@ -58,6 +61,8 @@ void nano_window::on_initialize_particle()
    __construct(m_pimplementation);
 
    m_pimplementation->m_pinterface = this;
+   
+   acmesystem()->m_pnano->m_nanowindowa.add(this);
 
 }
 
@@ -770,6 +775,19 @@ void nano_window::_run_modal_loop()
    
    return m_pimplementation->do_synchronously(timeWait);
 
+}
+
+
+void nano_window::handle(::topic* ptopic, ::context* pcontext)
+{
+   
+   if (ptopic->m_atom == id_set_dark_mode)
+   {
+      
+      m_pimplementation->handle(ptopic, pcontext);
+      
+   }
+   
 }
 
 

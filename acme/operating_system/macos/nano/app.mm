@@ -63,7 +63,7 @@ void set_apex_system_as_thread();
 //   m_menuida = [[NSMutableArray alloc] init];
 //   
 //   // Monitor menu/dock theme changes...
-//   [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
+   [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
 //
 //   //int iCount = pbridge->_get_notification_area_action_count();
 //   
@@ -526,7 +526,9 @@ void set_apex_system_as_thread();
 
 -(void) fetch_dark_mode
 {
+   
    NSString *interfaceStyle = [NSUserDefaults.standardUserDefaults valueForKey:@"AppleInterfaceStyle"];
+   
    int iDarkMode = [interfaceStyle isEqualToString:@"Dark"];
 
    system_id_update(application_system(m_pApp), id_set_dark_mode, iDarkMode);
@@ -668,9 +670,22 @@ void os_menu_item_check(void * pitem, bool bCheck)
 //
 void os_begin_system();
 
-
-void acme_macos_application_main(void * pApplication, int argc, char *argv[])
+void acme_macos_application_init(void * pApplication, int argc, char *argv[])
 {
+   
+//   auto argc = psystem->m_psubsystem->m_argc;
+//
+//   auto argv = psystem->m_psubsystem->m_argv;
+//
+//   auto papp = psystem->m_pacmeapplication;
+//
+//   void * pApplication = (void *) (::acme::application *) papp;
+//
+////      acme_macos_application_main(pApplication, argc, argv);
+//
+//      //return psystem->m_estatus;
+//
+////   }
    
    NSApplication * application = [NSApplication sharedApplication];
    
@@ -687,7 +702,14 @@ void acme_macos_application_main(void * pApplication, int argc, char *argv[])
    [NSApplication sharedApplication];
    
    bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
-//   
+
+}
+
+
+void acme_macos_application_main(void * pApplication, int argc, char *argv[])
+{
+   
+//
 //   if(bNoDock)
 //   {
 //      

@@ -67,7 +67,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock ml(mutex());
+   synchronous_lock ml(synchronization());
 
    m_messagea.add(message);
 

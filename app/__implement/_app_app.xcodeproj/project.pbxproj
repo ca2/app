@@ -14,7 +14,6 @@
 		9A1CF503276161CB00802DB8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4FC276161C900802DB8 /* libaura.dylib */; };
 		9A21A734276107DD001E14CC /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CB2761068B001E14CC /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A735276107E0001E14CC /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CC2761068B001E14CC /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A22739627CEFF320042BAC2 /* __implement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22739427CEFF320042BAC2 /* __implement.cpp */; };
 		9A23A76826CECDC600F98012 /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E966A278531FF00B74C76 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4FB276161C900802DB8 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E966B2785321100B74C76 /* libapex.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4FA276161C900802DB8 /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -51,7 +50,6 @@
 		9A4E96B727853AA900B74C76 /* libcrypto_openssl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4C02761556D00802DB8 /* libcrypto_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B927853AB400B74C76 /* libfolder_zip.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */; };
 		9A4E96BA27853AB400B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A615C4928B1CF5F00377F68 /* __implement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22739427CEFF320042BAC2 /* __implement.cpp */; };
 		9A615C4B28B1CF5F00377F68 /* libdraw2d_quartz2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4CD2761556E00802DB8 /* libdraw2d_quartz2d.dylib */; };
 		9A615C4C28B1CF5F00377F68 /* libnode_macos.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4C62761556E00802DB8 /* libnode_macos.dylib */; };
 		9A615C4D28B1CF5F00377F68 /* libfolder_zip.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */; };
@@ -103,6 +101,8 @@
 		9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C817C2783F8D9000C8587 /* _matter.zip */; };
 		9AC01A452748BC47006BEBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
+		9AE6DF282962ADEF008A1335 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF272962ADEE008A1335 /* application.cpp */; };
+		9AE6DF292962ADEF008A1335 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF272962ADEE008A1335 /* application.cpp */; };
 		9AEA1C682760261D006437A3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C632760261D006437A3 /* MainMenu.xib */; };
 		9AEA1C692760261D006437A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C652760261D006437A3 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -308,7 +308,6 @@
 		9A21A70B2761074B001E14CC /* libidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libidn.dylib; path = "../../../time-macos/output/libidn.dylib"; sourceTree = "<group>"; };
 		9A21A70D2761074C001E14CC /* libacme_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_posix.dylib; path = "../../../time-macos/output/libacme_posix.dylib"; sourceTree = "<group>"; };
 		9A21A70F2761074C001E14CC /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "../../../time-macos/output/libacme_apple.dylib"; sourceTree = "<group>"; };
-		9A22739427CEFF320042BAC2 /* __implement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __implement.cpp; sourceTree = "<group>"; };
 		9A4E966D278532DC00B74C76 /* libacme_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E966E278532DC00B74C76 /* libacme_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E966F278532DC00B74C76 /* libacme_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,10 +324,10 @@
 		9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96C127853D4B00B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A615C8028B1CF5F00377F68 /* __app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A615C8B28B1CF6100377F68 /* _app_app copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "_app_app copy-Info.plist"; path = "/Users/camilo/solution/stage/source/app/app/_app_app copy-Info.plist"; sourceTree = "<absolute>"; };
 		9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app.xcodeproj; path = ../app_app.xcodeproj; sourceTree = "<group>"; };
 		9A8C817C2783F8D9000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
+		9AE6DF272962ADEE008A1335 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9AEA1C642760261D006437A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9AEA1C652760261D006437A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AEA1C672760261D006437A3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -416,7 +415,6 @@
 				9ADF1D2922C16DBB00456537 /* Frameworks */,
 				9A3E0BA12309FBD400B5459B /* Library */,
 				9AE5CC8A22CBEBF400EDEAD1 /* Supporting Files */,
-				9A615C8B28B1CF6100377F68 /* _app_app copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -533,7 +531,7 @@
 		9AEA19E527602557006437A3 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				9A22739427CEFF320042BAC2 /* __implement.cpp */,
+				9AE6DF272962ADEE008A1335 /* application.cpp */,
 				9A8C817C2783F8D9000C8587 /* _matter.zip */,
 				9AEA1C612760261D006437A3 /* macos */,
 			);
@@ -618,7 +616,7 @@
 		070B8EE21B6E53F900D26137 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "ca2 Desenvolvimento de Software Ltdal";
 				TargetAttributes = {
 					070B8EE91B6E53F900D26137 = {
@@ -781,7 +779,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A22739627CEFF320042BAC2 /* __implement.cpp in Sources */,
+				9AE6DF282962ADEF008A1335 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,7 +794,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A615C4928B1CF5F00377F68 /* __implement.cpp in Sources */,
+				9AE6DF292962ADEF008A1335 /* application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +874,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -970,6 +969,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1037,10 +1037,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1054,10 +1056,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1069,6 +1073,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1083,6 +1088,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!._app_app/Contents/MacOS/Hello Multiverse!!";
@@ -1094,6 +1100,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -1104,6 +1111,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!._app_app/Contents/MacOS/Hello Multiverse!!";
@@ -1117,10 +1125,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "_app_app copy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1134,10 +1144,12 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "_app_app copy-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

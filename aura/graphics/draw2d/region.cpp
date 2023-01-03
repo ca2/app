@@ -392,7 +392,7 @@ namespace draw2d
 
    //   max_bounding_box_rect(rectangle);
 
-   //   __copy(prectangle, rectangle);
+   //   copy(prectangle, rectangle);
 
 
    //}
@@ -405,7 +405,7 @@ namespace draw2d
 
    //   max_bounding_box_oval(rectangle);
 
-   //   __copy(prectangle, rectangle);
+   //   copy(prectangle, rectangle);
 
    //}
 
@@ -417,7 +417,7 @@ namespace draw2d
 
    //   max_bounding_box_polygon(rectangle);
 
-   //   __copy(prectangle, rectangle);
+   //   copy(prectangle, rectangle);
 
    //}
 
@@ -429,7 +429,7 @@ namespace draw2d
 
    //   max_bounding_box_poly_polygon(rectangle);
 
-   //   __copy(prectangle, rectangle);
+   //   copy(prectangle, rectangle);
 
    //}
 
@@ -441,7 +441,7 @@ namespace draw2d
 
    //   max_bounding_box_combine(rectangle);
 
-   //   __copy(prectangle, rectangle);
+   //   copy(prectangle, rectangle);
 
    //}
 

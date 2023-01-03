@@ -428,7 +428,7 @@ namespace android
 
    //   m_puserinteraction->send_message(e_message_size);
 
-   //   m_puserinteraction->send_message(e_message_move);
+   //   m_puserinteraction->send_message(e_message_reposition);
 
    //   m_puserinteraction->send_message(e_message_show_window, 1);
 
@@ -1054,7 +1054,7 @@ namespace android
    {
 
 
-      if(pmessage->m_atom == e_message_size || pmessage->m_atom == e_message_move)
+      if(pmessage->m_atom == e_message_size || pmessage->m_atom == e_message_reposition)
       {
 
          //win_update_graphics();

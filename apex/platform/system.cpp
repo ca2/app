@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -4919,79 +4919,13 @@ namespace apex
    void system::handle(::topic* ptopic, ::context* pcontext)
    {
 
+      acme::system::handle(ptopic, pcontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;
       //
       //      psignal->notify();
 
-      if (ptopic->m_atom == id_set_dark_mode)
-      {
-
-         if (ptopic->payload("wparam").is_true())
-         {
-
-            m_pnode->background_color(::color::black);
-
-         }
-         else
-         {
-
-            m_pnode->background_color(::color::white);
-
-         }
-
-      }
-      else if (ptopic->m_atom == id_operating_system_user_theme_change)
-      {
-
-         auto pnode = node();
-
-         string strTheme = pnode->os_get_user_theme();
-
-         if (strTheme != m_strOsUserTheme)
-         {
-
-            m_strOsUserTheme = strTheme;
-
-         }
-
-      }
-      else if (ptopic->m_atom == id_open_hyperlink)
-      {
-
-         auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
-
-         if (plink)
-         {
-
-            //if (plink->m_bProfile)
-            {
-
-               open_profile_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
-
-            }
-            //else
-            {
-
-               // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
-
-            }
-
-         }
-
-      }
-      else if (ptopic->m_atom == id_app_activated)
-      {
-
-         if (::is_set(acmeapplication()))
-         {
-
-            acmeapplication()->handle(ptopic, pcontext);
-
-         }
-
-      }
 
 
    }

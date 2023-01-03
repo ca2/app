@@ -84,7 +84,7 @@ namespace user
       //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
-      MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::on_message_move);
+      MESSAGE_LINK(e_message_reposition, pchannel, this, &combo_box::on_message_move);
 
    }
 
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   void combo_box__copy()
+   void combo_boxcopy()
    {
 
       //ASSERT(is_window());

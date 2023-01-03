@@ -122,20 +122,20 @@
 //
 //
 //template < typename TYPE1, typename TYPE2 >
-//inline void __copy(TYPE1* p1, const TYPE2* p2) { ::copy(p1, p2); }
+//inline void copy(TYPE1* p1, const TYPE2* p2) { ::copy(p1, p2); }
 //
 //template < typename TYPE1, typename TYPE2 >
-//inline void __copy(TYPE1& t1, const TYPE2* p2) { ::copy(&t1, p2); }
+//inline void copy(TYPE1& t1, const TYPE2* p2) { ::copy(&t1, p2); }
 //
 //template < typename TYPE1, typename TYPE2 >
-//inline void __copy(TYPE1* p1, const TYPE2& t2) { ::copy(p1, &t2); }
+//inline void copy(TYPE1* p1, const TYPE2& t2) { ::copy(p1, &t2); }
 //
 //template < typename TYPE1, typename TYPE2 >
-//inline void __copy(TYPE1& p1, const TYPE2& p2) { ::copy(&p1, &p2); }
+//inline void copy(TYPE1& p1, const TYPE2& p2) { ::copy(&p1, &p2); }
 //
 //
 //template < typename TYPE >
-//inline auto __copy(const TYPE& t) { return TYPE(t); }
+//inline auto copy(const TYPE& t) { return TYPE(t); }
 //
 //
 //

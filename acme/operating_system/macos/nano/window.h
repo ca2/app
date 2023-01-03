@@ -127,7 +127,10 @@ namespace macos
       
       virtual ::payload do_synchronously();
       
-
+      void handle(::topic* ptopic, ::context* pcontext) override;
+      
+      
+      
    };
 
 

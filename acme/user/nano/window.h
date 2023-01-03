@@ -153,6 +153,9 @@ public:
    
    //::atom do_synchronously() override;
    
+   
+   void handle(::topic* ptopic, ::context* pcontext) override;
+   
 
 };
 

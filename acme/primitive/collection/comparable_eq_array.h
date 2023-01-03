@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -108,7 +108,7 @@ public:
    comparable_eq_array & operator = (comparable_eq_array && array)
    {
       
-      transfer(::transfer(array));
+      BASE_ARRAY::operator = (::transfer(array));
       
       return *this;
       

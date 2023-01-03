@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/ptr.h"
@@ -614,6 +614,10 @@ ptr < TYPE > clone(TYPE * p);
 
 template < typename TYPE >
 inline ::pointer<TYPE> __create_new(::particle* pparticle);
+
+
+template < typename TARGET, typename SOURCE >
+inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pSource);
 
 
 

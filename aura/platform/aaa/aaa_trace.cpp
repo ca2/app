@@ -156,7 +156,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 {
    DEFINE_MESSAGE(e_message_create),
    DEFINE_MESSAGE(e_message_destroy),
-   DEFINE_MESSAGE(e_message_move),
+   DEFINE_MESSAGE(e_message_reposition),
    DEFINE_MESSAGE(e_message_size),
    DEFINE_MESSAGE(e_message_activate),
    DEFINE_MESSAGE(e_message_set_focus),

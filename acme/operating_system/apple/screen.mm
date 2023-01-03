@@ -28,6 +28,8 @@ void mm_on_update_screen()
 
 CGRect mm_get_screen_cgrect()
 {
+   
+   mm_on_update_screen();
 
    return g_rectScreen;
 

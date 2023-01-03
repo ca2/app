@@ -775,37 +775,37 @@ void payload::set_type(enum_type etype, bool bConvert)
 }
 
 
-//void payload::set_string(::string && str)
-//{
-//
-//   if (get_type() == e_type_pstring)
-//   {
-//
-//      *m_pstr = ::transfer(str);
-//
-//   }
-//   else if (get_type() == e_type_payload_pointer)
-//   {
-//
-//      m_ppayload->set_string(::transfer(str));
-//
-//   }
-//   else if (get_type() == e_type_property)
-//   {
-//
-//      m_pproperty->set_string(::transfer(str));
-//
-//   }
-//   else
-//   {
-//
-//      set_type(e_type_string, false);
-//
-//      m_str = ::transfer(str);
-//
-//   }
-//
-//}
+void payload::set_string(::string && str)
+{
+
+   if (get_type() == e_type_pstring)
+   {
+
+      *m_pstr = ::transfer(str);
+
+   }
+   else if (get_type() == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_string(::transfer(str));
+
+   }
+   else if (get_type() == e_type_property)
+   {
+
+      m_pproperty->set_string(::transfer(str));
+
+   }
+   else
+   {
+
+      set_type(e_type_string, false);
+
+      m_str = ::transfer(str);
+
+   }
+
+}
 
 
 void payload::set_string(const ::string & str)
@@ -847,43 +847,43 @@ void payload::set_string(const ::string & str)
 }
 
 
-inline void payload::set_string(::string && str)
-{
-
-   if (get_type() == e_type_string)
-   {
-
-      m_str = ::transfer(str);
-
-   }
-   else if (get_type() == e_type_pstring)
-   {
-
-      m_pstr->assign(::transfer(str));
-
-   }
-   else if (get_type() == e_type_payload_pointer)
-   {
-
-      m_ppayload->set_string(::transfer(str));
-
-   }
-   else if (get_type() == e_type_property)
-   {
-
-      m_pproperty->set_string(::transfer(str));
-
-   }
-   else
-   {
-
-      set_type(e_type_string, false);
-
-      ::new(&m_str) ::string(::transfer(str));
-
-   }
-
-}
+//void payload::set_string(::string && str)
+//{
+//
+//   if (get_type() == e_type_string)
+//   {
+//
+//      m_str = ::transfer(str);
+//
+//   }
+//   else if (get_type() == e_type_pstring)
+//   {
+//
+//      m_pstr->assign(::transfer(str));
+//
+//   }
+//   else if (get_type() == e_type_payload_pointer)
+//   {
+//
+//      m_ppayload->set_string(::transfer(str));
+//
+//   }
+//   else if (get_type() == e_type_property)
+//   {
+//
+//      m_pproperty->set_string(::transfer(str));
+//
+//   }
+//   else
+//   {
+//
+//      set_type(e_type_string, false);
+//
+//      ::new(&m_str) ::string(::transfer(str));
+//
+//   }
+//
+//}
 
 
 void payload::unset()
@@ -2321,7 +2321,9 @@ bool payload::operator == (bool b) const
 
 ::std::strong_ordering payload::operator <=> (bool b) const
 {
+   
    return ::comparison::get_bool_int(get_bool()) <=> ::comparison::get_bool_int(b);
+   
 }
 
 //bool payload::operator != (bool b) const

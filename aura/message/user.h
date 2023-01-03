@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/user/user/mouse.h"
@@ -75,14 +75,14 @@ namespace message
 
    };
 
-   class CLASS_DECL_AURA transfer : public ::user::message
+   class CLASS_DECL_AURA reposition : public ::user::message
    {
    public:
 
 
       point_i32 m_point;
 
-      transfer() { }
+      reposition() { }
 
       using ::user::message::set;
 

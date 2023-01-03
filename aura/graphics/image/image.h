@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "meta.h"
@@ -728,7 +728,14 @@ public:
 
    }
 
+   ::color32_t * get_data()
+   {
 
+      map();
+
+      return colorref();
+
+   }
    //inline ::image & operator = (const ::image & image);
    //inline void operator == (const ::image & image) const;
    //inline void operator != (const ::image & image) const;

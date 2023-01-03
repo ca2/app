@@ -184,7 +184,7 @@ void simple_frame_window::install_message_routing(::channel* pchannel)
    MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &simple_frame_window::on_message_destroy);
    MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &simple_frame_window::on_message_close);
    MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
-   MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::on_message_move);
+   MESSAGE_LINK(e_message_reposition, pchannel, this, &simple_frame_window::on_message_move);
 
 #ifdef WINDOWS_DESKTOP
 

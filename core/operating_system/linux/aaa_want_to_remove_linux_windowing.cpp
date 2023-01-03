@@ -2713,7 +2713,7 @@ bool x11_process_message(Display * pdisplay)
                if(msg.hwnd->m_rect.origin() != point)
                {
 
-                  msg.message       = e_message_move;
+                  msg.message       = e_message_reposition;
                   msg.wParam        = 0;
                   msg.lParam        = point.lparam();
 
@@ -3361,7 +3361,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 
    synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->mutex());
 
-   __copy(prect, window->m_pimpl->m_puserinteraction->get_window_rect());
+   copy(prect, window->m_pimpl->m_puserinteraction->get_window_rect());
 
 
    OffsetRect(prect, -prect->left, -prect->top);

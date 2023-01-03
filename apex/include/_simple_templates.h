@@ -13,7 +13,7 @@
 
 
 #include "acme/operating_system/parallelization.h"
-#include "apex/operating_system/cross/cross.h"
+//#include "apex/operating_system/cross/cross.h"
 #include "apex/include/_c.h"
 #include "acme/constant/source.h"
 #include "acme/constant/check.h"

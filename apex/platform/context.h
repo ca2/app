@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "apex/parallelization/thread.h"
@@ -48,7 +48,7 @@ namespace apex
 
       void request(::request * prequest) override;
 
-      void post_request(::request * prequest);
+      void post_request(::request * prequest) override;
 
       bool on_idle() override;
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <limits>
 
@@ -144,7 +144,14 @@ inline constexpr bool __le(const FLOATING1 & a, const FLOATING2 & b) { return a 
 namespace comparison
 {
 
+   template < typename T1, typename T2 >
 
+constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2)
+{
+   
+   return t1 <=> t2;
+
+}
    template < typename T1, typename T2 >
    class comparison2
    {
@@ -161,8 +168,16 @@ namespace comparison
 
    };
 
+template < primitive_signed S1, primitive_signed S2 >
 
-   template < primitive_signed S1, primitive_signed S2 >
+constexpr ::std::strong_ordering order(S1 s1, S2 s2)
+{
+
+   return s1 <=> s2;
+
+}
+
+template < primitive_signed S1, primitive_signed S2 >
    class comparison2 < S1, S2 >
    {
    public:
@@ -176,7 +191,13 @@ namespace comparison
 
    };
 
+template < primitive_unsigned U1, primitive_unsigned U2 >
+constexpr ::std::strong_ordering order(U1 u1, U2 u2)
+{
 
+   return u1 <=> u2;
+
+}
    template < primitive_unsigned U1, primitive_unsigned U2 >
    class comparison2 < U1, U2 >
    {
@@ -191,7 +212,13 @@ namespace comparison
 
    };
 
+template < primitive_signed S, primitive_unsigned U >
+constexpr ::std::strong_ordering order(S s, U u)
+{
 
+   return s < 0 ? ::std::strong_ordering::less : ::std::make_unsigned_t<S>(s) <=> u;
+
+}
    template < primitive_signed S, primitive_unsigned U >
    class comparison2 < S, U >
    {
@@ -205,8 +232,13 @@ namespace comparison
       }
 
    };
+template < primitive_unsigned U, primitive_signed S >
+constexpr ::std::strong_ordering order(U u, S s)
+{
 
+   return s < 0 ? ::std::strong_ordering::greater : u <=> ::std::make_unsigned_t<S>(s);
 
+}
    template < primitive_unsigned U, primitive_signed S >
    class comparison2 < U, S >
    {
@@ -222,8 +254,14 @@ namespace comparison
       }
 
    };
+template < primitive_floating F1, primitive_floating F2 >
 
+constexpr ::std::strong_ordering order(F1 f1, F2 f2)
+{
 
+   return ::strong_order(f1, f2);
+
+}
    template < primitive_floating F1, primitive_floating F2 >
    class comparison2 < F1, F2 >
    {
@@ -238,7 +276,41 @@ namespace comparison
 
    };
 
+template < primitive_floating F, primitive_integral T >
 
+constexpr ::std::strong_ordering order(F f, T t)
+{
+
+#if defined(__GNUC__) && !defined(__clang__)
+
+   if(f > t)
+   {
+
+      return ::std::strong_ordering::greater;
+
+   }
+   else if(f < t)
+   {
+
+      return ::std::strong_ordering::less;
+
+   }
+   else
+   {
+
+      return ::std::strong_ordering::equal;
+
+   }
+
+#else
+
+   return ::std::strong_order(f, (F)t);
+
+#endif
+
+
+
+}
    template < primitive_floating F, primitive_integral T >
    class comparison2 < F, T >
    {
@@ -280,6 +352,38 @@ namespace comparison
 
    };
 
+template < primitive_integral T, primitive_floating F >
+constexpr ::std::strong_ordering order(T t, F f)
+{
+
+#if defined(__GNUC__) && !defined(__clang__)
+
+   if(t > f)
+   {
+
+      return ::std::strong_ordering::greater;
+
+   }
+   else if(t < f)
+   {
+
+      return ::std::strong_ordering::less;
+
+   }
+   else
+   {
+
+      return ::std::strong_ordering::equal;
+
+   }
+
+#else
+
+   return ::std::strong_order((F) t, f);
+
+#endif
+
+}
 
    template < primitive_integral T, primitive_floating F >
    class comparison2 < T, F >

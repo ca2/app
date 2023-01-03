@@ -213,7 +213,7 @@ namespace console
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &prompt_frame::on_message_create);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &prompt_frame::on_message_close);
 //      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::_001OnTimer);
-      MESSAGE_LINK(e_message_move, pchannel, this, &prompt_frame::on_message_move);
+      MESSAGE_LINK(e_message_reposition, pchannel, this, &prompt_frame::on_message_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &prompt_frame::on_message_show_window);
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &prompt_frame::_001OnApp2000);
    }

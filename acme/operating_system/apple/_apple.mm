@@ -6,7 +6,7 @@
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-
+void ns_main_async(dispatch_block_t block);
 
 char * ns_string(NSString * str);
 

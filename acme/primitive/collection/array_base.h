@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_iterator.h"
@@ -7,6 +7,8 @@
 #include "acme/primitive/primitive/particle.h"
 
 //using tiny_index_array = tiny_array <::index>;
+
+
 
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
@@ -158,6 +160,7 @@ public:
       return *this;
    
    }
+
 
 
    void add_initializer_list(const ::std::initializer_list < TYPE > & initializer_list)
@@ -2745,8 +2748,72 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::eras
 
 }
 
+//template < typename TYPE1, typename TYPE2 >
+//concept is_same_family = ::std::is_base_of<TYPE1, TYPE2> || ::std::is_base_of<TYPE2, TYPE1>;
 
 
+namespace generic
+{
 
+
+   namespace array
+   {
+
+   
+      template < typename ARRAY, typename CONTAINER >
+      ARRAY & append(ARRAY & a, const CONTAINER & container)
+      {
+         
+         if constexpr( ::std::is_base_of_v<ARRAY, CONTAINER> || ::std::is_base_of_v<CONTAINER, ARRAY>)
+         {
+            
+            a.append(container);
+            
+         }
+         else
+         {
+            
+            for (auto & item : container)
+            {
+               
+               ::copy(a.add_new(), item);
+               
+            }
+            
+         }
+         
+         return a;
+         
+      }
+
+
+      template < typename ARRAY, typename CONTAINER >
+      ARRAY & copy(ARRAY & a, const CONTAINER & container)
+      {
+         
+         if constexpr(::std::is_base_of_v<ARRAY, CONTAINER> || ::std::is_base_of_v<CONTAINER, ARRAY>)
+         {
+            
+            a.append(container);
+            
+         }
+         else
+         {
+            
+            a.clear();
+            
+            append(a, container);
+            
+         }
+         
+         return a;
+         
+      }
+
+
+   } // namespace array
+
+
+} // namespace generic
 
 

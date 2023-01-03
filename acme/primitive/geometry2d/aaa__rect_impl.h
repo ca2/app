@@ -131,7 +131,7 @@
 //{
 //   ::null(this);
 //}
-//TEMPLATE void rect64__copy(const RECTANGLE_I64 * pSrcRect) noexcept
+//TEMPLATE void rect64copy(const RECTANGLE_I64 * pSrcRect) noexcept
 //
 //{
 //   ::copy(this, pSrcRect);
@@ -469,7 +469,7 @@
 //   }
 //
 //
-//  TEMPLATE void rectd__copy(const rectangle_f64 & pSrcRect) noexcept
+//  TEMPLATE void rectdcopy(const rectangle_f64 & pSrcRect) noexcept
 //
 //   {
 //      ::copy(this, pSrcRect);

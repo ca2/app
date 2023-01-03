@@ -5474,7 +5474,7 @@ static stbi_uc * stbi__readval(stbi__context * s, int channel, stbi_uc * dest)
    return dest;
 }
 
-static void stbi__copyval(int channel, stbi_uc * dest, const stbi_uc * src)
+static void stbicopyval(int channel, stbi_uc * dest, const stbi_uc * src)
 {
    int mask = 0x80, i;
 
@@ -5547,7 +5547,7 @@ static stbi_uc * stbi__pic_load_core(stbi__context * s, int width, int height, i
                if (!stbi__readval(s, packet->channel, value))  return 0;
 
                for (i = 0; i < count; ++i, dest += 4)
-                  stbi__copyval(packet->channel, dest, value);
+                  stbicopyval(packet->channel, dest, value);
                left -= count;
             }
          }
@@ -5573,7 +5573,7 @@ static stbi_uc * stbi__pic_load_core(stbi__context * s, int width, int height, i
                      return 0;
 
                   for (i = 0; i < count; ++i, dest += 4)
-                     stbi__copyval(packet->channel, dest, value);
+                     stbicopyval(packet->channel, dest, value);
                }
                else { // Raw
                   ++count;

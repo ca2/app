@@ -1580,7 +1580,7 @@ typedef struct tagSTYLESTRUCT
 #define e_message_null                         0x0000
 #define e_message_create                       0x0001
 #define e_message_destroy                      0x0002
-#define e_message_move                         0x0003
+#define e_message_reposition                         0x0003
 #define e_message_size                         0x0005
 
 #define e_message_activate                     0x0006

@@ -17,7 +17,7 @@
 //   else __msg_entry(e_message_null)
 //else __msg_entry(e_message_create)
 //else __msg_entry(e_message_destroy)
-//else __msg_entry(e_message_move)
+//else __msg_entry(e_message_reposition)
 //else __msg_entry(e_message_size)
 //else __msg_entry(e_message_activate)
 //else __msg_entry(e_message_set_focus)
@@ -209,7 +209,7 @@
    e_message_non_client_calc_size,
    e_message_create,
    e_message_size,
-   e_message_move,
+   e_message_reposition,
    e_message_show_window,
    e_message_window_position_changing,
    e_message_non_client_activate,

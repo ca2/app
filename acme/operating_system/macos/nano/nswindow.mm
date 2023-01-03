@@ -418,7 +418,7 @@ void ns_screen_copy(RECTANGLE_I32 & rectangle, CGRect & rect)
 void nano_window_bridge::_run_modal_loop()
 {
    m_bRunningAppMainLoop = true;
-   //[ NSApp run ];
+//[ NSApp run ];
    [ NSApp runModalForWindow : (__bridge ns_nano_window *)m_pnsnanowindow ];
 
    

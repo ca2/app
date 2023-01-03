@@ -375,7 +375,7 @@ namespace universal_windows
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this,&interaction_impl::on_message_create);
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
       //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-      MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::on_message_move);
+      MESSAGE_LINK(e_message_reposition, pchannel, this,&interaction_impl::on_message_move);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
@@ -6280,7 +6280,7 @@ namespace universal_windows
    void interaction_impl::set_input_content_rect(const rectangle_i32& rectangle)
    {
 
-      __copy(m_pframeworkview->m_rectangleInputContentRect, rectangle);
+      copy(m_pframeworkview->m_rectangleInputContentRect, rectangle);
 
    }
 
@@ -6288,7 +6288,7 @@ namespace universal_windows
    void interaction_impl::set_input_selection_rect(const rectangle_i32& rectangle)
    {
 
-      __copy(m_pframeworkview->m_rectangleInputSelectionRect, rectangle);
+      copy(m_pframeworkview->m_rectangleInputSelectionRect, rectangle);
 
    }
 
@@ -6298,7 +6298,7 @@ namespace universal_windows
 
       ::rectangle_i32 rectangle;
 
-      __copy(rectangle, m_pframeworkview->m_rectangleInputContentRect);
+      copy(rectangle, m_pframeworkview->m_rectangleInputContentRect);
 
       return rectangle;
 
@@ -6310,7 +6310,7 @@ namespace universal_windows
 
       ::rectangle_i32 rectangle;
 
-      __copy(rectangle, m_pframeworkview->m_rectangleInputSelectionRect);
+      copy(rectangle, m_pframeworkview->m_rectangleInputSelectionRect);
 
       return rectangle;
 

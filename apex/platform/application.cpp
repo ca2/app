@@ -2259,7 +2259,7 @@ namespace apex
       //
       //MESSAGE message;
       //
-      //__copy(message, msg);
+      //copy(message, msg);
       //
       //auto psystem = acmesystem()->m_papexsystem;
       //

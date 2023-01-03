@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "shell.h"
 #include "style.h"
@@ -1356,7 +1356,7 @@ namespace user
 
       }
 
-      i64 iMessage = pmouse->m_atom;
+      i64 iMessage = pmouse->m_atom.as_i64();
 
       if(iMessage == e_message_left_button_down
        //|| iMessage == e_message_left_button_up

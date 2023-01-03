@@ -1,7 +1,7 @@
 #pragma once
 
 
-int_bool ::windows_definition::InternalPreTranslateMessage(MESSAGE* pMsg);
+//int_bool ::windows_definition::InternalPreTranslateMessage(MESSAGE* pMsg);
 
 
 namespace macos

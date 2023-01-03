@@ -8,16 +8,16 @@
 
 #include "ns_exception.h"
 
-
-ns_exception::ns_exception()
-{
-   
-   m_iCode = 0;
-   
-}
-
-
-ns_exception::~ns_exception()
-{
-   
-}
+//
+//ns_exception::ns_exception()
+//{
+//   
+//   m_iCode = 0;
+//   
+//}
+//
+//
+//ns_exception::~ns_exception()
+//{
+//   
+//}

@@ -14,7 +14,7 @@ static const i32_sz g_iszaMessageName[] =
 {
    __message_entry(e_message_create),
    __message_entry(e_message_destroy),
-   __message_entry(e_message_move),
+   __message_entry(e_message_reposition),
    __message_entry(e_message_size),
    __message_entry(e_message_activate),
    __message_entry(e_message_set_focus),

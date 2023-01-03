@@ -36,7 +36,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //   //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 //
 //
-//   //__pointer(::object) pobject;
+//   //::pointer < ::object > pobject;
 //
 //   //__keep(pobject, nullptr);
 //   ////   // 4 arguments

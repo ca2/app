@@ -272,7 +272,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 
 		switch (Msg)
 		{
-			case e_message_move:
+			case e_message_reposition:
 				if (!wfc->disablewindowtracking)
 				{
 					int x = (int)(short) LOWORD(lParam);

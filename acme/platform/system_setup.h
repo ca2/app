@@ -1,4 +1,4 @@
-﻿//
+//
 //  apex_app.h
 //  apex
 //
@@ -12,8 +12,8 @@
 //#include "acme/primitive/primitive/pointer.h"
 
 
-#define DECLARE_FACTORY(library) \
-__FACTORY_EXPORT void IDENTIFIER_CONCATENATE(library, _factory)(::factory::factory* pfactory);
+//#define DECLARE_FACTORY(library) \
+//__FACTORY_EXPORT void IDENTIFIER_CONCATENATE(library, _factory)(::factory::factory* pfactory);
 
 //#define STRINGFY(a) #a
 #define SETUP_FACTORY(library) \

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/operating_system/bidirectional_pipe.h"
@@ -34,7 +34,7 @@ namespace operating_system
       virtual bool write(const ::string & psz);
       virtual string read(bool bUntilExit = false);
 
-      virtual bool synch_elevated(const ::string & pszCmdLine,int iShow,const class time & timeTimeOut,bool * pbTimeOut);
+      virtual bool synch_elevated(const ::string & pszCmdLine,int iShow,const class ::time & timeTimeOut,bool * pbTimeOut);
 
       virtual bool kill();
 

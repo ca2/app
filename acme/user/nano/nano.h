@@ -1,9 +1,9 @@
-﻿// Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/platform/department.h"
-
+#include "acme/primitive/collection/comparable_list.h"
 
 namespace nano
 {
@@ -13,6 +13,9 @@ namespace nano
       virtual public acme::department
    {
    public:
+
+      
+      ::pointer_array < ::nano_window >         m_nanowindowa;
 
 
       nano();
@@ -35,7 +38,9 @@ namespace nano
 
       pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
 
-
+      
+      void handle(::topic* ptopic, ::context* pcontext) override;
+      
 
    };
 

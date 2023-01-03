@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-03 16:02 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-03 16:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -23,6 +23,11 @@ public:
    static FACTORY_FUNCTION* get(const ::scoped_string & scopedstrName);
 
 };
+
+
+#define DECLARE_FACTORY(name) \
+__FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
+
 
 
 #define IMPLEMENT_FACTORY(name) \

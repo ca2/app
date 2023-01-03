@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -92,6 +92,14 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
       redraw();
 
+   }
+   else if(ptopic->m_atom == id_set_dark_mode)
+   {
+      
+      update_drawing_objects();
+
+      redraw();
+      
    }
 
 }

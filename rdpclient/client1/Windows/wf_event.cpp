@@ -271,7 +271,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //
 //		switch (Msg)
 //		{
-//			case e_message_move:
+//			case e_message_reposition:
 //				if (!wfc->disablewindowtracking)
 //				{
 //					int x = (int)(short) LOWORD(lParam);

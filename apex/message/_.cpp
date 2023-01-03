@@ -118,7 +118,7 @@ namespace message
       case e_message_create:
       case e_message_non_client_create:
          return e_prototype_create;
-      case e_message_move:
+      case e_message_reposition:
          return e_prototype_move;
       case e_message_activate:
          return e_prototype_activate;

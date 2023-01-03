@@ -3923,7 +3923,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(bPositionFix)
                   {
 
-                     msg.message       = e_message_move;
+                     msg.message       = e_message_reposition;
                      msg.wParam        = 0;
                      msg.lParam        = point.lparam();
 

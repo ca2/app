@@ -92,7 +92,7 @@ CLASS_DECL_ACME void precision_wait(const class time & time)
 ////
 ////   struct tm tm;
 ////
-////   __copy(tm, psystemtime);
+////   copy(tm, psystemtime);
 ////
 ////   *ptime = timegm(&tm);
 ////

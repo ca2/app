@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "window_util.h"
 #include "interaction.h"
 #include "acme/primitive/primitive/url.h"
@@ -775,7 +775,7 @@ namespace user
             if(pair.m_element2.is_empty())
             {
 
-               m_mapInterest.erase_key(pair.m_element1);
+               m_mapInterest.erase_item(pair.m_element1);
 
             }
 
@@ -1718,7 +1718,7 @@ namespace user
             if (m_pgetfileimage->m_iImage & 0x80000000)
             {
 
-               m_imagemap.erase_key(m_pgetfileimage->m_imagekey);
+               m_imagemap.erase_item(m_pgetfileimage->m_imagekey);
 
             }
             else

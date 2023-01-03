@@ -18655,7 +18655,7 @@ class basic_json
     @liveexample{The code below shows and example for the copy assignment. It
     creates a copy of value `a` which is then swapped with `b`. Finally\, the
     copy of `a` (which is the null value after the swap) is
-    destroyed.,basic_json__copyassignment}
+    destroyed.,basic_jsoncopyassignment}
 
     @since version 1.0.0
     */

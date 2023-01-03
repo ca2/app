@@ -10,7 +10,7 @@ enum enum_message : ::i32
 
    e_message_create = MESSAGE_CREATE, //1,
    e_message_destroy = MESSAGE_DESTROY, //,= 2,
-   e_message_move = MESSAGE_MOVE,//,3,
+   e_message_reposition = MESSAGE_REPOSITION,//,3,
    e_message_size = MESSAGE_SIZE,//,5,
    e_message_activate = MESSAGE_ACTIVATE,//,6,
    e_message_set_focus = MESSAGE_SET_FOCUS,//,7,

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
@@ -1159,7 +1159,7 @@ namespace user
 
 
 //#ifndef LINUX
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
 //#endif
 
@@ -6933,7 +6933,7 @@ if(!iVisibilityChageBefore) {
 //
 //      }
 
-      ::pointer<::message::transfer>pmove(pmessage);
+      ::pointer<::message::reposition>pmove(pmessage);
 
 //      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
 //      {

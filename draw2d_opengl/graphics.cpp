@@ -3143,7 +3143,7 @@ namespace draw2d_opengl
    /*void graphics::fill_rectangle(const rectangle_f64 & rectangle, color32_t clr)
    {
       ::rectangle_i32 rect32;
-      __copy(rect32, rectangle);
+      copy(rect32, rectangle);
       FillSolidRect(rect32, clr);
    }
 */
@@ -4462,7 +4462,7 @@ namespace draw2d_opengl
 
       ::rectangle_f64 rectangle;
 
-      __copy(rectangle,&rectangleParam);
+      copy(rectangle,&rectangleParam);
 
       return draw_text(str, rectangle, ealign, edrawtext);
 

@@ -1,10 +1,11 @@
-﻿//
+//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
 #include "node.h"
 #include "sequencer.h"
 #include "system.h"
+#include "application.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -172,12 +173,23 @@ namespace acme
       
       m_pparticleQuit = create_quit_particle(pnode, psystem);
 
-      if(psystem->m_pfnImplement)
+      if(psystem->m_pfnImplement || psystem->m_pacmeapplication->m_bConsole)
       {
          
          psystem->init_task();
          
-         (*psystem->m_pfnImplement)(psystem);
+         if(psystem->m_pfnImplement)
+         {
+            
+            (*psystem->m_pfnImplement)(psystem);
+            
+         }
+         else
+         {
+            
+            psystem->m_pacmeapplication->main();
+            
+         }
 
          psystem->m_pnode.release();
          
@@ -906,6 +918,9 @@ namespace acme
    void node::on_operating_system_user_color_change()
    {
 
+      //auto psystem = acmesystem();
+
+      //psystem->signal(id_operating_system_user_color_change);
 
    }
 

@@ -1,5 +1,10 @@
 app/app_message_box
-app/app_app
+platform-apple/draw2d_quartz2d
+app/experience_core
+platform-apple/imaging_coreimage
+platform-macos/node_macos
+platform-macos/windowing_macos
+platform-apple/write_text_quartz2d
 app/aura
 app/aqua
 app/apex
@@ -13,9 +18,5 @@ platform-posix/apex_posix
 platform-macos/aura_macos
 platform-apple/aura_apple
 platform-posix/aura_posix
-platform-macos/node_macos
 app/crypto_openssl
 app/folder_zip
-platform-apple/draw2d_quartz2d
-platform-macos/windowing_macos
-platform-apple/write_text_quartz2d

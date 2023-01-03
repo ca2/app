@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
@@ -265,7 +265,7 @@ namespace message
    }
 
 
-   void transfer::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   void reposition::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    {
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);

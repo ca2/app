@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "hash_table.h"
@@ -868,16 +868,16 @@ typename node_set < NODE >::iterator
 node_set < NODE >::find_item(ARG_ITEM item, ::u32& nHashBucket, ::u32& nHashValue) const
 {
 
+   nHashValue = u32_hash<ARG_ITEM>(item).m_u;
+
+   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
+
    if (is_empty())
    {
 
       return nullptr;
 
    }
-
-   nHashValue = u32_hash<ARG_ITEM>(item).m_u;
-
-   nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
    for(auto p = m_hashtable.m_ppHash[nHashBucket]; p; p = p->m_nextHash)
    {
@@ -1005,7 +1005,7 @@ typename node_set < NODE >::iterator node_set < NODE >::get_item(ARG_ITEM item)
 
       p = new_node(item);
 
-      if(!m_hashtable.m_ppHash[nHashBucket])
+      if(m_hashtable.m_ppHash[nHashBucket])
       {
 
          m_hashtable.m_ppHash[nHashBucket]->m_pbackHash = &p->m_nextHash;

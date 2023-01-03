@@ -1,4 +1,4 @@
-﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
+// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -1123,7 +1123,7 @@ public:
       if (range.is_empty())
       {
 
-         p = range.end();
+         p = nullptr;
 
          return true;
 

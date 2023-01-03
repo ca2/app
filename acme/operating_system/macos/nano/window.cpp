@@ -5,13 +5,15 @@
 #include "window.h"
 #include "window_bridge.h"
 #include "device.h"
+#include "acme/constant/id.h"
+#include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/node.h"
 #include "acme/user/nano/window.h"
 #include "acme/user/user/mouse.h"
 #include <CoreGraphics/CoreGraphics.h>
 
-
+void defer_acme_macos_application_init(::acme::system * psystem);
 
 void ns_main_async(dispatch_block_t block);
 
@@ -117,6 +119,8 @@ namespace macos
    void nano_window::create()
    {
       
+      defer_acme_macos_application_init(acmesystem());
+      
       m_pwindowbridge = __new(nano_window_bridge);
 
       CGRect cgrect;
@@ -134,6 +138,20 @@ namespace macos
       ///on_create();
 
    }
+
+void nano_window::handle(::topic* ptopic, ::context* pcontext)
+{
+   
+   if (ptopic->m_atom == id_set_dark_mode)
+   {
+      
+      update_drawing_objects();
+      //m_pimplementation->handle(ptopic, pcontext);
+      redraw();
+      
+   }
+   
+}
 
 
    void nano_window::on_left_button_down(::user::mouse * pmouse)

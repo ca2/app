@@ -1,4 +1,4 @@
-﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -494,6 +494,8 @@ namespace acme
       virtual void get_public_internet_domain_extension_list(string_array & stra);
 
       virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
+      
+      void handle(::topic* ptopic, ::context* pcontext) override;
 
       virtual void add_handler(::matter * pmatter, bool bPriority = false);
 

@@ -1,6 +1,7 @@
 // Created by camilo on 2021-08-29 16:00 BRT <3ThomasBS_!!
 #include "framework.h"
 #include "acme/_operating_system.h"
+#include "acme/platform/system.h"
 
 
 //::file::path dir_base_module()
@@ -95,6 +96,42 @@
 
 
 
+
+
+
+
+void acme_macos_application_init(void * pApplication, int argc, char *argv[]);
+
+void acme_macos_application_init1(class ::acme::system * psystem)
+{
+   
+   auto argc = psystem->m_psubsystem->m_argc;
+   
+   auto argv = psystem->m_psubsystem->m_argv;
+   
+   auto papp = psystem->m_pacmeapplication;
+   
+   void * pApplication = (void *) (::acme::application *) papp;
+   
+   acme_macos_application_init(pApplication, argc, argv);
+   
+}
+
+bool g_bAcmeMacosApplicationInit = false;
+
+void defer_acme_macos_application_init(::acme::system * psystem)
+{
+   
+   if(!g_bAcmeMacosApplicationInit)
+   {
+      
+      g_bAcmeMacosApplicationInit = true;
+      
+      acme_macos_application_init1(psystem);
+      
+   }
+   
+}
 
 
 

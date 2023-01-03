@@ -1,1 +1,7 @@
 app/app_net
+platform-apple/draw2d_quartz2d
+app/experience_core
+platform-apple/imaging_coreimage
+platform-macos/node_macos
+platform-macos/windowing_macos
+platform-apple/write_text_quartz2d

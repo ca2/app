@@ -1069,7 +1069,7 @@ namespace acme
 
 
       //template < class TDST, class TSRC >
-      //::count __copy(TDST & dsta, const TSRC & srca);
+      //::count copy(TDST & dsta, const TSRC & srca);
 
 
       template < typename CONTAINER, class TYPE >

@@ -474,7 +474,7 @@ namespace ios
 
       CGRect rectangle_i32;
 
-      __copy(rectangle, rectangleCreate);
+      copy(rectangle, rectangleCreate);
       
       install_message_routing(m_puserinteraction);
 
@@ -483,7 +483,7 @@ namespace ios
 
          m_oswindow = oswindow_get(new_aura_window(this, rectangle));
          
-         __copy(rectangleCreate, rectangle);
+         copy(rectangleCreate, rectangle);
 
          m_puserinteraction->place(rectangleCreate);
 
@@ -575,7 +575,7 @@ namespace ios
 //
 //      m_puserinteraction->send_message(e_message_size);
 //
-//      m_puserinteraction->send_message(e_message_move);
+//      m_puserinteraction->send_message(e_message_reposition);
 //
 //      m_puserinteraction->send_message(e_message_show_window, 1);
 //
@@ -661,7 +661,7 @@ namespace ios
             //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::on_message_create);
             //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::on_message_set_cursor);
             //      MESSAGE_LINK(e_message_erase_background        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-            //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::on_message_move);
+            //      MESSAGE_LINK(e_message_reposition              , pchannel, this, &interaction_impl::on_message_move);
             //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::on_message_size);
             MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
             //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
@@ -685,7 +685,7 @@ namespace ios
 //      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
 //      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
 //      MESSAGE_LINK(e_message_erase_background, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-//      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+//      MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::on_message_move);
 //      MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
 //      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
 //      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
@@ -1048,7 +1048,7 @@ namespace ios
    {
 
 
-      if(pusermessage->m_atom == e_message_size || pusermessage->m_atom == e_message_move)
+      if(pusermessage->m_atom == e_message_size || pusermessage->m_atom == e_message_reposition)
       {
 
          //         win_update_graphics();
@@ -5647,7 +5647,7 @@ namespace ios
 
       }
 
-      m_puserinteraction->send_message(e_message_move, 0, pointMove.lparam());
+      m_puserinteraction->send_message(e_message_reposition, 0, pointMove.lparam());
 
    }
 

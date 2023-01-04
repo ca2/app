@@ -279,8 +279,8 @@ void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource)
 
    prectTarget->origin.x      = prectSource->left;
    prectTarget->origin.y      = prectSource->top;
-   prectTarget->size.width    = width(prectSource);
-   prectTarget->size.height   = height(prectSource);
+   prectTarget->size.width    = prectSource->right - prectSource->left;
+   prectTarget->size.height   = prectSource->bottom - prectSource->top;
 
 }
 
@@ -301,8 +301,8 @@ void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource)
    
    prectTarget->origin.x      = prectSource->left;
    prectTarget->origin.y      = prectSource->top;
-   prectTarget->size.width    = width(prectSource);
-   prectTarget->size.height   = height(prectSource);
+   prectTarget->size.width    = prectSource->right - prectSource->left;
+   prectTarget->size.height   = prectSource->bottom - prectSource->top;
    
 }
 

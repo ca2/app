@@ -3989,7 +3989,7 @@ pacmedirectory->create("/ca2core");
 
          string_array sa2 = get_c_args_for_c(strChrome);
 
-         sa.add(sa2);
+         sa.append(sa2);
 
          auto argv = sa.c_ansi_get();
 

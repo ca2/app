@@ -758,7 +758,7 @@
 					"-Wno-comment",
 					"-Wno-unused-value",
 				);
-				WorkspaceDir = /cecyn1.at.hotmail.com/app/seed/macseed/;
+				WorkspaceDir = //app/seed/macseed/;
 			};
 			name = Debug;
 		};
@@ -779,7 +779,7 @@
 					"-Wno-comment",
 					"-Wno-unused-value",
 				);
-				WorkspaceDir = /cecyn1.at.hotmail.com/app/seed/macseed/;
+				WorkspaceDir = //app/seed/macseed/;
 			};
 			name = Release;
 		};

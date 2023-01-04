@@ -1,4 +1,4 @@
-﻿//
+//
 //
 //	   Main header for the watcher class. Declares all implementation
 //	   classes to reduce compilation overhead.
@@ -162,7 +162,7 @@ namespace file
 
       auto ppair = m_watchmap.plookup(watch_id);
 
-      if (ppair == nullptr)
+      if (!ppair)
       {
 
          return;
@@ -177,9 +177,7 @@ namespace file
 
       pwatch->m_pwatchRelease = pwatch;
 
-
    }
-
 
 
    void watcher::run()

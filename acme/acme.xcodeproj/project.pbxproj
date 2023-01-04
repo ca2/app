@@ -4209,7 +4209,6 @@
 		9A68A4522511442E008DABD2 /* acme */ = {
 			isa = PBXGroup;
 			children = (
-				9AE6DF2A2962B099008A1335 /* _operating_system.h */,
 				9A68A4582511442E008DABD2 /* compress */,
 				9A892DBC26CD9061008D6412 /* constant */,
 				9A68AC1125114432008DABD2 /* exception */,
@@ -4230,6 +4229,7 @@
 				9A68A4552511442E008DABD2 /* procedure.h */,
 				9A68A4562511442E008DABD2 /* console.h */,
 				9A68A4E52511442E008DABD2 /* framework.cpp */,
+				9AE6DF2A2962B099008A1335 /* _operating_system.h */,
 				9A68A81425114430008DABD2 /* _.cpp */,
 				9A68AA9525114431008DABD2 /* framework.h */,
 				9A68AC8B25114433008DABD2 /* _.h */,

@@ -1,4 +1,4 @@
-﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "communication.h"
 #include "target.h"
@@ -500,7 +500,7 @@ namespace interprocess
 
 #ifdef MACOS
 
-      strKey += "/" + as_string(idPid.i32());
+      strKey += "/" + ::as_string(idPid.as_i32());
 
 #endif
 

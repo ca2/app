@@ -4006,7 +4006,7 @@ pacmedirectory->create("/ca2core");
 
          auto pnode = psystem->node();
 
-         pnode->launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
+         pnode->launch_app(strApp, argv.data(), 0x00010000 | 0x00080000);
 
 #elif defined(LINUX)
 

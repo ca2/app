@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -13,6 +13,55 @@ inline void swap(A & a, B & b)
    b = t;
 
 }
+
+
+template < typename TYPE >
+constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin)
+{
+
+   return ::is_set(p) ? (::memsize)(p - pBegin) : -1;
+
+}
+
+
+template < primitive_character CHARACTER >
+constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+{
+
+   if (::is_empty(pszA))
+   {
+
+      if (::is_empty(pszB))
+      {
+
+         ordering = ::std::strong_ordering::equal;
+
+         return true;
+
+      }
+      else
+      {
+
+         ordering = ::std::strong_ordering::less;
+
+         return true;
+
+      }
+
+   }
+   else if (::is_empty(pszB))
+   {
+
+      ordering = ::std::strong_ordering::greater;
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
 
 
 /// initially for __utosz_internal and __utosz

@@ -1,4 +1,4 @@
-﻿//
+//
 //  _forward_declaration.h
 //  acme
 //
@@ -825,17 +825,6 @@ inline void copy(NUMBER1& number1, const NUMBER2& number2)
 
 
 
-template < typename CHAR_STRING >
-inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
-
-inline bool is_empty(const ::ansi_character * p) { return is_string_empty(p); }
-inline bool is_empty(const ::wd16_character * p) { return is_string_empty(p); }
-inline bool is_empty(const ::wd32_character * p) { return is_string_empty(p); }
-
-
-inline bool has_char(const ::ansi_character * p) { return !is_empty(p); }
-inline bool has_char(const ::wd16_character * p) { return !is_empty(p); }
-inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
 
 
 
@@ -1318,42 +1307,7 @@ namespace acme
 
 
 template < primitive_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
-{
-
-   if (::is_empty(pszA))
-   {
-
-      if (::is_empty(pszB))
-      {
-
-         ordering = ::std::strong_ordering::equal;
-
-         return true;
-
-      }
-      else
-      {
-
-         ordering = ::std::strong_ordering::less;
-
-         return true;
-
-      }
-
-   }
-   else if (::is_empty(pszB))
-   {
-
-      ordering = ::std::strong_ordering::greater;
-
-      return true;
-
-   }
-
-   return false;
-
-}
+constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
 
 
 template < primitive_fundamental TYPE >
@@ -1373,12 +1327,7 @@ constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { retur
 
 
 template < typename TYPE >
-constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin)
-{
-
-   return ::is_set(p) ? (::memsize)(p - pBegin) : -1;
-
-}
+constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin);
 
 
 

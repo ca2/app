@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -13,6 +13,18 @@
 //   b = t;
 //
 //}
+
+
+
+inline bool is_empty(const ::ansi_character * p) { return is_string_empty(p); }
+inline bool is_empty(const ::wd16_character * p) { return is_string_empty(p); }
+inline bool is_empty(const ::wd32_character * p) { return is_string_empty(p); }
+
+
+inline bool has_char(const ::ansi_character * p) { return !is_empty(p); }
+inline bool has_char(const ::wd16_character * p) { return !is_empty(p); }
+inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
+
 
 
 inline ::u64 make64_from32(::u32 l, ::u32 h)

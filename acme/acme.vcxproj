@@ -981,7 +981,7 @@
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
-    <ClCompile Include="platform\main2.cpp" />
+    <ClCompile Include="platform\application_flags.cpp" />
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\node.cpp" />

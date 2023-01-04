@@ -1219,7 +1219,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
       this->begin() = end;
 
-      if (this->end() == nullptr)
+      if (!this->end())
       {
 
          this->end() = end;
@@ -1803,8 +1803,12 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iter
 {
    ASSERT_VALID(this);
 
-   if (position == nullptr)
+   if (!position)
+   {
+
       return add_head(newElement); // insert before nothing -> head of the list
+
+   }
 
    // Insert it before position
    auto old = position;

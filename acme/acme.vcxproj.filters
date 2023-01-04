@@ -4045,7 +4045,7 @@
     <ClCompile Include="primitive\time\__string.cpp">
       <Filter>Source Files\primitive\time</Filter>
     </ClCompile>
-    <ClCompile Include="platform\main2.cpp">
+    <ClCompile Include="platform\application_flags.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="memory\paged_win32.cpp">

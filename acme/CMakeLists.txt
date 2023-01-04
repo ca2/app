@@ -329,7 +329,7 @@ list(APPEND library_source
         platform/log.h
         #platform/logic.cpp
         platform/lparam.cpp
-        platform/main2.cpp
+        platform/application_flags.cpp
         #platform/main.cpp
         #platform/main.h
         platform/math.cpp

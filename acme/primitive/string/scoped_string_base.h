@@ -182,7 +182,6 @@ public:
    inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
 
 
-   operator CHARACTER * () { return this->begin(); }
    operator const CHARACTER * () const { return this->begin(); }
 
    const CHARACTER * c_str() const { return this->begin(); }

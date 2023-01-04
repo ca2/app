@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "entity.h"
 
 
@@ -105,13 +105,13 @@ namespace xml
 
                   pes++;
 
-                  wd32_character = strtol(pes, &end, 16);
+                  wd32_character = (::wd32_character) strtol(pes, &end, 16);
 
                }
                else
                {
 
-                  wd32_character = strtol(pes, &end, 10);
+                  wd32_character = (::wd32_character) strtol(pes, &end, 10);
 
                }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "node.h"
 #include "document.h"
 #include "edit.h"
@@ -1649,7 +1649,7 @@ namespace xml
                ostring += '\t';
          }
 
-         ostring += "</" + m_strName + '>';
+         ostring += "</" + m_strName + ">";
 
          opt->m_iTabBase--;
 

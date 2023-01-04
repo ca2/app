@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "list.h"
@@ -465,7 +465,7 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
 erase_last_item(const TYPE & t, iterator & p, iterator end)
 {
 
-   if(p = find_last_item(t, p, end))
+   if((p = find_last_item(t, p, end)))
    {
 
       auto pErase = p;

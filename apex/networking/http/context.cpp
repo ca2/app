@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
@@ -649,12 +649,15 @@ namespace http
 
       auto ppair = m_mapPac.plookup(scopedstrUrl);
 
-      if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
-         if (ppair != nullptr)
+         
+         if (ppair)
          {
+            
             //            delete ppair->element2();
             m_mapPac.erase_item(scopedstrUrl);
+            
          }
 
          auto ppac = __create_new < class pac >();
@@ -686,8 +689,13 @@ namespace http
 
          ppair = m_mapPac.plookup(scopedstrUrl);
 
-         if (ppair == nullptr)
+         if (!ppair)
+         {
+            
             return nullptr;
+            
+         }
+
       }
 
       if (ppair->element2()->m_strAutoConfigScript.is_empty())
@@ -726,12 +734,15 @@ namespace http
 
       auto ppair = m_mapProxy.plookup(scopedstrUrl);
 
-      if (ppair == nullptr || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
+      if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
-         if (ppair != nullptr)
+         
+         if (ppair)
          {
+            
             //            delete ppair->element2();
             m_mapPac.erase_item(scopedstrUrl);
+            
          }
 
          auto pproxy = __create_new < class ::http::context::proxy >();

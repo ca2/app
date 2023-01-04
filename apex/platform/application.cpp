@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -7440,7 +7440,10 @@ namespace apex
       case e_message_paint:
 
          return thread::process_window_procedure_exception(e, pmessage);
-
+            
+      default:
+            break;
+            
       }
 
       // handle all the rest

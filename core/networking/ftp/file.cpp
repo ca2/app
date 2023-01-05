@@ -43,7 +43,19 @@ namespace ftp
 
    bool file::Seek(long lOffset, ::enum_seek enOrigin)
    {
-      return m_file.is_set() && m_file->translate(lOffset, enOrigin) == 0;
+      if (!m_file.is_set())
+         return false;
+      try
+      {
+         m_file->translate(lOffset, enOrigin);
+         return true;
+      }
+      catch (...)
+      {
+
+      }
+
+      return false;
    }
 
 
@@ -113,7 +125,7 @@ namespace ftp
 
       }
 
-      return (::u32) m_file->get_size();
+      return (::u32) m_file->size();
 
    }
 
@@ -125,7 +137,7 @@ namespace ftp
 
    void file::OnBytesReceived(const memory& vBuffer, long lReceivedBytes)
    {
-      write(vBuffer.get_data(), sizeof(memory::value_type), lReceivedBytes);
+      write(vBuffer.data(), sizeof(memory::value_type), lReceivedBytes);
    }
 
    void file::OnPreBytesSend(byte* pszBuffer, memsize bufferSize, memsize& bytesToSend)

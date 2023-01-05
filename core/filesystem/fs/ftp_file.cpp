@@ -132,18 +132,18 @@ void ftpfs_file::write(const void * pdata, memsize nCount)
 }
 
 
-filesize ftpfs_file::get_size() const
+filesize ftpfs_file::size() const
 {
 
-   return m_pfile->get_size();
+   return m_pfile->size();
 
 }
 
 
-filesize ftpfs_file::translate(filesize offset, ::enum_seek eseek)
+void ftpfs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   return m_pfile->translate(offset, eseek);
+   m_pfile->translate(offset, eseek);
 
 }
 

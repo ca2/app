@@ -30,7 +30,7 @@ namespace userfs
       virtual index data_item_get_image(::particle * pparticle) const override;
       virtual ::image_list * data_item_get_image_list(::particle * pparticle) const override;
 
-      static index CompareArrangeByName(const ::pointer<::data::tree_item>& pitema, const ::pointer<::data::tree_item> pitemb);
+      static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item>& pitema, const ::pointer<::data::tree_item> pitemb);
       i32 get_index() const;
       bool is_folder() const;
 

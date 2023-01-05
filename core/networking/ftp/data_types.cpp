@@ -242,9 +242,9 @@ namespace ftp
 
    const command::iextended_info& command::info2::Get(enum_command enCommand)
    {
-      auto it = GetInstance().find(enCommand);
-      ASSERT(it);
-      return *it->element2();
+      auto p = GetInstance().find_item(enCommand);
+      ASSERT(p);
+      return *p->element2();
    }
 
    bool command::IsDatachannelReadCommand() const

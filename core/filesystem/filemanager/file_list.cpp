@@ -2028,7 +2028,7 @@ namespace filemanager
 
          ::file::path_array filepatha;
 
-         papp->datastream()->get(filemanager_data()->m_dataidStatic, filepatha);
+         papp->datastream()->get(filemanager_data()->m_strDataKeyStatic, filepatha);
 
          //filepatha.add().stra());
 
@@ -2046,7 +2046,7 @@ namespace filemanager
 
                ::acme::container::copy(stra, filepatha);
 
-               papp->datastream()->set(filemanager_data()->m_dataidStatic, stra);
+               papp->datastream()->set(filemanager_data()->m_strDataKeyStatic, stra);
 
                add_fs_item(filemanager_item()->user_path(),
                   filemanager_item()->final_path(), filemanager_item()->user_path().name());

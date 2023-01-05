@@ -97,7 +97,7 @@ namespace usernet
 
       doc.load(pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "proxy.xml"));
          
-      string strProxy(doc.root()->attribute("server").as_string());
+      string strProxy(doc.root()->attribute("server").get_string());
 
       i32 iProxyPort;
 

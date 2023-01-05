@@ -625,10 +625,15 @@ public:
 
     using BASE_RANGE::_skip_any_character_in;
 
-    constexpr const_iterator _skip_any_character_in(const SCOPED_STRING &range) const {
+    constexpr const_iterator skip_any_character_in(const SCOPED_STRING &range) const {
 
        return this->_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
+    }
+
+
+    constexpr strsize skip_any_character_in_index(const SCOPED_STRING & range, ::strsize start = 0) const {
+       return this->offset_of((*this)(start).skip_any_character_in(range));
     }
 
 
@@ -1251,8 +1256,7 @@ public:
     ////strsize find_first_in(const string_base &str) const RELEASENOTHROW;
     //strsize find_first_in(CHARACTER ca) const RELEASENOTHROW;
 
-    const_iterator
-    skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
+    //const_iterator skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 
     //const_iterator skip_any_character_in(const SCOPED_STRING &scopedstrCharacters) const RELEASENOTHROW;
 

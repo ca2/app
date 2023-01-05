@@ -390,7 +390,7 @@ namespace ftp
             if (atoi(Reply.Code().Value()) == 530)
             {
 
-               if (m_econnectiontype == connection_type_plain && Reply.Value().case_insensitive_find("ftp over tls") >= 0)
+               if (m_econnectiontype == connection_type_plain && Reply.Value().case_insensitive_contains("ftp over tls"))
                {
 
                   m_econnectiontype = connection_type_tls_implicit;
@@ -1158,7 +1158,7 @@ namespace ftp
 
          memsize bytesRead = 0;
 
-         Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize) m_vBuffer.size(), bytesRead);
+         Observer.OnPreBytesSend(m_vBuffer.data(), (memsize) m_vBuffer.size(), bytesRead);
 auto tickStart = ::time::now();
 
          while (true)
@@ -1182,7 +1182,7 @@ auto tickStart = ::time::now();
 
                synchronous_lock synchronouslock(sckDataConnection.synchronization());
 
-               sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+               sckDataConnection.write(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
 
             }
 
@@ -1194,7 +1194,7 @@ auto tickStart = ::time::now();
 
             }
 
-            Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize)m_vBuffer.size(), bytesRead);
+            Observer.OnPreBytesSend(m_vBuffer.data(), (memsize)m_vBuffer.size(), bytesRead);
 //auto tickStart = ::time::now();
 
          }
@@ -1273,7 +1273,7 @@ auto tickStart = ::time::now();
 
                synchronous_lock synchronouslock(this->synchronization());
 
-               iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+               iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
 
                if (!sckDataConnection.is_valid() && iNumRead <= 0)
                {
@@ -2123,8 +2123,8 @@ auto tickStart = ::time::now();
       if (Reply.Value().length() >= 18)
       {
          string strTemp(Reply.Value().substr(4));
-         strsize iPos = strTemp.find('.');
-         if (iPos >= 0)
+         auto iPos = strTemp.find_index('.');
+         if (::found(iPos))
             strTemp = strTemp.substr(0, iPos);
          if (strTemp.length() == 14)
             strModificationTime = strTemp;

@@ -31,7 +31,7 @@ namespace databaseuser
 
       virtual count _001GetItemCount() override;
 
-      virtual bool Map(::user::mesh * pmesh, const ::scoped_string & scopedstrDataKey1, const ::scoped_string & scopedstrDataKey2, index iItem, index iSubItem, index iListItem);
+      virtual bool Map(::user::mesh * pmesh, string & strDataKey1, string & strDataKey2, index iItem, index iSubItem, index iListItem);
 
 
    };

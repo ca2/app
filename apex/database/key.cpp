@@ -146,7 +146,7 @@
 //   key key::operator + (const key & key) const
 //   {
 //
-//      ::database::key keyAdd(*this);
+//      ::string strDataKeyAdd(*this);
 //
 //      keyAdd += key;
 //
@@ -179,7 +179,7 @@
 //   key key::operator + (const ::string & strDataKey) const
 //   {
 //
-//      ::database::key keyAdd(*this);
+//      ::string strDataKeyAdd(*this);
 //
 //      keyAdd += strDataKey;
 //

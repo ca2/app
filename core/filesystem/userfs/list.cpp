@@ -277,7 +277,7 @@ namespace userfs
 
       auto itema = get_selected_items();
 
-      for (auto & item : itema.ptra())
+      for (auto & item : itema)
       {
 
          patha.add(item->user_path());
@@ -294,7 +294,7 @@ namespace userfs
 
       auto itema = get_selected_items();
 
-      for (auto & pitem : itema.ptra())
+      for (auto & pitem : itema)
       {
 
          patha.add(pitem->final_path());
@@ -991,7 +991,7 @@ namespace userfs
 
             ::file::path pathProcessed = pfsitem->final_path();
 
-            if (!pathProcessed.is(::file::e_flag_final_path))
+            if (!pathProcessed.flags().has(::file::e_flag_final_path))
             {
 
                pfsitem->set_final_path(pathProcessed = pcontext->defer_process_path(pathUser));

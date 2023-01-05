@@ -1777,7 +1777,7 @@ namespace user
 
 
 
-   //e_control_ddx_dbflags::e_control_ddx_dbflags(::database::key key, iptr value)
+   //e_control_ddx_dbflags::e_control_ddx_dbflags(::string strDataKey, iptr value)
    //{
 
    //   m_key = key;

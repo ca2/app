@@ -272,10 +272,10 @@ retry:
 
    }
 
-   for (auto pchild : ptra.ptra())
+   for (auto pchild : ptra)
    {
 
-      if (pchild->m_strAttributes.case_insensitive_find("d") < 0)
+      if (!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
       auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
@@ -284,10 +284,10 @@ retry:
 
    }
 
-   for (auto pchild : ptra.ptra())
+   for (auto pchild : ptra)
    {
 
-      if (pchild->m_strAttributes.case_insensitive_find("d") >= 0)
+      if(!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
       auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
@@ -385,9 +385,9 @@ int ftpfs::is_dir(const ::file::path & path)
 
    }
 
-   auto pFind = dir.name_find_first_ci(path.name());
+   auto iFind = dir.name_find_first_ci(path.name());
 
-   if (::is_null(pFind))
+   if (::not_found(iFind))
    {
 
       return 0;

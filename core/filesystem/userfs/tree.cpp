@@ -482,7 +482,7 @@ namespace userfs
 
       }
 
-      if (path.get_length() <= 0)
+      if (path.is_empty())
       {
 
          return nullptr;

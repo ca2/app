@@ -598,10 +598,12 @@ namespace core
 
       prequest->m_payloadArgs = varArgs;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         prequest->m_payloadFile = payload.file_path();
+         prequest->m_payloadFile = pathFile;
 
       }
 
@@ -1074,10 +1076,12 @@ namespace core
 
       prequest->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         prequest->m_payloadFile = payload.file_path();
+         prequest->m_payloadFile = pathFile;
 
       }
 
@@ -1154,12 +1158,12 @@ namespace core
 
       prequest->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         prequest->m_payloadFile = payload.file_path();
-
-         string strPath = payload.file_path();
+         prequest->m_payloadFile = pathFile;
 
       }
 
@@ -1243,10 +1247,12 @@ namespace core
 
       prequest->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         prequest->m_payloadFile = payload.file_path();
+         prequest->m_payloadFile = pathFile;
 
       }
 
@@ -1323,12 +1329,12 @@ namespace core
 
       prequest->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         ::file::path path = payload.file_path();
-
-         prequest->m_payloadFile = path;
+         prequest->m_payloadFile = pathFile;
 
       }
 
@@ -1384,7 +1390,7 @@ namespace core
 
          ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
 
-         if (is_html_file(payload.file_path()))
+         if (is_html_file(payload.as_file_path()))
          {
 
             typeDocument = get_html_document_type();
@@ -1433,10 +1439,12 @@ namespace core
 
       prequest->m_payloadArgs = varArgs;
 
-      if (payload.file_path().has_char())
+      auto pathFile = payload.as_file_path();
+
+      if (pathFile.has_char())
       {
 
-         prequest->m_payloadFile = payload.file_path();
+         prequest->m_payloadFile = pathFile;
 
       }
 

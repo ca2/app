@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "type.h"
@@ -994,36 +994,36 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    ::index index_of(const ::atom & atom) const;
-   ::property * find_property_index(::iptr i) const;
-   ::property & get_property_index(::iptr i);
-   ::property * find_property_text_key(const ::scoped_string & scopedstr) const;
-   ::property & get_property_text_key(const ::scoped_string & scopedstr);
-   ::property * find_property(const ::atom & atom) const { return atom.is_text() ? find_property_text_key((const ::scoped_string & ) atom.m_str) : find_property_index(atom.m_i); }
-   ::property & get_property(const ::atom & atom) { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
+   //::property * find_property_index(::iptr i) const;
+   //::property & get_property_index(::iptr i);
+   //::property * find_property(const ::scoped_string & scopedstr) const;
+   //::property & get_property(const ::scoped_string & scopedstr);
+   ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i); }
+   ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
 
 
    template < primitive_character CHARACTER >
-   inline ::property & operator[] (const CHARACTER * psz) { return get_property_text_key((const ::scoped_string &)psz); }
+   inline ::property & operator[] (const CHARACTER * psz) { return get_property((const ::atom &)psz); }
    template < primitive_character CHARACTER >
-   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_text_key((const ::scoped_string &)psz); }
+   inline ::payload operator[] (const CHARACTER * psz) const { return find_property((const ::atom &)psz); }
 
    inline ::property & operator[] (const ::atom & atom) { return get_property(atom); }
    inline ::payload operator[] (const ::atom & atom) const { return find_property(atom); }
 
    template < character_range RANGE >
-   inline ::property & operator[] (const RANGE & range) { return get_property_text_key((const ::scoped_string &)range); }
+   inline ::property & operator[] (const RANGE & range) { return get_property((const ::atom &)range); }
    template < character_range RANGE >
-   inline ::payload operator[] (const RANGE & range) const { return find_property_text_key((const ::scoped_string &)range); }
+   inline ::payload operator[] (const RANGE & range) const { return find_property((const ::atom &)range); }
 
    template < has_as_string HAS_AS_STRING >
-   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property_text_key((const ::scoped_string &)has_as_string.as_string()); }
+   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property((const ::atom &)has_as_string.as_string()); }
    template < has_as_string HAS_AS_STRING >
-   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property_text_key((const ::scoped_string &)has_as_string.as_string()); }
+   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property((const ::atom &)has_as_string.as_string()); }
 
    template < has_get_string HAS_GET_STRING >
-   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property_text_key((const ::scoped_string &)has_get_string.get_string()); }
+   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property((const ::atom &)has_get_string.get_string()); }
    template < has_get_string HAS_GET_STRING >
-   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property_text_key((const ::scoped_string &)has_get_string.get_string()); }
+   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property((const ::atom &)has_get_string.get_string()); }
 
 
    //inline ::property & operator[] (::iptr i);

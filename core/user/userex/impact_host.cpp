@@ -289,9 +289,9 @@ namespace userex
 
             ::atom atom = pupdown->m_atom;
 
-            auto strTitle = pframewindow->get_window_text();
+            ::string strTitle = pframewindow->get_window_text();
 
-            strTitle.is_empty(atom.get_string());
+            strTitle.set_if_empty(atom.as_string());
 
 
             INFORMATION("-------------------------------------------------------------------");

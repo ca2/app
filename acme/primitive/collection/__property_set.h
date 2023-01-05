@@ -49,37 +49,37 @@ public:
    ::index index_of(const ::atom & atom, ::index iStart = 0) const;
 
 
-   property * find(const ::atom & atom, ::index iStart = 0) const { return atom.is_text() ? find_text_key((const ::scoped_string &) atom.m_str, iStart) : find_index(atom.m_i); }
-   property & get(const ::atom & atom, ::index iStart = 0) { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   property * find(const ::atom & atom, ::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   property & get(const ::atom & atom, ::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
 
    
-   property * find_index(::iptr i) const;
-   property & get_index(::iptr i);
+   //property * find_index(::iptr i) const;
+   //property & get_index(::iptr i);
 
 
-   property * find_text_key(const scoped_string & scopedstr, ::index iStart = 0) const;
-   property & get_text_key(const scoped_string & scopedstr, ::index iStart = 0);
+   //property * find_text_key(const scoped_string & scopedstr, ::index iStart = 0) const;
+   //property & get_text_key(const scoped_string & scopedstr, ::index iStart = 0);
 
 
-   inline property * find_property_index(::index iIndex, ::index iStart = 0) const { return find_index(iIndex); }
-   inline property & get_property_index(::index iIndex, ::index iStart = 0) { return get_index(iIndex); }
+   //inline property * find_property_index(::index iIndex, ::index iStart = 0) const { return find_index(iIndex); }
+   //inline property & get_property_index(::index iIndex, ::index iStart = 0) { return get_index(iIndex); }
 
 
-   inline property * find_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
-   inline property & get_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_text_key(scopedstr, iStart); }
+   //inline property * find_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
+   //inline property & get_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_text_key(scopedstr, iStart); }
 
 
-   inline property * payload_index(::iptr iIndex, ::index iStart = 0) const { return find_property_index(iIndex); }
-   inline property & payload_index(::iptr iIndex, ::index iStart = 0) { return get_property_index(iIndex); }
+   //inline property * payload_index(::iptr iIndex, ::index iStart = 0) const { return find_property_index(iIndex); }
+   //inline property & payload_index(::iptr iIndex, ::index iStart = 0) { return get_property_index(iIndex); }
 
 
-   inline property * payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
-   inline property & payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
+   //inline property * payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
+   //inline property & payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
 
 
 
-   inline ::payload operator[](const ::atom & atom) const { return atom.is_text() ? payload_text_key((const scoped_string &)atom.m_str) : payload_index(atom.as_iptr()); }
-   inline ::property & operator[](const ::atom & atom) { return atom.is_text() ? payload_text_key((const scoped_string & ) atom.m_str) : payload_index(atom.as_iptr()); }
+   inline ::payload operator[](const ::atom & atom) const { return find(atom); }
+   inline ::property & operator[](const ::atom & atom) { return get(atom); }
 
 
 

@@ -440,7 +440,7 @@ namespace user
    bool list_header::DIDDXColumn(bool bSave)
    {
 
-      ::database::key datakey({ true, "::user::list_column_width" });
+      ::string strDataKey({ true, "::user::list_column_width" });
 
       int_array iaWidth;
 
@@ -458,7 +458,7 @@ namespace user
 
          auto papp = get_app();
 
-         papp->datastream()->set(datakey, iaWidth);
+         papp->datastream()->set(strDataKey, iaWidth);
 
          //if (!papp->datastream()->set(datakey, iaWidth))
          //{
@@ -473,7 +473,7 @@ namespace user
 
          auto papp = get_app();
 
-         if (papp->datastream()->get(datakey, iaWidth))
+         if (papp->datastream()->get(strDataKey, iaWidth))
          {
 
             ::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());

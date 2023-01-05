@@ -32,10 +32,13 @@ namespace user
 
    void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, ::message::message * pmessage)
    {
+      
       if(is_window())
          return;
+      
       ::pointer<::user::message>pusermessage(pmessage);
-      switch(pusermessage->m_atom)
+
+      switch(pusermessage->m_atom.as_i32())
       {
       case e_message_mouse_move:
       {

@@ -168,7 +168,7 @@ namespace xml
 
       bool contains(const ::property_set & set) const { return m_set.contains(set); }
       
-      ::property *            find_attribute(const ::scoped_string & scopedstr) { return m_set.find_property_text_key(scopedstr); }
+      ::property *            find_attribute(const ::scoped_string & scopedstr) { return m_set.find(scopedstr); }
 
       //template < typename TYPE >
       //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }

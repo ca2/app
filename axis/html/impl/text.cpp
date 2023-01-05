@@ -1184,7 +1184,7 @@ namespace html
 
          }
 
-         auto iFind = 0;
+         strsize iFind = 0;
 
          strsize iLen = 0;
 

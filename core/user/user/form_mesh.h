@@ -84,7 +84,9 @@ namespace user
       virtual bool on_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
-      virtual void _001GetSelection(::string & key,::string_array &stra) override;
+      
+      virtual void _001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array &stra) override;
+
 
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);

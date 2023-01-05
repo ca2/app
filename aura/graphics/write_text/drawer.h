@@ -1,4 +1,4 @@
-// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardSørensen__!!
+﻿// Created by camilo on 2021-06-08 02:26 BRT <3ThomasBorregaardSørensen__!!
 #pragma once
 
 
@@ -44,7 +44,7 @@ namespace write_text
       virtual void get_text_metrics(::write_text::text_metric* pmetrics);
 
 
-      virtual void TextOutRaw(double x, double y, const block& block);
+      virtual void TextOutRaw(double x, double y, const ::scoped_string & scopedstr);
 
 
       virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::rectangle_i32& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);

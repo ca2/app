@@ -26,12 +26,14 @@ namespace user
 
    }
 
-   void form_mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey,::database::selection &selection)
+
+   void form_mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straDataKey)
    {
 
       //mesh::_001GetSelection(key,selection);
 
    }
+
 
    void form_mesh::install_message_routing(::channel * pchannel)
    {

@@ -110,7 +110,7 @@ namespace user
 
       auto pmap = m_map.plookup(psubitem->m_pitem->m_iItem);
 
-      if(pmap == nullptr)
+      if(!pmap)
       {
 
          return_(psubitem->m_bOk,false);
@@ -119,7 +119,7 @@ namespace user
 
       auto passoc = pmap->element2().plookup(psubitem->m_pitem->m_iItem);
 
-      if(passoc == nullptr)
+      if(!passoc)
       {
 
          return_(psubitem->m_bOk,false);

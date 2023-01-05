@@ -140,8 +140,7 @@ public:
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    ::image * pimageCache,
-   const ::string & str,
-
+   const ::scoped_string & scopedstr,
    i32 iLeft,
    i32 iTop,
    i32 iWidth,
@@ -153,8 +152,7 @@ public:
 
    virtual void CacheEmboss(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::string & str,
-   strsize iLen,
+   const ::scoped_string & scopedstr,
    ::image_pointer & imageCache);
 
    bool IsVisible();

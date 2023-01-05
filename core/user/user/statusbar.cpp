@@ -444,9 +444,9 @@ namespace user
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
 
       if (!(pSBP->nFlags & SBPF_UPDATE) &&
-            ((pszNewText == nullptr && pSBP->strText.is_empty()) ||
+            ((!pszNewText && pSBP->strText.is_empty()) ||
 
-             (pszNewText != nullptr && pSBP->strText.compare(pszNewText) == 0)))
+             (pszNewText && pSBP->strText.equals(pszNewText))))
 
       {
          // nothing to change
@@ -455,7 +455,7 @@ namespace user
 
       try
       {
-         if (pszNewText != nullptr)
+         if (pszNewText)
 
             pSBP->strText = pszNewText;
 

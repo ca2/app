@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "acme/primitive/string/get_string.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
@@ -4808,31 +4808,21 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-
-
-
-
-property * payload::find_property_index(::iptr i) const
-{
-
-   if (!casts_to(e_type_property_set))
-   {
-
-      return nullptr;
-
-   }
-
-   return propset().find(i);
-
-}
-
-
-property & payload::get_property_index(::iptr i)
-{
-
-   return propset().get(i);
-
-}
+//
+//
+//
+//
+//property * payload::find_property_index(::iptr i) const
+//{
+//
+//
+//
+//property & payload::get_property_index(::iptr i)
+//{
+//
+//   return propset().get(i);
+//
+//}
 
 
 //
@@ -4852,63 +4842,105 @@ property & payload::get_property_index(::iptr i)
 //
 
 
-::property * payload::find_property_text_key(const ::scoped_string & scopedstr) const
+::payload payload::find_property(const ::atom & atom) const
 {
 
-   if (m_etype == e_type_payload_pointer)
+   if (atom.is_text())
    {
 
-      return m_ppayload->find_property_text_key(scopedstr);
+      if (m_etype == e_type_payload_pointer)
+      {
 
-   }
-   else if (m_etype == e_type_property)
-   {
+         return m_ppayload->find_property(atom);
 
-      return m_pproperty->find_property_text_key(scopedstr);
+      }
+      else if (m_etype == e_type_property)
+      {
 
-   }
-   else if (m_etype == e_type_property_set)
-   {
+         return m_pproperty->find_property(atom);
 
-      return m_ppropertyset->find_property_text_key(scopedstr);
+      }
+      else if (m_etype == e_type_property_set)
+      {
 
-   }
+         return m_ppropertyset->find(atom);
 
-   return nullptr;
+      }
 
-}
-
-
-property & payload::get_property_text_key(const ::scoped_string & scopedstr)
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      return m_ppayload->get_property(scopedstr);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      return m_pproperty->get_property(scopedstr);
+      return e_type_not_found;
 
    }
    else
    {
 
-      if (m_etype != e_type_property_set)
+      if (casts_to(e_type_property_set))
       {
 
-         set_type(e_type_property_set, true);
+         return property_set_reference().find(atom);
 
-         m_ppropertyset = new property_set();
+      }
+      else if (this->is_array())
+      {
+
+         return this->at(atom.as_iptr());
 
       }
 
-      return m_ppropertyset->get(scopedstr);
+      return e_type_not_found;
 
    }
+
+
+}
+
+
+property & payload::get_property(const ::atom & atom)
+{
+
+   if (atom.is_text())
+   {
+
+      if (m_etype == e_type_payload_pointer)
+      {
+
+         return m_ppayload->get_property(atom);
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         return m_pproperty->get_property(atom);
+
+      }
+      else if (m_etype == e_type_property_set)
+      {
+
+         return m_ppropertyset->get(atom);
+
+      }
+
+   }
+   else
+   {
+
+      if (casts_to(e_type_property_set))
+      {
+
+         return property_set_reference().get(atom);
+
+      }
+
+   }
+
+   auto pproperty = memory_new ::property(atom);
+
+   auto payload = *this;
+
+   property_set_reference().add_item(pproperty);
+
+   *pproperty = payload;
+
+   return *pproperty;
 
 }
 
@@ -6193,23 +6225,16 @@ bool payload::has_string_reference() const
 bool payload::is_property_true(const ::atom & atom, bool bDefault) const
 {
 
-   auto pproperty = find_property(atom);
+   auto property = find_property(atom);
 
-   if (!pproperty)
+   if (property.is_empty())
    {
 
       return bDefault;
 
    }
 
-   if (pproperty->is_empty())
-   {
-
-      return bDefault;
-
-   }
-
-   return pproperty->is_true(bDefault);
+   return property.is_true(bDefault);
 
 }
 
@@ -6325,16 +6350,16 @@ block payload::as_block () const
 ::payload payload::get_topic(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(atom);
+   auto property = find_property(atom);
 
-   if(!pproperty)
+   if(property.is_empty())
    {
 
       return *this;
 
    }
 
-   return *pproperty;
+   return property;
 
 }
 
@@ -7731,16 +7756,16 @@ void payload::null()
 
       ::file::path path;
 
-      if(auto purl = find_property("url"))
+      if (has_property("url"))
       {
 
-         path = purl->as_file_path();
+         path = find_property("url").as_file_path();
 
       }
       else if(has_property("path"))
       {
 
-         path = propset()["path"];
+         path = find_property("path").as_file_path();
 
       }
 

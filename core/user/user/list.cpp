@@ -1496,7 +1496,7 @@ namespace user
    void list::_001OnColumnChange()
    {
 
-      for (auto & pcolumn : m_pcolumna->ptra())
+      for (auto & pcolumn : *m_pcolumna)
       {
 
          if (pcolumn->m_bNew)
@@ -4344,17 +4344,17 @@ namespace user
    }
 
 
-   void list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection &selection)
+   void list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
    {
 
-      if (!_001HasConfigId(key))
+      if (!_001HasConfigId(scopedstrDataKey))
       {
 
          return;
 
       }
 
-      auto iFilterSubItem = _001ConfigIdToColumnKey(key);
+      auto iFilterSubItem = _001ConfigIdToColumnKey(scopedstrDataKey);
 
       range & range = m_rangeSelection;
 
@@ -4369,7 +4369,7 @@ namespace user
             for (index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
-               selection.add_item(key.m_strDataKey + "/" + ::as_string(iLine));
+               straSelection.add_item(scopedstrDataKey + "/" + ::as_string(iLine));
 
             }
 
@@ -5806,7 +5806,7 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.length(), size);
+         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
          cx += size.cx;
 
@@ -5821,32 +5821,32 @@ namespace user
 
 
 
-   bool list::_001HasConfigId(const ::scoped_string & strDataKey)
+   bool list::_001HasConfigId(const ::scoped_string & scopedstrDataKey)
    {
-      return _001ConfigIdToColumnKey(key) >= 0;
+      return _001ConfigIdToColumnKey(scopedstrDataKey) >= 0;
    }
 
-   index list::_001ConfigIdToSubItem(const ::scoped_string & strDataKey)
+   index list::_001ConfigIdToSubItem(const ::scoped_string & scopedstrDataKey)
    {
-      list_column * column = m_pcolumna->get_by_config_id(key);
+      list_column * column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
          return -1;
       return column->m_iSubItem;
    }
 
 
-   index list::config_id_index(const ::scoped_string & strDataKey)
+   index list::config_id_index(const ::scoped_string & scopedstrDataKey)
    {
 
-      return m_pcolumna->config_id_index(key);
+      return m_pcolumna->config_id_index(scopedstrDataKey);
 
    }
 
 
 
-   list_column * list_column_array::get_by_config_id(const ::scoped_string & strDataKey)
+   list_column * list_column_array::get_by_config_id(const ::scoped_string & scopedstrDataKey)
    {
-      index iKey = config_id_index(key);
+      index iKey = config_id_index(scopedstrDataKey);
       if (iKey >= 0)
          return element_at(iKey);
       else
@@ -5855,13 +5855,13 @@ namespace user
    }
 
 
-   index list_column_array::config_id_index(const ::scoped_string & strDataKey)
+   index list_column_array::config_id_index(const ::scoped_string & scopedstrDataKey)
    {
 
       for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
-         if (this->element_at(iIndex)->m_strDataKey == key)
+         if (this->element_at(iIndex)->m_strDataKey == scopedstrDataKey)
          {
 
             return iIndex;
@@ -5875,7 +5875,7 @@ namespace user
    }
 
 
-   index list_column_array::config_id_visible_index(const ::scoped_string & strDataKey)
+   index list_column_array::config_id_visible_index(const ::scoped_string & scopedstrDataKey)
    {
 
       ::count cVisible = 0;
@@ -5886,7 +5886,7 @@ namespace user
          if (this->element_at(iIndex)->m_bVisible)
          {
 
-            if (this->element_at(iIndex)->m_strDataKey == key)
+            if (this->element_at(iIndex)->m_strDataKey == scopedstrDataKey)
             {
 
                return cVisible;

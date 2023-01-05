@@ -63,8 +63,8 @@ namespace data
 
 
 
-      payload attribute(const ::scoped_string & scopedstr) const { return m_set.payload_text_key(scopedstr); }
-      property& attribute(const ::scoped_string & scopedstr) { return m_set.payload_text_key(scopedstr); }
+      payload attribute(const ::scoped_string & scopedstr) const { return m_set.find(scopedstr); }
+      property& attribute(const ::scoped_string & scopedstr) { return m_set.get(scopedstr); }
 
 
 

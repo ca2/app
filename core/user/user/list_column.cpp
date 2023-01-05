@@ -66,7 +66,7 @@ namespace user
 
       m_atom = pinteraction->m_atom;
 
-      return m_atom;
+      return true;
 
    }
 

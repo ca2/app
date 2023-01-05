@@ -828,9 +828,9 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      m_strPrefix = m_str.left(maximum(0, m_str.find(":")));
+      m_strPrefix = m_str.left(maximum(0, m_str.find_index(":")));
 
-      m_strRoot = m_str.substr(maximum(0, m_str.find(":") + 1));
+      m_strRoot = m_str.substr(maximum(0, m_str.find_index(":") + 1));
 
       m_strRoot.trim_left();
 
@@ -839,18 +839,19 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       m_iaPosition[0] = 0;
       for (i = 1; i <= m_strPrefix.length(); i++)
       {
+
          m_pdcextension->get_text_extent(
          pgraphics,
-         m_strPrefix,
-         i,
+         m_strPrefix(0, i),
          size);
+
          m_iaPosition.add(size.cx);
+
       }
       int iSize = size.cx;
       m_pdcextension->get_text_extent(
       pgraphics,
       " ",
-      1,
       size);
 
       m_iaPosition.add(iSize + size.cx);
@@ -862,8 +863,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
          m_pdcextension->get_text_extent(
          pgraphics,
-         m_strRoot,
-         i,
+         m_strRoot(0, i),
          size);
 
          m_iaPosition.add(iSize + size.cx);
@@ -883,8 +883,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 
          m_pdcextension->get_text_extent(
          pgraphics,
-         m_str,
-         i,
+         m_str(0, i),
          size);
 
          m_iaPosition[i] = size.cx;
@@ -1380,7 +1379,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 }
 
 
-void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::scoped_string & scopedstr, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
@@ -1394,8 +1393,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       pgraphics->begin_path();
 
-      pgraphics->text_out(iLeft, iTop, string(pcsz, iLen));
-
+      pgraphics->text_out(iLeft, iTop, scopedstr(0, iLen));
 
       pgraphics->end_path();
 
@@ -1415,7 +1413,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set(pbrushText);
 
-      pgraphics->text_out(iLeft, iTop, string(pcsz, iLen));
+      pgraphics->text_out(iLeft, iTop, scopedstr(0, iLen));
 
 
    }
@@ -1425,11 +1423,11 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
       if (m_bEnhancedEmboss)
       {
 
-         if (!m_bCacheEmboss || m_strCache != pcsz)
+         if (!m_bCacheEmboss || m_strCache != scopedstr)
 
          {
 
-            CacheEmboss(pgraphics, m_str, m_str.length(), m_pimageMain);
+            CacheEmboss(pgraphics, m_str, m_pimageMain);
 
          }
 
@@ -1470,7 +1468,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          auto psystem = acmesystem()->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.length(), color32, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, color32, dBlend);
 
          pgraphics->set(m_pfont);
 
@@ -1489,7 +1487,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          }
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.length(), color32, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, color32, dBlend);
 
 
 
@@ -1501,7 +1499,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          auto psystem = acmesystem()->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, color32, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, scopedstr, color32, dBlend);
 
 
       }
@@ -1539,7 +1537,7 @@ void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutli
 //#endif
 
 
-void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, strsize iLen, ::image_pointer & pimageCache)
+void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::image_pointer & pimageCache)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
@@ -1551,11 +1549,14 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    }
 
-   if (m_bCacheEmboss && m_strCache == pcsz)
+   if (m_bCacheEmboss && m_strCache == scopedstr)
+   {
 
       return;
 
-   m_strCache = pcsz;
+   }
+
+   m_strCache = scopedstr;
 
    m_bCacheEmboss = true;
 
@@ -1565,7 +1566,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    pgraphics->set(m_pfont);
 
-   m_pdcextension->get_text_extent(pgraphics, pcsz, iLen, size);
+   m_pdcextension->get_text_extent(pgraphics, scopedstr, size);
 
    size.cx += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
    size.cy += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
@@ -1599,21 +1600,20 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
       pdcCache->set(m_pfontPrefix);
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
-      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.length(), s);
+      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
       pdcCache->set(m_pfont);
 
       int x = (i32) (s.cx + (s.cx / m_strPrefix.length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       int y = (i32) (1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, m_strRoot.length(), s);
+      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, s);
 
    }
    else
    {
 
-      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), pcsz, iLen, s);
-
+      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), scopedstr, s);
 
    }
 

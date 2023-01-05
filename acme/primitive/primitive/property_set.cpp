@@ -2252,7 +2252,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 }
 
 
-::property * property_set::find_text_key(const ::scoped_string & scopedstr, ::index iStart) const
+::property * property_set::find(const ::atom & atom, ::index iStart) const
 {
 
    auto p = this->m_begin + iStart;
@@ -2260,7 +2260,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
    for (; p < this->m_end; p++)
    {
 
-      if ((*p)->m_atom == scopedstr)
+      if ((*p)->m_atom == atom)
       {
 
          return *p;
@@ -2274,15 +2274,15 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 }
 
 
-property & property_set::get_text_key(const ::scoped_string & scopedstr, ::index iStart)
+property & property_set::get(const ::atom & atom, ::index iStart)
 {
 
-   auto pproperty = find_text_key(scopedstr, iStart);
+   auto pproperty = find(atom, iStart);
 
    if (!pproperty)
    {
 
-      pproperty = memory_new property(scopedstr);
+      pproperty = memory_new property(atom);
 
       add_item(pproperty);
 
@@ -2293,43 +2293,43 @@ property & property_set::get_text_key(const ::scoped_string & scopedstr, ::index
 }
 
 
-::property * property_set::find_index(::iptr i) const
-{
+//::property * property_set::find_index(::iptr i) const
+//{
+//
+//   auto p = this->m_begin;
+//
+//   for (; p < this->m_end; p++)
+//   {
+//
+//      if ((*p)->m_atom.as_iptr() == i)
+//      {
+//
+//         return *p;
+//
+//      }
+//
+//   }
+//
+//   return nullptr;
+//
+//}
 
-   auto p = this->m_begin;
 
-   for (; p < this->m_end; p++)
-   {
-
-      if ((*p)->m_atom.as_iptr() == i)
-      {
-
-         return *p;
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-property & property_set::get_index(::iptr i)
-{
-
-   while (i >= this->size())
-   {
-
-      auto pproperty = memory_new property(::as_string(this->size()));
-
-      add_item(pproperty);
-
-   }
-
-   return *(const_cast <property_set *> (this))->m_begin[i];
-
-}
+//property & property_set::get_index(::iptr i)
+//{
+//
+//   while (i >= this->size())
+//   {
+//
+//      auto pproperty = memory_new property(::as_string(this->size()));
+//
+//      add_item(pproperty);
+//
+//   }
+//
+//   return *(const_cast <property_set *> (this))->m_begin[i];
+//
+//}
 
 
 ::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
@@ -2355,9 +2355,6 @@ property & property_set::get_index(::iptr i)
    return set(atom);
 
 }
-
-
-
 
 
 ::payload & property_set::set(const ::atom & atom)

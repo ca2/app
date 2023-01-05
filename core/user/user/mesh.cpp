@@ -3368,31 +3368,39 @@ namespace user
    }
 
 
-   void mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection &selection)
+   void mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection)
    {
 
-      if (!_001HasConfigId(key))
+      if (!_001HasConfigId(scopedstrDataKey))
       {
 
          return;
 
       }
 
-      index iFilterSubItem = _001ConfigIdToColumnKey(key);
+      index iFilterSubItem = _001ConfigIdToColumnKey(scopedstrDataKey);
 
       range & range = m_rangeSelection;
 
       for(index i = 0; i < range.get_item_count(); i++)
       {
+         
          auto & itemrange = range.ItemAt(i);
+
          if(itemrange.has_sub_item(iFilterSubItem))
          {
+           
             for(index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
-               selection.add_item(key.m_strDataKey + "/" + ::as_string(iLine));
+
+               straSelection.add_item(scopedstrDataKey + "/" + ::as_string(iLine));
+
             }
+
          }
+
       }
+
    }
 
 
@@ -4364,12 +4372,12 @@ namespace user
 
 
 
-   bool mesh::_001HasConfigId(const ::scoped_string & strDataKey)
+   bool mesh::_001HasConfigId(const ::scoped_string & scopedstrDataKey)
    {
-      return _001ConfigIdToColumnKey(key) >= 0;
+      return _001ConfigIdToColumnKey(scopedstrDataKey) >= 0;
    }
 
-   index mesh::_001ConfigIdToSubItem(const ::scoped_string & strDataKey)
+   index mesh::_001ConfigIdToSubItem(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4378,7 +4386,8 @@ namespace user
       return -1;
    }
 
-   index mesh::_001ConfigIdToColumnKey(const ::scoped_string & strDataKey)
+
+   index mesh::_001ConfigIdToColumnKey(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)

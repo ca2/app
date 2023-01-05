@@ -13,7 +13,7 @@ namespace database
    class server;
    class client_array;
    class stream;
-   class selection;
+   //class selection;
 
    
 } // namespace database

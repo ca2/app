@@ -89,7 +89,7 @@ namespace user
 
          auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
-         for (auto & item : pfontenumerationitema->ptra())
+         for (auto & item : *pfontenumerationitema)
          {
 
             if (item.is_set())

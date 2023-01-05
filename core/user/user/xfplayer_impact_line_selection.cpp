@@ -27,23 +27,23 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 {
    ::pointer<::user::message>pusermessage(pmessage);
 
-   ::u32 message;
+   auto emessage = pusermessage->m_atom.as_emessage();
 
-   message = pusermessage->m_atom.umessage();
-
-   if(message != e_message_mouse_move
-         && message != e_message_timer
-         && message != e_message_left_button_down
-         && message != e_message_left_button_up)
+   if(emessage != e_message_mouse_move
+         && emessage != e_message_timer
+         && emessage != e_message_left_button_down
+         && emessage != e_message_left_button_up)
    {
       return;
    }
 
    index iLine;
+
    strsize iChar;
-   if((message == e_message_mouse_move && GetState() == e_state_tracking)
-         || message == e_message_left_button_down
-         || message == e_message_left_button_up)
+
+   if((emessage == e_message_mouse_move && GetState() == e_state_tracking)
+         || emessage == e_message_left_button_down
+         || emessage == e_message_left_button_up)
    {
       
       bool bInside;
@@ -58,8 +58,8 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       if(!bInside && GetState() == e_state_tracking)
       {
-         if(message == e_message_left_button_up
-               || message == e_message_mouse_move)
+         if(emessage == e_message_left_button_up
+               || emessage == e_message_mouse_move)
          {
             if(pointCursor.y < rectanglePlacement.top
                   ||
@@ -74,7 +74,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                SetSelAfter(viewline);
                //                viewline.get_interaction()->set_need_redraw();
             }
-            if(message == e_message_left_button_up)
+            if(emessage == e_message_left_button_up)
             {
                OnSelEvent(viewline, e_event_end);
             }
@@ -84,7 +84,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       else if(bInside)
       {
          //u32 fwKeys = pusermessage->m_wparam; // key flags
-         if(message == e_message_left_button_down)
+         if(emessage == e_message_left_button_down)
          {
             if(viewline.CalcChar(pointCursor, iChar))
             {
@@ -108,8 +108,8 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
             return;
          }
          else if(
-         (message == e_message_left_button_up
-          || message == e_message_mouse_move)
+         (emessage == e_message_left_button_up
+          || emessage == e_message_mouse_move)
          && GetState() == e_state_tracking)
          {
             if(viewline.CalcChar(pointCursor, iChar))
@@ -133,7 +133,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
                //viewline.get_interaction()->set_need_redraw();
 
             }
-            if(message == e_message_left_button_up)
+            if(emessage == e_message_left_button_up)
             {
                OnSelEvent(viewline, e_event_end);
                if(m_iLineStartSource == m_item.GetLineStart()
@@ -158,7 +158,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
             pusermessage->m_bRet = true;
             return;
          }
-         else if(message == e_message_mouse_move)
+         else if(emessage == e_message_mouse_move)
          {
 
             auto pwindow = m_puserinteraction->window();
@@ -172,9 +172,11 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       }
 
    }
-   else if(message == e_message_timer)
+   else if(emessage == e_message_timer)
    {
+
       uptr uEvent = pusermessage->m_wparam;
+
       if(uEvent == ::e_timer_hover)
       {
 

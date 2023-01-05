@@ -126,7 +126,7 @@ namespace write_text
    }
 
 
-   void drawer::TextOutRaw(double x, double y, const block & block)
+   void drawer::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();

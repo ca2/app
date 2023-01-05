@@ -65,10 +65,13 @@ struct unit                                                                   \
    constexpr unit(enum_zero):member{} {}                                      \
    constexpr unit(type t):member(t){}                                         \
                                                                               \
-   bool operator == (const unit & u) const { return member == u.member; }     \
    DECLARE_COMPARISON_WITH_TIME(inline)                                   \
                                                                               \
 };
+
+
+//bool operator == (const unit & u) const { return member == u.member; }    
+
 
 
 DURATION_UNIT(INTEGRAL_NANOSECOND   , ::i64, m_i);

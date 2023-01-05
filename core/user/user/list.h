@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "mesh.h"
@@ -153,7 +153,7 @@ namespace user
       virtual index config_id_index(const ::scoped_string & strDataKey);
       index _001ConfigIdToSubItem(const ::scoped_string & strDataKey) override;
       bool _001HasConfigId(const ::scoped_string & strDataKey) override;
-      void _001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection & selection) override;
+      void _001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & straSelection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);

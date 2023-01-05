@@ -1,4 +1,4 @@
-// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
+﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -2016,7 +2016,7 @@ public:
 
       } while (!range.is_end(range.begin()) && !rangeBlock.is_end(rangeBlock.begin()));
 
-      return true;
+      return rangeBlock.is_end(rangeBlock.begin());
 
    }
 

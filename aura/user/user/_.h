@@ -357,13 +357,13 @@ namespace userex
 
 
 class cregexp;
-
-namespace database
-{
-
-   class selection;
-
-} // namespace database
+//
+//namespace database
+//{
+//
+//   class selection;
+//
+//} // namespace database
 
 class image_list;
 //class simple_list_data;

@@ -70,10 +70,10 @@ namespace user
    }
 
 
-   void form_list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection & selection)
+   void form_list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::string_array & stra)
    {
 
-      list::_001GetSelection(key, selection);
+      stra.add_item(scopedstrDataKey);
 
    }
 
@@ -265,7 +265,7 @@ namespace user
 
          ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
 
-         if (pcolumn.is_set() && pcolumn->m_atom)
+         if (pcolumn.is_set() && pcolumn->m_atom.is_set())
          {
 
             auto pinteraction = get_child_by_id(pcolumn->m_atom);
@@ -790,7 +790,7 @@ namespace user
          if (psubitem->m_bOk)
          {
 
-            auto pFind = pcombo->_001FindListText(psubitem->m_strText);
+            auto iFind = pcombo->_001FindListText(psubitem->m_strText);
 
             pcombo->set_current_item(__new(::item(::e_element_item, iFind)), ::e_source_sync);
 
@@ -819,7 +819,7 @@ namespace user
          if (echeck == ::e_check_checked)
          {
 
-            string str(pinteraction->m_setValue[::e_check_checked].as_string());
+            string str(pinteraction->m_setValue[::e_check_checked].get_string());
 
             if (str.has_char())
             {
@@ -838,7 +838,7 @@ namespace user
          else if (echeck == ::e_check_unchecked)
          {
 
-            string str(pinteraction->m_setValue[::e_check_unchecked].as_string());
+            string str(pinteraction->m_setValue[::e_check_unchecked].get_string());
 
             if (str.has_char())
             {
@@ -857,7 +857,7 @@ namespace user
          else
          {
 
-            string str(pinteraction->m_setValue[::e_check_tristate].as_string());
+            string str(pinteraction->m_setValue[::e_check_tristate].get_string());
 
             if (str.has_char())
             {
@@ -959,7 +959,7 @@ namespace user
 
          auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
 
-         psubitem->m_strText = payload.as_string();
+         psubitem->m_strText = payload.get_string();
 
          _001SetSubItemText(psubitem);
 
@@ -1103,10 +1103,10 @@ namespace user
       return false;
    }
 
-   void form_list::_001OnNotify(::message::message * pmessage)
-   {
-      __UNREFERENCED_PARAMETER(pmessage);
-   }
+   //void form_list::_001OnNotify(::message::message * pmessage)
+   //{
+   //   __UNREFERENCED_PARAMETER(pmessage);
+   //}
 
    void form_list::_001OnTimer(::timer * ptimer)
    {
@@ -1682,7 +1682,7 @@ namespace user
 
          auto puserinteraction = get_control(pcolumn, iItem);
 
-         if (pcolumn->m_atom
+         if (pcolumn->m_atom.is_set()
             && puserinteraction != nullptr
             && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
          {
@@ -2473,7 +2473,7 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom)
+      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
       {
 
          auto pinteraction = get_child_by_id(pcolumn->m_atom);
@@ -2523,7 +2523,7 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom)
+      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
       {
 
          auto pinteraction = get_child_by_id(pcolumn->m_atom);
@@ -2567,7 +2567,7 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom)
+      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
       {
 
          auto pinteraction = get_child_by_id(pcolumn->m_atom);

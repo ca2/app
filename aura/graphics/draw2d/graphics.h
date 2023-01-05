@@ -822,14 +822,14 @@ namespace draw2d
       // Text Functions
       //virtual void text_out(double x, double y, const ::string & pszString, strsize nCount);
 
-      inline void text_out(const ::point_f64 & point, const block & block)
+      inline void text_out(const ::point_f64 & point, const ::scoped_string & scopedstr)
       {
 
-         return text_out(point.x, point.y, block);
+         return text_out(point.x, point.y, scopedstr);
 
       }
 
-      virtual void text_out(double x, double y, const block & str);
+      virtual void text_out(double x, double y, const ::scoped_string & scopedstr);
       //virtual void ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * lpDxWidths);
 
       //virtual void ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * lpDxWidths);
@@ -839,9 +839,9 @@ namespace draw2d
       //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
 
-      void TextOutRaw(double x, double y, const block & block) override;
+      void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
 
-      virtual bool TextOutAlphaBlend(double x, double y, const block & block);
+      virtual bool TextOutAlphaBlend(double x, double y, const ::scoped_string & scopedstr);
 
 
       virtual void _001DrawText(const ::string & str, rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);

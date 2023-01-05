@@ -886,10 +886,10 @@ namespace user
    }
 
 
-   void form_control::_001GetSelection(::string & atom,::string_array &selection)
+   void form_control::_001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array &selection)
    {
 
-      selection.add_item(atom);
+      selection.add_item(scopedstrDataKey);
 
    }
 

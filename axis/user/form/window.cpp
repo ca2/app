@@ -798,10 +798,10 @@ throw_todo();
 
 
 
-   void form_window::_001GetSelection(::string & strAtom, string_array & stra)
+   void form_window::_001GetSelection(const ::scoped_string & scopedstrDataKey, string_array & stra)
    {
 
-      stra.add_item(strAtom);
+      stra.add_item(scopedstrDataKey);
 
    }
 

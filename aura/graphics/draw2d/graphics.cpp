@@ -1520,10 +1520,10 @@ namespace draw2d
    //}
 
 
-   void graphics::text_out(double x, double y, const block & block)
+   void graphics::text_out(double x, double y, const ::scoped_string & scopedstr)
    {
 
-      if(block.size() <= 0)
+      if(scopedstr.is_empty())
       {
 
          return;
@@ -1534,7 +1534,7 @@ namespace draw2d
       {
 
          //if (TextOutAlphaBlend(x, y, block))
-         if(TextOutAlphaBlend(x, y, block))
+         if(TextOutAlphaBlend(x, y, scopedstr))
          {
 
             return;
@@ -1543,12 +1543,12 @@ namespace draw2d
 
       }
 
-      TextOutRaw(x, y, block);
+      TextOutRaw(x, y, scopedstr);
 
    }
 
 
-   void graphics::TextOutRaw(double x, double y, const block & str)
+   void graphics::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
    {
 
       //return false;
@@ -1634,7 +1634,8 @@ namespace draw2d
 //
 //   }
 
-   bool graphics::TextOutAlphaBlend(double x, double y, const block & block)
+
+   bool graphics::TextOutAlphaBlend(double x, double y, const ::scoped_string & scopedstr)
    {
 
       if (m_pimageAlphaBlend->is_set())
@@ -1642,7 +1643,7 @@ namespace draw2d
 
          single_lock synchronouslock(this->synchronization());
 
-         if (block.is_empty())
+         if (scopedstr.is_empty())
          {
 
             //return false;
@@ -1658,7 +1659,7 @@ namespace draw2d
 
          ::rectangle_i32 rectangleIntersect;
 
-         const ::size_f64 & size = ::size_f64(get_text_extent(block));
+         const ::size_f64 & size = ::size_f64(get_text_extent(scopedstr));
 
          //size.cx = size.cx * 110 / 100;
 
@@ -1683,7 +1684,7 @@ namespace draw2d
 
             pimage1->get_graphics()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            pimage1->get_graphics()->text_out(0, 0, block);
+            pimage1->get_graphics()->text_out(0, 0, scopedstr);
 
             point_i32 pointDst;
 

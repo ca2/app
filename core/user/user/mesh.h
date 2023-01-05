@@ -359,7 +359,7 @@ namespace user
       virtual index _001ConfigIdToColumnKey(const ::scoped_string & strDataKey);
       virtual index _001ConfigIdToSubItem(const ::scoped_string & strDataKey);
       virtual bool _001HasConfigId(const ::scoped_string & strDataKey);
-      virtual void _001GetSelection(::database::key & key,::database::selection & selection);
+      virtual void _001GetSelection(const ::scoped_string & scopedstrDataKey,::database::selection & selection);
 
       virtual void set_data_interface(mesh_data * pinterface);
       virtual void cache_hint();

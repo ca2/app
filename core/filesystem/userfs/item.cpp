@@ -30,7 +30,7 @@ namespace userfs
 
 
 
-   index item::CompareArrangeByName(const ::pointer<::data::tree_item>& pitem1, const ::pointer<::data::tree_item> pitem2)
+   ::std::strong_ordering item::CompareArrangeByName(const ::pointer<::data::tree_item>& pitem1, const ::pointer<::data::tree_item> pitem2)
    {
 
       if(pitem1->m_ptree == pitem2->m_ptree)
@@ -42,7 +42,7 @@ namespace userfs
       else
       {
 
-         return strcmp(typeid(pitem1).name(), typeid(pitem2).name());
+         return strcmp(typeid(pitem1).name(), typeid(pitem2).name()) <=> 0;
 
       }
 

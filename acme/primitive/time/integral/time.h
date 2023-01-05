@@ -115,8 +115,8 @@ public:
 
    integral_time operator -() const { return BASE_TYPE(-this->m_i); }
 
-   bool operator == (const BASE_TYPE & time) const { return this->m_i == time.m_i; }
-   ::std::strong_ordering operator <=>  (const BASE_TYPE & time) const { return this->m_i <=>  time.m_i; }
+   //bool operator == (const BASE_TYPE & time) const { return this->m_i == time.m_i; }
+   //::std::strong_ordering operator <=>  (const BASE_TYPE & time) const { return this->m_i <=>  time.m_i; }
    //bool operator >= (const BASE_TYPE & time) const { return this->m_i >= time.m_i; }
    //bool operator <  (const BASE_TYPE & time) const { return this->m_i <  time.m_i; }
    //bool operator <= (const BASE_TYPE & time) const { return this->m_i <= time.m_i; }

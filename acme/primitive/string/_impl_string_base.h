@@ -1896,13 +1896,13 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
-{
-
-   return this->skip_any_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
-
-}
+//template < typename ITERATOR_TYPE >
+//inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE > ::skip_any_character_in(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+//{
+//
+//   return this->skip_any_character_in(scopedstr, ::comparison::comparison < CHARACTER >());
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -3637,7 +3637,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
+inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 {
 
    if (i < 0)

@@ -397,7 +397,7 @@ template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const TYPE & t, iterator & p, iterator end)
 {
 
-   if((p = this->find_first_item(t, p, end)) != nullptr)
+   if((p = this->find_first_item(t, p, end)))
    {
 
       auto pErase = p;

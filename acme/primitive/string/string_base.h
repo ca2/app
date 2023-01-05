@@ -701,11 +701,11 @@ public:
 
    string_base & erase(strsize start = 0, strsize count = -1);
 
-   const_iterator insert(strsize iIndex, CHARACTER ch);
+   ::count insert(strsize iIndex, CHARACTER ch);
 
    const_iterator insert(strsize iIndex, const string_base & str);
 
-   const_iterator replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
+   ::count replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
 
    template < typename EQUALITY >
    ::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality);

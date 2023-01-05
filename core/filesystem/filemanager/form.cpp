@@ -59,7 +59,7 @@ namespace filemanager
 
                auto papp = ::user::form_impact::get_app();
 
-               papp->datastream()->get(filemanager_data()->m_dataidStatic,stra);
+               papp->datastream()->get(filemanager_data()->m_strDataKeyStatic,stra);
 
                auto pinteraction = get_child_by_name("lfs");
 
@@ -68,7 +68,7 @@ namespace filemanager
                pinteraction->_001GetText(str);
 
                stra.add_unique(str);
-               papp->datastream()->set(filemanager_data()->m_dataidStatic,stra);
+               papp->datastream()->set(filemanager_data()->m_strDataKeyStatic,stra);
 
             }
             else if(m_strPath == "filemanager_add_location_ftp.xhtml")

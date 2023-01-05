@@ -68,7 +68,7 @@ string get_task_name(htask_t htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scopedstrName)
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
 {
 
    bool bOk1 = false;
@@ -84,14 +84,14 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const ::scoped_string & scoped
    if (pfn_set_thread_description)
    {
 
-      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(scopedstrName)));
+      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(pszName)));
 
    }
 
    if (!bOk1 && ::is_debugger_attached())
    {
 
-      bOk1 = SetThreadName(GetThreadId((HANDLE) htask), scopedstrName) != false;
+      bOk1 = SetThreadName(GetThreadId((HANDLE) htask), pszName) != false;
 
    }
 
@@ -295,10 +295,10 @@ CLASS_DECL_ACME int get_processor_count()
 }
 
 
-void task_set_name(const ::scoped_string & scopedstrThreadName)
+void task_set_name(const char * pszThreadName)
 {
 
-   /*return*/ task_set_name((htask_t) ::GetCurrentThread(), scopedstrThreadName);
+   /*return*/ task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);
 
 }
 

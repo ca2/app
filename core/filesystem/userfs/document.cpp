@@ -208,7 +208,11 @@ namespace userfs
 
          }
 
-         ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
+         auto pathToProcess = pathSemiFinal;
+         
+         pathToProcess.flags() += ::file::e_flag_resolve_alias;
+
+         ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathToProcess );
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
@@ -245,7 +249,11 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = dir()->is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            auto pathFolderCandidate = pathFinal;
+
+            pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
+
+            pathFinal.m_iDir = dir()->is(pathFolderCandidate) ? 1 : 0;
 
          }
 

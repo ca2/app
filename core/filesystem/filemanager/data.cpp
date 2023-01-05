@@ -95,7 +95,7 @@ namespace filemanager
       m_setToolbar[::userfs::e_mode_saving] = "matter://filemanager_saving_toolbar.xml";
       m_setToolbar[::userfs::e_mode_import] = "matter://filemanager_import_toolbar.xml";
       m_setToolbar[::userfs::e_mode_export] = "matter://filemanager_export_toolbar.xml";
-      m_dataidStatic = "FileManagerFavoritesList";
+      m_strDataKeyStatic = "FileManagerFavoritesList";
       m_strXmlPopup = "matter://department/file_popup.xml";
       m_strFolderPopup = "matter://department/folder_popup.xml";
       m_strPopup = "matter://department/popup.xml";
@@ -260,10 +260,10 @@ namespace filemanager
 //   void data::defer_update_data_key()
 //   {
 //
-//      if(m_datakey.is_empty())
+//      if(m_strDataKey.is_empty())
 //      {
 //
-//         m_datakey.m_strDataKey.format("%s", m_atom.str().c_str());
+//         m_strDataKey.format("%s", m_atom.str().c_str());
 //
 //      }
 //
@@ -279,7 +279,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
 
-      if (papp->datastream()->get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
+      if (papp->datastream()->get(m_strDataKey +".last_browse_folder", strPath))
       {
 
          if (strPath == "machinefs://")
@@ -289,9 +289,9 @@ namespace filemanager
 
             string strId;
 
-            strId = m_datakey.m_strDataKey +".last_browse_folder." + idMachine;
+            strId = m_strDataKey+".last_browse_folder." + idMachine;
 
-            if (!papp->datastream()->get({ m_datakey.m_bLocalData, strId }, strPath))
+            if (!papp->datastream()->get(strId, strPath))
             {
 
                strPath.empty();
@@ -362,21 +362,21 @@ namespace filemanager
          || string_begins(path, "fs://"))
       {
 
-         papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
+         papp->datastream()->set(m_strDataKey +".last_browse_folder", strPath);
 
       }
       else
       {
 
-         papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
+         papp->datastream()->set(m_strDataKey + ".last_browse_folder", "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
          string strId;
 
-         strId = m_datakey.m_strDataKey+".last_browse_folder." + idMachine;
+         strId = m_strDataKey+".last_browse_folder." + idMachine;
 
-         papp->datastream()->set({ m_datakey.m_bLocalData, strId }, strPath);
+         papp->datastream()->set(strId, strPath);
 
       }
 

@@ -167,7 +167,7 @@
 }
 
 
- void MEMORY_DECL operator delete(void* pData, const scoped_string & /* pszFileName */, i32 /* nLine */) del_throw_spec
+ void MEMORY_DECL operator delete(void* pData, const char * /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -175,7 +175,7 @@
 }
 
 
- void MEMORY_DECL operator delete[](void* pData, const scoped_string & /* pszFileName */, i32 /* nLine */) del_throw_spec
+ void MEMORY_DECL operator delete[](void* pData, const char * /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);

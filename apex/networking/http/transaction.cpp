@@ -176,7 +176,7 @@ namespace http
    memsize transaction::ContentLength()
    {
    
-      return header("content-length").iptr();
+      return header("content-length").as_iptr();
 
    }
 

@@ -37,10 +37,15 @@ inline double operator /(const TYPE & t, const class time & time) { return (doub
 /*integral_time operator *(const BASE_TYPE & time, const class time & time) const { return BASE_TYPE(this->m_i * time.m_i); }*/ \
 inline TYPE operator +(const TYPE & t, const class time & time) { return TYPE(t.MEMBER + time.type().MEMBER); } \
 inline TYPE operator -(const TYPE & t, const class time & time) { return TYPE(t.MEMBER - time.type().MEMBER); } \
+inline bool operator ==(const TYPE & t1, const TYPE & t2) { return t1.MEMBER == t2.MEMBER; } \
+inline ::std::strong_ordering operator <=>(const TYPE & t1, const TYPE & t2) { return ::comparison::order(t1.MEMBER, t2.MEMBER); } \
+
+
 
 #define INTEGRAL_DURATION_SETUP1(TYPE, type) \
 DURATION_OPERATOR_SETUP1(TYPE, type, m_i) \
 inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(t.m_i % time.type().m_i); }
+
 
 #define FLOATING_DURATION_SETUP1(TYPE, type) \
 DURATION_OPERATOR_SETUP1(TYPE, type, m_d) \

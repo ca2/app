@@ -364,7 +364,7 @@ namespace user
 
 //         ::database::selection selection;
 //
-//         _001GetSelection(pinteraction->m_datakey, selection);
+//         _001GetSelection(pinteraction->m_strDataKey, selection);
 
          throw_todo();
 
@@ -526,7 +526,7 @@ namespace user
 //
 //            }
 //
-//            pclient->datastream()->get(pinteraction->m_datakey, ia);
+//            pclient->datastream()->get(pinteraction->m_strDataKey, ia);
 //
 //            ::pointer<check>pcheck = ptopic->user_interaction();
 //
@@ -543,7 +543,7 @@ namespace user
 //
 //            }
 //
-//            pclient->datastream()->set(pinteraction->m_datakey, ia);
+//            pclient->datastream()->set(pinteraction->m_strDataKey, ia);
 
          }
 
@@ -639,7 +639,7 @@ namespace user
 
          throw_todo();
 
-         //pinteraction->datastream()->get(pinteraction->m_datakey,ia);
+         //pinteraction->datastream()->get(pinteraction->m_strDataKey,ia);
 
       }
       catch(...)
@@ -659,7 +659,7 @@ namespace user
 
       ::payload payload;
 
-      //if(datastream()->get(pinteraction->m_datakey, payload))
+      //if(datastream()->get(pinteraction->m_strDataKey, payload))
       //{
          /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -705,7 +705,7 @@ namespace user
          throw_todo();
 //         ::payload payload;
 //         ::database::selection selection;
-//         _001GetSelection(pinteraction->m_datakey,selection);
+//         _001GetSelection(pinteraction->m_strDataKey,selection);
 //         if(selection.get_item_count() > 0)
 //         {
 //
@@ -718,7 +718,7 @@ namespace user
 //
 //            }
 //
-//            //if(datastream()->get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,::payload))
+//            //if(datastream()->get(pinteraction->m_strDataKey.m_strDataKey + "." + item.m_strDataKey.m_strDataKey,::payload))
 //            //{
 //            //   switch(payload.get_type())
 //            //   {
@@ -813,7 +813,7 @@ namespace user
 
       ::payload payload;
 
-      //if(!datastream()->get(pinteraction->m_datakey, payload))
+      //if(!datastream()->get(pinteraction->m_strDataKey, payload))
       //{
 
       //   return false;
@@ -841,7 +841,7 @@ namespace user
 
       //i32 i = bData ? 1 : 0;
 
-      //datastream()->set(pinteraction->m_datakey,i);
+      //datastream()->set(pinteraction->m_strDataKey,i);
 
       return true;
 
@@ -1011,7 +1011,7 @@ namespace user
 
             throw_todo();
 
-//         else if(pinteraction->m_datakey == key)
+//         else if(pinteraction->m_strDataKey == key)
 //         {
 //
 //            _001Update(pinteraction);
@@ -1145,7 +1145,7 @@ namespace user
          return;
       /* linux  if(pinteraction->GetComboBox() != nullptr)
       {
-      if(!pinteraction->GetComboBox()->m_datakeyFill.IsNull())
+      if(!pinteraction->GetComboBox()->m_strDataKeyFill.IsNull())
       {
       pinteraction->GetComboBox()->m_wstra.erase_all();
       pinteraction->GetComboBox()->m_dwaData.erase_all();
@@ -1153,7 +1153,7 @@ namespace user
       payload.m_etype = ::e_type_element;
       payload.m_pca2 = pinteraction->GetComboBox();
       VmsDataGet(
-      pinteraction->GetComboBox()->m_datakeyFill,
+      pinteraction->GetComboBox()->m_strDataKeyFill,
       0, 0,
       ::payload);
       ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>pinteraction->m_puserinteraction;
@@ -1499,7 +1499,7 @@ namespace user
 
    //         }
 
-   //         pclient->datastream()->get(pinteraction->m_datakey, ia);
+   //         pclient->datastream()->get(pinteraction->m_strDataKey, ia);
 
    //         ::pointer<check>pcheck = ptopic->user_interaction();
 
@@ -1516,7 +1516,7 @@ namespace user
 
    //         }
 
-   //         pclient->datastream()->set(pinteraction->m_datakey, ia);
+   //         pclient->datastream()->set(pinteraction->m_strDataKey, ia);
 
    //      }
 
@@ -1777,7 +1777,7 @@ namespace user
 
 
 
-   //e_control_ddx_dbflags::e_control_ddx_dbflags(::database::key key, iptr value)
+   //e_control_ddx_dbflags::e_control_ddx_dbflags(::string strDataKey, iptr value)
    //{
 
    //   m_key = key;

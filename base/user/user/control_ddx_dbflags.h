@@ -10,7 +10,7 @@ namespace user
    public:
 
 
-      e_control_ddx_dbflags(::database::key key, iptr value);
+      e_control_ddx_dbflags(::string strDataKey, iptr value);
 
 
       ::database::key                  m_key;

@@ -3368,7 +3368,7 @@ namespace user
    }
 
 
-   void mesh::_001GetSelection(::database::key & key, ::database::selection &selection)
+   void mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection &selection)
    {
 
       if (!_001HasConfigId(key))
@@ -4403,7 +4403,7 @@ namespace user
    //{
    //   for(index iKey = 0; iKey < this->get_size(); iKey++)
    //   {
-   //      if(this->element_at(iKey)->m_datakey == key)
+   //      if(this->element_at(iKey)->m_strDataKey == key)
    //         return iKey;
    //   }
    //   return -1;

@@ -73,37 +73,53 @@ namespace ftp
    {
    }
 
-   bool file_list_parser::CheckMonth(const ::string & pszBuffer, const ::string & pszMonthName) const
+   bool file_list_parser::CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const
    {
-      if (tolower(pszBuffer[0]) != pszMonthName[0] ||
-         tolower(pszBuffer[1]) != pszMonthName[1] ||
-         tolower(pszBuffer[2]) != pszMonthName[2])
+      if (tolower(scopedstr.begin()[0]) != pszMonthName[0] ||
+         tolower(scopedstr.begin()[1]) != pszMonthName[1] ||
+         tolower(scopedstr.begin()[2]) != pszMonthName[2])
          return false;
 
       return true;
    }
 
-   int file_list_parser::GetMonth(const ::string & pszBuffer, int iLength) const
+
+   int file_list_parser::GetMonth(const ::scoped_string & scopedstr) const
    {
-      if (iLength == 3)
+
+      if (scopedstr.size() == 3)
       {
+
          for (int i = 0; i < 12; ++i)
          {
-            if (CheckMonth(pszBuffer, m_Months[i]))
+
+            if (CheckMonth(scopedstr, m_Months[i]))
+            {
+
                return i;
+
+            }
+
          }
+
       }
+      
       return -1;
+
    }
 
-   bool file_list_parser::GetLong(const ::string & pszLong, int iLength, long& lResult) const
+
+   bool file_list_parser::GetLong(const ::scoped_string & scopedstrLong, long& lResult) const
    {
-      string strLong(pszLong, iLength);
+
+      string strLong(scopedstrLong);
 
       lResult = atoi(strLong);
 
       return true;
+
    }
+
 
    long file_list_parser::ToTAI(long lYear, long lMonth, long lMDay) const
    {
@@ -234,27 +250,39 @@ namespace ftp
    /// "+i8388621.44468,m839956783,r,s10376,\tRFCEPLF"
    bool file_list_parser::IsEPLS(const ::scoped_string & scopedstrLine)
    {
-      return pszLine && *pszLine == ('+');
+      
+      return scopedstrLine.begin() && *scopedstrLine.begin() == ('+');
+
    }
 
-   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
+
+   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)
    {
-      if (!IsEPLS(pszLine))
+
+      if (!IsEPLS(scopedstrLine))
+      {
+
          return false;
+
+      }
 
       long lTemp = 0;
       int i = 1;
-      for (int j = 1; j < iLength; ++j)
+      for (int j = 1; j < scopedstrLine.size(); ++j)
       {
-         if (pszLine[j] == ('\t'))
+         
+         if (scopedstrLine.begin()[j] == ('\t'))
          {
-            ftpFileStatus.m_strName = pszLine + j + 1;
+
+            ftpFileStatus.m_strName = scopedstrLine.begin() + j + 1;
+
             return true;
+
          }
 
-         if (pszLine[j] == (','))
+         if (scopedstrLine.begin()[j] == (','))
          {
-            switch (pszLine[i])
+            switch (scopedstrLine.begin()[i])
             {
             case ('/'):
                ftpFileStatus.m_bCwdEnabled = true;
@@ -264,18 +292,18 @@ namespace ftp
                break;
             case ('s'):
                ftpFileStatus.m_esize = file_status::size_binary;
-               ftpFileStatus.m_filesize = atoi(string(pszLine + i + 1, j - i - 1));
+               ftpFileStatus.m_filesize = atoi(string(scopedstrLine.begin() + i + 1, j - i - 1));
                   ftpFileStatus.m_filesize = -1;
                break;
             case ('m'):
                ftpFileStatus.m_etimeModification = file_status::time_local;
-               lTemp = atoi(string(pszLine + i + 1, j - i - 1));
+               lTemp = atoi(string(scopedstrLine.begin() + i + 1, j - i - 1));
                ftpFileStatus.m_timeModification = m_tmBase + lTemp;
                acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                break;
             case ('i'):
                ftpFileStatus.m_eid = file_status::id_full;
-               ftpFileStatus.m_strID = pszLine + i + 1;
+               ftpFileStatus.m_strID = scopedstrLine.begin() + i + 1;
                ftpFileStatus.m_strID = ftpFileStatus.m_strID.substr(0, j - i - 1);
             }
             i = j + 1;
@@ -306,10 +334,10 @@ namespace ftp
    /// "drwxrwxr-x               folder        2 May 10  1996 network"
    bool file_list_parser::IsUNIXStyleListing(const ::scoped_string & scopedstrLine)
    {
-      if (pszLine == nullptr)
+      if (scopedstrLine.begin() == nullptr)
          return false;
 
-      switch (*pszLine)
+      switch (*scopedstrLine.begin())
       {
       case ('b'):
       case ('c'):
@@ -323,12 +351,13 @@ namespace ftp
       return false;
    }
 
-   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
+
+   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)
    {
-      if (!IsUNIXStyleListing(pszLine))
+      if (!IsUNIXStyleListing(scopedstrLine.begin()))
          return false;
 
-      switch (*pszLine)
+      switch (*scopedstrLine.begin())
       {
       case ('d'): ftpFileStatus.m_bCwdEnabled = true; break;
       case ('-'): ftpFileStatus.m_bRetrEnabled = true; break;
@@ -345,68 +374,68 @@ namespace ftp
       long lHour = 0;
       long lMinute = 0;
 
-      for (int j = 1; j < iLength; ++j)
+      for (int j = 1; j < scopedstrLine.size(); ++j)
       {
-         if (pszLine[j] == (' ') && pszLine[j - 1] != (' '))
+         if (scopedstrLine.begin()[j] == (' ') && scopedstrLine.begin()[j - 1] != (' '))
          {
             switch (iState)
             {
             case 1: // skipping perm
-               ftpFileStatus.m_strAttributes.assign(pszLine + i, j - i);
+               ftpFileStatus.m_strAttributes.assign(scopedstrLine(i, j - i));
                iState = 2;
                break;
             case 2: // skipping nlink
                iState = 3;
-               ftpFileStatus.m_strLink.assign(pszLine + i, j - i);
-               if (j - i == 6 && pszLine[i] == ('f')) // for NetPresenz
+               ftpFileStatus.m_strLink.assign(scopedstrLine(i, j - i));
+               if (j - i == 6 && scopedstrLine.begin()[i] == ('f')) // for NetPresenz
                   iState = 4;
                break;
             case 3: // skipping uid
                iState = 4;
-               ftpFileStatus.m_strUID.assign(pszLine + i, j - i);
+               ftpFileStatus.m_strUID.assign(scopedstrLine(i, j - i));
                break;
             case 4: // getting tentative size_i32
-               if (!GetLong(pszLine + i, j - i, lSize))
+               if (!GetLong(scopedstrLine(i, j - i), lSize))
                {
                   lSize = -1;
-                  ftpFileStatus.m_strGID.assign(pszLine + i, j - i);
+                  ftpFileStatus.m_strGID.assign(scopedstrLine(i, j - i));
                }
                iState = 5;
                break;
             case 5: // searching for month, otherwise getting tentative size_i32
-               lMonth = GetMonth(pszLine + i, j - i);
+               lMonth = GetMonth(scopedstrLine(i, j - i));
                if (lMonth >= 0)
                   iState = 6;
                else
                {
-                  if (!GetLong(pszLine + i, j - i, lSize))
+                  if (!GetLong(scopedstrLine(i, j - i), lSize))
                      lSize = -1;
                }
                break;
             case 6: // have size_i32 and month
-               GetLong(pszLine + i, j - i, lMDay);
+               GetLong(scopedstrLine(i, j - i), lMDay);
                iState = 7;
                break;
             case 7: // have size, month, mday
-               if (j - i == 4 && pszLine[i + 1] == (':'))
+               if (j - i == 4 && scopedstrLine.begin()[i + 1] == (':'))
                {
-                  GetLong(pszLine + i, 1, lHour);
-                  GetLong(pszLine + i + 2, 2, lMinute);
+                  GetLong(scopedstrLine(i, 1), lHour);
+                  GetLong(scopedstrLine(i + 2, 2), lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
                   ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
-               else if (j - i == 5 && pszLine[i + 2] == (':'))
+               else if (j - i == 5 && scopedstrLine.begin()[i + 2] == (':'))
                {
-                  GetLong(pszLine + i, 2, lHour);
-                  GetLong(pszLine + i + 3, 2, lMinute);
+                  GetLong(scopedstrLine(i, 2), lHour);
+                  GetLong(scopedstrLine(i + 3, 2), lMinute);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
                   ftpFileStatus.m_timeModification = m_tmBase + GuessTAI(lMonth, lMDay) + lHour * 3600 + lMinute * 60;
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
                }
                else if (j - i >= 4)
                {
-                  GetLong(pszLine + i, j - i, lYear);
+                  GetLong(scopedstrLine(i, j - i), lYear);
                   ftpFileStatus.m_etimeModification = file_status::time_remote_day;
                   ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay);
                   acmesystem()->m_pcoresystem->InsertTime(ftpFileStatus);
@@ -414,7 +443,7 @@ namespace ftp
                else
                   return false;
 
-               ftpFileStatus.m_strName = pszLine + j + 1;
+               ftpFileStatus.m_strName = scopedstrLine.begin() + j + 1;
                iState = 8;
                break;
             case 8: // twiddling thumbs
@@ -422,7 +451,7 @@ namespace ftp
             }
 
             i = j + 1;
-            while (i < iLength && pszLine[i] == (' '))
+            while (i < scopedstrLine.size() && scopedstrLine.begin()[i] == (' '))
                ++i;
          }
       }
@@ -434,15 +463,15 @@ namespace ftp
       ftpFileStatus.m_esize = file_status::size_binary;
 
       // handle links
-      if (pszLine[0] == ('l'))
+      if (scopedstrLine.begin()[0] == ('l'))
       {
-         strsize pos = ftpFileStatus.m_strName.find((" -> "));
+         auto pos = ftpFileStatus.m_strName.find_index((" -> "));
          if (pos>= 0)
             ftpFileStatus.m_strName = ftpFileStatus.m_strName.substr(0, pos);
       }
 
       // eliminate extra NetWare spaces
-      if (pszLine[1] == (' ') || pszLine[1] == ('['))
+      if (scopedstrLine.begin()[1] == (' ') || scopedstrLine.begin()[1] == ('['))
       {
          if (ftpFileStatus.m_strName.length() > 3 && ftpFileStatus.m_strName.substr(0, 3) == ("   "))
             ftpFileStatus.m_strName = ftpFileStatus.m_strName.substr(3);
@@ -458,25 +487,25 @@ namespace ftp
    /// "CII-MANUAL.TEX;1  213/216  29-JAN-1996 03:33:12  [ANONYMOU,ANONYMOUS]   (RWED,RWED,,)"
    bool file_list_parser::IsMultiNetListing(const ::scoped_string & scopedstrLine)
    {
-      return pszLine && strchr(pszLine, ';') != nullptr;
+      return scopedstrLine.begin() && strchr(scopedstrLine.begin(), ';') != nullptr;
    }
 
-   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
+   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)
    {
-      if (!IsMultiNetListing(pszLine))
+      if (!IsMultiNetListing(scopedstrLine.begin()))
          return false;
 
       // name lookup of `i' changed for memory_new ISO `for' scoping
       int i = 0;
-      for (; i < iLength; ++i)
-         if (pszLine[i] == (';'))
+      for (; i < scopedstrLine.size(); ++i)
+         if (scopedstrLine.begin()[i] == (';'))
             break;
 
-      if (i < iLength)
+      if (i < scopedstrLine.size())
       {
-         ftpFileStatus.m_strName = pszLine;
+         ftpFileStatus.m_strName = scopedstrLine.begin();
          ftpFileStatus.m_strName = ftpFileStatus.m_strName.substr(0, i);
-         if (i > 4 && ansi_count_compare(pszLine + i - 4, (".DIR"), 4) == 0)
+         if (i > 4 && ansi_count_compare(scopedstrLine.begin() + i - 4, (".DIR"), 4) == 0)
          {
             ftpFileStatus.m_strName = ftpFileStatus.m_strName.substr(0, ftpFileStatus.m_strName.length() - 4);
             ftpFileStatus.m_bCwdEnabled = true;
@@ -484,39 +513,39 @@ namespace ftp
          else
             ftpFileStatus.m_bRetrEnabled = true;
 
-         while (pszLine[i] != (' ')) if (++i == iLength) return false;
-         while (pszLine[i] == (' ')) if (++i == iLength) return false;
-         while (pszLine[i] != (' ')) if (++i == iLength) return false;
-         while (pszLine[i] == (' ')) if (++i == iLength) return false;
+         while (scopedstrLine.begin()[i] != (' ')) if (++i == scopedstrLine.size()) return false;
+         while (scopedstrLine.begin()[i] == (' ')) if (++i == scopedstrLine.size()) return false;
+         while (scopedstrLine.begin()[i] != (' ')) if (++i == scopedstrLine.size()) return false;
+         while (scopedstrLine.begin()[i] == (' ')) if (++i == scopedstrLine.size()) return false;
 
          int j = i;
-         while (pszLine[j] != ('-')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
          long lMDay = 0;
-         GetLong(pszLine + i, j - i, lMDay);
+         GetLong(scopedstrLine(i, j - i), lMDay);
 
-         while (pszLine[j] == ('-')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] == ('-')) if (++j == scopedstrLine.size()) return false;
          i = j;
-         while (pszLine[j] != ('-')) if (++j == iLength) return false;
-         long lMonth = GetMonth(pszLine + i, j - i);
+         while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
+         long lMonth = GetMonth(scopedstrLine(i, j - i));
          if (lMonth < 0) return false;
 
-         while (pszLine[j] == ('-')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] == ('-')) if (++j == scopedstrLine.size()) return false;
          i = j;
-         while (pszLine[j] != (' ')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] != (' ')) if (++j == scopedstrLine.size()) return false;
          long lYear = 0;
-         GetLong(pszLine + i, j - i, lYear);
+         GetLong(scopedstrLine(i, j - i), lYear);
 
-         while (pszLine[j] == (' ')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] == (' ')) if (++j == scopedstrLine.size()) return false;
          i = j;
-         while (pszLine[j] != (':')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] != (':')) if (++j == scopedstrLine.size()) return false;
          long lHour = 0;
-         GetLong(pszLine + i, j - i, lHour);
+         GetLong(scopedstrLine(i, j - i), lHour);
 
-         while (pszLine[j] == (':')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] == (':')) if (++j == scopedstrLine.size()) return false;
          i = j;
-         while (pszLine[j] != (':') && pszLine[j] != (' ')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] != (':') && scopedstrLine.begin()[j] != (' ')) if (++j == scopedstrLine.size()) return false;
          long lMinute = 0;
-         GetLong(pszLine + i, j - i, lMinute);
+         GetLong(scopedstrLine(i, j - i), lMinute);
 
          ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
          ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
@@ -532,31 +561,31 @@ namespace ftp
    /// 04-14-00  03:47PM                  589 readme.htm
    bool file_list_parser::IsMSDOSListing(const ::scoped_string & scopedstrLine)
    {
-      return pszLine && ansi_char_isdigit(pszLine[0]);
+      return scopedstrLine && ansi_char_isdigit(scopedstrLine[0]);
    }
 
-   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength)
+   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine)
    {
-      if (!IsMSDOSListing(pszLine))
+      if (!IsMSDOSListing(scopedstrLine))
          return false;
 
       int i = 0;
       int j = 0;
-      while (pszLine[j] != ('-')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
       long lMonth = 0;
-      GetLong(pszLine + i, j - i, lMonth); //+# -1
+      GetLong(scopedstrLine(i, j - i), lMonth); //+# -1
 
-      while (pszLine[j] == ('-')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] == ('-')) if (++j == scopedstrLine.size()) return false;
       i = j;
-      while (pszLine[j] != ('-')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] != ('-')) if (++j == scopedstrLine.size()) return false;
       long lMDay = 0;
-      GetLong(pszLine + i, j - i, lMDay);
+      GetLong(scopedstrLine(i, j - i), lMDay);
 
-      while (pszLine[j] == ('-')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] == ('-')) if (++j == scopedstrLine.size()) return false;
       i = j;
-      while (pszLine[j] != (' ')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] != (' ')) if (++j == scopedstrLine.size()) return false;
       long lYear = 0;
-      GetLong(pszLine + i, j - i, lYear);
+      GetLong(scopedstrLine(i, j - i), lYear);
 
       if (lYear < 50)
          lYear += 2000;
@@ -564,43 +593,43 @@ namespace ftp
       if (lYear < 1000)
          lYear += 1900;
 
-      while (pszLine[j] == (' ')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] == (' ')) if (++j == scopedstrLine.size()) return false;
       i = j;
-      while (pszLine[j] != (':')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] != (':')) if (++j == scopedstrLine.size()) return false;
       long lHour = 0;
-      GetLong(pszLine + i, j - i, lHour);
+      GetLong(scopedstrLine(i, j - i), lHour);
 
-      while (pszLine[j] == (':')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] == (':')) if (++j == scopedstrLine.size()) return false;
       i = j;
-      while ((pszLine[j] != ('A')) && (pszLine[j] != ('P'))) if (++j == iLength) return false;
+      while ((scopedstrLine.begin()[j] != ('A')) && (scopedstrLine.begin()[j] != ('P'))) if (++j == scopedstrLine.size()) return false;
       long lMinute = 0;
-      GetLong(pszLine + i, j - i, lMinute);
+      GetLong(scopedstrLine(i, j - i), lMinute);
 
       if (lHour == 12)
          lHour = 0;
 
-      if (pszLine[j] == ('A')) if (++j == iLength) return false;
-      if (pszLine[j] == ('P')) { lHour += 12; if (++j == iLength) return false; }
-      if (pszLine[j] == ('M')) if (++j == iLength) return false;
+      if (scopedstrLine.begin()[j] == ('A')) if (++j == scopedstrLine.size()) return false;
+      if (scopedstrLine.begin()[j] == ('P')) { lHour += 12; if (++j == scopedstrLine.size()) return false; }
+      if (scopedstrLine.begin()[j] == ('M')) if (++j == scopedstrLine.size()) return false;
 
-      while (pszLine[j] == (' ')) if (++j == iLength) return false;
-      if (pszLine[j] == ('<'))
+      while (scopedstrLine.begin()[j] == (' ')) if (++j == scopedstrLine.size()) return false;
+      if (scopedstrLine.begin()[j] == ('<'))
       {
          ftpFileStatus.m_bCwdEnabled = true;
-         while (pszLine[j] != (' ')) if (++j == iLength) return false;
+         while (scopedstrLine.begin()[j] != (' ')) if (++j == scopedstrLine.size()) return false;
       }
       else
       {
          i = j;
-         while (pszLine[j] != (' ')) if (++j == iLength) return false;
-         ftpFileStatus.m_filesize = atoi(string(pszLine + i, j - i));
+         while (scopedstrLine.begin()[j] != (' ')) if (++j == scopedstrLine.size()) return false;
+         ftpFileStatus.m_filesize = atoi(string(scopedstrLine(i, j - i)));
             ftpFileStatus.m_filesize = -1;
          ftpFileStatus.m_esize = file_status::size_binary;
          ftpFileStatus.m_bRetrEnabled = true;
       }
-      while (pszLine[j] == (' ')) if (++j == iLength) return false;
+      while (scopedstrLine.begin()[j] == (' ')) if (++j == scopedstrLine.size()) return false;
 
-      ftpFileStatus.m_strName = pszLine + j;
+      ftpFileStatus.m_strName = scopedstrLine.begin() + j;
 
       ftpFileStatus.m_etimeModification = file_status::time_remote_minute;
       ftpFileStatus.m_timeModification = m_tmBase + file_list_parser::ToTAI(lYear, lMonth, lMDay) + lHour * 3600 + lMinute * 60;
@@ -612,30 +641,30 @@ namespace ftp
    bool file_list_parser::Parse(file_status& ftpFileStatus, const string& strLineToParse)
    {
       ftpFileStatus.reset();
-      const char *   pszLine = strLineToParse.c_str();
-      const int iLength = static_cast<int>(strLineToParse.length());
+      auto scopedstrLine = strLineToParse();
+      auto iLineSize = scopedstrLine.size();
 
-      if (iLength < 2) // an empty name in EPLF, with no info, could be 2 chars
+      if (iLineSize < 2) // an empty name in EPLF, with no info, could be 2 chars
          return false;
 
-      if (IsEPLS(pszLine))
+      if (IsEPLS(scopedstrLine))
       {
-         if (!ParseEPLF(ftpFileStatus, pszLine, iLength))
+         if (!ParseEPLF(ftpFileStatus, scopedstrLine.begin()))
             return false;
       }
-      else if (IsUNIXStyleListing(pszLine))
+      else if (IsUNIXStyleListing(scopedstrLine.begin()))
       {
-         if (!ParseUNIXStyleListing(ftpFileStatus, pszLine, iLength))
+         if (!ParseUNIXStyleListing(ftpFileStatus, scopedstrLine.begin()))
             return false;
       }
-      else if (IsMultiNetListing(pszLine))
+      else if (IsMultiNetListing(scopedstrLine.begin()))
       {
-         if (!ParseMultiNetListing(ftpFileStatus, pszLine, iLength))
+         if (!ParseMultiNetListing(ftpFileStatus, scopedstrLine.begin()))
             return false;
       }
-      else if (IsMSDOSListing(pszLine))
+      else if (IsMSDOSListing(scopedstrLine.begin()))
       {
-         if (!ParseMSDOSListing(ftpFileStatus, pszLine, iLength))
+         if (!ParseMSDOSListing(ftpFileStatus, scopedstrLine.begin()))
             return false;
       }
       else

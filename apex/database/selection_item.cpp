@@ -13,14 +13,14 @@
 //
 //
 //   selection_item::selection_item(const key & key) :
-//      m_datakey(key)
+//      m_strDataKey(key)
 //   {
 //
 //   }
 //
 //
 //   selection_item::selection_item(const selection_item & selection_item) :
-//      m_datakey(selection_item.m_datakey)
+//      m_strDataKey(selection_item.m_strDataKey)
 //   {
 //
 //   }

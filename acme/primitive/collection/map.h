@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "set.h"
@@ -298,7 +298,7 @@ public:
    void set_payload(const PAIR & pair)
    {
       
-      set_at(pair.element1(), pair.element2());
+      set_at((ARG_ITEM) pair.element1(), (ARG_PAYLOAD) pair.element2());
 
    }
 
@@ -1028,7 +1028,7 @@ bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
 
    auto p = node_at(item, nHashBucket, nHashValue);
 
-   if (p)
+   if (!p)
    {
 
       return false;  // not in pair_map
@@ -1176,7 +1176,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
    }
 
-   return p->load();
+   return (const PAYLOAD &) p->load();
 
 }
 

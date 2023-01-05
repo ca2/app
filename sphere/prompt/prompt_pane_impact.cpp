@@ -119,7 +119,7 @@ namespace prompt
          pdata->m_iIconSize = 16;
          pdata->m_bListText = true;
          pdata->m_bListSelection = false;
-         pdata->m_datakey = "winactionarea_menu";
+         pdata->m_strDataKey = "winactionarea_menu";
          pdata->m_pcallback = this;
          pdata->m_strXmlPopup = "matter://filemanager\\file_popup.xml";
 
@@ -167,7 +167,7 @@ namespace prompt
 //         ::pointer<::filemanager::document>pdocument = puser->filemanager()->open_child(false, true);
 //         if(pdocument != nullptr)
 //         {
-//            pdocument->filemanager_data()->m_datakey = "winactionarea_filemanager";
+//            pdocument->filemanager_data()->m_strDataKey = "winactionarea_filemanager";
 //            pdocument->Initialize(true);
 //            pdocument->update_all_impacts(id_unknown); //1234);
 //            pdocument->update_all_impacts(id_unknown); //123458);
@@ -199,7 +199,7 @@ namespace prompt
          pdata->m_iIconSize = 48;
          pdata->m_bListText = false;
          pdata->m_bListSelection = false;
-         pdata->m_datakey = "winactionarea_3-action-launch";
+         pdata->m_strDataKey = "winactionarea_3-action-launch";
          pdata->m_pcallback = this;
          //pdata->m_strFilePopup = "filemanager\\file_popup.xml";
 
@@ -212,7 +212,7 @@ namespace prompt
             //pdocument->filemanager_data()->m_bListText = false;
             //pdocument->filemanager_data()->m_bListSelection = false;
             //pdocument->filemanager_data()->m_pcallback = this;
-            //pdocument->filemanager_data()->m_datakey = "winactionarea_3-action-launch";
+            //pdocument->filemanager_data()->m_strDataKey = "winactionarea_3-action-launch";
             //pdocument->Initialize(true);
             //pdocument->update_all_impacts(id_unknown); // 1234);
             //pdocument->update_all_impacts(id_unknown); //123458);

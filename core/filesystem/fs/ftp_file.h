@@ -31,9 +31,9 @@ public:
 
    void write(const void * pdata, memsize nCount) override;
 
-   filesize translate(filesize offset, ::enum_seek eseek) override;
+   void translate(filesize offset, ::enum_seek eseek) override;
 
-   filesize get_size() const override;
+   filesize size() const override;
 
    void close() override;
 

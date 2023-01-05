@@ -3000,7 +3000,7 @@ namespace xml
 
       ::count iColCount;
 
-      iColCount = attribute("column_count").iptr();
+      iColCount = attribute("column_count").as_iptr();
 
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {

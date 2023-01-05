@@ -32,7 +32,7 @@ namespace user
       void words_trailing_spaces(string_array & stra, string str)
       {
 
-         auto pFind = 0;
+         strsize iFind = 0;
 
          strsize iFind2;
 
@@ -41,12 +41,12 @@ namespace user
          while (true)
          {
 
-            iFind2 = str.find_first_in(" \t\r\n", iFind);
+            iFind2 = str.find_first_character_in_index(" \t\r\n", iFind);
 
             if (iFind2 < 0)
             {
 
-               stra.add(str(pFind));
+               stra.add(str(iFind2));
 
                return;
 

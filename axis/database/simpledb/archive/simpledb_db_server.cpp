@@ -33,7 +33,7 @@ db_server::~db_server()
 }
 
 
-::database::key db_server::calc_data_key(::database::client * pclient,  ::database::key & key)
+::database::key db_server::calc_data_key(::database::client * pclient,  const ::scoped_string & scopedstrDataKey)
 {
 
    if(pclient != nullptr)
@@ -273,7 +273,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
+bool db_server::data_server_load(::database::client * pclient, ::string strDataKey, memory & memory, ::update * pupdate)
 {
 
    __UNREFERENCED_PARAMETER(pparticle);
@@ -290,7 +290,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::key k
 }
 
 
-bool db_server::data_server_save(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
+bool db_server::data_server_save(::database::client * pclient, ::string strDataKey, memory & memory, ::update * pupdate)
 {
 
    synchronous_lock synchronouslock(this->synchronization());

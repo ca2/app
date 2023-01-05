@@ -77,7 +77,7 @@ namespace filemanager
 
       auto pmathematics = ::mathematics::mathematics();
 
-      pmathematics->random_bytes(mem.get_data(), mem.get_size());
+      pmathematics->random_bytes(mem.data(), mem.size());
 
       return mem.to_hex().uppered();
 
@@ -87,7 +87,7 @@ namespace filemanager
    bool is_valid_manager_id(const ::string & strParam)
    {
 
-      const ::scoped_string & scopedstr = strParam;
+      const ::ansi_character * psz = strParam;
 
       ::count c = 0;
 
@@ -130,7 +130,7 @@ namespace filemanager
    bool is_valid_filemanager_project_entry(const ::string & strParam)
    {
 
-      const ::scoped_string & scopedstr = strParam;
+      const ::ansi_character * psz = strParam;
 
       ::count c = 0;
 
@@ -180,15 +180,15 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string& strManagerId, const ::string & psz, ::aura::context* pcontext)
+   ::file::path filemanager_project_entry(string& strManagerId, const ::string & str, ::aura::context* pcontext)
    {
 
-      if (is_valid_filemanager_project_entry(psz))
+      if (is_valid_filemanager_project_entry(str))
       {
 
-         strManagerId = string(psz, get_manager_id_len());
+         strManagerId = str(0, get_manager_id_len());
 
-         return psz.c_str() + get_manager_id_len() + 1;
+         return str(get_manager_id_len() + 1);
 
       }
       else
@@ -196,7 +196,7 @@ namespace filemanager
 
          strManagerId = create_manager_id(pcontext);
 
-         return psz;
+         return str;
 
       }
 
@@ -496,24 +496,24 @@ namespace filemanager
 
             string str = stra[i];
 
-            auto pFind = str.find(':');
+            auto iFind = str.find_index(':');
 
             if (iFind > 0)
             {
 
-               string strPath = str(pFind + 1);
+               string strPath = str(iFind + 1);
 
                for (index j = i + 1; j < stra.get_size();)
                {
 
                   string strOther = stra[j];
 
-                  iFind = strOther.find(':');
+                  iFind = strOther.find_index(':');
 
                   if (iFind > 0)
                   {
 
-                     string strOtherPath = strOther(pFind + 1);
+                     string strOtherPath = strOther(iFind + 1);
 
                      if (strOtherPath.case_insensitive_order(strPath) == 0)
                      {
@@ -735,7 +735,7 @@ namespace filemanager
    document * component::restore_filemanager(::payload payloadFile, ::request * prequest, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      filemanager()->m_filepath = payloadFile.file_path();
+      filemanager()->m_filepath = payloadFile.as_file_path();
 
       filemanager()->m_prequest = prequest;
 
@@ -1174,10 +1174,10 @@ namespace filemanager
 
 //   pdocument->filemanager_data()->m_pdocument = pdocument;
 
-//   if (pdocument->filemanager_data()->m_datakey.is_empty())
+//   if (pdocument->filemanager_data()->m_strDataKey.is_empty())
 //   {
 
-//      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
+//      pdocument->filemanager_data()->m_strDataKey.m_strDataKey.format("%s(%d)",
 //            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 

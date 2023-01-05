@@ -64,20 +64,20 @@ namespace ftp
       bool Parse(file_status& ftpFileStatus, const ::string & strLineToParse);
 
       bool IsEPLS(const ::scoped_string & scopedstrLine);
-      bool ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength);
+      bool ParseEPLF(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
       bool IsUNIXStyleListing(const ::scoped_string & scopedstrLine);
-      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength);
+      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
       bool IsMultiNetListing(const ::scoped_string & scopedstrLine);
-      bool ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength);
+      bool ParseMultiNetListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
       bool IsMSDOSListing(const ::scoped_string & scopedstrLine);
-      bool ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine, int iLength);
+      bool ParseMSDOSListing(file_status& ftpFileStatus, const ::scoped_string & scopedstrLine);
 
-      bool CheckMonth(const ::string & pszBuffer, const ::string & pszMonthName) const;
-      int  GetMonth(const ::string & pszBuffer, int iLength) const;
-      bool GetLong(const ::string & pszLong, int iLength, long& lResult) const;
+      bool CheckMonth(const ::scoped_string & scopedstr, const ::string & pszMonthName) const;
+      int  GetMonth(const ::scoped_string & scopedstr) const;
+      bool GetLong(const ::scoped_string & scopedstrLong, long& lResult) const;
       long GetYear(time_t time) const;
 
       long ToTAI(long lYear, long lMonth, long lMDay) const;

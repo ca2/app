@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "type.h"
@@ -397,8 +397,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::f64 as_f64(::f64 fDefault = 0) const;
 
 
-   inline ::iptr iptr(::iptr iDefault = 0)  const;
-   inline ::uptr uptr(::uptr uiDefault = 0)  const;
+   inline ::iptr as_iptr(::iptr iDefault = 0)  const;
+   inline ::uptr as_uptr(::uptr uiDefault = 0)  const;
 
    ::file::path as_file_path() const;
    ::file_time as_file_time() const;
@@ -1317,7 +1317,7 @@ CLASS_DECL_ACME void var_skip_network_payload(::const_ansi_range & range);
 //}
 
 
-inline iptr payload::iptr(::iptr iDefault) const
+inline iptr payload::as_iptr(::iptr iDefault) const
 {
 
 #if defined(OS64BIT)
@@ -1333,7 +1333,7 @@ inline iptr payload::iptr(::iptr iDefault) const
 }
 
 
-inline uptr payload::uptr(::uptr uiDefault) const
+inline uptr payload::as_uptr(::uptr uiDefault) const
 {
 
 #ifdef OS64BIT

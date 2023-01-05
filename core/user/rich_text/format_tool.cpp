@@ -3,6 +3,7 @@
 #include "format.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/handler/item.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -633,13 +634,13 @@ namespace user
 
             auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
-            auto itemCurrent = m_pcomboFamily->m_pitemCurrent;
+            auto pitemCurrent = m_pcomboFamily->m_pitemCurrent;
 
             ::pointer<::user::font_list>pfontlist = pcombolistbox;
 
             auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
-            auto pfontenumerationitem = pfontenumerationitema->element_at(itemCurrent);
+            auto pfontenumerationitem = pfontenumerationitema->element_at(pitemCurrent->m_iItem);
 
             m_pformata->first()->m_strFontFamily = pfontenumerationitem->m_strName;
 

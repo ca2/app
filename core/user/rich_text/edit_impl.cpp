@@ -363,13 +363,13 @@ namespace user
             if (psession->is_key_pressed(e_key_shift))
             {
 
-               if (item < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               if (item->m_iItem < minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
                   m_pdata->m_iSelBeg = maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
 
                }
-               else if (item > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
+               else if (item->m_iItem > maximum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd))
                {
 
                   m_pdata->m_iSelBeg = minimum(m_pdata->m_iSelBeg, m_pdata->m_iSelEnd);
@@ -380,11 +380,11 @@ namespace user
             else
             {
 
-               m_pdata->m_iSelBeg = item;
+               m_pdata->m_iSelBeg = item->m_iItem;
 
             }
 
-            m_pdata->m_iSelEnd = item;
+            m_pdata->m_iSelEnd = item->m_iItem;
 
             m_pdata->internal_update_sel_char();
 
@@ -449,7 +449,7 @@ namespace user
          if (item.is_set() && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
 
-            m_pdata->m_iSelEnd = item;
+            m_pdata->m_iSelEnd = item->m_iItem;
 
             m_pdata->internal_update_sel_char();
 
@@ -505,7 +505,7 @@ namespace user
             if (::is_item(m_pitemHover, m_pdata->m_iSelEnd))
             {
 
-               m_pdata->m_iSelEnd = m_pitemHover;
+               m_pdata->m_iSelEnd = m_pitemHover->m_iItem;
 
                m_pdata->internal_update_sel_char();
 
@@ -1713,7 +1713,7 @@ namespace user
 
                         _001GetLayoutText(strText);
 
-                        const ::scoped_string & scopedstr = strText;
+                        const char * psz = strText.c_str();
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
@@ -1769,7 +1769,7 @@ namespace user
 
                      _001GetLayoutText(strText);
 
-                     const ::scoped_string & scopedstr = strText;
+                     const ::ansi_character * psz = strText.c_str();
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 

@@ -2,6 +2,7 @@
 #include "wait_message_dialog.h"
 #include "acme/constant/id.h"
 #include "acme/constant/timer.h"
+#include "acme/primitive/primitive/atom.h"
 #include "base/user/form/impact.h"
 
 

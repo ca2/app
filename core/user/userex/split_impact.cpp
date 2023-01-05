@@ -31,9 +31,9 @@ namespace userex
    bool split_impact::on_new_impact_creator_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iPane = pimpactdata->m_atom.index();
+      auto iPane = pimpactdata->m_atom.as_iptr();
 
-      if (iPane < 0)
+      if (::not_found(iPane))
       {
 
          return false;

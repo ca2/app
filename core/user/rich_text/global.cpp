@@ -52,18 +52,18 @@ namespace user
 
             }
 
-            iFind3 = str.find_first_not_in(" \t\r\n", iFind2);
+            iFind3 = str.skip_any_character_in_index(" \t\r\n", iFind2);
 
-            if (iFind3 < 0)
+            if (::not_found(iFind3))
             {
 
-               stra.add(str(pFind));
+               stra.add(str(iFind));
 
                return;
 
             }
 
-            string strWord = str.substr(iFind, iFind3 - iFind);
+            string strWord = str(iFind, iFind3 - iFind);
 
             stra.add(strWord);
 
@@ -93,7 +93,7 @@ namespace user
 
             auto & pline = linea[iLine];
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                pboxLast = pbox;
@@ -133,7 +133,7 @@ namespace user
 
             auto & pline = linea[iLine];
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                pboxLast = pbox;
@@ -218,7 +218,7 @@ namespace user
 
             auto& pline = linea[iLine];
 
-            for (auto& pbox : pline->ptra())
+            for (auto& pbox : *pline)
             {
 
                pboxLast = pbox;
@@ -275,10 +275,10 @@ namespace user
 
          }
 
-         for (auto & pline : linea.ptra())
+         for (auto & pline : linea)
          {
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                if (pbox->m_iPosBeg <= iSel && iSel <= pbox->m_iPosEnd)
@@ -304,7 +304,7 @@ namespace user
 
          string str;
 
-         for (auto & pbox : line.ptra())
+         for (auto & pbox : line)
          {
 
             str += pbox->get_text();
@@ -323,7 +323,7 @@ namespace user
 
          bool bFirstBox = true;
 
-         for (auto & pspan : spana.ptra())
+         for (auto & pspan : spana)
          {
 
             if (pspan->m_ealignNewLine != e_align_none)
@@ -557,7 +557,7 @@ namespace user
 
             pline->m_xOffset = iOffset;
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                pbox->m_rectangleBox.offset(iOffset, 0);
@@ -593,10 +593,10 @@ namespace user
 
          box * pboxLast = nullptr;
 
-         for (auto & pline : linea.ptra())
+         for (auto & pline : linea)
          {
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                pboxLast = pbox;
@@ -638,7 +638,7 @@ namespace user
 
             }
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                str += pbox->get_text();

@@ -216,7 +216,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
+   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_atom.as_i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 

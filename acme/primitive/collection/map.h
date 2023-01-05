@@ -1176,7 +1176,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
    }
 
-   return p->load();
+   return (const PAYLOAD &) p->load();
 
 }
 

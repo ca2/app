@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "simpledb.h"
 #include "item.h"
 #include "server.h"
@@ -152,7 +152,7 @@ namespace simpledb
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
-         if (ppair != nullptr)
+         if (ppair)
          {
 
             getmemory.get(ppair->element2().m_memory);
@@ -218,7 +218,7 @@ namespace simpledb
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
-         if (ppair != nullptr && ppair->element2().m_tick.elapsed() < m_timeRemoteTimeout)
+         if (ppair && ppair->element2().m_tick.elapsed() < m_timeRemoteTimeout)
          {
 
             getmemory.get(ppair->element2().m_memory);

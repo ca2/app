@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //#define _EARTH_TIME_SPAN_COMPARISON_WITH(TYPE) \
@@ -51,41 +51,41 @@ namespace earth
       }
 
       
-      DECLARE_COMPARISON_WITH_TIME(inline)
+      //DECLARE_COMPARISON_WITH_TIME(inline)
 
 
-      _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
-      _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
-      _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
-      //_TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
-      _TIME_COMPARISON_WITH(::INTEGRAL_MINUTE);
-      _TIME_COMPARISON_WITH(::INTEGRAL_HOUR);
-      _TIME_COMPARISON_WITH(::INTEGRAL_DAY);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
+//      //_TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_MINUTE);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_HOUR);
+//      _TIME_COMPARISON_WITH(::INTEGRAL_DAY);
+//
+//      _TIME_COMPARISON_WITH(::integral_nanosecond);
+//      _TIME_COMPARISON_WITH(::integral_microsecond);
+//      _TIME_COMPARISON_WITH(::integral_millisecond);
+//      //_TIME_COMPARISON_WITH(::integral_second);
+//      _TIME_COMPARISON_WITH(::integral_minute);
+//      _TIME_COMPARISON_WITH(::integral_hour);
+//      _TIME_COMPARISON_WITH(::integral_day);
 
-      _TIME_COMPARISON_WITH(::integral_nanosecond);
-      _TIME_COMPARISON_WITH(::integral_microsecond);
-      _TIME_COMPARISON_WITH(::integral_millisecond);
-      //_TIME_COMPARISON_WITH(::integral_second);
-      _TIME_COMPARISON_WITH(::integral_minute);
-      _TIME_COMPARISON_WITH(::integral_hour);
-      _TIME_COMPARISON_WITH(::integral_day);
 
-
-      _TIME_COMPARISON_WITH(::FLOATING_NANOSECOND);
-      _TIME_COMPARISON_WITH(::FLOATING_MICROSECOND);
-      _TIME_COMPARISON_WITH(::FLOATING_MILLISECOND);
-      _TIME_COMPARISON_WITH(::FLOATING_SECOND);
-      _TIME_COMPARISON_WITH(::FLOATING_MINUTE);
-      _TIME_COMPARISON_WITH(::FLOATING_HOUR);
-      _TIME_COMPARISON_WITH(::FLOATING_DAY);
-
-      _TIME_COMPARISON_WITH(::floating_nanosecond);
-      _TIME_COMPARISON_WITH(::floating_microsecond);
-      _TIME_COMPARISON_WITH(::floating_millisecond);
-      _TIME_COMPARISON_WITH(::floating_second);
-      _TIME_COMPARISON_WITH(::floating_minute);
-      _TIME_COMPARISON_WITH(::floating_hour);
-      _TIME_COMPARISON_WITH(::floating_day);
+//      _TIME_COMPARISON_WITH(::FLOATING_NANOSECOND);
+//      _TIME_COMPARISON_WITH(::FLOATING_MICROSECOND);
+//      _TIME_COMPARISON_WITH(::FLOATING_MILLISECOND);
+//      _TIME_COMPARISON_WITH(::FLOATING_SECOND);
+//      _TIME_COMPARISON_WITH(::FLOATING_MINUTE);
+//      _TIME_COMPARISON_WITH(::FLOATING_HOUR);
+//      _TIME_COMPARISON_WITH(::FLOATING_DAY);
+//
+//      _TIME_COMPARISON_WITH(::floating_nanosecond);
+//      _TIME_COMPARISON_WITH(::floating_microsecond);
+//      _TIME_COMPARISON_WITH(::floating_millisecond);
+//      _TIME_COMPARISON_WITH(::floating_second);
+//      _TIME_COMPARISON_WITH(::floating_minute);
+//      _TIME_COMPARISON_WITH(::floating_hour);
+//      _TIME_COMPARISON_WITH(::floating_day);
 
 
    };
@@ -203,7 +203,7 @@ namespace earth
 
    }
 
-   DEFINE_COMPARISON_WITH_TIME(inline, time_span);
+   //DEFINE_COMPARISON_WITH_TIME(inline, time_span);
 
 } // namespace earth
 

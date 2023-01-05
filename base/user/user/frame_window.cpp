@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
@@ -1746,7 +1746,7 @@ namespace user
 
       //}
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       string strToolbar(strToolbarParam);
 

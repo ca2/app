@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user_array.h"
 #include "user.h"
 #include "department.h"
@@ -213,7 +213,7 @@ namespace account
 
             synchronouslock.lock();
 
-            m_map.erase_key(pair.element1());
+            m_map.erase_item(pair.element1());
 
             synchronouslock.unlock();
 

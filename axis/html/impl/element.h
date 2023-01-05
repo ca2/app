@@ -37,7 +37,7 @@ namespace html
          flags < enum_flag >        m_flags;
          float                   m_cxMax;
          float                   m_cxMin;
-         string_map < i32, i32 > m_mapFont;
+         string_map < i32 >      m_mapFont;
          bool                    m_bHoverEvaluated;
          bool                    m_bHasHover;
          bool                    m_bHover;

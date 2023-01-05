@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename INTEGRAL_TIME_TYPE >
@@ -123,8 +123,8 @@ public:
    //bool operator != (const BASE_TYPE & time) const { return this->m_i != time.m_i; }
 
 
-   bool operator == (const integral_time & time) const { return this->m_i == time.m_i; }
-   ::std::strong_ordering operator <=>  (const integral_time & time) const { return this->m_i <=> time.m_i; }
+//   bool operator == (const integral_time & time) const { return this->m_i == time.m_i; }
+  // ::std::strong_ordering operator <=>  (const integral_time & time) const { return this->m_i <=> time.m_i; }
    //bool operator >= (const integral_time & time) const { return this->m_i >= time.m_i; }
    //bool operator <  (const integral_time & time) const { return this->m_i < time.m_i; }
    //bool operator <= (const integral_time & time) const { return this->m_i <= time.m_i; }

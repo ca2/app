@@ -4403,7 +4403,7 @@ namespace user
    //{
    //   for(index iKey = 0; iKey < this->get_size(); iKey++)
    //   {
-   //      if(this->element_at(iKey)->m_datakey == key)
+   //      if(this->element_at(iKey)->m_strDataKey == key)
    //         return iKey;
    //   }
    //   return -1;

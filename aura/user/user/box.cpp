@@ -823,7 +823,7 @@ namespace user
    //bool box::is_local_data()
    //{
 
-   //   return m_datakeyWindowRect.m_bLocalData;
+   //   return m_strDataKeyWindowRect.m_bLocalData;
 
    //}
 

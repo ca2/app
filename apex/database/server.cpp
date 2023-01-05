@@ -92,7 +92,7 @@ namespace database
 
       //signal.m_pserver = this;
       //signal.m_pclient = pclient;
-      //signal.m_datakey = atom;
+      //signal.m_strDataKey = atom;
       //signal.m_pupdate = pchange;
 
       for(i32 i = 0; i < m_clienta.get_count(); i++)
@@ -121,7 +121,7 @@ namespace database
       //::database::change_event signal;
       //signal.m_pserver       = this;
       //signal.m_pclient     = pclient;
-      //signal.m_datakey          = atom;
+      //signal.m_strDataKey          = atom;
       //signal.m_pupdate = pchange;
 
       for(i32 i = 0; i < m_clienta.get_count(); i++)

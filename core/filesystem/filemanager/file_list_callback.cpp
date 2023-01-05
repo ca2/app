@@ -70,7 +70,7 @@ namespace filemanager
 
    void file_list_callback::InitializeActionButton(atom atom, ::pointer<::user::button>pbutton)
    {
-      switch (atom)
+      switch (atom.as_i32())
       {
       case 0: // ExecuteButton
       {

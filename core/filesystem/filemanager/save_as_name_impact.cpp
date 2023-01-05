@@ -79,7 +79,7 @@ namespace filemanager
          filemanager_document()->browse(str, context + ::e_source_sync);
 
       }
-      else if (str.find("/") >= 0 || str.find("\\") >= 0)
+      else if (str.contains("/") || str.contains("\\"))
       {
 
          ::file::path strName = str;

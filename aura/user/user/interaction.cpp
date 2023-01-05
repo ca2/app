@@ -20086,7 +20086,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //   m_iItem = control_descriptor.m_iItem;
    //   m_atom = control_descriptor.m_atom;
    //   m_econtroltype = control_descriptor.m_econtroltype;
-   //   m_datakey = control_descriptor.m_datakey;
+   //   m_strDataKey = control_descriptor.m_strDataKey;
    //   m_bTransparent = control_descriptor.m_bTransparent;
    //   m_flagsfunction = control_descriptor.m_flagsfunction;
    //   m_type = control_descriptor.m_type;

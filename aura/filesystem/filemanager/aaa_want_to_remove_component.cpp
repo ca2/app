@@ -1119,10 +1119,10 @@ pacmedirectory->localconfig() / "user.component";
 
 //   pdocument->filemanager_data()->m_pdocument = pdocument;
 
-//   if (pdocument->filemanager_data()->m_datakey.is_empty())
+//   if (pdocument->filemanager_data()->m_strDataKey.is_empty())
 //   {
 
-//      pdocument->filemanager_data()->m_datakey.m_strDataKey.format("%s(%d)",
+//      pdocument->filemanager_data()->m_strDataKey.m_strDataKey.format("%s(%d)",
 //            psession->component().m_atomFileManager.str(),
 //            pdocument->filemanager_data()->m_iDocument);
 

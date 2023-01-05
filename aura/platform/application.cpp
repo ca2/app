@@ -5450,7 +5450,7 @@ retry_license:
    //bool application::is_local_data()
    //{
 
-   //   return m_datakey.m_bLocalData;
+   //   return m_strDataKey.m_bLocalData;
 
    //}
 

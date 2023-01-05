@@ -1466,7 +1466,7 @@ namespace user
    //   m_pimagelistHover = pcolumn->m_pimagelistHover;
    //   m_bVisible = pcolumn->m_bVisible;
    //   m_iControl = pcolumn->m_iControl;
-   //   m_datakey = pcolumn->m_datakey;
+   //   m_strDataKey = pcolumn->m_strDataKey;
    //   m_bIcon = pcolumn->m_bIcon;
    //   m_sizeIcon = pcolumn.m_sizeIcon;
    //   m_bCustomDraw = pcolumn->m_bCustomDraw;
@@ -5861,7 +5861,7 @@ namespace user
       for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
-         if (this->element_at(iIndex)->m_datakey == key)
+         if (this->element_at(iIndex)->m_strDataKey == key)
          {
 
             return iIndex;
@@ -5886,7 +5886,7 @@ namespace user
          if (this->element_at(iIndex)->m_bVisible)
          {
 
-            if (this->element_at(iIndex)->m_datakey == key)
+            if (this->element_at(iIndex)->m_strDataKey == key)
             {
 
                return cVisible;

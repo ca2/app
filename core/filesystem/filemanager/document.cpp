@@ -663,7 +663,7 @@ namespace filemanager
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      ::file::path path = payloadFile.file_path();
+      auto path = payloadFile.as_file_path();
 
       path.trim();
 

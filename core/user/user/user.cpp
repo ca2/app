@@ -942,7 +942,7 @@ namespace core
 
       ::pointer<::database::change_event>pchange(pmessage);
 
-      if (pchange->m_datakey == "ca2.savings")
+      if (pchange->m_strDataKey == "ca2.savings")
       {
 
          auto psession = get_session();

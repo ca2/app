@@ -263,7 +263,7 @@ namespace filemanager
 //      if(m_strDataKey.is_empty())
 //      {
 //
-//         m_strDataKey.m_strDataKey.format("%s", m_atom.str().c_str());
+//         m_strDataKey.format("%s", m_atom.str().c_str());
 //
 //      }
 //
@@ -279,7 +279,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
 
-      if (papp->datastream()->get({m_strDataKey.m_bLocalData, m_strDataKey.m_strDataKey+".last_browse_folder"}, strPath))
+      if (papp->datastream()->get(m_strDataKey +".last_browse_folder", strPath))
       {
 
          if (strPath == "machinefs://")
@@ -289,9 +289,9 @@ namespace filemanager
 
             string strId;
 
-            strId = m_strDataKey.m_strDataKey +".last_browse_folder." + idMachine;
+            strId = m_strDataKey+".last_browse_folder." + idMachine;
 
-            if (!papp->datastream()->get({ m_strDataKey.m_bLocalData, strId }, strPath))
+            if (!papp->datastream()->get(strId, strPath))
             {
 
                strPath.empty();
@@ -362,21 +362,21 @@ namespace filemanager
          || string_begins(path, "fs://"))
       {
 
-         papp->datastream()->set({ m_strDataKey.m_bLocalData, m_strDataKey.m_strDataKey +".last_browse_folder" }, strPath);
+         papp->datastream()->set(m_strDataKey +".last_browse_folder", strPath);
 
       }
       else
       {
 
-         papp->datastream()->set({ m_strDataKey.m_bLocalData, m_strDataKey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
+         papp->datastream()->set(m_strDataKey + ".last_browse_folder", "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
          string strId;
 
-         strId = m_strDataKey.m_strDataKey+".last_browse_folder." + idMachine;
+         strId = m_strDataKey+".last_browse_folder." + idMachine;
 
-         papp->datastream()->set({ m_strDataKey.m_bLocalData, strId }, strPath);
+         papp->datastream()->set(strId, strPath);
 
       }
 

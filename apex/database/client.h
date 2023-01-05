@@ -194,4 +194,4 @@ namespace database
 } // namespace database
 
 
-#define CHANGE_EVENT_DATA_GET(pchange, key) pchange->m_pclient->datastream()->get(pchange->m_datakey, key)
+#define CHANGE_EVENT_DATA_GET(pchange, key) pchange->m_pclient->datastream()->get(pchange->m_strDataKey, key)

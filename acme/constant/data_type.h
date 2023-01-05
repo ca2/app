@@ -5,9 +5,16 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sorensen on 05/01/23.
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef file_type_h
-#define file_type_h
+#pragma once
 
 
-#endif /* file_type_h */
+enum enum_data_type
+{
+   
+   e_data_type_none,
+   e_data_type_gif,
+   
+};
+
+
+

@@ -1145,8 +1145,6 @@
 		9A750DA9282B367600C4861B /* flag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9A282B367300C4861B /* flag.h */; };
 		9A750DAA282B367600C4861B /* earth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9B282B367400C4861B /* earth.h */; };
 		9A750DAB282B367600C4861B /* earth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9B282B367400C4861B /* earth.h */; };
-		9A750DAC282B367600C4861B /* _enumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9C282B367500C4861B /* _enumeration.h */; };
-		9A750DAD282B367600C4861B /* _enumeration.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9C282B367500C4861B /* _enumeration.h */; };
 		9A750DAE282B367600C4861B /* aaa_topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9D282B367500C4861B /* aaa_topic.h */; };
 		9A750DAF282B367600C4861B /* aaa_topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A750D9D282B367500C4861B /* aaa_topic.h */; };
 		9A750FF4282B936500C4861B /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A72E264B6F2C0080670E /* data.cpp */; };
@@ -1476,8 +1474,6 @@
 		9A892DDD26CD9061008D6412 /* future.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC026CD9061008D6412 /* future.h */; };
 		9A892DDE26CD9061008D6412 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC126CD9061008D6412 /* status.h */; };
 		9A892DDF26CD9061008D6412 /* status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC126CD9061008D6412 /* status.h */; };
-		9A892DE026CD9061008D6412 /* GLOBAL_ID.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC226CD9061008D6412 /* GLOBAL_ID.h */; };
-		9A892DE126CD9061008D6412 /* GLOBAL_ID.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC226CD9061008D6412 /* GLOBAL_ID.h */; };
 		9A892DE226CD9061008D6412 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC326CD9061008D6412 /* _constant.h */; };
 		9A892DE326CD9061008D6412 /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC326CD9061008D6412 /* _constant.h */; };
 		9A892DE426CD9061008D6412 /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DC426CD9061008D6412 /* idpool.h */; };
@@ -3376,7 +3372,6 @@
 		9A750D99282B367000C4861B /* memory_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory_heap.h; sourceTree = "<group>"; };
 		9A750D9A282B367300C4861B /* flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flag.h; sourceTree = "<group>"; };
 		9A750D9B282B367400C4861B /* earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth.h; sourceTree = "<group>"; };
-		9A750D9C282B367500C4861B /* _enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _enumeration.h; sourceTree = "<group>"; };
 		9A750D9D282B367500C4861B /* aaa_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_topic.h; sourceTree = "<group>"; };
 		9A786175264B908C003DF8A0 /* enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumeration.h; sourceTree = "<group>"; };
 		9A786179264B908D003DF8A0 /* object_meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object_meta.h; sourceTree = "<group>"; };
@@ -3550,12 +3545,12 @@
 		9A8660DC2966A848000C82F0 /* concrete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = concrete.h; sourceTree = "<group>"; };
 		9A8660DD2966A848000C82F0 /* _impl_property_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl_property_set.h; sourceTree = "<group>"; };
 		9A8660DE2966A848000C82F0 /* _impl_atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl_atom.h; sourceTree = "<group>"; };
+		9A86610A29671A9E000C82F0 /* data_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = data_type.h; sourceTree = "<group>"; };
 		9A892DBD26CD9061008D6412 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		9A892DBE26CD9061008D6412 /* activate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = activate.h; sourceTree = "<group>"; };
 		9A892DBF26CD9061008D6412 /* status_range_authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status_range_authentication.h; sourceTree = "<group>"; };
 		9A892DC026CD9061008D6412 /* future.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = future.h; sourceTree = "<group>"; };
 		9A892DC126CD9061008D6412 /* status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status.h; sourceTree = "<group>"; };
-		9A892DC226CD9061008D6412 /* GLOBAL_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLOBAL_ID.h; sourceTree = "<group>"; };
 		9A892DC326CD9061008D6412 /* _constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A892DC426CD9061008D6412 /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9A892DC526CD9061008D6412 /* source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = source.h; sourceTree = "<group>"; };
@@ -5419,8 +5414,8 @@
 				9A6ACC4728EBA7AF000C3D30 /* user */,
 				9A892DD526CD9061008D6412 /* _.h */,
 				9A892DC326CD9061008D6412 /* _constant.h */,
-				9A750D9C282B367500C4861B /* _enumeration.h */,
 				9A750D96282B366F00C4861B /* _mathematics.h */,
+				9A892DD026CD9061008D6412 /* aaa_thread.h */,
 				9A750D9D282B367500C4861B /* aaa_topic.h */,
 				9A892DBE26CD9061008D6412 /* activate.h */,
 				9A892DD426CD9061008D6412 /* button_state.h */,
@@ -5432,10 +5427,10 @@
 				9A750D9B282B367400C4861B /* earth.h */,
 				9A0E1D4728E67A4C005E8DE6 /* error_code_type.h */,
 				9A750D95282B366F00C4861B /* exception.h */,
+				9A86610A29671A9E000C82F0 /* data_type.h */,
 				9A892DBD26CD9061008D6412 /* filesystem.h */,
 				9A750D9A282B367300C4861B /* flag.h */,
 				9A892DC026CD9061008D6412 /* future.h */,
-				9A892DC226CD9061008D6412 /* GLOBAL_ID.h */,
 				9A892DC926CD9061008D6412 /* id.h */,
 				9A892DCF26CD9061008D6412 /* idpool.cpp */,
 				9A892DC426CD9061008D6412 /* idpool.h */,
@@ -5448,7 +5443,6 @@
 				9A892DC526CD9061008D6412 /* source.h */,
 				9A892DBF26CD9061008D6412 /* status_range_authentication.h */,
 				9A892DC126CD9061008D6412 /* status.h */,
-				9A892DD026CD9061008D6412 /* aaa_thread.h */,
 				9A892DCE26CD9061008D6412 /* timer.h */,
 				9A750D98282B367000C4861B /* user_text.h */,
 				9A750D97282B367000C4861B /* user.h */,
@@ -6085,7 +6079,6 @@
 				9A786218264B90B4003DF8A0 /* number_integer.h in Headers */,
 				9A0843EB29366DF5009F7FF4 /* string.h in Headers */,
 				9A68AE6C25114435008DABD2 /* value.h in Headers */,
-				9A750DAC282B367600C4861B /* _enumeration.h in Headers */,
 				9A787BAE264BB13F003DF8A0 /* timer.h in Headers */,
 				9AA8F92927BA7269008FF9AA /* os_colors.h in Headers */,
 				9A08445D29369BCE009F7FF4 /* _configuration.h in Headers */,
@@ -6475,7 +6468,6 @@
 				9A892DE426CD9061008D6412 /* idpool.h in Headers */,
 				9A0B8D0F27AA147900760D34 /* _payload_stream_impl.h in Headers */,
 				9A78621E264B90B4003DF8A0 /* random_number_generator.h in Headers */,
-				9A892DE026CD9061008D6412 /* GLOBAL_ID.h in Headers */,
 				9A68AE7D25114435008DABD2 /* match.h in Headers */,
 				9A83A850294D4CC90074C712 /* array_iterator.h in Headers */,
 				9A786286264B90E7003DF8A0 /* bounding_rect.h in Headers */,
@@ -6952,7 +6944,6 @@
 				9AD68EAC251A753A00C0EBD7 /* composite_array.h in Headers */,
 				9A787B76264BB118003DF8A0 /* node.h in Headers */,
 				9AD68EB1251A753A00C0EBD7 /* memory.h in Headers */,
-				9A892DE126CD9061008D6412 /* GLOBAL_ID.h in Headers */,
 				9A0842A02935E694009F7FF4 /* _collection.h in Headers */,
 				9AD68EB4251A753A00C0EBD7 /* size_array.h in Headers */,
 				9A5DCE24271A3BCC00C2ED86 /* nanosecond_timer.h in Headers */,
@@ -7491,7 +7482,6 @@
 				9AD6909A251A753A00C0EBD7 /* x_charcategory.h in Headers */,
 				9AD6909B251A753A00C0EBD7 /* standard.h in Headers */,
 				9A0843B729366D8F009F7FF4 /* adaptor.h in Headers */,
-				9A750DAD282B367600C4861B /* _enumeration.h in Headers */,
 				9A0843242936667D009F7FF4 /* task_flag.h in Headers */,
 				9A9814AA28E4EA8E001C9855 /* uint32_muldiv.h in Headers */,
 				9A8660E22966A849000C82F0 /* _impl_primitive.h in Headers */,

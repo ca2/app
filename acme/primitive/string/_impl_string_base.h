@@ -4086,7 +4086,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
+inline ::count string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
 {
 
    strsize nLength = size();

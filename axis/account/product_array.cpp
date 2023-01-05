@@ -176,7 +176,7 @@ namespace account
    bool product_array::clear_cache(string strAppId)
    {
 
-      return m_map.erase_itemkey(strAppId);
+      return m_map.erase_item(strAppId);
 
    }
 

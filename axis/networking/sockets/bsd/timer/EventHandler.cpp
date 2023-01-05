@@ -160,7 +160,7 @@ namespace sockets
 
          ::acme::del(pevent);
 
-         if (p != nullptr)
+         if (p)
          {
 
             m_eventplist.erase(p);

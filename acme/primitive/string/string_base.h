@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_iterator.h"
@@ -801,7 +801,7 @@ public:
    //string_base & replace(strsize iStart, strsize nCount, const SCOPED_STRING & scopedstr, strsize nLen);
 
    // erase all occurrences of character 'chRemove'
-   const_iterator erase_character(CHARACTER chRemove);
+   ::count erase_character(CHARACTER chRemove);
 
    string_base Tokenize(const SCOPED_STRING & scopedstrTokens, strsize & iStart) const;
 

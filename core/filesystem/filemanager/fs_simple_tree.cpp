@@ -135,7 +135,7 @@ namespace filemanager
 
                auto pnodeItem = pnodeFolder->child_at(i);
 
-               auto iFolder = pnodeItem->attribute("id").iptr();
+               auto iFolder = pnodeItem->attribute("id").as_iptr();
 
                index iNewItem = m_foldera.find_absolute(iFolder);
 
@@ -160,7 +160,7 @@ namespace filemanager
 
                pfolder->m_strName = pnodeItem->attribute("name");
 
-               string strType(pnodeItem->attribute("type").as_string());
+               string strType(pnodeItem->attribute("type").get_string());
 
                if(strType == "normal")
                {

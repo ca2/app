@@ -634,9 +634,9 @@ namespace filemanager
             else
             {
 
-               m_dSize += varLen.u32();
+               m_dSize += varLen.as_u32();
 
-               m_daSize.add((double)varLen.u32());
+               m_daSize.add((double)varLen.as_u32());
 
                m_daRead.add(0.0);
 
@@ -864,7 +864,7 @@ namespace filemanager
       while(j >= 0)
       {
 
-         strValue.Insert(i,strValue[j]);
+         strValue.insert(i,strValue[j]);
 
          j--;
 
@@ -882,12 +882,12 @@ namespace filemanager
       string strName = str.substr(strDir.length());
       string strExtension;
       bool bDir;
-      auto pFind = strName.find("\\");
+      auto iFind = strName.find_index("\\");
       bDir = iFind > 0;
       if(bDir)
       {
-         strExtension = "\\" + strName(pFind + 1);
-         strName = strName(0, pFind);
+         strExtension = "\\" + strName(iFind + 1);
+         strName = strName(0, iFind);
       }
       else
       {

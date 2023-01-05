@@ -3368,7 +3368,7 @@ namespace user
    }
 
 
-   void mesh::_001GetSelection(::database::key & key, ::database::selection &selection)
+   void mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection &selection)
    {
 
       if (!_001HasConfigId(key))

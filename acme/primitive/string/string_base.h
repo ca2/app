@@ -701,7 +701,7 @@ public:
 
    string_base & erase(strsize start = 0, strsize count = -1);
 
-   const_iterator insert(strsize iIndex, CHARACTER ch);
+   ::count insert(strsize iIndex, CHARACTER ch);
 
    const_iterator insert(strsize iIndex, const string_base & str);
 

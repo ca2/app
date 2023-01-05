@@ -4344,7 +4344,7 @@ namespace user
    }
 
 
-   void list::_001GetSelection(::database::key & key, ::database::selection &selection)
+   void list::_001GetSelection(const ::scoped_string & scopedstrDataKey, ::database::selection &selection)
    {
 
       if (!_001HasConfigId(key))

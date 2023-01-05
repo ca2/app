@@ -26,7 +26,7 @@ namespace user
 
    }
 
-   void form_mesh::_001GetSelection(::database::key & key,::database::selection &selection)
+   void form_mesh::_001GetSelection(const ::scoped_string & scopedstrDataKey,::database::selection &selection)
    {
 
       //mesh::_001GetSelection(key,selection);

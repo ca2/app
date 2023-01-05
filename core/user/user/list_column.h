@@ -66,7 +66,7 @@ namespace user
       // form list attributes
       bool                                   m_bEditOnSecondClick;
       //index                                m_iControl;
-      ::database::key                        m_datakey;
+      ::string                               m_strDataKey;
 
 
       list_column();

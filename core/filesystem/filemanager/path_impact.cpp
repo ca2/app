@@ -267,7 +267,11 @@ namespace filemanager
 
             bool bIsDir = false;
 
-            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
+            auto pathToProcess = pathAddress;
+
+            pathToProcess.flags() += ::file::e_flag_resolve_alias;
+
+            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathToProcess);
 
             bIsDir = filemanager_document()->fs_data()->is_dir(path);
 

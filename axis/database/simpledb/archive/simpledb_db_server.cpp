@@ -33,7 +33,7 @@ db_server::~db_server()
 }
 
 
-::database::key db_server::calc_data_key(::database::client * pclient,  ::database::key & key)
+::database::key db_server::calc_data_key(::database::client * pclient,  const ::scoped_string & scopedstrDataKey)
 {
 
    if(pclient != nullptr)

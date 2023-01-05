@@ -3637,7 +3637,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
+inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 {
 
    if (i < 0)

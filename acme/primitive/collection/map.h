@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "set.h"
@@ -1028,7 +1028,7 @@ bool pair_map < PAIR >::lookup(ARG_ITEM item, PAYLOAD& rValue) const
 
    auto p = node_at(item, nHashBucket, nHashValue);
 
-   if (p)
+   if (!p)
    {
 
       return false;  // not in pair_map

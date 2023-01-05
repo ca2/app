@@ -11,6 +11,8 @@
 
 #include "main.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/application.h"
+#include "acme/platform/system.h"
 //aaa_//#include "acme/operating_system/_.h"
 //#include "acme/operating_system/_os.h"
 //#include "acme/update.h"

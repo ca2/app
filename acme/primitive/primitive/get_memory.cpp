@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "get_memory.h"
 #include "memory_base.h"
 #include "acme/primitive/string/base64.h"
@@ -120,9 +120,7 @@ bool get_memory::get_base64(const ::string & str)
 }
 
 
-
-
-inline bool get_memory::get(const void * pdata, memsize s)
+bool get_memory::get(const void * pdata, memsize s)
 {
 
    if (::is_set(m_pmemory))

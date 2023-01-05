@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 23/12/2022 <3ThomasBorregaardSorensen!!!
 //
 #pragma once
@@ -1645,7 +1645,7 @@ atom::atom(const PAYLOAD & payload)
    else if (payload.is_integer())
    {
 
-      operator = (payload.iptr());
+      operator = (payload.as_iptr());
 
    }
    else

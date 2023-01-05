@@ -3712,7 +3712,7 @@ inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITER
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
+inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
 {
 
    strsize count = 0;
@@ -3747,7 +3747,7 @@ inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITER
       }
    }
 
-   return(count);
+   return count;
 }
 
 

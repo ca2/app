@@ -21,7 +21,7 @@ namespace calculator
       ~calculator() override;
 
 
-      virtual void initialize(::particle * pparticle) ;
+      void initialize(::particle * pparticle) override;
 
 
    };

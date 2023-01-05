@@ -122,17 +122,28 @@ T biunique < T, T_to_T > ::get_b (T a) const
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::erase_a(T a)
 {
+
    if(has_a(a))
    {
+
       T b = get_b(a);
-      m_ba.erase_key(b);
-      m_ab.erase_key(a);
+
+      m_ba.erase_item(b);
+
+      m_ab.erase_item(a);
+
       m_iMaxA = calc_max_a();
+
       m_iMaxB = calc_max_b();
+
       return b;
+
    }
+
    return m_iEmptyB;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
@@ -140,24 +151,35 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 
    if (aOld < 0 || aNew < 0)
    {
+      
       return m_iEmptyB;
+
    }
 
    T bParam = get_b(aOld);
+
    if (bParam == m_iEmptyB)
    {
+
       return m_iEmptyB;
+
    }
 
    if (aNew == aOld)
    {
+
       return bParam;
+
    }
 
-   m_ba.erase_key(bParam);
-   m_ab.erase_key(aOld);
+   m_ba.erase_item(bParam);
+
+   m_ab.erase_item(aOld);
+
    m_iMaxA = calc_max_a();
+
    m_iMaxB = calc_max_b();
+
    //if (aNew > aOld)
    //{
    //   T a = aOld;
@@ -168,8 +190,8 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
    //      {
    //         break;
    //      }
-   //      m_ba.erase_key(b);
-   //      m_ab.erase_key(a + 1);
+   //      m_ba.erase_item(b);
+   //      m_ab.erase_item(a + 1);
    //      m_ba.set_at(b, a);
    //      m_ab.set_at(a, b);
    //      m_iMaxA = calc_max_a();
@@ -181,41 +203,67 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
    // making room
    if (has_a(aNew))
    {
+
       T a = aNew;
+
       T b;
+
       while (true)
       {
+
          a++;
+
          if (a > m_iMaxA)
          {
+
             break;
+
          }
+
          b = get_b(a);
+
          if (b == m_iEmptyB)
          {
+
             break;
+
          }
+
       }
+
       a--;
+
       while (a >= aNew)
       {
+
          b = get_b(a);
+
          if (b != m_iEmptyB)
          {
-            m_ba.erase_key(b);
-            m_ab.erase_key(a);
+
+            m_ba.erase_item(b);
+
+            m_ab.erase_item(a);
+
             m_ba.set_at(b, a + 1);
+
             m_ab.set_at(a + 1, b);
+
          }
+
          a--;
+
       }
+
    }
 
    // actually (in)se(r)tting
    m_ba.set_at(bParam, aNew);
+
    m_ab.set_at(aNew, bParam);
 
    m_iMaxA = calc_max_a();
+
    m_iMaxB = calc_max_b();
 
    return bParam;
@@ -226,217 +274,369 @@ T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::erase_b(T b)
 {
+   
    if(has_b(b))
    {
+
       T a = get_a(b);
-      m_ab.erase_key(a);
-      m_ba.erase_key(b);
+
+      m_ab.erase_item(a);
+
+      m_ba.erase_item(b);
+
       m_iMaxA = calc_max_a();
+
       m_iMaxB = calc_max_b();
+
       return a;
+
    }
+
    return m_iEmptyA;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::translate_a(T a1, T a2)
 {
+
    T b = erase_a(a2);
+
    set(a1, b);
+
    return b;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::translate_b(T b1, T b2)
 {
+
    T a = erase_b(b2);
+
    set(a, b1);
+
    return a;
+
 }
+
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::set(T a, T b)
 {
+
    if(m_bBiunivoca)
    {
-      if(has_a(a))
+
+      if (has_a(a))
+      {
+
          erase_a(a);
-      if(has_b(b))
+
+      }
+
+      if (has_b(b))
+      {
+
          erase_b(b);
+
+      }
+
    }
+
    m_ab.set_at(a, b);
+
    m_ba.set_at(b, a);
+
    m_iMaxA = calc_max_a();
+
    m_iMaxB = calc_max_b();
+
 }
 
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_a() const
 {
+
    return m_iMaxA;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_max_b() const
 {
-   return m_iMaxB;
-}
 
+   return m_iMaxB;
+
+}
 
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::erase_all()
 {
+
    m_ab.erase_all();
+
    m_ba.erase_all();
+
    m_iMaxA = -1;
+
    m_iMaxB = -1;
+
 }
+
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::set_empty_a(T iEmpty)
 {
+   
    m_iEmptyA = iEmpty;
+
 }
+
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::set_empty_b(T iEmpty)
 {
+
    m_iEmptyB = iEmpty;
+
 }
+
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::copy_data(const biunique & function)
 {
+
    if(&function != this)
    {
+
       m_ab = function.m_ab;
+
       m_ba = function.m_ba;
+
    }
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add(T b)
 {
+
    T a = get_max_a() + 1;
+
    set(a, b);
+
    return a;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_b_in_first_free_a(T b)
 {
+
    T a = get_free_a();
+
    set(a, b);
+
    return a;
+
 }
 
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_b_in_first_free_a_mod_w(T b, T w, T mod)
 {
-   if(mod <= 1)
+
+   if (mod <= 1)
+   {
+
       return add_b_in_first_free_a(b);
-   if(w <= 0)
+
+   }
+
+   if (w <= 0)
+   {
+
       return add_b_in_first_free_a(b);
+
+   }
+
    T ca = get_max_a() + 1;
+
    T a;
+
    for(a = 0; a < ca ; a++)
    {
+
       if((a % mod) >= w)
       {
+
          a = ((a / mod) + 1) * mod;
+
       }
+
       if(get_b(a) == m_iEmptyB)
       {
+
          set(a, b);
+
          return a;
+
       }
+
    }
+
    set(a, b);
+
    return a;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::add_unique(T b)
 {
+
    T a;
-   if(m_ba.lookup(b, a))
+
+   if (m_ba.lookup(b, a))
+   {
+
       return a;
+
+   }
+
    a = get_max_a() + 1;
+
    set(a, b);
+
    return a;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_size() const
 {
+
    return get_max_a() + 1;
+
 }
+
 
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::__swap(T a1, T a2)
 {
+
    // because of Biunivoca
+
    T b1 = get_b(a1);
+
    T b2 = get_b(a2);
+
    set(a1, b2);
+
    set(a2, b1);
 
 }
 
+
 template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
+
    T b;
+
    return m_ab.lookup(a, b) != false;
+
 }
 
 
 template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
+   
    T a;
+
    return m_ba.lookup(b, a) != false;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_free_a() const
 {
+
    for(T a = 0; a <= m_iMaxA; a++)
    {
-      if(!has_a(a))
+
+      if (!has_a(a))
+      {
+
          return a;
+
+      }
+
    }
+
    return m_iMaxA + 1;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::get_free_b() const
 {
+
    for(T b = 0; b <= m_iMaxB; b++)
    {
-      if(!has_b(b))
+
+      if (!has_b(b))
+      {
+
          return b;
+
+      }
+
    }
+
    return m_iMaxB + 1;
+
 }
+
 
 template < class T, class T_to_T >
 biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & ia)
 {
+
    if(this != &ia)
    {
+
       m_bBiunivoca = ia.m_bBiunivoca;
+
       m_iMaxA = ia.m_iMaxA;
+
       m_iMaxB = ia.m_iMaxB;
+
       m_iEmptyA = ia.m_iEmptyA;
+
       m_iEmptyB = ia.m_iEmptyB;
+
       m_ab = ia.m_ab;
+
       m_ba = ia.m_ba;
+
    }
+
    return *this;
+
 }
 
 
@@ -555,29 +755,54 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_a()
 {
+
    auto passoc = m_ab.begin();
+
    T iMaxA = -1;
+
    while(passoc.is_set())
    {
-      if(passoc->element1() > iMaxA)
+
+      if (passoc->element1() > iMaxA)
+      {
+
          iMaxA = passoc->element1();
+
+      }
+
       passoc++;
+
    }
+
    return iMaxA;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::calc_max_b()
 {
+
    auto passoc = m_ba.begin();
+
    T iMaxB = -1;
+
    while(passoc.is_set())
    {
-      if(passoc->element1() > iMaxB)
+
+      if (passoc->element1() > iMaxB)
+      {
+
          iMaxB = passoc->element1();
+
+      }
+
       passoc++;
+
    }
+
    return iMaxB;
+
 }
 
 

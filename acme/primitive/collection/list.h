@@ -1157,7 +1157,7 @@ typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_afte
 
       this->begin() = l.end();
 
-      if (this->end() == nullptr)
+      if (!this->end())
       {
 
          this->end() = l.end();
@@ -1250,52 +1250,81 @@ void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
 {
    ASSERT_VALID(this);
 
-   if (position1 == nullptr)
+   if (!position1)
    {
-      if (position2 == nullptr)
+
+      if (!position2)
       {
+
          return;
+
       }
       else
       {
          
          if (position2 != this->begin())
          {
+
             if (this->end() == position2)
             {
+
                this->end() = position2.back();
+
             }
+
             if (position2.back())
             {
+
                position2.back().next() = position2.next();
+
             }
+
             if (position2.next())
             {
+
                position2.next().back() = position2.back();
+
             }
+
             position2.back() = nullptr;
+
             position2.next() = this->begin();
+
             this->begin() = position2;
+
          }
+
       }
+
    }
-   else if (position2 == nullptr)
+   else if (!position2)
    {
       if (position1 != this->end())
       {
+
          if (this->begin() == position1)
          {
+
             this->begin() = position1.next();
+
          }
+
          if (position1.back())
          {
+
             position1.back().next() = position1.next();
+
          }
+
          if (position1.next())
          {
+
             position1.next().back() = position1.next();
+
          }
+
          position1.next() = nullptr;
+
          position1.back() = this->end();
 
          this->end() = position1;
@@ -1312,42 +1341,69 @@ void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
 
       if (position1.back())
       {
+
          position1.back().next() = position2;
+
       }
+
       if (position1.next())
       {
+
          position1.next().back() = position2;
+
       }
+
       if (position2.back())
       {
+
          position2.back().next() = position1;
+
       }
+
       if (position2.next())
       {
+
          position2.next().back() = position1;
+
       }
+
       position1.back() = position2.back();
+
       position1.next() = position2.next();
+
       position2.back() = position1Back;
+
       position2.next() = position1Next;
+
       if (position1 == this->begin())
       {
+
          this->begin() = position2;
+
       }
+
       if (position1 == this->end())
       {
+
          this->end() = position2;
+
       }
+
       if (position2 == this->begin())
       {
+
          this->begin() = position1;
+
       }
+
       if (position2 == this->end())
       {
-         this->end() = position1;
-      }
-   }
 
+         this->end() = position1;
+
+      }
+
+   }
 
 }
 
@@ -1841,8 +1897,12 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(itera
 {
    ASSERT_VALID(this);
 
-   if (position == nullptr)
+   if (!position)
+   {
+
       return add_tail(newElement); // insert after nothing -> tail of the list
+
+   }
 
    // Insert it before position
    auto old = position;

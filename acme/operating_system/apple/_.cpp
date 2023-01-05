@@ -536,3 +536,30 @@ i64 oswindow_id(oswindow w)
 
 
 
+
+
+
+
+
+void * apple_get_application_delegate(void * pApplication)
+{
+
+   auto papp = (::acme::application *)pApplication;
+
+   return papp->acmesystem()->m_psubsystem->m_pApplicationDelegate;
+
+}
+
+
+void apple_set_application_delegate(void * pApplication, void * pDelegate)
+{
+
+   auto papp = (::acme::application *)pApplication;
+
+   papp->acmesystem()->m_psubsystem->m_pApplicationDelegate = pDelegate;
+
+}
+
+
+
+

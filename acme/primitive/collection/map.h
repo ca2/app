@@ -298,7 +298,7 @@ public:
    void set_payload(const PAIR & pair)
    {
       
-      set_at(pair.element1(), pair.element2());
+      set_at((ARG_ITEM) pair.element1(), (ARG_PAYLOAD) pair.element2());
 
    }
 

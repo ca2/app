@@ -30,12 +30,12 @@ void simple_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 
    auto passoc = m_map.plookup(psubitem->m_pitem->m_iItem);
 
-   if(passoc != nullptr)
+   if(passoc)
    {
 
       auto passoc2 = passoc->element2().plookup(psubitem->m_pcolumn->m_iColumn);
 
-      if(passoc2 != nullptr)
+      if(passoc2)
       {
 
          psubitem->m_strText = passoc2->element2();

@@ -34,7 +34,7 @@ namespace user
          while (true)
          {
 
-            i1 = str.find('%', i1);
+            i1 = str.find_index('%', i1);
 
             if (i1 < 0)
             {
@@ -43,7 +43,7 @@ namespace user
 
             }
 
-            i2 = str.find('%', i1 + 1);
+            i2 = str.find_index('%', i1 + 1);
 
             if (i2 < 0)
             {
@@ -305,10 +305,10 @@ namespace user
 
          auto plinea = m_plinea;
 
-         for (auto & pline : plinea->ptra())
+         for (auto & pline : *plinea)
          {
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                rBox.maximum(pbox->m_rectangleDevice);
@@ -821,7 +821,7 @@ namespace user
 
             }
 
-            iSelChar += straLines[iLine].get_length();
+            iSelChar += straLines[iLine].length();
 
             if (iLine < straLines.get_upper_bound())
             {
@@ -1523,7 +1523,7 @@ namespace user
 
          }
 
-         for (auto& pline : plinea->ptra())
+         for (auto& pline : *plinea)
          {
 
             align(pline, rectangleClient);
@@ -1637,12 +1637,12 @@ namespace user
 
             // vertical span
 
-            for (auto& pline : plinea->ptra())
+            for (auto& pline : *plinea)
             {
 
                int iMaxCy = 0;
 
-               for (auto& pbox : pline->ptra())
+               for (auto& pbox : *pline)
                {
 
                   iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy);
@@ -1655,7 +1655,7 @@ namespace user
 
                nexty = y + iMaxCy;
 
-               for (auto& pbox : pline->ptra())
+               for (auto& pbox : *pline)
                {
 
                   pbox->m_rectangleBox.bottom = nexty;
@@ -1891,10 +1891,10 @@ namespace user
 
             //m.invert();
 
-            for (auto& pline : plinea->ptra())
+            for (auto& pline : *plinea)
             {
 
-               for (auto& pbox : pline->ptra())
+               for (auto& pbox : *pline)
                {
 
                   pbox->m_rectangleDevice = pbox->m_rectangleBox;
@@ -1910,7 +1910,7 @@ namespace user
             }
 
 
-         for (auto& pspan : m_spana.ptra())
+         for (auto& pspan : m_spana)
          {
 
             pspan->m_daPositionDeviceLeft.erase_all();
@@ -2185,10 +2185,10 @@ namespace user
 
          auto plinea = m_plinea;
 
-         for (auto & pline : plinea->ptra())
+         for (auto & pline : *plinea)
          {
 
-            for (auto & pbox : pline->ptra())
+            for (auto & pbox : *pline)
             {
 
                auto pformat = pbox->m_pspan->m_pformat;

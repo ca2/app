@@ -9,18 +9,15 @@
 #include "app.h"
 #include "acme/constant/id.h"
 #include "acme/operating_system/argcargv.h"
-//#include "apex/user/menu_shared.h"
-void ns_main_async(dispatch_block_t block);
-//void on_start_system(void * pSystem);
 
-//void macos_calc_dark_mode();
+
+void ns_main_async(dispatch_block_t block);
+
 void os_system_start();
-//int file_put_contents(const ::file::path & path, const char * contents);
-//void file_add_contents_raw(const ::file::path & path, const char * psz);
 
 void application_on_menu_action(void * pApplication, const char * pszCommand);
-void * application_system(void * pApplication);
 
+void * application_system(void * pApplication);
 
 void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload);
 
@@ -28,125 +25,36 @@ void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
 void system_on_open_file(void * pSystem, const char * pszFile);
 
-
-//void system_call_update_app_activated();
 void macos_on_app_changed_occlusion_state();
 
 void set_apex_system_as_thread();
 
 @implementation macos_app
 
--(NSWindowController *) addWindow:(NSWindow*)window
-{
-   
-   NSWindowController * pwindowcontroller = [ [ NSWindowController alloc ] initWithWindow : window ];
-   
-   [ m_windowcontrollera addObject : pwindowcontroller ];
-   
-   return pwindowcontroller;
-   
-}
 
-
-//@synthesize m_pwindowcontroller;
 - (id)init
 {
 
    self = [super init];
    
-//   m_menu = [[NSMenu alloc] initWithTitle:@"menubar_menu"];
-//
-   
    m_windowcontrollera = [ [ NSMutableArray alloc ] init ];
    
-//   
-//   m_menuida = [[NSMutableArray alloc] init];
-//   
-//   // Monitor menu/dock theme changes...
-   [NSDistributedNotificationCenter.defaultCenter addObserver:self selector:@selector(themeChanged:) name:@"AppleInterfaceThemeChangedNotification" object: nil];
-//
-//   //int iCount = pbridge->_get_notification_area_action_count();
-//   
-//   int iCount = 1;
-//   
-//   for(int i = 0; i < iCount; i++)
-//   {
-//      
-//      //      char * pszName = NULL;
-//      //      char * pszId = NULL;
-//      //      char * pszLabel = NULL;
-//      //      char * pszAccelerator = NULL;
-//      //      char * pszDescription = NULL;
-//      //
-//      //      pbridge->_get_notification_area_action_info(&pszName, &pszId, &pszLabel, &pszAccelerator, &pszDescription, i);
-//      
-//      char * pszName = strdup("TransparentFxxx");
-//      char * pszId = strdup("transparent_frame");
-//      char * pszLabel = strdup("TransparentFxxx");
-//      char * pszAccelerator = strdup("TransparentFxxx");
-//      char * pszDescription = strdup("TransparentFxxx");
-//      NSString * strTitle = NULL;
-//      
-//      NSString * strId = NULL;
-//      
-//      NSMenuItem * item = NULL;
-//      
-//      if(strcasecmp(pszName, "separator") == 0)
-//      {
-//         
-//         strTitle = [[NSString alloc] initWithUTF8String: pszName];
-//         
-//         strId = [[NSString alloc] initWithUTF8String: pszName];
-//         
-//         item = [NSMenuItem separatorItem];
-//         
-//      }
-//      else
-//      {
-//         
-//         strTitle = [[NSString alloc] initWithUTF8String: pszName];
-//         
-//         strId = [[NSString alloc] initWithUTF8String: pszId];
-//         
-//         item = [[NSMenuItem alloc] initWithTitle:  strTitle action: @selector(on_os_menu_item:) keyEquivalent:@"" ];
-//         
-//      }
-//      
-//      [item setTarget:self];
-//      
-//      [m_menu addItem:item];
-//      
-//      [m_menuitema addObject: item];
-//      
-//      [m_menuida addObject: strId];
-//      
-//      if(pszName) free(pszName);
-//      if(pszId) free(pszId);
-//      if(pszLabel) free(pszLabel);
-//      if(pszAccelerator) free(pszAccelerator);
-//      if(pszDescription) free(pszDescription);
-//   }
-//   
-//   [m_menu setDelegate:self];
-//   
-//
-//      [[[NSWorkspace sharedWorkspace] notificationCenter]
-//       addObserver:self
-//       selector:@selector(applicationActivity:)
-//       name:NSWorkspaceActiveSpaceDidChangeNotification
-//       object:nil];
-//   
-//   
-
-
-//
-//   [[[NSWorkspace sharedWorkspace] notificationCenter]
-//    addObserver:self
-//    selector:@selector(applicationDidChangeOcclusionState:)
-//    name:NSApplicationDidChangeOcclusionStateNotification
-//    object:nil];
    return self;
+   
 }
+
+
+-(void)dealloc
+{
+   
+   
+}
+
+-(void)continueInitialization
+{
+   
+}
+
 
 
 -(void)applicationActivity:(NSNotification *)notification
@@ -161,6 +69,19 @@ void set_apex_system_as_thread();
 
       // Your code here
    }
+}
+
+
+
+-(NSWindowController *) addWindow:(NSWindow*)window
+{
+   
+   NSWindowController * pwindowcontroller = [ [ NSWindowController alloc ] initWithWindow : window ];
+   
+   [ m_windowcontrollera addObject : pwindowcontroller ];
+   
+   return pwindowcontroller;
+   
 }
 
 
@@ -179,7 +100,7 @@ void set_apex_system_as_thread();
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApp, psz);
+//         application_on_menu_action(m_pApplication, psz);
 //         
 //         return;
 //         
@@ -201,7 +122,7 @@ void set_apex_system_as_thread();
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApp, psz);
+//         application_on_menu_action(m_pApplication, psz);
 //         
 //         return;
 //         
@@ -217,7 +138,15 @@ void set_apex_system_as_thread();
    
    //macos_calc_dark_mode();
    
-   node_will_finish_launching(application_system(m_pApp));
+   m_pnanonotificationcallback = [ [ nano_notification_callback alloc ]  init ];
+   
+   m_pnanonotificationcallback->m_pApplication = m_pApplication;
+  
+   [m_pnanonotificationcallback fetch_dark_mode];
+   
+
+   
+   node_will_finish_launching(application_system(m_pApplication));
 
    NSAppleEventManager *appleEventManager = [NSAppleEventManager sharedAppleEventManager];
 
@@ -242,7 +171,7 @@ void set_apex_system_as_thread();
    
    //MessageBox(NULL, "applicationShouldHandleReopen", "applicationShouldHandleReopen", e_message_box_ok);
    
-   system_id_update(application_system(m_pApp), id_app_activated, 0);
+   system_id_update(application_system(m_pApplication), id_app_activated, 0);
 
    return NO;
    
@@ -261,7 +190,7 @@ void set_apex_system_as_thread();
    
    //file_put_contents("/eco/001.txt", "applicationOpenUntitledFile");
    
-   system_on_open_untitled_file(application_system(m_pApp));
+   system_on_open_untitled_file(application_system(m_pApplication));
    
    return YES;
    
@@ -275,7 +204,7 @@ void set_apex_system_as_thread();
    //file_put_contents("/eco/002.txt", "applicationOpenFile");
    //file_put_contents("/eco/003.txt", [filename UTF8String]);
 
-   system_on_open_file(application_system(m_pApp), [filename UTF8String]);
+   system_on_open_file(application_system(m_pApplication), [filename UTF8String]);
    
    return true;
    
@@ -302,7 +231,7 @@ void set_apex_system_as_thread();
       
       const char * psz = [[filenames objectAtIndex:ul] UTF8String];
       
-      system_on_open_file(application_system(m_pApp), psz);
+      system_on_open_file(application_system(m_pApplication), psz);
       
       //psza[ul] = psz;
       
@@ -321,7 +250,7 @@ void set_apex_system_as_thread();
    
    //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
-   system_on_open_file(application_system(m_pApp), [[url absoluteString] UTF8String]);
+   system_on_open_file(application_system(m_pApplication), [[url absoluteString] UTF8String]);
    
 }
 
@@ -334,11 +263,12 @@ void set_apex_system_as_thread();
    
    //MessageBox(NULL, "application: openFile", "application: openFile", e_message_box_ok);
    
-   system_on_open_file(application_system(m_pApp), [filename UTF8String]);
+   system_on_open_file(application_system(m_pApplication), [filename UTF8String]);
    
    return TRUE;
    
 }
+
 
 - (void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls
 {
@@ -360,15 +290,13 @@ void set_apex_system_as_thread();
       
       //psza[ul] = psz;
       
-      system_on_open_file(application_system(m_pApp), psz);
+      system_on_open_file(application_system(m_pApplication), psz);
       
       //free
       
    }
    
    //defer_run_system(psza, (int) ulCount);
-   
-   
 
 }
 
@@ -427,7 +355,7 @@ void set_apex_system_as_thread();
    // Extract the URL from the Apple event and handle it here.
    NSString* url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
    
-   system_on_open_file(application_system(m_pApp), [url UTF8String]);
+   system_on_open_file(application_system(m_pApplication), [url UTF8String]);
    
 }
 
@@ -501,7 +429,7 @@ void set_apex_system_as_thread();
 //         
 //         //m_pbridge->notification_area_action(psz);
 //         
-//         application_on_menu_action(m_pApp, psz);
+//         application_on_menu_action(m_pApplication, psz);
 //         
 //         return;
 //         
@@ -512,28 +440,6 @@ void set_apex_system_as_thread();
 //}
 //
 
--(void)themeChanged:(NSNotification *) notification
-{
- 
-   NSLog (@"%@", notification);
-   
-   [self fetch_dark_mode];
-   
-//   system_id_update(application_system(m_pApp), id_user_color, 0);
-   
-}
-
-
--(void) fetch_dark_mode
-{
-   
-   NSString *interfaceStyle = [NSUserDefaults.standardUserDefaults valueForKey:@"AppleInterfaceStyle"];
-   
-   int iDarkMode = [interfaceStyle isEqualToString:@"Dark"];
-
-   system_id_update(application_system(m_pApp), id_set_dark_mode, iDarkMode);
-
-}
 
 
 @end
@@ -670,40 +576,125 @@ void os_menu_item_check(void * pitem, bool bCheck)
 //
 void os_begin_system();
 
-void acme_macos_application_init(void * pApplication, int argc, char *argv[])
+
+
+void apple_set_application_delegate(void * pApplication, void * pDelegate);
+
+void ns_apple_set_application_delegate(void * pApplication, macos_app * pappdelegate)
 {
-   
-//   auto argc = psystem->m_psubsystem->m_argc;
-//
-//   auto argv = psystem->m_psubsystem->m_argv;
-//
-//   auto papp = psystem->m_pacmeapplication;
-//
-//   void * pApplication = (void *) (::acme::application *) papp;
-//
-////      acme_macos_application_main(pApplication, argc, argv);
-//
-//      //return psystem->m_estatus;
-//
-////   }
    
    NSApplication * application = [NSApplication sharedApplication];
    
-   macos_app * appDelegate = [[macos_app alloc] init];
+   pappdelegate->m_pApplication = pApplication;
    
-   appDelegate->m_pApp = pApplication;
+   [ application setDelegate: pappdelegate ];
    
-   [application setDelegate:appDelegate];
+   apple_set_application_delegate(pApplication, (__bridge void *) pappdelegate);
    
-   [appDelegate fetch_dark_mode];
+   [ pappdelegate continueInitialization ];
    
    //[m_statusitem setEnabled:YES];
    
    [NSApplication sharedApplication];
    
-   bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
+//   bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
 
+   
 }
+
+
+void * apple_get_application_delegate(void * pApplication);
+
+
+void defer_create_nano_application_delegate(void * pApplication)
+{
+   
+   macos_app * pappdelegate = (__bridge macos_app *) apple_get_application_delegate(pApplication);
+
+   if(pappdelegate == nullptr)
+   {
+      
+      pappdelegate = [ [ macos_app alloc ] init ];
+      
+      ns_apple_set_application_delegate(pApplication, pappdelegate);
+      
+   }
+   
+}
+
+
+//
+//
+//void acme_macos_application_init(void * pApplication, int argc, char *argv[])
+//{
+//
+////   auto argc = psystem->m_psubsystem->m_argc;
+////
+////   auto argv = psystem->m_psubsystem->m_argv;
+////
+////   auto papp = psystem->m_pacmeapplication;
+////
+////   void * pApplication = (void *) (::acme::application *) papp;
+////
+//////      acme_macos_application_main(pApplication, argc, argv);
+////
+////      //return psystem->m_estatus;
+////
+//////   }
+//   ///
+//   ///
+//   ///
+//   defer_create_nano_application_delegate(pApplication);
+//
+//
+//   macos_app * pappdelegate = (macos_app *) apple_get_application_delegate(pApplication);
+//
+//
+//   void apple_set_application_delegate(void * pApplication, void * pDelegate)
+//
+//
+//   NSApplication * application = [NSApplication sharedApplication];
+//
+//   pmacosapp->m_pApplication = pApplication;
+//
+//   [application setDelegate: pmacosapp];
+//
+//   [appDelegate fetch_dark_mode];
+//
+//   //[m_statusitem setEnabled:YES];
+//
+//   [NSApplication sharedApplication];
+//
+//   bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
+//
+//}
+
+
+//
+//void acme_macos_application_init(void * pApplication, int argc, char *argv[])
+//{
+//
+//   //   auto argc = psystem->m_psubsystem->m_argc;
+//   //
+//   //   auto argv = psystem->m_psubsystem->m_argv;
+//   //
+//   //   auto papp = psystem->m_pacmeapplication;
+//   //
+//   //   void * pApplication = (void *) (::acme::application *) papp;
+//   //
+//   ////      acme_macos_application_main(pApplication, argc, argv);
+//   //
+//   //      //return psystem->m_estatus;
+//   //
+//   ////   }
+//   ///
+//   ///void defer_create_macos_app()
+//
+//   macos_app * pmacosapp = [[macos_app alloc] init];
+//
+//   acme_macos_application_prepare(pmacosapp, pApplication, argc, argv);
+//
+//}
 
 
 void acme_macos_application_main(void * pApplication, int argc, char *argv[])

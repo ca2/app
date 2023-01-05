@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -317,7 +317,7 @@ namespace user
 
       }
 
-      m_impactdatamap.erase_key(idTab);
+      m_impactdatamap.erase_item(idTab);
 
    }
 

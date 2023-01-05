@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -15,7 +15,7 @@ public:
 
 
    text_reader() {}
-   text_reader(const ::scoped_string & scopedstr) : m_psz(psz) { }
+   text_reader(const char * psz) : m_psz(psz) { }
    text_reader(const text_reader & textreader) :
       m_psz(textreader.m_psz)
    {
@@ -261,7 +261,7 @@ public:
       while (*psz != '\r' && *psz != '\n' && *psz != '\0')
       {
 
-         *psz++;
+         psz++;
 
       }
 
@@ -279,20 +279,20 @@ public:
    }
 
 
-   static string_block read_word(const char *& psz)
+   static const_ansi_range read_word(const char *& psz)
    {
 
       if (::is_null(psz))
       {
 
-         return "";
+         return {};
 
       }
 
       if (*psz == '\0')
       {
 
-         return "";
+         return {};
 
       }
 
@@ -301,7 +301,7 @@ public:
       while (!character_isspace(*psz) && *psz != '\0')
       {
 
-         *psz++;
+         psz++;
 
       }
 
@@ -394,10 +394,10 @@ public:
    }
 
 
-   static void paired_trim(string_block & block, const ::scoped_string & scopedstrBeg, const ::ansi_character * pszEnd)
+   static void paired_trim(const_ansi_range & block, const ::ansi_character * pszBeg, const ::ansi_character * pszEnd)
    {
 
-      const ::scoped_string & scopedstrBegChar = pszBeg;
+      const ::ansi_character * pszBegChar = pszBeg;
       const ::ansi_character * pszEndChar = pszEnd;
 
       for (;
@@ -408,11 +408,11 @@ public:
          )
       {
 
-         if (block.first() == *pszBegChar && block.last() == *pszEndChar)
+         if (*block.begin() == *pszBegChar && *(block.end() - 1) == *pszEndChar)
          {
 
-            block.m_pdata++;
-            block.m_iSize -= 2;
+            block.begin()++;
+            block.end()--;
 
             pszBegChar = pszBeg;
             pszEndChar = pszEnd;
@@ -424,7 +424,7 @@ public:
    }
 
 
-   static string ellipsis(const ::scoped_string & scopedstr, strsize maximum_length)
+   static string ellipsis(const char * psz, strsize maximum_length)
    {
 
       if (maximum_length < 3)

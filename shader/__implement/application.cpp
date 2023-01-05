@@ -3,16 +3,8 @@
 #include "__implement.h"
 
 
-int __implement()
-{
+app_shader::application g_appshaderapplication;
 
-   auto papp = memory_new app_shader::application();
-
-   int iExitCode = papp->__implement();
-
-   return iExitCode;
-
-}
 
 
 

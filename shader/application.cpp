@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "main_window.h"
 #include "render.h"
@@ -37,7 +37,7 @@ namespace app_shader
    void application::init_instance()
    {
 
-      set_local_data();
+      //set_local_data();
 
       //factory()->add_factory_item <::app_shader::main_window >();
 
@@ -154,7 +154,7 @@ namespace app_shader
 
       }
 
-      listing.sort();
+      listing.order();
 
    }
 

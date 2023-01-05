@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardS�rensen!!
 #include "framework.h"
 #include "object.h"
 #include <math.h>
@@ -8,7 +8,7 @@
 #include "assimp.h"
 #include "opengl.h"
 
-
+//#include <GLUT/GLUT.h>
 
 //GLuint loadDDS(const char * imagepath);
 
@@ -78,9 +78,9 @@ namespace opengl
 
 
       int iErrorN;
-      const ::scoped_string & scopedstrErrorN = nullptr;
+      const char * pszErrorN = nullptr;
 
-      while (iErrorN = glGetError())
+      while ((iErrorN = glGetError()))
       {
        
          pszErrorN = (const char *)gluErrorString(iErrorN);
@@ -91,19 +91,43 @@ namespace opengl
       glGenVertexArrays(1, (GLuint *) &m_vao_vertices); // vertext array object
       int iError2 = glGetError();
       auto pszError2 = (const char *)gluErrorString(iError2);
+      if(pszError2)
+      {
+         
+         INFORMATION("error " << pszError2);
+         
+      }
 
       glBindVertexArray(m_vao_vertices); 
       int iErrorA = glGetError();
       auto pszErrorA = (const char *)gluErrorString(iErrorA);
+      if(pszErrorA)
+      {
+         
+         INFORMATION("error " << pszErrorA);
+         
+      }
 
       glGenBuffers(1, (GLuint *)&m_vbo_vertices); // vertex buffer object
       int iError1 = glGetError();
       auto pszError1 = (const char *) gluErrorString(iError1);
+      if(pszError1)
+      {
+         
+         INFORMATION("error " << pszError1);
+         
+      }
 
 
       glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertices);
       int iError5 = glGetError();
       auto pszError5 = (const char *)gluErrorString(iError5);
+      if(pszError5)
+      {
+         
+         INFORMATION("error " << pszError5);
+         
+      }
 
       auto byteCount1 = m_vertices.byte_count();
       auto data1 = m_vertices.data();
@@ -111,7 +135,12 @@ namespace opengl
       glBufferData(GL_ARRAY_BUFFER, byteCount1, data1, GL_STATIC_DRAW);
       int iError4 = glGetError();
       auto pszError4 = (const char *)gluErrorString(iError4);
-
+      if(pszError4)
+      {
+         
+         INFORMATION("error " << pszError4);
+         
+      }
       //glEnableVertexAttribArray(m_vao_vertices);
       //int iError3 = glGetError();
       //auto pszError3 = (const char *)gluErrorString(iError3);

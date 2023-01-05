@@ -13,7 +13,7 @@
 #include "acme/user/user/mouse.h"
 #include <CoreGraphics/CoreGraphics.h>
 
-void defer_acme_macos_application_init(::acme::system * psystem);
+void apple_defer_nano_application_create(::acme::system * psystem);
 
 void ns_main_async(dispatch_block_t block);
 
@@ -31,6 +31,7 @@ void screen_coordinates_aware_copy(CGPoint & cgpoint, const POINT_I32 & point);
 
 void screen_coordinates_aware_copy(POINT_I32 & point, const CGPoint & cgpoint);
 
+//void macos_defer_initialize_nano_callbacks();
 
 namespace macos
 {
@@ -38,6 +39,8 @@ namespace macos
 
    nano_window::nano_window()
    {
+      
+      //macos_defer_initialize_nano_callbacks();
 
    }
 
@@ -119,7 +122,7 @@ namespace macos
    void nano_window::create()
    {
       
-      defer_acme_macos_application_init(acmesystem());
+      apple_defer_nano_application_create(acmesystem());
       
       m_pwindowbridge = __new(nano_window_bridge);
 

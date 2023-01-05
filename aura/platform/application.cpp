@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -5759,6 +5759,9 @@ namespace aura
       case e_message_paint:
 
          return thread::process_window_procedure_exception(e, pmessage);
+            
+         default:
+            break;
 
       }
 

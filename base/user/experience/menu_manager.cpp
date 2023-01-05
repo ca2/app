@@ -111,6 +111,8 @@ namespace experience
                               }
                               break;
       }
+         default:
+            break;
       }
 
       if(pusermessage->m_atom == e_message_right_button_down)

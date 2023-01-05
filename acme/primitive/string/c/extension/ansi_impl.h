@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -588,8 +588,22 @@ inline const ::ansi_character * ansi_scan(const ::ansi_character * psz, const ::
    if (::is_empty(psz)) return psz;
 
    if (::is_empty(find)) return psz;
+   
+   while(*psz)
+   {
+      
+      if(strchr(find, *psz))
+      {
+         
+         return psz;
+         
+      }
+      
+      psz++;
+      
+   }
 
-   return ansi_scan(psz, find);
+   return nullptr;
 
 }
 

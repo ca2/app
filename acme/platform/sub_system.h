@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -67,6 +67,12 @@ public:
 
    ::locale_t                                      m_localeC;
 
+#endif
+   
+#ifdef __APPLE__
+   
+   void *                                          m_pApplicationDelegate = nullptr;
+   
 #endif
 
    ::block                                         m_blockMatter;

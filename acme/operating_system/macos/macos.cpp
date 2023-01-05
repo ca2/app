@@ -100,38 +100,34 @@
 
 
 
-void acme_macos_application_init(void * pApplication, int argc, char *argv[]);
+void defer_create_nano_application_delegate(void * pApplication);
 
-void acme_macos_application_init1(class ::acme::system * psystem)
+void apple_defer_nano_application_create(class ::acme::system * psystem)
 {
-   
-   auto argc = psystem->m_psubsystem->m_argc;
-   
-   auto argv = psystem->m_psubsystem->m_argv;
    
    auto papp = psystem->m_pacmeapplication;
    
    void * pApplication = (void *) (::acme::application *) papp;
    
-   acme_macos_application_init(pApplication, argc, argv);
+   defer_create_nano_application_delegate(pApplication);
    
 }
 
-bool g_bAcmeMacosApplicationInit = false;
-
-void defer_acme_macos_application_init(::acme::system * psystem)
-{
-   
-   if(!g_bAcmeMacosApplicationInit)
-   {
-      
-      g_bAcmeMacosApplicationInit = true;
-      
-      acme_macos_application_init1(psystem);
-      
-   }
-   
-}
+//bool g_bAcmeMacosApplicationInit = false;
+//
+//void defer_acme_macos_application_init(::acme::system * psystem)
+//{
+//
+//   if(!g_bAcmeMacosApplicationInit)
+//   {
+//
+//      g_bAcmeMacosApplicationInit = true;
+//
+//      acme_macos_applicat_defer_create_nano_application_delegateion_init1(psystem);
+//
+//   }
+//
+//}
 
 
 

@@ -7,13 +7,13 @@
 #include "acme/platform/node.h"
 #include "acme/platform/department.h"
 
-
 namespace nano
 {
 
 
    nano::nano()
    {
+      
 
    }
 

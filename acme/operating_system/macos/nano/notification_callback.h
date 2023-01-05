@@ -5,9 +5,18 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sorensen on 05/01/23.
 //  Copyright © 2023 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef notification_callback_h
-#define notification_callback_h
+#pragma once
 
 
-#endif /* notification_callback_h */
+@interface nano_notification_callback : NSObject
+{
+@public
+
+   void *               m_pApplication;
+   
+}
+
+-(void)themeChanged:(NSNotification *) notification;
+-(void)fetch_dark_mode;
+
+@end

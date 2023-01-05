@@ -14,7 +14,7 @@
 #include "nsimpact.h"
 #include "app.h"
 
-
+bool ns_app_is_running();
 void ns_main_async(dispatch_block_t block);
 
 void ns_main_sync(dispatch_block_t block);
@@ -280,13 +280,17 @@ void nano_window_bridge::stop()
    
    auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
 
-   
-   if(m_bRunningAppMainLoop)
+   if(!ns_app_is_running())
    {
       
-      [ NSApp stop : nil ];
-      
-      m_bRunningAppMainLoop = false;
+      if(m_bRunningAppMainLoop)
+      {
+         
+         [ NSApp stop : nil ];
+         
+         m_bRunningAppMainLoop = false;
+         
+      }
       
    }
 //)
@@ -419,7 +423,11 @@ void nano_window_bridge::_run_modal_loop()
 {
    m_bRunningAppMainLoop = true;
 //[ NSApp run ];
-   [ NSApp runModalForWindow : (__bridge ns_nano_window *)m_pnsnanowindow ];
-
    
+   if(!ns_app_is_running())
+   {
+      [ NSApp runModalForWindow : (__bridge ns_nano_window *)m_pnsnanowindow ];
+      
+   }
+      
 }

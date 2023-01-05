@@ -674,6 +674,7 @@
 		9A81F48627500224003F38EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -681,6 +682,7 @@
 		9A81F48727500224003F38EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

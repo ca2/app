@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "shader.h"
 
 
@@ -327,9 +327,9 @@ namespace opengl
 
          glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
 
-         const ::scoped_string & scopedstr = shader_type_c_str(type);
+         const char * psz = shader_type_c_str(type);
 
-         const ::scoped_string & scopedstrLog = infoLog;
+         const char * pszLog = infoLog;
 
          strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 

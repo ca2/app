@@ -691,4 +691,31 @@ void * application_system(void * pApplication)
 }
 
 
+void * apple_get_application_delegate(void * pApplication)
+{
 
+   auto papp = (::acme::application *)pApplication;
+
+   return papp->acmesystem()->m_psubsystem->m_pApplicationDelegate;
+
+}
+
+
+void apple_set_application_delegate(void * pApplication, void * pDelegate)
+{
+
+   auto papp = (::acme::application *)pApplication;
+
+   papp->acmesystem()->m_psubsystem->m_pApplicationDelegate = pDelegate;
+
+}
+
+
+bool application_get_bool(void * pApplication, const char * pszItem)
+{
+   
+   auto papp = (::acme::application *)pApplication;
+   
+   return papp->payload(pszItem).as_bool();
+   
+}

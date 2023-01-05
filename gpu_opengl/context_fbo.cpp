@@ -103,14 +103,14 @@ namespace opengl
       for(int iFormat = 0; iFormat < NumFormats; iFormat++)
       {
          
-         output_debug_string("\nFormat " + as_string(iFormat) + "\n");
+         output_debug_string("\nFormat " + ::as_string(iFormat) + "\n");
          
 #define DUMP_FORMAT(x)                                                        \
          {                                                                    \
                                                                               \
             GLint value = 0;                                                  \
             CGLDescribePixelFormat(PixelFormat, iFormat, x, &value);          \
-            output_debug_string(string(#x) + ": " + as_string(value) + "\n");     \
+            output_debug_string(string(#x) + ": " + ::as_string(value) + "\n");     \
                                                                               \
          }
          
@@ -324,9 +324,9 @@ namespace opengl
 
       }
 
-      auto pFind = stra.find_first_begins_ci("out vec4 ");
+      auto iFind = stra.find_first_begins_ci("out vec4 ");
 
-      if(::is_set(pFind))
+      if(::found(iFind))
       {
 
          stra[iFind] = "out vec4 fragmentColor;";

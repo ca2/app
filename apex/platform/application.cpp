@@ -10169,12 +10169,12 @@ namespace apex
 } // namespace apex
 
 
-void application_on_menu_action(void * pApplication, const ::scoped_string & scopedstrCommand)
+void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
 
    auto papp = (::apex::application *)pApplication;
 
-   papp->on_application_menu_action(scopedstrCommand);
+   papp->on_application_menu_action(pszCommand);
 
 }
 

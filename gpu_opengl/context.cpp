@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "program.h"
 #include "shader.h"
@@ -319,7 +319,7 @@ namespace opengl
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
          vertical_swap_copy_colorref_swap_red_blue(
-            (color32_t *) m_memorySwap.get_data(),
+            (color32_t *) m_memorySwap.data(),
             m_sizeBitmap1.cx,
             m_sizeBitmap1.cy,
             m_sizeBitmap1.cx * 4,
@@ -330,7 +330,7 @@ namespace opengl
             m_sizeBitmap1.cx,
             m_sizeBitmap1.cy,
             0, GL_RGBA, GL_UNSIGNED_BYTE,
-            m_memorySwap.get_data()); // upload image data to the textur
+            m_memorySwap.data()); // upload image data to the textur
 
 
          

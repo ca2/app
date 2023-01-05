@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_window.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -47,7 +47,7 @@ namespace app_message_box
       psequencer->then([this](auto * pmessagebox)
          {
 
-            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_yes)
             {
 
                auto papp = get_app();
@@ -55,7 +55,7 @@ namespace app_message_box
                papp->_001TryCloseApplication();
 
             }
-            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -154,13 +154,13 @@ namespace app_message_box
       psequencer->then([this](auto pmessagebox)
          {
 
-            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_yes)
             {
 
                post_message(MESSAGE_CLOSE);
 
             }
-            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_cancel)
             {
 
                show_message_box();

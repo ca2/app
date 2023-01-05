@@ -15,10 +15,6 @@
 void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & propertyset);
 
 
-void copy(CGRect & rectTarget, const RECTANGLE_I32 & rectSource);
-void copy(RECTANGLE_I32 & rectTarget, const CGRect & rectSource);
-void copy(CGRect & rectTarget, const RECTANGLE_F64 & rectSource);
-void copy(RECTANGLE_F64 & rectTarget, const CGRect & rectSource);
 void screen_coordinates_aware_copy(CGRect & rectTarget, const RECTANGLE_I32 & rectSource);
 void screen_coordinates_aware_copy(RECTANGLE_I32 & rectTarget, const CGRect & rectSource);
 

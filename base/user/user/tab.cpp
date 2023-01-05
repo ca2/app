@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "tab_pane.h"
@@ -1905,7 +1905,7 @@ namespace user
    void tab::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_union.m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
       
       if(pmessage->previous())
       {

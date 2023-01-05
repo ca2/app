@@ -281,7 +281,7 @@ template < primitive_floating F, primitive_integral T >
 constexpr ::std::strong_ordering order(F f, T t)
 {
 
-#if defined(__GNUC__) && !defined(__clang__)
+#if defined(__GNUC__)
 
    if(f > t)
    {
@@ -319,7 +319,7 @@ constexpr ::std::strong_ordering order(F f, T t)
       constexpr ::std::strong_ordering order(F f, T t) const
       {
 
-#if defined(__GNUC__) && !defined(__clang__)
+#if defined(__GNUC__) 
 
          if(f > t)
          {
@@ -356,7 +356,7 @@ template < primitive_integral T, primitive_floating F >
 constexpr ::std::strong_ordering order(T t, F f)
 {
 
-#if defined(__GNUC__) && !defined(__clang__)
+#if defined(__GNUC__)
 
    if(t > f)
    {
@@ -393,7 +393,7 @@ constexpr ::std::strong_ordering order(T t, F f)
       constexpr ::std::strong_ordering order(T t, F f) const
       {
 
-#if defined(__GNUC__) && !defined(__clang__)
+#if defined(__GNUC__)
 
          if(t > f)
          {

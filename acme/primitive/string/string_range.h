@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-12-07 23:59 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -456,67 +456,119 @@ public:
 
     using BASE_RANGE::_rear_find;
 
-    constexpr const_iterator _rear_find(const SCOPED_STRING &range) const {
+    constexpr const_iterator _rear_find(const SCOPED_STRING &range, const_iterator end = nullptr) const 
+    {
 
-       return this->_rear_find(range, ::comparison::comparison<ITEM>());
+       return (*this)(0, ::is_null(end) ? this->end() : end)._rear_find(range, ::comparison::comparison<ITEM>());
 
     }
 
 
     using BASE_RANGE::rear_find;
 
-    constexpr const_iterator rear_find(const SCOPED_STRING &range) const {
-
-       return this->rear_find(range, ::comparison::comparison<ITEM>());
-
-    }
-
-    constexpr strsize _rear_find_index(const SCOPED_STRING & range, strsize start = 0) const
+    constexpr const_iterator rear_find(const SCOPED_STRING &range, const_iterator end = nullptr) const
     {
 
-       return this->offset_of(this->_rear_find({range.begin() + start, range.end()}));
+       return (*this)(0, ::is_null(end) ? this->end() : end).rear_find(range, ::comparison::comparison<ITEM>());
 
     }
 
-
-    constexpr strsize rear_find_index(const SCOPED_STRING & range, strsize start = 0) const
+    constexpr strsize _rear_find_index(const SCOPED_STRING & range, strsize end = -1) const
     {
 
-       return this->offset_of(this->rear_find({range.begin() + start, range.end()}));
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(range));
 
     }
+
+
+    constexpr strsize rear_find_index(const SCOPED_STRING & range, strsize end = -1) const
+    {
+
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(range));
+
+    }
+
+
+    constexpr const_iterator _rear_find(CHARACTER character, const_iterator end = nullptr) const
+    {
+
+       return (*this)(0, ::is_null(end) ? this->end() : end).rear_find(character, ::comparison::comparison<ITEM>());
+
+    }
+
+
+    constexpr const_iterator rear_find(CHARACTER character, const_iterator end = nullptr) const
+    {
+
+       return (*this)(0, ::is_null(end) ? this->end() : end).rear_find(character, ::comparison::comparison<ITEM>());
+
+    }
+
+
+    constexpr strsize _rear_find_index(CHARACTER character, strsize end = -1) const
+    {
+
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._rear_find(character));
+
+    }
+
+
+    constexpr strsize rear_find_index(CHARACTER character, strsize end = -1) const
+    {
+
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).rear_find(character));
+
+    }
+
 
     const_iterator case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
     {
+
        return this->find(scopedstr, ::comparison::comparison<ITEM>());
+
     }
+
 
     strsize case_insensitive_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
     {
+
        return this->offset_of(case_insensitive_find(scopedstr));
+
     }
 
-    constexpr const_iterator _case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const {
+    
+    constexpr const_iterator _case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const 
+    {
 
        return this->_rear_find(scopedstr, ::comparison::case_insensitive<ITEM>());
 
     }
 
-    strsize _case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+
+    strsize _case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr, strsize end = -1) const RELEASENOTHROW
     {
-       return this->offset_of(_case_insensitive_rear_find(scopedstr));
+
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1)._case_insensitive_rear_find(scopedstr));
+
     }
 
-    constexpr const_iterator case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const {
+
+    constexpr const_iterator case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const 
+    {
 
        return this->rear_find(scopedstr, ::comparison::case_insensitive<ITEM>());
 
     }
 
-    strsize case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+
+    strsize case_insensitive_rear_find_index(const SCOPED_STRING & scopedstr, strsize end = -1) const RELEASENOTHROW
     {
-       return this->offset_of(case_insensitive_rear_find(scopedstr));
+
+
+       return this->offset_of((*this)(0, end >= 0 ? end : this->size() + end + 1).case_insensitive_rear_find(scopedstr));
+
     }
+
 
 //   using BASE_RANGE::_rear_find_start;
 //
@@ -795,33 +847,33 @@ public:
 
     //using BASE_RANGE::_rear_find;
 
-    constexpr const_iterator _rear_find(ARG_ITEM item) const {
+    //constexpr const_iterator _rear_find(ARG_ITEM item) const {
 
-       return this->_rear_find(item, ::comparison::comparison<ITEM>());
+    //   return this->_rear_find(item, ::comparison::comparison<ITEM>());
 
-    }
+    //}
 
 
     //using BASE_RANGE::rear_find;
 
-    constexpr const_iterator rear_find(ARG_ITEM item) const {
+    //constexpr const_iterator rear_find(ARG_ITEM item) const {
 
-       return this->rear_find(item, ::comparison::comparison<ITEM>());
+    //   return this->rear_find(item, ::comparison::comparison<ITEM>());
 
-    }
+    //}
 
-    constexpr strsize _rear_find_index(ARG_ITEM item) const {
+    //constexpr strsize _rear_find_index(ARG_ITEM item) const {
 
-       return this->offset_of(this->_rear_find(item));
+    //   return this->offset_of(this->_rear_find(item));
 
-    }
+    //}
 
 
-    constexpr strsize rear_find_index(ARG_ITEM item) const {
+    //constexpr strsize rear_find_index(ARG_ITEM item) const {
 
-       return this->offset_of(this->rear_find(item));
+    //   return this->offset_of(this->rear_find(item));
 
-    }
+    //}
 
 
 //   using BASE_RANGE::_rear_find_item_start;

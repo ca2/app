@@ -430,9 +430,6 @@
     <ClCompile Include="filesystem\file\text_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="memory\allocate_mid_big.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -1208,9 +1205,6 @@
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\exit_status.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\idn.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\message.cpp">

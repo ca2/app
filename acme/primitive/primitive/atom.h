@@ -665,7 +665,7 @@ public:
    }
 
 
-#ifndef NO_TEMPLATE
+//#ifndef NO_TEMPLATE
 
 
    //inline string operator +(const atom & atom) const;
@@ -673,7 +673,7 @@ public:
    inline ::string operator +(const ::string & str) const;
 
 
-#endif
+//#endif
 
 };
 

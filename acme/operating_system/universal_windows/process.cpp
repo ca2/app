@@ -346,9 +346,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 }
 
 
-
-
-bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::time timeTimeout)
+bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, class time timeTimeout)
 {
 
    return false;

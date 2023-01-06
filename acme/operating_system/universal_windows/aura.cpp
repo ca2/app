@@ -255,7 +255,7 @@ string normalize_path(const char * lpcszPath)
 
    iptr iFind;
 
-   while((iFind = path.find("..")) >= 0)
+   while(::found(iFind = path.find_index("..")))
    {
 
       if(iFind <= 0)
@@ -264,25 +264,37 @@ string normalize_path(const char * lpcszPath)
       }
       else
       {
-         iptr iFind2 = path.rear_find('\\', iFind);
+         
+         iptr iFind2 = path.rear_find_index('\\', iFind);
+
          if(iFind2 < 0)
          {
+
             path = path(0, iFind) + path.substr(iFind + 2);
+
          }
          else if(iFind2 == 0)
          {
+
             path = path.substr(3);
+
          }
          else
          {
-            iptr iFind3 = path.rear_find('\\', iFind2 - 1);
+
+            iptr iFind3 = path.rear_find_index('\\', iFind2 - 1);
+
             if(iFind3 <= 0)
             {
+
                path = path.substr(iFind + 2);
+
             }
             else
             {
+
                path = path.substr(0, iFind3) + path.substr(iFind + 2);
+
             }
          }
       }

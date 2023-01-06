@@ -1,4 +1,4 @@
-//
+﻿//
 //  _string_base_impl.h
 //  acme
 //
@@ -3670,7 +3670,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
+inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
 {
 
    if (i < 0)
@@ -5592,7 +5592,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
       start = 0;
 
    }
-   else if (start >= length)
+   else if ((::strsize) start >= length)
    {
 
       return {};
@@ -5621,14 +5621,14 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
 
    }
 
-   if (end <= start)
+   if (end <= (::strsize) start)
    {
 
       return {};
 
    }
 
-   return { this->begin() + start, end - start };
+   return { this->begin() + start, (::strsize) ( end - start ) };
 
 }
 

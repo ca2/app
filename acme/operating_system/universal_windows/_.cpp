@@ -132,12 +132,12 @@ void __node_acme_pos_term()
       //   ::acme::del(g_pgdiplusStartupOutput);
       //}
 
-   if (is_verbose())
-   {
+   //if (is_verbose())
+   //{
 
-      output_debug_string(L"acme terminating!\n");
+   //   output_debug_string(L"acme terminating!\n");
 
-   }
+   //}
 
    //::CoUninitialize();
 

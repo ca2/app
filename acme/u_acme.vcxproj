@@ -1721,7 +1721,6 @@
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
     <ClCompile Include="handler\topic.cpp" />
-    <ClCompile Include="memory\allocate_mid_big.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
@@ -1943,7 +1942,6 @@
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
-    <ClCompile Include="operating_system\idn.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />

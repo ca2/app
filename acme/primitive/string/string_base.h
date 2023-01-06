@@ -705,7 +705,7 @@ public:
 
    ::count insert(strsize iIndex, CHARACTER ch);
 
-   const_iterator insert(strsize iIndex, const string_base & str);
+   ::count insert(strsize iIndex, const string_base & str);
 
    ::count replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
 

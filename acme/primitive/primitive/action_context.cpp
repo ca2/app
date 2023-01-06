@@ -9,7 +9,14 @@
 void action_context::add(const ::particle * pparticle)
 {
 
-   if (!m_pparticlea) m_pparticlea = __new(pointer_array < ::matter >); m_pparticlea->add((::particle *)pparticle);
+   if (!m_pparticlea)
+   {
+
+      m_pparticlea = __new(pointer_array < ::particle >);
+
+   }
+   
+   m_pparticlea->add((::particle *)pparticle);
 
 }
 

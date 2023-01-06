@@ -1192,7 +1192,7 @@ namespace user
          if (!::is_set(m_pcombo->m_pitemHover))
          {
 
-            m_pcombo->m_pitemHover = 0;
+            m_pcombo->m_pitemHover = __new(::item(0));
 
          }
 

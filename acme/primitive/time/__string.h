@@ -11,22 +11,22 @@
 //// #include "acme/primitive/string/string.h"
 
 
-struct INTEGRAL_NANOSECOND;
-struct INTEGRAL_MICROSECOND;
-struct INTEGRAL_MILLISECOND;
-struct INTEGRAL_SECOND;
-struct INTEGRAL_MINUTE;
-struct INTEGRAL_HOUR;
-struct INTEGRAL_DAY;
+struct integral_nanosecond;
+struct integral_microsecond;
+struct integral_millisecond;
+struct integral_second;
+struct integral_minute;
+struct integral_hour;
+struct integral_day;
 
 
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_NANOSECOND & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MICROSECOND & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MILLISECOND & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_SECOND & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_MINUTE & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_HOUR & integral);
-CLASS_DECL_ACME ::string & copy(::string & str, const INTEGRAL_DAY & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_nanosecond & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_microsecond & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_millisecond & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_second & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_minute & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_hour & integral);
+CLASS_DECL_ACME ::string & copy(::string & str, const integral_day & integral);
 
 
 

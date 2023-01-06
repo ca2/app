@@ -11,33 +11,33 @@
 //#include "acme/filesystem/file/text_stream.h"
 
 
-struct INTEGRAL_NANOSECOND;
-struct INTEGRAL_MICROSECOND;
-struct INTEGRAL_MILLISECOND;
-struct INTEGRAL_SECOND;
-struct INTEGRAL_MINUTE;
-struct INTEGRAL_HOUR;
-struct INTEGRAL_DAY;
+struct integral_nanosecond;
+struct integral_microsecond;
+struct integral_millisecond;
+struct integral_second;
+struct integral_minute;
+struct integral_hour;
+struct integral_day;
 
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_MICROSECOND& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_microsecond& integral);
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_MILLISECOND& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_millisecond& integral);
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_SECOND& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_second& integral);
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_MINUTE& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_minute& integral);
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_HOUR& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_hour& integral);
 
 template < typename FILE >
-inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const INTEGRAL_DAY& integral);
+inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_day& integral);
 
 
 template < typename FILE, typename DURATION >
@@ -50,7 +50,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_NANOSECOND& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_nanosecond& integral)
 {
 
    textstream.append_format("%" PRId64 "ns", integral.m_i);
@@ -61,7 +61,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_MICROSECOND& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_microsecond& integral)
 {
 
    textstream.append_format("%" PRId64 "µs", integral.m_i);
@@ -72,7 +72,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_MILLISECOND& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_millisecond& integral)
 {
 
    textstream.append_format("%" PRId64 "ms", integral.m_i);
@@ -83,7 +83,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_SECOND& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_second& integral)
 {
 
    textstream.append_format("%" PRId64 "s", integral.m_i);
@@ -94,7 +94,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_MINUTE& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_minute& integral)
 {
 
    textstream.append_format("%" PRId64 "minute(s)", integral.m_i);
@@ -105,7 +105,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_HOUR& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_hour& integral)
 {
 
    textstream.append_format("%" PRId64 "hour(s)", integral.m_i);
@@ -116,7 +116,7 @@ inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& t
 
 
 template < typename FILE >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const INTEGRAL_DAY& integral)
+inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_day& integral)
 {
 
    textstream.append_format("%" PRId64 "day(s)", integral.m_i);

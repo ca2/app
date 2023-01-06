@@ -234,7 +234,7 @@
 //
 //      auto pholdThis = this;
 //
-//      m_event.wait(::INTEGRAL_MILLISECOND(dwMillis));
+//      m_event.wait(::integral_millisecond(dwMillis));
 //
 //      if(pstatus != nullptr)
 //         *pstatus = m_status;

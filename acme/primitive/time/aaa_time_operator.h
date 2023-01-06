@@ -5,7 +5,7 @@
 //inline bool operator <(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d < FLOATING_SECOND(time).m_d;
+//   return time.m_d < floating_second(time).m_d;
 //
 //}
 //
@@ -13,7 +13,7 @@
 //inline bool operator <=(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d <= FLOATING_SECOND(time).m_d;
+//   return time.m_d <= floating_second(time).m_d;
 //
 //}
 //
@@ -21,7 +21,7 @@
 //inline bool operator >(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d > FLOATING_SECOND(time).m_d;
+//   return time.m_d > floating_second(time).m_d;
 //
 //}
 //
@@ -29,7 +29,7 @@
 //inline bool operator >=(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d >= FLOATING_SECOND(time).m_d;
+//   return time.m_d >= floating_second(time).m_d;
 //
 //}
 //
@@ -37,7 +37,7 @@
 //inline bool operator ==(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d == FLOATING_SECOND(time).m_d;
+//   return time.m_d == floating_second(time).m_d;
 //
 //}
 //
@@ -45,7 +45,7 @@
 //inline bool operator !=(const class time& time, const class time & time)
 //{
 //
-//   return time.m_d != FLOATING_SECOND(time).m_d;
+//   return time.m_d != floating_second(time).m_d;
 //
 //}
 
@@ -54,7 +54,7 @@
 //inline bool operator <(const class time & time, const floating_time < TYPE > & t)
 //{
 //
-//   return time.m_d < FLOATING_SECOND(t).m_d;
+//   return time.m_d < floating_second(t).m_d;
 //
 //}
 //
@@ -63,7 +63,7 @@
 //inline bool operator <=(const class time& time, const floating_time < TYPE >& t)
 //{
 //
-//   return time.m_d <= FLOATING_SECOND(t).m_d;
+//   return time.m_d <= floating_second(t).m_d;
 //
 //}
 //
@@ -72,7 +72,7 @@
 //inline bool operator >(const class time& timetime, const floating_time < TYPE >& t)
 //{
 //
-//   return timetime.m_d > FLOATING_SECOND(t).m_d;
+//   return timetime.m_d > floating_second(t).m_d;
 //
 //}
 //
@@ -81,7 +81,7 @@
 //inline bool operator >=(const class time& timetime, const floating_time < TYPE >& t)
 //{
 //
-//   return timetime.m_d >= FLOATING_SECOND(t).m_d;
+//   return timetime.m_d >= floating_second(t).m_d;
 //
 //}
 //
@@ -90,7 +90,7 @@
 //inline bool operator ==(const class time& timetime, const floating_time < TYPE >& t)
 //{
 //
-//   return timetime.m_d == FLOATING_SECOND(t).m_d;
+//   return timetime.m_d == floating_second(t).m_d;
 //
 //}
 //
@@ -99,7 +99,7 @@
 //inline bool operator !=(const class time& timetime, const floating_time < TYPE >& t)
 //{
 //
-//   return timetime.m_d != FLOATING_SECOND(t).m_d;
+//   return timetime.m_d != floating_second(t).m_d;
 //
 //}
 

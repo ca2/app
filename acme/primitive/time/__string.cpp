@@ -3,7 +3,7 @@
 // #include "acme/primitive/string/string.h"
 
 
-::string & copy(::string & str, const INTEGRAL_NANOSECOND & integral)
+::string & copy(::string & str, const integral_nanosecond & integral)
 {
 
    str.format("%" PRId64 "ns", integral.m_i);
@@ -13,7 +13,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_MICROSECOND & integral)
+::string & copy(::string & str, const integral_microsecond & integral)
 {
 
    str.format("%" PRId64 "µs", integral.m_i);
@@ -23,7 +23,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_MILLISECOND & integral)
+::string & copy(::string & str, const integral_millisecond & integral)
 {
 
    str.format("%" PRId64 "ms", integral.m_i);
@@ -33,7 +33,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_SECOND & integral)
+::string & copy(::string & str, const integral_second & integral)
 {
 
    str.format("%" PRId64 "s", integral.m_i);
@@ -43,7 +43,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_MINUTE & integral)
+::string & copy(::string & str, const integral_minute & integral)
 {
 
    str.format("%" PRId64 "minute(s)", integral.m_i);
@@ -53,7 +53,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_HOUR & integral)
+::string & copy(::string & str, const integral_hour & integral)
 {
 
    str.format("%" PRId64 "hour(s)", integral.m_i);
@@ -63,7 +63,7 @@
 }
 
 
-::string & copy(::string & str, const INTEGRAL_DAY & integral)
+::string & copy(::string & str, const integral_day & integral)
 {
 
    str.format("%" PRId64 "day(s)", integral.m_i);

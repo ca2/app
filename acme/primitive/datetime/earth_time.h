@@ -48,6 +48,8 @@ namespace earth
 
       time(const time &time);
 
+      time(const ::integral_second & second):integral_second(second.m_i){ }
+
       time(time_t time) noexcept;
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
@@ -200,7 +202,7 @@ namespace earth
    inline time_span time::operator-(time time) const noexcept
    {
 
-      return INTEGRAL_SECOND(m_i - time.m_i);
+      return integral_second(m_i - time.m_i);
 
    }
 
@@ -208,7 +210,7 @@ namespace earth
    inline ::earth::time time::operator-(time_span span) const noexcept
    {
 
-      return INTEGRAL_SECOND(m_i - span.m_i);
+      return integral_second(m_i - span.m_i);
 
    }
 
@@ -222,21 +224,21 @@ namespace earth
 
 
    inline time::time() noexcept :
-      integral_second(INTEGRAL_SECOND(0))
+      integral_second(integral_second(0))
    {
 
    }
 
 
    inline time::time(const class time & time) :
-      integral_second(INTEGRAL_SECOND(time))
+      integral_second(integral_second(time))
    {
 
    }
 
 
    inline time::time(time_t time)  noexcept :
-      integral_second(INTEGRAL_SECOND(time))
+      integral_second(integral_second(time))
    {
 
    }

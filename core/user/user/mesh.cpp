@@ -2947,7 +2947,7 @@ namespace user
 
          auto tickNow = ::time::now();
 
-         if(tickNow - m_timeLButtonDownStart2 < INTEGRAL_MILLISECOND(DBLCLKMS))
+         if(tickNow - m_timeLButtonDownStart2 < integral_millisecond(DBLCLKMS))
          {
 
             m_timeLButtonDownStart1 = m_timeLButtonDownStart2;
@@ -2961,7 +2961,7 @@ namespace user
             m_iClick = 2;
 
          }
-         else if(tickNow - m_timeLButtonDownStart1 < INTEGRAL_MILLISECOND(DBLCLKMS))
+         else if(tickNow - m_timeLButtonDownStart1 < integral_millisecond(DBLCLKMS))
          {
 
             m_timeLButtonDownStart2 = tickNow;

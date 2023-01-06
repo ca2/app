@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
+CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
 {
 #ifdef RASPBIAN
 
@@ -26,11 +26,11 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
    {
 
       //error
-      return INTEGRAL_NANOSECOND(0);
+      return integral_nanosecond(0);
 
    }
 
-   return INTEGRAL_NANOSECOND(ts.tv_sec * 1'000'000'000 + ts.tv_nsec);
+   return integral_nanosecond(ts.tv_sec * 1'000'000'000 + ts.tv_nsec);
 
 #endif
 

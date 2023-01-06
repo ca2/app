@@ -79,22 +79,22 @@ struct unit                                                                   \
 
 
 
-DURATION_UNIT(INTEGRAL_NANOSECOND   , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_MICROSECOND  , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_MILLISECOND  , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_SECOND       , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_MINUTE       , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_HOUR         , ::i64, m_i);
-DURATION_UNIT(INTEGRAL_DAY          , ::i64, m_i);
+DURATION_UNIT(integral_nanosecond   , ::i64, m_i);
+DURATION_UNIT(integral_microsecond  , ::i64, m_i);
+DURATION_UNIT(integral_millisecond  , ::i64, m_i);
+DURATION_UNIT(integral_second       , ::i64, m_i);
+DURATION_UNIT(integral_minute       , ::i64, m_i);
+DURATION_UNIT(integral_hour         , ::i64, m_i);
+DURATION_UNIT(integral_day          , ::i64, m_i);
 
 
-DURATION_UNIT(FLOATING_NANOSECOND   , ::f64, m_d);
-DURATION_UNIT(FLOATING_MICROSECOND  , ::f64, m_d);
-DURATION_UNIT(FLOATING_MILLISECOND  , ::f64, m_d);
-DURATION_UNIT(FLOATING_SECOND       , ::f64, m_d);
-DURATION_UNIT(FLOATING_MINUTE       , ::f64, m_d);
-DURATION_UNIT(FLOATING_HOUR         , ::f64, m_d);
-DURATION_UNIT(FLOATING_DAY          , ::f64, m_d);
+DURATION_UNIT(floating_nanosecond   , ::f64, m_d);
+DURATION_UNIT(floating_microsecond  , ::f64, m_d);
+DURATION_UNIT(floating_millisecond  , ::f64, m_d);
+DURATION_UNIT(floating_second       , ::f64, m_d);
+DURATION_UNIT(floating_minute       , ::f64, m_d);
+DURATION_UNIT(floating_hour         , ::f64, m_d);
+DURATION_UNIT(floating_day          , ::f64, m_d);
 
 
 #define DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER) \
@@ -112,26 +112,26 @@ DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER)  \
 inline bool operator ! () { return this->MEMBER <= 0; }
 
 
-//__DURATION_SETUP__(INTEGRAL_NANOSECOND    , m_i)
-//__DURATION_SETUP__(INTEGRAL_MICROSECOND   , m_i)
-//__DURATION_SETUP__(INTEGRAL_MILLISECOND   , m_i)
-//__DURATION_SETUP__(INTEGRAL_SECOND        , m_i)
-//__DURATION_SETUP__(INTEGRAL_MINUTE        , m_i)
-//__DURATION_SETUP__(INTEGRAL_HOUR          , m_i)
-//__DURATION_SETUP__(INTEGRAL_DAY           , m_i)
+//__DURATION_SETUP__(integral_nanosecond    , m_i)
+//__DURATION_SETUP__(integral_microsecond   , m_i)
+//__DURATION_SETUP__(integral_millisecond   , m_i)
+//__DURATION_SETUP__(integral_second        , m_i)
+//__DURATION_SETUP__(integral_minute        , m_i)
+//__DURATION_SETUP__(integral_hour          , m_i)
+//__DURATION_SETUP__(integral_day           , m_i)
 
 
-//__DURATION_SETUP__(FLOATING_NANOSECOND    , m_d)
-//__DURATION_SETUP__(FLOATING_MICROSECOND   , m_d)
-//__DURATION_SETUP__(FLOATING_MILLISECOND   , m_d)
-//__DURATION_SETUP__(FLOATING_SECOND        , m_d)
-//__DURATION_SETUP__(FLOATING_MINUTE        , m_d)
-//__DURATION_SETUP__(FLOATING_HOUR          , m_d)
-//__DURATION_SETUP__(FLOATING_DAY           , m_d)
+//__DURATION_SETUP__(floating_nanosecond    , m_d)
+//__DURATION_SETUP__(floating_microsecond   , m_d)
+//__DURATION_SETUP__(floating_millisecond   , m_d)
+//__DURATION_SETUP__(floating_second        , m_d)
+//__DURATION_SETUP__(floating_minute        , m_d)
+//__DURATION_SETUP__(floating_hour          , m_d)
+//__DURATION_SETUP__(floating_day           , m_d)
 
 
 
-//inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLISECOND & integralmillisecond)
+//inline timespec & operator +=(timespec & timespec, const struct ::integral_millisecond & integralmillisecond)
 //{
 //
 //   timespec.tv_sec += integralmillisecond.m_i /1'000;

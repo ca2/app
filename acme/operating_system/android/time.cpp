@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
+CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
 {
 
 #ifdef RASPBIAN
@@ -14,11 +14,11 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
    if (gettimeofday(&tv, nullptr) != 0)
    {
 
-      return INTEGRAL_NANOSECOND(0);
+      return integral_nanosecond(0);
 
    }
 
-   return INTEGRAL_NANOSECOND(tv.tv_sec * 1000'000'000 + tv.tv_usec * 1'000);
+   return integral_nanosecond(tv.tv_sec * 1000'000'000 + tv.tv_usec * 1'000);
 
 #else
 
@@ -27,11 +27,11 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
    if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
    {
 
-      return INTEGRAL_NANOSECOND(0);
+      return integral_nanosecond(0);
 
    }
 
-   return INTEGRAL_NANOSECOND((::u64)ts.tv_sec * 1'000'000'000ull + (::u64)ts.tv_nsec);
+   return integral_nanosecond((::u64)ts.tv_sec * 1'000'000'000ull + (::u64)ts.tv_nsec);
 
 #endif
 

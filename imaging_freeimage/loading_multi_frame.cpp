@@ -196,7 +196,7 @@ namespace imaging_freeimage
 
                            ::u32 uMillisecond = *(::u32 *)FreeImage_GetTagValue(ptag);
 
-                           pframe->m_time = INTEGRAL_MILLISECOND(uMillisecond);
+                           pframe->m_time = integral_millisecond(uMillisecond);
 
                         }
 

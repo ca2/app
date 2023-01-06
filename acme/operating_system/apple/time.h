@@ -8,5 +8,5 @@
 
 
 
-CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond();
+CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond();
 

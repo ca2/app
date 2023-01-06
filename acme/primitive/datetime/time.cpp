@@ -567,7 +567,7 @@ namespace earth
    time_span time::abs_diff(const class time & time) const
    {
 
-      return INTEGRAL_SECOND(abs(time.m_i - m_i));
+      return integral_second(abs(time.m_i - m_i));
 
    }
 

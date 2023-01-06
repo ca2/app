@@ -34,7 +34,7 @@ public:
 
    static inline ::wait infinite() { return {infinite_milliseconds().m_i, 0}; }
 
-   static inline INTEGRAL_MILLISECOND infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
+   static inline integral_millisecond infinite_milliseconds() { return numeric_info<::u32>::maximum(); }
 
    constexpr WAIT infinite_nanoseconds() { return { numeric_info<::u32>::maximum() * 1'000'000'000 }; }
 

@@ -3909,19 +3909,19 @@ time payload::time() const
    else if(is_integer())
    {
 
-      return INTEGRAL_SECOND(i64());
+      return integral_second(i64());
 
    }
    else if (is_floating())
    {
 
-      return FLOATING_SECOND(f64());
+      return floating_second(f64());
 
    }
    else
    {
 
-      return FLOATING_SECOND(f64());
+      return floating_second(f64());
 
    }
 

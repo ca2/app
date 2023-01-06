@@ -75,7 +75,7 @@ namespace mathematics
 
       i64 i0 = get_integral_nanosecond().m_i;
 
-      preempt(INTEGRAL_MILLISECOND(bLevel));
+      preempt(integral_millisecond(bLevel));
 
       i64 i1 = get_integral_nanosecond().m_i;
 

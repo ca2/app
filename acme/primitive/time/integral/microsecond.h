@@ -6,31 +6,31 @@
 #pragma once
 
 
-class CLASS_DECL_ACME integral_microsecond_t :
-   public INTEGRAL_MICROSECOND
-{
-public:
-
-
-   using BASE_TYPE = INTEGRAL_MICROSECOND;
-
-
-   constexpr integral_microsecond_t(INTEGRAL_MICROSECOND microsecond = {}) : INTEGRAL_MICROSECOND(microsecond) {}
-
-
-   INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i / 1'000'000); }
-   INTEGRAL_NANOSECOND nanoseconds() const { return INTEGRAL_NANOSECOND((m_i % 1'000'000) * 1'000); }
-   INTEGRAL_MILLISECOND total_milliseconds() const { return INTEGRAL_MILLISECOND(m_i / 1'000); }
-
-
-   //operator class ::time const () { return total_milliseconds().m_i / 1'000.0; }
-
-
-};
-
-
-using integral_microsecond = integral_time < integral_microsecond_t >;
-
+//class CLASS_DECL_ACME integral_microsecond_t :
+//   public integral_microsecond
+//{
+//public:
+//
+//
+//   using BASE_TYPE = integral_microsecond;
+//
+//
+//   constexpr integral_microsecond_t(integral_microsecond microsecond = {}) : integral_microsecond(microsecond) {}
+//
+//
+//   integral_second seconds() const { return integral_second(m_i / 1'000'000); }
+//   integral_nanosecond nanoseconds() const { return integral_nanosecond((m_i % 1'000'000) * 1'000); }
+//   integral_millisecond total_milliseconds() const { return integral_millisecond(m_i / 1'000); }
+//
+//
+//   //operator class ::time const () { return total_milliseconds().m_i / 1'000.0; }
+//
+//
+//};
+//
+//
+//using integral_microsecond = integral_time < integral_microsecond_t >;
+//
 
 
 template <  >

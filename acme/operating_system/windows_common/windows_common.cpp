@@ -21,7 +21,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
+CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();
@@ -30,7 +30,7 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 
    //QueryPerformanceCounter(&largeinteger);
 
-   //return INTEGRAL_NANOSECOND(muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart));
+   //return integral_nanosecond(muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart));
 
 }
 

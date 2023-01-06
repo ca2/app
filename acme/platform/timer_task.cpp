@@ -248,7 +248,7 @@ void timer_task::run()
 
       }
 
-      ::preempt(INTEGRAL_MILLISECOND(remainderDecisecondSleep));
+      ::preempt(integral_millisecond(remainderDecisecondSleep));
 
       if (!task_get_run())
       {

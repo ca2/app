@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 //#define _EARTH_TIME_SPAN_COMPARISON_WITH(TYPE) \
@@ -26,6 +26,8 @@ namespace earth
 
       time_span() noexcept;
       time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
+      time_span(const ::integral_second & second) noexcept
+         : integral_second(second.m_i) {}
 
 
       i64 GetDays() const noexcept;
@@ -46,7 +48,7 @@ namespace earth
       operator time() const
       {
 
-         return INTEGRAL_SECOND(GetTotalSeconds());
+         return ::earth::time(GetTotalSeconds());
 
       }
 
@@ -54,13 +56,13 @@ namespace earth
       //DECLARE_COMPARISON_WITH_TIME(inline)
 
 
-//      _TIME_COMPARISON_WITH(::INTEGRAL_NANOSECOND);
-//      _TIME_COMPARISON_WITH(::INTEGRAL_MICROSECOND);
-//      _TIME_COMPARISON_WITH(::INTEGRAL_MILLISECOND);
-//      //_TIME_COMPARISON_WITH(::INTEGRAL_SECOND);
-//      _TIME_COMPARISON_WITH(::INTEGRAL_MINUTE);
-//      _TIME_COMPARISON_WITH(::INTEGRAL_HOUR);
-//      _TIME_COMPARISON_WITH(::INTEGRAL_DAY);
+//      _TIME_COMPARISON_WITH(::integral_nanosecond);
+//      _TIME_COMPARISON_WITH(::integral_microsecond);
+//      _TIME_COMPARISON_WITH(::integral_millisecond);
+//      //_TIME_COMPARISON_WITH(::integral_second);
+//      _TIME_COMPARISON_WITH(::integral_minute);
+//      _TIME_COMPARISON_WITH(::integral_hour);
+//      _TIME_COMPARISON_WITH(::integral_day);
 //
 //      _TIME_COMPARISON_WITH(::integral_nanosecond);
 //      _TIME_COMPARISON_WITH(::integral_microsecond);
@@ -71,13 +73,13 @@ namespace earth
 //      _TIME_COMPARISON_WITH(::integral_day);
 
 
-//      _TIME_COMPARISON_WITH(::FLOATING_NANOSECOND);
-//      _TIME_COMPARISON_WITH(::FLOATING_MICROSECOND);
-//      _TIME_COMPARISON_WITH(::FLOATING_MILLISECOND);
-//      _TIME_COMPARISON_WITH(::FLOATING_SECOND);
-//      _TIME_COMPARISON_WITH(::FLOATING_MINUTE);
-//      _TIME_COMPARISON_WITH(::FLOATING_HOUR);
-//      _TIME_COMPARISON_WITH(::FLOATING_DAY);
+//      _TIME_COMPARISON_WITH(::floating_nanosecond);
+//      _TIME_COMPARISON_WITH(::floating_microsecond);
+//      _TIME_COMPARISON_WITH(::floating_millisecond);
+//      _TIME_COMPARISON_WITH(::floating_second);
+//      _TIME_COMPARISON_WITH(::floating_minute);
+//      _TIME_COMPARISON_WITH(::floating_hour);
+//      _TIME_COMPARISON_WITH(::floating_day);
 //
 //      _TIME_COMPARISON_WITH(::floating_nanosecond);
 //      _TIME_COMPARISON_WITH(::floating_microsecond);
@@ -171,7 +173,7 @@ namespace earth
    inline time_span time_span::operator+(time_span span) const noexcept
    {
 
-      return INTEGRAL_SECOND(m_i + span.m_i);
+      return { m_i + span.m_i };
 
    }
 
@@ -179,7 +181,7 @@ namespace earth
    inline time_span time_span::operator-(time_span span) const noexcept
    {
 
-      return INTEGRAL_SECOND(m_i - span.m_i);
+      return integral_second(m_i - span.m_i);
 
    }
 

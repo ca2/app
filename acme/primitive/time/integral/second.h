@@ -4,29 +4,29 @@
 // // Created by camilo on 2020-11-16. <3Tbs_!!
 //
 
-
-class CLASS_DECL_ACME integral_second_t :
-   public INTEGRAL_SECOND
-{
-public:
-
-
-   using BASE_TYPE = INTEGRAL_SECOND;
-
-   
-   constexpr integral_second_t(INTEGRAL_SECOND second = {}) : INTEGRAL_SECOND(second) {}
-   integral_second_t(const class time & time);
-
-   INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i); }
-   INTEGRAL_NANOSECOND nanoseconds() const { return INTEGRAL_NANOSECOND(0); }
-   INTEGRAL_MILLISECOND total_milliseconds() const { return INTEGRAL_MILLISECOND(m_i * 1'000); }
-
-
-};
-
-
-using integral_second = integral_time < integral_second_t >;
-
+//
+//class CLASS_DECL_ACME integral_second_t :
+//   public integral_second
+//{
+//public:
+//
+//
+//   using BASE_TYPE = integral_second;
+//
+//   
+//   constexpr integral_second_t(integral_second second = {}) : integral_second(second) {}
+//   integral_second_t(const class time & time);
+//
+//   integral_second seconds() const { return integral_second(m_i); }
+//   integral_nanosecond nanoseconds() const { return integral_nanosecond(0); }
+//   integral_millisecond total_milliseconds() const { return integral_millisecond(m_i * 1'000); }
+//
+//
+//};
+//
+//
+//using integral_second = integral_time < integral_second_t >;
+//
 
 template <  >
 inline integral_second now<integral_second>()

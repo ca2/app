@@ -17,7 +17,7 @@
 
 
 
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & integralsecond)
+CLASS_DECL_ACME void preempt(const ::integral_second & integralsecond)
 {
 
    ::sleep((unsigned int) integralsecond.m_i);
@@ -25,7 +25,7 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & integralsecond)
 }
 
 
-CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & integralmillisecond)
+CLASS_DECL_ACME void preempt(const ::integral_millisecond & integralmillisecond)
 {
    
    ::usleep((useconds_t) integralmillisecond.m_i * 1'000);
@@ -41,7 +41,7 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & integralmillisecond)
 //}
 
 
-CLASS_DECL_ACME void preempt(const INTEGRAL_MICROSECOND & integralmicrosecond)
+CLASS_DECL_ACME void preempt(const integral_microsecond & integralmicrosecond)
 {
 
    ::usleep((unsigned int)integralmicrosecond.m_i);
@@ -49,7 +49,7 @@ CLASS_DECL_ACME void preempt(const INTEGRAL_MICROSECOND & integralmicrosecond)
 }
 
 
-CLASS_DECL_ACME void preempt(const INTEGRAL_NANOSECOND & integralnanosecond)
+CLASS_DECL_ACME void preempt(const integral_nanosecond & integralnanosecond)
 {
 
    struct timespec timespec;

@@ -54,22 +54,22 @@ DURATION_OPERATOR_SETUP1(TYPE, type, m_d) \
 inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fmod(t.m_d, time.type().m_d)); }
 
 
-INTEGRAL_DURATION_SETUP1(INTEGRAL_NANOSECOND    , integral_nanosecond   )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_MICROSECOND   , integral_microsecond  )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_MILLISECOND   , integral_millisecond  )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_SECOND        , integral_second       )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_MINUTE        , integral_minute       )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_HOUR          , integral_hour         )
-INTEGRAL_DURATION_SETUP1(INTEGRAL_DAY           , integral_day          )
+INTEGRAL_DURATION_SETUP1(integral_nanosecond    , integral_nanosecond   )
+INTEGRAL_DURATION_SETUP1(integral_microsecond   , integral_microsecond  )
+INTEGRAL_DURATION_SETUP1(integral_millisecond   , integral_millisecond  )
+INTEGRAL_DURATION_SETUP1(integral_second        , integral_second       )
+INTEGRAL_DURATION_SETUP1(integral_minute        , integral_minute       )
+INTEGRAL_DURATION_SETUP1(integral_hour          , integral_hour         )
+INTEGRAL_DURATION_SETUP1(integral_day           , integral_day          )
 
 
-FLOATING_DURATION_SETUP1(FLOATING_NANOSECOND    , floating_nanosecond   )
-FLOATING_DURATION_SETUP1(FLOATING_MICROSECOND   , floating_microsecond  )
-FLOATING_DURATION_SETUP1(FLOATING_MILLISECOND   , floating_millisecond  )
-FLOATING_DURATION_SETUP1(FLOATING_SECOND        , floating_second       )
-FLOATING_DURATION_SETUP1(FLOATING_MINUTE        , floating_minute       )
-FLOATING_DURATION_SETUP1(FLOATING_HOUR          , floating_hour         )
-FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
+FLOATING_DURATION_SETUP1(floating_nanosecond    , floating_nanosecond   )
+FLOATING_DURATION_SETUP1(floating_microsecond   , floating_microsecond  )
+FLOATING_DURATION_SETUP1(floating_millisecond   , floating_millisecond  )
+FLOATING_DURATION_SETUP1(floating_second        , floating_second       )
+FLOATING_DURATION_SETUP1(floating_minute        , floating_minute       )
+FLOATING_DURATION_SETUP1(floating_hour          , floating_hour         )
+FLOATING_DURATION_SETUP1(floating_day           , floating_day          )
 
 
 //__DURATION_SETUP__(integral_nanosecond    , m_i)
@@ -90,19 +90,19 @@ FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
 //__DURATION_SETUP__(floating_day           , m_d)
 
 
-inline floating_second_t::floating_second_t(const class time & time)
-{
+//inline floating_second_t::floating_second_t(const class time & time)
+//{
+//
+//   m_d = (double) time.m_iSecond + ((double) time.m_iNanosecond / 1'000'000'000.0);
+//
+//}
 
-   m_d = (double) time.m_iSecond + ((double) time.m_iNanosecond / 1'000'000'000.0);
-
-}
-
-
-inline integral_second_t::integral_second_t(const class time & time)
-{
-
-   //m_i = time.m_iSecond + (time.m_iNanosecond > 500'000'000 ? 1 : 0);
-
-   m_i = time.m_iSecond;
-
-}
+//
+//inline integral_second_t::integral_second_t(const class time & time)
+//{
+//
+//   //m_i = time.m_iSecond + (time.m_iNanosecond > 500'000'000 ? 1 : 0);
+//
+//   m_i = time.m_iSecond;
+//
+//}

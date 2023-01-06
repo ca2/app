@@ -25,20 +25,20 @@ public:
    constexpr time(const class ::time& time)  {m_iSecond = time.m_iSecond; m_iNanosecond = time.m_iNanosecond;}
    constexpr time(const struct ::timespec& timespec)  {m_iSecond = timespec.tv_sec; m_iNanosecond = timespec.tv_nsec; normalize(); }
    inline time(const class duration & duration);
-   inline time(const ::INTEGRAL_NANOSECOND & integral);
-   inline time(const ::FLOATING_NANOSECOND & floating);
-   inline time(const ::INTEGRAL_MICROSECOND & integral);
-   inline time(const ::FLOATING_MICROSECOND & floating);
-   inline time(const ::INTEGRAL_MILLISECOND & integral);
-   inline time(const ::FLOATING_MILLISECOND & floating);
-   inline time(const ::INTEGRAL_SECOND & integral);
-   inline time(const ::FLOATING_SECOND & floating);
-   inline time(const ::INTEGRAL_MINUTE & integral);
-   inline time(const ::FLOATING_MINUTE & floating);
-   inline time(const ::INTEGRAL_HOUR & integral);
-   inline time(const ::FLOATING_HOUR & floating);
-   inline time(const ::INTEGRAL_DAY & integral);
-   inline time(const ::FLOATING_DAY & floating);
+   inline time(const ::integral_nanosecond & integral);
+   inline time(const ::floating_nanosecond & floating);
+   inline time(const ::integral_microsecond & integral);
+   inline time(const ::floating_microsecond & floating);
+   inline time(const ::integral_millisecond & integral);
+   inline time(const ::floating_millisecond & floating);
+   inline time(const ::integral_second & integral);
+   inline time(const ::floating_second & floating);
+   inline time(const ::integral_minute & integral);
+   inline time(const ::floating_minute & floating);
+   inline time(const ::integral_hour & integral);
+   inline time(const ::floating_hour & floating);
+   inline time(const ::integral_day & integral);
+   inline time(const ::floating_day & floating);
 
 
    static class ::time now();
@@ -111,7 +111,7 @@ public:
    inline bool operator !() const { return m_iSecond != 0 && m_iNanosecond != 0; }
 
 
-   constexpr INTEGRAL_MILLISECOND integral_milliseconds() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000;}
+   constexpr integral_millisecond integral_milliseconds() const { return m_iSecond * 1'000 + m_iNanosecond / 1'000'000;}
 
 
    constexpr ::u32 u32() const { return constrain_u32(integral_milliseconds().m_i); }

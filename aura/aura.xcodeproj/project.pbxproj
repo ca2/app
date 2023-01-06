@@ -1217,7 +1217,6 @@
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
-		9ABA659F28B5CC7C0063B976 /* _struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _struct.h; sourceTree = "<group>"; };
 		9ABA65A028B5CDB80063B976 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9ABA65A128B5CDB80063B976 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ABA65A428B5CF4B0063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -1872,7 +1871,6 @@
 				9A922FFB27EACA3A00B5A78D /* _impl.h */,
 				9A92304027EACA3B00B5A78D /* _interaction_impl.h */,
 				9A922FF927EACA3A00B5A78D /* _prelude.h */,
-				9ABA659F28B5CC7C0063B976 /* _struct.h */,
 				9A979D6928C82ACD0013DC54 /* alpha_source.cpp */,
 				9A979D6B28C82ACD0013DC54 /* alpha_source.h */,
 				9A92300D27EACA3A00B5A78D /* box.cpp */,

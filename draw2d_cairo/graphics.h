@@ -357,7 +357,7 @@ namespace draw2d_cairo
       // Text Functions
       //virtual bool text_out(double x, double y, const ::string & lpszString, strsize nCount) override;
       //virtual bool text_out(double x, double y, const ::string & str) override;
-      void TextOutRaw(double x, double y, const block & block) override;
+      void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
       ///virtual bool text_out(double x, double y, const ::string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & str, int * lpDxWidths) override;

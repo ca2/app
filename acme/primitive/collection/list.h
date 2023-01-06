@@ -1,4 +1,4 @@
-﻿// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSorensen!!
+// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -23,8 +23,9 @@ public:
    using ARG_ITEM = typename node::ARG_ITEM;
 
 
-   using iterator = ::list_iterator < ::list_node < TYPE > * >;
-   using const_iterator = ::const_list_iterator < ::list_node < TYPE > * >;
+   using this_iterator = typename RANGE::this_iterator;
+   using iterator = typename RANGE::iterator;
+   using const_iterator = typename RANGE::const_iterator;
 
 
    //__declare_iterator_struct_ok(list, iterator, m_pnode, ::is_set(this->m_pnode));
@@ -384,8 +385,8 @@ public:
 
    TYPE & front();
    const TYPE & front() const;
-   TYPE & back();
-   const TYPE & back() const;
+   this_iterator & back() { return (this_iterator &) this->end(); }
+   const_iterator & back() const { return (const_iterator &)this->end(); }
 
    TYPE pop_front();
 
@@ -678,22 +679,22 @@ inline TYPE list < TYPE, ARG_TYPE >::pop_front()
 }
 
 
-template<class TYPE, class ARG_TYPE>
-inline TYPE & list < TYPE, ARG_TYPE >::back()
-{
-
-   return *this->end();
-
-}
-
-
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & list < TYPE, ARG_TYPE >::back() const
-{
-
-   return *this->end();
-
-}
+//template<class TYPE, class ARG_TYPE>
+//inline TYPE & list < TYPE, ARG_TYPE >::back()
+//{
+//
+//   return *this->end();
+//
+//}
+//
+//
+//template<class TYPE, class ARG_TYPE>
+//inline const TYPE & list < TYPE, ARG_TYPE >::back() const
+//{
+//
+//   return *this->end();
+//
+//}
 
 
 template<class TYPE, class ARG_TYPE>

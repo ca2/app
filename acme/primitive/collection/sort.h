@@ -654,7 +654,7 @@
       typename RANGE::iterator iLPos, iUPos, iMPos;
 
       stackLowerBound.push(range.begin());
-      stackUpperBound.push(range.end());
+      stackUpperBound.push(range.back());
       while (true)
       {
          iLowerBound = stackLowerBound.pop();

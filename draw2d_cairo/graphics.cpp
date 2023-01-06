@@ -4654,7 +4654,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::TextOutRaw(double x, double y, const block & block)
+   void graphics::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -4676,7 +4676,7 @@ namespace draw2d_cairo
                         65535
                     );
 
-      internal_draw_text(block, rectangle, e_null, e_null);
+      internal_draw_text(scopedstr, rectangle, e_null, e_null);
 
       //return true;
 

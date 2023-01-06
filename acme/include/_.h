@@ -91,6 +91,9 @@
 #include "acme/parallelization/_preamble.h"
 
 
+#include "acme/primitive/time/_structures.h"
+
+
 #include "acme/memory/allocation.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"

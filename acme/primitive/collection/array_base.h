@@ -85,6 +85,7 @@ public:
    using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
 
+   using this_iterator = typename ARRAY_RANGE::this_iterator;
    using iterator = typename ARRAY_RANGE::iterator;
    using const_iterator = typename ARRAY_RANGE::const_iterator;
 
@@ -552,13 +553,17 @@ public:
    inline ::index get_lower_bound(::index i = 0) const;
    inline ::index get_middle_index(::index i = 0) const;
    inline ::index get_upper_bound(::index i = -1) const;
-   inline ::index lower_bound(::index i = 0) const { return get_lower_bound(i); }
-   inline ::index upper_bound(::index i = -1) const { return get_upper_bound(i); }
-   inline ::index first_index(::index i = 0) const { return lower_bound(i); }
-   inline ::index middle_index(::index i = 0) const { return get_middle_index(i); }
-   inline ::index last_index(::index i = -1) const { return upper_bound(i); }
+   inline ::index lower_bound(::index i = 0) const { return this->get_lower_bound(i); }
+   inline ::index upper_bound(::index i = -1) const { return this->get_upper_bound(i); }
+   inline ::index first_index(::index i = 0) const { return this->lower_bound(i); }
+   inline ::index middle_index(::index i = 0) const { return this->get_middle_index(i); }
+   inline ::index last_index(::index i = -1) const { return this->get_upper_bound(i); }
    inline bool bounds(::index i) const;
    inline bool contains_index(::index i) const { return  bounds(i); }
+
+
+   inline this_iterator back(::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
+   inline const_iterator back(::index i = -1) const { return (const_iterator)(this->begin() + this->get_upper_bound(i)); }
 
 
    inline const TYPE * ptr_at(::index nIndex) const { return this->m_begin + nIndex; }

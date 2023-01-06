@@ -828,28 +828,26 @@ namespace file
 
       filesize dwNew = (u32)-1;
 
-      auto lOff = this->get_position();
-
       switch(eseek)
       {
       case ::e_seek_set:
 
-         dwNew = (filesize)lOff;
+         dwNew = (filesize)offset;
 
          break;
 
       case ::e_seek_from_end:
 
-         dwNew = get_length() - lOff;
+         dwNew = get_length() - offset;
 
          break;
 
       case ::e_seek_current:
 
-         if(lOff < 0)
+         if(offset < 0)
          {
 
-            dwNew = m_position + lOff;
+            dwNew = m_position + offset;
 
             if (dwNew > m_position)
             {
@@ -862,7 +860,7 @@ namespace file
          else
          {
 
-            dwNew = m_position + lOff;
+            dwNew = m_position + offset;
 
          }
 

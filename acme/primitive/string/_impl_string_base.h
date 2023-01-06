@@ -5592,7 +5592,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
       start = 0;
 
    }
-   else if ((::strsize) start >= length)
+   else if ((::strsize)start >= length)
    {
 
       return {};
@@ -5628,7 +5628,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
 
    }
 
-   return { this->begin() + start, (::strsize) ( end - start ) };
+   return { this->begin() + start, (::strsize) (end - start) };
 
 }
 
@@ -6635,7 +6635,7 @@ template < typename ITERATOR_TYPE >
 inline bool string_base < ITERATOR_TYPE > ::begins_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
-   if (!string_begins_ci<const CHARACTER>(*this, scopedstrPrefix))
+   if (!this->case_insensitive_begins(scopedstrPrefix))
    {
 
       return false;

@@ -12,7 +12,7 @@
 #include "networking_bsd/sockets/ssl/client_context_map.h"
 
 
-//::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+//::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 
 #if defined(LINUX) || defined(FREEBSD)

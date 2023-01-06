@@ -3,7 +3,7 @@
 #include "networking.h"
 
 
-inline ::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s);
+inline ::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 
 namespace networking_bsd

@@ -3,7 +3,7 @@
 #endif
 
 
-::std::strong_ordering memory_order(const void * m1, const void * m2, size_t s)
+::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s)
 {
 
    if(::is_null(m1))

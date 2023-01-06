@@ -4,7 +4,7 @@
 #include "acme/primitive/primitive/atom.h"
 
 
-::std::strong_ordering memory_order(const void * m1, const void * m2,  memsize s);
+::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 
 //extern thread_pointer < os_thread > t_posthread;

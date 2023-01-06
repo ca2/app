@@ -32,7 +32,7 @@ inline
 const non_reference < TYPE > * && transfer(TYPE * const & t)
 {
 
-   return static_cast <const non_reference < TYPE * > &&>((non_const < TYPE * > &) t);
+   return (const non_reference < non_const < TYPE > > * &&)((const non_const < TYPE > * &) t);
 
 }
 

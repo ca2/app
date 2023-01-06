@@ -313,7 +313,7 @@ namespace sockets_bsd
    void socket_handler::restart_socket(SOCKET socket)
    {
 
-      auto passociation = m_socketmap.find_node(socket);
+      auto passociation = m_socketmap.find_item(socket);
 
       if (passociation->m_psocket->is_connecting())
       {
@@ -1287,7 +1287,7 @@ end_processing_adding:
 
                      WARNING("GetSocket/handler/6 " << (i32)socket << " Did not find expected socket using file descriptor(f)");
 
-                     m_socketlistTimeout.erase(socket);
+                     m_socketlistTimeout.erase_item(socket);
 
                      goto restartSocketListTimeout;
 
@@ -2263,7 +2263,7 @@ end_processing_adding:
          //}
          //if (add)
          //{
-      socketlist.erase(s);
+      socketlist.erase_item(s);
       //if (which_one == e_list_close)
       //{
 
@@ -2282,11 +2282,11 @@ end_processing_adding:
 
       set(s, false, false, false); // erase from fd_set's
 
-      m_socketlistCallOnConnect.erase(s);
-      m_socketlistDetach.erase(s);
-      m_socketlistTimeout.erase(s);
-      m_socketlistRetryClientConnect.erase(s);
-      m_socketlistClose.erase(s);
+      m_socketlistCallOnConnect.erase_item(s);
+      m_socketlistDetach.erase_item(s);
+      m_socketlistTimeout.erase_item(s);
+      m_socketlistRetryClientConnect.erase_item(s);
+      m_socketlistClose.erase_item(s);
 
 
    }
@@ -2307,12 +2307,12 @@ end_processing_adding:
    bool socket_handler::Subscribe(i32 atom, ::sockets::base_socket * psocketDst)
    {
 
-      if (m_trigger_src.plookup(atom) != nullptr)
+      if (m_trigger_src.plookup(atom))
       {
 
          auto psocketDst2 = __Socket(psocketDst);
 
-         if (m_trigger_dst[atom].plookup(psocketDst2) != nullptr)
+         if (m_trigger_dst[atom].plookup(psocketDst2))
          {
 
             m_trigger_dst[atom][psocketDst2] = true;
@@ -2336,12 +2336,12 @@ end_processing_adding:
    bool socket_handler::Unsubscribe(i32 atom, ::sockets::base_socket * psocketDst)
    {
 
-      if (m_trigger_src.plookup(atom) != nullptr)
+      if (m_trigger_src.plookup(atom))
       {
 
          auto psocketDst2 = __Socket(psocketDst);
 
-         if (m_trigger_dst[atom].plookup(psocketDst2) != nullptr)
+         if (m_trigger_dst[atom].plookup(psocketDst2))
          {
 
             m_trigger_dst[atom].erase_item(psocketDst2);

@@ -1,4 +1,4 @@
-//
+﻿//
 //  transfer.h
 //  acme
 //
@@ -26,6 +26,16 @@ const non_reference < TYPE > &&transfer(const TYPE && t)
    return static_cast < const non_const < non_reference < TYPE > > && >(t);
 
 }
+
+template < typename TYPE >
+inline
+const non_reference < TYPE > * && transfer(TYPE * const & t)
+{
+
+   return static_cast <const non_reference < TYPE * > &&>((non_const < TYPE * > &) t);
+
+}
+
 
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "application.h"
 #include "system.h"
@@ -486,6 +486,13 @@ namespace apex
    {
 
       path = defer_process_matter_path(path);
+      
+      if(path.is_empty())
+      {
+         
+         return {};
+         
+      }
 
       path = acmepath()->defer_process_relative_path(path);
 
@@ -624,7 +631,7 @@ namespace apex
       if (string_begins_ci(path, "matter://"))
       {
 
-         path = dir()->matter(path);
+         return dir()->matter(path);
 
       }
 
@@ -632,7 +639,7 @@ namespace apex
       {
 
          //path = dir()->appmatter(path, false);
-         path = dir()->appmatter(path);
+         return dir()->appmatter(path);
 
       }
 
@@ -641,7 +648,7 @@ namespace apex
 
          path += ".ico";
 
-         path = dir()->matter(path);
+         return dir()->matter(path);
 
       }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "dir_context.h"
 #include "file_context.h"
 #include "apex/compress/not_dir.h"
@@ -2323,7 +2323,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          }
 
       }
-
+      
    }
    else
    {

@@ -2,6 +2,9 @@
 #pragma once
 
 
+//#include "acme/primitive/comparison/compare.h"
+
+
 struct TIME { ::i64 m_iSecond; ::i64 m_iNanosecond; };
 
 struct FREQUENCY { double m_d; /* Hz */ };
@@ -65,12 +68,14 @@ struct unit                                                                   \
    constexpr unit(enum_zero):member{} {}                                      \
    constexpr unit(type t):member(t){}                                         \
                                                                               \
-   DECLARE_COMPARISON_WITH_TIME(inline)                                   \
+   bool operator == (const unit & u) const { return member == u.member; }     \
+   ::std::strong_ordering operator <=> (const unit & u) const { return ::comparison::order(member, u.member); } \
+   DECLARE_COMPARISON_WITH_TIME(inline)                                       \
                                                                               \
 };
 
 
-//bool operator == (const unit & u) const { return member == u.member; }    
+
 
 
 

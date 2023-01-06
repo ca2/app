@@ -28,6 +28,14 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & second);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & millisecond);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MICROSECOND & microsecond);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & nanosecond);
+
+
+
+
 CLASS_DECL_ACME void preempt(const class time & time)
 {
 

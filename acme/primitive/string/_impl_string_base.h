@@ -5592,7 +5592,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
       start = 0;
 
    }
-   else if (start >= length)
+   else if ((::strsize)start >= length)
    {
 
       return {};
@@ -5621,14 +5621,14 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::substr(START start,
 
    }
 
-   if (end <= start)
+   if (end <= (::strsize) start)
    {
 
       return {};
 
    }
 
-   return { this->begin() + start, end - start };
+   return { this->begin() + start, (::strsize) (end - start) };
 
 }
 

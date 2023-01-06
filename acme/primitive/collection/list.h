@@ -1,4 +1,4 @@
-﻿// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSorensen!!
+// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -23,9 +23,9 @@ public:
    using ARG_ITEM = typename node::ARG_ITEM;
 
 
-   using this_iterator = RANGE::this_iterator;
-   using iterator = RANGE::iterator;
-   using const_iterator = RANGE::const_iterator;
+   using this_iterator = typename RANGE::this_iterator;
+   using iterator = typename RANGE::iterator;
+   using const_iterator = typename RANGE::const_iterator;
 
 
    //__declare_iterator_struct_ok(list, iterator, m_pnode, ::is_set(this->m_pnode));

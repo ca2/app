@@ -3670,7 +3670,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_base < ITERATOR_TYPE >::const_iterator string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
+inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
 {
 
    if (i < 0)

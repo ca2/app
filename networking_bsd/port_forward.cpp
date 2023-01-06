@@ -317,7 +317,7 @@ namespace net
 	   string tempStr;
 	   tempStr.format( "UPnP has detected a machine in your external IP address \n"
 		   "New IP address = %s \n"
-		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
+		   "It is recommended to update your list of mappings", ::string(scopedstrNewExternalIPAddress).c_str());
 
       auto psystem = acmesystem()->m_papexsystem;
 

@@ -180,7 +180,7 @@ namespace user
          auto dDeltaTime = (tickNow - m_timeLastTime).floating_millisecond();
          double dFilterLastScalar = m_daScalar.simple_total_mean();
          double dRate = 1.0 / 100.0;
-         dScalar = dForce * dDeltaTime.m_d * dRate + dFilterLastScalar;
+         dScalar = dForce * dDeltaTime * dRate + dFilterLastScalar;
       }
       else
       {

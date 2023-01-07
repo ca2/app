@@ -55,7 +55,7 @@ namespace windowing
    void cursor_manager::destroy()
    {
 
-      for (auto & pcursor : m_cursormap.values())
+      for (auto & pcursor : m_cursormap.payloads())
       {
 
          pcursor->destroy();

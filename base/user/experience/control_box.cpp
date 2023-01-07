@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "control_box.h"
 #include "frame_window.h"
 #include "frame.h"
@@ -744,7 +744,7 @@ if(rectangle.left > 400)
    void control_box::update_control_box_buttons()
    {
 
-      for (auto & ebutton : m_itemmap.keys())
+      for (auto & ebutton : m_itemmap.items())
       {
 
          update_control_box_button(ebutton);

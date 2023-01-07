@@ -1,4 +1,4 @@
-//
+﻿//
 //  account_credentials.cpp
 //  aura
 //
@@ -10,6 +10,7 @@
 #include "user.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/string/hex.h"
+#include "acme/primitive/time/integral/operator.h"
 #include "apex/crypto/crypto.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/context.h"

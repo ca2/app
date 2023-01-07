@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "operator.h"
+
+
 namespace generic
 {
 
@@ -23,7 +26,7 @@ namespace generic
       inline bool on_off(const INTEGRAL_TIME_UNIT & integraltime, const INTEGRAL_TIME_UNIT & period)
       {
 
-         return (elapsed(integraltime).m_i % period.m_i) < (period / 2);
+         return (elapsed(integraltime).m_i % period.m_i) < (period.m_i / 2);
 
       }
 

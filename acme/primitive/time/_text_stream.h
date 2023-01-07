@@ -40,14 +40,6 @@ template < typename FILE >
 inline ::write_text_stream < FILE > & operator <<(::write_text_stream < FILE > & textstream, const integral_day& integral);
 
 
-template < typename FILE, typename DURATION >
-inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_time < DURATION >& time)
-{
-
-   return textstream << (const DURATION & ) time;
-
-}
-
 
 template < typename FILE >
 inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_nanosecond& integral)

@@ -4306,7 +4306,7 @@ namespace user
 
       m_dItemHeight = dItemHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0);
 
-      for (auto & pitem : m_mapItem.values())
+      for (auto & pitem : m_mapItem.payloads())
       {
 
          if (pitem)

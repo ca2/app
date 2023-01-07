@@ -140,7 +140,7 @@ namespace dynamic_source
 
 
       bool                                                  m_bCompiler;
-      ::integral_second                                     m_secsSessionExpiration;
+      class ::time                                          m_timeSessionExpiration;
 
 
       script_manager();

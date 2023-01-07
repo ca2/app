@@ -285,6 +285,7 @@ public:
    const ITEM & operator[](ARG_ITEM item) const;
 
    iterator get_item(ARG_ITEM item);
+   iterator find_item(ARG_ITEM item);
    const_iterator find_item(ARG_ITEM item) const;
 
    //add a memory_new (item) node
@@ -969,6 +970,18 @@ typename node_set < NODE >::ITEM * node_set < NODE >::pget(ARG_ITEM item)
    return &p->item();
 
 }
+
+
+template < typename NODE >
+inline typename node_set < NODE >::iterator node_set < NODE >::find_item(ARG_ITEM item) 
+{
+
+   ::u32 nHashBucket, nHashValue;
+
+   return ((node_set *)this)->find_item(item, nHashBucket, nHashValue);
+
+}
+
 
 
 template < typename NODE >

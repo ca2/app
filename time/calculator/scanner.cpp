@@ -165,7 +165,7 @@ namespace datetime
       const char * start = scanner;
       while(ansi_char_isalpha(*scanner))
          scanner++;
-      string strCandidate = string(input, scanner - start);
+      ::string strCandidate = input(0, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "jan")
       {
@@ -276,7 +276,7 @@ namespace datetime
       const char * start = scanner;
       while(unicode_is_letter(scanner))
          unicode_increment(scanner);
-      string strCandidate = string(input, scanner - start);
+      ::string strCandidate = input(0,  scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "today")
       {
@@ -329,7 +329,7 @@ namespace datetime
       const char * start = input;
       while(!unicode_is_space_char(scanner) && *scanner != '\0')
          unicode_increment(scanner);
-      string strCandidate = string(input, scanner - start);
+      ::string strCandidate = input(0, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "ago")
       {

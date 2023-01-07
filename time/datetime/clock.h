@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/datetime/time_span.h"
+#include "acme/primitive/datetime/earth_time_span.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/particle.h"
 

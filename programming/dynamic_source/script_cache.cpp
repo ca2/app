@@ -72,7 +72,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto passoc = m_map.get_association(strName);
+      auto passoc = m_map.find_item(strName);
 
       if (::is_set(passoc)
          && passoc->element2().is_set()
@@ -83,7 +83,7 @@ namespace dynamic_source
 
       }
 
-      return passoc->m_element2 = create_new_ds_script(strName);
+      return passoc->payload() = create_new_ds_script(strName);
 
    }
 

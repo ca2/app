@@ -101,12 +101,12 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      auto ppair = m_map.get_association(strName);
+      auto ppair = m_map.find_item(strName);
 
-      if(ppair != nullptr)
+      if(ppair)
       {
 
-         ppair->element2() = pscript;
+         ppair->payload() = pscript;
 
          return pscript;
 
@@ -191,7 +191,7 @@ namespace dynamic_source
 
       single_lock synchronouslock(synchronization(), true);
 
-      m_map.erase_key(pscript->m_strName);
+      m_map.erase_item(pscript->m_strName);
 
    }
 

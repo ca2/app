@@ -77,7 +77,7 @@ namespace datetime
          timeLastDayOfMonth -= ::earth::time_span(1, 0, 0, 0);
          int32_t iFirstDayOfWeek = time.day_of_week();
 
-         if (pfile->m_strOptions.find("<monday-first>") >= 0 && iFirstDayOfWeek == 1)
+         if (pfile->m_strOptions.contains("<monday-first>")&& iFirstDayOfWeek == 1)
          {
             iFirstDayOfWeek = 8;
          }

@@ -1972,7 +1972,7 @@ namespace experience_core
             if (elapsed < periodFadeIn)
             {
 
-               uchAlpha = __byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
+               uchAlpha = __byte(255 * (elapsed / periodFadeIn));
 
             }
             else
@@ -1988,12 +1988,12 @@ namespace experience_core
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed().integral_millisecond();
+            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
 
             if (elapsed < periodFadeOut)
             {
 
-               uchAlpha = __byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
+               uchAlpha = __byte(255 *( (periodFadeOut - elapsed) / periodFadeOut));
 
             }
             else

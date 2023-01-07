@@ -154,7 +154,7 @@ namespace user
    public:
 
 
-      ::time                              m_timeLastDraw;
+      class ::time                        m_timeLastDraw;
       // ::rectangle_i32                     m_rectangleGroup;
       ::rectangle_i32                     m_rectangleItem;
       //::rectangle_i32                     m_rectangleListItem;
@@ -244,10 +244,10 @@ namespace user
    public:
 
 
-      ::integral_nanosecond               m_nanoLastDraw;
-       ::rectangle_i32                     m_rectangleGroup;
-      //::rectangle_i32                     m_rectangleItem;
-      //::rectangle_i32                     m_rectangleListItem;
+      class ::time                        m_nanoLastDraw;
+       ::rectangle_i32                    m_rectangleGroup;
+      //::rectangle_i32                   m_rectangleItem;
+      //::rectangle_i32                   m_rectangleListItem;
       ::rectangle_i32                     m_rectangleImage;
       ::rectangle_i32                     m_rectangleText;
       rectangle_i32 * m_prectClient;

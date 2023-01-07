@@ -1599,9 +1599,7 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = ::generic::time::on_off(
-               m_pedit->m_timeFocusStart.integral_millisecond(),
-               m_timeCaretPeriod.integral_millisecond());
+            bCaretOn = m_pedit->m_timeFocusStart.on_off(m_timeCaretPeriod);
 
          }
 

@@ -14,10 +14,10 @@ namespace userex
    public:
 
 
-      class ::time              m_timeStart;
-      class ::time              m_timeDelay;
-      atom                      m_atomResponse;
-      ::integral_second       m_second;
+      class ::time            m_timeStart;
+      class ::time            m_timeDelay;
+      atom                    m_atomResponse;
+      class ::time            m_time;
 
 
       wait_message_dialog();

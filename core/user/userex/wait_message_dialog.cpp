@@ -13,8 +13,6 @@ namespace userex
    wait_message_dialog::wait_message_dialog()
    {
       
-      m_second.m_i = -1;
-
    }
 
 
@@ -125,23 +123,23 @@ namespace userex
    void wait_message_dialog::on_timer_soft_reload(const class time & tickTimeout)
    {
 
-      auto second = (m_timeDelay - tickTimeout).integral_second();
+      auto time = (m_timeDelay - tickTimeout);
       
-      if(second.m_i <= 0)
+      if(time <= 0_s)
       {
          
          return;
          
       }
       
-      if(second == m_second)
+      if(time == m_time)
       {
          
          return;
          
       }
       
-      m_second = second;
+      m_time = time;
       
       auto pinteraction = m_pform->get_child_by_id("timeout");
       
@@ -150,7 +148,7 @@ namespace userex
 
          string str;
 
-         str.format("%d", second.m_i);
+         str.format("%d", time.integral_second());
 
          pinteraction->_001SetText(str, ::e_source_sync);
 
@@ -159,7 +157,7 @@ namespace userex
       if (m_pformdocument != nullptr)
       {
 
-         payload("wait_message_dialog_timeout") = second;
+         payload("wait_message_dialog_timeout") = time;
 
          m_pform->soft_reload();
 

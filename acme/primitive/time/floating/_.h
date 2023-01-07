@@ -5,7 +5,7 @@
 //#include "acme/primitive/time/floating/time.h"
 
 
-CLASS_DECL_ACME double floating_nanosecond();
+inline double floating_nanosecond() { return (::f64)::integral_nanosecond(); }
 
 inline double floating_microsecond() { return floating_nanosecond() / 1'000.0; }
 

@@ -30,13 +30,13 @@
 
 
 
-template <  >
-inline integral_nanosecond now<integral_nanosecond>()
-{
-
-   return get_integral_nanosecond();
-
-}
+//template <  >
+//inline integral_nanosecond now<integral_nanosecond>()
+//{
+//
+//   return get_integral_nanosecond();
+//
+//}
 
 
 

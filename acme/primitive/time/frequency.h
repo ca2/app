@@ -4,6 +4,60 @@
 
 //#include "acme/primitive/time/time.h"
 
+double double_equal_delta = 0.0001;
+
+constexpr bool double_equals(double d1, double d2, double delta)
+{
+
+   auto d = d1 - d2;
+
+   return -(delta / 2.0) < d && d < (delta / 2.0);
+
+}
+
+
+constexpr bool double_equals(double d1, double d2)
+{
+
+   return double_equals(d1, d2, double_equal_delta);
+
+}
+
+
+constexpr ::std::strong_ordering double_order(double d1, double d2, double delta)
+{
+
+   auto d = d1 - d2;
+
+   if (d > (delta / 2.0))
+   {
+
+      return std::strong_ordering::greater;
+
+   }
+   else if (d < -(delta / 2.0))
+   {
+
+      return std::strong_ordering::less;
+
+   }
+   else
+   {
+
+      return std::strong_ordering::equal;
+
+   }
+
+}
+
+
+constexpr ::std::strong_ordering double_order(double d1, double d2)
+{
+
+   return double_order(d1, d2, double_equal_delta);
+
+}
+
 
 class frequency :
    public FREQUENCY
@@ -51,6 +105,21 @@ public:
    constexpr operator bool_type() const { return this->is_set() ? &frequency::this_type_does_not_support_comparisons : 0; }
    //https://www.artima.com/articles/the-safe-bool-idiom END
 
+
+   bool operator == (const ::frequency frequency) const
+   {
+
+      return double_equals(m_dHertz, frequency.m_dHertz);
+
+   }
+
+
+   ::std::strong_ordering operator <=> (const ::frequency frequency) const
+   {
+
+      return double_order(m_dHertz, frequency.m_dHertz);
+
+   }
 
 };
 

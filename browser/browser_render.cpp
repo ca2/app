@@ -202,7 +202,7 @@ namespace browser
    }
 
 
-   double render::get_per_second()
+   double render::get_frames_per_second()
    {
 
       try
@@ -241,7 +241,7 @@ namespace browser
 
       u64 uNow = get_nanos();
 
-      u64 uFrameNanos = (u64)(1000000000LL / get_per_second());
+      u64 uFrameNanos = (u64)(1000000000LL / get_frames_per_second());
 
       uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
@@ -270,7 +270,7 @@ namespace browser
 
             uNow = get_nanos();
 
-            uFrameNanos = (u64)(1000000000ULL / get_per_second());
+            uFrameNanos = (u64)(1000000000ULL / get_frames_per_second());
 
             uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 

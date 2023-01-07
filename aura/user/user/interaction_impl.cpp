@@ -4458,9 +4458,9 @@ namespace user
          if (::is_set(m_pprodevian))
          {
 
-            m_pprodevian->set_prodevian_per_second(get_prodevian_per_second());
+            m_pprodevian->set_prodevian_frames_per_second(get_prodevian_frames_per_second());
 
-            m_pprodevian->set_nominal_per_second(get_nominal_per_second());
+            m_pprodevian->set_nominal_frames_per_second(get_nominal_frames_per_second());
 
             pmessage->previous();
 
@@ -5056,7 +5056,7 @@ namespace user
 //}
 
 
-   void interaction_impl::set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond)
+   void interaction_impl::set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
       m_frequencyProdevianFramesPerSecond = frequencyProdevianFramesPerSecond;
@@ -5067,7 +5067,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_prodevian_per_second(m_frequencyProdevianFramesPerSecond);
+            m_pprodevian->set_prodevian_frames_per_second(m_frequencyProdevianFramesPerSecond);
 
          }
 
@@ -5076,7 +5076,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_nominal_per_second(::frequency frequencyNominalFramesPerSecond)
+   void interaction_impl::set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond)
    {
 
       m_frequencyNominalFramesPerSecond = frequencyNominalFramesPerSecond;
@@ -5087,7 +5087,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_nominal_per_second(m_frequencyNominalFramesPerSecond);
+            m_pprodevian->set_nominal_frames_per_second(m_frequencyNominalFramesPerSecond);
 
          }
 
@@ -5126,7 +5126,7 @@ namespace user
    }
 
 
-   ::frequency interaction_impl::get_nominal_per_second()
+   ::frequency interaction_impl::get_nominal_frames_per_second()
    {
 
       return m_frequencyNominalFramesPerSecond;

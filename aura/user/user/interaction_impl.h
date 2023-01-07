@@ -169,12 +169,12 @@ namespace user
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond);
-      virtual void set_nominal_per_second(::frequency frequencyNominalFramesPerSecond);
+      virtual void set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
+      virtual void set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond);
       virtual void set_per_second(::frequency frequencyFramesPerSecond);
-      virtual double get_prodevian_frames_per_second();
-      virtual double get_nominal_per_second();
-      virtual double get_output_per_second();
+      virtual ::frequency get_prodevian_frames_per_second();
+      virtual ::frequency get_nominal_frames_per_second();
+      virtual ::frequency get_output_per_second();
 
       void user_common_construct();
 

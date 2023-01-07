@@ -1442,7 +1442,7 @@ namespace user
    }
 
 
-   void prodevian::set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond)
+   void prodevian::set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
       m_timePostRedrawProdevian = 1.0 / frequencyProdevianFramesPerSecond;
@@ -1450,7 +1450,7 @@ namespace user
    }
 
 
-   void prodevian::set_nominal_per_second(::frequency frequencyNominalFramesPerSecond)
+   void prodevian::set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond)
    {
 
       m_timePostRedrawNominal = 1.0 / frequencyNominalFramesPerSecond;
@@ -1461,9 +1461,9 @@ namespace user
    void prodevian::set_per_second(::frequency frequencyFramesPerSecond)
    {
 
-      set_prodevian_per_second(frequencyFramesPerSecond);
+      set_prodevian_frames_per_second(frequencyFramesPerSecond);
 
-      set_nominal_per_second(frequencyFramesPerSecond);
+      set_nominal_frames_per_second(frequencyFramesPerSecond);
 
    }
 

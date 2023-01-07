@@ -269,7 +269,7 @@ pacmedirectory->system() / "obs.png");
       if (m_prender != nullptr)
       {
          string str;
-         str.format("Hello Browser FPS: %0.1d", m_prender->get_per_second());
+         str.format("Hello Browser FPS: %0.1d", m_prender->get_frames_per_second());
          pgraphicsParam->selectFont(m_pfontDrawStatus);
          pgraphicsParam->text_out(10, m_yDrawStatus, str);
          m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;

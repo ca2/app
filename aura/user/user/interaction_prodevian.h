@@ -106,10 +106,10 @@ namespace user
       void defer_prodevian_step();
 
       // Fps for when prodevian is active or there is any active prodevian object
-      void set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond);
+      void set_prodevian_frames_per_second(::frequency frequencyProdevianFramesPerSecond);
 
       // Fps for when prodevian is not active and there is no active prodevian object
-      void set_nominal_per_second(::frequency frequencyNominalFramesPerSecond);
+      void set_nominal_frames_per_second(::frequency frequencyNominalFramesPerSecond);
 
       void set_per_second(::frequency frequencyFramesPerSecond);
 

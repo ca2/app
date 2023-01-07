@@ -105,7 +105,7 @@ namespace browser
       virtual ~render();
 
 
-      virtual double get_per_second();
+      virtual double get_frames_per_second();
 
       ::gcom::slide_show & slideshow();
 

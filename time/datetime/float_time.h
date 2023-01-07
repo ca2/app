@@ -1035,9 +1035,9 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    inline bool float_time::ParseDateTime(const ::string & strDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
    {
 
-      const char * lpszDate = strDate;
+      const char * pszDate = strDate;
 
-      const ::scoped_string & scopedstrDate = (lpszDate == NULL) ? "" : lpszDate;
+      const ::scoped_string & scopedstrDate = (::is_null(pszDate)) ? "" : pszDate;
 
       HRESULT hr;
 

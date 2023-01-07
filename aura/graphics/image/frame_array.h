@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "image.h"
@@ -38,7 +38,7 @@ public:
    const ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const { return ::rectangle_i32(point, m_size); }
 
    virtual ::image_pointer calc_current_frame(image_dynamic & dynamic);
-
+   virtual void update(::image * pimageHost, const ::image_drawing & imagedrawing);
 
    inline image_extension * extension() { return m_pimage->extension(); }
 

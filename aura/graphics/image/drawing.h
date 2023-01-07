@@ -77,6 +77,8 @@ class CLASS_DECL_AURA image_drawing :
 {
 public:
 
+   bool m_bDoForAllFrames = false;
+
 
    using ::image_drawing_options::operator=;
 

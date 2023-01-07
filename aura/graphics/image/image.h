@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "meta.h"
@@ -57,6 +57,7 @@ public:
 
 
    virtual void defer_update_image();
+//   virtual void defer_update_all_frames();
 
 
    virtual ::pointer<::image>get_image(const ::size_i32 & size);
@@ -740,9 +741,9 @@ public:
    //inline void operator == (const ::image & image) const;
    //inline void operator != (const ::image & image) const;
 
-
-   virtual bool _draw_blend(const image_drawing & imagedrawing) override;
-   virtual void _draw_raw(const image_drawing & imagedrawing) override;
+   void draw(const image_drawing & imagedrawing) override;
+   bool _draw_blend(const image_drawing & imagedrawing) override;
+   void _draw_raw(const image_drawing & imagedrawing) override;
 
 
 

@@ -140,7 +140,7 @@ public:
    constexpr operator bool() const;
 
 
-   constexpr  double operator() ()const { return floating_second(); }
+   //constexpr  double operator() ()const { return floating_second(); }
 
 
    //static inline class ::time first();
@@ -170,7 +170,7 @@ public:
    
 
    inline class time elapsed() const { return elapsed(now()); }
-   inline class time elapsed(const class time & time ) const { return time - *this; }
+   constexpr class time elapsed(const class time & time ) const { return time - *this; }
 
 
    inline time update_elapsed() { return update_elapsed(now()); }
@@ -190,7 +190,10 @@ public:
 
    constexpr double period_rate(const class time & timePeriod, const class time & time) const { return ((time - *this) % timePeriod) / timePeriod; }
 
-   
+   inline double ramp_up(const class time & timePeriod) const { return ramp_up(timePeriod, now()); }
+
+   constexpr double ramp_up(const class time & timePeriod, const class time & time) const;
+
    //inline class ::time operator - (const class time & time) const { return { e_normalize, m_iSecond - time.m_iSecond, m_iNanosecond - time.m_iNanosecond }; }
    //inline class ::time operator + (const class time & time) const { return { e_normalize, m_iSecond + time.m_iSecond, m_iNanosecond + time.m_iNanosecond }; }
    constexpr  class ::time & operator -= (const class time & time) { m_iSecond -= time.m_iSecond; m_iNanosecond -= time.m_iNanosecond; normalize();  return *this; }

@@ -178,6 +178,15 @@ constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 }
 
 
+template < primitive_integral INTEGRAL >
+constexpr ::frequency operator * (INTEGRAL i, const frequency & frequency)
+{
+
+   return (double)i * frequency.m_dHertz;
+
+}
+
+
 constexpr double operator * (const class ::time & time, const frequency & frequency)
 {
 

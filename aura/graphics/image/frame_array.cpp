@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "frame_array.h"
+#include "aura/graphics/image/drawing.h"
 
 
 image_frame_array::image_frame_array()
@@ -118,3 +119,63 @@ image_frame_array::~image_frame_array()
    }
 
 }
+
+
+void image_frame_array::update(::image * pimageHost, const ::image_drawing & imagedrawing)
+{
+
+   auto pimageSource = imagedrawing.image();
+
+   auto pframes = pimageSource->frames();
+
+   if (!pframes || pframes->is_empty())
+   {
+
+      return;
+
+   }
+
+   m_pimage = pimageHost;
+
+   //auto dx = (double)imagedrawing.m_rectangleTarget.width() / (double)imagedrawing.image()->width();
+   //auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
+
+   //::size_i32 size;
+
+   //size.cx = pframes->m_size.cx * dx;
+   //size.cy = pframes->m_size.cy * dx;
+
+   //m_size = size;
+
+   m_pimage->pixmap::init(imagedrawing.m_rectangleTarget.size(), nullptr, 0);
+
+   this->set_size(pframes->get_count());
+
+   class ::time timeTotal;
+
+   for (index iFrame = 0; iFrame < pframes->get_count(); iFrame++)
+   {
+
+      auto pframeSource = pframes->element_at(iFrame);
+
+      auto time = pframeSource->m_time;
+
+      timeTotal += time;
+
+      auto & pframeHost = this->element_at(iFrame);
+
+      __construct_new(pframeHost);
+
+      pframeHost->create(pframeSource, imagedrawing, this);
+
+   }
+
+   m_timeTotal = timeTotal;
+
+   m_pimage->m_estatus = ::success;
+
+   m_pimage->set_ok_flag();
+
+}
+ 
+

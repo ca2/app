@@ -614,9 +614,9 @@ public:
    
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
-   inline ::i32 as_i32() const { return (::i32) i64(); }
-   inline ::u32 as_u32() const { return (::u32) i64(); }
-   inline ::index as_index() const { return (::index)i64(); }
+   inline ::i32 as_i32() const { return (::i32) as_i64(); }
+   inline ::u32 as_u32() const { return (::u32) as_i64(); }
+   inline ::index as_index() const { return (::index)as_i64(); }
    inline ::u32 as_umessage() const { return u32(); }
    inline ::enum_message as_emessage() const;
    //inline operator const char* () const;

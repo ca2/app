@@ -2064,7 +2064,7 @@ namespace ios
 ////
 ////                                               i64 delta2 = (i64) m_uiLastUpdateBeg - (i64) m_uiLastUpdateEnd;
 ////
-////                                               u64 frameNanos = 1000000000LL / m_dFps;
+////                                               u64 frameNanos = 1000000000LL / m_frequencyFramesPerSecond;
 ////
 ////                                               if(delta1 < frameNanos || (delta2 > 0 && delta2 < 10000000000LL))
 ////                                               {

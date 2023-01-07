@@ -23,7 +23,7 @@ namespace hellobase
       ::write_text::font_pointer       m_pfontDrawStatus;
       color32_t                m_colorDrawStatus;
 
-      double                  m_dFps;
+      ::frequency                  m_frequencyFramesPerSecond;
       ::u32                   m_dwRoll;
 
       string                  m_strHoverFont;

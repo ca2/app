@@ -12,13 +12,14 @@ public:
 
 
    constexpr frequency(enum_zero ezero = e_zero) :FREQUENCY{} {}
+   constexpr frequency(double dHertz) : FREQUENCY(dHertz) {}
    constexpr frequency(const ::FREQUENCY& frequency) :FREQUENCY(frequency) {}
 
    template < primitive_floating FLOATING >
    constexpr frequency operator *(FLOATING d) const
    {
 
-      return FREQUENCY(m_d * d);
+      return FREQUENCY(m_dHertz * d);
 
    }
 
@@ -26,9 +27,20 @@ public:
    constexpr frequency operator / (FLOATING d) const
    {
 
-      return FREQUENCY(m_d / d);
+      return FREQUENCY(m_dHertz / d);
 
    }
+
+
+   ::frequency operator = (const ::frequency & frequency)
+   {
+
+      m_dHertz = frequency.m_dHertz;
+
+      return *this;
+
+   }
+
 
 };
 
@@ -60,7 +72,7 @@ template < primitive_floating FLOATING >
 constexpr ::frequency operator * (FLOATING d, const frequency & frequency)
 {
 
-   return FREQUENCY(d * frequency.m_d);
+   return FREQUENCY(d * frequency.m_dHertz);
 
 }
 
@@ -69,7 +81,7 @@ template < primitive_floating FLOATING >
 constexpr class time operator / (FLOATING d, const frequency & frequency)
 {
 
-   auto dSeconds = d / frequency.m_d;
+   auto dSeconds = d / frequency.m_dHertz;
 
    return { dSeconds };
 
@@ -80,7 +92,7 @@ template < primitive_integral INTEGRAL >
 constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 {
 
-   auto dSeconds = (double) i / frequency.m_d;
+   auto dSeconds = (double) i / frequency.m_dHertz;
 
    return { dSeconds };
 
@@ -90,7 +102,7 @@ constexpr class time operator / (INTEGRAL i, const frequency & frequency)
 constexpr double operator * (const class ::time & time, const frequency & frequency)
 {
 
-   return time.floating_second() * frequency.m_d;
+   return time.floating_second() * frequency.m_dHertz;
 
 }
 
@@ -98,7 +110,7 @@ constexpr double operator * (const class ::time & time, const frequency & freque
 constexpr double operator * (const frequency & frequency, const class ::time & time)
 {
 
-   return frequency.m_d * time.floating_second();
+   return frequency.m_dHertz * time.floating_second();
 
 }
 

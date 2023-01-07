@@ -7,7 +7,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
-#include "acme/primitive/time/floating/operator.h"
+//#include "acme/primitive/time/floating/operator.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/window.h"
 

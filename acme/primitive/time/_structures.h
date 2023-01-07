@@ -7,7 +7,7 @@
 
 struct TIME { ::i64 m_iSecond; ::i64 m_iNanosecond; };
 
-struct FREQUENCY { double m_d; /* Hz */ };
+struct FREQUENCY { double m_dHertz; };
 
 constexpr FREQUENCY operator "" _Hz(long double d) { return { (double) d }; }
 

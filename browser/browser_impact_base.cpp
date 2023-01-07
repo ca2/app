@@ -21,7 +21,7 @@ namespace browser
 
       m_eeffect                  = effect_none;
 
-      m_dFps                     = 0.0;
+      m_frequencyFramesPerSecond                     = 0.0;
 
       m_ppcre = psystem->compile_pcre("\\:\\-\\)");
 
@@ -62,7 +62,7 @@ namespace browser
 
       datastream()->get("cur_fps", v);
 
-      m_dFps = v.get_double();
+      m_frequencyFramesPerSecond = v.get_double();
 auto m_timeRoll = ::time::now();
 
    }
@@ -151,7 +151,7 @@ auto m_timeRoll = ::time::now();
 
          int xOffset;
 
-         xOffset = int(m_pimageTime->width() * m_dFps * __double(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+         xOffset = int(m_pimageTime->width() * m_frequencyFramesPerSecond * __double(m_timeRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
          xOffset %= m_pimageTime->width();
 

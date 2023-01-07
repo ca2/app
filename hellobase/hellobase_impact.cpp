@@ -30,8 +30,8 @@ namespace hellobase
       m_eeffect                  = effect_none;
 
       m_bOkPending               = false;
-      //m_dFps = 1.0 / 60.0;
-      m_dFps = 0.0;
+      //m_frequencyFramesPerSecond = 1.0 / 60.0;
+      m_frequencyFramesPerSecond = 0.0;
 
 
       m_bHelloLayoutOn001Layout  = false;
@@ -355,7 +355,7 @@ namespace hellobase
          if(m_prender->m_bAlternate)
          {
 
-            if(m_dFps != 0.0)
+            if(m_frequencyFramesPerSecond != 0.0)
             {
                return "Rolling " + papp->m_strAlternateHelloBase;
             }
@@ -369,7 +369,7 @@ namespace hellobase
          else
          {
 
-            if(m_dFps != 0.0)
+            if(m_frequencyFramesPerSecond != 0.0)
             {
                return "Rolling " + papp->m_strHelloBase;
             }

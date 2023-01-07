@@ -6,7 +6,7 @@
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/time/integral/generic.h"
+//#include "acme/primitive/time/integral/generic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"

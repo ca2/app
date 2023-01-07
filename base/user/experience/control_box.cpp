@@ -1027,7 +1027,7 @@ if(rectangle.left > 400)
 
       int iWidth = 0;
 
-      for (auto & pitem : m_itemmap.values())
+      for (auto & pitem : m_itemmap.payloads())
       {
 
          auto & pbutton = pitem->m_pbutton;

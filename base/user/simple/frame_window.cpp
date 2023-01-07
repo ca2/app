@@ -1327,7 +1327,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message* pmessage)
 void simple_frame_window::show_control_bars(const ::e_display& edisplay, bool bLeaveFullScreenBarsOnHide)
 {
 
-   for (auto& toolbartransport : m_mapToolbar.values())
+   for (auto& toolbartransport : m_mapToolbar.payloads())
    {
 
       try

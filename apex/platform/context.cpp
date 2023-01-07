@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
 #include "application.h"
 #include "system.h"
@@ -15,6 +15,7 @@
 #include "acme/platform/ini.h"
 #include "acme/platform/request.h"
 #include "acme/primitive/string/str.h"
+#include "acme/primitive/time/integral/operators.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"

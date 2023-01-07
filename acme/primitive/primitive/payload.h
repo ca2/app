@@ -1422,7 +1422,7 @@ template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
 inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
-   return payload1 = ::transfer(payload1 + payload2);
+   return payload1.add(payload2);
 
 }
 

@@ -66,6 +66,8 @@ namespace earth
 
       static time now() noexcept;
 
+      void Now() { *this = now(); }
+
 
       time &operator=(const time &time) noexcept;
 

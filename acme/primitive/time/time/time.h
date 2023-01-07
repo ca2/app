@@ -1,6 +1,10 @@
 ﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
+
+#include "acme/primitive/time/_structures.h"
+
+
 #define _TIME_COMPARISON_WITH(TYPE) \
    inline bool operator == (const TYPE & t) const { return operator == ((class ::time) t); } \
    inline ::std::strong_ordering operator <=> (const TYPE & t) const { return operator <=> ((class ::time) t); }

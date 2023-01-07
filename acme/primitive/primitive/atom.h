@@ -237,7 +237,7 @@ public:
 
    using PRIMITIVE_ATOM_TAG = PRIMITIVE_ATOM_TAG_TYPE;
 
-   enum enum_type : ::iptr
+   enum enum_type : ::i32
    {
 
       e_type_empty = -2,
@@ -260,7 +260,7 @@ public:
       e_type_impact,
       e_type_happening,
 
-      e_type_text = 1ull << 16,
+      e_type_text = 1ull << 8,
       e_type_id_text = e_type_atom | e_type_text,
       e_type_factory_text = e_type_factory | e_type_text,
       e_type_task_tool_text = e_type_task_tool | e_type_text,
@@ -275,7 +275,7 @@ public:
       e_type_happening_text = e_type_happening | e_type_text,
 
 
-      e_type_range = 1ull << 32,
+      e_type_range = 1ull << 16,
       e_type_id_range = e_type_atom | e_type_range,
       e_type_factory_range = e_type_factory | e_type_range,
       e_type_task_tool_range = e_type_task_tool | e_type_range,

@@ -39,9 +39,6 @@
     <Filter Include="Header Files\primitive\comparison">
       <UniqueIdentifier>{dc0acada-9c74-46ee-b8d3-4e0427a32162}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\api">
-      <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\geometry2d">
       <UniqueIdentifier>{db93c184-411b-46d7-ace7-052cd69de598}</UniqueIdentifier>
     </Filter>
@@ -269,6 +266,9 @@
     </Filter>
     <Filter Include="Header Files\primitive\time\time">
       <UniqueIdentifier>{0b61aaa5-2c72-40e4-9fdf-17017e960bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\api">
+      <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2768,87 +2768,6 @@
     <ClInclude Include="primitive\collection\address_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_tiny_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_template.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_string_to_string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_string_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_raw_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_procedure_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_base_2array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__string_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__sort_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__sort_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__set_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__raw_array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__papaya_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__papaya_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__papaya_array2d_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__papaya_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__papaya.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__list_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__fifo_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__collection_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__collection_impl1.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa__array_base_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\_text_stream.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2998,6 +2917,21 @@
     </ClInclude>
     <ClInclude Include="primitive\_.h">
       <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\integral\operators.h">
+      <Filter>Header Files\primitive\time\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_generic_map.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_impl_generic_map.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_impl.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_.h">
+      <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

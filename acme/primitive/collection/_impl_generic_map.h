@@ -14,9 +14,9 @@ namespace generic
       inline bool contains_payload(const CONTAINER & container, const PAYLOAD & payload)
       {
 
-         auto values = container.values();
+         auto payloads = container.payloads();
 
-         for (auto & item : values)
+         for (auto & item : payloads)
          {
 
             if (item == payload)
@@ -39,7 +39,7 @@ namespace generic
 
          auto p = start;
 
-         for (; p.ok(); p++)
+         for (; p; p++)
          {
 
             if (payload_of(*p) == payload)

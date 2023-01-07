@@ -1,4 +1,4 @@
-// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
+﻿// With iterator.h as base by camilo on 2022-09-12 04:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -173,8 +173,8 @@ public:
    list_iterator_element1(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   auto & topic() { return this->m_p->m_element1; }
-   auto & topic() const { return this->m_p->m_element1; }
+   auto & topic() { return this->m_p->item(); }
+   auto & topic() const { return this->m_p->item(); }
 
 
 };
@@ -204,8 +204,8 @@ public:
    list_iterator_element2(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   auto & topic() { return this->m_p->m_element2; }
-   auto & topic() const { return this->m_p->m_element2; }
+   auto & topic() { return this->m_p->payload(); }
+   auto & topic() const { return this->m_p->payload(); }
 
 
 };

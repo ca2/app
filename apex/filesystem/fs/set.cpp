@@ -51,7 +51,7 @@ namespace fs
 
       }
 
-      for (auto& pdata : m_fsdatamap.values())
+      for (auto& pdata : m_fsdatamap.payloads())
       {
 
          pdata->destroy();

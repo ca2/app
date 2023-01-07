@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -4016,7 +4016,7 @@ namespace apex
 
             (*pcall)["id"] = strId;
 
-            for (auto & ptask : pcall->m_mapTask.values())
+            for (auto & ptask : pcall->m_mapTask.payloads())
             {
 
                if (!bHandled)

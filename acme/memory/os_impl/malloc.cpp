@@ -3,6 +3,9 @@
 #endif
 
 
+#ifdef WINDOWS_DESKTOP
+
+
 ::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s)
 {
 
@@ -39,6 +42,9 @@
    return memcmp(m1, m2, s) <=> 0;
 
 }
+
+
+#endif // WINDOWS_DESKTOP
 
 
 void check_bounds(u8 * p)
@@ -145,7 +151,6 @@ size_t os_impl_size(void * p)
 #endif
 
 }
-
 
 
 

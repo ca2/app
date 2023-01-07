@@ -17,10 +17,10 @@
 
 
 
-CLASS_DECL_ACME void preempt(const ::integral_second & integralsecond)
+CLASS_DECL_ACME void preempt_second(::i64 i)
 {
 
-   ::sleep((unsigned int) integralsecond.m_i);
+   ::sleep((unsigned int) i);
 
 }
 

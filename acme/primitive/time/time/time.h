@@ -1,4 +1,4 @@
-﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -59,7 +59,12 @@ public:
    constexpr time(const class ::time& time) : TIME{time} { }
 
    template < primitive_integer INTEGER >
-   constexpr time(INTEGER iSecond) :TIME(iSecond, 0) {}
+   constexpr time(INTEGER iSecond)
+   :TIME{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)0 }
+   {
+      
+      
+   }
 
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >

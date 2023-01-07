@@ -38,7 +38,7 @@ CLASS_DECL_ACME ::i64 _get_nanosecond()
 
 void utc_timespec(timespec * ptimespec);
 
-CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
+CLASS_DECL_ACME ::i64 integral_nanosecond()
 {
    
    struct timespec timespec;

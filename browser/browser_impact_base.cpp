@@ -60,7 +60,7 @@ namespace browser
 
       ::payload v;
 
-      datastream()->get("cur_fps", v);
+      datastream()->get("cur_per_second", v);
 
       m_frequencyFramesPerSecond = v.get_double();
 auto m_timeRoll = ::time::now();
@@ -261,7 +261,7 @@ pacmedirectory->system() / "obs.png");
       m_yDrawStatus = 10;
 
       string str;
-      str.format("Window FPS: %0.1d", get_output_fps());
+      str.format("Window FPS: %0.1d", get_output_per_second());
       pgraphicsParam->selectFont(m_pfontDrawStatus);
       pgraphicsParam->text_out(10, m_yDrawStatus, str);
       m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
@@ -269,7 +269,7 @@ pacmedirectory->system() / "obs.png");
       if (m_prender != nullptr)
       {
          string str;
-         str.format("Hello Browser FPS: %0.1d", m_prender->get_fps());
+         str.format("Hello Browser FPS: %0.1d", m_prender->get_per_second());
          pgraphicsParam->selectFont(m_pfontDrawStatus);
          pgraphicsParam->text_out(10, m_yDrawStatus, str);
          m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;

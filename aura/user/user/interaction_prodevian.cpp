@@ -201,7 +201,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      set_fps(60);
+      set_per_second(60);
 
       string strType;
 
@@ -970,7 +970,7 @@ namespace user
 
       }
 
-      m_pimpl->m_dOutputFps = (double)(m_timeaFrame.get_size());
+      m_pimpl->m_frequencyOutputFramesPerSecond = (double)(m_timeaFrame.get_size());
 
       return true;
 
@@ -1442,28 +1442,28 @@ namespace user
    }
 
 
-   void prodevian::set_prodevian_fps(double dProdevianFps)
+   void prodevian::set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
-      m_timePostRedrawProdevian = 1.0_s / dProdevianFps;
+      m_timePostRedrawProdevian = 1.0 / frequencyProdevianFramesPerSecond;
 
    }
 
 
-   void prodevian::set_nominal_fps(double dNominalFps)
+   void prodevian::set_nominal_per_second(::frequency frequencyNominalFramesPerSecond)
    {
 
-      m_timePostRedrawNominal = 1._s / dNominalFps;
+      m_timePostRedrawNominal = 1.0 / frequencyNominalFramesPerSecond;
 
    }
 
 
-   void prodevian::set_fps(double dFps)
+   void prodevian::set_per_second(::frequency frequencyFramesPerSecond)
    {
 
-      set_prodevian_fps(dFps);
+      set_prodevian_per_second(frequencyFramesPerSecond);
 
-      set_nominal_fps(dFps);
+      set_nominal_per_second(frequencyFramesPerSecond);
 
    }
 

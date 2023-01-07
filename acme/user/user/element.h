@@ -108,9 +108,9 @@ namespace user
       virtual void create_message_queue(const ::string & lpszName);
 
 
-      //virtual void set_config_fps(double dConfigFps);
-      //virtual double get_config_fps();
-      //virtual double get_output_fps();
+      //virtual void set_config_per_second(::frequency dConfigFps);
+      //virtual ::frequency get_config_per_second();
+      //virtual ::frequency get_output_per_second();
 
 
       //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
 #include "alpha_source.h"
@@ -12493,7 +12493,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   double interaction::get_output_fps()
+   ::frequency interaction::get_output_per_second()
    {
 
       auto pinteraction = get_host_window();
@@ -12514,7 +12514,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      return pinteractionimpl->get_output_fps();
+      return pinteractionimpl->get_output_per_second();
 
    }
 

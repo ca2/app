@@ -1,4 +1,4 @@
-// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -66,6 +66,13 @@ public:
       
    }
 
+   template < primitive_floating FLOATING >
+   time(FLOATING fSeconds)
+   {
+
+      fset(fSeconds);
+
+   }
 
    template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
    constexpr time(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :

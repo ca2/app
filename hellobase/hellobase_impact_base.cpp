@@ -63,7 +63,7 @@ namespace hellobase
 
       ::payload v;
 
-      datastream()->get("cur_fps", v);
+      datastream()->get("cur_per_second", v);
 
       m_frequencyFramesPerSecond = v.get_double();
 auto m_timeRoll = ::time::now();

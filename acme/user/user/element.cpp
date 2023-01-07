@@ -2494,23 +2494,23 @@ namespace user
    }
 
 
-   //void element::set_config_fps(double dConfigFps)
+   //void element::set_config_per_second(::frequency dConfigFps)
    //{
 
-   //   //get_host_window()->m_pimpl->set_config_fps(dConfigFps);
+   //   //get_host_window()->m_pimpl->set_config_per_second(dConfigFps);
 
    //}
 
 
-   //double element::get_config_fps()
+   //::frequency element::get_config_per_second()
    //{
 
-   //   //return get_host_window()->m_pimpl->get_config_fps();
+   //   //return get_host_window()->m_pimpl->get_config_per_second();
 
    //}
 
 
-   //double element::get_output_fps()
+   //::frequency element::get_output_per_second()
    //{
 
    //   //auto pinteraction = get_host_window();
@@ -2531,7 +2531,7 @@ namespace user
 
    //   //}
 
-   //   //return pimpl->get_output_fps();
+   //   //return pimpl->get_output_per_second();
    //   return 0.0;
 
    //}

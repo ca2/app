@@ -180,7 +180,7 @@ namespace helloworld
 
          ::user::impact * pimpact = m_pdocMenu->get_impact(0);
 
-         m_prollfps = dynamic_cast <::calculator::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
+         m_prollfps = dynamic_cast <::calculator::plain_edit_impact *> (pimpact->get_child_by_id("roll_per_second"));
 
          m_pimpactLast->datastream()->get("cur_fps_text", str);
 
@@ -308,7 +308,7 @@ namespace helloworld
          if(ptopic->m_atom == ::id_after_change_text)
          {
 
-            if(m_prollfps != nullptr && ptopic->user_element_id() == "roll_fps" && !ptopic->m_context.is_source(::e_source_initialize)
+            if(m_prollfps != nullptr && ptopic->user_element_id() == "roll_per_second" && !ptopic->m_context.is_source(::e_source_initialize)
                   && !ptopic->m_context.is_source(::e_source_database))
             {
 
@@ -336,7 +336,7 @@ namespace helloworld
 
                         v = d;
 
-                        m_pimpactLast->datastream()->set("cur_fps",v);
+                        m_pimpactLast->datastream()->set("cur_per_second",v);
 
                      }
                      m_pimpactLast->m_frequencyFramesPerSecond = d;

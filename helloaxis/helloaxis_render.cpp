@@ -141,11 +141,11 @@ namespace helloaxis
 
 //      ::parallelization::set_priority(::e_priority_time_critical);
 //
-////      double dFps = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_frequencyFramesPerSecond;
+////      ::frequency frequencyFramesPerSecond = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_frequencyFramesPerSecond;
 //
-//      double dFps = 0.2;
+//      ::frequency frequencyFramesPerSecond = 0.2;
 //
-//      double dPeriod = 1000.0 / dFps;
+//      double dPeriod = 1000.0 / frequencyFramesPerSecond;
 //
 //      dPeriod = minimum(maximum(1.0, dPeriod), 1000.0);
 //

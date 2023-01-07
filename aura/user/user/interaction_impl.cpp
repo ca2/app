@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
@@ -130,15 +130,15 @@ namespace user
 
 #if defined(APPLE_IOS) || defined(ANDROID)
 
-      set_fps(12.0);
+      set_per_second(12.0);
 
 #elif defined(_UWP)
 
-      set_fps(60.0);
+      set_per_second(60.0);
 
 #else
 
-      set_fps(60.0);
+      set_per_second(60.0);
 
 #endif
 
@@ -4458,9 +4458,9 @@ namespace user
          if (::is_set(m_pprodevian))
          {
 
-            m_pprodevian->set_prodevian_fps(get_prodevian_fps());
+            m_pprodevian->set_prodevian_per_second(get_prodevian_per_second());
 
-            m_pprodevian->set_nominal_fps(get_nominal_fps());
+            m_pprodevian->set_nominal_per_second(get_nominal_per_second());
 
             pmessage->previous();
 
@@ -5056,10 +5056,10 @@ namespace user
 //}
 
 
-   void interaction_impl::set_prodevian_fps(double dProdevianFps)
+   void interaction_impl::set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond)
    {
 
-      m_dProdevianFps = dProdevianFps;
+      m_frequencyProdevianFramesPerSecond = frequencyProdevianFramesPerSecond;
 
       if (::is_set(m_pprodevian))
       {
@@ -5067,7 +5067,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_prodevian_fps(m_dProdevianFps);
+            m_pprodevian->set_prodevian_per_second(m_frequencyProdevianFramesPerSecond);
 
          }
 
@@ -5076,10 +5076,10 @@ namespace user
    }
 
 
-   void interaction_impl::set_nominal_fps(double dNominalFps)
+   void interaction_impl::set_nominal_per_second(::frequency frequencyNominalFramesPerSecond)
    {
 
-      m_dNominalFps = dNominalFps;
+      m_frequencyNominalFramesPerSecond = frequencyNominalFramesPerSecond;
 
       if (::is_set(m_pprodevian))
       {
@@ -5087,7 +5087,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_nominal_fps(m_dNominalFps);
+            m_pprodevian->set_nominal_per_second(m_frequencyNominalFramesPerSecond);
 
          }
 
@@ -5096,12 +5096,12 @@ namespace user
    }
 
 
-   void interaction_impl::set_fps(double dFps)
+   void interaction_impl::set_per_second(::frequency frequencyFramesPerSecond)
    {
 
-      m_dNominalFps = dFps;
+      m_frequencyNominalFramesPerSecond = frequencyFramesPerSecond;
 
-      m_dProdevianFps = dFps;
+      m_frequencyProdevianFramesPerSecond = frequencyFramesPerSecond;
 
       if (::is_set(m_pprodevian))
       {
@@ -5109,7 +5109,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_fps(dFps);
+            m_pprodevian->set_per_second(frequencyFramesPerSecond);
 
          }
 
@@ -5118,26 +5118,26 @@ namespace user
    }
 
 
-   double interaction_impl::get_prodevian_fps()
+   ::frequency interaction_impl::get_prodevian_frames_per_second()
    {
 
-      return m_dProdevianFps;
+      return m_frequencyProdevianFramesPerSecond;
 
    }
 
 
-   double interaction_impl::get_nominal_fps()
+   ::frequency interaction_impl::get_nominal_per_second()
    {
 
-      return m_dNominalFps;
+      return m_frequencyNominalFramesPerSecond;
 
    }
 
 
-   double interaction_impl::get_output_fps()
+   ::frequency interaction_impl::get_output_per_second()
    {
 
-      return m_dOutputFps;
+      return m_frequencyOutputFramesPerSecond;
 
    }
 

@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/nanosecond_timer.h"
+#include "acme/primitive/time/frequency.h"
 #include "apex/parallelization/thread.h"
 
 
@@ -105,12 +106,12 @@ namespace user
       void defer_prodevian_step();
 
       // Fps for when prodevian is active or there is any active prodevian object
-      void set_prodevian_fps(double dProdevianFps);
+      void set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond);
 
       // Fps for when prodevian is not active and there is no active prodevian object
-      void set_nominal_fps(double dNominalFps);
+      void set_nominal_per_second(::frequency frequencyNominalFramesPerSecond);
 
-      void set_fps(double dFps);
+      void set_per_second(::frequency frequencyFramesPerSecond);
 
       //virtual bool pump_message() override;
 

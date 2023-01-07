@@ -9,6 +9,7 @@
 #include "acme/primitive/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
+#include "acme/primitive/time/frequency.h"
 #include "acme/user/user/ewindowflag.h"
 #include "apex/database/key.h"
 #include "apex/message/command.h"
@@ -838,7 +839,7 @@ namespace user
 
       virtual bool is_place_holder() override;
 
-      virtual double get_output_fps();
+      virtual ::frequency get_output_per_second();
 
 
       virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);

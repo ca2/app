@@ -202,7 +202,7 @@ namespace browser
    }
 
 
-   double render::get_fps()
+   double render::get_per_second()
    {
 
       try
@@ -217,9 +217,9 @@ namespace browser
 
          }
 
-         double dFps = pimpact->get_config_fps();
+         ::frequency frequencyFramesPerSecond = pimpact->get_config_per_second();
 
-         return dFps / 4.0;
+         return frequencyFramesPerSecond / 4.0;
 
       }
       catch(...)
@@ -241,7 +241,7 @@ namespace browser
 
       u64 uNow = get_nanos();
 
-      u64 uFrameNanos = (u64)(1000000000LL / get_fps());
+      u64 uFrameNanos = (u64)(1000000000LL / get_per_second());
 
       uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
@@ -270,7 +270,7 @@ namespace browser
 
             uNow = get_nanos();
 
-            uFrameNanos = (u64)(1000000000ULL / get_fps());
+            uFrameNanos = (u64)(1000000000ULL / get_per_second());
 
             uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 

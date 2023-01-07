@@ -109,9 +109,9 @@ namespace user
       pointer_array < ::matter >                 m_matteraProdevian;
       string                                    m_strBitmapSource;
       ::pointer<::windowing::windowing>        m_pwindowing;
-      double                                    m_dProdevianFps;
-      double                                    m_dNominalFps;
-      double                                    m_dOutputFps;
+      ::frequency                                    m_frequencyProdevianFramesPerSecond;
+      ::frequency                                    m_frequencyNominalFramesPerSecond;
+      ::frequency                                    m_frequencyOutputFramesPerSecond;
       point_i32                                 m_pointMouseMove;
       ::size_i32                                m_sizeDrawn;
       ::size_i32                                m_sizeSetWindowSizeRequest;
@@ -169,12 +169,12 @@ namespace user
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_prodevian_fps(double dProdevianFps);
-      virtual void set_nominal_fps(double dNominalFps);
-      virtual void set_fps(double dFps);
-      virtual double get_prodevian_fps();
-      virtual double get_nominal_fps();
-      virtual double get_output_fps();
+      virtual void set_prodevian_per_second(::frequency frequencyProdevianFramesPerSecond);
+      virtual void set_nominal_per_second(::frequency frequencyNominalFramesPerSecond);
+      virtual void set_per_second(::frequency frequencyFramesPerSecond);
+      virtual double get_prodevian_frames_per_second();
+      virtual double get_nominal_per_second();
+      virtual double get_output_per_second();
 
       void user_common_construct();
 

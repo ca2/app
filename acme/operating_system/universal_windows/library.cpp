@@ -12,7 +12,7 @@ namespace acme
    void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
    {
 
-      return __node_library_open(path, strMessage);
+      return operating_system_library_open(path, strMessage);
 
    }
 
@@ -22,7 +22,7 @@ namespace acme
 
       void * plibrary = nullptr;
 
-      string strPath(pszPath);
+      string strPath(path);
 
       if (ansi_ends_ci(strPath, ".ilk"))
       {
@@ -102,7 +102,7 @@ namespace acme
          try
          {
 
-            wstring wstrPath(::dir_ca2_module() / strPath);
+            wstring wstrPath(acmedirectory()->module() / strPath);
 
             plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -120,7 +120,7 @@ namespace acme
          try
          {
 
-            wstring wstrPath(("\\\\?\\" + ::dir_ca2_module()) / strPath);
+            wstring wstrPath(("\\\\?\\" + acmedirectory()->module())) / strPath);
 
             plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -132,41 +132,41 @@ namespace acme
 
       }
 
-      if (plibrary == nullptr)
-      {
+      //if (plibrary == nullptr)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            wstring wstr(::dir_base_module() / strPath);
+      //      wstring wstr(acmedirectory()->module() / strPath);
 
-            plibrary = ::LoadPackagedLibrary(wstr, 0);
+      //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      if (plibrary == nullptr)
-      {
+      //if (plibrary == nullptr)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            wstring wstr(("\\\\?\\" + ::dir_base_module()) / strPath);
+      //      wstring wstr(("\\\\?\\" + acmedirectory()->module()) / strPath);
 
-            plibrary = ::LoadPackagedLibrary(wstr, 0);
+      //      plibrary = ::LoadPackagedLibrary(wstr, 0);
 
-         }
-         catch (...)
-         {
+      //   }
+      //   catch (...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
       return plibrary;
 

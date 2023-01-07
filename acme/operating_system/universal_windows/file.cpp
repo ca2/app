@@ -99,7 +99,9 @@
 
 int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
-   return file_path_is_equal(psz1, psz2);
+
+   return file_path_is_equal(scopedstr1, scopedstr2);
+
    //   const i32 iBufSize = MAX_PATH * 8;
    //   wstring pwsz1 = utf8_to_unicode(psz1);
    //   wstring pwsz2 = utf8_to_unicode(psz2);

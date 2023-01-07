@@ -2359,7 +2359,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    bOk = false;
 
-   path = "itdoesntexist." + ::as_string(get_integral_millisecond());
+   path = "itdoesntexist." + ::as_string(::integral_millisecond());
 
 ret:
 

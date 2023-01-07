@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -48,7 +48,7 @@ namespace hotplugin
 
       int w =300;
 
-      int v = (int) (::get_integral_millisecond().m_i / 2);
+      int v = (int) (::integral_millisecond() / 2);
 
       int x = v % rectangleBar.width();
 

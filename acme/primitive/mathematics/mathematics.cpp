@@ -621,7 +621,7 @@ namespace apex
       i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::get_integral_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::integral_millisecond() / 100) % 5000) % 1000;
 
       }
 

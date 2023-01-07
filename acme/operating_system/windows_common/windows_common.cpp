@@ -21,7 +21,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME ::i64 get_integral_nanosecond()
+CLASS_DECL_ACME ::i64 integral_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();

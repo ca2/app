@@ -13,7 +13,7 @@ public:
 
    constexpr frequency(enum_zero ezero = e_zero) :FREQUENCY{} {}
    constexpr frequency(double dHertz) : FREQUENCY(dHertz) {}
-   constexpr frequency(const ::FREQUENCY& frequency) :FREQUENCY(frequency) {}
+   constexpr frequency(const ::FREQUENCY & frequency) : FREQUENCY(frequency) {}
 
    template < primitive_floating FLOATING >
    constexpr frequency operator *(FLOATING d) const
@@ -40,6 +40,16 @@ public:
       return *this;
 
    }
+
+
+   constexpr bool is_null() const { return m_dHertz == 0.0; }
+   constexpr bool is_set() const { return m_dHertz != 0.0; }
+   constexpr bool operator !() const { return this->is_null(); }
+   //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
+   typedef void (frequency:: * bool_type)() const;
+   constexpr void this_type_does_not_support_comparisons() const {}
+   constexpr operator bool_type() const { return this->is_set() ? &frequency::this_type_does_not_support_comparisons : 0; }
+   //https://www.artima.com/articles/the-safe-bool-idiom END
 
 
 };

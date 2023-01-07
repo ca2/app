@@ -316,7 +316,7 @@ namespace base
    void user::destroy()
    {
 
-      for (auto& style : m_mapUserStyle.values())
+      for (auto& style : m_mapUserStyle.payloads())
       {
 
          style.release();

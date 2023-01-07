@@ -7,6 +7,7 @@
 #include "acme/constant/id.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/primitive/data/listener.h"
+#include "acme/primitive/time/integral/generic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/image.h"
@@ -1598,7 +1599,9 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = m_pedit->m_timeFocusStart.integral_millisecond().on_off(m_timeCaretPeriod.integral_millisecond());
+            bCaretOn = ::generic::time::on_off(
+               m_pedit->m_timeFocusStart.integral_millisecond(),
+               m_timeCaretPeriod.integral_millisecond());
 
          }
 

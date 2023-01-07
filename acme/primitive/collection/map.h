@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "set.h"
@@ -331,8 +331,13 @@ public:
    //void clear();
    //void Empty();
 
-   inline auto keys() { return ::range<key_iterator>(*(const_key_iterator *)&this->begin(), *(const_key_iterator *)&this->end()); }
-   inline auto values() { return ::range<value_iterator>(*(const_value_iterator *)&this->begin(), *(const_value_iterator *)&this->end()); }
+   
+   inline auto items() { return ::range<key_iterator>(*(key_iterator *)&this->begin(), *(key_iterator *)&this->end()); }
+   inline auto payloads() { return ::range<value_iterator>(*(value_iterator *)&this->begin(), *(value_iterator *)&this->end()); }
+   inline auto items() const { return ::range<const_key_iterator>(*(key_iterator *)&this->begin(), *(key_iterator *)&this->end()); }
+   inline auto payloads() const { return ::range<const_value_iterator>(*(value_iterator *)&this->begin(), *(value_iterator *)&this->end()); }
+
+
    //inline auto keys() const { return ::range<const_key_iterator>(*(const_key_iterator*)&this->begin(), *(const_key_iterator*)&this->end()); }
    //inline auto values() const { return ::range<const_value_iterator>(*(const_value_iterator*)&this->begin(), *(const_value_iterator*)&this->end()); }
 

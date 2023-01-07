@@ -42,13 +42,13 @@ void channel::erase_handler(::particle * pparticle)
 
    critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
-   auto values = m_dispatchermap.values();
+   auto payloads = m_dispatchermap.payloads();
 
-   auto begin = values.begin();
+   auto begin = payloads.begin();
 
-   auto end = values.end();
+   auto end = payloads.end();
 
-   for (auto & dispatchera : values)
+   for (auto & dispatchera : payloads)
    {
 
       if (dispatchera.is_empty())

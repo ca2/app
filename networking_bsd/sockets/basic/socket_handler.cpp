@@ -508,14 +508,14 @@ namespace sockets_bsd
 
       socket_pointer psocket = pbasesocket;
 
-      if (::contains_payload(m_socketmap, psocket))
+      if (::generic::map::contains_payload(m_socketmap, psocket))
       {
 
          return true;
 
       }
 
-      if (::contains_payload(m_socketmapAdd, psocket))
+      if (::generic::map::contains_payload(m_socketmapAdd, psocket))
       {
 
          return true;

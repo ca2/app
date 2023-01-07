@@ -364,7 +364,7 @@ void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 
    //auto & begin = values.begin();
 
-   for (auto & psignal : m_psignalmap->values())
+   for (auto & psignal : m_psignalmap->payloads())
    {
 
       psignal->m_signalhandlercontext.erase_item(signalhandler);

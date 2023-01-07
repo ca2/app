@@ -1407,7 +1407,7 @@
     <ClInclude Include="primitive\time\floating\_.h" />
     <ClInclude Include="primitive\time\frequency.h" />
     <ClInclude Include="primitive\time\integral\day.h" />
-    <ClInclude Include="primitive\time\integral\operators.h" />
+    <ClInclude Include="primitive\time\integral\operator.h" />
     <ClInclude Include="primitive\time\integral\time.h" />
     <ClInclude Include="primitive\time\integral\hour.h" />
     <ClInclude Include="primitive\time\integral\microsecond.h" />

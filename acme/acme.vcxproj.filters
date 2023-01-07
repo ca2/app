@@ -2918,7 +2918,7 @@
     <ClInclude Include="primitive\_.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\integral\operators.h">
+    <ClInclude Include="primitive\time\integral\operator.h">
       <Filter>Header Files\primitive\time\integral</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_generic_map.h">

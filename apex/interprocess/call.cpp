@@ -121,7 +121,7 @@ namespace interprocess
 
       auto psynca = __new(synchronization_array);
 
-      for (auto & ptask : this->m_mapTask.values())
+      for (auto & ptask : this->m_mapTask.payloads())
       {
 
          psynca->add(ptask->m_pevReady);

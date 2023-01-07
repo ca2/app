@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
@@ -2292,7 +2292,7 @@ namespace http
 
          auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
 
-         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second().m_i;
+         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second();
 
          iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
 

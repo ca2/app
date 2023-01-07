@@ -30,7 +30,7 @@ namespace windows
    constexpr DWORD wait(const class time& time)
    {
 
-      auto i = time.integral_millisecond().m_i;
+      auto i = time.integral_millisecond();
 
       return i > ((decltype(i))INFINITE) ? INFINITE : (DWORD) i;
 

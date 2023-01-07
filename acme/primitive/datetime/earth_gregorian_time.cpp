@@ -117,7 +117,7 @@ namespace earth
       }
 
 
-      inline void time::set(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)
+      void time::set(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)
       {
 
          struct tm tm;
@@ -125,6 +125,14 @@ namespace earth
          time.tm_struct(&tm, timeshift);
 
          set(&tm, iNanosecond);
+
+      }
+
+
+      void time::set(const ::earth::time & time, const time_shift & timeshift)
+      {
+
+         set(time, 0, timeshift);
 
       }
 

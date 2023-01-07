@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "dir_context.h"
 #include "file_context.h"
 #include "apex/compress/not_dir.h"
@@ -2359,7 +2359,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
    bOk = false;
 
-   path = "itdoesntexist." + ::as_string(get_integral_millisecond().m_i);
+   path = "itdoesntexist." + ::as_string(get_integral_millisecond());
 
 ret:
 

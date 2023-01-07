@@ -298,7 +298,7 @@ CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const ::e
 
    ::file_time file_time;
 
-   time_to_file_time(&file_time.m_filetime, &time.m_i);
+   time_to_file_time(&file_time.m_filetime, &time.m_time);
 
    return set_modified_file_time(path, file_time);
 

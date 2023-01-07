@@ -20,7 +20,7 @@
 //inline timeclass ::time(const ::floating_day & floating) : time((const class ::time &)floating) {}
 
 
-inline class time& time::operator = (const class time & time)
+constexpr class time& time::operator = (const class time & time)
 {
 
    if(this != &time)

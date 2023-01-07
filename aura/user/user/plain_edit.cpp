@@ -193,10 +193,7 @@ namespace user
    bool plain_edit::is_caret_on() const
    {
 
-      return ::generic::time::on_off(
-         m_timeFocusStart.integral_millisecond(),
-         m_timeCaretPeriod.integral_millisecond()
-      );
+      return m_timeFocusStart.on_off(m_timeCaretPeriod);
 
    }
 

@@ -404,7 +404,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto dRate = ::generic::time::period_rate(m_timeAnimationStart.integral_millisecond(), m_timeAnimationPeriod.integral_millisecond());
+      auto dRate = m_timeAnimationStart.period_rate(m_timeAnimationPeriod);
 
       if (dRate < 1.0)
       {

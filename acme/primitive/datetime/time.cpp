@@ -63,7 +63,7 @@ namespace earth
       //atm.tm_isdst = nDST;
 
 
-      m_i = make_utc_time(&atm) - (time_t) timeshift.m_d;
+      m_time = make_utc_time(&atm) - (time_t) timeshift.m_d;
 
 
       /*
@@ -75,7 +75,7 @@ namespace earth
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_time != -1);   */    // indicates an illegal input time
-      if(m_i == -1)
+      if(m_time == -1)
       {
 
          throw_exception(error_bad_argument);
@@ -117,17 +117,17 @@ namespace earth
 
 #ifdef WINDOWS
 
-      m_i = _mktime64(&atm);
+      m_time = _mktime64(&atm);
 
 #else
 
-      m_i = mktime(&atm);
+      m_time = mktime(&atm);
 
 #endif
 
-      ASSUME(m_i != -1);       // indicates an illegal input time
+      ASSUME(m_time != -1);       // indicates an illegal input time
 
-      if (m_i == -1)
+      if (m_time == -1)
       {
 
          throw ::exception(error_bad_argument);
@@ -145,85 +145,7 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_time((time_t *)&m_i, &file_time.m_filetime);
-
-   }
-
-
-   ::earth::time & time::operator=(const class time & time) noexcept
-   {
-
-      m_i = time.m_i;
-
-      return *this;
-
-   }
-
-   
-   ::earth::time & time::operator+=( time_span span ) noexcept
-   {
-
-      m_i += span.GetTimeSpan();
-
-      return *this;
-
-   }
-
-
-   ::earth::time & time::operator-=( time_span span ) noexcept
-   {
-
-      m_i -= span.GetTimeSpan();
-
-      return *this;
-      
-   }
-
-
-   ::earth::time & time::operator+=( date_span span )
-   {
-
-      __UNREFERENCED_PARAMETER(span);
-
-      throw ::not_implemented();
-
-      return *this;
-
-   }
-
-
-   ::earth::time& time::operator-=( date_span span )
-   {
-
-       __UNREFERENCED_PARAMETER(span);
-
-      throw ::not_implemented();
-
-      return *this;
-
-   }
-
-
-   ::earth::time time::operator-( date_span span ) const
-   {
-
-       __UNREFERENCED_PARAMETER(span);
-
-      throw ::not_implemented();
-
-      return 0;
-
-   }
-
-
-   ::earth::time time::operator+( date_span span ) const
-   {
-
-       __UNREFERENCED_PARAMETER(span);
-
-      throw ::not_implemented();
-
-      return 0;
+      file_time_to_time((time_t *)&m_time, &file_time.m_filetime);
 
    }
 
@@ -233,7 +155,7 @@ namespace earth
 
       time_t timeOffset = (time_t) timeshift.m_d;
 
-      time_t time = m_i + timeOffset;
+      time_t time = m_time + timeOffset;
 
       if (ptm != nullptr)
       {
@@ -310,7 +232,7 @@ namespace earth
 //
 //         struct tm tmTemp;
 //
-//         errno_t err = _localtime64_s(&tmTemp, &m_i);
+//         errno_t err = _localtime64_s(&tmTemp, &m_time);
 //
 //         if (err != 0)
 //         {
@@ -323,7 +245,7 @@ namespace earth
 //
 //#else
 //
-//         return localtime_r((time_t *)&m_i, ptm);
+//         return localtime_r((time_t *)&m_time, ptm);
 //
 //#endif
 //
@@ -341,7 +263,7 @@ namespace earth
    time_t time::get_time() const noexcept
    {
 
-       return m_i;
+       return m_time;
 
    }
 
@@ -567,7 +489,7 @@ namespace earth
    time_span time::abs_diff(const class time & time) const
    {
 
-      return integral_second(abs(time.m_i - m_i));
+      return abs(time.m_time - m_time);
 
    }
 
@@ -623,10 +545,10 @@ namespace earth
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
    #if OSBIT == 32
-      const time_t timet = (const time_t) time.m_i;
+      const time_t timet = (const time_t) time.m_time;
       struct tm * ptmTemp = localtime(&timet);
       #else
-      struct tm * ptmTemp = localtime(&time.m_i);
+      struct tm * ptmTemp = localtime(&time.m_time);
       #endif
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat.c_str(), ptmTemp))
       {
@@ -645,7 +567,7 @@ namespace earth
 
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
 
-      struct tm * ptmTemp = localtime((time_t *)&time.m_i);
+      struct tm * ptmTemp = localtime((time_t *)&time.m_time);
 
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
@@ -716,7 +638,7 @@ namespace earth
 
    //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   //   struct tm * ptmTemp = gmtime((time_t *)&time.m_i);
+   //   struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -740,7 +662,7 @@ namespace earth
 
    //#else
 
-   //   struct tm * ptmTemp = _gmtime64(&time.m_i);
+   //   struct tm * ptmTemp = _gmtime64(&time.m_time);
 
    //   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    //   {
@@ -799,7 +721,7 @@ namespace earth
 ////stream & operator <<(stream & os, ::earth::time & time)
 ////{
 ////
-////   os.write((i64) time.m_i);
+////   os.write((i64) time.m_time);
 ////
 ////   return os;
 ////

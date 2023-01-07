@@ -73,7 +73,7 @@ inline class payload & payload::operator = (::const_ansi_range ansirange)
 }
 
 
-inline class payload& payload::operator = (const inline_number_string & inlinenumberstring)
+inline class payload & payload::operator = (const inline_number_string & inlinenumberstring)
 {
 
    set_string(inlinenumberstring);
@@ -186,11 +186,11 @@ inline class payload& payload::operator = (const inline_number_string & inlinenu
 
 
 class CLASS_DECL_ACME payload_object :
-virtual public particle
+   virtual public particle
 {
 public:
 
-payload m_payload;
+   payload m_payload;
 
 };
 
@@ -223,56 +223,56 @@ inline payload __visible(bool bVisible) { return __visible(::e_type_new, bVisibl
 template < primitive_integral INTEGRAL >
 inline ::payload payload::operator - (INTEGRAL i) const
 {
-return ((INTEGRAL)*this) - i;
+   return ((INTEGRAL)*this) - i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload payload::operator - (FLOATING f) const
 {
-return ((FLOATING)*this) - f;
+   return ((FLOATING)*this) - f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload payload::operator + (INTEGRAL i) const
 {
-return ((INTEGRAL)*this) + i;
+   return ((INTEGRAL)*this) + i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload payload::operator + (FLOATING f) const
 {
-return ((FLOATING)*this) + f;
+   return ((FLOATING)*this) + f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload payload::operator / (INTEGRAL i) const
 {
-return ((INTEGRAL)*this) / i;
+   return ((INTEGRAL)*this) / i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload payload::operator / (FLOATING f) const
 {
-return ((FLOATING)*this) / f;
+   return ((FLOATING)*this) / f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload payload::operator * (INTEGRAL i) const
 {
-return ((INTEGRAL)*this) * i;
+   return ((INTEGRAL)*this) * i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload payload::operator * (FLOATING f) const
 {
-return ((FLOATING)*this) * f;
+   return ((FLOATING)*this) * f;
 }
 
 
@@ -282,56 +282,56 @@ return ((FLOATING)*this) * f;
 template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
 {
-return i - ((INTEGRAL)payload_cast(payload));
+   return i - ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator - (FLOATING i, const PAYLOAD & payload)
 {
-return i - ((FLOATING)payload_cast(payload));
+   return i - ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator + (INTEGRAL i, const PAYLOAD & payload)
 {
-return i +((INTEGRAL)payload_cast(payload));
+   return i + ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator + (FLOATING i, const PAYLOAD & payload)
 {
-return i + ((FLOATING)payload_cast(payload));
+   return i + ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator / (INTEGRAL i, const PAYLOAD & payload)
 {
-return i / ((INTEGRAL)payload_cast(payload));
+   return i / ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator / (FLOATING i, const PAYLOAD & payload)
 {
-return i / ((FLOATING)payload_cast(payload));
+   return i / ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, primitive_payload PAYLOAD >
 inline ::payload operator * (INTEGRAL i, const PAYLOAD & payload)
 {
-return i * ((INTEGRAL)payload_cast(payload));
+   return i * ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, primitive_payload PAYLOAD >
 inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 {
-return i * ((FLOATING)payload_cast(payload));
+   return i * ((FLOATING)payload_cast(payload));
 }
 
 
@@ -339,56 +339,56 @@ return i * ((FLOATING)payload_cast(payload));
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator -= (INTEGRAL i)
 {
-return *this = ((INTEGRAL)payload_cast(*this)) - i;
+   return *this = ((INTEGRAL)payload_cast(*this)) - i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator -= (FLOATING f)
 {
-return *this = ((FLOATING)payload_cast(*this)) - f;
+   return *this = ((FLOATING)payload_cast(*this)) - f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator += (INTEGRAL i)
 {
-return *this = ((INTEGRAL)(payload_cast(*this))) + i;
+   return *this = ((INTEGRAL)(payload_cast(*this))) + i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator += (FLOATING f)
 {
-return *this = ((FLOATING) payload_cast(*this)) + f;
+   return *this = ((FLOATING)payload_cast(*this)) + f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator /= (INTEGRAL i)
 {
-return *this = ((INTEGRAL)payload_cast(*this)) / i;
+   return *this = ((INTEGRAL)payload_cast(*this)) / i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator /= (FLOATING f)
 {
-return *this = ((FLOATING)payload_cast(*this)) / f;
+   return *this = ((FLOATING)payload_cast(*this)) / f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator *= (INTEGRAL i)
 {
-return *this = ((INTEGRAL)payload_cast(*this)) * i;
+   return *this = ((INTEGRAL)payload_cast(*this)) * i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator *= (FLOATING f)
 {
-return *this = ((FLOATING)payload_cast(*this)) * f;
+   return *this = ((FLOATING)payload_cast(*this)) * f;
 }
 
 
@@ -445,14 +445,14 @@ inline ::payload_reference __reference(payload & payload)
 CLASS_DECL_ACME::string as_string(const ::payload & payload);
 
 
-inline payload & copy(payload & payload, const integral_second & integralsecond)
+inline payload & copy(payload & payload, const class time & time)
 {
 
-payload.set_type(e_type_integral_second);
+   payload.set_type(e_type_time);
 
-payload.m_integralsecond = integralsecond;
+   payload.m_time = time;
 
-return payload;
+   return payload;
 
 }
 
@@ -654,24 +654,24 @@ namespace file
 {
 
 
-    // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
-    // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-    //inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
-    //inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
-    //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
-    //inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
-    //inline path path::operator + (const ::atom & atom) const { return operator + (::string(atom)); }
-    //inline path path::operator / (const ::atom & atom) const { return operator /(::file::path(atom)); }
-    //inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
-    //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
-    inline path path::folder() const { return { ::file_path_folder(c_str()), m_epath }; }
-    inline path path::sibling(const path & path) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
-    inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(scopedstr.begin()), m_epath }; }
-    inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &) str); }
-    inline ::scoped_string path::all_extensions() const { return (*this)(this->rear_find_index(separator()) + 1).find_skip_or_end('.'); }
-    inline ::scoped_string path::final_extension() const { return file_path_final_extension(c_str()); }
-    //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
-    //inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
+   // inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
+   // inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+   //inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
+   //inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
+   //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+   //inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
+   //inline path path::operator + (const ::atom & atom) const { return operator + (::string(atom)); }
+   //inline path path::operator / (const ::atom & atom) const { return operator /(::file::path(atom)); }
+   //inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+   //inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+   inline path path::folder() const { return { ::file_path_folder(c_str()), m_epath }; }
+   inline path path::sibling(const path & path) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(path.c_str()), m_epath }; }
+   inline path path::sibling(const ::scoped_string & scopedstr) const { return { ::file_path_folder(c_str()) + ::string(separator()) + ::sz::trim_left_path_sep(scopedstr.begin()), m_epath }; }
+   inline path path::sibling(const ::ansi_string & str) const { return this->sibling((const ::scoped_string &)str); }
+   inline ::scoped_string path::all_extensions() const { return (*this)(this->rear_find_index(separator()) + 1).find_skip_or_end('.'); }
+   inline ::scoped_string path::final_extension() const { return file_path_final_extension(c_str()); }
+   //inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+   //inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
 
 
 } // namespace file
@@ -786,7 +786,7 @@ inline payload & payload::operator /=(const ::payload & payload)
 
 
 template < typename CHAR_TYPE >
-inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload& payload)
+inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload & payload)
 {
 
    string = payload.get_string();
@@ -797,7 +797,7 @@ inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, 
 
 
 template < primitive_integral INTEGRAL >
-inline void copy(INTEGRAL& integral, const ::payload& payload)
+inline void copy(INTEGRAL & integral, const ::payload & payload)
 {
 
    integral = (INTEGRAL)payload.as_i64();
@@ -805,7 +805,7 @@ inline void copy(INTEGRAL& integral, const ::payload& payload)
 }
 
 
-inline void copy(f32& f, const ::payload& payload)
+inline void copy(f32 & f, const ::payload & payload)
 {
 
    f = payload.as_f32();
@@ -813,7 +813,7 @@ inline void copy(f32& f, const ::payload& payload)
 }
 
 
-inline void copy(::f64& f, const ::payload & payload)
+inline void copy(::f64 & f, const ::payload & payload)
 {
 
    f = payload.as_f64();
@@ -822,10 +822,10 @@ inline void copy(::f64& f, const ::payload & payload)
 
 
 template < primitive_number NUMBER >
-inline void copy(::payload & payload, const NUMBER& number)
+inline void copy(::payload & payload, const NUMBER & number)
 {
 
-payload = number;
+   payload = number;
 
 }
 
@@ -834,17 +834,17 @@ template < typename CHAR_TYPE >
 inline ::payload & copy(::payload & payload, const ::string_base < CHAR_TYPE > & string)
 {
 
-payload = string;
+   payload = string;
 
-return payload;
+   return payload;
 
 }
 
 
-inline void copy(::payload & payload1, const ::payload& payload2)
+inline void copy(::payload & payload1, const ::payload & payload2)
 {
 
-payload1 = payload2;
+   payload1 = payload2;
 
 }
 
@@ -920,7 +920,7 @@ payload1 = payload2;
 
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-        string(payload.get_string())
+   string(payload.get_string())
 {
 
 
@@ -971,11 +971,11 @@ namespace file
 {
 
 
-    inline path::path(const ::payload & payload) :
-            path(payload.as_file_path())
-    {
+   inline path::path(const ::payload & payload) :
+      path(payload.as_file_path())
+   {
 
-    }
+   }
 
 
 } // namespace file

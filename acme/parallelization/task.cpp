@@ -1716,7 +1716,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait, ::pa
 
    }
 
-   auto iTenths = (::i32) (timeWait.integral_millisecond().m_i / 100);
+   auto iTenths = (::i32) (timeWait.integral_millisecond() / 100);
 
    try
    {

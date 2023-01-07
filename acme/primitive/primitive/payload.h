@@ -15,7 +15,7 @@
 #include "acme/primitive/string/sz.h"
 
 
-inline payload & copy(payload & payload, const integral_second & integralsecond);
+inline payload & copy(payload & payload, const class time & time);
 
 
 
@@ -86,34 +86,34 @@ public:
       file_time_t                            m_filetime;
       atom *                                 m_patom;
       ::property *                           m_pproperty;
-      integral_nanosecond                    m_integralnanosecond;
-      integral_nanosecond *                  m_pintegralnanosecond;
-      integral_microsecond                   m_integralmicrosecond;
-      integral_microsecond *                 m_pintegralmicrosecond;
-      integral_millisecond                   m_integralmillisecond;
-      integral_millisecond *                 m_pintegralmillisecond;
-      integral_second                        m_integralsecond;
-      integral_second *                      m_pintegralsecond;
-      integral_minute                        m_integralminute;
-      integral_minute *                      m_pintegralminute;
-      integral_hour                          m_integralhour;
-      integral_hour *                        m_pintegralhour;
-      integral_day                           m_integralday;
-      integral_day *                         m_pintegralday;
-      floating_nanosecond                    m_floatingnanosecond;
-      floating_nanosecond *                  m_pfloatingnanosecond;
-      floating_microsecond                   m_floatingmicrosecond;
-      floating_microsecond *                 m_pfloatingmicrosecond;
-      floating_millisecond                   m_floatingmillisecond;
-      floating_millisecond *                 m_pfloatingmillisecond;
-      floating_second                        m_floatingsecond;
-      floating_second *                      m_pfloatingsecond;
-      floating_minute                        m_floatingminute;
-      floating_minute *                      m_pfloatingminute;
-      floating_hour                          m_floatinghour;
-      floating_hour *                        m_pfloatinghour;
-      floating_day                           m_floatingday;
-      floating_day *                         m_pfloatingday;
+      //integral_nanosecond                    m_integralnanosecond;
+      //integral_nanosecond *                  m_pintegralnanosecond;
+      //integral_microsecond                   m_integralmicrosecond;
+      //integral_microsecond *                 m_pintegralmicrosecond;
+      //integral_millisecond                   m_integralmillisecond;
+      //integral_millisecond *                 m_pintegralmillisecond;
+      //integral_second                        m_integralsecond;
+      //integral_second *                      m_pintegralsecond;
+      //integral_minute                        m_integralminute;
+      //integral_minute *                      m_pintegralminute;
+      //integral_hour                          m_integralhour;
+      //integral_hour *                        m_pintegralhour;
+      //integral_day                           m_integralday;
+      //integral_day *                         m_pintegralday;
+      //floating_nanosecond                    m_floatingnanosecond;
+      //floating_nanosecond *                  m_pfloatingnanosecond;
+      //floating_microsecond                   m_floatingmicrosecond;
+      //floating_microsecond *                 m_pfloatingmicrosecond;
+      //floating_millisecond                   m_floatingmillisecond;
+      //floating_millisecond *                 m_pfloatingmillisecond;
+      //floating_second                        m_floatingsecond;
+      //floating_second *                      m_pfloatingsecond;
+      //floating_minute                        m_floatingminute;
+      //floating_minute *                      m_pfloatingminute;
+      //floating_hour                          m_floatinghour;
+      //floating_hour *                        m_pfloatinghour;
+      //floating_day                           m_floatingday;
+      //floating_day *                         m_pfloatingday;
       class time                             m_time;
       class time *                           m_ptime;
       ::e_status                             m_estatus;

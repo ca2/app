@@ -497,7 +497,7 @@ payload::payload(const ::earth::time & time)
    
    m_etype = e_type_time;
    
-   m_earthtime = time.m_i;
+   m_earthtime = time;
 
 }
 
@@ -7956,7 +7956,7 @@ bool payload::is_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty() || *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || *m_patom == "0";
    case e_type_earth_time:
-      return !m_earthtime.m_i;
+      return !m_earthtime.m_time;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -7989,62 +7989,62 @@ bool payload::is_false() const
    //   return m_pimage.ok();
 
    // enum
-   case e_type_integral_nanosecond:
-      return !m_integralnanosecond.m_i;
-   case e_type_pintegral_nanosecond:
-      return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
-      case e_type_integral_microsecond:
-         return !m_integralmicrosecond.m_i;
-      case e_type_pintegral_microsecond:
-         return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
-      case e_type_integral_millisecond:
-         return !m_integralmillisecond.m_i;
-      case e_type_pintegral_millisecond:
-         return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
-      case e_type_integral_second:
-         return !m_integralsecond.m_i;
-      case e_type_pintegral_second:
-         return !m_pintegralsecond || !m_pintegralsecond->m_i;
-      case e_type_integral_minute:
-         return !m_integralminute.m_i;
-      case e_type_pintegral_minute:
-         return !m_pintegralminute || !m_pintegralminute->m_i;
-      case e_type_integral_hour:
-         return !m_integralhour.m_i;
-      case e_type_pintegral_hour:
-         return !m_pintegralhour || !m_pintegralhour->m_i;
-      case e_type_integral_day:
-         return !m_integralday.m_i;
-      case e_type_pintegral_day:
-         return !m_pintegralday || !m_pintegralday->m_i;
-      case e_type_floating_nanosecond:
-         return !m_floatingnanosecond.m_d;
-      case e_type_pfloating_nanosecond:
-         return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
-         case e_type_floating_microsecond:
-            return !m_floatingmicrosecond.m_d;
-         case e_type_pfloating_microsecond:
-            return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
-         case e_type_floating_millisecond:
-            return !m_floatingmillisecond.m_d;
-         case e_type_pfloating_millisecond:
-            return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
-         case e_type_floating_second:
-            return !m_floatingsecond.m_d;
-         case e_type_pfloating_second:
-            return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
-         case e_type_floating_minute:
-            return !m_floatingminute.m_d;
-         case e_type_pfloating_minute:
-            return !m_pfloatingminute || !m_pfloatingminute->m_d;
-         case e_type_floating_hour:
-            return !m_floatinghour.m_d;
-         case e_type_pfloating_hour:
-            return !m_pfloatinghour || !m_pfloatinghour->m_d;
-         case e_type_floating_day:
-            return !m_floatingday.m_d;
-         case e_type_pfloating_day:
-            return !m_pfloatingday || !m_pfloatingday->m_d;
+   //case e_type_integral_nanosecond:
+   //   return !m_integralnanosecond.m_i;
+   //case e_type_pintegral_nanosecond:
+   //   return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+   //   case e_type_integral_microsecond:
+   //      return !m_integralmicrosecond.m_i;
+   //   case e_type_pintegral_microsecond:
+   //      return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+   //   case e_type_integral_millisecond:
+   //      return !m_integralmillisecond.m_i;
+   //   case e_type_pintegral_millisecond:
+   //      return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+   //   case e_type_integral_second:
+   //      return !m_integralsecond.m_i;
+   //   case e_type_pintegral_second:
+   //      return !m_pintegralsecond || !m_pintegralsecond->m_i;
+   //   case e_type_integral_minute:
+   //      return !m_integralminute.m_i;
+   //   case e_type_pintegral_minute:
+   //      return !m_pintegralminute || !m_pintegralminute->m_i;
+   //   case e_type_integral_hour:
+   //      return !m_integralhour.m_i;
+   //   case e_type_pintegral_hour:
+   //      return !m_pintegralhour || !m_pintegralhour->m_i;
+   //   case e_type_integral_day:
+   //      return !m_integralday.m_i;
+   //   case e_type_pintegral_day:
+   //      return !m_pintegralday || !m_pintegralday->m_i;
+   //   case e_type_floating_nanosecond:
+   //      return !m_floatingnanosecond.m_d;
+   //   case e_type_pfloating_nanosecond:
+   //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+   //      case e_type_floating_microsecond:
+   //         return !m_floatingmicrosecond.m_d;
+   //      case e_type_pfloating_microsecond:
+   //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+   //      case e_type_floating_millisecond:
+   //         return !m_floatingmillisecond.m_d;
+   //      case e_type_pfloating_millisecond:
+   //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+   //      case e_type_floating_second:
+   //         return !m_floatingsecond.m_d;
+   //      case e_type_pfloating_second:
+   //         return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+   //      case e_type_floating_minute:
+   //         return !m_floatingminute.m_d;
+   //      case e_type_pfloating_minute:
+   //         return !m_pfloatingminute || !m_pfloatingminute->m_d;
+   //      case e_type_floating_hour:
+   //         return !m_floatinghour.m_d;
+   //      case e_type_pfloating_hour:
+   //         return !m_pfloatinghour || !m_pfloatinghour->m_d;
+   //      case e_type_floating_day:
+   //         return !m_floatingday.m_d;
+   //      case e_type_pfloating_day:
+   //         return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
@@ -8143,7 +8143,7 @@ bool payload::is_set_false() const
    case e_type_patom:
       return !m_patom || m_patom->is_empty()|| *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || m_patom->case_insensitive_order("0") == 0;
    case e_type_earth_time:
-      return !m_earthtime.m_i;
+      return !m_earthtime.m_time;
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -8176,62 +8176,62 @@ bool payload::is_set_false() const
    //   return m_pimage.ok();
 
    // enum
-      case e_type_integral_nanosecond:
-         return !m_integralnanosecond.m_i;
-      case e_type_pintegral_nanosecond:
-         return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
-         case e_type_integral_microsecond:
-            return !m_integralmicrosecond.m_i;
-         case e_type_pintegral_microsecond:
-            return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
-         case e_type_integral_millisecond:
-            return !m_integralmillisecond.m_i;
-         case e_type_pintegral_millisecond:
-            return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
-         case e_type_integral_second:
-            return !m_integralsecond.m_i;
-         case e_type_pintegral_second:
-            return !m_pintegralsecond || !m_pintegralsecond->m_i;
-         case e_type_integral_minute:
-            return !m_integralminute.m_i;
-         case e_type_pintegral_minute:
-            return !m_pintegralminute || !m_pintegralminute->m_i;
-         case e_type_integral_hour:
-            return !m_integralhour.m_i;
-         case e_type_pintegral_hour:
-            return !m_pintegralhour || !m_pintegralhour->m_i;
-         case e_type_integral_day:
-            return !m_integralday.m_i;
-         case e_type_pintegral_day:
-            return !m_pintegralday || !m_pintegralday->m_i;
-         case e_type_floating_nanosecond:
-            return !m_floatingnanosecond.m_d;
-         case e_type_pfloating_nanosecond:
-            return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
-            case e_type_floating_microsecond:
-               return !m_floatingmicrosecond.m_d;
-            case e_type_pfloating_microsecond:
-               return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
-            case e_type_floating_millisecond:
-               return !m_floatingmillisecond.m_d;
-            case e_type_pfloating_millisecond:
-               return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
-            case e_type_floating_second:
-               return !m_floatingsecond.m_d;
-            case e_type_pfloating_second:
-               return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
-            case e_type_floating_minute:
-               return !m_floatingminute.m_d;
-            case e_type_pfloating_minute:
-               return !m_pfloatingminute || !m_pfloatingminute->m_d;
-            case e_type_floating_hour:
-               return !m_floatinghour.m_d;
-            case e_type_pfloating_hour:
-               return !m_pfloatinghour || !m_pfloatinghour->m_d;
-            case e_type_floating_day:
-               return !m_floatingday.m_d;
-            case e_type_pfloating_day:
-               return !m_pfloatingday || !m_pfloatingday->m_d;
+      //case e_type_integral_nanosecond:
+      //   return !m_integralnanosecond.m_i;
+      //case e_type_pintegral_nanosecond:
+      //   return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+      //   case e_type_integral_microsecond:
+      //      return !m_integralmicrosecond.m_i;
+      //   case e_type_pintegral_microsecond:
+      //      return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+      //   case e_type_integral_millisecond:
+      //      return !m_integralmillisecond.m_i;
+      //   case e_type_pintegral_millisecond:
+      //      return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+      //   case e_type_integral_second:
+      //      return !m_integralsecond.m_i;
+      //   case e_type_pintegral_second:
+      //      return !m_pintegralsecond || !m_pintegralsecond->m_i;
+      //   case e_type_integral_minute:
+      //      return !m_integralminute.m_i;
+      //   case e_type_pintegral_minute:
+      //      return !m_pintegralminute || !m_pintegralminute->m_i;
+      //   case e_type_integral_hour:
+      //      return !m_integralhour.m_i;
+      //   case e_type_pintegral_hour:
+      //      return !m_pintegralhour || !m_pintegralhour->m_i;
+      //   case e_type_integral_day:
+      //      return !m_integralday.m_i;
+      //   case e_type_pintegral_day:
+      //      return !m_pintegralday || !m_pintegralday->m_i;
+      //   case e_type_floating_nanosecond:
+      //      return !m_floatingnanosecond.m_d;
+      //   case e_type_pfloating_nanosecond:
+      //      return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+      //      case e_type_floating_microsecond:
+      //         return !m_floatingmicrosecond.m_d;
+      //      case e_type_pfloating_microsecond:
+      //         return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+      //      case e_type_floating_millisecond:
+      //         return !m_floatingmillisecond.m_d;
+      //      case e_type_pfloating_millisecond:
+      //         return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+      //      case e_type_floating_second:
+      //         return !m_floatingsecond.m_d;
+      //      case e_type_pfloating_second:
+      //         return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+      //      case e_type_floating_minute:
+      //         return !m_floatingminute.m_d;
+      //      case e_type_pfloating_minute:
+      //         return !m_pfloatingminute || !m_pfloatingminute->m_d;
+      //      case e_type_floating_hour:
+      //         return !m_floatinghour.m_d;
+      //      case e_type_pfloating_hour:
+      //         return !m_pfloatinghour || !m_pfloatinghour->m_d;
+      //      case e_type_floating_day:
+      //         return !m_floatingday.m_d;
+      //      case e_type_pfloating_day:
+      //         return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:

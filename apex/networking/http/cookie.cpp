@@ -311,7 +311,7 @@ namespace http
 
       auto time = ::time(nullptr);
 
-      time += timeExpire.integral_second().m_i;
+      time += timeExpire;
 
       struct tm tmstruct;
 

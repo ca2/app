@@ -97,10 +97,10 @@ inline time_t make_utc_time(struct tm const *t)
 }
 
 
-class second;
-class time;
-class microsecond;
-class nanosecond;
+//class second;
+//class time;
+//class microsecond;
+//class nanosecond;
 class time;
 
 

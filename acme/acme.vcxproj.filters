@@ -2510,58 +2510,10 @@
     <ClInclude Include="primitive\time\floating\_.h">
       <Filter>Header Files\primitive\time\floating</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\time\floating\day.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\time.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\hour.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\microsecond.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\millisecond.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\minute.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\nanosecond.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\floating\second.h">
-      <Filter>Header Files\primitive\time\floating</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\time\integral\_.h">
       <Filter>Header Files\primitive\time\integral</Filter>
     </ClInclude>
     <ClInclude Include="primitive\time\integral\_impl.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\day.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\time.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\hour.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\microsecond.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\millisecond.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\minute.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\nanosecond.h">
-      <Filter>Header Files\primitive\time\integral</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\time\integral\second.h">
       <Filter>Header Files\primitive\time\integral</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\unique_array.h">

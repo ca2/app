@@ -208,7 +208,7 @@ namespace datetime
       
       ::earth::time time(year, month, day, 0, 0, 0);
 
-      return time.m_i;
+      return time.m_time;
 
    }
 

@@ -54,22 +54,22 @@ DURATION_OPERATOR_SETUP1(TYPE, type, m_d) \
 inline TYPE operator %(const TYPE & t, const class time & time) { return TYPE(fmod(t.m_d, time.type().m_d)); }
 
 
-INTEGRAL_DURATION_SETUP1(integral_nanosecond    , integral_nanosecond   )
-INTEGRAL_DURATION_SETUP1(integral_microsecond   , integral_microsecond  )
-INTEGRAL_DURATION_SETUP1(integral_millisecond   , integral_millisecond  )
-INTEGRAL_DURATION_SETUP1(integral_second        , integral_second       )
-INTEGRAL_DURATION_SETUP1(integral_minute        , integral_minute       )
-INTEGRAL_DURATION_SETUP1(integral_hour          , integral_hour         )
-INTEGRAL_DURATION_SETUP1(integral_day           , integral_day          )
-
-
-FLOATING_DURATION_SETUP1(floating_nanosecond    , floating_nanosecond   )
-FLOATING_DURATION_SETUP1(floating_microsecond   , floating_microsecond  )
-FLOATING_DURATION_SETUP1(floating_millisecond   , floating_millisecond  )
-FLOATING_DURATION_SETUP1(floating_second        , floating_second       )
-FLOATING_DURATION_SETUP1(floating_minute        , floating_minute       )
-FLOATING_DURATION_SETUP1(floating_hour          , floating_hour         )
-FLOATING_DURATION_SETUP1(floating_day           , floating_day          )
+//INTEGRAL_DURATION_SETUP1(integral_nanosecond    , integral_nanosecond   )
+//INTEGRAL_DURATION_SETUP1(integral_microsecond   , integral_microsecond  )
+//INTEGRAL_DURATION_SETUP1(integral_millisecond   , integral_millisecond  )
+//INTEGRAL_DURATION_SETUP1(integral_second        , integral_second       )
+//INTEGRAL_DURATION_SETUP1(integral_minute        , integral_minute       )
+//INTEGRAL_DURATION_SETUP1(integral_hour          , integral_hour         )
+//INTEGRAL_DURATION_SETUP1(integral_day           , integral_day          )
+//
+//
+//FLOATING_DURATION_SETUP1(floating_nanosecond    , floating_nanosecond   )
+//FLOATING_DURATION_SETUP1(floating_microsecond   , floating_microsecond  )
+//FLOATING_DURATION_SETUP1(floating_millisecond   , floating_millisecond  )
+//FLOATING_DURATION_SETUP1(floating_second        , floating_second       )
+//FLOATING_DURATION_SETUP1(floating_minute        , floating_minute       )
+//FLOATING_DURATION_SETUP1(floating_hour          , floating_hour         )
+//FLOATING_DURATION_SETUP1(floating_day           , floating_day          )
 
 
 //__DURATION_SETUP__(integral_nanosecond    , m_i)

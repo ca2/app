@@ -33,28 +33,25 @@ namespace earth
    }
 
    // it is in UTC by default?
-   class CLASS_DECL_ACME time :
-      public integral_second
+   class CLASS_DECL_ACME time
    {
    public:
 
 
-      using integral_second::integral_second;
+      time_t m_time;
 
 
-      time() noexcept;
+      constexpr time() noexcept;
 
-      inline time(enum_now) noexcept { m_i = now().m_i; }
+      inline time(enum_now) noexcept { m_time = now().m_time; }
 
-      time(const time &time);
+      constexpr time(const time &time);
 
-      time(const ::integral_second & second):integral_second(second.m_i){ }
-
-      time(time_t time) noexcept;
+      constexpr time(time_t time) noexcept;
 
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec,
            const time_shift &timeshift = time_shift::none());
-      time(const ::earth::gregorian::time & gregoriantime, 
+      time(const ::earth::gregorian::time & gregoriantime,
          const time_shift & timeshift = time_shift::none());
 
       time(const file_time &ft);
@@ -69,44 +66,44 @@ namespace earth
       void Now() { *this = now(); }
 
 
-      time &operator=(const time &time) noexcept;
+      constexpr time &operator=(const time &time) noexcept;
 
 
-      time &operator+=(date_span span);
+      constexpr time &operator+=(date_span span);
 
-      time &operator-=(date_span span);
+      constexpr time &operator-=(date_span span);
 
-      time &operator+=(time_span span) noexcept;
+      constexpr time &operator+=(time_span span) noexcept;
 
-      time &operator-=(time_span span) noexcept;
+      constexpr time &operator-=(time_span span) noexcept;
 
       //time& operator+=( const time & span ) noexcept;
       //time& operator-=( const time & span ) noexcept;
 
-      time_span operator-(time time) const noexcept;
+      constexpr time_span operator-(time time) const noexcept;
 
-      time operator-(time_span span) const noexcept;
+      constexpr time operator-(time_span span) const noexcept;
 
-      time operator+(time_span span) const noexcept;
+      constexpr time operator+(time_span span) const noexcept;
 
-      time operator-(date_span span) const;
+      constexpr time operator-(date_span span) const;
 
-      time operator+(date_span span) const;
+      constexpr time operator+(date_span span) const;
 
       //time operator-(const class time & time) const;
       //time operator+(const class time & time) const;
 
-      bool operator==(time time) const noexcept;
+      constexpr bool operator==(time time) const noexcept;
 
-      bool operator!=(time time) const noexcept;
+      constexpr bool operator!=(time time) const noexcept;
 
-      bool operator<(time time) const noexcept;
+      constexpr bool operator<(time time) const noexcept;
 
-      bool operator>(time time) const noexcept;
+      constexpr bool operator>(time time) const noexcept;
 
-      bool operator<=(time time) const noexcept;
+      constexpr bool operator<=(time time) const noexcept;
 
-      bool operator>=(time time) const noexcept;
+      constexpr bool operator>=(time time) const noexcept;
 
       struct ::tm *tm_struct(struct ::tm *ptm, const ::earth::time_shift &timeshift = time_shift::none()) const;
 
@@ -144,49 +141,49 @@ namespace earth
    };
 
 
-   inline bool time::operator==(time time) const noexcept
+   constexpr  bool time::operator==(time time) const noexcept
    {
-      return m_i == time.m_i;
+      return m_time == time.m_time;
 
    }
 
 
-   inline bool time::operator!=(time time) const noexcept
+   constexpr  bool time::operator!=(time time) const noexcept
    {
 
-      return m_i != time.m_i;
+      return m_time != time.m_time;
 
    }
 
 
-   inline bool time::operator<(time time) const noexcept
+   constexpr  bool time::operator<(time time) const noexcept
    {
 
-      return m_i < time.m_i;
+      return m_time < time.m_time;
 
    }
 
 
-   inline bool time::operator>(time time) const noexcept
+   constexpr  bool time::operator>(time time) const noexcept
    {
 
-      return m_i > time.m_i;
+      return m_time > time.m_time;
 
    }
 
 
-   inline bool time::operator<=(time time) const noexcept
+   constexpr  bool time::operator<=(time time) const noexcept
    {
 
-      return m_i <= time.m_i;
+      return m_time <= time.m_time;
 
    }
 
 
-   inline bool time::operator>=(time time) const noexcept
+   constexpr  bool time::operator>=(time time) const noexcept
    {
 
-      return m_i >= time.m_i;
+      return m_time >= time.m_time;
 
    }
 
@@ -201,52 +198,86 @@ namespace earth
 {
 
 
-   inline time_span time::operator-(time time) const noexcept
+   constexpr  time_span time::operator-(time time) const noexcept
    {
 
-      return integral_second(m_i - time.m_i);
+      return m_time - time.m_time;
 
    }
 
 
-   inline ::earth::time time::operator-(time_span span) const noexcept
+   constexpr  ::earth::time time::operator-(time_span span) const noexcept
    {
 
-      return integral_second(m_i - span.m_i);
+      return m_time - span.m_time;
 
    }
 
 
-   inline ::earth::time time::operator+(time_span span) const noexcept
+   constexpr  ::earth::time time::operator+(time_span span) const noexcept
    {
 
-      return m_i + span.m_i;
+      return m_time + span.m_time;
 
    }
 
 
-   inline time::time() noexcept :
-      integral_second(integral_second(0))
-   {
-
-   }
-
-
-   inline time::time(const class time & time) :
-      integral_second(integral_second(time))
+   constexpr  time::time() noexcept :
+      m_time(0)
    {
 
    }
 
 
-   inline time::time(time_t time)  noexcept :
-      integral_second(integral_second(time))
+   constexpr  time::time(const class time & time) :
+      m_time(time.m_time)
    {
 
    }
 
 
-   DEFINE_COMPARISON_WITH_TIME(inline, time)
+   constexpr  time::time(time_t time)  noexcept :
+      m_time(time)
+   {
+
+   }
+
+
+
+   constexpr ::earth::time & time::operator=(const class time & time) noexcept
+   {
+
+      m_time = time.m_time;
+
+      return *this;
+
+   }
+
+
+   constexpr ::earth::time & time::operator+=(time_span span) noexcept
+   {
+
+      m_time += span.GetTimeSpan();
+
+      return *this;
+
+   }
+
+
+   constexpr ::earth::time & time::operator-=(time_span span) noexcept
+   {
+
+      m_time -= span.GetTimeSpan();
+
+      return *this;
+
+   }
+
+
+   
+
+
+   //DEFINE_COMPARISON_WITH_TIME(inline, time)
 
 } // namespace earth
 

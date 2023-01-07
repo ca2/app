@@ -15,37 +15,35 @@ namespace earth
 {
 
 
-   class CLASS_DECL_ACME time_span :
-      public integral_second
+   class CLASS_DECL_ACME time_span
    {
    public:
 
 
-      using integral_second::integral_second;
+      time_t m_time;
 
 
-      time_span() noexcept;
-      time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
-      time_span(const ::integral_second & second) noexcept
-         : integral_second(second.m_i) {}
+      constexpr time_span() noexcept;
+      constexpr time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
+      constexpr time_span(const time_t & time) noexcept : m_time(time) {}
 
 
-      i64 GetDays() const noexcept;
-      i64 GetTotalHours() const noexcept;
-      i32 GetHours() const noexcept;
-      i64 GetTotalMinutes() const noexcept;
-      i32 GetMinutes() const noexcept;
-      i64 GetTotalSeconds() const noexcept;
-      i32 GetSeconds() const noexcept;
+      constexpr i64 GetDays() const noexcept;
+      constexpr i64 GetTotalHours() const noexcept;
+      constexpr i32 GetHours() const noexcept;
+      constexpr i64 GetTotalMinutes() const noexcept;
+      constexpr i32 GetMinutes() const noexcept;
+      constexpr i64 GetTotalSeconds() const noexcept;
+      constexpr i32 GetSeconds() const noexcept;
 
-      time_t GetTimeSpan() const noexcept;
+      constexpr time_t GetTimeSpan() const noexcept;
 
-      time_span operator+(time_span span) const noexcept;
-      time_span operator-(time_span span) const noexcept;
-      time_span& operator+=(time_span span) noexcept;
-      time_span& operator-=(time_span span) noexcept;
+      constexpr time_span operator+(time_span span) const noexcept;
+      constexpr time_span operator-(time_span span) const noexcept;
+      constexpr time_span& operator+=(time_span span) noexcept;
+      constexpr time_span& operator-=(time_span span) noexcept;
 
-      operator time() const
+      constexpr operator time() const
       {
 
          return ::earth::time(GetTotalSeconds());
@@ -90,40 +88,43 @@ namespace earth
 //      _TIME_COMPARISON_WITH(::floating_day);
 
 
+      constexpr ::std::strong_ordering operator <=>(const class ::time & time) const;
+      constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_time <=> timespan.m_time;s }
+
    };
 
 
-   inline time_span::time_span() noexcept
+   constexpr  time_span::time_span() noexcept
    {
 
    }
 
 
-   inline time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
+   constexpr  time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
    {
 
-      m_i = nSecs + 60 * (nMins + 60 * (nHours + i64(24) * lDays));
+      m_time = nSecs + 60 * (nMins + 60 * (nHours + i64(24) * lDays));
 
    }
 
 
-   inline i64 time_span::GetDays() const noexcept
+   constexpr  i64 time_span::GetDays() const noexcept
    {
 
-      return m_i / (24 * 3600);
+      return m_time / (24 * 3600);
 
    }
 
 
-   inline i64 time_span::GetTotalHours() const noexcept
+   constexpr  i64 time_span::GetTotalHours() const noexcept
    {
 
-      return m_i / 3600;
+      return m_time / 3600;
 
    }
 
 
-   inline i32 time_span::GetHours() const noexcept
+   constexpr  i32 time_span::GetHours() const noexcept
    {
 
       return ::i32(GetTotalHours() - (GetDays() * 24));
@@ -131,15 +132,15 @@ namespace earth
    }
 
 
-   inline i64 time_span::GetTotalMinutes() const noexcept
+   constexpr  i64 time_span::GetTotalMinutes() const noexcept
    {
 
-      return m_i / 60;
+      return m_time / 60;
 
    }
 
 
-   inline i32 time_span::GetMinutes() const noexcept
+   constexpr  i32 time_span::GetMinutes() const noexcept
    {
 
       return ::i32(GetTotalMinutes() - (GetTotalHours() * 60));
@@ -147,14 +148,14 @@ namespace earth
    }
 
 
-   inline i64 time_span::GetTotalSeconds() const noexcept
+   constexpr  i64 time_span::GetTotalSeconds() const noexcept
    {
-      return m_i;
+      return m_time;
 
    }
 
 
-   inline i32 time_span::GetSeconds() const noexcept
+   constexpr  i32 time_span::GetSeconds() const noexcept
    {
 
       return(::i32(GetTotalSeconds() - (GetTotalMinutes() * 60)));
@@ -162,44 +163,44 @@ namespace earth
    }
 
 
-   inline time_t time_span::GetTimeSpan() const noexcept
+   constexpr  time_t time_span::GetTimeSpan() const noexcept
    {
 
-      return(m_i);
+      return(m_time);
 
    }
 
 
-   inline time_span time_span::operator+(time_span span) const noexcept
+   constexpr  time_span time_span::operator+(time_span span) const noexcept
    {
 
-      return { m_i + span.m_i };
+      return { m_time + span.m_time };
 
    }
 
 
-   inline time_span time_span::operator-(time_span span) const noexcept
+   constexpr  time_span time_span::operator-(time_span span) const noexcept
    {
 
-      return integral_second(m_i - span.m_i);
+      return m_time - span.m_time;
 
    }
 
 
-   inline time_span& time_span::operator+=(time_span span) noexcept
+   constexpr  time_span& time_span::operator+=(time_span span) noexcept
    {
 
-      m_i += span.m_i;
+      m_time += span.m_time;
 
       return *this;
 
    }
 
 
-   inline time_span& time_span::operator-=(time_span span) noexcept
+   constexpr  time_span& time_span::operator-=(time_span span) noexcept
    {
 
-      m_i -= span.m_i;
+      m_time -= span.m_time;
 
       return *this;
 

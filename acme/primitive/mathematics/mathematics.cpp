@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
 #include <time.h>
@@ -621,7 +621,7 @@ namespace apex
       i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::get_integral_millisecond().m_i / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::get_integral_millisecond() / 100) % 5000) % 1000;
 
       }
 

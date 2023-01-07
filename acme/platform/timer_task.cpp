@@ -227,9 +227,9 @@ void timer_task::run()
 
    auto waitSleep = m_timeWait;
 
-   auto countDecisecondSleep = (::i32) (waitSleep.integral_millisecond().m_i / 100);
+   auto countDecisecondSleep = (::i32) (waitSleep.integral_millisecond() / 100);
 
-   auto remainderDecisecondSleep = (::i32) (waitSleep.integral_millisecond().m_i % 100);
+   auto remainderDecisecondSleep = (::i32) (waitSleep.integral_millisecond() % 100);
 
    while (true)
    {

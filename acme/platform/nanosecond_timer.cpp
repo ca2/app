@@ -39,7 +39,7 @@ void nanosecond_timer::wait(const class time & time)
 
    LARGE_INTEGER li = {};
 
-   li.QuadPart = -time.integral_nanosecond().m_i / 100LL;
+   li.QuadPart = -time.integral_nanosecond() / 100LL;
 
    if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
    {

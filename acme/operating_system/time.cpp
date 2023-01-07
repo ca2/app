@@ -28,58 +28,39 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
-CLASS_DECL_ACME void preempt(const ::integral_second & second);
-CLASS_DECL_ACME void preempt(const ::integral_millisecond & millisecond);
-CLASS_DECL_ACME void preempt(const ::integral_microsecond & microsecond);
-CLASS_DECL_ACME void preempt(const ::integral_nanosecond & nanosecond);
-
-
+CLASS_DECL_ACME void preempt_second(::i64 i);
+CLASS_DECL_ACME void preempt_millisecond(::i64 i);
+CLASS_DECL_ACME void preempt_microsecond(::i64 i);
+CLASS_DECL_ACME void preempt_nanosecond(::i64 i);
 
 
 CLASS_DECL_ACME void preempt(const class time & time)
 {
 
-   auto second = time.integral_second();
-
-   if(second >= 20_s)
+   if(time >= 20_s)
    {
 
-      preempt(second);
+      preempt_second(time.integral_second());
+
+   }
+   else if (time >= 20_ms)
+   {
+
+      preempt_millisecond(time.integral_millisecond());
+
+   }
+   else if (time >= 20_µs)
+   {
+
+      preempt_microsecond(time.integral_microsecond());
 
    }
    else
    {
 
-      auto millisecond = time.integral_millisecond();
-
-      if (millisecond >= 20_ms)
-      {
-
-         preempt(millisecond);
-
-      }
-      else
-      {
-
-         auto microsecond = time.integral_microsecond();
-
-         if (microsecond >= 20_µs)
-         {
-
-            preempt(microsecond);
-
-         }
-         else
-         {
-
-            preempt(time.integral_nanosecond());
-
-         }
-
-      }
+      preempt_nanosecond(time.integral_nanosecond());
 
    }
-
 
 }
 

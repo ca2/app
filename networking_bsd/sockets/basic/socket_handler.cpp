@@ -494,9 +494,9 @@ namespace sockets_bsd
 
       struct timeval tsel;
 
-      tsel.tv_sec = (long)timeWait.integral_second().m_i;
+      tsel.tv_sec = (long)timeWait.integral_second();
 
-      tsel.tv_usec = ((long)timeWait.integral_microsecond().m_i) % 1'000'000;
+      tsel.tv_usec = ((long)timeWait.integral_microsecond()) % 1'000'000;
 
       return _select(&tsel);
 

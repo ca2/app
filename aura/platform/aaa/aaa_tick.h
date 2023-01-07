@@ -220,7 +220,7 @@ inline ::i32 __i32(const ::duration & duration) { return (::i32) ::duration.m_i;
 
 inline ::i64 __i64(const ::duration & duration) { return (::i64) ::duration.m_i; }
 
-inline byte __byte(const ::duration & duration) { return (byte) minimummax(::duration.m_i, 0, 255); }
+inline byte as_byte(const ::duration & duration) { return (byte) minimummax(::duration.m_i, 0, 255); }
 
 inline ::duration __tick(double d) { return (::i64) d; }
 

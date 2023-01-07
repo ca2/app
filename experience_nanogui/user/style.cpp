@@ -1582,7 +1582,7 @@ namespace experience_nanogui
             if (elapsed < periodFadeIn)
             {
 
-               uchAlpha = __byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
+               uchAlpha = as_byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
 
             }
             else
@@ -1603,7 +1603,7 @@ namespace experience_nanogui
             if (elapsed < periodFadeOut)
             {
 
-               uchAlpha = __byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
+               uchAlpha = as_byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
 
             }
             else

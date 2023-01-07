@@ -81,7 +81,7 @@ inline float __rate(float f)
 }
 
 
-inline byte __byte(double d) { return (byte) minimummax(d, 0, 255); }
-inline byte __byte(::i64 i) { return (byte)minimummax(i, 0, 255); }
+inline byte as_byte(double d) { return (byte) minimummax(d, 0, 255); }
+inline byte as_byte(::i64 i) { return (byte)minimummax(i, 0, 255); }
 
 #endif

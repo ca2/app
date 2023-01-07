@@ -1972,7 +1972,7 @@ namespace experience_core
             if (elapsed < periodFadeIn)
             {
 
-               uchAlpha = __byte(255 * (elapsed / periodFadeIn));
+               uchAlpha = as_byte(255 * (elapsed / periodFadeIn));
 
             }
             else
@@ -1993,7 +1993,7 @@ namespace experience_core
             if (elapsed < periodFadeOut)
             {
 
-               uchAlpha = __byte(255 *( (periodFadeOut - elapsed) / periodFadeOut));
+               uchAlpha = as_byte(255 *( (periodFadeOut - elapsed) / periodFadeOut));
 
             }
             else

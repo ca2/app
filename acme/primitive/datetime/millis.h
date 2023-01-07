@@ -279,7 +279,7 @@ inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_i; }
 inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_i; }
 
 
-inline byte __byte(const ::millis & millis) { return (byte) minimummax(millis.m_i, 0, 255); }
+inline byte as_byte(const ::millis & millis) { return (byte) minimummax(millis.m_i, 0, 255); }
 
 
 inline millis __tick(double d) { return (::i64) d; }

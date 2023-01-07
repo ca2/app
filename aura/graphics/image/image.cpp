@@ -8036,7 +8036,7 @@ void image::saturation(double dRate)
 void image::lightness(double dRate)
 {
 
-   rate_rgb(__byte(dRate * 255.0), 255);
+   rate_rgb(as_byte(dRate * 255.0), 255);
 
    //return true;
 
@@ -8046,7 +8046,7 @@ void image::lightness(double dRate)
 void image::opacity(double dRate)
 {
 
-   int iA = __byte(255. * dRate);
+   int iA = as_byte(255. * dRate);
 
    map();
 

@@ -680,7 +680,7 @@ namespace earth
    //}
 
 
-   constexpr ::earth::time & time::operator+=(date_span span)
+   ::earth::time & time::operator+=(date_span span)
    {
 
       __UNREFERENCED_PARAMETER(span);
@@ -692,7 +692,7 @@ namespace earth
    }
 
 
-   constexpr ::earth::time & time::operator-=(date_span span)
+   ::earth::time & time::operator-=(date_span span)
    {
 
       __UNREFERENCED_PARAMETER(span);
@@ -704,7 +704,7 @@ namespace earth
    }
 
 
-   constexpr ::earth::time time::operator-(date_span span) const
+   ::earth::time time::operator-(date_span span) const
    {
 
       __UNREFERENCED_PARAMETER(span);
@@ -716,7 +716,7 @@ namespace earth
    }
 
 
-   constexpr ::earth::time time::operator+(date_span span) const
+   ::earth::time time::operator+(date_span span) const
    {
 
       __UNREFERENCED_PARAMETER(span);

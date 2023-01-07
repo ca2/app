@@ -69,9 +69,9 @@ namespace earth
       constexpr time &operator=(const time &time) noexcept;
 
 
-      constexpr time &operator+=(date_span span);
+      time &operator+=(date_span span);
 
-      constexpr time &operator-=(date_span span);
+      time &operator-=(date_span span);
 
       constexpr time &operator+=(time_span span) noexcept;
 
@@ -86,9 +86,9 @@ namespace earth
 
       constexpr time operator+(time_span span) const noexcept;
 
-      constexpr time operator-(date_span span) const;
+      time operator-(date_span span) const;
 
-      constexpr time operator+(date_span span) const;
+      time operator+(date_span span) const;
 
       //time operator-(const class time & time) const;
       //time operator+(const class time & time) const;

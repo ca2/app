@@ -104,52 +104,6 @@ namespace earth
 {
 
 
-   constexpr ::earth::time & time::operator+=(date_span span)
-   {
-
-      __UNREFERENCED_PARAMETER(span);
-
-      //throw ::not_implemented();
-
-      return *this;
-
-   }
-
-
-   constexpr ::earth::time & time::operator-=(date_span span)
-   {
-
-      __UNREFERENCED_PARAMETER(span);
-
-      //throw ::not_implemented();
-
-      return *this;
-
-   }
-
-
-   constexpr ::earth::time time::operator-(date_span span) const
-   {
-
-      __UNREFERENCED_PARAMETER(span);
-
-      //throw ::not_implemented();
-
-      return 0;
-
-   }
-
-
-   constexpr ::earth::time time::operator+(date_span span) const
-   {
-
-      __UNREFERENCED_PARAMETER(span);
-
-      //throw_();
-
-      return 0;
-
-   }
 
    constexpr ::std::strong_ordering time_span::operator <=>(const class ::time & time) const
    {

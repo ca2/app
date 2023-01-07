@@ -3034,7 +3034,7 @@
     <ClCompile Include="primitive\datetime\mktime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\time.cpp">
+    <ClCompile Include="primitive\datetime\earth_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\earth_time_span.cpp">

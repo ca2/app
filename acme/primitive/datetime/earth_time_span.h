@@ -89,7 +89,7 @@ namespace earth
 
 
       constexpr ::std::strong_ordering operator <=>(const class ::time & time) const;
-      constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_time <=> timespan.m_time;s }
+      constexpr ::std::strong_ordering operator <=>(const time_span & timespan) const { return m_time <=> timespan.m_time; }
 
    };
 

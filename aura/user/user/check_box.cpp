@@ -6,6 +6,7 @@
 #include "acme/platform/keep.h"
 #include "aura/platform/draw_context2.h"
 #include "acme/primitive/mathematics/mathematics.h"
+#include "acme/primitive/time/integral/generic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -403,7 +404,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto dRate = m_timeAnimationStart.integral_millisecond().period_rate(m_timeAnimationPeriod.integral_millisecond());
+      auto dRate = ::generic::time::period_rate(m_timeAnimationStart.integral_millisecond(), m_timeAnimationPeriod.integral_millisecond());
 
       if (dRate < 1.0)
       {

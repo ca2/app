@@ -33,10 +33,10 @@ namespace user
       for (auto & pair : m_mapDrag)
       {
 
-         if (::is_set(pair.load()))
+         if (::is_set(pair.payload()))
          {
 
-            pair.load()->destroy();
+            pair.payload()->destroy();
 
          }
 
@@ -76,7 +76,7 @@ namespace user
 
       }
 
-      return ppair->load();
+      return ppair->payload();
 
    }
 
@@ -104,7 +104,7 @@ namespace user
       for (auto & pair : m_mapDrag)
       {
 
-         auto & pdrag = pair.load();
+         auto & pdrag = pair.payload();
 
          if (::is_set(pdrag) && pitemButtonDown->m_eelement == pdrag->m_eelement)
          {
@@ -211,7 +211,7 @@ namespace user
       for (auto & pair : m_mapDrag)
       {
 
-         auto & pdrag = pair.load();
+         auto & pdrag = pair.payload();
 
          if (::is_set(pdrag) && pitemButtonHover->m_eelement == pdrag->m_eelement)
          {

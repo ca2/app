@@ -148,3 +148,33 @@ inline bool operator ! () { return this->MEMBER <= 0; }
 
 
 
+
+
+
+template < typename INTEGRAL_TIME_UNIT >
+concept integral_time_unit =
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_day > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_hour > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_minute > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_second > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_millisecond > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_microsecond > ||
+::std::is_same_v < INTEGRAL_TIME_UNIT, integral_nanosecond >;
+
+
+
+
+
+template < typename FLOATING_TIME_UNIT >
+concept floating_time_unit =
+::std::is_same_v < FLOATING_TIME_UNIT, floating_day > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_hour > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_minute > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_second > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_millisecond > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_microsecond > ||
+::std::is_same_v < FLOATING_TIME_UNIT, floating_nanosecond >;
+
+
+
+

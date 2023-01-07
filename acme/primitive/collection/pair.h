@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/transfer.h"
@@ -104,25 +104,25 @@ public:
 
 
    using ITEM = TYPE1;
-   using LOAD = TYPE2;
+   using PAYLOAD = TYPE2;
 
 
    using ARG_ITEM = ARG_TYPE1;
-   using ARG_LOAD = ARG_TYPE2;
+   using ARG_PAYLOAD = ARG_TYPE2;
 
 
    using ELEMENT1 = TYPE1;
    using ELEMENT2 = TYPE2;
    
 
-   inline auto & topic() { return *this; }
    inline auto & item() { return this->element1(); }
-   inline auto & load() { return this->element2(); }
+   inline auto & payload() { return this->element2(); }
+   inline auto & topic() { return *this; }
 
 
-   inline auto & topic() const { return *this; }
    inline auto & item() const { return this->element1(); }
-   inline auto & load() const { return this->element2(); }
+   inline auto & payload() const { return this->element2(); }
+   inline auto & topic() const { return *this; }
 
 
    make_pair() {}

@@ -2933,6 +2933,12 @@
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\time\integral\generic.h">
+      <Filter>Header Files\primitive\time\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\time\floating\operator.h">
+      <Filter>Header Files\primitive\time\floating</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

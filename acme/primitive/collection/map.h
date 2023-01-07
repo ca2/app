@@ -287,7 +287,7 @@ public:
 
       auto p = this->get_item(item);
 
-      p->load() = newValue;
+      p->payload() = newValue;
 
       return p;
 
@@ -1099,7 +1099,7 @@ typename pair_map < PAIR >::PAYLOAD * pair_map < PAIR >::pget(ARG_ITEM item)
 
    }
 
-   return &p->load();
+   return &p->payload();
 
 }
 
@@ -1125,7 +1125,7 @@ inline typename pair_map < PAIR >::iterator pair_map < PAIR >::find_payload(cons
    while(p != this->end())
    {
 
-      if(p->load() == payload)
+      if(p->payload() == payload)
       {
 
          return p;
@@ -1181,7 +1181,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
    }
 
-   return (const PAYLOAD &) p->load();
+   return (const PAYLOAD &) p->payload();
 
 }
 
@@ -1280,7 +1280,7 @@ get(ARG_ITEM argkey, ARG_PAYLOAD valueDefault)
 
    }
 
-   return p->load();
+   return p->payload();
 
 }
 

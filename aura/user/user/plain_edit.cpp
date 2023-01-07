@@ -25,6 +25,7 @@
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/string/_string.h"
 #include "acme/primitive/string/str.h"
+#include "acme/primitive/time/integral/generic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -185,6 +186,17 @@ namespace user
    void plain_edit::set_callback(callback * pcallback)
    {
 
+
+   }
+
+
+   bool plain_edit::is_caret_on() const
+   {
+
+      return ::generic::time::on_off(
+         m_timeFocusStart.integral_millisecond(),
+         m_timeCaretPeriod.integral_millisecond()
+      );
 
    }
 

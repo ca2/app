@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "font.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -728,7 +728,7 @@ namespace write_text
    void font::destroy()
    {
 
-      for (auto & text : m_mapText.values())
+      for (auto & text : m_mapText.payloads())
       {
 
          text.m_bSize = false;

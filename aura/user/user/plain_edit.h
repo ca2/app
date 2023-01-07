@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "scroll_base.h"
@@ -256,7 +256,7 @@ namespace user
       virtual void set_callback(callback* pcallback);
 
 
-      inline bool is_caret_on() const { return m_timeFocusStart.integral_millisecond().on_off(m_timeCaretPeriod.integral_millisecond()); }
+      virtual bool is_caret_on() const;
 
 
       void get_text_composition_area(::rectangle_i32 & r) override;

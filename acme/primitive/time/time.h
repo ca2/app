@@ -22,13 +22,13 @@ inline DURATION now()
 #include "acme/primitive/time/time/_.h"
 
 
-template < typename DURATION >
-inline integral_time < DURATION > & integral_time < DURATION >::Now()
-{ 
-   
-   return this->operator=(::now < integral_time < DURATION > >()); 
-
-}
+//template < typename DURATION >
+//inline integral_time < DURATION > & integral_time < DURATION >::Now()
+//{ 
+//   
+//   return this->operator=(::now < integral_time < DURATION > >()); 
+//
+//}
 
 
 #define DURATION_OPERATOR_SETUP1(TYPE, type, MEMBER) \

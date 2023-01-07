@@ -4,7 +4,7 @@
 
 //#include "acme/primitive/time/time.h"
 
-double double_equal_delta = 0.0001;
+constexpr double double_equal_delta = 0.0001;
 
 constexpr bool double_equals(double d1, double d2, double delta)
 {

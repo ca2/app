@@ -1800,7 +1800,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
          p++;
 
-         if (!p)
+         if (is_end(p))
          {
 
             break;

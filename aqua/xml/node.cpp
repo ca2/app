@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "node.h"
 #include "document.h"
 #include "edit.h"
@@ -2316,7 +2316,7 @@ namespace xml
       
       auto pnode = __new(node((node *) this));
 
-      //pnode->initialize_matter(this);
+      pnode->initialize(this);
       
       pnode->m_strName = strName;
 
@@ -2334,7 +2334,7 @@ namespace xml
 
       auto pnode = __new(node((node *) this));
 
-      //pnode->initialize_matter(this);
+      pnode->initialize(this);
 
       pnode->m_strName = strName;
 

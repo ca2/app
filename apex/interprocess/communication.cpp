@@ -1,4 +1,4 @@
-// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
+﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "communication.h"
 #include "target.h"
@@ -837,11 +837,11 @@ namespace interprocess
 
       atom_array idaPid;
 
-#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-
       auto psystem = acmesystem();
 
       auto pnode = psystem->node();
+
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
       ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 
@@ -849,95 +849,18 @@ namespace interprocess
 
 #else
 
-#if defined(_UWP)
+//#if 0
 
-      idaPid.add(strApp);
+      idaPid = pnode->get_pid_from_module_list_file(strApp);
 
-#else
+//#else
+//
+//      ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
+//
+//      idaPid = pnode->module_path_get_pid(path, false);
+//
+//#endif
 
-      string_array stra;
-
-      ::file::path pathModule;
-
-      pathModule = acmedirectory()->system() / "communication";
-
-      pathModule /= strApp + ".module_list";
-
-      string strModuleList = acmefile()->as_string(pathModule);
-
-      stra.add_lines(strModuleList);
-
-   repeat:
-
-      if (stra.get_count() > 32)
-      {
-
-         stra.erase_at(0, 16);
-
-      }
-
-      string_array stra2;
-
-      int_array iaPid2;
-
-      auto psystem = acmesystem();
-
-      auto pnode = psystem->node();
-
-      for (auto & str : stra)
-      {
-
-         if (str.has_char())
-         {
-
-            string_array a;
-
-            a.explode("|", str);
-
-            if (a.get_size() >= 2)
-            {
-
-               stra2.add_unique_ci(a[0]);
-
-               string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
-
-               if (strPath.has_char())
-               {
-
-                  if (strPath.case_insensitive_order(a[0]) == 0)
-                  {
-
-                     idaPid.add(ansi_to_i32(a[1]));
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
-
-      if (idaPid.get_count() <= 0 && stra.get_size() > 32)
-      {
-
-         goto repeat;
-
-      }
-      //for(auto & str : stra2)
-      //{
-
-      //   if(str.has_char())
-      //   {
-
-      //          iaPid.add_unique(module_path_get_pid(str));
-   //
-      //   }
-
-      //}
-
-#endif
 #endif
       return idaPid;
 
@@ -957,9 +880,9 @@ namespace interprocess
 
       m_straModule.erase_all();
 
-      pathModule = acmedirectory()->system() / "communication";
+      pathModule = acmedirectory()->roaming() / m_strApp;
 
-      pathModule /= m_strApp + ".module_list";
+      pathModule /= "module_list.txt";
 
       ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.as_i64());
 

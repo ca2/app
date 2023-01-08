@@ -80,7 +80,6 @@ namespace write_text
 
 
    bool font::create_point_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
-
    {
 
       m_strFontFamilyName = pszFacename;

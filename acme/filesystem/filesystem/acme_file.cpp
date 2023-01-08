@@ -1,4 +1,4 @@
-// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -266,7 +266,7 @@ string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostB
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return { (const char*)data, size - 3 };
+      return { (const char*)data + 3, size - 3 };
 
    }
    else

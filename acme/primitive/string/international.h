@@ -30,7 +30,7 @@
 
       CLASS_DECL_ACME wstring multibyte_to_unicode(::u32 uCodePage, const ::scoped_string & scopedstr);
 
-      CLASS_DECL_ACME wstring multibyte_to_unicode(::u32 uCodePage, const ::string & str);
+      //CLASS_DECL_ACME wstring multibyte_to_unicode(::u32 uCodePage, const ::string & str);
 
       strsize  CLASS_DECL_ACME multibyte_to_unicode_count(::u32 uCodePage, const ::scoped_string & scopedstr);
 

@@ -962,36 +962,6 @@ namespace acme
 } // namespace acme
 
 
-#if defined(LINUX) || defined(FREEBSD)
-
-::file::path libfilename(const ::string & str)
-{
-   return "lib" + str + ".so";
-}
-
-#elif defined(ANDROID)
-
-::file::path libfilename(const ::string & str)
-{
-   return "lib" + str + ".so";
-}
-
-#elif defined(WINDOWS)
-
-::file::path libfilename(const ::string & str)
-{
-   return str + ".dll";
-}
-
-#elif defined(__APPLE__)
-
-::file::path libfilename(const ::string & str)
-{
-   return "lib" + str + ".dylib";
-}
-
-#endif
-
 
 CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation)
 {

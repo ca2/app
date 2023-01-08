@@ -2765,6 +2765,16 @@ return false;
    }
 
 
+   ::file::path node::library_file_name(const ::scoped_string & scopedstr)
+   {
+
+      throw interface_only();
+
+      return scopedstr;
+
+   }
+
+
 } // namespace acme
 
 

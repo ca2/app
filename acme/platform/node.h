@@ -688,6 +688,8 @@ namespace acme
          const ::array < ::pair < ::string, ::string > > & filetypes,
          const ::function < void(const ::file::path_array &) >& function);
      
+      virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
+
 
    };
 

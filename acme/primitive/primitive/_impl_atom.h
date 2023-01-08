@@ -1435,7 +1435,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
-        string(atom.as_string())
+        string_base(atom.as_string())
 {
 
 

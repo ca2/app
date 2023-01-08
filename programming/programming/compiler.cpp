@@ -404,7 +404,7 @@ namespace programming
       for (auto& pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->as_string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->get_string()));
 
       }
 

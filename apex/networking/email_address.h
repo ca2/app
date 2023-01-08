@@ -21,7 +21,6 @@ namespace networking
 
       email_address();
       email_address(const ::scoped_string & scopedstrEmail);
-      email_address(const ::string & strEmail);
       email_address(const email_address & addr);
 
 
@@ -34,7 +33,7 @@ namespace networking
       string to_string() const { return m_strName + "@" + m_strDomain; }
 
 
-      void set_email_address(const ::string & strEmail);
+      void set_email_address(const ::scoped_string& scopedstrEmail);
 
 
       email_address & operator = (const email_address & addr);

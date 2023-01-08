@@ -12,18 +12,10 @@ namespace networking
    }
 
 
-   email_address::email_address(const ::scoped_string & scopedstrEmail) :
-      email_address((const ::string &)scopedstrEmail)
+   email_address::email_address(const ::scoped_string& scopedstrEmail)
    {
 
-
-   }
-
-
-   email_address::email_address(const ::string & strEmail)
-   {
-
-      set_email_address(strEmail);
+      set_email_address(scopedstrEmail);
 
    }
 
@@ -36,9 +28,9 @@ namespace networking
    }
 
 
-   void email_address::set_email_address(const ::string& strEmail)
+   void email_address::set_email_address(const ::scoped_string& scopedstrEmail)
    {
-      string str_in(strEmail);
+      string str_in(scopedstrEmail);
       string str = str_in;
       auto i = str.find_index("<");
       if (i != -1)

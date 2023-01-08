@@ -107,8 +107,8 @@ namespace dynamic_source
 
       inline property& get(const ::atom & atom);
       inline property& post(const ::atom & atom);
-      inline http::cookie& get_cookie(const ::atom & atom);
-      inline http::cookie& set_cookie(const ::atom & atom);
+      inline http::cookie& get_cookie(const ::scoped_string & scopedstr);
+      inline http::cookie& set_cookie(const ::scoped_string & scopedstr);
 
       void uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload);
       void uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam);

@@ -106,16 +106,16 @@ namespace sockets
 
       }
 
-      property & inattr(const char * lpszName);
+      property & inattr(const ::atom & atom);
       property_set & inattrs();
 
-      property & inheader(const char * lpszName);
+      property & inheader(const ::atom& atom);
       property_set & inheaders();
 
-      property & outattr(const char * lpszName);
+      property & outattr(const ::atom& atom);
       property_set & outattrs();
 
-      property & outheader(const char * lpszName);
+      property & outheader(const ::atom& atom);
       property_set & outheaders();
 
       ::http::request & request();
@@ -149,10 +149,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inattr(const char * lpszName)
+   inline property & http_socket::inattr(const ::atom& atom)
    {
 
-      return m_request.attr(lpszName);
+      return m_request.attr(atom);
 
    }
 
@@ -165,10 +165,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outattr(const char * lpszName)
+   inline property & http_socket::outattr(const ::atom& atom)
    {
 
-      return m_response.attr(lpszName);
+      return m_response.attr(atom);
 
    }
 
@@ -181,10 +181,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::inheader(const char * lpszName)
+   inline property & http_socket::inheader(const ::atom& atom)
    {
 
-      return m_request.header(lpszName);
+      return m_request.header(atom);
 
    }
 
@@ -197,10 +197,10 @@ namespace sockets
    }
 
 
-   inline property & http_socket::outheader(const char * lpszName)
+   inline property & http_socket::outheader(const ::atom& atom)
    {
 
-      return m_response.header(lpszName);
+      return m_response.header(atom);
 
    }
 

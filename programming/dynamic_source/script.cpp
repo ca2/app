@@ -220,11 +220,11 @@ namespace dynamic_source
 
       str = m_strError;
 
-      if(str.find(" error(") >= 0)
+      if(str.contains(" error("))
          return true;
-      if(str.find(" error ") >= 0)
+      if(str.contains(" error "))
          return true;
-      if(str.find(" get_last_error ") >= 0)
+      if(str.contains(" get_last_error "))
          return true;
       return false;
    }
@@ -274,29 +274,29 @@ namespace dynamic_source
          return true;
 
       {
-         strsize iFind1 = str.find(" C1033:");
+         strsize iFind1 = str.find_index(" C1033:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find(" C1083:"); // Permission Denied
+         strsize iFind1 = str.find_index(" C1083:"); // Permission Denied
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find(" C1041:"); // fatal error C1041: cannot open program database
+         strsize iFind1 = str.find_index(" C1041:"); // fatal error C1041: cannot open program database
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find(".dll: does not exist.");
+         strsize iFind1 = str.find_index(".dll: does not exist.");
          if(iFind1 >= 0)
          {
             // if dll does not exist
             {
-               strsize iFind1 = str.find(" error(");
-               strsize iFind2 = str.find(" error ");
-               strsize iFind3 = str.find("Linking...");
+               strsize iFind1 = str.find_index(" error(");
+               strsize iFind2 = str.find_index(" error ");
+               strsize iFind3 = str.find_index("Linking...");
                // and have compile error (others than the ones above, that are considered temporary as they may be due temporary file locks, for example...).
                if((iFind3 >= 0 && ((iFind1 < iFind3 && iFind1 >= 0) ||
                                    (iFind2 < iFind3 && iFind2 >= 0))))
@@ -309,25 +309,25 @@ namespace dynamic_source
       }
 
       {
-         strsize iFind1 = str.find("warning LNK4099:");
+         strsize iFind1 = str.find_index("warning LNK4099:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find("fatal error LNK1168:");
+         strsize iFind1 = str.find_index("fatal error LNK1168:");
          if(iFind1 >= 0)
             return true;
       }
       {
-         strsize iFind1 = str.find(" error(");
-         strsize iFind2 = str.find(" error ");
-         strsize iFind3 = str.find("Linking...");
+         strsize iFind1 = str.find_index(" error(");
+         strsize iFind2 = str.find_index(" error ");
+         strsize iFind3 = str.find_index("Linking...");
          if(iFind3 >= 0 && (iFind1 > iFind3 || iFind2 > iFind3))
          {
             return true;
          }
       }
-      if(str.find(" get_last_error ") >= 0)
+      if(str.contains(" get_last_error "))
          return true;
       return false;
    }
@@ -522,7 +522,7 @@ namespace dynamic_source
 
       }
 
-      if (m_strSourcePath.case_insensitive_find("\\applications\\basic\\") > 0)
+      if (m_strSourcePath.case_insensitive_find_index("\\applications\\basic\\") > 0)
       {
 
          TRACE("/applications/basic/");

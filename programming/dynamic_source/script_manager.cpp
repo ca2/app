@@ -119,7 +119,7 @@ namespace dynamic_source
 
       m_strSeed = "system/seed";
 
-      m_secsSessionExpiration = 60_s;
+      m_timeSessionExpiration = 60_s;
 
    }
 
@@ -388,7 +388,7 @@ namespace dynamic_source
          
          pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
 
-         if (pinstance->m_strDebugRequestUri.case_insensitive_find("google") > 0)
+         if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
          {
 
             output_debug_string("resident");
@@ -590,7 +590,7 @@ namespace dynamic_source
             if(pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               if(pinstanceParent->m_pscript2->m_streamError.m_pfile->get_size() > 0)
+               if(pinstanceParent->m_pscript2->m_streamError.m_pfile->size() > 0)
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);

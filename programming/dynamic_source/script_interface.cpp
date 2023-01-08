@@ -566,18 +566,18 @@ namespace dynamic_source
       }
 
 
-      http::cookie & script_interface::get_cookie(const ::atom & atom)
+      http::cookie & script_interface::get_cookie(const ::scoped_string & scopedstr)
       {
 
-         return netnodesocket()->request().cookies().cookie(atom);
+         return netnodesocket()->request().cookies().cookie(scopedstr);
 
       }
 
 
-      http::cookie & script_interface::set_cookie(const ::atom & atom)
+      http::cookie & script_interface::set_cookie(const ::scoped_string & scopedstr)
       {
 
-         return netnodesocket()->response().cookies().cookie(atom);
+         return netnodesocket()->response().cookies().cookie(scopedstr);
 
       }
 

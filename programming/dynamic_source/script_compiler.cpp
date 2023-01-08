@@ -364,7 +364,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = as_string(::get_integral_millisecond().m_i % 1000);
+      strMillis = ::as_string(::integral_millisecond() % 1000);
 
       ::ansi_zero_pad(strMillis, 3);
 
@@ -1139,7 +1139,7 @@ namespace dynamic_source
       strsize iLastEnd = 0;
       if(strSource.substr(0, 4) == "<?ss")
       {
-         iLastEnd = strSource.find("?>", iPos);
+         iLastEnd = strSource.find_index("?>", iPos);
          if(iLastEnd > 0)
          {
             iLastEnd += 2;

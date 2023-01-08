@@ -983,6 +983,23 @@ public:
     }
 
 
+    bool defer_consume(const SCOPED_STRING & range) 
+    {
+
+       if (!this->begins(range))
+       {
+
+          return false;
+
+       }
+
+       this->begin() += range.size();
+
+       return true;
+
+    }
+
+
 //   using BASE_RANGE::_begins_start;
 //
 //   constexpr bool _begins_start(const SCOPED_STRING & range, memsize start) const

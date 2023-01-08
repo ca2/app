@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -66,7 +66,7 @@ public:
 
 
    constexpr frequency(enum_zero ezero = e_zero) :FREQUENCY{} {}
-   constexpr frequency(double dHertz) : FREQUENCY(dHertz) {}
+   constexpr frequency(double dHertz) : FREQUENCY{dHertz} {}
    constexpr frequency(const ::FREQUENCY & frequency) : FREQUENCY(frequency) {}
 
    template < primitive_floating FLOATING >

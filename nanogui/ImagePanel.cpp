@@ -124,7 +124,7 @@ void ImagePanel::draw(NVGcontext * ctx) {
 
    auto pgraphics = dynamic_cast <::draw2d::graphics *>(pparticle);
 
-   ___scoped_restore(pgraphics->m_bUseImageMipMapsOrResizedImages);
+   scoped_restore(pgraphics->m_bUseImageMipMapsOrResizedImages);
 
    pgraphics->m_bUseImageMipMapsOrResizedImages = true;
 

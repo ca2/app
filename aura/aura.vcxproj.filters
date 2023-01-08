@@ -531,7 +531,7 @@
     <ClCompile Include="graphics\image\nanosvg.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\pointer_array.cpp">
+    <ClCompile Include="graphics\image\frame_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\source.cpp">

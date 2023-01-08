@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -129,6 +129,109 @@ namespace acme
       throw ::interface_only();
 
       ///throw ::interface_only();
+
+   }
+
+
+   ::atom_array node::get_pid_from_module_list_file(const ::scoped_string & scopedstrAppId)
+   {
+
+      ::atom_array idaPid;
+
+#if defined(_UWP)
+
+      idaPid.add(scopedstrAppId);
+
+#else
+
+      //idaPid = pnode->get_pid_from_module_list_file(path, false);
+
+      string_array stra;
+
+      ::file::path pathModule;
+
+      pathModule = acmedirectory()->roaming() / scopedstrAppId;
+
+      pathModule /= "module_list.txt";
+
+      string strModuleList = acmefile()->as_string(pathModule);
+
+      stra.add_lines(strModuleList);
+
+   repeat:
+
+      if (stra.get_count() > 32)
+      {
+
+         stra.erase_at(0, 16);
+
+      }
+
+      string_array stra2;
+
+      int_array iaPid2;
+
+      auto psystem = acmesystem();
+
+      auto pnode = psystem->node();
+
+      for (auto & str : stra)
+      {
+
+         if (str.has_char())
+         {
+
+            string_array a;
+
+            a.explode("|", str);
+
+            if (a.get_size() >= 2)
+            {
+
+               stra2.add_unique_ci(a[0]);
+
+               string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
+
+               if (strPath.has_char())
+               {
+
+                  if (strPath.case_insensitive_order(a[0]) == 0)
+                  {
+
+                     idaPid.add(ansi_to_i32(a[1]));
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+      if (idaPid.get_count() <= 0 && stra.get_size() > 32)
+      {
+
+         goto repeat;
+
+      }
+
+      //for(auto & str : stra2)
+      //{
+
+      //   if(str.has_char())
+      //   {
+
+      //          iaPid.add_unique(module_path_get_pid(str));
+   //
+      //   }
+
+      //}
+
+      return idaPid;
+
+#endif
 
    }
 
@@ -431,9 +534,6 @@ namespace acme
 
 
    }
-
-
-
 
 
    //void node::defer_()
@@ -2542,6 +2642,7 @@ return false;
 
    }
 
+
    ::u64 node::translate_processor_affinity(::i32 i)
    {
 
@@ -2664,6 +2765,14 @@ return false;
    }
 
 
+   ::file::path node::library_file_name(const ::scoped_string & scopedstr)
+   {
+
+      throw interface_only();
+
+      return scopedstr;
+
+   }
 
 
 } // namespace acme

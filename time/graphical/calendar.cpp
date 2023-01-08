@@ -88,10 +88,10 @@ namespace datetime
          rectangle_i32 rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
-         if (pfile->m_strOptions.find("<no-week-bar-title>") < 0)
+         if (!pfile->m_strOptions.contains("<no-week-bar-title>"))
          {
             pfile->raw_print("<tr>");
-            if (pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
+            if (pfile->m_strOptions.contains("<left-week-of-the-year>"))
             {
                pfile->raw_print("<td>");
                pfile->raw_print("V");
@@ -100,7 +100,7 @@ namespace datetime
             for (iWeekDay = 1; iWeekDay <= 7; iWeekDay++)
             {
                int32_t iDayOfWeek = iWeekDay;
-               if (pfile->m_strOptions.find("<monday-first>") >= 0)
+               if (pfile->m_strOptions.contains("<monday-first>"))
                {
                   iDayOfWeek++;
                   if (iDayOfWeek > 7)
@@ -125,7 +125,7 @@ namespace datetime
          for (int32_t iWeek = 1; iWeek <= iLineCount; iWeek++)
          {
             pfile->raw_print("<tr>");
-            if (pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
+            if (pfile->m_strOptions.contains("<left-week-of-the-year>"))
             {
                time_t w;   
                
@@ -133,7 +133,7 @@ namespace datetime
 
                auto pdatetime = psystem->datetime();
 
-               if (pfile->m_strOptions.find("<monday-first>") >= 0)
+               if (pfile->m_strOptions.contains("<monday-first>"))
                {
                   
                   w = atoi(pdatetime->format("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
@@ -153,7 +153,7 @@ namespace datetime
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)
             {
                int32_t iDayOfWeek = iWeekDay;
-               if (pfile->m_strOptions.find("<monday-first>") >= 0)
+               if (pfile->m_strOptions.contains("<monday-first>"))
                {
                   iDayOfWeek++;
                }

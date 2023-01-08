@@ -10301,6 +10301,39 @@ bool image::_draw_blend(const image_drawing& imagedrawing)
 }
 
 
+void image::draw(const image_drawing & imagedrawing)
+{
+
+   if (imagedrawing.m_bDoForAllFrames)
+   {
+
+      auto pimage = imagedrawing.image();
+
+      auto pframes = pimage->frames();
+
+      if (pframes && pframes->has_elements())
+      {
+
+         auto pextension = get_extension();
+
+         __construct_new(pextension->m_pframea);
+
+         pextension->m_pframea->m_size = this->m_size;
+
+         pextension->m_pframea->update(this, imagedrawing);
+
+         return;
+
+      }
+
+   }
+
+   image_drawer::draw(imagedrawing);
+   //void defer_update_image();
+
+}
+
+
 void image::_draw_raw(const image_drawing& imagedrawing)
 {
 

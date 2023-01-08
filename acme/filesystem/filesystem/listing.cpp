@@ -155,13 +155,13 @@ namespace file
          if (::is_set(m_penumerator) && m_edepth > 0)
          {
 
-            ___scoped_restore(m_pathUser);
+            scoped_restore(m_pathUser);
 
-            ___scoped_restore(m_pathFinal);
+            scoped_restore(m_pathFinal);
 
-            ___scoped_restore(m_edepth);
+            scoped_restore(m_edepth);
 
-            ___scoped_restore(m_eextract);
+            scoped_restore(m_eextract);
 
             m_pathUser = path;
 

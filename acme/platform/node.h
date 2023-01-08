@@ -128,6 +128,12 @@ namespace acme
       virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode);
 
 
+      virtual ::atom_array get_pid_from_module_list_file(const ::scoped_string & scopedstr);
+
+
+      //idaPid = pnode->(path, false);
+
+
       virtual ::pointer < ::particle > create_mutex();
 //#ifdef LINUX
 //
@@ -682,6 +688,8 @@ namespace acme
          const ::array < ::pair < ::string, ::string > > & filetypes,
          const ::function < void(const ::file::path_array &) >& function);
      
+      virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
+
 
    };
 

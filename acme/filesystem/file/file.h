@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //////#include "acme/primitive/primitive/object.h"
@@ -189,6 +189,7 @@ namespace file
       void set_size(filesize dwNewLen) override;
       filesize size() const override;
       inline bool is_empty() const { return size() <= 0; }
+      inline bool has_data() const { return size() > 0; }
       inline void clear() { set_size(0); }
 
       virtual void lock(filesize dwPos, filesize dwCount);

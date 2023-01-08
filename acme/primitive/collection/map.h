@@ -675,7 +675,7 @@ pair_map < PAIR >::pair_map(const ::std::initializer_list < PAIR > & list)
    for(auto & pair : list)
    {
 
-      set_at(pair.m_element1, pair.m_element2);
+      set_at((ARG_ITEM) pair.element1(), (ARG_PAYLOAD) pair.element2());
 
    }
 

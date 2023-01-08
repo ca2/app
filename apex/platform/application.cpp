@@ -2166,7 +2166,9 @@ namespace apex
       }
       //return true;
 
-      acmenode()->m_papexnode->on_start_application(this);
+      //acmenode()->m_papexnode->on_start_application(this);
+
+      on_start_application();
 
    }
 

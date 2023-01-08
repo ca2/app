@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -29,6 +29,7 @@ public:
 
 
    virtual void _001Process(::image * pimageCompose, ::image * pimageFrame, image_frame_array * pframea);
+   virtual void create(image_frame * pframeSource, const ::image_drawing & imagedrawing, ::image_frame_array * pframea);
 
 
 };

@@ -1,18 +1,17 @@
-#pragma once
+﻿#pragma once
 
 
 template <class TYPE>
-class scoped_restore
+struct scoped_restore_struct
 {
-public:
 
 
    TYPE *  m_pKept;
    TYPE    m_valueRestore;
 
-   scoped_restore(TYPE * pKept);
-   scoped_restore(TYPE * pKept,const TYPE & set);
-   ~scoped_restore();
+   scoped_restore_struct(TYPE * pKept);
+   scoped_restore_struct(TYPE * pKept,const TYPE & set);
+   ~scoped_restore_struct();
 
    void Restore();
 
@@ -20,7 +19,7 @@ public:
 
 
 template <class TYPE>
-scoped_restore<TYPE>::scoped_restore(TYPE * pKept):
+scoped_restore_struct<TYPE>::scoped_restore_struct(TYPE * pKept):
    m_pKept(pKept),
    m_valueRestore(*m_pKept)
 {
@@ -29,7 +28,7 @@ scoped_restore<TYPE>::scoped_restore(TYPE * pKept):
 
 
 template <class TYPE>
-scoped_restore<TYPE>::scoped_restore(TYPE * pKept, const TYPE & set) :
+scoped_restore_struct<TYPE>::scoped_restore_struct(TYPE * pKept, const TYPE & set) :
    m_pKept(pKept),
    m_valueRestore(*m_pKept)
 {
@@ -40,7 +39,7 @@ scoped_restore<TYPE>::scoped_restore(TYPE * pKept, const TYPE & set) :
 
 
 template <class TYPE>
-scoped_restore<TYPE>::~scoped_restore()
+scoped_restore_struct<TYPE>::~scoped_restore_struct()
 {
 
    Restore();
@@ -49,7 +48,7 @@ scoped_restore<TYPE>::~scoped_restore()
 
 
 template <class TYPE>
-void scoped_restore<TYPE>::Restore()
+void scoped_restore_struct<TYPE>::Restore()
 {
 
    *m_pKept = m_valueRestore;
@@ -58,7 +57,7 @@ void scoped_restore<TYPE>::Restore()
 
 
 template < typename TYPE >
-inline ::scoped_restore < TYPE > create_scoped_restore(TYPE & t)
+inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
 {
    
    return {&t};
@@ -66,6 +65,6 @@ inline ::scoped_restore < TYPE > create_scoped_restore(TYPE & t)
 }
 
 
-#define ___scoped_restore(payload) auto TOKEN_CONCATENATE(scopedrestore, __COUNTER__) = create_scoped_restore(payload)
+#define scoped_restore(payload) auto TOKEN_CONCATENATE(scopedrestore, __COUNTER__) = create_scoped_restore(payload)
 
 //#define __set_restore(payload, set) ::scoped_restore < decltype(payload) > TOKEN_CONCATENATE(scopedrestore, __COUNTER__) (&payload); ::payload = set

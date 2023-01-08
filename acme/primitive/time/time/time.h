@@ -1,4 +1,4 @@
-﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -95,7 +95,24 @@ public:
    constexpr time(enum_raw, INTEGRAL1 iSecond) : time(e_raw, iSecond, 0) {}
    
    template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-   constexpr time(enum_normalize, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond);
+   constexpr time(enum_normalize, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
+   {
+
+      m_iSecond = iSecond + iNanosecond / 1'000'000'000;
+
+      m_iNanosecond = iNanosecond % 1'000'000'000;
+      
+      while(m_iNanosecond < 0)
+      {
+
+         m_iSecond--;
+
+         m_iNanosecond += 1'000'000'000;
+
+      }
+
+   }
+
 
    constexpr time(const ::TIME & time) : TIME(time) {}
 
@@ -132,6 +149,7 @@ public:
    constexpr void Null() { Zero(); }
 
    constexpr class ::time & operator = (const class time & time);
+   constexpr class ::time & operator = (const ::earth::time_span & time);
 
    inline bool timeout(const class time & time) { return timeout(time, now()); }
    constexpr bool timeout(const class time & time, const class time & timeNow);
@@ -863,24 +881,24 @@ constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 
 }
 
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-constexpr  time::time(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
-{
-
-   m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
-
-   m_iNanosecond = iNanoseconds % 1'000'000'000;
-   
-   while(m_iNanosecond < 0)
-   {
-
-      m_iSecond--;
-
-      m_iNanosecond += 1'000'000'000;
-
-   }
-
-}
+//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+//constexpr  time::time(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
+//{
+//
+//   m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
+//
+//   m_iNanosecond = iNanoseconds % 1'000'000'000;
+//
+//   while(m_iNanosecond < 0)
+//   {
+//
+//      m_iSecond--;
+//
+//      m_iNanosecond += 1'000'000'000;
+//
+//   }
+//
+//}
 
 
 //inline timeclass ::time(const class ::time& time) :

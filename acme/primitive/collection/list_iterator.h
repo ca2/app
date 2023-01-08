@@ -511,6 +511,22 @@ template < typename ITERATOR_TYPE >
 }
 
 
+template < typename BASE_ITERATOR_TYPE >
+inline auto & get(make_list_iterator<BASE_ITERATOR_TYPE> & p)
+{
+
+   return p.topic();
+
+}
+
+
+template < typename BASE_ITERATOR_TYPE >
+inline auto & get(const make_list_iterator<BASE_ITERATOR_TYPE> & p)
+{
+
+   return p.topic();
+
+}
 //template < typename LIST_ITEM >
 //using list_iterator = ::make_list_iterator < ::list_iterator_item < ::iterator_base < LIST_ITEM > > >;
 

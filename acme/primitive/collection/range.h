@@ -10,6 +10,22 @@ enum enum_range : ::i32
 
 };
 
+template < typename TYPE >
+auto & get(TYPE * p)
+{
+
+   return * p;
+
+}
+
+template < typename TYPE >
+auto & get(const TYPE * p)
+{
+
+   return * p;
+
+}
+
 
 DECLARE_ENUMERATION(e_range, enum_range);
 
@@ -303,6 +319,9 @@ public:
     {
        return m_end = end;
     }
+
+    auto & first();
+    auto & first() const;
 
 
     this_iterator data()

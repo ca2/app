@@ -36,6 +36,16 @@ constexpr class time& time::operator = (const class time & time)
 }
 
 
+constexpr class ::time & time::operator = (const ::earth::time_span & timespan)
+{
+
+   m_iSecond = timespan.m_time;
+   m_iNanosecond = 0;
+
+   return *this;
+
+}
+
 constexpr double time::ramp_up(const class time & timePeriod, const class time & time) const
 {
 

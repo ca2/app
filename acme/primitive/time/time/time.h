@@ -132,6 +132,7 @@ public:
    constexpr void Null() { Zero(); }
 
    constexpr class ::time & operator = (const class time & time);
+   constexpr class ::time & operator = (const ::earth::time_span & time);
 
    inline bool timeout(const class time & time) { return timeout(time, now()); }
    constexpr bool timeout(const class time & time, const class time & timeNow);

@@ -188,7 +188,7 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 
    auto path = acmepath()->defer_process_relative_path(pathParam);
 
-   pfile->open(path, "r", _SH_DENYNO);
+   pfile->open(path, "rb", _SH_DENYNO);
 
    if (bNoExceptionIfNotFound)
    {

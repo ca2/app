@@ -1409,7 +1409,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //         prop("tracking_fade_out") = false;
 
-   //         prop("tracking_type") = __random(1, 2);
+   //         prop("tracking_type") = random(1, 2);
 
    //         if (prop("tracking_simple").i32() == 2)
    //         {

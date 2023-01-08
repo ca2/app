@@ -104,7 +104,7 @@ namespace geometry
 
    //   ppoint->x = (::i32)Sy(rectangle.left,rectangle.right);
 
-   //   ppoint->y = (::i32)__random(rectangle.top,rectangle.bottom);
+   //   ppoint->y = (::i32)random(rectangle.top,rectangle.bottom);
 
    //}
 

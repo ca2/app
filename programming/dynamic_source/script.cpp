@@ -209,7 +209,7 @@ namespace dynamic_source
       synchronous_lock synchronouslock(this->synchronization());
       return (m_timeLastBuildTime.elapsed()) > 
          m_pmanager->m_timeBuildInterval +
-         __random(0_s, m_pmanager->m_timeTimeRandomInterval);
+         random(0_s, m_pmanager->m_timeTimeRandomInterval);
    }
 
    bool ds_script::HasCompileOrLinkError()
@@ -552,7 +552,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            preempt((class ::time)__random(2._s, 4._s));
+            preempt((class ::time)random(2._s, 4._s));
 
          }
 

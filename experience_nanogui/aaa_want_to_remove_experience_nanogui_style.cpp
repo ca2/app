@@ -700,7 +700,7 @@ namespace experience_lite
                pbar->prop("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
                pbar->prop("tracking_fade_in") = true;
                pbar->prop("tracking_fade_out") = false;
-               pbar->prop("tracking_simple") = __random(1, 2) == 1;
+               pbar->prop("tracking_simple") = random(1, 2) == 1;
                //prop("tracking_window") = __alloc(memory_new trw(this));
             }
          }

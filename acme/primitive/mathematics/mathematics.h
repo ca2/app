@@ -9,16 +9,16 @@ template < typename TYPE >
 inline TYPE* __random_bytes(TYPE* p, memsize s);
 
 template < typename TYPE >
-TYPE& __random(TYPE& t);
+TYPE& random(TYPE& t);
 
 template < typename TYPE >
-TYPE __random();
+TYPE random();
 
 
-//float __random(float f1, float f2);
-//double __random(double d1, double d2);
-//i64 __random(i64 i1, i64 i2);
-//i32 __random(i32 i1, i32 i2);
+//float random(float f1, float f2);
+//double random(double d1, double d2);
+//i64 random(i64 i1, i64 i2);
+//i32 random(i32 i1, i32 i2);
 //template < typename ::i32 >
 //::i32 __random_int(::i32 i1, ::i32 i2);
 

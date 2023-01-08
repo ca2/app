@@ -1925,7 +1925,7 @@ namespace experience_core
                pbar->payload("tracking_start_time") = (class ::time)e_now + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
-               pbar->payload("tracking_simple") = __random(1, 2) == 1;
+               pbar->payload("tracking_simple") = random(1, 2) == 1;
 
             }
 

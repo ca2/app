@@ -194,7 +194,7 @@ namespace crypto
          for (memsize i = 0; i < storage.size(); i++)
          {
 
-            storage.data()[i] = __random<char>() & 0xff;
+            storage.data()[i] = random<char>() & 0xff;
 
          }
 
@@ -614,7 +614,7 @@ namespace crypto
          for (i32 i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
          {
 
-            i64 iDigit = __random<char>();
+            i64 iDigit = random<char>();
 
             strFormat.format("%02x", iDigit);
 

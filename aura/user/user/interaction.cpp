@@ -4285,12 +4285,12 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectangleHint, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
+         pgraphics->fill_rectangle(rectangleHint, argb(128, random(128, 255), random(128, 255), random(128, 255)));
 
       }
 
 #endif
-      //      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
+      //      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, random(128, 255), random(128, 255), random(128, 255)));
 
 
       windowing_output_debug_string("\n_001UpdateBuffer : after Print");

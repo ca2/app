@@ -9,7 +9,7 @@ template < primitive_rectangle RECTANGLE >
 inline typename RECTANGLE::POINT_TYPE random_point(const RECTANGLE & r)
 { 
    
-   return { __random(r.left, r.right), __random(r.top, r.bottom) };
+   return { random(r.left, r.right), random(r.top, r.bottom) };
 
 }
 

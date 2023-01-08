@@ -5,17 +5,17 @@
 
 
 template<typename TYPE>
-inline TYPE* __random_bytes(TYPE* p, memsize s);
+inline TYPE* random(TYPE* p, memsize s);
 
 template<typename TYPE>
-inline TYPE& __random(TYPE& t);
+inline TYPE& random(TYPE& t);
 
 template<typename TYPE>
-inline TYPE __random();
+inline TYPE random();
 
 
 template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-inline ::largest_type < FLOATING1, FLOATING2 > __random(const FLOATING1 & f1, const FLOATING2 & f2)
+inline ::largest_type < FLOATING1, FLOATING2 > random(const FLOATING1 & f1, const FLOATING2 & f2)
 {
 
    if (f1 == f2) return f1;
@@ -28,7 +28,7 @@ inline ::largest_type < FLOATING1, FLOATING2 > __random(const FLOATING1 & f1, co
 
    ::u64 u;
 
-   __random(u);
+   random(u);
 
    return (::largest_type < FLOATING1, FLOATING2 >) (((u * fRange) / (::largest_type < FLOATING1, FLOATING2 >)MAXU64) + fMin);
 
@@ -36,7 +36,7 @@ inline ::largest_type < FLOATING1, FLOATING2 > __random(const FLOATING1 & f1, co
 
 
 template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-inline ::largest_type < INTEGRAL1, INTEGRAL2 > __random(const INTEGRAL1 & i1, const INTEGRAL2 & i2)
+inline ::largest_type < INTEGRAL1, INTEGRAL2 > random(const INTEGRAL1 & i1, const INTEGRAL2 & i2)
 {
 
    if (i1 == i2) return i1;
@@ -49,7 +49,7 @@ inline ::largest_type < INTEGRAL1, INTEGRAL2 > __random(const INTEGRAL1 & i1, co
 
    u64 u;
 
-   __random(u);
+   random(u);
 
    return(::largest_type < INTEGRAL1, INTEGRAL2 >) ((u % (iRange + 1)) + iMin);
 

@@ -91,7 +91,7 @@ namespace account
       for(i32 i = 0; i < 64; i += 2)
       {
 
-         i64 iDigit = __random<char>();
+         i64 iDigit = random<char>();
 
          strFormat = ::hex::lower_pad_from(iDigit, 2);
 

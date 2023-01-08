@@ -24,7 +24,7 @@ inline TYPE* __random_bytes(TYPE* p, memsize s)
 
 
 template < typename TYPE >
-inline TYPE& __random(TYPE& t)
+inline TYPE& random(TYPE& t)
 {
 
    return *__random_bytes(&t, sizeof(TYPE));
@@ -33,12 +33,12 @@ inline TYPE& __random(TYPE& t)
 
 
 template < typename TYPE >
-inline TYPE __random()
+inline TYPE random()
 {
 
    TYPE t;
 
-   __random(t);
+   random(t);
 
    return t;
 
@@ -47,26 +47,26 @@ inline TYPE __random()
 
 
 
-//inline i64 __random(i64 i1, i64 i2)
+//inline i64 random(i64 i1, i64 i2)
 //{
 //   return __random_int(i1, i2);
 //}
 
 
-//inline i32 __random(i32 i1, i32 i2)
+//inline i32 random(i32 i1, i32 i2)
 //{
 //   return __random_int(i1, i2);
 //}
 
 
 
-//inline i64 __random(i32 i1, i64 i2)
+//inline i64 random(i32 i1, i64 i2)
 //{
 //   return __random_int((i64) i1, i2);
 //}
 
 
-//inline i64 __random(i64 i1, i32 i2)
+//inline i64 random(i64 i1, i32 i2)
 //{
 //   return __random_int(i1, (i64)i2);
 //}

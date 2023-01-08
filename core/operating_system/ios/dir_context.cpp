@@ -46,11 +46,11 @@ namespace ios
 
          {
 
-            ___scoped_restore(listing.m_pathUser);
+            scoped_restore(listing.m_pathUser);
 
-            ___scoped_restore(listing.m_pathFinal);
+            scoped_restore(listing.m_pathFinal);
 
-            ___scoped_restore(listing.m_eextract);
+            scoped_restore(listing.m_eextract);
 
             if(::dir_context::ls(listing))
             {

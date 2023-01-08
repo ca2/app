@@ -1639,7 +1639,7 @@ namespace draw2d_cairo
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               ___scoped_restore(m_pimageAlphaBlend);
+               scoped_restore(m_pimageAlphaBlend);
 
                m_pimageAlphaBlend.release();
 

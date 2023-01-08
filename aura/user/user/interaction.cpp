@@ -3625,7 +3625,7 @@ namespace user
 
       ::draw2d::savedc k(pgraphics);
 
-      ___scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteraction);
 
       pgraphics->m_puserinteraction = this;
 
@@ -3794,7 +3794,7 @@ namespace user
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ___scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteraction);
 
       pgraphics->m_puserinteraction = this;
 
@@ -4431,7 +4431,7 @@ namespace user
 
       }
 
-      ___scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteraction);
 
       pgraphics->m_puserinteraction = this;
 

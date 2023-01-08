@@ -112,6 +112,12 @@ namespace earth
 
    }
 
+   constexpr earth::time time::operator+(class ::time& time) const
+   {
+
+      return { this->m_time + time.m_iSecond };
+
+   }
 
 } // namespace earth
 

@@ -90,6 +90,8 @@ namespace earth
 
       time operator+(date_span span) const;
 
+      constexpr time operator+(class ::time & time) const;
+
       //time operator-(const class time & time) const;
       //time operator+(const class time & time) const;
 

@@ -146,6 +146,23 @@ public:
 };
 
 
+template < typename ITERATOR_TYPE > 
+constexpr bool is_ok(iterator_base < ITERATOR_TYPE > p) { return ::is_set(p.get()); }
+template < typename ITERATOR_TYPE >
+constexpr bool is_ok(const_iterator_base < ITERATOR_TYPE > p) { return ::is_set(p.get()); }
+template < typename ITERATOR_TYPE >
+constexpr bool is_end(iterator_base < ITERATOR_TYPE > p) { return !is_ok(p); }
+template < typename ITERATOR_TYPE >
+constexpr bool is_end(const_iterator_base < ITERATOR_TYPE > p) { return !is_ok(p); }
+
+
+template < typename TYPE >
+constexpr bool is_ok(TYPE* p, TYPE * end) { return p < end; }
+template < typename TYPE >
+constexpr bool is_end(TYPE* p, TYPE* end) { return is_ok(p, end); }
+
+
+
 //template < typename TYPE >
 //using iterator_selector = 
 //   ::if_else <

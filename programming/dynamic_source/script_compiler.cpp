@@ -1149,7 +1149,7 @@ namespace dynamic_source
       }
       else if(strSource.substr(0, 7) == "<? //ss")
       {
-         iLastEnd = strSource.find("?>", iPos);
+         iLastEnd = strSource.find_index("?>", iPos);
          if(iLastEnd > 0)
          {
             iLastEnd += 2;
@@ -1163,13 +1163,13 @@ namespace dynamic_source
          iStart +=4;
          while(true)
          {
-            strsize iMid = strSource.find("?>", iStart);
-            iLastEnd = strSource.find("ds?>", iStart);
+            strsize iMid = strSource.find_index("?>", iStart);
+            iLastEnd = strSource.find_index("ds?>", iStart);
             if(iMid > 0 && iMid < iLastEnd)
             {
                strDs += cppize2(strSource.substr(iStart, iMid - iStart), true, straId);
                iStart = iMid + 2;
-               iMid = strSource.find("<?", iStart);
+               iMid = strSource.find_index("<?", iStart);
                if(iMid < iLastEnd)
                {
                   strDs += get_ds_print(strSource.substr(iStart, iMid - iStart));
@@ -1218,13 +1218,13 @@ namespace dynamic_source
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
       straId.erase_all();
-      while((iPos = strSource.find("<?", iStart)) >= 0)
+      while((iPos = strSource.find_index("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd)
          {
             strDest += get_ds_print(strSource.substr(iLastEnd, iPos - iLastEnd));
          }
-         iLastEnd = strSource.find("?>", iPos);
+         iLastEnd = strSource.find_index("?>", iPos);
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
@@ -1357,7 +1357,7 @@ namespace dynamic_source
 
       auto p = m_mapLib.plookup(pszLibrary);
 
-      if(p != nullptr)
+      if(::is_ok(p))
       {
          return *p->element2();
       }
@@ -1862,13 +1862,13 @@ auto tickStart = ::time::now();
       strsize iPos = 0;
       strsize iLastEnd = 0;
       string_array straId;
-      while((iPos = strSource.find("<?", iStart)) >= 0)
+      while((iPos = strSource.find_index("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd && bCode)
          {
             strDest += get_ds_print(strSource.substr(iLastEnd, iPos - iLastEnd));
          }
-         iLastEnd = strSource.find("?>", iPos);
+         iLastEnd = strSource.find_index("?>", iPos);
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
@@ -1907,8 +1907,8 @@ auto tickStart = ::time::now();
       {
          strKey.make_lower();
       }
-      auto pFind = straId.find_first(strKey);
-      if(iFind <= 0)
+      auto iFind = straId.find_first(strKey);
+      if(::not_found(iFind))
       {
          straId.add(strKey);
          iFind = straId.get_upper_bound();
@@ -2568,13 +2568,17 @@ ch_else:
    const char * script_compiler::next_nonspace(const ::string & strParam)
    {
 
-      const ::scoped_string & scopedstr = strParam;
+      const ::ansi_character * psz = strParam;
 
-      while(*psz != '\0' && character_isspace(*psz))
+      while(*psz && character_isspace(*psz))
       {
+
          psz++;
+
       }
+
       return psz;
+
    }
 
 
@@ -2894,22 +2898,22 @@ ch_else:
          for(int j = 0; j < straLine.get_count(); j++)
          {
             string strLine = straLine[j];
-            const ::scoped_string & scopedstr = strLine;
+            auto range = strLine();
             try
             {
-               ::str::consume_spaces(psz,0);
-               string strId = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strLocale = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strSchema = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strValue = ::str::consume_c_quoted_value(psz);
+               ::str::consume_spaces(range,0);
+               string strId = ::str::consume_c_quoted_value(range);
+               ::str::consume_spaces(range,1);
+               string strLocale = ::str::consume_c_quoted_value(range);
+               ::str::consume_spaces(range,1);
+               string strSchema = ::str::consume_c_quoted_value(range);
+               ::str::consume_spaces(range,1);
+               string strValue = ::str::consume_c_quoted_value(range);
                strExtra = "";
                try
                {
-                  ::str::consume_spaces(psz,1);
-                  strExtra = ::str::consume_c_quoted_value(psz);
+                  ::str::consume_spaces(range,1);
+                  strExtra = ::str::consume_c_quoted_value(range);
                }
                catch(...)
                {

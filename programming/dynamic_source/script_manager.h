@@ -52,13 +52,14 @@ namespace dynamic_source
 
       };
 
+
       class CLASS_DECL_APP_PROGRAMMING tunnel_map_item
       {
       public:
 
 
-         string         m_strServer;
-         class ::time           m_tick;
+         string                  m_strServer;
+         class ::time            m_time;
 
 
       };

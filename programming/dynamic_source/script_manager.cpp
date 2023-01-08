@@ -877,7 +877,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists.erase_key(path);
+            m_mapIncludeMatchesFileExists.erase_item(path);
 
          }
          catch (...)
@@ -888,7 +888,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.erase_key(path);
+            m_mapIncludeMatchesIsDir.erase_item(path);
 
          }
          catch (...)
@@ -907,7 +907,7 @@ namespace dynamic_source
 
          single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
 
-         m_mapIncludeExpandMd5.erase_key(path);
+         m_mapIncludeExpandMd5.erase_item(path);
 
       }
       catch (...)
@@ -974,11 +974,13 @@ namespace dynamic_source
 
       auto pcontext = get_context();
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
-      string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.plookup(strPath);
-      if (ppair != nullptr)
+      
+      auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
+
+      if (p)
       {
 
-         return ppair->element2();
+         return p->payload();
 
       }
 
@@ -1001,14 +1003,16 @@ namespace dynamic_source
 
    bool script_manager::include_matches_is_dir(const ::string & strPath)
    {
+      
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
-      string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.plookup(strPath);
+
+      auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
 
       auto pcontext = get_context();
 
-      if (ppair != nullptr)
+      if (p)
       {
-         return ppair->element2();
+         return p->element2();
       }
 
       bool bIsDir = dir()->is(strPath);
@@ -1023,11 +1027,11 @@ namespace dynamic_source
          return false;
 
       single_lock synchronouslock(m_pmutexIncludeHasScript, true);
-      string_map < bool >::pair * ppair = m_mapIncludeHasScript.plookup(strPath);
-      if (ppair != nullptr)
+      auto p = m_mapIncludeHasScript.plookup(strPath);
+      if (p)
       {
 
-         return ppair->element2();
+         return p->element2();
 
       }
       
@@ -1035,7 +1039,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).find("<?") >= 0;
+         bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).contains("<?");
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -1179,33 +1183,33 @@ namespace dynamic_source
 
       single_lock synchronouslock(m_pmutexSession, true);
 
-      auto ppair = m_mapSession.plookup(pszId);
+      auto p = m_mapSession.plookup(pszId);
 
-      if (ppair != nullptr)
+      if (p)
       {
 
          auto timeNow = ::earth::time::now();
 
-         auto timeExpiry = ppair->element2()->m_timeExpiry;
+         auto timeExpiry = p->element2()->m_timeExpiry;
 
          if (timeNow < timeExpiry)
          {
 
-            ppair->element2()->m_timeExpiry = ::earth::time::now() + m_secsSessionExpiration;
+            p->element2()->m_timeExpiry = ::earth::time::now() + m_timeSessionExpiration;
 
-            return ppair->element2();
+            return p->element2();
 
          }
 
-         ppair->element2().m_p->~session();
+         p->element2().m_p->~session();
 
 
-         ::new(ppair->element2().m_p) ::dynamic_source::session();
+         ::new(p->element2().m_p) ::dynamic_source::session();
 //#define memory_new ACME_NEW
 
-         ppair->element2()->initialize_dynamic_source_session(pszId, this);
+         p->element2()->initialize_dynamic_source_session(pszId, this);
 
-         return ppair->element2();
+         return p->element2();
 
       }
 
@@ -1213,7 +1217,7 @@ namespace dynamic_source
 
       psession->initialize_dynamic_source_session(pszId, this);
 
-      psession->m_timeExpiry = ::earth::time::now() + m_secsSessionExpiration;
+      psession->m_timeExpiry = ::earth::time::now() + m_timeSessionExpiration;
 
       m_mapSession.set_at(pszId, psession);
 
@@ -1231,34 +1235,34 @@ namespace dynamic_source
       
       timeNow = ::earth::time::now();
       
-      auto passoc = m_mapSession.get_start();
+      auto p = m_mapSession.begin();
       
-      decltype(passoc) passocNext;
+      decltype(p) pNext;
 
-      while(passoc != nullptr)
+      while(::is_ok(p))
       {
 
-         passocNext = passoc->m_pnext;
+         pNext++;
 
-         if(passoc->element2().is_null())
+         if(p->payload().is_null())
          {
 
-            m_mapSession.erase_item(passoc);
+            m_mapSession.erase(p);
 
          }
-         else if(passoc->element2()->m_countReference <= 1)
+         else if(p->element2()->m_countReference <= 1)
          {
 
-            if(timeNow > passoc->element2()->m_timeExpiry)
+            if(timeNow > p->element2()->m_timeExpiry)
             {
 
-               m_mapSession.erase_item(passoc);
+               m_mapSession.erase(p);
 
             }
 
          }
 
-         passoc = passocNext;
+         p = pNext;
 
       }
 
@@ -1379,14 +1383,14 @@ namespace dynamic_source
 
       single_lock synchronouslock(m_pmutexOutLink, true);
 
-      auto ppair = m_mapOutLink.plookup(pszServer);
+      auto p = m_mapOutLink.plookup(pszServer);
 
       ::sockets::link_out_socket * psocket = nullptr;
 
-      if(ppair != nullptr)
+      if(::is_ok(p))
       {
 
-         psocket = ppair->element2();
+         psocket = p->element2();
 
          if(psocket != nullptr)
          {
@@ -1412,7 +1416,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.erase_key(pszServer);
+         m_mapOutLink.erase_item(pszServer);
 
       }
 
@@ -1437,18 +1441,18 @@ namespace dynamic_source
          tunnel_map_item item;
 
          item.m_strServer    = pszServer;
-         item.m_tick.Now();
+         item.m_time.Now();
 
          m_mapTunnel.set_at(pszServer, item);
 
       }
 
-      if(ppair == nullptr)
+      if(::is_ok(ppair))
          return nullptr;
 
       ::sockets::link_in_socket * pinsocket = ppair->element2();
 
-      m_pmapInLink->erase_key(poutsocket);
+      m_pmapInLink->erase_item(poutsocket);
 
       return pinsocket;
 
@@ -1460,12 +1464,16 @@ namespace dynamic_source
 
       single_lock synchronouslock(m_pmutexTunnel, true);
 
-      string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.plookup(pszServer);
+      auto p = m_mapTunnel.plookup(pszServer);
 
-      if(ppair == nullptr)
+      if (::is_end(p))
+      {
+
          return false;
 
-      if (ppair->element2().m_tick.elapsed() > 60_s)
+      }
+
+      if (p->payload().m_time.elapsed() > 60_s)
       {
 
          return false;
@@ -1493,7 +1501,7 @@ namespace dynamic_source
          tunnel_map_item item;
 
          item.m_strServer    = pszServer;
-         item.m_tick.Now();
+         item.m_time.Now();
 
          m_mapTunnel.set_at(pszServer, item);
 
@@ -1560,7 +1568,9 @@ namespace dynamic_source
 
       // http://www.cplusplus.com/forum/beginner/45217/
 
-      filesize len = pfile->seek_to_end();
+      pfile->seek_to_end();
+
+      filesize len = pfile->get_position();
 
       if(len < 24)
       {

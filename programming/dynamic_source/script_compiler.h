@@ -10,6 +10,8 @@
 namespace dynamic_source
 {
 
+   using library_map = string_map < ::pointer<library >>;
+
 
    class CLASS_DECL_APP_PROGRAMMING script_compiler :
       virtual public ::programming::compiler,
@@ -31,7 +33,7 @@ namespace dynamic_source
       };
 
 
-      string_map < ::pointer<library >>m_mapLib;
+      library_map m_mapLib;
 
 //#ifdef WINDOWS
 //      string                                    m_strVs;

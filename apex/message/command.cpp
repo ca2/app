@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "command.h"
 #include "channel.h"
 ////#include "acme/exception/exception.h"
@@ -29,7 +29,7 @@ namespace message
 
       common_construct();
 
-      m_atom.set_compounded_type(::atom::e_type_command);
+      //m_atom.set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;
 
    }

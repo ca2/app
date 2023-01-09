@@ -394,9 +394,9 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      scoped_restore(pcommand->m_atom.m_etype);
-
-      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//      scoped_restore(pcommand->m_atom.m_etype);
+//
+//      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
       route_command(pcommand, true);
 
@@ -434,7 +434,15 @@ void channel::route_command(::message::command * pcommand, bool bRouteToKeyDesce
 void channel::command_handler(::message::command * pcommand)
 {
 
-   if (pcommand->is_command())
+   if (pcommand->m_bProbing)
+   {
+
+      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+
+      on_command_probe(pcommand);
+
+   }
+   else
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -452,26 +460,6 @@ void channel::command_handler(::message::command * pcommand)
       }
 
       on_command(pcommand);
-
-   }
-   else if (pcommand->m_bProbing)
-   {
-
-      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
-
-      on_command_probe(pcommand);
-
-   }
-   else if (pcommand->m_bCommand)
-   {
-
-      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
-
-   }
-   else
-   {
-
-      //throw ::not_implemented();
 
    }
 
@@ -532,7 +520,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 void channel::on_command_probe(::message::command * pcommand)
 {
 
-   scoped_restore(pcommand->m_atom.m_etype);
+   scoped_restore(pcommand->m_bProbing);
 
    //pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
    pcommand->m_bProbing = true;
@@ -551,9 +539,9 @@ void channel::on_command_probe(::message::command * pcommand)
 void channel::on_command(::message::command * pcommand)
 {
 
-   scoped_restore(pcommand->m_atom.m_etype);
-
-   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//   scoped_restore(pcommand->m_atom.m_etype);
+//
+//   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
    route_message(pcommand);
 

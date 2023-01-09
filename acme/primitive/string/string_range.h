@@ -982,7 +982,8 @@ public:
 
     }
 
-    ::count begins_count(int(*character_is_function)(int character))
+    
+    ::count begins_count(bool(*character_is_function)(CHARACTER character))
     {
 
        ::count c = 0;
@@ -994,16 +995,18 @@ public:
     }
 
 
-    ::count defer_consume(int(*character_is_function)(int character))
+    ::count consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count);
+
+
+    ::count consume_spaces(strsize minimum_count = 0)
     {
 
-       auto c = begins_count(character_is_function);
-
-       this->begin() += c;
-
-       return c;
+       return consume(&character_isspace, minimum_count);
 
     }
+
+
+    auto consume_quoted_value();
 
 
     bool defer_consume(const SCOPED_STRING & range) 

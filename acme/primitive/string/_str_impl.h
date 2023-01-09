@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/exception/parsing.h"
+
+
 template < typename CHAR_TYPE >
 inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
 {
@@ -756,6 +759,105 @@ inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const :
    }
 
    return pair;
+
+}
+
+
+
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > str::consume_quoted_value(::string_range < ITERATOR_TYPE> & range)
+{
+
+   auto pszStart = range.m_begin;
+
+   if (*pszStart != '\"' && *pszStart != '\'')
+   {
+
+      throw ::parsing_exception("Quote character is required here");
+
+      return "";
+
+   }
+
+   char quoting_character = *range.m_begin;
+
+   range.m_begin++;
+
+   const typename ::string_range < ITERATOR_TYPE>::CHARACTER * pszValueStart = range.m_begin;
+
+   while (*range.m_begin != quoting_character)
+   {
+
+   skip:
+
+      unicode_increment(range.m_begin);
+
+      if (range.is_empty() || *range.m_begin == '\0')
+      {
+
+         throw ::parsing_exception("Quote character is required here, premature end");
+
+         return "";
+
+      }
+
+      if (*range.m_begin == '\\')
+      {
+
+         unicode_increment(range.m_begin);
+
+         if (range.is_empty())
+         {
+
+            throw ::parsing_exception("Quote character is required here, premature end");
+
+            return "";
+
+         }
+
+         goto skip;
+
+      }
+
+   }
+
+   string_base < ITERATOR_TYPE > str(pszValueStart, range.m_begin - pszValueStart);
+
+   range.m_begin++;
+
+   auto p = str.get_string_buffer();
+
+   auto pend = p + str.length();
+
+   while (*p)
+   {
+
+      if (*p == '\\')
+      {
+
+         if (p[1] == '\\')
+         {
+
+            memmove(p, p + 1, pend - p);
+         }
+         else if (p[1] == '\"')
+         {
+
+            memmove(p, p + 1, pend - p);
+
+         }
+
+      }
+
+      p++;
+
+   }
+
+   str.release_string_buffer();
+
+   return str;
 
 }
 

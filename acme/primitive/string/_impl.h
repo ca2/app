@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_string_range_impl.h"
@@ -499,3 +499,5 @@ inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd16_string &str
 
 template < typename ITERATOR_TYPE >
 inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+
+

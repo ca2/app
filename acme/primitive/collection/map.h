@@ -495,19 +495,19 @@ public:
    typename pair_map < PAIR >::iterator predicate_find(PRED pred)
    {
 
-      auto point = this->get_start();
+      auto p = this->begin();
 
-      while (point != nullptr)
+      while (::is_ok(p))
       {
 
-         if (pred(point))
+         if (pred(p))
          {
 
-            return point;
+            return p;
 
          }
 
-         point = this->get_next(point);
+         p++;
 
       }
 

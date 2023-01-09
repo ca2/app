@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "hex.h"
 #include "international.h"
 #include "acme/exception/parsing.h"
@@ -3108,99 +3108,6 @@ string str::consume_nc_name(::const_ansi_range & range)
 //}
 
 
-string str::consume_quoted_value(::const_ansi_range & range)
-{
-
-   auto pszStart = range.m_begin;
-
-   if (*pszStart != '\"' && *pszStart != '\'')
-   {
-
-      throw ::parsing_exception("Quote character is required here");
-
-      return "";
-
-   }
-
-   char quoting_character = *range.m_begin;
-
-   range.m_begin++;
-
-   const ::ansi_character * pszValueStart = range.m_begin;
-
-   while (*range.m_begin != quoting_character)
-   {
-
-   skip:
-
-      unicode_increment(range.m_begin);
-
-      if (range.is_empty() || *range.m_begin == '\0')
-      {
-
-         throw ::parsing_exception("Quote character is required here, premature end");
-
-         return "";
-
-      }
-
-      if (*range.m_begin == '\\')
-      {
-
-         unicode_increment(range.m_begin);
-
-         if (range.is_empty())
-         {
-
-            throw ::parsing_exception("Quote character is required here, premature end");
-
-            return "";
-
-         }
-
-         goto skip;
-
-      }
-
-   }
-
-   string str(pszValueStart, range.m_begin - pszValueStart);
-
-   range.m_begin++;
-
-   auto p = str.get_string_buffer();
-
-   auto pend = p + str.length();
-
-   while (*p)
-   {
-
-      if (*p == '\\')
-      {
-
-         if (p[1] == '\\')
-         {
-
-            memmove(p, p + 1, pend - p);
-         }
-         else if (p[1] == '\"')
-         {
-
-            memmove(p, p + 1, pend - p);
-
-         }
-
-      }
-
-      p++;
-
-   }
-
-   str.release_string_buffer();
-
-   return str;
-
-}
 
 
 //void str::no_escape_consume_quoted_value(::const_ansi_range & range, char ** ppsz, strsize & iBufferSize)

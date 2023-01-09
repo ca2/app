@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -609,8 +609,8 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-   inline operator ::iptr() const { return as_iptr(); }
-   inline operator ::enum_message () const { return as_emessage(); }
+   //inline operator ::iptr() const { return as_iptr(); }
+   //inline operator ::enum_message () const { return as_emessage(); }
    
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;

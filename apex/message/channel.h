@@ -15,7 +15,8 @@ public:
    //static critical_section                            s_criticalsectionChannel;
    ::pointer<::channel>                               m_pchannel;
    atom_array                                         m_atomaHandledCommands;
-   ::message::dispatcher_map                          m_dispatchermap;
+   ::message::dispatcher_map                          m_dispatchermapNormal;
+   ::message::dispatcher_map                          m_dispatchermapProbe;
    //::procedure_map                                  m_proceduremap;
 
 
@@ -32,10 +33,14 @@ public:
    virtual void destroy() override;
 
    virtual void erase_handler(::particle * pparticle);
+   
+   virtual void erase_handler(::particle * pparticle, bool bProber);
 
-   virtual void transfer_handler(::message::dispatcher_map & dispatchermap, ::particle* pparticle);
+   virtual void transfer_handler(::message::dispatcher_map & dispatchermap, ::particle* pparticle, bool bProber);
 
    virtual void erase_all_routes();
+   
+   ::message::dispatcher_map * get_dispatcher_map(bool bProber);
 
    //template < typename RECEIVER >
    //bool add_message_handler(const ::atom & atom, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
@@ -71,14 +76,14 @@ public:
    //}
 
 
-   ::particle * add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher);
+   ::particle * add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher, bool bProber);
 
 
    template < typename T1, typename T2 >
-   ::particle* add_message_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
+   ::particle* add_message_handler(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *), bool bProber)
    {
 
-      return add_message_handler(atom, { p, pfn });
+      return add_message_handler(atom, { p, pfn }, bProber);
 
    }
 
@@ -86,7 +91,7 @@ public:
    ::particle* add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher)
    {
 
-      return add_message_handler(atom.compounded(::atom::e_type_command_probe), dispatcher);
+      return add_message_handler(atom, dispatcher, true);
 
    }
 
@@ -95,7 +100,7 @@ public:
    ::particle* add_command_prober(const ::atom & atom, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      return add_command_prober(atom, { p, pfn });
+      return add_command_prober(atom, { p, pfn }, true);
 
    }
    
@@ -103,7 +108,7 @@ public:
    ::particle* add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
    {
 
-      return add_message_handler(atom.compounded(::atom::e_type_command), dispatcher);
+      return add_message_handler(atom, dispatcher, false);
 
    }
 
@@ -148,7 +153,7 @@ public:
 
 
 #define MESSAGE_LINK(atom, pchannel, preceiver, phandler) \
-   pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler } )
+   pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler }, false )
 
 
 

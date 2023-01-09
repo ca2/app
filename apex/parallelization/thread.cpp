@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
@@ -472,14 +472,23 @@ void thread::task_osterm()
    try
    {
 
-      m_dispatchermap.erase_all();
+      m_dispatchermapNormal.erase_all();
 
    }
    catch (...)
    {
 
    }
+   try
+   {
 
+      m_dispatchermapProbe.erase_all();
+
+   }
+   catch (...)
+   {
+
+   }
    __os_finalize();
 
    __set_thread_off();

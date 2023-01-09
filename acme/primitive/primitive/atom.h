@@ -1,4 +1,4 @@
-﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -253,8 +253,8 @@ public:
       e_type_subject,
       e_type_property,
       e_type_command,
-      e_type_command_probe,
-      e_type_has_command_handler,
+      //e_type_command_probe,
+      //e_type_has_command_handler,
       e_type_update,
       e_type_dialog_result,
       e_type_impact,
@@ -268,8 +268,8 @@ public:
       e_type_message_text = e_type_message | e_type_text,
       e_type_property_text = e_type_property | e_type_text,
       e_type_command_text = e_type_command | e_type_text,
-      e_type_command_probe_text = e_type_command_probe | e_type_text,
-      e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
+      //e_type_command_probe_text = e_type_command_probe | e_type_text,
+      //e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
       e_type_update_text = e_type_update | e_type_text,
       e_type_impact_text = e_type_impact | e_type_text,
       e_type_happening_text = e_type_happening | e_type_text,
@@ -283,8 +283,8 @@ public:
       e_type_message_range = e_type_message | e_type_range,
       e_type_property_range = e_type_property | e_type_range,
       e_type_command_range = e_type_command | e_type_range,
-      e_type_command_probe_range = e_type_command_probe | e_type_range,
-      e_type_has_command_handler_range = e_type_has_command_handler | e_type_range,
+      //e_type_command_probe_range = e_type_command_probe | e_type_range,
+      //e_type_has_command_handler_range = e_type_has_command_handler | e_type_range,
       e_type_update_range = e_type_update | e_type_range,
       e_type_impact_range = e_type_impact | e_type_range,
       e_type_happening_range = e_type_happening | e_type_range,
@@ -448,8 +448,8 @@ public:
 
 
    bool is_command() const { return _is_compounded(e_type_command); }
-   bool is_command_probe() const { return _is_compounded(e_type_command_probe); }
-   bool is_has_command_handler() const { return _is_compounded(e_type_has_command_handler); }
+   //bool is_command_probe() const { return _is_compounded(e_type_command_probe); }
+   //bool is_has_command_handler() const { return _is_compounded(e_type_has_command_handler); }
    bool is_update() const { return _is_compounded(e_type_update); }
 
 

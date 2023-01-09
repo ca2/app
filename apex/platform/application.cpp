@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -3789,7 +3789,7 @@ namespace apex
 
       route_message(&message);
 
-      //return message.m_bOk;
+      //return message.m_bOk;false
 
    }
 

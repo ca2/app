@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -47,6 +47,9 @@ namespace message
       ::e_status                     m_estatus;
       ::action_context              m_actioncontext;
       ::point_i32                   m_pointMessage;
+      bool m_bProbing = false;
+      bool m_bCommand = false;
+
 
 
       message(const ::atom & atom = ::atom()) { m_atom = atom; common_construct(); }

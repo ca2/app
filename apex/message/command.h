@@ -22,7 +22,8 @@ namespace message
       ::pointer<::channel>                         m_pcommandtargetSource;
       atom                                         m_atomControl;     // menu item or other index
       index                                        m_iIndex;
-      ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
+      ::count                                      m_iCount;
+      // last + 1 for iterating m_iIndex
       pointer_array < ::channel >                  m_commandtargetptraHandle;
 
       bool                                         m_bEnable;
@@ -51,7 +52,7 @@ namespace message
       void common_construct();
 
       bool is_command()const { return m_atom.is_command(); }
-      bool is_command_probe() const { return m_atom.is_command_probe(); }
+      bool is_command_probe() const { return m_bProbing; }
 
       void handle(::channel * pcommandtarget);
       bool is_handled(::channel * pcommandtarget);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
@@ -1800,7 +1800,8 @@ namespace user
 
             INFORMATION(__type_name(m_puserinteraction) << "::destroy_impl_only");
 
-            m_puserinteraction->transfer_handler(m_dispatchermap, this);
+            m_puserinteraction->transfer_handler(m_dispatchermapNormal, this, false);
+            m_puserinteraction->transfer_handler(m_dispatchermapProbe, this, true);
 
          }
 

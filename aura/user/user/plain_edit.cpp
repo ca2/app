@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "plain_edit.h"
 #include "scroll_data.h"
 #include "style.h"
@@ -8318,7 +8318,7 @@ namespace user
 
             _001GetSelText(strSel);
 
-            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+            bFullUpdate = strSel.contains('\n') || strSel.contains('\r');
 
          }
 

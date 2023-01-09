@@ -196,11 +196,11 @@ namespace windowing
             if(pitem)
             {
 
-               ::atom atom(::atom::e_type_command_probe, pitem->m_atom);
-
                menu_command command(pitem);
+               
+               command.m_bProbing = true;
 
-               command.m_atom = atom;
+               command.m_atom = pitem->m_atom;
 
                pchannel->on_command_probe(&command);
 

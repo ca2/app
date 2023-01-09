@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "channel.h"
 #include "acme/operating_system/message.h"
 #include "acme/platform/message.h"
@@ -35,18 +35,20 @@ void channel::install_message_routing(::channel* pchannel)
    ::object::install_message_routing(pchannel);
 
 }
-
-
 void channel::erase_handler(::particle * pparticle)
+{
+   erase_handler(pparticle, false);
+   erase_handler(pparticle, true);
+   
+}
+
+
+void channel::erase_handler(::particle * pparticle, bool bProber)
 {
 
    critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
 
-   auto payloads = m_dispatchermap.payloads();
-
-   auto begin = payloads.begin();
-
-   auto end = payloads.end();
+   auto payloads = get_dispatcher_map(bProber)->payloads();
 
    for (auto & dispatchera : payloads)
    {
@@ -70,12 +72,14 @@ void channel::erase_handler(::particle * pparticle)
 }
 
 
-void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::particle * pparticle)
+void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::particle * pparticle, bool bProber)
 {
 
    critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section());
+   
+   auto pdispatchermap = get_dispatcher_map(bProber);
 
-   for (auto & pair : m_dispatchermap)
+   for (auto & pair : *pdispatchermap)
    {
 
       if (pair.element2().is_empty())
@@ -111,10 +115,14 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
 }
 
 
-::particle* channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
+::particle* channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher, bool bProber)
 {
 
-   auto & dispatchera = m_dispatchermap[atom];
+   auto pdispatchermap =
+   
+       get_dispatcher_map(bProber);
+   
+   auto & dispatchera = (*pdispatchermap)[atom];
    
    // Try to not add already added dispatcher
    for (index i = 0; i < dispatchera.get_count(); i++)
@@ -141,7 +149,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::acme::acme::g_p->channel_critical_section()); pmessage->m_pdispatchera = get_dispatcher_map(pmessage->m_bProbing)->pget(pmessage->m_atom); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -255,7 +263,8 @@ void channel::erase_all_routes()
 
       // }
 
-      m_dispatchermap.erase_all();
+      m_dispatchermapNormal.erase_all();
+      m_dispatchermapProbe.erase_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -298,6 +307,24 @@ void channel::erase_all_routes()
 
 }
 
+   
+   ::message::dispatcher_map * channel::get_dispatcher_map(bool bProber)
+   {
+      
+      
+    if(bProber)
+    {
+     
+       return &m_dispatchermapProbe;
+       
+    }
+   else
+    {
+       
+         return &m_dispatchermapNormal;
+         
+      }
+   }
 
 void channel::channel_common_construct()
 {
@@ -321,7 +348,8 @@ void channel::destroy()
 
    m_atomaHandledCommands.erase_all();
 
-   m_dispatchermap.erase_all();
+   m_dispatchermapNormal.erase_all();
+   m_dispatchermapProbe.erase_all();
 
 ///   m_dispatchermapNew.erase_all();
 
@@ -384,9 +412,9 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
    {
 
-      scoped_restore(pcommand->m_atom.m_etype);
-
-      pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+      scoped_restore(pcommand->m_bProbing);
+      pcommand->m_bProbing = true;
+//      pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
 
       route_command(pcommand);
 
@@ -426,7 +454,7 @@ void channel::command_handler(::message::command * pcommand)
       on_command(pcommand);
 
    }
-   else if (pcommand->m_atom.is_command_probe())
+   else if (pcommand->m_bProbing)
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -434,7 +462,7 @@ void channel::command_handler(::message::command * pcommand)
       on_command_probe(pcommand);
 
    }
-   else if (pcommand->m_atom.is_command())
+   else if (pcommand->m_bCommand)
    {
 
       pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -471,16 +499,16 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    }
 
-   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//
+//   if (m_atomaHandledCommands.contains(pcommand->m_atom))
+//   {
+//
+//      return true;
+//
+//   }
 
-   if (m_atomaHandledCommands.contains(pcommand->m_atom))
-   {
-
-      return true;
-
-   }
-
-   auto passociation = m_dispatchermap.plookup(pcommand->m_atom);
+   auto passociation = m_dispatchermapNormal.plookup(pcommand->m_atom);
 
    if (passociation.is_null())
    {
@@ -490,13 +518,6 @@ bool channel::has_command_handler(::message::command * pcommand)
    }
 
    if (passociation->m_element2.is_empty())
-   {
-
-      return false;
-
-   }
-
-   if (passociation->element2().is_empty())
    {
 
       return false;
@@ -513,8 +534,8 @@ void channel::on_command_probe(::message::command * pcommand)
 
    scoped_restore(pcommand->m_atom.m_etype);
 
-   pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
-
+   //pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+   pcommand->m_bProbing = true;
    route_message(pcommand);
 
    pcommand->m_bHasCommandHandler = has_command_handler(pcommand);

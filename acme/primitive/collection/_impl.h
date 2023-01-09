@@ -8,4 +8,7 @@
 #include "_impl_numeric_array.h"
 
 
-
+template<typename ITERATOR_TYPE>
+auto & range < ITERATOR_TYPE >::first() { return ::get(this->begin()); }
+template<typename ITERATOR_TYPE>
+auto & range < ITERATOR_TYPE >::first() const { return (CONST_ITEM &) ::get(this->begin()); }

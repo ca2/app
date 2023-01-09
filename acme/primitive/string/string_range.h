@@ -982,6 +982,29 @@ public:
 
     }
 
+    ::count begins_count(int(*character_is_function)(int character))
+    {
+
+       ::count c = 0;
+
+       while (character_is_function(this->begin()[c])) c++;
+
+       return c;
+
+    }
+
+
+    ::count defer_consume(int(*character_is_function)(int character))
+    {
+
+       auto c = begins_count(character_is_function);
+
+       this->begin() += c;
+
+       return c;
+
+    }
+
 
     bool defer_consume(const SCOPED_STRING & range) 
     {

@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "international.h"
 //#include "string.h"
-#include "international2.h"
+//#include "international2.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/payload.h"
 
@@ -409,12 +409,13 @@
 //#endif
 
 
-      bool multibyte_to_multibyte(::u32 uCodePageDst, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr)
-      {
+      //bool multibyte_to_multibyte(::u32 uCodePageDst, ::string & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr)
+      //{
 
-         return unicode_to_multibyte(uCodePageDst, str, multibyte_to_unicode(uCodePageSrc, scopedstr));
+      //   return unicode_to_multibyte(uCodePageDst, str, multibyte_to_unicode(uCodePageSrc, scopedstr));
 
-      }
+      //}
+
 
 //      bool multibyte_to_multibyte(::u32 uCodePageDst, memory & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr, strsize nCount)
 //
@@ -690,7 +691,6 @@
          return str;
 
       }
-
 
       bool utf8_to_multibyte(::u32 uCodePage, string & str, const ::scoped_string & scopedstr)
       {

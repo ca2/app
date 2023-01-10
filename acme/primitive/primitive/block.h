@@ -115,6 +115,9 @@ struct CLASS_DECL_ACME block :
    //::byte * data() { return (::byte *)m_pbegin; }
    //::count size() const { return (::count)m_iSize; }
 
+
+   constexpr bool has_data() const { return !this->is_empty(); }
+
    template < typename TYPE >
    const TYPE* as_pointer() const
    {
@@ -201,6 +204,13 @@ struct CLASS_DECL_ACME block :
 
    }
 
+
+   inline void copy(const ::block & block)
+   {
+
+      memcpy_dup(m_begin, block.data(), minimum(block.size(), this->size()));
+
+   }
 
 };
 

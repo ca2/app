@@ -240,10 +240,10 @@ inline bool is_file_or_folder(const ::file::enum_type& etype);
 inline bool exists(const ::file::enum_type& etype);
 
 
-CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
+//CLASS_DECL_ACME void set_verbose_log(bool bVerbose);
 
 
-CLASS_DECL_ACME bool is_verbose_log();
+//CLASS_DECL_ACME bool is_verbose_log();
 
 
 inline i64 ansi_to_i64(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, i32 iBase);

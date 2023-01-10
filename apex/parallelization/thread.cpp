@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
@@ -1896,12 +1896,12 @@ void thread::main()
       catch (const ::exception & exception)
       {
 
-         if(is_verbose_log())
-         {
+         //if(is_verbose_log())
+         //{
 
-            ERROR("thread::main : " << exception.m_strMessage);
+         //   ERROR("thread::main : " << exception.m_strMessage);
 
-         }
+         //}
 
          m_estatus = exception.m_estatus;
 

@@ -206,7 +206,7 @@ namespace apex
       {
 
 
-         m_bLog = ::is_verbose_log();
+         //m_bLog = ::is_verbose_log();
          m_bTrace = m_bLog;
          //m_bLog = false;
          //m_bLog = is_debugger_attached() != false;

@@ -14,6 +14,14 @@ enum enum_as_block
 };
 
 
+enum enum_as_little_endian_block
+{
+
+   e_as_little_endian_block,
+
+};
+
+
 enum enum_as_typed_block
 {
 

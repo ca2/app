@@ -83,6 +83,16 @@ struct CLASS_DECL_ACME block :
       this->m_end = this->m_begin + ::string_safe_length(psz);
    }
    //block(const ::scoped_string  & scopedstr);
+   template < primitive_integral INTEGRAL >
+   block(INTEGRAL i) : block(e_as_little_endian_block, i) {}
+   template < typename TYPE >
+   block(enum_as_little_endian_block, TYPE & t) : 
+      block((void *)&t, sizeof(t))
+   {
+#if BIG_ENDIAN
+      reverse(m_begin, m_end);
+#endif
+   }
    template < typename TYPE >
    block(enum_as_block, TYPE & t) : block((void *)&t, sizeof(t)) {}
    template < typename TYPE >

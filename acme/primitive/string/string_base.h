@@ -443,6 +443,7 @@ public:
 
    inline string_base & assign(const string_base & str);
    inline string_base & assign(string_base && str);
+   inline string_base & assign(const ::block & block) { return assign((const ::ansi_character *)block.data(), block.size()); }
 
    //   template < primitive_character CHARACTER2 >
    //   inline string_base& assign(const ::range < const CHARACTER2 * > & str);

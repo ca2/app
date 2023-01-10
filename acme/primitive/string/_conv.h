@@ -99,7 +99,7 @@ constexpr void __tosz(INTEGRAL i, CHARACTER * & p, int base, enum_digit_case edi
 
    __rear_tosz(i, p, base, edigitcase);
 
-   reverse(s, p - 1);
+   reverse(s, p);
 
    *p = 0;
 

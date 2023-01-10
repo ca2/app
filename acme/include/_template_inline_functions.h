@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -70,14 +70,16 @@ template < typename TYPE >
 void reverse(TYPE * begin, TYPE * end)
 {
 
-   while (begin < end)
+   while (true)
    {
+
+      end--;
+
+      if (end <= begin) return;
 
       ::swap(*begin, *end);
 
       begin++;
-
-      end--;
 
    }
 

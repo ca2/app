@@ -264,7 +264,7 @@ public:
 
       auto value = operator[](item);
 
-      erase_key(item);
+      erase_item(item);
 
       return value;
 

@@ -306,6 +306,23 @@
       }
 
 
+      string CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, ::u32 uCodePageSrc, const ::scoped_string & scopedstr)
+      {
+
+         ::string str;
+
+         if (!multibyte_to_multibyte(uCodePageDest, str, uCodePageSrc, scopedstr))
+         {
+
+            throw ::exception(error_encoding);
+
+         }
+
+         return str;
+
+      }
+
+
       bool multibyte_to_multibyte(::u32 uCodePageDst, string & str, ::u32 uCodePageSrc, const ::scoped_string & scopedstr)
       {
 

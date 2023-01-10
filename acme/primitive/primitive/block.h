@@ -69,6 +69,14 @@ struct CLASS_DECL_ACME block :
       this->m_end = this->m_begin + c;
 
    }
+   template < ::count c >
+   block(const byte(&ba)[c])
+   {
+
+      this->m_begin = ba;
+      this->m_end = this->m_begin + c;
+
+   }
    block(const ::ansi_character * psz)
    {
       this->m_begin = (::byte *) psz;

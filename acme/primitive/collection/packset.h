@@ -10,7 +10,7 @@ public:
 
    using BASE_MAP = map < ID_TYPE, ARRAY >;
    using ARG_ID_TYPE = typename BASE_MAP::ARG_ITEM;
-   using ARG_ITEM_TYPE = typename BASE_MAP::ARG_PAYLOAD::ARG_TYPE;
+   using ARG_ITEM_TYPE = typename BASE_MAP::PAYLOAD::BASE_ARG_TYPE;
    
    packset();
    

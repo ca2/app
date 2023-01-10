@@ -65,16 +65,16 @@ struct CLASS_DECL_ACME block :
    block(const char(&sz)[c])
    {
 
-      this->m_begin = sz;
-      this->m_end = this->m_begin + c;
+      this->m_begin = (byte *)(sz);
+      this->m_end = (byte *)(this->m_begin + c);
 
    }
    template < ::count c >
    block(const byte(&ba)[c])
    {
 
-      this->m_begin = ba;
-      this->m_end = this->m_begin + c;
+      this->m_begin = (byte *) ba;
+      this->m_end = (byte *) (this->m_begin + c);
 
    }
    block(const ::ansi_character * psz)

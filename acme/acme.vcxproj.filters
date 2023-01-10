@@ -368,9 +368,6 @@
     <ClInclude Include="primitive\string\international.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\international2.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\parse.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
@@ -3870,9 +3867,6 @@
     </ClCompile>
     <ClCompile Include="primitive\mathematics\scalar.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\string\international2.cpp">
-      <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\top_level_domain_list.cpp">
       <Filter>Source Files\primitive\primitive</Filter>

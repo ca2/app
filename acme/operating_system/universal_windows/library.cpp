@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
 //#include "acme/operating_system/windows_common/_.h"
@@ -120,7 +121,7 @@ namespace acme
          try
          {
 
-            wstring wstrPath(("\\\\?\\" + acmedirectory()->module())) / strPath);
+            wstring wstrPath(("\\\\?\\" + acmedirectory()->module()) / strPath);
 
             plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -173,9 +174,7 @@ namespace acme
    }
 
 
-
-
-   void * system::operating_system_library_open_ca2(const ::scoped_string & scopedstr, string & strMessage)
+   void * system::operating_system_library_open_ca2(const ::file::path & path, ::string & strMessage)
    {
       /*      string str(psz);
       if(str.find("..") >= 0)
@@ -194,7 +193,7 @@ namespace acme
       //::SetDllDirectory(dir::install("stage\\x86") + "\\");
       #endif*/
 
-      wstring wstr(psz);
+      wstring wstr(path);
 
       return LoadPackagedLibrary(wstr, 0);
 

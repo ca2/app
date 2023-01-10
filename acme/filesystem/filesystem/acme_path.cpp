@@ -19,13 +19,6 @@ acme_path::~acme_path()
 }
 
 
-
-
-
-
-
-
-
 string acme_path::from(string str)
 {
 
@@ -43,7 +36,7 @@ string acme_path::from(string str)
       else
       {
 
-         strFsSafe += "-" + ::hex::lower_from(str[i]);
+         strFsSafe += "-" + ::hex::lower_case_from(str[i]);
 
       }
 
@@ -52,8 +45,6 @@ string acme_path::from(string str)
    return strFsSafe;
 
 }
-
-
 
 
 //bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & path2)
@@ -65,6 +56,7 @@ string acme_path::from(string str)
 //
 //}
 //
+
 
 ::file::path acme_path::final(const ::file::path & path)
 {

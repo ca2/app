@@ -2115,7 +2115,7 @@ void preempt()
 
       auto ptask = ::get_task();
 
-      throw ::exit_exception(ptask);
+      throw ::exit_exception(error_exit_thread, ptask);
 
    }
 

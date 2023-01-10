@@ -37,6 +37,10 @@ namespace networking
 
 
       email_address & operator = (const email_address & addr);
+      email_address& operator = (const ::scoped_string& scopedstrEmail)
+      {
+         return *this = (const email_address&)scopedstrEmail;
+      }
 
 
    };

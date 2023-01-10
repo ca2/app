@@ -227,9 +227,6 @@ int __atom_sgn(T x)
 #endif
 
 
-
-
-
 class CLASS_DECL_ACME atom
 {
 public:
@@ -351,6 +348,8 @@ public:
    atom(SIGNED i);
    template < primitive_unsigned UNSIGNED >
    atom(UNSIGNED u);
+   template < primitive_enum ENUM >
+   atom(ENUM e);
    atom(const ::string & str);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
@@ -657,15 +656,6 @@ public:
 
    //inline atom & operator +=(const ::scoped_string & scopedstr);
 
-   inline operator u32hash() const
-   {
-
-      return { (((::u32)m_etype) << 24) ^ (is_text() ? u32_hash(m_str.c_str()).m_u : ((((::u32)m_u) >> 8) & 0xffffffffu)) };
-
-   }
-
-
-//#ifndef NO_TEMPLATE
 
 
    //inline string operator +(const atom & atom) const;
@@ -673,7 +663,22 @@ public:
    inline ::string operator +(const ::string & str) const;
 
 
-//#endif
+   operator ::u32hash() const
+   {
+
+      return { 
+         (((::u32)m_etype) << 24)
+         ^
+         (
+            is_text() ? 
+            ::u32_hash(m_str.c_str()).m_u : 
+            ((((::u32)m_u) >> 8) & 0xffffffffu)
+         ) 
+      };
+
+   }
+
 
 };
+
 

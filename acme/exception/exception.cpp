@@ -82,9 +82,7 @@ m_errorcodea(errorcodea)
 
    m_bDumpBackTrace = true;
 
-   defer_failed(m_estatus, error_exception);
-
-   m_estatus = estatus;
+   m_estatus.defer_failed(error_exception);
 
    m_bHandled = false;
 
@@ -390,7 +388,7 @@ const char* status_short_description(const ::e_status & estatus)
 
    }
 
-   switch (estatus.m_estatus)
+   switch (estatus.as_estatus())
    {
    case error_already_allocated:
 

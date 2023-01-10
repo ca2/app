@@ -3651,7 +3651,7 @@ string str::consume_command_line_argument(::const_ansi_range & range)
    if (*range.m_begin == '\"' || *range.m_begin == '\'')
    {
 
-      return consume_quoted_value(range);
+      return range.consume_quoted_value();
 
    }
    else

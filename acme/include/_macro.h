@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -362,3 +362,13 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 #ifndef HIDWORD
 #define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
 #endif
+
+
+//https://www.artima.com/articles/the-safe-bool-idiom BEGIN
+#define SAFE_BOOL_OPERATOR(type) \
+typedef void (type:: * bool_type)() const; \
+constexpr void this_type_does_not_support_comparisons() const {} \
+constexpr operator bool_type() const { return this->is_set() ? &type::this_type_does_not_support_comparisons : 0; }
+//https://www.artima.com/articles/the-safe-bool-idiom END
+
+

@@ -1169,7 +1169,7 @@ namespace axis
       //}
 
       if (pcredentials->m_estatus == ::success_credentials ||
-         ::failed(pcredentials->m_estatus, STATUS_RANGE_AUTHENTICATION))
+         pcredentials->m_estatus.failed(STATUS_RANGE_AUTHENTICATION))
       {
 
          return;

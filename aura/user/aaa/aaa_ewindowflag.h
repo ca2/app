@@ -10,7 +10,7 @@ public:
    enum_window_flag       m_ewindowflag;
 
 
-   ewindowflag() { m_ewindowflag = (enum_window_flag)0; }
+   e_window_flag() { m_ewindowflag = (enum_window_flag)0; }
    ewindowflag(const std::initializer_list < enum_window_flag >& list) { m_ewindowflag = (enum_window_flag)0; for (auto& e : list) add(e); }
    ewindowflag(enum_window_flag e) { m_ewindowflag = e; }
    ewindowflag(::i64 i) { m_ewindowflag = (enum_window_flag)i; }

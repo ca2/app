@@ -4,7 +4,7 @@
 
 ////#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/primitive/payload.h"
-#include "acme/user/user/ewindowflag.h"
+#include "acme/user/user/e_window_flag.h"
 // #include "acme/primitive/string/string.h"
 #include "acme/parallelization/manual_reset_event.h"
 
@@ -41,7 +41,7 @@ public:
    ::pointer<::user::element>       m_puserelementAlloc;
    //::pointer<command_line>        m_pcommandline;
    ::pointer<::matter>              m_pmatterUserPayload;
-   ewindowflag                      m_ewindowflag;
+   e_window_flag                    m_ewindowflag;
    ::atom                           m_atom;
    //enum_command                   m_ecommand;
    bool                             m_bShowSplash;
@@ -106,7 +106,7 @@ public:
 
    
    virtual void initialize_create(arguments arguments);
-   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom = ::atom());
+   virtual void initialize_create(string strAppId, ::payload payloadFile, const ::payload& varOptions = __visible(true), ::user::element * puiParent = nullptr, e_window_flag eflag = e_window_flag_none, ::atom = ::atom());
 
 
    void create_common_construct(const ::payload & varOptions, ::user::element * puiParent);

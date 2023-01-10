@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -54,8 +54,6 @@ public:
 
    make_single() {}
    make_single(ARG_TYPE t) : SINGLE(t) {}
-
-   operator ::u32hash () const {return ::u32_hash(this->item());}
 
 
 };

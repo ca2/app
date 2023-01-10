@@ -1006,7 +1006,7 @@ public:
     }
 
 
-    auto consume_quoted_value();
+    ::string_base < ITERATOR_TYPE > consume_quoted_value();
 
 
     bool defer_consume(const SCOPED_STRING & range) 
@@ -1660,7 +1660,7 @@ using const_wd32_range = ::string_range<const ::wd32_character *>;
 
 
 template<primitive_character CHARACTER>
-inline u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range) {
+inline ::u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 
    if (range.is_empty()) {
 
@@ -1677,24 +1677,24 @@ inline u32hash _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 }
 
 
-template<>
-inline u32hash u32_hash<const_ansi_range>(const_ansi_range range) {
+inline ::u32hash u32_hash(const_ansi_range range) 
+{
 
-   return _string_range_u32_hash<::ansi_character>((::string_range<const ::ansi_character *>) range);
-
-}
-
-
-template<>
-inline u32hash u32_hash<const_wd16_range>(const_wd16_range range) {
-
-   return _string_range_u32_hash<::wd16_character>((::string_range<const ::wd16_character *>) range);
+   return _string_range_u32_hash((::string_range<const ::ansi_character *>) range);
 
 }
 
 
-template<>
-inline u32hash u32_hash<const_wd32_range>(const_wd32_range range) {
+inline ::u32hash u32_hash(const_wd16_range range) 
+{
+
+   return _string_range_u32_hash((::string_range<const ::wd16_character *>) range);
+
+}
+
+
+inline ::u32hash u32_hash(const_wd32_range range) 
+{
 
    return _string_range_u32_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
 

@@ -10,6 +10,7 @@ CLASS_DECL_ACME bool ishexdigit(char ch);
 namespace hex
 {
 
+
    CLASS_DECL_ACME string to_asc(const ::string & strHex);
    CLASS_DECL_ACME string from_asc(const string& strAsc);
 
@@ -35,7 +36,7 @@ namespace hex
    }
 
 
-   inline CLASS_DECL_ACME char nibble_lower_from(byte b)
+   constexpr CLASS_DECL_ACME char nibble_lower_case_from(byte b)
    {
 
       if(b >= 10)
@@ -50,7 +51,7 @@ namespace hex
    }
 
 
-   inline CLASS_DECL_ACME char nibble_upper_from(byte b)
+   constexpr CLASS_DECL_ACME char nibble_upper_case_from(byte b)
    {
 
       if(b >= 10)
@@ -65,118 +66,140 @@ namespace hex
    }
 
 
-   inline CLASS_DECL_ACME void lower_from(char * sz, byte b)
+   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, byte b)
    {
 
-      sz[0] = nibble_lower_from((b >> 4) & (char) 0x0f);
-      sz[1] = nibble_lower_from(b & (char) 0x0f);
+      sz[0] = nibble_lower_case_from((b >> 4) & (char) 0x0f);
+      sz[1] = nibble_lower_case_from(b & (char) 0x0f);
 
    }
 
-   inline CLASS_DECL_ACME void upper_from(char * sz, byte b)
+   
+   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, byte b)
    {
 
-      sz[0] = nibble_upper_from((b >> 4) & (char) 0x0f);
-      sz[1] = nibble_upper_from(b & (char) 0x0f);
+      sz[0] = nibble_upper_case_from((b >> 4) & (char) 0x0f);
+      sz[1] = nibble_upper_case_from(b & (char) 0x0f);
 
    }
 
 
    // sz buffer should have twice size_i32 of s (p)
-   inline CLASS_DECL_ACME void lower_from(char * sz, const void * p, memsize s)
+   constexpr CLASS_DECL_ACME void lower_case_from(char * sz, const void * p, memsize s)
    {
        const u8 * pb = (const u8 *) p;
        while(s)
        {
-           lower_from(sz, *pb);
+           lower_case_from(sz, *pb);
 		      s--;
            sz+=2;
            pb++;
        }
    }
 
-   inline CLASS_DECL_ACME void upper_from(char * sz, const void * p, memsize s)
+   
+   constexpr CLASS_DECL_ACME void upper_case_from(char * sz, const void * p, memsize s)
    {
        const u8 * pb = (const u8 *) p;
        while(s)
        {
-           upper_from(sz, *pb);
+           upper_case_from(sz, *pb);
 		     s--;
            sz+=2;
            pb++;
        }
    }
 
+
    // sz buffer should have twice size_i32 of s (p)
-   inline CLASS_DECL_ACME string lower_from(const void * p, memsize s)
+   inline string lower_case_from(const void * p, memsize s)
    {
       string str;
-      lower_from(str.get_string_buffer(s * 2), p, s);
+      lower_case_from(str.get_string_buffer(s * 2), p, s);
       str.release_string_buffer(s * 2);
       return str;
    }
 
 
-   inline CLASS_DECL_ACME string upper_from(const void * p, memsize s)
+   inline string upper_case_from(const void * p, memsize s)
    {
       string str;
-      upper_from(str.get_string_buffer(s * 2), p, s);
+      upper_case_from(str.get_string_buffer(s * 2), p, s);
       str.release_string_buffer(s * 2);
       return str;
    }
 
-
-   inline ::inline_number_string upper_from(::i64 i)
+   
+   template < primitive_integral INTEGRAL >
+   constexpr auto upper_case_from(INTEGRAL i)
    {
 
       ::inline_number_string numberstring;
 
-      __utosz((::u64)i, numberstring.m_end, 16, e_digit_case_upper);
+      __tosz(i, numberstring.m_end, 16, e_digit_case_upper);
 
       return numberstring;
 
    }
 
 
-   inline string lower_from(::i64 i)
+   template < primitive_integral INTEGRAL >
+   constexpr auto lower_case_from(INTEGRAL i)
    {
 
       ::inline_number_string numberstring;
 
-      __utosz((::u64)i, numberstring.m_end, 16, e_digit_case_lower);
+      __tosz(i, numberstring.m_end, 16, e_digit_case_lower);
 
       return numberstring;
 
    }
 
 
-   template < typename INTEGER >
-   inline string lower_pad_from(INTEGER iValue, int iWidth)
+   template < strsize s_iWidth >
+   inline auto padded_from(::u64 u, enum_digit_case edigitcase)
    {
 
-      string str = lower_from(iValue);
+      ::inline_string < char, s_iWidth > numberstring;
 
-      while(str.length() < iWidth)
+      if (u != 0)
       {
 
-         str = "0" + str;
+         __rear_tosz(u, numberstring.m_end, 16, edigitcase);
 
       }
 
-      return str;
+      while (numberstring.size() < s_iWidth)
+      {
+
+         *numberstring.m_end++ = '0';
+
+      }
+
+      reverse(numberstring.m_begin, numberstring.m_end - 1);
+
+      *numberstring.m_end++ = '0';
+
+      return numberstring;
 
    }
 
 
-   template < typename INTEGER >
-   inline string upper_pad_from(INTEGER iValue,int iWidth)
+   template < strsize s_iWidth >
+   inline auto lower_case_padded_from(::u64 u)
    {
-      string str = upper_from(iValue);
-      while(str.length() < iWidth)
-      {
-         str = "0" + str;
-      }
-      return str;
+
+      return padded_from < s_iWidth >(u, e_digit_case_lower);
+
+   }
+
+
+   template < strsize s_iWidth >
+   inline auto upper_case_padded_from(::u64 u)
+   {
+
+      return padded_from < s_iWidth >(u, e_digit_case_upper);
+
    }
 
 
@@ -209,9 +232,9 @@ namespace hex
 {
 
 
-   CLASS_DECL_ACME string lower_from(const block & block);
+   CLASS_DECL_ACME string lower_case_from(const block & block);
 
-   CLASS_DECL_ACME string upper_from(const block & block);
+   CLASS_DECL_ACME string upper_case_from(const block & block);
 
 
 } // namespace hex

@@ -225,8 +225,8 @@ public:
    static string no_escape_consume_quoted_value(::const_ansi_range & range);
    static void no_escape_skip_quoted_value(::const_ansi_range & range);
 
-   template < typename ITERATOR_TYPE >
-   static string_base < ITERATOR_TYPE > consume_quoted_value(::string_range < ITERATOR_TYPE > & range);
+   //template < typename ITERATOR_TYPE >
+   //static string_base < ITERATOR_TYPE > consume_quoted_value(::string_range < ITERATOR_TYPE > & range);
 
    
    static string consume_quoted_value_ex(::const_ansi_range & range);
@@ -432,33 +432,15 @@ inline string _001Concatenate(const ::string & str1, const ::string & strMid, co
 
 CLASS_DECL_ACME string string_from_strdup(const ::ansi_character * psz);
 
+//
+//
+//template<typename ITERATOR_TYPE>
+//auto string_range < ITERATOR_TYPE>::consume_quoted_value()
+//{
+//
+//   return ::str::consume_quoted_value(*this);
+//
+//}
 
-
-template<typename ITERATOR_TYPE>
-auto string_range < ITERATOR_TYPE>::consume_quoted_value()
-{
-
-   return ::str::consume_quoted_value(*this);
-
-}
-
-template<typename ITERATOR_TYPE>
-::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
-{
-
-   auto c = begins_count(character_is_function);
-
-   if (c < minimum_count)
-   {
-
-      throw_parsing_exception("didn't reached minimum count of characters meet character_is_function requirements");
-
-   }
-
-   this->begin() += c;
-
-   return c;
-
-}
 
 

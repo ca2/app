@@ -7692,13 +7692,3 @@ unsigned long & payload::unsigned_long_reference()
 
 #endif
 
-
-CLASS_DECL_ACME::string as_string(const ::payload & payload)
-{
-
-   return payload.as_string();
-
-}
-
-
-

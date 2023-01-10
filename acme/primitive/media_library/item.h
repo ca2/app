@@ -12,6 +12,8 @@ namespace media_library
 {
 
 
+
+
    class CLASS_DECL_ACME item :
       virtual public ::particle
    {

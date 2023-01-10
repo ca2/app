@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "exception.h"
@@ -17,6 +17,9 @@ public:
 
 
    exit_exception(const ::e_status & estatus = error_failed, ::task * playeredThreadExit = nullptr, const ::scoped_string & scopedstrMessage = nullptr);
+   exit_exception(::acme::application * papplication, const ::scoped_string & scopedstrMessage = nullptr);
+   exit_exception(::acme::session * psession, const ::scoped_string & scopedstrMessage = nullptr);
+   exit_exception(::acme::system * psystem, const ::scoped_string & scopedstrMessage = nullptr);
    ~exit_exception() override;
 
 

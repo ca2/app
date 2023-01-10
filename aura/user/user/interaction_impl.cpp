@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
@@ -4721,7 +4721,7 @@ namespace user
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, e_show_window_parent_closing);
+                     pinteraction->send_message(e_message_show_window, 0, (::i64) e_show_window_parent_closing);
 
                   }
                   catch (...)

@@ -76,7 +76,7 @@ void request::initialize_create(arguments arguments)
 }
 
 
-void request::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::element * puiParent, ewindowflag ewindowflag, ::atom atom)
+void request::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::element * puiParent, e_window_flag ewindowflag, ::atom atom)
 {
 
    m_ewindowflag = ewindowflag;

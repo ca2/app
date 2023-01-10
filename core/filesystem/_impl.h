@@ -758,23 +758,6 @@
 //}
 //
 //
-//template<>
-//inline uptr u32_hash < const ::file::path & >(const ::file::path & key)
-//{
-//
-//   return u32_hash < const string & >(key);
-//
-//}
-//
-//
-//inline stream & operator << (stream & s, const ::file::path & path)
-//{
-//
-//   return s << (const string &)path;
-//
-//}
-//
-//
 //inline stream & operator >> (stream & s, ::file::path & path)
 //{
 //

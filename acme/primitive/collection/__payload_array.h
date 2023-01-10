@@ -145,36 +145,6 @@ public:
 };
 
 
-inline std::strong_ordering payload_array::order(const ::payload_array & payloada) const
-{
-
-   auto iMinimumSize = minimum(this->size(), payloada.size());
-
-   for (index i = 0; i < iMinimumSize; i++)
-   {
-
-      auto ordering = element_at(i).order(payloada.element_at(i));
-
-      if (ordering != 0)
-      {
-
-         return ordering;
-
-      }
-
-   }
-
-   return this->size() <=> payloada.size();
-
-}
-
-
-inline std::strong_ordering payload_array::case_insensitive_order(const ::payload_array & payloada) const
-{
-
-   return stra().case_insensitive_order(payloada.stra());
-
-}
 
 
 //CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);

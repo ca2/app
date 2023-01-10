@@ -348,7 +348,7 @@ namespace account
 
       }
 
-      defer_failed(puser->m_estatus, error_authentication);
+      puser->m_estatus.defer_failed(error_authentication);
 
    }
 

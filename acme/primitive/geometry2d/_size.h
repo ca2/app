@@ -209,6 +209,14 @@ public:
    inline bool any_lt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
    inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
+
+   constexpr operator u32hash() const
+   {
+
+      return ::u32hash(this->cx) + ::u32hash(this->cy);
+
+   }
+
 };
 
 

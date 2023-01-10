@@ -60,7 +60,7 @@ namespace xml
             
             m_pnode = nullptr;
             
-            throw ::exception("Node not found");
+            throw ::exception(error_failed, "Node not found");
 
          }
          
@@ -103,7 +103,7 @@ namespace xml
 
             m_pnode = nullptr;
 
-            throw ::exception("Node not found");
+            throw ::exception(error_failed, "Node not found");
 
          }
 

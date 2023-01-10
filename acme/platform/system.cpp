@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -2416,7 +2416,7 @@ else if (ptopic->m_atom == id_app_activated)
                //         }
 
                ::output_debug_string("\n\n\n|(4)----");
-               ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+               ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
                ::output_debug_string("|\n");
                ::output_debug_string("|\n");
                ::output_debug_string("|----");

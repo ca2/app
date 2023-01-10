@@ -227,7 +227,7 @@ namespace filemanager
                        (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, e_type_empty,
                              bMakeVisible,
                              puiParent,
-                          ewindowflag(),
+                          e_window_flag(),
                           m_atom));
 
       }

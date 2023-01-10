@@ -2,7 +2,7 @@
 
 
 #include "acme/memory/_memory.h"
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 
 
 #include "acme/primitive/collection/array_range.h"
@@ -242,7 +242,7 @@ inline ::block as_block(const TYPE & type)
 
 
 template < >
-inline u32hash u32_hash < const block & >(const block & b)
+inline ::u32hash u32_hash < const ::block & >(const ::block & b)
 {
 
    if (!b)
@@ -258,7 +258,9 @@ inline u32hash u32_hash < const block & >(const block & b)
 
    strsize i = 1;
 
-   for (; i < b.size(); i++)
+   auto len = minimum(64, b.size());
+
+   for (; i < len; i++)
    {
 
       if (i % 4 == 3)

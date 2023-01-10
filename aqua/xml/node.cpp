@@ -41,7 +41,7 @@ namespace xml
    node::node(::xml::node * pnodeParent)
    {
 
-      //initialize_matter(pnodeParent);
+      initialize(pnodeParent);
 
       m_iFirstXmlNode = -1;
       m_pxmlnode = this;
@@ -308,14 +308,14 @@ namespace xml
       if(::str::begins_consume(rangeXml, "SYSTEM"))
       {
          ::str::consume_spaces(rangeXml);
-         ::str::consume_quoted_value(rangeXml);
+         rangeXml.consume_quoted_value();
       }
       else if(::str::begins_consume(rangeXml, "PUBLIC"))
       {
          ::str::consume_spaces(rangeXml);
-         ::str::consume_quoted_value(rangeXml);
+         rangeXml.consume_quoted_value();
          ::str::consume_spaces(rangeXml);
-         ::str::consume_quoted_value(rangeXml);
+         rangeXml.consume_quoted_value();
       }
 
       ::str::consume_spaces(rangeXml, 0);
@@ -338,18 +338,18 @@ namespace xml
                if(::str::begins_consume(rangeXml, "SYSTEM"))
                {
                   ::str::consume_spaces(rangeXml);
-                  ext_entity_value = ::str::consume_quoted_value(rangeXml);
+                  ext_entity_value = rangeXml.consume_quoted_value();
                }
                else if (::str::begins_consume(rangeXml, "PUBLIC"))
                {
                   ::str::consume_spaces(rangeXml);
-                  ::str::consume_quoted_value(rangeXml);
+                  rangeXml.consume_quoted_value();
                   ::str::consume_spaces(rangeXml);
-                  ext_entity_value = ::str::consume_quoted_value(rangeXml);
+                  ext_entity_value = rangeXml.consume_quoted_value();
                }
                else
                {
-                  entity_value = ::str::consume_quoted_value(rangeXml);
+                  entity_value = rangeXml.consume_quoted_value();
                }
                if(entity_value.has_char())
                {
@@ -2333,8 +2333,6 @@ namespace xml
    {
 
       auto pnode = __new(node((node *) this));
-
-      pnode->initialize(this);
 
       pnode->m_strName = strName;
 

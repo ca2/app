@@ -35,14 +35,14 @@ namespace file
    {
 
       if (estatus < error_file ||
-         ((i64)estatus.m_estatus) >= ((i64)error_file + (i64)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
+         (estatus.as_i64()) >= ((i64)error_file + (i64)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
       {
 
          return nullptr;
 
       }
 
-      return rgszFileExceptionCause[((i64)estatus.m_estatus) - (i64)error_file];
+      return rgszFileExceptionCause[estatus.as_i64() - (i64)error_file];
 
    }
 
@@ -113,7 +113,7 @@ namespace file
 
          string strException;
 
-         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, strErrorCodeMessage.c_str());
+         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_i64(), strErrorCodeMessage.c_str());
 
          m_strMessage += strException;
 
@@ -463,7 +463,7 @@ namespace file
 } // namespace file
 
 
-::enum_status _errno_status(int iErrorNumber)
+::e_status errno_status(int iErrorNumber)
 {
 
    switch (iErrorNumber)
@@ -498,7 +498,7 @@ namespace file
 }
 
 
-::enum_status _failed_errno_status(int iErrorNumber)
+::e_status failed_errno_status(int iErrorNumber)
 {
 
    if(iErrorNumber == 0)
@@ -508,7 +508,7 @@ namespace file
 
    }
 
-   return _errno_status(iErrorNumber);
+   return errno_status(iErrorNumber);
 
 }
 

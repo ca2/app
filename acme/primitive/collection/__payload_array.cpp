@@ -754,3 +754,34 @@ string & payload_array::get_network_payload(string & str, bool bNewLine) const
 
 
 
+std::strong_ordering payload_array::order(const ::payload_array & payloada) const
+{
+
+   auto iMinimumSize = minimum(this->size(), payloada.size());
+
+   for (index i = 0; i < iMinimumSize; i++)
+   {
+
+      auto ordering = element_at(i).order_payload(payloada.element_at(i));
+
+      if (ordering != 0)
+      {
+
+         return ordering;
+
+      }
+
+   }
+
+   return this->size() <=> payloada.size();
+
+}
+
+
+std::strong_ordering payload_array::case_insensitive_order(const ::payload_array & payloada) const
+{
+
+   return stra().case_insensitive_order(payloada.stra());
+
+}
+

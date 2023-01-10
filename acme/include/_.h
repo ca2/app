@@ -110,12 +110,12 @@
 #include "acme/platform/display.h"
 #include "acme/platform/lparam.h"
 #include "acme/primitive/comparison/compare.h"
-#include "acme/primitive/primitive/e_status.h"
+//#include "acme/primitive/primitive/e_status.h"
 #include "acme/primitive/logic/tristate.h"
 #include "acme/primitive/primitive/logic.h"
 #include "acme/primitive/mathematics/c_number.h"
 #include "acme/primitive/mathematics/numeric_info.h"
-#include "acme/primitive/primitive/e_check.h"
+#include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/transfer.h"
 
 

@@ -1,6 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "exit.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
+#include "acme/platform/session.h"
+#include "acme/platform/system.h"
 
 
 exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThreadExit, const ::scoped_string & scopedstrMessage) :
@@ -16,6 +19,28 @@ exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThre
    }*/
 
    m_iCheck = 0;
+
+}
+
+
+exit_exception::exit_exception(::acme::application * papplication, const ::scoped_string & scopedstrMessage) :
+   exit_exception(error_exit_application, papplication, scopedstrMessage) 
+{
+
+}
+
+
+exit_exception::exit_exception(::acme::session * psession, const ::scoped_string & scopedstrMessage) :
+   exit_exception(error_exit_session, psession, scopedstrMessage) 
+{
+
+}
+
+
+exit_exception::exit_exception(::acme::system * psystem, const ::scoped_string & scopedstrMessage) :
+   exit_exception(error_exit_system, psystem, scopedstrMessage) 
+{
+
 
 }
 

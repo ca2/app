@@ -236,7 +236,7 @@ namespace fs
       if (not_found(iFind))
       {
 
-         return payload(::e_type_null);
+         return ::payload(::e_type_null);
 
       }
 

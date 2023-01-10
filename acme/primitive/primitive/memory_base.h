@@ -55,12 +55,7 @@ public:
    bool                    m_bOwner;
    bool                    m_bReadOnly;
    byte *                  m_beginStorage;
-   //byte *                  m_pdata;
-
-   memsize                 m_iOffset;
-   memsize                 m_iMaxOffset;
    memsize                 m_sizeStorage;
-   //memsize                 m_dwAllocation;
    double                  m_dAllocationRateUp;
    ::u32                   m_dwAllocationAddUp;
 
@@ -104,6 +99,8 @@ public:
    memsize storage_size() const { return maximum(0,m_sizeStorage); }
    ::byte * storage_end() { return storage_begin() + storage_size(); }
    const ::byte * storage_end() const { return storage_begin() + storage_size(); }
+   memsize offset() const { return m_begin - m_beginStorage; }
+   memsize max_offset() const { return storage_size(); }
 
 };
 

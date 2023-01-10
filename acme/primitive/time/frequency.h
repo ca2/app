@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -99,11 +99,9 @@ public:
    constexpr bool is_null() const { return m_dHertz == 0.0; }
    constexpr bool is_set() const { return m_dHertz != 0.0; }
    constexpr bool operator !() const { return this->is_null(); }
-   //https://www.artima.com/articles/the-safe-bool-idiom BEGIN
-   typedef void (frequency:: * bool_type)() const;
-   constexpr void this_type_does_not_support_comparisons() const {}
-   constexpr operator bool_type() const { return this->is_set() ? &frequency::this_type_does_not_support_comparisons : 0; }
-   //https://www.artima.com/articles/the-safe-bool-idiom END
+   
+
+   SAFE_BOOL_OPERATOR(frequency);
 
 
    bool operator == (const ::frequency frequency) const

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "list.h"
 #include "list_column.h"
 #include "list_column_array.h"
@@ -4899,7 +4899,7 @@ namespace user
    list_column * list_column_array::get_by_control_id(const ::atom & atom)
    {
 
-      auto iIndex = subitem_index((::index) atom);
+      auto iIndex = subitem_index(atom.as_iptr());
 
       return get_by_index(iIndex);
 

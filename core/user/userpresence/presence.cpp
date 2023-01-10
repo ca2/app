@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "presence.h"
 #include "acme/constant/message.h"
 #include "acme/primitive/primitive/url.h"
@@ -107,7 +107,7 @@ namespace userpresence
           || pmouse->get_message() == e_message_mouse_move)
       {
 
-         auto psession = get_session()->m_paxissession;
+         auto psession = acmesession()->m_paxissession;
 
          if (psession->account() != nullptr && psession->account()->get_user() != nullptr)
          {

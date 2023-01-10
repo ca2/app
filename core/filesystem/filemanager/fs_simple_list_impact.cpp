@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/handler/item.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/list.h"
@@ -757,7 +757,7 @@ namespace filemanager
 
             pxmldocument->load(strXml);
 
-            m_iParentFolder = pxmldocument->root()->attribute("id");
+            m_iParentFolder = pxmldocument->root()->attribute("id").as_i32();
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 

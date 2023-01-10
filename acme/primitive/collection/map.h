@@ -264,7 +264,7 @@ public:
 
       auto value = operator[](item);
 
-      erase_item(item);
+      this->erase_item(item);
 
       return value;
 

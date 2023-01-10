@@ -118,7 +118,10 @@ public:
    //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, 0, len); }
    //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(ansirange, start, len); }
    //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd16range, start, len); }
+   // 
+   // 
    //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(e_no_initialize)  { construct2(wd32range, start, len); }
+   string_base(const ::block block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
     template < primitive_character CHARACTER2 >
     string_base(const CHARACTER2 * start, const CHARACTER2 * end) : string_base(start, end-start) {}
    template < primitive_character CHARACTER2 >
@@ -249,6 +252,18 @@ public:
    bool operator==(const string_base & str) const { return this->equals(str); }
    ::std::strong_ordering operator<=>(const string_base & str) const { return this->order(str); }
 
+   
+   //template < typename T >
+   //string_base & operator << (const T & t)
+   //{
+
+   //   assign(t);
+
+   //   return *this;
+
+   //}
+
+
    //string_base & operator = (const string_base & str);
 //   {
 //      return *this;
@@ -309,6 +324,7 @@ public:
    string_base & operator = (const ansi_string & ansistr) {assign(ansistr.begin(), ansistr.end()); return *this;}
    string_base & operator = (const wd16_string & wd16str) {assign(wd16str.begin(), wd16str.end()); return *this;}
    string_base & operator = (const wd32_string & wd32str) {assign(wd32str.begin(), wd32str.end()); return *this;}
+   string_base & operator = (const block & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
       //template < primitive_character CHARACTER2 >
       //string_base & operator = (const ::range < const CHARACTER2 * > & str);
       //string_base & operator = (string_base && str);

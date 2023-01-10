@@ -144,6 +144,75 @@ struct CLASS_DECL_ACME block :
 
    }
 
+   template < typename T >
+   block & operator = (const T & t)
+   {
+
+      if (this->size() < sizeof(T))
+      {
+
+         throw_exception(error_end_of_file);
+
+      }
+   
+      memcpy(this->m_begin, &t, sizeof(t));
+
+      return *this;
+
+   }
+
+   template < strsize c >
+   block & operator = (const byte(&ba)[c])
+   {
+
+      if (this->size() < c)
+      {
+
+         throw_exception(error_end_of_file);
+
+      }
+
+      memcpy(this->m_begin, ba, c);
+
+      return *this;
+
+   }
+
+   template < typename T >
+   block & operator >>(T & t)
+   {
+
+      if (this->size() < sizeof(T))
+      {
+
+         throw_exception(error_end_of_file);
+
+      }
+
+      memcpy(&t, this->begin(), sizeof(t));
+
+      return *this;
+
+   }
+
+   template < strsize c >
+   block & operator >>(byte(&ba)[c])
+   {
+
+      if (this->size() < c)
+      {
+
+         throw_exception(error_end_of_file);
+
+      }
+
+      memcpy(ba, this->m_begin, c);
+
+      return *this;
+
+   }
+
+
 
 //#ifdef _UWP
 //

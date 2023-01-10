@@ -1050,14 +1050,13 @@ constexpr void copy(ORIGIN_SIZE & origin_size, const RECTANGLE & rectangle)
 
 
 
-template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB,
-   class ARRAYA = array < TYPEA, ARG_TYPEA >, class ARRAYB = array < TYPEB, ARG_TYPEB > >
+template <class TYPEA, class TYPEB, class ARRAYA = array < TYPEA >, class ARRAYB = array < TYPEB > >
 class spreadset;
 
 
-using i32_spreadset = spreadset < i32, i32, i32, i32, unique_i32_sort_array, unique_i32_sort_array >;
+using i32_spreadset = spreadset < i32, i32, unique_i32_sort_array, unique_i32_sort_array >;
 
-using i64_spreadset = spreadset < i64, i64, i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
+using i64_spreadset = spreadset < i64, i64, unique_i64_sort_array, unique_i64_sort_array >;
 
 
 

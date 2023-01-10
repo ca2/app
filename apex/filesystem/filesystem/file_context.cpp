@@ -1089,7 +1089,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
 }
 
 
-void file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
+void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopedstr)
 {
 
    file_pointer pfile;
@@ -1118,40 +1118,36 @@ void file_context::add_contents(const ::payload &payloadFile, const void *pvoidC
 
    pfile->seek_to_end();
 
-   pfile->write(pvoidContents, count);
+   pfile->write(scopedstr.data(), scopedstr.size());
 
 }
 
 
-void file_context::put_text(const ::payload& payloadFile, const ::block & block)
+void file_context::put_text(const ::payload& payloadFile, const ::scoped_string & scopedstr)
 {
 
-   if (block.data() == nullptr || block.size() <= 0)
+   if (scopedstr.data() == nullptr || scopedstr.is_empty())
    {
 
       return put_memory(payloadFile, nullptr);
 
    }
-   else
-   {
 
-      string strContents((const char *) block.data(), block.size());
+   string strContents(scopedstr);
 
-      ::str::fix_eol(strContents);
+   ::str::fix_eol(strContents);
 
-      return put_memory(payloadFile, strContents);
-
-   }
+   return put_memory(payloadFile, strContents);
 
 }
 
 
-void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopestrContents)
-{
-
-   return add_contents(payloadFile, scopestrContents.begin(), scopestrContents.size());
-
-}
+//void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopestrContents)
+//{
+//
+//   return add_contents(payloadFile, scopestrContents.begin(), scopestrContents.size());
+//
+//}
 
 
 void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
@@ -1203,7 +1199,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 //}
 
 
-void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & block)
+void file_context::put_text_utf8(const ::payload &payloadFile, const ::scoped_string & scopedstr)
 {
 
    auto pfile = get_file(payloadFile,
@@ -1219,7 +1215,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
 
    pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
 
-   string strContents((const char *) block.data(), block.size());
+   string strContents(scopedstr);
 
    ::str::fix_eol(strContents);
 

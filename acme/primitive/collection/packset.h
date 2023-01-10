@@ -1,12 +1,16 @@
-#pragma once
+﻿#pragma once
 
 
-template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY = array < ITEM_TYPE, ARG_ITEM_TYPE > >
+template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY = array < ITEM_TYPE > >
 class packset :
-   public map < ID_TYPE, ARRAY, ARG_ID_TYPE, const ARRAY & >
+   public map < ID_TYPE, ARRAY >
 {
 public:
    
+
+   using BASE_MAP = map < ID_TYPE, ARRAY >;
+   using ARG_ID_TYPE = typename BASE_MAP::ARG_ITEM;
+   using ARG_ITEM_TYPE = typename BASE_MAP::ARG_PAYLOAD::ARG_TYPE;
    
    packset();
    
@@ -21,15 +25,15 @@ public:
 };
 
 
-template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
-packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::packset()
+template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
+packset < ID_TYPE, ITEM_TYPE, ARRAY > ::packset()
 {
 
 }
 
 
-template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
-void packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item)
+template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
+void packset < ID_TYPE, ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item)
 {
    
    this->operator[](atom).add(item);
@@ -37,8 +41,8 @@ void packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::pack(AR
 }
 
 
-template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
-::count packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::get_pack_count()
+template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
+::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_pack_count()
 {
    
    return this->get_size();
@@ -46,8 +50,8 @@ template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename 
 }
 
 
-template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
-::count packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::get_item_count()
+template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
+::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_item_count()
 {
    
    ::count count = 0;

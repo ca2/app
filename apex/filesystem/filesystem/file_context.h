@@ -181,11 +181,11 @@ public:
 
    virtual void put_memory(const ::payload & payloadFile, ::file::file * pfile);
    virtual void put_memory(const ::payload & payloadFile, const ::block & block);
-   virtual void put_text(const ::payload& payloadFile, const ::block& block);
-   virtual void put_text_utf8(const ::payload & payloadFile, const ::block& block);
+   virtual void put_text(const ::payload& payloadFile, const ::scoped_string & scopedstr);
+   virtual void put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstr);
 
 
-   virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
+   //virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
    virtual void add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 

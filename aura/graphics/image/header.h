@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 
 
 #pragma pack(push, image_header, 1)
@@ -76,21 +76,22 @@ struct image_header
 #endif
 
 
+   constexpr operator ::u32hash() const
+   {
+      ::u32 u = (::u32)m_etype;
+      if(m_etype == ::e_image_type_plain_color)
+      {
+         u |= m_cr;
+      }
+      u |= m_size.cx << 16;
+      u |= m_size.cy << 24;
+      return { u };
+   }
+
+
+
 };
 
-
-template < >
-inline u32hash u32_hash<const ::image_header&>(const ::image_header& key)
-{
-   ::u32 u = (::u32)key.m_etype;
-   if (key.m_etype == ::e_image_type_plain_color)
-   {
-      u |= key.m_cr;
-   }
-   u |= key.m_size.cx << 16;
-   u |= key.m_size.cy << 24;
-   return { u };
-}
 
 
 

@@ -10,7 +10,7 @@
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
 #include "acme/primitive/time/frequency.h"
-#include "acme/user/user/ewindowflag.h"
+#include "acme/user/user/e_window_flag.h"
 #include "apex/database/key.h"
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
@@ -226,7 +226,7 @@ namespace user
 
 
       //::oswindow                                   m_oswindow;
-      ewindowflag                                  m_ewindowflag;
+      e_window_flag                                m_ewindowflag;
 
       // <3ThomasBorreggardSørensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;

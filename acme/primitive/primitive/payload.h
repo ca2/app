@@ -54,12 +54,12 @@ public:
    union
    {
 
-      void *                                 m_pvoid;
+      void * m_pvoid;
       para_return                            m_parareturn;
       atom                                   m_atom;
       type                                   m_type;
       bool                                   m_b;
-      bool *                                 m_pb;
+      bool * m_pb;
       ::i8                                   m_i8;
       ::u8                                   m_u8;
       ::i16                                  m_i16;
@@ -68,24 +68,24 @@ public:
       ::u32                                  m_u32;
       ::i64                                  m_i64;
       ::u64                                  m_u64;
-      ::i8 *                                 m_pi8;
-      ::u8 *                                 m_pu8;
-      ::i16 *                                m_pi16;
-      ::u16 *                                m_pu16;
-      ::i32 *                                m_pi32;
-      ::u32 *                                m_pu32;
-      ::i64 *                                m_pi64;
-      ::u64 *                                m_pu64;
-      ::string *                             m_pstr;
+      ::i8 * m_pi8;
+      ::u8 * m_pu8;
+      ::i16 * m_pi16;
+      ::u16 * m_pu16;
+      ::i32 * m_pi32;
+      ::u32 * m_pu32;
+      ::i64 * m_pi64;
+      ::u64 * m_pu64;
+      ::string * m_pstr;
       ::f32                                  m_f32;
-      ::f32 *                                m_pf32;
+      ::f32 * m_pf32;
       ::f64                                  m_f64;
-      ::f64 *                                m_pf64;
-      payload *                              m_ppayload;
+      ::f64 * m_pf64;
+      payload * m_ppayload;
       ::earth::time                          m_earthtime;
       file_time_t                            m_filetime;
-      atom *                                 m_patom;
-      ::property *                           m_pproperty;
+      atom * m_patom;
+      ::property * m_pproperty;
       //integral_nanosecond                    m_integralnanosecond;
       //integral_nanosecond *                  m_pintegralnanosecond;
       //integral_microsecond                   m_integralmicrosecond;
@@ -115,7 +115,7 @@ public:
       //floating_day                           m_floatingday;
       //floating_day *                         m_pfloatingday;
       class time                             m_time;
-      class time *                           m_ptime;
+      class time * m_ptime;
       ::e_status                             m_estatus;
       ::e_command                            m_ecommand;
       ::e_check                              m_echeck;
@@ -124,14 +124,14 @@ public:
       ::color::hls                           m_hls;
 
 
-      ::particle *                           m_p;
-      ::string_array *                       m_pstra;
-      ::i32_array *                          m_pia;
-      ::payload_array *                      m_ppayloada;
-      ::property_set *                       m_ppropertyset;
-      ::i64_array *                          m_pi64a;
-      ::memory *                             m_pmemory;
-      ::file::path_object *                  m_ppath;
+      ::particle * m_p;
+      ::string_array * m_pstra;
+      ::i32_array * m_pia;
+      ::payload_array * m_ppayloada;
+      ::property_set * m_ppropertyset;
+      ::i64_array * m_pi64a;
+      ::memory * m_pmemory;
+      ::file::path_object * m_ppath;
       ::i64                                  m_all[3];
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
@@ -144,7 +144,7 @@ public:
    payload(enum_type etype);
    payload(std::nullptr_t);
    payload(const ::payload & payload);
-   payload(::payload && payload){ *this = payload; payload = ::payload{}; };
+   payload(::payload && payload) { *this = payload; payload = ::payload{}; };
    payload(bool b);
    payload(::i32 i);
    payload(::u32 u);
@@ -190,11 +190,11 @@ public:
    payload(const ::property & prop);
    payload(const class time & time);
 
-//   payload(const ::block & block)
-//   {
-//      m_etype = e_type_new;
-//      operator = (block);
-//   }
+   //   payload(const ::block & block)
+   //   {
+   //      m_etype = e_type_new;
+   //      operator = (block);
+   //   }
 
    template < class T >
    payload(const ::pointer < T > & p)
@@ -226,39 +226,39 @@ public:
       operator = (memorytemplate.block());
    }
 
-//   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
-//   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
-//      payload(::string(inlinestring))
-//   {
-//   }
+   //   template < primitive_character CHARACTER2, strsize sizeMaximumLength >
+   //   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
+   //      payload(::string(inlinestring))
+   //   {
+   //   }
 
-   //template < typename ENUM >
-   //payload(const ::enumeration < ENUM > & eflag)
-   //{
-   //   m_etype = e_type_new;
-   //   operator = (eflag);
-   //}
+      //template < typename ENUM >
+      //payload(const ::enumeration < ENUM > & eflag)
+      //{
+      //   m_etype = e_type_new;
+      //   operator = (eflag);
+      //}
 
-   //template < a_enum ENUM >
-   //payload(const ENUM & eenum)
-   //{
-   //   m_etype = e_type_new;
-   //   operator = (eenum);
-   //}
+      //template < a_enum ENUM >
+      //payload(const ENUM & eenum)
+      //{
+      //   m_etype = e_type_new;
+      //   operator = (eenum);
+      //}
 
-//   template < typename T >
-//   payload(const T & t)
-//   {
-//      m_etype = e_type_new;
-//      operator = (t);
-//   }
+   //   template < typename T >
+   //   payload(const T & t)
+   //   {
+   //      m_etype = e_type_new;
+   //      operator = (t);
+   //   }
 
 
-   //payload(const ::e_status & estatus)
-   //{
-   //   m_etype = e_type_new;
-   //   operator = (estatus.m_estatus);
-   //}
+      //payload(const ::e_status & estatus)
+      //{
+      //   m_etype = e_type_new;
+      //   operator = (estatus.m_estatus);
+      //}
 
    ~payload();
 
@@ -338,8 +338,7 @@ inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## 
 inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
 ::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
 inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
-inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
-inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
+inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } 
 #undef DECL_VAR_FLAG
 
 
@@ -351,14 +350,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
    inline payload & operator = (const ::e_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
    inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
-   inline bool operator == (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } \
-   inline bool operator != (::e_ ## ENUMTYPE e) const { return !operator ==(e); }
+   inline bool equals_enum (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } 
    DECL_VAR_ENUM(status);
    DECL_VAR_ENUM(command);
    DECL_VAR_ENUM(check);
 #undef DECL_VAR_ENUM
 
-
+   template < primitive_enum ENUM >
+   bool operator ==(ENUM e) const { return equals_enum(e); }
    //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
    //inline class ::time & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
    //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
@@ -372,9 +371,9 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
-   
+
    ::i8 & as(::i8 & i) const { return i = as_i8(); }
-   ::u8 & as(::u8  & u) const { return u = as_u8(); }
+   ::u8 & as(::u8 & u) const { return u = as_u8(); }
    ::i16 & as(::i16 & i) const { return i = as_i16(); }
    ::u16 & as(::u16 & u) const { return u = as_u16(); }
    ::i32 & as(::i32 & i)  const { return i = as_i32(); }
@@ -635,14 +634,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-    inline payload & operator = (const ::procedure & procedure)
-    {
+   inline payload & operator = (const ::procedure & procedure)
+   {
 
-       _set_element(procedure.m_p);
+      _set_element(procedure.m_p);
 
-       return *this;
+      return *this;
 
-    }
+   }
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
@@ -663,7 +662,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    {
 
       auto c = array_get_count();
-      
+
       for (auto i = 0; i < c; i++)
       {
 
@@ -763,7 +762,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
       auto count = this->array_get_count();
 
-      for(int i = 0; i < count; i++)
+      for (int i = 0; i < count; i++)
       {
 
          ::payload payloadItem = at(i);
@@ -787,7 +786,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    //}
 
    template < class T >
-   payload& operator = (const ptr < T > & p)
+   payload & operator = (const ptr < T > & p)
    {
 
       return this->operator = (p.m_p);
@@ -832,7 +831,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
    template < strsize n >
-   payload & operator = (const char (&cha)[n])
+   payload & operator = (const char(&cha)[n])
    {
 
       return this->operator = (::string(cha));
@@ -870,7 +869,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < class T >
    ::pointer< T > cast(T * pDefault) const
    {
-      return ((payload *) this)->cast < T >(pDefault);
+      return ((payload *)this)->cast < T >(pDefault);
    }
 
 
@@ -888,53 +887,71 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < class T >
    T * cast() const
    {
-      return ((payload *) this)->cast < T >();
+      return ((payload *)this)->cast < T >();
    }
 
 
    ::particle * get_particle();
 
-//   bool strictly_equal(const payload & payload) const;
-//   bool strictly_equal(const ::scoped_string & scopedstr) const;
-//   bool strictly_equal(const ::string & str) const;
-//   bool strictly_equal(double d) const;
-//   bool strictly_equal(::i32 i) const;
-//   bool strictly_equal(bool b) const;
-//
-//   bool strictly_different(const payload & payload) const;
-//   bool strictly_different(const ::scoped_string & scopedstr) const;
-//   bool strictly_different(const ::string & str) const;
-//   bool strictly_different(double d) const;
-//   bool strictly_different(::i32 i) const;
-//   bool strictly_different(bool b) const;
+   //   bool strictly_equal(const payload & payload) const;
+   //   bool strictly_equal(const ::scoped_string & scopedstr) const;
+   //   bool strictly_equal(const ::string & str) const;
+   //   bool strictly_equal(double d) const;
+   //   bool strictly_equal(::i32 i) const;
+   //   bool strictly_equal(bool b) const;
+   //
+   //   bool strictly_different(const payload & payload) const;
+   //   bool strictly_different(const ::scoped_string & scopedstr) const;
+   //   bool strictly_different(const ::string & str) const;
+   //   bool strictly_different(double d) const;
+   //   bool strictly_different(::i32 i) const;
+   //   bool strictly_different(bool b) const;
 
-   //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(const ::scoped_string & scopedstr,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
-   //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_different(const ::string & str,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(const ::scoped_string & scopedstr,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(const ::string & str,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
+      //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
 
-   bool equals(const payload & payload) const;
+   //bool equals(const payload & payload) const;
    //bool equals(const ::scoped_string & scopedstr) const;
 
    bool case_insensitive_equals(const payload & payload) const;
 
-   ::std::strong_ordering order(const payload & payload) const;
+   ::std::strong_ordering order_payload(const payload & payload) const;
 
    ::std::strong_ordering case_insensitive_order(const ::payload & payload) const;
 
-   bool operator == (const payload & payload) const;
-   bool operator == (const ::scoped_string & scopedstr) const;
-   bool operator == (const ::string & str) const;
-   bool operator == (::i64 i) const;
-   bool operator == (::i32 i) const;
-   bool operator == (bool b) const;
+
+   bool equals_payload(const ::payload & payload) const;
+   bool equals_signed(::i64 i) const;
+   bool equals_unsigned(::u64 u) const;
+   bool equals_scoped_string(const ::scoped_string & scopedstr) const;
+
+
+   template < primitive_character CHARACTER >
+   bool operator == (const CHARACTER * psz) const { return equals_scoped_string(psz); }
+   template < primitive_character CHARACTER  >
+   bool operator == (const range < const CHARACTER * > & range) const { return equals_scoped_string(range); }
+   template < primitive_character CHARACTER  >
+   bool operator == (const scoped_string_base < const CHARACTER * > & scoped_string) const { return equals_scoped_string(scoped_string); }
+   template < primitive_character CHARACTER  >
+   bool operator == (const string_base < const CHARACTER * > & string) const { return equals_scoped_string(string); }
+   template < primitive_character CHARACTER  >
+   bool operator == (const string_range < const CHARACTER * > & string_range) const { return equals_scoped_string(string_range); }
+   //bool operator == (const ::string & str) const;
+   template < primitive_signed SIGNED >
+   bool operator == (SIGNED i) const { return equals_signed(i); }
+   template < primitive_unsigned UNSIGNED >
+   bool operator == (UNSIGNED u) const { return equals_unsigned(u); }
+   //bool operator == (::i32 i) const;
+   //bool operator == (bool b) const;
 
    //bool operator != (const payload & payload) const;
    //bool operator != (const ::scoped_string & scopedstr) const;
@@ -1469,6 +1486,15 @@ template < primitive_payload PAYLOAD, character_range RANGE >
 {
 
    return ::transfer(::string(payload) + ::string(range));
+
+}
+
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2) 
+{ 
+   
+   return payload1.equals_payload(payload2); 
 
 }
 

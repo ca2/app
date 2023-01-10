@@ -1366,22 +1366,20 @@ template < primitive_floating FLOATING >
 inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
 
 
-
 template < >
-inline u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr);
-
-
-template < >
-inline u32hash u32_hash < const wide_string & >(const wide_string & widestr);
+inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr);
 
 
 template < >
-inline u32hash u32_hash < ansi_string >(ansi_string ansistr);
+inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr);
 
 
 template < >
-inline u32hash u32_hash < wide_string >(wide_string widestr);
+inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr);
 
+
+template < >
+inline ::u32hash u32_hash < wide_string >(wide_string widestr);
 
 
 template < primitive_character CHARACTER, character_range RANGE >
@@ -1393,7 +1391,6 @@ string_base < const CHARACTER * > operator + (const CHARACTER * psz, const RANGE
    return ::transfer(str + range); 
 
 }
-
 
 
 template < character_range RANGE1, character_range RANGE2 >

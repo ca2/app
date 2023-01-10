@@ -4921,7 +4921,7 @@ namespace user
 
       ::pointer<::message::message>pmessage;
 
-      auto eprototype = ::message::get_message_prototype(atom, 0);
+      auto eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
 
       switch (eprototype)
       {

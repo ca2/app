@@ -1336,6 +1336,7 @@
     <ClInclude Include="primitive\primitive\aaa_net.h" />
     <ClInclude Include="primitive\primitive\aaa_uhash.h" />
     <ClInclude Include="primitive\primitive\concrete.h" />
+    <ClInclude Include="primitive\primitive\e_check.h" />
     <ClInclude Include="primitive\primitive\move.h" />
     <ClInclude Include="primitive\primitive\muldiv64.h" />
     <ClInclude Include="primitive\primitive\particle_flags.h" />

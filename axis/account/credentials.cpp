@@ -93,7 +93,7 @@ namespace account
 
          i64 iDigit = random<char>();
 
-         strFormat = ::hex::lower_pad_from(iDigit, 2);
+         strFormat = ::hex::lower_case_padded_from<2>(iDigit);
 
          m_strSecret += strFormat;
 
@@ -319,7 +319,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = as_string((i64)estatus.m_estatus);
+      string strStatus = as_string(estatus.as_i64());
 
       set("open", strStatus);
 
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            ERROR("check_ca2_hash " << exception.m_estatus.m_estatus);
+            ERROR("check_ca2_hash " << exception.m_estatus.as_i64());
 
          }
 

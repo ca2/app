@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_new_document(::acme::application* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
+   ::user::document* server::open_new_document(::acme::application* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, e_window_flag eflag, ::atom atom)
    {
 
       return open_document_file(pappOnBehalfOf, nullptr, bMakeVisible, puiParent, eflag, atom);
@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_document_file(::acme::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
+   ::user::document* server::open_document_file(::acme::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, e_window_flag eflag, ::atom atom)
    {
 
       auto prequest = pappOnBehalfOf->__create_new< ::request>();

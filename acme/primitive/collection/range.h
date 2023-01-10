@@ -219,7 +219,7 @@ public:
    }
 
    template<typename TYPE>
-   range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) find_first_null_character(p))
+   constexpr range(TYPE *&p) : m_begin((this_iterator) p), m_end((this_iterator) find_first_null_character(p))
    {
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tools.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/manual_reset_event.h"
@@ -223,7 +223,7 @@ void task_group::set_ready_to_start()
 
    //synchronouslock.unlock();
 
-   return m_synchronizationa.wait(5_s) >= 0; //.succeeded();
+   return m_synchronizationa.wait(5_s) >= 0 ? ::success : ::error_wait_timeout; //.succeeded();
 
 }
 

@@ -296,7 +296,7 @@ namespace account
 
          m_estatusAuthentication = exception.m_estatus;
       
-         defer_failed(m_estatusAuthentication, error_pre_authentication);
+         m_estatusAuthentication.defer_failed(error_pre_authentication);
 
          throw exception;
 
@@ -337,7 +337,7 @@ namespace account
 
          }
 
-         defer_failed(m_estatusAuthentication, error_credentials);
+         m_estatusAuthentication.defer_failed(error_credentials);
 
          throw ::exception(m_estatusAuthentication);
 
@@ -358,7 +358,7 @@ namespace account
 
          m_estatusAuthentication = exception.m_estatus;
          
-         defer_failed(m_estatusAuthentication, error_authentication);
+         m_estatusAuthentication.defer_failed(error_authentication);
 
          pcredentials->m_strPassword.empty();
 

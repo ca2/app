@@ -16,20 +16,21 @@ namespace hex
 {
 
 
-inline CLASS_DECL_APEX void upper_pad_from(char* sz, const void* p, memsize s)
-{
-   const u8* pb = (const u8*)p;
-   sz += s * 2;
-   while (s)
+   inline CLASS_DECL_APEX void upper_case_pad_from(char* sz, const void* p, memsize s)
    {
-      sz -= 2;
-      upper_from(sz, *pb);
-      s--;
-      pb++;
+      const u8* pb = (const u8*)p;
+      sz += s * 2;
+      while (s)
+      {
+         sz -= 2;
+         upper_case_from(sz, *pb);
+         s--;
+         pb++;
+      }
    }
-}
 
-}
+
+} // namespace hex
 
 
 string dump_hex(::file::file* pfile)
@@ -57,7 +58,7 @@ string dump_hex(::file::file* pfile)
 
       }
 
-      ::hex::upper_pad_from(psz, &iPos, 4);
+      ::hex::upper_case_pad_from(psz, &iPos, 4);
 
       psz += 8;
       *psz = ' ';
@@ -69,7 +70,8 @@ string dump_hex(::file::file* pfile)
          if (i < iRead)
          {
 
-            ::hex::upper_pad_from(psz, buf + i, 1);
+            ::hex::upper_case_pad_from(psz, buf + i, 1);
+
             psz += 2;
 
          }

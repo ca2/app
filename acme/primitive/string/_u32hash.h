@@ -1,11 +1,11 @@
-#pragma once
+﻿#pragma once
 
 
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 
 
 template < >
-inline u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * psz)
+inline ::u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -48,7 +48,7 @@ inline u32hash u32_hash < const ::ansi_character * >(const ::ansi_character * ps
 
 
 template < >
-inline u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * psz)
+inline ::u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -90,8 +90,8 @@ inline u32hash u32_hash < const ::wd16_character * >(const ::wd16_character * ps
 }
 
 
-template<>
-inline u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * psz)
+template < >
+inline ::u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * psz)
 {
 
    if (::is_null(psz) || *psz == 0)
@@ -113,25 +113,6 @@ inline u32hash u32_hash < const ::wd32_character * >(const ::wd32_character * ps
    return { uHash };
 
 }
-
-
-
-//template < >
-//inline uhash u32_hash < const wchar_t * >(const wchar_t * psz)
-//{
-//
-//#if WCHAR_T_SIZE == 16
-//
-//    return u32_hash((const ::wd16_character *) psz);
-//
-//#else
-//
-//    return u32_hash((const ::wd32_character *) psz);
-//
-//#endif
-//
-//}
-
 
 
 

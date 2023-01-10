@@ -2319,7 +2319,7 @@ namespace aura
       else
       {
 
-         throw unexpected_situation("not expected enum_mouse value");
+         throw unexpected_situation(error_failed, "not expected enum_mouse value");
 
       }
 

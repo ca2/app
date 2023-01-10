@@ -2927,7 +2927,7 @@ namespace http
       else
       {
 
-         return payload(::e_type_null);
+         return ::payload(::e_type_null);
 
       }
 

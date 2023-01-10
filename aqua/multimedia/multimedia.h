@@ -2,7 +2,7 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/user/user/ewindowflag.h"
+#include "acme/user/user/e_window_flag.h"
 //#include "acme/primitive/collection/string_array.h"
 
 
@@ -37,7 +37,7 @@ namespace aqua
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      virtual ::pointer<::user::controller>defer_create_impact(::particle * pparticle, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
+      virtual ::pointer<::user::controller>defer_create_impact(::particle * pparticle, const ::string & strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
 
       virtual void exit_application();
 

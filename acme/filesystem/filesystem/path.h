@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "file_path.h"
@@ -482,8 +482,8 @@ namespace file
 inline const char * FormatArgument(const ::file::path & value) noexcept;
 
 
-template<>
-inline u32hash u32_hash < const ::file::path & >(const ::file::path & key);
+template < >
+inline ::u32hash u32_hash < const ::file::path & >(const ::file::path & key);
 
 
 // ::file::path node_full_file_path(file::path path);

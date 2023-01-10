@@ -40,7 +40,7 @@ public:
    auto & topic() { return *this; }
    auto & topic() const { return *this; }
 
-   operator u32hash() const { return NODE::operator u32hash(); }
+   //operator ::u32() const { return NODE::operator u32(); }
 
    //set_node(ARG_TYPE1 element1) :
    //   pair(element1)

@@ -118,8 +118,6 @@ memory::memory(void * pdata, memsize iCount)
    this->m_bReadOnly = false;
    this->m_beginStorage = (::byte *) pdata;
 
-   this->m_iOffset = 0;
-   this->m_iMaxOffset = 0;
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
    this->m_dwAllocationAddUp = 0;
@@ -146,8 +144,6 @@ memory::memory(const void* pdata, memsize iCount)
    this->m_bReadOnly = true;
    this->m_beginStorage = (::byte*)pdata;
 
-   this->m_iOffset = 0;
-   this->m_iMaxOffset = 0;
    this->m_sizeStorage = iCount;
    this->m_dAllocationRateUp = 0.0;
    this->m_dwAllocationAddUp = 0;
@@ -244,8 +240,6 @@ memory::memory(memory_container * pcontainer, const void * pdata, memsize size)
    this->m_bReadOnly = true;
    this->m_beginStorage = (::byte*)pdata;
 
-   this->m_iOffset = 0;
-   this->m_iMaxOffset = 0;
    this->m_sizeStorage = size;
    this->m_dAllocationRateUp = 0.0;
    this->m_dwAllocationAddUp = 0;
@@ -296,6 +290,8 @@ memory::~memory()
       impl_free(this->storage_begin());
 
       this->m_beginStorage = nullptr;
+
+      this->m_begin = nullptr;
 
    }
 

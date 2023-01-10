@@ -1,11 +1,14 @@
-// Created by camilo on 2021-09-06 14:41 BRT <3ThomasBS_!!
+﻿// Created by camilo on 2021-09-06 14:41 BRT <3ThomasBS_!!
 #pragma once
 
 
-template < typename TYPE >
+template < typename ENUM >
 class set_bit
 {
 public:
+
+
+   using TYPE = raw_enum_of<ENUM>;
    
 
    TYPE &         m_field;

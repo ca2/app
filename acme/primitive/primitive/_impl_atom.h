@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/2022 <3ThomasBorregaardSorensen!!!
 //
 #pragma once
@@ -236,9 +236,6 @@ atom::atom(const HAS_AS_STRING & has_as_string) :
 
 
 
-#ifndef NO_TEMPLATE
-
-
 template < primitive_signed SIGNED >
 inline atom::atom(SIGNED i)
 {
@@ -260,7 +257,16 @@ inline atom::atom(UNSIGNED u)
 
 }
 
-#endif
+
+template < primitive_enum ENUM >
+inline atom::atom(ENUM e)
+{
+
+   m_etype = e_type_integer;
+
+   m_i = ::as_i64(e);
+
+}
 
 
 inline bool atom::operator == (const atom & atom) const

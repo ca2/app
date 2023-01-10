@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/primitive/transfer.h"
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 
 
 //#ifdef CPP17
@@ -130,12 +130,10 @@ public:
    make_pair(ARG_TYPE1 t1, ARG_TYPE2 t2) : PAIR(t1, t2) {}
 
 
-   operator ::u32hash() const { return ::u32_hash(this->item()); }
+   
 
 
 };
-
-
 
 
 #if defined(ANDROID)

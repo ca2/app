@@ -31,13 +31,13 @@
 
 #define STATUS_FAILURE (INT_MIN)
 
-#define INT_FAILURE_STATUS(iStatusRange) (((int)STATUS_FAILURE + (iStatusRange)))
+#define INT_FAILURE_STATUS(iStatusRange) (((::i64)STATUS_FAILURE + (iStatusRange)))
 
-#define INT_SUCCESS_STATUS(iStatusRange) ((int)(iStatusRange))
+#define INT_SUCCESS_STATUS(iStatusRange) ((::i64)(iStatusRange))
 
-#define FAILURE_STATUS(iStatusRange) ((::e_status    )INT_FAILURE_STATUS(iStatusRange))
+#define FAILURE_STATUS(iStatusRange) ((::e_status    )(::enum_status)INT_FAILURE_STATUS(iStatusRange))
 
-#define SUCCESS_STATUS(iStatusRange) ((::e_status    )INT_SUCCESS_STATUS(iStatusRange))
+#define SUCCESS_STATUS(iStatusRange) ((::e_status    )(::enum_status)INT_SUCCESS_STATUS(iStatusRange))
 
 #define PRIestatus PRIi64
 
@@ -331,17 +331,14 @@ error_file_open,
 #endif
 
 
-INLINE_CONSTEXPR bool is_exit_exception_status(::enum_status estatus)
-{
+//INLINE_CONSTEXPR bool is_exit_exception_status(const ::e_status & estatus)
+//{
+//
+//   return estatus > error_exit_start && estatus < error_exit_end;
+//
+//}
+//
 
-   return estatus > error_exit_start && estatus < error_exit_end;
-
-}
-
-
-CLASS_DECL_ACME ::enum_status _errno_status(int nErrno);
-CLASS_DECL_ACME ::enum_status _failed_errno_status(int nErrno);
-CLASS_DECL_ACME int _status_exit_code(enum_status estatus);
 
 
 

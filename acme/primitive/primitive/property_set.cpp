@@ -643,7 +643,7 @@ void property_set::_008AddArgument(const ::string & strArg)
 
          auto range = strValue();
 
-         strValue = ::str::consume_quoted_value(range);
+         strValue = range.consume_quoted_value();
 
       }
 

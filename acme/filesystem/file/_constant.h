@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 
+
 enum enum_depth : ::i32
 {
 
@@ -90,6 +91,9 @@ namespace file
 } // namespace file
 
 
+
+
+
 inline ::file::e_flag & fix_file_listing_flag(::file::e_flag & eflag)
 {
 
@@ -103,6 +107,7 @@ inline ::file::e_flag & fix_file_listing_flag(::file::e_flag & eflag)
    return eflag;
 
 }
+
 
 
 enum e_str_flag

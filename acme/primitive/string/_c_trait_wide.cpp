@@ -8,7 +8,7 @@
 
    end = buf;
 
-   __utosz(u, end, iBase, edigitcase);
+   __tosz(u, end, iBase, edigitcase);
 
    return buf;
 
@@ -20,7 +20,7 @@
 
    end = buf;
 
-   __utosz(u, end, iBase, edigitcase);
+   __tosz(u, end, iBase, edigitcase);
 
    return buf;
 
@@ -32,7 +32,7 @@
 
    end = buf;
 
-   __itosz(i, end, iBase, edigitcase);
+   __tosz(i, end, iBase, edigitcase);
 
    return buf;
 
@@ -44,7 +44,7 @@
 
    end = buf;
 
-   __itosz(i, end, iBase, edigitcase);
+   __tosz(i, end, iBase, edigitcase);
 
    return buf;
 

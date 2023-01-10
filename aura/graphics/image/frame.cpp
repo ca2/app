@@ -139,10 +139,10 @@ void image_frame::create(image_frame * pframeSource, const ::image_drawing & ima
    auto dx = (double) imagedrawing.m_rectangleTarget.width() / (double) imagedrawing.image()->width();
    auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
 
-   m_rectangle.left = (decltype(m_rectangle.left))pframeSource->m_rectangle.left * dx;
-   m_rectangle.top = (decltype(m_rectangle.top))pframeSource->m_rectangle.top * dy;
-   m_rectangle.right = (decltype(m_rectangle.right))pframeSource->m_rectangle.right * dx;
-   m_rectangle.bottom = (decltype(m_rectangle.bottom))pframeSource->m_rectangle.bottom * dy;
+   m_rectangle.left = (decltype(m_rectangle.left))(pframeSource->m_rectangle.left * dx);
+   m_rectangle.top = (decltype(m_rectangle.top))(pframeSource->m_rectangle.top * dy);
+   m_rectangle.right = (decltype(m_rectangle.right))(pframeSource->m_rectangle.right * dx);
+   m_rectangle.bottom = (decltype(m_rectangle.bottom))(pframeSource->m_rectangle.bottom * dy);
 
    __construct(m_pimage);
 

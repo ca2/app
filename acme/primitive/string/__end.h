@@ -16,7 +16,7 @@
 
 //#include "_ch_impl.h"
 
-//#include "_impl_prio.h"
+#include "_impl_prio.h"
 
 //#include "_c_interface_impl.h"
 

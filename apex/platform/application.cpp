@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -1790,7 +1790,7 @@ namespace apex
 
             INFORMATION("apex::application::init_application exit");
 
-            throw exit_exception(this);
+            throw exit_exception(error_exit_application, this, "Another install of the application is running.");
 
          }
 
@@ -5319,7 +5319,7 @@ namespace apex
 
 
 
-   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom)
    //{
 
    //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);

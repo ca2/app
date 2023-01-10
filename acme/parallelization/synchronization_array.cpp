@@ -204,7 +204,7 @@ void synchronization_array::erase(index index)
 ::e_status synchronization_array::wait()
 {
 
-   return wait(time::infinite()) >= 0;
+   return wait(time::infinite()) >= 0 ? ::success : ::error_failed;
 
 }
 
@@ -338,7 +338,7 @@ void synchronization_array::erase(index index)
 
    }
 
-   return (::index) (estatus.m_estatus - signaled_base);
+   return (::index) (estatus.m_eenum - signaled_base);
 
 }
 

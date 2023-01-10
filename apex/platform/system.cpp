@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -5004,33 +5004,21 @@ namespace apex
    int system::console_end(::e_status estatus)
    {
 
-      int iStatus = (int)estatus;
+      int iExitCode = estatus.exit_code();
 
-      int iError = 0;
-
-      if (iStatus < 0)
+      if (iExitCode == 0)
       {
-
-         iError = iStatus;
-
-      }
-      else if (iStatus > 1)
-      {
-
-         iError = 0;
 
          if (is_true("show_application_information"))
          {
 
-            printf("return code is %d", iStatus);
+            printf("return code is %llx", estatus.m_eenum);
 
          }
 
       }
 
-      //system_end();
-
-      return iError;
+      return iExitCode;
 
    }
 

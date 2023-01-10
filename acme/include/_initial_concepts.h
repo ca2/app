@@ -7,18 +7,15 @@
 //
 #pragma once
 
+struct ENUM_TYPE_TAG {};
 
-#include "acme/primitive/primitive/e_status.h"
+//s#include "acme/primitive/primitive/e_status.h"
 
+template < typename ENUM >
+concept primitive_enum = std::is_enum < ENUM >::value || ::std::is_same<typename ENUM::ENUM_TAG, ENUM_TYPE_TAG >::value;
 
 template < typename T >
-concept a_enum = std::is_enum < T >::value;
-
-template < typename T >
-concept primitive_integral =
-   std::is_integral_v < T > ||
-   std::is_enum < T >::value ||
-   std::is_same < T, ::e_status >::value;
+concept primitive_integral = std::is_integral_v < T >;
 
 template < typename T >
 concept primitive_integral_up_to_32_bit =
@@ -33,13 +30,13 @@ template < typename T >
 concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
 
 template < typename T >
-concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+concept primitive_signed = std::is_integral < T >::value && std::is_signed < T >::value;
 
 template < typename T >
 concept primitive_signed_not_8bit = primitive_signed < T > && sizeof(T) != 1;
 
 template < typename T >
-concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
+concept primitive_unsigned = std::is_integral < T >::value && !std::is_signed < T >::value;
 
 template < typename T >
 concept primitive_unsigned_not_8bit = primitive_unsigned < T > && sizeof(T) != 1;
@@ -261,5 +258,7 @@ concept character_range_not_string = character_range<T> && !primitive_string<T>;
 
 template < typename T >
 concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
+
+
 
 

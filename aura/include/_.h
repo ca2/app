@@ -836,17 +836,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////class machine_event_central;
-////
-////
-////template < typename ARG_KEY >
-////inline uptr u32_hash(ARG_KEY key) { return (uptr)((uptr)key); }
-////
-//////#if OSBIT == 64
-////
-////template < typename ARG_KEY >
-////inline u32 u32_hash(ARG_KEY key) { return (u32)(u32_hash<ARG_KEY>(key)); }
-////
-//////#endif
+
 //
 ////
 ////#undef _

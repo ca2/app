@@ -2882,6 +2882,9 @@
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\e_check.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

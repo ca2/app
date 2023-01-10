@@ -365,10 +365,10 @@ public:
    bool operator !() const { return __pointer_is_null(m_ppredicate); }
 
 
-   operator u32hash() const {
+   
+   operator ::u32hash() const {
       return { (::u32)(::uptr)m_ppredicate.m_p };
    };
-   
 
 
 };
@@ -504,7 +504,7 @@ public:
    bool operator == (const function & function) const { return m_pfunctionbase == function.m_pfunctionbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
-   operator u32hash() const {
+   operator ::u32hash() const {
       return { (::u32)(::uptr)m_pfunctionbase.m_p };
    }
 
@@ -643,7 +643,7 @@ public:
    bool operator != (const function & function) const { return !operator==(function); }
 
 
-   operator u32hash() const { return { (::u32)(::uptr)m_pfunctionbase.m_p }; }
+   operator ::u32hash() const { return { (::u32)(::uptr)m_pfunctionbase.m_p }; }
 
 };
 

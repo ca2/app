@@ -1421,7 +1421,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
    if (!m_pacmedirectory->is(::file_path_folder(strFile)))
    {
 
-      throw ::exception(false);
+      throw ::exception(::error_not_a_directory);
 
    }
 

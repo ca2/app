@@ -2638,7 +2638,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    }
 
-   return ::hex::upper_from(phasher->get_hash_and_reset());
+   return ::hex::upper_case_from(phasher->get_hash_and_reset());
 
 }
 

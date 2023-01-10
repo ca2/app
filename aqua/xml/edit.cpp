@@ -102,7 +102,7 @@ namespace xml
       if (pnode->get_document() != m_pdocument)
       {
 
-         throw ::exception("unmatched xml document");
+         throw ::exception(error_failed, "unmatched xml document");
 
       }
 
@@ -118,7 +118,7 @@ namespace xml
       if (pnode->get_document() != m_pdocument)
       {
 
-         throw ::exception("unmatched xml document");
+         throw ::exception(error_failed, "unmatched xml document");
 
       }
 

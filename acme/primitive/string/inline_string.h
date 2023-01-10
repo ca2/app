@@ -22,12 +22,12 @@ public:
       
       this->m_begin = m_sz;
       this->m_end = this->m_begin;
-      m_sz[0] = 0;
+      m_sz[0] = '\0';
 
    }
 
 
-   inline_string(const CHARACTER* psz) :
+   constexpr inline_string(const CHARACTER* psz) :
       inline_string()
    {
       
@@ -47,7 +47,7 @@ public:
    }
 
 
-   inline_string(const inline_string & inlinestring) = default;
+   constexpr inline_string(const inline_string & inlinestring) = default;
 
 
    //const CHARACTER* c_str() { return m_sz; }
@@ -78,11 +78,11 @@ public:
 template < primitive_number NUMBER >
 inline string as_string(NUMBER number, const ::ansi_character * pszFormat);
 
-template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
+// template < primitive_unsigned UNSIGNED >
+// inline inline_number_string as_string(UNSIGNED u, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
+template < primitive_integral INTEGRAL >
+inline inline_number_string as_string(INTEGRAL i, int radix = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 
 

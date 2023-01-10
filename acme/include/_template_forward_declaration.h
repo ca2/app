@@ -1,4 +1,4 @@
-//
+﻿//
 //  _forward_declaration.h
 //  acme
 //
@@ -452,7 +452,7 @@ class string_array_base;
 
 
 
-class e_status;
+//class e_status;
 
 
 template <template <class...> class Template, class... Args>

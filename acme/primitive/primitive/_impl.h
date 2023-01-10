@@ -16,229 +16,10 @@ inline bool __enum_is_failed(const ::e_status & e)
    return ::failed(e);
 
 }
+
+
 #include "_impl_atom.h"
 #include "_impl_primitive.h"
-
-
-
-
-//template < >
-//inline uptr u32_hash < const type & >(const ::type & type)
-//{
-//
-//   return u32_hash < const ::atom & > (type);
-//
-//}
-
-
-//inline stream & operator << (stream & stream, const ::type & type)
-//{
-//
-//   stream << type.m_strName;
-//
-//   return stream;
-//
-//}
-//
-//
-//inline stream & operator >> (stream & stream, type & type)
-//{
-//
-//   stream >> type.m_strName;
-//
-//   return stream;
-//
-//}
-
-
-// bool get_memory::get_base64(const ::string & str)
-
-
-//template < typename PRED >
-//inline ::image_pointer matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
-//{
-//
-//   return acmesystem()->get_image(this, payloadFile, uTrait, pred);
-//
-//}
-
-
-//#include "acme/primitive/primitive/trait_predicate.h"
-
-
-//inline property_set ca_property_set()
-//{
-//
-//   return property_set();
-//
-//}
-
-//template < typename STRINGABLE >
-//inline string operator + (const ::scoped_string & scopedstr, const STRINGABLE& stringable)
-//{
-//
-//   string strRight(stringable);
-//
-//   return as_string(psz) + strRight;
-//
-//}
-
-
-/// END property_set
-
-//
-//inline ::pointer<::handle::ini>operator ""_pini(const ::scoped_string & scopedstr, size_t s)
-//{
-//
-//   return __new(::handle::ini(string(psz, s)));
-//
-//}
-
-
-//inline string CLASS_DECL_ACME operator + (const ::scoped_string & scopedstr, const ::payload & payload)
-//{
-//
-//   return as_string(psz) + payload.get_string();
-//
-//}
-//
-
-//inline class ::payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
-//inline class ::payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
-//inline class ::payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
-//inline class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
-
-
-
-//template < class T >
-//template < typename VAR >
-//inline pointer < T >  & pointer < T >::operator = (const payload_type < VAR > & payload)
-//{
-//
-//   if (payload.this_var()->m_etype == e_type_element)
-//   {
-//
-//      return operator = (payload.this_var()->m_p);
-//
-//   }
-//   else if (payload.this_var()->m_etype == e_type_memory)
-//   {
-//
-//      auto pfile = create_memory_file();
-//
-//      ::binary_stream stream(pfile);
-//
-//      stream << payload.this_var()->memory();
-//
-//      string strText;
-//
-//      stream >> strText;
-//
-//      //if (!stream.fail())
-//      {
-//
-//         if (strText.is_empty() || strText.case_insensitive_begins_eat("factoryless://"))
-//         {
-//
-//            if(is_set() && __type_name(m_p) == strText)
-//            {
-//
-//               ::output_debug_string("POINTER: loading into existing matter of same class type (1)");
-//
-//            }
-//            else
-//            {
-//
-//               this->defer_create_new();
-//
-//               if(is_null())
-//               {
-//
-//                  ::output_debug_string("POINTER: defer_new failed (1.1)");
-//
-//                  //stream.set_fail_bit();
-//
-//                  throw ::exception(error_io);
-//
-//               }
-//               else if(__type_name(m_p) != strText)
-//               {
-//
-//                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
-//
-//                  //stream.set_fail_bit();
-//
-//                  throw ::exception(error_io);
-//
-//               }
-//
-//            }
-//
-//         }
-//         else
-//         {
-//
-//            ::atom atom = stream.text_to_factory_id(strText);
-//
-//            if(is_set() && __type_name(m_p) == atom)
-//            {
-//
-//               ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
-//
-//            }
-//            else
-//            {
-//
-//               auto p = stream.create_object_from_text(strText);
-//
-//               if(!p)
-//               {
-//
-//                  ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
-//
-//               }
-//               else if(__type_name(p) != atom)
-//               {
-//
-//                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
-//
-//                  //stream.set_fail_bit();
-//
-//                  throw ::exception(error_io);
-//
-//               }
-//               else
-//               {
-//
-//                  operator =(p);
-//
-//               }
-//
-//            }
-//
-//         }
-//
-//         //if (!stream.fail())
-//         {
-//
-//            m_p->read(stream);
-//
-//         }
-//
-//      }
-//
-//      return *this;
-//
-//   }
-//   else
-//   {
-//
-//      return operator =(nullptr);
-//
-//   }
-//
-//}
-
 
 
 inline bool succeeded(const ::property & property)
@@ -1832,36 +1613,36 @@ void object_reference_count_debug_release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBU
 
 
 
-inline e_check::e_check(const ::tristate & triestate)
-{
-
-   if (triestate == e_boolean_undefined)
-   {
-
-      m_echeck = e_check_undefined;
-
-   }
-   else if (triestate == e_boolean_yes)
-   {
-
-      m_echeck = e_check_checked;
-
-   }
-   else if (triestate == e_boolean_no)
-   {
-
-      m_echeck = e_check_unchecked;
-
-   }
-   else
-   {
-
-      m_echeck = e_check_tristate;
-
-   }
-
-}
-
+//inline e_check::e_check(const ::tristate & triestate)
+//{
+//
+//   if (triestate == e_boolean_undefined)
+//   {
+//
+//      m_echeck = e_check_undefined;
+//
+//   }
+//   else if (triestate == e_boolean_yes)
+//   {
+//
+//      m_echeck = e_check_checked;
+//
+//   }
+//   else if (triestate == e_boolean_no)
+//   {
+//
+//      m_echeck = e_check_unchecked;
+//
+//   }
+//   else
+//   {
+//
+//      m_echeck = e_check_tristate;
+//
+//   }
+//
+//}
+//
 
 template < typename TYPE >
 inline void particle::__defer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
@@ -1889,5 +1670,14 @@ inline void particle::__defer_construct_new(::pointer<TYPE> & p)
    }
 
 }
+
+
+constexpr ::e_status e_status::worst(const ::e_status & e) const
+{
+
+   return (::e_status)(::enum_status)minimum((::i64)m_eenum, (::i64)e.m_eenum);
+
+}
+
 
 

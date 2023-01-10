@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/operating_system/error_code.h"
-#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/primitive/primitive/_u32hash.h"
 //#include "acme/primitive/primitive/function.h"
-////#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/collection/procedure_array.h"
 #include "acme/platform/implementable.h"
 
@@ -311,17 +311,6 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 CLASS_DECL_ACME string get_task_name(::task * ptask);
 
 
-
-//template <  >
-//inline u32hash u32_hash(const itask_t key)
-//{
-//
-//   return { (::u32) key };
-//
-//}
-
-
-
 template<typename THREAD_POINTER>
 class ___task_pool;
 
@@ -330,3 +319,6 @@ using task_pointer = ::pointer<::task>;
 
 
 class task_pool;
+
+
+

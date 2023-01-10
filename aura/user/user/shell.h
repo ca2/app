@@ -71,6 +71,18 @@ namespace user
          void set_path(const ::string & strPath, bool bSetExtension = true);
          void set_extension(const ::string & strPath);
 
+         inline operator ::u32hash() const
+         {
+            // default identity hash - works for most primitive values
+            return
+               u32_hash(m_strPath) +
+               u32_hash(m_strShellThemePrefix) +
+               u32_hash(m_strExtension) +
+               u32_hash(((int)m_eicon)) +
+               u32_hash(((int)m_eattribute)) +
+               u32_hash(((int)m_iIcon));
+         }
+
 
       };
 
@@ -270,17 +282,6 @@ namespace user
 } // namespace user
 
 
-template < >
-inline u32hash u32_hash<const ::user::shell::image_key &>(const ::user::shell::image_key & key)
-{
-   // default identity hash - works for most primitive values
-   return hash_cat(u32_hash(key.m_strPath),
-      hash_cat(u32_hash(key.m_strShellThemePrefix),
-         hash_cat(u32_hash(key.m_strExtension),
-            (((int)key.m_eicon) << 8) ^ (((int)key.m_eattribute) << 16)).m_u ^ (((int)key.m_iIcon))));
-}
-
-
 
 template <  >
 inline bool EqualElements(const ::user::shell::image_key & element1, const ::user::shell::image_key & element2)
@@ -289,3 +290,6 @@ inline bool EqualElements(const ::user::shell::image_key & element1, const ::use
    return element1 == element2;
 
 }
+
+
+

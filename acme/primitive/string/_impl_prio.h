@@ -43,42 +43,42 @@ inline ::u32 _gen_GetConversionACP()
 
 
 class fixed_alloc_array;
-
-
-template < >
-inline uptr u32_hash < const ansi_string & >(const ansi_string & ansistr)
-{
-
-   return u32_hash < const ::ansi_character * >(ansistr.c_str());
-
-}
-
-
-template < >
-inline uptr u32_hash < const wide_string & >(const wide_string & widestr)
-{
-
-   return u32_hash < const ::wide_character * >(widestr.c_str());
-
-}
-
-
-template < >
-inline uptr u32_hash < ansi_string >(ansi_string ansistr)
-{
-
-   return u32_hash < const ansi_string & >(ansistr);
-
-}
-
-
-template < >
-inline uptr u32_hash < wide_string >(wide_string widestr)
-{
-
-   return u32_hash < const wide_string & >(widestr);
-
-}
+////
+////
+////template < >
+////inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
+////{
+////
+////   return u32_hash < const ::ansi_character * >(ansistr.c_str());
+////
+////}
+////
+////
+////template < >
+////inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
+////{
+////
+////   return u32_hash < const ::wide_character * >(widestr.c_str());
+////
+////}
+////
+////
+////template < >
+////inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr)
+////{
+////
+////   return u32_hash < const ansi_string & >(ansistr);
+////
+////}
+////
+////
+////template < >
+////inline ::u32hash u32_hash < wide_string >(wide_string widestr)
+////{
+////
+////   return u32_hash < const wide_string & >(widestr);
+////
+////}
 
 
 inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
@@ -128,7 +128,7 @@ inline const char * FormatArgument(const string & value) noexcept { return value
 //}
 
 
-#include "__c_wd16_impl.h"
+//#include "__c_wd16_impl.h"
 
 
 

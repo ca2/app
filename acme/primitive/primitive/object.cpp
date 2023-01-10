@@ -98,7 +98,7 @@ void object::create_object_meta()
 string object::as_string() const
 {
 
-   return string(__type_name(this)) + " (0x" + ::hex::lower_from((uptr)this) + ")";
+   return string(__type_name(this)) + " (0x" + ::hex::lower_case_from((uptr)this) + ")";
 
 }
 
@@ -1755,7 +1755,7 @@ void object::branch_each(const ::procedure_array& routinea)
 void object::handle_exception(const ::exception& e)
 {
 
-   if (::is_exit_exception_status(e.estatus()))
+   if (e.estatus().is_exit_status())
    {
 
       throw e;
@@ -1776,7 +1776,7 @@ void object::handle_exception(const ::exception& e)
 void object::top_handle_exception(const ::exception& e)
 {
 
-   if (::is_exit_exception_status(e.estatus()))
+   if (e.estatus().is_exit_status())
    {
 
       acmesystem()->process_exit_status(this, e.estatus());

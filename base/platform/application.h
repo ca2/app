@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/user/user/ewindowflag.h"
+#include "acme/user/user/e_window_flag.h"
 #include "axis/platform/application.h"
 #include "aura/user/user/form_callback.h"
 #include "base/user/user/impact_creator.h"
@@ -51,7 +51,7 @@ namespace base
       ::base::session* get_session();
 
 
-      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
+      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, e_window_flag ewindowflag = ::e_window_flag(), const ::atom& atom = ::atom());
 
 ///*
 //
@@ -739,7 +739,7 @@ namespace base
 //      virtual void close(e_end eend);
 //
 //
-//      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+//      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 //
 //
 //      virtual void HideApplication();
@@ -1291,7 +1291,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
+////      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent, e_window_flag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
 //
 //      // multimedia
 //

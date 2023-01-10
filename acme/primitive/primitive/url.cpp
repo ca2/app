@@ -726,7 +726,7 @@ namespace url
       auto pPos = strUrl.find('?');
 
       if(not_found(pPos))
-         return payload(::e_type_empty);
+         return ::payload(::e_type_empty);
       else
          return query_get_var(strUrl.substr(pPos + 1), strKeyParam);
 
@@ -740,7 +740,7 @@ namespace url
       auto pPos = strUrl.find('?');
 
       if(not_found(pPos))
-         return payload(::e_type_empty);
+         return ::payload(::e_type_empty);
       else
          return ::url::decode(query_get_param(strUrl.substr(pPos + 1), strKeyParam));
 
@@ -1159,7 +1159,7 @@ namespace url
             if(pFind2 > strQuery.begin())
             {
                
-               strValue = strQuery.substr(strKey.length() + 1, pFind2 - (strKey.length() + 1));
+               strValue = strQuery(strKey.length() + 1, pFind2);
                
             }
             else
@@ -2341,9 +2341,9 @@ namespace url
 
             pszEncoded = string_append_character(pszEncoded, '%');
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from((ch >> 4) & 0xf));
+            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_case_from((ch >> 4) & 0xf));
 
-            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_from(ch & 0xf));
+            pszEncoded = string_append_character(pszEncoded, ::hex::nibble_upper_case_from(ch & 0xf));
 
          }
 

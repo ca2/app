@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "pane_impact.h"
 
 
@@ -24,7 +24,7 @@ namespace userex
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_atom == m_menua[i]->m_atom.compounded(::atom::e_type_command_probe))
+         if(pcommand->m_atom == m_menua[i]->m_atom)
          {
 
             pcommand->enable(true);

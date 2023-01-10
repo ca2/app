@@ -495,19 +495,19 @@ public:
    typename pair_map < PAIR >::iterator predicate_find(PRED pred)
    {
 
-      auto point = this->get_start();
+      auto p = this->begin();
 
-      while (point != nullptr)
+      while (::is_ok(p))
       {
 
-         if (pred(point))
+         if (pred(p))
          {
 
-            return point;
+            return p;
 
          }
 
-         point = this->get_next(point);
+         p++;
 
       }
 
@@ -931,7 +931,7 @@ template < typename PAIR >
 void pair_map < PAIR >::hash(::u32& nHashBucket, ::u32& nHashValue, ARG_ITEM item) const
 {
 
-   nHashValue = u32_hash<ARG_ITEM>(item).m_u;
+   nHashValue = ::u32_hash(item).m_u;
 
    nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
 

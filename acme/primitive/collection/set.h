@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "hash_table.h"
@@ -871,7 +871,7 @@ typename node_set < NODE >::iterator
 node_set < NODE >::find_item(ARG_ITEM item, ::u32& nHashBucket, ::u32& nHashValue) const
 {
 
-   nHashValue = u32_hash<ARG_ITEM>(item).m_u;
+   nHashValue = ::u32_hash(item).m_u;
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 

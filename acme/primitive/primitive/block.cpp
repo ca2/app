@@ -210,21 +210,22 @@ memsize block::find(const ::block& blockFind, memsize start) const
 }
 
 
-
 namespace hex
 {
-   CLASS_DECL_ACME string lower_from(const block & block)
+
+   
+   CLASS_DECL_ACME string lower_case_from(const block & block)
    {
 
-      return lower_from(block.data(), block.size());
+      return lower_case_from(block.data(), block.size());
 
    }
 
    
-   CLASS_DECL_ACME string upper_from(const block & block)
+   CLASS_DECL_ACME string upper_case_from(const block & block)
    {
 
-      return upper_from(block.data(), block.size());
+      return upper_case_from(block.data(), block.size());
 
    }
 

@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -227,9 +227,6 @@ int __atom_sgn(T x)
 #endif
 
 
-
-
-
 class CLASS_DECL_ACME atom
 {
 public:
@@ -351,6 +348,8 @@ public:
    atom(SIGNED i);
    template < primitive_unsigned UNSIGNED >
    atom(UNSIGNED u);
+   template < primitive_enum ENUM >
+   atom(ENUM e);
    atom(const ::string & str);
    //atom(const const_ansi_range & range);
    //atom(const_ansi_range && range);
@@ -609,8 +608,8 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-   inline operator ::iptr() const { return as_iptr(); }
-   inline operator ::enum_message () const { return as_emessage(); }
+   //inline operator ::iptr() const { return as_iptr(); }
+   //inline operator ::enum_message () const { return as_emessage(); }
    
    inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
@@ -657,15 +656,6 @@ public:
 
    //inline atom & operator +=(const ::scoped_string & scopedstr);
 
-   inline operator u32hash() const
-   {
-
-      return { (((::u32)m_etype) << 24) ^ (is_text() ? u32_hash(m_str.c_str()).m_u : ((((::u32)m_u) >> 8) & 0xffffffffu)) };
-
-   }
-
-
-//#ifndef NO_TEMPLATE
 
 
    //inline string operator +(const atom & atom) const;
@@ -673,7 +663,22 @@ public:
    inline ::string operator +(const ::string & str) const;
 
 
-//#endif
+   operator ::u32hash() const
+   {
+
+      return { 
+         (((::u32)m_etype) << 24)
+         ^
+         (
+            is_text() ? 
+            ::u32_hash(m_str.c_str()).m_u : 
+            ((((::u32)m_u) >> 8) & 0xffffffffu)
+         ) 
+      };
+
+   }
+
 
 };
+
 

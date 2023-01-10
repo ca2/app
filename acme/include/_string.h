@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-18 20:33 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-12-18 20:33 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -15,7 +15,6 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, co
 CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
 //CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str;
 //CLASS_DECL_ACME void output_debug_string(const ::wd32_character * psz);
-
 
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);
 

@@ -1964,10 +1964,10 @@ bool payload::is_new_or_null() const
 
 
 
-bool payload::equals(const payload & payload) const
+bool payload::equals_payload(const payload & payload) const
 {
 
-   return order(payload) == 0;
+   return order_payload(payload) == 0;
 
 }
 
@@ -1996,7 +1996,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
 //}
 
 
-::std::strong_ordering payload::order(const class ::payload & payload) const
+::std::strong_ordering payload::order_payload(const class ::payload & payload) const
 {
 
    if(has_reference_of_type(::e_type_i32_array))
@@ -2082,17 +2082,19 @@ bool payload::case_insensitive_equals(const payload & payload) const
 //}
 
 
-bool payload::operator == (const class ::payload & payload) const
-{
-   // if variables are equal:
-   // all values of both variables should be equal
-   return equals(payload) == 0;
-}
+//bool payload::equals_payload(const class ::payload & payload) const
+//{
+//   // if variables are equal:
+//   // all values of both variables should be equal
+//   return equals(payload);
+//}
 
 
 ::std::strong_ordering payload::operator <=> (const ::payload & payload) const
 {
-   return order(payload);
+   
+   return order_payload(payload);
+
 }
 
 
@@ -2124,10 +2126,10 @@ bool payload::operator == (const class ::payload & payload) const
 //}
 
 
-bool payload::operator == (const ::scoped_string & scopedstr) const
+bool payload::equals_scoped_string(const ::scoped_string & scopedstr) const
 {
 
-   return equals(scopedstr);
+   return equals_payload(scopedstr);
 
 }
 
@@ -2135,7 +2137,7 @@ bool payload::operator == (const ::scoped_string & scopedstr) const
 ::std::strong_ordering payload::operator <=> (const ::scoped_string & scopedstr) const
 {
    
-   return order(scopedstr);
+   return order_payload(scopedstr);
 
 }
 
@@ -2166,18 +2168,18 @@ bool payload::operator == (const ::scoped_string & scopedstr) const
 //}
 
 
-bool payload::operator == (const ::string & str) const
-{
-
-   return equals(str);
-
-}
+//bool payload::operator == (const ::string & str) const
+//{
+//
+//   return equals(str);
+//
+//}
 
 
 ::std::strong_ordering payload::operator <=> (const ::string & str) const
 {
 
-   return order(str);
+   return order_payload(str);
 
 }
 
@@ -2207,10 +2209,18 @@ bool payload::operator == (const ::string & str) const
 //   return get_string() > str;
 //}
 
-bool payload::operator == (::i32 i) const
+
+bool payload::equals_signed (::i64 i) const
 {
-   return as_i32() == i;
+   return as_i64() == i;
 }
+
+
+bool payload::equals_unsigned(::u64 u) const
+{
+   return as_u64() == u;
+}
+
 
 ::std::strong_ordering payload::operator <=> (::i32 i) const
 {
@@ -2250,12 +2260,12 @@ bool payload::operator == (::i32 i) const
 
 
 
-
-
-bool payload::operator == (::i64 i) const
-{
-   return as_i64() == i;
-}
+//
+//
+//bool payload::operator == (::i64 i) const
+//{
+//   return as_i64() == i;
+//}
 
 
 ::std::strong_ordering payload::operator <=> (::i64 i) const
@@ -2311,12 +2321,12 @@ bool payload::operator == (::i64 i) const
 
 
 
-
-
-bool payload::operator == (bool b) const
-{
-   return is_equivalent(get_bool(), b);
-}
+//
+//
+//bool payload::operator == (bool b) const
+//{
+//   return is_equivalent(get_bool(), b);
+//}
 
 
 ::std::strong_ordering payload::operator <=> (bool b) const
@@ -3033,7 +3043,7 @@ string & payload::string_reference(const char * pszOnNull)
       case e_type_enum_command:
          return m_ecommand;
       case e_type_enum_status:
-         return m_estatus;
+         return m_estatus.m_eenum;
       case e_type_enum_check:
          return m_echeck.m_echeck;
       case e_type_enum_flag:
@@ -6882,7 +6892,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
 }
 
 
-::enum_type payload::find_network_payload_child(::const_ansi_range & range, const ::payload & varChild)
+::enum_type payload::find_network_payload_child(::const_ansi_range & range, const ::payload & payloadChild)
 {
 
    ::str::consume_spaces(range, 0);
@@ -6935,7 +6945,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
 
          property_parse_network_payload_id(atom, range);
 
-         if (varChild.case_insensitive_equals(atom))
+         if (payloadChild.case_insensitive_equals(atom))
          {
 
             ::str::consume_spaces(range, 0);
@@ -6977,7 +6987,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (*range.m_begin == '\"')
    {
       operator=(::str::consume_quoted_value_ex(range));
-      if (operator == (varChild))
+      if (*this == payloadChild)
       {
          return ::e_type_string;
       }
@@ -6989,7 +6999,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin== '.')
    {
       consume_number(range);
-      if (operator == (varChild))
+      if (*this == payloadChild)
       {
          return get_type();
       }
@@ -7002,7 +7012,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    {
       //::str::consume_spaces(range, 0);
       ::str::consume(range, "[");
-      ::enum_type etype = find_network_payload_id(range, varChild);
+      ::enum_type etype = find_network_payload_id(range, payloadChild);
       if (etype == ::e_type_new)
       {
 
@@ -7031,7 +7041,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else
    {
       consume_identifier(range);
-      if (operator==(varChild))
+      if (*this==payloadChild)
       {
          return get_type();
       }
@@ -7044,7 +7054,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
 }
 
 
-::enum_type payload::find_network_payload_id(::const_ansi_range & range, const ::payload & varChild)
+::enum_type payload::find_network_payload_id(::const_ansi_range & range, const ::payload & payloadChild)
 {
 
    ::str::consume_spaces(range, 0);
@@ -7065,7 +7075,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (*range.m_begin == '\"')
    {
       operator=(::str::consume_quoted_value_ex(range));
-      if (operator == (varChild))
+      if (*this == payloadChild)
       {
          return ::e_type_string;
       }
@@ -7077,7 +7087,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin == '.')
    {
       consume_number(range);
-      if (operator == (varChild))
+      if (*this == payloadChild)
       {
          return get_type();
       }
@@ -7103,7 +7113,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else
    {
       consume_identifier(range);
-      if (operator==(varChild))
+      if (*this == payloadChild)
       {
          return get_type();
       }
@@ -9628,13 +9638,13 @@ bool succeeded(const ::payload & payload)
    if (payload.m_etype == e_type_enum_status)
    {
 
-      return ::succeeded(payload.m_estatus);
+      return payload.m_estatus.succeeded();
 
    }
    else if (payload.is_integer())
    {
 
-      return ::succeeded(payload.as_i64());
+      return payload.as_i64()>= 0;
 
    }
    else
@@ -11277,3 +11287,17 @@ void test_payload()
 //   return propset().get(psz);
 //
 //}
+
+
+
+CLASS_DECL_ACME::string as_string(const ::payload & payload)
+{
+
+   return payload.get_string();
+
+}
+
+
+
+
+

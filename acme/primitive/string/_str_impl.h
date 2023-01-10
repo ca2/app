@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/exception/parsing.h"
+
+
 template < typename CHAR_TYPE >
 inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
 {
@@ -758,6 +761,9 @@ inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const :
    return pair;
 
 }
+
+
+
 
 
 

@@ -1,4 +1,7 @@
-#pragma once
+﻿#pragma once
+
+
+#include "acme/primitive/primitive/e_check.h"
 
 
 class CLASS_DECL_ACME tristate
@@ -116,6 +119,37 @@ public:
 
 
    inline tristate operator()(int i) const { return deferred(i); }
+
+
+   operator ::e_check() const
+   {
+
+      if (m_eboolean == e_boolean_undefined)
+      {
+
+         return e_check_undefined;
+
+      }
+      else if (m_eboolean == e_boolean_yes)
+      {
+
+         return e_check_checked;
+
+      }
+      else if (m_eboolean == e_boolean_no)
+      {
+
+         return e_check_unchecked;
+
+      }
+      else
+      {
+
+         return e_check_tristate;
+
+      }
+
+   }
 
 };
 

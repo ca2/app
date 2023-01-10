@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-//#include "acme/primitive/primitive/_u32hash.h"
+#include "acme/primitive/primitive/_u32hash.h"
 
 
 template < >

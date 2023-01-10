@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 12/11/2020.
 //
 #include "framework.h"
@@ -12,7 +12,7 @@ CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2)
 
    // heuristic/simple/easy implementation
 
-   return (::e_status)minimum((::i64)e1, (::i64)e2);
+   return (::e_status)(::enum_status)minimum((::i64)e1, (::i64)e2);
 
 }
 
@@ -25,11 +25,10 @@ CLASS_DECL_ACME ::e_status operator & (enum_status e1, enum_status e2)
 }
 
 
-CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
+int e_status::exit_code() const
 {
 
-   
-   if (succeeded(estatus))
+   if (this->succeeded())
    {
 
       return 0;
@@ -38,14 +37,14 @@ CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
 
 #ifdef WINDOWS
    
-   return -(i32)estatus;
+   return (::i32) - (::i64)m_eenum;
 
 #else
 
    if (estatus >= -125)
    {
 
-      return -(int)(estatus);
+      return (::i32)-(::i64)(m_eenum);
 
    }
    else
@@ -58,11 +57,6 @@ CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
 #endif
 
 }
-
-
-
-
-
 
 
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
@@ -79,7 +73,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
    else if(::succeeded(estatus))
    {
 
-      str += "\"succeeded status=" + ::hex::lower_from(estatus) + "...\"";
+      str += "\"succeeded status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";
 
    }
    else if(estatus == error_not_implemented)
@@ -133,7 +127,7 @@ CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)
    else if(failed(estatus))
    {
 
-      str += "\"failed status=" + ::hex::lower_from(estatus) + "...\"";
+      str += "\"failed status=" + ::hex::lower_case_from(estatus.as_i64()) + "...\"";
 
    }
 

@@ -853,7 +853,7 @@ namespace aura
       virtual void close(::apex::enum_end eend) override;
 
 
-      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication() override;

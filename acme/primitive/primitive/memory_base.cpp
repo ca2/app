@@ -33,8 +33,6 @@ MEMORY::MEMORY()
    m_end = 0;
    m_dwAllocationAddUp = 4096;
    m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * log((double)m_dwAllocationAddUp - 1.0)) / (1 - log((double)m_dwAllocationAddUp - 1.0));
-   m_iOffset = 0;
-   m_iMaxOffset = 16 * 1024;
    m_pcontainer = nullptr;
    m_pprimitivememory = nullptr;
    m_psharedmemory = nullptr;
@@ -50,7 +48,6 @@ memory_base::~memory_base()
    this->m_end      =  nullptr;
    this->m_beginStorage          = nullptr;
    this->m_begin         = nullptr;
-   this->m_iOffset            = 0;
 
 }
 
@@ -132,37 +129,37 @@ memory memory_base::detach_as_primitive_memory()
 void memory_base::set_size(memsize dwNewLength)
 {
 
-   //if(!is_enabled())
-   //{
-   //   ASSERT(false);
-   //   return false;
-   //}
 
-   if((this->m_iOffset + dwNewLength) <= 0)
+   if(dwNewLength <= 0)
    {
-      this->m_begin   =this-> m_beginStorage + this->m_iOffset;
-      this->m_iOffset = 0;
-      this->m_sizeStorage = 0;
+      
+      this->m_begin = this->m_beginStorage;
+      
+      this->m_end = this->m_begin;
+
       return;
+
    }
 
-   if((this->m_iOffset + dwNewLength) > this->storage_size())
+   if ((this->offset() + dwNewLength) <= this->storage_size())
    {
 
-      allocate_internal(this->m_iOffset + dwNewLength);
+      this->m_end = this->m_begin + dwNewLength;
+
+      return;
 
    }
 
-   if ((this->m_iOffset + dwNewLength) > this->size())
+   erase_offset();
+
+   if(dwNewLength > this->storage_size())
    {
 
-      throw ::no_memory();
+      allocate_internal(dwNewLength);
 
    }
 
-   this->m_sizeStorage    = dwNewLength;
-
-   this->m_begin   = this->m_beginStorage + this->m_iOffset;
+   this->m_end = this->m_begin + dwNewLength;
 
 }
 
@@ -189,12 +186,6 @@ void memory_base::impl_free(byte * pdata)
 
 void memory_base::allocate_internal(memsize sizeNew)
 {
-
-   //if(!is_enabled())
-   //{
-   //   ASSERT(false);
-   //   return false;
-   //}
 
    if(sizeNew < 0)
    {
@@ -233,7 +224,7 @@ void memory_base::allocate_internal(memsize sizeNew)
 
       pNewStorage = (byte *) impl_alloc(sizeNewStorage);
 
-      if (!this->m_bOwner || this->m_bReadOnly)
+      if (pOldStorage && (!this->m_bOwner || this->m_bReadOnly))
       {
 
          ::memcpy_dup(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
@@ -297,14 +288,20 @@ void memory_base::reserve(memsize dwNewLength)
 void memory_base::erase_offset()
 {
 
-   if(this->m_beginStorage == nullptr || this->m_begin == nullptr || this->m_iOffset <= 0)
+   if (this->m_beginStorage == nullptr || this->m_begin == nullptr || this->offset() <= 0)
+   {
+
       return;
 
-   __memmov(this->m_beginStorage,this->m_begin,this->m_sizeStorage);
+   }
 
-   this->m_iOffset      = 0;
+   auto size = this->size();
 
-   this->m_begin   = this->m_beginStorage;
+   __memmov(this->m_beginStorage,this->m_begin,size);
+
+   this->m_begin = this->m_beginStorage;
+
+   this->m_end = this->m_begin + size;
 
 }
 
@@ -359,27 +356,26 @@ memsize memory_base::calc_allocation(memsize size)
 void memory_base::delete_begin(memsize iSize)
 {
 
-   iSize = maximum(0,minimum(size(),iSize));
-
-   this->m_iOffset += iSize;
-
-   //if(m_pcontainer != nullptr)
-   //{
-
-   //   m_pcontainer->offset_kept_pointers((memsize) iSize);
-
-   //}
-
-   this->m_sizeStorage -= iSize;
-
-   this->m_begin += iSize;
-
-   if(this->m_iOffset >= this->m_iMaxOffset || (memsize)this->m_iOffset >= this->size())
+   if (iSize < 0)
    {
 
-      erase_offset();
+      throw ::exception(error_bad_argument);
 
    }
+   else if (iSize > this->size())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+   else if (iSize == 0)
+   {
+
+      return;
+
+   }
+
+   this->m_begin += iSize;
 
 }
 
@@ -387,8 +383,12 @@ void memory_base::delete_begin(memsize iSize)
 void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) const
 {
 
-   if(data() == nullptr || size() <= 0)
+   if (data() == nullptr || this->is_empty())
+   {
+
       return;
+
+   }
 
    if(pfileOut->increase_internal_data_size(size()) && pfileOut->get_internal_data() != nullptr)
    {
@@ -577,7 +577,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   __memmov(this->m_beginStorage + pos,this->m_beginStorage + pos + len,size() - (pos + len));
+   __memmov(this->m_begin + pos,this->m_begin + pos + len,size() - (pos + len));
 
    set_size(size() - len);
 

@@ -1,9 +1,9 @@
-// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
+﻿// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 template < primitive_character CHARACTER >
-CHARACTER * __zerotosz(CHARACTER * p)
+constexpr CHARACTER * __zerotosz(CHARACTER * p)
 {
 
    *p++ = '0';
@@ -16,7 +16,7 @@ CHARACTER * __zerotosz(CHARACTER * p)
 
 
 template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
-void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
+constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
 {
 
    while (u != 0)
@@ -54,32 +54,36 @@ void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edi
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
-void __utosz(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
+constexpr void __rear_tosz(UNSIGNED u, CHARACTER *& p, int base, enum_digit_case edigitcase)
 {
-
-   if (u == 0)
-   {
-
-      __zerotosz(p);
-
-      return;
-
-   }
-
-   auto s = p;
 
    __utosz_internal(u, p, base, edigitcase);
 
-   reverse(s, p - 1);
+}
 
-   *p = 0;
+
+template < primitive_signed SIGNED, primitive_character CHARACTER >
+constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case edigitcase)
+{
+
+   auto [u, bNegative] = as_absolute_unsigned(i);
+
+   __utosz_internal(u, p, base, edigitcase);
+
+   if (bNegative) *p++ = '-';
 
 }
 
-//::std::pair <int,int> ia;
 
-template < primitive_signed SIGNED, primitive_character CHARACTER >
-void __itosz(SIGNED i, CHARACTER * & p, int base, enum_digit_case edigitcase)
+/// @brief compute string representation of unsigned number
+/// @tparam UNSIGNED /p u type (unsigned constraint)
+/// @tparam CHARACTER /p buf character type (character constraint)
+/// @param u number to convert
+/// @param p [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
+/// @param base base to convert
+/// @param edigitcase base greater than decimal base, the case of output characters 
+template < primitive_integral INTEGRAL, primitive_character CHARACTER >
+constexpr void __tosz(INTEGRAL i, CHARACTER * & p, int base, enum_digit_case edigitcase)
 {
 
    if (i == 0)
@@ -93,17 +97,16 @@ void __itosz(SIGNED i, CHARACTER * & p, int base, enum_digit_case edigitcase)
 
    auto s = p;
 
-   auto [ u, bNegative ] = as_absolute_unsigned(i);
-
-   __utosz_internal(u, p, base, edigitcase);
-
-   if (bNegative) *p++ = '-';
+   __rear_tosz(i, p, base, edigitcase);
 
    reverse(s, p - 1);
 
    *p = 0;
 
 }
+
+//::std::pair <int,int> ia;
+
 
 
 

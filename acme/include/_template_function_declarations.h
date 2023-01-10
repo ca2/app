@@ -1,9 +1,9 @@
-// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/exception/debug.h"
-
+#include "acme/primitive/primitive/e_status.h"
 
 template < typename CHAR_STRING >
 inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
@@ -11,6 +11,8 @@ inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; 
 
 CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox);
 CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails);
+
+
 
 
 CLASS_DECL_ACME void set_last_status(const ::e_status& estatus);

@@ -10,15 +10,18 @@ class enumeration
 {
 public:
 
+   
+   using ENUM_TAG = ENUM_TYPE_TAG;
+
    using ENUM_TYPE = ENUM;
 
 
    ENUM  m_eenum;
 
 
-   enumeration() { m_eenum = (ENUM) 0; }
-   enumeration(enum_null) { m_eenum = (ENUM)0; }
-   enumeration(const ::std::initializer_list < ENUM > & list ) 
+   constexpr enumeration() { m_eenum = (ENUM) 0; }
+   constexpr enumeration(enum_null) { m_eenum = (ENUM)0; }
+   constexpr enumeration(const ::std::initializer_list < ENUM > & list )
    {
 
       m_eenum = (ENUM) 0; 
@@ -31,29 +34,30 @@ public:
       }
    
    }
-   enumeration(ENUM e) { m_eenum = e; }
-   //enumeration(::i64 i) { m_eenum = (ENUM) i; }
-   enumeration(const enumeration & e) { m_eenum = e.m_eenum; }
+   constexpr enumeration(ENUM e) { m_eenum = e; }
+   //template < primitive_integral INTEGRAL >
+   //enumeration(INTEGRAL i) { m_eenum = (ENUM) i; }
+   constexpr enumeration(const enumeration & e) { m_eenum = e.m_eenum; }
 
-   inline void add(ENUM e) { m_eenum = (ENUM)(e | m_eenum); }
+   constexpr  void add(ENUM e) { m_eenum = (ENUM)(e | m_eenum); }
 
-   inline enumeration & operator |= (ENUM e) { add(e); return *this; }
-   inline enumeration & operator &= (ENUM e) { m_eenum = (ENUM) (m_eenum & e); return *this; }
+   constexpr  enumeration & operator |= (ENUM e) { add(e); return *this; }
+   constexpr  enumeration & operator &= (ENUM e) { m_eenum = (ENUM) (m_eenum & e); return *this; }
 
-   inline enumeration & operator |= (const enumeration & e) { m_eenum = (ENUM) (e.m_eenum | m_eenum); return *this; }
-   inline enumeration & operator &= (const enumeration & e) { m_eenum = (ENUM) (m_eenum & e.m_eenum); return *this; }
+   constexpr  enumeration & operator |= (const enumeration & e) { m_eenum = (ENUM) (e.m_eenum | m_eenum); return *this; }
+   constexpr  enumeration & operator &= (const enumeration & e) { m_eenum = (ENUM) (m_eenum & e.m_eenum); return *this; }
 
-   inline enumeration & operator += (ENUM e) { return operator |= (e); }
-   inline enumeration & operator -= (ENUM e) { return operator &= ((ENUM)~(i64)(e)); }
+   constexpr  enumeration & operator += (ENUM e) { return operator |= (e); }
+   constexpr  enumeration & operator -= (ENUM e) { return operator &= ((ENUM)~(i64)(e)); }
 
-   inline enumeration & operator += (const enumeration & e) { return operator |= ((ENUM)e.m_eenum); }
-   inline enumeration & operator -= (const enumeration & e) { return operator &= ((ENUM)~(i64)(e.m_eenum)); }
+   constexpr  enumeration & operator += (const enumeration & e) { return operator |= ((ENUM)e.m_eenum); }
+   constexpr  enumeration & operator -= (const enumeration & e) { return operator &= ((ENUM)~(i64)(e.m_eenum)); }
 
-   inline enumeration & operator ^= (ENUM e) { toggle(e);  return *this; }
-   inline enumeration & operator ^= (const enumeration & e) { toggle(e);  return *this; }
+   constexpr  enumeration & operator ^= (ENUM e) { toggle(e);  return *this; }
+   constexpr  enumeration & operator ^= (const enumeration & e) { toggle(e);  return *this; }
 
 //   inline enumeration operator + (ENUM e) const { return (ENUM)(m_eenum | e); }
-   inline enumeration operator - (ENUM e) const { return (ENUM)(m_eenum & ~((i64)e)); }
+   constexpr  enumeration operator - (ENUM e) const { return (ENUM)(m_eenum & ~((i64)e)); }
 
    //template < typename TYPE >
    //enumeration operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
@@ -68,56 +72,56 @@ public:
       return copy; 
    }
 
-   inline enumeration operator | (ENUM e) const { return (ENUM)(m_eenum | e); }
-   inline enumeration operator & (ENUM e) const { return (ENUM)(m_eenum & e); }
+   constexpr  enumeration operator | (ENUM e) const { return (ENUM)(m_eenum | e); }
+   constexpr  enumeration operator & (ENUM e) const { return (ENUM)(m_eenum & e); }
 
-   inline enumeration operator | (const enumeration & e) const { return (ENUM)(m_eenum | e.m_eenum); }
-   inline enumeration operator & (const enumeration & e) const { return (ENUM)(m_eenum & e.m_eenum); }
+   constexpr  enumeration operator | (const enumeration & e) const { return (ENUM)(m_eenum | e.m_eenum); }
+   constexpr  enumeration operator & (const enumeration & e) const { return (ENUM)(m_eenum & e.m_eenum); }
 
-   inline bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
-   inline bool has(ENUM e) const { return is(e); }
-   inline bool is_clear(ENUM e) const { return !(m_eenum & e); }
+   constexpr  bool is(ENUM e) const { return (i64)(m_eenum & e) == (i64)e; }
+   constexpr  bool has(ENUM e) const { return is(e); }
+   constexpr  bool is_clear(ENUM e) const { return !(m_eenum & e); }
 
-   void erase(ENUM e) { operator -= (e); }
-   void add(const enumeration & e) { operator += (e); }
-   void unset(const enumeration & e) { erase(e); }
-   void set(const enumeration & e) { add(e); }
-   void erase(const enumeration & e) { operator -= (e); }
-   void clear() { m_eenum = (ENUM) 0; }
+   constexpr void erase(ENUM e) { operator -= (e); }
+   constexpr void add(const enumeration & e) { operator += (e); }
+   constexpr void unset(const enumeration & e) { erase(e); }
+   constexpr void set(const enumeration & e) { add(e); }
+   constexpr void erase(const enumeration & e) { operator -= (e); }
+   constexpr void clear() { m_eenum = (ENUM) 0; }
 
-   void set(ENUM e, bool bSet) { if(bSet) set(e); else unset(e); }
-   void toggle(ENUM e) { if (is(e)) unset(e); else set(e); }
+   constexpr void set(ENUM e, bool bSet) { if(bSet) set(e); else unset(e); }
+   constexpr void toggle(ENUM e) { if (is(e)) unset(e); else set(e); }
 
-   enumeration & operator = (const enumeration & e) { m_eenum = e.m_eenum; return *this; }
-
-
-   bool operator == (const enumeration & e) const { return m_eenum == e.m_eenum; }
-   bool operator == (ENUM e) const { return m_eenum == e; }
+   constexpr enumeration & operator = (const enumeration & e) { m_eenum = e.m_eenum; return *this; }
 
 
-   ENUM & eflag() { return (ENUM &)m_eenum; }
-   ENUM eflag() const { return (ENUM)m_eenum; }
+   constexpr bool operator == (const enumeration & e) const { return m_eenum == e.m_eenum; }
+   constexpr bool operator == (ENUM e) const { return m_eenum == e; }
 
-   bool operator !()
+
+   constexpr ENUM & eflag() { return (ENUM &)m_eenum; }
+   constexpr ENUM eflag() const { return (ENUM)m_eenum; }
+
+   constexpr bool operator !()
    {
 
       return !((ENUM)m_eenum);
 
    }
 
-   operator ENUM & ()
+   constexpr operator ENUM & ()
    {
       return (ENUM &)m_eenum;
    }
 
-   operator ENUM() const
+   constexpr operator ENUM() const
    {
 
       return (ENUM)m_eenum;
    }
 
 
-   enumeration & operator ++(int)
+   constexpr enumeration & operator ++(int)
    {
 
       m_eenum = (ENUM)((::i64) m_eenum + 1);
@@ -127,7 +131,7 @@ public:
    }
 
 
-   enumeration & operator %=(const ENUM & eenum)
+   constexpr enumeration & operator %=(const ENUM & eenum)
    {
 
       m_eenum = (ENUM)((::i64) m_eenum % (::i64) eenum);
@@ -136,7 +140,7 @@ public:
 
    }
 
-   enumeration& rotate(const ENUM& eenum)
+   constexpr enumeration& rotate(const ENUM& eenum)
    {
 
       if ((::i64) m_eenum < 0)
@@ -158,19 +162,26 @@ public:
 
 
 #define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
-inline ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
+constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
 template < primitive_integral INTEGRAL > \
-inline ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
+constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
 template < primitive_integral INTEGRAL > \
-inline ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
-inline ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
+constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
+constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
 template < primitive_integral INTEGRAL > \
-inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
+constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
 template < primitive_integral INTEGRAL > \
-inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
+constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
 using ENUMERATION = ::enumeration < ENUM >
 
 
+template < typename ENUM > struct raw_enum_of_struct { using type = ENUM; };
+template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
+template < typename ENUM >
+using raw_enum_of = typename raw_enum_of_struct<ENUM>::type;
 
+
+template < primitive_enum ENUM >
+inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
 
 

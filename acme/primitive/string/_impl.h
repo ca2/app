@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_string_range_impl.h"
@@ -34,67 +34,49 @@ namespace file
 
 #endif
 
-
-template <typename T>
-inline T FormatArgument(T value) noexcept
-{
-
-   return value;
-
-}
-
-
-#ifdef WINDOWS
-inline ::u32 _gen_GetConversionACP()
-{
-
-   //return CP_UTF8;
-   return CodePageUtf8;
-
-}
-#endif
+//
+//template <typename T>
+//inline T FormatArgument(T value) noexcept
+//{
+//
+//   return value;
+//
+//}
+//
+//
+//#ifdef WINDOWS
+//inline ::u32 _gen_GetConversionACP()
+//{
+//
+//   //return CP_UTF8;
+//   return CodePageUtf8;
+//
+//}
+//#endif
 
 
 class fixed_alloc_array;
 
 
 template < >
-inline u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
+inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
 {
 
-   return u32_hash < const ::ansi_character * >(ansistr.c_str());
+   return u32_hash(ansistr.c_str());
 
 }
 
 
 template < >
-inline u32hash u32_hash < const wide_string & >(const wide_string & widestr)
+inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
 {
 
-   return u32_hash < const ::wide_character * >(widestr.c_str());
+   return u32_hash(widestr.c_str());
 
 }
 
 
-template < >
-inline u32hash u32_hash < ansi_string >(ansi_string ansistr)
-{
-
-   return u32_hash < const ansi_string & >(ansistr);
-
-}
-
-
-template < >
-inline u32hash u32_hash < wide_string >(wide_string widestr)
-{
-
-   return u32_hash < const wide_string & >(widestr);
-
-}
-
-
-inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
+//inline const char * FormatArgument(const string & value) noexcept { return value.c_str(); }
 
 
 //template < typename TYPE_CHAR >
@@ -251,39 +233,39 @@ inline string as_string(NUMBER number, const ::ansi_character * pszFormat)
 }
 
 
-template < primitive_unsigned UNSIGNED >
-inline inline_number_string as_string(UNSIGNED u, int radix, enum_digit_case edigitcase)
+template < primitive_integral INTEGRAL >
+inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edigitcase)
 {
 
    inline_number_string numberstring;
 
-   __utosz(u, numberstring.m_end, radix, edigitcase);
+   __tosz(i, numberstring.m_end, radix, edigitcase);
 
    return numberstring;
 
 }
 
 
-template < primitive_signed SIGNED >
-inline inline_number_string as_string(SIGNED i, int radix, enum_digit_case edigitcase)
-{
+// template < primitive_integral SIGNED >
+// inline inline_number_string as_string(SIGNED i, int radix, enum_digit_case edigitcase)
+// {
 
-   inline_number_string numberstring;
+//   inline_number_string numberstring;
 
-   __itosz(i, numberstring.m_end, radix, edigitcase);
+//   __tosz(i, numberstring.m_end, radix, edigitcase);
 
-   return numberstring;
+//   return numberstring;
 
-}
+// }
 
 
 //   inline_number_string numberstring;
-//
+
 //   __i64toansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
-//
+
 //   return numberstring;
-//
-//}
+
+// }
 
 
 template < primitive_floating FLOATING >
@@ -311,26 +293,26 @@ payload::payload(const CHARACTER_RANGE & range) :
 }
 
 
-template<>
-inline u32hash u32_hash<scoped_ansi_string>(scoped_ansi_string scopedstr) {
+template < >
+inline ::u32hash u32_hash < scoped_ansi_string >(scoped_ansi_string scopedstr) {
 
-   return _scoped_string_u32_hash<::ansi_character>((::scoped_string_base<const ::ansi_character *>) scopedstr);
-
-}
-
-
-template<>
-inline u32hash u32_hash<scoped_wd16_string>(scoped_wd16_string scopedstr) {
-
-   return _scoped_string_u32_hash<::wd16_character>((::scoped_string_base<const ::wd16_character *>) scopedstr);
+   return _scoped_string_u32_hash((::scoped_string_base<const ::ansi_character *>) scopedstr);
 
 }
 
 
-template<>
-inline u32hash u32_hash<scoped_wd32_string>(scoped_wd32_string scopedstr) {
+template < >
+inline ::u32hash u32_hash < scoped_wd16_string >(scoped_wd16_string scopedstr) {
 
-   return _scoped_string_u32_hash<::wd32_character>((::scoped_string_base<const ::wd32_character *>) scopedstr);
+   return _scoped_string_u32_hash((::scoped_string_base<const ::wd16_character *>) scopedstr);
+
+}
+
+
+template < >
+inline ::u32hash u32_hash < scoped_wd32_string >(scoped_wd32_string scopedstr) {
+
+   return _scoped_string_u32_hash((::scoped_string_base<const ::wd32_character *>) scopedstr);
 
 }
 
@@ -499,3 +481,165 @@ inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd16_string &str
 
 template < typename ITERATOR_TYPE >
 inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+
+
+
+template<typename ITERATOR_TYPE>
+::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
+{
+
+   auto c = begins_count(character_is_function);
+
+   if (c < minimum_count)
+   {
+
+      throw_parsing_exception("didn't reached minimum count of characters meet character_is_function requirements");
+
+   }
+
+   this->begin() += c;
+
+   return c;
+
+}
+
+
+
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_quoted_value()
+{
+
+   string_base < ITERATOR_TYPE > str;
+
+   auto & range = *this;
+
+   auto pszStart = range.m_begin;
+
+   if (*pszStart != '\"' && *pszStart != '\'')
+   {
+
+      throw_parsing_exception("Quote character is required here");
+
+      return str;
+
+   }
+
+   char quoting_character = *range.m_begin;
+
+   range.m_begin++;
+
+   const typename ::string_range < ITERATOR_TYPE>::CHARACTER * pszValueStart = range.m_begin;
+
+   while (*range.m_begin != quoting_character)
+   {
+
+   skip:
+
+      unicode_increment(range.m_begin);
+
+      if (range.is_empty() || *range.m_begin == '\0')
+      {
+
+         throw_parsing_exception("Quote character is required here, premature end");
+
+         return str;
+
+      }
+
+      if (*range.m_begin == '\\')
+      {
+
+         unicode_increment(range.m_begin);
+
+         if (range.is_empty())
+         {
+
+            throw_parsing_exception("Quote character is required here, premature end");
+
+            return str;
+
+         }
+
+         goto skip;
+
+      }
+
+   }
+
+   str.assign(pszValueStart, range.m_begin - pszValueStart);
+
+   range.m_begin++;
+
+   auto p = str.get_string_buffer();
+
+   auto pend = p + str.length();
+
+   while (*p)
+   {
+
+      if (*p == '\\')
+      {
+
+         if (p[1] == '\\')
+         {
+
+            memmove(p, p + 1, pend - p);
+         }
+         else if (p[1] == '\"')
+         {
+
+            memmove(p, p + 1, pend - p);
+
+         }
+
+      }
+
+      p++;
+
+   }
+
+   str.release_string_buffer();
+
+   return str;
+
+}
+
+
+
+//
+//template < >
+//inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
+//{
+//
+//   return u32_hash < const ::ansi_character * >(ansistr.c_str());
+//
+//}
+//
+//
+//template < >
+//inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
+//{
+//
+//   return u32_hash < const ::wide_character * >(widestr.c_str());
+//
+//}
+
+
+template < >
+inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr)
+{
+
+   return u32_hash < const ansi_string & >(ansistr);
+
+}
+
+
+template < >
+inline ::u32hash u32_hash < wide_string >(wide_string widestr)
+{
+
+   return u32_hash < const wide_string & >(widestr);
+
+}

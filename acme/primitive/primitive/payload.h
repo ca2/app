@@ -1494,7 +1494,11 @@ template < primitive_payload PAYLOAD, character_range RANGE >
 PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
 {
 
-   return payload = payload.get_string() + ::string(range);
+   string str = payload.get_string() + ::string(range);
+
+   payload = str;
+
+   return payload;
 
 }
 

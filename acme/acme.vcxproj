@@ -1070,7 +1070,6 @@
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\string\encoding_exception.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
-    <ClCompile Include="primitive\string\international2.cpp" />
     <ClCompile Include="primitive\string\string.cpp" />
     <ClCompile Include="primitive\string\str_to.cpp" />
     <ClCompile Include="primitive\string\sz\ansi.cpp" />
@@ -1923,7 +1922,6 @@
     <ClInclude Include="primitive\string\from_integer.h" />
     <ClInclude Include="primitive\string\hex.h" />
     <ClInclude Include="primitive\string\international.h" />
-    <ClInclude Include="primitive\string\international2.h" />
     <ClInclude Include="primitive\string\parse.h" />
     <ClInclude Include="primitive\string\static_string.h" />
     <ClInclude Include="primitive\string\x\x_charcategory.h" />

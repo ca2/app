@@ -115,7 +115,25 @@ throw ::exception(todo, "multibyte");
 
 //}
 
-bool utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr)
+
+string CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, const ::scoped_string & scopedstr)
+{
+
+   string str;
+
+   if (!utf8_to_multibyte(uCodePage, str, scopedstr))
+   {
+
+      throw ::exception(error_encoding);
+
+   }
+
+   return str;
+
+}
+
+
+bool utf8_to_multibyte(::u32 uCodePage, ::string & str, const ::scoped_string & scopedstr)
 {
 
    return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, scopedstr);

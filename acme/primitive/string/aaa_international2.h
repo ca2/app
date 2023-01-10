@@ -32,8 +32,8 @@
 
 //      bool CLASS_DECL_ACME OEMToMultiByte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 
-
-      bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr);
+      string CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage,  const ::scoped_string & scopedstr);
+      bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, ::string & str, const ::scoped_string & scopedstr);
 
       //bool CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, memory & str, const ::scoped_string & scopedstr, strsize nCount);
 

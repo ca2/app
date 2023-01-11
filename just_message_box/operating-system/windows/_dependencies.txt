@@ -1,3 +1,4 @@
 operating-system-windows/draw2d_gdiplus
 operating-system-windows/node_windows
 operating-system-windows/windowing_win32
+operating-system-windows/write_text_win32

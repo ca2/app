@@ -368,6 +368,17 @@ namespace file
 
       //::file::path & operator | (const ::ansi_string & str) { return file_cat(str); } // what is good here is the operator precedence
 
+      ::file::path operator | (::file::enum_flag eflag)
+      {
+
+         auto path = *this;
+
+         path.flags() |= eflag;
+
+         return ::transfer(path);
+
+      }
+
       //string arg(const ::ansi_string & str) const { return ((const string &)*this) + str; }
 
       //string operator << (const ::ansi_string & str) const { return arg(str); }

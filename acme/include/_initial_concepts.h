@@ -14,6 +14,10 @@ struct ENUM_TYPE_TAG {};
 template < typename ENUM >
 concept primitive_enum = std::is_enum < ENUM >::value || ::std::is_same<typename ENUM::ENUM_TAG, ENUM_TYPE_TAG >::value;
 
+template < typename BLOCK >
+concept primitive_block = ::std::is_same<typename BLOCK::PRIMITIVE_BLOCK_TAG, PRIMITIVE_BLOCK_TAG_TYPE >::value;
+
+
 template < typename T >
 concept primitive_integral = std::is_integral_v < T >;
 
@@ -219,15 +223,15 @@ namespace comparison
 //
 
 
-template < typename BLOCK >
-concept primitive_block = requires(BLOCK block)
-{
-
-   block.data();
-   block.size();
-   block.length_in_bytes();
-
-};
+//template < typename BLOCK >
+//concept primitive_block = requires(BLOCK block)
+//{
+//
+//   block.data();
+//   block.size();
+//   block.length_in_bytes();
+//
+//};
 
 
 template < typename TYPED_BLOCK, typename ITEM_TYPE >

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/memory/_memory.h"
@@ -48,6 +48,7 @@ struct CLASS_DECL_ACME block :
    public BLOCK
 {
 
+   using PRIMITIVE_BLOCK_TAG = PRIMITIVE_BLOCK_TAG_TYPE;
    
    //using BLOCK::BLOCK;
 

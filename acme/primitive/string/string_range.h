@@ -634,6 +634,11 @@ public:
     }
 
 
+    // Convert the string_base < ITERATOR_TYPE > to lowercase
+    //template < typename ITERATOR_TYPE >
+    string_base < ITERATOR_TYPE > lowered() const;
+
+
 //   using BASE_RANGE::_find_first_character_in_start;
 //
 //   constexpr const_iterator _find_first_character_in_start(const SCOPED_STRING & range, memsize start) const

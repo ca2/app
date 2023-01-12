@@ -5896,14 +5896,6 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::uppered() const
 
 }
 
-// Convert the string_base < ITERATOR_TYPE > to lowercase
-template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::lowered() const
-{
-
-   return string_base < ITERATOR_TYPE >(*this).make_lower();
-
-}
 
 // Convert the string_base < ITERATOR_TYPE > to lowercase
 template < typename ITERATOR_TYPE >

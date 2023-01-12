@@ -504,6 +504,18 @@ template<typename ITERATOR_TYPE>
 }
 
 
+// Convert the string_base < ITERATOR_TYPE > to lowercase
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::lowered() const
+{
+
+   string_base < ITERATOR_TYPE > str(*this);
+
+   str.make_lower();
+
+   return str;
+
+}
 
 
 

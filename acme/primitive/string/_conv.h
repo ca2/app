@@ -1,4 +1,4 @@
-﻿// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
+// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -76,9 +76,9 @@ constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case e
 
 
 /// @brief compute string representation of unsigned number
-/// @tparam UNSIGNED /p u type (unsigned constraint)
+/// @tparam INTEGRAL /p u type (unsigned constraint)
 /// @tparam CHARACTER /p buf character type (character constraint)
-/// @param u number to convert
+/// @param i number to convert
 /// @param p [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 

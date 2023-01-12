@@ -1,4 +1,4 @@
-﻿//
+//
 //  estatus.h
 //  acme
 //
@@ -120,10 +120,8 @@ public:
 
 
    
-
    /// @brief synchronization signaled index
-   /// @param estatus 
-   /// @return 
+   /// @return signaled index. For single synchronization object 0 if signaled or -1 if not signaled. For array of synchronization objects, the lowest? index of a signaled object or -1 if none of objects are signaled.
    constexpr ::i32 signaled_index() const
    {
 
@@ -132,7 +130,8 @@ public:
    }
 
    /// @brief is synchronization signaled?
-   /// @return 
+   /// @return if synchronization is signaled. For single synchronization object true if signaled. For array of synchronization object, true if at least one? (or all?) object(s?) is signaled.
+   /// 
    constexpr bool signaled()const
    {
 
@@ -141,7 +140,7 @@ public:
    }
 
    /// @brief synchronization abandoned index
-   /// @return 
+   /// @return abandoned index
    constexpr ::i32 abandoned_index()const
    {
 
@@ -150,7 +149,7 @@ public:
    }
 
    /// @brief is synchronization abandoned?
-   /// @return 
+   /// @return if it is abandoned
    constexpr bool abandoned()const
    {
 
@@ -159,7 +158,7 @@ public:
    }
 
    /// @brief is synchronization timed out?
-   /// @return 
+   /// @return if it is timed out
    constexpr bool wait_timeout() const
    {
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_iterator.h"
@@ -324,7 +324,9 @@ public:
    string_base & operator = (const ansi_string & ansistr) {assign(ansistr.begin(), ansistr.end()); return *this;}
    string_base & operator = (const wd16_string & wd16str) {assign(wd16str.begin(), wd16str.end()); return *this;}
    string_base & operator = (const wd32_string & wd32str) {assign(wd32str.begin(), wd32str.end()); return *this;}
-   string_base & operator = (const block & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
+   
+   template < primitive_block BLOCK >
+   string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
       //template < primitive_character CHARACTER2 >
       //string_base & operator = (const ::range < const CHARACTER2 * > & str);
       //string_base & operator = (string_base && str);
@@ -459,7 +461,9 @@ public:
 
    inline string_base & assign(const string_base & str);
    inline string_base & assign(string_base && str);
-   inline string_base & assign(const ::block & block) { return assign((const ::ansi_character *)block.data(), block.size()); }
+   
+   template < primitive_block BLOCK >
+   inline string_base & assign(const BLOCK & block) { return assign((const CHARACTER *)block.data(),(const CHARACTER *) block.end()); }
 
    //   template < primitive_character CHARACTER2 >
    //   inline string_base& assign(const ::range < const CHARACTER2 * > & str);

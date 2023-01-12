@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-07 16:02 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-07 16:02 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -487,6 +487,33 @@ inline strsize wd32_to_ansi_char(char * psz, ::wd32_character wch)
 }
 
 
+#if WCHAR_T_SIZE == 16
+
+
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz) { return ansi_to_wd16_len(psz, string_safe_length(psz)); }
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen) { return ansi_to_wd16_len(psz, srclen); }
+inline strsize utf8_to_unichar(::wd16_character * pwsz, const ::ansi_character * psz) { return ansi_to_wd16(pwsz, psz, string_safe_length(psz)); }
+inline strsize utf8_to_unichar(::wd16_character * pwsz, const ::ansi_character * psz, strsize srclen) { return ansi_to_wd16(pwsz, psz, srclen); }
+
+
+inline strsize unichar_to_utf8_len(const ::wd16_character * pwsz) { return wd16_to_ansi_len(pwsz, string_safe_length(pwsz)); }
+inline strsize unichar_to_utf8_len(const ::wd16_character * pwsz, strsize srclen) { return wd16_to_ansi_len(pwsz, srclen); }
+inline strsize unichar_to_utf8(char * psz, const ::wd16_character * pwsz) { return wd16_to_ansi(psz, pwsz, string_safe_length(pwsz)); }
+inline strsize unichar_to_utf8(char * psz, const ::wd16_character * pwsz, strsize srclen) { return wd16_to_ansi(psz, pwsz, srclen); }
+
+
+#else
+
+
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32_len(psz, srclen); }
+inline strsize utf8_to_unichar(::wd32_character * pwsz, const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32(pwsz, psz, srclen); }
+
+
+inline strsize unichar_to_utf8_len(const ::wd32_character * pwsz, strsize srclen = -1) { return wd32_to_ansi_len(pwsz, srclen); }
+inline strsize unichar_to_utf8(char * psz, const ::wd32_character * pwsz, strsize srclen = -1) { return wd32_to_ansi(psz, pwsz, srclen); }
+
+
+#endif
 
 
 

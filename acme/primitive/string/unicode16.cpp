@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "string.h"
 #include "international.h"
 ////#include "acme/exception/exception.h"
@@ -84,7 +84,7 @@ strsize wd16_to_ansi(char* psz, const ::wd16_character* pwsz, strsize srclen)
 
       n = wd16_to_ansi_char(psz, &pwsz, &srclen);
 
-      if (n == 0)
+      if (n <= 0)
       {
 
          break;

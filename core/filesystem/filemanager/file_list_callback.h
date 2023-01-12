@@ -21,7 +21,7 @@ namespace filemanager
 
       virtual i32 GetActionButtonCount();
       virtual ::pointer<::image_list>GetActionButtonImageList(atom i);
-      virtual void InitializeActionButton(atom i, ::pointer<::user::button>pbutton);
+      virtual void InitializeActionButton(const ::atom & atomButton, ::pointer<::user::button>pbutton);
       virtual void OnButtonAction(atom i, ::pointer<::file::item> item);
 
       virtual bool GetMenuItemCallback(atom iId);

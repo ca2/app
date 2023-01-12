@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
@@ -65,12 +65,16 @@ namespace filemanager
 
    i32 file_list_callback::GetActionButtonCount()
    {
+      
       return 0;
+
    }
 
-   void file_list_callback::InitializeActionButton(atom atom, ::pointer<::user::button>pbutton)
+
+   void file_list_callback::InitializeActionButton(const ::atom & atomButton, ::pointer<::user::button>pbutton)
    {
-      switch (atom.as_i32())
+
+      switch (atomButton.as_i64())
       {
       case 0: // ExecuteButton
       {

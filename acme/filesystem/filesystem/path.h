@@ -368,7 +368,7 @@ namespace file
 
       //::file::path & operator | (const ::ansi_string & str) { return file_cat(str); } // what is good here is the operator precedence
 
-      ::file::path operator | (::file::enum_flag eflag)
+      ::file::path operator | (::file::enum_flag eflag) const
       {
 
          auto path = *this;

@@ -138,12 +138,16 @@ inline strsize wd16_to_ansi_char(char * psz, const ::wd16_character ** ppu16a, s
 #if WCHAR_T_SIZE == 16
 
 
-inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd16_len(psz, srclen); }
-inline strsize utf8_to_unichar(::wd16_character* pwsz, const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd16(pwsz, psz, srclen); }
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz);
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen);
+inline strsize utf8_to_unichar(::wd16_character * pwsz, const ::ansi_character * psz);
+inline strsize utf8_to_unichar(::wd16_character * pwsz, const ::ansi_character * psz, strsize srclen);
 
 
-inline strsize unichar_to_utf8_len(const ::wd16_character* pwsz, strsize srclen = -1) { return wd16_to_ansi_len(pwsz, srclen); }
-inline strsize unichar_to_utf8(char * psz, const ::wd16_character* pwsz, strsize srclen = -1) { return wd16_to_ansi(psz, pwsz, srclen); }
+inline strsize unichar_to_utf8_len(const ::wd16_character * pwsz);
+inline strsize unichar_to_utf8_len(const ::wd16_character * pwsz, strsize srclen);
+inline strsize unichar_to_utf8(char * psz, const ::wd16_character * pwsz);
+inline strsize unichar_to_utf8(char * psz, const ::wd16_character * pwsz, strsize srclen);
 
 
 #else

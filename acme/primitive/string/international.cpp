@@ -39,7 +39,7 @@
          if (65001 == uCodePage)
          {
 
-            unichar_to_utf8(pstrMultiByte, scopedwstr);
+            unichar_to_utf8(pstrMultiByte, scopedwstr, scopedwstr.size());
 
             return true;
 
@@ -676,12 +676,13 @@
 //
 //      }
 
+
       string CLASS_DECL_ACME utf8_to_multibyte(::u32 uCodePage, const ::scoped_string & scopedstr)
       {
 
          string str;
 
-         if (utf8_to_multibyte(uCodePage, str, scopedstr))
+         if (!utf8_to_multibyte(uCodePage, str, scopedstr))
          {
 
             throw ::exception(error_encoding);
@@ -691,6 +692,7 @@
          return str;
 
       }
+
 
       bool utf8_to_multibyte(::u32 uCodePage, string & str, const ::scoped_string & scopedstr)
       {

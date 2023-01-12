@@ -1540,7 +1540,8 @@ template < typename ITERATOR_TYPE >
 inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
 {
 
-   throw_exception(error_not_supported);
+   this->m_begin = (const CHARACTER *)block.data();
+   this->m_end = (const CHARACTER *)block.end();
 
    return *this;
 

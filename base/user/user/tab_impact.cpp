@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -31,7 +31,7 @@ namespace user
       m_pimpactdata                    = nullptr;
       m_pimpactdataOld                 = nullptr;
       m_bCloseDocumentIfNoTabs         = false;
-      m_bAutoCreateTabsOnCreate        = false;
+      //m_bAutoCreateTabsOnCreate        = false;
 
    }
 

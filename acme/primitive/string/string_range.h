@@ -99,6 +99,8 @@ public:
 
     string_range(const CHARACTER *psz, strsize len) : string_range(psz, 0, len) {}
 
+    //string_range(const CHARACTER * start, const CHARACTER * end) : BASE_RANGE(start, end) {}
+
     string_range(const CHARACTER *psz, strsize start, strsize count) : string_range(
             ::_start_count_string_range(psz, start, count)) {}
 

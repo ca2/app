@@ -342,7 +342,7 @@ namespace acme
 
 
       template < typename TYPE >
-      inline TYPE default_value()
+      inline TYPE default_payload()
       {
 
          throw ::interface_only("template only exception");

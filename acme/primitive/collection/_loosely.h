@@ -7,7 +7,7 @@ namespace loosely
 
 
    template < typename TYPE >
-   inline TYPE default_value()
+   inline TYPE default_payload()
    {
 
       return TYPE();
@@ -41,6 +41,15 @@ namespace loosely
    }
 
    template <  >
+   inline bool contains(const string & a, const ::scoped_string & scopedstr)
+   {
+
+      return ansi_count_compare_ci(a, (const char *)scopedstr.data(), scopedstr.size());
+
+   }
+
+
+   template <  >
    inline bool contains(const ::block& a, const ::string& b)
    {
 
@@ -50,7 +59,7 @@ namespace loosely
 
 
    template <  >
-   inline string default_value < string >()
+   inline string default_payload < string >()
    {
 
       return string();

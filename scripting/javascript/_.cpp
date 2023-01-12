@@ -268,11 +268,11 @@ bool isIDString(const ::string &strParam)
 void replace(string &str, char textFrom, const ::string &textTo)
 {
    strsize sLen = strlen(textTo);
-   strsize iPosition = str.find(textFrom);
+   strsize iPosition = str.find_index(textFrom);
    while (iPosition >= 0)
    {
       str = str.substr(0, iPosition) + textTo + str.substr(iPosition +1);
-      iPosition = str.find(textFrom, iPosition +sLen);
+      iPosition = str.find_index(textFrom, iPosition +sLen);
    }
 }
 
@@ -950,7 +950,7 @@ CScriptVarLink *CScriptVar::findChild(const string &childName)
    while (v)
    {
 
-      if (v->name.compare(childName) == 0)
+      if (v->name.equals(childName))
       {
 
          return v;
@@ -986,7 +986,7 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, i32 varFl
 CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
 {
 
-   strsize iPosition = path.find('.');
+   strsize iPosition = path.find_index('.');
 
    if (iPosition < 0)
    {
@@ -2646,7 +2646,7 @@ CScriptVar *tinyjs::getScriptVariable(const string &path)
 {
    // traverse path
    strsize prevIdx = 0;
-   strsize thisIdx = path.find('.');
+   strsize thisIdx = path.find_index('.');
    if (thisIdx < 0) thisIdx = path.length();
    CScriptVar *payload = root;
    while (payload && prevIdx<path.length())
@@ -2655,7 +2655,7 @@ CScriptVar *tinyjs::getScriptVariable(const string &path)
       CScriptVarLink *varl = payload->findChild(el);
       payload = varl?varl->payload:0;
       prevIdx = thisIdx+1;
-      thisIdx = path.find('.', prevIdx);
+      thisIdx = path.find_index('.', prevIdx);
       if (thisIdx < 0) thisIdx = path.length();
    }
    return payload;

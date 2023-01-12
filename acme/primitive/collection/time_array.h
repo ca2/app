@@ -12,7 +12,7 @@ using time_array = numeric_array < class ::time >;
 //using integral_microsecond_array = numeric_array < integral_microsecond >;
 //
 //
-//using integral_millisecond_array = numeric_array < integral_millisecond >;
+//using ::time_array = numeric_array < integral_millisecond >;
 
 
 using time_2darray = pointer_array < time_array >;

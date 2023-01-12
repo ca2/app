@@ -90,7 +90,7 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 
 bool is_only_digits(const ::string & strParam)
 {
-   const ::scoped_string & scopedstr = strParam;
+   const ::ansi_character * psz = strParam;
    if(psz == nullptr || *psz == '\0')
       return false;
    while(true)
@@ -136,7 +136,7 @@ void scIsPlainHostName(CScriptVar *pvar, void *data)
    }
 
    
-   pvar->getReturnVar()->setInt(str.find(".") > 0);
+   pvar->getReturnVar()->setInt(str.find_index(".") > 0);
 
 }
 

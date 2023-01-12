@@ -33,18 +33,18 @@ namespace loosely
    }
 
    template <  >
-   inline bool contains(const string& a, const block& b)
+   inline bool contains(const string& a, const ::block& b)
    {
 
-      return ansi_count_compare_ci(a, (const char*)b.get_data(), b.get_size());
+      return ansi_count_compare_ci(a, (const char*)b.data(), b.size());
 
    }
 
    template <  >
-   inline bool contains(const block& a, const string& b)
+   inline bool contains(const ::block& a, const ::string& b)
    {
 
-      return ansi_count_compare_ci((const char*)a.get_data(), b, a.get_size());
+      return ansi_count_compare_ci((const char*)a.data(), b, a.size());
 
    }
 

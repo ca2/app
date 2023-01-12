@@ -147,9 +147,6 @@
     <Filter Include="Header Files\regular_expression">
       <UniqueIdentifier>{664d3dae-7929-49cb-a819-65ee6518069e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\constant">
-      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
@@ -269,6 +266,9 @@
     </Filter>
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exception\constant">
+      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1332,76 +1332,76 @@
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="constant\_.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\_constant.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\activate.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\button_state.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\character_set.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\check.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\code_page.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\context.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\cursor.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\filesystem.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\future.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\_id.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\id.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\idpool.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\impact.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\message.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\parallelization.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\routine.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\simple_command.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\source.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\status.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\status_range_authentication.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\thread.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\timer.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\translatable.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1422,10 +1422,10 @@
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="constant\_mathematics.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\aaa_topic.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\enum_bitset.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -2031,7 +2031,7 @@
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="constant\data.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_base.h">
       <Filter>Header Files\primitive\string</Filter>
@@ -2070,7 +2070,7 @@
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="constant\_geometry.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_collection.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
@@ -2142,7 +2142,7 @@
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="constant\flag.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="include\_enumeration.h">
       <Filter>Header Files\include</Filter>
@@ -2154,7 +2154,7 @@
       <Filter>Header Files\include</Filter>
     </ClInclude>
     <ClInclude Include="constant\message_prototype.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\process1.h">
       <Filter>Header Files\operating_system</Filter>
@@ -2379,13 +2379,13 @@
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="constant\_message.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\scalar.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\happening.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="user\nano\nano.h">
       <Filter>Header Files\user\nano</Filter>
@@ -2775,10 +2775,10 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="constant\exclusive_instance.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="constant\os_text.h">
-      <Filter>Header Files\constant</Filter>
+      <Filter>Header Files\exception\constant</Filter>
     </ClInclude>
     <ClInclude Include="memory\chunk.h">
       <Filter>Header Files\memory</Filter>

@@ -967,8 +967,8 @@ public:
    // Convert the string_base to uppercase
    string_base uppered() const;
 
-   // Convert the string_base to lowercase
-   string_base lowered() const;
+   //// Convert the string_base to lowercase
+   //string_base lowered() const;
 
    // Convert the string_base to lowercase
    string_base reversed() const;

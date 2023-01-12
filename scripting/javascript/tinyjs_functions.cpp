@@ -98,7 +98,7 @@ void scCharToInt(CScriptVar *ca, void *) {
 void scStringIndexOf(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     string search = ca->getParameter("search")->getString();
-    strsize iPosition = str.find(search);
+    strsize iPosition = str.find_index(search);
     i32 val = (i32) ((iPosition < 0) ? -1 : iPosition);
     ca->getReturnVar()->setInt(val);
 }
@@ -157,11 +157,11 @@ void scStringSplit(CScriptVar *ca, void *) {
     result->setArray();
     i32 length = 0;
 
-    strsize pos = str.find(sep);
+    strsize pos = str.find_index(sep);
     while (pos>= 0) {
       result->setArrayIndex(length++, memory_new CScriptVar(str.substr(0,pos)));
       str = str.substr(pos+1);
-      pos = str.find(sep);
+      pos = str.find_index(sep);
     }
 
     if (str.size()>0)

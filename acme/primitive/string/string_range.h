@@ -536,6 +536,9 @@ public:
 
     }
 
+
+    strsize case_insensitive_find_index(const SCOPED_STRING & scopedstr, strsize start) const RELEASENOTHROW { return this->offset_of((*this)(start).case_insensitive_find(scopedstr)); }
+
     
     constexpr const_iterator _case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const 
     {
@@ -1276,6 +1279,7 @@ public:
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
     //   strsize find(CHARACTER ch) const RELEASENOTHROW;
     strsize case_insensitive_find_index(CHARACTER ch) const RELEASENOTHROW { return this->offset_of(case_insensitive_find(ch)); }
+    strsize case_insensitive_find_index(CHARACTER ch, strsize start) const RELEASENOTHROW { return this->offset_of((*this)(start).case_insensitive_find(ch)); }
 
     const_iterator find_skip_or_end(CHARACTER ch = 0) const RELEASENOTHROW
     {
@@ -1332,6 +1336,12 @@ public:
     const_iterator unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
 
     const_iterator unicode_case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
+    ::index unicode_case_insensitive_find_index(const SCOPED_STRING & scopedstr, strsize start = 0) const RELEASENOTHROW
+    {
+
+       return this->offset_of(this->operator()(start).unicode_case_insensitive_find(scopedstr));
+
+    }
 
     // find the first occurrence of string_base 'block', starting at index 'iStart', if found returns the index of first character after the end of the found string_base
     //const_iterator rear_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;

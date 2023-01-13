@@ -1,10 +1,10 @@
-// Created by camilo on 2022-11-08 17:25 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 17:25 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-void copy(::string & str, const ::payload & payload);
-void copy(::payload & payload, const int & i);
-void copy(::payload & payload, const ::string & str);
+CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
+CLASS_DECL_ACME void copy(::payload & payload, const int & i);
+CLASS_DECL_ACME void copy(::payload & payload, const ::string & str);
 
 
 namespace acme

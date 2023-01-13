@@ -1504,13 +1504,20 @@ PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
 
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
-inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2) 
+inline void copy(::string & str, const ::payload & payload) 
 { 
    
-   return payload1.equals_payload(payload2); 
+   str = payload.get_string();
 
 }
 
 
+
+template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
+{
+
+   return payload1.equals_payload(payload2);
+
+}
 

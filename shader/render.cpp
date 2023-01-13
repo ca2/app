@@ -332,7 +332,7 @@ namespace app_shader
 
                auto dTime = m_timeStart.elapsed().floating_second();
 
-               float time = (float) dTime.m_d;
+               float time = (float) dTime;
 
                m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
                m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);

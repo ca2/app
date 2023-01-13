@@ -17,13 +17,6 @@ operating-system-windows/windowing_win32
 app/crypto_openssl
 app/folder_zip
 operating-system-windows/draw2d_gdiplus
-operating-system-windows/write_text_win32
-operating-system-windows_common/imaging_wic
-app/experience_core
-app/database_sqlite3
-third/sqlite
-app/regular_expression_pcre2
-third/pcre
-app/app_app
 app/gpu_opengl
 third/glew32
+operating-system-windows/write_text_win32

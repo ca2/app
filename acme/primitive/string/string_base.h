@@ -798,7 +798,7 @@ public:
 
 
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   ::count find_replace_ci_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
+   ::count case_insensitive_find_replace_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
    {
 
       return replace_with_ci_count(scopedstrNew, scopedstrOld, iStart);

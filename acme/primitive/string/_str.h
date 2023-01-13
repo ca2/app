@@ -107,11 +107,11 @@ public:
    {
       return replace_with(pszNew, pszOld, psz, iStart);
    }
-   static inline  string find_replace_ci(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  string case_insensitive_find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
    {
       return case_insensitive_replace_with(pszNew, pszOld, psz, iStart);
    }
-   static inline  ::count find_replace_ci_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  ::count case_insensitive_find_replace_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
    {
       return replace_with_ci_count(pszNew, pszOld, psz, iStart);
    }

@@ -4,8 +4,8 @@
 #include "acme/exception/parsing.h"
 
 
-template < typename CHAR_TYPE >
-inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
+template < primitive_character CHAR_TYPE >
+inline string_base < const CHAR_TYPE * > str::repeat(const CHAR_TYPE * psz, strsize c)
 {
 
    auto itemLen = string_safe_length(psz);

@@ -376,7 +376,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //}
 
 
-const char* status_short_description(const ::e_status & estatus)
+CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 {
 
    auto psz = ::file::status_short_description(estatus);

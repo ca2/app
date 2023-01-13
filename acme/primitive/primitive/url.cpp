@@ -2358,6 +2358,32 @@ namespace url
    }
 
 
+   void url::defer_raw_http(::payload & payload, const ::payload & payloadUrl)
+   {
+
+      auto strServer = get_server(payloadUrl);
+
+      bool bCa2Server = ::str::find_wwci(strServer, "ca2") >= 0;
+
+      string strQuery = get_query(payloadUrl);
+
+      string strSessid = query_get_param(strQuery, "sessid");
+
+      payload["http_set"]["raw_http"] = !bCa2Server || strSessid == "noauth";
+
+   }
+
+
+
+   void url::defer_raw_http(::payload & payload)
+   {
+
+      defer_raw_http(payload, payload["url"]);
+
+   }
+
+
+
 } // namespace urls
 
 

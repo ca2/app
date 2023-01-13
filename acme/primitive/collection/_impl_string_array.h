@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/2022 01:38 <3ThomasBorregaardSorensen!!
 //
 #pragma once
@@ -958,7 +958,7 @@ typename Type::const_iterator string_array_base < Type, RawType, m_etypeContaine
 
       auto pNext = p;
 
-      if(*pNext == 'r')
+      if(*pNext == '\r')
       {
 
          pNext++;

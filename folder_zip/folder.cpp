@@ -331,6 +331,8 @@ namespace folder_zip
          strFile = strFile(0, pFind);
 
       }
+
+      strFile.trim_left("\\/");
       
       strFile.replace_with("/", "\\");
 
@@ -413,7 +415,14 @@ namespace folder_zip
             nullptr, // comment
             0);
 
-         if(i == 237) {
+         if (::const_ansi_range(szItem).begins("game/"))
+         {
+          
+            printf("%s\n", szItem);
+
+         }
+         else if(i == 237) 
+         {
 
             printf("237 %s\n", szItem);
 
@@ -478,6 +487,8 @@ namespace folder_zip
       }
 
       string strPrefix(pathFolderName);
+
+      strPrefix.trim_left("\\/");
 
       strPrefix.trim("\\/");
 

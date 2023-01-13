@@ -110,6 +110,14 @@ namespace url
       
       virtual bool is_valid_public_domain(const string& strDomain);
 
+
+      virtual void defer_raw_http(::payload & payload, const ::payload & payloadUrl);
+      virtual void defer_raw_http(::payload & payload);
+
+
+
+
+
    };
 
 

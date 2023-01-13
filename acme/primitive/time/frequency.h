@@ -119,6 +119,11 @@ public:
 
    }
 
+
+   double hertz() const { return m_dHertz; }
+
+
+
 };
 
 

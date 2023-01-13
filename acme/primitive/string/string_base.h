@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "string_iterator.h"
@@ -551,12 +551,23 @@ public:
    inline void empty()
    {
 
-      ASSERT(this->metadata()->m_countReference >= 1);
-
-      if (this->has_char())
+      if(::is_null(this->metadata()))
       {
 
-         this->natural_release();
+         this->natural_pointer_default_construct();
+
+      }
+      else
+      {
+
+         ASSERT(this->metadata()->m_countReference >= 1);
+
+         if (this->has_char())
+         {
+
+            this->natural_release();
+
+         }
 
       }
 

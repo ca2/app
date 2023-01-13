@@ -24,7 +24,7 @@
 
 
 
-void copy(::string & str, const ::payload & payload)
+CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
 {
 
    str = payload.get_string();
@@ -32,7 +32,7 @@ void copy(::string & str, const ::payload & payload)
 }
 
 
-void copy(::payload & payload, const int & i)
+CLASS_DECL_ACME void copy(::payload & payload, const int & i)
 {
 
    payload = i;
@@ -40,7 +40,7 @@ void copy(::payload & payload, const int & i)
 }
 
 
-void copy(::payload & payload, const ::string & str)
+CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str)
 {
 
    payload = str;
@@ -58,21 +58,21 @@ void copy(::payload & payload, const ::string & str)
 //   *pp = time;
 //}
 
-
-void copy(::payload * ppayload, const string * pstring)
-{
-
-   *ppayload = *pstring;
-
-}
-
-
-void copy(::payload * ppayload1, const ::payload * ppayload2)
-{
-
-   *ppayload1 = *ppayload2;
-
-}
+//
+//void copy(::payload * ppayload, const string * pstring)
+//{
+//
+//   *ppayload = *pstring;
+//
+//}
+//
+//
+//void copy(::payload * ppayload1, const ::payload * ppayload2)
+//{
+//
+//   *ppayload1 = *ppayload2;
+//
+//}
 
 
 

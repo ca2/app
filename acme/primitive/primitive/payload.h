@@ -1503,14 +1503,9 @@ PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
 }
 
 
-
-inline void copy(::string & str, const ::payload & payload) 
-{ 
-   
-   str = payload.get_string();
-
-}
-
+CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
+CLASS_DECL_ACME void copy(::payload & payload, const int & i);
+CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str);
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >

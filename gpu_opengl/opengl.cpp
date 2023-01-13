@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "opengl.h"
 #include "acme/filesystem/file/file.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -171,7 +171,7 @@ namespace opengl
          if (err != GLEW_OK)
          {
 
-            const ::scoped_string & scopedstrErrorString = (const char *) glewGetErrorString(err);
+            const ::ansi_character * pszErrorString = (const char *) glewGetErrorString(err);
 
             //throw ::exception(error_resource);
             // Problem: glewInit failed, something is seriously wrong.

@@ -155,7 +155,7 @@ namespace app_app
 
          }
 
-         double time = m_timeStart.elapsed().floating_second().m_d;
+         double time = m_timeStart.elapsed().floating_second();
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 

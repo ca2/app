@@ -9644,7 +9644,7 @@ bool succeeded(const ::payload & payload)
    else if (payload.is_integer())
    {
 
-      return payload.as_i64()>= 0;
+      return payload.as_i64() >= 0;
 
    }
    else

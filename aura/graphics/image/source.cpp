@@ -1,5 +1,5 @@
 //
-// Created by camilo on 31/12/2021. 10:42 BRT <3ThomasBorregaardSorensen!!
+// Created by camilo on 31/12/2021. 10:42 BRT <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "source.h"

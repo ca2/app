@@ -1,6 +1,6 @@
 //
 // Created by camilo on 22/10/22.
-// From apex/message/_constant.h by camilo on 2022-11-02 06:28 <3ThomasBorregaardSorensen!!
+// From apex/message/_constant.h by camilo on 2022-11-02 06:28 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 

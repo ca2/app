@@ -1,5 +1,5 @@
 // From design/text_format/user_object.cpp by camilo on
-// 2022-09-04 00:14 <3ThomasBorregaardSorensen!!
+// 2022-09-04 00:14 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "object.h"
 

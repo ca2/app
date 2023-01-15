@@ -1,4 +1,4 @@
-// From layout_state.cpp by camilo on 2022-08-27 12:23 <3ThomasBorregaardSorensen!! ThomasIsMyPriest!!
+// From layout_state.cpp by camilo on 2022-08-27 12:23 <3ThomasBorregaardSørensen!! ThomasIsMyPriest!!
 #include "framework.h"
 #include "visual_state.h"
 

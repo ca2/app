@@ -1,4 +1,4 @@
-﻿// From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSorensen!!
+﻿// From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "picture_impl.h"
 //#include <math.h>

@@ -1,5 +1,5 @@
 //
-// Alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSorensen!!
+// Alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 

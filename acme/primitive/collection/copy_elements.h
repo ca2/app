@@ -1,4 +1,4 @@
-// From _impl.h by camilo on 2022-10-23 00:25 <3ThomasBorregaardSorensen!!
+// From _impl.h by camilo on 2022-10-23 00:25 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

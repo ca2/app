@@ -1,5 +1,5 @@
 //
-// Created by camilo on 23/12/2022 <3ThomasBorregaardSorensen!!
+// Created by camilo on 23/12/2022 <3ThomasBorregaardSørensen!!
 //
 
 inline ::string ellipsis(const ::ansi_character * psz, strsize len)

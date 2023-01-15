@@ -1,4 +1,4 @@
-﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
+﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -111,11 +111,8 @@ namespace url
       virtual bool is_valid_public_domain(const string& strDomain);
 
 
-      virtual void defer_raw_http(::payload & payload, const ::payload & payloadUrl);
-      virtual void defer_raw_http(::payload & payload);
-
-
-
+      virtual void defer_raw_http(::property_set & set, const ::payload & payloadUrl);
+      virtual void defer_raw_http(::property_set & set);
 
 
    };

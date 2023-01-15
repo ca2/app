@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -65,7 +65,7 @@ constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CH
 
 
 /// initially for __utosz_internal and __utosz
-/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSorensen!!
+/// by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
 template < typename TYPE >
 void reverse(TYPE * begin, TYPE * end)
 {

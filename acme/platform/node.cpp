@@ -4,8 +4,9 @@
 #include "framework.h"
 #include "node.h"
 #include "sequencer.h"
-#include "system.h"
 #include "application.h"
+#include "session.h"
+#include "system.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -281,6 +282,10 @@ namespace acme
          
          psystem->init_task();
          
+         psystem->m_pacmesession->init_task();
+
+         psystem->m_pacmeapplication->init_task();
+
          if(psystem->m_pfnImplement)
          {
             

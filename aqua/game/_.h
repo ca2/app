@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////
 //
-//  by camilo 24-08-2022 01-27 <3ThomasBorregaardSorensen!!
+//  by camilo 24-08-2022 01-27 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 

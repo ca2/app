@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-10-24 16:10 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-24 16:10 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 //#include "string.h"

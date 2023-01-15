@@ -1,5 +1,5 @@
 ﻿//
-// Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "application_base.h"

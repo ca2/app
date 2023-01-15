@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 16:53 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 16:53 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -59,8 +59,8 @@ namespace acme
 
 
 
-// From _papaya_array.h by camilo on 2022-10-22 18:18 <3ThomasBorregaardSorensen!!
-// From _papaya_array_impl.h by camilo on 2022-10-22 18:07 <3ThomasBorregaardSorensen!!
+// From _papaya_array.h by camilo on 2022-10-22 18:18 <3ThomasBorregaardSørensen!!
+// From _papaya_array_impl.h by camilo on 2022-10-22 18:07 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -5477,7 +5477,12 @@ namespace apex
 //
 //      }
 
-      on_create_app_shortcut();
+      if (conditional(m_bConsole, m_bCreateAppShorcut.isTrue()))
+      {
+
+         on_create_app_shortcut();
+
+      }
 
       return true;
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-04 18:37 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-04 18:37 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "string.h"
 #include <wchar.h>

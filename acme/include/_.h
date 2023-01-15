@@ -125,7 +125,6 @@
 #include  "acme/primitive/primitive/object.h"
 #include  "acme/exception/exception.h"
 #include  "acme/platform/class.h"
-#include  "acme/platform/factory_function.h"
 
 
 #include "acme/primitive/string/scoped_string_base.h"

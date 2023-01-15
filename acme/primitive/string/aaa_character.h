@@ -1,5 +1,5 @@
-﻿// Created by camilo from ch.h on 2022-06-06 22:20 <3ThomasBorregaardSorensen!!
-// Changed to character by camilo on 2022-10-07 16:00 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo from ch.h on 2022-06-06 22:20 <3ThomasBorregaardSørensen!!
+// Changed to character by camilo on 2022-10-07 16:00 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -1,4 +1,4 @@
-// From _impl.h by camilo on 2022-08-27 13:29 <3ThomasBorregaardSorensen!!
+// From _impl.h by camilo on 2022-08-27 13:29 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "prodevian.h"
 #include "interaction.h"

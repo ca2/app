@@ -1815,6 +1815,9 @@ namespace sockets_bsd
 
          }
 
+         /*SSL_set_min_proto_version(m_psslcontext->m_ssl, TLS1_2_VERSION);
+         SSL_set_max_proto_version(m_psslcontext->m_ssl, TLS1_2_VERSION);*/
+
          i32 r = SSL_connect(m_psslcontext->m_ssl);
 
          if(r > 0)
@@ -1984,7 +1987,7 @@ namespace sockets_bsd
                }
 
 
-               INFORMATION("SSLNegotiate: SSL_connect() failed");
+               INFORMATION("SSLNegotiate: SSL_connect() failed: " << msg);
 
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -2066,8 +2069,9 @@ namespace sockets_bsd
       //InitializeContext(m_strInitSSLClientContext,SSLv23_method());
       //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
 
-      InitializeContext(m_strInitSSLClientContext,TLS_client_method());
-
+      //InitializeContext(m_strInitSSLClientContext,TLS_client_method());
+      
+      InitializeContext(m_strInitSSLClientContext, TLS_client_method());
    }
 
 

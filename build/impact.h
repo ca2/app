@@ -1,45 +1,53 @@
 #pragma once
 
 
-namespace app_core_build
+#include "base/user/user/impact.h"
+#include "apex/platform/app_consumer.h"
+
+
+namespace app_simple_drawing
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD impact :
-      virtual public ::app_consumer < application, ::user::impact >
+   class CLASS_DECL_APP_SIMPLE_DRAWING impact :
+      virtual public app_consumer < application, ::user::impact >
    {
    public:
 
 
-      string_array      m_straLine;
-
-      ::pointer<build>       m_pbuild;
+      ::pointer<render>          m_prender;
 
 
       impact();
       ~impact() override;
 
-      void install_message_routing(::channel* pchannel) override;
-
-      DECLARE_MESSAGE_HANDLER(on_message_create);
-
-
+      
+//      // void assert_ok() const override;
+//      // void dump(dump_context & dumpcontext) const override;
 
 
-      void handle(::topic* ptopic, ::context* pcontext) override;
 #ifdef _DEBUG
-      // void assert_ok() const override;
-      void dump(dump_context& dumpcontext) const override;
+      int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
-      void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
+      virtual void install_message_routing(::channel * psender) override;
+
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+      void handle(::topic * ptopic, ::context * pcontext) override;
+
+      ::user::document * get_document();
+
+      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
    };
 
 
-} // namespace app_core_build
-
-
+} // namespace simple_drawing
 
 

@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CD623BB6-6398-4128-9755-3534AAC45895}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+    <ProjectName>impl_app_simple_drawing</ProjectName>
+    <RootNamespace>impl_app_simple_drawing</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="..\..\..\..\operating-system\operating-system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="..\..\..\..\operating-system\operating-system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="..\..\..\..\operating-system\operating-system-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Import Project="..\..\..\..\operating-system\operating-system-android\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <PreprocessorDefinitions>_APP_SIMPLE_DRAWING_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>_APP_SIMPLE_DRAWING_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <PreprocessorDefinitions>_APP_SIMPLE_DRAWING_LIBRARY;CUBE</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <PreprocessorDefinitions>_APP_SIMPLE_DRAWING_LIBRARY;CUBE</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="application.h" />
+    <ClInclude Include="document.h" />
+    <ClInclude Include="frame.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="main_frame.h" />
+    <ClInclude Include="pane_impact.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="impact.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_drawing.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="__implement.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\acme_android\nord_acme_android.vcxproj">
+      <Project>{c296392c-dc67-41f2-badc-7ad2f2f0fb3e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\apex_android\nord_apex_android.vcxproj">
+      <Project>{4220bcf1-dac7-4a08-b434-437cc8f763b7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\aura_android\nord_aura_android.vcxproj">
+      <Project>{df3b00c6-a62e-427e-aa59-233b10f9f933}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\node_android\nord_node_android.vcxproj">
+      <Project>{e31edcb1-a35f-4d04-affe-6f37135d3bf9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\windowing_android\nord_windowing_android.vcxproj">
+      <Project>{c8abdf79-52b6-4fd1-92ff-42c9e6c253a7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-android\write_text_android\nord_write_text_android.vcxproj">
+      <Project>{4991a865-caa8-40c4-8da6-ccb3a0f9bc47}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-posix\acme_posix\nord_acme_posix.vcxproj">
+      <Project>{92f2d035-26c5-48ae-8090-3e7e3aec3d45}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-posix\apex_posix\nord_apex_posix.vcxproj">
+      <Project>{7588cdd0-e83b-46a2-9910-0da2e8d37e6d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-posix\aura_posix\nord_aura_posix.vcxproj">
+      <Project>{b23268d6-75cd-4f51-b3a7-fbfce1552c7d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\acme\nord_acme.vcxproj">
+      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\apex\nord_apex.vcxproj">
+      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\aqua\nord_aqua.vcxproj">
+      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\aura\nord_aura.vcxproj">
+      <Project>{aab9136f-66db-4cd3-9d6b-2085e951739a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\nord_axis.vcxproj">
+      <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\base\nord_base.vcxproj">
+      <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\crypto_openssl\nord_crypto_openssl.vcxproj">
+      <Project>{d2dc518f-3219-41b4-89f1-ac6055677ed0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\database_sqlite3\nord_database_sqlite3.vcxproj">
+      <Project>{4f5ed26d-3b32-4bec-8de5-8cea352438a4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\draw2d_cairo\nord_draw2d_cairo.vcxproj">
+      <Project>{06207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\experience_core\nord_experience_core.vcxproj">
+      <Project>{0365bd5f-5c57-4db4-9270-d850d2a84fbb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\folder_zip\nord_folder_zip.vcxproj">
+      <Project>{74cd7e4f-a9f4-4c9c-b7ce-0d8765201f66}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\imaging_freeimage\nord_imaging_freeimage.vcxproj">
+      <Project>{3c4a93d3-9b9b-4ea9-8bcf-a53be3a0f9b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nord_app_simple_drawing.vcxproj">
+      <Project>{fecceaed-349f-4feb-890d-edbcf451f310}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

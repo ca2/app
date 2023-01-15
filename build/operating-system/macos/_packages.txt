@@ -1,4 +1,4 @@
-app/app_build
+app-simple/app_simple_drawing
 platform-apple/draw2d_quartz2d
 app/experience_core
 platform-apple/imaging_coreimage
@@ -25,3 +25,19 @@ app/database_sqlite3
 third/sqlite
 app/regular_expression_pcre2
 third/pcre
+app-core/app_core_flag
+app-core/hellomultiverse
+app/core
+app/bred
+app/base
+app/axis
+app-simple/app_simple_form
+app/experience_tranquillum
+app-core/video_input
+game/estamira
+app-core/audio
+third/id3lib
+platform-apple/audio_core_audio
+app-core/audio_decode_wave
+app-core/audio_resample_swresample
+third/swresample

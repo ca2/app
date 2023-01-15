@@ -71,7 +71,7 @@ Section "" ; empty string makes it hidden, so would starting with -
   WriteRegStr HKLM SOFTWARE\NSISTest\BigNSISTest "Install_Dir" "$INSTDIR"
 
   ; write uninstall strings
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest" "DisplayName" "BigNSISTest (erase only)"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest" "DisplayName" "BigNSISTest (remove only)"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\BigNSISTest" "UninstallString" '"$INSTDIR\bt-uninst.exe"'
 
   SetOutPath $INSTDIR
@@ -292,7 +292,7 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\Big NSIS Test\*.*"
   RMDir "$SMPROGRAMS\BiG NSIS Test"
   
-  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to erase the directory $INSTDIR\cpdest?" IDNO NoDelete
+  MessageBox MB_YESNO|MB_ICONQUESTION "Would you like to remove the directory $INSTDIR\cpdest?" IDNO NoDelete
     Delete "$INSTDIR\cpdest\*.*"
     RMDir "$INSTDIR\cpdest" ; skipped if no
   NoDelete:
@@ -302,7 +302,7 @@ Section "Uninstall"
   RMDir "$INSTDIR"
 
   IfFileExists "$INSTDIR" 0 NoErrorMsg
-    MessageBox e_message_box_ok "Note: $INSTDIR could not be erased!" IDOK 0 ; skipped if file doesn't exist
+    MessageBox e_message_box_ok "Note: $INSTDIR could not be removed!" IDOK 0 ; skipped if file doesn't exist
   NoErrorMsg:
 
 SectionEnd

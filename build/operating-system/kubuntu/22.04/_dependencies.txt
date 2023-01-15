@@ -1,7 +1,6 @@
-operating-system-linux/node_linux
 app/draw2d_cairo
-platform-posix/write_text_pango
-app/imaging_freeimage
 app/experience_core
-app/database_sqlite3
-app/regular_expression_pcre2
+app/imaging_freeimage
+operating-system-linux/node_linux
+platform-posix/windowing_xcb
+platform-posix/write_text_pango

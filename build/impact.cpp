@@ -1,17 +1,26 @@
 #include "framework.h"
-//#include "aura/update.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/operating_system.h"
+#include "impact.h"
+#include "application.h"
+#include "render.h"
+#include "document.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
+#include "base/user/user/impact_system.h"
+#include "base/user/user/split_impact.h"
 
-namespace app_core_build
+
+namespace app_simple_drawing
 {
 
 
    impact::impact()
    {
 
-      m_straLine.add("app_core_build");
-      m_straLine.add("The build log follows...");
+      m_flagNonClient.erase(e_non_client_background);
+
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
    }
 
@@ -22,48 +31,61 @@ namespace app_core_build
    }
 
 
+//   void impact::assert_ok() const
+//   {
+//
+//      user::box::assert_ok();
+//
+//   }
+//
+//
+//   void impact::dump(dump_context & dumpcontext) const
+//   {
+//
+//      user::box::dump(dumpcontext);
+//
+//   }
+
+
 #ifdef _DEBUG
 
-   void impact::assert_ok() const
+
+   int64_t impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      ::user::impact::assert_ok();
-
-   }
-
-   void impact::dump(dump_context& dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
-
-#endif //_DEBUG
-
-
-   void impact::handle(::topic* ptopic, ::context* pcontext)
-   {
-
-      ::user::impact::handle(ptopic, pcontext);
+      return  ::user::impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-
-   void impact::install_message_routing(::channel* pchannel)
+   int64_t impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      ::user::impact::install_message_routing(pchannel);
-
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &impact::on_message_create);
+      return  ::user::impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   void impact::on_message_create(::message::message* pmessage)
+#endif
+
+
+   void impact::install_message_routing(::channel * psender)
    {
 
-      ::pointer<::message::create>pcreate(pmessage);
+      ::user::impact::install_message_routing(psender);
+
+      MESSAGE_LINK(MESSAGE_CREATE,psender,this,&impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, psender, this, &impact::on_message_destroy);
+
+   }
+
+
+   void impact::on_message_create(::message::message * pmessage)
+   {
+
+      payload(FONTSEL_IMPACT) = true;
+
+      ::pointer<::message::create> pcreate(pmessage);
 
       pcreate->previous();
 
@@ -74,173 +96,54 @@ namespace app_core_build
 
       }
 
-      __defer_construct(m_pbuild);
-
-      m_pbuild->branch();
-
-      //fork([this]()
-        // {
-
-          //  prepare();
-            //build();
-
-         //});
-
-   }
-
-
-//   void impact::prepare()
-//   {
-//
-//#ifdef WINDOWS
-//
-//      prepare_windows()
-//
-//#elif defined(LINUX)
-//
-//      prepare_linux();
-//
-//#else
-//
-//      throw ::not_implemented();
-//
-//#endif
-//
-//   }
-//
-
-
-#ifdef WINDOWS
-
-   void impact::prepare_windows()
-   {
-   
-
-      string      strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
-
-   
-
-   ::operating_system::process_pointer process(e_create, this);
-
-   ::file::path pathEnvTxt;
-
-   auto pacmedirectory = acmedirectory();
-
-   pathEnvTxt = pacmedirectory->system() / "env.txt";
-
-   acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
-
-   acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
-
-   auto psystem = acmesystem();
-
-   auto pnode = psystem->node();
-
-   pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
-
-   string strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
-   string_array stra;
-   stra.add_lines(strLog);
-
-   //sleep(10000_ms);
-
-   property_set setEnvironment;
-
-   setEnvironment.parse_environment_variable(stra);
-
-   for (auto& pproperty : setEnvironment)
-   {
-
-      SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
-
-   }
-
-
-   }
-
-#endif
-
-
-//   void impact::build()
-//   {
-//
-//      bool bTimeout = false;
-//
-//      ::operating_system::process_pointer process(e_create, this);
-//
-//      ::parallelization::set_priority(::e_priority_highest);
-//
-//      //process->prop("inherit") = false;
-//
-//      string strCompiler = "msbuild \"C:/basis/operating-system/operating-system-windows/_seed/basic.sln\" -p:Configuration=basis;Platform=x64";
-//
-//      m_straLine.add(strCompiler);
-//
-//      process->create_child_process(strCompiler, true, "C:\\basis\\source", ::e_priority_highest);
-//
-//      //::system(str + " > " + "\"" + strClog + "\"");
-//
-//      auto tickStart = ::time::now();
-//
-//      string strLog;
-//
-//      while (::task_get_run())
-//      {
-//
-//         string strRead = process->read();
-//
-//         write_log(strRead);
-//
-//         if (process->has_exited())
-//            break;
-//
-//         preempt(100_ms);
-//
-//         if (tickStart.elapsed() > 890_s) // 14 minutes
-//         {
-//
-//            bTimeout = true;
-//
-//            break;
-//
-//         }
-//
-//      }
-//
-//      string strRead = process->read();
-//
-//      write_log(strRead);
-//
-//   }
-
-
-   void impact::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
-   {
-
-      auto rectangleClient = get_client_rect();
-
-      pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
-
-
-      string_array straLine;
-
-      file()->get_lines(straLine, acmedirectory()->home() /"build.log");
-
-      ::point_i32 p;
-
-      p.x = 10;
-
-      p.y = rectangleClient.height();
-
-      pgraphics->set_text_color(argb(255,89, 89, 89));
-      if (straLine.has_element())
       {
 
-         for (int i = straLine.get_upper_bound(); i>= 0 && p.y >= 0; i--)
-         {
-            p.y -= 20;
+         auto psignal = get_app()->get_signal("simple_checkbox");
 
-            pgraphics->text_out(p, straLine[i]);
+         psignal->add_handler(this);
+
+      }
+
+      {
+
+         auto psignal = get_app()->get_signal("no_client_frame");
+
+         psignal->add_handler(this);
+
+      }
+
+      //auto estatus = 
+      
+      __construct_new(m_prender);
+
+      //if(!estatus)
+      //{
+
+      //   pcreate->set_fail();
+
+      //   return;
+
+      //}
+
+      m_prender->m_pimpact = this;
+
+      auto pdocument = get_document();
+
+      auto pimpactsystem = pdocument->m_pimpactsystem;
+
+      string strId = pimpactsystem->m_atom;
+
+      string strText;
+
+      if(get_typed_parent<::user::split_impact>() != nullptr)
+      {
+
+         if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
+         {
+
+            auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
+
+            pinteraction->_001SetText(strText,::e_source_initialize);
 
          }
 
@@ -249,7 +152,79 @@ namespace app_core_build
    }
 
 
-} // namespace app_core_build
+   void impact::on_message_destroy(::message::message * pmessage)
+   {
+
+   }
+
+
+   void impact::handle(::topic * ptopic, ::context * pcontext)
+   {
+
+      if (ptopic->m_atom == "simple_checkbox"
+         || ptopic->m_atom == "no_client_frame")
+      {
+
+         set_need_redraw();
+         
+         post_redraw();
+
+      }
+
+      ::user::impact::handle(ptopic, pcontext);
+   }
+
+
+   ::user::document * impact::get_document()
+   {
+
+      return ::user::impact::get_document();
+
+   }
+
+
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
+      {
+
+         ::rectangle_i32 rectangle = get_client_rect();
+
+         for (index i = 0; i < 11; i++)
+         {
+
+            pgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));
+
+            rectangle.deflate(1, 1);
+
+         }
+
+      }
+
+      m_prender->_001OnDraw(pgraphics);
+
+   }
+
+
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto rectangleClient = get_client_rect();
+
+      if(rectangleClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      m_prender->m_rectangle = rectangleClient;
+
+   }
+
+
+} // namespace simple_drawing
 
 
 

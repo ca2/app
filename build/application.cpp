@@ -1,33 +1,38 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "application.h"
+#include "impact.h"
+#include "frame.h"
+#include "main_frame.h"
+#include "document.h"
+#include "tab_impact.h"
+#include "acme/platform/request.h"
+#include "aura/user/user/button.h"
+#include "base/user/user/show.h"
+#include "base/user/user/single_document_template.h"
 
 
-#define TEST_DATA_LOCAL 1
-
-void hellomultiverse_debugging();
-
-namespace app_core_build
+namespace app_simple_drawing
 {
+
 
    application::application()
    {
 
-      m_bInterprocessCommunication = true;
+      m_ptemplateSimpleDrawingMain = nullptr;
 
-      m_ptemplateHelloMultiverseMain = nullptr;
-      m_ptemplateHelloMultiverseImpact = nullptr;
+      m_ptabimpact = nullptr;
 
-      m_strAppId = "app-core/build";
-      m_strAppName = "app-core/build";
-      m_strBaseSupportId = "app-core/build";
+      m_strAppId = "app-simple/drawing";
+
+      m_strDatabaseAppId = "app-simple/drawing";
+
+      m_strBaseSupportId = "ca2_flag";
+
+      m_strAppName = "Simple Drawing";
+
       m_bLicense = false;
 
-      m_etype = type_normal;
-
-      m_strHelloMultiverseDefault = "Hello Multiverse!!";
-      m_strAlternateHelloMultiverseDefault = "Hello!!";
-
-      m_strHelloMultiverse = m_strHelloMultiverseDefault;
-      m_strAlternateHelloMultiverse = m_strAlternateHelloMultiverseDefault;
+      m_bNetworking = false;
 
       m_bMultiverseChat = true;
 
@@ -40,80 +45,87 @@ namespace app_core_build
    }
 
 
+   ::type application::get_pane_impact_type() const
+   {
+
+      return __type(tab_impact);
+
+   }
+
+
    void application::init_instance()
    {
 
+      create_application_properties();
 
-#if defined(LINUX)
+      m_textAppTitle = __text("text://app-simple/drawing/app_simple_drawing/Simple Drawing");
 
-      factory()->add_factory_item < linux_build, build >();
+      auto pproperty1 = application_properties().find("simple_checkbox");
 
-#else
+      bool bCheckOk = false;
 
-      #error "not implemented"
-
-#endif
-
-      if (is_true("hellomultiverse_debugging"))
+      if (pproperty1->m_etype == e_type_enum_check)
       {
 
-         hellomultiverse_debugging();
+         auto pproperty = pproperty1;
+
+         if (pproperty->m_etype == e_type_enum_check)
+         {
+
+            auto & echeck = pproperty->m_echeck;
+
+            if (echeck == e_check_undefined)
+            {
+
+               bCheckOk = true;
+
+            }
+
+         }
 
       }
 
-      set_local_data();
+      if (!bCheckOk)
+      {
 
-      auto psession = get_session();
+         output_debug_string("ERROR: simple_check_box is not ok");
 
-      auto puser = psession->user()->m_pcoreuser;
+      }
 
-      puser->will_use_impact_hint(FONTSEL_IMPACT);
+      application_properties().m_strMainTitle = "Simple Drawing";
 
-      factory()->add_factory_item <::app_core_build::document >();
-      factory()->add_factory_item <::app_core_build::frame >();
-      factory()->add_factory_item <::app_core_build::main_frame >();
+      //set_local_data();
+
+      factory()->add_factory_item <::app_simple_drawing::document >();
+      factory()->add_factory_item <::app_simple_drawing::frame >();
+      factory()->add_factory_item <::app_simple_drawing::main_frame >();
       factory()->add_factory_item <::user::button_impact >();
-      factory()->add_factory_item <::app_core_build::impact >();
-      factory()->add_factory_item <::app_core_build::main_impact >();
-      factory()->add_factory_item <::app_core_build::pane_impact >();
+      factory()->add_factory_item <::app_simple_drawing::impact >();
+      factory()->add_factory_item <::app_simple_drawing::tab_impact >();
 
-      if (!::core::application::init_instance())
-      {
+      default_toggle_check_handling("simple_checkbox");
 
-         return false;
+      default_toggle_check_handling("no_client_frame");
 
-      }
+      ::base::application::init_instance();
 
-      string str = payload("hellomultiverse");
+      auto pdoctemplate = __new(::user::single_document_template(
+                               "main",
+                               __type(document),
+                               __type(main_frame),
+                               get_pane_impact_type()));
 
-      if (str.has_char())
-      {
+      m_ptemplateSimpleDrawingMain = pdoctemplate;
 
-         m_strHelloMultiverse = str;
+      add_document_template(pdoctemplate);
 
-      }
+      default_data_save_handling("simple_checkbox");
 
-      auto ptemplate = __new(::user::single_document_template(
-                            "main",
-                            __type(simple_pane_document),
-                            __type(main_frame),
-                            __type(pane_impact)));
+      default_data_save_handling("no_client_frame");
 
-      m_ptemplateHelloMultiverseMain = ptemplate;
+      default_data_save_handling("simple_text");
 
-      add_document_template(ptemplate);
-
-      ptemplate = __new(::user::single_document_template(
-                       "main",
-                       __type(document),
-                       __type(frame),
-                       __type(main_impact)));
-
-      m_ptemplateHelloMultiverseImpact = ptemplate;
-
-      add_document_template(ptemplate);
-
-      return true;
+      //return true;
 
    }
 
@@ -121,14 +133,13 @@ namespace app_core_build
    void application::term_application()
    {
 
-      ::core::application::term_application();
+      ::base::application::term_application();
 
    }
 
 
    void application::on_request(::request * prequest)
    {
-
 
 #if 0
 
@@ -150,51 +161,34 @@ namespace app_core_build
 
       m_bMultiverseChat = !is_true("no_hello_edit");
 
-      if (m_ptemplateHelloMultiverseMain->get_document_count() == 0)
+      if (m_ptemplateSimpleDrawingMain->get_document_count() == 0)
       {
 
-         if (pcreate->m_payloadFile.is_empty())
+         if(prequest->m_bMakeVisible)
          {
 
-            ::file::path path;
+            INFORMATION("pcreate->m_bMakeVisible");
 
-            datastream()->get("last_opened_file", path);
+         }
+         else
+         {
 
-            if (!file()->exists(path))
-            {
-
-               path = dir()->document2() / "default.hellomultiverse";
-
-            }
-
-            pcreate->m_payloadFile = path;
-
-            pcreate->m_ecommand = ::command_line::command_file_open;
+            INFORMATION("NOT pcreate->m_bMakeVisible");
 
          }
 
-         m_ptemplateHelloMultiverseMain->do_request(pcreate);
-
-         return;
+         m_ptemplateSimpleDrawingMain->request(prequest);
 
       }
 
-      if (pcreate->has_file())
+      if (is_true("wfi_maximize"))
       {
 
-         m_ptemplateHelloMultiverseImpact->do_request(pcreate);
+         prequest->payload("document").cast < document >()->get_typed_impact < ::user::tab_impact >()->top_level_frame()->design_window_maximize();
 
       }
 
-      output_debug_string("\nfinished hellomultiverse::on_request");
-
-   }
-
-
-   void application::set_finish()
-   {
-
-      return ::thread::set_finish();
+      output_debug_string("\nfinished simple_drawing::on_request");
 
    }
 
@@ -202,62 +196,72 @@ namespace app_core_build
    string application::preferred_experience()
    {
 
-      string strExperience = payload("experience");
-
-      if (strExperience.has_char())
-      {
-
-         return strExperience;
-
-      }
-
-      return "core";
+      return ::aura::application::preferred_experience();
 
    }
 
 
-   //i64 application::increment_reference_count()
-   //{
-
-   //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   //}
-
-   //i64 application::decrement_reference_count()
-   //{
-
-   //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   //}
+#ifdef _DEBUG
 
 
-} // namespace app_core_build
-
-
-
-void hellomultiverse_debugging()
-{
-
-   const ::scoped_string & scopedstrFree;
-
+   int64_t application::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      string strOh = "Oh!! Life!!";
-
-      pszFree = strOh;
-
-      string strXX;
-
-      strXX = strOh + "123" + as_string(15.59) + "%";
-
-      output_debug_string(strXX);
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
-   output_debug_string(pszFree);
 
-}
+   int64_t application::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   {
 
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+#endif
+
+
+   ::pointer<impact> application::create_simple_drawing_impact(::user::impact* pimpactParent, ::user::impact_data * pimpactdata)
+   {
+
+      return pimpactParent->create_impact < impact >(pimpactdata);
+
+   }
+
+
+   ::atom application::translate_property_id(const ::atom & atom)
+   {
+      
+      return atom;
+
+//      if(atom == "simple_checkbox")
+//      {
+//
+//         return id_simple_checkbox;
+//
+//      }
+//      else if(atom == "simple_text")
+//      {
+//
+//         return id_simple_text;
+//
+//      }
+//      else if (atom == "no_client_frame")
+//      {
+//
+//         return id_no_client_frame;
+//
+//      }
+//
+//      return atom;
+
+   }
+
+
+
+} // namespace simple_drawing
 
 
 

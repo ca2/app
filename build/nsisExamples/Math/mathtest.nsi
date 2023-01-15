@@ -103,7 +103,7 @@ Function ExecuteScript
   Math::Script "mtsDL(s) (s=s(NS); p=mtsP(s,'\r\n'); #[p>=0, (NS=s[p+4,]; NS=#[p>0,s[,p-1],'']), (NS='';NS=s)])"
 
   push  $TEMP1
-  ; erase ""
+  ; remove ""
   Math::Script "mtsTQ()"
   pop   $TEMP1
 

@@ -1,43 +1,59 @@
-//
-// Created by camilo on 12/12/21 05:08 PM <3ThomasBorregaardSørensen!!
-//
+﻿// Created by camilo on 2023-01-15 07:14 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
-namespace app_core_build
+#include "framework.h"
+#include "acme/console.h"
+#include <stdio.h>
+#include "acme/platform/system.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/primitive/primitive/url.h"
+#include "apex/networking/http/context.h"
+
+
+namespace console
 {
 
 
-
-   class CLASS_DECL_APP_BUILD build :
-      virtual public ::thread
+   namespace build_library
    {
-   public:
 
 
-      bool     m_bStdout;
-      //::pointer<::user::interaction>     m_puserinteraction;
+      class build_library :
+         virtual public ::particle
+      {
+      public:
 
 
-      build();
-      ~build() override;
+         ::file::path      m_pathFolder;
+         ::file::path      m_path;
+         ::string          m_strName;
+         ::string          m_strRelease;
+         ::string          m_strPlatform;
+         ::string          m_strConfiguration;
 
 
-      virtual void prepare_build();
-
-      virtual void do_build();
-
-      void run() override;
+         build_library() { }
+         ~build_library() override { }
 
 
-      void write_log(const ::string &str);
+         void run() override
+         {
+
+            m_path = m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
+
+            acmedirectory()->create(m_pathFolder / m_path);
+
+         }
 
 
-      void run_command(const ::string & strCommand);
+      };
 
 
-   };
+   } // namespace build_library
+
+
+} // namespace console
 
 
 
-} // namespace app_build

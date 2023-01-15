@@ -1,9 +1,8 @@
 #define DO_FACTORY_EXCHANGE(do) \
-do(node_windows); \
 do(draw2d_gdiplus); \
-do(write_text_win32); \
-do(imaging_wic); \
 do(experience_core); \
-do(database_sqlite3); \
-do(regular_expression_pcre2);
+do(imaging_wic); \
+do(node_windows); \
+do(windowing_win32); \
+do(write_text_win32);
 

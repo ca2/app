@@ -16,7 +16,7 @@ ShowInstDetails show
 Function .onInit
 
   ; Extract InstallOptions files
-  ; $PLUGINSDIR will automatically be erased when the installer closes
+  ; $PLUGINSDIR will automatically be removed when the installer closes
   InitPluginsDir
   File /oname=$PLUGINSDIR\test.ini "testnotify.ini"
 

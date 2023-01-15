@@ -1,7 +1,6 @@
-operating-system-freebsd/node_freebsd
 app/draw2d_cairo
-operating-system-posix/write_text_pango
-app/imaging_freeimage
 app/experience_core
-app/database_sqlite3
-app/regular_expression_pcre2
+app/imaging_freeimage
+operating-system-freebsd/node_freebsd
+operating-system-posix/windowing_x11
+operating-system-posix/write_text_pango

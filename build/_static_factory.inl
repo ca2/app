@@ -1,9 +1,11 @@
 #define DO_FACTORY(do) \
-do(node_windows); \
-do(draw2d_gdiplus); \
-do(write_text_win32); \
-do(imaging_wic); \
+do(default_draw2d); \
+do(default_imaging); \
+do(default_node); \
+do(default_windowing); \
+do(default_write_text); \
 do(experience_core); \
-do(database_sqlite3); \
-do(regular_expression_pcre2);
+do(crypto_openssl); \
+do(folder_zip); \
+do(database_sqlite3);
 

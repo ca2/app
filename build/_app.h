@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define _APP_ID "app-core/hellomultiverse"
+#define _APP_ID "app-simple/drawing"
 
 
 

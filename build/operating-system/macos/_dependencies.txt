@@ -1,7 +1,6 @@
-platform-macos/node_macos
 platform-apple/draw2d_quartz2d
-platform-apple/write_text_quartz2d
-platform-apple/imaging_coreimage
 app/experience_core
-app/database_sqlite3
-app/regular_expression_pcre2
+platform-apple/imaging_coreimage
+platform-macos/node_macos
+platform-macos/windowing_macos
+platform-apple/write_text_quartz2d

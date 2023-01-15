@@ -1,14 +1,16 @@
 #include "framework.h"
 
+#include "frame.h"
 
-namespace app_core_build
+
+namespace app_simple_drawing
 {
 
 
    frame::frame()
    {
 
-      m_bDefaultCreateToolbar = false;
+      //m_bDefaultCreateToolbar = false;
 
    }
 
@@ -19,41 +21,37 @@ namespace app_core_build
    }
 
 
-   void frame::assert_ok() const
-   {
-
-      simple_frame_window::assert_ok();
-
-   }
-
-
-   void frame::dump(dump_context & dumpcontext) const
-   {
-
-      simple_frame_window::dump(dumpcontext);
-
-   }
-
-
-   void frame::on_layout(::draw2d::graphics_pointer& pgraphics)
-   {
-
-      simple_frame_window::on_layout(pgraphics);
-
-   }
-
-
-//   bool frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
+//   void frame::assert_ok() const
 //   {
 //
-//      etranslucency = ::user::e_translucency_present;
+//      simple_frame_window::assert_ok();
 //
-//      return true;
+//   }
+//
+//
+//   void frame::dump(dump_context & dumpcontext) const
+//   {
+//
+//      simple_frame_window::dump(dumpcontext);
 //
 //   }
 
 
-} // namespace app_core_build
+   /*bool frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
+   {
+
+      etranslucency = ::user::e_translucency_present;
+
+      return true;
+
+   }*/
+
+
+} // namespace simple_drawing
+
+
+
+
 
 
 

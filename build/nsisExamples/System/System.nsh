@@ -80,8 +80,8 @@
 ; int GetObject(HGDIOBJ hgdiobj, int cbBuffer, LPVOID lpvObject);
 !define sysGetObject "gdi32::GetObject(p, i, p) i"
 
-; HGDIOBJ set(HDC hdc, HGDIOBJ hgdiobj);
-!define sysSelectObject "gdi32::set(p, p) p"
+; HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+!define sysSelectObject "gdi32::SelectObject(p, p) p"
 
 ; HDC CreateCompatibleDC(HDC hdc);
 !define sysCreateCompatibleDC "gdi32::CreateCompatibleDC(p) p"

@@ -1,4 +1,5 @@
-app/app_build
+app-simple/app_simple_drawing
+app/app_shader
 app/aura
 app/aqua
 app/apex
@@ -28,7 +29,3 @@ app/database_sqlite3
 app/experience_core
 app/imaging_freeimage
 app/nanogui
-app/experience_tranquillum
-app-core/app_core_flag
-app-core/hellomultiverse
-app/regular_expression_pcre2

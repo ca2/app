@@ -124,7 +124,7 @@ enumex: ; End of drives or user cancel
 ;    splash::show 2000 $TEMP\spltmp
 ;    Pop $R0 ; $R0 has '1' if the user closed the splash screen early,
 
-     ; erase logo
+     ; remove logo
      Delete $TEMP\spltmp.bmp
 ;     Delete $TEMP\spltmp.wav
 

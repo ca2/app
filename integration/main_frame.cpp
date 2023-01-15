@@ -102,7 +102,7 @@ namespace app_integration
    void main_frame::on_message_create(::message::message * pmessage)
    {
 
-      set_bitmap_source("Simple Drawing!!");
+      set_bitmap_source("Integration!!");
 
    }
 

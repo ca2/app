@@ -1,8 +1,9 @@
 ﻿#include "framework.h"
 #include "tab_impact.h"
 #include "application.h"
-#include "impact.h"
+#include "menu.h"
 #include "render.h"
+#include "menu.h"
 #include "acme/constant/message.h"
 #include "base/user/user/tab_pane.h"
 
@@ -59,17 +60,17 @@ namespace app_integration
 
       }
 
-      set_tab("Menu", MENU_IMPACT);
-      set_tab("text://app/integration/:001", "drawing1");
-      set_tab("text://app/integration/:002", "drawing2");
-      set_tab("text://app/integration/:003", "drawing3");
-      set_tab("text://app/integration/:box gradient", "drawing4");
-      set_tab("text://app/integration/:circle path", "drawing5");
-      set_tab("text://app/integration/:arcs", "drawing6");
-      set_tab("text://app/integration/:arcpths", "drawing7");
+      //set_tab("Menu", MENU_IMPACT);
+      set_tab("Menu", "menu");
+      //set_tab("FFMPEG", "ffmpeg");
+      //set_tab("text://app/integration/:003", "drawing3");
+      //set_tab("text://app/integration/:box gradient", "drawing4");
+      //set_tab("text://app/integration/:circle path", "drawing5");
+      //set_tab("text://app/integration/:arcs", "drawing6");
+      //set_tab("text://app/integration/:arcpths", "drawing7");
 
 
-      set_current_tab_by_id("drawing1");
+      set_current_tab_by_id("menu");
 
    }
 
@@ -108,7 +109,7 @@ namespace app_integration
 
          }
 
-         m_pimpactDrawing = m_pimpactdata->m_pplaceholder->get_hold();
+         //m_pimpactDrawing = m_pimpactdata->m_pplaceholder->get_hold();
 
       }
 
@@ -125,6 +126,13 @@ namespace app_integration
 
       }
 
+      if (pimpactdata->m_atom == "menu")
+      {
+
+         create_impact < menu >(pimpactdata);
+
+      }
+
       switch(pimpactdata->m_atom.as_i32())
       {
       case MENU_IMPACT:
@@ -136,20 +144,20 @@ namespace app_integration
       break;
       }
 
-      string strId = pimpactdata->m_atom;
+      //string strId = pimpactdata->m_atom;
 
-      if(strId.case_insensitive_begins_eat("drawing"))
-      {
+      //if(strId.case_insensitive_begins_eat("drawing"))
+      //{
 
-         auto pimpact = get_app()->create_simple_drawing_impact(this, pimpactdata);
+      //   auto pimpact = get_app()->create_simple_drawing_impact(this, pimpactdata);
 
-         pimpact->m_atom = pimpactdata->m_atom;
+      //   pimpact->m_atom = pimpactdata->m_atom;
 
-         pimpact->m_prender->initialize_simple_drawing(atoi(strId));
+      //   pimpact->m_prender->initialize_simple_drawing(atoi(strId));
 
-         pimpactdata->m_eflag.add(::user::e_flag_hidid_on_show);
+      //   pimpactdata->m_eflag.add(::user::e_flag_hidid_on_show);
 
-      }
+      //}
 
       ::user::tab_impact::on_create_impact(pimpactdata);
 

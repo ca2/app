@@ -1,3 +1,4 @@
+﻿// From impact.cpp on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "impact.h"
 #include "application.h"
@@ -114,7 +115,7 @@ namespace app_integration
 
       //auto estatus = 
       
-      __construct_new(m_prender);
+      //__construct_new(m_prender);
 
       //if(!estatus)
       //{
@@ -125,7 +126,7 @@ namespace app_integration
 
       //}
 
-      m_prender->m_pimpact = this;
+      //m_prender->m_pimpact = this;
 
       auto pdocument = get_document();
 
@@ -148,6 +149,14 @@ namespace app_integration
          }
 
       }
+
+   }
+
+
+   ::file::path impact::get_path()
+   {
+
+      return m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
 
    }
 
@@ -202,7 +211,7 @@ namespace app_integration
 
       }
 
-      m_prender->_001OnDraw(pgraphics);
+      //m_prender->_001OnDraw(pgraphics);
 
    }
 
@@ -219,7 +228,7 @@ namespace app_integration
 
       }
 
-      m_prender->m_rectangle = rectangleClient;
+      //m_prender->m_rectangle = rectangleClient;
 
    }
 

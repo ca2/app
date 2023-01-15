@@ -467,7 +467,7 @@ namespace database
    }
 
 
-   ::string client::calc_data_key(const ::scoped_string & strKey)
+   ::string client::calculate_data_key(const ::scoped_string & strKey)
    {
 
       defer_update_data_key();
@@ -477,18 +477,18 @@ namespace database
    }
 
 
-   ::string client::calc_parent_data_key()
+   ::string client::calculate_parent_data_key()
    {
 
-      return get_app()->m_papexapplication->calc_data_key();
+      return get_app()->m_papexapplication->calculate_data_key();
 
    }
 
 
-   ::string client::calc_data_key()
+   ::string client::calculate_data_key()
    {
 
-      ::string strKey = calc_parent_data_key();
+      ::string strKey = calculate_parent_data_key();
 
       defer_update_object_id();
 
@@ -502,7 +502,7 @@ namespace database
    void client::update_data_key()
    {
 
-      m_strDataKey = calc_data_key() + "/" + m_strKeyModifier;
+      m_strDataKey = calculate_data_key() + "/" + m_strKeyModifier;
 
    }
 

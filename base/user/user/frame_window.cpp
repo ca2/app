@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_window.h"
 #include "document.h"
 #include "impact.h"
+#include "impact_system.h"
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -979,6 +980,8 @@ namespace user
          
       }
 
+      //m_strDataKey = "frame::" + m_pimpactsystem->m_atom;
+
 //#ifdef MACOS
 
       if(get_parent() == nullptr)
@@ -1060,6 +1063,19 @@ namespace user
       // }
 
    }
+
+
+   ::string frame_window::calculate_data_key()
+   {
+
+      string strDataKey;
+
+      strDataKey = m_atom + "::" + m_pimpactsystem->m_atom;
+
+      return strDataKey;
+
+   }
+
 
 
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)

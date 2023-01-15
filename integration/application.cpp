@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
 #include "application.h"
-#include "impact.h"
 #include "frame.h"
 #include "main_frame.h"
 #include "document.h"
+#include "menu.h"
+#include "openssl.h"
+#include "ffmpeg.h"
 #include "tab_impact.h"
 #include "acme/platform/request.h"
 #include "aura/user/user/button.h"
@@ -28,7 +30,7 @@ namespace app_integration
 
       m_strBaseSupportId = "ca2_flag";
 
-      m_strAppName = "Simple Drawing";
+      m_strAppName = "Integration";
 
       m_bLicense = false;
 
@@ -58,7 +60,7 @@ namespace app_integration
 
       create_application_properties();
 
-      m_textAppTitle = __text("text://app/integration/app_integration/Simple Drawing");
+      m_textAppTitle = __text("text://app/integration/app_integration/Integration");
 
       auto pproperty1 = application_properties().find("simple_checkbox");
 
@@ -92,16 +94,19 @@ namespace app_integration
 
       }
 
-      application_properties().m_strMainTitle = "Simple Drawing";
+      application_properties().m_strMainTitle = "Integration";
 
       //set_local_data();
 
+      factory()->add_factory_item <::user::button_impact >();
       factory()->add_factory_item <::app_integration::document >();
       factory()->add_factory_item <::app_integration::frame >();
       factory()->add_factory_item <::app_integration::main_frame >();
-      factory()->add_factory_item <::user::button_impact >();
-      factory()->add_factory_item <::app_integration::impact >();
+      //factory()->add_factory_item <::app_integration::impact >();
       factory()->add_factory_item <::app_integration::tab_impact >();
+      factory()->add_factory_item <::app_integration::menu >();
+      factory()->add_factory_item <::app_integration::openssl >();
+      factory()->add_factory_item <::app_integration::ffmpeg >();
 
       default_toggle_check_handling("simple_checkbox");
 
@@ -116,6 +121,27 @@ namespace app_integration
                                get_pane_impact_type()));
 
       m_ptemplateSimpleDrawingMain = pdoctemplate;
+
+      add_document_template(pdoctemplate);
+
+
+      pdoctemplate = __new(::user::single_document_template(
+         "openssl",
+         __type(document),
+         __type(main_frame),
+         __type(openssl)));
+
+      m_ptemplateOpenSSL = pdoctemplate;
+
+      add_document_template(pdoctemplate);
+
+      pdoctemplate = __new(::user::single_document_template(
+         "ffmpeg",
+         __type(document),
+         __type(main_frame),
+         __type(ffmpeg)));
+
+      m_ptemplateFFMPEG = pdoctemplate;
 
       add_document_template(pdoctemplate);
 
@@ -223,12 +249,12 @@ namespace app_integration
 #endif
 
 
-   ::pointer<impact> application::create_simple_drawing_impact(::user::impact* pimpactParent, ::user::impact_data * pimpactdata)
-   {
+   //::pointer<impact> application::create_simple_drawing_impact(::user::impact* pimpactParent, ::user::impact_data * pimpactdata)
+   //{
 
-      return pimpactParent->create_impact < impact >(pimpactdata);
+   //   return pimpactParent->create_impact < impact >(pimpactdata);
 
-   }
+   //}
 
 
    ::atom application::translate_property_id(const ::atom & atom)

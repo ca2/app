@@ -20,8 +20,8 @@ namespace filemanager
       bool                                               m_bRestoring;
 
 
-      ::pointer<::user::multiple_document_template>      m_pdocumenttemplateForm;
-      ::pointer<::user::multiple_document_template>      m_pdocumenttemplateOperation;
+      ::pointer<::user::multiple_document_template>      m_pimpactsystemForm;
+      ::pointer<::user::multiple_document_template>      m_pimpactsystemOperation;
 
       ::file::path                                       m_pathFilemanagerProject;
 

@@ -1,3 +1,4 @@
+﻿// From impact.h on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -15,7 +16,13 @@ namespace app_integration
    public:
 
 
-      ::pointer<render>          m_prender;
+      ::string          m_strName;
+      ::string          m_strRelease;
+      ::string          m_strPlatform;
+      ::string          m_strConfiguration;
+
+      ::file::path      m_pathDownloadURL;
+
 
 
       impact();
@@ -30,6 +37,9 @@ namespace app_integration
       int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
+
+
+      ::file::path get_path();
 
 
       virtual void install_message_routing(::channel * psender) override;

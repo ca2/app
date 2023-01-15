@@ -2044,7 +2044,7 @@ namespace core
 
          }
 
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pdocumenttemplate;
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
 
          //add_factory_item <::user::color_impact >();
 

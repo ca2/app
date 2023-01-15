@@ -1,285 +1,417 @@
-<<<<<<< HEAD
-﻿#include "framework.h"
+﻿// From impact.cpp on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
+#include "framework.h"
+#include "ffmpeg.h"
 #include "application.h"
 #include "render.h"
-#include <math.h>
+#include "document.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/write_text/font.h"
-#include "aura/graphics/image/context_image.h"
-#include "base/user/user/impact.h"
-
-
-
-CLASS_DECL_ACME ::color::color dk_red(); // <3 tbs
+#include "aura/message/user.h"
+#include "base/user/user/impact_system.h"
+#include "base/user/user/split_impact.h"
+#include "acme/platform/system.h"
 
 
 namespace app_integration
 {
 
 
-   void render::_001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics)
+   ffmpeg::ffmpeg()
    {
 
-      string strFontFamily = get_font();
+      m_flagNonClient.erase(e_non_client_background);
 
-      auto ppen = __create < ::draw2d::pen >();
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
-      auto pbrush = __create < ::draw2d::brush >();
+   }
 
-      if (m_iDrawing == 3)
+
+   ffmpeg::~ffmpeg()
+   {
+
+   }
+
+
+//   void ffmpeg::assert_ok() const
+//   {
+//
+//      user::box::assert_ok();
+//
+//   }
+//
+//
+//   void ffmpeg::dump(dump_context & dumpcontext) const
+//   {
+//
+//      user::box::dump(dumpcontext);
+//
+//   }
+
+
+#ifdef _DEBUG
+
+
+   int64_t ffmpeg::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   {
+
+      return  ::user::impact::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   int64_t ffmpeg::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   {
+
+      return  ::user::impact::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+#endif
+
+
+   void ffmpeg::install_message_routing(::channel * psender)
+   {
+
+      ::user::impact::install_message_routing(psender);
+
+      MESSAGE_LINK(MESSAGE_CREATE,psender,this,&impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_DESTROY, psender, this, &ffmpeg::on_message_destroy);
+
+   }
+
+
+   void ffmpeg::on_message_create(::message::message * pmessage)
+   {
+
+      payload(FONTSEL_IMPACT) = true;
+
+      ::pointer<::message::create> pcreate(pmessage);
+
+      pcreate->previous();
+
+      if (pcreate->m_bRet)
       {
 
-         if (!m_pimage1)
+         return;
+
+      }
+
+      ::property_set set;
+
+      acmesystem()->url()->defer_raw_http(set);
+
+      string strRelease = acmeapplication()->http().get("https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/RELEASE", set);
+
+      strRelease.trim();
+
+      strRelease.ends_eat(".git");
+
+      m_strRelease = strRelease;
+      //{
+
+      //   auto psignal = get_app()->get_signal("simple_checkbox");
+
+      //   psignal->add_handler(this);
+
+      //}
+
+      //{
+
+      //   auto psignal = get_app()->get_signal("no_client_frame");
+
+      //   psignal->add_handler(this);
+
+      //}
+
+      //auto estatus = 
+      
+      //__construct_new(m_prender);
+
+      //if(!estatus)
+      //{
+
+      //   pcreate->set_fail();
+
+      //   return;
+
+      //}
+
+      //m_prender->m_pimpact = this;
+
+      auto pdocument = get_document();
+
+      auto pimpactsystem = pdocument->m_pimpactsystem;
+
+      string strId = pimpactsystem->m_atom;
+
+      string strText;
+
+      if(get_typed_parent<::user::split_impact>() != nullptr)
+      {
+
+         if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            __construct(m_pimage1);
+            auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
-            m_pcontext->fork([this]()
-            {
-
-               auto pcontext = m_pcontext;
-
-               auto pcontextimage = pcontext->context_image();
-
-               auto pimage1 = pcontextimage->get_image("matter://pat1.jpg");
-
-               if (pimage1.ok())
-               {
-
-                  ::pointer<::image> pimage2;
-
-                  __construct(pimage2);
-
-                  pimage2->copy_from(pimage1);
-
-                  m_pimage1 = pimage1;
-
-                  if (::is_set(pimage2))
-                  {
-
-                     pimage2->transform(e_image_grayscale);
-
-                     pimage2->unmap();
-
-                     pimage2->set_ok_flag();
-
-                     m_pimage2 = pimage2;
-
-                     m_pimpact->set_need_redraw();
-
-                     m_pimpact->post_redraw();
-
-                  }
-
-               }
-
-            });
+            pinteraction->_001SetText(strText,::e_source_initialize);
 
          }
 
       }
 
-      rectangle_i32 rectangle;
+   }
 
-      int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
-      iSize = iSize * 3 / 4;
+   void ffmpeg::on_message_destroy(::message::message * pmessage)
+   {
 
-      rectangle.set_size(iSize, iSize);
+   }
 
-      rectangle.Align(e_align_center, m_rectangle);
 
-      rectangle.offset_x(-iSize / 5 * 3);
+   void ffmpeg::download()
+   {
 
-      rectangle.offset_x(iSize / 5 * m_iDrawing);
-      
-      ::size_f64 size(0., 0.);
-      
-      bool bDrawText = true;
-      
-      string strTitle;
-      
-      auto psystem = acmesystem()->m_paurasystem;
-      
-      auto pdraw2d = psystem->draw2d();
-      
-      auto pwritetext = pdraw2d->write_text();
-      
-      auto pfont1 = pwritetext->create_font();
-      
-      auto pfont2 = pwritetext->create_font();
+#!/bin/bash
 
-      if(bDrawText)
+
+      RELEASE = `http_get - case_insensitive_ends_eat.git - trim https ://raw.githubusercontent.com/FFmpeg/FFmpeg/master/RELEASE`
+
+
+      SRC_FOLDER = "/c/main/operating-system/operating-system-windows"
+
+
+         STG_FOLDER = "/c/operating-system/storage-windows"
+
+
+         if[!- d $BASE_DIR]; then
+
+            echo "$BASE_DIR does not exist!!"
+
+            exit - 1
+
+            fi
+
+
+            cd $BASE_DIR
+
+
+            function prepare()
+         {
+
+
+            PATH = "openssl/$RELEASE/$PLATFORM/$CONFIGURATION"
+
+
+               if["$PLATFORM" == "Win32"]; then
+
+                  ARCH = "i386"
+
+                  elif["$PLATFORM" == "x64"]; then
+
+                  ARCH = "x86_64"
+
+               else
+
+                  echo "Unsupported Platform \"$PLATFORM\"?!?"
+
+                  exit - 1
+
+                  fi
+
+                  if["$CONFIGURATION" == *"Debug" *]; then
+
+                     DEBUG = "--enable-debug"
+
+                  else
+
+                     DEBUG = "--disable-debug"
+
+                     fi
+
+                     if["$CONFIGURATION" == *"Static" *]; then
+
+                        SHARED = ""
+
+                        STATIC = ""
+
+                     else
+
+                        SHARED = "--enable-shared"
+
+                        STATIC = "--disable-static"
+
+                        fi
+
+
+         }
+
+
+      function compile()
       {
 
-         pfont1->create_pixel_font(strFontFamily, 100.0, 800);
+         PLATFORM = $1
+            CONFIGURATION = $2
 
-         pgraphics->set(pfont1);
 
-         strTitle = get_app()->application_properties().m_strSimple;
+            prepare
 
-         if(strTitle.is_empty())
+
+            cd "$BASE_DIR"
+            mkdir - p "$PATH"
+            cd "$PATH"
+
+
+            echo "BASE_DIR is $BASE_DIR"
+            echo "PATH is $PATH"
+            echo "RELEASE is $RELEASE"
+            echo "ARCH is $ARCH"
+            echo "DEBUG is $DEBUG"
+            echo "SHARED is $SHARED"
+            echo "STATIC is $STATIC"
+
+
+            exit - 1
+            #DEBUG --enable - debug
+
+            #ARCH i386   x86_64
+
+            #for shared: --enable - shared --disable - static
+            #for static: ""              ""
+
+#(compile x64 Debug --enable-debug --enable-shared --disable-static -MDd???) &
+#(compile x64 Release --disable-debug --enable-shared --disable-static -MD???) &
+#(compile x64 StaticDebug --enable-debug "" "" -MTd???) &
+#(compile x64 StaticRelease --disable-debug "" "" -MT???) &
+
+
+            git clone https ://git.ffmpeg.org/ffmpeg.git .
+#./configure --enable-asm --enable-yasm --arch=$ARCH --disable-ffserver --disable-avdevice --disable-swscale --disable-doc --disable-ffplay --disable-ffprobe --disable-ffmpeg $SHARED $STATIC --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib --prefix=$BASE_DIR/output/$NAME --toolchain=msvc $DEBUG
+         . / configure --enable - asm --enable - yasm --arch = $ARCH --disable - doc $SHARED $STATIC --disable - bzlib --disable - libopenjpeg --disable - iconv --disable - zlib --prefix = $BASE_DIR / $PATH / build --toolchain = msvc $DEBUG
+            make - j 8
+
+      }
+
+
+      function install_lib()
+      {
+
+         REL = $3
+            SRC_FOLDER = $4
+            STG_FOLDER = $5
+            LIBRARY_NAME = $6
+
+            cp - Rf $BASE_DIR / $NAME / lib$LIBRARY_NAME/*.dll $STORAGE_DIR/binary/
+            cp -Rf $BASE_DIR/$NAME/lib$LIBRARY_NAME/*.pdb $STORAGE_DIR/binary/
+
+         }
+
+         function install()
          {
+
+            NAME=$2
+            REL=$3
+            SRC_FOLDER=$4
+            STG_FOLDER=$5
+
+            cd $BASE_DIR
+            cd $NAME
+
+            make install
+
+            SOURCE_DIR="$SRC_FOLDER"
+            STORAGE_DIR="$STG_FOLDER/$REL"
+
+            mkdir -p $SOURCE_DIR/include/
+            mkdir -p $STORAGE_DIR/binary/
+            mkdir -p $STORAGE_DIR/library/
+
+            cp -Rf $BASE_DIR/$NAME/build/include/* $SOURCE_DIR/include/
+            cp -Rf $BASE_DIR/$NAME/build/bin/*.exe $STORAGE_DIR/binary/
+            cp -Rf $BASE_DIR/$NAME/build/bin/*.lib $STORAGE_DIR/library/
+            cp -Rf $BASE_DIR/$NAME/build/lib/* $STORAGE_DIR/library/
+
+            install_lib "$1" "$2" "$3" "$4" "$5" "avcodec"
+            install_lib "$1" "$2" "$3" "$4" "$5" "avdevice"
+            install_lib "$1" "$2" "$3" "$4" "$5" "avfilter"
+            install_lib "$1" "$2" "$3" "$4" "$5" "avformat"
+            install_lib "$1" "$2" "$3" "$4" "$5" "avutil"
+            install_lib "$1" "$2" "$3" "$4" "$5" "swresample"
+            install_lib "$1" "$2" "$3" "$4" "$5" "swscale"
+
+         }
+
+
+
+
+
+   }
+
+
+   void ffmpeg::handle(::topic * ptopic, ::context * pcontext)
+   {
+
+      if (ptopic->m_atom == "simple_checkbox"
+         || ptopic->m_atom == "no_client_frame")
+      {
+
+         set_need_redraw();
          
-            strTitle = get_app()->application_properties().m_strMainTitle;
-         
-         }
+         post_redraw();
 
-         size = pgraphics->get_text_extent(strTitle);
+      }
 
-         if (!size.is_empty())
+      ::user::impact::handle(ptopic, pcontext);
+   }
+
+
+   ::user::document * ffmpeg::get_document()
+   {
+
+      return ::user::impact::get_document();
+
+   }
+
+
+   void ffmpeg::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
+      {
+
+         ::rectangle_i32 rectangle = get_client_rect();
+
+         for (index i = 0; i < 11; i++)
          {
 
-            int iHeight = rectangle.height();
+            pgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));
 
-            double dMaxDimension = size.get_maximum_dimension();
-
-            if (m_iDrawing == 1)
-            {
-
-               float fSize = (float) (iHeight * 80.0 / dMaxDimension);
-
-               pfont2->create_pixel_font(strFontFamily, fSize, 800);
-
-            }
-            else
-            {
-
-               float fSize = (float) (iHeight * 160.0 / dMaxDimension);
-
-               pfont2->create_pixel_font(strFontFamily, fSize, 800);
-
-            }
-
-         }
-
-         pgraphics->set(pfont2);
-
-         size = pgraphics->get_text_extent(strTitle);
-            
-      }
-
-      auto & echeckSimple = get_app()->application_properties().m_echeckSimple;
-
-      if (__bool(echeckSimple))
-      {
-
-         ppen->create_null();
-
-      }
-      else
-      {
-
-         ppen->create_solid(4.0, argb(255, 50, 180, 255));
-
-      }
-
-      if (m_iDrawing == 3 && m_pimage1.ok())
-      {
-
-         pbrush->CreatePatternBrush(m_pimage1);
-
-      }
-      else
-      {
-
-         if (__bool(get_app()->application_properties().m_echeckSimple))
-         {
-
-            pbrush->create_solid(argb(255, 255, 255, 200));
-
-         }
-         else
-         {
-
-            pbrush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), argb(255, 255, 255, 200), argb(255, 255, 125, 100));
+            rectangle.deflate(1, 1);
 
          }
 
       }
 
-      pgraphics->set(ppen);
+      //m_prender->_001OnDraw(pgraphics);
 
-      pgraphics->set(pbrush);
-      
-      //pgraphics->draw_ellipse(rectangle);
-      
-      //pgraphics->fill_ellipse(rectangle);
+   }
 
-      pgraphics->ellipse(rectangle);
 
-      ::rectangle_i32 rectangleText;
+   void ffmpeg::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
 
-      rectangleText.set_size(size);
+      auto rectangleClient = get_client_rect();
 
-      rectangleText.inflate(10, 10);
-
-      rectangleText.Align(e_align_center, rectangle);
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      if (m_iDrawing == 1)
+      if(rectangleClient.is_empty())
       {
 
-         pbrush->create_solid(m_hlsText);
-
-      }
-      else if (m_iDrawing == 3)
-      {
-
-         if (__bool(get_app()->application_properties().m_echeckSimple))
-         {
-
-            pbrush->create_solid(m_hlsText);
-
-         }
-         else
-         {
-
-            if (m_pimage2.ok())
-            {
-
-               pbrush->CreatePatternBrush(m_pimage2);
-
-            }
-            else
-            {
-
-               pbrush->create_solid(m_hlsText);
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         if (__bool(get_app()->application_properties().m_echeckSimple))
-         {
-
-            pbrush->create_solid(m_hlsText);
-
-         }
-         else
-         {
-
-            pbrush->CreateLinearGradientBrush(rectangleText.top_left(), rectangleText.bottom_right(), m_hlsText, argb(255, 255, 255, 200));
-
-         }
+         return;
 
       }
 
-      pgraphics->set(pbrush);
-
-      if(bDrawText)
-      {
-      
-         pgraphics->draw_text(strTitle, rectangleText, e_align_center);
-         
-      }
+      //m_prender->m_rectangle = rectangleClient;
 
    }
 
@@ -288,73 +420,3 @@ namespace app_integration
 
 
 
-=======
-﻿// Created by camilo on 2023-01-15 07:10 <3ThomasBorregaardSørensen!!
-#include "framework.h"
-
-namespace console
-{
-
-   namespace build_library
-   {
-
-
-      class ffmpeg
-      {
-      public:
-
-         ::file::path m_pathFolder
-
-         ffmpeg
-
-
-function prepare()
-{
-
-
-   PATH = "openssl/$RELEASE/$PLATFORM/$CONFIGURATION"
-
-
-      if["$PLATFORM" == "Win32"]; then
-
-         ARCH = "i386"
-
-         elif["$PLATFORM" == "x64"]; then
-
-         ARCH = "x86_64"
-
-      else
-
-         echo "Unsupported Platform \"$PLATFORM\"?!?"
-
-         exit - 1
-
-         fi
-
-         if["$CONFIGURATION" == *"Debug" *]; then
-
-            DEBUG = "--enable-debug"
-
-         else
-
-            DEBUG = "--disable-debug"
-
-            fi
-
-            if["$CONFIGURATION" == *"Static" *]; then
-
-               SHARED = ""
-
-               STATIC = ""
-
-            else
-
-               SHARED = "--enable-shared"
-
-               STATIC = "--disable-static"
-
-               fi
-
-
-}
->>>>>>> origin/main

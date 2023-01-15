@@ -22,7 +22,7 @@
     <ClCompile Include="frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="impact.cpp">
+    <ClCompile Include="openssl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main_frame.cpp">
@@ -55,6 +55,15 @@
     <ClCompile Include="ffmpeg1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ffmpeg2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="impact.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="document.h">
@@ -63,7 +72,7 @@
     <ClInclude Include="frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="impact.h">
+    <ClInclude Include="openssl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="main_frame.h">
@@ -88,6 +97,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ffmpeg1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ffmpeg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ffmpeg2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

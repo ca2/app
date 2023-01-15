@@ -1,23 +1,23 @@
-﻿// From impact.h on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
+﻿// From impact.cpp on 2023-01-15 09:25 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
-#include "impact.h"
+#include "base/user/user/impact.h"
+#include "apex/platform/app_consumer.h"
 
 
 namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_INTEGRATION ffmpeg :
-      virtual public impact
+   class CLASS_DECL_APP_INTEGRATION menu :
+      virtual public app_consumer < application, ::user::impact >
    {
    public:
 
 
-
-      ffmpeg();
-      ~ffmpeg() override;
+      menu();
+      ~menu() override;
 
       
 //      // void assert_ok() const override;
@@ -32,7 +32,7 @@ namespace app_integration
 
       virtual void install_message_routing(::channel * psender) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

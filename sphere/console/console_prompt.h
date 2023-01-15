@@ -11,7 +11,7 @@ namespace console
    public:
 
 
-      ::user::single_document_template * m_pdocumenttemplate;
+      ::user::single_document_template * m_pimpactsystem;
 
       
       prompt(::particle * pparticle);

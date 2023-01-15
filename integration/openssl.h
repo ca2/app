@@ -1,23 +1,27 @@
-﻿// From impact.h on 2023-01-15 09:46 <3ThomasBorregaardSørensen!!
-#pragma once
+﻿#pragma once
 
 
-#include "impact.h"
+#include "base/user/user/impact.h"
+#include "apex/platform/app_consumer.h"
 
 
 namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_INTEGRATION ffmpeg :
-      virtual public impact
+   class CLASS_DECL_APP_INTEGRATION openssl :
+      virtual public app_consumer < application, ::user::impact >
    {
    public:
 
 
+      //::pointer<render>          m_prender;
 
-      ffmpeg();
-      ~ffmpeg() override;
+
+
+
+      openssl();
+      ~openssl() override;
 
       
 //      // void assert_ok() const override;
@@ -42,6 +46,16 @@ namespace app_integration
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
+
+
+      void build(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+
+      void download(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+
+      void compile(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+
+      void install(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+
 
    };
 

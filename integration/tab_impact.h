@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/tab_impact.h"
@@ -18,7 +18,7 @@ namespace app_integration
 
 
       ::user::split_impact *                            m_ptopviewLast;
-      ::pointer<::app_integration::impact>       m_pimpactDrawing;
+      //::pointer<::app_integration::impact>       m_pimpactDrawing;
       string                                          m_strTopicTitle;
 
 

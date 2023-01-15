@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "document.h"
-#include "impact.h"
+//#include "impact.h"
 #include "application.h"
 
 
@@ -47,7 +47,7 @@ namespace app_integration
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pimpact = get_typed_impact < impact >();
+     /* impact * pimpact = get_typed_impact < impact >();
 
       if(pimpact == NULL)
       {
@@ -56,7 +56,7 @@ namespace app_integration
 
       }
 
-      string strPath = payloadFile.as_file_path();
+      string strPath = payloadFile.as_file_path();*/
 
       return true;
 

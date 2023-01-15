@@ -1146,7 +1146,7 @@ pacmedirectory->create("/ca2core");
 
          bool bMatterFromResource = false;
 
-         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.txt");
+         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
 
          if (pfile)
          {

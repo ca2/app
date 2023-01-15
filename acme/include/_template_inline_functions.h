@@ -680,7 +680,7 @@ constexpr bool _null_terminated_begins_null_terminated(const ITEM * pz, const IT
 
       pzPrefix++;
 
-   } while (equality.equals(*pz,0) && equality.equals(*pzPrefix, 0));
+   } while (!equality.equals(*pz,0) && !equality.equals(*pzPrefix, 0));
 
    return true;
 

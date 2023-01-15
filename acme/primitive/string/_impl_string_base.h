@@ -2602,6 +2602,8 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
 
          pmetadata->set_length(p - this->begin());
 
+         this->end() = pmetadata->end();
+
       }
 
    }

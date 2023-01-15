@@ -646,6 +646,8 @@ namespace programming
       //file()->put_text_utf8(strCmd, str);
       file()->put_text(strCmd, str);
       dir()->create(m_strTime / "dynamic_source");
+
+
    }
 
 

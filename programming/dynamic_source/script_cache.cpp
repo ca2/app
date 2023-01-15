@@ -72,7 +72,7 @@ namespace dynamic_source
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto passoc = m_map.find_item(strName);
+      auto passoc = m_map.get_item(strName);
 
       if (::is_set(passoc)
          && passoc->element2().is_set()

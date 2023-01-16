@@ -1817,7 +1817,7 @@ namespace sockets_bsd
 
          //SSL_set_min_proto_version(m_psslcontext->m_ssl, TLS1_3_VERSION);
 
-         SSL_set_max_proto_version(m_psslcontext->m_ssl, TLS1_1_VERSION);
+         //SSL_set_max_proto_version(m_psslcontext->m_ssl, TLS1_1_VERSION);
 
          //TLS1_1_VERSION
 

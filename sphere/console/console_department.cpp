@@ -86,16 +86,16 @@ namespace console
 
       bool bCreate = false;
 
-      if(m_spprompt->m_pdocumenttemplate->get_document() == nullptr)
+      if(m_spprompt->m_pimpactsystem->get_document() == nullptr)
       {
 
          bCreate = true;
 
-         m_spprompt->m_pdocumenttemplate->open_document_file(get_app(), nullptr,false);
+         m_spprompt->m_pimpactsystem->open_document_file(get_app(), nullptr,false);
 
       }
 
-      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_typed_impact < prompt_impact >();
+      prompt_impact & i = *m_spprompt->m_pimpactsystem->get_document()->get_typed_impact < prompt_impact >();
 
       if(bShow)
       {

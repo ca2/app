@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-10-22 14:26 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-22 14:26 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "pixmap.h"

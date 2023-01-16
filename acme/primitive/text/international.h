@@ -1,4 +1,4 @@
-// Included "string.h" by camilo on 2022-11-07 22:03 <3ThomasBorregaardSorensen!!
+// Included "string.h" by camilo on 2022-11-07 22:03 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

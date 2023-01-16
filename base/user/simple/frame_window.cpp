@@ -119,7 +119,7 @@ simple_frame_window::simple_frame_window()
 
    m_ewindowflag |= e_window_flag_composite;
 
-   m_pdocumenttemplate = nullptr;
+   m_pimpactsystem = nullptr;
 
 }
 
@@ -834,10 +834,10 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
          //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         if (m_pdocumenttemplate->m_atom.has_char())
+         if (m_pimpactsystem->m_atom.has_char())
          {
 
-            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_atom + "/frame.network_payload";
+            ::file::path pathFrameJson = "matter://" + m_pimpactsystem->m_atom + "/frame.network_payload";
 
             auto pcontext = get_context();
 
@@ -3295,14 +3295,14 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 string simple_frame_window::get_window_default_matter()
 {
 
-   if (m_pdocumenttemplate == nullptr)
+   if (m_pimpactsystem == nullptr)
    {
 
       return frame_window::get_window_default_matter();
 
    }
 
-   return m_pdocumenttemplate->m_atom;
+   return m_pimpactsystem->m_atom;
 
 }
 
@@ -3888,7 +3888,7 @@ void simple_frame_window::on_create_bars()
    if (m_bToolbar)
    {
 
-      ::atom atom = m_pdocumenttemplate->m_atom;
+      ::atom atom = m_pimpactsystem->m_atom;
 
       if (atom.has_char())
       {

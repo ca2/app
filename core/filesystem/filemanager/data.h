@@ -43,7 +43,7 @@ namespace filemanager
       ::pointer<::fs::data>      m_pfsdata;
       callback *                 m_pcallback;
       //bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, ::fs::data * pfsdata = nullptr, ::pointer<data>data = nullptr, callback * pcallback = nullptr
-      ::user::multiple_document_template * m_pdocumenttemplate;
+      ::user::multiple_document_template * m_pimpactsystem;
       ::write_text::font_pointer                   m_pfont;
       ::user::document *                  m_pdocumentTopic;
       ::filemanager::document *                    m_pdocument;

@@ -1,4 +1,4 @@
-// From filestream.h by camilo on 2022-10-08 01:04 <3ThomasBorregaardSorensen!!
+// From filestream.h by camilo on 2022-10-08 01:04 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

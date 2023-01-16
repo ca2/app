@@ -1,4 +1,4 @@
-﻿// From datetime/department.h by camilo on 2022-10-17 21:31 <3ThomasBorregaardSorensen!!
+﻿// From datetime/department.h by camilo on 2022-10-17 21:31 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -606,6 +606,28 @@ namespace user
    }
 
 
+   ::string interaction::calculate_data_key()
+   {
+
+      return m_atom;
+
+   }
+
+
+   ::string interaction::get_data_key(const ::scoped_string & scopedstrAppend)
+   {
+
+      if (m_strDataKey20.is_empty())
+      {
+
+         m_strDataKey20 = calculate_data_key();
+
+      }
+
+      return m_strDataKey20 + "." + scopedstrAppend;
+
+   }
+
 
 
    ::windowing::window * interaction::_window()

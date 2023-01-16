@@ -27,7 +27,7 @@ namespace filehandler
       __type(MediaLibraryDoc),
       __type(MediaLibraryChildFrame),
       __type(::mplite::library::impact));
-      m_pdocumenttemplateAlbum = pdoctemplate;
+      m_pimpactsystemAlbum = pdoctemplate;
 
       pdoctemplate = memory_new ::user::single_document_template(
       IDR_ALBUM,
@@ -36,7 +36,7 @@ namespace filehandler
       __type(OptionsImpact));
 
 
-      m_pdocumenttemplateOptions = pdoctemplate;
+      m_pimpactsystemOptions = pdoctemplate;
 
       pdoctemplate = memory_new ::user::single_document_template(
       IDR_ALBUM,
@@ -44,7 +44,7 @@ namespace filehandler
       __type(simple_child_frame),
       __type(MixerMainImpact));
 
-      m_pdocumenttemplateAudioControl = pdoctemplate;*/
+      m_pimpactsystemAudioControl = pdoctemplate;*/
 
    }
 

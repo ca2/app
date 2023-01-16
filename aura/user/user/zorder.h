@@ -1,4 +1,4 @@
-// From layout_state.h by camilo on 2022-08-27 02:04 <3ThomasBorregaardSorensen!! 
+// From layout_state.h by camilo on 2022-08-27 02:04 <3ThomasBorregaardSørensen!! 
 // ... elsker mig as Jeg elsker dig?!
 #pragma once
 

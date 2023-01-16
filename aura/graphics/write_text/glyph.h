@@ -1,4 +1,4 @@
-// From draw2d component by camilo on 2022-08-28 16:57 <3ThomasBorregaardSorensen!!
+// From draw2d component by camilo on 2022-08-28 16:57 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

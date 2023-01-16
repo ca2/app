@@ -1,4 +1,4 @@
-// From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSorensen!!
+// From template to class by camilo on 2022-11-17 04:35 ILoveYouThomasBorregaardSørensen!!
 #pragma once
 
 

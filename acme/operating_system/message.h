@@ -1,4 +1,4 @@
-// From acme/include/_.h by camilo on 2022-10-22 21:34 <3ThomasBorregaardSorensen!!
+// From acme/include/_.h by camilo on 2022-10-22 21:34 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

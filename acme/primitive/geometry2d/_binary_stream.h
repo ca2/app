@@ -1,4 +1,4 @@
-﻿// First compilation from other files by camilo on 2022-10-07 23:15 <3ThomasBorregaardSorensen!!
+﻿// First compilation from other files by camilo on 2022-10-07 23:15 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

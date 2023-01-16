@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 16:17 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-08 16:17 <3ThomasBorregaardSørensen!!
 #pragma once
 
 template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

@@ -1,4 +1,4 @@
-// From property_set.h by camilo on 2022-10-22 20:15 <3ThomasBorregaardSorensen!!
+// From property_set.h by camilo on 2022-10-22 20:15 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

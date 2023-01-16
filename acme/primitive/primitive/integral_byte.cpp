@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-11-05 23:07 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-05 23:07 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 // #include "acme/primitive/string/string.h"

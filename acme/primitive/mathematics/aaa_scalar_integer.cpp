@@ -1,4 +1,4 @@
-﻿// From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSorensen!!
+﻿// From template to class by camilo on 2022-11-17 04:48 ILoveYouThomasBorregaardSørensen!!
 #include "framework.h"
 #include "scalar.h"
 ////#include "acme/exception/exception.h"

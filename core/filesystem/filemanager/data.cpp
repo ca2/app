@@ -224,7 +224,7 @@ namespace filemanager
          }
 
          m_pdocument = dynamic_cast < ::filemanager::document * >
-                       (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, e_type_empty,
+                       (m_pimpactsystem->open_document_file(pappOnBehalfOf, e_type_empty,
                              bMakeVisible,
                              puiParent,
                           e_window_flag(),

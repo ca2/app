@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-01 22:46 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-01 22:46 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "security_attributes.h"
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-09-10 13:40 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-09-10 13:40 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
 

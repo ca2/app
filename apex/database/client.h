@@ -157,11 +157,11 @@ namespace database
       virtual ::string get_data_key_modifier();
 
 
-      virtual ::string calc_data_key(const ::scoped_string & strKey);
+      virtual ::string calculate_data_key(const ::scoped_string & strKey);
 
 
-      virtual ::string calc_parent_data_key();
-      virtual ::string calc_data_key();
+      virtual ::string calculate_parent_data_key();
+      virtual ::string calculate_data_key();
       virtual void defer_update_data_key();
       virtual void update_data_key();
       //virtual bool is_local_data();

@@ -1859,12 +1859,16 @@ void thread::main()
             //estatus = acmesystem()->m_estatus;
 
          }
-         else if (acmeapplication()->m_bConsole)
-         {
 
-            acmeapplication()->main();
-
-         }
+         // !!!!This should be done in acme::node!!!!
+         //else if (acmeapplication()->m_bConsole)
+         // !!!!This should be done in acme::node!!!!
+         //{ // !!!!This should be done in acme::node!!!!
+         // !!!!This should be done in acme::node!!!!
+         //   acmeapplication()->main();
+         // !!!!This should be done in acme::node!!!!
+         //}// !!!!This should be done in acme::node!!!!
+         // !!!!This should be done in acme::node!!!!
          else
          {
 

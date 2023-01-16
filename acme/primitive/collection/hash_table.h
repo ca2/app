@@ -1,4 +1,4 @@
-﻿// From map.h by camilo on 2022-09-12 04:01 <3ThomasBorregaardSorensen!!
+﻿// From map.h by camilo on 2022-09-12 04:01 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

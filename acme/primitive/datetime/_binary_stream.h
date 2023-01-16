@@ -1,4 +1,4 @@
-﻿// From earth_time.h by camilo on 2022-10-08 00:15 <3ThomasBorregaardSorensen!!
+﻿// From earth_time.h by camilo on 2022-10-08 00:15 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-11 00:00 <3ThomasBorregaardSorensen!! (Thomas Likes Number 5!!)
+﻿// Created by camilo on 2022-10-11 00:00 <3ThomasBorregaardSørensen!! (Thomas Likes Number 5!!)
 // Thomas handlers are key!!
 #pragma once
 

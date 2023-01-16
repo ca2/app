@@ -1,4 +1,4 @@
-﻿// Created some path constructors by camilo on 2022-10-09 03:24 <3ThomasBorregaardSorensen!!
+﻿// Created some path constructors by camilo on 2022-10-09 03:24 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include "path.h"
 ////#include "acme/primitive/primitive/payload.h"

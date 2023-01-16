@@ -293,7 +293,7 @@ namespace simpledb
    bool server::_data_server_load(::database::client * pclient, const ::scoped_string & scopedstrDataKey, get_memory getmemory, ::topic * ptopic)
    {
 
-      string strDataKey = pclient->calc_data_key(scopedstrDataKey);
+      string strDataKey = pclient->calculate_data_key(scopedstrDataKey);
 
       string strType = __type_name(pclient);
 
@@ -319,7 +319,7 @@ namespace simpledb
    void server::_data_server_save(::database::client * pclient, const ::scoped_string & scopedstrDataKey, block block, ::topic * ptopic)
    {
 
-      auto strDataKey = pclient->calc_data_key(scopedstrDataKey);
+      auto strDataKey = pclient->calculate_data_key(scopedstrDataKey);
 
       string strType = __type_name(pclient);
 

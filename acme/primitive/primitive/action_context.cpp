@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-10-22 19:05 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-10-22 19:05 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "action_context.h"

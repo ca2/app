@@ -1,4 +1,4 @@
-﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
+﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSørensen!!
 #pragma once
 
 

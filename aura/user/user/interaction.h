@@ -247,7 +247,7 @@ namespace user
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
-      ::string                                  m_strDataKey;
+      ::string                                  m_strDataKey20;
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
@@ -432,6 +432,12 @@ namespace user
       virtual float get_dpi_for_window();
 
       virtual float get_density_for_window();
+
+
+      virtual ::string calculate_data_key();
+
+      virtual ::string get_data_key(const ::scoped_string & scopedstrAppend);
+
       
 
          //}

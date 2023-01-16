@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "sub_system.h"
 #include "acme.h"
@@ -22,7 +22,9 @@
 //
 //
 //} // namespace acme
-
+#ifdef CUBE
+#include "factory_function.h"
+#endif
 
 
 sub_system::sub_system()

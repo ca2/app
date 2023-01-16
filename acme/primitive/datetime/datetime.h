@@ -1,4 +1,4 @@
-﻿// From department to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSorensen!!
+﻿// From department to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -2074,8 +2074,9 @@ namespace sockets_bsd
       //InitializeContext(m_strInitSSLClientContext,SSLv23_method());
       //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
 
-      InitializeContext(m_strInitSSLClientContext,TLS_client_method());
-
+      //InitializeContext(m_strInitSSLClientContext,TLS_client_method());
+      
+      InitializeContext(m_strInitSSLClientContext, TLS_client_method());
    }
 
 

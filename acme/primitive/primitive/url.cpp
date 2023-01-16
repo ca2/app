@@ -1,4 +1,4 @@
-﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSorensen!!
+﻿// From url_department.h by camilo on 2022-11-19 04:24 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "url.h"
 //#include "as_string.h"
@@ -2358,7 +2358,7 @@ namespace url
    }
 
 
-   void url::defer_raw_http(::payload & payload, const ::payload & payloadUrl)
+   void url::defer_raw_http(::property_set & set, const ::payload & payloadUrl)
    {
 
       auto strServer = get_server(payloadUrl);
@@ -2369,16 +2369,16 @@ namespace url
 
       string strSessid = query_get_param(strQuery, "sessid");
 
-      payload["http_set"]["raw_http"] = !bCa2Server || strSessid == "noauth";
+      set["http_set"]["raw_http"] = !bCa2Server || strSessid == "noauth";
 
    }
 
 
 
-   void url::defer_raw_http(::payload & payload)
+   void url::defer_raw_http(::property_set & set)
    {
 
-      defer_raw_http(payload, payload["url"]);
+      defer_raw_http(set, set["url"]);
 
    }
 

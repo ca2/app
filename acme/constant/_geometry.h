@@ -1,4 +1,4 @@
-// From geometry2d/align.h by camilo on 2022-10-19 23:25 <3ThomasBorregaardSorensen!!
+// From geometry2d/align.h by camilo on 2022-10-19 23:25 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

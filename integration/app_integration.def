@@ -1,0 +1,8 @@
+﻿; app_integration.def
+
+LIBRARY  "app_integration"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_integration_get_new_library
+

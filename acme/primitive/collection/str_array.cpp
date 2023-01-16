@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-04 04:26 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2022-11-04 04:26 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/string/str.h"

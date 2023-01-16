@@ -1,4 +1,4 @@
-﻿// From acme/_c.h by camilo on 2022-11-09 02:40 <3ThomasBorregaardSorensen!!
+﻿// From acme/_c.h by camilo on 2022-11-09 02:40 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

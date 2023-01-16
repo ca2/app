@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+MainPackage=C:\basis\time-universal_windows\Win32\basis\uwp_app_integration\uwp_app_integration_1.1.20.0_Win32_basis.appx
+SymbolPackage=C:\basis\time-universal_windows\intermediate\Win32\basis\uwp_app_integration\uwp_app_integration\Symbols\uwp_app_integration_1.1.20.0_Win32_basis.appxsym
+ResourcePack=C:\basis\time-universal_windows\Win32\basis\uwp_app_integration\uwp_app_integration_1.1.20.0_scale-100.appx
+=======
+MainPackage=C:\basis\time-universal_windows\Win32\basis\uwp_app_simple_drawing\uwp_app_simple_drawing_1.1.20.0_Win32_basis.appx
+SymbolPackage=C:\basis\time-universal_windows\intermediate\Win32\basis\uwp_app_simple_drawing\uwp_app_simple_drawing\Symbols\uwp_app_simple_drawing_1.1.20.0_Win32_basis.appxsym
+ResourcePack=C:\basis\time-universal_windows\Win32\basis\uwp_app_simple_drawing\uwp_app_simple_drawing_1.1.20.0_scale-100.appx
+>>>>>>> origin/main

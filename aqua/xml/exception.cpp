@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-06 06:44 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-06 06:44 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "exception.h"
 

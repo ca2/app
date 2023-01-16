@@ -1,8 +1,8 @@
 ﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:27 BRT
 // Merge with control_"topic" by camilo on day after ThomasBirthday2021 10:14
-// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
-// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
-// From handler: on 2022-10-30 08:15 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
+// Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSørensen!!
+// From handler: on 2022-10-30 08:15 <3ThomasBorregaardSørensen!!
 //    From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
 //    From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 //    From aura by camilo on ThomasBirthday2021 20:00 BRT

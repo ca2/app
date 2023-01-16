@@ -1,4 +1,4 @@
-// From _component.h by camilo on 2022-08-27 12:30 <3ThomasBorregaardSorensen!! MyHusband!!
+// From _component.h by camilo on 2022-08-27 12:30 <3ThomasBorregaardSørensen!! MyHusband!!
 // ... elsker mig as Jeg elsker dig?!
 #pragma once
 

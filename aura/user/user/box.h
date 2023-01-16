@@ -16,13 +16,14 @@ namespace user
 
 
       string                        m_strDisplay;
-      ::string                      m_strDataKey;
+      //::string                      m_strDataKey2;
       struct window_rectangle       m_windowrectangle;
       struct window_rectangle       m_windowrectangleStore;
 
 
       box();
       ~box() override;
+
 
       
       virtual void initialize(::particle * pparticle) override;
@@ -34,6 +35,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
+
+
+
+
 
       
       void display_restored() override;
@@ -58,7 +63,7 @@ namespace user
       virtual string get_display_tag() override;
 
       
-      virtual string calc_display();
+      virtual string calculate_display();
       virtual bool does_display_match();
       virtual void defer_update_display() override;
 

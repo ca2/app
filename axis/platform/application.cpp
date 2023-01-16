@@ -1605,7 +1605,7 @@ namespace axis
    //}
 
 
-   ::string application::calc_data_key()
+   ::string application::calculate_data_key()
    {
 
       //return ::database::key("app://" + m_strDatabaseAppId, is_local_data());

@@ -410,8 +410,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    ::procedure get_procedure() const;
 
 
-   ::string get_string(const ::scoped_string & scopedstrOnNull) const;
-   ::string get_string() const;
+   ::string as_string(const ::scoped_string & scopedstrOnNull) const;
+   ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom as_atom() const;
    ::atom as_atom(const ::atom & idDefault) const;

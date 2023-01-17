@@ -1348,7 +1348,7 @@ void memory_base::from_string(const ::string & str)
 void memory_base::from_string(const ::payload & payload)
 {
 
-   from_string((const string &)payload.get_string());
+   from_string((const string &)payload.as_string());
 
 }
 
@@ -1393,7 +1393,7 @@ void memory_base::append_from_string(const ::string & str)
 void memory_base::append_from_string(const ::payload & payload)
 {
 
-   append_from_string((const string &)payload.get_string());
+   append_from_string((const string &)payload.as_string());
 
 }
 

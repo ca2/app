@@ -53,7 +53,7 @@ namespace match
    bool prefix::matches(const ::payload & payload) const
    {
 
-      return payload.get_string().begins(m_str);
+      return payload.as_string().begins(m_str);
 
    }
 
@@ -68,7 +68,7 @@ namespace match
    bool ci_prefix::matches(const ::payload & payload) const
    {
       
-      return payload.get_string().case_insensitive_begins(m_str);
+      return payload.as_string().case_insensitive_begins(m_str);
 
    }
 
@@ -83,7 +83,7 @@ namespace match
    bool suffix::matches(const ::payload & payload) const
    {
 
-      return payload.get_string().ends(m_str);
+      return payload.as_string().ends(m_str);
 
    }
 
@@ -98,7 +98,7 @@ namespace match
    bool ci_suffix::matches(const ::payload & payload) const
    {
       
-      return payload.get_string().case_insensitive_ends(m_str);
+      return payload.as_string().case_insensitive_ends(m_str);
 
    }
 

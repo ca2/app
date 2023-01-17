@@ -447,7 +447,7 @@ string & property::get_network_arguments(::string & str) const
 ::std::strong_ordering payload::str_compare(const ::property & property) const
 {
 
-   return get_string() <=> property;
+   return as_string() <=> property;
 
 }
 

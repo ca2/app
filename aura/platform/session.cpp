@@ -353,7 +353,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(prequest->m_payloadFile.get_string());
+      string strOriginalPathName(prequest->m_payloadFile.as_string());
 
       ::file::path strPathName(strOriginalPathName);
 

@@ -257,7 +257,7 @@ namespace dynamic_source
    void script_interface::print_r(::payload payload)
    {
 
-      print(payload.get_string());
+      print(payload.as_string());
 
    }
 

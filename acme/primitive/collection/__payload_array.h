@@ -133,7 +133,7 @@ public:
       for (auto & item : *this)
       {
 
-         stra.add(item.get_string());
+         stra.add(item.as_string());
 
       }
 

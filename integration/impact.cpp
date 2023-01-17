@@ -34,20 +34,20 @@ namespace app_integration
    }
 
 
-//   void impact::assert_ok() const
-//   {
-//
-//      user::box::assert_ok();
-//
-//   }
-//
-//
-//   void impact::dump(dump_context & dumpcontext) const
-//   {
-//
-//      user::box::dump(dumpcontext);
-//
-//   }
+   //   void impact::assert_ok() const
+   //   {
+   //
+   //      user::box::assert_ok();
+   //
+   //   }
+   //
+   //
+   //   void impact::dump(dump_context & dumpcontext) const
+   //   {
+   //
+   //      user::box::dump(dumpcontext);
+   //
+   //   }
 
 
 #ifdef _DEBUG
@@ -77,7 +77,7 @@ namespace app_integration
 
       ::user::impact::install_message_routing(psender);
 
-      MESSAGE_LINK(MESSAGE_CREATE,psender,this,&impact::on_message_create);
+      MESSAGE_LINK(MESSAGE_CREATE, psender, this, &impact::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, psender, this, &impact::on_message_destroy);
 
    }
@@ -118,7 +118,7 @@ namespace app_integration
       }
 
       //auto estatus = 
-      
+
       //__construct_new(m_prender);
 
       //if(!estatus)
@@ -140,15 +140,15 @@ namespace app_integration
 
       string strText;
 
-      if(get_typed_parent<::user::split_impact>() != nullptr)
+      if (get_typed_parent<::user::split_impact>() != nullptr)
       {
 
-         if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
+         if (get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
             auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
-            pinteraction->_001SetText(strText,::e_source_initialize);
+            pinteraction->_001SetText(strText, ::e_source_initialize);
 
          }
 
@@ -157,18 +157,104 @@ namespace app_integration
    }
 
 
-   ::file::path impact::get_path()
-   {
+   //::file::path impact::get_path()
+   //{
 
-      return m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
+   //   return m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
 
-   }
+   //}
 
 
    void impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
+
+
+   void impact::fill()
+   {
+
+      add_platform("Win32");
+
+      add_platform("x64");
+
+   }
+
+
+   void impact::add_platform(const ::scoped_string & scopedstrPlatform)
+   {
+
+      add_configuration(scopedstrPlatform, "Debug");
+
+      add_configuration(scopedstrPlatform, "Release");
+
+      add_configuration(scopedstrPlatform, "StaticDebug");
+
+      add_configuration(scopedstrPlatform, "StaticRelease");
+
+
+   }
+
+
+   void impact::add_configuration(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+   {
+
+      m_straName.add(m_strName + " " + scopedstrPlatform + " " + scopedstrPlatform);
+
+   }
+
+
+   void impact::prepare()
+   {
+
+      for (auto & str : m_straName)
+      {
+
+         __construct_new(m_str2aOutput.add_new());
+
+      }
+
+   }
+
+
+   void impact::start()
+   {
+
+      for (index i = 0; i < m_straName.size(); i++)
+      {
+
+         auto strName = m_straName[i];
+
+         auto pstraOutput = m_str2aOutput[i];
+
+
+         fork([strName, pstraOutput, this]()
+   {
+
+      int iExitCode = 0;
+
+         acmenode()->command_system(*pstraOutput, iExitCode, m_pathIntegration + strName);
+
+         if (iExitCode == 0)
+         {
+
+            pstraOutput->add(strName + " Completed!!");
+
+         }
+         else
+         {
+
+            pstraOutput->add(strName + " Finished with error exit code: " + ::as_string(iExitCode) + "!");
+
+         }
+
+   });
+
+      }
+
+
+   }
+
 
 
    void impact::handle(::topic * ptopic, ::context * pcontext)
@@ -178,121 +264,25 @@ namespace app_integration
       if (ptopic->m_atom == "openssl")
       {
 
-         fork([this]()
-         {
+         m_strName = "openssl";
 
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 Debug");
+         fill();
 
-         });
+         prepare();
 
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 Release");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 StaticDebug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 StaticRelease");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 Debug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 Release");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 StaticDebug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 StaticRelease");
-
-         });
+         start();
 
       }
       else if (ptopic->m_atom == "ffmpeg")
       {
 
-         fork([this]()
-         {
+         m_strName = "ffmpeg";
 
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 Debug");
+         fill();
 
-         });
+         prepare();
 
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 Release");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 StaticDebug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 StaticRelease");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 Debug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 Release");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 StaticDebug");
-
-         });
-
-         fork([this]()
-         {
-
-            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 StaticRelease");
-
-         });
+         start();
 
       }
       else if (ptopic->m_atom == "simple_checkbox"
@@ -300,7 +290,7 @@ namespace app_integration
       {
 
          set_need_redraw();
-         
+
          post_redraw();
 
       }
@@ -338,12 +328,17 @@ namespace app_integration
       auto rect = get_client_rect();
 
       int y = rect.bottom - 50;
-      for (int i = 0; i < minimum(50, m_straOutput.get_size()); i++)
+      for (int i = m_str2aOutput.get_upper_bound(); i >= 0; i--)
       {
+         for (int j = 0; j < minimum(3, m_str2aOutput[i]->size()); j++)
+         {
 
-         pgraphics->text_out({ (double)20, (double)y }, m_straOutput.last(-i - 1));
+
+            pgraphics->text_out({ (double)20, (double)y }, m_straName[i] + " > " + m_str2aOutput[i]->last(-j - 1));
 
             y -= 30;
+
+         }
 
       }
 
@@ -357,7 +352,7 @@ namespace app_integration
 
       auto rectangleClient = get_client_rect();
 
-      if(rectangleClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;

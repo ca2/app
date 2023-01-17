@@ -199,7 +199,7 @@ namespace app_integration
    void impact::add_configuration(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
-      m_straName.add(m_strName + " " + scopedstrPlatform + " " + scopedstrPlatform);
+      m_straName.add(m_strName + " " + scopedstrPlatform + " " + scopedstrConfiguration);
 
    }
 

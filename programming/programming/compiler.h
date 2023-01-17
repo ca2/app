@@ -3,6 +3,7 @@
 
 
 #include "acme/filesystem/filesystem/path.h"
+#include "acme/platform/integration_context.h"
 //#include "acme/primitive/primitive/matter.h"
 
 
@@ -19,7 +20,7 @@ namespace programming
 
    public:
 
-
+      ::pointer < ::integration::context >      m_pintegrationcontext;
       ::file::path                              m_pathProjectDir;
       string                                    m_strDynamicSourceConfiguration;
       ::file::path                              m_strDynamicSourceStage;

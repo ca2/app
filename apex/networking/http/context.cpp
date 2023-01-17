@@ -2428,7 +2428,7 @@ namespace http
          << " - "
          << strStatus
          << " Content Length : "
-         << (integral_byte)(memsize)iContentLength
+         << (memsize)iContentLength
          << ", Body Download : "
          << iBodySizeDownloaded
          << ", Loop : "

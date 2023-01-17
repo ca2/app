@@ -200,7 +200,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libarchive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -323,7 +323,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libarchive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -463,7 +463,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libarchive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -590,7 +590,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libarchive.lib;Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -801,6 +801,7 @@
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
+    <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
     <ClInclude Include="compress\not_dir.h" />
@@ -1033,6 +1034,7 @@
     <ClInclude Include="platform\create.h" />
     <ClInclude Include="platform\display.h" />
     <ClInclude Include="platform\history.h" />
+    <ClInclude Include="platform\integration_context.h" />
     <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\machine_event.h" />

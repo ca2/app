@@ -24,6 +24,10 @@ namespace app_integration
       ::file::path      m_pathDownloadURL;
 
 
+      int               m_iExitCode;
+      ::string_array    m_straOutput;
+      ::file::path      m_pathIntegration;
+
 
       impact();
       ~impact() override;

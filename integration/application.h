@@ -8,6 +8,16 @@ namespace app_integration
 {
 
 
+   class CLASS_DECL_APP_INTEGRATION topic :
+      virtual public ::topic
+   {
+   public:
+
+      ::string       m_strPlatform;
+      ::string       m_strConfiguration;
+
+   };
+
    class CLASS_DECL_APP_INTEGRATION application :
       virtual public ::base::application
    {

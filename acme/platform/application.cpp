@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 22/02/2022.
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSørensen!!
@@ -672,6 +672,20 @@ namespace acme
       auto pini = acmefile()->get_ini(pathIni);
 
       return pini;
+
+   }
+
+
+   string application::get_visual_studio_build()
+   {
+
+      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
+
+      string strBuild = acmefile()->as_string(path);
+
+      strBuild.trim();
+
+      return strBuild;
 
    }
 

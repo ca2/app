@@ -374,28 +374,28 @@ namespace sockets
 
       int iStatusCode = m_response.attr("http_status_code").as_i32();
 
-      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
-      {
-
-         m_pfile->write(m_pmemoryfile->data(), (memsize) m_pmemoryfile->size());
-
-#if HEAVY_HTTP_LOG
-         
-         m_pfile->seek_to_begin();
-
-         string str = dump_hex(m_pfile);
-         FORMATTED_TRACE("%s", m_strUrl.c_str());
-         
-         for (int i = 0; i < str.length(); i+=32 * 100)
-         {
-
-            ::OutputDebugStringA(str.substr(i, 32*100));
-
-         }
-
-#endif
-
-      }
+//      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
+//      {
+//
+//         m_pfile->write(m_pmemoryfile->data(), (memsize) m_pmemoryfile->size());
+//
+//#if HEAVY_HTTP_LOG
+//         
+//         m_pfile->seek_to_begin();
+//
+//         string str = dump_hex(m_pfile);
+//         FORMATTED_TRACE("%s", m_strUrl.c_str());
+//         
+//         for (int i = 0; i < str.length(); i+=32 * 100)
+//         {
+//
+//            ::OutputDebugStringA(str.substr(i, 32*100));
+//
+//         }
+//
+//#endif
+//
+//      }
 
       OnContent();
 

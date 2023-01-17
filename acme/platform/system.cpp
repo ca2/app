@@ -2200,7 +2200,7 @@ else if (ptopic->m_atom == id_app_activated)
 
    }
 
-   void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation)
+   void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
       ::pointer<::compress>pcompress;
@@ -2214,7 +2214,11 @@ else if (ptopic->m_atom == id_app_activated)
 
       }*/
 
-      /*estatus = */ pcompress->transfer(pfileOut, pfileIn);
+      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+
+      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+
+      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
 
       //if (!estatus)
       //{
@@ -2228,7 +2232,7 @@ else if (ptopic->m_atom == id_app_activated)
    }
 
 
-   void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation)
+   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
    {
 
       ::pointer<::uncompress>puncompress;
@@ -2242,7 +2246,11 @@ else if (ptopic->m_atom == id_app_activated)
 
       //}
 
-      /*estatus =*/ puncompress->transfer(pfileOut, pfileIn);
+      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+
+      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+
+      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
 
       //if (!estatus)
       //{

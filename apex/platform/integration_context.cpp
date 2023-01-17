@@ -21,7 +21,7 @@ namespace integration
    context::context()
    {
 
-
+      m_bMsys = false;
 
    }
 
@@ -47,6 +47,27 @@ namespace integration
       acmenode()->command_system(m_straOutput, iExitCode, scopedstrCommand, e_command_system_inline_log);
 
       return iExitCode;
+
+   }
+
+
+   void context::clean()
+   {
+
+      string strCommand;
+
+      string strPath;
+
+      strPath = this->prepare_path(m_pathFolder / m_path);
+
+      if (strPath.length() > 20)
+      {
+
+         strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
+
+         this->bash(strCommand);
+
+      }
 
    }
 
@@ -101,9 +122,22 @@ namespace integration
 
       string strEscaped = scopedstr;
 
-      string strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+      ::string strCommand;
 
-      //string strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+      if (m_bMsys)
+      {
+
+         strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+
+      }
+      else
+      {
+
+         strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+
+      }
+
+      //
 
       command_system(strCommand);
 

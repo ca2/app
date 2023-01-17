@@ -12,6 +12,11 @@ namespace integration
    public:
 
 
+
+      bool              m_bMsys;
+
+
+
       ::string          m_strVs;
       ::file::path      m_pathSourceFolder;
       ::file::path      m_pathStorageFolder;
@@ -34,6 +39,7 @@ namespace integration
 
       virtual int command_system(const ::scoped_string & scopedstr);
 
+      virtual void clean();
 
       virtual void download_and_uncompress();
       virtual void git_clone();

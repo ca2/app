@@ -1,5 +1,11 @@
-﻿// Created by camilo on 2022-12-03 16:04 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-12-03 16:04 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+
+
+#ifdef CUBE
+
+
+#include "factory_function.h"
 
 
 factory_function* factory_function::g_pfactoryfunctionNext = nullptr;
@@ -46,3 +52,8 @@ FACTORY_FUNCTION* factory_function::get(const ::scoped_string & scopedstrName)
    return nullptr;
 
 }
+
+
+#endif
+
+

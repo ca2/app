@@ -1,5 +1,5 @@
-// Created acme/primitive/numeric by camilo on 2022-11-08 18:20 <3ThomasBorregaardSorensen!!
-// Created acme/primitive/numeric/types.h by camilo on 2022-11-08 18:21 <3ThomasBorregaardSorensen!!
+// Created acme/primitive/numeric by camilo on 2022-11-08 18:20 <3ThomasBorregaardSørensen!!
+// Created acme/primitive/numeric/types.h by camilo on 2022-11-08 18:21 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

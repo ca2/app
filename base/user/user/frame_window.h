@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/main_window.h"
@@ -39,7 +39,7 @@ namespace user
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs
-      ::user::impact_system *                      m_pdocumenttemplate;
+      ::user::impact_system *                      m_pimpactsystem;
 
       i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
@@ -152,6 +152,9 @@ namespace user
       bool LoadAccelTable(const ::string & pszResourceName);
 
       //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::string & pszMenuName = nullptr, u32 dwExStyle = 0, ::request * prequest = nullptr);
+
+      
+      ::string calculate_data_key() override;
 
 
       virtual bool LoadFrame(const ::string & pszMatter,

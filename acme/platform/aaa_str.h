@@ -1,4 +1,4 @@
-﻿// Change to static const char * by camilo on 2022-10-06 10:46 <3ThomasBorregaardSorensen!!
+﻿// Change to static const char * by camilo on 2022-10-06 10:46 <3ThomasBorregaardSørensen!!
 #pragma once
 
 //

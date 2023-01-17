@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-06 19:47 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-06 19:47 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "payload.h"
 

@@ -1,4 +1,4 @@
-﻿// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSorensen!!
+﻿// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"

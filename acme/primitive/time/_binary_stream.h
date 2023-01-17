@@ -1,5 +1,5 @@
-﻿// First compilation from other files by camilo on 2022-10-07 23:20 <3ThomasBorregaardSorensen!!
-// added binary_stream.h on 2022-10-15 03:54 <3ThomasBorregaardSorensen!!
+﻿// First compilation from other files by camilo on 2022-10-07 23:20 <3ThomasBorregaardSørensen!!
+// added binary_stream.h on 2022-10-15 03:54 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

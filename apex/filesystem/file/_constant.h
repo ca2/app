@@ -1,5 +1,5 @@
 // Created from extraction from edit_file.h by camilo on 2022-09-03 
-// 22:42 <3ThomasBorregaardSorensen!!
+// 22:42 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

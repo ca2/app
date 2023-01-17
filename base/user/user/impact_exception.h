@@ -1,4 +1,4 @@
-﻿// From impact_host::exception by camilo on 2022-11-13 02:49 <3ThomasBorregaardSorensen!!
+﻿// From impact_host::exception by camilo on 2022-11-13 02:49 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

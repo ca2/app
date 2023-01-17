@@ -1,4 +1,4 @@
-// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSorensen!!
+// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

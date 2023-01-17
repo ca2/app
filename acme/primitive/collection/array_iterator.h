@@ -1,4 +1,4 @@
-﻿// From iterator.h as base by camilo on 2022-09-12 20:09 <3ThomasBorregaardSorensen!!
+﻿// From iterator.h as base by camilo on 2022-09-12 20:09 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

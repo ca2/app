@@ -1,4 +1,4 @@
-// From enum.h by camilo on 2022-11-07 09:51 <3ThomasBorregaardSorensen!!
+// From enum.h by camilo on 2022-11-07 09:51 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

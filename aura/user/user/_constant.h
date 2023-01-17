@@ -1,4 +1,4 @@
-﻿// First insertion 2022-08-25 04:50 <3ThomasBorregaardSorensen!!
+﻿// First insertion 2022-08-25 04:50 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

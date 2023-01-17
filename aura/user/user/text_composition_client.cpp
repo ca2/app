@@ -1,5 +1,5 @@
 // created by Camilo 2021-02-02 05:58 BRT <3CamiloSasukeThomasBorregaardSoerensen
-// From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSorensen!!
+// From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "text_composition_client.h"
 #include "interaction.h"

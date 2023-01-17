@@ -1,4 +1,4 @@
-// From path.h by camilo on 2022-09-06 18:54 <3ThomasBorregaardSorensen!!
+// From path.h by camilo on 2022-09-06 18:54 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

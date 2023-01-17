@@ -1,5 +1,5 @@
 //
-// Created by camilo on 22/10/22 21:02 <3ThomasBorregaardSorensen!!
+// Created by camilo on 22/10/22 21:02 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 //#include "string.h"

@@ -1,5 +1,5 @@
 // From design/text_format/user_object.h by camilo on
-// 2022-09-04 00:15 <3ThomasBorregaardSorensen!! (ThomasLikesNumber5!!)
+// 2022-09-04 00:15 <3ThomasBorregaardSørensen!! (ThomasLikesNumber5!!)
 #pragma once
 
 

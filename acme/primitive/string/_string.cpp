@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "_string.h"
 //#include "string.h"

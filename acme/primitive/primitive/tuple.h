@@ -111,7 +111,7 @@ auto& get(tuple<Args...>& t)
 
 
 
-// from acme/tuple.h Created by camilo on 2022-11-02 04:49 <3ThomasBorregaardSorensen!!
+// from acme/tuple.h Created by camilo on 2022-11-02 04:49 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="ca2.app-core.simple_drawing" Publisher="CN=ca2 Desenvolvimento de Software Ltda." Version="1.1.0.0" />
+  <Properties>
+    <DisplayName>ca2.app-core.simple_drawing</DisplayName>
+    <PublisherDisplayName>ca2 Desenvolvimento de Software Ltda.</PublisherDisplayName>
+    <Logo>Assets\HelloMultliverse50.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3</OSMinVersion>
+    <OSMaxVersionTested>6.3</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="simple_drawing">
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="ca2">
+            <SupportedFileTypes>
+              <FileType>.txt</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
+      <m2:VisualElements DisplayName="BeatMapper" Description="appm" BackgroundColor="#ffffff" ForegroundText="light" Square150x150Logo="assets\BeatMapper150.png" Square30x30Logo="assets\BeatMapper30.png">
+        <m2:DefaultTile Wide310x150Logo="assets\BeatMapper310-150.png" Square310x310Logo="assets\BeatMapper310.png" Square70x70Logo="assets\BeatMapper70.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+            <m2:ShowOn Tile="square310x310Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen BackgroundColor="#ffffff" Image="assets\BeatMapper620-300.png" />
+      </m2:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="documentsLibrary" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="internetClient" />
+    <Capability Name="picturesLibrary" />
+  </Capabilities>
+</Package>

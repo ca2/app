@@ -1,4 +1,4 @@
-// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSorensen!!
+// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

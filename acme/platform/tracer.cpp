@@ -1,5 +1,5 @@
 ﻿//
-// Created by camilo on 30/10/2021 23:50 <3ThomasBorregaardSorensen!!
+// Created by camilo on 30/10/2021 23:50 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 //#include "tracer.h"

@@ -1,4 +1,4 @@
-﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
+﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include "exception.h"
 #include "callstack.h"

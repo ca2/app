@@ -1,4 +1,11 @@
-﻿
+﻿#ifdef CUBE
+#include "acme/platform/factory_function.h"
+#include "operating_system/appconfig.h"
+#include "_static_factory_.inl"
+DO_FACTORY(REFERENCE_FACTORY)
+#endif
+
+
 
 #include "_main_hold.h"
 ////#include "acme/exception/exception.h"
@@ -6,13 +13,6 @@
 #include APPLICATION_INCLUDE
 
 
-#ifdef CUBE
-
-
-#include "_static_factory.inl"
-
-
-#endif
 
 
 //void stage();
@@ -38,15 +38,6 @@ void acme_system_term();
 
 
 //#include "acme/platform/acme.h"
-
-
-#ifdef CUBE
-
-
-DO_FACTORY(REFERENCE_FACTORY)
-
-
-#endif
 
 
 

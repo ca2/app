@@ -1,4 +1,4 @@
-// SHIFT_I32 from shift.h by camilo on 2022-10-19 23:23 <3ThomasBorregaardSorensen!!
+// SHIFT_I32 from shift.h by camilo on 2022-10-19 23:23 <3ThomasBorregaardSørensen!!
 
 #pragma once
 

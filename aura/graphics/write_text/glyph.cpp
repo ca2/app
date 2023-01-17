@@ -1,4 +1,4 @@
-// From draw2d component by camilo on 2022-08-28 16:58 <3ThomasBorregaardSorensen!!
+// From draw2d component by camilo on 2022-08-28 16:58 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "glyph.h"
 

@@ -247,7 +247,7 @@ namespace user
 
       ASSERT_KINDOF(frame_window, pframe);
 
-      pframe->m_pdocumenttemplate = this;
+      pframe->m_pimpactsystem = this;
 
       if (!pusersystem->m_typeNewImpact)
       {

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-09 11:10 BRT <3ThomasBorregaardSorensen!! and Mummi and bilbo!!
+// Created by camilo on 2022-06-09 11:10 BRT <3ThomasBorregaardSørensen!! and Mummi and bilbo!!
 #pragma once
 
 

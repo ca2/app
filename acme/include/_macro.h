@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -370,5 +370,14 @@ typedef void (type:: * bool_type)() const; \
 constexpr void this_type_does_not_support_comparisons() const {} \
 constexpr operator bool_type() const { return this->is_set() ? &type::this_type_does_not_support_comparisons : 0; }
 //https://www.artima.com/articles/the-safe-bool-idiom END
+
+
+#define DECLARE_FACTORY(name) \
+__FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
+
+
+#define IMPLEMENT_FACTORY(name) \
+__FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
+
 
 

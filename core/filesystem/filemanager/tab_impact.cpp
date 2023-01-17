@@ -81,7 +81,7 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->m_pdocumenttemplateForm->request(prequest);
+         puser->m_pimpactsystemForm->request(prequest);
 
          ::pointer<::user::document>pdocument = ::user::__document(prequest);
 
@@ -143,7 +143,7 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->m_pdocumenttemplateOperation->request(prequest);
+         puser->m_pimpactsystemOperation->request(prequest);
 
          ::pointer<operation_document>pdocument = ::user::__document(prequest);
 
@@ -199,9 +199,9 @@ namespace filemanager
 
          prequest->m_payloadFile = strVarFile;
 
-         //puser->filemanager()->m_pdocumenttemplateChild->m_bQueueDocumentOpening = false;
+         //puser->filemanager()->m_pimpactsystemChild->m_bQueueDocumentOpening = false;
 
-         //puser->filemanager()->m_pdocumenttemplateChild->do_request(pcreate);
+         //puser->filemanager()->m_pimpactsystemChild->do_request(pcreate);
 
          //::pointer<document>pdocument = ::user::__document(pcreate);
 

@@ -1,5 +1,5 @@
 ﻿//
-// Created by camilo on 22/10/22 22:26 <3ThomasBorregaardSorensen!!
+// Created by camilo on 22/10/22 22:26 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "assert.h"

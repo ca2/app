@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-11 00:04 <3ThomasBorregaardSorensen!! (Thomas Likes Number 5!!)
+﻿// Created by camilo on 2022-10-11 00:04 <3ThomasBorregaardSørensen!! (Thomas Likes Number 5!!)
 #pragma once
 
 

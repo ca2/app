@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-03 16:02 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-12-03 16:02 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -25,20 +25,9 @@ public:
 };
 
 
-#define DECLARE_FACTORY(name) \
-__FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
-
-
-
-#define IMPLEMENT_FACTORY(name) \
-__FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
-//::factory_function g_set_factory_function = {#name, &::TOKEN_CONCATENATE(name, _factory) }; \
-//__FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory* pfactory)
-
-
 #define REFERENCE_FACTORY(name) \
 __FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory); \
-::factory_function TOKEN_CONCATENATE(g_set_factory_function_, name) = {#name, &::TOKEN_CONCATENATE(name, _factory) };
+::factory_function TOKEN_CONCATENATE(g_set_factory_function_, name) = {STRINGFY(name), &::TOKEN_CONCATENATE(name, _factory) };
 
 
 

@@ -1379,7 +1379,7 @@ namespace filemanager
 
             auto pinteraction = __create_new <  user::plain_edit > ();
             //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
-            pinteraction->m_strDataKey = "FILE_MANAGER_ID_FILE_NAME";
+            pinteraction->m_strDataKey20 = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->m_atom = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);

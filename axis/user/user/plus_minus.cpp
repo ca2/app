@@ -1,5 +1,5 @@
 // From design/text_format/user_plus_minus.cpp by camilo on
-// 2022-09-04 00:14 <3ThomasBorregaardSorensen!!
+// 2022-09-04 00:14 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "plus_minus.h"
 #include "acme/constant/id.h"

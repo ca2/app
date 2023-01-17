@@ -18,7 +18,7 @@ namespace user
    box::box()
    {
 
-      m_strDataKey = "WindowRect";
+      //m_strDataKey = "WindowRect";
 
       //m_strDataKey.m_bLocalData = true;
 
@@ -45,7 +45,7 @@ namespace user
 
       }
 
-      m_strDataKey = m_atom;
+      //m_strDataKey = m_atom;
 
    }
 
@@ -215,7 +215,9 @@ namespace user
 
          defer_update_display();
 
-         SaveWindowRect_(m_strDataKey + window_data_key_modifier());
+         string strDataKey = get_data_key(window_data_key_modifier());
+
+         SaveWindowRect_(strDataKey);
 
       }
 
@@ -248,9 +250,9 @@ namespace user
 
       defer_update_display();
 
-      auto key = m_strDataKey + window_data_key_modifier();
+      auto strDataKey = get_data_key(window_data_key_modifier());
 
-      bLoad = LoadWindowRect_(key);
+      bLoad = LoadWindowRect_(strDataKey);
 
       if (!bLoad)
       {
@@ -294,9 +296,9 @@ namespace user
 
       defer_update_display();
 
-      auto key = m_strDataKey + window_data_key_modifier();
+      auto strDataKey = get_data_key(window_data_key_modifier());
 
-      bLoad = FancyLoadWindowRect_(key, bForceRestore, bInitialFramePosition);
+      bLoad = FancyLoadWindowRect_(strDataKey, bForceRestore, bInitialFramePosition);
 
       if (!bLoad)
       {
@@ -671,6 +673,7 @@ namespace user
    }
 
 
+
    void box::display_restored()
    {
 
@@ -730,7 +733,7 @@ namespace user
    }
 
 
-   string box::calc_display()
+   string box::calculate_display()
    {
 
       //synchronous_lock synchronouslock(this->synchronization());
@@ -763,7 +766,7 @@ namespace user
       if (m_strDisplay.is_empty())
          return false;
 
-      return m_strDisplay == calc_display();
+      return m_strDisplay == calculate_display();
 
    }
 
@@ -773,7 +776,7 @@ namespace user
 
       //synchronous_lock synchronouslock(this->synchronization());
 
-      m_strDisplay = calc_display();
+      m_strDisplay = calculate_display();
 
    }
 

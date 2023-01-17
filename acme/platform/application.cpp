@@ -1,7 +1,7 @@
 //
 // Created by camilo on 22/02/2022.
 //
-// app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
+// app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application.h"
 #include "acme.h"

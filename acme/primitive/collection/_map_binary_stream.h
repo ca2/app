@@ -1,4 +1,4 @@
-// From file/binary_stream < FILE >.h by camilo on 2022-10-14 23:58 <3ThomasBorregaardSorensen!!
+// From file/binary_stream < FILE >.h by camilo on 2022-10-14 23:58 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

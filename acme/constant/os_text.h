@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-30 04:05 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-11-30 04:05 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

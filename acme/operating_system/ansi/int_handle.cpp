@@ -1,4 +1,4 @@
-// From file.cpp by camilo on 2022-09-06 23:27 <3ThomasBorregaardSorensen!!
+// From file.cpp by camilo on 2022-09-06 23:27 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "int_handle.h"
 

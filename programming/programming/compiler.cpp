@@ -143,162 +143,162 @@ namespace programming
 
    void compiler::prepare_compile_and_link_environment()
    {
-
-      auto pacmedirectory = acmedirectory();
-
-      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
-
-      ::file::path strVars;
-
-#ifdef WINDOWS_DESKTOP
-
-      if (m_strVs == "2015")
-      {
-
-         strVars = getenv("VS140COMNTOOLS");
-
-      }
-
-#endif
-
-      auto papp1 = get_app();
-
-      ::pointer<::aura::application>papp = papp1;
-
-#ifdef WINDOWS_DESKTOP
-
-      try
-      {
-
-         if (m_strVs == "2022")
-         {
-
-            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat";
-
-            m_strVCVersion = papp->get_visual_studio_build();
-
-         }
-         else if (m_strVs == "2019")
-         {
-
-            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
-
-            m_strVCVersion = papp->get_visual_studio_build();
-
-         }
-         else if (m_strVs == "2017")
-         {
-
-            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
-
-            ::acme_windows::registry::key key;
-
-            key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false);
-
-            string strPath;
-
-            key.get("15.0", strPath);
-
-            ::file::path path = strPath;
-
-            m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
-
-            m_strVCVersion = papp->get_visual_studio_build();
-
-         }
-         else if (m_strVs == "2015")
-         {
-
-            m_strEnv = strVars.ascend(2);
-
-            m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
-
-         }
-
-      }
-      catch (const ::e_status & estatus)
-      {
-
-         output_debug_string("failed to setup visual studio environment " + as_string(estatus.as_i64()));
-
-      }
-
-#endif
-
-      m_strTime = dir()->install() / ("time-" OPERATING_SYSTEM_NAME);
-
-#ifdef WINDOWS_DESKTOP
-
-      if (m_strVs == "2015")
-      {
-
-         m_strSdk1 = "vc140";
-
-      }
-      else if (m_strVs == "2017")
-      {
-
-         m_strSdk1 = "vc141";
-
-      }
-      else if (m_strVs == "2019")
-      {
-
-         m_strSdk1 = "vc142";
-
-      }
-      else if (m_strVs == "2022")
-      {
-
-         m_strSdk1 = "vc143";
-
-      }
-
-#endif
-
-#ifdef OS64BIT
-
-#ifdef LINUX
-
-      m_strPlat1 = "64";
-      m_strPlatform = "x86";
-      m_strStagePlatform = "x86";
-      m_strLibPlatform = "x86/";
-
-#else
-
-      m_strPlat1 = "64";
-      m_strPlat2 = "x86_amd64";
-      //m_strPlat2 = "amd64";
-      m_strPlatform = "x64";
-      m_strStagePlatform = "x64";
-      m_strLibPlatform = "x64/";
-
-#endif
-#else
-
-      m_strPlat1 = "32";
-      m_strPlat2 = " x86";
-      m_strPlatform = "Win32";
-      m_strStagePlatform = "x86";
-      m_strLibPlatform = "x86/";
-
-#endif
-
-#if defined(LINUX) || defined(MACOS)
-
-      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
-         m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
-      prepare1(m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash",
-         m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
-      prepare1(m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash",
-         m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
-
-#else
-
-      prepare1(m_strPlat1, m_strPlat1);
-
-#endif
+//
+//      auto pacmedirectory = acmedirectory();
+//
+//      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
+//
+//      ::file::path strVars;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_strVs == "2015")
+//      {
+//
+//         strVars = getenv("VS140COMNTOOLS");
+//
+//      }
+//
+//#endif
+//
+//      auto papp1 = get_app();
+//
+//      ::pointer<::aura::application>papp = papp1;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      try
+//      {
+//
+//         if (m_strVs == "2022")
+//         {
+//
+//            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            m_strVCVersion = papp->get_visual_studio_build();
+//
+//         }
+//         else if (m_strVs == "2019")
+//         {
+//
+//            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            m_strVCVersion = papp->get_visual_studio_build();
+//
+//         }
+//         else if (m_strVs == "2017")
+//         {
+//
+//            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            ::acme_windows::registry::key key;
+//
+//            key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false);
+//
+//            string strPath;
+//
+//            key.get("15.0", strPath);
+//
+//            ::file::path path = strPath;
+//
+//            m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//
+//            m_strVCVersion = papp->get_visual_studio_build();
+//
+//         }
+//         else if (m_strVs == "2015")
+//         {
+//
+//            m_strEnv = strVars.ascend(2);
+//
+//            m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+//
+//         }
+//
+//      }
+//      catch (const ::e_status & estatus)
+//      {
+//
+//         output_debug_string("failed to setup visual studio environment " + as_string(estatus.as_i64()));
+//
+//      }
+//
+//#endif
+//
+//      m_strTime = dir()->install() / ("time-" OPERATING_SYSTEM_NAME);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_strVs == "2015")
+//      {
+//
+//         m_strSdk1 = "vc140";
+//
+//      }
+//      else if (m_strVs == "2017")
+//      {
+//
+//         m_strSdk1 = "vc141";
+//
+//      }
+//      else if (m_strVs == "2019")
+//      {
+//
+//         m_strSdk1 = "vc142";
+//
+//      }
+//      else if (m_strVs == "2022")
+//      {
+//
+//         m_strSdk1 = "vc143";
+//
+//      }
+//
+//#endif
+//
+//#ifdef OS64BIT
+//
+//#ifdef LINUX
+//
+//      m_strPlat1 = "64";
+//      m_strPlatform = "x86";
+//      m_strStagePlatform = "x86";
+//      m_strLibPlatform = "x86/";
+//
+//#else
+//
+//      m_strPlat1 = "64";
+//      m_strPlat2 = "x86_amd64";
+//      //m_strPlat2 = "amd64";
+//      m_strPlatform = "x64";
+//      m_strStagePlatform = "x64";
+//      m_strLibPlatform = "x64/";
+//
+//#endif
+//#else
+//
+//      m_strPlat1 = "32";
+//      m_strPlat2 = " x86";
+//      m_strPlatform = "Win32";
+//      m_strStagePlatform = "x86";
+//      m_strLibPlatform = "x86/";
+//
+//#endif
+//
+//#if defined(LINUX) || defined(MACOS)
+//
+//      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
+//         m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+//      prepare1(m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash",
+//         m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+//      prepare1(m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash",
+//         m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+//
+//#else
+//
+//      prepare1(m_strPlat1, m_strPlat1);
+//
+//#endif
 
       dir()->create(dir()->install() / m_strDynamicSourceStage / "front");
 

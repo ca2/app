@@ -691,6 +691,9 @@ namespace acme
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
+      virtual void integration_factory();
+
+
    };
 
 

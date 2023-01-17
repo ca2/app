@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "menu.h"
 #include "application.h"
-#include "render.h"
+//#include "render.h"
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -201,13 +201,17 @@ namespace app_integration
             if (atom == "openssl")
             {
 
-               m_papplicationForConsumer->m_ptemplateOpenSSL->open_document_file(m_papplicationForConsumer, nullptr, true);
+               auto pdocument = m_papplicationForConsumer->m_ptemplateOpenSSL->open_document_file(m_papplicationForConsumer, nullptr, true);
+
+               pdocument->update_all_impacts(nullptr, "openssl");
 
             }
             else if (atom == "ffmpeg")
             {
 
-               m_papplicationForConsumer->m_ptemplateFFMPEG->open_document_file(m_papplicationForConsumer, nullptr, true);
+               auto pdocument = m_papplicationForConsumer->m_ptemplateFFMPEG->open_document_file(m_papplicationForConsumer, nullptr, true);
+
+               pdocument->update_all_impacts(nullptr, "ffmpeg");
 
             }
 

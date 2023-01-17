@@ -992,6 +992,9 @@
     <ClInclude Include="networking\http\_.h">
       <Filter>Header Files\networking\http</Filter>
     </ClInclude>
+    <ClInclude Include="platform\integration_context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1431,6 +1434,9 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\integration_context.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

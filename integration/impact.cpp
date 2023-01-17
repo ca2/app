@@ -2,10 +2,12 @@
 #include "framework.h"
 #include "impact.h"
 #include "application.h"
-#include "render.h"
+//#include "render.h"
 #include "document.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 #include "base/user/user/impact_system.h"
@@ -83,6 +85,8 @@ namespace app_integration
 
    void impact::on_message_create(::message::message * pmessage)
    {
+
+      m_pathIntegration = acmedirectory()->module() / "shared_console_integration.exe";
 
       payload(FONTSEL_IMPACT) = true;
 
@@ -170,7 +174,128 @@ namespace app_integration
    void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == "simple_checkbox"
+
+      if (ptopic->m_atom == "openssl")
+      {
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 Debug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 Release");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 StaticDebug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl Win32 StaticRelease");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 Debug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 Release");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 StaticDebug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " openssl x64 StaticRelease");
+
+         });
+
+      }
+      else if (ptopic->m_atom == "ffmpeg")
+      {
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 Debug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 Release");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 StaticDebug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg Win32 StaticRelease");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 Debug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 Release");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 StaticDebug");
+
+         });
+
+         fork([this]()
+         {
+
+            acmenode()->command_system(m_straOutput, m_iExitCode, m_pathIntegration + " ffmpeg x64 StaticRelease");
+
+         });
+
+      }
+      else if (ptopic->m_atom == "simple_checkbox"
          || ptopic->m_atom == "no_client_frame")
       {
 
@@ -208,6 +333,17 @@ namespace app_integration
             rectangle.deflate(1, 1);
 
          }
+
+      }
+      auto rect = get_client_rect();
+
+      int y = rect.bottom - 50;
+      for (int i = 0; i < minimum(50, m_straOutput.get_size()); i++)
+      {
+
+         pgraphics->text_out({ (double)20, (double)y }, m_straOutput.last(-i - 1));
+
+            y -= 30;
 
       }
 

@@ -89,6 +89,11 @@ namespace apex
       void system_construct(::acme::application * papplication) override;
 
 
+      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
+      virtual void uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
+
+
+
 #ifdef WINDOWS_DESKTOP
 
 #elif defined(_UWP)

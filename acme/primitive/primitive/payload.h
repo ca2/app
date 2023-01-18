@@ -1468,17 +1468,17 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 }
 
 
-template < primitive_character CHARACTER, primitive_payload PAYLOAD >
-inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
-{
-
-   ::string str(psz);
-
-   str.append(payload.get_string());
-
-   return ::transfer(str);
-
-}
+//template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+//inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
+//{
+//
+//   ::string str(psz);
+//
+//   str.append(payload.get_string());
+//
+//   return ::transfer(str);
+//
+//}
 
 
 template < primitive_payload PAYLOAD, character_range RANGE >

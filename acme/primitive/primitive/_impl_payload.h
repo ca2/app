@@ -1021,16 +1021,16 @@ namespace file
 
 
 
-template < character_range RANGE, primitive_payload PAYLOAD >
-::string operator + (const RANGE & range, const PAYLOAD & payload)
-{
-
-   string str(range);
-
-   str.append(payload.get_string());
-
-   return str;
-
-}
+//template < character_range RANGE, primitive_payload PAYLOAD >
+//::string operator + (const RANGE & range, const PAYLOAD & payload)
+//{
+//
+//   string str(range);
+//
+//   str.append(payload.get_string());
+//
+//   return str;
+//
+//}
 
 

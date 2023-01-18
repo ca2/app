@@ -1461,7 +1461,7 @@ template < primitive_payload PAYLOAD, primitive_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
-   payload = payload.get_string() + ::string(psz);
+   payload = payload.as_string() + ::string(psz);
 
    return payload;
 

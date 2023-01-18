@@ -1658,7 +1658,7 @@ atom::atom(const PAYLOAD & payload)
    else
    {
 
-      operator = (payload.get_string());
+      operator = (payload.as_string());
 
    }
 

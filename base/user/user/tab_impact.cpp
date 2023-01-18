@@ -332,7 +332,7 @@ namespace user
 
          atom id2 = ::user::tab::index_id(iTab);
 
-         atom id3 = payload(id1).get_string() + "->:<-" + payload(id2).get_string();
+         atom id3 = payload(id1).as_string() + "->:<-" + payload(id2).as_string();
 
          ::user::tab_pane * ppane1 = get_tab_by_id(id1);
 

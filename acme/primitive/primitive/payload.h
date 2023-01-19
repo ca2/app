@@ -1418,8 +1418,8 @@ inline ::payload __visible(::payload varOptions, bool bVisible);
 inline payload __visible(bool bVisible = true);
 
 
-template < character_range RANGE, primitive_payload PAYLOAD >
-::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
+//template < character_range RANGE, primitive_payload PAYLOAD >
+//::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
@@ -1461,24 +1461,24 @@ template < primitive_payload PAYLOAD, primitive_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
-   payload = payload.get_string() + ::string(psz);
+   payload = payload.as_string() + ::string(psz);
 
    return payload;
 
 }
 
 
-template < primitive_character CHARACTER, primitive_payload PAYLOAD >
-inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
-{
-
-   ::string str(psz);
-
-   str.append(payload.get_string());
-
-   return ::transfer(str);
-
-}
+//template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+//inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
+//{
+//
+//   ::string str(psz);
+//
+//   str.append(payload.get_string());
+//
+//   return ::transfer(str);
+//
+//}
 
 
 template < primitive_payload PAYLOAD, character_range RANGE >

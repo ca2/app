@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "context.h"
@@ -1034,7 +1034,7 @@ namespace aura
       void on_song_added(const string& str) override;
 
 
-      virtual string get_visual_studio_build();
+      virtual string get_visual_studio_build() override;
 
 
       string sound_path(const ::string & psz) override;

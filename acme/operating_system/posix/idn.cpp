@@ -29,7 +29,7 @@ string idn_to_punycode(const ::string & str)
    if (rc != IDNA_SUCCESS)
    {
 
-      throw ::exception(idna_strerror(rc));
+      throw ::exception(::error_failed, idna_strerror(rc));
 
    }
 
@@ -69,7 +69,7 @@ Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(strTrimmed, &psz, IDNA_ALLOW_UNASSIGN
 if (rc != IDNA_SUCCESS)
 {
 
-   throw ::exception(idna_strerror(rc));
+   throw ::exception(::error_failed, idna_strerror(rc));
 
 }
 

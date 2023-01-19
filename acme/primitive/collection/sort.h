@@ -65,7 +65,7 @@
    /*template <class TYPE, class ARG_TYPE>
    void quick_sort(
    array<TYPE, ARG_TYPE> & array,
-   iptr (* fCompare)(const TYPE *, const TYPE *),
+   ::std::strong_ordering (* fCompare)(const TYPE *, const TYPE *),
    void (* fSwap)(TYPE *, TYPE *));*/
 
    /*template <class TYPE, class ARG_TYPE>
@@ -244,7 +244,7 @@
    template<class TYPE, class ARG_TYPE>
    void quick_sort(
       array<TYPE, ARG_TYPE> &a,
-      iptr fCompare(const ARG_TYPE, const ARG_TYPE),
+      ::std::strong_ordering fCompare(const ARG_TYPE, const ARG_TYPE),
       void __swap(void *pVoidSwapArg, iptr iA, iptr iB),
 
       void *pVoidSwapArg)
@@ -325,15 +325,15 @@
    void quick_sort(const iterator &a, const iterator &b);
 
 
-   typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
+   //typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
 
-   typedef i32 (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
+   //typedef ::std::strong_ordering (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
 
 
    void CLASS_DECL_ACME quick_sort(
       iptr iSize,
-      array<ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION> &comparefna,
-      array<ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION> &swapfna,
+      ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefna,
+      ::array < ::function < void(void*, iptr, iptr) > > & swapfna,
       void_ptra &comparearga,
       void_ptra &swaparga);
 
@@ -934,7 +934,7 @@
    template<class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR>
    void quick_sort(
       array<TYPE, ARG_TYPE, DEFCONSTRUCTOR> &a,
-      iptr (*pfnCompare)(ARG_TYPE, ARG_TYPE));
+      ::std::strong_ordering (*pfnCompare)(ARG_TYPE, ARG_TYPE));
 
 
    template<class TYPE, class ARG_TYPE>
@@ -1084,7 +1084,7 @@
       template < typename ARRAY_TYPE >
       void quick_sort(
       ARRAY_TYPE  & a,
-      iptr(* pfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
+      ::std::strong_ordering(* pfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
       {
 
          index_array stackLowerBound;
@@ -1389,7 +1389,7 @@
    void quick_sort(
    NUMERIC_ARRAY & numerica,
    COMPARE_INTERFACE * pinterface,
-   ::index(COMPARE_INTERFACE:: * fCompare)(index, index))
+   ::std::strong_ordering(COMPARE_INTERFACE:: * fCompare)(index, index))
    {
 
       index_array stackLowerBound;

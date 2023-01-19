@@ -1236,13 +1236,15 @@ namespace sockets_bsd
 
       int n = 0;
 
+      const char* psz = (const char *) buf;
+
 
 #ifdef HAVE_OPENSSL
 
       if(IsSSL())
       {
 
-         n = SSL_write(m_psslcontext->m_ssl,buf,(i32)len);
+         n = SSL_write(m_psslcontext->m_ssl,psz,(i32)len);
 
          if(n == -1)
          {

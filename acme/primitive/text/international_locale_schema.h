@@ -28,8 +28,8 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         atom                       m_atomLocale;
-         atom                       m_atomSchema;
+         ::atom                        m_atomLocale;
+         ::atom                        m_atomSchema;
 
          atom_array                 m_idaLocale;
          atom_array                 m_idaSchema;
@@ -40,17 +40,15 @@ namespace text
          ~locale_schema() override;
 
 
-         //::atom localeid(const ::scoped_string & scopedstrLocale);
+         //::atom  localeid(const char* pszLocale, strsize iLen);
 
 
-         virtual bool add_locale_variant(const ::atom & idLocale, const ::atom & idSchema);
+         virtual bool add_locale_variant(const ::atom &  idLocale, const ::atom &  Style);
          virtual bool end_prepare(bool bRtlLayout);
          //virtual void end_prepare();
 
-         bool defer_add_locale(const ::atom & idLocale, const ::atom & idSchema);
-         //bool defer_add_locale(const ::scoped_string & scopedstr, atom idStyle);
-         bool _add_locale_variant(const ::atom & idLocale, const ::atom & idSchema);
-         //bool _add_locale_variant(const ::scoped_string & scopedstr, atom idStyle);
+         bool defer_add_locale(const ::atom &  idLocale, const ::atom &  idStyle);
+         bool _add_locale_variant(const ::atom &  pszLocale, const ::atom &  idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -68,27 +66,6 @@ namespace text
       };
 
 
-      inline bool locale_schema::_add_locale_variant(const ::atom & idLocale, const ::atom & idSchema)
-      {
-
-         if (idLocale.is_empty())
-         {
-
-            return false;
-
-         }
-
-         return _add_locale_variant(idLocale, idSchema);
-
-      }
-
-
-      //inline bool locale_schema::defer_add_locale(const ::atom & idLocale, const ::atom & idSchema)
-      //{
-
-      //   return _add_locale_variant(idLocale, idSchema);
-
-      //}
 
 
       CLASS_DECL_ACME void create_rtl_map();

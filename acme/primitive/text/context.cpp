@@ -379,9 +379,9 @@ namespace text
             const schema * pschema = plocale->get_schema(idLocale);
             if(pschema != nullptr)
             {
-               table = (*pschema)[atom];
-               if(table.has_char())
-                  return table;
+               auto ptable = pschema->find_item(atom);
+               if(ptable && ptable->element2().has_char())
+                  return ptable->element2();
             }
          }
       }

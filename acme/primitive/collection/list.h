@@ -1,4 +1,4 @@
-// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSørensen!!
+﻿// iterator refactoring and range base class by camilo on 2022-12-09 20:12 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -370,6 +370,8 @@ public:
    // add before head or after tail
    iterator add_head(ARG_TYPE newElement);
    iterator add_tail(ARG_TYPE newElement);
+   iterator add_head(TYPE && newElement);
+   iterator add_tail(TYPE && newElement);
 
    void push_front(ARG_TYPE newElement);
    void push_back(ARG_TYPE newElement);
@@ -1834,6 +1836,71 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE 
    typename list < TYPE, ARG_TYPE >::iterator p;
 
    p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
+
+   p.back() = this->end();
+
+   p.next() = nullptr;
+
+   //pnodeNew->m_element = newElement;
+
+   if (this->end())
+      this->end().next() = p;
+   else
+      this->begin() = p;
+
+   this->end() = p;
+
+   this->m_count++;
+
+   return p;
+
+}
+
+template<class TYPE, class ARG_TYPE>
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(TYPE && newElement)
+{
+
+   ASSERT_VALID(this);
+
+   typename list < TYPE, ARG_TYPE >::iterator p;
+
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(::transfer(newElement));
+
+   p.back() = nullptr;
+
+   p.next() = this->begin();
+
+   if (this->begin())
+   {
+
+      this->begin().back() = p;
+
+   }
+   else
+   {
+
+      this->end() = p;
+
+   }
+
+   this->begin() = p;
+
+   this->m_count++;
+
+   return p;
+
+}
+
+
+template<class TYPE, class ARG_TYPE>
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(TYPE && newElement)
+{
+
+   ASSERT_VALID(this);
+
+   typename list < TYPE, ARG_TYPE >::iterator p;
+
+   p = memory_new typename list < TYPE, ARG_TYPE >::node(::transfer(newElement));
 
    p.back() = this->end();
 

@@ -772,6 +772,9 @@
     <ProjectReference Include="..\..\..\operating-system\operating-system-windows\acme_windows\acme_windows.vcxproj">
       <Project>{cc8e8200-00a9-414e-9829-7ca3f1091add}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\operating-system\operating-system-windows\apex_windows\apex_windows.vcxproj">
+      <Project>{c598e718-55ae-4d6e-81e0-53450fc3a649}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\acme\acme.vcxproj">
       <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>

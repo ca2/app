@@ -251,6 +251,10 @@ concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CON
 template < typename PAYLOAD >
 concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
 
+template < typename HAS_AS_STRING_NOT_PAYLOAD >
+concept has_as_string_not_payload = has_as_string < HAS_AS_STRING_NOT_PAYLOAD > && !primitive_payload<HAS_AS_STRING_NOT_PAYLOAD>;
+
+
 template < typename ATOM >
 concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRIMITIVE_ATOM_TAG_TYPE >::value;
 

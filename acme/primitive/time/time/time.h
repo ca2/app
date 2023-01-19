@@ -1,4 +1,4 @@
-// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -997,7 +997,7 @@ constexpr bool time::is_infinite() const
 constexpr bool time::is_null() const
 {
 
-   return m_iSecond == 0 && m_iNanosecond == 0;
+   return m_iSecond <= 0 || (m_iSecond == 0 && m_iNanosecond <= 0);
 
 }
 

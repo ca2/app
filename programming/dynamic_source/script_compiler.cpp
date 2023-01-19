@@ -13,6 +13,7 @@
 //#include "acme/filesystem/file/text_stream.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/operating_system/process.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/str.h"
@@ -24,7 +25,9 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/file/watcher.h"
 #include "apex/networking/http/context.h"
+#include "aura/platform/application.h"
 #include "axis/platform/system.h"
+
 
 
 #include <sys/stat.h>
@@ -86,6 +89,12 @@ namespace dynamic_source
    void script_compiler::init1()
    {
 
+      acmenode()->integration_factory();
+
+      //__construct(m_pintegrationcontext);
+
+      m_strPlatform = "x64";
+
       prepare_compile_and_link_environment();
 
       folder_watch();
@@ -99,13 +108,16 @@ namespace dynamic_source
    }
 
 
-//   void script_compiler::prepare_compile_and_link_environment()
-//   {
-//
-//      auto pacmedirectory = acmedirectory();
-//
-//      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
-//
+   void script_compiler::prepare_compile_and_link_environment()
+   {
+
+      auto pacmedirectory = acmedirectory();
+
+      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
+
+
+      ::apex_windows::integration::context::prepare_compile_and_link_environment();
+
 //      ::file::path strVars;
 //
 //#ifdef WINDOWS_DESKTOP
@@ -129,7 +141,7 @@ namespace dynamic_source
 //         if (m_strVs == "2022")
 //         {
 //
-//            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Thumbnail/VC/Auxiliary/Build/vcvarsall.bat";
+//            m_strContext = "C:/Program Files/Microsoft Visual Studio/2022/Thumbnail/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            m_strVCVersion = papp->get_visual_studio_build();
 //
@@ -137,7 +149,7 @@ namespace dynamic_source
 //         else if (m_strVs == "2019")
 //         {
 //
-//            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//            m_strContext = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            m_strVCVersion = papp->get_visual_studio_build();
 //
@@ -145,7 +157,7 @@ namespace dynamic_source
 //         else if (m_strVs == "2017")
 //         {
 //
-//            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//            m_strContext = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            ::acme_windows::registry::key key;
 //
@@ -157,7 +169,7 @@ namespace dynamic_source
 //
 //            ::file::path path = strPath;
 //
-//            m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//            m_strContext = path / "VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            m_strVCVersion = papp->get_visual_studio_build();
 //
@@ -165,9 +177,9 @@ namespace dynamic_source
 //         else if (m_strVs == "2015")
 //         {
 //
-//            m_strEnv = strVars.up(2);
+//            m_strContext = strVars.up(2);
 //
-//            m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
+//            m_strContext = m_strContext / "vc\\vcvarsall.bat";
 //
 //         }
 //
@@ -180,10 +192,10 @@ namespace dynamic_source
 //      }
 //
 //#endif
-//
-//      m_strTime = dir()->install() / "time-" OPERATING_SYSTEM_NAME;
-//
-//#ifdef WINDOWS_DESKTOP
+
+      m_strTime = dir()->install() / "time-" OPERATING_SYSTEM_NAME;
+
+      //#ifdef WINDOWS_DESKTOP
 //
 //      if (m_strVs == "2015")
 //      {
@@ -255,32 +267,32 @@ namespace dynamic_source
 //      prepare1(m_strPlat1,m_strPlat1);
 //
 //#endif
-//
-//      dir()->create(dir()->install()/m_strDynamicSourceStage / "front");
-//
-//      string str;
-//
-//      string strItem;
-//
-//      strItem = dir()->install() / m_strDynamicSourceStage /m_strStagePlatform;
-//
-//      str = str + strItem + ";";
-//
-//      strItem = dir()->install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
-//
-//      str = str + strItem + ";";
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-//      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
-//      dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
-//      str += lpsz;
-//      delete lpsz;
-//
-//#endif
-//
-//   }
+
+      dir()->create(dir()->install()/m_strDynamicSourceStage / "front");
+
+      string str;
+
+      string strItem;
+
+      strItem = dir()->install() / m_strDynamicSourceStage /m_strStagePlatform;
+
+      str = str + strItem + ";";
+
+      strItem = dir()->install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
+
+      str = str + strItem + ";";
+
+#ifdef WINDOWS_DESKTOP
+
+      u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
+      dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
+      str += lpsz;
+      delete lpsz;
+
+#endif
+
+   }
 
 
    void script_compiler::compile(ds_script * pscript)
@@ -417,7 +429,7 @@ namespace dynamic_source
       
       ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" OPERATING_SYSTEM_NAME "\\intermediate\\x64\\" + m_strDynamicSourceConfiguration + "\\app-core\\netnode_dynamic_source_script";
 
-      ::file::path pathSourceDVP = pathSourceNetnodeDSS / m_strSdk1 + ".pdb";
+      ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_strSdk1 + ".pdb");
 
       //::file::path pathCompiler;
 
@@ -724,7 +736,7 @@ namespace dynamic_source
       str.find_replace("%ITEM_TITLE%",strItemTitle);
       str.find_replace("%ITEM_DIR%",::str::replace_with("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-      str.find_replace("%VS_VARS%",m_strEnv);
+      str.find_replace("%VS_VARS%",m_strContext);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
@@ -892,7 +904,7 @@ namespace dynamic_source
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strEnv);
+         str.find_replace("%VS_VARS%",m_strContext);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
@@ -1542,7 +1554,7 @@ namespace dynamic_source
          str.find_replace("%ITEM_TITLE%",l.m_straLibCppPath[i].name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strEnv);
+         str.find_replace("%VS_VARS%",m_strContext);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 

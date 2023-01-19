@@ -25,10 +25,10 @@
 //inline ::payload & payload::operator += (const ::inline_number_string & inline_number_string) { return *this = (*this + inline_number_string); }
 
 
-inline ::string payload::get_string() const
+inline ::string payload::as_string() const
 {
 
-   return this->get_string(nullptr);
+   return this->as_string(nullptr);
 
 }
 
@@ -789,7 +789,7 @@ template < typename CHAR_TYPE >
 inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, const ::payload & payload)
 {
 
-   string = payload.get_string();
+   string = payload.as_string();
 
    return string;
 
@@ -920,7 +920,7 @@ inline void copy(::payload & payload1, const ::payload & payload2)
 
 template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-   string(payload.get_string())
+   string(payload.as_string())
 {
 
 
@@ -931,7 +931,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
 {
 
-   assign(payload.get_string());
+   assign(payload.as_string());
 
    return *this;
 
@@ -960,7 +960,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::pa
    else
    {
 
-      return append(payload.get_string());
+      return append(payload.as_string());
 
    }
 
@@ -1021,16 +1021,16 @@ namespace file
 
 
 
-template < character_range RANGE, primitive_payload PAYLOAD >
-::string operator + (const RANGE & range, const PAYLOAD & payload)
-{
-
-   string str(range);
-
-   str.append(payload.get_string());
-
-   return str;
-
-}
+//template < character_range RANGE, primitive_payload PAYLOAD >
+//::string operator + (const RANGE & range, const PAYLOAD & payload)
+//{
+//
+//   string str(range);
+//
+//   str.append(payload.get_string());
+//
+//   return str;
+//
+//}
 
 

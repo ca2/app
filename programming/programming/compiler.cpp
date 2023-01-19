@@ -45,7 +45,7 @@ namespace programming
 
       //auto estatus = 
       
-      ::matter::initialize(pparticle);
+      ::apex_windows::integration::context::initialize(pparticle);
 
       //if (!estatus)
       //{
@@ -336,13 +336,13 @@ namespace programming
       string strLog;
 
 
-      ::pointer<::apex::application>papp = get_app();
+      ::pointer<::apex::application>papp = acmeapplication();
 
 
 #ifdef WINDOWS
       //sleep(15000_ms);
 
-      string strBuildCmd = m_strEnv;
+      string strBuildCmd = m_strContext;
 
       if (m_strVs == "2015")
       {
@@ -404,7 +404,7 @@ namespace programming
       for (auto& pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->get_string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->as_string()));
 
       }
 
@@ -622,7 +622,7 @@ namespace programming
       /*string strVars = getenv("VS100COMNTOOLS");
       file()->path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
-      str.find_replace("%VS_VARS%", m_strEnv);
+      str.find_replace("%VS_VARS%", m_strContext);
       str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
 
       string strV(dir()->install());

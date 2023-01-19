@@ -225,9 +225,9 @@ atom::atom(const RANGE & range) :
 }
 
 
-template < has_as_string HAS_AS_STRING >
-atom::atom(const HAS_AS_STRING & has_as_string) :
-   m_str(has_as_string)
+template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
+atom::atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload) :
+   m_str(has_as_string_not_payload)
 {
 
    m_etype = e_type_text;
@@ -1658,7 +1658,7 @@ atom::atom(const PAYLOAD & payload)
    else
    {
 
-      operator = (payload.get_string());
+      operator = (payload.as_string());
 
    }
 

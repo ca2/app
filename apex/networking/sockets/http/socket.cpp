@@ -289,7 +289,7 @@ namespace sockets
             m_request.m_strRequestUri = strScript + ::str::has_char(strQuery, "?");
             m_request.attr("request_uri") = m_request.m_strRequestUri;
             m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = m_request.attr("http_version").get_string().ends("/1.1");
+            m_b_http_1_1 = m_request.attr("http_version").as_string().ends("/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -617,7 +617,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string strValue = pproperty->get_string();
+         string strValue = pproperty->as_string();
 
          if (pproperty->name() == "content-type")
          {

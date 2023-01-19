@@ -29,6 +29,11 @@ public:
 
    }
 
+   list_node(ITEM && t) :
+      m_element(::transfer(t))
+   {
+
+   }
 
    operator TYPE & () { return m_element; }
    operator const TYPE & () const { return (const TYPE & ) m_element; }

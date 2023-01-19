@@ -1575,12 +1575,12 @@ namespace user
 
             newName = m_strTitle;
             // check for dubious filename
-            strsize iBad = newName.get_string().find_first_character_in_index(":/\\");
+            strsize iBad = newName.as_string().find_first_character_in_index(":/\\");
 
             if (iBad != -1)
             {
 
-               newName = newName.get_string().left(iBad);
+               newName = newName.as_string().left(iBad);
 
             }
 
@@ -1595,7 +1595,7 @@ namespace user
 
                strsize iStart = 0;
 
-               newName = newName.get_string() + strExt.Tokenize(";", iStart);
+               newName = newName.as_string() + strExt.Tokenize(";", iStart);
 
             }
 

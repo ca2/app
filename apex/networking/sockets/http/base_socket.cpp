@@ -113,7 +113,7 @@ namespace sockets
 
       }
 
-      if(m_request.attr("request_uri").get_string().find_index("/passthrough/") >= 0)
+      if(m_request.attr("request_uri").as_string().find_index("/passthrough/") >= 0)
       {
          
          INFORMATION("Passthrough");
@@ -123,7 +123,7 @@ namespace sockets
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").get_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
 
       }
       else
@@ -143,7 +143,7 @@ namespace sockets
       if(m_request.headers().has_property("accept-language"))
       {
 
-         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").get_string().c_str());
+         FORMATTED_INFORMATION("accept-language: %s", m_request.header("accept-language").as_string().c_str());
 
       }
 
@@ -203,8 +203,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader("content-type").get_string().contains("text")
-            || outheader("content-type").get_string().contains("javascript"))
+      if(outheader("content-type").as_string().contains("text")
+            || outheader("content-type").as_string().contains("javascript"))
       {
 
          on_compress();
@@ -331,7 +331,7 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").get_string().contains("gzip"))
+      if(inheader("accept-encoding").as_string().contains("gzip"))
       {
 
          string str = outheader("content-type");
@@ -395,7 +395,7 @@ namespace sockets
       {
          outheader("content-type") = "text/plain";
       }
-      else if (outheader("content-type").get_string().has_char())
+      else if (outheader("content-type").as_string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.case_insensitive_order("unknown") != 0)

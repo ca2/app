@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/tab_impact.h"
@@ -6,11 +6,11 @@
 #include "apex/platform/app_consumer.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING tab_impact :
+   class CLASS_DECL_APP_INTEGRATION tab_impact :
       virtual public application_interaction < application, ::user::tab_impact >,
       virtual public ::user::form_callback
    {
@@ -18,7 +18,7 @@ namespace app_simple_drawing
 
 
       ::user::split_impact *                            m_ptopviewLast;
-      ::pointer<::app_simple_drawing::impact>       m_pimpactDrawing;
+      //::pointer<::app_integration::impact>       m_pimpactDrawing;
       string                                          m_strTopicTitle;
 
 

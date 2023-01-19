@@ -29,11 +29,11 @@
 #include "apex/platform/app_consumer.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING render :
+   class CLASS_DECL_APP_INTEGRATION render :
       virtual public app_consumer < application >
    {
    public:

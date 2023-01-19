@@ -3,7 +3,8 @@
 
 
 #include "acme/filesystem/filesystem/path.h"
-//#include "acme/primitive/primitive/matter.h"
+#include "apex/platform/integration_context.h"
+#include "apex_windows/integration_context.h"
 
 
 namespace programming
@@ -11,7 +12,7 @@ namespace programming
 
 
    class CLASS_DECL_APP_PROGRAMMING compiler :
-      virtual public ::matter
+      virtual public ::apex_windows::integration::context
    {
    protected:
 
@@ -19,34 +20,34 @@ namespace programming
 
    public:
 
-
-      ::file::path                              m_pathProjectDir;
+      //::pointer < ::integration::context >      m_pintegrationcontext;
+      //::file::path                              m_pathProjectDir;
       string                                    m_strDynamicSourceConfiguration;
       ::file::path                              m_strDynamicSourceStage;
       ::file::path                              m_strDynamicSourceStageFolder;
 
 
-      string                                    m_strLibPlatform;
+      //string                                    m_strLibPlatform;
 
 
-      string                                    m_strPlatform;
-      string                                    m_strStagePlatform;
+      //string                                    m_strPlatform;
+      //string                                    m_strStagePlatform;
 
 
 #ifdef WINDOWS
-      string                                    m_strVs;
-      string                                    m_strVsTools;
-      string                                    m_strVCVersion;
+      //string                                    m_strVs;
+      //string                                    m_strVsTools;
+      //string                                    m_strVCVersion;
 #endif
 
-      string                                    m_strSdk1;
+      //string                                    m_strSdk1;
 
 
-      string                                    m_strPlat1;
-      string                                    m_strPlat2;
+      //string                                    m_strPlat1;
+      //string                                    m_strPlat2;
       ::file::path                              m_strTime;
 
-      string                                    m_strEnv;
+      //string                                    m_strEnv;
 
 
       compiler();

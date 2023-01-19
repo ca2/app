@@ -1,47 +1,35 @@
-﻿// Created by camilo on 2022-03-23 11:55 PM <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
-#include "framework.h"
+﻿#include "framework.h"
 #include "render.h"
-#include "application.h"
 #include <math.h>
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/brush.h"
-#include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "application.h"
 
 
 CLASS_DECL_ACME ::color::color dk_red(); // <3 tbs
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
-   void render::_001OnDrawCirclePath(::draw2d::graphics_pointer & pgraphics)
+   void render::_001OnDrawBoxGradient(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->text_out(100, 50, "Circle Path (300, 300) - (800, 800) r = 250");
+      pgraphics->text_out(100, 50, "Round Rectangle (100, 100) - (900, 500) r = 100");
 
-      ::rectangle_f64 r(300, 300, 800, 800);
+      ::rectangle_f64 r(100, 100, 900, 500);
 
       double Δx = m_rectangle.width() / 1000.0;
 
-      double Δy = m_rectangle.height() / 900.0;
+      double Δy = m_rectangle.height() / 600.0;
 
       double d = minimum(Δx, Δy);
 
       r *= d;
-
-      ::draw2d::path_pointer ppath;
-
-      __construct(ppath);
-
-      ppath->begin_figure();
-
-      ppath->add_ellipse(r);
-
-      ppath->close_figure();
 
       double radius = 100 * d;
 
@@ -70,9 +58,9 @@ namespace app_simple_drawing
 
       pbrush->CreateBoxGradientBrush(r.top_left(), r.size(), radius, ::dk_red(), ::color::transparent);
 
-      pgraphics->fill(ppath, pbrush);
+      pgraphics->fill_round_rectangle(r, pbrush, radius);
 
-      pgraphics->draw(ppath, ppen);
+      pgraphics->::draw2d::graphics::draw_round_rectangle(r, ppen, radius);
 
       draw_text(pgraphics);
 

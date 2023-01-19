@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SimpleDrawing.SimpleDrawing">
-      <uap:VisualElements DisplayName="SimpleDrawing" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="Simple Drawing" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="SimpleDrawing" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="Integration" BackgroundColor="transparent">
         <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.png" />
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.png" ShortName="Beat Mapper!!" Square310x310Logo="assets\Square310.png" Square71x71Logo="Assets\Square71.png">
           <uap:ShowNameOnTiles>

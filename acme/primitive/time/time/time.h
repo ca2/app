@@ -1,4 +1,4 @@
-// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -89,7 +89,12 @@ public:
    }
 
    template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-   constexpr time(enum_raw, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond);
+   constexpr time(enum_raw, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond)
+   {
+         m_iSecond = iSecond;
+
+         m_iNanosecond = iNanosecond;
+   }
 
    template < primitive_integral INTEGRAL1 >
    constexpr time(enum_raw, INTEGRAL1 iSecond) : time(e_raw, iSecond, 0) {}
@@ -871,16 +876,16 @@ public:
 
 //inline doubled floatingtime() { return ::get_floating_second(); }
 
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
-{
-
-   m_iSecond = iSeconds;
-
-   m_iNanosecond = iNanoseconds;
-
-}
-
+//template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+//constexpr  time::time(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
+//{
+//
+//   m_iSecond = iSeconds;
+//
+//   m_iNanosecond = iNanoseconds;
+//
+//}
+//
 //template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
 //constexpr  time::time(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 //{
@@ -992,7 +997,7 @@ constexpr bool time::is_infinite() const
 constexpr bool time::is_null() const
 {
 
-   return m_iSecond == 0 && m_iNanosecond == 0;
+   return m_iSecond <= 0 || (m_iSecond == 0 && m_iNanosecond <= 0);
 
 }
 

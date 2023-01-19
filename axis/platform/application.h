@@ -34,91 +34,91 @@ namespace axis
       ~application() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
+      void initialize(::particle * pparticle) override;
 
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
-      virtual bool assert_user_logged_in() override;
+      bool assert_user_logged_in() override;
 
-      virtual string __get_text(string str) override;
+       string __get_text(string str) override;
 
       //virtual ::user::style* get_user_style() const;
     
-      virtual ::string calc_data_key() override;
+      ::string calculate_data_key() override;
 
 
 
 
       virtual ::simpledb::server * simpledb();
-      virtual ::database::server * dataserver() override;
+      ::database::server * dataserver() override;
 
 
-      virtual void verb() override;
+      void verb() override;
 
 
-      virtual bool Ex2OnAppInstall() override;
-      virtual bool Ex2OnAppUninstall() override;
+      bool Ex2OnAppInstall() override;
+      bool Ex2OnAppUninstall() override;
 
       //virtual void init_application() override;
 
-      virtual void init1() override;
-      virtual void init2() override;
-      virtual void init3() override;
+      void init1() override;
+      void init2() override;
+      void init3() override;
 
 
-      virtual void init() override;
+      void init() override;
 
 
-      virtual void init_instance() override;
+      void init_instance() override;
 
 
-      virtual void     run() override;
-      //virtual void     main() override;
-      virtual void     on_run() override;
+      void run() override;
+      //void     main() override;
+      void on_run() override;
 
-      virtual void application_pre_run() override;
-      virtual void os_native_bergedge_start() override;
-
-
-
-
-
-      virtual void term() override;
-
-
-      virtual void term_application() override;
-
-
-
-
-      //virtual bool InitApplication() override;
-
-
-      virtual void process_init() override;
+      void application_pre_run() override;
+      void os_native_bergedge_start() override;
 
 
 
 
 
+      void term() override;
 
 
-
-      //virtual bool app_data_set(const ::atom & atom, stream & os) override;
-      //virtual bool app_data_get(const ::atom & atom, stream & is) override;
-
-      virtual bool app_data_set(const ::atom & atom, ::object & obj) override;
-      virtual bool app_data_get(const ::atom & atom, ::object & obj) override;
+      void term_application() override;
 
 
 
 
-      virtual void process_term() override;
+      //bool InitApplication() override;
 
 
-      virtual void term1() override;
-      virtual void term2() override;
-      virtual void term3() override;
+      void process_init() override;
+
+
+
+
+
+
+
+
+      //bool app_data_set(const ::atom & atom, stream & os) override;
+      //bool app_data_get(const ::atom & atom, stream & is) override;
+
+      bool app_data_set(const ::atom & atom, ::object & obj) override;
+      bool app_data_get(const ::atom & atom, ::object & obj) override;
+
+
+
+
+      void process_term() override;
+
+
+      void term1() override;
+      void term2() override;
+      void term3() override;
 
 
 
@@ -147,7 +147,7 @@ namespace axis
 
 
 
-      virtual void interactive_credentials(::account::credentials * pcredentials) override;
+      void interactive_credentials(::account::credentials * pcredentials) override;
 
   
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
@@ -157,7 +157,7 @@ namespace axis
       virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
      
-      virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
+      ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
 //      void handle_url(const ::string & strUrl) override;
 

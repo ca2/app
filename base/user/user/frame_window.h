@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/main_window.h"
@@ -152,6 +152,9 @@ namespace user
       bool LoadAccelTable(const ::string & pszResourceName);
 
       //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::string & pszMenuName = nullptr, u32 dwExStyle = 0, ::request * prequest = nullptr);
+
+      
+      ::string calculate_data_key() override;
 
 
       virtual bool LoadFrame(const ::string & pszMatter,

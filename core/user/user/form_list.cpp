@@ -819,7 +819,7 @@ namespace user
          if (echeck == ::e_check_checked)
          {
 
-            string str(pinteraction->m_setValue[::e_check_checked].get_string());
+            string str(pinteraction->m_setValue[::e_check_checked].as_string());
 
             if (str.has_char())
             {
@@ -838,7 +838,7 @@ namespace user
          else if (echeck == ::e_check_unchecked)
          {
 
-            string str(pinteraction->m_setValue[::e_check_unchecked].get_string());
+            string str(pinteraction->m_setValue[::e_check_unchecked].as_string());
 
             if (str.has_char())
             {
@@ -857,7 +857,7 @@ namespace user
          else
          {
 
-            string str(pinteraction->m_setValue[::e_check_tristate].get_string());
+            string str(pinteraction->m_setValue[::e_check_tristate].as_string());
 
             if (str.has_char())
             {
@@ -959,7 +959,7 @@ namespace user
 
          auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
 
-         psubitem->m_strText = payload.get_string();
+         psubitem->m_strText = payload.as_string();
 
          _001SetSubItemText(psubitem);
 

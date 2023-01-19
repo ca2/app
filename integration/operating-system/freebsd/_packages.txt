@@ -1,4 +1,4 @@
-app-simple/app_simple_drawing
+app-simple/app_integration
 app/base
 app/axis
 app/aura

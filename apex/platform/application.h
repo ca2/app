@@ -1068,7 +1068,7 @@ namespace apex
 
       virtual void on_song_added(const string & str);
 
-      string get_visual_studio_build();
+      //string get_visual_studio_build();
 
 
       virtual string sound_path(const ::string & psz);

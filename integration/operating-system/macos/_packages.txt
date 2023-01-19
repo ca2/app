@@ -1,4 +1,4 @@
-app-simple/app_simple_drawing
+app-simple/app_integration
 platform-apple/draw2d_quartz2d
 app/experience_core
 platform-apple/imaging_coreimage

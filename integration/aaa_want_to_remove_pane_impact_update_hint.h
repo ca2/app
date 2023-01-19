@@ -13,7 +13,7 @@ namespace simple_drawing
    };
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING ::update :
+   class CLASS_DECL_APP_INTEGRATION ::update :
       public object
    {
    public:

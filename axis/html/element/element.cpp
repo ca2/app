@@ -1819,7 +1819,7 @@ namespace html
 
             str += "\"";
 
-            str += pproperty->get_string();
+            str += pproperty->as_string();
 
             str += "\"";
 

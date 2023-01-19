@@ -4,11 +4,11 @@
 #include "base/user/simple/main_frame.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING main_frame :
+   class CLASS_DECL_APP_INTEGRATION main_frame :
       virtual public simple_main_frame
    {
    public:

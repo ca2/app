@@ -3,7 +3,7 @@
 #include "acme/constant/message.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
@@ -102,7 +102,7 @@ namespace app_simple_drawing
    void main_frame::on_message_create(::message::message * pmessage)
    {
 
-      set_bitmap_source("Simple Drawing!!");
+      set_bitmap_source("Integration!!");
 
    }
 

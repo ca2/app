@@ -4,11 +4,11 @@
 #include "base/user/user/document.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING document :
+   class CLASS_DECL_APP_INTEGRATION document :
       public ::user::document
    {
    public:

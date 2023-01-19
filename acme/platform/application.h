@@ -139,6 +139,9 @@ namespace acme
       virtual ::pointer<::handle::ini>get_ini();
 
 
+      virtual ::string get_visual_studio_build();
+
+
    };
 
 

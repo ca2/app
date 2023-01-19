@@ -34,7 +34,7 @@
     <ClCompile Include="render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_1through3.cpp">
+    <ClCompile Include="ffmpeg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render_arcs.cpp">
@@ -50,6 +50,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ffmpeg1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tab_impact.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ffmpeg1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

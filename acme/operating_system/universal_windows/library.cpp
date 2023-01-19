@@ -203,7 +203,7 @@ namespace acme
    void * system::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
-      return ::GetProcAddress((HINSTANCE)plibrary, pszEntryName);
+      return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
 
    }
 

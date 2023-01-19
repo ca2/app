@@ -9,7 +9,7 @@
   <line>Memcheck, a memory error detector</line>
   <line>Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.</line>
   <line>Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info</line>
-  <line>Command: /xcore/app-simple/simple_drawing/../../../time/x64/basis/app_simple_drawing</line>
+  <line>Command: /xcore/app-simple/simple_drawing/../../../time/x64/basis/app_integration</line>
 </preamble>
 
 <pid>17217</pid>
@@ -25,7 +25,7 @@
     <arg>--xml-file=/xcore/app-simple/simple_drawing/ValgrindOut.xml</arg>
   </vargv>
   <argv>
-    <exe>/xcore/app-simple/simple_drawing/../../../time/x64/basis/app_simple_drawing</exe>
+    <exe>/xcore/app-simple/simple_drawing/../../../time/x64/basis/app_integration</exe>
   </argv>
 </args>
 
@@ -128,7 +128,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -5533,7 +5533,7 @@
     </frame>
     <frame>
       <ip>0xD47FC0E</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>apex::single_application_library&lt;simple_drawing::application&gt;::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura.inl</file>
@@ -5700,7 +5700,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -5708,7 +5708,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -5812,7 +5812,7 @@
     </frame>
     <frame>
       <ip>0x10B5C1</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>string_manager::Reallocate(string_data*, long)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/primitive/str</dir>
       <file>str_simple.h</file>
@@ -5862,7 +5862,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -5870,7 +5870,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -5975,7 +5975,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -5983,7 +5983,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6088,7 +6088,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6096,7 +6096,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6201,7 +6201,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6209,7 +6209,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6314,7 +6314,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6322,7 +6322,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6427,7 +6427,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6435,7 +6435,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6540,7 +6540,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6548,7 +6548,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6661,7 +6661,7 @@
     </frame>
     <frame>
       <ip>0xD48CA8D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6669,7 +6669,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6766,7 +6766,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6774,7 +6774,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6879,7 +6879,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6887,7 +6887,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -6992,7 +6992,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7000,7 +7000,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7105,7 +7105,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7113,7 +7113,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7218,7 +7218,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7226,7 +7226,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7331,7 +7331,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7339,7 +7339,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7444,7 +7444,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7452,7 +7452,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7557,7 +7557,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7565,7 +7565,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7670,7 +7670,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7678,7 +7678,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7783,7 +7783,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7791,7 +7791,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7896,7 +7896,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -7904,7 +7904,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -8009,7 +8009,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -8017,7 +8017,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -8122,7 +8122,7 @@
     </frame>
     <frame>
       <ip>0xD48CAAE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>bool database::client::data_var_get&lt;string&gt;(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -8130,7 +8130,7 @@
     </frame>
     <frame>
       <ip>0xD48BC0C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>database::client::data_get(database::key const&amp;, string&amp;)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/axis/database/database</dir>
       <file>database_client.h</file>
@@ -8782,7 +8782,7 @@
     </frame>
     <frame>
       <ip>0x10B5C1</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>string_manager::Reallocate(string_data*, long)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/primitive/str</dir>
       <file>str_simple.h</file>
@@ -10049,7 +10049,7 @@
     </frame>
     <frame>
       <ip>0xD47F804</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::main_frame, simple_drawing::main_frame&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -10057,7 +10057,7 @@
     </frame>
     <frame>
       <ip>0xD47F795</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::main_frame&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -10105,7 +10105,7 @@
     </frame>
     <frame>
       <ip>0xD476533</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::on_request(create*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -17001,7 +17001,7 @@
     </frame>
     <frame>
       <ip>0xD47FC0E</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>apex::single_application_library&lt;simple_drawing::application&gt;::get_new_application(object*, char const*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura.inl</file>
@@ -17168,7 +17168,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -17582,7 +17582,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -17757,7 +17757,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -18171,7 +18171,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -18776,7 +18776,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -18975,7 +18975,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -19365,7 +19365,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -19548,7 +19548,7 @@
     </frame>
     <frame>
       <ip>0xD476325</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::term_application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -25802,7 +25802,7 @@
     </frame>
     <frame>
       <ip>0xD475A80</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::~application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -25810,7 +25810,7 @@
     </frame>
     <frame>
       <ip>0xD475CD9</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::~application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -26041,7 +26041,7 @@
     </frame>
     <frame>
       <ip>0xD475A80</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::~application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -26049,7 +26049,7 @@
     </frame>
     <frame>
       <ip>0xD475CD9</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::~application()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -27546,7 +27546,7 @@
     </frame>
     <frame>
       <ip>0x10B5C1</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>string_manager::Reallocate(string_data*, long)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/primitive/str</dir>
       <file>str_simple.h</file>
@@ -29957,7 +29957,7 @@
     </frame>
     <frame>
       <ip>0xD47E698</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -30355,7 +30355,7 @@
     </frame>
     <frame>
       <ip>0xD47E7D4</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::main_impact, simple_drawing::main_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -30554,7 +30554,7 @@
     </frame>
     <frame>
       <ip>0xD47E910</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::view, simple_drawing::view&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -30753,7 +30753,7 @@
     </frame>
     <frame>
       <ip>0xD47EA4C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;user::show&lt;user::button&gt;, user::show&lt;user::button&gt; &gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -30952,7 +30952,7 @@
     </frame>
     <frame>
       <ip>0xD47EB88</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::main_frame, simple_drawing::main_frame&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -31151,7 +31151,7 @@
     </frame>
     <frame>
       <ip>0xD47ECC4</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::frame, simple_drawing::frame&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -31350,7 +31350,7 @@
     </frame>
     <frame>
       <ip>0xD47EE00</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::document, simple_drawing::document&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -60207,7 +60207,7 @@
     </frame>
     <frame>
       <ip>0xD4835F0</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::document::~document()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_document.cpp</file>
@@ -60215,7 +60215,7 @@
     </frame>
     <frame>
       <ip>0xD483755</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::document::~document()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_document.cpp</file>
@@ -60413,7 +60413,7 @@
     </frame>
     <frame>
       <ip>0xD4835F0</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::document::~document()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_document.cpp</file>
@@ -60421,7 +60421,7 @@
     </frame>
     <frame>
       <ip>0xD483755</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::document::~document()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_document.cpp</file>
@@ -60849,7 +60849,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -61435,7 +61435,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -61625,7 +61625,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -62013,7 +62013,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -62131,7 +62131,7 @@
     </frame>
     <frame>
       <ip>0xD47F022</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>apex::single_application_library&lt;simple_drawing::application&gt;::~single_application_library()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_library.h</file>
@@ -62559,7 +62559,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -62567,7 +62567,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -62717,7 +62717,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -62725,7 +62725,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -62867,7 +62867,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -62875,7 +62875,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63009,7 +63009,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63017,7 +63017,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63183,7 +63183,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63191,7 +63191,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63357,7 +63357,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63365,7 +63365,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63547,7 +63547,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63555,7 +63555,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63721,7 +63721,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63729,7 +63729,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -63887,7 +63887,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -63895,7 +63895,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64053,7 +64053,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64061,7 +64061,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64219,7 +64219,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64227,7 +64227,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64401,7 +64401,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64409,7 +64409,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64567,7 +64567,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64575,7 +64575,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64733,7 +64733,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64741,7 +64741,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -64899,7 +64899,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -64907,7 +64907,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -65065,7 +65065,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -65073,7 +65073,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -65231,7 +65231,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -65239,7 +65239,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -65413,7 +65413,7 @@
     </frame>
     <frame>
       <ip>0x10BBA4</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -65421,7 +65421,7 @@
     </frame>
     <frame>
       <ip>0x10B407</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -67737,7 +67737,7 @@
     </frame>
     <frame>
       <ip>0x10B3E9</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -69269,7 +69269,7 @@
     </frame>
     <frame>
       <ip>0xD476533</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::on_request(create*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -69550,7 +69550,7 @@
     </frame>
     <frame>
       <ip>0xD476533</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::on_request(create*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -75117,7 +75117,7 @@
     </frame>
     <frame>
       <ip>0xD475EA0</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::init_instance()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>
@@ -89792,7 +89792,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -89898,7 +89898,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90004,7 +90004,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90110,7 +90110,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90216,7 +90216,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90306,7 +90306,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90412,7 +90412,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90518,7 +90518,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90624,7 +90624,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90730,7 +90730,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -90836,7 +90836,7 @@
     </frame>
     <frame>
       <ip>0xD488550</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::main_frame::experience_get_frame()</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_main_frame.cpp</file>
@@ -91358,7 +91358,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -91366,7 +91366,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91374,7 +91374,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91464,7 +91464,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -91472,7 +91472,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91480,7 +91480,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91570,7 +91570,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -91578,7 +91578,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91586,7 +91586,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91676,7 +91676,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -91684,7 +91684,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -91692,7 +91692,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98101,7 +98101,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98109,7 +98109,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98117,7 +98117,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98207,7 +98207,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98215,7 +98215,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98223,7 +98223,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98313,7 +98313,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98321,7 +98321,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98329,7 +98329,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98419,7 +98419,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98427,7 +98427,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98435,7 +98435,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98525,7 +98525,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98533,7 +98533,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98541,7 +98541,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98631,7 +98631,7 @@
     </frame>
     <frame>
       <ip>0xD492F44</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98639,7 +98639,7 @@
     </frame>
     <frame>
       <ip>0xD47F294</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98647,7 +98647,7 @@
     </frame>
     <frame>
       <ip>0xD47F213</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -98745,7 +98745,7 @@
     </frame>
     <frame>
       <ip>0xD494C4D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98753,7 +98753,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -98851,7 +98851,7 @@
     </frame>
     <frame>
       <ip>0xD494C4D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98859,7 +98859,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -98957,7 +98957,7 @@
     </frame>
     <frame>
       <ip>0xD494C4D</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -98965,7 +98965,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99063,7 +99063,7 @@
     </frame>
     <frame>
       <ip>0xD494CDE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99071,7 +99071,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99169,7 +99169,7 @@
     </frame>
     <frame>
       <ip>0xD494CDE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99177,7 +99177,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99275,7 +99275,7 @@
     </frame>
     <frame>
       <ip>0xD494CDE</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99283,7 +99283,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99381,7 +99381,7 @@
     </frame>
     <frame>
       <ip>0xD494D69</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99389,7 +99389,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99487,7 +99487,7 @@
     </frame>
     <frame>
       <ip>0xD494D69</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99495,7 +99495,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99593,7 +99593,7 @@
     </frame>
     <frame>
       <ip>0xD494D69</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99601,7 +99601,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99699,7 +99699,7 @@
     </frame>
     <frame>
       <ip>0xD494DF4</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99707,7 +99707,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99805,7 +99805,7 @@
     </frame>
     <frame>
       <ip>0xD494DF4</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99813,7 +99813,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -99911,7 +99911,7 @@
     </frame>
     <frame>
       <ip>0xD494DF4</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -99919,7 +99919,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100017,7 +100017,7 @@
     </frame>
     <frame>
       <ip>0xD494E7F</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100025,7 +100025,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100123,7 +100123,7 @@
     </frame>
     <frame>
       <ip>0xD494E7F</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100131,7 +100131,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100229,7 +100229,7 @@
     </frame>
     <frame>
       <ip>0xD494E7F</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100237,7 +100237,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100335,7 +100335,7 @@
     </frame>
     <frame>
       <ip>0xD494F0A</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100343,7 +100343,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100441,7 +100441,7 @@
     </frame>
     <frame>
       <ip>0xD494F0A</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100449,7 +100449,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100547,7 +100547,7 @@
     </frame>
     <frame>
       <ip>0xD494F0A</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100555,7 +100555,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100653,7 +100653,7 @@
     </frame>
     <frame>
       <ip>0xD494F93</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100661,7 +100661,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100759,7 +100759,7 @@
     </frame>
     <frame>
       <ip>0xD494F93</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100767,7 +100767,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100865,7 +100865,7 @@
     </frame>
     <frame>
       <ip>0xD494F93</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100873,7 +100873,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -100971,7 +100971,7 @@
     </frame>
     <frame>
       <ip>0xD49501C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -100979,7 +100979,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -101077,7 +101077,7 @@
     </frame>
     <frame>
       <ip>0xD49501C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -101085,7 +101085,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -101183,7 +101183,7 @@
     </frame>
     <frame>
       <ip>0xD49501C</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -101191,7 +101191,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -101658,7 +101658,7 @@
     </frame>
     <frame>
       <ip>0xD494BB6</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_impact.cpp</file>
@@ -101666,7 +101666,7 @@
     </frame>
     <frame>
       <ip>0xD49D09B</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
@@ -106120,7 +106120,7 @@
     </frame>
     <frame>
       <ip>0x10BB39</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>aura_aura::aura_aura()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_app_core.h</file>
@@ -106128,7 +106128,7 @@
     </frame>
     <frame>
       <ip>0x10B372</ip>
-      <obj>/xcore/time/x64/basis/app_simple_drawing</obj>
+      <obj>/xcore/time/x64/basis/app_integration</obj>
       <fn>main</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/app</dir>
       <file>aura.inl</file>
@@ -106843,7 +106843,7 @@
     </frame>
     <frame>
       <ip>0xD47F804</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory&lt;simple_drawing::main_frame, simple_drawing::main_frame&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -106851,7 +106851,7 @@
     </frame>
     <frame>
       <ip>0xD47F795</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>alloc_factory_base&lt;simple_drawing::main_frame&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
@@ -106899,7 +106899,7 @@
     </frame>
     <frame>
       <ip>0xD476533</ip>
-      <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
+      <obj>/xcore/time/x64/basis/libapp_integration.so</obj>
       <fn>simple_drawing::application::on_request(create*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_application.cpp</file>

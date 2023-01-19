@@ -430,7 +430,7 @@ inline bool property_set::get_string(string & strResult, const atom & idKey) con
 
    }
 
-   strResult = property.get_string();
+   strResult = property.as_string();
 
    return true;
 

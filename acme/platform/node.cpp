@@ -2780,6 +2780,14 @@ return false;
    }
 
 
+   void node::integration_factory()
+   {
+
+
+
+   }
+
+
 } // namespace acme
 
 

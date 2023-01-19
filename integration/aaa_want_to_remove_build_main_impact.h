@@ -5,7 +5,7 @@ namespace simple_drawing
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING main_impact:
+   class CLASS_DECL_APP_INTEGRATION main_impact:
       virtual public ::userex::split_impact
    {
    public:

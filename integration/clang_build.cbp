@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="app_simple_drawing" />
+		<Option title="app_integration" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -112,7 +112,7 @@
 			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<ExtraCommands>
-			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#platform_modifier) $(#archive) $(#config)  app-simple/drawing" />
+			<Add after="$(#archive)/tool-linux/bin/app._.sh $(WORKSPACE_DIR) $(PROJECT_DIR) $(TARGET_NAME) $(PROJECT_NAME) $(#platform_modifier) $(#archive) $(#config)  app/integration" />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="_.h" />

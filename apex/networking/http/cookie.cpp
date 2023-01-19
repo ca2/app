@@ -276,7 +276,7 @@ namespace http
    strsize cookies::get_length( const char * name)
    {
 
-      return cookie(name).m_varValue.get_string().length();
+      return cookie(name).m_varValue.as_string().length();
 
    }
 

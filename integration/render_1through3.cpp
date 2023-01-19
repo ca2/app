@@ -14,7 +14,7 @@
 CLASS_DECL_ACME ::color::color dk_red(); // <3 tbs
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 

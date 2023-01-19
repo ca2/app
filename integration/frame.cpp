@@ -3,7 +3,7 @@
 #include "frame.h"
 
 
-namespace app_simple_drawing
+namespace app_integration
 {
 
 

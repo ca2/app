@@ -699,7 +699,7 @@ namespace html
 
       bool bHtml = false;
 
-      strHtml = payload.get_string();
+      strHtml = payload.as_string();
 
       if (strHtml.left(2048).trimmed().case_insensitive_contains("<html"))
       {
@@ -737,7 +737,7 @@ namespace html
       if(varDisplay.is_empty())
          return tag_to_display(e_tag);
 
-      string strDisplay = varDisplay.get_string();
+      string strDisplay = varDisplay.as_string();
 
       if(strDisplay.has_char())
       {

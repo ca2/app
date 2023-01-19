@@ -504,7 +504,7 @@ namespace xml
             if(pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
             {
 
-               property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
+               property = pparseinfo->m_pentities->ref_to_entity(property.as_string());
 
             }
 
@@ -2142,7 +2142,7 @@ namespace xml
       
       property * attr = GetChildAttr( lpszName, attrname );
 
-      return attr ? attr->get_string() : string("");
+      return attr ? attr->as_string() : string("");
 
    }
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(app_simple_drawing CXX)
+project(app_integration CXX)
 
 
 list(APPEND library_source
@@ -32,9 +32,9 @@ list(APPEND library_source
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
-target_precompile_headers(app_simple_drawing PRIVATE framework.h)
+target_precompile_headers(app_integration PRIVATE framework.h)
 
-set_target_properties(app_simple_drawing PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(app_integration PROPERTIES LINKER_LANGUAGE CXX)
 
 
 list(APPEND library_references
@@ -49,24 +49,24 @@ list(APPEND library_references
 
 if (MSVC)
 
-   target_compile_options(app_simple_drawing PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(app_simple_drawing PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(app_simple_drawing PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(app_simple_drawing PRIVATE ${library_references})
+   target_compile_options(app_integration PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(app_integration PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(app_integration PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(app_integration PRIVATE ${library_references})
 
 elseif(LINUX OR FREEBSD)
 
-   target_compile_options(app_simple_drawing PRIVATE -fpermissive)
-   #target_link_options(app_simple_drawing PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(app_simple_drawing PRIVATE ${library_references})
-   target_link_options(app_simple_drawing PRIVATE -Wl,-z,defs)
+   target_compile_options(app_integration PRIVATE -fpermissive)
+   #target_link_options(app_integration PRIVATE -Wl,-rpath=$ORIGIN)
+   target_link_libraries(app_integration PRIVATE ${library_references})
+   target_link_options(app_integration PRIVATE -Wl,-z,defs)
 
 endif ()
 
 
 
 
-target_link_directories(app_simple_drawing PRIVATE ${library_link_directories})
+target_link_directories(app_integration PRIVATE ${library_link_directories})
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -77,7 +77,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 
 
 
-target_compile_definitions(app_simple_drawing PRIVATE _APP_SIMPLE_DRAWING_LIBRARY)
+target_compile_definitions(app_integration PRIVATE _APP_INTEGRATION_LIBRARY)
 
 
 add_subdirectory(__implement)

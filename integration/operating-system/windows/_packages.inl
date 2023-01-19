@@ -1,4 +1,4 @@
-app-simple/drawing
+app/integration
 draw2d_gdiplus
 experience_core
 imaging_wic

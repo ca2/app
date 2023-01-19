@@ -526,7 +526,7 @@ public:
     const_iterator case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
     {
 
-       return this->find(scopedstr, ::comparison::comparison<ITEM>());
+       return this->find(scopedstr, ::comparison::case_insensitive<ITEM>());
 
     }
 

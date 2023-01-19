@@ -162,7 +162,7 @@ finished:
 
       strMessage = "__node_library_open Succeeded " + pathParam;
       
-      if(is_verbose_log())
+      if(has_verbose_flag())
       {
          
          ::output_debug_string("\n" + strMessage + "\n\n");
@@ -233,7 +233,7 @@ void * system::operating_system_library_open_ca2(const ::file::path & pathParam,
 
       strMessage = "__node_library_open_ca2 Succeeded " + strPath;
 
-      if(is_verbose_log())
+      if(has_verbose_flag())
       {
          
          ::output_debug_string("\n\n" + strMessage + "\n\n");

@@ -221,7 +221,7 @@ namespace introjection
 //      if (m_strVs == "2019")
 //      {
 //
-//         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//         m_strContext = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //         ::acme_windows::registry::key key;
 //
@@ -235,7 +235,7 @@ namespace introjection
 //
 //               ::file::path path = strPath;
 //
-//               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//               m_strContext = path / "VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            }
 //
@@ -249,7 +249,7 @@ namespace introjection
 //      else if (m_strVs == "2017")
 //      {
 //
-//         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
+//         m_strContext = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //         ::acme_windows::registry::key key;
 //
@@ -263,7 +263,7 @@ namespace introjection
 //
 //               ::file::path path = strPath;
 //
-//               m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
+//               m_strContext = path / "VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            }
 //
@@ -277,15 +277,15 @@ namespace introjection
 //      else if (m_strVs == "2015")
 //      {
 //
-//         m_strEnv = strVars.up(2);
-//         m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
-//         //m_strEnv = ".\\vc_vars.bat";
+//         m_strContext = strVars.up(2);
+//         m_strContext = m_strContext / "vc\\vcvarsall.bat";
+//         //m_strContext = ".\\vc_vars.bat";
 //
 //      }
 //
 //      m_strTime = dir()->install() / "time";
 //
-//      //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
+//      //m_strContext = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 //
 //      //m_strSdk1 = "windows7.1sdk";
 //      if (m_strVs == "2015")
@@ -393,9 +393,9 @@ namespace introjection
 //
 //#else
 //
-//      //string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " "10.0.16299.0";
+//      //string strCommandLine = "\"" + m_strContext + "\" " + m_strPlat2 + " "10.0.16299.0";
 //
-//      string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build(this);
+//      string strCommandLine = "\"" + m_strContext + "\" " + m_strPlat2 + " " + vs_build(this);
 //
 //      ::payload payload = psystem->process().get_output(strCommandLine);
 //
@@ -446,7 +446,7 @@ namespace introjection
 //
 //      ::pointer<application>papp = get_app();
 //
-//      string strBuildCmd = m_strEnv;
+//      string strBuildCmd = m_strContext;
 //
 //      if (m_strVs == "2015")
 //      {
@@ -538,7 +538,7 @@ namespace introjection
 //      /*string strVars = getenv("VS100COMNTOOLS");
 //      pcontext->m_papexcontext->file()->path().eat_end_level(strVars, 2, "/");
 //      strVars += "vc/bin/vcvars32.bat";*/
-//      str.find_replace("%VS_VARS%",m_strEnv);
+//      str.find_replace("%VS_VARS%",m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 //
 //      string strV(dir()->install());
@@ -1052,7 +1052,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
       str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-      str.find_replace("%VS_VARS%",m_strEnv);
+      str.find_replace("%VS_VARS%",m_strContext);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
       string strElem = dir()->install();
@@ -1269,7 +1269,7 @@ auto tickStart = ::time::now();
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strEnv);
+         str.find_replace("%VS_VARS%",m_strContext);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 

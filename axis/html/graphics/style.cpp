@@ -130,7 +130,7 @@ namespace html
 
       }
 
-      f = parse_dimension(m_propertyset[rangeName].get_string());
+      f = parse_dimension(m_propertyset[rangeName].as_string());
 
       return true;
 
@@ -205,7 +205,7 @@ namespace html
       if(pstyle != nullptr)
       {
 
-         f = parse_dimension(pstyle->m_propertyset[rangeName].get_string());
+         f = parse_dimension(pstyle->m_propertyset[rangeName].as_string());
 
       }
 
@@ -217,7 +217,7 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].get_string());
+            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].as_string());
 
          }
          else
@@ -237,7 +237,7 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_string());
+            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].as_string());
 
          }
          else
@@ -257,7 +257,7 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_string());
+            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].as_string());
 
          }
          else
@@ -277,7 +277,7 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_string());
+            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].as_string());
 
          }
          else
@@ -952,7 +952,7 @@ namespace html
       index i = m_propertyset.index_of(rangeName);
       if(i < 0)
          return false;
-      if(!parse_border_width(m_propertyset[i].get_string(),f))
+      if(!parse_border_width(m_propertyset[i].as_string(),f))
          return false;
       return true;
    }
@@ -1013,7 +1013,7 @@ namespace html
 
       }
 
-      if (!parse_border_color(m_propertyset[i].get_string(), color32))
+      if (!parse_border_color(m_propertyset[i].as_string(), color32))
       {
 
          return false;

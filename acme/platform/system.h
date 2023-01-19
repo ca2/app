@@ -1,4 +1,4 @@
-// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -538,8 +538,8 @@ namespace acme
       void new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation);
 
 
-      virtual void compress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation);
-      virtual void uncompress(::file::file * pfileOut, ::file::file * pfileIn, const ::scoped_string & scopedstrImplementation);
+      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
+      virtual void uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
 
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);

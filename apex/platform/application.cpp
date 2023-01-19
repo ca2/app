@@ -9858,20 +9858,6 @@ namespace apex
    }
 
 
-   string application::get_visual_studio_build()
-   {
-
-      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
-
-      string strBuild = file()->as_string(path);
-
-      strBuild.trim();
-
-      return strBuild;
-
-   }
-
-
    string application::as_string(const ::payload & payload)
    {
 

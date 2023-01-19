@@ -68,13 +68,15 @@ namespace dynamic_source
 
       ::pointer < ::mutex >                                     m_pmutexLibrary;
 
+      //::pointer < ::integration::context >                        m_pintegrationcontext;
+
 
       script_compiler();
       ~script_compiler() override;
 
 
       virtual void initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
-      //void prepare_compile_and_link_environment();
+      void prepare_compile_and_link_environment();
 
       void run_persistent();
 

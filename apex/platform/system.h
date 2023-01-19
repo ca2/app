@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "session.h"
@@ -87,6 +87,11 @@ namespace apex
       void install_message_routing(::channel * pchannel) override;
 
       void system_construct(::acme::application * papplication) override;
+
+
+      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
+      virtual void uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
+
 
 
 #ifdef WINDOWS_DESKTOP

@@ -4,8 +4,9 @@
 #include "main_frame.h"
 #include "document.h"
 #include "menu.h"
-#include "openssl.h"
-#include "ffmpeg.h"
+//#include "openssl.h"
+//#include "ffmpeg.h"
+#include "impact.h"
 #include "tab_impact.h"
 #include "acme/platform/request.h"
 #include "aura/user/user/button.h"
@@ -102,11 +103,11 @@ namespace app_integration
       factory()->add_factory_item <::app_integration::document >();
       factory()->add_factory_item <::app_integration::frame >();
       factory()->add_factory_item <::app_integration::main_frame >();
-      //factory()->add_factory_item <::app_integration::impact >();
+      factory()->add_factory_item <::app_integration::impact >();
       factory()->add_factory_item <::app_integration::tab_impact >();
       factory()->add_factory_item <::app_integration::menu >();
-      factory()->add_factory_item <::app_integration::openssl >();
-      factory()->add_factory_item <::app_integration::ffmpeg >();
+      //factory()->add_factory_item <::app_integration::openssl >();
+      //factory()->add_factory_item <::app_integration::ffmpeg >();
 
       default_toggle_check_handling("simple_checkbox");
 
@@ -129,7 +130,7 @@ namespace app_integration
          "openssl",
          __type(document),
          __type(main_frame),
-         __type(openssl)));
+         __type(impact)));
 
       m_ptemplateOpenSSL = pdoctemplate;
 
@@ -139,7 +140,7 @@ namespace app_integration
          "ffmpeg",
          __type(document),
          __type(main_frame),
-         __type(ffmpeg)));
+         __type(impact)));
 
       m_ptemplateFFMPEG = pdoctemplate;
 

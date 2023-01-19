@@ -27,7 +27,7 @@
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
 {
 
-   str = payload.get_string();
+   str = payload.as_string();
 
 }
 
@@ -563,7 +563,7 @@ bool payload::convert(const ::payload & payload)
    else if(m_etype == e_type_string)
    {
 
-      m_str = payload.get_string();
+      m_str = payload.as_string();
 
    }
    else
@@ -581,7 +581,7 @@ bool payload::convert(const ::payload & payload)
 strsize payload::length() const
 {
 
-   return this->get_string().length();
+   return this->as_string().length();
 
 }
 
@@ -589,7 +589,7 @@ strsize payload::length() const
 void payload::as(::string & str) const
 {
 
-   str = this->get_string();
+   str = this->as_string();
 
 }
 
@@ -743,7 +743,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_f64 = this->as_f64();
             break;
          case e_type_string:
-            m_str = ::transfer(this->get_string());
+            m_str = ::transfer(this->as_string());
             break;
          case e_type_atom:
             m_atom = ::transfer(this->as_atom());
@@ -1949,7 +1949,7 @@ bool payload::is_new_or_null() const
    else
    {
 
-      return this->get_string().case_insensitive_order(payload.get_string());
+      return this->as_string().case_insensitive_order(payload.as_string());
 
    }
 
@@ -2065,7 +2065,7 @@ bool payload::case_insensitive_equals(const payload & payload) const
    else
    {
 
-      return this->get_string().order(payload.get_string());
+      return this->as_string().order(payload.as_string());
 
    }
 
@@ -2460,23 +2460,23 @@ string payload::get_recursive_string() const
    else
    {
       
-      return this->get_string();
+      return this->as_string();
 
    }
 
 }
 
 
-string payload::get_string(const ::scoped_string & scopedstrOnNull) const
+string payload::as_string(const ::scoped_string & scopedstrOnNull) const
 {
 
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->get_string(scopedstrOnNull);
+      return m_ppayload->as_string(scopedstrOnNull);
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->get_string(scopedstrOnNull);
+      return m_pproperty->as_string(scopedstrOnNull);
    }
    else if(m_etype == e_type_pstring)
    {
@@ -2620,7 +2620,7 @@ string & payload::string_reference(const char * pszOnNull)
    else
    {
 
-      ::string str = this->get_string(pszOnNull);
+      ::string str = this->as_string(pszOnNull);
 
       set_string(str);
 
@@ -7710,7 +7710,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else if (is_numeric())
    {
 
-      return str += this->get_string();
+      return str += this->as_string();
 
    }
    else if (get_type() == ::e_type_bool)
@@ -7810,7 +7810,7 @@ void payload::null()
 
    }
 
-   return ::file::path(this->get_string());
+   return ::file::path(this->as_string());
 
 }
 
@@ -10057,7 +10057,7 @@ payload & payload::add(const ::payload & payload)
       {
 
          // simple implementation
-         string_array_reference().add(payload.get_string());
+         string_array_reference().add(payload.as_string());
 
       }
 
@@ -10269,7 +10269,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (this->get_string() + payload.get_string());
+         operator= (this->as_string() + payload.as_string());
 
       }
       else
@@ -10349,7 +10349,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.is_text())
       {
 
-         operator= (this->get_string() + payload.get_string());
+         operator= (this->as_string() + payload.as_string());
 
       }
       else
@@ -10363,7 +10363,7 @@ payload & payload::add(const ::payload & payload)
    else if(payload.is_text())
    {
 
-      operator= (this->get_string() + payload.get_string());
+      operator= (this->as_string() + payload.as_string());
 
    }
    else
@@ -11231,7 +11231,7 @@ CLASS_DECL_ACME void copy(string * pstring, const ::payload * ppayload)
 bool payload::begins(const ::string & strPrefix) const
 {
 
-   return this->get_string().begins(strPrefix);
+   return this->as_string().begins(strPrefix);
 
 }
 
@@ -11239,7 +11239,7 @@ bool payload::begins(const ::string & strPrefix) const
 bool payload::ends(const ::string & strSuffix) const
 {
 
-   return this->get_string().ends(strSuffix);
+   return this->as_string().ends(strSuffix);
 
 }
 
@@ -11247,14 +11247,14 @@ bool payload::ends(const ::string & strSuffix) const
 bool payload::case_insensitive_begins(const ::string & strPrefix) const
 {
 
-   return this->get_string().case_insensitive_begins(strPrefix);
+   return this->as_string().case_insensitive_begins(strPrefix);
 
 }
 
 bool payload::case_insensitive_ends(const ::string & strSuffix) const
 {
 
-   return this->get_string().case_insensitive_ends(strSuffix);
+   return this->as_string().case_insensitive_ends(strSuffix);
 
 }
 
@@ -11293,7 +11293,7 @@ void test_payload()
 CLASS_DECL_ACME::string as_string(const ::payload & payload)
 {
 
-   return payload.get_string();
+   return payload.as_string();
 
 }
 

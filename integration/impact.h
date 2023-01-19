@@ -15,14 +15,20 @@ namespace app_integration
    {
    public:
 
+      string_array                              m_straName;
+      ::pointer_array < ::string_array >        m_str2aOutput;
 
       ::string          m_strName;
-      ::string          m_strRelease;
-      ::string          m_strPlatform;
-      ::string          m_strConfiguration;
+      //::string          m_strRelease;
+      //::string          m_strPlatform;
+      //::string          m_strConfiguration;
 
       ::file::path      m_pathDownloadURL;
 
+
+      int               m_iExitCode;
+      ::string_array    m_straOutput;
+      ::file::path      m_pathIntegration;
 
 
       impact();
@@ -39,7 +45,13 @@ namespace app_integration
 #endif
 
 
-      ::file::path get_path();
+      //::file::path get_path();
+
+      void fill();
+      void add_platform(const ::scoped_string & scopedstrPlatform);
+      void add_configuration(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration);
+      void prepare();
+      void start();
 
 
       virtual void install_message_routing(::channel * psender) override;

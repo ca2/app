@@ -134,12 +134,12 @@ public:
 ::static_object_factory < OBJECT > COUNTER_TOKEN(g_library_factory)(EOBJECT);
 
 
-#define __namespace_system_factory(SYSTEM) \
-__namespace_object_factory(SYSTEM,:: system_setup::flag_system)
+// #define __namespace_system_factory(SYSTEM) \
+// __namespace_object_factory(SYSTEM,:: system_setup::flag_system)
 
 
-#define __namespace_session_factory(SESSION) \
-__namespace_object_factory(SESSION,:: system_setup::flag_session)
+// #define __namespace_session_factory(SESSION) \
+// __namespace_object_factory(SESSION,:: system_setup::flag_session)
 
 
 

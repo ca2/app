@@ -2,7 +2,7 @@
 #include "tab_impact.h"
 #include "application.h"
 #include "menu.h"
-#include "render.h"
+//#include "render.h"
 #include "menu.h"
 #include "acme/constant/message.h"
 #include "base/user/user/tab_pane.h"

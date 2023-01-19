@@ -11,6 +11,8 @@
 #include "node.h"
 #include "history.h"
 //#include "log.h"
+#include "acme/compress/compress.h"
+#include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/exception/dump_context.h"
@@ -1293,6 +1295,70 @@ pacmedirectory->create("/ca2core");
       }
 
       //return true;
+
+   }
+
+
+   void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   {
+
+      ::pointer<::compress>pcompress;
+
+      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
+
+      /*  if (!estatus)
+      {
+
+         return estatus;
+
+      }*/
+
+      auto pfileTarget = file()->get_writer(payloadTarget);
+
+      auto pfileSource = file()->get_reader(payloadSource);
+
+      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+   }
+
+
+   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   {
+
+      ::pointer<::uncompress>puncompress;
+
+      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto pfileTarget = file()->get_writer(payloadTarget);
+
+      auto pfileSource = file()->get_reader(payloadSource);
+
+      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
 
    }
 
@@ -4384,6 +4450,7 @@ typedef void BASECORE_INIT();
 namespace apex
 {
 
+
    CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
 
@@ -5033,7 +5100,6 @@ namespace apex
    }
 
 
-   } // namespace apex
 
 
 #ifdef __APPLE__
@@ -5074,8 +5140,7 @@ string get_bundle_app_library_name();
 //
 //void apex_application_main(int argc, char* argv[], const ::string & pszCommandLine);
 
-namespace apex
-{
+
 
    void system::application_main(int argc, char* argv[], const ::string& pszCommandLine)
    {

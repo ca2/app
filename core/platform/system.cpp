@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
@@ -113,7 +113,7 @@ namespace core
    }
 
 
-   __namespace_system_factory(system);
+   //__namespace_system_factory(system);
 
 
 } // namespace core

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tcp_socket.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
@@ -1236,13 +1236,15 @@ namespace sockets_bsd
 
       int n = 0;
 
+      const char* psz = (const char *) buf;
+
 
 #ifdef HAVE_OPENSSL
 
       if(IsSSL())
       {
 
-         n = SSL_write(m_psslcontext->m_ssl,buf,(i32)len);
+         n = SSL_write(m_psslcontext->m_ssl,psz,(i32)len);
 
          if(n == -1)
          {
@@ -1815,8 +1817,11 @@ namespace sockets_bsd
 
          }
 
-         /*SSL_set_min_proto_version(m_psslcontext->m_ssl, TLS1_2_VERSION);
-         SSL_set_max_proto_version(m_psslcontext->m_ssl, TLS1_2_VERSION);*/
+         //SSL_set_min_proto_version(m_psslcontext->m_ssl, TLS1_3_VERSION);
+
+         //SSL_set_max_proto_version(m_psslcontext->m_ssl, TLS1_1_VERSION);
+
+         //TLS1_1_VERSION
 
          i32 r = SSL_connect(m_psslcontext->m_ssl);
 
@@ -1963,11 +1968,11 @@ namespace sockets_bsd
          }
          else
          {
-            r = SSL_get_error(m_psslcontext->m_ssl,r);
-            if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
+            int iErrorSSL = SSL_get_error(m_psslcontext->m_ssl,r);
+            if(iErrorSSL == SSL_ERROR_WANT_READ || iErrorSSL == SSL_ERROR_WANT_WRITE)
             {
             }
-            else if(r == SSL_ERROR_WANT_CONNECT || r == SSL_ERROR_WANT_ACCEPT)
+            else if(iErrorSSL == SSL_ERROR_WANT_CONNECT || iErrorSSL == SSL_ERROR_WANT_ACCEPT)
             {
             }
             else
@@ -1975,9 +1980,11 @@ namespace sockets_bsd
 
                char msg[1024];
 
-               ERR_error_string_n(ERR_get_error(), msg, sizeof(msg));
+               int iError = ERR_get_error();
 
-               if (r == SSL_ERROR_SYSCALL)
+               ERR_error_string_n(iError, msg, sizeof(msg));
+
+               if (iErrorSSL == SSL_ERROR_SYSCALL)
                {
 
 //                  auto last_error = networking_last_error();

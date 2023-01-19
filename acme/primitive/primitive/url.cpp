@@ -45,7 +45,7 @@ namespace url
 
       }
 
-      return (*this)(0, pPos);
+      return str(0, pPos);
 
    }
 

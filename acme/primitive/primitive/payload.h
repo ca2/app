@@ -410,8 +410,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    ::procedure get_procedure() const;
 
 
-   ::string get_string(const ::scoped_string & scopedstrOnNull) const;
-   ::string get_string() const;
+   ::string as_string(const ::scoped_string & scopedstrOnNull) const;
+   ::string as_string() const;
    ::string get_recursive_string() const;
    ::atom as_atom() const;
    ::atom as_atom(const ::atom & idDefault) const;
@@ -1418,8 +1418,8 @@ inline ::payload __visible(::payload varOptions, bool bVisible);
 inline payload __visible(bool bVisible = true);
 
 
-template < character_range RANGE, primitive_payload PAYLOAD >
-::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
+//template < character_range RANGE, primitive_payload PAYLOAD >
+//::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
 
 
 template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
@@ -1461,24 +1461,24 @@ template < primitive_payload PAYLOAD, primitive_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
-   payload = payload.get_string() + ::string(psz);
+   payload = payload.as_string() + ::string(psz);
 
    return payload;
 
 }
 
 
-template < primitive_character CHARACTER, primitive_payload PAYLOAD >
-inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
-{
-
-   ::string str(psz);
-
-   str.append(payload.get_string());
-
-   return ::transfer(str);
-
-}
+//template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+//inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
+//{
+//
+//   ::string str(psz);
+//
+//   str.append(payload.get_string());
+//
+//   return ::transfer(str);
+//
+//}
 
 
 template < primitive_payload PAYLOAD, character_range RANGE >
@@ -1494,7 +1494,7 @@ template < primitive_payload PAYLOAD, character_range RANGE >
 PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
 {
 
-   string str = payload.get_string() + ::string(range);
+   string str = payload.as_string() + ::string(range);
 
    payload = str;
 

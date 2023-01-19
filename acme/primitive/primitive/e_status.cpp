@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 12/11/2020.
 //
 #include "framework.h"
@@ -41,10 +41,10 @@ int e_status::exit_code() const
 
 #else
 
-   if (estatus >= -125)
+   if (this->m_eenum >= -125)
    {
 
-      return (::i32)-(::i64)(m_eenum);
+      return (::i32)-(::i64)(this->m_eenum);
 
    }
    else

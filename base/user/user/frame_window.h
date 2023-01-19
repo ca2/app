@@ -39,7 +39,7 @@ namespace user
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs
-      ::user::impact_system *                      m_pdocumenttemplate;
+      ::user::impact_system *                      m_pimpactsystem;
 
       i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document

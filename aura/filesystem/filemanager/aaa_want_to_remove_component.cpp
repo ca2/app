@@ -215,7 +215,7 @@ namespace filemanager
       ////                   __type(form_child_frame),
       ////                   __type(form)));
 
-      ////__construct(m_pdocumenttemplateForm, pmulti);
+      ////__construct(m_pimpactsystemForm, pmulti);
 
       ////psession->add_document_template(pmulti);
 
@@ -225,7 +225,7 @@ namespace filemanager
       ////                    __type(operation_child_frame),
       ////                    __type(operation_impact)));
       ////
-      ////__construct(m_pdocumenttemplateOperation, psingle);
+      ////__construct(m_pimpactsystemOperation, psingle);
 
       ////psession->add_document_template(psingle);
 
@@ -237,17 +237,17 @@ namespace filemanager
    void  component::filemanager_finalize()
    {
 
-      if (m_pdocumenttemplateForm.is_set())
+      if (m_pimpactsystemForm.is_set())
       {
 
-         m_pdocumenttemplateForm->close_all_documents(false);
+         m_pimpactsystemForm->close_all_documents(false);
 
       }
 
-      if (m_pdocumenttemplateOperation.is_set())
+      if (m_pimpactsystemOperation.is_set())
       {
 
-         m_pdocumenttemplateOperation->close_all_documents(false);
+         m_pimpactsystemOperation->close_all_documents(false);
 
       }
 
@@ -321,7 +321,7 @@ namespace filemanager
 
    //   //papp->add_document_template(pdoctemplate);
 
-   //   //pdata->m_pdocumenttemplate = pdoctemplate;
+   //   //pdata->m_pimpactsystem = pdoctemplate;
 
    //   //return pdata;
    //   return nullptr;
@@ -532,10 +532,10 @@ pacmedirectory->localconfig() / "user.component";
 
       //document * pdocument;
 
-      //for (index i = 0; i < m_pdocumenttemplateProject->get_document_count(); i++)
+      //for (index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
-      //   pdocument = m_pdocumenttemplateProject->get_document(i);
+      //   pdocument = m_pimpactsystemProject->get_document(i);
 
       //   if (pdocument.is_null())
       //   {
@@ -585,10 +585,10 @@ pacmedirectory->localconfig() / "user.component";
       throw ::exception(todo("core"));
       //::pointer<document>pdocument;
 
-      //for (index i = 0; i < m_pdocumenttemplateProject->get_document_count(); i++)
+      //for (index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
-      //   pdocument = m_pdocumenttemplateProject->get_document(i);
+      //   pdocument = m_pimpactsystemProject->get_document(i);
 
       //   if (pdocument.is_null())
       //   {
@@ -641,9 +641,9 @@ pacmedirectory->localconfig() / "user.component";
 
       //pcreate->m_payloadFile = payloadFile;
 
-      //m_pdocumenttemplateProject->m_bQueueDocumentOpening = false;
+      //m_pimpactsystemProject->m_bQueueDocumentOpening = false;
 
-      //m_pdocumenttemplateProject->do_request(pcreate);
+      //m_pimpactsystemProject->do_request(pcreate);
 
       //pdocument = ::user::__document(pcreate);
 
@@ -724,7 +724,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //document * pdocument = find_manager(payloadFile);
 
-      //m_pdocumenttemplateProject->erase_document(pdocument);
+      //m_pimpactsystemProject->erase_document(pdocument);
 
       //save_filemanager_project();
 
@@ -740,7 +740,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //pdocument->close_document();
 
-      ////m_pdocumenttemplateProject->erase_document(pdocument);
+      ////m_pimpactsystemProject->erase_document(pdocument);
 
       //save_filemanager_project();
 
@@ -819,7 +819,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (atom.i64() < -1 || atom.i64() == m_pdocumenttemplateProject->get_document_count())
+//   if (atom.i64() < -1 || atom.i64() == m_pimpactsystemProject->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -828,7 +828,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pcreate->prop("component::callback") = pcallback;
 
-//      m_pdocumenttemplateProject->do_request(pcreate);
+//      m_pimpactsystemProject->do_request(pcreate);
 
 //      pdocument = ::user::__document(pcreate);
 
@@ -849,10 +849,10 @@ pacmedirectory->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (atom.i64() < m_pdocumenttemplateProject->get_document_count())
+//   else if (atom.i64() < m_pimpactsystemProject->get_document_count())
 //   {
 
-//      pdocument = m_pdocumenttemplateProject->get_document((index)atom);
+//      pdocument = m_pimpactsystemProject->get_document((index)atom);
 
 //   }
 
@@ -950,7 +950,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //   document * pdocument;
 
-//   if (atom.i64() < -1 || atom.i64() == m_pdocumenttemplate->get_document_count())
+//   if (atom.i64() < -1 || atom.i64() == m_pimpactsystem->get_document_count())
 //   {
 
 //      pcreate->prop("component::template") = this;
@@ -959,7 +959,7 @@ pacmedirectory->localconfig() / "user.component";
 
 //      pcreate->prop("component::callback") = pcallback;
 
-//      m_pdocumenttemplate->do_request(pcreate);
+//      m_pimpactsystem->do_request(pcreate);
 
 //      pdocument = ::user::__document(pcreate);
 
@@ -980,10 +980,10 @@ pacmedirectory->localconfig() / "user.component";
 //      }
 
 //   }
-//   else if (atom.i64() < m_pdocumenttemplate->get_document_count())
+//   else if (atom.i64() < m_pimpactsystem->get_document_count())
 //   {
 
-//      pdocument = m_pdocumenttemplate->get_document((index)atom);
+//      pdocument = m_pimpactsystem->get_document((index)atom);
 
 //   }
 
@@ -1007,7 +1007,7 @@ pacmedirectory->localconfig() / "user.component";
 //document * component::create_new_document(callback * pcallback, ::request * prequest)
 //{
 
-//   document * pdocument = (m_pdocumenttemplate->create_new_document(pcreate));
+//   document * pdocument = (m_pimpactsystem->create_new_document(pcreate));
 
 //   if (pdocument != nullptr)
 //   {
@@ -1059,7 +1059,7 @@ pacmedirectory->localconfig() / "user.component";
 //   pfilemanagerdata->m_iDocument = m_iNextDocument++;
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
-//   m_pdocumenttemplateChild->do_request(pcreate);
+//   m_pimpactsystemChild->do_request(pcreate);
 
 //   document * pdocument = ::user::__document(pcreate);
 
@@ -1106,7 +1106,7 @@ pacmedirectory->localconfig() / "user.component";
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
 
-//   m_pdocumenttemplateChildList->do_request(pcreate);
+//   m_pimpactsystemChildList->do_request(pcreate);
 
 //   document * pdocument = ::user::__document(pcreate);
 
@@ -1162,7 +1162,7 @@ pacmedirectory->localconfig() / "user.component";
 //   pfilemanagerdata->m_iDocument = m_iNextDocument++;
 //   pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
-//   m_pdocumenttemplateFolderSelectionList->do_request(pcreate);
+//   m_pimpactsystemFolderSelectionList->do_request(pcreate);
 
 //   document * pdocument = ::user::__document(pcreate);
 

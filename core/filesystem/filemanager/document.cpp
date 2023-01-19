@@ -1339,7 +1339,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_typed_impact < ::filemanager::tab_impact >();
+      //::filemanager::tab_impact * ptabimpact = psession->m_pimpactsystemMain->get_document(0)->get_typed_impact < ::filemanager::tab_impact >();
 
       //if (ptabimpact == nullptr)
       //{

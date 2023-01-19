@@ -1347,7 +1347,7 @@ namespace base
 
 
 
-   __namespace_object_factory(user, ::system_setup::flag_object_user);
+   //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
 } // namespace base

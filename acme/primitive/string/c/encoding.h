@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/string/x/x_charcategory.h"
@@ -153,12 +153,12 @@ inline strsize unichar_to_utf8(char * psz, const ::wd16_character * pwsz, strsiz
 #else
 
 
-inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32_len(psz, srclen); }
-inline strsize utf8_to_unichar(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen = -1) { return ansi_to_wd32(pwsz, psz, srclen); }
+inline strsize utf8_to_unichar_len(const ::ansi_character * psz, strsize srclen = -1);
+inline strsize utf8_to_unichar(::wd32_character* pwsz, const ::ansi_character * psz, strsize srclen = -1);
 
 
-inline strsize unichar_to_utf8_len(const ::wd32_character* pwsz, strsize srclen = -1) { return wd32_to_ansi_len(pwsz, srclen); }
-inline strsize unichar_to_utf8(char* psz, const ::wd32_character* pwsz, strsize srclen = -1) { return wd32_to_ansi(psz, pwsz, srclen); }
+inline strsize unichar_to_utf8_len(const ::wd32_character* pwsz, strsize srclen = -1);
+inline strsize unichar_to_utf8(char* psz, const ::wd32_character* pwsz, strsize srclen = -1);
 
 
 #endif

@@ -290,7 +290,7 @@ void main_asynchronous(const ::procedure& procedure)
 
    }
 
-   auto psystem = acmesystem();
+   auto psystem = ::acme::acme:: ();
 
    psystem->windowing_post(procedure);
 

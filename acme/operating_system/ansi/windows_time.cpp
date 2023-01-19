@@ -1061,7 +1061,7 @@ CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const FILETIME *localft, LPFIL
    else
    {
       //set_last_error( RtlNtStatusToDosError(status) );
-      set_last_status(1);
+      set_last_status(error_failed);
 
    }
 
@@ -1086,7 +1086,7 @@ CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILET
    else
    {
       //set_last_error( RtlNtStatusToDosError(status) );
-      set_last_status( 1);
+      set_last_status(error_failed);
    }
 
 

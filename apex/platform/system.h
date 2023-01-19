@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "session.h"
@@ -89,8 +89,8 @@ namespace apex
       void system_construct(::acme::application * papplication) override;
 
 
-      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
-      virtual void uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
+      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
+      virtual void uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
 
 
 

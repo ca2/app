@@ -134,7 +134,7 @@
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 {
 
-   throw ::exception(::exception("not applicable in Mac OS"));
+   throw ::exception(error_wrong_state, "not applicable in Mac OS");
 
 }
 

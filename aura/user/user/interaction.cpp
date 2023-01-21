@@ -14064,6 +14064,26 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
+   ::rectangle_i32 interaction::parent_client_rectangle(enum_layout elayout)
+   {
+
+      auto rectangle = this->client_rectangle(elayout);
+
+      rectangle += this->parent_to_client(elayout);
+
+      return rectangle;
+
+   }
+
+
+   ::point_i32    interaction::position(enum_layout elayout) { return parent_client_rectangle(elayout).top_left(); }
+   ::size_i32     interaction::size(enum_layout elayout) { return parent_client_rectangle(elayout).size(); }
+   ::i32          interaction::top(enum_layout elayout) { return parent_client_rectangle(elayout).top; }
+   ::i32          interaction::left(enum_layout elayout) { return parent_client_rectangle(elayout).left; }
+   ::i32          interaction::right(enum_layout elayout) { return parent_client_rectangle(elayout).right; }
+   ::i32          interaction::bottom(enum_layout elayout) { return parent_client_rectangle(elayout).bottom; }
+
+
    ::rectangle_i32 interaction::window_rectangle(enum_layout elayout)
    {
 
@@ -14074,14 +14094,6 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       return rectangle;
 
    }
-
-
-   ::point_i32    interaction::position   (enum_layout elayout) { return window_rectangle(elayout).top_left(); }
-   ::size_i32     interaction::size       (enum_layout elayout) { return window_rectangle(elayout).size(); }
-   ::i32          interaction::top        (enum_layout elayout) { return window_rectangle(elayout).top; }
-   ::i32          interaction::left       (enum_layout elayout) { return window_rectangle(elayout).left; }
-   ::i32          interaction::right      (enum_layout elayout) { return window_rectangle(elayout).right; }
-   ::i32          interaction::bottom     (enum_layout elayout) { return window_rectangle(elayout).bottom; }
 
 
    void interaction::design_window_minimize(::e_activation eactivation)

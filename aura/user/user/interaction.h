@@ -814,7 +814,6 @@ namespace user
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_sketch);
 
 
-      virtual void parent_client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
       virtual ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_sketch);
       virtual ::point_i32 position(enum_layout elayout = e_layout_sketch);
       virtual ::size_i32 size(enum_layout elayout = e_layout_sketch);

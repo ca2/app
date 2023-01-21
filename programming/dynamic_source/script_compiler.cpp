@@ -396,6 +396,15 @@ namespace dynamic_source
 
       string strCompileLogUnique = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
+      if (!::isdigit(strCompileLogUnique[0]))
+      {
+
+         string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
+
+         ::output_debug_string("Ops");
+
+      }
+
       strClog.format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
 

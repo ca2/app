@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "_range.h"
 //#include "sort.h"
 //#include "acme/primitive/collection/numeric_array.h"

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_iterator.h"
@@ -605,6 +605,7 @@ public:
 
    inline void __swap(::index index1, ::index index2);
    inline void __swap(iterator index1, iterator index2);
+   inline void __swap(const_iterator index1, const_iterator index2);
 
 
    void set_all(const TYPE & t);
@@ -2525,6 +2526,19 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::__swap(
 
 }
 
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::__swap(const_iterator it1, const_iterator it2)
+{
+
+   auto t = (TYPE) *it1;
+
+   ((TYPE &)*it1) = (const TYPE &) *it2;
+
+   ((TYPE &)*it2) = t;
+
+}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >

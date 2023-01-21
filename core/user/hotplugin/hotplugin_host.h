@@ -57,11 +57,11 @@ namespace hotplugin
 
       virtual oswindow get_host_window() override;
 
-      //using ::hotplugin::plugin::get_window_rect;
-      //virtual bool get_window_rect(RECTANGLE_I64 * prectangle) override;
+      //using ::hotplugin::plugin::window_rectangle;
+      //virtual bool window_rectangle(RECTANGLE_I64 * prectangle) override;
 
-      //using ::hotplugin::plugin::get_client_rect;
-      //virtual bool get_client_rect(RECTANGLE_I64 * prectangle) override;
+      //using ::hotplugin::plugin::client_rectangle;
+      //virtual bool client_rectangle(RECTANGLE_I64 * prectangle) override;
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();

@@ -216,7 +216,7 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
 
-         //m_pcombo->get_window_rect(rectangleWindow);
+         //m_pcombo->window_rectangle(rectangleWindow);
 
          //m_pcombo->screen_to_client(rectangleWindow);
 

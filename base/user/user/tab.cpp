@@ -562,7 +562,7 @@ namespace user
 
             ::rectangle_i32 rectangleWindow;
 
-            get_window_rect(rectangleWindow);
+            window_rectangle(rectangleWindow);
 
             bool bShowTabs;
 
@@ -1307,7 +1307,7 @@ namespace user
    void tab::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if(!rectangleClient)
       {
@@ -1466,7 +1466,7 @@ namespace user
 
          //::rectangle_i32 rectangleClient;
 
-         //get_client_rect(rectangleClient);
+         //client_rectangle(rectangleClient);
 
          get_data()->m_rectangleTab.left       = rectangleClient.left;
          get_data()->m_rectangleTab.top        = rectangleClient.top;
@@ -1490,7 +1490,7 @@ namespace user
 
 //         ::rectangle_i32 rectangleClient;
 
-//         get_client_rect(rectangleClient);
+//         client_rectangle(rectangleClient);
 
          int x = rectangleClient.left;
 
@@ -1676,7 +1676,7 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      pholder->get_window_rect(rectangleWindow);
+      pholder->window_rectangle(rectangleWindow);
 
       rectangleWindow+=screen_to_client();
 

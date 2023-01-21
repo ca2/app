@@ -753,7 +753,7 @@ namespace userex
 
       ::rectangle_i32 rC;
 
-      get_client_rect(rC);
+      client_rectangle(rC);
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
@@ -921,7 +921,7 @@ namespace userex
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
       {
@@ -932,7 +932,7 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      get_client_rect(rectangleColors);
+      client_rectangle(rectangleColors);
 
       if(!m_bCompact)
       {

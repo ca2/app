@@ -279,7 +279,7 @@ namespace user
       ::draw2d::graphics_pointer & pgraphics = &spgraphics;
       pgraphics->set(m_pfont);
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       ::rectangle_i32 rectangleText;
       pgraphics->SetBkMode(TRANSPARENT);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
@@ -507,9 +507,9 @@ namespace user
 
       /*::draw2d::region rgn;
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       ::rectangle_i32 rectangleWindow;
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
       screen_to_client(rectangleWindow);
       rectangleClient.offset(-rectangleWindow.top_left());
       const ::point_i32 & pointa[6];
@@ -642,7 +642,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      puserinteraction->get_window_rect(rectangle);
+      puserinteraction->window_rectangle(rectangle);
 
       ::point_i32 point;
 

@@ -585,7 +585,7 @@ namespace user
 
       //on_layout(pgraphics);
 
-      //auto rectangleClient = puiParent->get_client_rect();
+      //auto rectangleClient = puiParent->client_rectangle();
 
       //place(rectangleClient);
 
@@ -884,7 +884,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
@@ -1043,7 +1043,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           ptopic->user_interaction()->get_window_rect(rectangle);
+//                           ptopic->user_interaction()->window_rectangle(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1143,7 +1143,7 @@ namespace user
 
             ::rectangle_i32 rectangle;
 
-            pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->get_window_rect(rectangle);
+            pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 
             m_psubmenu->update_position(rectangle.top_right());
 

@@ -38,7 +38,7 @@ namespace experience_nanogui
 
       }
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {

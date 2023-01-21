@@ -306,7 +306,7 @@ namespace user
       if (m_pform && m_pform != this)
       {
 
-         auto rectangleClient = get_client_rect();
+         auto rectangleClient = client_rectangle();
 
          m_pform->place(rectangleClient);
 

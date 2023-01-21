@@ -646,7 +646,7 @@
 
                   auto pframewindow = m_pframewindow;
 
-                  pframewindow->get_window_rect(rectangle);
+                  pframewindow->window_rectangle(rectangle);
 
                   rectangle_i32 -= rectangle.top_left();
 
@@ -707,7 +707,7 @@
             void frame::GetFrameRect(rectangle_i32 * prectangle)
             {
 
-               m_pframewindow->GetWndDraw()->get_window_rect(prectangle);
+               m_pframewindow->GetWndDraw()->window_rectangle(prectangle);
 
                prectangle->offset(-prectangle->top_left());
 

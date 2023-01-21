@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::get_window_rect(RECTANGLE_I32 * prectangle)
+   //void plugin::window_rectangle(RECTANGLE_I32 * prectangle)
 
    //{
 
@@ -963,7 +963,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::get_window_rect(RECTANGLE_I64 * prectangle)
+   //bool plugin::window_rectangle(RECTANGLE_I64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -973,7 +973,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
    //   }
 
-   //   if(!m_phost->get_window_rect(prectangle))
+   //   if(!m_phost->window_rectangle(prectangle))
    //   {
 
    //      return false;
@@ -985,7 +985,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::get_client_rect(RECTANGLE_I64 * prectangle)
+   //bool plugin::client_rectangle(RECTANGLE_I64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -996,7 +996,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
    //   }
 
 
-   //   if(!m_phost->get_client_rect(prectangle))
+   //   if(!m_phost->client_rectangle(prectangle))
    //   {
 
    //      return false;

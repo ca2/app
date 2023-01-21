@@ -233,7 +233,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			floatbar->hwnd = hWnd;
 			floatbar->parent = get_parent(hWnd);
 
-			get_window_rect(floatbar->hwnd, &floatbar->rectangle);
+			window_rectangle(floatbar->hwnd, &floatbar->rectangle);
 			floatbar->width = floatbar->rectangle.right - floatbar->rectangle.left;
 			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
 

@@ -302,7 +302,7 @@ bool simple_scroll_bar::GetTrackRect(RECTANGLE_I32 * prectangle, ::draw2d::graph
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    ::size_i32 sizeTrack;
 
@@ -425,7 +425,7 @@ bool simple_scroll_bar::GetTrackClientRect(RECTANGLE_I32 * prectangle, ::draw2d:
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    if(m_eorientation == e_orientation_horizontal)
    {
@@ -466,7 +466,7 @@ i32 simple_scroll_bar::GetTrackSize(::size_i32 &size, ::draw2d::graphics_pointer
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    if(m_eorientation == e_orientation_horizontal)
    {
@@ -563,7 +563,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    auto pstyle = get_style(pgraphics);
 
@@ -655,7 +655,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
    ::rectangle_i32 rectangleClient;
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
    ::size_i32 size = rectangleClient.size();
 
    int iArrowForce = 4;
@@ -919,7 +919,7 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point_i32 & point, ::draw2d::gra
 
    ::rectangle_i32 rectangle;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    GetTrackRect(rectangleTrack, pgraphics);
 
@@ -967,7 +967,7 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::gra
 
    ::rectangle_i32 rectangle;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    GetTrackRect(rectangleTrack, pgraphics);
 
@@ -1270,13 +1270,13 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 //            if (i == 1)
 //            {
 //
-//               pinteraction->::user::interaction::get_client_rect(rectangleFocus);
+//               pinteraction->::user::interaction::client_rectangle(rectangleFocus);
 //
 //            }
 //            else
 //            {
 //
-//               pinteraction->get_client_rect(rectangleFocus);
+//               pinteraction->client_rectangle(rectangleFocus);
 //
 //            }
 //
@@ -1366,7 +1366,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
@@ -1376,7 +1376,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rectangle_i32 rectangleWindow;
 
-   get_window_rect(rectangleWindow);
+   window_rectangle(rectangleWindow);
 
    auto colorRectStrong = scrollbar_color_strong(pstyle, ::e_element_scrollbar_trackbar);
 
@@ -1818,7 +1818,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 

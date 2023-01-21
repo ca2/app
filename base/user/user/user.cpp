@@ -826,7 +826,7 @@ namespace base
    //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
-   //      get_impact()->get_window_rect(prectangle);
+   //      get_impact()->window_rectangle(prectangle);
 
 
    //      return true;

@@ -47,7 +47,7 @@ namespace simple_ui
 
 
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
  /*     if(pprinttask != nullptr)
       {
@@ -75,7 +75,7 @@ namespace simple_ui
       pgraphics->blur(true, 4, rectangleClient);
       //class imaging & imaging = psystem->imaging();
       //::rectangle_i32 rectangleClient;
-      //         get_window_rect(rectangleClient);
+      //         window_rectangle(rectangleClient);
       //       rectangleClient.offset(rectangleClient.top_left());
       if(rectangleClient.size() != m_pimage->size())
       {

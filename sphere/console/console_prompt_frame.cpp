@@ -88,7 +88,7 @@ namespace console
 //      else if(uEvent == 4033)
 //      {
 //   /*      ::rectangle_i32 rectangleWindow;
-//         get_window_rect(rectangleWindow);
+//         window_rectangle(rectangleWindow);
 //         ::point_i32 point;
 //         point = psession->get_cursor_position();
 //         if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
@@ -273,9 +273,9 @@ namespace console
       {
          oswindow oswindowDesktop = ::get_desktop_window();
          ::rectangle_i32 rectangleDesktop;
-         ::get_window_rect(oswindowDesktop, rectangleDesktop);
+         ::window_rectangle(oswindowDesktop, rectangleDesktop);
          ::rectangle_i32 rectangleWindow;
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
          double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
          if(rectangleWindow.left < (rectangleDesktop.width() / 2))
          {
@@ -339,7 +339,7 @@ namespace console
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
       
       display();
       

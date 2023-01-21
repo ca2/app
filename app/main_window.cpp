@@ -67,7 +67,7 @@ namespace app_app
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.is_empty())
       {
@@ -205,7 +205,7 @@ namespace app_app
 
          int iSize = (int) (::sin(angle) * 20.0 + 64.0);
 
-         get_client_rect(pitemClose->m_rectangle);
+         client_rectangle(pitemClose->m_rectangle);
 
          pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
 
@@ -222,7 +222,7 @@ namespace app_app
          if (::is_set(pitemZoom))
          {
 
-            get_client_rect(pitemZoom->m_rectangle);
+            client_rectangle(pitemZoom->m_rectangle);
 
             pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
 
@@ -234,7 +234,7 @@ namespace app_app
             if (::is_set(pitemIcon))
             {
 
-               get_client_rect(pitemIcon->m_rectangle);
+               client_rectangle(pitemIcon->m_rectangle);
 
                pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
 

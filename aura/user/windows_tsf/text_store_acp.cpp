@@ -1213,7 +1213,7 @@ namespace tsf
        //GetClientRect(m_hwndEdit, prc);
        //MapWindowPoints(m_hwndEdit, NULL, (POINT_I32 *)prc, 2);
 
-       get_window_rect(prc);
+       window_rectangle(prc);
 
        return S_OK;
 

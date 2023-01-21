@@ -289,7 +289,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient, ::user::e_layout_design);
+      client_rectangle(rectangleClient, ::user::e_layout_design);
 
       ::size sizeText = calc_text_size();
 
@@ -322,7 +322,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       color32_t crBk;
 
@@ -561,7 +561,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       color32_t crBackground = _001GetButtonBackgroundColor();
 
@@ -711,7 +711,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -762,7 +762,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::rectangle rectangleMargin(4, 4, 4, 4);
 
@@ -815,7 +815,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::rectangle rectanglePadded(rectangleClient);
 
@@ -888,7 +888,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto color = get_color(pstyle, e_element_background);
 
@@ -1118,7 +1118,7 @@ namespace user
 
    {
       // use window client rectangle as the tool rectangle
-      get_client_rect(prect);
+      client_rectangle(prect);
 
    }
 
@@ -1149,7 +1149,7 @@ namespace user
       {
          if(get_form() != nullptr)
             return;
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
          bItemHover     = ::is_set(m_pitemHover);
          bSubItemHover  = bItemHover;
       }

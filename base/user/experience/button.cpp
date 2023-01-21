@@ -115,7 +115,7 @@ namespace experience
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            get_client_rect(rectangleClient);
+//            client_rectangle(rectangleClient);
 //
 //            rectangleClient.bottom++;
 //            rectangleClient.right++;
@@ -142,7 +142,7 @@ namespace experience
 //            while (pinteraction != nullptr)
 //            {
 //
-//               pinteraction->get_client_rect(rectangleFocus);
+//               pinteraction->client_rectangle(rectangleFocus);
 //
 //               pinteraction->client_to_host(rectangleFocus);
 //

@@ -814,8 +814,8 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	RECTANGLE_I32 rc_client, rc_wnd;
 //	int Δx, Δy;
 //
-//	get_client_rect(wfc->hwnd, &rc_client);
-//	get_window_rect(wfc->hwnd, &rc_wnd);
+//	client_rectangle(wfc->hwnd, &rc_client);
+//	window_rectangle(wfc->hwnd, &rc_wnd);
 //	
 //	Δx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
 //	Δy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;

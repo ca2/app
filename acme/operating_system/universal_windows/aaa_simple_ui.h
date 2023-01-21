@@ -63,8 +63,8 @@ namespace os
       virtual bool run_loop();
 
 
-      virtual void get_window_rect(RECTANGLE_I32 * prectangle);
-      virtual void get_client_rect(RECTANGLE_I32 * prectangle);
+      virtual void window_rectangle(RECTANGLE_I32 * prectangle);
+      virtual void client_rectangle(RECTANGLE_I32 * prectangle);
 
 
       /*
@@ -90,7 +90,7 @@ namespace os
       void client_to_screen(RECTANGLE_I32 * prectangle);
       void screen_to_client(RECTANGLE_I32 * prectangle);
 
-      void get_window_rect(RECTANGLE_I32 * prectangle);
+      void window_rectangle(RECTANGLE_I32 * prectangle);
 
       virtual void set_capture();
       virtual void release_capture();

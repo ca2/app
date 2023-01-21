@@ -61,7 +61,7 @@
  {
  // see if point_i32 hits the child ::window
  ::rectangle_i32 rectangle;
- ::get_window_rect(hWndChild, rectangle);
+ ::window_rectangle(hWndChild, rectangle);
  if (rectangle.contains(point))
  return hWndChild;
  }

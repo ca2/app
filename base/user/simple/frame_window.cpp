@@ -1244,7 +1244,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer& pgraphics)
    if (papp->m_bExperienceMainFrame.is_false() && get_parent() == nullptr)
    {
 
-      auto rectangle = get_host_window()->get_client_rect();
+      auto rectangle = get_host_window()->client_rectangle();
 
       place(rectangle);
 
@@ -2009,7 +2009,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
    if (puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      pholder->get_client_rect(rectangleFrame);
+      pholder->client_rectangle(rectangleFrame);
 
    }
 
@@ -2367,7 +2367,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       pgraphics->fill_rectangle(rectangleClient, rgb(0, 0, 0));
 
@@ -2420,7 +2420,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    bool bDib = false;
 
@@ -2627,7 +2627,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       //rectangleClient.offset(rectangleClient.top_left());
 
@@ -2787,10 +2787,10 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-void simple_frame_window::get_client_rect(RECTANGLE_I32& rectangle)
+void simple_frame_window::client_rectangle(RECTANGLE_I32& rectangle, ::user::enum_layout elayout)
 {
 
-   ::experience::frame_window::get_client_rect(rectangle);
+   ::experience::frame_window::client_rectangle(rectangle, elayout);
 
 }
 

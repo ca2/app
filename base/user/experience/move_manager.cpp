@@ -65,7 +65,7 @@ namespace experience
 
       ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectangleWindow);
+      m_pframewindow->window_rectangle(rectangleWindow);
 
       m_pointCursorOrigin = pointCursor;
 

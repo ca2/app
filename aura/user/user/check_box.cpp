@@ -170,7 +170,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       int w = rectangleClient.width();
 
@@ -314,7 +314,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       int w = rectangleClient.width();
 
@@ -542,7 +542,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       int iMinimumDimension = maximum(rectangleClient.minimum_dimension() -1, 1);
 

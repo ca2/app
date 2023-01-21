@@ -195,8 +195,8 @@ namespace sandbox_windowing
       //virtual ::e_status post_ui_message(const MESSAGE & message);
       ////virtual bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie);
       ////virtual ::e_status set_window_position( windowing_android_WINDOW_MEMBER const ::zorder & zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
-      //virtual ::e_status get_window_rect(windowing_android_WINDOW_MEMBER RECTANGLE_I32 * prectangle);
-      //virtual ::e_status get_client_rect(windowing_android_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
+      //virtual ::e_status window_rectangle(windowing_android_WINDOW_MEMBER RECTANGLE_I32 * prectangle);
+      //virtual ::e_status client_rectangle(windowing_android_WINDOW_MEMBER  RECTANGLE_I32 * prectangle);
       ////virtual ::e_status wm_full_screen( windowing_android_WINDOW_MEMBER const ::rectangle_i32 & rectangle);
 
       //virtual ::e_status x11_store_name(const ::scoped_string & scopedstrName);

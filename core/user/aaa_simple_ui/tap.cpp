@@ -172,7 +172,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(&rectangleWindow);
+      window_rectangle(&rectangleWindow);
 
 auto pwindowing = windowing();
 
@@ -217,7 +217,7 @@ auto pwindowing = windowing();
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          pgraphics->fill_rectangle(rectangleClient, br);
 
@@ -247,7 +247,7 @@ auto pwindowing = windowing();
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          ::earth::time timeNow = ::earth::time::now();
 
@@ -419,7 +419,7 @@ auto pwindowing = windowing();
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::earth::time timeNow = ::earth::time::now();
 
@@ -520,7 +520,7 @@ auto pwindowing = windowing();
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(m_bAutoStockIconPenWidth)
       {

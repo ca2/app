@@ -69,13 +69,13 @@ namespace experience
 
       ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectangleWindow);
+      m_pframewindow->window_rectangle(rectangleWindow);
 
       m_rectangleWindowOrigin = rectangleWindow;
 
       ::rectangle_i32 rectangleEvent;
 
-      m_pframewindow->get_window_rect(rectangleEvent);
+      m_pframewindow->window_rectangle(rectangleEvent);
 
       //enum_frame eframe = _001HitTest(pointCursor);
 
@@ -635,7 +635,7 @@ namespace experience
 
       ::rectangle_i32 rectangleWindowNow;
 
-      m_pframewindow->get_window_rect(rectangleWindowNow);
+      m_pframewindow->window_rectangle(rectangleWindowNow);
 
       if (rectangleWindowNow == rectangleWindow)
       {
@@ -657,7 +657,7 @@ namespace experience
 
          ::rectangle_i32 rectangleBefore;
 
-         pframewindow->get_window_rect(rectangleBefore);
+         pframewindow->window_rectangle(rectangleBefore);
 
          ::rectangle_i32 rectangleAfter = rectangleWindow;
 

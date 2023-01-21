@@ -181,7 +181,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_parent()->get_client_rect(rectangleClient);
+      get_parent()->client_rectangle(rectangleClient);
 
       pgraphics->set_font(this, ::e_element_none);
 

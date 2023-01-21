@@ -54,7 +54,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::get_client_rect(rectangleClient);
+      ::user::interaction::client_rectangle(rectangleClient);
 
       defer_create_horizontal_scroll_bar();
 
@@ -241,7 +241,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy;
 
@@ -279,7 +279,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectangleScroll);
+      client_rectangle(rectangleScroll);
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 

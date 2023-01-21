@@ -145,10 +145,10 @@ namespace android
       //virtual ::u32 ArrangeIconicWindows();
       //virtual void BringToTop(int nCmdShow);
       //virtual bool BringWindowToTop();
-      //using ::user::interaction_impl::get_window_rect;
-      //virtual bool get_window_rect(RECTANGLE_I64 * lpRect);
-      //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECTANGLE_I64 * lpRect);
+      //using ::user::interaction_impl::window_rectangle;
+      //virtual bool window_rectangle(RECTANGLE_I64 * lpRect);
+      //using ::user::interaction_impl::client_rectangle;
+      //virtual bool client_rectangle(RECTANGLE_I64 * lpRect);
 
       //virtual bool client_to_screen(RECTANGLE_I32 * lprect);
       //virtual bool client_to_screen(POINT_I32 * lppoint);

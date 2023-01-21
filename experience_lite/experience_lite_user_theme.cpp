@@ -89,7 +89,7 @@ namespace lite
       ::rectangle_i32 rectangleClose;
 
       ::rectangle_i32 r1;
-      ptab->get_client_rect(r1);
+      ptab->client_rectangle(r1);
 
       pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
 
@@ -652,7 +652,7 @@ namespace lite
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
          ::rectangle_i32 rectangleClient;
-         ptab->get_client_rect(rectangleClient);
+         ptab->client_rectangle(rectangleClient);
 
          ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
@@ -684,7 +684,7 @@ namespace lite
          pgraphics->SelectObject(ptab->_001GetFont(::user::font_tab_sel));
 
          ::rectangle_i32 rectangleClient;
-         ptab->get_client_rect(rectangleClient);
+         ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
          i32 ixAdd;
@@ -1492,7 +1492,7 @@ namespace lite
 
       ::rectangle_i32 rectangleClient;
 
-      psplitlayout->get_client_rect(rectangleClient);
+      psplitlayout->client_rectangle(rectangleClient);
 
       pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 

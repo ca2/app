@@ -259,7 +259,7 @@ namespace account
       if(puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectangleDesktop);
+         puiParent->window_rectangle(rectangleDesktop);
 
       }
       else if (rectangle.is_empty())
@@ -502,7 +502,7 @@ namespace account
    void dialog::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.is_empty())
       {
@@ -511,7 +511,7 @@ namespace account
 
       }
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::user::interaction::on_layout(pgraphics);
 

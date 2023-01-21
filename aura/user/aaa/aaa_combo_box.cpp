@@ -94,7 +94,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText(0, 0, 0, 255);
@@ -186,7 +186,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -472,7 +472,7 @@ namespace user
 
       }
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.contains(item.m_pointHitTest))
       {
@@ -516,7 +516,7 @@ namespace user
 
          ::rectangle rectangleWindow;
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
          m_plist->on_drop_down(rectangleWindow, m_sizeFull);
 
@@ -745,7 +745,7 @@ namespace user
 
          ::rectangle rectangleWindow;
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
          m_plist->on_drop_down(rectangleWindow, m_sizeFull);
 
@@ -796,7 +796,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       m_plist->m_iItemHeight = minimum(24, rectangleClient.height());
 
@@ -879,7 +879,7 @@ namespace user
 
             ::rectangle rectangleClient;
 
-            get_client_rect(rectangleClient);
+            client_rectangle(rectangleClient);
 
             fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;

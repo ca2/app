@@ -181,7 +181,7 @@ void wf_event_focus_in(wfContext* wfc)
 	/* send pointer position if the cursor is currently inside our client area */
 	GetCursorPos(&pt);
 	screen_to_client(wfc->hwnd, &pt);
-	get_client_rect(wfc->hwnd, &rc);
+	client_rectangle(wfc->hwnd, &rc);
 
 	if (point.x >= rc.left && point.x < rc.right && point.y >= rc.top && point.y < rc.bottom)
 		input->MouseEvent(input, PTR_FLAGS_MOVE, (::u3216)point.x, (::u3216)point.y);
@@ -310,7 +310,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				break;
 //			
 //			case e_message_size:
-//				get_window_rect(wfc->hwnd, &windowRect);
+//				window_rectangle(wfc->hwnd, &windowRect);
 //				
 //				if (!wfc->fullscreen)
 //				{

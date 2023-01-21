@@ -989,7 +989,7 @@ run_install:
 
       RECTANGLE_I32 rectangleWindow;
 
-      get_window_rect(&rectangleWindow);
+      window_rectangle(&rectangleWindow);
 
       i32 cx = rectangleWindow.right - rectangleWindow.left;
       i32 cy = rectangleWindow.bottom - rectangleWindow.top;
@@ -1632,7 +1632,7 @@ restart:
 
          ::rectangle_i32 rectangle;
 
-         get_window_rect(rectangle);
+         window_rectangle(rectangle);
 
          if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectangleSent != rectangle)
          {

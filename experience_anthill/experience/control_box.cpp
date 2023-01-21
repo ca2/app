@@ -121,7 +121,7 @@ namespace experience_anthill
 
       }
 
-      ::rectangle_i32 rectangleClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {

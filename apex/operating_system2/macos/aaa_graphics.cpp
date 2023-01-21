@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // }
 
 
-int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
+int_bool client_rectangle(oswindow hwnd, RECT32 * prect)
 
 {
    /*   XWindowAttributes attrs;
@@ -713,7 +713,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
     prect->bottom    = prect->top     + attrs.height;*/
 
 
-   if(!get_window_rect(hwnd, prect))
+   if(!window_rectangle(hwnd, prect))
 
       return false;
 
@@ -731,7 +731,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 }
 
 //
-//int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+//int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -801,7 +801,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 
 //    HDC hdc = GetDC(hwnd);
 
-//    get_client_rect(hwnd, &ps->rcPaint);
+//    client_rectangle(hwnd, &ps->rcPaint);
 
 //    return hdc;
 
@@ -1201,7 +1201,7 @@ void os_term_imaging()
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 
 {
    /* XWindowAttributes attrs;

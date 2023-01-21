@@ -98,7 +98,7 @@ namespace browser
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (m_pimageBk)
       {

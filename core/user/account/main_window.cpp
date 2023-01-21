@@ -214,7 +214,7 @@ namespace account
       if (puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectangleDesktop);
+         puiParent->window_rectangle(rectangleDesktop);
 
       }
       else if (is_empty(rectangleParam))
@@ -379,7 +379,7 @@ namespace account
 
          ::rectangle_i32 rectangleClient1;
 
-         get_client_rect(rectangleClient1);
+         client_rectangle(rectangleClient1);
 
          bool bParentChange = false;
 
@@ -388,7 +388,7 @@ namespace account
 
             ::rectangle_i32 rectangleParent;
 
-            get_parent()->get_window_rect(rectangleParent);
+            get_parent()->window_rectangle(rectangleParent);
 
             if(rectangleParent != m_rectangleParent)
             {
@@ -408,7 +408,7 @@ namespace account
             if(get_parent() != nullptr)
             {
 
-               get_parent()->get_window_rect(rectangleDesktop);
+               get_parent()->window_rectangle(rectangleDesktop);
 
             }
             else
@@ -470,7 +470,7 @@ namespace account
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       m_plogin->place(rectangleClient);
 

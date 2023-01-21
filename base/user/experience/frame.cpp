@@ -193,7 +193,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::get_client_rect(rectangleClient);
+      pframewindow->::user::interaction::client_rectangle(rectangleClient);
 
       if (rectangleClient.is_empty())
       {
@@ -217,7 +217,7 @@ namespace experience
 
       update_window_client_rect();
 
-      pframewindow->get_client_rect(rectangleClient);
+      pframewindow->client_rectangle(rectangleClient);
 
       get_window_client_rect(rectangleClient);
 
@@ -786,7 +786,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::get_client_rect(rectangleClient);
+      pframewindow->::user::interaction::client_rectangle(rectangleClient);
 
       if (rectangleClient.is_empty())
       {
@@ -1050,7 +1050,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::get_client_rect(rectangleClient);
+      pframewindow->::user::interaction::client_rectangle(rectangleClient);
 
       //calc_window_client_rect(m_rectangleClient, rectangleClient);
 
@@ -1499,14 +1499,14 @@ namespace experience
       else if (m_pframewindow->layout().is_zoomed())
       {
 
-         m_pframewindow->get_window_rect(rectangle);
+         m_pframewindow->window_rectangle(rectangle);
 
 
       }
       else
       {
 
-         m_pframewindow->get_window_rect(rectangle);
+         m_pframewindow->window_rectangle(rectangle);
 
       }
 
@@ -1551,7 +1551,7 @@ namespace experience
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->::user::interaction::get_client_rect(rectangle);
+      m_pframewindow->::user::interaction::client_rectangle(rectangle);
 
    }
 

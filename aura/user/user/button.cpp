@@ -315,7 +315,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
@@ -339,7 +339,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::color::color crBk;
 
@@ -581,7 +581,7 @@ namespace user
       
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto pstyle = get_style(pgraphics);
 
@@ -634,7 +634,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto pstyle = get_style(pgraphics);
 
@@ -809,7 +809,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -874,7 +874,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::rectangle_i32 rectangleMargin(4, 4, 4, 4);
 
@@ -939,7 +939,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::rectangle_i32 rectanglePadded(rectangleClient);
 
@@ -1026,7 +1026,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto color = get_color(pstyle, e_element_background);
 
@@ -1263,7 +1263,7 @@ namespace user
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
    }
 
@@ -1308,7 +1308,7 @@ namespace user
 
       }
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::point_i32 point = rectangleClient.top_left();
 

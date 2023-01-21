@@ -58,8 +58,74 @@ struct const_of_struct< TYPE const && >
 {
    using CONST_OF_TYPE = const TYPE &&;
 };
+
+
+//template < typename FUNCTION  >
+//struct const_of_struct < void(*FUNCTION) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//template < typename FUNCTION, typename RETURN_TYPE  >
+//struct const_of_struct < RETURN_TYPE( *FUNCTION) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//
+//template < typename FUNCTION, typename RETURN_TYPE, typename... TYPES >
+//struct const_of_struct < RETURN_TYPE( *FUNCTION) (TYPES...) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+//
+//
+//template < typename FUNCTION, typename... TYPES >
+//struct const_of_struct < void( *FUNCTION)(TYPES...) >
+//{
+//
+//   using CONST_OF_TYPE = FUNCTION;
+//
+//};
+
+
+
+//template <class... Args>
+//struct all_s :std::false_type {};
+//
+//template <>
+//struct all_s<size_t> :std::true_type {};
+//
+//template <class... Args>
+//struct all_s<size_t, Args...> :all_s<Args...> {};
+//template <class... Args>
+//concept all_s_con = all_s<Args...>::value;
+//
+//template<class C, class R, class Fun>
+//struct fun_all_s :std::false_type {};
+//template<class C, class R, class... Args>
+//   requires all_s_con<Args...>
+//struct fun_all_s<C, R, R(C &, Args...)> :std::true_type {};
+//
+//template<class C, typename Policy>
+//concept FooConcept = fun_all_s<C, typename C::value_type, decltype(Policy::foo)>::value;
+
+
+
+
+
 template<typename TYPE>
 using const_of = typename const_of_struct<TYPE>::CONST_OF_TYPE;
+
+
+
+
 
 
 // erase_const
@@ -527,6 +593,15 @@ struct argument_of_struct < NUMBER >
    using type = NUMBER;
 
 };
+
+
+//template < primitive_function FUNCTION >
+//struct argument_of_struct < FUNCTION >
+//{
+//
+//   using type = FUNCTION;
+//
+//};
 
 
 template < typename ARGUMENT >

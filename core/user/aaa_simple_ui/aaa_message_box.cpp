@@ -113,7 +113,7 @@ namespace simple_ui
       if(puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectangleDesktop);
+         puiParent->window_rectangle(rectangleDesktop);
 
       }
       else
@@ -236,7 +236,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto pnode = Node;
 
@@ -272,7 +272,7 @@ namespace simple_ui
    void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.is_empty())
       {

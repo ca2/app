@@ -80,7 +80,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(rectangleClient.area() <= 0)
       {
@@ -152,7 +152,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectangleScroll);
+      client_rectangle(rectangleScroll);
 
       m_pscrolldataHorizontal->m_iPage = rectangleScroll.width();
 
@@ -180,7 +180,7 @@ namespace user
    bool scroll_base::GetActiveClientRect(RECTANGLE_I32 & rectangle)
    {
 
-      ::user::interaction::get_client_rect(rectangle);
+      ::user::interaction::client_rectangle(rectangle);
 
       auto sizeTotal = get_total_size();
 
@@ -195,10 +195,10 @@ namespace user
    }
 
 
-   //bool scroll_base::get_client_rect(RECTANGLE_I32 * prectangle)
+   //bool scroll_base::client_rectangle(RECTANGLE_I32 * prectangle)
    //{
 
-   //   ::user::interaction::get_client_rect(prectangle);
+   //   ::user::interaction::client_rectangle(prectangle);
 
    //   prectangle->right -= get_final_y_scroll_bar_width();
 
@@ -261,7 +261,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          ::rectangle_i32 rectangle;
 

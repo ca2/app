@@ -27,7 +27,7 @@ namespace user
       void on_create_user_interaction() override;
       
       
-      void get_input_client_area(RECTANGLE_I32 & rectangle) override;
+      void input_client_rectangle(RECTANGLE_I32 & rectangle) override;
 
 
       void initial_frame_placement() override;

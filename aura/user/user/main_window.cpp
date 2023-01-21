@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   void main_window::get_input_client_area(RECTANGLE_I32 & rectangle)
+   void main_window::input_client_rectangle(RECTANGLE_I32 & rectangle)
    {
       
       get_client_rect(rectangle);

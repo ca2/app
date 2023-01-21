@@ -8619,7 +8619,7 @@ namespace user
       else
       {
 
-         get_input_client_area(sizeparentparams.rectangle);
+         input_client_rectangle(sizeparentparams.rectangle);
 
       }
 
@@ -14239,7 +14239,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::get_input_client_area(RECTANGLE_I32 & rect)
+   void interaction::input_client_rectangle(RECTANGLE_I32 & rect)
    {
    
       get_client_rect(rect);

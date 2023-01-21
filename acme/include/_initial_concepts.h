@@ -248,8 +248,8 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 
 
 //template <typename COMPARE_ITEM, typename ITEM>
-//concept compare_predicate = ::std::convertible_to<COMPARE_ITEM,::std::function<::std::strong_ordering(ITEM, ITEM)> >
-//|| ::std::convertible_to<COMPARE_ITEM,::std::function< ::std::strong_ordering(const ITEM &, const ITEM &)>>;
+//concept compare_predicate = ::std::convertible_to<COMPARE_ITEM,::function<::std::strong_ordering(ITEM, ITEM)> >
+//|| ::std::convertible_to<COMPARE_ITEM,::std::function< ::strong_ordering(const ITEM &, const ITEM &)>>;
 //
 //
 

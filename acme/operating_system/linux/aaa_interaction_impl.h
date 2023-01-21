@@ -213,12 +213,12 @@ namespace linux
       //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 //      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
-//      virtual bool get_window_rect(RECT64 * prect);
+//      virtual bool window_rectangle(RECT64 * prect);
 
   //    virtual bool _001GetWindowRect(RECT64 * prect);
 
-      //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECT64 * prect);
+      //using ::user::interaction_impl::client_rectangle;
+      //virtual bool client_rectangle(RECT64 * prect);
 
 
       virtual bool has_focus() override;

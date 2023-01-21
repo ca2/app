@@ -420,6 +420,15 @@ namespace user
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);
       virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
+      /// @brief  sets right position maintaining size
+      /// @param right 
+      /// @param elayout 
+      virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch);
+
+      /// @brief sets top position maintaining size
+      /// @param top 
+      /// @param elayout 
+      virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch);
       
       virtual bool on_set_position(const ::point_i32 & point, enum_layout elayout);
       virtual bool on_set_size(const ::size_i32 & size, enum_layout elayout);
@@ -798,13 +807,19 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
-      virtual void input_client_rectangle(RECTANGLE_I32 & rect);
-      virtual void get_client_rect(RECTANGLE_I32 & rect);
-      virtual ::rectangle_i32 get_client_rect();
+      virtual void input_client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
+      virtual void client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
+      virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_sketch);
 
 
-      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { copy(rect, get_window_rect(elayout)); }
-      virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design);
+      virtual void window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch) { copy(rect, window_rectangle(elayout)); }
+      virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_sketch);
+      virtual ::point_i32 position(enum_layout elayout = e_layout_sketch);
+      virtual ::size_i32 size(enum_layout elayout = e_layout_sketch);
+      virtual ::i32 top(enum_layout elayout = e_layout_sketch);
+      virtual ::i32 left(enum_layout elayout = e_layout_sketch);
+      virtual ::i32 right(enum_layout elayout = e_layout_sketch);
+      virtual ::i32 bottom(enum_layout elayout = e_layout_sketch);
 
 
       inline void set_prodevian() { return add_prodevian(this); }
@@ -1763,7 +1778,7 @@ namespace user
 
       virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32 & rectangle);
 
-      //virtual void get_window_rect(RECTANGLE_I32 * prectangle) override;
+      //virtual void window_rectangle(RECTANGLE_I32 * prectangle) override;
 
       virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_display edisplay);
 
@@ -2087,10 +2102,10 @@ namespace user
       //index GetEditSubItem();
       // index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
-      //using ::user::box::get_client_rect;
-      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
-      //using ::user::box::get_window_rect;
-      //virtual bool get_window_rect(RECTANGLE_I32 * prectangle) override;
+      //using ::user::box::client_rectangle;
+      //virtual bool client_rectangle(RECTANGLE_I32 * prectangle) override;
+      //using ::user::box::window_rectangle;
+      //virtual bool window_rectangle(RECTANGLE_I32 * prectangle) override;
       //bool operator == (const class ::user::control_descriptor& descriptor);
       //bool operator == (const class control& control);
       virtual bool IsControlCommandEnabled();

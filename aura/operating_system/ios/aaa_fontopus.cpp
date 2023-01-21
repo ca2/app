@@ -60,9 +60,9 @@ namespace account
 
       virtual void screen_to_client(POINT_I32 * ppt);
 
-      virtual void get_window_rect(RECTANGLE_I32 * prectangle);
+      virtual void window_rectangle(RECTANGLE_I32 * prectangle);
 
-      virtual void get_client_rect(RECTANGLE_I32 * prectangle);
+      virtual void client_rectangle(RECTANGLE_I32 * prectangle);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -115,7 +115,7 @@ namespace account
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -316,7 +316,7 @@ namespace account
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -380,7 +380,7 @@ namespace account
          m_rectangleDesktop.right = 800;
          m_rectangleDesktop.bottom = 600;
 
-//         ::get_window_rect(::get_desktop_window(), &m_rectangleDesktop);
+//         ::window_rectangle(::get_desktop_window(), &m_rectangleDesktop);
 
       }
       else
@@ -573,7 +573,7 @@ namespace account
 
       ::rectangle_i32 rectangleLogin;
 
-      m_login.get_window_rect(rectangleLogin);
+      m_login.window_rectangle(rectangleLogin);
 
       ::point_i32 point(x, y);
 
@@ -586,7 +586,7 @@ namespace account
 
             {
       ::rectangle_i32 rectangleWindow;
-      m_login.get_window_rect(&rectangleWindow);
+      m_login.window_rectangle(&rectangleWindow);
       POINT_I32 pointCursor;
       ::GetCursorPos(&pointCursor);
       if (rectangleWindow.is_empty().contains(pointCursor))
@@ -624,14 +624,14 @@ namespace account
    }
 
 
-   void account::get_window_rect(RECTANGLE_I32 * prectangle)
+   void account::window_rectangle(RECTANGLE_I32 * prectangle)
    {
-      ::get_window_rect(m_oswindow, prectangle);
+      ::window_rectangle(m_oswindow, prectangle);
    }
-   void account::get_client_rect(RECTANGLE_I32 * prectangle)
+   void account::client_rectangle(RECTANGLE_I32 * prectangle)
    {
 
-      ::get_client_rect(m_oswindow, prectangle);
+      ::client_rectangle(m_oswindow, prectangle);
 
    }
 
@@ -640,7 +640,7 @@ namespace account
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
 
       g.fill_rectangle(rectangleWindow, argb(84, 127, 127, 127));
@@ -665,7 +665,7 @@ namespace account
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       int i = 0;
       int j = 0;

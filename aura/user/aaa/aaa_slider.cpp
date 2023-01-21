@@ -142,7 +142,7 @@ namespace user
 
       ::rectangle rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       if(rectangle.width() != 0)
       {
@@ -201,7 +201,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       class imaging & imaging = ::auraacmesystem()->imaging();
 
@@ -237,7 +237,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       i32 iWidth = 16;
 

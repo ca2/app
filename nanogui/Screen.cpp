@@ -1224,7 +1224,7 @@ void Screen::perform_layout(::draw2d::graphics_pointer & pgraphics)
    /*if (m_puserinteraction)
    {
 
-      auto r = m_puserinteraction->get_client_rect();
+      auto r = m_puserinteraction->client_rectangle();
       m_size.x() = r.width();
       m_size.y() = r.height();
    }*/

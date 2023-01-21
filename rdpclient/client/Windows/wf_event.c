@@ -312,7 +312,7 @@ LRESULT CALLBACK wf_event_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 				break;
 
 			case e_message_size:
-				get_window_rect(wfc->hwnd, &windowRect);
+				window_rectangle(wfc->hwnd, &windowRect);
 
 				if (!wfc->fullscreen)
 				{

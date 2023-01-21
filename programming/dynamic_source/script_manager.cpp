@@ -1237,12 +1237,10 @@ namespace dynamic_source
       
       auto p = m_mapSession.begin();
       
-      decltype(p) pNext;
-
       while(::is_ok(p))
       {
 
-         pNext++;
+         auto pNext = p + 1;
 
          if(p->payload().is_null())
          {

@@ -1114,7 +1114,7 @@ namespace aura
    //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
-   //      get_impact()->get_window_rect(prectangle);
+   //      get_impact()->window_rectangle(prectangle);
 
 
    //      return true;
@@ -1376,7 +1376,7 @@ namespace user
 
                synchronous_lock synchronouslock(this->synchronization());
 
-               ::acme::container::copy(uiptraToolWindow, m_uiptraToolWindow);
+               ::generic::container::copy(uiptraToolWindow, m_uiptraToolWindow);
 
             }
 

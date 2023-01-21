@@ -72,7 +72,7 @@ public:
    void on_after_set_parent() override;
 
    
-   void get_client_rect(RECTANGLE_I32 & rectangle) override;
+   void client_rectangle(RECTANGLE_I32 & rectangle, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    virtual bool is_application_main_window();

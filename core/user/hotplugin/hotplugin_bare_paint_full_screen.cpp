@@ -20,7 +20,7 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(&rectangleWindow);
+      window_rectangle(&rectangleWindow);
 
       i32 cx = rectangleWindow.right - rectangleWindow.left;
       i32 cy = rectangleWindow.bottom - rectangleWindow.top;

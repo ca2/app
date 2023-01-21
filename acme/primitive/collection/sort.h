@@ -5,31 +5,31 @@
 #include "acme/primitive/comparison/less.h"
 
 
-   namespace sort
-   {
+namespace sort
+{
 
 
    template<class TYPE>
-   static iptr NumericCompare(const TYPE *pointA, const TYPE *pointB);
+   static iptr NumericCompare(const TYPE * pointA, const TYPE * pointB);
 
-//    static iptr DWordCompare(const iptr dwA, const iptr dwB);
+   //    static iptr DWordCompare(const iptr dwA, const iptr dwB);
 
-//   static void BubbleSort(LPINT pInt, iptr size_i32);
+   //   static void BubbleSort(LPINT pInt, iptr size_i32);
 
 
-//   static void quick_sort(
-   //    array<u32, u32> & a,
-   //  iptr (*fCompare)(const iptr, const iptr),
-   //void (*__swap)(void * pVoidSwapArg, iptr iA, iptr iB),
+   //   static void quick_sort(
+      //    array<u32, u32> & a,
+      //  iptr (*fCompare)(const iptr, const iptr),
+      //void (*__swap)(void * pVoidSwapArg, iptr iA, iptr iB),
 
-   //void * pVoidSwapArg);
+      //void * pVoidSwapArg);
 
 
    template<class A>
    static iptr CompareTkPosition(const A a1, const A a2);
 
    template<class TYPE>
-   iptr NumericCompare(const TYPE *p1, const TYPE *p2)
+   iptr NumericCompare(const TYPE * p1, const TYPE * p2)
    {
       if (*p1 > *p2)
          return 1;
@@ -51,46 +51,46 @@
          return 0;
    }
 
-//   template <class TYPE, class ARG_TYPE>
-//   void SwapArray(
-//      array<TYPE, ARG_TYPE> & a,
-//      iptr   iA,
-//      iptr iB)
-//   {
-//      TYPE t;
-//      t = a.get_at(iA);
-//      a.set_at(iA, a.get_at(iB));
-//      a.set_at(iB, t);
-//   };
-   /*template <class TYPE, class ARG_TYPE>
-   void quick_sort(
-   array<TYPE, ARG_TYPE> & array,
-   iptr (* fCompare)(const TYPE *, const TYPE *),
-   void (* fSwap)(TYPE *, TYPE *));*/
+   //   template <class TYPE, class ARG_TYPE>
+   //   void SwapArray(
+   //      array<TYPE, ARG_TYPE> & a,
+   //      iptr   iA,
+   //      iptr iB)
+   //   {
+   //      TYPE t;
+   //      t = a.get_at(iA);
+   //      a.set_at(iA, a.get_at(iB));
+   //      a.set_at(iB, t);
+   //   };
+      /*template <class TYPE, class ARG_TYPE>
+      void quick_sort(
+      array<TYPE, ARG_TYPE> & array,
+      ::std::strong_ordering (* fCompare)(const TYPE *, const TYPE *),
+      void (* fSwap)(TYPE *, TYPE *));*/
 
-   /*template <class TYPE, class ARG_TYPE>
-   void __swap(
-   CarrayInterface<TYPE, ARG_TYPE> * parray,
-   iptr   iA,
-   iptr iB)
-   {
-   TYPE t;
-   t = parray->element_at(iA);
-   parray->set_at(iA, parray->element_at(iB));
-   parray->set_at(iB, t);
-   };*/
+      /*template <class TYPE, class ARG_TYPE>
+      void __swap(
+      CarrayInterface<TYPE, ARG_TYPE> * parray,
+      iptr   iA,
+      iptr iB)
+      {
+      TYPE t;
+      t = parray->element_at(iA);
+      parray->set_at(iA, parray->element_at(iB));
+      parray->set_at(iB, t);
+      };*/
 
 
    template<class TYPE>
    iptr CompareAscending(
-      TYPE *pA,
-      TYPE *pB)
+      TYPE * pA,
+      TYPE * pB)
    {
       return *pA - *pB;
    };
 
    template<class TYPE, class ARG_TYPE, class FIRST>
-   void quick_sort(array<TYPE, ARG_TYPE> &a)
+   void quick_sort(array<TYPE, ARG_TYPE> & a)
    {
       TYPE t;
       index_array stackLowerBound;
@@ -168,7 +168,7 @@
 
    template<class TYPE, class ARG_TYPE, typename SWAP>
    void quick_sort(
-      array<TYPE, ARG_TYPE> &a,
+      array<TYPE, ARG_TYPE> & a,
       SWAP __swap)
    {
       index_array stackLowerBound;
@@ -243,11 +243,11 @@
 
    template<class TYPE, class ARG_TYPE>
    void quick_sort(
-      array<TYPE, ARG_TYPE> &a,
-      iptr fCompare(const ARG_TYPE, const ARG_TYPE),
-      void __swap(void *pVoidSwapArg, iptr iA, iptr iB),
+      array<TYPE, ARG_TYPE> & a,
+      ::std::strong_ordering fCompare(const ARG_TYPE, const ARG_TYPE),
+      void __swap(void * pVoidSwapArg, iptr iA, iptr iB),
 
-      void *pVoidSwapArg)
+      void * pVoidSwapArg)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -322,20 +322,9 @@
 
 
    template<class iterator, class COMPARE = ::comparison::less<typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE> >
-   void quick_sort(const iterator &a, const iterator &b);
+   void quick_sort(const iterator & a, const iterator & b);
 
 
-   typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
-
-   typedef i32 (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
-
-
-   void CLASS_DECL_ACME quick_sort(
-      iptr iSize,
-      array<ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION> &comparefna,
-      array<ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION> &swapfna,
-      void_ptra &comparearga,
-      void_ptra &swaparga);
 
 
 
@@ -418,7 +407,7 @@
    //}
 
    template<typename PRED_LE, typename ARRAY>
-   void predicate_array_quick_sort(ARRAY &a, PRED_LE predicate_le)
+   void predicate_array_quick_sort(ARRAY & a, PRED_LE predicate_le)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -498,7 +487,7 @@
 
 
    template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortAsc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> &a)
+   void QuickSortAsc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -567,7 +556,7 @@
    }
 
    template<class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-   void QuickSortDesc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> &a)
+   void QuickSortDesc(comparable_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -639,14 +628,14 @@
    template<primitive_range RANGE>
    void QuickSortAsc(RANGE & range)
    {
-      
+
       if (range.size() < 2)
       {
 
          return;
 
       }
-      
+
       ::array < typename RANGE::iterator > stackLowerBound;
       ::array < typename RANGE::iterator > stackUpperBound;
       typename RANGE::iterator iLowerBound;
@@ -790,8 +779,8 @@
 
    template<class KEY, class TYPE, class ARG_TYPE>
    void QuickSortByKey(
-      array<TYPE, ARG_TYPE> &a,
-      KEY (TYPE::* fKey)())
+      array<TYPE, ARG_TYPE> & a,
+      KEY(TYPE:: * fKey)())
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -874,7 +863,7 @@
 
 
    template<class TYPE, class ARG_TYPE>
-   bool SortFind(array<TYPE, ARG_TYPE> &a, ARG_TYPE t, iptr &iIndex, iptr iStart, iptr iEnd)
+   bool SortFind(array<TYPE, ARG_TYPE> & a, ARG_TYPE t, iptr & iIndex, iptr iStart, iptr iEnd)
    {
       if (a.get_size() == 0)
       {
@@ -888,16 +877,18 @@
       while (true)
       {
          iIndex = (iUpperBound + iLowerBound) / 2;
-         iCompare = SortCompare((ARG_TYPE) a.element_at(iIndex), (ARG_TYPE) t);
+         iCompare = SortCompare((ARG_TYPE)a.element_at(iIndex), (ARG_TYPE)t);
          if (iCompare == 0)
          {
             return true;
-         } else if (iCompare > 0)
+         }
+         else if (iCompare > 0)
          {
             iUpperBound = iIndex - 1;
             if (iUpperBound < 0)
                break;
-         } else
+         }
+         else
          {
             iLowerBound = iIndex + 1;
             if (iLowerBound > iMaxBound)
@@ -915,34 +906,34 @@
    }
 
    template<class TYPE, class ARG_TYPE>
-   bool SortFind(array<TYPE, ARG_TYPE> &a, ARG_TYPE t, iptr &iIndex)
+   bool SortFind(array<TYPE, ARG_TYPE> & a, ARG_TYPE t, iptr & iIndex)
    {
       return SortFind(a, t, iIndex, 0, a.get_size() - 1);
    }
 
    template<class TYPE, class ARG_TYPE>
-   void BubbleSortByLPGetSize(array<TYPE, ARG_TYPE> &a, bool bAsc = true);
+   void BubbleSortByLPGetSize(array<TYPE, ARG_TYPE> & a, bool bAsc = true);
 
    template<class TYPE, class ARG_TYPE>
-   void BubbleSortByGetSize(array<TYPE, ARG_TYPE> &a, bool bAsc = true);
+   void BubbleSortByGetSize(array<TYPE, ARG_TYPE> & a, bool bAsc = true);
 
    template<typename TYPE>
    void BubbleSortByPtrAtGetSize(
-      pointer_array<TYPE> &a,
+      pointer_array<TYPE> & a,
       bool bAsc = true);
 
    template<class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR>
    void quick_sort(
-      array<TYPE, ARG_TYPE, DEFCONSTRUCTOR> &a,
-      iptr (*pfnCompare)(ARG_TYPE, ARG_TYPE));
+      array<TYPE, ARG_TYPE, DEFCONSTRUCTOR> & a,
+      ::std::strong_ordering(*pfnCompare)(ARG_TYPE, ARG_TYPE));
 
 
    template<class TYPE, class ARG_TYPE>
    void BubbleSortByLPGetSize(
-      array<TYPE, ARG_TYPE> &a,
+      array<TYPE, ARG_TYPE> & a,
       bool bAsc)
    {
-      TYPE *t;
+      TYPE * t;
       if (bAsc)
       {
          for (iptr i = 0; i < a.get_size(); i++)
@@ -956,7 +947,8 @@
                }
 
             }
-      } else
+      }
+      else
       {
          for (iptr i = 0; i < a.get_size(); i++)
             for (iptr j = i + 1; j < a.get_size(); j++)
@@ -976,7 +968,7 @@
 
    template<class TYPE, class ARG_TYPE>
    void BubbleSortByGetSize(
-      array<TYPE, ARG_TYPE> &a,
+      array<TYPE, ARG_TYPE> & a,
       bool bAsc)
    {
       TYPE t;
@@ -993,7 +985,8 @@
                }
 
             }
-      } else
+      }
+      else
       {
          for (iptr i = 0; i < a.get_size(); i++)
             for (iptr j = i + 1; j < a.get_size(); j++)
@@ -1013,7 +1006,7 @@
 
    template<class ARRAY>
    void BubbleSortByGetSize(
-      ARRAY &a,
+      ARRAY & a,
       bool bAsc)
    {
       typename ARRAY::BASE_TYPE t;
@@ -1027,7 +1020,8 @@
                   a.__swap(i, j);
                }
             }
-      } else
+      }
+      else
       {
          for (iptr i = 0; i < a.get_size(); i++)
             for (iptr j = i + 1; j < a.get_size(); j++)
@@ -1046,7 +1040,7 @@
 
    template<typename TYPE>
    void BubbleSortByPtrAtGetSize(
-      pointer_array<TYPE> &a,
+      pointer_array<TYPE> & a,
       bool bAsc)
    {
       TYPE t;
@@ -1060,7 +1054,8 @@
                   a.__swap(i, j);
                }
             }
-      } else
+      }
+      else
       {
          for (iptr i = 0; i < a.get_size(); i++)
             for (iptr j = i + 1; j < a.get_size(); j++)
@@ -1083,8 +1078,8 @@
 
       template < typename ARRAY_TYPE >
       void quick_sort(
-      ARRAY_TYPE  & a,
-      iptr(* pfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
+      ARRAY_TYPE & a,
+      ::std::strong_ordering(*pfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE, typename ARRAY_TYPE::BASE_ARG_TYPE))
       {
 
          index_array stackLowerBound;
@@ -1095,16 +1090,16 @@
 
          iptr iUpperBound;
 
-         iptr iLPos,iUPos,iMPos;
+         iptr iLPos, iUPos, iMPos;
 
-         if(a.get_size() >= 2)
+         if (a.get_size() >= 2)
          {
 
             stackLowerBound.push(0);
 
             stackUpperBound.push(a.get_upper_bound());
 
-            while(true)
+            while (true)
             {
 
                iLowerBound = stackLowerBound.pop();
@@ -1117,10 +1112,10 @@
 
                iUPos = iUpperBound;
 
-               while(true)
+               while (true)
                {
 
-                  while(true)
+                  while (true)
                   {
 
                      if (iMPos == iUPos)
@@ -1139,7 +1134,7 @@
                      else
                      {
 
-                        a.__swap(iMPos,iUPos);
+                        a.__swap(iMPos, iUPos);
 
                         break;
 
@@ -1156,7 +1151,7 @@
 
                   iMPos = iUPos;
 
-                  while(true)
+                  while (true)
                   {
 
                      if (iMPos == iLPos)
@@ -1175,7 +1170,7 @@
                      else
                      {
 
-                        a.__swap(iLPos,iMPos);
+                        a.__swap(iLPos, iMPos);
 
                         break;
 
@@ -1194,7 +1189,7 @@
 
                }
 
-               if(iLowerBound < iMPos - 1)
+               if (iLowerBound < iMPos - 1)
                {
 
                   stackLowerBound.push(iLowerBound);
@@ -1203,7 +1198,7 @@
 
                }
 
-               if(iMPos + 1 < iUpperBound)
+               if (iMPos + 1 < iUpperBound)
                {
 
                   stackLowerBound.push(iMPos + 1);
@@ -1227,7 +1222,7 @@
 
 
       template < typename ARRAY_TYPE >
-      void quick_sort(ARRAY_TYPE  & a, less_predicate_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
+      void quick_sort(ARRAY_TYPE & a, less_predicate_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
          if (ia.get_size() != a.get_size())
@@ -1247,14 +1242,14 @@
 
          iptr iLPos, iUPos, iMPos;
 
-         if(a.get_size() >= 2)
+         if (a.get_size() >= 2)
          {
 
             stackLowerBound.push(0);
 
             stackUpperBound.push(a.get_upper_bound());
 
-            while(true)
+            while (true)
             {
 
                iLowerBound = stackLowerBound.pop();
@@ -1267,10 +1262,10 @@
 
                iUPos = iUpperBound;
 
-               while(true)
+               while (true)
                {
 
-                  while(true)
+                  while (true)
                   {
 
                      if (iMPos == iUPos)
@@ -1306,7 +1301,7 @@
 
                   iMPos = iUPos;
 
-                  while(true)
+                  while (true)
                   {
 
                      if (iMPos == iLPos)
@@ -1344,7 +1339,7 @@
 
                }
 
-               if(iLowerBound < iMPos - 1)
+               if (iLowerBound < iMPos - 1)
                {
 
                   stackLowerBound.push(iLowerBound);
@@ -1353,7 +1348,7 @@
 
                }
 
-               if(iMPos + 1 < iUpperBound)
+               if (iMPos + 1 < iUpperBound)
                {
 
                   stackLowerBound.push(iMPos + 1);
@@ -1385,150 +1380,6 @@
    // of "pCompare" interface
 
 
-   template < typename NUMERIC_ARRAY, typename COMPARE_INTERFACE >
-   void quick_sort(
-   NUMERIC_ARRAY & numerica,
-   COMPARE_INTERFACE * pinterface,
-   ::index(COMPARE_INTERFACE:: * fCompare)(index, index))
-   {
-
-      index_array stackLowerBound;
-
-      index_array stackUpperBound;
-
-      iptr iLowerBound;
-
-      iptr iUpperBound;
-
-      iptr iLPos, iUPos, iMPos;
-
-      if(numerica.get_size() >= 2)
-      {
-
-         stackLowerBound.push(0);
-
-         stackUpperBound.push(numerica.get_size() - 1);
-
-         while(true)
-         {
-
-            iLowerBound = stackLowerBound.pop();
-
-            iUpperBound = stackUpperBound.pop();
-
-            iLPos = iLowerBound;
-
-            iMPos = iLowerBound;
-
-            iUPos = iUpperBound;
-
-            while(true)
-            {
-
-               while(true)
-               {
-
-                  if (iMPos == iUPos)
-                  {
-
-                     break;
-
-                  }
-
-                  if ((pinterface->*fCompare)(numerica[iMPos], numerica[iUPos]) <= 0)
-                  {
-
-                     iUPos--;
-
-                  }
-                  else
-                  {
-
-                     numerica.__swap(iMPos, iUPos);
-
-                     break;
-
-                  }
-
-               }
-
-               if (iMPos == iUPos)
-               {
-
-                  break;
-
-               }
-
-               iMPos = iUPos;
-
-               while(true)
-               {
-                  
-                  if (iMPos == iLPos)
-                  {
-
-                     break;
-
-                  }
-                  
-                  if ((pinterface->*fCompare)(numerica[iLPos], numerica[iMPos]) <= 0)
-                  {
-
-                     iLPos++;
-
-                  }
-                  else
-                  {
-
-                     numerica.__swap(iLPos, iMPos);
-
-                     break;
-
-                  }
-
-               }
-               
-               if (iMPos == iLPos)
-               {
-
-                  break;
-
-               }
-
-               iMPos = iLPos;
-
-            }
-
-            if(iLowerBound < iMPos - 1)
-            {
-
-               stackLowerBound.push(iLowerBound);
-
-               stackUpperBound.push(iMPos - 1);
-
-            }
-
-            if(iMPos + 1 < iUpperBound)
-            {
-
-               stackLowerBound.push(iMPos + 1);
-
-               stackUpperBound.push(iUpperBound);
-
-            }
-
-            if (stackLowerBound.get_size() == 0)
-            {
-
-               break;
-
-            }
-
-         }
-
-      }
-
-   }
 
 
    template < typename LIST, typename PRED>
@@ -1555,20 +1406,20 @@
 
       stackLowerBound.push(list.m_phead);
       stackUpperBound.push(list.m_ptail);
-      while(true)
+      while (true)
       {
          iLowerBound = stackLowerBound.pop();
          iUpperBound = stackUpperBound.pop();
          iLPos = iLowerBound;
          iMPos = iLowerBound;
          iUPos = iUpperBound;
-         while(true)
+         while (true)
          {
-            while(true)
+            while (true)
             {
-               if(iMPos == iUPos)
+               if (iMPos == iUPos)
                   goto break_mid_loop;
-               if(pred(iUPos->m_value, iMPos->m_value))
+               if (pred(iUPos->m_value, iMPos->m_value))
                {
                   list.__swap(iMPos, iUPos);
                   break;
@@ -1576,9 +1427,9 @@
                iUPos = iUPos->m_pprevious;
             }
             iMPos = iUPos;
-            while(true)
+            while (true)
             {
-               if(iMPos == iLPos)
+               if (iMPos == iLPos)
                   goto break_mid_loop;
                if (pred(iMPos->m_value, iLPos->m_value))
                {
@@ -1589,18 +1440,18 @@
             }
             iMPos = iLPos;
          }
-break_mid_loop:
-         if(iLowerBound != iMPos->m_pprevious)
+      break_mid_loop:
+         if (iLowerBound != iMPos->m_pprevious)
          {
             stackLowerBound.push(iLowerBound);
             stackUpperBound.push(iMPos->m_pprevious);
          }
-         if(iMPos->m_pnext != iUpperBound)
+         if (iMPos->m_pnext != iUpperBound)
          {
             stackLowerBound.push(iMPos->m_pnext);
             stackUpperBound.push(iUpperBound);
          }
-         if(stackLowerBound.get_size() == 0)
+         if (stackLowerBound.get_size() == 0)
             break;
       }
 
@@ -1637,9 +1488,9 @@ break_mid_loop:
 
 
    template < class ARRAY >
-   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,iptr & iIndex,iptr iStart,iptr iEnd)
+   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg, iptr & iIndex, iptr iStart, iptr iEnd)
    {
-      if(a.get_size() == 0)
+      if (a.get_size() == 0)
       {
          return false;
       }
@@ -1649,17 +1500,17 @@ break_mid_loop:
       memsize iCompare;
       // do binary search
       iIndex = (iUpperBound + iLowerBound) / 2;
-      while(iUpperBound - iLowerBound >= 8)
+      while (iUpperBound - iLowerBound >= 8)
       {
-         iCompare = CompareElements(a.element_at(iIndex),arg);
-         if(iCompare == 0)
+         iCompare = CompareElements(a.element_at(iIndex), arg);
+         if (iCompare == 0)
          {
             return true;
          }
-         else if(iCompare > 0)
+         else if (iCompare > 0)
          {
             iUpperBound = iIndex - 1;
-            if(iUpperBound < 0)
+            if (iUpperBound < 0)
             {
                iIndex = 0;
                break;
@@ -1668,7 +1519,7 @@ break_mid_loop:
          else
          {
             iLowerBound = iIndex + 1;
-            if(iLowerBound > iMaxBound)
+            if (iLowerBound > iMaxBound)
             {
                iIndex = iMaxBound + 1;
                break;
@@ -1677,24 +1528,24 @@ break_mid_loop:
          iIndex = (iUpperBound + iLowerBound) / 2;
       }
       // do sequential search
-      while(iIndex < a.get_count())
+      while (iIndex < a.get_count())
       {
-         iCompare = CompareElements(a.element_at(iIndex),arg);
-         if(iCompare == 0)
+         iCompare = CompareElements(a.element_at(iIndex), arg);
+         if (iCompare == 0)
             return true;
-         else if(iCompare < 0)
+         else if (iCompare < 0)
             iIndex++;
          else
             break;
       }
-      if(iIndex >= a.get_count())
+      if (iIndex >= a.get_count())
          return false;
-      while(iIndex >= 0)
+      while (iIndex >= 0)
       {
-         iCompare = CompareElements(a.element_at(iIndex),arg);
-         if(iCompare == 0)
+         iCompare = CompareElements(a.element_at(iIndex), arg);
+         if (iCompare == 0)
             return true;
-         else if(iCompare > 0)
+         else if (iCompare > 0)
             iIndex--;
          else
             break;
@@ -1707,7 +1558,7 @@ break_mid_loop:
    template < class ARRAY >
    void quick_sort(ARRAY & a, bool bAsc)
    {
-      if(bAsc)
+      if (bAsc)
       {
          sort::QuickSortAsc(a);
       }
@@ -1783,7 +1634,7 @@ break_mid_loop:
                break;
             iMPos = iLPos;
          }
-break_mid_loop:
+      break_mid_loop:
          if (iLowerBound < iMPos - 1)
          {
             stackLowerBound.push(iLowerBound);
@@ -1888,7 +1739,7 @@ break_mid_loop:
 
       int i, j, k;
       int n1 = m - l + 1;
-      int n2 =  r - m;
+      int n2 = r - m;
 
       /* create temp arrays */
       ARRAY L;
@@ -1900,7 +1751,7 @@ break_mid_loop:
       for (i = 0; i < n1; i++)
          L[i] = a[l + i];
       for (j = 0; j < n2; j++)
-         R[j] = a[m + 1+ j];
+         R[j] = a[m + 1 + j];
 
       /* Merge the temp arrays back into arr[l..r]*/
       i = 0; // Initial iptr of first subarray

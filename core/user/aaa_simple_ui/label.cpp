@@ -48,7 +48,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::draw2d::brush_pointer b(e_create);
 

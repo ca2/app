@@ -72,10 +72,10 @@ namespace user
    }
 
 
-   void main_window::input_client_rectangle(RECTANGLE_I32 & rectangle)
+   void main_window::input_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout)
    {
       
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
    
       if(is_top_level() && ::is_set(m_pwindow))
       {

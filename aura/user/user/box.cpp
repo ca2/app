@@ -120,7 +120,7 @@ namespace user
 
       auto edisplay = const_layout().design().display();
 
-      get_window_rect(m_windowrectangle.m_rectangleWindow, e_layout_design);
+      window_rectangle(m_windowrectangle.m_rectangleWindow, e_layout_design);
 
       if (is_docking_appearance(edisplay))
       {
@@ -345,7 +345,7 @@ namespace user
 
       }
 
-      window_rectangle windowrectangle;
+      ::user::window_rectangle windowrectangle;
 
       ::pointer<::aura::application>papp = get_app();
 
@@ -475,7 +475,7 @@ namespace user
 
       }
 
-      window_rectangle windowrectangle;
+      ::user::window_rectangle windowrectangle;
 
       ::pointer<::aura::application>papp = get_app();
 
@@ -607,7 +607,7 @@ namespace user
 
       windowrect.m_eappearance = const_layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectangleWindow, e_layout_sketch);
+      window_rectangle(windowrect.m_rectangleWindow, e_layout_sketch);
 
       auto edisplay = windowrect.m_edisplay;
 

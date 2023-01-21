@@ -235,7 +235,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, UINT Msg, WPARAM wParam,
 			floatbar = (FloatBar*)((CREATESTRUCT*)lParam)->lpCreateParams;
 			floatbar->hwnd = hWnd;
 			floatbar->parent = GetParent(hWnd);
-			get_window_rect(floatbar->hwnd, &floatbar->rect);
+			window_rectangle(floatbar->hwnd, &floatbar->rect);
 			floatbar->width = floatbar->rect.right - floatbar->rect.left;
 			floatbar->height = floatbar->rect.bottom - floatbar->rect.top;
 			hdc = GetDC(hWnd);

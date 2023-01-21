@@ -237,7 +237,7 @@ namespace user
 //
 //         // get border information and client work area
 //         ::rectangle_i32 rectangle;
-//         get_window_rect(rectangle);
+//         window_rectangle(rectangle);
 //         rectangle.offset(-rectangle.left, -rectangle.top);
 //         CalcInsideRect(rectangle, true);
 //         i32 rgBorders[3];

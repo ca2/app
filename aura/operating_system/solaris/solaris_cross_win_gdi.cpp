@@ -59,7 +59,7 @@
 // }
 
 
-// int_bool get_client_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
+// int_bool client_rectangle(oswindow hwnd, RECTANGLE_I32 * lprect)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -85,7 +85,7 @@
 // }
 
 
-// int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
+// int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * lprect)
 // {
 
 
@@ -152,7 +152,7 @@
 
 //    HDC hdc = GetDC(hwnd);
 
-//    get_client_rect(hwnd, &ps->rcPaint);
+//    client_rectangle(hwnd, &ps->rcPaint);
 
 //    return hdc;
 

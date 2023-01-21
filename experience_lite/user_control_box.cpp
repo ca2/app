@@ -37,7 +37,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    if (rectangleClient.area() <= 0)
       return;

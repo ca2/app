@@ -51,7 +51,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 

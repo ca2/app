@@ -138,15 +138,15 @@ namespace experience
 
       //::rectangle_i32 rectangleParent;
 
-      //get_parent()->get_client_rect(rectangleParent);
+      //get_parent()->client_rectangle(rectangleParent);
 
       //::rectangle_i32 rectangleClient;
 
-      //get_client_rect(rectangleClient);
+      //client_rectangle(rectangleClient);
 
       //::rectangle_i32 rectangleWindow;
 
-      //get_window_rect(rectangleWindow);
+      //window_rectangle(rectangleWindow);
 
       //get_parent()->screen_to_client(rectangleWindow);
 
@@ -247,7 +247,7 @@ namespace experience
 
                      ::rectangle_i32 rectangleWindow;
 
-                     get_window_rect(rectangleWindow);
+                     window_rectangle(rectangleWindow);
 
                      if (rectangleWindow.contains(pointCursor))
                      {
@@ -286,7 +286,7 @@ namespace experience
 
                      ::rectangle_i32 rectangleWindow;
 
-                     get_window_rect(rectangleWindow);
+                     window_rectangle(rectangleWindow);
 
                      rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
                      rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
@@ -317,7 +317,7 @@ namespace experience
 
                ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectangleWindow);
+               window_rectangle(rectangleWindow);
 
                rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
                rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
@@ -579,7 +579,7 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectangleWindow);
+      m_pframewindow->window_rectangle(rectangleWindow);
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
@@ -587,7 +587,7 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangle;
 
-      get_window_rect(rectangle);
+      window_rectangle(rectangle);
 
       rectangle+=m_pframewindow->screen_to_client();
 
@@ -595,7 +595,7 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       int iWidth = rectangleClient.width();
 
@@ -1099,11 +1099,11 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectangleWindow);
+      m_pframewindow->window_rectangle(rectangleWindow);
 
       ::rectangle_i32 rectangle;
 
-      get_window_rect(rectangle);
+      window_rectangle(rectangle);
 
       rectangle+=m_pframewindow->screen_to_client();
 
@@ -1135,7 +1135,7 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       output_debug_string("rectangleClient");
 
@@ -1178,7 +1178,7 @@ if(rectangle.left > 400)
 //         if (pdrawcontext != nullptr)
 //         {
 //
-//            get_client_rect(rectangleClient);
+//            client_rectangle(rectangleClient);
 //
 //            rectangleClient.bottom++;
 //            rectangleClient.right++;
@@ -1203,7 +1203,7 @@ if(rectangle.left > 400)
 //            while (pinteraction != nullptr)
 //            {
 //
-//               pinteraction->get_window_rect(rectangleFocus);
+//               pinteraction->window_rectangle(rectangleFocus);
 //
 //               screen_to_client(rectangleFocus);
 //

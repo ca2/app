@@ -187,7 +187,7 @@ namespace user
    //   {
    //      ::rectangle_i32 rectangleClient;
 
-   //      get_client_rect(&rectangleClient);
+   //      client_rectangle(&rectangleClient);
 
    //      m_pmeshheader->set_window_position(
    //         e_zorder_top,

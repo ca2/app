@@ -113,7 +113,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->get_client_rect(rcClient);
+      ptab->client_rectangle(rcClient);
       
       if(rcClient.is_empty())
       {
@@ -1071,7 +1071,7 @@ namespace experience_core
 
          pdata->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
 
          pdata->m_rectangleTab.left = rectangleClient.left;
          pdata->m_rectangleTab.top = rectangleClient.top;
@@ -1101,8 +1101,8 @@ namespace experience_core
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
-         //ptab->get_client_rect(rectangleClient);
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         //ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
          i32 ixAdd;
@@ -1239,7 +1239,7 @@ namespace experience_core
 
       ::rectangle_i32 rcClient;
 
-      ptab->get_client_rect(rcClient);
+      ptab->client_rectangle(rcClient);
 
       if (pdata->m_bVertical)
       {
@@ -1858,7 +1858,7 @@ namespace experience_core
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::rectangle_i32 rectangleClient = pscrollbar->get_client_rect();
+      ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
 
       if (colorBackground.alpha != 0)
       {
@@ -1884,7 +1884,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleWindow;
 
-      pscrollbar->get_window_rect(rectangleWindow);
+      pscrollbar->window_rectangle(rectangleWindow);
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 

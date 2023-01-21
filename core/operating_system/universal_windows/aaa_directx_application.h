@@ -76,7 +76,7 @@ namespace universal_windows
       virtual void Uninitialize()override;
 
 
-      virtual ::winrt::Windows::Foundation::Rect get_window_rect() override;
+      virtual ::winrt::Windows::Foundation::Rect window_rectangle() override;
       virtual ::winrt::Windows::Foundation::Point get_cursor_position() override;
 
       virtual ::winrt::Windows::Foundation::Rect get_input_content_rect() override;

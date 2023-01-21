@@ -660,7 +660,7 @@ namespace experience_anthill
       ::rectangle_i32 rectangleIcon;
       ::rectangle_i32 rectangleClose;
 
-      ::rectangle_i32 r1 = ptab->get_client_rect();
+      ::rectangle_i32 r1 = ptab->client_rectangle();
 
       ::rectangle_f64 r2;
 
@@ -1356,7 +1356,7 @@ namespace experience_anthill
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
 
          ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
@@ -1387,7 +1387,7 @@ namespace experience_anthill
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
 
          int x = rectangleClient.left;
 
@@ -2186,7 +2186,7 @@ namespace experience_anthill
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::rectangle_i32 rectangleClient = psplitlayout->get_client_rect();
+      ::rectangle_i32 rectangleClient = psplitlayout->client_rectangle();
 
       pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 

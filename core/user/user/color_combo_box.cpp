@@ -175,7 +175,7 @@ namespace user
 
                ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectangleWindow);
+               window_rectangle(rectangleWindow);
 
                pframe->m_sizeMinimum.cx = 300;
 

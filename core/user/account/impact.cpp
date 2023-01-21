@@ -141,7 +141,7 @@ namespace account
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       /*
       if (m_bSelfLayout)
@@ -191,7 +191,7 @@ namespace account
       else
       {
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       }*/
 
@@ -238,7 +238,7 @@ namespace account
 
       //::user::draw draw;
 
-      ::rectangle_i32 r = get_client_rect();
+      ::rectangle_i32 r = client_rectangle();
 
       //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 

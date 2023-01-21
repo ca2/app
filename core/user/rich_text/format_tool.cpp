@@ -256,7 +256,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
@@ -742,7 +742,7 @@ namespace user
 
       ::rectangle_i32 rectangleOther;
       
-      pinteraction->get_window_rect(rectangleOther);
+      pinteraction->window_rectangle(rectangleOther);
 
       set_owner(pinteraction);
 
@@ -750,7 +750,7 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       ::rectangle_i32 rectangleRequest;
 

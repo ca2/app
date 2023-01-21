@@ -7,9 +7,9 @@
 #pragma once
 
 
-//CLASS_DECL_AURA int_bool get_client_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
+//CLASS_DECL_AURA int_bool client_rectangle(oswindow hwnd,RECTANGLE_I32 * lprect);
 
-//CLASS_DECL_AURA int_bool get_window_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
+//CLASS_DECL_AURA int_bool window_rectangle(oswindow hwnd,RECTANGLE_I32 * lprect);
 
 //CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppointCursor);
 

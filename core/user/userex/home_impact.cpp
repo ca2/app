@@ -241,7 +241,7 @@ namespace userex
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
       {
@@ -252,7 +252,7 @@ namespace userex
 
       ::rectangle_i32 rectangleColors;
 
-      get_client_rect(rectangleColors);
+      client_rectangle(rectangleColors);
 
       //if (!m_bCompact)
       //{

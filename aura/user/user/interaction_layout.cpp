@@ -445,7 +445,7 @@ namespace user
 
 
 
-   //void interaction_layout::get_window_rect(RECTANGLE_I32* prectangle) const
+   //void interaction_layout::window_rectangle(RECTANGLE_I32* prectangle) const
    //{
 
    //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);

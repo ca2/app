@@ -61,7 +61,7 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
       {
          // see if point_i32 hits the child ::interaction_impl
          ::rectangle_i32 rectangle;
-         ::get_window_rect(hWndChild, rectangle);
+         ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;
       }

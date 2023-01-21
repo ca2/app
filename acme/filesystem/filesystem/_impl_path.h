@@ -603,7 +603,7 @@ namespace file
 
        auto pathThis = *this;
 
-       pathThis.::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
+       ::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
 
        return *this;
 

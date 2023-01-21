@@ -82,6 +82,8 @@ namespace app_integration
 
    }
 
+   % comspec % / k "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars32.bat"
+
 
    void impact::on_message_create(::message::message * pmessage)
    {
@@ -313,7 +315,7 @@ namespace app_integration
       if (get_app()->application_properties().m_echeckNoClientFrame != ::e_check_checked)
       {
 
-         ::rectangle_i32 rectangle = get_client_rect();
+         ::rectangle_i32 rectangle = client_rectangle();
 
          for (index i = 0; i < 11; i++)
          {
@@ -325,7 +327,7 @@ namespace app_integration
          }
 
       }
-      auto rect = get_client_rect();
+      auto rect = client_rectangle();
 
       int y = rect.bottom - 50;
       for (int i = m_str2aOutput.get_upper_bound(); i >= 0; i--)
@@ -350,7 +352,7 @@ namespace app_integration
    void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {

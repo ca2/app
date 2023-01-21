@@ -744,7 +744,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangle;
 
-         m_pframewindow->get_window_rect(rectangle);
+         m_pframewindow->window_rectangle(rectangle);
 
          rectangle -= rectangle.top_left();
 
@@ -820,7 +820,7 @@ namespace experience_tranquillum
    void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->get_window_rect(rectangle);
+      m_pframewindow->window_rectangle(rectangle);
 
       rectangle.offset(-rectangle.top_left());
 

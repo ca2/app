@@ -521,7 +521,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangleClient;
 
-      pframe->get_client_rect(rectangleClient);
+      pframe->client_rectangle(rectangleClient);
 
       auto pstyle = pframe->get_style(pgraphics);
 
@@ -629,7 +629,7 @@ namespace experience_tranquillum
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
          ::rectangle_i32 rectangleClient;
-         ptab->get_client_rect(rectangleClient);
+         ptab->client_rectangle(rectangleClient);
 
          ptab->get_data()->m_rectangleTab.left = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top = rectangleClient.top;
@@ -657,7 +657,7 @@ namespace experience_tranquillum
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::rectangle_i32 rectangleClient;
-         ptab->get_client_rect(rectangleClient);
+         ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
          i32 ixAdd;
@@ -814,7 +814,7 @@ namespace experience_tranquillum
       ::rectangle_i32 rectangleClose;
 
       ::rectangle_i32 r1;
-      ptab->get_client_rect(r1);
+      ptab->client_rectangle(r1);
 
       //if (!ptab->get_data()->m_bNoClient)
       //{
@@ -2017,7 +2017,7 @@ namespace experience_tranquillum
 
       ::rectangle_i32 rectangleClient;
 
-      psplitlayout->get_client_rect(rectangleClient);
+      psplitlayout->client_rectangle(rectangleClient);
 
       pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 

@@ -51,7 +51,7 @@ namespace experience_anthill
 
       }
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {
@@ -109,7 +109,7 @@ namespace experience_anthill
 
       ::rectangle_i32 rW;
 
-      get_window_rect(rW);
+      window_rectangle(rW);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -201,7 +201,7 @@ namespace experience_anthill
       __construct(m_pbrush);
 
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       m_spregion->create_ellipse(rectangleClient);
 

@@ -65,7 +65,7 @@ namespace experience
 
       auto pbutton = dock_button();
 
-      pbutton->get_window_rect(rectangleDockButtonWindow);
+      pbutton->window_rectangle(rectangleDockButtonWindow);
 
       ::point_i32 pointDock = rectangleDockButtonWindow.center();
 
@@ -77,7 +77,7 @@ namespace experience
 
       ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectangleWindow);
+      m_pframewindow->window_rectangle(rectangleWindow);
 
       ::rectangle_i32 rectangleEvent = rectangleWindow;
 

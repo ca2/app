@@ -233,7 +233,7 @@ namespace user
       //   if (pdrawcontext != nullptr)
       //   {
 
-      //      get_client_rect(rectangleClient);
+      //      client_rectangle(rectangleClient);
 
       //      rectangleClient.bottom++;
       //      rectangleClient.right++;
@@ -256,9 +256,9 @@ namespace user
       //      if (i != 1)
       //      {
 
-      //         pinteraction->get_window_rect(rectangleClient, e_layout_design);
+      //         pinteraction->window_rectangle(rectangleClient, e_layout_design);
 
-      //         pinteraction->get_client_rect(rectangleFocus);
+      //         pinteraction->client_rectangle(rectangleFocus);
 
       //         rectangleFocus.offset(rectangleClient.top_left());
 

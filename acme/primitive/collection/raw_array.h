@@ -103,7 +103,7 @@ public:
    //void erase_indexes(const index_array & ia); // erase indexes from ::index raw_array upper bound to ::index raw_array lower bound
    //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index raw_array lower bound to ::index raw_array upper bound
    //::index insert_at(::index nStartIndex, raw_array* pNewArray);
-   void __swap(::index index1, ::index index2);
+   //void __swap(::index index1, ::index index2);
 
    raw_array & operator = (const raw_array & src);
 
@@ -326,13 +326,13 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push_back
 //}
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::__swap(::index index1, ::index index2)
-{
-   TYPE t = get_data()[index1];
-   get_data()[index1] = get_data()[index2];
-   get_data()[index2] = t;
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::__swap(::index index1, ::index index2)
+//{
+//   TYPE t = get_data()[index1];
+//   get_data()[index1] = get_data()[index2];
+//   get_data()[index2] = t;
+//}
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::operator = (const raw_array & src)

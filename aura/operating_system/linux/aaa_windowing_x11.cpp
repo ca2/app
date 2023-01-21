@@ -1051,7 +1051,7 @@ bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, in
 
 //    x11_get_window_rect(display, oswindow->window(), rectangle);
 
-//    //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
+//    //r = oswindow->m_pimpl->m_puserinteraction->window_rectangle();
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
@@ -1141,7 +1141,7 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    x11_get_window_rect(display, oswindow->window(), rectangle);
 
-   //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
+   //r = oswindow->m_pimpl->m_puserinteraction->window_rectangle();
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
@@ -4090,7 +4090,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //
 //      ::rectangle_i32 r;
 //
-//      get_window_rect(msg.hwnd, &r);
+//      window_rectangle(msg.hwnd, &r);
 //
 //      int l1 = r.left;
 //      int t1 = r.top;
@@ -4609,7 +4609,7 @@ int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
+int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * prectangle)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -4619,7 +4619,7 @@ int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::get_window_rect 1.1");
+      windowing_output_debug_string("\n::window_rectangle 1.1");
 
       return false;
 
@@ -4630,7 +4630,7 @@ int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 }
 
 
-int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
+int_bool client_rectangle(oswindow window, RECTANGLE_I32 * prectangle)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -4640,7 +4640,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
    if(d.is_null())
    {
 
-      windowing_output_debug_string("\n::get_client_rect 1.1 (display is null)");
+      windowing_output_debug_string("\n::client_rectangle 1.1 (display is null)");
 
       return false;
 
@@ -4651,7 +4651,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
    if(XGetWindowAttributes(d, window->window(), &attr) == 0)
    {
 
-      windowing_output_debug_string("\n::get_client_rect 1.2 (xgetwindowattributes failed");
+      windowing_output_debug_string("\n::client_rectangle 1.2 (xgetwindowattributes failed");
 
       return false;
 
@@ -4665,7 +4665,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 
    prectangle->bottom    = prectangle->top     + attr.height;
 
-   windowing_output_debug_string("\n::get_client_rect 2");
+   windowing_output_debug_string("\n::client_rectangle 2");
 
    return true;
 
@@ -4677,7 +4677,7 @@ int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
 
    synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->synchronization());
 
-   window->m_pimpl->m_puserinteraction->get_window_rect(prectangle);
+   window->m_pimpl->m_puserinteraction->window_rectangle(prectangle);
 
    offset_rect(prectangle, -prectangle->left, -prectangle->top);
 

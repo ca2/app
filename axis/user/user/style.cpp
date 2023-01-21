@@ -168,7 +168,7 @@ namespace axis
 
       ::draw2d::savedc savedc(pgraphics);
 
-      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::get_client_rect();
+      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::client_rectangle();
 
       double dRotate = pinteraction->get_rotate();
 

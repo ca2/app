@@ -771,7 +771,7 @@ namespace user
 
          ::rectangle_i32 rectangleWindow;
 
-         m_puserinteraction->get_window_rect(rectangleWindow, ::user::e_layout_design);
+         m_puserinteraction->window_rectangle(rectangleWindow, ::user::e_layout_design);
 
          auto puserinteraction = get_wnd();
 

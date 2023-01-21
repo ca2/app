@@ -282,7 +282,7 @@
 ////      
 ////      RECT rect;
 ////      
-////      get_window_rect(hwnd, &rect);
+////      window_rectangle(hwnd, &rect);
 ////      
 ////      rect.right     = rect.left + cx;
 ////      rect.bottom    = rect.top + cy;

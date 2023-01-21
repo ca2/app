@@ -714,9 +714,9 @@ int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdc
 
 
 
-int_bool get_client_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
+int_bool client_rectangle(oswindow hwnd,RECTANGLE_I32 * lprect);
 
-int_bool get_window_rect(oswindow hwnd,RECTANGLE_I32 * lprect);
+int_bool window_rectangle(oswindow hwnd,RECTANGLE_I32 * lprect);
 
 i32 FillRect(HDC hDC,const RECT32 *lprc,HBRUSH hbr);
 

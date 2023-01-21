@@ -137,7 +137,7 @@ namespace user
    void elastic_slider::CalcTension(point_i32 & point)
    {
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       if (rectangleClient.width() == 0)
       {
          m_dTensionPosition = 1.0;
@@ -231,7 +231,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
       
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
@@ -272,7 +272,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       i32 iWidth = 16;
       

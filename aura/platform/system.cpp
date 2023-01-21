@@ -3414,11 +3414,11 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
 //
 //   {
 //
-//      ::winrt::Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
+//      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -3433,12 +3433,12 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
 //      ::rectangle_f64 rectangle;
 //
-//      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
+//      if (!window_rectangle(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
 //
 //         return false;
@@ -3564,7 +3564,7 @@ namespace aura
 //
 //#if MOBILE_PLATFORM
 //
-//      //get_session()->m_puserinteractionHost->get_window_rect(prectangle);
+//      //get_session()->m_puserinteractionHost->window_rectangle(prectangle);
 //
 //      get_main_screen_rectangle(prectangle);
 //
@@ -3754,7 +3754,7 @@ namespace aura
 //
 //      //throw ::exception(todo);
 //
-//      //::get_window_rect(::get_desktop_window(),prectangle);
+//      //::window_rectangle(::get_desktop_window(),prectangle);
 //
 //
 //      get_monitor_rectangle(iWorkspace, prectangle);
@@ -6212,7 +6212,7 @@ namespace aura
 //#ifdef _UWP
 //
 //
-//   bool system::get_window_rect(RECTANGLE_I32* prectangle)
+//   bool system::window_rectangle(RECTANGLE_I32* prectangle)
 //   {
 //
 //      if (::is_null(get_session()))
@@ -6234,7 +6234,7 @@ namespace aura
 //
 //         auto puserinteractionHost = __user_interaction(get_session()->m_puserinteractionHost);
 //
-//         puserinteractionHost->get_window_rect(prectangle);
+//         puserinteractionHost->window_rectangle(prectangle);
 //
 //      }
 //      catch (...)

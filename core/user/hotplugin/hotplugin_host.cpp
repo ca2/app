@@ -551,7 +551,7 @@ namespace hotplugin
    void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleOut)
    {
 
-      auto rectangle = get_window_rect();
+      auto rectangle = window_rectangle();
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -587,7 +587,7 @@ namespace hotplugin
    }
 
 
-   //bool host::get_window_rect(RECTANGLE_I64 * prectangle)
+   //bool host::window_rectangle(RECTANGLE_I64 * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::get_client_rect(RECTANGLE_I64 * prectangle)
+   //bool host::client_rectangle(RECTANGLE_I64 * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleClient);

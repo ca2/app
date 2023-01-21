@@ -225,7 +225,7 @@ namespace user
 
    //      int xpad = m_iPad;
 
-   //      auto rectangleClient = get_client_rect();
+   //      auto rectangleClient = client_rectangle();
 
    //      int cx = rectangleClient.width();
 
@@ -389,7 +389,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       pgraphics->set(get_font(pstyle));
 

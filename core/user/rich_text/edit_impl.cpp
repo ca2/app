@@ -549,7 +549,7 @@ namespace user
 
             ::rectangle_i32 rectangle;
 
-            get_window_rect(rectangle);
+            window_rectangle(rectangle);
 
             return rectangle.size();
 
@@ -710,7 +710,7 @@ namespace user
          //else
          //{
 
-         //   get_client_rect(rectangleClient);
+         //   client_rectangle(rectangleClient);
 
          //}
 
@@ -786,7 +786,7 @@ namespace user
 
             ::rectangle_i32 rectangleClient;
 
-            get_client_rect(rectangleClient);
+            client_rectangle(rectangleClient);
 
             pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
 
@@ -888,7 +888,7 @@ namespace user
 
             ::rectangle_i32 rWindow;
 
-            get_window_rect(rWindow);
+            window_rectangle(rWindow);
 
             rectangle_f64 rectangleWindow;
 
@@ -904,7 +904,7 @@ namespace user
 
             point -= rectangleWindow.top_left();
 
-            auto rectangleClient = get_client_rect();
+            auto rectangleClient = client_rectangle();
 
             return rectangleClient.contains(::point_i32(point));
 
@@ -2058,7 +2058,7 @@ namespace user
 
       //   ::rectangle_i32 rectangleWindow;
 
-      //   ((edit_impl *)this)->get_window_rect(rectangleWindow);
+      //   ((edit_impl *)this)->window_rectangle(rectangleWindow);
 
       //   if (get_parent() != nullptr)
       //   {

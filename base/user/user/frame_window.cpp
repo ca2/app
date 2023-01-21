@@ -517,7 +517,7 @@ namespace user
 
                   ::rectangle_i32 rectangle;
 
-                  get_window_rect(rectangle);
+                  window_rectangle(rectangle);
 
                   pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
@@ -1102,7 +1102,7 @@ namespace user
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->get_client_rect(rectangleFrame);
+         pholder->client_rectangle(rectangleFrame);
 
       }
       else
@@ -2662,7 +2662,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(pstyle)
       {

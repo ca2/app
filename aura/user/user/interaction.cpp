@@ -491,6 +491,42 @@ namespace user
    }
 
 
+   void interaction::set_right(::i32 right, enum_layout elayout)
+   {
+
+      auto point = this->position(elayout);
+
+      auto size = this->size(elayout);
+
+      point.x = right - size.cx;
+
+      if (on_set_position(point, elayout))
+      {
+
+         m_layout.m_statea[elayout].m_point = point;
+
+      }
+
+   }
+
+
+   void interaction::set_top(const ::i32 top, enum_layout elayout)
+   {
+
+      auto point = position(elayout);
+
+      point.y = top;
+
+      if (on_set_position(point, elayout))
+      {
+
+         m_layout.m_statea[elayout].m_point = point;
+
+      }
+
+   }
+
+
    bool interaction::on_set_position(const ::point_i32 & point, enum_layout elayout)
    {
 
@@ -3567,7 +3603,7 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            get_client_rect(rectangleClient);
+            client_rectangle(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -3596,7 +3632,7 @@ namespace user
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_client_rect(rectangleClient);
+               pinteraction->client_rectangle(rectangleClient);
 
                rectangleClient += pinteraction->client_to_host();
 
@@ -3862,7 +3898,7 @@ namespace user
 
             ::rectangle_i32 rectangleDraw;
 
-            get_client_rect(rectangleDraw);
+            client_rectangle(rectangleDraw);
 
             copy(pgraphics->m_rectangleDraw, rectangleDraw);
 
@@ -4207,7 +4243,7 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow, e_layout_design);
+      window_rectangle(rectangleWindow, e_layout_design);
 
       ::rectangle_i32 rectangle(rectangleWindow);
 
@@ -4299,7 +4335,7 @@ namespace user
 
       {
 
-         auto rectangleClient = m_puserinteraction->get_client_rect();
+         auto rectangleClient = m_puserinteraction->client_rectangle();
 
          ::rectangle_i32 rectangleHint(rectangleClient);
 
@@ -4818,7 +4854,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto pstyle = get_style(pgraphics);
 
@@ -6011,7 +6047,7 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow, e_layout_sketch);
+      window_rectangle(rectangleWindow, e_layout_sketch);
 
       return rectangleWindow.contains(point);
 
@@ -6023,7 +6059,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       rectangle += client_to_screen();
 
@@ -7477,7 +7513,7 @@ namespace user
       //   if (rectangleFrame.is_null() && ::is_set(puserinteractionParent) && puserinteractionParent->is_place_holder())
       //   {
 
-      //      puserinteractionParent->get_client_rect(rectangleFrame);
+      //      puserinteractionParent->client_rectangle(rectangleFrame);
 
       //   }
 
@@ -9699,7 +9735,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          auto children = puserinteractionpointeraChild->m_interactiona;
 
@@ -9745,7 +9781,7 @@ namespace user
 
       //      ::rectangle_i32 rectangleClient;
 
-      //      get_client_rect(rectangleClient);
+      //      client_rectangle(rectangleClient);
 
       //      m_playout->place(rectangleClient);
 
@@ -10374,7 +10410,7 @@ namespace user
       //      //if (pitem->m_rectangle.is_null())
       //      {
 
-      //         get_client_rect(pitem->m_rectangle);
+      //         client_rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 32;
 
@@ -10396,7 +10432,7 @@ namespace user
       //      if (pitem->m_rectangle.is_null())
       //      {
 
-      //         get_client_rect(pitem->m_rectangle);
+      //         client_rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
@@ -10418,7 +10454,7 @@ namespace user
       //      if (pitem->m_rectangle.is_null())
       //      {
 
-      //         get_client_rect(pitem->m_rectangle);
+      //         client_rectangle(pitem->m_rectangle);
 
       //         pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
@@ -10563,12 +10599,12 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    
    //if(m_bVerticalDragScroll)
    //{
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
       m_pointBarDragScrollMax = m_sizeBarDragScroll - rectangleClient.size();
    //}
    //if(m_bHorizontalDragScroll)
 //   {
-//      //auto rectangleClient = get_client_rect();
+//      //auto rectangleClient = client_rectangle();
 //      //m_iHorizontalDragScrollMax = m_iHorizontalDragSize - rectangleClient.width();
 //
 //   }
@@ -13152,7 +13188,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::get_child_rect(RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
    }
 
@@ -13756,7 +13792,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnExitNormal()
    {
 
-      auto rect = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rect();
 
       layout().normal() = layout().window();
 
@@ -13770,7 +13806,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnExitZoomed()
    {
 
-      auto rect = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rect();
 
       auto edisplay = layout().window().display();
 
@@ -13786,7 +13822,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnExitFullScreen()
    {
 
-      auto rect = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rect();
 
       auto edisplay = layout().window().display();
 
@@ -14019,7 +14055,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         ptoplevel->get_window_rect(rectangle);
+         ptoplevel->window_rectangle(rectangle);
 
       }
 
@@ -14028,16 +14064,24 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::rectangle_i32 interaction::get_window_rect(enum_layout elayout)
+   ::rectangle_i32 interaction::window_rectangle(enum_layout elayout)
    {
 
-      auto rectangle = get_client_rect();
+      auto rectangle = this->client_rectangle(elayout);
 
-      rectangle += client_to_screen();
+      rectangle += this->client_to_screen(elayout);
 
       return rectangle;
 
    }
+
+
+   ::point_i32    interaction::position   (enum_layout elayout) { return window_rectangle(elayout).top_left(); }
+   ::size_i32     interaction::size       (enum_layout elayout) { return window_rectangle(elayout).size(); }
+   ::i32          interaction::top        (enum_layout elayout) { return window_rectangle(elayout).top; }
+   ::i32          interaction::left       (enum_layout elayout) { return window_rectangle(elayout).left; }
+   ::i32          interaction::right      (enum_layout elayout) { return window_rectangle(elayout).right; }
+   ::i32          interaction::bottom     (enum_layout elayout) { return window_rectangle(elayout).bottom; }
 
 
    void interaction::design_window_minimize(::e_activation eactivation)
@@ -14239,28 +14283,28 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::input_client_rectangle(RECTANGLE_I32 & rect)
+   void interaction::input_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout)
    {
    
-      get_client_rect(rect);
+      client_rectangle(rectangle, elayout);
       
    }
 
 
-   void interaction::get_client_rect(RECTANGLE_I32 & rect)
+   void interaction::client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout)
    {
 
-      const_layout().state(e_layout_design).client_rect(rect);
+      const_layout().state(elayout).client_rect(rectangle);
 
    }
 
 
-   ::rectangle_i32 interaction::get_client_rect()
+   ::rectangle_i32 interaction::client_rectangle(enum_layout elayout)
    {
 
       ::rectangle_i32 r;
 
-      get_client_rect(r);
+      client_rectangle(r, elayout);
 
       return r;
 
@@ -14293,7 +14337,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         get_window_rect(rectangleSample);
+         window_rectangle(rectangleSample);
 
       }
 
@@ -14304,7 +14348,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (get_parent() != nullptr)
       {
 
-         get_parent()->get_client_rect(rectangleNew);
+         get_parent()->client_rectangle(rectangleNew);
 
          iMatchingMonitor = 0;
 
@@ -14370,7 +14414,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
       }
 
@@ -14694,7 +14738,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (is_empty(rectangle))
       {
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
       }
       else
@@ -14861,7 +14905,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
       }
 
@@ -14937,7 +14981,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
       }
 
@@ -14984,7 +15028,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         get_window_rect(rectangleWindow);
+         window_rectangle(rectangleWindow);
 
       }
 
@@ -15225,7 +15269,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       return rectangleClient.size();
 
@@ -15258,7 +15302,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       return rectangleClient.size();
 
@@ -16093,7 +16137,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       //::rectangle_i32 rectangleThisWindow;
 
-      //get_window_rect(rectangleThisWindow);
+      //window_rectangle(rectangleThisWindow);
 
       //::rectangle_i32 rectangleWindow;
 
@@ -16642,7 +16686,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       return rectangleWindow.size();
 
@@ -16654,7 +16698,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       return rectangleClient.size();
 
@@ -16666,7 +16710,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       return rectangleWindow.width();
 
@@ -16678,7 +16722,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       return rectangleWindow.height();
 
@@ -16690,7 +16734,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       return rectangleClient.width();
 
@@ -16702,7 +16746,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       return rectangleClient.height();
 
@@ -16857,7 +16901,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    bool interaction::scroll_bar_get_client_rect(RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       rectangle.right += get_final_y_scroll_bar_width();
 
@@ -16873,7 +16917,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       psize->m_size = rectangleWindow.size();
 
@@ -17082,7 +17126,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 //{
 
-//   get_window_rect(prectangle);
+//   window_rectangle(prectangle);
 
 
 //}
@@ -18456,7 +18500,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    //   }
 
-   //   get_client_rect(item.m_rectangle);
+   //   client_rectangle(item.m_rectangle);
 
    //   return true;
 
@@ -18970,7 +19014,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //       if (puserinteractionParent)
    //       {
 
-   //          puserinteractionParent->get_client_rect(rectangleWindow);
+   //          puserinteractionParent->client_rectangle(rectangleWindow);
 
    //          bSet = true;
 
@@ -19689,7 +19733,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (eelement == e_element_client)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          return true;
 
@@ -19704,7 +19748,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = maximum(rectangle.left, rectangle.right - 25);
          rectangle.top = maximum(rectangle.top, rectangle.bottom - 25);
@@ -19724,7 +19768,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          //i32 iMargin = rectangleClient.height() / 8;
          i32 iMargin = 0;
@@ -19751,7 +19795,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          ::rectangle_i32 rectangleDropDown;
 
@@ -19774,7 +19818,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_close_button)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 32;
 
@@ -19786,7 +19830,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_maximize_button)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 64;
 
@@ -19800,7 +19844,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_minimize_button)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 96;
 
@@ -19814,7 +19858,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_close_icon)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 48;
 
@@ -19826,7 +19870,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_switch_button)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 48;
 
@@ -19838,7 +19882,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_maximize_icon)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 96;
 
@@ -19852,7 +19896,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else if (eelement == e_element_minimize_icon)
       {
 
-         get_client_rect(rectangle);
+         client_rectangle(rectangle);
 
          rectangle.left = rectangle.right - 144;
 

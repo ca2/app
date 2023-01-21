@@ -92,7 +92,7 @@ namespace app_message_box
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       double dBase = (double)rectangleClient.minimum_signed_absolute_dimension() / 17.0;
 

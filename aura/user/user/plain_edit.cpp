@@ -437,7 +437,7 @@ namespace user
       status < ::color::color > crSel;
       status < ::color::color > color32;
 
-      ::rectangle_f64 rectangleClient = get_client_rect();
+      ::rectangle_f64 rectangleClient = client_rectangle();
 
       auto rectangleBackground = rectangleClient;
 
@@ -1532,7 +1532,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto xContext = get_context_offset().x;
 
@@ -1729,7 +1729,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       int xVisibleStart = m_pointScroll.x;
 
@@ -1865,7 +1865,7 @@ namespace user
 
                ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectangleWindow);
+               window_rectangle(rectangleWindow);
 
                if (pmouse->m_point.x < rectangleWindow.left - 30)
                {
@@ -6333,7 +6333,7 @@ namespace user
 
       ::point_i32 point((::i32)x, (::i32)y);
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       rectangle.left = (::i32)x;
 

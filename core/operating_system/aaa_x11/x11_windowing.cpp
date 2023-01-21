@@ -149,7 +149,7 @@ GC simple_ui_display::create_gc()
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   //windowing_output_debug_string("\n::get_window_rect 1");
+   //windowing_output_debug_string("\n::window_rectangle 1");
 
    xdisplay d(x11_get_display());
 
@@ -204,7 +204,7 @@ void simple_ui_display::on_expose()
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   //windowing_output_debug_string("\n::get_window_rect 1");
+   //windowing_output_debug_string("\n::window_rectangle 1");
 
    xdisplay d(x11_get_display());
 
@@ -304,7 +304,7 @@ int simple_ui_display::show()
 
    synchronous_lock synchronouslock(x11_mutex());
 
-   //windowing_output_debug_string("\n::get_window_rect 1");
+   //windowing_output_debug_string("\n::window_rectangle 1");
 
    xdisplay d(x11_get_display());
 

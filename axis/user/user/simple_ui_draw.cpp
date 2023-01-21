@@ -56,7 +56,7 @@ namespace simple_ui
       /*
       ::rectangle_i32 rectangleDraw;
 
-      get_window_rect(rectangleDraw);
+      window_rectangle(rectangleDraw);
 
       int i = 0;
       int j = 0;

@@ -65,8 +65,8 @@ namespace os
       using ::user::interaction::screen_to_client;
       virtual void screen_to_client(POINT_I32 * ppt);
 
-      virtual void get_window_rect(RECTANGLE_I32 * prectangle);
-      virtual void get_client_rect(RECTANGLE_I32 * prectangle);
+      virtual void window_rectangle(RECTANGLE_I32 * prectangle);
+      virtual void client_rectangle(RECTANGLE_I32 * prectangle);
 
 
       virtual bool show_window(bool bShow = true);

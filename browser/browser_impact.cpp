@@ -287,7 +287,7 @@ namespace browser
       if (m_pimageBrowser)
       {
 
-         auto rectangleClient = get_client_rect();
+         auto rectangleClient = client_rectangle();
 
          pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
@@ -364,13 +364,13 @@ namespace browser
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(rectangleClient.area() <= 0)
          return;
 
 
-      ::rectangle_i32 rectangle = get_client_rect();
+      ::rectangle_i32 rectangle = client_rectangle();
 
       client_to_screen(rectangle);
 
@@ -412,7 +412,7 @@ namespace browser
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
                //auto rectangle = RECTANGLE_I32{ 0 };
-               //get_client_rect(&rectangle);
+               //client_rectangle(&rectangle);
 
                //auto hwnd2 = get_handle();
 
@@ -837,7 +837,7 @@ namespace browser
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
    //         auto rectangle = RECTANGLE_I32{ 0 };
-   //         get_client_rect(&rectangle);
+   //         client_rectangle(&rectangle);
 
    //         ::set_window_position(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
    //      }
@@ -861,7 +861,7 @@ namespace browser
    bool impact::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) 
    {
 
-      auto rectangleWindow = get_top_level()->get_window_rect();
+      auto rectangleWindow = get_top_level()->window_rectangle();
 
       rectangle.Set(rectangleWindow.left, rectangleWindow.top, rectangleWindow.width(), rectangleWindow.height());
 
@@ -873,7 +873,7 @@ namespace browser
    bool impact::GetImpactRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::rectangle_i32 rectangleClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = client_rectangle();
 
       client_to_screen(rectangleClient);
 

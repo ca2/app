@@ -54,7 +54,7 @@
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
                   ::rectangle_i32 rectangleEvent;
-                  m_pframewindow->get_window_rect(rectangleEvent);
+                  m_pframewindow->window_rectangle(rectangleEvent);
                   ::rectangle_i32 rectangle;
                   point_i32 ptCenter = rectangleEvent.center();
                   enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -334,7 +334,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               auto rectangleClient = pframewindow->get_client_rect();
+               auto rectangleClient = pframewindow->client_rectangle();
 
 
                string str;
@@ -342,7 +342,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangleNClient;
 
-               pframewindow->get_window_rect(rectangleNClient);
+               pframewindow->window_rectangle(rectangleNClient);
 
                rectangleNClient -= rectangleNClient.top_left();
 

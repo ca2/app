@@ -414,7 +414,7 @@ namespace simple_ui
 //
 //      }
 //
-//      rectangle = get_client_rect();
+//      rectangle = client_rectangle();
 //
 //      return true;
 //
@@ -583,7 +583,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleClient;
 //
-//      get_client_rect(rectangleClient);
+//      client_rectangle(rectangleClient);
 //
 //      rectangleClient.deflate(0,0,1,1);
 //
@@ -609,7 +609,7 @@ namespace simple_ui
 //      /*
 //      ::rectangle_i32 rectangleWindow;
 //
-//      get_window_rect(rectangleWindow);
+//      window_rectangle(rectangleWindow);
 //
 //      int i = 0;
 //      int j = 0;
@@ -690,7 +690,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      get_client_rect(rectangleWindow);
+//      client_rectangle(rectangleWindow);
 //
 //      pgraphics->fill_rectangle(rectangleWindow, argb(90, 127, 127, 127));
 //
@@ -703,7 +703,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangleWindow;
 //
-//      get_client_rect(rectangleWindow);
+//      client_rectangle(rectangleWindow);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -733,7 +733,7 @@ namespace simple_ui
 //
 //      ::rectangle_i32 rectangle;
 //
-//      get_client_rect(rectangle);
+//      client_rectangle(rectangle);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
@@ -933,7 +933,7 @@ namespace simple_ui
 //   //::item_pointer interaction::on_hit_test(const ::point_i32 &point)
 //   //{
 //
-//   //   auto rectangleClient = get_client_rect();
+//   //   auto rectangleClient = client_rectangle();
 //
 //   //   if (!rectangleClient.contains(point))
 //   //   {

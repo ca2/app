@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-11-08 23:10 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -404,6 +404,31 @@ inline u32 ansi_to_u32(const ::ansi_character * psz, const ::ansi_character ** p
 
 
 CLASS_DECL_ACME void throw_exception(enum_status estatus);
+
+
+constexpr ::std::strong_ordering negation(const ::std::strong_ordering & ordering)
+{
+
+   if(ordering < 0)
+   {
+
+      return ::std::strong_ordering::greater;
+
+   }
+   else if (ordering > 0)
+   {
+
+      return ::std::strong_ordering::less;
+
+   }
+   else
+   {
+
+      return ::std::strong_ordering::equal;
+
+   }
+
+}
 
 
 

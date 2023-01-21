@@ -114,7 +114,7 @@ namespace userex
 
          }
 
-         pinteraction->get_window_rect(rectangle);
+         pinteraction->window_rectangle(rectangle);
 
          screen_to_client()(rectangle);
 
@@ -148,7 +148,7 @@ namespace userex
 
          pinteraction = uia.interaction_at(uia.interaction_count() + m_pimpactdata->m_iExtendOnParent);
 
-         pinteraction->get_window_rect(rectangle);
+         pinteraction->window_rectangle(rectangle);
 
          screen_to_client()(rectangle);
 

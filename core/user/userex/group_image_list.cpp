@@ -424,7 +424,7 @@ namespace userex
 
       ::rectangle_i32 rectangleWindow;
 
-      pinteraction->get_window_rect(rectangleWindow);
+      pinteraction->window_rectangle(rectangleWindow);
 
       auto puser = user();
 
@@ -504,7 +504,7 @@ namespace userex
    void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (!rectangleClient)
       {

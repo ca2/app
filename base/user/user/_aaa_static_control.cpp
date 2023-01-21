@@ -161,7 +161,7 @@
 //
 //         ::rectangle_i32 rectangleWindow;
 //
-//         get_window_rect(rectangleWindow);
+//         window_rectangle(rectangleWindow);
 //
 //         if(rectangleWindow.contains(pointCursor))
 //         {

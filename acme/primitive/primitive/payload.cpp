@@ -9990,7 +9990,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i64_array)
       {
 
-         ::acme::container::append(i32_array_reference(), payload.i64_array_reference());
+         ::generic::container::append(i32_array_reference(), payload.i64_array_reference());
 
       }
       else
@@ -10014,7 +10014,7 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-         ::acme::container::append(i64_array_reference(), payload.i32_array_reference());
+         ::generic::container::append(i64_array_reference(), payload.i32_array_reference());
 
       }
       else
@@ -10038,19 +10038,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-          ::acme::container::append(string_array_reference(), payload.i32_array_reference());
+          ::generic::container::append(string_array_reference(), payload.i32_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
       {
 
-          ::acme::container::append(string_array_reference(), payload.i64_array_reference());
+          ::generic::container::append(string_array_reference(), payload.i64_array_reference());
 
       }
       else if(payload.get_type() == e_type_payload_array)
       {
 
-          ::acme::container::append(string_array_reference(), payload.payload_array_reference());
+          ::generic::container::append(string_array_reference(), payload.payload_array_reference());
 
       }
       else
@@ -10074,19 +10074,19 @@ payload & payload::add(const ::payload & payload)
       else if(payload.get_type() == e_type_i32_array)
       {
 
-          ::acme::container::append(payload_array_reference(), payload.i32_array_reference());
+          ::generic::container::append(payload_array_reference(), payload.i32_array_reference());
 
       }
       else if(payload.get_type() == e_type_i64_array)
       {
 
-          ::acme::container::append(payload_array_reference(), payload.i64_array_reference());
+          ::generic::container::append(payload_array_reference(), payload.i64_array_reference());
 
       }
       else if(payload.get_type() == e_type_string_array)
       {
 
-          ::acme::container::append(payload_array_reference(), payload.string_array_reference());
+          ::generic::container::append(payload_array_reference(), payload.string_array_reference());
 
       }
       else

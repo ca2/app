@@ -97,8 +97,8 @@ namespace user
       //mutable point     m_pointParentClient;
 
 
-      //inline auto get_client_rect64() { ::rect64 rectangle; get_client_rect(rectangle); return rectangle; }
-      //inline auto get_window_rect64() { ::rect64 rectangle; get_window_rect(rectangle); return rectangle; }
+      //inline auto get_client_rect64() { ::rect64 rectangle; client_rectangle(rectangle); return rectangle; }
+      //inline auto get_window_rect64() { ::rect64 rectangle; window_rectangle(rectangle); return rectangle; }
 
       //virtual ::window_graphics* get_window_graphics();
       //virtual oswindow get_handle() const;
@@ -114,7 +114,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_window_rect(RECT32 * prect);
+      //virtual bool window_rectangle(RECT32 * prect);
       class control_descriptor& descriptor();
       const class control_descriptor & descriptor() const;
 
@@ -133,11 +133,11 @@ namespace user
       //inline void screen_to_client(RECT32* prect) { ::rect_sub(prect, client_screen_top_left()); }
       //inline void client_to_screen(RECT32* prect) { ::rect_add(prect, client_screen_top_left()); }
 
-      //inline void get_client_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
-      //inline void get_window_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
+      //inline void client_rectangle(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
+      //inline void window_rectangle(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
 
-      //inline auto get_client_rect() { ::rectangle rectangle; get_client_rect(rectangle); return rectangle; }
-      //inline auto get_window_rect() { ::rectangle rectangle; get_window_rect(rectangle); return rectangle; }
+      //inline auto client_rectangle() { ::rectangle rectangle; client_rectangle(rectangle); return rectangle; }
+      //inline auto window_rectangle() { ::rectangle rectangle; window_rectangle(rectangle); return rectangle; }
 
       virtual void set_placement(const ::rectangle & rectangle);
 
@@ -385,13 +385,13 @@ namespace user
       inline void ClientToParent(POINT32* ppoint) { ::point_add(ppoint, top_left()); }
 
 
-      inline void get_client_rect(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
-      virtual void get_window_rect(RECT32* prect) const;
+      inline void client_rectangle(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
+      virtual void window_rectangle(RECT32* prect) const;
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
       inline void parent_client_rect(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
 
-      inline auto get_client_rect() const { ::rectangle rectangle; get_client_rect(rectangle); return rectangle; }
-      inline auto get_window_rect() const { ::rectangle rectangle; get_window_rect(rectangle); return rectangle; }
+      inline auto client_rectangle() const { ::rectangle rectangle; client_rectangle(rectangle); return rectangle; }
+      inline auto window_rectangle() const { ::rectangle rectangle; window_rectangle(rectangle); return rectangle; }
       inline auto window_request_rect() const { ::rectangle rectangle; window_request_rect(rectangle); return rectangle; }
       inline auto parent_client_rect() const { ::rectangle rectangle; parent_client_rect(rectangle); return rectangle; }
 

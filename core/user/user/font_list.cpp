@@ -316,7 +316,7 @@ namespace user
 
       }
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       {
@@ -372,7 +372,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(rectangleImpact);
+         client_rectangle(rectangleImpact);
 
          rectangleImpact.offset(m_pointScroll);
 
@@ -393,7 +393,7 @@ namespace user
    void font_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleFontList = get_client_rect();
+      auto rectangleFontList = client_rectangle();
 
       if(rectangleFontList.is_empty())
       {

@@ -136,7 +136,7 @@ template < typename FILE >
 
    ::rectangle_i32 rectangleWindow;
 
-   editimpl.get_window_rect(rectangleWindow);
+   editimpl.window_rectangle(rectangleWindow);
 
    if (((::user::rich_text::edit_impl & )editimpl).get_parent() != nullptr)
    {

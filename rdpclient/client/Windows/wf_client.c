@@ -169,7 +169,7 @@ static BOOL wf_desktop_resize(rdpContext* context)
 	else
 	{
 		wf_update_offset(wfc);
-		get_window_rect(wfc->hwnd, &rect);
+		window_rectangle(wfc->hwnd, &rect);
 		InvalidateRect(wfc->hwnd, &rect, TRUE);
 	}
 

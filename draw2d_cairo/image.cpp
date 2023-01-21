@@ -758,7 +758,7 @@ namespace draw2d_cairo
 //
 //      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectangleWindow);
+//      puserinteraction->window_rectangle(rectangleWindow);
 //
 //      m_spgraphics->set_origin(0, 0);
 //
@@ -802,7 +802,7 @@ namespace draw2d_cairo
 //
 //         ::rectangle_i32 rectangleWindow;
 //
-//         puserinteraction->get_window_rect(rectangleWindow);
+//         puserinteraction->window_rectangle(rectangleWindow);
 //
 //         ::image_pointer pimage1(this);
 //
@@ -887,7 +887,7 @@ namespace draw2d_cairo
 ////
 ////      rectangle_i64 rectangleWindow;
 ////
-////      puserinteraction->get_window_rect(rectangleWindow);
+////      puserinteraction->window_rectangle(rectangleWindow);
 ////
 ////      m_spgraphics->set_origin(0, 0);
 ////
@@ -932,7 +932,7 @@ namespace draw2d_cairo
 //
 //      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectangleWindow);
+//      puserinteraction->window_rectangle(rectangleWindow);
 //
 //      m_spgraphics->set_origin(0, 0);
 //

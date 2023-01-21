@@ -463,7 +463,7 @@ int_bool ui_SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, 
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
+int_bool window_rectangle(oswindow hwnd, RECTANGLE_I32 * lprect)
 {
 
    if(void_ptr_is_null(hwnd))
@@ -472,7 +472,7 @@ int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
    if(void_ptr_is_null(lprect))
       return false;
 
-   hwnd->m_pimpl->m_puserinteraction->get_window_rect(lprect);
+   hwnd->m_pimpl->m_puserinteraction->window_rectangle(lprect);
 
    return true;
 

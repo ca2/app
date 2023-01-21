@@ -608,7 +608,7 @@ namespace linux
 
                //::rectangle rect32;
 
-               //(::get_window_rect((oswindow) get_handle(), rect32))
+               //(::window_rectangle((oswindow) get_handle(), rect32))
                {
 
 
@@ -1090,7 +1090,7 @@ namespace linux
       char szBuf [64];
 
       ::rectangle rectangle;
-      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
+      ((::user::interaction_impl *) this)->m_puserinteraction->window_rectangle(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
       dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
 
@@ -1512,12 +1512,12 @@ namespace linux
 
                INFORMATION("Screen Relative Mouse Message Position");
                ::rectangle rectangleWindow32;
-               ::get_window_rect((oswindow) get_handle(), &rectangleWindow32);
+               ::window_rectangle((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
             }
             else
             {
-               m_puserinteraction->get_window_rect(rectangleWindow);
+               m_puserinteraction->window_rectangle(rectangleWindow);
             }
             if(::acmeacmesystem()->get_monitor_count() > 0)
             {
@@ -1927,7 +1927,7 @@ namespace linux
 //                     hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 //                  {
 //                     ::rectangle rectangle;
-//                     ::get_window_rect(hWndChild, &rectangle);
+//                     ::window_rectangle(hWndChild, &rectangle);
 //                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
 //                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
@@ -2437,14 +2437,14 @@ namespace linux
 //
 //      ::rectangle rectangleClient;
 //
-//      m_puserinteraction->get_client_rect(rectangleClient);
+//      m_puserinteraction->client_rectangle(rectangleClient);
 //
 //
 //      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
 //      ::rectangle rectangleUpdate;
-//      m_puserinteraction->get_window_rect(rectangleUpdate);
+//      m_puserinteraction->window_rectangle(rectangleUpdate);
 ////      SetContextOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle rectanglePaint;
 //      rectanglePaint = rectangleUpdate;
@@ -2602,7 +2602,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return point_f64(0.0,0.0);
@@ -2620,7 +2620,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2647,7 +2647,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2670,7 +2670,7 @@ namespace linux
 //
 //      ::rectangle rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2697,7 +2697,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2720,7 +2720,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2747,7 +2747,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2770,7 +2770,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2797,7 +2797,7 @@ namespace linux
 //
 //      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectangleWindow))
+//      if(!window_rectangle(rectangleWindow))
 //      {
 //
 //         return false;
@@ -2817,7 +2817,7 @@ namespace linux
 //   bool interaction_impl::_001GetWindowRect(RECT64 * prect)
 //   {
 //
-//      return ::user::interaction_impl::get_window_rect(prect);
+//      return ::user::interaction_impl::window_rectangle(prect);
 //
 //
 //
@@ -2834,7 +2834,7 @@ namespace linux
 //      {
 //         ::rectangle rect32;
 //
-//         if(!::get_window_rect((oswindow) get_handle(), rect32))
+//         if(!::window_rectangle((oswindow) get_handle(), rect32))
 //         {
 //
 //            return false;
@@ -2847,7 +2847,7 @@ namespace linux
 //      }
 ////      else
 //      {
-//         //      primitive_impl::get_window_rect(prect);
+//         //      primitive_impl::window_rectangle(prect);
 //
 //      }
 //
@@ -2856,7 +2856,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::get_window_rect(RECT64 * prect)
+//   bool interaction_impl::window_rectangle(RECT64 * prect)
 //
 //   {
 //
@@ -2872,12 +2872,12 @@ namespace linux
 //
 //   }
 //
-//   bool interaction_impl::get_client_rect(RECT64 * prect)
+//   bool interaction_impl::client_rectangle(RECT64 * prect)
 //
 //   {
 //
 //
-//      return ::user::interaction_impl::get_client_rect(prect);
+//      return ::user::interaction_impl::client_rectangle(prect);
 //
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -2892,7 +2892,7 @@ namespace linux
 //
 //         ::rectangle rect32;
 //
-//         //if(!::get_client_rect((oswindow) get_handle(), rect32))
+//         //if(!::client_rectangle((oswindow) get_handle(), rect32))
 //         //{
 //
 //         // return false;
@@ -2909,7 +2909,7 @@ namespace linux
 //      }
 //      //else
 //      {
-//         // interaction::get_client_rect(prect);
+//         // interaction::client_rectangle(prect);
 //
 //      }
 //
@@ -3382,7 +3382,7 @@ namespace linux
 //
 //      ::rectangle rectangleClient;
 //
-//      //oswindow->get_client_rect(rectangleClient);
+//      //oswindow->client_rectangle(rectangleClient);
 //
 //      rectangleClient.left = 0;
 //      rectangleClient.top = 0;

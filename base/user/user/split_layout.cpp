@@ -396,7 +396,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
@@ -419,7 +419,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
@@ -442,7 +442,7 @@ namespace user
 
       bool bIsWindowVisible = is_this_visible();
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {
@@ -792,7 +792,7 @@ namespace user
    void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -823,7 +823,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -846,7 +846,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -896,7 +896,7 @@ namespace user
 
       }
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
@@ -1026,7 +1026,7 @@ namespace user
 
          ::rectangle_i32 rectanglePane;
 
-         pcomponent->m_pplaceholder->get_client_rect(rectanglePane);
+         pcomponent->m_pplaceholder->client_rectangle(rectanglePane);
 
          pcomponent->m_pplaceholder = place_hold(puserinteraction, rectanglePane);
 
@@ -1362,7 +1362,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

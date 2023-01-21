@@ -101,7 +101,7 @@ namespace user
 
          ::rectangle_f64 rectangleClient;
 
-         rectangleClient = get_client_rect();
+         rectangleClient = client_rectangle();
 
          auto estate = get_user_state();
 
@@ -387,7 +387,7 @@ namespace user
    //   return control::hit_test(pmouse);
 
    //   //::rectangle_i32 rectangleWindow;
-   //   //get_window_rect(rectangleWindow);
+   //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
    //   //   eelement = element_area;
@@ -535,7 +535,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::size_f64 sizeText = _001CalculateFittingSize(pgraphics);
 
@@ -620,7 +620,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::color::color colorBackground;
 
@@ -840,7 +840,7 @@ namespace user
       get_window_text(strText);
 
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
 
       //if (pstyle == nullptr)
@@ -1088,7 +1088,7 @@ namespace user
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
    }
 

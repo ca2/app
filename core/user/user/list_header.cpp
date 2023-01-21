@@ -196,7 +196,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       rectangle.left = xLast;
 
@@ -766,7 +766,7 @@ namespace user
       //      while (pinteraction != nullptr)
       //      {
 
-      //         pinteraction->get_client_rect(rectangleClient);
+      //         pinteraction->client_rectangle(rectangleClient);
 
       //         pinteraction->client_to_host(rectangleClient);
 
@@ -834,13 +834,13 @@ namespace user
       ////         if (i == 1)
       ////         {
       ////            // guess list client rectangle_i32 doesn't include header?
-      ////            pinteraction->::user::interaction::get_client_rect(rectangleFocus);
+      ////            pinteraction->::user::interaction::client_rectangle(rectangleFocus);
 
       ////         }
       ////         else
       ////         {
 
-      ////            pinteraction->get_client_rect(rectangleFocus);
+      ////            pinteraction->client_rectangle(rectangleFocus);
 
       ////         }
 
@@ -885,7 +885,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::rectangle_i32 rectangleUpdate(rectangleClient);
 

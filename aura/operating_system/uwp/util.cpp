@@ -63,7 +63,7 @@ oswindow CLASS_DECL_AURA __child_window_from_point(oswindow hWnd, POINT_I32 poin
       {
          // see if point_i32 hits the child ::user::interaction_impl
          ::rectangle_i32 rectangle;
-         ::get_window_rect(hWndChild, rectangle);
+         ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;
       }

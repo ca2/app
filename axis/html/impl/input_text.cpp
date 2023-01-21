@@ -171,7 +171,7 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
 
-         //m_pedit->get_window_rect(rectangleWindow);
+         //m_pedit->window_rectangle(rectangleWindow);
 
          //m_pedit->get_wnd()->screen_to_client(rectangleWindow);
 

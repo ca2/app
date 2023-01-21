@@ -715,7 +715,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      m_pimpactdata->m_pplaceholder->get_client_rect(rectangleClient);
+      m_pimpactdata->m_pplaceholder->client_rectangle(rectangleClient);
 
       if (!rectangleTabClient.is_empty())
       {

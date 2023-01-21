@@ -1141,7 +1141,7 @@ namespace user
       //                  if (pwindow != nullptr)
       //                  {
       //
-      //                     auto rectangle = pwindow->get_window_rect();
+      //                     auto rectangle = pwindow->window_rectangle();
       //
       //                     auto size = rectangle.origin() - pControl[i].rectangleOldPos.top_left();
       //

@@ -53,7 +53,7 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectangleClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = client_rectangle();
 
       //scroll_bar_get_client_rect(rectangleClient);
 
@@ -410,7 +410,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::i32 iTotalHeight = (::i32)sizeTotal.cy;
 
@@ -448,7 +448,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectangleScroll);
+      client_rectangle(rectangleScroll);
 
       m_pscrolldataVertical->m_iPage = rectangleScroll.height();
 

@@ -817,7 +817,7 @@ void wf_update_canvas_diff(wfContext* wfc)
 	RECT rc_client, rc_wnd;
 	int dx, dy;
 	deprecated_get_client_rect(wfc->hwnd, &rc_client);
-	get_window_rect(wfc->hwnd, &rc_wnd);
+	window_rectangle(wfc->hwnd, &rc_wnd);
 	dx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
 	dy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
 

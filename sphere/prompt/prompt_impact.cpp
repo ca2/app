@@ -123,9 +123,9 @@ namespace prompt
 
       best_monitor(rectangleDesktop);
 
-      ::rectangle_i32 rectangleClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = client_rectangle();
       
-      //get_client_rect(rectangleClient);
+      //client_rectangle(rectangleClient);
       
       rectangleClient.deflate(2, 2);
       

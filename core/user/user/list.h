@@ -392,7 +392,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
+      //virtual bool client_rectangle(RECTANGLE_I32 * prectangle) override;
 
 
       virtual void update_icon_list_impact_sort();

@@ -739,7 +739,7 @@ public:
    {
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       pgraphics->FillSolidRect(rectangle, argb(255, 240, 240, 240));
    }
@@ -748,7 +748,7 @@ public:
    i32 show_window(const ::string & lpText, const ::string & lpCaption)
    {
 
-      ::get_window_rect(::get_desktop_window(), &m_rectangleDesktop);
+      ::window_rectangle(::get_desktop_window(), &m_rectangleDesktop);
 
 
       ::rectangle_i32 rectangle(100, 100, 200, 200);

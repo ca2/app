@@ -246,7 +246,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -326,7 +326,7 @@ namespace user
 
          drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         drawitemdata.m_rectangleClient = get_client_rect();
+         drawitemdata.m_rectangleClient = client_rectangle();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -1256,7 +1256,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
       {
@@ -1408,7 +1408,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       return (::count)(rectangle.height() / _001GetItemHeight() - 1);
 
@@ -1420,7 +1420,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       ::count iCount = _001GetVisibleItemCount();
 

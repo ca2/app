@@ -342,10 +342,10 @@ namespace user
    }
 
 
-   //void frame::get_client_rect(RECTANGLE_I32* lprect)
+   //void frame::client_rectangle(RECTANGLE_I32* lprect)
    //{
    //   
-   //   ::user::interaction::get_client_rect(lprect);
+   //   ::user::interaction::client_rectangle(lprect);
    //   
    //   if((m_ewindowflag & e_window_flag_top_level) && window())
    //   {

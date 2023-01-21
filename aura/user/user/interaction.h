@@ -808,18 +808,24 @@ namespace user
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
       virtual void input_client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
+
+
       virtual void client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
       virtual ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_sketch);
 
 
-      virtual void window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch) { copy(rect, window_rectangle(elayout)); }
-      virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_sketch);
+      virtual void parent_client_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
+      virtual ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_sketch);
       virtual ::point_i32 position(enum_layout elayout = e_layout_sketch);
       virtual ::size_i32 size(enum_layout elayout = e_layout_sketch);
       virtual ::i32 top(enum_layout elayout = e_layout_sketch);
       virtual ::i32 left(enum_layout elayout = e_layout_sketch);
       virtual ::i32 right(enum_layout elayout = e_layout_sketch);
       virtual ::i32 bottom(enum_layout elayout = e_layout_sketch);
+
+
+      virtual void window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch) { copy(rect, window_rectangle(elayout)); }
+      virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_sketch);
 
 
       inline void set_prodevian() { return add_prodevian(this); }

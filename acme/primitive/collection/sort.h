@@ -325,9 +325,17 @@
    void quick_sort(const iterator &a, const iterator &b);
 
 
-   //typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
+   typedef void (*ARG_SWAP_FUNCTION)(void *pVoidSwapArg, iptr, iptr);
 
-   //typedef ::std::strong_ordering (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
+   typedef ::std::strong_ordering (*ARG_COMPARE_FUNCTION)(void *pVoidCompareArg, iptr, iptr);
+
+
+   void CLASS_DECL_ACME quick_sort(
+      iptr iSize,
+      ::array < ARG_COMPARE_FUNCTION > & comparefna,
+      ::array < ARG_SWAP_FUNCTION > & swapfna,
+      void_ptra &comparearga,
+      void_ptra &swaparga);
 
 
    void CLASS_DECL_ACME quick_sort(

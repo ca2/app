@@ -124,12 +124,49 @@ namespace  sort
    //
    //   }
 
+   void quick_sort(
+      index iSize,
+      ::array < ARG_COMPARE_FUNCTION >& comparefna,
+      ::array < ARG_SWAP_FUNCTION >& swapfna,
+      void_ptra& comparearga,
+      void_ptra& swaparga)
+      {
 
+         ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > > comparefunctiona;
+         ::array < ::function < void(void*, iptr, iptr) > >& swapfunctiona;
+
+         for(auto fna : comparefna)
+         {
+
+            comparefunction.add([fna](void * p, iptr a, iptr b)
+            {
+
+               return fna(a, b) <=> 0;
+
+            });
+
+
+         }
+
+         for(auto fna : swapfna)
+         {
+
+            swapfunctiona.add([fna](void * p, iptr a, iptr b)
+            {
+
+               return fna(p, a, b);
+
+            });
+
+         }
+
+      }
+   
 
    void quick_sort(
       index iSize,
-      ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > >& comparefna,
-      ::array < ::function < void(void*, iptr, iptr) > >& swapfna,
+      ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > >& comparefunctiona,
+      ::array < ::function < void(void*, iptr, iptr) > >& swapfunctiona,
       void_ptra& comparearga,
       void_ptra& swaparga)
    {
@@ -161,9 +198,9 @@ namespace  sort
                   if (iMPos == iUPos)
                      break;
                   iCmp = 0;
-                  for (i32 i = 0; i < comparefna.get_size(); i++)
+                  for (i32 i = 0; i < comparefunctiona.get_size(); i++)
                   {
-                     auto iCompare = comparefna[i](comparearga[i], iMPos, iUPos);
+                     auto iCompare = comparefunctiona[i](comparearga[i], iMPos, iUPos);
                      if (iCompare > 0)
                      {
                         iCmp = 1;
@@ -179,9 +216,9 @@ namespace  sort
                      iUPos--;
                   else
                   {
-                     for (i32 i = 0; i < swapfna.get_size(); i++)
+                     for (i32 i = 0; i < swapfunctiona.get_size(); i++)
                      {
-                        swapfna[i](swaparga[i], iMPos, iUPos);
+                        swapfunctiona[i](swaparga[i], iMPos, iUPos);
                      }
                      break;
                   }
@@ -194,9 +231,9 @@ namespace  sort
                   if (iMPos == iLPos)
                      break;
                   iCmp = 0;
-                  for (i32 i = 0; i < comparefna.get_size(); i++)
+                  for (i32 i = 0; i < comparefunctiona.get_size(); i++)
                   {
-                     iCompare = comparefna[i](comparearga[i], iLPos, iMPos);
+                     iCompare = comparefunctiona[i](comparearga[i], iLPos, iMPos);
                      if (iCompare > 0)
                      {
                         iCmp = 1;
@@ -212,9 +249,9 @@ namespace  sort
                      iLPos++;
                   else
                   {
-                     for (i32 i = 0; i < swapfna.get_size(); i++)
+                     for (i32 i = 0; i < swapfunctiona.get_size(); i++)
                      {
-                        swapfna[i](swaparga[i], iLPos, iMPos);
+                        swapfunctiona[i](swaparga[i], iLPos, iMPos);
                      }
                      break;
                   }

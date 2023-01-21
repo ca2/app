@@ -126,22 +126,22 @@ namespace  sort
 
    void quick_sort(
       index iSize,
-      ::array < ARG_COMPARE_FUNCTION >& comparefna,
-      ::array < ARG_SWAP_FUNCTION >& swapfna,
-      void_ptra& comparearga,
-      void_ptra& swaparga)
+      const ::array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION >& comparefna,
+      const ::array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION >& swapfna,
+      const void_ptra& comparearga,
+      const void_ptra& swaparga)
       {
 
          ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > > comparefunctiona;
-         ::array < ::function < void(void*, iptr, iptr) > >& swapfunctiona;
+         ::array < ::function < void(void*, iptr, iptr) > > swapfunctiona;
 
          for(auto fna : comparefna)
          {
 
-            comparefunction.add([fna](void * p, iptr a, iptr b)
+            comparefunctiona.add([fna](void * p, iptr a, iptr b)
             {
 
-               return fna(a, b) <=> 0;
+               return fna(p, a, b) <=> 0;
 
             });
 
@@ -160,15 +160,21 @@ namespace  sort
 
          }
 
+
+         quick_sort(iSize,
+            comparefunctiona,
+            swapfunctiona,
+            comparearga,
+            swaparga);
       }
    
 
    void quick_sort(
       index iSize,
-      ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > >& comparefunctiona,
-      ::array < ::function < void(void*, iptr, iptr) > >& swapfunctiona,
-      void_ptra& comparearga,
-      void_ptra& swaparga)
+      const ::array < ::function < ::std::strong_ordering(void*, iptr, iptr) > >& comparefunctiona,
+      const ::array < ::function < void(void*, iptr, iptr) > >& swapfunctiona,
+      const void_ptra& comparearga,
+      const void_ptra& swaparga)
    {
 
       index_array stackLowerBound;

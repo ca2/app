@@ -332,18 +332,18 @@
 
    void CLASS_DECL_ACME quick_sort(
       iptr iSize,
-      ::array < ARG_COMPARE_FUNCTION > & comparefna,
-      ::array < ARG_SWAP_FUNCTION > & swapfna,
-      void_ptra &comparearga,
-      void_ptra &swaparga);
+      const ::array < ARG_COMPARE_FUNCTION, ARG_COMPARE_FUNCTION > & comparefna,
+      const ::array < ARG_SWAP_FUNCTION, ARG_SWAP_FUNCTION > & swapfna,
+      const void_ptra &comparearga,
+      const void_ptra &swaparga);
 
 
    void CLASS_DECL_ACME quick_sort(
       iptr iSize,
-      ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefna,
-      ::array < ::function < void(void*, iptr, iptr) > > & swapfna,
-      void_ptra &comparearga,
-      void_ptra &swaparga);
+      const ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefna,
+      const ::array < ::function < void(void*, iptr, iptr) > > & swapfna,
+      const void_ptra &comparearga,
+      const void_ptra &swaparga);
 
 
 

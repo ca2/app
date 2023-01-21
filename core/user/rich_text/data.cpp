@@ -1552,7 +1552,7 @@ namespace user
          else
          {
 
-            rectangle = m_pedit->get_client_rect();
+            rectangle = m_pedit->client_rectangle();
 
          }
 

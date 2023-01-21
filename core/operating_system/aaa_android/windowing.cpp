@@ -720,10 +720,10 @@ oswindow get_focus()
 }
 
 
-int_bool get_client_rect(oswindow_data * pdata, RECT32 * prect)
+int_bool client_rectangle(oswindow_data * pdata, RECT32 * prect)
 {
 
-   pdata->m_pimpl->m_puserinteraction->get_client_rect(prect);
+   pdata->m_pimpl->m_puserinteraction->client_rectangle(prect);
 
    //prect->right -= prect->left;
    //prect->bottom -= prect->top;
@@ -735,10 +735,10 @@ int_bool get_client_rect(oswindow_data * pdata, RECT32 * prect)
 }
 
 
-int_bool get_window_rect(oswindow_data * pdata, RECT32 * prect)
+int_bool window_rectangle(oswindow_data * pdata, RECT32 * prect)
 {
 
-   pdata->m_pimpl->m_puserinteraction->get_window_rect(prect);
+   pdata->m_pimpl->m_puserinteraction->window_rectangle(prect);
 
    return true;
 

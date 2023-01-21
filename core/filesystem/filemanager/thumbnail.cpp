@@ -33,7 +33,7 @@ namespace filemanager
 
 
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       pgraphics->fill_rectangle(rectangleClient, rgb(200, 200, 190));
 
       if(filemanager_document() == nullptr)

@@ -196,7 +196,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = layout().get_client_rect();
+      auto rectangleClient = layout().client_rectangle();
 
       auto & prender = m_maprender[m_strCurrentShaderPath];
 
@@ -250,7 +250,7 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.is_empty())
       {

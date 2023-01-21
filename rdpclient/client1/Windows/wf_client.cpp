@@ -203,7 +203,7 @@ BOOL wf_sw_end_paint(wfContext* wfc)
 //	else
 //	{
 //		wf_update_offset(wfc);
-//		get_window_rect(wfc->hwnd, &rectangle);
+//		window_rectangle(wfc->hwnd, &rectangle);
 //		InvalidateRect(wfc->hwnd, &rectangle, true);
 //	}
 //	return true;

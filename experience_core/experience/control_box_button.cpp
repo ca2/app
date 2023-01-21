@@ -66,7 +66,7 @@ namespace experience_core
 
 #endif
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.is_empty())
       {
@@ -204,7 +204,7 @@ namespace experience_core
    void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       __defer_construct(m_pregion);
 

@@ -388,7 +388,7 @@ namespace apex
 
 #ifdef _UWP
 
-      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
+      virtual bool window_rectangle(RECTANGLE_I32* prectangle);
 
 
 #endif

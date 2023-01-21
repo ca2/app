@@ -117,7 +117,7 @@ namespace sandbox_windowing
 
       ::rectangle_i32 r;
 
-      get_client_rect(r);
+      client_rectangle(r);
 
       if (r.is_empty())
       {

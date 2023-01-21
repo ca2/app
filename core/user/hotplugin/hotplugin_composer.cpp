@@ -382,7 +382,7 @@ namespace hotplugin
 
          ::rectangle_i32 rectangle;
 
-         m_paxishost->get_window_rect(rectangle);
+         m_paxishost->window_rectangle(rectangle);
 
          m_paxishost->on_paint(g,rectangle_i32);
 

@@ -571,13 +571,13 @@ namespace os
 
 
 
-   void simple_ui::get_window_rect(RECTANGLE_I32 * prectangle)
+   void simple_ui::window_rectangle(RECTANGLE_I32 * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
 
    }
-   void simple_ui::get_client_rect(RECTANGLE_I32 * prectangle)
+   void simple_ui::client_rectangle(RECTANGLE_I32 * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
@@ -595,7 +595,7 @@ namespace os
 
       ::rectangle_i32 rectangleWindow;
 
-      ::get_window_rect(m_window, rectangleWindow);
+      ::window_rectangle(m_window, rectangleWindow);
 
       if(rectangleWindow.size() != m_rectangleWindow.size())
       {

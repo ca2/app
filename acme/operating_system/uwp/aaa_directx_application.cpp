@@ -739,7 +739,7 @@ namespace universal_windows
    }
 
 
-   ::winrt::Windows::Foundation::Rect directx_framework_impact::get_window_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_impact::window_rectangle()
    {
 
       ::winrt::Windows::Foundation::Rect rectangle = m_rectangleLastWindowRect;

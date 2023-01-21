@@ -2257,14 +2257,14 @@ namespace user
                //
                //               ::rectangle_i32 rectWindow32;
                //
-               //               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
+               //               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
                //
                //               ::copy(rectWindow, rectWindow32);
                //
                //            }
                //            else
                {
-                  m_puserinteraction->get_window_rect(rectWindow);
+                  m_puserinteraction->window_rectangle(rectWindow);
                }
 
                auto pwindowing = windowing();
@@ -4866,9 +4866,9 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      m_puserinteraction->get_window_rect(rectangleWindow);
+      m_puserinteraction->window_rectangle(rectangleWindow);
 
-      windowing_output_debug_string("\n_001UpdateBuffer : after get_window_rect");
+      windowing_output_debug_string("\n_001UpdateBuffer : after window_rectangle");
 
       string strType = __type_name(m_puserinteraction);
 
@@ -5409,7 +5409,7 @@ namespace user
 
    //   ::rectangle_i32 rectangleOld;
 
-   //   pinteraction->get_window_rect(rectangleOld);
+   //   pinteraction->window_rectangle(rectangleOld);
 
    //   rectangleOld += puiParent->screen_to_client();
 
@@ -7188,7 +7188,7 @@ if(!iVisibilityChageBefore) {
 
       ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rectangle);
+      m_puserinteraction->window_rectangle(rectangle);
 
       ::rectangle_i32 rTest;
 
@@ -7227,7 +7227,7 @@ if(!iVisibilityChageBefore) {
 
       ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rectangle);
+      m_puserinteraction->window_rectangle(rectangle);
 
       for (auto & rHigher : ra)
       {
@@ -7374,7 +7374,7 @@ if(!iVisibilityChageBefore) {
 
       ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rectangle);
+      m_puserinteraction->window_rectangle(rectangle);
 
       return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent);
 
@@ -7388,7 +7388,7 @@ if(!iVisibilityChageBefore) {
 
       ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rectangle);
+      m_puserinteraction->window_rectangle(rectangle);
        
       if(::is_null(m_pgraphics))
       {

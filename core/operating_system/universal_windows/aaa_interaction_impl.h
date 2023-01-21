@@ -198,10 +198,10 @@ namespace universal_windows
       //virtual bool set_window_position(iptr z, int x, int y, int cx, int cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows();
       virtual bool BringWindowToTop();
-      //using ::user::interaction_impl::get_window_rect;
-      //virtual bool get_window_rect(RECT64 * lpRect);
-      //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECT64 * lpRect);
+      //using ::user::interaction_impl::window_rectangle;
+      //virtual bool window_rectangle(RECT64 * lpRect);
+      //using ::user::interaction_impl::client_rectangle;
+      //virtual bool client_rectangle(RECT64 * lpRect);
 
       //virtual bool client_to_screen(RECTANGLE_I32 * lprect);
       //virtual bool client_to_screen(POINT32 * lppoint);

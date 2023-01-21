@@ -2044,7 +2044,7 @@ namespace filemanager
 
                string_array stra;
 
-               ::acme::container::copy(stra, filepatha);
+               ::generic::container::copy(stra, filepatha);
 
                papp->datastream()->set(filemanager_data()->m_strDataKeyStatic, stra);
 

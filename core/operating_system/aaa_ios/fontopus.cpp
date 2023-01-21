@@ -60,9 +60,9 @@ namespace account
 
       virtual void screen_to_client(POINT32 * ppt);
 
-      virtual void get_window_rect(RECT32 * prect);
+      virtual void window_rectangle(RECT32 * prect);
 
-      virtual void get_client_rect(RECT32 * prect);
+      virtual void client_rectangle(RECT32 * prect);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -115,7 +115,7 @@ namespace account
 
       ::rectangle rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -316,7 +316,7 @@ namespace account
 
       ::rectangle rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
@@ -380,7 +380,7 @@ namespace account
          m_rectangleDesktop.right = 800;
          m_rectangleDesktop.bottom = 600;
 
-//         ::get_window_rect(::get_desktop_window(), &m_rectangleDesktop);
+//         ::window_rectangle(::get_desktop_window(), &m_rectangleDesktop);
 
       }
       else
@@ -573,7 +573,7 @@ namespace account
 
       ::rectangle rectangleLogin;
 
-      m_login.get_window_rect(rectangleLogin);
+      m_login.window_rectangle(rectangleLogin);
 
       ::point_i32 point(x, y);
 
@@ -586,7 +586,7 @@ namespace account
 
             {
       ::rectangle rectangleWindow;
-      m_login.get_window_rect(&rectangleWindow);
+      m_login.window_rectangle(&rectangleWindow);
       POINT32 pointCursor;
       ::GetCursorPos(&pointCursor);
       if (rectangleWindow.is_empty().contains(pointCursor))
@@ -624,14 +624,14 @@ namespace account
    }
 
 
-   void account::get_window_rect(RECT32 * prect)
+   void account::window_rectangle(RECT32 * prect)
    {
-      ::get_window_rect(m_oswindow, prect);
+      ::window_rectangle(m_oswindow, prect);
    }
-   void account::get_client_rect(RECT32 * prect)
+   void account::client_rectangle(RECT32 * prect)
    {
 
-      ::get_client_rect(m_oswindow, prect);
+      ::client_rectangle(m_oswindow, prect);
 
    }
 
@@ -640,7 +640,7 @@ namespace account
 
       ::rectangle rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
 
       g.fill_rectangle(rectangleWindow, argb(84, 127, 127, 127));
@@ -665,7 +665,7 @@ namespace account
 
       ::rectangle rectangleWindow;
 
-      get_window_rect(rectangleWindow);
+      window_rectangle(rectangleWindow);
 
       int i = 0;
       int j = 0;

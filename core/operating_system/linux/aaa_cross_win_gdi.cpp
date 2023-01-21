@@ -98,7 +98,7 @@ device_context::device_context()
 
 //    HDC hdc = GetDC(hwnd);
 
-//    get_client_rect(hwnd, &ps->rcPaint);
+//    client_rectangle(hwnd, &ps->rcPaint);
 
 //    return hdc;
 

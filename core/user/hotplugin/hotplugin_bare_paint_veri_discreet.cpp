@@ -23,7 +23,7 @@ namespace hotplugin
       }
 
       ::rectangle_i32 rectangleWindow;
-      get_window_rect(&rectangleWindow);
+      window_rectangle(&rectangleWindow);
       //  i32 cx = rectangleWindow.right - rectangleWindow.left;
       //i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
@@ -82,7 +82,7 @@ namespace hotplugin
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
 
       ::rectangle_i32 rectangleProgress(rectangleBar);

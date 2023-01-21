@@ -137,7 +137,7 @@ namespace account
    void login::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if(rectangleClient.is_empty())
       {
@@ -212,7 +212,7 @@ namespace account
 
       ::simple_ui::draw draw;
 
-      ::rectangle_i32 r = get_client_rect();
+      ::rectangle_i32 r = client_rectangle();
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 

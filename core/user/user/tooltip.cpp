@@ -99,7 +99,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       auto ppath = __create < ::draw2d::path > ();
 

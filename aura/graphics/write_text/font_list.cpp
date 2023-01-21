@@ -115,7 +115,7 @@ namespace write_text
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
+      ::rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
 
       rectangleClient += m_puserinteraction->get_context_offset();
 
@@ -306,7 +306,7 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
+      rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
 
       rectangleClient += m_puserinteraction->get_context_offset();
 
@@ -1241,7 +1241,7 @@ namespace write_text
 
       sizeTotal.cx = m_rectangleClient.width();
 
-      rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
+      rectangle_i32 rectangleClient = m_puserinteraction->client_rectangle();
 
       rectangleClient += m_puserinteraction->get_context_offset();
 

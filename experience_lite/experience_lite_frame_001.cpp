@@ -48,7 +48,7 @@
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
                   ::rectangle_i32 rectangleEvent;
-                  m_pframewindow->get_window_rect(rectangleEvent);
+                  m_pframewindow->window_rectangle(rectangleEvent);
                   ::rectangle_i32 rectangle;
                   point_i32 ptCenter = rectangleEvent.center();
                   enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -307,7 +307,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangleWindow;
 
-               pframewindow->get_window_rect(rectangleWindow);
+               pframewindow->window_rectangle(rectangleWindow);
 
                rectangleWindow -= rectangleWindow.top_left();
 

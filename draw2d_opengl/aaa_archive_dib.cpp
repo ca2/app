@@ -2467,7 +2467,7 @@ namespace draw2d_opengl
 //
 //      rect64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectangleWindow);
+//      puserinteraction->window_rectangle(rectangleWindow);
 //
 ////#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
 ////      if(bTransferBuffer && puserinteraction->is_composite() && !m_bReduced)
@@ -2612,7 +2612,7 @@ namespace draw2d_opengl
 //
 //         ::rectangle rectangleWindow;
 //
-//         puserinteraction->get_window_rect(rectangleWindow);
+//         puserinteraction->window_rectangle(rectangleWindow);
 //
 //         ::image pimage;
 //

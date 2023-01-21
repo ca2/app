@@ -45,7 +45,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::get_client_rect(rectangleClient);
+      ::user::interaction::client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
          return;
@@ -99,7 +99,7 @@ namespace user
 
       ::rectangle_i32 rW;
 
-      get_window_rect(rW);
+      window_rectangle(rW);
 
       rectangleEllipse.deflate(0, 0, 2, 2);
 
@@ -188,7 +188,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       m_spregion->create_oval(rectangleClient);
 

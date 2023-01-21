@@ -101,7 +101,7 @@ auto m_timeRoll = ::time::now();
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
          return;
@@ -258,7 +258,7 @@ pacmedirectory->system() / "obs.png");
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          size_i32 s = rectangleClient.size();
 

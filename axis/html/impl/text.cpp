@@ -610,7 +610,7 @@ namespace html
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
          //::rectangle_i32 rectangleWindow;
-         //m_pcheckbox->get_window_rect(rectangleWindow);
+         //m_pcheckbox->window_rectangle(rectangleWindow);
          ::point_i32 pointPreviousContextOrg = pgraphics->get_origin();
 
          pgraphics->offset_origin((i32) m_box.left, (i32) m_box.top);
@@ -676,7 +676,7 @@ namespace html
 
                pdata->m_pcoredata->m_bDrawFirstBody = true;
 
-               pdata->m_pcoredata->m_pform->get_client_rect(rectangle);
+               pdata->m_pcoredata->m_pform->client_rectangle(rectangle);
 
             }
             else

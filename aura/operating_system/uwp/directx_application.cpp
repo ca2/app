@@ -841,7 +841,7 @@ namespace universal_windows
       if (puserinteraction)
       {
 
-         ::rectangle_i32 r = puserinteraction->get_window_rect();
+         ::rectangle_i32 r = puserinteraction->window_rectangle();
 
          m_rectangleInputContentRect.X = (float) r.left;
          m_rectangleInputContentRect.Y = (float)r.top;
@@ -923,7 +923,7 @@ namespace universal_windows
    //}
 
 
-   ::winrt::Windows::Foundation::Rect directx_framework_impact::get_window_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_impact::window_rectangle()
    {
 
       ::winrt::Windows::Foundation::Rect rectangle = m_rectangleLastWindowRect;

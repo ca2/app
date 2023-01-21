@@ -41,7 +41,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::get_client_rect(rectangleClient);
+      ::user::interaction::client_rectangle(rectangleClient);
 
       if (rectangleClient.area() <= 0)
       {
@@ -161,7 +161,7 @@ namespace experience
    //      ::point_i32 pointCursor = pmsg->pt;
 
    //      ::rectangle_i32 rectangleClient;
-   //      ::user::interaction::get_client_rect(rectangleClient);
+   //      ::user::interaction::client_rectangle(rectangleClient);
    //      ::user::interaction::client_to_screen(rectangleClient);
 
    //      if (rectangleClient.contains(pointCursor))
@@ -202,7 +202,7 @@ namespace experience
 
          pointCursor = pwindowing->get_cursor_position();
          ::rectangle_i32 rectangleClient;
-         ::user::interaction::get_client_rect(rectangleClient);
+         ::user::interaction::client_rectangle(rectangleClient);
          ::user::interaction::client_to_screen(rectangleClient);
 
          if(rectangleClient.is_empty().contains(pointCursor))
@@ -224,7 +224,7 @@ namespace experience
 
 
          ::rectangle_i32 rectangle;
-         ::user::interaction::get_client_rect(rectangle);
+         ::user::interaction::client_rectangle(rectangle);
       }
 
 
@@ -236,7 +236,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::get_client_rect(rectangleClient);
+      ::user::interaction::client_rectangle(rectangleClient);
 
       __defer_construct(m_pregion);
 

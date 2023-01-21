@@ -204,7 +204,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::atom & atom, WPARAM wParam, LPARAM l
    case e_message_size:
    {
 
-      ::get_client_rect(hWnd, prender->m_rectangleClient);
+      ::client_rectangle(hWnd, prender->m_rectangleClient);
 
       prender->m_pimageWindow->alloc(prender->create_new, this);
 

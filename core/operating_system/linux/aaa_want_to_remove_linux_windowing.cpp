@@ -661,7 +661,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
    x11_get_window_rect(display, oswindow->window(), rectangle);
 
-   //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
+   //r = oswindow->m_pimpl->m_puserinteraction->window_rectangle();
 
    string strTopic = x11_get_name(display, oswindow->window());
 
@@ -3283,13 +3283,13 @@ int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
 
-   windowing_output_debug_string("\n::get_window_rect 1");
+   windowing_output_debug_string("\n::window_rectangle 1");
 
    xdisplay d(hwnd->display());
 
@@ -3309,7 +3309,7 @@ int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 }
 
 
-int_bool get_client_rect(oswindow window, RECT32 * prect)
+int_bool client_rectangle(oswindow window, RECT32 * prect)
 
 {
 
@@ -3361,7 +3361,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 
    synchronous_lock synchronouslock(window->m_pimpl->m_puserinteraction->mutex());
 
-   copy(prect, window->m_pimpl->m_puserinteraction->get_window_rect());
+   copy(prect, window->m_pimpl->m_puserinteraction->window_rectangle());
 
 
    OffsetRect(prect, -prect->left, -prect->top);

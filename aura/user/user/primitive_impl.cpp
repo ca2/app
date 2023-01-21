@@ -227,7 +227,7 @@ namespace user
    //   else
    //   {
 
-   //      m_puserinteraction->get_client_rect(&sizeparentparams.rectangle);
+   //      m_puserinteraction->client_rectangle(&sizeparentparams.rectangle);
 
    //   }
 

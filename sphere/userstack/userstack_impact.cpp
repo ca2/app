@@ -244,7 +244,7 @@ namespace userstack
    void impact::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
    {
       
-      ::rectangle_i32 rectangleClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = client_rectangle();
       
       if(iArea == m_iV)
       {
@@ -363,7 +363,7 @@ namespace userstack
    /*void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
       if(m_ppaneimpact != nullptr)
       {
          m_ppaneimpact->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);

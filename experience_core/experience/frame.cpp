@@ -742,7 +742,7 @@ namespace experience_core
 
          ::rectangle_i32 rectangle;
 
-         pframewindow->get_window_rect(rectangle);
+         pframewindow->window_rectangle(rectangle);
 
          rectangle -= rectangle.top_left();
 

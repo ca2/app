@@ -1279,7 +1279,7 @@ namespace user
 
                ::rectangle_i32 rectangleWindow;
 
-               pinteraction->get_window_rect(rectangleWindow);
+               pinteraction->window_rectangle(rectangleWindow);
 
                return rectangleWindow.contains(point);
 
@@ -1317,7 +1317,7 @@ namespace user
 //      rectangleControl = pitem->m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
-//      get_window_rect(rectangleForm);
+//      window_rectangle(rectangleForm);
 //      rectangle_i64 rectangleClient;
 //      rectangleClient.top = rectangleForm.top;
 //      rectangleClient.bottom = rectangleForm.bottom;
@@ -2368,7 +2368,7 @@ namespace user
 
                         //::rectangle_i32 rectangleWindow;
 
-                        //pinteraction->get_window_rect(rectangleWindow);
+                        //pinteraction->window_rectangle(rectangleWindow);
 
                         //screen_to_client(rectangleWindow);
 

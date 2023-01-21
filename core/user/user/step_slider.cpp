@@ -113,7 +113,7 @@ namespace user
          return;
 
       ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
@@ -211,7 +211,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if (rectangleClient.width() == 0)
       {
@@ -246,7 +246,7 @@ namespace user
 //
 //      ::rectangle_i32 rectangleClient;
 //
-//      get_client_rect(rectangleClient);
+//      client_rectangle(rectangleClient);
 //
 //      if (rectangleClient.contains(pointCursor))
 //      {

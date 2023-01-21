@@ -146,7 +146,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      get_client_rect(rectangle);
+      client_rectangle(rectangle);
 
       if(rectangle.width() != 0)
       {
@@ -205,7 +205,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
@@ -239,7 +239,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       i32 iWidth = 16;
 

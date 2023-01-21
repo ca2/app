@@ -105,7 +105,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      layout().get_client_rect(rectangleClient, ::user::e_layout_design);
+      layout().client_rectangle(rectangleClient, ::user::e_layout_design);
 
       auto pbrushBk = __create < ::draw2d::brush > ();
 
@@ -368,7 +368,7 @@ namespace user
 
       psize->cx += m_iBorder * 2;
 
-      auto rectangleComboClient = m_pcombo->get_client_rect();
+      auto rectangleComboClient = m_pcombo->client_rectangle();
 
       psize->cx = maximum(psize->cx, rectangleComboClient.width());
 
@@ -727,7 +727,7 @@ namespace user
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -754,7 +754,7 @@ namespace user
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -809,7 +809,7 @@ namespace user
 
       screen_to_client(point, e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.contains(point))
       {
@@ -836,7 +836,7 @@ namespace user
 
       screen_to_client(point, e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.contains(point))
       {
@@ -920,7 +920,7 @@ namespace user
 
       ::count iItemCount = m_pcombo->_001GetListCount();
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       ::rectangle rectangleItem = rectangleClient;
 

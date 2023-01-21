@@ -52,7 +52,7 @@ namespace experience_anthill
       {
          //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
-         m_pframewindow->get_window_rect(rectangleEvent);
+         m_pframewindow->window_rectangle(rectangleEvent);
          ::rectangle_i32 rectangle;
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
@@ -338,13 +338,13 @@ namespace experience_anthill
       //    CVMSApp * pApp = (CVMSApp *) System;
       //::aura::savings & savings = psession->savings();
 
-      //::rectangle_i32 rectangleClient = pframewindow->get_client_rect(rectangleClient);
+      //::rectangle_i32 rectangleClient = pframewindow->client_rectangle(rectangleClient);
 
       string str;
 
       ::rectangle_i32 rectangleNClient;
 
-      pframewindow->get_window_rect(rectangleNClient);
+      pframewindow->window_rectangle(rectangleNClient);
 
       rectangleNClient -= rectangleNClient.top_left();
 

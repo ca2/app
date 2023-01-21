@@ -394,7 +394,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      layout().get_client_rect(rectangleClient, ::user::e_layout_design);
+      layout().client_rectangle(rectangleClient, ::user::e_layout_design);
 
       status < ::color::color > colorBackground;
 
@@ -626,7 +626,7 @@ namespace user
 
       psize->cx += m_iBorder * 2;
 
-      //auto rectangleComboClient = get_client_rect();
+      //auto rectangleComboClient = client_rectangle();
 
       //psize->cx = maximum(psize->cx, rectangleComboClient.width());
       //psize->cx = maximum(psize->cx, rectangleComboClient.width());
@@ -968,7 +968,7 @@ namespace user
 
       point+=screen_to_client(e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.contains(point))
       {
@@ -995,7 +995,7 @@ namespace user
 
       point+=screen_to_client(e_layout_sketch);
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       if (rectangleClient.contains(point))
       {
@@ -1070,7 +1070,7 @@ namespace user
 
       ::count iItemCount = _001GetListCount();
 
-      auto rectangleClient = get_client_rect();
+      auto rectangleClient = client_rectangle();
 
       ::rectangle_i32 rectangleItem = rectangleClient;
 
@@ -1146,7 +1146,7 @@ namespace user
          if (i < 0)
          {
 
-            m_pcombo->get_parent()->get_window_rect(rectangleMonitor);
+            m_pcombo->get_parent()->window_rectangle(rectangleMonitor);
 
          }
 

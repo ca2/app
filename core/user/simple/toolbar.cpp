@@ -250,7 +250,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectangleClient);
+   client_rectangle(rectangleClient);
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -311,7 +311,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0);
 //
 //   ::rectangle_i32 rectangleWindow;
-//   get_window_rect(rectangleWindow);
+//   window_rectangle(rectangleWindow);
 //   rectangleWindow.offset(-rectangleWindow.top_left());
 //   if (m_bTransparentBackground)
 //   {
@@ -1207,7 +1207,7 @@ return true;
 void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto rectangleClient = get_client_rect();
+   auto rectangleClient = client_rectangle();
 
    if (rectangleClient.is_empty())
    {
@@ -1514,7 +1514,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    //::rectangle_i32 rectangleWindow;
 
-   //get_window_rect(rectangleWindow);
+   //window_rectangle(rectangleWindow);
 
    //screen_to_client(rectangleWindow);
 
@@ -2441,7 +2441,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                ::rectangle_i32 rectangle;
 
-               pwindow->get_window_rect(&rectangle);
+               pwindow->window_rectangle(&rectangle);
 
                const ::point_i32 & point = rectangle.top_left() - pControl[i]->rectangleOldPos.top_left();
 

@@ -67,7 +67,7 @@ namespace user
 
          ::rectangle rectangleClient;
 
-         get_client_rect(rectangleClient);
+         client_rectangle(rectangleClient);
 
          //::rectangle rectangleMargin(2, 2,2, 2);
 
@@ -418,7 +418,7 @@ namespace user
    //   return control::hit_test(pmouse);
 
    //   //::rectangle rectangleWindow;
-   //   //get_window_rect(rectangleWindow);
+   //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
    //   //   eelement = element_area;
@@ -574,7 +574,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
 
       ::size sizeText = calc_text_size();
@@ -639,7 +639,7 @@ namespace user
 
       ::rectangle rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       color32_t crBk;
       if (!is_window_enabled())
@@ -810,7 +810,7 @@ namespace user
       get_window_text(strText);
 
       ::rectangle rectangleClient;
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
 
       //if (pstyle == nullptr)
@@ -1004,7 +1004,7 @@ namespace user
 
    {
       // use window client rectangle as the tool rectangle
-      get_client_rect(prect);
+      client_rectangle(prect);
 
    }
 

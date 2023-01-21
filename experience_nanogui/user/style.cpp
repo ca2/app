@@ -82,7 +82,7 @@ namespace experience_nanogui
 
       ::rectangle_i32 rcClient;
 
-      ptab->get_client_rect(rcClient);
+      ptab->client_rectangle(rcClient);
 
       auto pstyle = ptab->get_style(pgraphics);
 
@@ -695,7 +695,7 @@ namespace experience_nanogui
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
 
          ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
          ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
@@ -725,8 +725,8 @@ namespace experience_nanogui
 
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
-         //ptab->get_client_rect(rectangleClient);
+         ::rectangle_i32 rectangleClient = ptab->client_rectangle();
+         //ptab->client_rectangle(rectangleClient);
          int x = rectangleClient.left;
 
          i32 ixAdd;
@@ -863,7 +863,7 @@ namespace experience_nanogui
 
       ::rectangle_i32 rcClient;
 
-      ptab->get_client_rect(rcClient);
+      ptab->client_rectangle(rcClient);
 
       if(ptab->get_data()->m_bVertical)
       {
@@ -1468,7 +1468,7 @@ namespace experience_nanogui
 
       ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      ::rectangle_i32 rectangleClient = pscrollbar->get_client_rect();
+      ::rectangle_i32 rectangleClient = pscrollbar->client_rectangle();
 
       if (colorBackground.alpha != 0)
       {
@@ -1494,7 +1494,7 @@ namespace experience_nanogui
 
       ::rectangle_i32 rectangleWindow;
 
-      pscrollbar->get_window_rect(rectangleWindow);
+      pscrollbar->window_rectangle(rectangleWindow);
 
       ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 

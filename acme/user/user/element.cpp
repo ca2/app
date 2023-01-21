@@ -427,7 +427,7 @@ namespace user
    //}
 
 
-   //bool element::get_window_rect(RECTANGLE_I32 * prectangle)
+   //bool element::window_rectangle(RECTANGLE_I32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -445,7 +445,7 @@ namespace user
    //}
 
 
-   //bool element::get_client_rect(RECTANGLE_I32 * prectangle)
+   //bool element::client_rectangle(RECTANGLE_I32 * prectangle)
    //{
 
    //   throw ::interface_only();
@@ -455,7 +455,7 @@ namespace user
    //}
 
 
-   //bool element::get_client_rect(RECTANGLE_I64 * prectangle)
+   //bool element::client_rectangle(RECTANGLE_I64 * prectangle)
 
    //{
 
@@ -466,7 +466,7 @@ namespace user
    //}
 
 
-   //bool element::get_window_rect(RECTANGLE_I64 * prectangle)
+   //bool element::window_rectangle(RECTANGLE_I64 * prectangle)
 
    //{
 
@@ -823,7 +823,7 @@ namespace user
 
    //}
 
-   //bool element::defer_set_window_pos(iptr z, const  const rectangle_i32 & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rectangle_i32(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z, const  const rectangle_i32 & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of rectangle_i32(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -833,7 +833,7 @@ namespace user
    //}
 
 
-   //bool element::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(get_window_rect) different of rectangle_i32(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of rectangle_i32(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();

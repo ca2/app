@@ -208,7 +208,7 @@ namespace hellobase
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient);
+      client_rectangle(rectangleClient);
 
       if(rectangleClient.area() <= 0)
          return;

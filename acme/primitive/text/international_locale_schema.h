@@ -28,8 +28,8 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         ::atom                        m_atomLocale;
-         ::atom                        m_atomSchema;
+         atom                       m_atomLocale;
+         atom                       m_atomSchema;
 
          atom_array                 m_idaLocale;
          atom_array                 m_idaSchema;
@@ -40,15 +40,17 @@ namespace text
          ~locale_schema() override;
 
 
-         //::atom  localeid(const char* pszLocale, strsize iLen);
+         ::atom localeid(const scoped_string & strLocale, strsize iLen);
 
 
-         virtual bool add_locale_variant(const ::atom &  idLocale, const ::atom &  Style);
+         virtual bool add_locale_variant(atom idLocale, atom Style);
          virtual bool end_prepare(bool bRtlLayout);
          //virtual void end_prepare();
 
-         bool defer_add_locale(const ::atom &  idLocale, const ::atom &  idStyle);
-         bool _add_locale_variant(const ::atom &  pszLocale, const ::atom &  idStyle);
+         bool defer_add_locale(atom idLocale, atom idStyle);
+         bool defer_add_locale(const scoped_string & str, strsize iLen, atom idStyle);
+         bool _add_locale_variant(atom pszLocale, atom idStyle);
+         bool _add_locale_variant(const scoped_string & str, strsize iLen, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();
 
@@ -66,6 +68,27 @@ namespace text
       };
 
 
+      inline bool locale_schema::_add_locale_variant(atom idLocale, atom idStyle)
+      {
+
+         if (::is_empty(idLocale.m_str))
+         {
+
+            return false;
+
+         }
+
+         return _add_locale_variant(idLocale.m_str, idLocale.m_str.length(), idStyle);
+
+      }
+
+
+      inline bool locale_schema::defer_add_locale(const scoped_string & strLocale, strsize iLen, atom idSchema)
+      {
+
+         return defer_add_locale(localeid(pszLocale, iLen), idSchema);
+
+      }
 
 
       CLASS_DECL_ACME void create_rtl_map();

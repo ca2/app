@@ -263,11 +263,11 @@ namespace user
 
 
       inline void client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(rectangle); }
-      inline void parent_client_rect(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rect(rectangle); }
+      inline void parent_client_rectangle(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rectangle(rectangle); }
 
 
       inline ::rectangle_i32 client_rectangle(enum_layout elayout = e_layout_design) const { ::rectangle_i32 rectangle; client_rectangle(rectangle, elayout); return rectangle; }
-      inline ::rectangle_i32 parent_client_rect(enum_layout elayout = e_layout_design) const { ::rectangle_i32 rectangle; parent_client_rect(rectangle, elayout); return rectangle; }
+      inline ::rectangle_i32 parent_client_rectangle(enum_layout elayout = e_layout_design) const { ::rectangle_i32 rectangle; parent_client_rectangle(rectangle, elayout); return rectangle; }
 
 
    };

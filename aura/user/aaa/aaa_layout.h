@@ -388,12 +388,12 @@ namespace user
       inline void client_rectangle(RECT32* prect) const { prect->left = 0; prect->top = 0; *(SIZE32*)&prect->right = ui_state().m_size; }
       virtual void window_rectangle(RECT32* prect) const;
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
-      inline void parent_client_rect(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
+      inline void parent_client_rectangle(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
 
       inline auto client_rectangle() const { ::rectangle rectangle; client_rectangle(rectangle); return rectangle; }
       inline auto window_rectangle() const { ::rectangle rectangle; window_rectangle(rectangle); return rectangle; }
       inline auto window_request_rect() const { ::rectangle rectangle; window_request_rect(rectangle); return rectangle; }
-      inline auto parent_client_rect() const { ::rectangle rectangle; parent_client_rect(rectangle); return rectangle; }
+      inline auto parent_client_rectangle() const { ::rectangle rectangle; parent_client_rectangle(rectangle); return rectangle; }
 
 
       //virtual void _on_display(bool bKickIdle = true);

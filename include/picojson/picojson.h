@@ -271,15 +271,15 @@ inline value::value(const object &o) : type_(object_type), u_() {
 
 #if PICOJSON_USE_RVALUE_REFERENCE
 inline value::value(std::string &&s) : type_(string_type), u_() {
-  u_.string_ = memory_new std::string(std::transfer(s));
+  u_.string_ = memory_new std::string(std::move(s));
 }
 
 inline value::value(array &&a) : type_(array_type), u_() {
-  u_.array_ = memory_new array(std::transfer(a));
+  u_.array_ = memory_new array(std::move(a));
 }
 
 inline value::value(object &&o) : type_(object_type), u_() {
-  u_.object_ = memory_new object(std::transfer(o));
+  u_.object_ = memory_new object(std::move(o));
 }
 #endif
 
@@ -415,9 +415,9 @@ SET(int64_t, int64, u_.int64_ = _val;)
     type_ = jtype##_type;                                                                                                          \
     setter                                                                                                                         \
   }
-MOVESET(std::string, string, u_.string_ = memory_new std::string(std::transfer(_val));)
-MOVESET(array, array, u_.array_ = memory_new array(std::transfer(_val));)
-MOVESET(object, object, u_.object_ = memory_new object(std::transfer(_val));)
+MOVESET(std::string, string, u_.string_ = memory_new std::string(std::move(_val));)
+MOVESET(array, array, u_.array_ = memory_new array(std::move(_val));)
+MOVESET(object, object, u_.object_ = memory_new object(std::move(_val));)
 #undef MOVESET
 #endif
 

@@ -6089,7 +6089,7 @@ namespace user
    bool interaction::_001IsParentClientPointInsideInline(const ::point_i32 & point)
    {
 
-      return layout().sketch().parent_client_rect().contains(point);
+      return layout().sketch().parent_client_rectangle().contains(point);
 
 
    }
@@ -9291,7 +9291,7 @@ namespace user
       }
       else
       {
-
+parent_client_rectangle
          design_window_minimize(layout().sketch().activation());
 
       }
@@ -9327,7 +9327,7 @@ namespace user
          else
          {
 
-            design_window_full_screen(layout().sketch().parent_client_rect());
+            design_window_full_screen(layout().sketch().parent_client_rectangle());
 
          }
 
@@ -13756,7 +13756,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          return true;
 
       }
-
+parent_client_rectangle
       return false;
 
    }
@@ -13770,7 +13770,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          return;
 
-      }
+      }parent_client_rectangle
 
       if (layout().normal().m_bProdevian)
       {
@@ -13786,13 +13786,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_pprimitiveimpl->_001OnExitIconic();
 
-   }
+   }parent_client_rectangle
 
 
    void interaction::_001OnExitNormal()
    {
 
-      auto rectangle = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rectangle();
 
       layout().normal() = layout().window();
 
@@ -13806,7 +13806,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnExitZoomed()
    {
 
-      auto rectangle = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rectangle();
 
       auto edisplay = layout().window().display();
 
@@ -13822,7 +13822,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnExitFullScreen()
    {
 
-      auto rectangle = layout().window().parent_client_rect();
+      auto rectangle = layout().window().parent_client_rectangle();
 
       auto edisplay = layout().window().display();
 
@@ -14102,7 +14102,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       auto rectangleRequest = this->screen_rect();
 
       good_iconify(nullptr, rectangleRequest, true, eactivation, layout().sketch().zorder());
-
+parent_client_rectangle
    }
 
 
@@ -14146,7 +14146,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto zorder = layout().sketch().zorder();
 
-      auto rectangle = layout().normal().parent_client_rect();
+      auto rectangle = layout().normal().parent_client_rectangle();
 
       good_restore(nullptr, rectangle, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 

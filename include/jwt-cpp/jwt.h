@@ -494,7 +494,7 @@ namespace jwt {
 		template<typename Decode>
 		std::string convert_base64_der_to_pem(const std::string& cert_base64_der_str, Decode decode) {
 			std::error_code ec;
-			auto res = convert_base64_der_to_pem(cert_base64_der_str, std::transfer(decode), ec);
+			auto res = convert_base64_der_to_pem(cert_base64_der_str, std::move(decode), ec);
 			error::throw_if_error(ec);
 			return res;
 		}
@@ -512,7 +512,7 @@ namespace jwt {
 			auto decode = [](const std::string& token) {
 				return base::decode<alphabet::base64>(base::pad<alphabet::base64>(token));
 			};
-			return convert_base64_der_to_pem(cert_base64_der_str, std::transfer(decode), ec);
+			return convert_base64_der_to_pem(cert_base64_der_str, std::move(decode), ec);
 		}
 
 		/**
@@ -819,7 +819,7 @@ namespace jwt {
 			 * \param name Name of the algorithm
 			 */
 			hmacsha(std::string key, const EVP_MD* (*md)(), std::string name)
-				: secret(std::transfer(key)), md(md), alg_name(std::transfer(name)) {}
+				: secret(std::move(key)), md(md), alg_name(std::move(name)) {}
 			/**
 			 * Sign jwt data
 			 * \param data The data to sign
@@ -889,7 +889,7 @@ namespace jwt {
 			 */
 			rsa(const std::string& public_key, const std::string& private_key, const std::string& public_key_password,
 				const std::string& private_key_password, const EVP_MD* (*md)(), std::string name)
-				: md(md), alg_name(std::transfer(name)) {
+				: md(md), alg_name(std::move(name)) {
 				if (!private_key.empty()) {
 					pkey = helper::load_private_key_from_string(private_key, private_key_password);
 				} else if (!public_key.empty()) {
@@ -993,7 +993,7 @@ namespace jwt {
 // 			 */
 // 			ecdsa(const std::string& public_key, const std::string& private_key, const std::string& public_key_password,
 // 				  const std::string& private_key_password, const EVP_MD* (*md)(), std::string name, size_t siglen)
-// 				: md(md), alg_name(std::transfer(name)), signature_length(siglen) {
+// 				: md(md), alg_name(std::move(name)), signature_length(siglen) {
 // 				if (!private_key.empty()) {
 // 					auto epkey = helper::load_private_ec_key_from_string(private_key, private_key_password);
 // 					pkey.reset(EVP_PKEY_get1_EC_KEY(epkey.get()), EC_KEY_free);
@@ -1161,7 +1161,7 @@ namespace jwt {
 			 */
 			eddsa(const std::string& public_key, const std::string& private_key, const std::string& public_key_password,
 				  const std::string& private_key_password, std::string name)
-				: alg_name(std::transfer(name)) {
+				: alg_name(std::move(name)) {
 				if (!private_key.empty()) {
 					pkey = helper::load_private_key_from_string(private_key, private_key_password);
 				} else if (!public_key.empty()) {
@@ -1296,7 +1296,7 @@ namespace jwt {
 			 */
 			pss(const std::string& public_key, const std::string& private_key, const std::string& public_key_password,
 				const std::string& private_key_password, const EVP_MD* (*md)(), std::string name)
-				: md(md), alg_name(std::transfer(name)) {
+				: md(md), alg_name(std::move(name)) {
 				if (!private_key.empty()) {
 					pkey = helper::load_private_key_from_string(private_key, private_key_password);
 				} else if (!public_key.empty()) {
@@ -1427,7 +1427,7 @@ namespace jwt {
 			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
-			explicit hs256(std::string key) : hmacsha(std::transfer(key), EVP_sha256, "HS256") {}
+			explicit hs256(std::string key) : hmacsha(std::move(key), EVP_sha256, "HS256") {}
 		};
 		/**
 		 * HS384 algorithm
@@ -1437,7 +1437,7 @@ namespace jwt {
 			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
-			explicit hs384(std::string key) : hmacsha(std::transfer(key), EVP_sha384, "HS384") {}
+			explicit hs384(std::string key) : hmacsha(std::move(key), EVP_sha384, "HS384") {}
 		};
 		/**
 		 * HS512 algorithm
@@ -1447,7 +1447,7 @@ namespace jwt {
 			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
-			explicit hs512(std::string key) : hmacsha(std::transfer(key), EVP_sha512, "HS512") {}
+			explicit hs512(std::string key) : hmacsha(std::move(key), EVP_sha512, "HS512") {}
 		};
 		/**
 		 * RS256 algorithm
@@ -2070,11 +2070,11 @@ namespace jwt {
 		basic_claim& operator=(basic_claim&&) = default;
 		~basic_claim() = default;
 
-		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::string_type s) : val(std::transfer(s)) {}
+		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::string_type s) : val(std::move(s)) {}
 		JWT_CLAIM_EXPLICIT basic_claim(const date& d)
 			: val(typename json_traits::integer_type(std::chrono::system_clock::to_time_t(d))) {}
-		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::array_type a) : val(std::transfer(a)) {}
-		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::value_type v) : val(std::transfer(v)) {}
+		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::array_type a) : val(std::move(a)) {}
+		JWT_CLAIM_EXPLICIT basic_claim(typename json_traits::value_type v) : val(std::move(v)) {}
 		JWT_CLAIM_EXPLICIT basic_claim(const set_t& s) : val(typename json_traits::array_type(s.begin(), s.end())) {}
 		template<typename Iterator>
 		basic_claim(Iterator begin, Iterator end) : val(typename json_traits::array_type(begin, end)) {}
@@ -2185,7 +2185,7 @@ namespace jwt {
 			map_of_claims& operator=(const map_of_claims&) = default;
 			map_of_claims& operator=(map_of_claims&&) = default;
 
-			map_of_claims(typename json_traits::object_type json) : claims(std::transfer(json)) {}
+			map_of_claims(typename json_traits::object_type json) : claims(std::move(json)) {}
 
 			iterator begin() { return claims.begin(); }
 			iterator end() { return claims.end(); }
@@ -2576,7 +2576,7 @@ namespace jwt {
 		 * \return *this to allow for method chaining
 		 */
 		builder& set_header_claim(const typename json_traits::string_type& atom, typename json_traits::value_type c) {
-			header_claims[atom] = std::transfer(c);
+			header_claims[atom] = std::move(c);
 			return *this;
 		}
 
@@ -2597,7 +2597,7 @@ namespace jwt {
 		 * \return *this to allow for method chaining
 		 */
 		builder& set_payload_claim(const typename json_traits::string_type& atom, typename json_traits::value_type c) {
-			payload_claims[atom] = std::transfer(c);
+			payload_claims[atom] = std::move(c);
 			return *this;
 		}
 		/**
@@ -3074,7 +3074,7 @@ namespace jwt {
 		 * \return *this to allow chaining
 		 */
 		verifier& with_type(const typename json_traits::string_type& type, std::locale locale = std::locale{}) {
-			return with_claim("typ", verify_ops::insensitive_string_claim<json_traits, true>{type, std::transfer(locale)});
+			return with_claim("typ", verify_ops::insensitive_string_claim<json_traits, true>{type, std::move(locale)});
 		}
 
 		/**

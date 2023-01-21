@@ -2040,7 +2040,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
          initial_frame_placement();
 
-         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
+         rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rectangle();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
@@ -2088,7 +2088,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
       }
 
-      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rect();
+      rectangleFrame = const_layout().state(::user::e_layout_sketch).parent_client_rectangle();
 
       //pusersystem->set_rect(rectangleFrame);
 

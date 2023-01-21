@@ -1291,7 +1291,7 @@ int_bool is_window_occluded(oswindow oswindow)
 
 //   ::rectangle rectangle;
 //
-//   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
+//   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rectangle();
 //
 //   ::rectangle rectangleTest;
 //

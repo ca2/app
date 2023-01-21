@@ -65,8 +65,8 @@ namespace user
       auto client_rect() const { return ::rectangle_i32(m_size); }
       void client_rect(RECTANGLE_I32 & rect) const { rect = client_rect(); }
 
-      auto parent_client_rect() const { return ::rectangle_i32(m_point, m_size); }
-      void parent_client_rect(RECTANGLE_I32 & rect) const { rect = parent_client_rect(); }
+      auto parent_client_rectangle() const { return ::rectangle_i32(m_point, m_size); }
+      void parent_client_rectangle(RECTANGLE_I32 & rect) const { rect = parent_client_rectangle(); }
 
       void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
 

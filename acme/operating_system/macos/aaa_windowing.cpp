@@ -1300,7 +1300,7 @@ void ns_main_async(dispatch_block_t block);
 //
 ////   ::rectangle_i32 rectangle;
 ////
-////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
+////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rectangle();
 ////
 ////   ::rectangle_i32 rectangleTest;
 ////

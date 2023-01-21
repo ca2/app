@@ -1,4 +1,4 @@
-﻿//
+//
 //  _forward_declaration.h
 //  acme
 //
@@ -482,33 +482,6 @@ struct base_const_c_string
 };
 
 
-template < typename ITERATOR >
-class string_base;
-
-
-using ansi_string = string_base < const ::ansi_character * >;
-using wd16_string = string_base < const ::wd16_character * >;
-using wd32_string = string_base < const ::wd32_character * >;
-using wide_string = string_base < const ::wide_character * >;
-using string      = ::ansi_string;
-using wstring     = ::wide_string;
-
-
-template < typename HAS_AS_STRING >
-concept has_as_string = requires(HAS_AS_STRING has_as_string)
-{
-
-   { has_as_string.as_string() } -> ::std::same_as <::string>;
-
-};
-
-template < typename HAS_GET_STRING >
-concept has_get_string = requires(HAS_GET_STRING has_get_string)
-{
-
-   { has_get_string.get_string() } -> ::std::same_as <::string>;
-
-};
 
 
 template<typename Type, typename RawType = Type, ::enum_type m_etypeContainer = e_type_element >

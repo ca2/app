@@ -1393,11 +1393,11 @@
    // of "pCompare" interface
 
 
-   template < typename NUMERIC_ARRAY, typename COMPARE_INTERFACE >
+   template < typename COMPARABLE_ARRAY, typename COMPARE_INTERFACE >
    void quick_sort(
-   NUMERIC_ARRAY & numerica,
+   COMPARABLE_ARRAY & comparablea,
    COMPARE_INTERFACE * pinterface,
-   ::std::strong_ordering(COMPARE_INTERFACE:: * fCompare)(index, index))
+   ::std::strong_ordering(COMPARE_INTERFACE:: * fCompare)(typename COMPARABLE_ARRAY::BASE_ARG_TYPE a, typename COMPARABLE_ARRAY::BASE_ARG_TYPE b))
    {
 
       index_array stackLowerBound;
@@ -1410,12 +1410,12 @@
 
       iptr iLPos, iUPos, iMPos;
 
-      if(numerica.get_size() >= 2)
+      if(comparablea.get_size() >= 2)
       {
 
          stackLowerBound.push(0);
 
-         stackUpperBound.push(numerica.get_size() - 1);
+         stackUpperBound.push(comparablea.get_size() - 1);
 
          while(true)
          {
@@ -1443,7 +1443,7 @@
 
                   }
 
-                  if ((pinterface->*fCompare)(numerica[iMPos], numerica[iUPos]) <= 0)
+                  if ((pinterface->*fCompare)(comparablea[iMPos], comparablea[iUPos]) <= 0)
                   {
 
                      iUPos--;
@@ -1452,7 +1452,7 @@
                   else
                   {
 
-                     numerica.__swap(iMPos, iUPos);
+                     comparablea.__swap(iMPos, iUPos);
 
                      break;
 
@@ -1479,7 +1479,7 @@
 
                   }
                   
-                  if ((pinterface->*fCompare)(numerica[iLPos], numerica[iMPos]) <= 0)
+                  if ((pinterface->*fCompare)(comparablea[iLPos], comparablea[iMPos]) <= 0)
                   {
 
                      iLPos++;
@@ -1488,7 +1488,7 @@
                   else
                   {
 
-                     numerica.__swap(iLPos, iMPos);
+                     comparablea.__swap(iLPos, iMPos);
 
                      break;
 

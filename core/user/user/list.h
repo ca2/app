@@ -111,9 +111,9 @@ namespace user
       void _001DeleteRange(range & range) override;
 
       // Sort
-      index _001Compare(index iItem1, index iItem2) override;
-      index _002Compare(index iItem1, index iItem2, index iSubItem) override;
-      index _001DisplayCompare(index iDisplayItem1, index iDisplayItem2) override;
+      ::std::strong_ordering _001Compare(index iItem1, index iItem2) override;
+      ::std::strong_ordering _002Compare(index iItem1, index iItem2, index iSubItem) override;
+      ::std::strong_ordering _001DisplayCompare(index iDisplayItem1, index iDisplayItem2) override;
 
 
       bool is_valid_display_item(index iDisplayItem) override;

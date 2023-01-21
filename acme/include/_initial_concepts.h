@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -209,6 +209,36 @@ namespace comparison
 
 
 } // namespace comparison
+
+
+template < typename ITERATOR >
+class string_base;
+
+
+using ansi_string = string_base < const ::ansi_character * >;
+using wd16_string = string_base < const ::wd16_character * >;
+using wd32_string = string_base < const ::wd32_character * >;
+using wide_string = string_base < const ::wide_character * >;
+using string      = ::ansi_string;
+using wstring     = ::wide_string;
+
+
+template < typename HAS_AS_STRING >
+concept has_as_string = requires(HAS_AS_STRING has_as_string)
+{
+
+   { has_as_string.as_string() } -> ::std::same_as <::string>;
+
+};
+
+template < typename HAS_GET_STRING >
+concept has_get_string = requires(HAS_GET_STRING has_get_string)
+{
+
+   { has_get_string.get_string() } -> ::std::same_as <::string>;
+
+};
+
 
 
 //template <typename HANDLER, typename ITEM>

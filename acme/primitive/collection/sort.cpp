@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "sort.h"
 //#include "acme/primitive/collection/numeric_array.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -141,7 +141,7 @@ namespace  sort
       index iLPos, iUPos, iMPos;
 
       i32 iCmp;
-      ::std::strong_ordering iCompare;
+      ::std::strong_ordering iCompare = ::std::strong_ordering::less;
 
       if (iSize >= 2)
       {

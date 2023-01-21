@@ -6718,8 +6718,8 @@
 			isa = PBXGroup;
 			children = (
 				9A84D3ED284229AB00890F9D /* libidn.dylib */,
-				9A84D3EF284229AB00890F9D /* libios_idn.a */,
 				9AC14D97297B3617006D9BD3 /* lib_idn.a */,
+				9A84D3EF284229AB00890F9D /* libios_idn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -11441,8 +11441,8 @@
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PLATFORM_MODIFIER = ios;
-				SDKROOT = iphoneos;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -11452,8 +11452,8 @@
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PLATFORM_MODIFIER = ios;
-				SDKROOT = iphoneos;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

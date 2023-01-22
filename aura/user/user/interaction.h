@@ -420,6 +420,12 @@ namespace user
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);
       virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
+      virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch);
+      virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch);
+      /// @brief shift left position changing size
+      /// @param left
+      /// @param elayout 
+      virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch);
       /// @brief  sets right position maintaining size
       /// @param right 
       /// @param elayout 

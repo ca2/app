@@ -491,6 +491,67 @@ namespace user
    }
 
 
+   void interaction::set_width(::i32 width, enum_layout elayout)
+   {
+
+      auto size = this->size(elayout);
+
+      size.cx = width;
+
+      if (on_set_size(size, elayout))
+      {
+
+         m_layout.m_statea[elayout].m_size = size;
+
+      }
+
+   }
+
+
+   void interaction::set_height(::i32 height, enum_layout elayout)
+   {
+
+      auto size = this->size(elayout);
+
+      size.cy = height;
+
+      if (on_set_size(size, elayout))
+      {
+
+         m_layout.m_statea[elayout].m_size = size;
+
+      }
+
+   }
+
+
+   void interaction::shift_left(::i32 left, enum_layout elayout)
+   {
+
+      auto point = this->position(elayout);
+
+      auto size = this->size(elayout);
+
+      size.cx += point.x - left;
+
+      point.x = left;
+
+      bool bOnSetSize = on_set_size(size, elayout);
+
+      bool bOnSetPosition = on_set_position(point, elayout);
+
+      if (bOnSetSize && bOnSetPosition)
+      {
+
+         m_layout.m_statea[elayout].m_point = point;
+
+         m_layout.m_statea[elayout].m_size = size;
+
+      }
+
+   }
+
+
    void interaction::set_right(::i32 right, enum_layout elayout)
    {
 
@@ -9291,7 +9352,7 @@ namespace user
       }
       else
       {
-parent_client_rectangle
+
          design_window_minimize(layout().sketch().activation());
 
       }
@@ -13756,7 +13817,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          return true;
 
       }
-parent_client_rectangle
+
       return false;
 
    }
@@ -13770,7 +13831,7 @@ parent_client_rectangle
 
          return;
 
-      }parent_client_rectangle
+      }
 
       if (layout().normal().m_bProdevian)
       {
@@ -13786,7 +13847,7 @@ parent_client_rectangle
 
       m_pprimitiveimpl->_001OnExitIconic();
 
-   }parent_client_rectangle
+   }
 
 
    void interaction::_001OnExitNormal()
@@ -14069,7 +14130,7 @@ parent_client_rectangle
 
       auto rectangle = this->client_rectangle(elayout);
 
-      rectangle += this->parent_to_client(elayout);
+      rectangle += this->client_to_parent(elayout);
 
       return rectangle;
 
@@ -14102,7 +14163,7 @@ parent_client_rectangle
       auto rectangleRequest = this->screen_rect();
 
       good_iconify(nullptr, rectangleRequest, true, eactivation, layout().sketch().zorder());
-parent_client_rectangle
+
    }
 
 

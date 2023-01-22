@@ -1,9 +1,9 @@
-// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
+﻿// Refactored by camilo on 2022-12-09 00:48 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
 template < primitive_character CHARACTER >
-constexpr CHARACTER * __zerotosz(CHARACTER * p)
+constexpr CHARACTER * __zerotosz(CHARACTER * & p)
 {
 
    *p++ = '0';

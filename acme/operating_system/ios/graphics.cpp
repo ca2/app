@@ -19,11 +19,10 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::
 
    synchronous_lock synchronouslock(pmutex);
 
-
    return mm1_get_file_image(pcr, cx, cy, iScan, psz);
 
-
 }
+
 
 //
 //bool ios_get_file_image(::image * pimage, const ::scoped_string & scopedstr)

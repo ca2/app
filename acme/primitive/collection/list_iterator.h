@@ -146,6 +146,10 @@ public:
    auto & topic() { return BASE_ITERATOR_TYPE::topic(); }
    auto & topic() const { return BASE_ITERATOR_TYPE::topic(); }
 
+   auto transfer_topic() { return ::transfer(BASE_ITERATOR_TYPE::transfer_topic()); }
+
+   auto transfer() { return ::transfer(*this); }
+
 
 };
 
@@ -175,6 +179,9 @@ public:
 
    auto & topic() { return this->m_p->item(); }
    auto & topic() const { return this->m_p->item(); }
+
+
+   auto transfer_topic() { return ::transfer(this->m_p->transfer_item()); }
 
 
 };
@@ -207,6 +214,8 @@ public:
    auto & topic() { return this->m_p->payload(); }
    auto & topic() const { return this->m_p->payload(); }
 
+
+   auto transfer_topic() { return ::transfer(this->m_p->transfer_payload()); }
 
 };
 

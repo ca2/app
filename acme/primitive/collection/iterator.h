@@ -76,11 +76,16 @@ public:
    auto & topic() { return this->m_p->topic(); }
    auto & topic() const { return this->m_p->topic(); }
 
+
    auto & operator= (TYPE * p) { m_p = p; return *this; }
    auto & operator= (iterator p) { m_p = p.get(); return *this; }
 
 
-   auto && transfer() { return this->m_p->transfer(); }
+   auto transfer() { auto p = m_p; m_p = nullptr; return ::transfer(*p); }
+
+
+   auto transfer_topic() { return ::transfer(this->m_p->transfer_topic()); }
+
 
    auto & operator *() { return *topic(); }
    auto & operator *() const { return *topic(); }

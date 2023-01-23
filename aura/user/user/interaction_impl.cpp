@@ -5252,7 +5252,7 @@ namespace user
 
             }
 
-            pmessage = m_messagelist.pick_head();
+            pmessage = ::transfer(m_messagelist.pick_head());
 
          }
 

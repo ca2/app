@@ -854,7 +854,7 @@ TYPE list<TYPE, ARG_TYPE>::pick_head()
 
    auto old = this->begin();
    
-   auto returnValue = *old;
+   auto returnValue = old.transfer();
 
    this->begin() = old.next();
    

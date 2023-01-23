@@ -39,6 +39,9 @@ public:
    operator const TYPE & () const { return (const TYPE & ) m_element; }
 
 
+   TYPE && transfer() { return ::transfer(m_element); }
+
+
    auto & back() { return m_back; }
    auto & back()const { return m_back; }
 

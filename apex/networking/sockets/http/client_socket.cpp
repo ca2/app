@@ -502,6 +502,13 @@ namespace sockets
    memsize http_client_socket::GetContentLength()
    {
 
+      if (!m_pmemoryfile)
+      {
+
+         return 0;
+
+      }
+
       if(m_content_length == ((memsize)-1))
       {
 
@@ -540,7 +547,7 @@ namespace sockets
    const unsigned char *http_client_socket::GetDataPtr() const
    {
 
-      return m_pmemoryfile->data();
+      return m_pmemoryfile ? m_pmemoryfile->data() : nullptr;
 
    }
 

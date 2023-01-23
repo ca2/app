@@ -9291,7 +9291,7 @@ namespace user
       }
       else
       {
-parent_client_rectangle
+
          design_window_minimize(layout().sketch().activation());
 
       }

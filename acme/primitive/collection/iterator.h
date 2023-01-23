@@ -1,4 +1,4 @@
-// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -76,8 +76,15 @@ public:
    auto & topic() { return this->m_p->topic(); }
    auto & topic() const { return this->m_p->topic(); }
 
+
    auto & operator= (TYPE * p) { m_p = p; return *this; }
    auto & operator= (iterator p) { m_p = p.get(); return *this; }
+
+
+   auto transfer() { auto p = m_p; m_p = nullptr; return ::transfer(*p); }
+
+
+   auto transfer_topic() { return ::transfer(this->m_p->transfer_topic()); }
 
 
    auto & operator *() { return *topic(); }

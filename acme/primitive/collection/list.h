@@ -3,6 +3,7 @@
 
 
 #include "list_node.h"
+#include "acme/platform/auto_pointer.h"
 
 
 template < class TYPE, class ARG_TYPE >
@@ -363,6 +364,9 @@ public:
    // get head or tail (and erase it) - don't call on is_empty list !
    void erase_head();
    void erase_tail();
+
+   ::auto_pointer < ::list_node < TYPE > > pick_auto_head();
+   ::auto_pointer < ::list_node < TYPE > > pick_auto_tail();
 
    TYPE pick_head();
    TYPE pick_tail();
@@ -847,17 +851,18 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE > & l)
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pick_head()
+::auto_pointer < ::list_node < TYPE > > list<TYPE, ARG_TYPE>::pick_auto_head()
 {
+
    ASSERT_VALID(this);
    ASSERT(this->begin().is_set());  // don't call on is_empty list !!!
 
    auto old = this->begin();
-   
-   auto returnValue = *old;
+
+   ::auto_pointer < ::list_node < TYPE > > pnode(old.m_p);
 
    this->begin() = old.next();
-   
+
    if (this->begin())
    {
 
@@ -871,24 +876,24 @@ TYPE list<TYPE, ARG_TYPE>::pick_head()
 
    }
 
-   delete old.get();
-
    this->m_count--;
 
-   return returnValue;
+   return ::transfer(pnode);
 
 }
 
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pick_tail()
+::auto_pointer < ::list_node < TYPE > > list<TYPE, ARG_TYPE>::pick_auto_tail()
 {
+
    ASSERT_VALID(this);
+
    ASSERT(this->end().is_set());  // don't call on is_empty list !!!
 
    auto old = this->end();
 
-   auto returnValue = old.topic();
+   ::auto_pointer < ::list_node < TYPE > > pnode(old.m_p);
 
    this->end() = old.back();
 
@@ -907,9 +912,25 @@ TYPE list<TYPE, ARG_TYPE>::pick_tail()
 
    this->m_count--;
 
-   delete old.get();
+   return ::transfer(pnode);
 
-   return returnValue;
+}
+
+
+template<class TYPE, class ARG_TYPE>
+TYPE list<TYPE, ARG_TYPE>::pick_head()
+{
+
+   return ::transfer(pick_auto_head()->topic());
+
+}
+
+
+template<class TYPE, class ARG_TYPE>
+TYPE list<TYPE, ARG_TYPE>::pick_tail()
+{
+
+   return ::transfer(pick_auto_tail()->topic());
 
 }
 

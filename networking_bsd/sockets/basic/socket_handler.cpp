@@ -1601,7 +1601,7 @@ end_processing_adding:
       while (m_socketlistErase.get_size())
       {
 
-         SOCKET socket = m_socketlistErase.pick_head();
+         SOCKET socket = ::transfer(m_socketlistErase.pick_head());
 
          erase_socket(socket);
 
@@ -1638,7 +1638,9 @@ end_processing_adding:
       while (m_delete.has_element())
       {
 
-         auto psocket = m_delete.pick_head().m_p;
+         auto socket = ::transfer(m_delete.pick_head());
+
+         auto psocket = socket.m_p;
 
          psocket->OnDelete();
 

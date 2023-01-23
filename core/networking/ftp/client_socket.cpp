@@ -1531,7 +1531,7 @@ auto tickStart = ::time::now();
 
             single_lock synchronouslock(this->synchronization());
 
-            strResponse = m_qResponseBuffer.pick_head();
+            strResponse = ::transfer(m_qResponseBuffer.pick_head());
 
          }
 

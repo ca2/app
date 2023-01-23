@@ -72,10 +72,10 @@ public: \
    inline T2 & element2() { return MEMBER2; } \
    inline CONST_TYPE1 & element1() const { return (CONST_TYPE1 &) MEMBER1; } \
    inline CONST_TYPE2 & element2() const { return (CONST_TYPE2 &) MEMBER2; } \
-   inline T1 && transfer_element1() { return ::transfer(MEMBER1); } \
-   inline T2 && transfer_element2() { return ::transfer(MEMBER2); } \
-   inline CONST_TYPE1 && transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
-   inline CONST_TYPE2 && transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
+   inline T1 transfer_element1() { return ::transfer(MEMBER1); } \
+   inline T2 transfer_element2() { return ::transfer(MEMBER2); } \
+   inline CONST_TYPE1 transfer_element1() const { return (CONST_TYPE1 &&) ::transfer(MEMBER1); } \
+   inline CONST_TYPE2 transfer_element2() const { return (CONST_TYPE2 &&) ::transfer(MEMBER2); } \
 \
 \
    PAIR() {} \
@@ -125,12 +125,15 @@ public:
    inline auto & topic() const { return *this; }
 
 
+   inline auto transfer_item() { return ::transfer(this->transfer_element1()); }
+   inline auto transfer_payload() { return ::transfer(this->transfer_element2()); }
+   inline auto transfer_topic() { return ::transfer(*this); }
+
+   inline auto transfer() { return ::transfer(*this); }
+
    make_pair() {}
    make_pair(ARG_TYPE1 t1) : PAIR(t1) {}
    make_pair(ARG_TYPE1 t1, ARG_TYPE2 t2) : PAIR(t1, t2) {}
-
-
-   
 
 
 };

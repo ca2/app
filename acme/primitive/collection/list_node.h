@@ -54,6 +54,12 @@ public:
    auto & topic() const { return m_element; }
 
 
+   auto transfer_topic() { return ::transfer(m_element); }
+
+
+   auto transfer() { return ::transfer(*this); }
+
+
 };
 
 

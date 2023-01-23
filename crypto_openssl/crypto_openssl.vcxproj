@@ -210,7 +210,7 @@
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
@@ -539,6 +539,7 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>false</OmitFramePointers>
     </ClCompile>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../source</AdditionalIncludeDirectories>

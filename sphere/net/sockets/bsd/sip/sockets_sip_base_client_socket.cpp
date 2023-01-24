@@ -287,7 +287,7 @@ namespace sockets
       string msg;
       string strLine;
       string strTrace;
-      strLine = m_response.attr("http_version").get_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+      strLine = m_response.attr("http_version").as_string() + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
       msg = strLine + "\r\n";
       strTrace = strLine;
       strTrace.replace("%", "%%");
@@ -315,7 +315,7 @@ namespace sockets
    void sip_base_client_socket::SendRequest()
    {
       string msg;
-      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      msg = m_request.attr("http_method").as_string() + " " + m_request.attr("request_uri").as_string() + " " + m_request.attr("http_version").as_string() + "\r\n";
       for(auto assoc : m_response.m_propertysetHeader)
       {
          msg += assoc.name() + ": " + assoc.get_string() + "\r\n";

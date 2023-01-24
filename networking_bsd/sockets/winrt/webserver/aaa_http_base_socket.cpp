@@ -47,8 +47,8 @@ namespace sockets
    {
       http_socket::OnHeaderComplete();
       //TRACE0("\n");
-      //TRACE0(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
-      if(m_request.attr("request_uri").get_string().find("/passthrough/") >= 0)
+      //TRACE0(m_request.attr("http_protocol").as_string() + "://" + m_request.header("host").as_string() + m_request.attr("request_uri").as_string() + "\n");
+      if(m_request.attr("request_uri").as_string().find("/passthrough/") >= 0)
       {
          //TRACE0( "Passthrought");
       }
@@ -108,11 +108,11 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
 
-      //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").get_string());
-      //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").get_string());
+      //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").as_string());
+      //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").as_string());
       //FORMATTED_TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-   /*   if(string_ends(m_request.attr("http_version").get_string(), "/1.1")
-         && m_request.header("connection").get_string().case_insensitive_order("close") != 0)
+   /*   if(string_ends(m_request.attr("http_version").as_string(), "/1.1")
+         && m_request.header("connection").as_string().case_insensitive_order("close") != 0)
       {
          m_b_keepalive = true;
       TRACE(" ***    keepalive: true\n");

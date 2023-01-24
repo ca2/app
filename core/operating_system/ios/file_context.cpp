@@ -46,7 +46,7 @@ namespace ios
       if(psystem->has_property("user_folder_relative_path"))
       {
 
-         strUserFolderShift = strRelative / papp->payload("user_folder_relative_path").get_string();
+         strUserFolderShift = strRelative / papp->payload("user_folder_relative_path").as_string();
 
       }
       else

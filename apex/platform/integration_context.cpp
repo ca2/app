@@ -3,6 +3,7 @@
 #include "integration_context.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/url.h"
@@ -33,8 +34,30 @@ namespace integration
    }
 
 
+   void context::prepare()
+   {
+
+      m_path = m_strName / m_strRelease / m_strPlatform / m_strConfiguration;
+
+      m_pathSource2 = m_pathFolder / m_path / "source";
+
+      acmedirectory()->create(m_pathSource2);
+
+   }
+
+
+   void context::change_to_source_directory()
+   {
+
+      acmedirectory()->change_current(m_pathSource2);
+
+   }
+
+
    void context::prepare_compile_and_link_environment()
    {
+
+      acmedirectory()->create(m_pathPrefix);
 
    }
 
@@ -54,18 +77,45 @@ namespace integration
    void context::clean()
    {
 
-      string strCommand;
-
-      string strPath;
-
-      strPath = this->prepare_path(m_pathFolder / m_path);
-
-      if (strPath.length() > 20)
       {
 
-         strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
+         string strPath;
 
-         this->bash(strCommand);
+         strPath = this->prepare_path(m_pathFolder / m_path / "source");
+
+         if (strPath.length() > 20)
+         {
+
+            {
+
+               ::string strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
+
+               this->bash(strCommand);
+
+            }
+
+         }
+
+      }
+
+      {
+
+         string strPath;
+
+         strPath = this->prepare_path(m_pathPrefix);
+
+         if (strPath.length() > 20)
+         {
+
+            {
+
+               ::string strCommand = "shopt -s dotglob; rm -Rf " + strPath + "/*";
+
+               this->bash(strCommand);
+
+            }
+
+         }
 
       }
 

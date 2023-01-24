@@ -9,11 +9,15 @@
 ////#include "acme/primitive/datetime/earth_time.h"
 
 
+#define INTERNATIONAL_DATE_FORMAT_FOR_FILE "%Y-%m-%d"
+#define INTERNATIONAL_DATE_FORMAT "%Y-%m-%d"
+
 #define INTERNATIONAL_DATE_HOUR_FORMAT_FOR_FILE "%Y-%m-%d %H"
 #define INTERNATIONAL_DATE_HOUR_FORMAT "%Y-%m-%d %H"
 
 #define INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE "%Y-%m-%d %H-%M-%S"
 #define INTERNATIONAL_DATE_TIME_FORMAT "%Y-%m-%d %H:%M:%S"
+
 
 CLASS_DECL_ACME i32 SWN(i32 y,i32 m,i32 d);
 //where DP ("Days Passed") is given by:
@@ -56,6 +60,10 @@ namespace datetime
          string get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
          string get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
          string get_date_time_for_file(const ::earth::time_shift& timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
+
+         string get_date(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_FORMAT, const ::earth::time_shift & timeshift = ::earth::time_shift::none());
+         string get_date(string strFormat = INTERNATIONAL_DATE_FORMAT, const ::earth::time_shift & timeshift = ::earth::time_shift::none());
+         string get_date_for_file(const ::earth::time_shift & timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
          
 
          //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);

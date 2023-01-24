@@ -432,6 +432,59 @@ namespace datetime
 
    }
 
+   string datetime::international::get_date_time(string strFormat, const ::earth::time_shift & timeshift)
+   {
+
+      ::earth::time time;
+
+      time = ::earth::time::now();
+
+      return get_date_time(time, strFormat, timeshift);
+
+   }
+
+   string datetime::international::get_date_time_for_file(const ::earth::time_shift & timeshift, const ::earth::time & time)
+   {
+
+      return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
+
+   }
+
+
+
+   string datetime::international::get_date(const ::earth::time & time, string strFormat, const ::earth::time_shift & timeshift)
+   {
+
+      string str;
+
+      str = ::earth::format(strFormat, time, timeshift);
+
+      return str;
+
+   }
+
+   string datetime::international::get_date(string strFormat, const ::earth::time_shift & timeshift)
+   {
+
+      ::earth::time time;
+
+      time = ::earth::time::now();
+
+      return get_date(time, strFormat, timeshift);
+
+   }
+
+   string datetime::international::get_date_for_file(const ::earth::time_shift & timeshift, const ::earth::time & time)
+   {
+
+      return get_date(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
+
+   }
+
+
+
+
+
 
    //string datetime::international::utc_get_date_time(string strFormat)
    //{
@@ -445,12 +498,6 @@ namespace datetime
    //}
 
 
-   string datetime::international::get_date_time_for_file(const ::earth::time_shift& timeshift, const ::earth::time & time)
-   {
-
-      return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
-
-   }
 
 
    //string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const ::earth::time_shift& timeshift)
@@ -463,18 +510,6 @@ namespace datetime
    //   return str;
 
    //}
-
-
-   string datetime::international::get_date_time(string strFormat, const ::earth::time_shift& timeshift)
-   {
-
-      ::earth::time time;
-
-      time = ::earth::time::now();
-
-      return get_date_time(time, strFormat, timeshift);
-
-   }
 
 
    //string datetime::international::get_date_time_for_file(const ::earth::time_shift& timeshift)

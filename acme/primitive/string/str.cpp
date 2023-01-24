@@ -5047,7 +5047,16 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       }
 
-      string strLine = str.substr(iLast + 1, iFindNext - iLast - 1);
+      int iLess = 0;
+
+      if (iFindNext > 0 && str[iFindNext - 1] == '\r')
+      {
+
+         iLess = 1;
+
+      }
+
+      string strLine = str.substr(iLast + 1, iFindNext - iLast - 1 - iLess);
 
       string strPrefixedLine;
 

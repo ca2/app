@@ -18,12 +18,14 @@ namespace integration
 
 
       ::string          m_strVs;
-      ::file::path      m_pathSourceFolder;
-      ::file::path      m_pathStorageFolder;
+      ::file::path      m_pathOperatingSystemIncludeFolder;
+      ::file::path      m_pathOperatingSystemStorageFolder;
       ::file::path      m_pathDownloadURL;
       ::string_array    m_straOutput;
       ::file::path      m_pathFolder;
       ::file::path      m_path;
+      ::file::path      m_pathSource2;
+      ::file::path      m_pathPrefix;
       ::string          m_strRelease;
       ::string          m_strPlatform;
       ::string          m_strConfiguration;
@@ -33,6 +35,11 @@ namespace integration
       context();
       ~context() override;
 
+
+
+      virtual void prepare();
+
+      virtual void change_to_source_directory();
 
       virtual void prepare_compile_and_link_environment();
 

@@ -652,7 +652,7 @@ namespace colorertake5
 
                string p = (blkel->first_child() && blkel->first_child()->get_type() == xml::node_text)
                           ? (blkel->first_child())->get_value()
-                          : blkel->attr("match").get_string();
+                          : blkel->attr("match").as_string();
 
                if(blkel->get_name() == "start")
                {

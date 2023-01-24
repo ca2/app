@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "interaction_layout.h"
@@ -423,17 +423,17 @@ namespace user
       virtual void set_width(::i32 width, enum_layout elayout = e_layout_sketch);
       virtual void set_height(::i32 height, enum_layout elayout = e_layout_sketch);
       /// @brief shift left position changing size
-      /// @param left
-      /// @param elayout 
+      /// @param left left position
+      /// @param elayout elayout to change
       virtual void shift_left(::i32 left, enum_layout elayout = e_layout_sketch);
       /// @brief  sets right position maintaining size
-      /// @param right 
-      /// @param elayout 
+      /// @param right right position
+      /// @param elayout elayout to change
       virtual void set_right(::i32 right, enum_layout elayout = e_layout_sketch);
 
       /// @brief sets top position maintaining size
-      /// @param top 
-      /// @param elayout 
+      /// @param top top position
+      /// @param elayout elayout to change
       virtual void set_top(::i32 top, enum_layout elayout = e_layout_sketch);
       
       virtual bool on_set_position(const ::point_i32 & point, enum_layout elayout);

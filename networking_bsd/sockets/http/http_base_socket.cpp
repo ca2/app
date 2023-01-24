@@ -117,7 +117,7 @@ namespace sockets
       if(m_request.headers().has_property("user_agent"))
       {
 
-         INFORMATION("user-agent: " << m_request.header("user_agent").get_string());
+         INFORMATION("user-agent: " << m_request.header("user_agent").as_string());
 
       }
       else
@@ -130,7 +130,7 @@ namespace sockets
       if(m_request.headers().has_property("from"))
       {
 
-         INFORMATION("from: " + m_request.header("from").get_string());
+         INFORMATION("from: " + m_request.header("from").as_string());
 
       }
 

@@ -1,7 +1,0 @@
-; youtube.def
-
-LIBRARY  "api_google"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-api_google_factory

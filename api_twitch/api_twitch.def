@@ -1,7 +1,0 @@
-; api_twitch.def
-
-LIBRARY  "api_twitch"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-api_twitch_factory

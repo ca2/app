@@ -4,6 +4,7 @@
 //#include "sequencer.h"
 #include "library.h"
 #include "sub_system.h"
+#include "acme/memory/counter.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/primitive/primitive/malloc.h"

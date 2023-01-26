@@ -39,20 +39,20 @@ namespace experience_core
 
       //}
 
-#if !defined(CUBE)
-      fork([this]()
-         {
-
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing1();
-
-            pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
-
-         });
-#endif
+//#if !defined(CUBE)
+//      fork([this]()
+//         {
+//
+//            auto psession = get_session();
+//
+//            auto puser = psession->user();
+//
+//            auto pwindowing = puser->windowing1();
+//
+//            pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
+//
+//         });
+//#endif
 
       //return ::success;
 

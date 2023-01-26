@@ -199,6 +199,12 @@ public:
 
    }
 
+   void operator()()
+   {
+
+      m_p->call_run();
+
+   }
 
    void operator()() const
    {

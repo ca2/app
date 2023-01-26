@@ -2368,7 +2368,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-      INFORMATION("interaction_layout::display e_display_restored");
+      //INFORMATION("interaction_layout::display e_display_restored");
 
 #endif
 
@@ -2470,7 +2470,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFORMATION("interaction_layout::display e_display_hide");
+         //INFORMATION("interaction_layout::display e_display_hide");
 
 #endif
          
@@ -2530,7 +2530,7 @@ namespace user
 
    #ifdef INFO_LAYOUT_DISPLAY
 
-            INFORMATION("interaction_layout::display e_display_default");
+            //INFORMATION("interaction_layout::display e_display_default");
 
    #endif
 
@@ -2579,7 +2579,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFORMATION("interaction_layout::display (unknown)");
+         //INFORMATION("interaction_layout::display (unknown)");
 
 #endif
 
@@ -9440,7 +9440,7 @@ namespace user
       else if(edisplaySketch == ::e_display_restored)
       {
          
-         INFORMATION("::user::interaction::design_display e_display_restored");
+         //INFORMATION("::user::interaction::design_display e_display_restored");
          
       }
       else if(edisplaySketch == ::e_display_compact
@@ -9528,7 +9528,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            INFORMATION("hiding child window");
+            //INFORMATION("hiding child window");
 
             layout().sketch() = e_display_none;
 
@@ -12359,7 +12359,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    bool interaction::on_add_child(::user::interaction * puserinteractionChild)
    {
 
-      INFORMATION("interaction::on_add_child start\n");
+      //INFORMATION("interaction::on_add_child start\n");
 
       puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 

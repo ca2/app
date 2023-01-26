@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -86,7 +86,7 @@ namespace message
 
       virtual void set_lresult(lresult lresult);
       //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam, const ::point_i32 & point);
-      virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam);
+      //virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam);
 
 
       ::u32 GetNotifyCode() const { return __hiword(m_wparam.m_number); }

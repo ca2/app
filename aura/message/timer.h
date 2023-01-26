@@ -20,8 +20,8 @@ namespace message
 
       timer() {}
 
-      using ::user::message::set;
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
+      //using ::user::message::set;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
 
 
 

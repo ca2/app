@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 #include "dispatcher.h"
 #include "acme/primitive/collection/atom_array.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "acme/constant/message_prototype.h"
 
 
 class CLASS_DECL_APEX channel :
@@ -59,9 +60,13 @@ public:
 
    virtual void route_message(::message::message * pmessage);
 
+   //virtual ::pointer<::message::message>get_message(enum_message_prototype e)
+
    virtual ::pointer<::message::message>get_message(MESSAGE * pmessage);
 
-   virtual ::pointer<::message::message>get_message(const ::atom& atom, wparam wparam, lparam lparam);
+   virtual ::pointer<::message::message>get_message(const ::atom& atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
+
+
 
 
    //void id_notify(const ::atom & atom, const ::matter * pmatter);

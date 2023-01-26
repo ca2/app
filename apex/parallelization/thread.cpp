@@ -4226,7 +4226,7 @@ bool thread::process_message()
       else if(acmesession())
       {
 
-         pmessage = acmesession()->m_papexsession->get_message(&message);
+         pmessage = acmenode()->m_papexnode->get_message(&message);
 
       }
 

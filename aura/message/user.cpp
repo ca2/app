@@ -51,23 +51,23 @@ namespace message
    //}
 
 
-   void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      //m_pusersystem = __user_interaction(pwindow)->payload("user_create").cast < ::user::system >();
+   //   //m_pusersystem = __user_interaction(pwindow)->payload("user_create").cast < ::user::system >();
 
-      //CREATESTRUCT * pusersystem = (CREATESTRUCT *)lparam.m_lparam;
+   //   //CREATESTRUCT * pusersystem = (CREATESTRUCT *)lparam.m_lparam;
 
-      //if (pusersystem)
-      //{
+   //   //if (pusersystem)
+   //   //{
 
-      //   m_pusersystem = (::user::system *)pusersystem->CREATE_STRUCT_P_CREATE_PARAMS;
+   //   //   m_pusersystem = (::user::system *)pusersystem->CREATE_STRUCT_P_CREATE_PARAMS;
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    void create::failed(const ::string & strErrorMessage)
@@ -163,35 +163,35 @@ namespace message
    }
 
 
-   void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_eactivate = (enum_activate)(first_u16(wparam));
+   //   m_eactivate = (enum_activate)(first_u16(wparam));
 
-      if(lparam == 0)
-      {
+   //   if(lparam == 0)
+   //   {
 
-         m_pWndOther = nullptr;
+   //      m_pWndOther = nullptr;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
+   //      auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
 
-         auto puser = paurasession->m_puser;
+   //      auto puser = paurasession->m_puser;
 
-         auto pwindowing = puser->m_pwindowing;
+   //      auto pwindowing = puser->m_pwindowing;
 
-         m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast < ::oswindow >()));
+   //      m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast < ::oswindow >()));
 
-      }
+   //   }
 
-      m_bMinimized = second_u16(wparam) != false;
+   //   m_bMinimized = second_u16(wparam) != false;
 
-   }
+   //}
 
 
    erase_bkgnd::erase_bkgnd()
@@ -229,24 +229,24 @@ namespace message
    }
 
 
-   void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_nChar = static_cast<::u32>(wparam);
+   //   m_nChar = static_cast<::u32>(wparam);
 
-      m_nRepCnt = first_u16(lparam);
+   //   m_nRepCnt = first_u16(lparam);
 
-      m_nFlags = second_u16(lparam);
-      
-      m_iVirtualKey = (int)wparam;
+   //   m_nFlags = second_u16(lparam);
+   //   
+   //   m_iVirtualKey = (int)wparam;
 
-      m_nScanCode = ((lparam >> 16) & 0xff);
+   //   m_nScanCode = ((lparam >> 16) & 0xff);
 
-      m_bExt = (lparam & (1 << 24)) != 0;
+   //   m_bExt = (lparam & (1 << 24)) != 0;
 
-   }
+   //}
 
 
    nc_activate::nc_activate()
@@ -255,36 +255,36 @@ namespace message
    }
 
 
-   void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_bActive = wparam != false;
+   //   m_bActive = wparam != false;
 
-   }
-
-
-   void reposition::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
-
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
-
-      m_point = ::point_i32(lparam);
-
-   }
+   //}
 
 
-   void size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void reposition::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_nType     = static_cast < ::u32 > (wparam);
+   //   m_point = ::point_i32(lparam);
 
-      m_size      = ::size_i32(x_i16(lparam), y_i16(lparam));
+   //}
 
-   }
+
+   //void size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
+
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+   //   m_nType     = static_cast < ::u32 > (wparam);
+
+   //   m_size      = ::size_i32(x_i16(lparam), y_i16(lparam));
+
+   //}
 
 
    mouse::mouse()
@@ -296,21 +296,21 @@ namespace message
       
       m_union.m_pmouse = this;
 
-#if defined(LINUX) || defined(FREEBSD)
-
-      m_bTranslated = true;  // in root coordinates
-
-      //#elif defined(WINDOWS_DESKTOP)
-      //
-      //      m_bTranslated = true; // not in root coordinates
-      //
-      //      ::client_to_screen(m_oswindow, &m_point);
-
-#else
-
-      m_bTranslated = false; // not in root coordinates
-
-#endif
+//#if defined(LINUX) || defined(FREEBSD)
+//
+//      m_bTranslated = true;  // in root coordinates
+//
+//      //#elif defined(WINDOWS_DESKTOP)
+//      //
+//      //      m_bTranslated = true; // not in root coordinates
+//      //
+//      //      ::client_to_screen(m_oswindow, &m_point);
+//
+//#else
+//
+//      m_bTranslated = false; // not in root coordinates
+//
+//#endif
    }
 
 
@@ -350,44 +350,44 @@ namespace message
    }
 
 
-   void mouse::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void mouse::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_nFlags   = wparam;
+   //   m_nFlags   = wparam;
 
-      if((m_nFlags & 0x80000000) == (0x80000000))
-      {
+   //   if((m_nFlags & 0x80000000) == (0x80000000))
+   //   {
 
-         output_debug_string("(m_nFlags & 0x80000000) == (0x80000000)");
+   //      output_debug_string("(m_nFlags & 0x80000000) == (0x80000000)");
 
-      }
+   //   }
 
-      m_point    = ::point_i32(lparam);
-
-
-   }
+   //   m_point    = ::point_i32(lparam);
 
 
-   void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
-
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
-
-      m_nFlags    = wparam;
-
-      m_point        = ::point_i32(lparam);
-
-   }
+   //}
 
 
-   void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam)
-   {
+   //void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   }
+   //   m_nFlags    = wparam;
+
+   //   m_point        = ::point_i32(lparam);
+
+   //}
+
+
+   //void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam)
+   //{
+
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+   //}
 
 
    mouse_activate::mouse_activate()
@@ -496,89 +496,89 @@ namespace message
    }
 
 
-   void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::pointer<::user::primitive>pprimitive(lparam);
+   //   ::pointer<::user::primitive>pprimitive(lparam);
 
-      m_pscrollbar = pprimitive;
+   //   m_pscrollbar = pprimitive;
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_ecommand = (enum_scroll_command) (i16)first_u16(wparam);
+   //   m_ecommand = (enum_scroll_command) (i16)first_u16(wparam);
 
-      m_nPos = (i16)second_u16(wparam);
+   //   m_nPos = (i16)second_u16(wparam);
 
-   }
-
-
-   void show_window::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
-
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
-
-      m_bShow = wparam != false;
-
-      m_nStatus = static_cast<::u32>(lparam);
-
-   }
+   //}
 
 
-   void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void show_window::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_oswindowNew = (::oswindow) wparam.m_number;
+   //   m_bShow = wparam != false;
 
-   }
+   //   m_nStatus = static_cast<::u32>(lparam);
 
-
-   void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
-
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
-
-      m_point.x = x_i16(m_lparam);
-      
-      m_point.y = y_i16(m_lparam);
-
-   }
+   //}
 
 
-   void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
+   //   m_oswindowNew = (::oswindow) wparam.m_number;
 
-      //m_puserinteraction = nullptr;
+   //}
 
-   }
+
+   //void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
+
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+   //   m_point.x = x_i16(m_lparam);
+   //   
+   //   m_point.y = y_i16(m_lparam);
+
+   //}
+
+
+   //void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
+
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+   //   //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
+
+   //   //m_puserinteraction = nullptr;
+
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-   void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
+   //   m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
 
-   }
+   //}
 
 
-   void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
+   //   m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
 
-   }
+   //}
 
 
    bool nc_calc_size::GetCalcValidRects()
@@ -603,7 +603,7 @@ namespace message
    mouse_wheel::mouse_wheel() 
    {
    
-      m_bTranslated = true;
+      //m_bTranslated = true;
    
    }
 
@@ -655,18 +655,32 @@ namespace message
    }
 
 
-   void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
+
+   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+   //   ::pointer < ::particle > pparticle(lparam);
+
+   //   m_pparticle = pparticle;
+
+   //   m_lparam = 0;
+
+   //}
+
+   drag_and_drop::drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom)
    {
 
-      ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+      m_lresult = 0;
 
-      ::pointer < ::particle > pparticle(lparam);
-
-      m_pparticle = pparticle;
-
-      m_lparam = 0;
+      m_oswindow = oswindow;
+      
+      m_pwindow = pwindow;
+      
+      m_atom = atom;
 
    }
+
 
 
 } // namespace message

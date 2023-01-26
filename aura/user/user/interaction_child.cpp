@@ -180,7 +180,10 @@ namespace user
          //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
          if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
          {
-            m_puserinteraction->send_message(e_message_create, 0, 0);
+            auto pmessage = __create_new <::message::create>();
+            pmessage->m_atom = e_message_create;
+            m_puserinteraction->send(pmessage);
+            //m_puserinteraction->send_message(e_message_create, 0, 0);
          }
 
       //}

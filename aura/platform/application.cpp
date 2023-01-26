@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -3691,81 +3691,81 @@ retry_license:
    }
 
 
-   ::pointer<::user::message>application::get_user_message(MESSAGE * pmsg)
-   {
+   //::pointer<::user::message>application::get_user_message(MESSAGE * pmsg)
+   //{
 
-      ::user::primitive * pinteraction = nullptr;
+   //   ::user::primitive * pinteraction = nullptr;
 
-      ::windowing::window * pwindow = nullptr;
+   //   ::windowing::window * pwindow = nullptr;
 
-      if (pinteraction == nullptr && pmsg->oswindow != nullptr)
-      {
+   //   if (pinteraction == nullptr && pmsg->oswindow != nullptr)
+   //   {
 
-        if (pmsg->m_atom == 126)
-        {
+   //     if (pmsg->m_atom == 126)
+   //     {
 
-           INFORMATION("e_message_display_change");
+   //        INFORMATION("e_message_display_change");
 
-        }
+   //     }
 
-        auto psession = get_session();
+   //     auto psession = get_session();
 
-        auto puser = psession->m_puser;
+   //     auto puser = psession->m_puser;
 
-        auto pwindowing = puser->m_pwindowing;
+   //     auto pwindowing = puser->m_pwindowing;
 
-        pwindow = pwindowing->window(pmsg->oswindow);
+   //     pwindow = pwindowing->window(pmsg->oswindow);
 
-        auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+   //     auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-        if (puserinteractionimpl != nullptr)
-        {
+   //     if (puserinteractionimpl != nullptr)
+   //     {
 
-           try
-           {
+   //        try
+   //        {
 
-              pinteraction = puserinteractionimpl->m_puserinteraction;
+   //           pinteraction = puserinteractionimpl->m_puserinteraction;
 
-           }
-           catch (...)
-           {
+   //        }
+   //        catch (...)
+   //        {
 
-              pinteraction = nullptr;
+   //           pinteraction = nullptr;
 
-           }
+   //        }
 
-        }
+   //     }
 
-        //if (pinteraction == nullptr)
-        //{
+   //     //if (pinteraction == nullptr)
+   //     //{
 
-        //   pinteraction = puserinteractionimpl;
+   //     //   pinteraction = puserinteractionimpl;
 
-        //}
+   //     //}
 
-      }
+   //   }
 
-      if (pinteraction != nullptr)
-      {
+   //   if (pinteraction != nullptr)
+   //   {
 
-         return pinteraction->get_message(pmsg->m_atom, pmsg->wParam, pmsg->lParam);
+   //      return pinteraction->get_message(pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
-      }
+   //   }
 
-      auto pusermessage = __new(::user::message);
+   //   auto pusermessage = __new(::user::message);
 
-      if (!pusermessage)
-      {
+   //   if (!pusermessage)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_atom, pmsg->wParam, pmsg->lParam);
+   //   pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_atom, pmsg->wParam, pmsg->lParam);
 
-      return pusermessage;
+   //   return pusermessage;
 
-   }
+   //}
 
 
    string application::preferred_experience()

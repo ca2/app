@@ -2147,11 +2147,15 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
       }
 
       // get the left hand side (LHS) of "=" in the string
-      string strKey = strEnvironment(0, pFind);
+      string strItem = strEnvironment(0, pFind);
 
-      string strValue = strEnvironment(pFind + 1);
+      string strPayload = strEnvironment(pFind + 1);
 
-      (*this)[strKey] = strValue;
+      auto pszItem = strItem.c_str();
+      
+      auto pszPayload = strPayload.c_str();
+
+      (*this)[strItem] = strPayload;
 
    }
 

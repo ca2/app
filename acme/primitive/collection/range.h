@@ -885,7 +885,7 @@ public:
             if (rangeBlock.is_before_begin(pBlock))
             {
 
-               return p - rangeBlock.size() + 1;
+               return p + 1;
 
             }
 

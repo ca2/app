@@ -82,7 +82,7 @@ namespace app_integration
 
    }
 
-   % comspec % / k "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars32.bat"
+   //% comspec % / k "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars32.bat"
 
 
    void impact::on_message_create(::message::message * pmessage)

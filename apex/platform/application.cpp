@@ -5477,12 +5477,12 @@ namespace apex
 //
 //      }
 
-      if (conditional(m_bConsole, m_bCreateAppShorcut.isTrue()))
-      {
+      //if (conditional(m_bConsole, m_bCreateAppShorcut.isTrue()))
+      //{
 
-         on_create_app_shortcut();
+      //   on_create_app_shortcut();
 
-      }
+      //}
 
       return true;
 

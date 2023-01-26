@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "user.h"
 #include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
@@ -295,8 +295,22 @@ namespace message
       //m_pcursor = nullptr;
       
       m_union.m_pmouse = this;
-      m_bTranslated = false;
 
+#if defined(LINUX) || defined(FREEBSD)
+
+      m_bTranslated = true;  // in root coordinates
+
+      //#elif defined(WINDOWS_DESKTOP)
+      //
+      //      m_bTranslated = true; // not in root coordinates
+      //
+      //      ::client_to_screen(m_oswindow, &m_point);
+
+#else
+
+      m_bTranslated = false; // not in root coordinates
+
+#endif
    }
 
 
@@ -352,21 +366,6 @@ namespace message
 
       m_point    = ::point_i32(lparam);
 
-#if defined(LINUX) || defined(FREEBSD)
-
-      m_bTranslated = true;  // in root coordinates
-
-//#elif defined(WINDOWS_DESKTOP)
-//
-//      m_bTranslated = true; // not in root coordinates
-//
-//      ::client_to_screen(m_oswindow, &m_point);
-
-#else
-
-      m_bTranslated = false; // not in root coordinates
-
-#endif
 
    }
 
@@ -379,8 +378,6 @@ namespace message
       m_nFlags    = wparam;
 
       m_point        = ::point_i32(lparam);
-
-      m_bTranslated = true;
 
    }
 
@@ -600,6 +597,14 @@ namespace message
 
       return m_wparam != 0;
 
+   }
+
+
+   mouse_wheel::mouse_wheel() 
+   {
+   
+      m_bTranslated = true;
+   
    }
 
 

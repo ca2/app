@@ -906,9 +906,9 @@ namespace http
       //   if (pnode->get_name() == "proxy")
       //   {
 
-      //      ::networking::address ipAddress(pnode->attribute("address").get_string(), 0);
+      //      ::networking::address ipAddress(pnode->attribute("address").as_string(), 0);
 
-      //      ::networking::address ipMask(pnode->attribute("mask").get_string(), 0);
+      //      ::networking::address ipMask(pnode->attribute("mask").as_string(), 0);
 
       //      if (ipHost.is_in_same_net(ipAddress, ipMask))
       //      {
@@ -930,8 +930,8 @@ namespace http
 
       //            pproxy->m_iPort = pnode->attribute("port");
 
-      //            FORMATTED_TRACE("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").get_string().c_str(),
-      //               pnode->attribute("mask").get_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
+      //            FORMATTED_TRACE("Select Proxy : address %s mask %s server %s port %d", pnode->attribute("address").as_string().c_str(),
+      //               pnode->attribute("mask").as_string().c_str(), pproxy->m_strProxy.c_str(), pproxy->m_iPort);
 
       //            return;
 

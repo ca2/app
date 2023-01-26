@@ -2246,6 +2246,7 @@ namespace user
             //
             //         }
 
+
             if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
             {
                pmouse->m_bTranslated = true;
@@ -2267,34 +2268,34 @@ namespace user
                   m_puserinteraction->window_rectangle(rectWindow);
                }
 
-               auto pwindowing = windowing();
+               //auto pwindowing = windowing();
 
-               auto pdisplay = pwindowing->display();
+               //auto pdisplay = pwindowing->display();
 
-               if (pdisplay->get_monitor_count() > 0)
-               {
+               //if (pdisplay->get_monitor_count() > 0)
+               //{
 
-                  ::rectangle_i32 rcMonitor;
+               //   ::rectangle_i32 rcMonitor;
 
-                  pdisplay->get_monitor_rectangle(0, rcMonitor);
+               //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-                  if (rectWindow.left >= rcMonitor.left)
-                  {
+               //   if (rectWindow.left >= rcMonitor.left)
+               //   {
 
-                     pmouse->m_point.x += (::i32)rcMonitor.left;
+               //      pmouse->m_point.x += (::i32)rcMonitor.left;
 
-                  }
+               //   }
 
-                  if (rectWindow.top >= rcMonitor.top)
-                  {
+               //   if (rectWindow.top >= rcMonitor.top)
+               //   {
 
-                     //pmouse->m_point.y += (::i32)rectWindow.top;
-                     pmouse->m_point.y += (::i32)rcMonitor.top;
+               //      //pmouse->m_point.y += (::i32)rectWindow.top;
+               //      pmouse->m_point.y += (::i32)rcMonitor.top;
 
-                  }
+               //   }
 
-               }
-               else
+               //}
+               //else
                {
 
                   if (rectWindow.left >= 0)

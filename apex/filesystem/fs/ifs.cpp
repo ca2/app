@@ -190,7 +190,7 @@ bool ifs::enumerate(::file::listing & listing)
    //      if(pchild->get_name() != "folder")
    //         continue;
 
-   //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").get_string(),::file::path_url));
+   //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").as_string(),::file::path_url));
 
    //      path.m_iDir = 1;
 
@@ -211,7 +211,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //      string strExtension = pchild->attribute("extension");
 
-   //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").get_string(),::file::path_url));
+   //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").as_string(),::file::path_url));
 
    //      path.m_iSize = pchild->attribute("size_i32");
 

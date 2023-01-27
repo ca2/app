@@ -70,6 +70,11 @@ namespace message
    //}
 
 
+   create::create() 
+   { 
+   
+   }
+
    void create::failed(const ::string & strErrorMessage)
    {
 

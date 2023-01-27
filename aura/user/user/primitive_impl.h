@@ -70,6 +70,9 @@ namespace user
       virtual void queue_message_handler(::message::message * pmessage);
 
 
+      virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+
+
       virtual void enable_window(bool bEnable = true);
 
 
@@ -441,6 +444,9 @@ namespace user
 
 
 #endif
+
+
+      virtual void _raw_client_to_screen(::point_i32 & point);
 
 
    };

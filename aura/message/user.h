@@ -23,7 +23,7 @@ namespace message
       ::pointer<::user::system>      m_pusersystem;
 
 
-      create() { }
+      create();
 
 
       //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;

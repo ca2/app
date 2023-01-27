@@ -7,12 +7,18 @@
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/include/_c_swap.h"
 #include "acme/platform/application.h"
 #include "acme/platform/session.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
+#include "aura/platform/session.h"
+#include "aura/message/timer.h"
 #include "aura/message/user.h"
+#include "aura/user/user/user.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user
@@ -635,6 +641,307 @@ namespace user
       return message_call(atom, wparam, lparam, point);
 
    }
+
+
+#define _NEW_MESSAGE(TYPE) \
+   auto pmessage = __create_new<TYPE>(); \
+   pmessage->m_oswindow = oswindow; \
+   pmessage->m_pwindow = pwindow; \
+   pmessage->m_atom = atom; \
+   pmessage->m_wparam = wparam; \
+   pmessage->m_lparam = lparam; \
+   pmessageBase = pmessage
+
+
+   ::pointer<::message::message>primitive_impl::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
+   {
+
+      ::pointer<::message::message>pmessageBase;
+
+      if (eprototype == ::message::e_prototype_none)
+      {
+
+         eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
+
+      }
+
+      auto pwindow = this->window();
+
+      auto oswindow = pwindow->oswindow();
+
+      switch (eprototype)
+      {
+      case ::message::e_prototype_none:
+      {
+
+         _NEW_MESSAGE(::user::message);
+
+      }
+      break;
+      case ::message::e_prototype_create:
+      {
+         _NEW_MESSAGE(::message::create);
+
+      }
+      break;
+      case ::message::e_prototype_enable:
+      {
+         _NEW_MESSAGE(::message::enable);
+
+      }
+      break;
+      case ::message::e_prototype_non_client_activate:
+      {
+         _NEW_MESSAGE(::message::nc_activate);
+         {
+
+            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+            pmessage->m_bActive = wparam != false;
+
+         }
+      }
+      break;
+      case ::message::e_prototype_key:
+      {
+         _NEW_MESSAGE(::message::key);
+         //void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         {
+
+            // ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+            pmessage->m_nChar = static_cast<::u32>(wparam);
+
+            pmessage->m_nRepCnt = first_u16(lparam);
+
+            pmessage->m_nFlags = HIWORD(lparam);
+
+            pmessage->m_iVirtualKey = (int)wparam;
+
+            pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
+
+            pmessage->m_bExt = (lparam & (1 << 24)) != 0;
+
+         }
+
+      }
+      break;
+      case ::message::e_prototype_timer:
+      {
+
+         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+
+         _NEW_MESSAGE(::message::timer);
+
+         pmessage->m_uEvent = static_cast<::u32>(wparam);
+
+      }
+      break;
+      case ::message::e_prototype_show_window:
+      {
+         _NEW_MESSAGE(::message::show_window);
+         pmessage->m_bShow = wparam != false;
+
+         pmessage->m_nStatus = static_cast<::u32>(lparam);
+
+      }
+      break;
+      case ::message::e_prototype_set_cursor:
+      {
+         _NEW_MESSAGE(::message::set_cursor);
+      }
+      break;
+      case ::message::e_prototype_non_client_hit_test:
+      {
+         _NEW_MESSAGE(::message::nc_hit_test);
+         pmessage->m_point.x = GET_X_LPARAM(lparam);
+
+         pmessage->m_point.y = GET_Y_LPARAM(lparam);
+      }
+      break;
+      case ::message::e_prototype_move:
+      {
+         _NEW_MESSAGE(::message::reposition);
+         pmessage->m_point = ::point_i32(lparam);
+      }
+      break;
+      case ::message::e_prototype_erase_background:
+      {
+         _NEW_MESSAGE(::message::erase_bkgnd);
+      }
+      break;
+      case ::message::e_prototype_scroll:
+      {
+         _NEW_MESSAGE(::message::scroll);
+
+         pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
+
+         //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+         pmessage->m_ecommand = (enum_scroll_command)(i16)first_u16(wparam);
+
+         pmessage->m_nPos = (i16)HIWORD(wparam);
+
+      }
+      break;
+      case ::message::e_prototype_set_focus:
+      {
+         _NEW_MESSAGE(::message::set_keyboard_focus);
+      }
+      break;
+      case ::message::e_prototype_kill_focus:
+      {
+         _NEW_MESSAGE(::message::kill_keyboard_focus);
+         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
+      }
+      break;
+#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
+      case ::message::e_prototype_window_pos:
+
+      {
+         _NEW_MESSAGE(::message::window_pos);
+         pmessage->m_pWINDOWPOS = reinterpret_cast<void *>(lparam.m_lparam);
+      }
+      break;
+      case ::message::e_prototype_non_client_calc_size:
+      {
+         _NEW_MESSAGE(::message::nc_calc_size);
+         pmessage->m_pNCCALCSIZE_PARAMS = reinterpret_cast<void *>(lparam.m_lparam);
+      }
+      break;
+#endif
+      case ::message::e_prototype_mouse:
+      {
+         _NEW_MESSAGE(::message::mouse);
+         pmessage->m_nFlags = wparam;
+
+         if ((pmessage->m_nFlags & 0x80000000) == (0x80000000))
+         {
+
+            output_debug_string("(m_nFlags & 0x80000000) == (0x80000000)");
+
+         }
+
+         pmessage->m_point = ::point_i32(lparam);
+
+         _raw_client_to_screen(pmessage->m_point);
+
+      }
+      break;
+      case ::message::e_prototype_object:
+      {
+         _NEW_MESSAGE(::message::particle);
+         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         {
+
+            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+            ::pointer < ::particle > pparticle(lparam);
+
+            pmessage->m_pparticle = pparticle;
+
+            pmessage->m_lparam = 0;
+
+         }
+      }
+      break;
+      case ::message::e_prototype_mouse_wheel:
+      {
+         _NEW_MESSAGE(::message::mouse_wheel);
+
+         pmessage->m_nFlags = wparam;
+
+         pmessage->m_point = ::point_i32(lparam);
+
+         _raw_client_to_screen(pmessage->m_point);
+
+      }
+      break;
+      case ::message::e_prototype_size:
+      {
+         _NEW_MESSAGE(::message::size);
+
+         pmessage->m_nType = static_cast <::u32> (wparam);
+
+         pmessage->m_size = ::size_i32(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+      }
+      break;
+      case ::message::e_prototype_activate:
+      {
+         _NEW_MESSAGE(::message::activate);
+         //pmessage = p;
+         //default_set(pmessage, atom, wparam, lparam)
+         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         //{
+
+            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+
+         pmessage->m_eactivate = (enum_activate)(first_u16(wparam));
+
+         if (lparam == 0)
+         {
+
+            pmessage->m_pWndOther = nullptr;
+
+         }
+         else
+         {
+
+            auto paurasession = m_pcontext->m_pacmesession->m_paurasession;
+
+            auto puser = paurasession->m_puser;
+
+            auto pwindowing = puser->m_pwindowing;
+
+            pmessage->m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast <::oswindow>()));
+
+         }
+
+         pmessage->m_bMinimized = HIWORD(wparam) != false;
+
+         //}
+
+      }
+      break;
+      case ::message::e_prototype_mouse_activate:
+      {
+         _NEW_MESSAGE(::message::mouse_activate);
+      }
+      break;
+      default:
+      {
+         
+         auto pmessage = ::channel::get_message(atom, wparam, lparam, eprototype);
+         
+         pmessageBase = pmessage;
+
+      }
+      break;
+      }
+
+      if (pmessageBase.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+      //auto estatus =
+
+
+
+
+      //if (!estatus)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      return pmessageBase;
+
+   }
+
 
 
    //void primitive_impl::post_message(const ::atom& atom, ::wparam wParam, ::lparam lParam)
@@ -1487,6 +1794,8 @@ namespace user
          pmessage = get_message(atom, wparam, lparam);
 
       }
+
+      pmessage->m_pchannel = m_puserinteraction;
 
       return message_call(pmessage);
 
@@ -2485,6 +2794,13 @@ namespace user
    //   return acmesystem() ? acmesystem()->m_paurasystem : nullptr;
 
    //}
+
+   void primitive_impl::_raw_client_to_screen(::point_i32 & point)
+   {
+
+      point += m_puserinteraction->client_to_screen(e_layout_design);
+
+   }
 
 
 } // namespace user

@@ -197,6 +197,13 @@ void channel::route_message(::message::message * pmessage)
 
    ::pointer<::message::message>pmessageBase;
 
+   if (eprototype == ::message::e_prototype_none)
+   {
+
+      eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
+
+   }
+
    switch (eprototype)
    {
    case ::message::e_prototype_simple_command:

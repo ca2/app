@@ -13,8 +13,8 @@ namespace user
    {
    public:
 
-      ::channel * m_pchannel;
-      ::pointer<::windowing::window>  m_pwindow;
+      ::channel *                      m_pchannel;
+      ::pointer<::windowing::window>   m_pwindow;
       bool                             m_bConditional;
       bool                             m_bReflect;
       bool                             m_bDestroyed;

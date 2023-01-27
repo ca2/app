@@ -12327,6 +12327,21 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
+   ::pointer<::message::message> interaction::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
+   {
+
+      if (::is_null(m_pprimitiveimpl))
+      {
+
+         return ::user::primitive::get_message(atom, wparam, lparam, eprototype);
+
+      }
+
+      return m_pprimitiveimpl->get_message(atom, wparam, lparam, eprototype);
+
+   }
+
+
    void interaction::walk_pre_translate_tree(::message::message * pmessage, ::user::interaction * puiStop)
    {
 

@@ -57,10 +57,18 @@ public:
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
-   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
-   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
-   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
-   string_base(string_base && str) : NATURAL_POINTER(e_no_initialize) { this->m_begin = str.m_begin; this->m_end = str.m_end; str.m_begin = nullptr; str.m_end = nullptr; }
+   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct11(ansistr); }
+   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct11(wd16str); }
+   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct11(wd32str); }
+   string_base(string_base && str) :
+      NATURAL_POINTER(e_no_initialize) 
+   { 
+      this->m_begin = str.m_begin; 
+      this->m_end = str.m_end;
+      this->m_erange = str.m_erange;
+      str.m_begin = nullptr; 
+      str.m_end = nullptr; 
+   }
 
 
 //   template<typed_range<::ansi_character *> RANGE>
@@ -196,8 +204,13 @@ public:
    inline void construct2(const CHARACTER2 * psz, strsize len);
 
    template < primitive_character CHARACTER2 >
-   inline void construct5(const ::range < const CHARACTER2 * > & str);
-//   template < primitive_character CHARACTER2 >
+   inline void construct5(const ::range < const CHARACTER2 * > & range);
+
+   template < primitive_character CHARACTER2 >
+   inline void construct11(const ::range < const CHARACTER2* > & range);
+
+   
+   //   template < primitive_character CHARACTER2 >
 //   inline void construct2(const ::range < const CHARACTER2 * > & str);
 //   template < primitive_character CHARACTER2 >
 //   inline void construct2(const ::range < const CHARACTER2 * > & str);
@@ -574,8 +587,6 @@ public:
    }
 
 
-
-
    inline CHARACTER * get_string_buffer()
    {
 
@@ -586,7 +597,7 @@ public:
       if (p->natural_is_shared())
       {
 
-         fork_string(p->length());
+         fork_string(p->character_count());
 
       }
 
@@ -595,48 +606,39 @@ public:
    }
 
 
-   inline CHARACTER * get_string_buffer(strsize size)
+   inline CHARACTER * get_string_buffer(strsize characterCount)
    {
-
-      //if (this->is_string())
-      //{
 
       auto p = this->metadata();
 
       ASSERT(::is_null(p) || p->m_countReference >= 1);
 
-      if (::is_null(p) || p->natural_is_shared() || size > p->length())
+      if (::is_null(p) || p->natural_is_shared() || characterCount > p->storage_character_count())
       {
 
-         fork_string(size);
+         fork_string(characterCount);
 
       }
       else
       {
 
-         this->metadata()->set_data_length(size);
+         this->metadata()->set_character_count(characterCount);
+
+         this->m_end = this->m_begin + characterCount;
 
       }
-
-      //}
-      //else
-      //{
-
-      //   fork_string(size);
-
-      //}
 
       return this->data();
 
    }
 
 
-   inline string_range < CHARACTER * > get_string_buffer_range(strsize size)
+   inline string_range < CHARACTER * > get_string_buffer_range(strsize characterCount)
    {
 
-      auto p = get_string_buffer(size);
+      auto p = get_string_buffer(characterCount);
 
-      return { p, p + size };
+      return { p, p + characterCount };
 
    }
 
@@ -649,26 +651,25 @@ public:
    }
 
 
-   inline CHARACTER * defer_get_string_buffer(strsize size, const string_base & str)
-   {
+   // inline CHARACTER * defer_get_string_buffer(strsize size, const string_base & str)
+   // {
 
-      auto p = this->metadata();
+   //    auto p = this->metadata();
 
-      ASSERT(p->m_countReference >= 1);
+   //    ASSERT(p->m_countReference >= 1);
 
-      if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(str))
-      {
+   //    if (::is_null(p) || p->natural_is_shared() || size > p->length() || p->contains_data(str))
+   //    {
 
-         fork_string(size);
+   //       fork_string(size);
 
-      }
+   //    }
 
-      this->metadata()->set_length(size);
+   //    this->metadata()->set_length(size);
 
-      return this->data();
+   //    return this->data();
 
-   }
-
+   // }
 
 
    inline void get_string(CHARACTER * psz) const noexcept;
@@ -1065,14 +1066,14 @@ public:
    string_base substr(START start, const_iterator p) const { return substr(start, (p - this->m_begin) - start); }
 
 
-   inline memsize get_storage_size_in_bytes() const { return this->metadata()->memsize(); }
-   inline strsize get_storage_length() const;
+   inline memsize storage_size() const { return this->metadata()->storage_size(); }
+   inline strsize storage_character_count() const;
 
 
-   inline strsize length() const { return (::strsize)this->metadata()->m_datasize; }
+   inline strsize length() const { return (::strsize)this->metadata()->m_countData; }
    inline strsize size() const { return this->length(); }
-   inline memsize length_in_bytes() const;
-   inline memsize length_in_bytes_with_null_terminator() const;
+   inline memsize character_count_in_bytes_without_null_terminator() const;
+   inline memsize character_count_in_bytes() const;
 
    string_base right(strsize nCount) const;
 
@@ -1429,7 +1430,7 @@ template < character_range RANGE1, character_range RANGE2 >
 string_base < typename RANGE1::const_iterator > operator + (const RANGE1 & range1, const RANGE2 & range2)
 {
 
-   string_base < typename RANGE1::const_iterator > str(range1.begin(), range1.size());
+   string_base < typename RANGE1::const_iterator > str(range1);
 
    str.append(range2.begin(), range2.size());
 

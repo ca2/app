@@ -444,10 +444,37 @@ inline void string_base < ITERATOR_TYPE >::construct2(const CHARACTER2 * psz, st
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHARACTER2 * > & scopedstr)
+inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHARACTER2 * > & range)
 {
 
-   this->construct2(scopedstr.data(), scopedstr.size());
+   this->construct2(range.data(), range.size());
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER2 >
+inline void string_base < ITERATOR_TYPE >::construct11(const ::range <  const CHARACTER2* > & range)
+{
+   
+   if (sizeof(CHARACTER) == sizeof(CHARACTER2) && (range.m_erange & e_range_string))
+   {
+
+      ((string_base < ITERATOR_TYPE > *)&range)->metadata()->natural_increment_reference_count();
+
+      this->m_begin = (const CHARACTER *) range.m_begin;
+
+      this->m_end = (const CHARACTER*) range.m_end;
+
+      this->m_erange = range.m_erange;
+
+   }
+   else
+   {
+
+      this->construct2(range.data(), range.size());
+
+   }
 
 }
 
@@ -2460,14 +2487,14 @@ inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noe
 
 
 template < typename ITERATOR_TYPE >
-typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::create_string(strsize strsize)
+typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::create_string(strsize characterCount)
 {
 
-   auto memsize = char_length_to_byte_length(this->begin(), strsize + 1);
+   auto sizeStorageInBytes = character_count_to_byte_length(this->begin(), characterCount);
 
-   auto pNew = this->create_meta_data(memsize);
+   auto pNew = this->create_meta_data(sizeStorageInBytes);
 
-   pNew->set_length(strsize);
+   pNew->set_character_count(characterCount);
 
    this->create_assign_natural_meta_data(pNew);
 
@@ -2477,12 +2504,12 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
 
 template < typename ITERATOR_TYPE >
-typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::fork_string(strsize strsize)
+typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
 {
 
-   auto memsize = char_length_to_byte_length(this->begin(), strsize + 1);
+   auto storageSizeInBytes = character_count_to_byte_length(this->begin(), characterCount);
 
-   auto pNew = this->create_meta_data(memsize);
+   auto pNew = this->create_meta_data(storageSizeInBytes);
 
    auto pOld = this->NATURAL_POINTER::metadata();
 
@@ -2491,20 +2518,20 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
    if (::is_set(pOld))
    {
 
-      auto memsizeOld = pOld->memsize();
+      auto oldCharacterCountInBytes = pOld->character_count_in_bytes();
 
-      if (memsizeOld > 0)
+      if (oldCharacterCountInBytes > 0)
       {
 
-         auto memsizeCopy = minimum(memsizeOld, memsize);
+         auto sizeCopy = minimum(oldCharacterCountInBytes, storageSizeInBytes);
 
-         memcpy_dup((void *)pNew->begin(), pOld->begin(), memsizeCopy);
+         memcpy_dup((void *)pNew->begin(), pOld->begin(), sizeCopy);
 
       }
 
    }
 
-   pNew->set_length(strsize);
+   pNew->set_character_count(characterCount);
 
    this->assign_natural_meta_data(pNew);
 
@@ -2513,22 +2540,20 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 }
 
 
-
-
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_string_buffer(strsize nNewLength)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_string_buffer(strsize characterCount)
 {
 
-   if (nNewLength == -1)
+   if (characterCount < 0)
    {
 
-      nNewLength = string_safe_length(this->begin());
+      characterCount = string_safe_length(this->begin()) + characterCount + 1;
 
    }
 
-   this->NATURAL_POINTER::metadata()->set_length(nNewLength);
+   this->NATURAL_POINTER::metadata()->set_character_count(characterCount);
 
-   this->m_end = this->m_begin + nNewLength;
+   this->m_end = this->m_begin + characterCount;
 
    return *this;
 
@@ -2536,15 +2561,15 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_string_bu
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_base < ITERATOR_TYPE >::get_storage_length() const { return (::memsize)byte_length_to_char_length(this->begin(), this->get_storage_size_in_bytes()); }
+inline strsize string_base < ITERATOR_TYPE >::storage_character_count() const { return this->NATURAL_POINTER::metadata()->storage_character_count(); }
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::length_in_bytes() const { return char_length_to_byte_length(this->begin(), (strsize)(this->NATURAL_POINTER::metadata()->m_datasize)); }
+inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes_without_null_terminator() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes() - sizeof(CHARACTER); }
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::length_in_bytes_with_null_terminator() const { return char_length_to_byte_length(this->begin(), (strsize)(this->NATURAL_POINTER::metadata()->m_datasize + 1)); }
+inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes(); }
 
 
 template < typename ITERATOR_TYPE >
@@ -2600,9 +2625,11 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
       else
       {
 
-         pmetadata->set_length(p - this->begin());
+         auto characterCount = p - this->begin();
 
-         this->end() = pmetadata->end();
+         pmetadata->set_character_count(characterCount);
+
+         this->m_end = this->m_begin + characterCount;
 
       }
 
@@ -2633,10 +2660,17 @@ inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
 
    auto p = this->NATURAL_POINTER::metadata();
 
-   if (p->natural_is_shared() || iChar >= p->length())
+   if (iChar >= p->character_count())
    {
 
-      fork_string(maximum(p->length(), iChar + 1));
+      throw ::exception(error_index_out_of_bounds);
+
+   }
+
+   if (p->natural_is_shared())
+   {
+
+      fork_string(maximum(p->character_count(), iChar + 1));
 
    }
 
@@ -6947,7 +6981,7 @@ int get_mem_free_available_kb();
 
 
 template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::set_length(::strsize strsize)
+inline void string_meta_data < CHARACTER > ::raw_set_character_count(::strsize countData)
 {
 
    if (this->natural_is_shared())
@@ -6957,68 +6991,49 @@ inline void string_meta_data < CHARACTER > ::set_length(::strsize strsize)
 
    }
 
-   auto strsizeStorage = this->memsize_in_chars();
+   auto storageCharacterCount = this->storage_character_count();
 
-   if (strsize >= strsizeStorage)
+   if (countData > storageCharacterCount)
    {
 
       throw_exception(error_bad_argument);
 
    }
 
-   this->m_datasize = strsize;
-
-   this->begin()[strsize] = (CHARACTER)0;
-
-   this->begin()[strsizeStorage - 1] = (CHARACTER)0;
-
-}
-
-
-
-template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::set_data_length(::strsize strsize)
-{
-
-   if (this->natural_is_shared())
-   {
-
-      throw_exception(error_wrong_state, "invalid state");
-
-   }
-
-   auto strsizeStorage = this->memsize_in_chars();
-
-   if (strsize >= strsizeStorage)
-   {
-
-      throw_exception(error_bad_argument);
-
-   }
-
-   this->m_datasize = strsize;
-
-}
-
-
-
-template < primitive_character CHARACTER >
-inline ::strsize string_meta_data < CHARACTER>::memsize_in_chars() const
-{
-
-   return (::strsize)byte_length_to_char_length(&this->begin()[0], (::strsize)this->m_memsize);
+   this->m_countData = countData;
 
 }
 
 
 template < primitive_character CHARACTER >
-inline ::memsize string_meta_data < CHARACTER>::length_in_bytes() const
+inline void string_meta_data < CHARACTER > ::set_character_count(::strsize countData)
 {
 
-   return char_length_to_byte_length(&this->begin()[0], this->m_datasize);
+   raw_set_character_count(countData);
+
+   this->begin()[countData] = (CHARACTER)0;
+
+   this->begin()[this->storage_character_count()] = (CHARACTER)0;
 
 }
 
+
+template < primitive_character CHARACTER >
+inline ::strsize string_meta_data < CHARACTER>::storage_character_count() const
+{
+
+   return (::strsize)byte_length_to_character_count(&this->begin()[0], (::strsize)this->m_sizeStorageInBytes);
+
+}
+
+
+template < primitive_character CHARACTER >
+inline ::memsize string_meta_data < CHARACTER>::character_count_in_bytes() const
+{
+
+   return character_count_to_byte_length(&this->begin()[0], this->m_countData);
+
+}
 
 
 template < primitive_character CHARACTER >

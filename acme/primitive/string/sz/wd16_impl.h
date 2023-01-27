@@ -2,14 +2,14 @@
 #pragma once
 
 
-inline  constexpr strsize     char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength) { return (::memsize)(nCharLength * sizeof(::wd16_character)); }
-inline  constexpr strsize     byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength) { return (::strsize)(nByteLength / sizeof(::wd16_character)); }
+//inline  constexpr strsize     character_count_to_byte_length(const_wd16char_trigger, strsize nCharLength) { return (::memsize)(nCharLength * sizeof(::wd16_character)); }
+//inline  constexpr strsize     byte_length_to_character_count(const_wd16char_trigger, memsize nByteLength) { return (::strsize)(nByteLength / sizeof(::wd16_character)); }
 
 
 
-inline void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
 
 
 inline ::std::strong_ordering _string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept { return wd16_cmp(pszA, pszB)<=>0; }

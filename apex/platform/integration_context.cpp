@@ -57,7 +57,12 @@ namespace integration
    void context::prepare_compile_and_link_environment()
    {
 
-      acmedirectory()->create(m_pathPrefix);
+      if (m_pathPrefix.has_char())
+      {
+
+         acmedirectory()->create(m_pathPrefix);
+
+      }
 
    }
 

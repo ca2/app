@@ -20,33 +20,34 @@ class string_meta_data :
 public:
 
    
-   typedef string_meta_data < CHARACTER >          STRING_META_DATA;
+   typedef string_meta_data < CHARACTER > STRING_META_DATA;
+
 
    using meta_data < CHARACTER >::meta_data;
 
+
    /// in bytes, without meta, with null(s)
-   inline ::memsize memsize() const { return (::memsize) this->m_memsize; }
-   //inline ::strsize memsize_in_chars() const { return (::strsize) ::str::byte_length_to_char_length(&this->get_data()[0], (::strsize) this->m_memsize); }
-   inline ::strsize memsize_in_chars() const;
+   inline ::memsize storage_size() const { return (::memsize) this->m_sizeStorage; }
+   /// storage_size expressed in number of characters
+   inline ::strsize storage_character_count() const;
+
 
    /// always char count (before first [and possibly final, but not necessarily final] null terminator)
-   inline ::strsize get_length() const { return (::strsize) this->m_datasize; }
-   inline ::memsize length_in_bytes() const;
-   inline ::strsize length() const { return (::strsize) this->m_datasize; }
+   inline ::strsize character_count() const { return (::strsize) this->m_countData; }
+   inline ::memsize character_count_in_bytes() const;
+   
 
+   inline void raw_set_character_count(::strsize strsize);
+   inline void set_character_count(::strsize strsize);
 
-   inline void set_length(::strsize strsize);
-   inline void set_data_length(::strsize strsize);
 
    operator const CHARACTER * () const noexcept { return this->begin(); }
 
+
    operator CHARACTER * () noexcept { return this->begin(); }
 
+
    const CHARACTER * c_str() const noexcept { return this->begin(); }
-
-   //CHARACTER * begin() const noexcept { return this->m_pdata; }
-
-   //CHARACTER * end() const noexcept { return this->begin() + this->length(); }
 
 
 };

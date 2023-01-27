@@ -5035,168 +5035,6 @@ namespace user
    }
 
 
-   ::pointer<::message::message>interaction::get_message(const ::atom & atom, wparam wparam, lparam lparam)
-   {
-
-      ::pointer<::message::message>pmessage;
-
-      auto eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
-
-      switch (eprototype)
-      {
-      case ::message::e_prototype_none:
-      {
-
-         pmessage = __new(::user::message);
-
-      }
-      break;
-      case ::message::e_prototype_create:
-      {
-         pmessage = __new(::message::create);
-      }
-      break;
-      case ::message::e_prototype_enable:
-      {
-         pmessage = __new(::message::enable);
-      }
-      break;
-      case ::message::e_prototype_non_client_activate:
-      {
-         pmessage = __new(::message::nc_activate);
-      }
-      break;
-      case ::message::e_prototype_key:
-      {
-         pmessage = __new(::message::key);
-      }
-      break;
-      case ::message::e_prototype_timer:
-      {
-
-         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
-
-         pmessage = __new(::message::timer);
-
-      }
-      break;
-      case ::message::e_prototype_show_window:
-      {
-         pmessage = __new(::message::show_window);
-      }
-      break;
-      case ::message::e_prototype_set_cursor:
-      {
-         pmessage = __new(::message::set_cursor);
-      }
-      break;
-      case ::message::e_prototype_non_client_hit_test:
-      {
-         pmessage = __new(::message::nc_hit_test);
-      }
-      break;
-      case ::message::e_prototype_move:
-      {
-         pmessage = __new(::message::reposition);
-      }
-      break;
-      case ::message::e_prototype_erase_background:
-      {
-         pmessage = __new(::message::erase_bkgnd);
-      }
-      break;
-      case ::message::e_prototype_scroll:
-      {
-         pmessage = __new(::message::scroll);
-      }
-      break;
-      case ::message::e_prototype_set_focus:
-      {
-         pmessage = __new(::message::set_keyboard_focus);
-      }
-      break;
-      case ::message::e_prototype_kill_focus:
-      {
-         pmessage = __new(::message::kill_keyboard_focus);
-      }
-      break;
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
-      case ::message::e_prototype_window_pos:
-      {
-         pmessage = __new(::message::window_pos);
-      }
-      break;
-      case ::message::e_prototype_non_client_calc_size:
-      {
-         pmessage = __new(::message::nc_calc_size);
-      }
-      break;
-#endif
-      case ::message::e_prototype_mouse:
-      {
-         pmessage = __new(::message::mouse);
-      }
-      break;
-      case ::message::e_prototype_mouse_wheel:
-      {
-         pmessage = __new(::message::mouse_wheel);
-      }
-      break;
-      case ::message::e_prototype_size:
-      {
-         pmessage = __new(::message::size);
-      }
-      break;
-      case ::message::e_prototype_activate:
-      {
-         pmessage = __new(::message::activate);
-      }
-      break;
-      case ::message::e_prototype_mouse_activate:
-      {
-         pmessage = __new(::message::mouse_activate);
-      }
-      break;
-      case ::message::e_prototype_simple_command:
-      {
-         pmessage = __new(::message::simple_command);
-      }
-      break;
-      case ::message::e_prototype_object:
-      {
-         pmessage = __new(::message::particle);
-      }
-      break;
-      default:
-      {
-         pmessage = __new(::message::message);
-      }
-      break;
-      }
-
-      if (pmessage.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      //auto estatus =
-
-      pmessage->initialize(this);
-
-      //if (!estatus)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      pmessage->set(oswindow(), window(), atom, wparam, lparam);
-
-      return pmessage;
-
-   }
 
 
    void interaction::default_message_handler(::message::message * pmessage)
@@ -17947,7 +17785,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto pcontextmenu = __new(::message::context_menu);
 
-      pcontextmenu->set(oswindow(), window(), e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
+      pcontextmenu->m_oswindow = oswindow();
+      pcontextmenu->m_pwindow = window();
+      pcontextmenu->m_atom = e_message_context_menu;
+      pcontextmenu->m_pointMessage = pmouse->m_point;
+
+      //;; pcontextmenu->m_wpar
+      //pcontextmenu->set(oswindow(), window(), e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 

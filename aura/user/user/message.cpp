@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "windowing/window.h"
 #include "message.h"
 #include "interaction_impl.h"
@@ -79,14 +79,14 @@ namespace user
    }
 
 
-   void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
-   {
+   //void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //{
 
-      m_pwindow = pwindow;
+   //   m_pwindow = pwindow;
 
-      ::message::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::message::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   }
+   //}
 
 
    //base & base::operator = (const base & base)

@@ -46,11 +46,13 @@ public:
 
    virtual bool is_valid() const override;
    memsize erase_begin(void * pdata, memsize uiCount);
-
+   memsize erase_begin(memsize uiCount);
+   
 
    void load_string(string & str);
    void translate(filesize offset, ::enum_seek eseek) override;
    filesize get_position() const override;
+   virtual void raw_set_position(memsize memsize);
 
 
    ::file::path get_file_path() const override;

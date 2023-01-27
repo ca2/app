@@ -851,14 +851,14 @@ namespace user
 
       }
 
-      ::user::plain_edit::set_current_item(pitem, actioncontext);
-
-      if(m_plistbox)
+      if (m_plistbox)
       {
 
-         m_plistbox->m_pitemCurrent = m_pitemCurrent;
+         m_plistbox->m_pitemCurrent = pitem;
 
       }
+
+      ::user::plain_edit::set_current_item(pitem, actioncontext);
 
       if (!is_window())
       {

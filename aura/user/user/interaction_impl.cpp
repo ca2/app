@@ -2223,8 +2223,8 @@ namespace user
 
          auto psession = get_session();
 
-         if (pmouse)
-         {
+         //if (pmouse)
+         //{
 
             if (psession != nullptr)
             {
@@ -2247,76 +2247,76 @@ namespace user
             //         }
 
 
-            if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
-            {
-               pmouse->m_bTranslated = true;
-               ::rectangle_i32 rectWindow;
-               //            if(m_bScreenRelativeMouseMessagePosition)
-               //            {
-               //
-               //               INFO("Screen Relative Mouse Message Position");
-               //
-               //               ::rectangle_i32 rectWindow32;
-               //
-               //               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
-               //
-               //               ::copy(rectWindow, rectWindow32);
-               //
-               //            }
-               //            else
-               {
-                  m_puserinteraction->window_rectangle(rectWindow);
-               }
+         //   if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
+         //   {
+         //      pmouse->m_bTranslated = true;
+         //      ::rectangle_i32 rectWindow;
+         //      //            if(m_bScreenRelativeMouseMessagePosition)
+         //      //            {
+         //      //
+         //      //               INFO("Screen Relative Mouse Message Position");
+         //      //
+         //      //               ::rectangle_i32 rectWindow32;
+         //      //
+         //      //               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
+         //      //
+         //      //               ::copy(rectWindow, rectWindow32);
+         //      //
+         //      //            }
+         //      //            else
+         //      {
+         //         m_puserinteraction->window_rectangle(rectWindow);
+         //      }
 
-               //auto pwindowing = windowing();
+         //      //auto pwindowing = windowing();
 
-               //auto pdisplay = pwindowing->display();
+         //      //auto pdisplay = pwindowing->display();
 
-               //if (pdisplay->get_monitor_count() > 0)
-               //{
+         //      //if (pdisplay->get_monitor_count() > 0)
+         //      //{
 
-               //   ::rectangle_i32 rcMonitor;
+         //      //   ::rectangle_i32 rcMonitor;
 
-               //   pdisplay->get_monitor_rectangle(0, rcMonitor);
+         //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
-               //   if (rectWindow.left >= rcMonitor.left)
-               //   {
+         //      //   if (rectWindow.left >= rcMonitor.left)
+         //      //   {
 
-               //      pmouse->m_point.x += (::i32)rcMonitor.left;
+         //      //      pmouse->m_point.x += (::i32)rcMonitor.left;
 
-               //   }
+         //      //   }
 
-               //   if (rectWindow.top >= rcMonitor.top)
-               //   {
+         //      //   if (rectWindow.top >= rcMonitor.top)
+         //      //   {
 
-               //      //pmouse->m_point.y += (::i32)rectWindow.top;
-               //      pmouse->m_point.y += (::i32)rcMonitor.top;
+         //      //      //pmouse->m_point.y += (::i32)rectWindow.top;
+         //      //      pmouse->m_point.y += (::i32)rcMonitor.top;
 
-               //   }
+         //      //   }
 
-               //}
-               //else
-               {
+         //      //}
+         //      //else
+         //      {
 
-                  if (rectWindow.left >= 0)
-                  {
+         //         if (rectWindow.left >= 0)
+         //         {
 
-                     pmouse->m_point.x += (::i32)rectWindow.left;
+         //            pmouse->m_point.x += (::i32)rectWindow.left;
 
-                  }
+         //         }
 
-                  if (rectWindow.top >= 0)
-                  {
+         //         if (rectWindow.top >= 0)
+         //         {
 
-                     pmouse->m_point.y += (::i32)rectWindow.top;
+         //            pmouse->m_point.y += (::i32)rectWindow.top;
 
-                  }
+         //         }
 
-               }
+         //      }
 
-            }
+         //   }
 
-         }
+         //}
 
          auto pwindowing = windowing();
 

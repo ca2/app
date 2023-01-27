@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "interaction_layout.h"
@@ -618,7 +618,7 @@ namespace user
 
       virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics);
 
-      ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
+      //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
       inline ::user::style * get_style(::user::style * pstyle)
       {

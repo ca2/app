@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "channel.h"
 #include "acme/operating_system/message.h"
 #include "acme/platform/message.h"
@@ -6,8 +6,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/scoped_restore.h"
-//#include "apex/message.h"
 #include "apex/message/command.h"
+#include "apex/message/simple_command.h"
 
 
 //::pointer < ::mutex >channel::s_pmutexChannel;
@@ -175,32 +175,55 @@ void channel::route_message(::message::message * pmessage)
 
    auto pmessagemessage = __new(::message::message);
 
-   pmessagemessage->set(
-      pmessage->oswindow, 
-      nullptr,
-      pmessage->m_atom, 
-      pmessage->wParam, 
-      pmessage->lParam);
+   pmessagemessage->m_oswindow = pmessage->oswindow;
+   pmessagemessage->m_atom = pmessage->m_atom;
+   pmessagemessage->m_wparam = pmessage->wParam;
+   pmessagemessage->m_lparam = pmessage->lParam;
 
    return pmessagemessage;
 
 }
+#define _NEW_MESSAGE(TYPE) \
+   auto pmessage = __new(TYPE); \
+   pmessageBase = pmessage; \
+   pmessage->m_atom = atom; \
+   pmessage->m_wparam = wparam; \
+   pmessage->m_lparam = lparam;
 
 
 //::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
-::pointer<::message::message>channel::get_message(const ::atom& atom, wparam wparam, lparam lparam)
+::pointer<::message::message>channel::get_message(const ::atom& atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
 {
 
-   auto pmessagemessage = __new(::message::message);
+   ::pointer<::message::message>pmessageBase;
 
-   pmessagemessage->set(
-      nullptr,
-      nullptr,
-      atom,
-      wparam,
-      lparam);
+   switch (eprototype)
+   {
+   case ::message::e_prototype_simple_command:
+   {
+      _NEW_MESSAGE(::message::simple_command);
+   }
+   break;
+   //case ::message::e_prototype_object:
+   //{
+   //   _NEW_MESSAGE(::message::particle);
+   //}
+   //break;
+   default:
+   {
+      _NEW_MESSAGE(::message::message);
+   }
+   break;
+   }
 
-   return pmessagemessage;
+
+   //auto pmessagemessage = __new(::message::message);
+
+   //pmessagemessage->m_atom = atom;
+   //pmessagemessage->m_wparam = wparam;
+   //pmessagemessage->m_lparam = lparam;
+
+   return pmessageBase;
 
 }
 

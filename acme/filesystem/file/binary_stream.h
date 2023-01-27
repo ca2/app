@@ -1738,7 +1738,7 @@ public:
 
          auto psz = str.get_string_buffer((strsize)u);
 
-         memsize s = char_length_to_byte_length(psz, (strsize)u);
+         memsize s = character_count_to_byte_length(psz, (strsize)u);
 
          read(psz, s);
 

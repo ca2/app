@@ -5,8 +5,8 @@
 #define const_wd32char_trigger const ::wd32_character *
 
 
-inline  constexpr strsize     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength);
-inline  constexpr strsize     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
+//inline  constexpr strsize     character_count_to_byte_length(const_wd32char_trigger, strsize nCharLength);
+//inline  constexpr strsize     byte_length_to_character_count(const_wd32char_trigger, memsize nByteLength);
 
 
 inline void string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, strsize nChars) noexcept;

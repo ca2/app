@@ -3,14 +3,14 @@
 
 
 
-inline  constexpr strsize     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)(nCharLength * sizeof(::ansi_character)); }
-inline  constexpr strsize     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength) { return (::strsize)(nByteLength / sizeof(::ansi_character)); }
+inline  constexpr strsize     character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength + 1) * sizeof(::ansi_character)); }
+inline  constexpr strsize     byte_length_to_character_count(const_ansichar_trigger, memsize nByteLength) { return (::strsize)((nByteLength / sizeof(::ansi_character)) - 1); }
 
 
 
-inline void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-inline void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
 
 
 constexpr ::std::strong_ordering as_strong_ordering(int i)

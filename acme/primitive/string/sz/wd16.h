@@ -7,8 +7,8 @@
 
 
 
-inline  constexpr strsize     char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength);
-inline  constexpr strsize     byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength);
+//inline  constexpr strsize     character_count_to_byte_length(const_wd16char_trigger, strsize nCharLength);
+//inline  constexpr strsize     byte_length_to_character_count(const_wd16char_trigger, memsize nByteLength);
 
 
 

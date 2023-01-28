@@ -183,7 +183,8 @@ public:
     strsize offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
 
-    string_range &operator=(const THIS_RANGE &range) {
+    string_range &operator=(const THIS_RANGE &range)
+    {
        BASE_RANGE::operator=(range);
        return *this;
     }

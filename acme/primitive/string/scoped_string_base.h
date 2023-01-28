@@ -41,18 +41,20 @@ public:
    RANGE(e_zero_initialize)
    {
 
-      //if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))
-      //{
+      if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))
+      {
 
-      //   RANGE::operator=(str);
+         this->m_begin = str.m_begin;
+         this->m_end = str.m_end;
+         this->m_erange = e_range_none;
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
          this->str(str);
 
-//      }
+      }
 
    }
 
@@ -111,6 +113,7 @@ public:
 
          this->m_begin = start;
          this->m_end = end;
+         this->m_erange = e_range_none;
 
       }
       else
@@ -168,10 +171,12 @@ public:
    void construct_range(const GENERIC_RANGE & range)
    {
 
-      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER) && !(range.m_erange & e_range_string))
+      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
       {
 
-         RANGE::operator = (range);
+         this->m_begin = range.m_begin;
+         this->m_end = range.m_end;
+         this->m_erange = e_range_none;
 
       }
       else

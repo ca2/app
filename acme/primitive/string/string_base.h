@@ -616,14 +616,14 @@ public:
          fork_string(characterCount);
 
       }
-      else
-      {
+      //else
+      //{
 
-         this->metadata()->set_character_count(characterCount);
+      //   this->metadata()->set_character_count(characterCount);
 
-         this->m_end = this->m_begin + characterCount;
+      //   this->m_end = this->m_begin + characterCount;
 
-      }
+      //}
 
       return this->data();
 

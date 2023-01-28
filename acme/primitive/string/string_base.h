@@ -57,9 +57,9 @@ public:
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
-   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct11(ansistr); }
-   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct11(wd16str); }
-   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct11(wd32str); }
+   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(e_no_initialize) { construct5(ansistr); }
+   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(e_no_initialize) { construct5(wd16str); }
+   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(e_no_initialize) { construct5(wd32str); }
    string_base(string_base && str) :
       NATURAL_POINTER(e_no_initialize) 
    { 
@@ -205,9 +205,6 @@ public:
 
    template < primitive_character CHARACTER2 >
    inline void construct5(const ::range < const CHARACTER2 * > & range);
-
-   template < primitive_character CHARACTER2 >
-   inline void construct11(const ::range < const CHARACTER2* > & range);
 
    
    //   template < primitive_character CHARACTER2 >

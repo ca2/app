@@ -8,7 +8,7 @@ template < primitive_character CHARACTER >
 inline constexpr memsize character_count_to_byte_length(const CHARACTER * pszTrigger, strsize nCharLength)
 {
  
-   return (::memsize)((nCharLength + 1) * sizeof(::ansi_character));
+   return (::memsize)((nCharLength + 1) * sizeof(CHARACTER));
 
 }
 
@@ -17,7 +17,7 @@ template < primitive_character CHARACTER >
 inline constexpr strsize byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
 {
 
-   return (::strsize)((nByteLength / sizeof(::ansi_character)) - 1);
+   return (::strsize)((nByteLength / sizeof(CHARACTER)) - 1);
 
 }
 

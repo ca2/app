@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 22/10/22 21:02 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -131,3 +131,12 @@ CLASS_DECL_ACME ::string _(const ::string & str)
    return localization_get(str);
 
 }
+
+
+CLASS_DECL_ACME void foo123()
+{
+
+   ::output_debug_string("foo123");
+
+}
+

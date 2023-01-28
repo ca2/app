@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "user.h"
 #include "acme/exception/interface_only.h"
 #include "acme/include/_c_swap.h"
@@ -621,12 +621,12 @@ namespace message
    }
 
 
-   i16 mouse_wheel::GetDelta()
-   {
-
-      return second_i16(m_wparam);
-
-   }
+//   i16 mouse_wheel::GetDelta()
+//   {
+//
+//      return second_i16(m_wparam);
+//
+//   }
 
 
    point_i32 mouse_wheel::GetPoint()

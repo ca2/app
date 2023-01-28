@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/user/user/mouse.h"
@@ -173,12 +173,13 @@ namespace message
    {
    public:
 
+      i16 m_Δ;
 
       mouse_wheel();
 
       ::u32 GetFlags();
 
-      i16 GetDelta();
+      //i16 GetDelta();
 
       point_i32 GetPoint();
 

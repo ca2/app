@@ -18137,7 +18137,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::pointer<::message::mouse_wheel>pwheel = pmessage;
 
-      double y = pwheel->GetDelta() / 120.0;
+      double y = pwheel->m_Δ / 120.0;
 
       auto pappearance = get_appearance();
 

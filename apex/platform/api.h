@@ -50,6 +50,7 @@ public:
 
    virtual void load_profile();
    virtual void save_profile();
+   virtual void clear_profile();
 
 
    virtual void on_login_response();

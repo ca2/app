@@ -849,9 +849,11 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_nFlags = wparam;
+         pmessage->m_nFlags = first_u16(wparam);
 
          pmessage->m_point = ::point_i32(lparam);
+
+         pmessage->m_Δ = second_i16(wparam);
 
          _raw_client_to_screen(pmessage->m_point);
 

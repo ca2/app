@@ -238,12 +238,12 @@ namespace user
 
       ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
-      int iDelta = pmousewheel->GetDelta();
+      auto Δ = pmousewheel->m_Δ;
 
-      if (iDelta > 0)
+      if (Δ > 0)
       {
 
-         for (; iDelta > 0; iDelta -= 120)
+         for (; Δ > 0; Δ -= 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
@@ -254,7 +254,7 @@ namespace user
       else
       {
 
-         for (; iDelta < 0; iDelta += 120)
+         for (; Δ < 0; Δ += 120)
          {
 
             m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);

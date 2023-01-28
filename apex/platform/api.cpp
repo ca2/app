@@ -130,6 +130,18 @@ void api::save_profile()
 }
 
 
+void api::clear_profile()
+{
+
+   m_strToken.empty();
+
+   m_setProfile.clear();
+
+   file()->put_text(m_pathProfile, "");
+
+}
+
+
 void api::api_login(const ::string & strConfig, const ::string & strProfile)
 {
 

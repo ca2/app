@@ -80,7 +80,7 @@ namespace linux
    }
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

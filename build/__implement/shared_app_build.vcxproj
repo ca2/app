@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{abdff656-2f2c-4ee5-970a-75ffa444f767}</ProjectGuid>
-    <RootNamespace>appcorehellomultiverse</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -228,10 +228,7 @@
     <ProjectReference Include="..\..\..\app\core\core.vcxproj">
       <Project>{29c1eb5b-060e-4021-ae12-d1bcfb1b1359}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\gcom\gcom.vcxproj">
-      <Project>{f30bd15a-0eb5-4fa6-88d3-3b4604a41b4e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\build.vcxproj">
+    <ProjectReference Include="..\app_build.vcxproj">
       <Project>{c7afcefa-3079-4b23-8f97-4543bb980265}</Project>
     </ProjectReference>
   </ItemGroup>

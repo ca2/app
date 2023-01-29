@@ -721,6 +721,7 @@ public:
    }
 
 
+
    const SCOPED_STRING & if_empty(const SCOPED_STRING & scopedstr) const { return this->is_empty() ? scopedstr : (const SCOPED_STRING & ) *this; }
    bool set_if_empty(const SCOPED_STRING & scopedstr) { return this->is_empty() ? (*this = scopedstr, true) : false; }
 

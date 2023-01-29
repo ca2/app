@@ -20,9 +20,7 @@
     <ResourceCompile Include="main.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-    <ResourceCompile Include="deployment.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="..\deployment.rc" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

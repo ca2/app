@@ -79,6 +79,11 @@ namespace http
          str += "; domain=";
          str += m_strDomain;
       }
+      if (m_strSameSite.has_char())
+      {
+         str += "; SameSite=";
+         str += m_strSameSite;
+      }
       if(m_bSecure)
       {
          str += "; secure";
@@ -281,7 +286,7 @@ namespace http
    }
 
 
-   bool cookies::set_cookie(const ::scoped_string & scopedstrName, const ::payload & payload, const class time & time, const ::file::path & path, const ::scoped_string & scopedstrDomain, bool bSecure)
+   bool cookies::set_cookie(const ::scoped_string & scopedstrName, const ::payload & payload, const class time & time, const ::scoped_string& scopedstrPath, const ::scoped_string & scopedstrDomain, const ::scoped_string& scopedstrSameSite, bool bSecure)
    {
 
       auto & cookie = this->cookie(scopedstrName);
@@ -295,9 +300,11 @@ namespace http
 
       }
 
-      cookie.m_strPath = path;
+      cookie.m_strPath = scopedstrPath;
 
       cookie.m_strDomain = scopedstrDomain;
+
+      cookie.m_strSameSite = scopedstrSameSite;
 
       cookie.m_bSecure = bSecure;
 

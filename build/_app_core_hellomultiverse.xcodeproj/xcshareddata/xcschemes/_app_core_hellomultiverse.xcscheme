@@ -15,8 +15,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "app_core_build.app"
-            BlueprintName = "app_core_build"
+            BuildableName = "app_build.app"
+            BlueprintName = "app_build"
             ReferencedContainer = "container:hellomultiverse.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

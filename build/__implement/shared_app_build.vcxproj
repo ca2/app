@@ -175,8 +175,8 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp" />
-    <ClCompile Include="_app_core_build.cpp" />
+    <ClCompile Include="..\framework.cpp" />
+    <ClCompile Include="application.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\deployment.rc" />

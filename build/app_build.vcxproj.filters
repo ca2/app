@@ -33,7 +33,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_app_core_build.h">
+    <ClInclude Include="_app_build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="application.h">

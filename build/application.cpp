@@ -1,11 +1,28 @@
-#include "framework.h"
-
+﻿#include "framework.h"
+#include "application.h"
+#include "document.h"
+#include "frame.h"
+#include "impact.h"
+#include "main_frame.h"
+#include "main_impact.h"
+#include "pane_impact.h"
+#include "acme/platform/request.h"
+#include "apex/database/stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "aura/platform/session.h"
+#include "base/user/user/single_document_template.h"
+#include "core/user/simple/pane_document.h"
+#include "core/user/user/user.h"
+#ifdef WINDOWS_DESKTOP
+#include "build_windows.h"
+#endif
 
 #define TEST_DATA_LOCAL 1
 
 void hellomultiverse_debugging();
 
-namespace app_core_build
+namespace app_build
 {
 
    application::application()
@@ -16,9 +33,9 @@ namespace app_core_build
       m_ptemplateHelloMultiverseMain = nullptr;
       m_ptemplateHelloMultiverseImpact = nullptr;
 
-      m_strAppId = "app-core/build";
-      m_strAppName = "app-core/build";
-      m_strBaseSupportId = "app-core/build";
+      m_strAppId = "app/build";
+      m_strAppName = "app/build";
+      m_strBaseSupportId = "app/build";
       m_bLicense = false;
 
       m_etype = type_normal;
@@ -48,9 +65,9 @@ namespace app_core_build
 
       factory()->add_factory_item < linux_build, build >();
 
-#else
+#elif defined(WINDOWS_DESKTOP)
 
-      #error "not implemented"
+      factory()->add_factory_item < ::windows::build, build >();
 
 #endif
 
@@ -61,28 +78,23 @@ namespace app_core_build
 
       }
 
-      set_local_data();
+      //set_local_data();
 
-      auto psession = get_session();
+      auto psession = acmesession()->m_paurasession;
 
       auto puser = psession->user()->m_pcoreuser;
 
       puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-      factory()->add_factory_item <::app_core_build::document >();
-      factory()->add_factory_item <::app_core_build::frame >();
-      factory()->add_factory_item <::app_core_build::main_frame >();
+      factory()->add_factory_item <::app_build::document >();
+      factory()->add_factory_item <::app_build::frame >();
+      factory()->add_factory_item <::app_build::main_frame >();
       factory()->add_factory_item <::user::button_impact >();
-      factory()->add_factory_item <::app_core_build::impact >();
-      factory()->add_factory_item <::app_core_build::main_impact >();
-      factory()->add_factory_item <::app_core_build::pane_impact >();
+      factory()->add_factory_item <::app_build::impact >();
+      factory()->add_factory_item <::app_build::main_impact >();
+      factory()->add_factory_item <::app_build::pane_impact >();
 
-      if (!::core::application::init_instance())
-      {
-
-         return false;
-
-      }
+      ::core::application::init_instance();
 
       string str = payload("hellomultiverse");
 
@@ -113,7 +125,7 @@ namespace app_core_build
 
       add_document_template(ptemplate);
 
-      return true;
+      //return true;
 
    }
 
@@ -153,7 +165,7 @@ namespace app_core_build
       if (m_ptemplateHelloMultiverseMain->get_document_count() == 0)
       {
 
-         if (pcreate->m_payloadFile.is_empty())
+         if (prequest->m_payloadFile.is_empty())
          {
 
             ::file::path path;
@@ -167,22 +179,22 @@ namespace app_core_build
 
             }
 
-            pcreate->m_payloadFile = path;
+            prequest->m_payloadFile = path;
 
-            pcreate->m_ecommand = ::command_line::command_file_open;
+            prequest->m_ecommand = ::e_command_file_open;
 
          }
 
-         m_ptemplateHelloMultiverseMain->do_request(pcreate);
+         m_ptemplateHelloMultiverseMain->request(prequest);
 
          return;
 
       }
 
-      if (pcreate->has_file())
+      if (prequest->has_file())
       {
 
-         m_ptemplateHelloMultiverseImpact->do_request(pcreate);
+         m_ptemplateHelloMultiverseImpact->request(prequest);
 
       }
 
@@ -231,14 +243,14 @@ namespace app_core_build
    //}
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 
 void hellomultiverse_debugging()
 {
 
-   const ::scoped_string & scopedstrFree;
+   const char * pszFree;
 
    {
 

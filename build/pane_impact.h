@@ -1,11 +1,16 @@
-#pragma once
+﻿#pragma once
 
 
-namespace app_core_build
+#include "application.h"
+#include "apex/platform/app_consumer.h"
+#include "core/user/userex/pane_tab_impact.h"
+
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD pane_impact :
+   class CLASS_DECL_APP_BUILD pane_impact :
       virtual public ::app_consumer < application, ::userex::pane_tab_impact, ::user::form_callback >
    {
    public:
@@ -41,7 +46,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

@@ -1,9 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "document.h"
+#include "impact.h"
 #include "acme/constant/id.h"
 #include "acme/exception/parsing.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 
@@ -24,20 +26,20 @@ namespace app_core_build
 
 
 
-   void document::assert_ok() const
-   {
+   //void document::assert_ok() const
+   //{
 
-      ::user::document::assert_ok();
+   //   ::user::document::assert_ok();
 
-   }
+   //}
 
 
-   void document::dump(dump_context & dumpcontext) const
-   {
+   //void document::dump(dump_context & dumpcontext) const
+   //{
 
-      ::user::document::dump(dumpcontext);
+   //   ::user::document::dump(dumpcontext);
 
-   }
+   //}
 
 
    bool document::on_new_document()
@@ -96,7 +98,7 @@ namespace app_core_build
 #endif
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

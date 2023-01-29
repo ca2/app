@@ -1,14 +1,15 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "main_frame.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 
    main_frame::main_frame()
    {
 
-      m_bDefaultCreateToolbar = false;
+      m_bToolbar = false;
 
       window_enable_full_screen();
 
@@ -23,20 +24,20 @@ namespace app_core_build
    }
 
 
-   void main_frame::assert_ok() const
-   {
+   //void main_frame::assert_ok() const
+   //{
 
-      simple_frame_window::assert_ok();
+   //   simple_frame_window::assert_ok();
 
-   }
+   //}
 
 
-   void main_frame::dump(dump_context & dumpcontext) const
-   {
+   //void main_frame::dump(dump_context & dumpcontext) const
+   //{
 
-      simple_frame_window::dump(dumpcontext);
+   //   simple_frame_window::dump(dumpcontext);
 
-   }
+   //}
 
 
    ::experience::frame * main_frame::frame_experience()
@@ -62,7 +63,7 @@ namespace app_core_build
 
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

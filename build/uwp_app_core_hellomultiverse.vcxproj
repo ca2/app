@@ -251,7 +251,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-    <AppInstallerUri>C:\metro\app_core_build</AppInstallerUri>
+    <AppInstallerUri>C:\metro\app_build</AppInstallerUri>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>

@@ -1,12 +1,14 @@
-#pragma once
+﻿#pragma once
 
 
+#include "core/platform/application.h"
 
-namespace app_core_build
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD application :
+   class CLASS_DECL_APP_BUILD application :
       virtual public ::core::application
    {
    public:
@@ -30,13 +32,13 @@ namespace app_core_build
       bool                                   m_bMultiverseChat;
 
       ::user::document *                     m_pdocMenu;
-      ::user::plain_edit_impact *              m_prollfps;
+      ::user::plain_edit_impact *            m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloMultiverseMain;
       ::user::single_document_template *     m_ptemplateHelloMultiverseImpact;
-      pane_impact *                            m_ppaneimpact;
+      pane_impact *                          m_ppaneimpact;
 
 
-      ::file::path_array                          m_pathaCommandLineSlide;
+      ::file::path_array                     m_pathaCommandLineSlide;
 
 
       application();
@@ -57,7 +59,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

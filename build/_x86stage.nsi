@@ -24,10 +24,10 @@
 
 
 ; The default installation directory
-InstallDir "$PROGRAMFILES\app_core_build"
+InstallDir "$PROGRAMFILES\app_build"
 
 ; The file to write
-OutFile "A:\\Dropbox\\stage\\app_core_build ${MyTIMESTAMP}.exe"
+OutFile "A:\\Dropbox\\stage\\app_build ${MyTIMESTAMP}.exe"
 
 
 ; Registry key to check for directory (so if you install again, it will 
@@ -50,7 +50,7 @@ UninstPage instfiles
 ;--------------------------------
 
 ; The stuff to install
-Section "app_core_build (required)"
+Section "app_build (required)"
 
   SectionIn RO
 
@@ -106,8 +106,8 @@ Section "app_core_build (required)"
   File "C:\basis\time-windows\Win32\stage\bzip2.dll"
   File "C:\basis\time-windows\Win32\stage\windowing_win32.dll"
   File "C:\basis\time-windows\Win32\stage\write_text_win32.dll"
-  File "C:\basis\time-windows\Win32\stage\app_core_build.dll"
-  File "C:\basis\time-windows\Win32\stage\app_core_build.exe"
+  File "C:\basis\time-windows\Win32\stage\app_build.dll"
+  File "C:\basis\time-windows\Win32\stage\app_build.exe"
   File "C:\Program Files\Microsoft Visual Studio\2022\Thumbnail\VC\Redist\MSVC\v143\vc_redist.x86.exe"
   
 ${If} ${Runningx64}
@@ -124,19 +124,19 @@ ${EndIf}
 installed_redist:
 
   ;we are done
-  ExecWait '"$INSTDIR\time\stage\Win32\app_core_build.exe" : install' $0
+  ExecWait '"$INSTDIR\time\stage\Win32\app_build.exe" : install' $0
   
   ; Write the installation path into the registry
   WriteRegStr HKLM "SOFTWARE\ca2\app-core\hellomultiverse" "Install_Dir" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "DisplayName" "composite"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "DisplayName" "composite"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
   
-  CreateShortCut "$DESKTOP\app.lnk" "$INSTDIR\time\stage\Win32\app_core_build.exe" ""
+  CreateShortCut "$DESKTOP\app.lnk" "$INSTDIR\time\stage\Win32\app_build.exe" ""
 
   
 SectionEnd
@@ -146,7 +146,7 @@ Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\composite"
   CreateShortcut "$SMPROGRAMS\composite\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortcut "$SMPROGRAMS\composite\app.lnk" "$INSTDIR\time\stage\Win32\app_core_build.exe" "" "$INSTDIR\time\stage\Win32\app_core_build.exe" 0
+  CreateShortcut "$SMPROGRAMS\composite\app.lnk" "$INSTDIR\time\stage\Win32\app_build.exe" "" "$INSTDIR\time\stage\Win32\app_build.exe" 0
   
 SectionEnd
 
@@ -157,18 +157,18 @@ SectionEnd
 Section "Uninstall"
   
   ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build"
   DeleteRegKey HKLM "SOFTWARE\ca2\app-core\hellomultiverse"
 
   ; Remove files and uninstaller
-  Delete "$INSTDIR\app_core_build.nsi"
+  Delete "$INSTDIR\app_build.nsi"
   Delete "$INSTDIR\uninstall.exe"
 
   ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\app_core_build\*.*"
+  Delete "$SMPROGRAMS\app_build\*.*"
 
   ; Remove directories used
-  RMDir "$SMPROGRAMS\app_core_build"
+  RMDir "$SMPROGRAMS\app_build"
   RMDir /r "$INSTDIR/time"
   RMDir "$INSTDIR"
 

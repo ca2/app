@@ -1,11 +1,14 @@
-#pragma once
+﻿#pragma once
 
 
-namespace app_core_build
+#include "base/user/simple/main_frame.h"
+
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD main_frame :
+   class CLASS_DECL_APP_BUILD main_frame :
       virtual public ::simple_main_frame
    {
    public:
@@ -27,7 +30,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

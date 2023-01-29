@@ -2606,7 +2606,7 @@ void file_context::resolve_link(::file::path &pathTarget, const string &strSourc
 string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 {
 
-   auto pfile = get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read);
+   auto pfile = get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 
    if (!pfile)
    {

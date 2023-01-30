@@ -34,6 +34,16 @@ namespace integration
    }
 
 
+   void context::initialize(::particle* pparticle)
+   {
+
+      ::particle::initialize(pparticle);
+
+      m_pmutexLines = acmenode()->create_mutex();
+
+   }
+
+
    void context::prepare()
    {
 

@@ -1029,6 +1029,7 @@
     <ClInclude Include="platform\application_signal_details.h" />
     <ClInclude Include="platform\app_consumer.h" />
     <ClInclude Include="platform\app_launcher.h" />
+    <ClInclude Include="platform\array_union.h" />
     <ClInclude Include="platform\assert_running_task.h" />
     <ClInclude Include="platform\console_application.h" />
     <ClInclude Include="platform\context.h" />

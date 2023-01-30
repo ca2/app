@@ -4,6 +4,7 @@
 #include "application.h"
 #include "apex/platform/app_consumer.h"
 #include "base/user/user/impact.h"
+#include "apex/platform/array_union.h"
 
 
 namespace app_build
@@ -18,9 +19,8 @@ namespace app_build
 
       string_array                  m_straLinePrebuild;
 
-      ::array < string_array * >    m_str2aLog;
-
       ::pointer<build>              m_pbuild;
+      array_union < string_array >  m_straunion;
 
 
       impact();
@@ -30,8 +30,6 @@ namespace app_build
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      const ::string & get_line(::index iLine);
-      ::count get_line_count();
 
       void handle(::topic* ptopic, ::context* pcontext) override;
 //#ifdef _DEBUG

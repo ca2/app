@@ -81,8 +81,8 @@ namespace app_build
 
       m_pbuild->branch();
 
-      m_str2aLog.add(&m_straLinePrebuild);
-      m_str2aLog.add(&m_pbuild->m_straLine);
+      m_straunion.add_array(m_straLinePrebuild);
+      m_straunion.add_array(m_pbuild->m_straLine);
 
       //fork([this]()
         // {
@@ -94,53 +94,6 @@ namespace app_build
 
    }
 
-
-   const ::string & impact::get_line(::index iLine)
-   {
-      
-      if (iLine < 0)
-      {
-
-         throw ::exception(error_index_out_of_bounds, "get_line with argument < 0");
-
-      }
-
-      for (::index i = 0; i < m_str2aLog.size(); i++)
-      {
-
-         if (iLine < m_str2aLog[i]->size())
-         {
-
-            return m_str2aLog[i]->element_at(iLine);
-
-         }
-
-         iLine -= m_str2aLog[i]->size();
-
-      }
-
-      throw ::exception(error_index_out_of_bounds, "get_line with argument >= line_count");
-
-      return {};
-
-   }
-   
-
-   ::count impact::get_line_count()
-   {
-
-      ::count cLine = 0;
-
-      for (::index i = 0; i < m_str2aLog.size(); i++)
-      {
-
-         cLine += m_str2aLog[i]->size();
-
-      }
-
-      return cLine;
-
-   }
 
 
 //   void impact::prepare()
@@ -289,12 +242,12 @@ namespace app_build
       pgraphics->set_text_color(argb(255,89, 89, 89));
       //if (straLine.has_element())
 
-      for (auto i = get_line_count() -1; i >= 0 && p.y >= 0; i--)
+      for (auto i = m_straunion.get_upper_bound(); i >= 0 && p.y >= 0; i--)
       {
 
          p.y -= 20;
 
-         pgraphics->text_out(p, get_line(i));
+         pgraphics->text_out(p, m_straunion[i]);
 
       }
 

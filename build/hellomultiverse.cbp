@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="app_core_build" />
+		<Option title="app_build" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -51,7 +51,7 @@
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option parameters=": install" />
-				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/app_core_build" />
+				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/app_build" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />

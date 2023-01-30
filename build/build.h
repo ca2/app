@@ -1,10 +1,13 @@
-//
+﻿//
 // Created by camilo on 12/12/21 05:08 PM <3ThomasBorregaardSørensen!!
 //
 #pragma once
 
 
-namespace app_core_build
+#include "apex/parallelization/thread.h"
+
+
+namespace app_build
 {
 
 
@@ -16,6 +19,7 @@ namespace app_core_build
 
 
       bool     m_bStdout;
+      ::string_array m_straLine;
       //::pointer<::user::interaction>     m_puserinteraction;
 
 
@@ -33,7 +37,6 @@ namespace app_core_build
       void write_log(const ::string &str);
 
 
-      void run_command(const ::string & strCommand);
 
 
    };

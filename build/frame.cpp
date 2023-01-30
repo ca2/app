@@ -1,14 +1,15 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "frame.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 
    frame::frame()
    {
 
-      m_bDefaultCreateToolbar = false;
+      m_bToolbar = false;
 
    }
 
@@ -19,20 +20,20 @@ namespace app_core_build
    }
 
 
-   void frame::assert_ok() const
-   {
+   //void frame::assert_ok() const
+   //{
 
-      simple_frame_window::assert_ok();
+   //   simple_frame_window::assert_ok();
 
-   }
+   //}
 
 
-   void frame::dump(dump_context & dumpcontext) const
-   {
+   //void frame::dump(dump_context & dumpcontext) const
+   //{
 
-      simple_frame_window::dump(dumpcontext);
+   //   simple_frame_window::dump(dumpcontext);
 
-   }
+   //}
 
 
    void frame::on_layout(::draw2d::graphics_pointer& pgraphics)
@@ -53,7 +54,7 @@ namespace app_core_build
 //   }
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

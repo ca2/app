@@ -1,7 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "document.h"
+#include "main_impact.h"
+#include "impact.h"
+#include "core/user/userex/top_impact.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 
@@ -24,20 +28,20 @@ namespace app_core_build
    }
 
 
-   void main_impact::assert_ok() const
-   {
+   //void main_impact::assert_ok() const
+   //{
 
-      ::user::split_impact::assert_ok();
+   //   ::user::split_impact::assert_ok();
 
-   }
+   //}
 
 
-   void main_impact::dump(dump_context & dumpcontext) const
-   {
+   //void main_impact::dump(dump_context & dumpcontext) const
+   //{
 
-      ::user::split_impact::dump(dumpcontext);
+   //   ::user::split_impact::dump(dumpcontext);
 
-   }
+   //}
 
 
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
@@ -51,7 +55,7 @@ namespace app_core_build
    document * main_impact::get_document()
    {
 
-      return  ::user::impact::get_document()->cast < document >();
+      return dynamic_cast < document * > (::user::impact::get_document());
 
    }
 
@@ -68,7 +72,7 @@ namespace app_core_build
 
       int iPane;
 
-      if (m_papp->m_bMultiverseChat)
+      if (m_papplicationForConsumer->m_bMultiverseChat)
       {
 
          SetPaneCount(2);
@@ -102,7 +106,7 @@ namespace app_core_build
 
       }
 
-      m_pimpact = create_impact < ::app_core_build::impact >(nullptr,get_pane_holder(iPane), m_strImpactId);
+      m_pimpact = create_impact < ::app_build::impact >(nullptr,get_pane_holder(iPane), m_strImpactId);
 
       if(m_pimpact == nullptr)
       {
@@ -157,7 +161,7 @@ namespace app_core_build
    //}
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

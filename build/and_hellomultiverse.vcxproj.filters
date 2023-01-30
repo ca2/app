@@ -104,7 +104,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".\app_core_build.def">
+    <None Include=".\app_build.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

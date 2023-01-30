@@ -1,17 +1,20 @@
-#include "framework.h"
-//#include "aura/update.h"
+﻿#include "framework.h"
+#include "impact.h"
+#include "acme/_operating_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/operating_system.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
 
-namespace app_core_build
+
+namespace app_build
 {
 
 
    impact::impact()
    {
 
-      m_straLine.add("app_core_build");
-      m_straLine.add("The build log follows...");
+      m_straLinePrebuild.add("app_build");
+      m_straLinePrebuild.add("The build log follows...");
 
    }
 
@@ -22,23 +25,23 @@ namespace app_core_build
    }
 
 
-#ifdef _DEBUG
-
-   void impact::assert_ok() const
-   {
-
-      ::user::impact::assert_ok();
-
-   }
-
-   void impact::dump(dump_context& dumpcontext) const
-   {
-
-      ::user::impact::dump(dumpcontext);
-
-   }
-
-#endif //_DEBUG
+//#ifdef _DEBUG
+//
+//   void impact::assert_ok() const
+//   {
+//
+//      ::user::impact::assert_ok();
+//
+//   }
+//
+//   void impact::dump(dump_context& dumpcontext) const
+//   {
+//
+//      ::user::impact::dump(dumpcontext);
+//
+//   }
+//
+//#endif //_DEBUG
 
 
    void impact::handle(::topic* ptopic, ::context* pcontext)
@@ -78,6 +81,9 @@ namespace app_core_build
 
       m_pbuild->branch();
 
+      m_straunion.add_array(m_straLinePrebuild);
+      m_straunion.add_array(m_pbuild->m_straLine);
+
       //fork([this]()
         // {
 
@@ -87,6 +93,7 @@ namespace app_core_build
          //});
 
    }
+
 
 
 //   void impact::prepare()
@@ -112,51 +119,52 @@ namespace app_core_build
 
 #ifdef WINDOWS
 
-   void impact::prepare_windows()
-   {
-   
 
-      string      strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
+   //void impact::prepare_windows()
+   //{
+   //
 
-   
+   //   string      strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
 
-   ::operating_system::process_pointer process(e_create, this);
+   //
 
-   ::file::path pathEnvTxt;
+   //::operating_system::process_pointer process(e_create, this);
 
-   auto pacmedirectory = acmedirectory();
+   //::file::path pathEnvTxt;
 
-   pathEnvTxt = pacmedirectory->system() / "env.txt";
+   //auto pacmedirectory = acmedirectory();
 
-   acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+   //pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-   acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+   //acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-   auto psystem = acmesystem();
+   //acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-   auto pnode = psystem->node();
+   //auto psystem = acmesystem();
 
-   pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
+   //auto pnode = psystem->node();
 
-   string strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
-   string_array stra;
-   stra.add_lines(strLog);
+   //pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-   //sleep(10000_ms);
+   //string strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
+   //string_array stra;
+   //stra.add_lines(strLog);
 
-   property_set setEnvironment;
+   ////sleep(10000_ms);
 
-   setEnvironment.parse_environment_variable(stra);
+   //property_set setEnvironment;
 
-   for (auto& pproperty : setEnvironment)
-   {
+   //setEnvironment.parse_environment_variable(stra);
 
-      SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
+   //for (auto& pproperty : setEnvironment)
+   //{
 
-   }
+   //   SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
+
+   //}
 
 
-   }
+   //}
 
 #endif
 
@@ -221,10 +229,9 @@ namespace app_core_build
 
       pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
 
+      //string_array straLine;
 
-      string_array straLine;
-
-      file()->get_lines(straLine, acmedirectory()->home() /"build.log");
+      //file()->get_lines(straLine, acmedirectory()->home() /"build.log");
 
       ::point_i32 p;
 
@@ -233,23 +240,21 @@ namespace app_core_build
       p.y = rectangleClient.height();
 
       pgraphics->set_text_color(argb(255,89, 89, 89));
-      if (straLine.has_element())
+      //if (straLine.has_element())
+
+      for (auto i = m_straunion.get_upper_bound(); i >= 0 && p.y >= 0; i--)
       {
 
-         for (int i = straLine.get_upper_bound(); i>= 0 && p.y >= 0; i--)
-         {
-            p.y -= 20;
+         p.y -= 20;
 
-            pgraphics->text_out(p, straLine[i]);
-
-         }
+         pgraphics->text_out(p, m_straunion[i]);
 
       }
 
    }
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

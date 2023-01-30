@@ -1,11 +1,16 @@
-#pragma once
+﻿#pragma once
 
 
-namespace app_core_build
+#include "application.h"
+#include "apex/platform/app_consumer.h"
+#include "base/user/user/document.h"
+
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD document :
+   class CLASS_DECL_APP_BUILD document :
       virtual public ::app_consumer < application, ::user::document >
    {
    public:
@@ -36,7 +41,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

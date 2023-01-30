@@ -1,11 +1,14 @@
-#pragma once
+﻿#pragma once
 
 
-namespace app_core_build
+#include "base/user/simple/frame_window.h"
+
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD frame :
+   class CLASS_DECL_APP_BUILD frame :
       virtual public simple_frame_window
    {
    public:
@@ -25,7 +28,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

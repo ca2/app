@@ -28,9 +28,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C7AFCEFA-3079-4B23-8F97-4543BB980265}</ProjectGuid>
-    <RootNamespace>app_core_build</RootNamespace>
+    <RootNamespace>app_build</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>app_core_build</ProjectName>
+    <ProjectName>app_build</ProjectName>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -715,7 +715,7 @@
     <ClInclude Include="hellomultiverse_impact.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".\app_core_build.def" />
+    <None Include=".\app_build.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

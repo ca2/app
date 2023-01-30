@@ -394,9 +394,9 @@
 			productReference = 9AE24E991904CFFD001AEFFB /* app_core_hellomultiverse_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AEB75A216F78DF10085103B /* app_core_build */ = {
+		9AEB75A216F78DF10085103B /* app_build */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_build" */;
+			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_build" */;
 			buildPhases = (
 				9AEB759F16F78DF10085103B /* Sources */,
 				9AEB75A016F78DF10085103B /* Frameworks */,
@@ -407,8 +407,8 @@
 			dependencies = (
 				070533EE1C90B2B900F31B3F /* PBXTargetDependency */,
 			);
-			name = app_core_build;
-			productName = app_core_build;
+			name = app_build;
+			productName = app_build;
 			productReference = 9AEB75A316F78DF10085103B /* libapp_core_hellomultiverse.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
@@ -426,7 +426,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_build" */;
+			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_build" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -449,7 +449,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75A216F78DF10085103B /* app_core_build */,
+				9AEB75A216F78DF10085103B /* app_build */,
 				9AE24E891904CFFD001AEFFB /* ios_app_core_hellomultiverse */,
 				9AE24E981904CFFD001AEFFB /* app_core_hellomultiverse_iosTests */,
 			);
@@ -839,7 +839,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_core_build" */ = {
+		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_build" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AEB75A516F78DF10085103B /* Debug */,
@@ -848,7 +848,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_core_build" */ = {
+		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_build" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AEB75A816F78DF10085103B /* Debug */,

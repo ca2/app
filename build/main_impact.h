@@ -1,18 +1,23 @@
-#pragma once
+﻿#pragma once
 
 
-namespace app_core_build
+#include "application.h"
+#include "apex/platform/app_consumer.h"
+#include "base/user/user/split_impact.h"
+
+
+namespace app_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD main_impact:
+   class CLASS_DECL_APP_BUILD main_impact:
       virtual public ::app_consumer < application, ::user::split_impact >
    {
    public:
 
 
       ::userex::top_impact *                      m_ptopview;
-      ::app_core_build::impact *      m_pimpact;
+      ::app_build::impact *      m_pimpact;
       string                                    m_strImpactId;
 
 
@@ -41,7 +46,7 @@ namespace app_core_build
    };
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

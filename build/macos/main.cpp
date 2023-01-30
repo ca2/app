@@ -20,14 +20,14 @@
 //#include "aura/application.h"
 
 
-namespace app_core_build
+namespace app_build
 {
 
 
    __namespace_application_factory("app-core/hellomultiverse");
 
 
-} // namespace app_core_build
+} // namespace app_build
 
 
 

@@ -11,7 +11,7 @@
 Name "Hello Multiverse!!"
 
 ; The default installation directory
-InstallDir "$PROGRAMFILES\app_core_build"
+InstallDir "$PROGRAMFILES\app_build"
 
 ; The file to write
 OutFile "C:\ca2\time\HelloMultiverseInstaller.exe"
@@ -78,20 +78,20 @@ Section "HelloMultiverse (required)"
   File "C:\ca2\time\x64\stage\zlib.dll"
   File "C:\ca2\time\x64\stage\bzip2.dll"
   File "C:\ca2\time\x64\stage\app_core.dll"
-  File "C:\ca2\time\x64\stage\app_core_build.dll"
-  File "C:\ca2\time\x64\stage\app_core_build.exe"
+  File "C:\ca2\time\x64\stage\app_build.dll"
+  File "C:\ca2\time\x64\stage\app_build.exe"
   
   
-  ExecWait '"$INSTDIR\time\x64\stage\app_core_build.exe" : install' $0
+  ExecWait '"$INSTDIR\time\x64\stage\app_build.exe" : install' $0
   
   ; Write the installation path into the registry
   WriteRegStr HKLM "SOFTWARE\ca2\app-core\hellomultiverse" "Install_Dir" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "DisplayName" "Hello Multiverse!!"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "UninstallString" '"$INSTDIR\uninstall.exe"'
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "NoModify" 1
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build" "NoRepair" 1
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "DisplayName" "Hello Multiverse!!"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "UninstallString" '"$INSTDIR\uninstall.exe"'
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "NoModify" 1
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build" "NoRepair" 1
   WriteUninstaller "uninstall.exe"
   
 SectionEnd
@@ -101,7 +101,7 @@ Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\Hello Multiverse!!"
   CreateShortcut "$SMPROGRAMS\Hello Multiverse!!\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
-  CreateShortcut "$SMPROGRAMS\Hello Multiverse!!\Hello Multiverse!!.lnk" "$INSTDIR\time\x64\stage\app_core_build.exe" "" "$INSTDIR\time\x64\stage\app_core_build.exe" 0
+  CreateShortcut "$SMPROGRAMS\Hello Multiverse!!\Hello Multiverse!!.lnk" "$INSTDIR\time\x64\stage\app_build.exe" "" "$INSTDIR\time\x64\stage\app_build.exe" 0
   
 SectionEnd
 
@@ -112,18 +112,18 @@ SectionEnd
 Section "Uninstall"
   
   ; Remove registry keys
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_core_build"
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\app_build"
   DeleteRegKey HKLM "SOFTWARE\ca2\app-core\hellomultiverse"
 
   ; Remove files and uninstaller
-  Delete "$INSTDIR\app_core_build.nsi"
+  Delete "$INSTDIR\app_build.nsi"
   Delete "$INSTDIR\uninstall.exe"
 
   ; Remove shortcuts, if any
-  Delete "$SMPROGRAMS\app_core_build\*.*"
+  Delete "$SMPROGRAMS\app_build\*.*"
 
   ; Remove directories used
-  RMDir "$SMPROGRAMS\app_core_build"
+  RMDir "$SMPROGRAMS\app_build"
   RMDir /r "$INSTDIR/time"
   RMDir "$INSTDIR"
 

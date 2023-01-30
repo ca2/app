@@ -183,8 +183,8 @@ public:
       if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
       {
 
-         this->m_begin = range.m_begin;
-         this->m_end = range.m_end;
+         this->m_begin = (ITERATOR_TYPE) range.m_begin;
+         this->m_end = (ITERATOR_TYPE) range.m_end;
          this->m_erange = e_range_none;
 
       }

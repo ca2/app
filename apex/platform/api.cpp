@@ -57,7 +57,7 @@ void api::load_profile()
    try
    {
 
-      m_setConfig.parse_network_payload(strNetworkPayload);
+      m_setProfile.parse_network_payload(strNetworkPayload);
 
    }
    catch (...)
@@ -67,7 +67,7 @@ void api::load_profile()
 
    }
 
-   m_strToken = m_setConfig["token"];
+   m_strToken = m_setProfile["token"];
 
    if (m_strToken.has_char())
    {
@@ -119,13 +119,25 @@ void api::on_login_response()
 void api::save_profile()
 {
 
-   m_setConfig["token"] = m_strToken;
+   m_setProfile["token"] = m_strToken;
 
-   auto strNetworkPayload = m_setConfig.get_network_payload();
+   auto strNetworkPayload = m_setProfile.get_network_payload();
 
    file()->put_text(m_pathProfile, strNetworkPayload);
 
    //return ::success;
+
+}
+
+
+void api::clear_profile()
+{
+
+   m_strToken.empty();
+
+   m_setProfile.clear();
+
+   file()->put_text(m_pathProfile, "");
 
 }
 

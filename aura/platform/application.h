@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "context.h"
@@ -799,7 +799,7 @@ namespace aura
 
 
 
-      virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg);
+      ///virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg);
 
       virtual bool get_frame(::pointer<::user::interaction>& pinteraction);
       virtual void add_user_interaction(::user::interaction * puserinteraction);

@@ -5,8 +5,9 @@
 enum enum_range : ::i32
 {
 
-   e_range_none,
-   e_range_string,
+   e_range_none = 0,
+   e_range_string = 1,
+   e_range_scoped_string_allocation = 2,
 
 };
 
@@ -205,8 +206,8 @@ public:
    {
    }
 
-   constexpr range(const range & range) : m_begin(range.m_begin), m_end(range.m_end) {}
-   constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end) { range.m_begin = nullptr; range.m_end = nullptr; }
+   constexpr range(const range & range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
+   constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; }
 
    template<typed_range<iterator> RANGE>
    constexpr range(const RANGE & range) : m_begin((this_iterator)range.begin()), m_end((this_iterator)range.end()), m_erange(range.m_erange)

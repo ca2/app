@@ -7722,7 +7722,7 @@ string & payload::get_network_payload(::string & str, bool bNewLine) const
    else
    {
 
-      ::string strValue(::transfer(string()));
+      ::string strValue(::transfer(this->as_string()));
 
       strValue.replace_with("\\\"", "\"");
 

@@ -50,7 +50,7 @@ namespace user
 {
 
 
-   class interation;
+   class interaction;
 
    class interaction_impl;
 

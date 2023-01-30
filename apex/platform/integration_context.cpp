@@ -34,6 +34,16 @@ namespace integration
    }
 
 
+   void context::initialize(::particle* pparticle)
+   {
+
+      ::particle::initialize(pparticle);
+
+      m_pmutexLines = acmenode()->create_mutex();
+
+   }
+
+
    void context::prepare()
    {
 
@@ -57,7 +67,12 @@ namespace integration
    void context::prepare_compile_and_link_environment()
    {
 
-      acmedirectory()->create(m_pathPrefix);
+      if (m_pathPrefix.has_char())
+      {
+
+         acmedirectory()->create(m_pathPrefix);
+
+      }
 
    }
 

@@ -5,6 +5,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/context.h"

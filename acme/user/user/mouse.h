@@ -1,4 +1,4 @@
-//
+﻿//
 //  user_mouse.hpp
 //  base
 //
@@ -26,7 +26,7 @@ namespace user
       uptr                                m_nFlags;
       point_i32                           m_point;
       point_i32                           m_pointDesired;
-      bool                                m_bTranslated;
+      //bool                                m_bTranslated;
       ::pointer<::windowing::cursor>      m_pcursor;
       ::pointer<::user::interaction>      m_puserinteractionHit;
 

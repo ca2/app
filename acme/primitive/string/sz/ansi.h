@@ -4,9 +4,22 @@
 
 #define const_ansichar_trigger const ::ansi_character *
 
+template < primitive_character CHARACTER >
+inline constexpr memsize character_count_to_byte_length(const CHARACTER * pszTrigger, strsize nCharLength)
+{
+ 
+   return (::memsize)((nCharLength + 1) * sizeof(CHARACTER));
 
-inline  constexpr strsize     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength);
-inline  constexpr strsize     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
+}
+
+
+template < primitive_character CHARACTER >
+inline constexpr strsize byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
+{
+
+   return (::strsize)((nByteLength / sizeof(CHARACTER)) - 1);
+
+}
 
 
 inline void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, strsize nChars) noexcept;

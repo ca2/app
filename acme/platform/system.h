@@ -7,7 +7,7 @@
 #include "context.h"
 #include "plane_system.h"
 #include "application_flags.h"
-#include "acme/memory/counter.h"
+//#include "acme/memory/counter.h"
 #include "acme/parallelization/_types.h"
 #include "acme/primitive/collection/map.h"
 #include "acme/primitive/primitive/factory.h"

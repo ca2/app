@@ -44,7 +44,9 @@ public:
       if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))
       {
 
-         RANGE::operator=(str);
+         this->m_begin = str.m_begin;
+         this->m_end = str.m_end;
+         this->m_erange = str.m_erange;
 
       }
       else
@@ -111,6 +113,7 @@ public:
 
          this->m_begin = start;
          this->m_end = end;
+         this->m_erange = e_range_none;
 
       }
       else
@@ -123,43 +126,66 @@ public:
    }
 
 
-   //template < strsize n >
-   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
-
-
-   STRING & str() { return (STRING &)*this; }
-   STRING & str(const STRING & str) { return (this->str()) = str; }
-
-
-   template < primitive_character CHARACTER2 >
-   void _construct1(const CHARACTER2 * psz)
+   ~scoped_string_base()
    {
-      
-      if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
+
+      if (::is_set(this) && (this->m_erange & e_range_scoped_string_allocation))
       {
 
-         this->m_begin = psz;
-         this->m_end = psz + string_safe_length(psz);
+         this->m_erange -= e_range_scoped_string_allocation;
 
-      }
-      else
-      {
-
-         this->str(psz);
+         ((STRING *)this)->~string_base<ITERATOR_TYPE>();
 
       }
 
    }
+
+   //template < strsize n >
+   //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
+
+
+   //STRING & str() { return (STRING &)*this; }
+   STRING & str(const STRING & str)
+   { 
+
+      this->m_erange += e_range_scoped_string_allocation;
+      
+      return ((STRING *)this)->operator = (str);
+   
+   }
+
+
+   //template < primitive_character CHARACTER2 >
+   //void _construct1(const CHARACTER2 * psz)
+   //{
+   //   
+   //   if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
+   //   {
+
+   //      this->m_begin = psz;
+   //      this->m_end = psz + string_safe_length(psz);
+
+   //   }
+   //   else
+   //   {
+
+   //      this->str(psz);
+
+   //   }
+
+   //}
 
 
    template < typename GENERIC_RANGE >
    void construct_range(const GENERIC_RANGE & range)
    {
 
-      if constexpr (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
+      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
       {
 
-         RANGE::operator = (range);
+         this->m_begin = range.m_begin;
+         this->m_end = range.m_end;
+         this->m_erange = e_range_none;
 
       }
       else

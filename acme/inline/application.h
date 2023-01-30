@@ -85,6 +85,13 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
+   if (::acme::acme::g_p->m_pacmeapplication->has_finishing_flag())
+   {
+
+      return ::acme::acme::g_p->m_pacmeapplication->m_iExitCode;
+
+   }
+
 #if defined(WINDOWS)
    ::acme::acme::g_p->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #else

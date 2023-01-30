@@ -495,6 +495,14 @@ filesize memory_file::get_position() const
 }
 
 
+void memory_file::raw_set_position(memsize memsize)
+{
+
+   m_position = memsize;
+
+}
+
+
 void memory_file::translate(filesize offset, ::enum_seek eseek)
 {
 
@@ -582,6 +590,14 @@ void memory_file::load_string(string &str)
    psz[this->size()] = 0;
 
    str.release_string_buffer();
+
+}
+
+
+memsize memory_file::erase_begin(memsize uiCount)
+{
+
+   return erase_begin(nullptr, uiCount);
 
 }
 

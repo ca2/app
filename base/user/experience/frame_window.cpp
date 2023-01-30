@@ -1176,7 +1176,7 @@ namespace experience
       if (is_different(fActive, m_fActive))
       {
 
-         FORMATTED_TRACE("frame_window::SetActiveFlag %d\n", fActive);
+         //FORMATTED_TRACE("frame_window::SetActiveFlag %d\n", fActive);
 
          m_fActive = fActive;
 

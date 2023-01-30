@@ -32,7 +32,7 @@
 namespace dynamic_source
 {
 
-   
+
    //::u32 ThreadProcRsa(void  lp);
 
 
@@ -58,7 +58,7 @@ namespace dynamic_source
    }
 
 
-   script_manager::plugin_map_item::plugin_map_item(const plugin_map_item & item)
+   script_manager::plugin_map_item::plugin_map_item(const plugin_map_item& item)
    {
 
       operator = (item);
@@ -66,12 +66,12 @@ namespace dynamic_source
    }
 
 
-   script_manager::plugin_map_item & script_manager::plugin_map_item::operator = (const plugin_map_item & item)
+   script_manager::plugin_map_item& script_manager::plugin_map_item::operator = (const plugin_map_item& item)
    {
 
-      m_strHost         = item.m_strHost;
-      m_strScript       = item.m_strScript;
-      m_strPlugin       = item.m_strPlugin;
+      m_strHost = item.m_strHost;
+      m_strScript = item.m_strScript;
+      m_strPlugin = item.m_strPlugin;
 
       return *this;
 
@@ -84,12 +84,12 @@ namespace dynamic_source
       m_pnetnodescriptmanager = nullptr;
 
       defer_create_synchronization();
-      
+
       m_bCompiler = true;
 
-      m_timeBuildInterval        = 30_s;
-      m_timeTimeRandomInterval  = 30_s;
-      m_timeDatabaseWaitTimeOut     = 15_minutes;
+      m_timeBuildInterval = 30_s;
+      m_timeTimeRandomInterval = 30_s;
+      m_timeDatabaseWaitTimeOut = 15_minutes;
 
       m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
       m_mapIncludeMatchesIsDir.InitHashTable(256 * 1024);
@@ -97,24 +97,24 @@ namespace dynamic_source
       m_mapIncludeExpandMd5.InitHashTable(256 * 1024);
       m_mapSession.InitHashTable(256 * 1024);
 
-      m_strRepos                 = "app-core";
-      m_strNamespace             = "netnode"; // default namespace is linked to outer project netnode
+      m_strRepos = "app-core";
+      m_strNamespace = "netnode"; // default namespace is linked to outer project netnode
 
 #ifdef LINUX
 
-      m_strNetnodePath           = "/netnodenet/";
-      m_strNetseedPath           = "/netnodenet/net/";
-      m_strNetseedDsCa2Path      = "/netnodenet/net/";
+      m_strNetnodePath = "/netnodenet/";
+      m_strNetseedPath = "/netnodenet/net/";
+      m_strNetseedDsCa2Path = "/netnodenet/net/";
 
 #else
 
-      m_strNetnodePath           = "C:\\netnodenet\\";
-      m_strNetseedPath           = "C:\\netnodenet\\net\\";
-      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\";
+      m_strNetnodePath = "C:\\netnodenet\\";
+      m_strNetseedPath = "C:\\netnodenet\\net\\";
+      m_strNetseedDsCa2Path = "C:\\netnodenet\\net\\";
 
 #endif
 
-      m_iTunnelPluginCount       = 0;
+      m_iTunnelPluginCount = 0;
 
 
       m_strSeed = "system/seed";
@@ -130,12 +130,12 @@ namespace dynamic_source
    }
 
 
-   void script_manager::initialize(::particle * pparticle)
+   void script_manager::initialize(::particle* pparticle)
    {
 
       //auto estatus = ::user::message_window_listener::initialize(pparticle);
       //auto estatus = 
-      
+
       ::channel::initialize(pparticle);
 
       //if (!estatus)
@@ -144,7 +144,7 @@ namespace dynamic_source
       //   return estatus;
 
       //}
-      
+
       //estatus = __construct_new(m_pmessagequeue);
       //
       //if(!estatus)
@@ -157,7 +157,7 @@ namespace dynamic_source
       calc_rsa_key();
 
       //estatus = 
-      
+
       init1();
 
       //if (!estatus)
@@ -198,11 +198,11 @@ namespace dynamic_source
    void script_manager::init1()
    {
 
-      if(m_bCompiler)
+      if (m_bCompiler)
       {
 
          //auto estatus = 
-         
+
          __construct_new(m_pcache);
 
          //if (!estatus)
@@ -217,7 +217,7 @@ namespace dynamic_source
          m_pcompiler = __new(script_compiler);
 
          //estatus = 
-         
+
          m_pcompiler->initialize_dynamic_source_script_compiler(this);
 
          //if (!estatus)
@@ -230,7 +230,7 @@ namespace dynamic_source
          m_pcompiler->m_pmanager = this;
 
          //estatus = 
-         
+
          m_pcompiler->init1();
 
          //if (!estatus)
@@ -263,13 +263,13 @@ namespace dynamic_source
       auto papp = get_app();
 
       listing.set_listing(m_strNetnodePath);
-         
+
       dir()->enumerate(listing);
 
-      for(auto & path : listing)
+      for (auto& path : listing)
       {
 
-         if(string_begins_ci(path.title(),"net-"))
+         if (string_begins_ci(path.title(), "net-"))
          {
 
             auto pwatcher = __new(clear_include_matches_file_watcher(this));
@@ -291,7 +291,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::string & strName)
+   ::pointer<script_instance>script_manager::get(const ::string& strName)
    {
 
       ::pointer<script>pscript;
@@ -301,7 +301,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::string & strName, ::pointer<script> & pscript)
+   ::pointer<script_instance>script_manager::get(const ::string& strName, ::pointer<script>& pscript)
    {
 
       return m_pcache->create_instance(strName, pscript);
@@ -309,11 +309,11 @@ namespace dynamic_source
    }
 
 
-   void script_manager::handle(::dynamic_source::httpd_socket * pdssocket)
+   void script_manager::handle(::dynamic_source::httpd_socket* pdssocket)
    {
-      
+
       string strHead;
-      
+
       ::pointer<script_instance>pinstance = get(m_strSeed);
 
       if (!pinstance)
@@ -321,21 +321,21 @@ namespace dynamic_source
 
          string strHtml;
 
-         strHtml+="<html>";
-         strHtml+="<head>";
-         strHtml+="<title>";
-         strHtml+="Try again soon";
-         strHtml+="</title>";
-         strHtml+="</head>";
-         strHtml+="<body>";
-         strHtml+="<h1>";
-         strHtml+="Try again soon";
-         strHtml+="</h1>";
-         strHtml +="<p>";
+         strHtml += "<html>";
+         strHtml += "<head>";
+         strHtml += "<title>";
+         strHtml += "Try again soon";
+         strHtml += "</title>";
+         strHtml += "</head>";
+         strHtml += "<body>";
+         strHtml += "<h1>";
+         strHtml += "Try again soon";
+         strHtml += "</h1>";
+         strHtml += "<p>";
          strHtml += "Root Script (seed) failed to compile.";
          strHtml += "</p>";
-         strHtml+="</body>";
-         strHtml+="</html>";
+         strHtml += "</body>";
+         strHtml += "</html>";
 
          pdssocket->m_response.file()->print(strHtml);
 
@@ -352,7 +352,7 @@ namespace dynamic_source
       pmain->call_procedures(ID_CREATE);
 
       pmain->m_pmain = pmain;
-      
+
       pmain->m_psocket2 = pdssocket;
 
       pmain->m_pmanager2 = this;
@@ -385,7 +385,7 @@ namespace dynamic_source
 
       if (pinstance != nullptr)
       {
-         
+
          pinstance->m_strDebugRequestUri = pdssocket->inattr("request_uri");
 
          if (pinstance->m_strDebugRequestUri.case_insensitive_find_index("google") > 0)
@@ -396,16 +396,16 @@ namespace dynamic_source
          }
 
          pinstance->m_strDebugThisScript = m_strSeed;
-         
+
          pinstance->dinit();
 
       }
 
-      if(pinstance != nullptr)
+      if (pinstance != nullptr)
       {
-         
+
          pinstance->m_pmain->main_initialize();
-         
+
          if (pinstance->m_iDebug > 0)
          {
 
@@ -422,11 +422,11 @@ namespace dynamic_source
                pinstance->run();
 
             }
-            catch (const exit_exception &)
+            catch (const exit_exception&)
             {
 
             }
-            catch (const ::exception & e)
+            catch (const ::exception& e)
             {
 
                string str = e.get_message();
@@ -453,13 +453,13 @@ namespace dynamic_source
             pinstance->m_pmain->main_finalize();
 
          }
-         catch(const ::exception &)
+         catch (const ::exception&)
          {
 
             TRACE("Error: exception at script_manager::handle main_finalize");
 
          }
-         catch(...)
+         catch (...)
          {
 
             TRACE("Error: Exception at script_manager::handle main_finalize");
@@ -576,21 +576,21 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface* pinstanceParent, const ::string& strNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
 
-      if(strName.is_empty())
+      if (strName.is_empty())
       {
 
-         if(pinstanceParent != nullptr)
+         if (pinstanceParent != nullptr)
          {
 
-            if(pinstanceParent->m_pmain->m_iDebug > 0)
+            if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               if(pinstanceParent->m_pscript2->m_streamError.m_pfile->size() > 0)
+               if (pinstanceParent->m_pscript2->m_streamError.m_pfile->size() > 0)
                {
 
                   pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
@@ -619,6 +619,13 @@ namespace dynamic_source
 
          pinstance = get(strName, pscript);
 
+         if (pinstance == nullptr || pscript == nullptr)
+         {
+
+            return false;
+
+         }
+
          if (pinstance && pinstanceParent && pscript)
          {
 
@@ -643,7 +650,7 @@ namespace dynamic_source
             pinstance->m_pinstanceParent2 = pinstanceParent;
 
             pinstance->run_property(ID_CREATE);
-            
+
             pinstance->call_procedures(ID_CREATE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
@@ -677,13 +684,6 @@ namespace dynamic_source
                }
 
             }
-
-         }
-
-         if (pinstance == nullptr || pscript == nullptr)
-         {
-
-            return false;
 
          }
 
@@ -773,12 +773,12 @@ namespace dynamic_source
       ::file::path str;
       str = dir()->module();
       str.ascend(2);
-      str = str/ "stage\\basis";
+      str = str / "stage\\basis";
       str = ";" + str;
       ::file::path str2;
       str2 = dir()->module();
       str2.ascend(2);
-      str2 = str2/ "netnode\\library\\include";
+      str2 = str2 / "netnode\\library\\include";
       str2 = ";" + str2;
       str = str + str2;
 
@@ -827,14 +827,14 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const ::string & lpcszName)
+   void script_manager::run(const ::string& lpcszName)
    {
-      
+
       auto pmemfile = create_memory_file();
 
-      script_instance * pinstance = get(lpcszName);
+      script_instance* pinstance = get(lpcszName);
 
-      if(pinstance != nullptr)
+      if (pinstance != nullptr)
       {
 
          pinstance->m_pscript2->run(pinstance);
@@ -846,16 +846,16 @@ namespace dynamic_source
 
    string script_manager::get_library_build_log()
    {
-      
+
       //string_stream str;
 
       //POSITION pos = m_pcompiler->m_mapLib.get_start_position();
       //while(pos != nullptr)
       {
-//      library_class * plib;
-//      string strClass;
-//         m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
-//         memfile.transfer_from(plib->m_memfileError);
+         //      library_class * plib;
+         //      string strClass;
+         //         m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
+         //         memfile.transfer_from(plib->m_memfileError);
       }
 
       //str << m_strPersistentError;
@@ -931,7 +931,7 @@ namespace dynamic_source
             m_mapIncludeMatchesFileExists.erase_all();
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
@@ -942,13 +942,13 @@ namespace dynamic_source
             m_mapIncludeMatchesIsDir.erase_all();
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -961,7 +961,7 @@ namespace dynamic_source
          m_mapIncludeExpandMd5.erase_all();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -969,12 +969,12 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::include_matches_file_exists(const ::string & strPath)
+   bool script_manager::include_matches_file_exists(const ::string& strPath)
    {
 
       auto pcontext = get_context();
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
-      
+
       auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
 
       if (p)
@@ -985,7 +985,7 @@ namespace dynamic_source
       }
 
       bool bFileExists = pcontext->m_papexcontext->file()->exists(strPath);
-      
+
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
 
       return bFileExists;
@@ -995,15 +995,15 @@ namespace dynamic_source
 
 
 
-   void script_manager::set_include_matches_file_exists(const ::string & strPath, bool bFileExists)
+   void script_manager::set_include_matches_file_exists(const ::string& strPath, bool bFileExists)
    {
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
    }
 
-   bool script_manager::include_matches_is_dir(const ::string & strPath)
+   bool script_manager::include_matches_is_dir(const ::string& strPath)
    {
-      
+
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
 
       auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
@@ -1016,14 +1016,14 @@ namespace dynamic_source
       }
 
       bool bIsDir = dir()->is(strPath);
-         m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
-         return bIsDir;
+      m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
+      return bIsDir;
    }
 
-   bool script_manager::include_has_script(const ::string & strPath)
+   bool script_manager::include_has_script(const ::string& strPath)
    {
 
-      if(strPath.is_empty())
+      if (strPath.is_empty())
          return false;
 
       single_lock synchronouslock(m_pmutexIncludeHasScript, true);
@@ -1034,35 +1034,35 @@ namespace dynamic_source
          return p->element2();
 
       }
-      
+
       auto pcontext = get_context();
 
-         // roughly detect this way: by finding the <?
+      // roughly detect this way: by finding the <?
 
-         bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).contains("<?");
+      bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).contains("<?");
 
-         m_mapIncludeHasScript.set_at(strPath, bHasScript);
+      m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
-         return bHasScript;
+      return bHasScript;
 
-      
+
    }
 
 
-   string script_manager::include_expand_md5(const ::string & strPath)
+   string script_manager::include_expand_md5(const ::string& strPath)
    {
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
       return m_mapIncludeExpandMd5[strPath];
    }
 
-   void script_manager::set_include_expand_md5(const ::string & strPath, const ::string & strMd5)
+   void script_manager::set_include_expand_md5(const ::string& strPath, const ::string& strMd5)
    {
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
 
-   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::particle * pparticle)
+   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::particle* pparticle)
    {
 
       initialize(pparticle);
@@ -1070,7 +1070,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::clear_include_matches_file_watcher::operator()(::file::action * paction)
+   void script_manager::clear_include_matches_file_watcher::operator()(::file::action* paction)
    {
 
       ::file::path path;
@@ -1107,7 +1107,7 @@ namespace dynamic_source
          m_pmanager->clear_include_matches(path);
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -1128,45 +1128,45 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::real_path(const ::file::path & strBase,const ::file::path & str)
+   ::file::path script_manager::real_path(const ::file::path& strBase, const ::file::path& str)
    {
-      ::file::path strRealPath = strBase/ str;
-      if(include_matches_file_exists(strRealPath))
+      ::file::path strRealPath = strBase / str;
+      if (include_matches_file_exists(strRealPath))
          return strRealPath;
-      else if(include_matches_is_dir(strRealPath))
+      else if (include_matches_is_dir(strRealPath))
          return strRealPath;
       else
          return "";
    }
 
-// #ifdef WINDOWS
-// #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
-//    || (psz[0] == '\\' && psz[1] == '\\'))
-// #else
-// #define is_absolute_path(psz) (psz[0] == '/')
-// #endif
+   // #ifdef WINDOWS
+   // #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
+   //    || (psz[0] == '\\' && psz[1] == '\\'))
+   // #else
+   // #define is_absolute_path(psz) (psz[0] == '/')
+   // #endif
 
 
-   ::file::path script_manager::real_path(const ::file::path & str)
+   ::file::path script_manager::real_path(const ::file::path& str)
    {
 
-//#ifdef WINDOWS
-//
-//      if(file_path_is_absolute(str))
-//      {
-//
-//         if(include_matches_file_exists(str))
-//            return str;
-//         return "";
-//      }
-//      else
-//      {
-//         return real_path(m_strNetseedDsCa2Path, str);
-//      }
-//#else
-      if(file_path_is_absolute(str))
+      //#ifdef WINDOWS
+      //
+      //      if(file_path_is_absolute(str))
+      //      {
+      //
+      //         if(include_matches_file_exists(str))
+      //            return str;
+      //         return "";
+      //      }
+      //      else
+      //      {
+      //         return real_path(m_strNetseedDsCa2Path, str);
+      //      }
+      //#else
+      if (file_path_is_absolute(str))
       {
-         if(include_matches_file_exists(str))
+         if (include_matches_file_exists(str))
             return str;
          return real_path(m_strNetseedDsCa2Path, str);
       }
@@ -1174,11 +1174,11 @@ namespace dynamic_source
       {
          return real_path(m_strNetseedDsCa2Path, str);
       }
-//#endif
+      //#endif
    }
 
 
-   ::pointer<::dynamic_source::session>script_manager::get_session(const ::string & pszId)
+   ::pointer<::dynamic_source::session>script_manager::get_session(const ::string& pszId)
    {
 
       single_lock synchronouslock(m_pmutexSession, true);
@@ -1205,7 +1205,7 @@ namespace dynamic_source
 
 
          ::new(p->element2().m_p) ::dynamic_source::session();
-//#define memory_new ACME_NEW
+         //#define memory_new ACME_NEW
 
          p->element2()->initialize_dynamic_source_session(pszId, this);
 
@@ -1228,30 +1228,30 @@ namespace dynamic_source
 
    void script_manager::defer_clean_session()
    {
-      
+
       single_lock synchronouslock(m_pmutexSession, true);
-      
+
       ::earth::time timeNow;
-      
+
       timeNow = ::earth::time::now();
-      
+
       auto p = m_mapSession.begin();
-      
-      while(::is_ok(p))
+
+      while (::is_ok(p))
       {
 
          auto pNext = p + 1;
 
-         if(p->payload().is_null())
+         if (p->payload().is_null())
          {
 
             m_mapSession.erase(p);
 
          }
-         else if(p->element2()->m_countReference <= 1)
+         else if (p->element2()->m_countReference <= 1)
          {
 
-            if(timeNow > p->element2()->m_timeExpiry)
+            if (timeNow > p->element2()->m_timeExpiry)
             {
 
                m_mapSession.erase(p);
@@ -1267,12 +1267,12 @@ namespace dynamic_source
    }
 
 
-//   ::u32 ThreadProcRsa(LPVOID lp)
-//   {
-//      script_manager * pmanager = (script_manager *) lp;
-//      pmanager->calc_rsa_key();
-//      return 0;
-//   }
+   //   ::u32 ThreadProcRsa(LPVOID lp)
+   //   {
+   //      script_manager * pmanager = (script_manager *) lp;
+   //      pmanager->calc_rsa_key();
+   //      return 0;
+   //   }
 
    ::pointer<::crypto::rsa>script_manager::get_rsa_key()
    {
@@ -1297,7 +1297,7 @@ namespace dynamic_source
    }
 
 
-   string script_manager::get_rsa_key(script_interface * pscriptinterface)
+   string script_manager::get_rsa_key(script_interface* pscriptinterface)
    {
 
       pscriptinterface->session_id(); // trigger session creation;
@@ -1326,7 +1326,7 @@ namespace dynamic_source
 
       m_rsaptra.add(prsa);
 
-      if(m_rsaptra.get_size() > 23)
+      if (m_rsaptra.get_size() > 23)
       {
 
          m_rsaptra.erase_at(0);
@@ -1339,14 +1339,14 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const ::string & strHost, const ::string & strScript, const ::string & strName, script * pscript)
+   void script_manager::register_plugin(const ::string& strHost, const ::string& strScript, const ::string& strName, script* pscript)
    {
 
       plugin_map_item item;
 
-      item.m_strHost       = strHost;
-      item.m_strScript     = strScript;
-      item.m_strPlugin     = strName;
+      item.m_strHost = strHost;
+      item.m_strScript = strScript;
+      item.m_strPlugin = strName;
 
       m_pluginmapitema.add(memory_new plugin_map_item(item));
 
@@ -1361,13 +1361,13 @@ namespace dynamic_source
    }
 
 
-   void script_manager::wait_link_out(const ::string & pszServer, ::sockets::link_in_socket * pinsocket)
+   void script_manager::wait_link_out(const ::string& pszServer, ::sockets::link_in_socket* pinsocket)
    {
 
-      while(true)
+      while (true)
       {
 
-         if(has_link_out_link(pszServer, pinsocket, nullptr))
+         if (has_link_out_link(pszServer, pinsocket, nullptr))
             break;
 
          sleep(100_ms);
@@ -1376,26 +1376,26 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
+   bool script_manager::has_link_out_link(const ::string& pszServer, ::sockets::link_in_socket* pinsocket, ::sockets::httpd_socket* phttpdsocket)
    {
 
       single_lock synchronouslock(m_pmutexOutLink, true);
 
       auto p = m_mapOutLink.plookup(pszServer);
 
-      ::sockets::link_out_socket * psocket = nullptr;
+      ::sockets::link_out_socket* psocket = nullptr;
 
-      if(::is_ok(p))
+      if (::is_ok(p))
       {
 
          psocket = p->element2();
 
-         if(psocket != nullptr)
+         if (psocket != nullptr)
          {
 
             single_lock sl2(m_pmutexInLink, true);
 
-            if(phttpdsocket != nullptr)
+            if (phttpdsocket != nullptr)
             {
 
                pinsocket->m_in = phttpdsocket;
@@ -1418,14 +1418,14 @@ namespace dynamic_source
 
       }
 
-      if(psocket == nullptr)
+      if (psocket == nullptr)
          return false;
 
       return true;
 
    }
 
-   ::sockets::link_in_socket * script_manager::get_link_in(const ::string & pszServer, ::sockets::link_out_socket * poutsocket)
+   ::sockets::link_in_socket* script_manager::get_link_in(const ::string& pszServer, ::sockets::link_out_socket* poutsocket)
    {
 
       single_lock sl2(m_pmutexInLink, true);
@@ -1438,17 +1438,17 @@ namespace dynamic_source
 
          tunnel_map_item item;
 
-         item.m_strServer    = pszServer;
+         item.m_strServer = pszServer;
          item.m_time.Now();
 
          m_mapTunnel.set_at(pszServer, item);
 
       }
 
-      if(::is_ok(ppair))
+      if (::is_ok(ppair))
          return nullptr;
 
-      ::sockets::link_in_socket * pinsocket = ppair->element2();
+      ::sockets::link_in_socket* pinsocket = ppair->element2();
 
       m_pmapInLink->erase_item(poutsocket);
 
@@ -1457,7 +1457,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::is_online(const ::string & pszServer)
+   bool script_manager::is_online(const ::string& pszServer)
    {
 
       single_lock synchronouslock(m_pmutexTunnel, true);
@@ -1483,10 +1483,10 @@ namespace dynamic_source
    }
 
 
-   ::sockets::link_out_socket * script_manager::create_link_out(const ::string & pszServer, ::sockets::httpd_socket * phttpdsocket)
+   ::sockets::link_out_socket* script_manager::create_link_out(const ::string& pszServer, ::sockets::httpd_socket* phttpdsocket)
    {
 
-      ::sockets::link_out_socket * psocket = memory_new sockets::link_out_socket();
+      ::sockets::link_out_socket* psocket = memory_new sockets::link_out_socket();
 
       //psocket->m_phandler = phttpdsocket->m_phandler;
 
@@ -1498,7 +1498,7 @@ namespace dynamic_source
 
          tunnel_map_item item;
 
-         item.m_strServer    = pszServer;
+         item.m_strServer = pszServer;
          item.m_time.Now();
 
          m_mapTunnel.set_at(pszServer, item);
@@ -1516,7 +1516,7 @@ namespace dynamic_source
 
    }
 
-   size_i32 script_manager::get_image_size(const ::file::path & strFile)
+   size_i32 script_manager::get_image_size(const ::file::path& strFile)
    {
 
       single_lock synchronouslock(m_pmutexImageSize, false);
@@ -1525,7 +1525,7 @@ namespace dynamic_source
 
       ::size_i32 size;
 
-      if(m_mapImageSize.lookup(strFile, size))
+      if (m_mapImageSize.lookup(strFile, size))
          return size;
 
       synchronouslock.unlock();
@@ -1534,7 +1534,7 @@ namespace dynamic_source
 
       size.cy = 49;
 
-      if(extract_image_size(strFile, &size))
+      if (extract_image_size(strFile, &size))
       {
 
          synchronouslock.lock();
@@ -1550,14 +1550,14 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::extract_image_size(const ::file::path & strFile,::size_i32 * psize)
+   bool script_manager::extract_image_size(const ::file::path& strFile, ::size_i32* psize)
    {
 
       auto pcontext = get_context();
 
       auto pfile = pcontext->m_papexcontext->file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
-      if(!pfile || ::failed(pfile->m_estatus))
+      if (!pfile || ::failed(pfile->m_estatus))
       {
 
          return false;
@@ -1570,7 +1570,7 @@ namespace dynamic_source
 
       filesize len = pfile->get_position();
 
-      if(len < 24)
+      if (len < 24)
       {
          return false;
       }
@@ -1584,42 +1584,42 @@ namespace dynamic_source
       // In all formats, the file is at least 24 bytes big, so we'll read that always
       unsigned char buf[24];
 
-      if(pfile->read(buf, 24) < 24)
+      if (pfile->read(buf, 24) < 24)
       {
          return false;
       }
 
       // http://www.64lines.com/jpeg-width-height
-      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF && buf[3]==0xE0 && buf[6]=='J' && buf[7]=='F' && buf[8]=='I' && buf[9]=='F' && buf[10]=='\0')
+      if (buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF && buf[3] == 0xE0 && buf[6] == 'J' && buf[7] == 'F' && buf[8] == 'I' && buf[9] == 'F' && buf[10] == '\0')
       {
          unsigned short block_length = buf[4] * 256 + buf[5];
          int i = 4;
-         while(i < len)
+         while (i < len)
          {
 
             i += block_length;               //Increase the file index to get to the next block
 
-            if(i >= len)
+            if (i >= len)
                return false;   //Check to protect against segmentation faults
 
             pfile->set_position(i);
 
-            if(pfile->read(buf, 4) < 4)
+            if (pfile->read(buf, 4) < 4)
                return false;
 
-            if(buf[i] != 0xFF)
+            if (buf[i] != 0xFF)
                return false;   //Check that we are truly at the start of another block
 
-            if(buf[i+1] == 0xC0)
+            if (buf[i + 1] == 0xC0)
             {
                //0xFFC0 is the "Start of frame" marker which contains the file size_i32
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
-               if(pfile->read(buf, 5) < 5)
+               if (pfile->read(buf, 5) < 5)
                   return false;
 
-               psize->cy = buf[i+1]*256 + buf[i+2];
-               psize->cx = buf[i+3]*256 + buf[i+4];
+               psize->cy = buf[i + 1] * 256 + buf[i + 2];
+               psize->cx = buf[i + 3] * 256 + buf[i + 4];
                return true;
             }
             else
@@ -1631,37 +1631,37 @@ namespace dynamic_source
       }
 
       // JPEG: (first two bytes of buf are first two bytes of the jpeg file; rest of buf is the DCT frame
-      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF)
+      if (buf[0] == 0xFF && buf[1] == 0xD8 && buf[2] == 0xFF)
       {
 
-         psize->cy = (buf[7]<<8) + buf[8];
+         psize->cy = (buf[7] << 8) + buf[8];
 
-         psize->cx = (buf[9]<<8) + buf[10];
+         psize->cx = (buf[9] << 8) + buf[10];
 
          return true;
 
       }
 
       // GIF: first three bytes say "GIF", next three give version number. Then dimensions
-      if (buf[0]=='G' && buf[1]=='I' && buf[2]=='F')
+      if (buf[0] == 'G' && buf[1] == 'I' && buf[2] == 'F')
       {
 
-         psize->cx = buf[6] + (buf[7]<<8);
+         psize->cx = buf[6] + (buf[7] << 8);
 
-         psize->cy = buf[8] + (buf[9]<<8);
+         psize->cy = buf[8] + (buf[9] << 8);
 
          return true;
 
       }
 
       // PNG: the first frame is by definition an IHDR frame, which gives dimensions
-      if(buf[0]==0x89 && buf[1]=='P' && buf[2]=='N' && buf[3]=='G' && buf[4]==0x0D && buf[5]==0x0A && buf[6]==0x1A && buf[7]==0x0A
-            && buf[12]=='I' && buf[13]=='H' && buf[14]=='D' && buf[15]=='R')
+      if (buf[0] == 0x89 && buf[1] == 'P' && buf[2] == 'N' && buf[3] == 'G' && buf[4] == 0x0D && buf[5] == 0x0A && buf[6] == 0x1A && buf[7] == 0x0A
+         && buf[12] == 'I' && buf[13] == 'H' && buf[14] == 'D' && buf[15] == 'R')
       {
 
-         psize->cx = (buf[16]<<24) + (buf[17]<<16) + (buf[18]<<8) + (buf[19]<<0);
+         psize->cx = (buf[16] << 24) + (buf[17] << 16) + (buf[18] << 8) + (buf[19] << 0);
 
-         psize->cy = (buf[20]<<24) + (buf[21]<<16) + (buf[22]<<8) + (buf[23]<<0);
+         psize->cy = (buf[20] << 24) + (buf[21] << 16) + (buf[22] << 8) + (buf[23] << 0);
 
          return true;
 
@@ -1672,27 +1672,27 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_stage_path(const ::file::path & strScriptPath)
+   ::file::path script_manager::get_stage_path(const ::file::path& strScriptPath)
    {
 
       ::file::path strPath = strScriptPath;
 
-      strPath.find_replace(":/",".");
-      strPath.find_replace(":\\",".");
-      strPath.find_replace("/",".");
-      strPath.find_replace("\\",".");
+      strPath.find_replace(":/", ".");
+      strPath.find_replace(":\\", ".");
+      strPath.find_replace("/", ".");
+      strPath.find_replace("\\", ".");
 #ifdef WINDOWS
-      return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
+      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
       strPath.begins_eat(".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
-      return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage /  "x86" / "lib" + strPath;
+      return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage / "x86" / "lib" + strPath;
 #endif
 
    }
 
 
-   ::file::path script_manager::get_full_stage_path(const ::file::path & strScript)
+   ::file::path script_manager::get_full_stage_path(const ::file::path& strScript)
    {
 
       return get_stage_path(strScript);
@@ -1700,12 +1700,12 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_script_path(const ::file::path & strName, const ::string & strModifier)
+   ::file::path script_manager::get_script_path(const ::file::path& strName, const ::string& strModifier)
    {
 
       ::file::path strTransformName = strName;
 
-      strTransformName.find_replace(":","");
+      strTransformName.find_replace(":", "");
 
       ::file::path strScript;
 
@@ -1715,7 +1715,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return dir()->install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
 
 #else
 
@@ -1726,14 +1726,14 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::should_build(const ::file::path & strScriptPath)
+   bool script_manager::should_build(const ::file::path& strScriptPath)
    {
 
       single_lock synchronouslock(m_pmutexShouldBuild, true);
 
       bool bShouldBuild = false;
 
-      if(!m_mapShouldBuild.lookup(strScriptPath, bShouldBuild))
+      if (!m_mapShouldBuild.lookup(strScriptPath, bShouldBuild))
          return false;
 
       return bShouldBuild;

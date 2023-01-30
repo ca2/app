@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
+﻿// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -126,16 +126,37 @@ void api_client::create_api(const ::string& strImplementation)
 void api_client::api_get(::string & str, const string& strUrl, property_set& set)
 {
 
-   defer_api();
+   int iTryCount = 3;
 
-   if (!m_papi)
+   for (int iTry = 0; iTry < iTryCount; iTry++)
    {
 
-      throw ::exception(error_resource);
+      defer_api();
+
+      if (!m_papi)
+      {
+
+         throw ::exception(error_resource);
+
+      }
+
+      m_papi->api_get(str, strUrl, set);
+
+      int iHttpStatusCode = set["http_status_code"];
+
+      ::string strStatus = set["http_status"];
+
+      if (iHttpStatusCode == 200 || iHttpStatusCode == 400)
+      {
+
+         break;
+
+      }
+
+      m_papi->clear_profile();
 
    }
 
-   m_papi->api_get(str, strUrl, set);
 
 }
 

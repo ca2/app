@@ -24,24 +24,31 @@ public:
 
 
    interlocked_count                   m_countReference;
-   memsize_storage                     m_memsize;
-   memsize_storage                     m_datasize;
+   memsize_storage                     m_sizeStorageInBytes;
+   memsize_storage                     m_countData;
    DATA                                m_endofmetadata[1024];
 
 
-   meta_data(): m_memsize(0),m_countReference (1) {}
-   meta_data(enum_zero_init) : m_memsize(0), m_countReference(1), m_endofmetadata{} {}
+   meta_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
+   meta_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1), m_endofmetadata{} {}
 
+   
    bool natural_is_shared() const { return m_countReference > 1; }
 
-   auto natural_add_ref() { return ++m_countReference; }
+   
+   auto natural_increment_reference_count() { return ++m_countReference; }
 
-   auto natural_dec_ref() { return --m_countReference; }
+   
+   auto natural_decrement_reference_count() { return --m_countReference; }
 
+   
    constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
+   
    DATA * begin() const { return (DATA *)(((byte *)this) + natural_offset()); }
-   DATA * end() const { return (DATA *)(begin() + this->m_datasize); }
+
+
+   DATA * end() const { return (DATA *)(begin() + this->m_countData); }
 
 
 };
@@ -62,12 +69,13 @@ public:
 
    natural_meta_data(enum_zero_init) :BASE_META_DATA(e_zero_init){}
 
+   
    bool is_set() { return ::is_set(this->m_begin); }
 
-
+   
    bool is_null() { return !is_null(); }
 
-
+   
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
@@ -98,7 +106,6 @@ public:
       return from_data(this->m_begin);
 
    }
-
 
 
 };
@@ -238,21 +245,21 @@ public:
 
       auto pnil = __nil< natural_meta_data < BASE_META_DATA > >();
 
-      pnil->natural_add_ref();
+      pnil->natural_increment_reference_count();
 
       return pnil;
 
    }
 
 
-   inline static NATURAL_META_DATA * create_meta_data(::memsize memsize)
+   inline static NATURAL_META_DATA * create_meta_data(::memsize sizeStorageInBytes)
    {
 
-      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(memsize + BASE_META_DATA::natural_offset());
+      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(sizeStorageInBytes + BASE_META_DATA::natural_offset());
 
       pmetadata->m_countReference.construct();
 
-      pmetadata->m_memsize = memsize;
+      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes;
 
       return pmetadata;
 
@@ -286,7 +293,7 @@ public:
    void create_assign_natural_meta_data(NATURAL_META_DATA * p)
    {
 
-      p->natural_add_ref();
+      p->natural_increment_reference_count();
 
       this->m_begin = (iterator) p->begin();
 
@@ -308,7 +315,7 @@ public:
          if (::is_set(pNew))
          {
 
-            auto i = pNew->natural_add_ref();
+            auto i = pNew->natural_increment_reference_count();
 
             if (i <= 0)
             {
@@ -387,7 +394,7 @@ public:
    static void _natural_release(natural_meta_data < BASE_META_DATA > * pmetadata)
    {
 
-      if (pmetadata->natural_dec_ref() == 0)
+      if (pmetadata->natural_decrement_reference_count() == 0)
       {
 
          natural_destroy(pmetadata);

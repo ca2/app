@@ -25,6 +25,7 @@ namespace http
       string         m_strPath;
       string         m_strDomain;
       bool           m_bSecure;
+      string         m_strSameSite;
 
 
       cookie();
@@ -100,8 +101,9 @@ namespace http
          const ::scoped_string & scopedstrKey,
          const ::payload & payload,
          const class time & time = 0_s,
-         const ::file::path & path = nullptr,
+         const ::scoped_string& strPath = nullptr,
          const ::scoped_string & scopedstrDomain = nullptr,
+         const ::scoped_string & scopedstrSameSite = "Strict",
          bool bSecure = false);
       static string expire(const class time & time = 5_minute);
 

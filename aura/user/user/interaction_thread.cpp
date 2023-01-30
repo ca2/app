@@ -218,11 +218,11 @@ namespace user
 
       }*/
 
-#ifdef WINDOWS_DESKTOP
-
-      acmenode()->defer_co_initialize_ex(false);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      acmenode()->defer_co_initialize_ex(false);
+//
+//#endif
 
       //set_topic_text("window_thread_" + __type_name(m_pimpl->m_puserinteraction)) + "> ";
 

@@ -34,7 +34,10 @@ public:
    bool                             m_bWaitingResponseFromUser;
    ::pointer<::api_client>         m_papiclient;
    ::manual_reset_event             m_eventResponse;
-   property_set                     m_setConfig;
+   //;; property_set                     m_setConfig;
+   property_set                     m_setProfile;
+   property_set                     m_setConfig2;
+
 
 
 
@@ -47,6 +50,7 @@ public:
 
    virtual void load_profile();
    virtual void save_profile();
+   virtual void clear_profile();
 
 
    virtual void on_login_response();

@@ -224,12 +224,12 @@ namespace sockets
 
       }
 
-      //for(i32 i = 0; i < m_response.cookies().size(); i++)
-      //{
+      for(i32 i = 0; i < m_response.cookies().size(); i++)
+      {
 
-      //   m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
+         m_response.m_propertysetHeader.set_at("set-cookie", m_response.cookies().element_at(i)->get_cookie_string());
 
-      //}
+      }
 
       /*
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/message/message.h"
@@ -13,8 +13,8 @@ namespace user
    {
    public:
 
-      ::channel * m_pchannel;
-      ::pointer<::windowing::window>  m_pwindow;
+      ::channel *                      m_pchannel;
+      ::pointer<::windowing::window>   m_pwindow;
       bool                             m_bConditional;
       bool                             m_bReflect;
       bool                             m_bDestroyed;
@@ -25,9 +25,9 @@ namespace user
       ~message() override;
 
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
 
-      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_atom, wparam, lparam); }
+      //inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_atom, wparam, lparam); }
 
       ::windowing::window * window() { return m_pwindow; }
 

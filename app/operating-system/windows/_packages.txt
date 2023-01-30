@@ -8,6 +8,7 @@ operating-system-windows/acme_windows
 operating-system-windows_common/acme_windows_common
 third/libcrypto-3-x64
 third/libssl-3-x64
+third/libarchive
 operating-system-windows/apex_windows
 operating-system-windows_common/apex_windows_common
 operating-system-windows/aura_windows

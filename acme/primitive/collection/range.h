@@ -5,8 +5,9 @@
 enum enum_range : ::i32
 {
 
-   e_range_none,
-   e_range_string,
+   e_range_none = 0,
+   e_range_string = 1,
+   e_range_scoped_string_allocation = 2,
 
 };
 

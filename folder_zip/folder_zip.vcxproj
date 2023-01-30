@@ -545,9 +545,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../../source</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -558,10 +556,8 @@
       </MapFileName>
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
-      <OptimizeReferences>false</OptimizeReferences>
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
-      <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>$(SolutionDir)../..core/include/manifest.dll.embed.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles>

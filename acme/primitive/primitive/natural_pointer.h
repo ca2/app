@@ -135,7 +135,7 @@ public:
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
 
-      natural_pointer.metadata()->natural_add_ref();
+      natural_pointer.metadata()->natural_increment_reference_count();
 
       RANGE_TYPE::operator = (natural_pointer);
 
@@ -194,7 +194,7 @@ public:
          if (natural_pointer.is_string())
          {
 
-            natural_pointer.metadata()->natural_add_ref();
+            natural_pointer.metadata()->natural_increment_reference_count();
 
          }
 

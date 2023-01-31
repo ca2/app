@@ -11,6 +11,9 @@
 #include "apex/networking/http/context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
+
+
+#include "acme/_operating_system.h"
 #include "libarchive/archive.h"
 #include "libarchive/archive_entry.h"
 

@@ -159,7 +159,7 @@ namespace xml
       else
       {
 
-         ps->assign(range);
+         ps->assign_range(range);
 
       }
 
@@ -206,7 +206,7 @@ namespace xml
 
       }
 
-      ps->assign(range);
+      ps->assign_range(range);
 
    }
 
@@ -214,7 +214,7 @@ namespace xml
    inline void _SetString(::const_ansi_range range,string* ps)
    {
 
-      ps->assign(range);
+      ps->assign_range(range);
 
    }
 

@@ -117,7 +117,11 @@ namespace userfs
 
       listingUser.m_straTitle.clear();
 
-      if(pitem->user_path().is_empty())
+      ::file::path pathItemUserPath;
+
+      pathItemUserPath = pitem->user_path();
+
+      if(pathItemUserPath.is_empty())
       {
 
          listingUser = m_listingRoot;

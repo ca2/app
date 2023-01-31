@@ -44,13 +44,11 @@ namespace networking_bsd
 
       auto ptable = (PMIB_IPNETTABLE)memory.data();
 
-      u = memory.size();
+      u = (ULONG) memory.size();
          
       auto uResult2 = ::GetIpNetTable(ptable, &u, TRUE);
 
-
-
-      for (index i = 0; i < u; i++)
+      for (index i = 0; i < ptable->dwNumEntries; i++)
       {
 
          //auto & row = *(MIB_IPNETROW *)(memory.data() + SIZEOF_IPNETTABLE(i));

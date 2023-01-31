@@ -1565,7 +1565,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
 {
 
-   assign(atom.as_string());
+   assign_range(atom.as_string());
 
    return *this;
 

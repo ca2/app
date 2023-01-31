@@ -1906,7 +1906,7 @@ namespace user
 
       auto pxmldocument = __create_new < ::xml::document >();
 
-      auto strXml = file()->as_string(payloadFile);
+      auto strXml = file()->safe_get_string(payloadFile);
 
       //try
       //{

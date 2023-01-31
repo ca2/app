@@ -1036,26 +1036,26 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const string_base & str)
-{
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const string_base & str)
+//{
+//
+//   NATURAL_POINTER::operator=(str);
+//
+//   return *this;
+//
+//}
 
-   NATURAL_POINTER::operator=(str);
 
-   return *this;
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(string_base && scopedstr)
-{
-
-   NATURAL_POINTER::operator=(::transfer(scopedstr));
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(string_base && scopedstr)
+//{
+//
+//   NATURAL_POINTER::operator=(::transfer(scopedstr));
+//
+//   return *this;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -1363,7 +1363,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
    else
    {
 
-      this->Empty();
+      this->empty();
 
    }
 

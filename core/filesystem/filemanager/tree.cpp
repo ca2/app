@@ -609,6 +609,7 @@ namespace filemanager
    void tree::install_message_routing(::channel * pchannel)
    {
 
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::userfs::tree::install_message_routing(pchannel);
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);

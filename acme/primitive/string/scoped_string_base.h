@@ -37,8 +37,7 @@ public:
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
-   scoped_string_base(const STRING & str) :
-   RANGE(e_zero_initialize)
+   scoped_string_base(const STRING & str)
    {
 
       if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))

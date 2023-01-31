@@ -931,7 +931,7 @@ template < typename ITERATOR_TYPE >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::payload & payload)
 {
 
-   assign(payload.as_string());
+   assign_range(payload.as_string());
 
    return *this;
 

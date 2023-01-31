@@ -12,6 +12,7 @@
 #ifndef CUBE
 
 #define CUBE
+#define STATIC_CUBE
 
 #else
 

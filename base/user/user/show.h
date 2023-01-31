@@ -3,6 +3,7 @@
 
 
 #include "impact.h"
+#include "aura/user/user/button.h"
 
 
 namespace user

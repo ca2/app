@@ -153,7 +153,7 @@ inline strsize  get_formatted_length(const ::wd32_character * pszFormat, va_list
 }
 
 
-inline strsize wd32string_format(::wd32_character * pszBuffer, const ::wd32_character * pszFormat, va_list args) noexcept
+inline strsize _string_format(::wd32_character * pszBuffer, const ::wd32_character * pszFormat, va_list args) noexcept
 {
 
 #ifdef WINDOWS

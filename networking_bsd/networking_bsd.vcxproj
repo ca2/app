@@ -869,6 +869,8 @@
     <ClCompile Include="sockets\ssl\client_context_map.cpp" />
     <ClCompile Include="sockets\ssl\context.cpp" />
     <ClCompile Include="sockets\ssl\initializer.cpp" />
+    <ClCompile Include="winsock2\list_computers.cpp" />
+    <ClCompile Include="winsock2\list_network_interfaces.cpp" />
     <ClCompile Include="winsock2\_.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />

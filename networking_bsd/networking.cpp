@@ -3379,6 +3379,88 @@ namespace networking_bsd
 
    //}
 
+   //::pointer_array < ::networking::address >node::list_network_interfaces()
+   //{
+
+   //   //return get_
+
+   //   //ULONG outBufLen = 0;
+
+   //   //DWORD dwRetVal = 0;
+
+   //   //IP_ADAPTER_INFO * pAdapterInfos = (IP_ADAPTER_INFO *)malloc(sizeof(IP_ADAPTER_INFO));
+
+   //   //// retry up to 5 times, to get the adapter infos needed
+   //   //for (int i = 0; i < 5 && (dwRetVal == ERROR_BUFFER_OVERFLOW || dwRetVal == NO_ERROR); ++i)
+   //   //{
+
+   //   //   dwRetVal = GetAdaptersInfo(pAdapterInfos, &outBufLen);
+
+   //   //   if (dwRetVal == NO_ERROR)
+   //   //   {
+
+   //   //      break;
+
+   //   //   }
+   //   //   else if (dwRetVal == ERROR_BUFFER_OVERFLOW)
+   //   //   {
+   //   //      free(pAdapterInfos);
+   //   //      pAdapterInfos = (IP_ADAPTER_INFO *)malloc(outBufLen);
+   //   //   }
+   //   //   else
+   //   //   {
+   //   //      pAdapterInfos = 0;
+   //   //      break;
+   //   //   }
+   //   //}
+   //   //if (dwRetVal == NO_ERROR)
+   //   //{
+   //   //   IP_ADAPTER_INFO * pAdapterInfo = pAdapterInfos;
+   //   //   while (pAdapterInfo)
+   //   //   {
+   //   //      IP_ADDR_STRING * pIpAddress = &(pAdapterInfo->IpAddressList);
+   //   //      while (pIpAddress != 0)
+   //   //      {
+   //   //         // 
+   //   //         // <<<<
+   //   //         // here pAdapterInfo->Address should contain the MAC address
+   //   //         // >>>>
+   //   //         // 
+
+   //   //         pIpAddress = pIpAddress->Next;
+   //   //      }
+   //   //      pAdapterInfo = pAdapterInfo->Next;
+   //   //   }
+   //   //}
+   //   //free(pAdapterInfos);
+   //   //return false;
+
+   //   return get_adapters_addresses();
+
+   //}
+
+
+   //::pointer_array < ::networking::address >networking::list_computers()
+   //{
+
+   //   //    NET_API_STATUS NET_API_FUNCTION NetServerEnum(
+   //   //[in, optional]      LMCSTR  servername,
+   //   //[in]                DWORD   level,
+   //   //[out]               LPBYTE * bufptr,
+   //   //[in]                DWORD   prefmaxlen,
+   //   //[out]               LPDWORD entriesread,
+   //   //[out]               LPDWORD totalentries,
+   //   //[in]                DWORD   servertype,
+   //   //[in, optional]      LMCSTR  domain,
+   //   //[in, out, optional] LPDWORD resume_handle
+   //   //    );
+
+
+   //   return {};
+
+   //}
+
+
 
 } // namespace networking_bsd
 

@@ -221,6 +221,12 @@ namespace networking_bsd
       virtual string get_http_post_boundary();
 
 
+      ::pointer_array < ::networking::address > list_computers() override;
+
+
+      ::pointer_array < ::networking::address > list_network_interfaces() override;
+
+
    };
 
    //CLASS_DECL_NETWORKING_BSD class address_department * address_department();

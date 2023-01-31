@@ -163,7 +163,7 @@ namespace networking_bsd
    void address::set_address(const sockaddr_in& sa)
    {
 
-      ::zero(this, sizeof(u.m_sa));
+      //::zero(this, sizeof(u.m_sa));
 
       u.m_addr = sa;
 

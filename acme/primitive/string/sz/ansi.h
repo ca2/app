@@ -84,7 +84,7 @@ inline strsize string_find_first_character_in(const ::ansi_character * pszBlock,
 
 
 inline strsize get_formatted_length(const ::ansi_character * pszFormat, va_list args) noexcept;
-inline strsize ansistring_format(::ansi_character * pszBuffer, strsize nlength, const ::ansi_character * pszFormat, va_list args) noexcept;
+inline strsize _string_format(::ansi_character * pszBuffer, strsize nlength, const ::ansi_character * pszFormat, va_list args) noexcept;
 inline void  flood_characters(::ansi_character * psz, ::ansi_character ch, strsize len) noexcept;
 
 inline strsize unichar_count(const ::ansi_character * pstr);

@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/slider.h -- Fractional slider widget with mouse control
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -46,7 +46,7 @@ NAMESPACE_BEGIN(nanogui)
 
       virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
       virtual void draw(NVGcontext * ctx) override;
 
    protected:

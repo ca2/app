@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/tabwidget.h -- Widget for organizing multiple
     sub-widgets into tabs
 
@@ -105,7 +105,7 @@ NAMESPACE_BEGIN(nanogui)
      void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
      Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
      void draw(NVGcontext * ctx) override;
-     bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
      bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/tabwidget.cpp -- Widget for organizing multiple
     sub-widgets into tabs
 
@@ -21,7 +21,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-TabWidgetBase::TabWidgetBase(Widget * parent, const std::string & font)
+TabWidgetBase::TabWidgetBase(Widget* parent, const std::string& font)
    : Widget(parent), m_font(font), m_background_color(Color(0.f, 0.f)) {
    m_tab_offsets.push_back(0);
 }
@@ -33,7 +33,7 @@ void TabWidgetBase::remove_tab(int id) {
    m_tab_ids.erase(m_tab_ids.begin() + index);
    if (index <= m_active_tab)
       m_active_tab = std::max(0, m_active_tab - 1);
-   m_callbackLayout = [this](NVGcontext * pcontext)
+   m_callbackLayout = [this](NVGcontext* pcontext)
    {
       perform_layout(pcontext);
    };
@@ -52,12 +52,12 @@ void TabWidgetBase::remove_tab(int id) {
 
 }
 
-int TabWidgetBase::insert_tab(int index, const std::string & caption) {
+int TabWidgetBase::insert_tab(int index, const std::string& caption) {
    int id = m_tab_counter++;
    m_tab_captions.insert(m_tab_captions.begin() + index, caption);
    m_tab_ids.insert(m_tab_ids.begin() + index, id);
    //TabWidgetBase::perform_layout(screen()->nvg_context());
-   m_callbackLayout = [this](NVGcontext * pcontext)
+   m_callbackLayout = [this](NVGcontext* pcontext)
    {
       perform_layout(pcontext);
    };
@@ -78,7 +78,7 @@ int TabWidgetBase::insert_tab(int index, const std::string & caption) {
    return id;
 }
 
-int TabWidgetBase::append_tab(const std::string & caption) {
+int TabWidgetBase::append_tab(const std::string& caption) {
    return insert_tab((int)m_tab_captions.size(), caption);
 }
 
@@ -92,7 +92,7 @@ int TabWidgetBase::tab_index(int id) const {
 
 void TabWidgetBase::update_visibility() { /* No-op */ }
 
-void TabWidgetBase::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
+void TabWidgetBase::perform_layout(NVGcontext* ctx, bool bRecalcTextSize) {
    m_tab_offsets.clear();
    nvgFontFace(ctx, m_font.c_str());
    nvgFontSize(ctx, font_size());
@@ -101,8 +101,8 @@ void TabWidgetBase::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    m_tab_offsets.clear();
    int width = 0;
    float unused[4];
-   for (const std::string & label : m_tab_captions) {
-      int label_width = (int) nvgTextBounds(ctx, 0.f, 0.f, label.c_str(), nullptr, unused);
+   for (const std::string& label : m_tab_captions) {
+      int label_width = (int)nvgTextBounds(ctx, 0.f, 0.f, label.c_str(), nullptr, unused);
       m_tab_offsets.push_back(width);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
       if (m_tabs_closeable)
@@ -115,26 +115,26 @@ void TabWidgetBase::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
       nvgTextBounds(ctx, 0.f, 0.f, get_utf8_character(FA_TIMES_CIRCLE).data(), nullptr, unused);
 }
 
-Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
+Vector2i TabWidgetBase::preferred_size(NVGcontext* ctx, bool bRecalcTextSize)
 {
    nvgFontFace(ctx, m_font.c_str());
    nvgFontSize(ctx, font_size());
    nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
 
    int width = 0;
-   for (const std::string & label : m_tab_captions) {
+   for (const std::string& label : m_tab_captions) {
       float unused[4];
-      int label_width = (int) nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
+      int label_width = (int)nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
       if (m_tabs_closeable)
          width += m_close_width;
    }
 
    return Vector2i(width + 1,
-      (int) (font_size() + 2.f * m_theme->m_tab_button_vertical_padding + 2.f * m_padding));
+      (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding + 2.f * m_padding));
 }
 
-void TabWidgetBase::draw(NVGcontext * ctx) {
+void TabWidgetBase::draw(NVGcontext* ctx) {
    if (m_callbackLayout)
    {
       m_callbackLayout(ctx);
@@ -148,7 +148,7 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
    if (m_tab_offsets.size() != m_tab_captions.size() + 1)
       throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
 
-   int tab_height = (int) (font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
+   int tab_height = (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
 
    if (m_background_color.w() != 0.f) {
       nvgFillColor(ctx, m_background_color);
@@ -254,8 +254,8 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
    }
 }
 
-std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i & p, bool test_vertical) const {
-   int tab_height = (int) font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test_vertical) const {
+   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
    if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       return { -1, false };
 
@@ -275,18 +275,16 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i & p, bool tes
    return { -1, false };
 }
 
-bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
-   , const ::user::e_key & ekeyModifiers) {
+bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key& ekeyModifiers)
+{
    int index; bool close;
    std::tie(index, close) = tab_at_position(p);
    bool handled = false;
 
-   Screen * screen = this->screen();
+   Screen* screen = this->screen();
    if (m_popup) {
       m_popup->mouse_button_event(
-         p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),
-         button, down, ekeyModifiers
-      );
+         p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),emouse, down, ekeyModifiers);
       screen->update_focus(this);
       screen->remove_child(m_popup);
       m_popup = nullptr;
@@ -294,7 +292,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
    }
 
    bool drag_in_progress = m_tab_drag_index != -1 && m_tab_drag_start != m_tab_drag_end;
-   if (m_popup_callback && button == ::user::e_mouse_right_button && down && index != -1 &&
+   if (m_popup_callback && emouse == ::user::e_mouse_right_button && down && index != -1 &&
       !drag_in_progress) {
       m_popup = m_popup_callback(tab_id(index), screen);
       m_popup->set_position(p + Vector2i(8, -6));
@@ -302,14 +300,14 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       m_popup->set_anchor_size(8);
       if (m_popup->layout() == nullptr)
          m_popup->set_layout(memory_new GroupLayout(5, 3));
-      for (Widget * w : m_popup->children()) {
-         Button * b = dynamic_cast<Button *>(w);
+      for (Widget* w : m_popup->children()) {
+         Button* b = dynamic_cast<Button*>(w);
          if (!b)
             continue;
          b->set_icon_position(Button::IconPosition::Right);
          b->set_flags(Button::MenuButton);
       }
-      m_popup->m_callbackLayout = [this](NVGcontext * ctx)
+      m_popup->m_callbackLayout = [this](NVGcontext* ctx)
       {
          m_popup->set_size(m_popup->preferred_size(ctx) + Vector2i(40, 0));
          m_popup->perform_layout(ctx);
@@ -326,7 +324,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       handled = true;
    }
 
-   if (button == ::user::e_mouse_left_button && m_popup == nullptr) {
+   if (emouse == ::user::e_mouse_left_button && m_popup == nullptr) {
       if (index >= 0) {
          if (close && m_tab_drag_index == -1) {
             if (down) {
@@ -368,15 +366,17 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       handled = true;
    }
 
-   handled |= Widget::mouse_button_event(p, button, down, ekeyModifiers);
+   handled |= Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
 
    return handled;
+
 }
 
-bool TabWidgetBase::mouse_enter_event(const Vector2i &/* p */, bool /* enter */, const ::user::e_key & ) 
+
+bool TabWidgetBase::mouse_enter_event(const Vector2i&/* p */, bool /* enter */, const ::user::e_key&)
 {
 
-   if (m_tabs_closeable && m_close_index >= 0) 
+   if (m_tabs_closeable && m_close_index >= 0)
    {
       m_close_index = -1;
       m_close_index_pushed = -1;
@@ -387,7 +387,7 @@ bool TabWidgetBase::mouse_enter_event(const Vector2i &/* p */, bool /* enter */,
 }
 
 
-bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) 
+bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, const ::user::e_key& ekeyModifiers)
 {
 
    auto [index, close] = tab_at_position(p, false);
@@ -403,7 +403,7 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
             std::swap(m_tab_captions[index], m_tab_captions[m_tab_drag_index]);
             std::swap(m_tab_ids[index], m_tab_ids[m_tab_drag_index]);
             //TabWidgetBase::perform_layout(screen()->nvg_context());
-            m_callbackLayout = [this](NVGcontext * ctx)
+            m_callbackLayout = [this](NVGcontext* ctx)
             {
 
                TabWidgetBase::perform_layout(ctx);
@@ -438,15 +438,15 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
 }
 
 
-TabWidget::TabWidget(Widget * parent, const std::string & font)
+TabWidget::TabWidget(Widget* parent, const std::string& font)
    : TabWidgetBase(parent, font) { }
 
-void TabWidget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
+void TabWidget::perform_layout(NVGcontext* ctx, bool bRecalcTextSize) {
    TabWidgetBase::perform_layout(ctx, bRecalcTextSize);
 
-   int tab_height = (int) font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
 
-   for (Widget * child : m_children) {
+   for (Widget* child : m_children) {
       child->set_position(Vector2i(m_padding, m_padding + tab_height + 1));
       child->set_size(m_size - Vector2i(2 * m_padding, 2 * m_padding + tab_height + 1));
       child->perform_layout(ctx, bRecalcTextSize);
@@ -456,17 +456,17 @@ void TabWidget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
 void TabWidget::update_visibility() {
    if (tab_count() == 0)
       return;
-   for (Widget * child : m_children)
+   for (Widget* child : m_children)
       child->set_visible(false);
    auto it = m_widgets.find(selected_id());
    if (it != m_widgets.end())
       it->second->set_visible(true);
 }
 
-Vector2i TabWidget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
+Vector2i TabWidget::preferred_size(NVGcontext* ctx, bool bRecalcTextSize) {
    Vector2i base_size = TabWidgetBase::preferred_size(ctx, bRecalcTextSize),
       content_size = Vector2i(0);
-   for (Widget * child : m_children)
+   for (Widget* child : m_children)
       content_size = max(content_size, child->preferred_size(ctx, bRecalcTextSize));
 
    return Vector2i(
@@ -475,14 +475,14 @@ Vector2i TabWidget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
    );
 }
 
-int TabWidget::insert_tab(int index, const std::string & caption, Widget * widget) {
+int TabWidget::insert_tab(int index, const std::string& caption, Widget* widget) {
    int id = TabWidgetBase::insert_tab(index, caption);
    m_widgets[id] = widget;
    update_visibility();
    return id;
 }
 
-int TabWidget::append_tab(const std::string & caption, Widget * widget) {
+int TabWidget::append_tab(const std::string& caption, Widget* widget) {
    widget->set_visible(false);
    int id = TabWidgetBase::append_tab(caption);
    m_widgets[id] = widget;
@@ -492,7 +492,7 @@ int TabWidget::append_tab(const std::string & caption, Widget * widget) {
 
 void TabWidget::remove_tab(int id) {
    TabWidgetBase::remove_tab(id);
-   Widget * widget = m_widgets[id];
+   Widget* widget = m_widgets[id];
    m_widgets.erase(id);
    if (m_remove_children)
       remove_child(widget);

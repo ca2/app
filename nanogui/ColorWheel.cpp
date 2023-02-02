@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/colorwheel.cpp -- fancy analog widget to select a color value
 
     This widget was contributed by Dmitriy Morozov.
@@ -143,10 +143,10 @@ void ColorWheel::draw(NVGcontext * ctx)
 }
 
 
-bool ColorWheel::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key& ekeyModifiers)
 {
-   Widget::mouse_button_event(p, button, down, ekeyModifiers);
-   if (!m_enabled || button != ::user::e_mouse_left_button)
+   Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
+   if (!m_enabled || emouse != ::user::e_mouse_left_button)
       return false;
 
    if (down) {

@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/button.cpp -- [Normal/Toggle/Radio/Popup] Button widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -71,17 +71,17 @@ Vector2i Button::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 //}
 
 
-bool Button::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
+bool Button::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers)
 {
 
-   Widget::mouse_button_event(p, button, down, ekeyModifiers);
+   Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
    /* Temporarily increase the reference count of the button in case the
       button causes the parent window to be destructed */
    ref<Button> self = this;
 
    if (m_enabled == 1 &&
-      ((button == ::user::e_mouse_left_button && !(m_flags & MenuButton)) ||
-         (button == ::user::e_mouse_right_button && (m_flags & MenuButton))))
+      ((emouse == ::user::e_mouse_left_button && !(m_flags & MenuButton)) ||
+         (emouse == ::user::e_mouse_right_button && (m_flags & MenuButton))))
    {
 
       bool bChecked = m_bChecked;

@@ -1,4 +1,4 @@
-/*
+﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -59,7 +59,7 @@ NAMESPACE_BEGIN(nanogui)
       void draw(NVGcontext * ctx) override;
 
       /// Handles mouse button click events for the ColorWheel.
-      bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
 
       /// Handles mouse drag events for the ColorWheel.
       bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;

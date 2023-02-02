@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/m_pcheckbox.cpp -- Two-state check box widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -23,13 +23,13 @@ CheckBox::CheckBox(Widget * parent, const std::string & caption,
    m_icon_extra_scale = 1.2f; // widget override
 }
 
-bool CheckBox::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+bool CheckBox::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
 {
-   Widget::mouse_button_event(p, button, down, ekeyModifiers);
+   Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
    if (!m_enabled)
       return false;
 
-   if (button == ::user::e_mouse_left_button) {
+   if (emouse == ::user::e_mouse_left_button) {
       if (down) {
          m_bMouseDown = true;
          screen()->m_puserinteraction->set_need_redraw();

@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/vscrollpanel.cpp -- Adds a vertical scrollbar around a widget
     that is too big to fit into a certain area
 
@@ -111,12 +111,12 @@ bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel, co
 }
 
 
-bool VScrollPanel::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+bool VScrollPanel::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
 {
-   if (Widget::mouse_button_event(p, button, down, ekeyModifiers))
+   if (Widget::mouse_button_event(p, emouse, down, ekeyModifiers))
       return true;
 
-   if (down && button == ::user::e_mouse_left_button && !m_children.empty() &&
+   if (down && emouse == ::user::e_mouse_left_button && !m_children.empty() &&
       m_child_preferred_height > m_size.y() &&
       p.x() > m_pos.x() + m_size.x() - 13 &&
       p.x() < m_pos.x() + m_size.x() - 4) 

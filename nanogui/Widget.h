@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/widget.h -- Base class of all widgets
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -297,7 +297,7 @@ public:
    const Widget * find_widget(const Vector2i & p) const;
 
    /// Handle a mouse button event (default implementation: propagate to children)
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers);
+   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse motion event (default implementation: propagate to children)
    virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers);

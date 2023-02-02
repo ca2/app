@@ -17,13 +17,13 @@
     <Filter Include="Libraries\x86">
       <UniqueIdentifier>{76504347-f86b-465b-ae56-bab917af9ecf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\x86\basis">
+    <Filter Include="Libraries\x86\Debug">
       <UniqueIdentifier>{3e60624d-9015-427d-8c04-784ff1fa78b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x64">
       <UniqueIdentifier>{4724028a-3a61-4761-b3d8-1e44e7ac3118}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\x64\basis">
+    <Filter Include="Libraries\x64\Debug">
       <UniqueIdentifier>{6e7e5a89-a722-41b5-b750-750c500a4ad9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -83,23 +83,23 @@
   <ItemGroup>
     <None Include="..\uwp_app_net_TemporaryKey.pfx" />
     <None Include="..\uwp_app_simple_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\pcre.dll">
-      <Filter>Libraries\x64\basis</Filter>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
+      <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\zlib.dll">
-      <Filter>Libraries\x64\basis</Filter>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
+      <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
     <None Include="..\_main.inl">
       <Filter>Source Files</Filter>

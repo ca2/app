@@ -1882,7 +1882,7 @@ namespace aura
 
       auto puser = m_puser;
 
-      puser->windowing1()->defer_initialize_host_window(lpcrect);
+      puser->windowing()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 

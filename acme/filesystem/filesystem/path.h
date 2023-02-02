@@ -205,11 +205,13 @@ namespace file
       void set_type(enum_path epath);
 
       //::file::path replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension);
-      void set_all_extensions(const ::ansi_string & strNewExtension);
-      void set_final_extension(const ::ansi_string & strNewExtension);
+      void set_all_extensions(const ::scoped_string& scopestrExtension);
+      void set_final_extension(const ::scoped_string& scopestrExtension);
+      void set_extension_if_no_extension(const ::scoped_string & scopestrExtension);
 
-      ::file::path with_all_extensions(const ::ansi_string & strNewExtension) const;
-      ::file::path with_final_extension(const ::ansi_string & strNewExtension) const;
+      ::file::path with_all_extensions(const ::scoped_string& scopestrExtension) const;
+      ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
+      ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
       inline char separator() const
       {
@@ -471,6 +473,13 @@ namespace file
 
 
       ::file::path & patch_base_path(const ::file::path & pathBase);
+
+
+      /////if no extension present it adds "ext" otherwise do nothing
+      //::file::path& defer_extension(const ::scoped_string & scopedstrExtension);
+
+      /////force extension to be scopedstrExtension erasing possibly existing extension
+      //::file::path& force_extension(const ::scoped_string& scopedstrExtension);
 
 
    };

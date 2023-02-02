@@ -2121,7 +2121,7 @@ else if (ptopic->m_atom == id_app_activated)
       //
       //   auto puser = psession->user();
       //
-      //   auto pwindowing = puser->windowing1();
+      //   auto pwindowing = puser->windowing();
       //
       //   pwindowing->_will_finish_launching();
 

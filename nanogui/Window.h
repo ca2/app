@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/window.h -- Top-level window widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -59,7 +59,7 @@ NAMESPACE_BEGIN(nanogui)
    /// Handle window drag events
    virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
    /// Handle mouse events recursively and bring the current window to the top
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
    /// Accept scroll events and propagate them to the widget under the mouse cursor
       
       void on_begin_draw(NVGcontext * ctx) override;

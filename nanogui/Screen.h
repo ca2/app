@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/screen.h -- Top-level widget and interface between NanoGUI and GLFW
 
     A significant redesign of this code was contributed by Christian Schueller.
@@ -318,7 +318,7 @@ public:
 
    virtual void on_close();
    //bool on_mouse_move(const ::point_i32 & point) override;
-   bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
 //   void drop_callback_event(int count, const char ** filenames);

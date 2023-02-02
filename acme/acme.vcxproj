@@ -1427,6 +1427,7 @@
     <ClInclude Include="procedure.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
+    <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="_range.h" />
     <ClInclude Include="_library.h" />
     <ClInclude Include="_operating_system.h" />

@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/imagepanel.cpp -- Image panel widget which shows a number of
     square-shaped icons
 
@@ -16,6 +16,7 @@
 #include "acme/platform/context.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/user/user/interaction.h"
+#include "acme/platform/scoped_restore.h"
 
 
 ::object * get_nano2d_object(NVGcontext * ctx);
@@ -66,8 +67,7 @@ bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel 
 }
 
 
-bool ImagePanel::mouse_button_event(const Vector2i & p, int /* button */, bool down,
-   const ::user::e_key & /* modifiers */) 
+bool ImagePanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key & /* modifiers */) 
 {
 
    int index = index_for_position(p);

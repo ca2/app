@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 23/12/22.
 //
 #pragma once
@@ -742,10 +742,10 @@ namespace file
     //}
 
 
-    inline void path::set_all_extensions(const ::ansi_string& strNewExtension)
+    inline void path::set_all_extensions(const ::scoped_string& scopedstrExtension)
     {
 
-       string strExtension(strNewExtension);
+       string strExtension(scopedstrExtension);
 
        strExtension.case_insensitive_begins_eat(".");
 
@@ -767,10 +767,10 @@ namespace file
     }
 
 
-    inline void path::set_final_extension(const ::ansi_string& strNewExtension)
+    inline void path::set_final_extension(const ::scoped_string& scopedstrExtension)
     {
 
-       string strExtension(strNewExtension);
+       string strExtension(scopedstrExtension);
 
        strExtension.case_insensitive_begins_eat(".");
 
@@ -792,24 +792,56 @@ namespace file
     }
 
 
-    inline ::file::path path::with_all_extensions(const ::ansi_string& strNewExtension) const
+    inline void path::set_extension_if_no_extension(const ::scoped_string& scopedstrExtension)
+    {
+
+       if (this->final_extension().is_empty())
+       {
+
+          auto p = scopedstrExtension.skip('.');
+
+          if (::has_char(p))
+          {
+
+             this->operator = (((::ansi_string&)*this) + "." +   scopedstrExtension(p));
+
+          }
+
+       }
+
+    }
+
+
+    inline ::file::path path::with_all_extensions(const ::scoped_string& scopedstrExtension) const
     {
 
        ::file::path path(*this);
 
-       path.set_all_extensions(strNewExtension);
+       path.set_all_extensions(scopedstrExtension);
 
        return ::transfer(path);
 
     }
 
 
-    inline ::file::path path::with_final_extension(const ::ansi_string& strNewExtension) const
+    inline ::file::path path::with_final_extension(const ::scoped_string& scopedstrExtension) const
     {
 
        ::file::path path(*this);
 
-       path.set_final_extension(strNewExtension);
+       path.set_final_extension(scopedstrExtension);
+
+       return ::transfer(path);
+
+    }
+
+
+    inline ::file::path path::with_extension_if_no_extension(const ::scoped_string& scopedstrExtension) const
+    {
+
+       ::file::path path(*this);
+
+       path.set_extension_if_no_extension(scopedstrExtension);
 
        return ::transfer(path);
 

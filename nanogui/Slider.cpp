@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/slider.cpp -- Fractional slider widget with mouse control
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -43,7 +43,7 @@ bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */, co
    return true;
 }
 
-bool Slider::mouse_button_event(const Vector2i & p, int /* button */, bool down, const ::user::e_key & /* modifiers */) {
+bool Slider::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & /* modifiers */) {
    if (!m_enabled)
       return false;
 

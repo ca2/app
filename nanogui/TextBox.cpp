@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/textbox.cpp -- Fancy text box with builtin regular
     expression-based validation
 
@@ -296,11 +296,10 @@ bool TextBox::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_
 }
 
 
-bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+bool TextBox::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
 {
 
-
-   if (button == ::user::e_mouse_left_button && down && !m_focused)
+   if (emouse == ::user::e_mouse_left_button && down && !m_focused)
    {
       if (!m_spinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
          request_focus();

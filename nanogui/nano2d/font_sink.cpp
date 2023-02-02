@@ -1,4 +1,4 @@
-//
+﻿//
 //  font_sink.cpp
 //  nanogui
 //
@@ -26,7 +26,7 @@ namespace nano2d
           
           ASSERT(::is_same(pfontShared->m_fontdescriptor.m_fSize, size, 0.1));
           
-          ASSERT(pfontShared->m_fontdescriptor.m_strFace.compare(face) == 0);
+          ASSERT(pfontShared->m_fontdescriptor.m_strFace.equals(face));
           
        }
        else

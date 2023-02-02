@@ -90,9 +90,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_) { class node; }
 namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_) { class node; }
 
 
-constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
-
-
 
 namespace acme
 {

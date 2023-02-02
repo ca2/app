@@ -104,7 +104,7 @@ void menu_shared::on_idle_update()
    
    auto puser = psession->user();
    
-   auto pwindowing = puser->windowing1();
+   auto pwindowing = puser->windowing();
    
    for(int i = 0; i < m_iCount; i++)
    {

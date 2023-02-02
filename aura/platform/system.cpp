@@ -5492,7 +5492,7 @@ namespace aura
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing1();
+//      auto pwindowing = puser->windowing();
 //
 //      pwindowing->_will_finish_launching();
 //
@@ -5506,7 +5506,7 @@ namespace aura
 //
 //      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing1();
+//      auto pwindowing = puser->windowing();
 //
 //      pwindowing->element_quit_post_quit();
 //
@@ -6864,7 +6864,7 @@ namespace aura
          || ::is_null(acmeapplication()->m_pauraapplication)
          || ::is_null(acmeapplication()->m_pauraapplication->get_session())
          || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing1())
+         || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
          )
       {
 
@@ -6872,7 +6872,7 @@ namespace aura
 
       }
 
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing1();
+      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
 
       pwindowing->windowing_send(procedure);
 
@@ -6886,7 +6886,7 @@ namespace aura
          || ::is_null(acmeapplication()->m_pauraapplication)
             || ::is_null(acmeapplication()->m_pauraapplication->get_session())
                || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user())
-                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing1())
+                  || ::is_null(acmeapplication()->m_pauraapplication->get_session()->user()->windowing())
                )
       {
 
@@ -6894,7 +6894,7 @@ namespace aura
 
       }
 
-      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing1();
+      auto pwindowing = acmeapplication()->m_pauraapplication->get_session()->user()->windowing();
 
       pwindowing->windowing_post(procedure);
 

@@ -1057,8 +1057,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //} // namespace write_text
 //
 //
-////#include "acme/constant/user.h"
-//
 //
 //
 //

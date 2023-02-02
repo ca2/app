@@ -753,7 +753,7 @@ void Screen::draw_widgets(NVGcontext * ctx) {
          }
 
          nvgGlobalAlpha(ctx,
-            minimum(1.f, (float) ((elapsed - 0.5_s).floating_second().m_d*2.0 * 0.8)));
+            minimum(1.f, (float) ((elapsed - 0.5_s).floating_second()*2.0 * 0.8)));
 
          nvgBeginPath(ctx);
          nvgFillColor(ctx, Color(0, 255));
@@ -890,7 +890,7 @@ void Screen::on_close()
 }
 
 
-bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
+bool Screen::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers)
 {
    m_modifiers = ekeyModifiers;
   // m_last_interaction = glfwGetTime();
@@ -926,9 +926,9 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
          && m_pwidgetLeftButtonDown== nullptr)
       {
 
-         m_redraw |= m_drag_widget->mouse_button_event(
-            m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
-            false, ekeyModifiers);
+         auto pointClient = m_mouse_pos - m_drag_widget->parent()->absolute_position();
+
+         m_redraw |= m_drag_widget->mouse_button_event(pointClient, emouse, false, ekeyModifiers);
          
       }
 
@@ -938,7 +938,7 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
       }*/
 
       //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-      bool btn12 = button == ::user::e_mouse_left_button || button == ::user::e_mouse_right_button;
+      bool btn12 = emouse == ::user::e_mouse_left_button || emouse == ::user::e_mouse_right_button;
 
       //if (!m_drag_active && action == GLFW_PRESS && btn12) {
       if (!m_drag_active && down && btn12) {
@@ -955,8 +955,8 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
          m_drag_widget = nullptr;
       }
 
-      bool bRet = Widget::mouse_button_event(m_mouse_pos, button,
-         down, m_modifiers);
+      bool bRet = Widget::mouse_button_event(m_mouse_pos, emouse, down, m_modifiers);
+
       m_redraw |= bRet;
   //   action == GLFW_PRESS, m_modifiers);
    //}
@@ -1269,29 +1269,6 @@ void Screen::on_mouse_leave()
 
 }
 
-int user_key_to_nano2d_button(::user::e_key ekeyButton)
-{
-
-   if (ekeyButton == ::user::e_key_left_button)
-   {
-
-      return ::user::e_mouse_left_button;
-
-   }
-   else if (ekeyButton == ::user::e_key_right_button)
-   {
-
-      return ::user::e_mouse_right_button;
-
-   }
-   else
-   {
-
-      return -1;
-
-   }
-
-}
 
 bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
@@ -1300,9 +1277,9 @@ bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point,
 
    p += m_pos;
 
-   int iNanoGuiButton = user_key_to_nano2d_button(ekeyButton);
+   auto ebutton = user_key_to_user_mouse(ekeyButton);
 
-   bool bRet = mouse_button_event(p, iNanoGuiButton, 1, ekeyModifiers);
+   bool bRet = mouse_button_event(p, ebutton, 1, ekeyModifiers);
 
    return bRet;
 
@@ -1316,9 +1293,9 @@ bool Screen::on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, c
 
    p += m_pos;
 
-   int iNanoGuiButton = user_key_to_nano2d_button(ekeyButton);
+   auto emouse = user_key_to_user_mouse(ekeyButton);
 
-   bool bRet = mouse_button_event(p, iNanoGuiButton, 0, ekeyModifiers);
+   bool bRet = mouse_button_event(p, emouse, 0, ekeyModifiers);
 
    return bRet;
 

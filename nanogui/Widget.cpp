@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/widget.cpp -- Base class of all widgets
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -160,18 +160,18 @@ const Widget * Widget::find_widget(const Vector2i & p) const {
    return contains(p) ? this : nullptr;
 }
 
-bool Widget::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+bool Widget::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
 {
 
    for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) 
    {
       Widget * child = *it;
       if (child->visible() && child->contains(p - m_pos) &&
-         child->mouse_button_event(p - m_pos, button, down, ekeyModifiers))
+         child->mouse_button_event(p - m_pos, emouse, down, ekeyModifiers))
          return true;
    }
    
-   if (button == ::user::e_mouse_left_button && down && !m_focused)
+   if (emouse == ::user::e_mouse_left_button && down && !m_focused)
    {
 
       request_focus();

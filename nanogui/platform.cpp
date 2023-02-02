@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 //#include "acme/primitive/primitive/function.h"
 //#include "acme/exception/exception.h"
-
+#include "acme/primitive/primitive/memory.h"
 
 #include "acme/_operating_system.h"
 
@@ -66,10 +66,10 @@ void file_dialog_from_platform(
          static const int FILE_DIALOG_MAX_BUFFER = 16384;
          tmp1.set_size(FILE_DIALOG_MAX_BUFFER);
          tmp1.zero();
-         wchar_t * tmp = (wchar_t *)tmp1.get_data();
+         wchar_t * tmp = (wchar_t *)tmp1.data();
          ofn.lpstrFile = tmp;
          //;; ZeroMemory(tmp, FILE_DIALOG_MAX_BUFFER);
-         ofn.nMaxFile = (DWORD) tmp1.get_size();
+         ofn.nMaxFile = (DWORD) tmp1.size();
          ofn.nFilterIndex = 1;
 
          memory filter;
@@ -78,7 +78,7 @@ void file_dialog_from_platform(
             __wide_append(filter, "Supported file types (");
             for (size_t i = 0; i < filetypes.size(); ++i) {
                __wide_append(filter, "*.");
-               __wide_append(filter, filetypes[i].first.c_str());
+               __wide_append(filter, filetypes[i].element1().c_str());
                if (i + 1 < filetypes.size())
                   __wide_append(filter, ";");
             }
@@ -86,24 +86,24 @@ void file_dialog_from_platform(
             __wide_append_null(filter);
             for (size_t i = 0; i < filetypes.size(); ++i) {
                __wide_append(filter, "*.");
-               __wide_append(filter, filetypes[i].first.c_str());
+               __wide_append(filter, filetypes[i].element1().c_str());
                if (i + 1 < filetypes.size())
                   __wide_append(filter, ";");
             }
             __wide_append_null(filter);
          }
          for (auto pair : filetypes) {
-            __wide_append(filter, pair.second.c_str());
+            __wide_append(filter, pair.element2().c_str());
             __wide_append(filter, " (*.");
-            __wide_append(filter, pair.first.c_str());
+            __wide_append(filter, pair.element1().c_str());
             __wide_append(filter, ")");
             __wide_append_null(filter);
             __wide_append(filter, "*.");
-            __wide_append(filter, pair.first.c_str());
+            __wide_append(filter, pair.element1().c_str());
             __wide_append_null(filter);
          }
          __wide_append_null(filter);
-         ofn.lpstrFilter = (LPWSTR)filter.get_data();
+         ofn.lpstrFilter = (LPWSTR)filter.data();
 
          if (save) {
             ofn.Flags = OFN_EXPLORER | OFN_PATHMUSTEXIST | OFN_OVERWRITEPROMPT;
@@ -130,7 +130,7 @@ void file_dialog_from_platform(
          while (*tmp != L'\0') {
 
             wstring wstr(tmp);
-            result.push_back(string(wstr).c_str());
+            patha.add(string(wstr).c_str());
 
             tmp += wcslen(tmp) + 1;
          }

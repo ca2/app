@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/imagepanel.h -- Image panel widget which shows a number of
     square-shaped icons
 
@@ -42,7 +42,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
 
       virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
       virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       virtual void draw(NVGcontext * ctx) override;
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/vscrollpanel.h -- Adds a vertical scrollbar around a widget
     that is too big to fit into a certain area
 
@@ -47,7 +47,7 @@ NAMESPACE_BEGIN(nanogui)
 
       virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(NVGcontext * ctx) override;

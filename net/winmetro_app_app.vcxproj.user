@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Source>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</Source>
-    <SmallTileSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</SmallTileSource>
-    <MediumTileSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</MediumTileSource>
-    <WideTileSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</WideTileSource>
-    <LargeTileSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</LargeTileSource>
-    <AppIconSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</AppIconSource>
-    <SplashScreenSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</SplashScreenSource>
-    <BadgeLogoSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</BadgeLogoSource>
-    <PackageLogoSource>C:\basis\app\app\Assets\Square310x310Logo.scale-100.png</PackageLogoSource>
+    <Source>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</Source>
+    <SmallTileSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</SmallTileSource>
+    <MediumTileSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</MediumTileSource>
+    <WideTileSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</WideTileSource>
+    <LargeTileSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</LargeTileSource>
+    <AppIconSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</AppIconSource>
+    <SplashScreenSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</SplashScreenSource>
+    <BadgeLogoSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Debug\app\app\Assets\Square310x310Logo.scale-100.png</PackageLogoSource>
   </PropertyGroup>
 </Project>

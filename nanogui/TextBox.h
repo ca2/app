@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/textbox.h -- Fancy text box with builtin regular
     expression-based validation
 
@@ -108,7 +108,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_callback(const ::function<bool(const std::string & str)> & callback) { m_callback = callback; }
 
       bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-      bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
       bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;

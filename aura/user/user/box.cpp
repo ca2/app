@@ -263,7 +263,7 @@ namespace user
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing1();
+         //auto pwindowing = puser->windowing();
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -309,7 +309,7 @@ namespace user
 
          //auto puser = psession->user();
 
-         //auto pwindowing = puser->windowing1();
+         //auto pwindowing = puser->windowing();
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 

@@ -892,6 +892,7 @@
     <ClCompile Include="user\user\windowing.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\Debug.cpp" />

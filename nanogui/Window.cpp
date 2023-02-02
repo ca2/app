@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/window.cpp -- Top-level window widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -236,17 +236,17 @@ bool Window::mouse_drag_event(const Vector2i &, const Vector2i & rel, const ::us
 }
 
 
-bool Window::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
+bool Window::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers)
 {
 
-   if (Widget::mouse_button_event(p, button, down, ekeyModifiers))
+   if (Widget::mouse_button_event(p, emouse, down, ekeyModifiers))
    {
 
       return true;
 
    }
 
-   if (button == __MOUSE_LEFT_BUTTON) 
+   if (emouse == ::user::e_mouse_left_button) 
    {
    
       auto bDrag = down && (p.y() - m_pos.y()) < m_theme->m_window_header_height;

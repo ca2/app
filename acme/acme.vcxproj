@@ -1968,6 +1968,7 @@
     <None Include="memory\namespace_heap.inl" />
     <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <None Include="memory\_new.inl" />
+    <None Include="primitive\mathematics\int_to_string_bases_table.dynamically_generated" />
     <None Include="primitive\primitive\_impl.h" />
     <None Include="primitive\string\_defer.h" />
   </ItemGroup>

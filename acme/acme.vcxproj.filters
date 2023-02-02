@@ -4023,6 +4023,9 @@
     <None Include="memory\_new.inl">
       <Filter>Header Files\memory</Filter>
     </None>
+    <None Include="primitive\mathematics\int_to_string_bases_table.dynamically_generated">
+      <Filter>Source Files\primitive\mathematics</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

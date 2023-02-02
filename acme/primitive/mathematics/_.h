@@ -565,3 +565,31 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
+inline ::i64 as_i64(const char * psz, int iBase = 10)
+{
+
+   const char * pszEnd = nullptr;
+
+   return ansi_to_i64(psz, &pszEnd, iBase);
+
+}
+
+
+
+
+
+CLASS_DECL_ACME int i8_maximum_digits(int iBase);
+CLASS_DECL_ACME int u8_maximum_digits(int iBase);
+
+CLASS_DECL_ACME int i16_maximum_digits(int iBase);
+CLASS_DECL_ACME int u16_maximum_digits(int iBase);
+
+CLASS_DECL_ACME int i32_maximum_digits(int iBase);
+CLASS_DECL_ACME int u32_maximum_digits(int iBase);
+
+CLASS_DECL_ACME int i64_maximum_digits(int iBase);
+CLASS_DECL_ACME int u64_maximum_digits(int iBase);
+
+
+
+

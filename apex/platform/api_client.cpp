@@ -22,6 +22,17 @@ api_client::~api_client()
 }
 
 
+
+void api_client::initialize_api_client(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount, const ::file::path & pathProfileFolder)
+{
+
+   m_strImplementation = scopedstrImplementation;
+   m_strBrowserAccount = scopedstrBrowserAccount;
+   m_pathProfileFolder = pathProfileFolder;
+
+}
+
+
 void api_client::defer_api()
 {
 
@@ -37,18 +48,25 @@ void api_client::defer_api()
       else
       {
 
-         create_api();
+         create_api(m_strImplementation);
          
          m_papi->m_bAuthenticating = true;
 
-         ::file::path pathProfile;
+         //::file::path pathProfile;
 
-         pathProfile = dir()->appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
+         //pathProfile = dir()->appdata() / "api" / scopedstrImplementation / (m_strProfileStore + ".network_payload");
+
+         if (m_pathProfileFolder.is_empty())
+         {
+
+            m_pathProfileFolder = dir()->appdata() / "api" / m_strImplementation;
+
+         }
 
          try
          {
             
-            m_papi->initialize_api(this, pathProfile);
+            m_papi->initialize_api(this, m_pathProfileFolder, m_strBrowserAccount);
 
          }
          catch (...)
@@ -60,18 +78,26 @@ void api_client::defer_api()
 
          }
 
-         try
+
+         if (!m_papi->m_bAuthenticated)
          {
 
-            m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+            try
+            {
 
-         }
-         catch (...)
-         {
+               //m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
 
-            m_papi.release();
+               m_papi->api_login();
 
-            return;
+            }
+            catch (...)
+            {
+
+               m_papi.release();
+
+               return;
+
+            }
 
          }
          
@@ -82,45 +108,13 @@ void api_client::defer_api()
 }
 
 
-void api_client::create_api()
-{
+//::pointer < ::api > api_client::create_api()
+//{
+//
+//   return create_api(m_strImplementation);
+//
+//}
 
-   return create_api(m_strImplementation);
-
-}
-
-
-void api_client::create_api(const ::string& strImplementation)
-{
-
-   if (!m_papi)
-   {
-
-      auto & pfactory = acmesystem()->factory("api", strImplementation);
-
-      if (!pfactory)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      m_papi = pfactory->create < ::api >();
-
-      if (!m_papi)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      m_papi->m_papiclient = this;
-
-   }
-
-   //return success;
-
-}
 
 
 void api_client::api_get(::string & str, const string& strUrl, property_set& set)
@@ -140,7 +134,7 @@ void api_client::api_get(::string & str, const string& strUrl, property_set& set
 
       }
 
-      m_papi->api_get(str, strUrl, set);
+      m_papi->_api_get(str, strUrl, set);
 
       int iHttpStatusCode = set["http_status_code"];
 

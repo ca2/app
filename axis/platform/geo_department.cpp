@@ -38,8 +38,8 @@ namespace geo
       m_bLocalityTimeZoneModified = false;
 
       m_strImplementation = "ca2";
-      m_strProfileStore = "weather";
-      m_strApiClientConfig = "camilothomas";
+//      m_strBrowserAccount = "weather";
+      //m_strApiClientConfig = "camilothomas";
 
    }
 

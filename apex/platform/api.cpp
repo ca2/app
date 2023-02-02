@@ -26,7 +26,7 @@ api::~api()
 }
 
 
-void api::initialize_api(::particle * pparticle, const ::file::path & pathProfile)
+void api::initialize_api(::particle * pparticle, const ::file::path & pathProfile, const ::scoped_string & scopedstrBrowserAccount)
 {
 
    //auto estatus =
@@ -42,9 +42,25 @@ void api::initialize_api(::particle * pparticle, const ::file::path & pathProfil
 
    m_pathProfile = pathProfile;
 
+   m_strBrowserAccount = scopedstrBrowserAccount;
+
    load_profile();
 
    //return estatus;
+
+}
+
+
+void api::load_configuration()
+{
+
+   ::file::path pathConfiguration;
+
+   pathConfiguration = "matter://api" / (m_strImplementation + ".network_payload");
+
+   string strNetworkPayload = file()->as_string(pathConfiguration);
+
+   m_setConfiguration.parse_network_payload(strNetworkPayload);
 
 }
 
@@ -142,12 +158,22 @@ void api::clear_profile()
 }
 
 
-void api::api_login(const ::string & strConfig, const ::string & strProfile)
+void api::switch_profile_folder(const ::file::path & pathFolder)
 {
 
-   m_strConfig = strConfig;
+   file()->copy(pathFolder, m_pathProfile);
 
-   m_strProfile = strProfile;
+   m_pathProfile = pathFolder;
+
+}
+
+
+void api::api_login()
+{
+
+   //m_strConfig = strConfig;
+
+   //m_strProfile = strProfile;
 
    save_profile();
 
@@ -158,7 +184,7 @@ void api::api_login(const ::string & strConfig, const ::string & strProfile)
 }
 
 
-void api::api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
+void api::_api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
 {
 
    throw ::interface_only();
@@ -171,7 +197,7 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 
    string strNetworkPayload;
 
-   api_get(strNetworkPayload, strUrl, set);
+   _api_get(strNetworkPayload, strUrl, set);
 
    payload.parse_network_payload(strNetworkPayload);
 
@@ -203,7 +229,9 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
 
       save_profile();
 
-      api_login(m_strConfig, m_strProfile);
+      //api_login(m_strConfig, m_strProfile);
+
+      api_login();
 
    }
 

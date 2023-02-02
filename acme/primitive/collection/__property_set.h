@@ -46,6 +46,8 @@ public:
    inline string format(const ::string & str) const { return _001Replace(str); }
 
 
+   string as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2);
+
    ::index index_of(const ::atom & atom, ::index iStart = 0) const;
 
 

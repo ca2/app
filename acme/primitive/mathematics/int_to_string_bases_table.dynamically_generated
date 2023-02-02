@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
-int iaBaseLog[8][] = {
+int iaBaseLog[][8] = {
 {9, 8, 17, 16, 33, 32, 65, 64 },
 {6, 6, 11, 11, 21, 21, 41, 41 },
 {5, 4, 9, 8, 17, 16, 33, 32 },

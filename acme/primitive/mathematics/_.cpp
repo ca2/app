@@ -81,19 +81,6 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 
 #include "int_to_string_bases_table.dynamically_generated"
 
-enum enum_integer_type : ::i32 
-{
-
-   e_integer_type_i8 = 0,
-   e_integer_type_u8 = 1,
-   e_integer_type_i16 = 2,
-   e_integer_type_u16 = 3,
-   e_integer_type_i32 = 4,
-   e_integer_type_u32 = 5,
-   e_integer_type_i64 = 6,
-   e_integer_type_u64 = 7,
-
-};
 
 int type_maximum_digits(enum_integer_type etype, int iBase)
 {
@@ -113,19 +100,19 @@ int type_maximum_digits(enum_integer_type etype, int iBase)
    {
       throw ::exception(error_bad_argument, "not yet supported integer type");
    }
-   return iaBaseLog[0][iBase];
+   return iaBaseLog[iBase - 2][etype];
 
 }
 
-int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i8, iBase); }
-int u8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u8, iBase); }
-
-int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i16, iBase); }
-int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u16, iBase); }
-
-int i32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i32, iBase); }
-int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
-
-int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
-int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }
-
+//int i8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i8, iBase); }
+//int u8_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u8, iBase); }
+//
+//int i16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i16, iBase); }
+//int u16_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u16, iBase); }
+//
+//int i32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i32, iBase); }
+//int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u32, iBase); }
+//
+//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_i64, iBase); }
+//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_u64, iBase); }
+//

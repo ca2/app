@@ -22,6 +22,21 @@ enum enum_zero_initialize
 
 };
 
+
+enum enum_integer_type : ::i32
+{
+
+   e_integer_type_i8 = 0,
+   e_integer_type_u8 = 1,
+   e_integer_type_i16 = 2,
+   e_integer_type_u16 = 3,
+   e_integer_type_i32 = 4,
+   e_integer_type_u32 = 5,
+   e_integer_type_i64 = 6,
+   e_integer_type_u64 = 7,
+
+};
+
 class eimpact;
 
 

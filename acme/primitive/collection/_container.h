@@ -51,3 +51,33 @@ namespace generic
 
 
 
+
+template < primitive_container CONTAINER >
+inline ::string as_string(const CONTAINER& container, const ::scoped_string& scopedstrSeparator = "|")
+{
+
+   ::string str;
+
+   for (const auto& item : container)
+   {
+
+      if (str.has_char())
+      {
+
+         str += scopedstrSeparator;
+
+      }
+
+      str += ::as_string(item);
+
+   }
+
+   return str;
+
+}
+
+
+
+
+
+

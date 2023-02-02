@@ -262,4 +262,14 @@ bool acme_path::has_custom_icon(const ::file::path & path)
 }
 
 
+::file::path acme_path::get_absolute_path(const ::scoped_string& scopedstr)
+{
+
+   throw interface_only();
+
+   return {};
+
+}
+
+
 

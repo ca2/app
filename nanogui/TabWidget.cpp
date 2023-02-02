@@ -21,8 +21,8 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-TabWidgetBase::TabWidgetBase(Widget* parent, const std::string& font)
-   : Widget(parent), m_font(font), m_background_color(Color(0.f, 0.f)) {
+TabWidgetBase::TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont)
+   : Widget(parent), m_font(scopedstrFont), m_background_color(Color(0.f, 0.f)) {
    m_tab_offsets.push_back(0);
 }
 
@@ -52,9 +52,9 @@ void TabWidgetBase::remove_tab(int id) {
 
 }
 
-int TabWidgetBase::insert_tab(int index, const std::string& caption) {
+int TabWidgetBase::insert_tab(int index, const ::scoped_string& scopedstrCaption) {
    int id = m_tab_counter++;
-   m_tab_captions.insert(m_tab_captions.begin() + index, caption);
+   m_tab_captions.insert(m_tab_captions.begin() + index, scopedstrCaption);
    m_tab_ids.insert(m_tab_ids.begin() + index, id);
    //TabWidgetBase::perform_layout(screen()->nvg_context());
    m_callbackLayout = [this](NVGcontext* pcontext)
@@ -78,7 +78,7 @@ int TabWidgetBase::insert_tab(int index, const std::string& caption) {
    return id;
 }
 
-int TabWidgetBase::append_tab(const std::string& caption) {
+int TabWidgetBase::append_tab(const ::scoped_string & caption) {
    return insert_tab((int)m_tab_captions.size(), caption);
 }
 
@@ -101,7 +101,7 @@ void TabWidgetBase::perform_layout(NVGcontext* ctx, bool bRecalcTextSize) {
    m_tab_offsets.clear();
    int width = 0;
    float unused[4];
-   for (const std::string& label : m_tab_captions) {
+   for (const ::scoped_string & label : m_tab_captions) {
       int label_width = (int)nvgTextBounds(ctx, 0.f, 0.f, label.c_str(), nullptr, unused);
       m_tab_offsets.push_back(width);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
@@ -122,7 +122,7 @@ Vector2i TabWidgetBase::preferred_size(NVGcontext* ctx, bool bRecalcTextSize)
    nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
 
    int width = 0;
-   for (const std::string& label : m_tab_captions) {
+   for (const ::scoped_string & label : m_tab_captions) {
       float unused[4];
       int label_width = (int)nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
@@ -438,7 +438,7 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, c
 }
 
 
-TabWidget::TabWidget(Widget* parent, const std::string& font)
+TabWidget::TabWidget(Widget* parent, const ::scoped_string & font)
    : TabWidgetBase(parent, font) { }
 
 void TabWidget::perform_layout(NVGcontext* ctx, bool bRecalcTextSize) {
@@ -475,14 +475,14 @@ Vector2i TabWidget::preferred_size(NVGcontext* ctx, bool bRecalcTextSize) {
    );
 }
 
-int TabWidget::insert_tab(int index, const std::string& caption, Widget* widget) {
+int TabWidget::insert_tab(int index, const ::scoped_string & caption, Widget* widget) {
    int id = TabWidgetBase::insert_tab(index, caption);
    m_widgets[id] = widget;
    update_visibility();
    return id;
 }
 
-int TabWidget::append_tab(const std::string& caption, Widget* widget) {
+int TabWidget::append_tab(const ::scoped_string & caption, Widget* widget) {
    widget->set_visible(false);
    int id = TabWidgetBase::append_tab(caption);
    m_widgets[id] = widget;

@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/layout.cpp -- A collection of useful layout managers
 
     The grid layout was contributed by Christian Schueller.
@@ -29,7 +29,7 @@ Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bReca
 
    int y_offset = 0;
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty()) {
+   if (window && window->title().has_char()) {
       if (m_orientation == Orientation::Vertical)
          size[1] += widget->theme()->m_window_header_height - m_margin / 2;
       else
@@ -72,7 +72,7 @@ void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTe
    int y_offset = 0;
 
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty()) {
+   if (window && window->title().has_char()) {
       if (m_orientation == Orientation::Vertical) {
          position += widget->theme()->m_window_header_height - m_margin / 2;
       }
@@ -127,7 +127,7 @@ Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bRe
    int height = m_margin, width = 2 * m_margin;
 
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       height += widget->theme()->m_window_header_height - m_margin / 2;
 
    bool first = true, indent = false;
@@ -150,7 +150,7 @@ Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bRe
       width = std::max(width, target_size.x() + 2 * m_margin + (indent_cur ? m_group_indent : 0));
 
       if (label)
-         indent = !label->caption().empty();
+         indent = label->caption().has_char();
    }
    height += m_margin;
    return Vector2i(width, height);
@@ -161,7 +161,7 @@ void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalc
       (widget->fixed_width() ? widget->fixed_width() : widget->width()) - 2 * m_margin;
 
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       height += widget->theme()->m_window_header_height - m_margin / 2;
 
    bool first = true, indent = false;
@@ -190,7 +190,7 @@ void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalc
       height += target_size.y();
 
       if (label)
-         indent = !label->caption().empty();
+         indent = label->caption().has_char();
    }
 }
 
@@ -208,7 +208,7 @@ Vector2i GridLayout::preferred_size(NVGcontext * ctx,
    );
 
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       size[1] += widget->theme()->m_window_header_height - m_margin / 2;
 
    return size;
@@ -265,7 +265,7 @@ void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcT
 
    Vector2i extra(0);
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       extra[1] += widget->theme()->m_window_header_height - m_margin / 2;
 
    /* Strech to size provided by \c widget */
@@ -359,7 +359,7 @@ Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, Widget * widget, b
 
    Vector2i extra(2 * m_margin);
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       extra[1] += widget->theme()->m_window_header_height - m_margin / 2;
 
    return size + extra;
@@ -371,7 +371,7 @@ void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool 
 
    grid[0].insert(grid[0].begin(), m_margin);
    const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       grid[1].insert(grid[1].begin(), widget->theme()->m_window_header_height + m_margin / 2);
    else
       grid[1].insert(grid[1].begin(), m_margin);
@@ -425,7 +425,7 @@ void AdvancedGridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::
 
    Vector2i extra(2 * m_margin);
    Window * window = dynamic_cast<Window *>(widget);
-   if (window && !window->title().empty())
+   if (window && window->title().has_char())
       extra[1] += widget->theme()->m_window_header_height - m_margin / 2;
 
    container_size -= extra;
@@ -450,7 +450,7 @@ void AdvancedGridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::
             if (anchor.pos[axis] + anchor.size[axis] > (int)grid.size())
                throw std::runtime_error(
                   "Advanced grid layout: widget is out of bounds: " +
-                  (std::string)anchor);
+                  (::string)anchor);
 
             int current_size = 0;
             float total_stretch = 0;
@@ -466,7 +466,7 @@ void AdvancedGridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::
             if (total_stretch == 0)
                throw std::runtime_error(
                   "Advanced grid layout: no space to place widget: " +
-                  (std::string)anchor);
+                  (::string)anchor);
             float amt = (target_size - current_size) / total_stretch;
             for (int i = anchor.pos[axis];
                i < anchor.pos[axis] + anchor.size[axis]; ++i)

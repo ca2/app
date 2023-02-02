@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/theme.cpp -- Storage class for basic theme-related properties
 
     The text box widget was contributed by Christian Schueller.
@@ -144,7 +144,7 @@ NAMESPACE_END(nanogui)
 //   char * buffer;
 //   long    numbytes;
 //
-//   std::string str(psz);
+//   ::string str(psz);
 //
 //   char sz[2048];
 //   GetModuleFileNameA(
@@ -160,7 +160,7 @@ NAMESPACE_END(nanogui)
 //
 //   }
 //
-//   str = std::string(sz) + "\\resources\\" + str;
+//   str = ::string(sz) + "\\resources\\" + str;
 //
 //   /* open an existing file for reading */
 //   infile = fopen(str.c_str(), "r");
@@ -211,7 +211,7 @@ NAMESPACE_END(nanogui)
 //   char * buffer;
 //   long    numbytes;
 //
-//   std::string str(psz);
+//   ::string str(psz);
 //
 //   char sz[2048];
 //   GetModuleFileNameA(
@@ -227,7 +227,7 @@ NAMESPACE_END(nanogui)
 //
 //   }
 //
-//   str = std::string(sz) + "\\resources\\" + str;
+//   str = ::string(sz) + "\\resources\\" + str;
 //
 //   /* open an existing file for reading */
 //   infile = fopen(str.c_str(), "r");

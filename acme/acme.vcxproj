@@ -1051,6 +1051,7 @@
     <ClCompile Include="primitive\mathematics\random_number_generator.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\mathematics\_string.cpp" />
     <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\action_context.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
@@ -1328,6 +1329,7 @@
     <ClInclude Include="primitive\collection\_map_binary_stream.h" />
     <ClInclude Include="primitive\collection\_papaya_heap.h" />
     <ClInclude Include="primitive\collection\_range.h" />
+    <ClInclude Include="primitive\collection\_string.h" />
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />
     <ClInclude Include="primitive\collection\__property_set.h" />
@@ -1338,6 +1340,7 @@
     <ClInclude Include="primitive\geometry2d\_random.h" />
     <ClInclude Include="primitive\mathematics\logarithm.h" />
     <ClInclude Include="primitive\mathematics\_random.h" />
+    <ClInclude Include="primitive\mathematics\_string.h" />
     <ClInclude Include="primitive\numeric\types.h" />
     <ClInclude Include="primitive\primitive\aaa_atom_array.h" />
     <ClInclude Include="primitive\primitive\aaa_atom_space.h" />

@@ -16,7 +16,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-CheckBox::CheckBox(Widget * parent, const std::string & caption,
+CheckBox::CheckBox(Widget * parent, const ::scoped_string & caption,
    const ::function<void(bool) > & callback)
    : Widget(parent), m_caption(caption), m_bMouseDown(false), m_checked(false),
    m_callback(callback) {

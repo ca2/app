@@ -153,7 +153,7 @@ void file_dialog_from_platform(
 //
 //         buffer[0] = '\0';
 //
-//         std::string cmd = "zenity --file-selection ";
+//         ::string cmd = "zenity --file-selection ";
 //         // The safest separator for multiple selected paths is /, since / can never occur
 //         // in file names. Only where two paths are concatenated will there be two / following
 //         // each other.
@@ -171,12 +171,12 @@ void file_dialog_from_platform(
 //         while (fgets(buffer, FILE_DIALOG_MAX_BUFFER, output) != NULL)
 //            ;
 //         pclose(output);
-//         std::string paths(buffer);
+//         ::string paths(buffer);
 //         paths.erase(std::remove(paths.begin(), paths.end(), '\n'), paths.end());
 //
 //         while (!paths.empty()) {
 //            size_t end = paths.find("//");
-//            if (end == std::string::npos) {
+//            if (end == ::string::npos) {
 //               result.emplace_back(paths);
 //               paths = "";
 //            }

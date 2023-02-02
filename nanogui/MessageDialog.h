@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/messagedialog.h -- Simple "OK" or "Yes/No"-style modal dialogs
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -32,10 +32,10 @@ NAMESPACE_BEGIN(nanogui)
          Warning
       };
 
-      MessageDialog(Widget * parent, Type type, const std::string & title = "Untitled",
-         const std::string & message = "Message",
-         const std::string & button_text = "OK",
-         const std::string & alt_button_text = "Cancel", bool alt_button = false, const ::function < void(nanogui::Widget * p) > functionExtras = nullptr);
+      MessageDialog(Widget * parent, Type type, const ::scoped_string & title = "Untitled",
+         const ::scoped_string & message = "Message",
+         const ::scoped_string & button_text = "OK",
+         const ::scoped_string & alt_button_text = "Cancel", bool alt_button = false, const ::function < void(nanogui::Widget * p) > functionExtras = nullptr);
 
       Label * message_label() { return m_message_label; }
       const Label * message_label() const { return m_message_label; }

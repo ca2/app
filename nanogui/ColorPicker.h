@@ -1,4 +1,4 @@
-/*
+﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -69,16 +69,16 @@ NAMESPACE_BEGIN(nanogui)
       void set_color(const Color & color);
 
       /// The current caption of the \ref nanogui::ColorPicker::m_pick_button.
-      const std::string & pick_button_caption() { return m_pick_button->caption(); }
+      const ::scoped_string & pick_button_caption() { return m_pick_button->caption(); }
 
       /// Sets the current caption of the \ref nanogui::ColorPicker::m_pick_button.
-      void set_pick_button_caption(const std::string & caption) { m_pick_button->set_caption(caption); }
+      void set_pick_button_caption(const ::scoped_string & caption) { m_pick_button->set_caption(caption); }
 
       /// The current caption of the \ref nanogui::ColorPicker::m_reset_button.
-      const std::string & reset_button_caption() { return m_reset_button->caption(); }
+      const ::scoped_string & reset_button_caption() { return m_reset_button->caption(); }
 
       /// Sets the current caption of the \ref nanogui::ColorPicker::m_reset_button.
-      void set_reset_button_caption(const std::string & caption) { m_reset_button->set_caption(caption); }
+      void set_reset_button_caption(const ::scoped_string & caption) { m_reset_button->set_caption(caption); }
    protected:
       /// The "fast" callback executed when the ColorWheel has changed.
       std::function<void(const Color &)> m_callback;

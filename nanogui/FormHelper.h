@@ -1,4 +1,4 @@
-/*
+﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -69,7 +69,7 @@ NAMESPACE_BEGIN(detail)
  *   .. code-block:: cpp
  *
  *      template <>
- *      class FormWidget<std::string, std::true_type> : public TextBox
+ *      class FormWidget<::string, std::true_type> : public TextBox
  *
  * - Inheritance from :class:`nanogui::ColorPicker` for :class:`nanogui::Color` types:
  *
@@ -127,7 +127,7 @@ NAMESPACE_END(detail)
 
       /// Add a memory_new top-level window
       Window * add_window(const Vector2i & pos,
-         const std::string & title = "Untitled") {
+         const ::scoped_string & title = "Untitled") {
          assert(m_screen);
          m_window = memory_new Window(m_screen, title);
          m_layout = memory_new AdvancedGridLayout({ 10, 0, 10, 0 }, {});
@@ -140,7 +140,7 @@ NAMESPACE_END(detail)
       }
 
       /// Add a memory_new group that may contain several sub-widgets
-      Label * add_group(const std::string & caption) {
+      Label * add_group(const ::scoped_string & caption) {
          Label * label = memory_new Label(m_window, caption, m_group_font_name, m_group_font_size);
          if (m_layout->row_count() > 0)
             m_layout->append_row(m_pre_group_spacing); /* Spacing */
@@ -152,7 +152,7 @@ NAMESPACE_END(detail)
 
       /// Add a memory_new data widget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
-         add_variable(const std::string & label, const std::function<void(const Type &)> & setter,
+         add_variable(const ::scoped_string & label, const std::function<void(const Type &)> & setter,
             const std::function<Type()> & getter, bool editable = true) {
          Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
          auto widget = memory_new detail::FormWidget<Type>(m_window);
@@ -179,7 +179,7 @@ NAMESPACE_END(detail)
 
       /// Add a memory_new data widget that exposes a raw variable in memory
       template <typename Type> detail::FormWidget<Type> *
-         add_variable(const std::string & label, Type & value, bool editable = true) {
+         add_variable(const ::scoped_string & label, Type & value, bool editable = true) {
          return add_variable<Type>(label,
             [&](const Type & v) { value = v; },
             [&]() -> Type { return value; },
@@ -188,7 +188,7 @@ NAMESPACE_END(detail)
       }
 
       /// Add a button with a custom callback
-      Button * add_button(const std::string & label, const std::function<void()> & cb) {
+      Button * add_button(const ::scoped_string & label, const std::function<void()> & cb) {
          Button * button = memory_new Button(m_window, label);
          button->set_callback(cb);
          button->set_fixed_height(25);
@@ -200,7 +200,7 @@ NAMESPACE_END(detail)
       }
 
       /// Add an arbitrary (optionally labeled) widget to the layout
-      void add_widget(const std::string & label, Widget * widget) {
+      void add_widget(const ::scoped_string & label, Widget * widget) {
          m_layout->append_row(0);
          if (label == "") {
             m_layout->set_anchor(widget, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1, 3, 1));
@@ -237,16 +237,16 @@ NAMESPACE_END(detail)
       Vector2i fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
-      const std::string & group_font_name() const { return m_group_font_name; }
+      const ::scoped_string & group_font_name() const { return m_group_font_name; }
 
       /// Sets the font name to be used for group headers.
-      void set_group_font_name(const std::string & name) { m_group_font_name = name; }
+      void set_group_font_name(const ::scoped_string & name) { m_group_font_name = name; }
 
       /// The font name being used for labels.
-      const std::string & label_font_name() const { return m_label_font_name; }
+      const ::scoped_string & label_font_name() const { return m_label_font_name; }
 
       /// Sets the font name being used for labels.
-      void set_label_font_name(const std::string & name) { m_label_font_name = name; }
+      void set_label_font_name(const ::scoped_string & name) { m_label_font_name = name; }
 
       /// The size of the font being used for group headers.
       int group_font_size() const { return m_group_font_size; }
@@ -276,9 +276,9 @@ NAMESPACE_END(detail)
       /// The callbacks associated with all widgets this FormHelper is managing.
       std::vector<std::function<void()>> m_refresh_callbacks;
       /// The group header font name.
-      std::string m_group_font_name = "sans-bold";
+      ::string m_group_font_name = "sans-bold";
       /// The label font name.
-      std::string m_label_font_name = "sans";
+      ::string m_label_font_name = "sans";
       /// The fixed size for newly added widgets.
       Vector2i m_fixed_size = Vector2i(0, 20);
       /// The font size for group headers.
@@ -369,14 +369,14 @@ public:
 /**
  * A specialization for adding a TextBox to a FormHelper.
  */
-template <> class FormWidget<std::string, std::true_type> : public TextBox {
+template <> class FormWidget<::string, std::true_type> : public TextBox {
 public:
    /// Creates a memory_new FormWidget with underlying type TextBox.
    FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::Alignment::Left); }
 
    /// Pass-through function for \ref nanogui::TextBox::set_callback.
-   void set_callback(const std::function<void(const std::string &)> & cb) {
-      TextBox::set_callback([cb](const std::string & str) { cb(str); return true; });
+   void set_callback(const std::function<void(const ::scoped_string &)> & cb) {
+      TextBox::set_callback([cb](const ::scoped_string & str) { cb(str); return true; });
    }
 };
 

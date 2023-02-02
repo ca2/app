@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/combobox.cpp -- simple combo box widget based on a popup button
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -20,12 +20,12 @@ ComboBox::ComboBox(Widget * parent)
    : PopupButton(parent), m_container(popup()), m_selected_index(0) {
 }
 
-ComboBox::ComboBox(Widget * parent, const std::vector<std::string> & items)
+ComboBox::ComboBox(Widget * parent, const std::vector<::string> & items)
    : PopupButton(parent), m_container(popup()), m_selected_index(0) {
    set_items(items);
 }
 
-ComboBox::ComboBox(Widget * parent, const std::vector<std::string> & items, const std::vector<std::string> & items_short)
+ComboBox::ComboBox(Widget * parent, const std::vector<::string> & items, const std::vector<::string> & items_short)
    : PopupButton(parent), m_container(popup()), m_selected_index(0) {
    set_items(items, items_short);
 }
@@ -40,7 +40,7 @@ void ComboBox::set_selected_index(int idx) {
    set_caption(m_items_short[idx]);
 }
 
-void ComboBox::set_items(const std::vector<std::string> & items, const std::vector<std::string> & items_short) {
+void ComboBox::set_items(const std::vector<::string> & items, const std::vector<::string> & items_short) {
    assert(items.size() == items_short.size());
    m_items = items;
    m_items_short = items_short;

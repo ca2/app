@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/label.h -- Text label with an arbitrary font, color, and size
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -33,23 +33,23 @@ NAMESPACE_BEGIN(nanogui)
    public:
 
 
-         std::string m_caption;
-         std::string m_font;
+         ::string m_caption;
+         ::string m_font;
          Color m_color;
          Vector2i m_sizePreferred;
 
-      Label(Widget * parent, const std::string & caption,
-         const std::string & font = "sans", int font_size = -1);
+      Label(Widget * parent, const ::scoped_string & caption,
+         const ::scoped_string & font = "sans", int font_size = -1);
 
       /// Get the label's text caption
-      const std::string & caption() const { return m_caption; }
+      const ::scoped_string & caption() const { return m_caption; }
       /// Set the label's text caption
-      void set_caption(const std::string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
       /// Set the currently active font (2 are available by default: 'sans' and 'sans-bold')
-      void set_font(const std::string & font) { m_font = font; }
+      void set_font(const ::scoped_string & font) { m_font = font; }
       /// Get the currently active font
-      const std::string & font() const { return m_font; }
+      const ::scoped_string & font() const { return m_font; }
 
       /// Get the label color
       Color color() const { return m_color; }

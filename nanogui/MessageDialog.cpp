@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/messagedialog.cpp -- Simple "OK" or "Yes/No"-style modal dialogs
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -17,10 +17,10 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-MessageDialog::MessageDialog(Widget * parent, Type type, const std::string & title,
-   const std::string & message,
-   const std::string & button_text,
-   const std::string & alt_button_text, bool alt_button, const ::function < void(Widget* p) > functionExtras) : Window(parent, title) {
+MessageDialog::MessageDialog(Widget * parent, Type type, const ::scoped_string & title,
+   const ::scoped_string & message,
+   const ::scoped_string & button_text,
+   const ::scoped_string & alt_button_text, bool alt_button, const ::function < void(Widget* p) > functionExtras) : Window(parent, title) {
    set_layout(memory_new BoxLayout(Orientation::Vertical,
       Alignment::Middle, 10, 10));
    set_modal(true);
@@ -34,7 +34,7 @@ MessageDialog::MessageDialog(Widget * parent, Type type, const std::string & tit
    case Type::Question: icon = m_theme->m_message_question_icon; break;
    case Type::Warning: icon = m_theme->m_message_warning_icon; break;
    }
-   Label* icon_label = memory_new Label(panel1, std::string(get_utf8_character(icon)), "icons");
+   Label* icon_label = memory_new Label(panel1, ::string(get_utf8_character(icon)), "icons");
    icon_label->set_font_size(50);
    Widget* panelB = memory_new Widget(panel1);
    panelB->set_layout(memory_new BoxLayout(Orientation::Vertical,

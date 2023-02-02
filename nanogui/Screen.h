@@ -68,7 +68,7 @@ public:
       class ::time m_last_interaction;
    //   bool m_process_events = true;
       Color m_background;
-   //   std::string m_caption;
+   //   ::string m_caption;
    //   bool m_shutdown_glfw_on_destruct;
       bool m_fullscreen;
    //   bool m_depth_buffer;
@@ -129,7 +129,7 @@ public:
    Screen(
           ::user::interaction * puserinteraction,
       const Vector2i & size,
-      const std::string & caption = "Unnamed",
+      const ::scoped_string & caption = "Unnamed",
       bool resizable = true,
       bool fullscreen = false,
       bool depth_buffer = true,
@@ -148,10 +148,10 @@ public:
   
 //
 //   /// Get the window title bar caption
-//   const std::string & caption() const { return m_caption; }
+//   const ::scoped_string & caption() const { return m_caption; }
 //
 //   /// Set the window title bar caption
-//   void set_caption(const std::string & caption);
+//   void set_caption(const ::scoped_string & caption);
 //
    /// Return the screen's background color
    const Color & background() const { return m_background; }
@@ -221,7 +221,7 @@ public:
    float pixel_ratio() const { return m_pixel_ratio; }
 //
 //   /// Handle a file drop event
-//   virtual bool drop_event(const std::vector<std::string> & /* filenames */) {
+//   virtual bool drop_event(const std::vector<::string> & /* filenames */) {
 //      return false; /* To be overridden */
 //   }
 //

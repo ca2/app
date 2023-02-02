@@ -25,14 +25,14 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT ImagePanel : public Widget {
    public:
-      typedef std::vector<std::pair<int, std::string>> Images;
-      std::string m_strLoadDirectory;
+      typedef std::vector<std::pair<int, ::string>> Images;
+      ::string m_strLoadDirectory;
       bool m_bPendingLoad = false;
    public:
       ImagePanel(Widget * parent);
 
 
-      void  load_image_directory(const std::string & str) { m_strLoadDirectory = str; m_bPendingLoad = true; }
+      void  load_image_directory(const ::scoped_string & str) { m_strLoadDirectory = str; m_bPendingLoad = true; }
 
       void set_images(const Images & data) { m_images = data; }
       const Images & images() const { return m_images; }

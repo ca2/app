@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <limits>
 
@@ -563,16 +563,5 @@ inline short  __loword(INTEGRAL i) {return i & 0xffff; }
 
 template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
-
-
-inline ::i64 as_i64(const char * psz, int iBase = 10)
-{
-
-   const char * pszEnd = nullptr;
-
-   return ansi_to_i64(psz, &pszEnd, iBase);
-
-}
-
 
 

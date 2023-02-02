@@ -275,8 +275,8 @@ class Window;
  */
 //NANOGUI_EXPORT void pick_single_file(
 //    void * poswindow,
-//    const std::vector<std::pair<std::string, std::string>> & filetypes,
-//    const ::function < void(const::std::string &) > & promisseFile,
+//    const std::vector<std::pair<::string, ::string>> & filetypes,
+//    const ::function < void(const::::string &) > & promisseFile,
 //    bool save);
 
 
@@ -317,8 +317,8 @@ NANOGUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & p
  */
 extern NANOGUI_EXPORT void pick_multiple_file(
     void * poswindow, 
-    const std::vector<std::pair<std::string, std::string>> & filetypes, 
-    ::std::function < void(const std::vector<std::string> &) > promisseFiles);
+    const std::vector<std::pair<::string, ::string>> & filetypes, 
+    ::std::function < void(const std::vector<::string> &) > promisseFiles);
 
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)
@@ -342,16 +342,16 @@ extern NANOGUI_EXPORT void chdir_to_bundle_parent();
  * \param c
  *     The UTF32 character to be converted.
  */
-extern NANOGUI_EXPORT std::string get_utf8_character(uint32_t c);
+extern NANOGUI_EXPORT ::string get_utf8_character(uint32_t c);
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
-//extern NANOGUI_EXPORT std::vector<std::pair<int, std::string>>
-//load_image_directory(NVGcontext * ctx, const std::string & path);
+//extern NANOGUI_EXPORT std::vector<std::pair<int, ::string>>
+//load_image_directory(NVGcontext * ctx, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)
 //#define nvgImageIcon(ctx, name) nanogui::__nanogui_get_image(ctx, #name, name##_png, name##_png_size)
 ///// Helper function used by nvg_image_icon
-//extern NANOGUI_EXPORT int __nanogui_get_image(NVGcontext * ctx, const std::string & name,
+//extern NANOGUI_EXPORT int __nanogui_get_image(NVGcontext * ctx, const ::scoped_string & name,
 //   uint8_t * data, uint32_t size);
 
 NAMESPACE_END(nanogui)

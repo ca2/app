@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/graph.h -- Simple graph widget for showing a function plot
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -24,16 +24,16 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT Graph : public Widget {
    public:
-      Graph(Widget * parent, const std::string & caption = "Untitled");
+      Graph(Widget * parent, const ::scoped_string & caption = "Untitled");
 
-      const std::string & caption() const { return m_caption; }
-      void set_caption(const std::string & caption) { m_caption = caption; }
+      const ::scoped_string & caption() const { return m_caption; }
+      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
-      const std::string & header() const { return m_header; }
-      void set_header(const std::string & header) { m_header = header; }
+      const ::scoped_string & header() const { return m_header; }
+      void set_header(const ::scoped_string & header) { m_header = header; }
 
-      const std::string & footer() const { return m_footer; }
-      void set_footer(const std::string & footer) { m_footer = footer; }
+      const ::scoped_string & footer() const { return m_footer; }
+      void set_footer(const ::scoped_string & footer) { m_footer = footer; }
 
       const Color & background_color() const { return m_background_color; }
       void set_background_color(const Color & background_color) { m_background_color = background_color; }
@@ -54,7 +54,7 @@ NAMESPACE_BEGIN(nanogui)
       virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       virtual void draw(NVGcontext * ctx) override;
    protected:
-      std::string m_caption, m_header, m_footer;
+      ::string m_caption, m_header, m_footer;
       Color m_background_color, m_fill_color, m_stroke_color, m_text_color;
       std::vector<float> m_values;
 };

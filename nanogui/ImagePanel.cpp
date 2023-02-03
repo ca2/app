@@ -24,7 +24,7 @@
 NAMESPACE_BEGIN(nanogui)
 
 
-void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, std::string>> & images, const std::string & path);
+void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, ::string>> & images, const ::scoped_string & path);
 
 
 ImagePanel::ImagePanel(Widget * parent)

@@ -59,7 +59,7 @@ public:
        */
       bool m_enabled;
       bool m_focused, m_mouse_focus;
-      std::string m_tooltip;
+      ::string m_tooltip;
       int m_font_size;
       
 
@@ -258,8 +258,8 @@ public:
    /// Request the focus to be moved to this widget
    void request_focus();
 
-   const std::string & tooltip() const { return m_tooltip; }
-   void set_tooltip(const std::string & tooltip) { m_tooltip = tooltip; }
+   const ::scoped_string & tooltip() const { return m_tooltip; }
+   void set_tooltip(const ::scoped_string & tooltip) { m_tooltip = tooltip; }
 //
 //   /// Return current font size. If not set the default of the current theme will be returned
    float font_size() const;

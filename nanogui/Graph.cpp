@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/graph.cpp -- Simple graph widget for showing a function plot
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -18,7 +18,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-Graph::Graph(Widget * parent, const std::string & caption)
+Graph::Graph(Widget * parent, const ::scoped_string & caption)
    : Widget(parent), m_caption(caption) {
    m_background_color = Color(20, 128);
    m_fill_color = Color(255, 192, 0, 128);
@@ -60,21 +60,21 @@ void Graph::draw(NVGcontext * ctx) {
 
    nvgFontFace(ctx, "sans");
 
-   if (!m_caption.empty()) {
+   if (m_caption.has_char()) {
       nvgFontSize(ctx, 14.0f);
       nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
       nvgFillColor(ctx, m_text_color);
       nvgText(ctx, m_pos.x() + 3.f, m_pos.y() + 1.f, m_caption.c_str(), NULL);
    }
 
-   if (!m_header.empty()) {
+   if (m_header.has_char()) {
       nvgFontSize(ctx, 18.0f);
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_TOP);
       nvgFillColor(ctx, m_text_color);
       nvgText(ctx, m_pos.x() + m_size.x() - 3.f, m_pos.y() + 1.f, m_header.c_str(), NULL);
    }
 
-   if (!m_footer.empty()) {
+   if (m_footer.has_char()) {
       nvgFontSize(ctx, 15.0f);
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_BOTTOM);
       nvgFillColor(ctx, m_text_color);

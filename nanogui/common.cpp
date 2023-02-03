@@ -19,8 +19,8 @@
 
 void CLASS_DECL_NANOGUI file_dialog_from_platform(
    void * poswindow,
-   const std::vector<std::pair<std::string, std::string>> & filetypes,
-   const ::function < void(const std::vector<std::string> & ) > & function,
+   const std::vector<std::pair<::string, ::string>> & filetypes,
+   const ::function < void(const std::vector<::string> & ) > & function,
    bool save, 
    bool multiple);
 
@@ -249,7 +249,7 @@ static float emscripten_refresh = 0;
 #  define NANOGUI_FALLTHROUGH
 #endif
 
-std::string get_utf8_character(uint32_t c) {
+::string get_utf8_character(uint32_t c) {
    char seq[8];
    int n = 0;
    if (c < 0x80) n = 1;
@@ -267,11 +267,11 @@ std::string get_utf8_character(uint32_t c) {
    case 2: seq[1] = 0x80 | (c & 0x3f); c = c >> 6; c |= 0xc0;      NANOGUI_FALLTHROUGH
    case 1: seq[0] = c;
    }
-   return std::string(seq, seq + n);
+   return ::string(seq, seq + n);
 }
 
-int __nanogui_get_image(NVGcontext * ctx, const std::string & name, uint8_t * data, uint32_t size) {
-   static std::map<std::string, int> icon_cache;
+int __nanogui_get_image(NVGcontext * ctx, const ::scoped_string & name, uint8_t * data, uint32_t size) {
+   static std::map<::string, int> icon_cache;
    auto it = icon_cache.find(name);
    if (it != icon_cache.end())
       return it->second;
@@ -286,10 +286,10 @@ int __nanogui_get_image(NVGcontext * ctx, const std::string & name, uint8_t * da
 
 
 
-void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, std::string>> & images, const std::string & path)
+void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, ::string>> & images, const ::scoped_string & path)
 {
 
-//   std::vector<std::pair<int, std::string> > result;
+//   std::vector<std::pair<int, ::string> > result;
 //#if !defined(_WIN32)
 //   DIR * dp = opendir(path.c_str());
 //   if (!dp)
@@ -327,7 +327,7 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 
 
 //   WIN32_FIND_DATA ffd;
-//   std::string search_path = path + "/*.*";
+//   ::string search_path = path + "/*.*";
 //   HANDLE handle = FindFirstFileA(search_path.c_str(), &ffd);
 //   if (handle == INVALID_HANDLE_VALUE)
 //      throw std::runtime_error("Could not open image directory!");
@@ -336,7 +336,7 @@ void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair
 //#endif
 //      if (strstr(fname, "png") == nullptr)
 //         continue;
-//      std::string full_name = path + "/" + std::string(fname);
+//      ::string full_name = path + "/" + ::string(fname);
 //      int img = nvgCreateImage(ctx, full_name.c_str(), 0);
 //      if (img == 0)
 //         throw std::runtime_error("Could not open image data!");

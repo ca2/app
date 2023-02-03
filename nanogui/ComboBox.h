@@ -1,4 +1,4 @@
-/*
+﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -34,14 +34,14 @@ NAMESPACE_BEGIN(nanogui)
       ComboBox(Widget * parent);
 
       /// Create a memory_new combo box with the given items
-      ComboBox(Widget * parent, const std::vector<std::string> & items);
+      ComboBox(Widget * parent, const std::vector<::string> & items);
 
       /**
        * \brief Create a memory_new combo box with the given items, providing both short and
        * long descriptive labels for each item
        */
-      ComboBox(Widget * parent, const std::vector<std::string> & items,
-         const std::vector<std::string> & items_short);
+      ComboBox(Widget * parent, const std::vector<::string> & items,
+         const std::vector<::string> & items_short);
 
       /// The current index this ComboBox has selected.
       int selected_index() const { return m_selected_index; }
@@ -56,13 +56,13 @@ NAMESPACE_BEGIN(nanogui)
       void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
 
       /// Sets the items for this ComboBox, providing both short and long descriptive lables for each item.
-      void set_items(const std::vector<std::string> & items, const std::vector<std::string> & items_short);
+      void set_items(const std::vector<::string> & items, const std::vector<::string> & items_short);
       /// Sets the items for this ComboBox.
-      void set_items(const std::vector<std::string> & items) { set_items(items, items); }
+      void set_items(const std::vector<::string> & items) { set_items(items, items); }
       /// The items associated with this ComboBox.
-      const std::vector<std::string> & items() const { return m_items; }
+      const std::vector<::string> & items() const { return m_items; }
       /// The short descriptions associated with this ComboBox.
-      const std::vector<std::string> & items_short() const { return m_items_short; }
+      const std::vector<::string> & items_short() const { return m_items_short; }
 
       /// Handles mouse scrolling events for this ComboBox.
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
@@ -74,10 +74,10 @@ NAMESPACE_BEGIN(nanogui)
       Widget * m_container = nullptr;
 
       /// The items associated with this ComboBox.
-      std::vector<std::string> m_items;
+      std::vector<::string> m_items;
 
       /// The short descriptions of items associated with this ComboBox.
-      std::vector<std::string> m_items_short;
+      std::vector<::string> m_items_short;
 
       /// The callback for this ComboBox.
       ::function<void(int)> m_callback;

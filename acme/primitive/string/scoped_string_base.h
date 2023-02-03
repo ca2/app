@@ -359,3 +359,7 @@ inline ::u32hash u32_hash < scoped_wd32_string >(scoped_wd32_string scopedstr);
 
 
 
+
+#include  "acme/primitive/mathematics/_string.h"
+
+

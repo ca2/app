@@ -46,7 +46,7 @@ NAMESPACE_BEGIN(nanogui)
       
       ::write_text::font_pointer       m_pfontSpin;
 
-      TextBox(Widget * parent, const std::string & value = "Untitled");
+      TextBox(Widget * parent, const ::scoped_string & value = "Untitled");
 
       bool editable() const { return m_editable; }
       void set_editable(bool editable);
@@ -54,8 +54,8 @@ NAMESPACE_BEGIN(nanogui)
       bool spinnable() const { return m_spinnable; }
       void set_spinnable(bool spinnable) { m_spinnable = spinnable; }
 
-      const std::string & value() const { return m_value; }
-      void set_value(const std::string & value) {
+      const ::scoped_string & value() const { return m_value; }
+      void set_value(const ::scoped_string & value) {
          m_value = value;
 
          auto pscreen = screen();
@@ -76,36 +76,36 @@ NAMESPACE_BEGIN(nanogui)
 
       }
 
-      const std::string & default_value() const { return m_default_value; }
-      void set_default_value(const std::string & default_value) { m_default_value = default_value; }
+      const ::scoped_string & default_value() const { return m_default_value; }
+      void set_default_value(const ::scoped_string & default_value) { m_default_value = default_value; }
 
       Alignment alignment() const { return m_alignment; }
       void set_alignment(Alignment align) { m_alignment = align; }
 
-      const std::string & units() const { return m_units; }
-      void set_units(const std::string & units) { m_units = units; }
+      const ::scoped_string & units() const { return m_units; }
+      void set_units(const ::scoped_string & units) { m_units = units; }
 
       int units_image() const { return m_units_image; }
       void set_units_image(int image) { m_units_image = image; }
 
       /// Return the underlying regular expression specifying valid formats
-      const std::string & format() const { return m_format; }
+      const ::scoped_string & format() const { return m_format; }
       /// Specify a regular expression specifying valid formats
-      void set_format(const std::string & format) { m_format = format; }
+      void set_format(const ::scoped_string & format) { m_format = format; }
 
       /// Return the placeholder text to be displayed while the text box is empty.
-      const std::string & placeholder() const { return m_placeholder; }
+      const ::scoped_string & placeholder() const { return m_placeholder; }
       /// Specify a placeholder text to be displayed while the text box is empty.
-      void set_placeholder(const std::string & placeholder) { m_placeholder = placeholder; }
+      void set_placeholder(const ::scoped_string & placeholder) { m_placeholder = placeholder; }
 
       /// Set the \ref Theme used to draw this widget
       virtual void set_theme(Theme * theme) override;
 
       /// The callback to execute when the value of this TextBox has changed.
-      ::function<bool(const std::string & str)> callback() const { return m_callback; }
+      ::function<bool(const ::scoped_string & str)> callback() const { return m_callback; }
 
       /// Sets the callback to execute when the value of this TextBox has changed.
-      void set_callback(const ::function<bool(const std::string & str)> & callback) { m_callback = callback; }
+      void set_callback(const ::function<bool(const ::scoped_string & str)> & callback) { m_callback = callback; }
 
       bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
       bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
@@ -118,7 +118,7 @@ NAMESPACE_BEGIN(nanogui)
       Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       void draw(NVGcontext * ctx) override;
    protected:
-      bool check_format(const std::string & input, const std::string & format);
+      bool check_format(const ::scoped_string & input, const ::scoped_string & format);
       bool copy_selection();
       void paste_from_clipboard();
       bool delete_selection();
@@ -138,16 +138,16 @@ NAMESPACE_BEGIN(nanogui)
       bool m_editable;
       bool m_spinnable;
       bool m_committed;
-      std::string m_value;
-      std::string m_default_value;
+      ::string m_value;
+      ::string m_default_value;
       Alignment m_alignment;
-      std::string m_units;
-      std::string m_format;
+      ::string m_units;
+      ::string m_format;
       int m_units_image;
-      ::function<bool(const std::string & str)> m_callback;
+      ::function<bool(const ::scoped_string & str)> m_callback;
       bool m_valid_format;
-      std::string m_value_temp;
-      std::string m_placeholder;
+      ::string m_value_temp;
+      ::string m_placeholder;
       int m_cursor_pos;
       int m_selection_pos;
       Vector2i m_mouse_pos;
@@ -191,7 +191,7 @@ public:
 
    void set_callback(const ::function<void(Scalar)> & cb) {
       TextBox::set_callback(
-         [cb, this](const std::string & str) {
+         [cb, this](const ::scoped_string & str) {
             std::istringstream iss(str);
             Scalar value = 0;
             iss >> value;
@@ -219,7 +219,7 @@ public:
       set_max_value(max_value);
    }
 
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override
+   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)
@@ -245,7 +245,7 @@ public:
          return true;
       }
 
-      return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
+      return TextBox::mouse_button_event(p, emouse, down, ekeyModifiers);
    }
 
 
@@ -341,9 +341,9 @@ public:
       set_spinnable(false);
    }
 
-   std::string number_format() const { return m_number_format; }
+   ::string number_format() const { return m_number_format; }
 
-   void number_format(const std::string & format) { m_number_format = format; }
+   void number_format(const ::scoped_string & format) { m_number_format = format; }
 
    Scalar value() const {
       return (Scalar)std::stod(TextBox::value());
@@ -357,7 +357,7 @@ public:
    }
 
    void set_callback(const ::function<void(Scalar)> & cb) {
-      TextBox::set_callback([cb, this](const std::string & str) {
+      TextBox::set_callback([cb, this](const ::scoped_string & str) {
          Scalar scalar = (Scalar)std::stod(str);
          set_value(scalar);
          cb(scalar);
@@ -509,7 +509,7 @@ public:
 
 private:
 
-   std::string m_number_format;
+   ::string m_number_format;
 
    Scalar m_mouse_down_value;
 

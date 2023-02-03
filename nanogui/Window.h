@@ -29,12 +29,12 @@ NAMESPACE_BEGIN(nanogui)
       bool                             m_bPendingCentering;
       float                            m_boundsHeader[4];
 
-      Window(Widget * parent, const std::string & title = "Untitled");
+      Window(Widget * parent, const ::scoped_string & title = "Untitled");
 
       /// Return the window title
-      const std::string & title() const { return m_title; }
+      const ::scoped_string & title() const { return m_title; }
       /// Set the window title
-      void set_title(const std::string & title) { m_title = title; }
+      void set_title(const ::scoped_string & title) { m_title = title; }
 
       /// Is this a model dialog?
       bool modal() const { return m_modal; }
@@ -75,7 +75,7 @@ NAMESPACE_BEGIN(nanogui)
       
       
    //protected:
-      std::string m_title;
+      ::string m_title;
      Widget * m_button_panel;
       bool m_modal;
       bool m_drag;

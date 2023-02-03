@@ -51,7 +51,7 @@ NAMESPACE_BEGIN(nanogui)
    
    //protected:
       /// The caption of this Button.
-      std::string m_caption;
+      ::string m_caption;
 
       float m_tw;
       float m_iw;
@@ -111,13 +111,13 @@ NAMESPACE_BEGIN(nanogui)
        * \param icon
        *     The icon to display with this Button.  See \ref nanogui::Button::mIcon.
        */
-      Button(Widget * parent, const std::string & caption = "Untitled", int icon = 0);
+      Button(Widget * parent, const ::scoped_string & caption = "Untitled", int icon = 0);
 
       /// Returns the caption of this Button.
-      const std::string & caption() const { return m_caption; }
+      const ::scoped_string & caption() const { return m_caption; }
 
       /// Sets the caption of this Button.
-      void set_caption(const std::string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
       /// Returns the background color of this Button.
       const Color & background_color() const { return m_background_color; }

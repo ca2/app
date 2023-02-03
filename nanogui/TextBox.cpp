@@ -22,7 +22,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-TextBox::TextBox(Widget * parent, const std::string & value)
+TextBox::TextBox(Widget * parent, const ::scoped_string & value)
    : Widget(parent),
    m_editable(false),
    m_spinnable(false),
@@ -70,7 +70,7 @@ Vector2i TextBox::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
       float uh = size[1] * 0.4f;
       uw = w * uh / h;
    }
-   else if (!m_units.empty()) {
+   else if (m_units.has_char()) {
       uw = nvgTextBounds(ctx, 0, 0, m_units.c_str(), nullptr, nullptr);
    }
    float sw = 0;
@@ -139,7 +139,7 @@ void TextBox::draw(NVGcontext * ctx) {
       nvgFill(ctx);
       unit_width += 2;
    }
-   else if (!m_units.empty()) {
+   else if (m_units.has_char()) {
       unit_width = nvgTextBounds(ctx, 0, 0, m_units.c_str(), nullptr, nullptr);
       nvgFillColor(ctx, Color(255, m_enabled ? 64 : 32));
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_MIDDLE);
@@ -198,7 +198,7 @@ void TextBox::draw(NVGcontext * ctx) {
    }
 
    nvgFontSize(ctx, font_size());
-   nvgFillColor(ctx, m_enabled && (!m_committed || !m_value.empty()) ?
+   nvgFillColor(ctx, m_enabled && (!m_committed || m_value.has_char()) ?
       m_theme->m_text_color :
       m_theme->m_disabled_text_color);
 
@@ -215,7 +215,7 @@ void TextBox::draw(NVGcontext * ctx) {
    draw_pos.x() += (int) (m_text_offset);
 
    if (m_committed) {
-      nvgText(ctx, (float) draw_pos.x(), (float)draw_pos.y(), m_value.empty() ? m_placeholder.c_str() : m_value.c_str(), nullptr);
+      nvgText(ctx, (float) draw_pos.x(), (float)draw_pos.y(), m_value.is_empty() ? m_placeholder.c_str() : m_value.c_str(), nullptr);
    }
    else {
       const int max_glyphs = 1024;
@@ -397,7 +397,7 @@ bool TextBox::mouse_drag_event(const Vector2i & p, const Vector2i &/* rel */, co
 bool TextBox::focus_event(bool focused) {
    Widget::focus_event(focused);
 
-   std::string backup = m_value;
+   ::string backup = m_value;
 
    if (m_editable) {
       if (focused) {
@@ -547,11 +547,11 @@ bool TextBox::keyboard_character_event(unsigned int codepoint) {
          return false;
 
       }
-      std::ostringstream convert;
-      convert << (char)codepoint;
+      //std::ostringstream convert;
+      ::string strConvert((char)codepoint);
 
       delete_selection();
-      m_value_temp.insert(m_cursor_pos, convert.str());
+      m_value_temp.insert(m_cursor_pos, strConvert);
       m_cursor_pos++;
 
       m_valid_format = (m_value_temp == "") || check_format(m_value_temp, m_format);
@@ -566,12 +566,12 @@ bool TextBox::keyboard_character_event(unsigned int codepoint) {
    return false;
 }
 
-bool TextBox::check_format(const std::string & input, const std::string & format) {
-   if (format.empty())
+bool TextBox::check_format(const ::scoped_string & input, const ::scoped_string & format) {
+   if (format.is_empty())
       return true;
    try {
-      std::regex regex(format);
-      return regex_match(input, regex);
+      std::regex regex(::std::string(format.begin(), format.end()));
+      return std::regex_match(::std::string(input.begin(), input.end()), regex);
    }
    catch (const std::regex_error &) {
 //#if __GNUC__ < 4 || (__GNUC__ == 4 && __GNUC_MINOR__ < 9)
@@ -615,7 +615,7 @@ void TextBox::paste_from_clipboard() {
    screen()->m_puserinteraction->window()->copydesk()->get_plain_text(strClipboardText);
    if (strClipboardText.has_char())
    {
-      m_value_temp.insert(m_cursor_pos, std::string(strClipboardText.c_str()));
+      m_value_temp.insert(m_cursor_pos, ::string(strClipboardText.c_str()));
 
    }
 }

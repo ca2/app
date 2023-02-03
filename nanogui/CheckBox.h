@@ -33,7 +33,7 @@ NAMESPACE_BEGIN(nanogui)
    public:
 
       /// The caption text of this CheckBox.
-      std::string m_caption;
+      ::string m_caption;
       /**
        * Internal tracking variable to distinguish between mouse click and release.
        * \ref nanogui::CheckBox::m_callback is only called upon release.  See
@@ -64,14 +64,14 @@ NAMESPACE_BEGIN(nanogui)
        *     \ref nanogui::CheckBox::mPushed for the difference between "pushed"
        *     and "checked".
        */
-      CheckBox(Widget * parent, const std::string & caption = "Untitled",
+      CheckBox(Widget * parent, const ::scoped_string & caption = "Untitled",
          const ::function<void(bool)> & callback = ::function<void(bool)>());
 
       /// The caption of this CheckBox.
-      const std::string & caption() const { return m_caption; }
+      const ::scoped_string & caption() const { return m_caption; }
 
       /// Sets the caption of this CheckBox.
-      void set_caption(const std::string & caption) { m_caption = caption; }
+      void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
       /// Whether or not this CheckBox is currently checked.
       bool checked() const { return m_checked; }

@@ -1,4 +1,4 @@
-/*
+﻿/*
     nanogui/popupbutton.h -- Button which launches a popup widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -34,7 +34,7 @@ NAMESPACE_BEGIN(nanogui)
       
       ::write_text::font_pointer     m_pfontIcons;
       
-      PopupButton(Widget * parent, const std::string & caption = "Untitled",
+      PopupButton(Widget * parent, const ::scoped_string & caption = "Untitled",
          int button_icon = 0);
 
       void set_chevron_icon(int icon) { m_chevron_icon = icon; }

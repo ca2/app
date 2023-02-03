@@ -138,7 +138,7 @@ NAMESPACE_BEGIN(nanogui)
 //}
 
 Screen::Screen(::user::interaction* puserinteraction,
-               const Vector2i & size, const std::string & caption, bool resizable,
+               const Vector2i & size, const ::scoped_string & caption, bool resizable,
    bool fullscreen, bool depth_buffer, bool stencil_buffer,
    bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
    : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
@@ -547,7 +547,7 @@ Screen::~Screen() {
 //   }
 //}
 //
-//void Screen::set_caption(const std::string & caption) {
+//void Screen::set_caption(const ::scoped_string & caption) {
 //   if (caption != m_caption) {
 //      glfwSetWindowTitle(m_glfw_window, caption.c_str());
 //      m_caption = caption;
@@ -720,7 +720,7 @@ void Screen::draw_widgets(NVGcontext * ctx) {
    if (elapsed > 0.5_s) {
       /* Draw tooltips */
       const Widget * widget = find_widget(m_mouse_pos);
-      if (widget && !widget->tooltip().empty()) {
+      if (widget && widget->tooltip().has_char()) {
          int tooltip_width = 150;
 
          float bounds[4];
@@ -991,7 +991,7 @@ bool Screen::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool
 //}
 //
 //void Screen::drop_callback_event(int count, const char ** filenames) {
-//   std::vector<std::string> arg(count);
+//   std::vector<::string> arg(count);
 //   for (int i = 0; i < count; ++i)
 //      arg[i] = filenames[i];
 //   m_redraw |= drop_event(arg);

@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/popupbutton.cpp -- Button which launches a popup widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -16,7 +16,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-PopupButton::PopupButton(Widget * parent, const std::string & caption, int button_icon)
+PopupButton::PopupButton(Widget * parent, const ::scoped_string & caption, int button_icon)
    : Button(parent, caption, button_icon) {
 
    m_chevron_icon = m_theme->m_popup_chevron_right_icon;

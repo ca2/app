@@ -565,30 +565,106 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
-inline ::i64 as_i64(const char * psz, int iBase = 10)
+//inline ::i64 as_i64(const char * psz, int iBase = 10)
+//{
+//
+//   const char * pszEnd = nullptr;
+//
+//   return ansi_to_i64(psz, &pszEnd, iBase);
+//
+//}
+
+
+CLASS_DECL_ACME int type_maximum_digits(enum_integer_type etype, int iBase = 10);
+
+
+template < primitive_signed SIGNED >
+inline int maximum_digits(int iBase)
 {
 
-   const char * pszEnd = nullptr;
+   if constexpr (sizeof(SIGNED) == 1)
+   {
 
-   return ansi_to_i64(psz, &pszEnd, iBase);
+      return type_maximum_digits(e_integer_type_i8, iBase);
+
+   }
+   else if constexpr (sizeof(SIGNED) == 2)
+   {
+
+      return type_maximum_digits(e_integer_type_i16, iBase);
+
+   }
+   else if constexpr (sizeof(SIGNED) == 4)
+   {
+
+      return type_maximum_digits(e_integer_type_i32, iBase);
+
+   }
+   else if constexpr (sizeof(SIGNED) == 8)
+   {
+
+      return type_maximum_digits(e_integer_type_i64, iBase);
+
+   }
+   else
+   {
+
+      return throw_exception(error_unexpected);
+
+   }
 
 }
 
 
+template < primitive_unsigned UNSIGNED >
+inline int maximum_digits(int iBase)
+{
+
+   if constexpr (sizeof(UNSIGNED) == 1)
+   {
+
+      return type_maximum_digits(e_integer_type_u8, iBase);
+
+   }
+   else if constexpr (sizeof(UNSIGNED) == 2)
+   {
+
+      return type_maximum_digits(e_integer_type_u16, iBase);
+
+   }
+   else if constexpr (sizeof(UNSIGNED) == 4)
+   {
+
+      return type_maximum_digits(e_integer_type_u32, iBase);
+
+   }
+   else if constexpr (sizeof(UNSIGNED) == 8)
+   {
+
+      return type_maximum_digits(e_integer_type_u64, iBase);
+
+   }
+   else
+   {
+
+      return throw_exception(error_unexpected);
+
+   }
+
+}
 
 
-
-CLASS_DECL_ACME int i8_maximum_digits(int iBase);
-CLASS_DECL_ACME int u8_maximum_digits(int iBase);
-
-CLASS_DECL_ACME int i16_maximum_digits(int iBase);
-CLASS_DECL_ACME int u16_maximum_digits(int iBase);
-
-CLASS_DECL_ACME int i32_maximum_digits(int iBase);
-CLASS_DECL_ACME int u32_maximum_digits(int iBase);
-
-CLASS_DECL_ACME int i64_maximum_digits(int iBase);
-CLASS_DECL_ACME int u64_maximum_digits(int iBase);
+//CLASS_DECL_ACME int i8_maximum_digits(int iBase);
+//CLASS_DECL_ACME int u8_maximum_digits(int iBase);
+//
+//CLASS_DECL_ACME int i16_maximum_digits(int iBase);
+//CLASS_DECL_ACME int u16_maximum_digits(int iBase);
+//
+//CLASS_DECL_ACME int i32_maximum_digits(int iBase);
+//CLASS_DECL_ACME int u32_maximum_digits(int iBase);
+//
+//CLASS_DECL_ACME int i64_maximum_digits(int iBase);
+//CLASS_DECL_ACME int u64_maximum_digits(int iBase);
 
 
 

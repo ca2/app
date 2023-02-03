@@ -791,6 +791,15 @@ public:
 
    string_base & erase(strsize start = 0, strsize count = -1);
 
+   string_base& erase(const_iterator start, const_iterator end = 0)
+   {
+
+      if (!end) end = this->end();
+
+      return this->erase(this->offset_of(start), this->offset_of(end) - this->offset_of(start));
+
+   }
+
    ::count insert(strsize iIndex, CHARACTER ch);
 
    ::count insert(strsize iIndex, const string_base & str);

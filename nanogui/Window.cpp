@@ -16,7 +16,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-Window::Window(Widget * parent, const std::string & title)
+Window::Window(Widget * parent, const ::scoped_string & title)
    : Widget(parent), m_title(title) , m_button_panel(nullptr),  m_modal(false),
    m_drag(false) {
    m_bPendingCentering = false;
@@ -140,7 +140,7 @@ void Window::draw(NVGcontext * ctx)
    //nvgFill(ctx);
    //nvgRestore(ctx);
 
-   if (!m_title.empty()) {
+   if (m_title.has_char()) {
       /* Draw header */
       NVGpaint header_paint = nvgLinearGradient(
          ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),

@@ -4,7 +4,7 @@
 #include "base/user/experience/frame.h"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -94,7 +94,7 @@ namespace experience_nanogui
 
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

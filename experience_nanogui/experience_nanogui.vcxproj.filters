@@ -109,7 +109,7 @@
     <ClInclude Include="experience\frame_013.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="_experience_nanogui.h">
+    <ClInclude Include="_experience_nanoui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="experience\_experience.h">

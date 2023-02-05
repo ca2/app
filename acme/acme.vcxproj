@@ -1347,6 +1347,7 @@
     <ClInclude Include="primitive\collection\_map_binary_stream.h" />
     <ClInclude Include="primitive\collection\_papaya_heap.h" />
     <ClInclude Include="primitive\collection\_range.h" />
+    <ClInclude Include="primitive\collection\_std.h" />
     <ClInclude Include="primitive\collection\_string.h" />
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />

@@ -176,7 +176,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\app-simple\nanogui_example\framework.h" />
+    <ClInclude Include="..\..\app-simple\nanoui_example\framework.h" />
     <ClInclude Include="experience\control_box.h" />
     <ClInclude Include="experience\control_box_button.h" />
     <ClInclude Include="experience\experience.h" />

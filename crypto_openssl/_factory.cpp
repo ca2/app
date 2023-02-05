@@ -1,10 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "crypto.h"
 #include "hasher_algorithm.h"
 #include "initializer.h"
 
 
-__FACTORY_EXPORT void crypto_openssl_factory(::factory::factory * pfactory)
+IMPLEMENT_FACTORY(crypto_openssl)
 {
 
 

@@ -50,6 +50,12 @@ public:
 
    array & operator = (const array & array) { BASE_ARRAY::operator=(array); return *this; }
    array & operator = (array && array) { BASE_ARRAY::operator=(::transfer(array)); return *this; }
+   array& operator = (std::initializer_list < TYPE > initializer_list)
+   {
+      this->clear();
+      for (auto& item : initializer_list) this->add(item);
+      return *this;
+   }
 
 
 
@@ -91,6 +97,9 @@ public:
       return ::transfer(array);
 
    }
+
+
+
 
 
    inline void copy(const array& src);

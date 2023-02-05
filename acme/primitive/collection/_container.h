@@ -50,8 +50,6 @@ namespace generic
 } // namespace generic
 
 
-
-
 template < primitive_container CONTAINER >
 inline ::string as_string(const CONTAINER& container, const ::scoped_string& scopedstrSeparator = "|")
 {
@@ -78,6 +76,50 @@ inline ::string as_string(const CONTAINER& container, const ::scoped_string& sco
 
 
 
+
+
+template < primitive_container CONTAINER >
+inline void from_string(CONTAINER& container, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSeparator = "|")
+{
+
+   ::tokenizer tokenizer(scopedstr);
+
+   ::string strToken;
+
+   while(tokenizer.get_next_token(strToken, scopedstrSeparator))
+   {
+
+      typename CONTAINER::BASE_TYPE t;
+
+      ::from_string(t, strToken);
+
+      container.add(t);
+
+   }
+
+}
+
+
+template < typename ITEM >
+inline void from_string(::set < ITEM > & set, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSeparator = "|")
+{
+
+   ::tokenizer tokenizer(scopedstr);
+
+   ::string strToken;
+
+   while (tokenizer.get_next_token(strToken, scopedstrSeparator))
+   {
+
+      typename ::set < ITEM >::ITEM item;
+
+      ::from_string(item, strToken);
+
+      set.set_at(item);
+
+   }
+
+}
 
 
 

@@ -267,6 +267,9 @@
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{397ff3ae-0c7b-4a01-ae19-29a460656762}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{b4dbb92c-b141-4828-976a-1b41d1c87540}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">

@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
-project(experience_nanogui CXX)
+project(experience_nanoui CXX)
 
 
 list(APPEND library_source
         _.cpp
         _.h
-        #aaa_want_to_erase_experience_nanogui_style.cpp
+        #aaa_want_to_erase_experience_nanoui_style.cpp
         experience/control_box_button.cpp
         experience/control_box_button.h
         experience/control_box.cpp
@@ -37,24 +37,24 @@ list(APPEND library_source
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
-target_precompile_headers(experience_nanogui PRIVATE framework.h)
+target_precompile_headers(experience_nanoui PRIVATE framework.h)
 
 
-set_target_properties(experience_nanogui PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(experience_nanoui PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(experience_nanogui PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_nanogui PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_nanogui PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanogui.lib")
-    target_link_options(experience_nanogui PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanogui.def")
-    target_link_libraries(experience_nanogui PRIVATE acme apex aqua aura axis base)
+    target_compile_options(experience_nanoui PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_nanoui PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_nanoui PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanoui.lib")
+    target_link_options(experience_nanoui PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
+    target_link_libraries(experience_nanoui PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
-    target_compile_options(experience_nanogui PRIVATE -fpermissive)
-    #target_link_options(experience_nanogui PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(experience_nanogui PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(experience_nanogui PRIVATE acme apex aqua aura axis base)
-    target_link_options(experience_nanogui PRIVATE -Wl,-z,defs)
+    target_compile_options(experience_nanoui PRIVATE -fpermissive)
+    #target_link_options(experience_nanoui PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(experience_nanoui PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(experience_nanoui PRIVATE acme apex aqua aura axis base)
+    target_link_options(experience_nanoui PRIVATE -Wl,-z,defs)
 endif()
 
 
@@ -66,7 +66,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 
 
 
-target_compile_definitions(experience_nanogui PRIVATE _APP_EXPERIENCE_NANOGUI_LIBRARY)
+target_compile_definitions(experience_nanoui PRIVATE _APP_EXPERIENCE_NANOUI_LIBRARY)
 
 
 

@@ -12,7 +12,7 @@
 #include "aura/windowing/windowing.h"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -89,43 +89,43 @@ namespace experience_nanogui
       if (strSchema == "001")
       {
 
-         return memory_new ::experience_nanogui::frame_001;
+         return memory_new ::experience_nanoui::frame_001;
 
       }
       else if (strSchema == "002")
       {
 
-         return memory_new ::experience_nanogui::frame_002;
+         return memory_new ::experience_nanoui::frame_002;
 
       }
       else if (strSchema == "005")
       {
 
-         return memory_new ::experience_nanogui::frame_005;
+         return memory_new ::experience_nanoui::frame_005;
 
       }
       else if (strSchema == "008")
       {
 
-         return memory_new ::experience_nanogui::frame_008;
+         return memory_new ::experience_nanoui::frame_008;
 
       }
       else if (strSchema == "011")
       {
 
-         return memory_new ::experience_nanogui::frame_011;
+         return memory_new ::experience_nanoui::frame_011;
 
       }
       else if (strSchema == "013")
       {
 
-         return memory_new ::experience_nanogui::frame_013;
+         return memory_new ::experience_nanoui::frame_013;
 
       }
       else if (strSchema == "Minimal001")
       {
 
-         return memory_new ::experience_nanogui::frame_Minimal001;
+         return memory_new ::experience_nanoui::frame_Minimal001;
 
       }
 
@@ -134,7 +134,7 @@ namespace experience_nanogui
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

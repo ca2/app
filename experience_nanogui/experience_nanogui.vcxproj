@@ -76,7 +76,7 @@
     <ClInclude Include="user\_user.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_experience_nanogui.h" />
+    <ClInclude Include="_experience_nanoui.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
@@ -102,7 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>experience_nanogui</ProjectName>
+    <ProjectName>experience_nanoui</ProjectName>
     <ProjectGuid>{B510E761-85D1-487E-B20F-32999935F90F}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>

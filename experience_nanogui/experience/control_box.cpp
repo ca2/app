@@ -5,7 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -136,7 +136,7 @@ namespace experience_nanogui
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

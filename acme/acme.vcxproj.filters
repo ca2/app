@@ -2972,6 +2972,9 @@
     <ClInclude Include="exception\what_exclamation_exception.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\_std.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

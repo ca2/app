@@ -96,6 +96,182 @@ bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, 
 }
 
 
+//bool tokenizer::get_line(string& strLine)
+//{
+//
+//   if (::is_end(m_iterator, this->end()))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   const_iterator iteratorR = find("\r");
+//
+//   const_iterator iteratorN = find("\n");
+//
+//   const_iterator iterator;
+//
+//   if (::is_ok(iteratorR, this->end()))
+//   {
+//
+//      if (::is_ok(iteratorN, this->end()))
+//      {
+//
+//         if (iteratorR < iteratorN)
+//         {
+//
+//            if (iteratorR + 1 == iteratorN)
+//            {
+//
+//               substring(strLine, iteratorR);
+//
+//               m_iterator = iteratorN + 1;
+//
+//            }
+//            else
+//            {
+//
+//               substring(strLine, iteratorR);
+//
+//               m_iterator = iteratorR + 1;
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            // '\n' < '\r'
+//
+//            substring(strLine, iteratorN);
+//
+//            m_iterator = iteratorN + 1;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         substring(strLine, iteratorR);
+//
+//         m_iterator = iteratorR + 1;
+//
+//
+//      }
+//
+//   }
+//   else if (::is_ok(iteratorN, this->end()))
+//   {
+//
+//      substring(strLine, iteratorN);
+//
+//      m_iterator = iteratorN + 1;
+//
+//   }
+//   else
+//   {
+//
+//      substring(strLine);
+//
+//      m_iterator = end();
+//
+//      return true;
+//
+//   }
+//
+//}
+//
+//
+//bool tokenizer::get_line(string& strLine)
+//{
+//
+//   if (::is_end(m_iterator, this->end()))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   const_iterator iteratorR = find("\r");
+//
+//   const_iterator iteratorN = find("\n");
+//
+//   const_iterator iterator;
+//
+//   if (::is_ok(iteratorR, this->end()))
+//   {
+//
+//      if (::is_ok(iteratorN, this->end()))
+//      {
+//
+//         if (iteratorR < iteratorN)
+//         {
+//
+//            if (iteratorR + 1 == iteratorN)
+//            {
+//
+//               substring(strLine, iteratorR);
+//
+//               m_iterator = iteratorN + 1;
+//
+//            }
+//            else
+//            {
+//
+//               substring(strLine, iteratorR);
+//
+//               m_iterator = iteratorR + 1;
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            // '\n' < '\r'
+//
+//            substring(strLine, iteratorN);
+//
+//            m_iterator = iteratorN + 1;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         substring(strLine, iteratorR);
+//
+//         m_iterator = iteratorR + 1;
+//
+//
+//      }
+//
+//   }
+//   else if (::is_ok(iteratorN, this->end()))
+//   {
+//
+//      substring(strLine, iteratorN);
+//
+//      m_iterator = iteratorN + 1;
+//
+//   }
+//   else
+//   {
+//
+//      substring(strLine);
+//
+//      m_iterator = end();
+//
+//      return true;
+//
+//   }
+//
+//}
+
+
 bool tokenizer::get_next_smallest_token(string & strToken, const string_array & straSeparator, bool bWithSeparator)
 {
 

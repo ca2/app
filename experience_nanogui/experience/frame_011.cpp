@@ -19,7 +19,7 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -682,7 +682,7 @@ SizingNone:;
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

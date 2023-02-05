@@ -17,7 +17,7 @@
 #define GRIP_CENTER_SMALL_CY 5
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -1222,7 +1222,7 @@ namespace experience_nanogui
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

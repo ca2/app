@@ -1,11 +1,42 @@
-// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSørensen
+﻿// Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSørensen
 #include "framework.h"
 #include "window.h"
 #include "device.h"
 ////#include "acme/exception/exception.h"
 #include "acme/user/nano/button.h"
-#include "acme/user/nano/window.h"
+#include "acme/user/nano/message_box.h"
 #include "acme/user/user/mouse.h"
+#include "acme/user/nano/window.h"
+
+
+CLASS_DECL_ACME string task_get_name();
+CLASS_DECL_ACME void task_set_name(const char * pszName);
+
+
+class CLASS_DECL_ACME scoped_task_name
+{
+public:
+
+   ::string       m_strTask;
+
+   scoped_task_name(const ::string & strTask)
+   {
+
+      m_strTask = ::task_get_name();
+
+      ::task_set_name(strTask);
+
+   }
+
+   ~scoped_task_name()
+   {
+
+      ::task_set_name(m_strTask);
+
+   }
+
+
+};
 
 
 namespace windows
@@ -831,6 +862,27 @@ namespace windows
 
    void nano_window::message_loop()
    {
+
+      auto strThreadName = ::task_get_name();
+      
+      auto pmessagebox = m_pinterface.cast < nano_message_box >();
+
+      ::string strAbbreviation("nano_window");
+
+      //if (strType.contains("message_box"))
+      if(pmessagebox)
+      {
+         //auto pmessagebox = m_pinterface.cast<nano::me
+         /// @brief ////////123456789012345
+         //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
+
+         strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
+
+      }
+
+      scoped_task_name scopedtaskname(strAbbreviation);
+
+      //::task_set_name("nanownd");
 
       MSG msg;
 

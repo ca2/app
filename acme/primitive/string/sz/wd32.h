@@ -69,7 +69,7 @@ inline strsize string_find_first_character_in(const ::wd32_character * pszBlock,
 
 
 inline strsize get_formatted_length(const ::wd32_character * pszFormat, va_list args) noexcept;
-inline strsize wd32string_format(::wd32_character * pszBuffer, strsize nlength, const ::wd32_character * pszFormat, va_list args) noexcept;
+inline strsize _string_format(::wd32_character * pszBuffer, strsize nlength, const ::wd32_character * pszFormat, va_list args) noexcept;
 inline void  flood_characters(::wd32_character * psz, ::wd32_character ch, strsize len) noexcept;
 
 

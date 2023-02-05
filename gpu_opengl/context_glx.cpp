@@ -83,7 +83,7 @@ namespace opengl
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 
@@ -194,7 +194,7 @@ namespace opengl
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pnode = (::aura_posix::node *) acmenode()->m_pAuraPosix;
 

@@ -2066,7 +2066,7 @@ else if (ptopic->m_atom == id_open_hyperlink)
       //if (plink->m_bProfile)
       {
          
-         open_profile_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
+         open_profile_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
          
       }
       //else
@@ -2121,7 +2121,7 @@ else if (ptopic->m_atom == id_app_activated)
       //
       //   auto puser = psession->user();
       //
-      //   auto pwindowing = puser->windowing1();
+      //   auto pwindowing = puser->windowing();
       //
       //   pwindowing->_will_finish_launching();
 

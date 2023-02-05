@@ -32,9 +32,14 @@ namespace integration
       ::string          m_strName;
 
 
+      ::pointer < ::particle >                  m_pmutexLines;
+
+
       context();
       ~context() override;
 
+      
+      void initialize(::particle* pparticle) override;
 
 
       virtual void prepare();

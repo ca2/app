@@ -995,6 +995,12 @@
     <ClInclude Include="platform\integration_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\array_union.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\api_client_base.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1436,6 +1442,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform\integration_context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\api_client_base.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

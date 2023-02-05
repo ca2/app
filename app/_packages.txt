@@ -9,6 +9,7 @@ default_acme_platform2
 default_acme_platform3
 third/libcrypto
 third/libssl
+third/libarchive
 default_apex_platform1
 default_apex_platform2
 default_apex_platform3

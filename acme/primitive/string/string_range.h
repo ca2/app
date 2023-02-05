@@ -1312,9 +1312,115 @@ public:
 
     const_iterator skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in("\t\r\n "); }
 
+    ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
+
+    string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
+
     const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
 
     const_iterator rear_skip_whitespace() const RELEASENOTHROW { return this->rear_skip_any_character_in("\t\r\n "); }
+
+    ::strsize count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
+
+    string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
+
+    ::strsize count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::strsize c; return ((c = count_left(range)) == this->length()) ? c : c + count_right(range); }
+
+    string_range& trim(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
+
+    bool paired_trim(CHARACTER character1, CHARACTER character2)
+    {
+       
+       if (this->size() < 2)
+       {
+
+          return false;
+
+       }
+       
+       if (this->first() != character1 || this->last() != character2)
+       {
+
+          return false;
+
+       }
+       
+       this->begin()++; 
+       
+       this->end()--; 
+       
+       return true;
+
+    }
+
+
+    bool begins_eat(CHARACTER character)
+    {
+
+       if (this->size() <= 0)
+       {
+
+          return false;
+
+       }
+
+       if (this->first() != character)
+       {
+
+          return false;
+
+       }
+
+      this->begin()++;
+
+      return true;
+       
+    }
+
+    ::i32 consume_digit(int iBase)
+    {
+
+       if (this->size() <= 0)
+       {
+
+          return -1;
+
+       }
+
+       auto ch = this->first();
+
+       if (ch >= '0' && ch <= ('0' + minimum(iBase - 1, 9)))
+       {
+
+          return ch - '0';
+
+       }
+
+       if (iBase <= 10)
+       {
+
+          return false;
+
+       }
+
+       if (ch >= 'a' && ch <= ('a' + minimum(iBase - 11, 'z')))
+       {
+
+          return ch - 'a';
+
+       }
+       else if (ch >= 'A' && ch <= ('A' + minimum(iBase - 11, 'Z')))
+       {
+
+          return ch - 'A';
+
+       }
+
+       return false;
+
+    }
+
+
 
 
 

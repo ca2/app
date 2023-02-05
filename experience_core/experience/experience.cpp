@@ -47,7 +47,7 @@ namespace experience_core
 //
 //            auto puser = psession->user();
 //
-//            auto pwindowing = puser->windowing1();
+//            auto pwindowing = puser->windowing();
 //
 //            pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
 //

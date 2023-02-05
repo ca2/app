@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "user.h"
 #include "shell.h"
 #include "style.h"
@@ -185,7 +185,7 @@ namespace user
    ::user::interaction * user::interaction(oswindow oswindow)
    {
 
-      auto pwindowing = windowing1();
+      auto pwindowing = windowing();
 
       if (::is_null(pwindowing))
       {
@@ -220,7 +220,7 @@ namespace user
    ::user::interaction * user::get_mouse_capture(::thread * pthread)
    {
 
-      auto pwindowing = windowing1();
+      auto pwindowing = windowing();
 
       if (::is_null(pwindowing))
       {
@@ -255,7 +255,7 @@ namespace user
    ::user::interaction * user::get_keyboard_focus(::thread * pthread)
    {
 
-      auto pwindowing = windowing1();
+      auto pwindowing = windowing();
 
       if (::is_null(pwindowing))
       {
@@ -290,9 +290,9 @@ namespace user
    ::user::interaction * user::get_active_window(::thread * pthread)
    {
 
-      auto pwindowing = windowing1();
+      auto pwindowing = windowing()
 
-      if (::is_null(pwindowing))
+      ;if (::is_null(pwindowing))
       {
 
          return nullptr;
@@ -353,7 +353,7 @@ namespace user
    ::user::interaction * user::get_foreground_window()
    {
 
-      auto pwindowing = windowing1();
+      auto pwindowing = windowing();
 
       if (::is_null(pwindowing))
       {
@@ -568,7 +568,7 @@ namespace user
       try
       {
 
-         auto pwindowing = windowing1();
+         auto pwindowing = windowing();
 
          if(::is_set(pwindowing))
          {

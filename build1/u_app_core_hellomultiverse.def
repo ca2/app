@@ -1,8 +1,0 @@
-; app_hellomultiverse.def
-
-LIBRARY  "app_core_build"
-; For Win32 DLLs, only EXPORTs really required.
-
-EXPORTS
-;app_core_hellomultiverse_get_new_library
-

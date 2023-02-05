@@ -1,4 +1,4 @@
-// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #pragma once
 
 
@@ -168,6 +168,10 @@ namespace networking
       virtual ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
 
       virtual ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
+
+      virtual ::pointer_array < ::networking::address > list_computers();
+
+      virtual ::pointer_array < ::networking::address > list_network_interfaces();
 
 
    };

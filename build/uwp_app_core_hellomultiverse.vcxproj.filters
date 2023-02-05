@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Image Include="Assets\Square24.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square24.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square50.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square50.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square71.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square71.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square310.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square310.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide620x300.scale-100.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide620x300.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Library">
+      <UniqueIdentifier>{e00b4c21-371c-495c-9193-028935b8c59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Win32">
+      <UniqueIdentifier>{34497db6-1c01-4c3b-bddc-e2ac69ed3223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Win32\Debug">
+      <UniqueIdentifier>{1fad4494-c5ef-41d0-806b-25c08f13ed31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{6485a30b-a191-4fb7-8874-b31636e2a566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UWP">
+      <UniqueIdentifier>{28a0bf58-e18d-4576-97cb-2e052e5c0b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6493056d-84a9-41f5-a805-eec8df1e62ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\x64">
+      <UniqueIdentifier>{264c352a-47c3-4385-bf8c-b2bcd6375886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\x64\Debug">
+      <UniqueIdentifier>{ad553004-630a-4d1e-b5ef-ce10ae588b7b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package10.appxmanifest">
+      <Filter>UWP</Filter>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\uwp_app_core_hellomultiverse_TemporaryKey.pfx">
+      <Filter>UWP</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\bzip2.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\sqlite.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\Debug\libcrypto-1_1-x64.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\Debug\libssl-1_1-x64.dll">
+      <Filter>Library\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
+      <Filter>Library\Win32\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
+      <Filter>Library\Win32\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
+      <Filter>Library\Win32\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\sqlite.dll">
+      <Filter>Library\Win32\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
+      <Filter>Library\Win32\Debug</Filter>
+    </None>
+    <None Include="..\_matter.zip">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="__implement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

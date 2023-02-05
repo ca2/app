@@ -1,4 +1,4 @@
-// Create on 2021-03-21 00:11 <3ThomasBS_
+﻿// Create on 2021-03-21 00:11 <3ThomasBS_
 #pragma once
 
 
@@ -53,6 +53,8 @@ public:
    ::file::path defer_process_relative_path(const ::file::path & path, const ::file::path & pathFolder = "");
 
    
+   virtual ::file::path get_absolute_path(const ::scoped_string & scopedstr);
+
 
 };
 

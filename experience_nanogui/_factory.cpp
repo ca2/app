@@ -6,15 +6,15 @@
 
 
 
-__FACTORY_EXPORT void experience_nanogui_factory(::factory::factory* pfactory)
+__FACTORY_EXPORT void experience_nanoui_factory(::factory::factory* pfactory)
 {
 
-   pfactory->add_factory_item < ::experience_nanogui::experience, ::experience::experience >();
-   pfactory->add_factory_item < ::experience_nanogui::control_box, ::experience::control_box >();
-   pfactory->add_factory_item < ::experience_nanogui::control_box_button, ::experience::button >();
-   pfactory->add_factory_item < ::experience_nanogui::style, ::user::style >();
+   pfactory->add_factory_item < ::experience_nanoui::experience, ::experience::experience >();
+   pfactory->add_factory_item < ::experience_nanoui::control_box, ::experience::control_box >();
+   pfactory->add_factory_item < ::experience_nanoui::control_box_button, ::experience::button >();
+   pfactory->add_factory_item < ::experience_nanoui::style, ::user::style >();
                 
-   //pfactory->add_factory_item < ::experience_nanogui::still, ::user::still >();
+   //pfactory->add_factory_item < ::experience_nanoui::still, ::user::still >();
 
 }
 

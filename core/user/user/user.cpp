@@ -8,6 +8,8 @@
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
 #include "acme/platform/request.h"
+#include "acme/platform/sequencer.h"
+#include "acme/user/nano/nano.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
@@ -1376,92 +1378,125 @@ namespace core
    ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      if (!type)
-      {
-
-         return nullptr;
-
-      }
-
-      ::user::impact_system * psystem = m_mapTemplate[type];
-
-      if (psystem == nullptr)
-      {
-
-         ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
-
-         if (is_html_file(payload.as_file_path()))
-         {
-
-            typeDocument = get_html_document_type();
-
-         }
-
-         auto psystemNew = __new(::user::multiple_document_template(
-                                m_ptemplateChildForm->m_atom,
-                                typeDocument,
-                                m_ptemplateChildForm->m_typeFrame,
-                                type));
-
-         psystemNew->initialize(pparticle);
-
-         psystem = psystemNew;
-
-         m_mapTemplate[type] = psystem;
-
-         document_manager()->add_document_template(psystem);
-
-      }
-
-      if (pparticle == nullptr)
-      {
-
-         if (puserinteractionParent.is_set())
-         {
-
-            pparticle = puserinteractionParent;
-
-         }
-         else
-         {
-
-            pparticle = this;
-
-         }
-
-      }
-
-      auto prequest = ::__create_new < ::request >(pparticle);
-
-      prequest->m_bMakeVisible = false;
-
-      prequest->m_puserelementParent = puserinteractionParent;
-
-      prequest->m_payloadArgs = varArgs;
-
       auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
+      try
       {
 
-         prequest->m_payloadFile = pathFile;
+         if (!type)
+         {
+
+            return nullptr;
+
+         }
+
+         ::user::impact_system * psystem = m_mapTemplate[type];
+
+         if (psystem == nullptr)
+         {
+
+            ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
+
+            if (is_html_file(payload.as_file_path()))
+            {
+
+               typeDocument = get_html_document_type();
+
+            }
+
+            auto psystemNew = __new(::user::multiple_document_template(
+               m_ptemplateChildForm->m_atom,
+               typeDocument,
+               m_ptemplateChildForm->m_typeFrame,
+               type));
+
+            psystemNew->initialize(pparticle);
+
+            psystem = psystemNew;
+
+            m_mapTemplate[type] = psystem;
+
+            document_manager()->add_document_template(psystem);
+
+         }
+
+         if (pparticle == nullptr)
+         {
+
+            if (puserinteractionParent.is_set())
+            {
+
+               pparticle = puserinteractionParent;
+
+            }
+            else
+            {
+
+               pparticle = this;
+
+            }
+
+         }
+
+         auto prequest = ::__create_new < ::request >(pparticle);
+
+         prequest->m_bMakeVisible = false;
+
+         prequest->m_puserelementParent = puserinteractionParent;
+
+         prequest->m_payloadArgs = varArgs;
+
+         if (pathFile.has_char())
+         {
+
+            prequest->m_payloadFile = pathFile;
+
+         }
+
+         psystem->request(prequest);
+
+         ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+
+         if (pformdocument.is_null())
+         {
+
+            return nullptr;
+
+         }
+
+         ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+
+         return pformdocument;
+
+      }
+      //catch(::exception)
+      catch (const ::exception & exception)
+      {
+
+#ifdef DEBUG
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
+
+      }
+      catch (...)
+      {
+
+#ifdef DEBUG
+
+         ::exception exception(error_catch_all_exception);
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
 
       }
 
-      psystem->request(prequest);
-
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
-
-      if (pformdocument.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
-
-      return pformdocument;
 
    }
 

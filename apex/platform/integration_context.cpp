@@ -11,6 +11,12 @@
 #include "apex/networking/http/context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
+
+
+#include "acme/_operating_system.h"
+#ifdef STATIC_CUBE
+#define LIBARCHIVE_STATIC
+#endif
 #include "libarchive/archive.h"
 #include "libarchive/archive_entry.h"
 
@@ -30,6 +36,16 @@ namespace integration
    context::~context()
    {
 
+
+   }
+
+
+   void context::initialize(::particle* pparticle)
+   {
+
+      ::particle::initialize(pparticle);
+
+      m_pmutexLines = acmenode()->create_mutex();
 
    }
 

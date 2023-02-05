@@ -3842,7 +3842,7 @@ class ::memory & payload::memory_reference()
 
       auto ppath = memory_new ::file::path_object();
 
-      ppath->assign(as_file_path());
+      ppath->assign_range(as_file_path());
 
       set_type(e_type_path, false);
 

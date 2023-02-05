@@ -1564,6 +1564,23 @@ namespace networking
    }
 
 
+   ::pointer_array < ::networking::address >networking::list_computers()
+   {
+
+
+      return {};
+
+   }
+
+
+   ::pointer_array < ::networking::address > networking::list_network_interfaces()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace networking
 
 

@@ -180,22 +180,22 @@ namespace user
             else
             {
 
-               try
-               {
+               //try
+               //{
 
                   pformNew->open_document(pathHtml);
 
                   bOk = true;
 
-               }
-               catch (...)
-               {
+               //}
+               //catch (...)
+               //{
 
-                  pformNew->start_destroying_window();
+                 // pformNew->start_destroying_window();
 
-                  pformNew.release();
+                  //pformNew.release();
 
-               }
+               //}
 
             }
 

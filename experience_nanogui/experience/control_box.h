@@ -4,7 +4,7 @@
 #include "base/user/experience/control_box.h"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
 
@@ -37,7 +37,7 @@ namespace experience_nanogui
       };
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

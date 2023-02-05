@@ -62,6 +62,12 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
+   //char sz[256];
+   //sprintf(sz, "argc=%d", argc);
+   //::OutputDebugStringA(sz);
+   //   throw argc;
+
+   //}
 
    ::acme::acme::g_p->initialize(argc, argv, envp);
 

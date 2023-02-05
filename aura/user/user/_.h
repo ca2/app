@@ -424,3 +424,4 @@ class mini_dock_frame_window;
 
 
 
+CLASS_DECL_AURA ::user::e_mouse user_key_to_user_mouse(::user::e_key ekeyButton);

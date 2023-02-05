@@ -36,7 +36,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46D7D9C9-7B52-4DC6-AF84-46A5E3CDC43D}</ProjectGuid>
-    <RootNamespace>platform</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -869,6 +869,8 @@
     <ClCompile Include="sockets\ssl\client_context_map.cpp" />
     <ClCompile Include="sockets\ssl\context.cpp" />
     <ClCompile Include="sockets\ssl\initializer.cpp" />
+    <ClCompile Include="winsock2\list_computers.cpp" />
+    <ClCompile Include="winsock2\list_network_interfaces.cpp" />
     <ClCompile Include="winsock2\_.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />

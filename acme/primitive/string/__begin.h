@@ -84,6 +84,12 @@ namespace comparison
 
 
 
+constexpr char __digit(int digit)
+{
+
+   return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[digit];
+
+}
 
 
 

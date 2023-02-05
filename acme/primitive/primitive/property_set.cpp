@@ -2234,6 +2234,29 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 //}
 
 
+string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2)
+{
+
+   ::string str;
+
+   for (auto & pproperty : *this)
+   {
+      
+      str += pproperty->m_atom.as_string();
+
+      str += scopedstrSeparator1;
+
+      str += pproperty->as_string();
+
+      str += scopedstrSeparator2;
+
+   }
+
+   return str;
+
+}
+
+
 ::index property_set::index_of(const ::atom & atom, ::index i) const
 {
 

@@ -1036,26 +1036,26 @@ inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
 //
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const string_base & str)
-{
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const string_base & str)
+//{
+//
+//   NATURAL_POINTER::operator=(str);
+//
+//   return *this;
+//
+//}
 
-   NATURAL_POINTER::operator=(str);
 
-   return *this;
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(string_base && scopedstr)
-{
-
-   NATURAL_POINTER::operator=(::transfer(scopedstr));
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(string_base && scopedstr)
+//{
+//
+//   NATURAL_POINTER::operator=(::transfer(scopedstr));
+//
+//   return *this;
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -1363,7 +1363,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
    else
    {
 
-      this->Empty();
+      this->empty();
 
    }
 
@@ -5802,7 +5802,7 @@ void string_base < ITERATOR_TYPE >::append_format_arguments(const CHARACTER * ps
 
    CHARACTER * pszBuffer = get_string_buffer(nCurrentLength + nAppendLength);
 
-   string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
+   _string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
 
    release_string_buffer(nCurrentLength + nAppendLength);
 
@@ -5836,7 +5836,7 @@ void string_base < ITERATOR_TYPE >::format_arguments(const CHARACTER * pszFormat
 
    va_copy(ptr2, args);
 
-   ansistring_format(pszBuffer, nLength + 1, pszFormat, ptr2);
+   _string_format(pszBuffer, nLength + 1, pszFormat, ptr2);
 
    va_end(ptr2);
 

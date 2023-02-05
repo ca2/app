@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 // xkeyboard.cpp
 // of a class to get keyboard on_layout information and machine layouts
@@ -16,7 +16,7 @@
 //#include "x11_exception.h"
 //!!!#include <X11/XKBlib.h>
 //!!!#include <X11/keysym.h>
-#include "acme/user/user/_constant_key.h"
+//#include "acme/user/user/_constant.h"
 #include "aura/windowing/keyboard.h"
 // <3 ThomasBS - 400th follower
 

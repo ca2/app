@@ -812,7 +812,7 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing1();
+         auto pwindowing = puser->windowing();
 
          return pwindowing;
 
@@ -7113,7 +7113,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pwindowHost = pwindowing->get_application_host_window();
       
@@ -14350,7 +14350,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -14528,7 +14528,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -14607,7 +14607,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pdisplay = pwindowing->display();
 
@@ -14841,7 +14841,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       auto pdisplay = pwindowing->display();
 

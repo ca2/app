@@ -35,7 +35,7 @@ void TabWidgetBase::remove_tab(int id) {
    m_tab_captions.erase(m_tab_captions.begin() + index);
    m_tab_ids.erase(m_tab_ids.begin() + index);
    if (index <= m_active_tab)
-      m_active_tab = std::max(0, m_active_tab - 1);
+      m_active_tab = ::maximum(0, m_active_tab - 1);
    m_callbackLayout = [this](::nano2d::context * pcontext)
    {
       perform_layout(pcontext);
@@ -86,7 +86,7 @@ int TabWidgetBase::append_tab(const ::scoped_string & caption) {
 }
 
 int TabWidgetBase::tab_index(int id) const {
-   for (size_t i = 0; i < m_tab_ids.size(); ++i) {
+   for (::index i = 0; i < m_tab_ids.size(); ++i) {
       if (m_tab_ids[i] == id)
          return (int)i;
    }
@@ -171,12 +171,12 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
    pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
    pcontext->font_size(font_size());
    pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-   for (size_t i = 0; i < m_tab_captions.size(); ++i) {
+   for (::index i = 0; i < m_tab_captions.size(); ++i) {
       int x_pos = m_pos.x() + m_tab_offsets[i],
          y_pos = m_pos.y(),
          width = m_tab_offsets[i + 1] - m_tab_offsets[i];
 
-      if (i == (size_t)m_active_tab) {
+      if (i == (::index)m_active_tab) {
          pcontext->begin_path();
          pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
             tab_height + 4.f, (float)m_theme->m_button_corner_radius);
@@ -263,7 +263,7 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test
       return { -1, false };
 
    int x = p.x() - m_pos.x();
-   for (size_t i = 0; i < m_tab_offsets.size() - 1; ++i) {
+   for (::index i = 0; i < m_tab_offsets.size() - 1; ++i) {
       if (x >= m_tab_offsets[i] && x < m_tab_offsets[i + 1]) {
          int r = m_tab_offsets[i + 1] - x;
          return {

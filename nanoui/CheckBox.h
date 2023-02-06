@@ -70,7 +70,7 @@ namespace nanoui
          const ::function<void(bool)> & callback = ::function<void(bool)>());
 
       /// The caption of this CheckBox.
-      const ::scoped_string & caption() const { return m_caption; }
+      ::string caption() const { return m_caption; }
 
       /// Sets the caption of this CheckBox.
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }

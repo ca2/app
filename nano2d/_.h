@@ -4,7 +4,7 @@
 #include "aura/_.h"
 
 
-#ifdef _NANO2D_LIBRARY
+#ifdef _nano2d_project
 #define CLASS_DECL_NANO2D  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NANO2D CLASS_DECL_IMPORT

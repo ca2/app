@@ -37,7 +37,7 @@ namespace nanoui
       int tab_count() const { return (int)m_tab_captions.size(); };
 
       /// Return the ID of the tab at a given index
-      int tab_id(int index) const { return m_tab_ids[index]; };
+      int tab_id(::index index) const { return m_tab_ids[index]; };
 
       /// Return the index of the tab with a given ID (or throw an exception)
       int tab_index(int id) const;
@@ -57,12 +57,12 @@ namespace nanoui
       void set_selected_id(int id) { m_active_tab = tab_index(id); update_visibility(); }
 
       /// Return the index of the currently active tab
-      int selected_index() const { return m_active_tab; }
+      ::index selected_index() const { return m_active_tab; }
       /// Set the index of the currently active tab
       void set_selected_index(int index) { m_active_tab = index; update_visibility(); }
 
       /// Return the caption of the tab with the given ID
-      const ::scoped_string & tab_caption(int id) const { return m_tab_captions[tab_index(id)]; };
+      ::string tab_caption(int id) const { return m_tab_captions[tab_index(id)]; };
       /// Change the caption of the tab with the given ID
       void set_tab_caption(int id, const ::scoped_string & caption) { m_tab_captions[tab_index(id)] = caption; };
 
@@ -122,7 +122,7 @@ namespace nanoui
       ::array<int> m_tab_ids;
       ::array<int> m_tab_offsets;
       int m_close_width = 0;
-      int m_active_tab = 0;
+      ::index m_active_tab = 0;
       int m_tab_drag_index = -1;
       int m_tab_drag_min = -1, m_tab_drag_max = -1;
       int m_tab_drag_start = -1, m_tab_drag_end = -1;

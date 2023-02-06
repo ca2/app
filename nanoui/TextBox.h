@@ -78,25 +78,25 @@ namespace nanoui
 
       }
 
-      const ::scoped_string & default_value() const { return m_default_value; }
+      ::string default_value() const { return m_default_value; }
       void set_default_value(const ::scoped_string & default_value) { m_default_value = default_value; }
 
       Alignment alignment() const { return m_alignment; }
       void set_alignment(Alignment align) { m_alignment = align; }
 
-      const ::scoped_string & units() const { return m_units; }
+      ::string units() const { return m_units; }
       void set_units(const ::scoped_string & units) { m_units = units; }
 
       int units_image() const { return m_units_image; }
       void set_units_image(int image) { m_units_image = image; }
 
       /// Return the underlying regular expression specifying valid formats
-      const ::scoped_string & format() const { return m_format; }
+      ::string format() const { return m_format; }
       /// Specify a regular expression specifying valid formats
       void set_format(const ::scoped_string & format) { m_format = format; }
 
       /// Return the placeholder text to be displayed while the text box is empty.
-      const ::scoped_string & placeholder() const { return m_placeholder; }
+      ::string placeholder() const { return m_placeholder; }
       /// Specify a placeholder text to be displayed while the text box is empty.
       void set_placeholder(const ::scoped_string & placeholder) { m_placeholder = placeholder; }
 

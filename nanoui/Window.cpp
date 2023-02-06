@@ -73,7 +73,7 @@ Vector2i Window::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSi
 
       pcontext->font_size(18.0f);
       pcontext->font_face("sans-bold");
-      pcontext->text_bounds(0, 0, m_title.c_str(), m_boundsHeader);
+      pcontext->text_bounds(0, 0, m_title, m_boundsHeader);
 
    }
 

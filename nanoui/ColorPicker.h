@@ -71,13 +71,13 @@ namespace nanoui
       void set_color(const Color & color);
 
       /// The current caption of the \ref nanoui::ColorPicker::m_pick_button.
-      const ::scoped_string & pick_button_caption() { return m_pick_button->caption(); }
+      ::string pick_button_caption() { return m_pick_button->caption(); }
 
       /// Sets the current caption of the \ref nanoui::ColorPicker::m_pick_button.
       void set_pick_button_caption(const ::scoped_string & caption) { m_pick_button->set_caption(caption); }
 
       /// The current caption of the \ref nanoui::ColorPicker::m_reset_button.
-      const ::scoped_string & reset_button_caption() { return m_reset_button->caption(); }
+      ::string reset_button_caption() { return m_reset_button->caption(); }
 
       /// Sets the current caption of the \ref nanoui::ColorPicker::m_reset_button.
       void set_reset_button_caption(const ::scoped_string & caption) { m_reset_button->set_caption(caption); }

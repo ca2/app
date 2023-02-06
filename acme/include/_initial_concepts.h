@@ -60,6 +60,10 @@ concept primitive_number =
    std::is_floating_point_v < NUMBER >;
 
 
+template < typename AGGREGATE >
+concept primitive_aggregate = ::std::is_aggregate_v < AGGREGATE >;
+
+
 template < typename T >
 concept primitive_fundamental = std::is_fundamental < T >::value || std::is_pointer < T >::value;
 

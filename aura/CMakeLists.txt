@@ -169,6 +169,7 @@ list(APPEND library_source
         graphics/image/fastblur.h
         graphics/image/frame.cpp
         graphics/image/frame.h
+        graphics/image/frame_array.cpp
         graphics/image/frame_array.h
         graphics/image/gif_antialias_8bit.cpp
         #graphics/image/gif_detect_8bit_borders.cpp
@@ -183,7 +184,6 @@ list(APPEND library_source
         graphics/image/nanosvg.cpp
         #graphics/image/object.cpp
         graphics/image/palette.h
-        graphics/image/pointer_array.cpp
         graphics/image/source.cpp
         graphics/image/source.h
         graphics/image/imaging.cpp

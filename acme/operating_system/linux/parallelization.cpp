@@ -2,6 +2,7 @@
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/user/nano/display.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system.h"
 
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_thread.h"
 #include "primitive_impl.h"
 #include "interaction.h"
@@ -774,7 +774,10 @@ namespace user
       {
          _NEW_MESSAGE(::message::scroll);
 
+#ifdef WINDOWS_DESKTOP
          pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
+         
+#endif
 
          //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 

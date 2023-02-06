@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/primitive/collection/array.h"
@@ -11,6 +11,5 @@ CLASS_DECL_ACME void replace_tab(strsize iOffset, string & strParam, int iWidth,
 
 
 CLASS_DECL_ACME string _002Underscore(string str);
-
 
 

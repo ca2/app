@@ -167,7 +167,14 @@ inline INTEGRAL& _consume(INTEGRAL& i, ::const_ansi_range& range, int iBase = 10
    while (range.begin() < end)
    {
 
-      auto digit = range.consume_digit(iBase);
+      auto digit = range.defer_consume_digit(iBase);
+
+      if (digit < 0)
+      {
+
+         throw ::exception(::error_parsing);
+
+      }
 
       i = digit + i * iBase;
 
@@ -429,9 +436,21 @@ inline void from_string(INTEGRAL & i, const ::scoped_string & scopedstr, int iBa
 
    auto r = scopedstr();
 
-   consume_integral(i, r, iBase);
+   consume(i, r, iBase);
    
 }
+
+
+template < primitive_floating FLOATING >
+inline void from_string(FLOATING& f, const ::scoped_string& scopedstr)
+{
+
+   ::string str(scopedstr);
+
+   f = (FLOATING) strtod(str.c_str(), nullptr);
+
+}
+
 
 
 
@@ -450,14 +469,9 @@ inline void from_string(INTEGRAL & i, const ::scoped_string & scopedstr, int iBa
 //   dst = ::as_f32(scopedstr);
 //}
 //
-//inline void fromString(const ::scoped_string& scopedstr, NVGcolor& dst)
+//inline void fromString(const ::scoped_string& scopedstr, ::nano2d::color& dst)
 //{
 //   dst = stringToColor(scopedstr);
 //}
 
-//template <size_t N>
-//inline void fromString(const ::scoped_string& scopedstr, std::bitset<N>& dst)
-//{
-//   dst = std::bitset<N>(scopedstr);
-//}
 

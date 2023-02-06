@@ -23,10 +23,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="deployment.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
     <ResourceCompile Include="main.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -39,11 +39,13 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_matter.zip" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="operating-system\windows\_app_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_matter.zip">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -140,7 +140,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{837A7917-7682-4000-8DFB-F4C5E53F760E}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>experience_nanogui</ProjectName>
+    <ProjectName>experience_nanoui</ProjectName>
     <RootNamespace>app</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>

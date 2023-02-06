@@ -145,18 +145,18 @@ struct CLASS_DECL_ACME block :
 
    }
 
-   template < typename T >
-   block & operator = (const T & t)
+   template < primitive_aggregate AGGREGATE >
+   block & operator = (const AGGREGATE & aggregate)
    {
 
-      if (this->size() < sizeof(T))
+      if (this->size() < sizeof(AGGREGATE))
       {
 
          throw_exception(error_end_of_file);
 
       }
    
-      memcpy(this->m_begin, &t, sizeof(t));
+      memcpy(this->m_begin, &aggregate, sizeof(aggregate));
 
       return *this;
 

@@ -60,9 +60,97 @@ DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
 DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
+template < typename TYPE >
+class pointer_rear_iterator
+{
+public:
 
 
+   TYPE* m_p;
 
+
+   pointer_rear_iterator() { m_p = nullptr; }
+   pointer_rear_iterator(TYPE * p) { m_p = p; }
+
+
+   auto& operator *() { return *m_p; }
+   auto& operator *() const { return *m_p; }
+   auto operator ->() { return m_p; }
+   auto operator ->() const { return m_p; }
+
+   pointer_rear_iterator & operator ++()
+   {
+      m_p--;
+      return *this;
+
+   }
+   pointer_rear_iterator& operator --()
+   {
+      m_p++;
+      return *this;
+
+   }
+
+   pointer_rear_iterator operator ++(int)
+   {
+      auto p = *this;
+      m_p--;
+
+      return p;
+
+   }
+   pointer_rear_iterator operator --(int)
+   {
+      auto p = *this;
+      m_p++;
+
+      return p;
+
+   }
+   template < primitive_integral INTEGRAL >
+   pointer_rear_iterator operator +(INTEGRAL i)
+   {
+
+      return m_p - i;
+
+   }
+   template < primitive_integral INTEGRAL >
+   pointer_rear_iterator operator -(INTEGRAL i)
+   {
+
+      return m_p + i;
+
+   }
+
+   template < primitive_integral INTEGRAL >
+   pointer_rear_iterator & operator +=(INTEGRAL i)
+   {
+      m_p -= i;
+      return *this;
+
+   }
+   template < primitive_integral INTEGRAL >
+   pointer_rear_iterator & operator -=(INTEGRAL i)
+   {
+      m_p += i;
+      return *this;
+
+   }
+
+
+   bool operator ==(const pointer_rear_iterator& p) const { return m_p == p.m_p; }
+   bool operator ==(const TYPE * p) const { return m_p == p; }
+   ::std::strong_ordering operator <=>(const pointer_rear_iterator& p) const { return this->m_p <=> p.m_p; }
+
+   ::count operator - (const pointer_rear_iterator& p) const { return this->m_p - p.m_p; }
+
+};
+
+
+template < typename A, typename B >
+auto distance(const pointer_rear_iterator < A > & a, const pointer_rear_iterator < B > & b) { return (a < b) ? (b - a) : (a - b); }
+template < typename A, typename B >
+auto distance(const A * pa, const B * pb) { return (pa < pb) ? (pb - pa) : (pa - pb); }
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
@@ -75,6 +163,9 @@ class array_base :
 {
 public:
 
+
+   using rear_iterator = ::pointer_rear_iterator<TYPE>;
+   using const_rear_iterator = ::pointer_rear_iterator<const TYPE *>;
 
    //using ARRAY_RANGE = ::array_range < ::range < TYPE * > >;
    using ARRAY_RANGE = ::range < TYPE * >;
@@ -196,6 +287,8 @@ public:
       return *this;
 
    }
+
+
 
 
    //template < typename iterator >
@@ -565,12 +658,16 @@ public:
    inline this_iterator back(::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
    inline const_iterator back(::index i = -1) const { return (const_iterator)(this->begin() + this->get_upper_bound(i)); }
 
+   void ensure_index_ok(::index nIndex) const { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
 
    inline const TYPE * ptr_at(::index nIndex) const { return this->m_begin + nIndex; }
    inline TYPE * ptr_at(::index nIndex) { return this->m_begin + nIndex; }
 
    inline const TYPE & element_at(::index nIndex) const;
    inline TYPE & element_at(::index nIndex);
+
+   inline const TYPE& at(::index nIndex) const { ensure_index_ok(nIndex); return element_at(nIndex); }
+   inline TYPE& at(::index nIndex) { ensure_index_ok(nIndex); return element_at(nIndex); }
 
    inline TYPE & first(::index n = 0);
    inline const TYPE & first(::index n = 0) const;
@@ -609,6 +706,27 @@ public:
 
 
    void set_all(const TYPE & t);
+
+
+   rear_iterator rear_begin()
+   {
+      return this->m_end - 1;
+   }
+
+   rear_iterator rear_end()
+   {
+      return this->m_begin - 1;
+   }
+
+   const_rear_iterator rear_begin() const
+   {
+      return (const_rear_iterator&)this->m_end - 1;
+   }
+
+   const_rear_iterator rear_end() const
+   {
+      return (const_rear_iterator&)this->m_begin - 1;
+   }
 
 
    void zero(::index iStart = 0, ::count c = -1);
@@ -2206,9 +2324,9 @@ template < typename ITERATOR2 >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const ITERATOR2 & begin, const ITERATOR2 & last)
 {
 
-   auto start = begin.index();
+   auto start = this->offset_of(begin);
 
-   auto end = last.index();
+   auto end = this->offset_of(last);
 
    if(start < 0 || end < start)
    {

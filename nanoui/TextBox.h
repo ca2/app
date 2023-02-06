@@ -345,8 +345,11 @@ public:
 
    void number_format(const ::scoped_string & format) { m_number_format = format; }
 
-   Scalar value() const {
-      return (Scalar)std::stod(TextBox::value());
+   Scalar value() const 
+   {
+      Scalar scalar;
+      ::from_string(scalar, TextBox::value());
+      return scalar;
    }
 
    void set_value(Scalar value) {
@@ -358,7 +361,8 @@ public:
 
    void set_callback(const ::function<void(Scalar)> & cb) {
       TextBox::set_callback([cb, this](const ::scoped_string & str) {
-         Scalar scalar = (Scalar)std::stod(str);
+         Scalar scalar;
+         ::from_string(scalar, str);
          set_value(scalar);
          cb(scalar);
          return true;
@@ -391,7 +395,7 @@ public:
    }
 
 
-   bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override
+   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)
@@ -437,7 +441,7 @@ public:
 
       }
 
-      return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
+      return TextBox::mouse_button_event(p, emouse, down, ekeyModifiers);
 
    }
 

@@ -167,7 +167,14 @@ inline INTEGRAL& _consume(INTEGRAL& i, ::const_ansi_range& range, int iBase = 10
    while (range.begin() < end)
    {
 
-      auto digit = range.consume_digit(iBase);
+      auto digit = range.defer_consume_digit(iBase);
+
+      if (digit < 0)
+      {
+
+         throw ::exception(::error_parsing);
+
+      }
 
       i = digit + i * iBase;
 

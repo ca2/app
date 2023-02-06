@@ -40,3 +40,7 @@ namespace nano2d
 //
 //
 //
+
+CLASS_DECL_NANO2D::object * get_nano2d_object(::nano2d::context * pcontext);
+
+

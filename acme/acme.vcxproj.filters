@@ -2975,6 +2975,12 @@
     <ClInclude Include="primitive\collection\_std.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__wide.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4057,8 +4063,8 @@
     <ClCompile Include="primitive\mathematics\_string.cpp">
       <Filter>Source Files\primitive\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Header Files\constant</Filter>
+    <ClCompile Include="primitive\string\__wide.cpp">
+      <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

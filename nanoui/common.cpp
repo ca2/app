@@ -27,7 +27,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
    bool multiple);
 
 
-::object * get_nano2d_object(::nano2d::context * pcontext);
+//::object * get_nano2d_object(::nano2d::context * pcontext);
 
 
 

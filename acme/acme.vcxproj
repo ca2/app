@@ -1143,6 +1143,7 @@
     <ClCompile Include="primitive\string\as_string.cpp" />
     <ClCompile Include="primitive\string\character.cpp" />
     <ClCompile Include="primitive\string\_string.cpp" />
+    <ClCompile Include="primitive\string\__wide.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
     <ClCompile Include="primitive\text\international_locale_schema.cpp" />
@@ -1427,6 +1428,7 @@
     <ClInclude Include="primitive\string\utf8_character.h" />
     <ClInclude Include="primitive\string\_string_base_impl1.h" />
     <ClInclude Include="primitive\string\_string_range_impl.h" />
+    <ClInclude Include="primitive\string\__wide.h" />
     <ClInclude Include="primitive\time\day.h" />
     <ClInclude Include="primitive\time\floating\_.h" />
     <ClInclude Include="primitive\time\frequency.h" />
@@ -1446,6 +1448,7 @@
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="primitive\_.h" />
     <ClInclude Include="procedure.h" />
+    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
     <ClInclude Include="user\user\_constant.h" />

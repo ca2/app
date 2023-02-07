@@ -454,6 +454,8 @@ list(APPEND apex_source
         #platform/all.h
         platform/api.cpp
         platform/api.h
+        platform/api_client_base.cpp
+        platform/api_client_base.h
         platform/api_client.cpp
         platform/api_client.h
         platform/apex.cpp

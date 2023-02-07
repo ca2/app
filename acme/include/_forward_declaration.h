@@ -1,4 +1,4 @@
-﻿//
+//
 //  _forward_declaration.h
 //  acme
 //
@@ -227,13 +227,13 @@ namespace desktop_environment_xfce
 } // namespace desktop_environment_xfce
 
 
-namespace acme 
-{ 
-   
-   class system; 
-   class context; 
+namespace acme
+{
+
+   class system;
+   class context;
    class library;
-   class node; 
+   class node;
    class application;
    class exclusive;
 
@@ -455,7 +455,7 @@ namespace write_text
 
 
    class font;
-   
+
 
 } // namespace write_text
 
@@ -463,7 +463,7 @@ namespace write_text
 namespace interprocess
 {
 
-   
+
    class target;
 
 
@@ -495,40 +495,169 @@ class item;
 class memory;
 
 
-class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
-
-
-inline integral_byte operator ""_kb(long double d)
+constexpr long double operator ""_η(long double d)
 {
-   return (memsize)(1024.0 * d);
+
+    return d / (1'000.0 * 1'000.0 * 1'000.0);
+
 }
 
-inline integral_byte operator ""_kb(unsigned long long i)
+
+constexpr unsigned long long operator ""_η(unsigned long long i)
 {
-   return (memsize)(1024 * i);
+
+    return i / (1'000 * 1'000 * 1'000);
+
 }
 
-inline integral_byte operator ""_mb(long double d)
+
+constexpr long double operator ""_µ(long double d)
 {
+
+    return d / (1'000.0 * 1'000.0);
+
+}
+
+
+constexpr unsigned long long operator ""_µ(unsigned long long i)
+{
+
+    return i / (1'000 * 1'000);
+
+}
+
+
+constexpr long double operator ""_m(long double d)
+{
+
+    return d / 1'000.0;
+
+}
+
+
+constexpr unsigned long long operator ""_m(unsigned long long i)
+{
+
+    return i / 1'000;
+
+}
+
+
+class CLASS_DECL_ACME integral_byte
+{
+public:
+
+
+    memsize m_memsize;
+
+
+    constexpr integral_byte(memsize memsize = 1) :
+    m_memsize(memsize)
+    {
+
+
+    }
+
+    operator memsize() const { return m_memsize; }
+
+
+};
+
+
+constexpr integral_byte operator ""_KiB(long double d)
+{
+
+    return 1024.0 * d;
+
+}
+
+
+constexpr integral_byte operator ""_KiB(unsigned long long i)
+{
+
+   return 1'024 * i;
+
+}
+
+
+constexpr long double operator ""_k(long double d)
+{
+
+    return 1000.0 * d;
+
+}
+
+
+constexpr unsigned long long operator ""_k(unsigned long long i)
+{
+
+    return 1'000 * i;
+
+}
+
+
+constexpr integral_byte operator ""_MiB(long double d)
+{
+
    return (memsize)(1024.0 * 1024.0 * d);
+
 }
 
-inline integral_byte operator ""_mb(unsigned long long i)
+
+constexpr integral_byte operator ""_MiB(unsigned long long i)
 {
+
    return (memsize) (1024 * 1024 * i);
+
 }
 
-inline integral_byte operator ""_gb(long double d)
+
+constexpr long double operator ""_M(long double d)
 {
-   return (memsize) (1024.0 * 1024.0 * 1024.0 * d);
+
+    return 1'000 * 1'000 * d;
+
 }
 
-inline integral_byte operator ""_gb(unsigned long long i)
+
+constexpr unsigned long long operator ""_M(unsigned long long i)
 {
-   return (memsize) (1024 * 1024 * 1024 * i);
+
+    return 1'000 * 1'000 * i;
+
 }
 
 
+constexpr integral_byte operator ""_GiB(long double d)
+{
+
+   return 1'024.0 * 1'024.0 * 1'024.0 * d;
+
+}
+
+
+constexpr integral_byte operator ""_GiB(unsigned long long i)
+{
+
+   return 1'024 * 1'024 * 1'024 * i;
+
+}
+
+
+constexpr long double operator ""_G(long double d)
+{
+
+    return 1'000.0 * 1'000.0 * 1'000.0 * d;
+
+}
+
+
+constexpr unsigned long long operator ""_G(unsigned long long i)
+{
+
+    return 1'000 * 1'000 * 1'000 * i;
+
+}
 
 
 class istring;
@@ -977,7 +1106,7 @@ namespace aura
 
 
    class context;
-   
+
 
    class idpool;
 

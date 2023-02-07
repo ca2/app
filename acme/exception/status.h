@@ -81,9 +81,9 @@ public:
 
    bool ok() const { return is_ok() != false; }
 
-   [[nodiscard]] ::enum_status estatus() const { return m_estatus; }
+   [[nodiscard]] ::enum_status estatus() const { return m_estatus.m_eenum; }
 
-   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus); }
+   [[nodiscard]] bool is_ok() const { return ::succeeded(m_estatus.m_eenum); }
 
 
    using TYPE::operator =;

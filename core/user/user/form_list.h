@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "form_mesh.h"
@@ -68,7 +68,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;
-      void _001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array & stra);
+      void _001GetSelection(const ::scoped_string & scopedstrDataKey,::string_array & stra) override;
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);

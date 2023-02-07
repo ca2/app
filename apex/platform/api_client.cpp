@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
+// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -48,7 +48,7 @@ void api_client::defer_api()
       else
       {
 
-         create_api(m_strImplementation);
+         m_papi = create_api(m_strImplementation);
          
          m_papi->m_bAuthenticating = true;
 

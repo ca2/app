@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
 #include "acme/exception/interface_only.h"
@@ -43,6 +43,8 @@ void api::initialize_api(::particle * pparticle, const ::file::path & pathProfil
    m_pathProfile = pathProfile;
 
    m_strBrowserAccount = scopedstrBrowserAccount;
+   
+   load_configuration();
 
    load_profile();
 

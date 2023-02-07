@@ -658,7 +658,7 @@ public:
    inline this_iterator back(::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
    inline const_iterator back(::index i = -1) const { return (const_iterator)(this->begin() + this->get_upper_bound(i)); }
 
-   void ensure_index_ok(::index nIndex) { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
+   void ensure_index_ok(::index nIndex) const { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
 
    inline const TYPE * ptr_at(::index nIndex) const { return this->m_begin + nIndex; }
    inline TYPE * ptr_at(::index nIndex) { return this->m_begin + nIndex; }

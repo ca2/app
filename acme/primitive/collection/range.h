@@ -324,7 +324,6 @@ public:
    auto & first();
    auto & first() const;
 
-
    constexpr this_iterator data()
    {
       return m_begin;

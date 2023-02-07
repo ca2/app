@@ -4,7 +4,7 @@
 #include "aura/_.h"
 
 
-#ifdef _NANOUI_LIBRARY
+#ifdef _nanoui_project
 #define CLASS_DECL_NANOUI  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NANOUI CLASS_DECL_IMPORT

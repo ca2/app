@@ -44,14 +44,14 @@ namespace nanoui
          const ::scoped_string & font = "sans", int font_size = -1);
 
       /// Get the label's text caption
-      const ::scoped_string & caption() const { return m_caption; }
+      ::string caption() const { return m_caption; }
       /// Set the label's text caption
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
       /// Set the currently active font (2 are available by default: 'sans' and 'sans-bold')
       void set_font(const ::scoped_string & font) { m_font = font; }
       /// Get the currently active font
-      const ::scoped_string & font() const { return m_font; }
+      ::string font() const { return m_font; }
 
       /// Get the label color
       Color color() const { return m_color; }

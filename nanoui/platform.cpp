@@ -76,7 +76,7 @@ void file_dialog_from_platform(
 
          if (!save && filetypes.size() > 1) {
             __wide_append(filter, "Supported file types (");
-            for (size_t i = 0; i < filetypes.size(); ++i) {
+            for (::index i = 0; i < filetypes.size(); ++i) {
                __wide_append(filter, "*.");
                __wide_append(filter, filetypes[i].element1().c_str());
                if (i + 1 < filetypes.size())
@@ -84,7 +84,7 @@ void file_dialog_from_platform(
             }
             __wide_append(filter, ")");
             __wide_append_null(filter);
-            for (size_t i = 0; i < filetypes.size(); ++i) {
+            for (::index i = 0; i < filetypes.size(); ++i) {
                __wide_append(filter, "*.");
                __wide_append(filter, filetypes[i].element1().c_str());
                if (i + 1 < filetypes.size())

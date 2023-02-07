@@ -379,7 +379,7 @@ void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget * w
       grid[1].insert_at(0, m_margin);
 
    for (int axis = 0; axis < 2; ++axis) {
-      for (size_t i = 1; i < grid[axis].size(); ++i)
+      for (::index i = 1; i < grid[axis].size(); ++i)
          grid[axis][i] += grid[axis][i - 1];
 
       for (Widget * w : widget->children()) {
@@ -481,7 +481,7 @@ void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget * w
       if (current_size >= container_size[axis] || total_stretch == 0)
          continue;
       float amt = (container_size[axis] - current_size) / total_stretch;
-      for (size_t i = 0; i < grid.size(); ++i)
+      for (::index i = 0; i < grid.size(); ++i)
          grid[i] += (int)std::round(amt * stretch[i]);
    }
 }

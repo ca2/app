@@ -151,6 +151,9 @@
     <Filter Include="Header Files\user\appearance">
       <UniqueIdentifier>{0b9fe4af-27ed-42d2-8b1b-ed9a30c6735c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{c2e2ae15-73aa-43b0-9177-a905ac83bc1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1727,7 +1730,16 @@
     <ClInclude Include="gpu\gpu\object.h">
       <Filter>Header Files\gpu\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\debug\source\app\aura\operating_system\windows\message_window.h" />
-    <ClInclude Include="..\..\..\..\debug\source\app\aura\operating_system\windows\message_window_listener.h" />
+    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window_listener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="R:\main\source\app\aura\deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

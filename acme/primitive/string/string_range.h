@@ -110,6 +110,10 @@ public:
     //auto subrange(strsize start, strsize count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
 
+    auto & last() { return ::get(this->end() - 1); }
+    auto & last() const { return (const CHARACTER &) ::get(this->end() - 1); }
+
+
     THIS_RANGE operator()(strsize start, strsize count) const {
 
        return ::_start_count_range(*this, start, count);
@@ -1314,7 +1318,7 @@ public:
 
     ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
-    string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
+    string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
 
     const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
 
@@ -1322,11 +1326,11 @@ public:
 
     ::strsize count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-    string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
+    string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
 
-    ::strsize count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::strsize c; return ((c = count_left(range)) == this->length()) ? c : c + count_right(range); }
+    ::strsize count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::strsize c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
-    string_range& trim(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
+    string_range& trim(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
 
     bool paired_trim(CHARACTER character1, CHARACTER character2)
     {
@@ -1377,52 +1381,68 @@ public:
        
     }
 
-    ::i32 consume_digit(int iBase)
+
+    bool defer_consume_character(CHARACTER & character)
     {
 
        if (this->size() <= 0)
-       {
-
-          return -1;
-
-       }
-
-       auto ch = this->first();
-
-       if (ch >= '0' && ch <= ('0' + minimum(iBase - 1, 9)))
-       {
-
-          return ch - '0';
-
-       }
-
-       if (iBase <= 10)
        {
 
           return false;
 
        }
 
-       if (ch >= 'a' && ch <= ('a' + minimum(iBase - 11, 'z')))
-       {
+       character = this->first();
 
-          return ch - 'a';
+       this->begin()++;
 
-       }
-       else if (ch >= 'A' && ch <= ('A' + minimum(iBase - 11, 'Z')))
-       {
-
-          return ch - 'A';
-
-       }
-
-       return false;
+       return true;
 
     }
 
+    
+    ::i32 defer_consume_digit(int iBase)
+    {
 
+       CHARACTER character;
 
+       if (!defer_consume_character(character))
+       {
 
+          return -1;
+
+       }
+
+       if (character >= '0' && character <= ('0' + minimum(iBase - 1, 9)))
+       {
+
+          return character - '0';
+
+       }
+
+       if (iBase <= 10)
+       {
+
+          return -1;
+
+       }
+
+       if (character >= 'a' && character <= ('a' + minimum(iBase - 11, 'z')))
+       {
+
+          return character - 'a';
+
+       }
+       else if (character >= 'A' && character <= ('A' + minimum(iBase - 11, 'Z')))
+       {
+
+          return character - 'A';
+
+       }
+
+       return -1;
+
+    }
 
 
     //inline bool begins(const SCOPED_STRING & scopedstrPrefix) const;

@@ -1,4 +1,4 @@
-﻿//
+//
 //  _forward_declaration.h
 //  acme
 //

@@ -1,5 +1,6 @@
 // Created by camilo on 2022-09-10 16:51 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "networking.h"
 // #include "acme/primitive/string/string.h"
 
 
@@ -38,3 +39,23 @@ string bsd_socket_error(int iBsdSocketError)
    return strerror(iBsdSocketError);
 
 }
+
+
+namespace networking_bsd{
+
+::pointer_array < ::networking::address > networking::list_computers()
+{
+   
+   return {};
+   
+}
+
+
+::pointer_array < ::networking::address > networking::list_network_interfaces()
+{
+   
+   return {};
+   
+}
+
+} // namespace networking_bsd

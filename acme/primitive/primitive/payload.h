@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "type.h"
@@ -427,7 +427,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    bool is_scalar() const;
-   inline bool is_array() const;
+   bool is_array() const;
    bool is_floating() const;
    bool is_integer() const;
    bool is_natural() const;

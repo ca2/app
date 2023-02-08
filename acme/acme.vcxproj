@@ -1360,6 +1360,7 @@
     <ClInclude Include="primitive\primitive\scope_stack.h" />
     <ClInclude Include="primitive\primitive\typed.h" />
     <ClInclude Include="primitive\primitive\aaa_factory.h" />
+    <ClInclude Include="primitive\primitive\unit.h" />
     <ClInclude Include="primitive\primitive\url.h" />
     <ClInclude Include="primitive\primitive\url_domain.h" />
     <ClInclude Include="primitive\primitive\_c_memory.h" />

@@ -1,4 +1,4 @@
-﻿//
+//
 //  _forward_declaration.h
 //  acme
 //
@@ -227,13 +227,13 @@ namespace desktop_environment_xfce
 } // namespace desktop_environment_xfce
 
 
-namespace acme 
-{ 
-   
-   class system; 
-   class context; 
+namespace acme
+{
+
+   class system;
+   class context;
    class library;
-   class node; 
+   class node;
    class application;
    class exclusive;
 
@@ -455,7 +455,7 @@ namespace write_text
 
 
    class font;
-   
+
 
 } // namespace write_text
 
@@ -463,7 +463,7 @@ namespace write_text
 namespace interprocess
 {
 
-   
+
    class target;
 
 
@@ -493,41 +493,6 @@ class item;
 
 
 class memory;
-
-
-class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
-
-
-inline integral_byte operator ""_kb(long double d)
-{
-   return (memsize)(1024.0 * d);
-}
-
-inline integral_byte operator ""_kb(unsigned long long i)
-{
-   return (memsize)(1024 * i);
-}
-
-inline integral_byte operator ""_mb(long double d)
-{
-   return (memsize)(1024.0 * 1024.0 * d);
-}
-
-inline integral_byte operator ""_mb(unsigned long long i)
-{
-   return (memsize) (1024 * 1024 * i);
-}
-
-inline integral_byte operator ""_gb(long double d)
-{
-   return (memsize) (1024.0 * 1024.0 * 1024.0 * d);
-}
-
-inline integral_byte operator ""_gb(unsigned long long i)
-{
-   return (memsize) (1024 * 1024 * 1024 * i);
-}
-
 
 
 
@@ -977,7 +942,7 @@ namespace aura
 
 
    class context;
-   
+
 
    class idpool;
 

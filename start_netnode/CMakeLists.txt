@@ -46,7 +46,6 @@ elseif(LINUX)
 
 endif()
 
-add_dependencies(app_app ${app_common_dependencies})
 add_dependencies(app_app apex_${OPERATING_SYSTEM_NAME})
 add_dependencies(app_app ${default_node})
 add_dependencies(app_app ${default_draw2d})
@@ -114,7 +113,6 @@ elseif(LINUX OR FREEBSD)
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
 add_dependencies(${PROJECT_NAME} ${default_draw2d})
 add_dependencies(${PROJECT_NAME} ${default_node})
 add_dependencies(${PROJECT_NAME} crypto_openssl)

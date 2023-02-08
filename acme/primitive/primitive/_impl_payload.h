@@ -33,7 +33,7 @@ inline ::string payload::as_string() const
 }
 
 
-inline class payload & payload::operator = (const ::scoped_string & scopedstr)
+inline class payload & payload::operator = (const ::scoped_string & scopedstr)&
 {
 
    set_string(scopedstr);
@@ -43,7 +43,7 @@ inline class payload & payload::operator = (const ::scoped_string & scopedstr)
 }
 
 
-inline class payload & payload::operator = (const ::string & str)
+inline class payload & payload::operator = (const ::string & str)&
 {
 
    set_string(str);
@@ -53,7 +53,7 @@ inline class payload & payload::operator = (const ::string & str)
 }
 
 
-inline class payload & payload::operator = (::string && str)
+inline class payload & payload::operator = (::string && str)&
 {
 
    set_string(::transfer(str));
@@ -63,7 +63,7 @@ inline class payload & payload::operator = (::string && str)
 }
 
 
-inline class payload & payload::operator = (::const_ansi_range ansirange)
+inline class payload & payload::operator = (::const_ansi_range ansirange)&
 {
 
    set_string(ansirange);
@@ -73,7 +73,7 @@ inline class payload & payload::operator = (::const_ansi_range ansirange)
 }
 
 
-inline class payload & payload::operator = (const inline_number_string & inlinenumberstring)
+inline class payload & payload::operator = (const inline_number_string & inlinenumberstring)&
 {
 
    set_string(inlinenumberstring);

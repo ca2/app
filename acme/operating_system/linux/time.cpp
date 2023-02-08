@@ -30,7 +30,7 @@ CLASS_DECL_ACME ::i64 integral_nanosecond()
 
    }
 
-   return integral_nanosecond(ts.tv_sec * 1'000'000'000 + ts.tv_nsec);
+   return ts.tv_sec * 1'000'000'000 + ts.tv_nsec;
 
 #endif
 

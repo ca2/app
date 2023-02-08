@@ -954,7 +954,7 @@ void payload::set_id(const ::atom & atom)
 }
 
 
-class ::payload & payload::operator = (para_return & eret)
+class ::payload & payload::operator = (para_return & eret)&
 {
 
    set_type(e_type_parareturn, false);
@@ -966,7 +966,7 @@ class ::payload & payload::operator = (para_return & eret)
 }
 
 
-class ::payload & payload::operator = (bool b)
+class ::payload & payload::operator = (bool b)&
 {
 
    if(get_type() == e_type_pbool)
@@ -1001,7 +1001,7 @@ class ::payload & payload::operator = (bool b)
 }
 
 
-class ::payload & payload::operator = (bool * pb)
+class ::payload & payload::operator = (bool * pb)&
 {
 
    set_type(e_type_pbool, false);
@@ -1013,7 +1013,7 @@ class ::payload & payload::operator = (bool * pb)
 }
 
 
-class ::payload & payload::operator = (::i32 i)
+class ::payload & payload::operator = (::i32 i)&
 {
 
     if(get_type() == e_type_pi32)
@@ -1048,7 +1048,7 @@ class ::payload & payload::operator = (::i32 i)
 }
 
 
-class ::payload & payload::operator = (::i32 * pi)
+class ::payload & payload::operator = (::i32 * pi)&
 {
 
    set_type(e_type_pi32, false);
@@ -1060,7 +1060,7 @@ class ::payload & payload::operator = (::i32 * pi)
 }
 
 
-class ::payload & payload::operator = (::u32 * pinteraction)
+class ::payload & payload::operator = (::u32 * pinteraction)&
 {
 
     set_type(e_type_pu32, false);
@@ -1072,7 +1072,7 @@ class ::payload & payload::operator = (::u32 * pinteraction)
 }
 
 
-class ::payload & payload::operator = (::i64 * pi)
+class ::payload & payload::operator = (::i64 * pi)&
 {
 
     set_type(e_type_pi64, false);
@@ -1084,7 +1084,7 @@ class ::payload & payload::operator = (::i64 * pi)
 }
 
 
-class ::payload & payload::operator = (::u64 * pinteraction)
+class ::payload & payload::operator = (::u64 * pinteraction)&
 {
 
     set_type(e_type_pu64, false);
@@ -1096,7 +1096,7 @@ class ::payload & payload::operator = (::u64 * pinteraction)
 }
 
 
-class ::payload & payload::operator = (const ::earth::time & time)
+class ::payload & payload::operator = (const ::earth::time & time)&
 {
 
     set_type(e_type_time, false);
@@ -1108,7 +1108,7 @@ class ::payload & payload::operator = (const ::earth::time & time)
 }
 
 
-class ::payload & payload::operator = (const ::color::color & color)
+class ::payload & payload::operator = (const ::color::color & color)&
 {
 
    set_type(e_type_color, false);
@@ -1120,7 +1120,7 @@ class ::payload & payload::operator = (const ::color::color & color)
 }
 
 
-class ::payload & payload::operator = (const ::color::hls & hls)
+class ::payload & payload::operator = (const ::color::hls & hls)&
 {
 
    set_type(e_type_hls, false);
@@ -1150,7 +1150,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //#endif
 
 
-class ::payload & payload::operator = (::i64 i)
+class ::payload & payload::operator = (::i64 i)&
 {
    if(get_type() == e_type_pi64)
    {
@@ -1172,7 +1172,7 @@ class ::payload & payload::operator = (::i64 i)
    return *this;
 }
 
-class ::payload & payload::operator = (::u64 u)
+class ::payload & payload::operator = (::u64 u)&
 {
    if(get_type() == e_type_pu64)
    {
@@ -1195,7 +1195,7 @@ class ::payload & payload::operator = (::u64 u)
 }
 
 
-class ::payload & payload::operator = (::u32 u)
+class ::payload & payload::operator = (::u32 u)&
 {
    set_type(e_type_u32, false);
    m_u32 = u;
@@ -1238,14 +1238,14 @@ class ::payload & payload::operator = (long l)
    }
 #endif
 
-class ::payload & payload::operator = (::f32 f32)
+class ::payload & payload::operator = (::f32 f32)&
 {
    set_type(e_type_f32, false);
    m_f32 = f32;
    return *this;
 }
 
-class ::payload & payload::operator = (::f64 f64)
+class ::payload & payload::operator = (::f64 f64)&
 {
    set_type(e_type_f64, false);
    m_f64 = f64;
@@ -1263,7 +1263,7 @@ class ::payload & payload::operator = (::f64 f64)
 //}
 
 
-class ::payload & payload::operator = (::string * pstr)
+class ::payload & payload::operator = (::string * pstr)&
 {
 
    set_type(e_type_pstring, false);
@@ -1275,7 +1275,7 @@ class ::payload & payload::operator = (::string * pstr)
 }
 
 
-class ::payload & payload::operator = (::atom * pid)
+class ::payload & payload::operator = (::atom * pid)&
 {
 
    set_type(e_type_patom, false);
@@ -1287,7 +1287,7 @@ class ::payload & payload::operator = (::atom * pid)
 }
 
 
-class ::payload & payload::operator = (const ::wide_character * pcsz)
+class ::payload & payload::operator = (const ::wide_character * pcsz)&
 {
 
    set_string(unicode_to_utf8(pcsz));
@@ -1297,7 +1297,7 @@ class ::payload & payload::operator = (const ::wide_character * pcsz)
 }
 
 
-class ::payload & payload::operator = (const ::property & property)
+class ::payload & payload::operator = (const ::property & property)&
 {
 
    operator = ((const ::payload &)property);
@@ -1307,7 +1307,7 @@ class ::payload & payload::operator = (const ::property & property)
 }
 
 
-class ::payload & payload::operator = (const ::property * pproperty)
+class ::payload & payload::operator = (const ::property * pproperty)&
 {
 
    if (::is_null(pproperty))
@@ -1367,7 +1367,7 @@ void payload::increment_reference_count()
 }
 
 
-class ::payload & payload::operator = (const class ::payload & payload)
+class ::payload & payload::operator = (const class ::payload & payload)&
 {
    if(m_etype == e_type_payload_pointer)
    {
@@ -1393,6 +1393,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
          // should dereference (this operator here means a content copy)
          *this = *((class property&)payload).m_pproperty;
          return *this;
+          case e_type_property_set:
+              // should dereference (this operator here means a content copy)
+              *this = payload.property_set_reference();
+              return *this;
       case e_type_pi32:
          // should dereference (this operator here means a content copy)
          *this  = *((class ::payload &)payload).m_pi32;
@@ -1494,7 +1498,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 }
 
 
-class ::payload & payload::operator = (const int_array & ia)
+class ::payload & payload::operator = (const int_array & ia)&
 {
 
    release();
@@ -1508,7 +1512,7 @@ class ::payload & payload::operator = (const int_array & ia)
 }
 
 
-class ::payload & payload::operator = (const class memory & memory)
+class ::payload & payload::operator = (const class memory & memory)&
 {
 
    release();
@@ -1522,7 +1526,7 @@ class ::payload & payload::operator = (const class memory & memory)
 }
 
 
-class ::payload & payload::operator = (const string_array & stra)
+class ::payload & payload::operator = (const string_array & stra)&
 {
 
    release();
@@ -1536,7 +1540,7 @@ class ::payload & payload::operator = (const string_array & stra)
 }
 
 
-class ::payload & payload::operator = (const payload_array & payloada)
+class ::payload & payload::operator = (const payload_array & payloada)&
 {
 
    release();
@@ -1550,7 +1554,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
 }
 
 
-class ::payload & payload::operator = (const property_set & propertyset)
+class ::payload & payload::operator = (const property_set & propertyset)&
 {
 
    release();
@@ -1564,7 +1568,7 @@ class ::payload & payload::operator = (const property_set & propertyset)
 }
 
 
-class ::payload & payload::operator = (const ::atom & atom)
+class ::payload & payload::operator = (const ::atom & atom)&
 {
 
    set_id(atom);
@@ -1574,7 +1578,7 @@ class ::payload & payload::operator = (const ::atom & atom)
 }
 
 
-class ::payload & payload::operator = (const class time & time)
+class ::payload & payload::operator = (const class time & time)&
 {
 
    set_type(e_type_time, false);
@@ -1586,7 +1590,7 @@ class ::payload & payload::operator = (const class time & time)
 }
 
 
-class ::payload & payload::operator = (class time * ptime)
+class ::payload & payload::operator = (class time * ptime)&
 {
 
    set_type(e_type_ptime, false);
@@ -1598,7 +1602,7 @@ class ::payload & payload::operator = (class time * ptime)
 }
 
 
-::payload & payload::operator = (const ::block & block)
+::payload & payload::operator = (const ::block & block)&
 {
 
    if(m_etype == e_type_payload_pointer)
@@ -4384,7 +4388,7 @@ class ::time & payload::time_reference()
 }
 
 
-class ::payload & payload::operator = (::payload * pvar)
+class ::payload & payload::operator = (::payload * pvar)&
 {
 
    if (m_ppayload == pvar)
@@ -4403,7 +4407,7 @@ class ::payload & payload::operator = (::payload * pvar)
 }
 
 
-class ::payload & payload::operator = (const ::payload * pvar)
+class ::payload & payload::operator = (const ::payload * pvar)&
 {
 
    return operator =((::payload*)pvar);
@@ -8325,7 +8329,7 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::particle & o)
+::payload & payload::operator = (const ::particle & o)&
 {
 
    _set_element((::particle *) &o);
@@ -8849,7 +8853,7 @@ CLASS_DECL_ACME ::string get_string(const ::payload & payload)
 }
 
 
-payload & payload::operator = (::memory * pmemory)
+payload & payload::operator = (::memory * pmemory)&
 {
 
    set_type(e_type_memory, false);
@@ -9623,7 +9627,7 @@ bool payload::is_array() const
 //}
 
 
-payload & payload::operator = (const ::file::path & path)
+payload & payload::operator = (const ::file::path & path)&
 {
    set_type(e_type_path, false);
    m_ppath = memory_new::file::path_object(path);

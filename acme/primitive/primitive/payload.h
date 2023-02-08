@@ -337,7 +337,7 @@ public:
 inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
 inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
 ::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
-inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE)&  { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
 inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } 
 #undef DECL_VAR_FLAG
 
@@ -348,8 +348,8 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
    inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
    ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
-   inline payload & operator = (const ::e_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
-   inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+   inline payload & operator = (const ::e_ ## ENUMTYPE & e) &{ set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+   inline payload & operator = (::enum_ ## ENUMTYPE e)& { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
    inline bool equals_enum (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } 
    DECL_VAR_ENUM(status);
    DECL_VAR_ENUM(command);
@@ -625,7 +625,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    strsize length() const;
 
    template < typename TYPE >
-   inline payload & operator = (const ::pointer<TYPE> & pointer)
+   inline payload & operator = (const ::pointer<TYPE> & pointer) &
    {
 
       _set_element(pointer.m_pparticle);
@@ -634,7 +634,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    }
 
-   inline payload & operator = (const ::procedure & procedure)
+   inline payload & operator = (const ::procedure & procedure) &
    {
 
       _set_element(procedure.m_p);
@@ -643,9 +643,9 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    }
 
-   inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
+   inline payload & operator = (nullptr_t) &{ set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::particle * pelement)
+   inline payload & operator = (::particle * pelement)&
    {
 
       _set_element(pelement);
@@ -655,7 +655,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    }
 
 
-   payload & operator = (::memory * pmemory);
+   payload & operator = (::memory * pmemory)&;
 
    template < typename PREDICATE >
    void predicate_each(PREDICATE predicate)
@@ -678,9 +678,9 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
 
-   payload & operator = (const ::particle & o);
+   payload & operator = (const ::particle & o)&;
 
-   payload & operator = (const ::file::path & path);
+   payload & operator = (const ::file::path & path)&;
 
    //template < typename ENUM >
    //payload& operator = (const enumeration < ENUM > & eflag)
@@ -701,49 +701,49 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //   return operator =(estatus.m_estatus);
    //}
 
-   payload & operator = (para_return & eret);
-   payload & operator = (bool b);
-   payload & operator = (bool * pb);
-   payload & operator = (::i32 i);
-   payload & operator = (::i32 * pi);
-   payload & operator = (::u32 u);
-   payload & operator = (::u32 * pinteraction);
+   payload & operator = (para_return & eret)&;
+   payload & operator = (bool b)&;
+   payload & operator = (bool * pb)&;
+   payload & operator = (::i32 i)&;
+   payload & operator = (::i32 * pi)&;
+   payload & operator = (::u32 u)&;
+   payload & operator = (::u32 * pinteraction)&;
 #ifdef WINDOWS
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    payload & operator = (long l);
 #endif
-   payload & operator = (::i64 i);
-   payload & operator = (::i64 * pi);
-   payload & operator = (::u64 i);
-   payload & operator = (::u64 * pi);
-   payload & operator = (float f);
-   payload & operator = (double d);
+   payload & operator = (::i64 i)&;
+   payload & operator = (::i64 * pi)&;
+   payload & operator = (::u64 i)&;
+   payload & operator = (::u64 * pi)&;
+   payload & operator = (float f)&;
+   payload & operator = (double d)&;
 #ifdef WINDOWS
    payload & operator = (long l);
 #endif
-   payload & operator = (const ::earth::time & time);
-   payload & operator = (const ::color::color & color);
-   payload & operator = (const ::color::hls & color);
-   inline payload & operator = (const ::scoped_string & scopedstr);
-   inline payload & operator = (const ::string & str);
-   inline payload & operator = (::string && str);
-   inline payload & operator = (::const_ansi_range ansirange);
-   inline payload & operator = (const ::inline_number_string & str);
-   payload & operator = (::string * pstr);
-   payload & operator = (::payload * pvar);
-   payload & operator = (const ::payload * pvar);
-   payload & operator = (const ::wide_character * pcsz);
+   payload & operator = (const ::earth::time & time)&;
+   payload & operator = (const ::color::color & color)&;
+   payload & operator = (const ::color::hls & color)&;
+   inline payload & operator = (const ::scoped_string & scopedstr)&;
+   inline payload & operator = (const ::string & str)&;
+   inline payload & operator = (::string && str)&;
+   inline payload & operator = (::const_ansi_range ansirange)&;
+   inline payload & operator = (const ::inline_number_string & str)&;
+   payload & operator = (::string * pstr)&;
+   payload & operator = (::payload * pvar)&;
+   payload & operator = (const ::payload * pvar)&;
+   payload & operator = (const ::wide_character * pcsz)&;
 
-   payload & operator = (const ::property & prop);
-   payload & operator = (const ::property * pproperty);
-   payload & operator = (const ::payload & payload);
-   payload & operator = (const ::int_array & ia);
-   payload & operator = (const ::string_array & stra);
-   payload & operator = (const ::memory & memory);
-   payload & operator = (const ::payload_array & payloada);
-   payload & operator = (const ::property_set & propset);
-   payload & operator = (const ::atom & atom);
-   payload & operator = (::atom * pid);
+   payload & operator = (const ::property & prop)&;
+   payload & operator = (const ::property * pproperty)&;
+   payload & operator = (const ::payload & payload)&;
+   payload & operator = (const ::int_array & ia)&;
+   payload & operator = (const ::string_array & stra)&;
+   payload & operator = (const ::memory & memory)&;
+   payload & operator = (const ::payload_array & payloada)&;
+   payload & operator = (const ::property_set & propset)&;
+   payload & operator = (const ::atom & atom)&;
+   payload & operator = (::atom * pid)&;
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * ptime);
    //payload & operator = (const class time & time);
@@ -752,9 +752,9 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //payload & operator = (class ::microsecond * pmicros);
    //payload & operator = (const ::nanosecond & nanosecond);
    //payload & operator = (class ::nanosecond * pnanos);
-   payload & operator = (const class time & time);
-   payload & operator = (class ::time * ptime);
-   payload & operator = (const ::block & block);
+   payload & operator = (const class time & time)&;
+   payload & operator = (class ::time * ptime)&;
+   payload & operator = (const ::block & block)&;
 
    template < class ARRAY >
    void get_array(ARRAY & array) const
@@ -786,7 +786,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //}
 
    template < class T >
-   payload & operator = (const ptr < T > & p)
+   payload & operator = (const ptr < T > & p)&
    {
 
       return this->operator = (p.m_p);
@@ -812,7 +812,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //}
 
    template < an_object T >
-   payload & operator = (const T & t)
+   payload & operator = (const T & t)&
    {
 
       ::copy(*this, t);
@@ -823,7 +823,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    template < class T >
-   payload & operator = (const memory_template < T > & memory)
+   payload & operator = (const memory_template < T > & memory)&
    {
 
       return this->operator = (memory.block());
@@ -831,7 +831,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    }
 
    template < strsize n >
-   payload & operator = (const char(&cha)[n])
+   payload & operator = (const char(&cha)[n])&
    {
 
       return this->operator = (::string(cha));

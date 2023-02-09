@@ -57,11 +57,11 @@ namespace earth
          }
 
 
-         inline void set(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift);
+         void set(const ::earth::time &time, ::i64 iNanosecond, const time_shift &timeshift);
 
-         inline void set(const class ::time & time, const time_shift & timeshift);
+         void set(const class ::time & time, const time_shift & timeshift);
 
-         inline void set(const ::earth::time &time, const time_shift &timeshift);
+         void set(const ::earth::time &time, const time_shift &timeshift);
 
          ::time_t get_time_t();
 

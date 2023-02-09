@@ -292,6 +292,12 @@ struct CLASS_DECL_ACME block :
 
    }
 
+
+   ::byte & first_byte(::index i = 0){return this->m_begin[i];}
+   ::byte first_byte(::index i = 0)const{return this->m_begin[i];}
+   ::byte & last_byte(::index i = -1){return this->m_end[i];}
+   ::byte last_byte(::index i = -1)const{return this->m_end[i];}
+
 };
 
 

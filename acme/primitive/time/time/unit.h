@@ -8,10 +8,11 @@
 #pragma once
 
 
-constexpr class time operator "" _ns(unsigned long long int u) { return integral_nanosecond(u); }
+// unit _nanosecond
+constexpr class time operator "" _ηs(unsigned long long int u) { return integral_nanosecond(u); }
 
 
-constexpr class time operator "" _us(unsigned long long int u) { return integral_microsecond(u); }
+// unit _microsecond
 constexpr class time operator "" _µs(unsigned long long int u) { return integral_microsecond(u); }
 
 
@@ -37,11 +38,11 @@ constexpr class time operator "" _days(unsigned long long int u) { return integr
 
 
 
+// unit _nanosecond
+constexpr class time operator "" _ηs(long double d) { return floating_nanosecond(d); }
 
-constexpr class time operator "" _ns(long double d) { return floating_nanosecond(d); }
 
-
-constexpr class time operator "" _us(long double d) { return floating_microsecond(d); }
+// unit _microsecond
 constexpr class time operator "" _µs(long double d) { return floating_microsecond(d); }
 
 

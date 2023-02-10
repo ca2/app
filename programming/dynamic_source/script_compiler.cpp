@@ -91,9 +91,9 @@ namespace dynamic_source
 
       acmenode()->integration_factory();
 
-      //__construct(m_pintegrationcontext);
+      __construct(m_pintegrationcontext);
 
-      m_strPlatform = "x64";
+      m_pintegrationcontext->m_strPlatform = "x64";
 
       prepare_compile_and_link_environment();
 
@@ -116,7 +116,7 @@ namespace dynamic_source
       dir()->create(pacmedirectory->system() / "netnodelite/symbols");
 
 
-      ::apex_windows::integration::context::prepare_compile_and_link_environment();
+      ::programming::compiler::prepare_compile_and_link_environment();
 
 //      ::file::path strVars;
 //
@@ -274,11 +274,11 @@ namespace dynamic_source
 
       string strItem;
 
-      strItem = dir()->install() / m_strDynamicSourceStage /m_strStagePlatform;
+      strItem = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform;
 
       str = str + strItem + ";";
 
-      strItem = dir()->install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
+      strItem = dir()->install()/ m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform / "dynamic_source\\library";
 
       str = str + strItem + ";";
 
@@ -419,7 +419,7 @@ namespace dynamic_source
       //#ifdef _DEBUG
 #ifdef LINUX
       //strB = dir()->install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
+      strO = ::file::path(m_strTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
@@ -689,7 +689,7 @@ namespace dynamic_source
 
       dir()->create(pscript->m_strScriptPath.folder());
       dir()->create(strL.folder());
-      dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
@@ -735,7 +735,7 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
       strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
@@ -745,18 +745,12 @@ namespace dynamic_source
       str.find_replace("%ITEM_TITLE%",strItemTitle);
       str.find_replace("%ITEM_DIR%",::str::replace_with("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-      str.find_replace("%VS_VARS%",m_strContext);
-      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
       str.find_replace("%CA2_ROOT%",strV);
       str.find_replace("%NETNODE_ROOT%",strN);
       str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
       str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-      str.find_replace("%PLATFORM%",m_strPlatform);
-      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
-      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
-      str.find_replace("%SDK1%",m_strSdk1);
       #ifdef LINUX
       str.find_replace("%DVP%", strDVP);
       #else
@@ -776,6 +770,8 @@ namespace dynamic_source
 
       ///file()->put_contents(strBuildCmd,str);
 
+      m_pintegrationcontext->prepare_compilation_script(str);
+
       bool bTimeout = false;
 
       ::operating_system::process_pointer process(e_create, this);
@@ -791,7 +787,7 @@ namespace dynamic_source
 #ifdef WINDOWS
       process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::e_priority_highest);
 #else
-      process->create_child_process(strCompiler,true,m_pathProjectDir,::e_priority_highest);
+      process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
 #endif
 
       //::system(str + " > " + "\"" + strClog + "\"");
@@ -903,7 +899,7 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
          strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
@@ -913,24 +909,20 @@ namespace dynamic_source
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strContext);
-         str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
          str.find_replace("%CA2_ROOT%",strV);
          str.find_replace("%NETNODE_ROOT%",strN);
          str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-         str.find_replace("%PLATFORM%",m_strPlatform);
-         str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
-         //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
-         str.find_replace("%SDK1%",m_strSdk1);
          #ifdef LINUX
          str.find_replace("%DVP%", strDVP);
          #else
          str.find_replace("%DVP%", strDVP_B);
          #endif
          str.find_replace("%OBJFILE%", strObjFile);
+
+         m_pintegrationcontext->prepare_linking_script(str);
 
          string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
@@ -1264,7 +1256,7 @@ namespace dynamic_source
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
@@ -1405,7 +1397,7 @@ namespace dynamic_source
 
       ::file::path strName = strLibrary;
 
-      m_strLibsLibs = dir()->install() / "time-" OPERATING_SYSTEM_NAME"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
+      m_strLibsLibs = dir()->install() / "time-" OPERATING_SYSTEM_NAME"/library" / m_pintegrationcontext->m_strStagePlatform / "/library/"+strLibrary+".lib";
 
       //m_memfileLibError.set_length(0);
       string strFolder;
@@ -1483,7 +1475,7 @@ namespace dynamic_source
       //#endif
 
       dir()->create(l.m_strLibraryPath.folder());
-      dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1548,7 +1540,7 @@ namespace dynamic_source
 //         strCmd = dir()->install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
          strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
@@ -1563,34 +1555,24 @@ namespace dynamic_source
          str.find_replace("%ITEM_TITLE%",l.m_straLibCppPath[i].name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strContext);
-         str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
 
 
          str.find_replace("%CA2_ROOT%",strV);
          str.find_replace("%NETNODE_ROOT%",strN);
          str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-         str.find_replace("%PLATFORM%",m_strPlatform);
-         str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
-         //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
-         str.find_replace("%SDK1%",m_strSdk1);
          //str.find_replace("%DVP%", strDVP_B);
 
 
          //str.find_replace("%ITEM_NAME%",::str::replace("\\","/",string(str1)));
          //str.find_replace("%ITEM_DIR%",::str::replace("\\", "/", string(str1.folder())) +"/" );
-         str.find_replace("%PLATFORM%",m_strPlatform);
-         str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
          str.find_replace("%NETNODE_ROOT%",strN);
-         str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
          str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-         str.find_replace("%SDK1%",m_strSdk1);
          //str.find_replace("%DVP%", strDVP_B);
 
-         dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         dir()->create(m_strTime / "library" / m_strStagePlatform / str1.folder());
+         dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         dir()->create(m_strTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1703,7 +1685,7 @@ namespace dynamic_source
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
          strRel.case_insensitive_ends_eat(".ds");
-         strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
+         strObjs += m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
          strObjs += m_strTime.separator();
          strObjs += strRel;
 #ifdef LINUX
@@ -1722,7 +1704,7 @@ namespace dynamic_source
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
       strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
@@ -1733,19 +1715,15 @@ namespace dynamic_source
       str.find_replace("%ITEM_NAME%",::file::path("library")/strName);
       str.find_replace("%ITEM_DIR%","library");
       str.find_replace("%OBJECTS%",strObjs);
-      str.find_replace("%PLATFORM%",m_strPlatform);
-      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
       str.find_replace("%NETNODE_ROOT%",strN);
-      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
       str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
       str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-      str.find_replace("%SDK1%",m_strSdk1);
       //str.find_replace("%DVP%", strDVP_B);
 
       string strTargetName = l.m_strLibraryPath;
       strTargetName.case_insensitive_ends_eat(".dll");
       str.find_replace("%TARGET_NAME%", strTargetName);
-      dir()->create(dir()->install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
+      dir()->create(dir()->install()/ m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //sleep(2000_ms);
 //      strCmd = dir()->install()/m_strDynamicSourceStage/ "front\\libl1.bash";
@@ -1909,7 +1887,7 @@ auto tickStart = ::time::now();
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::atom lscript_id" + as_string(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);

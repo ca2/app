@@ -68,12 +68,12 @@ namespace introjection
    }
 
 
-   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName)
+   void compiler::initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName, const ::file::path & pathProjectDir)
    {
 
       //auto estatus =
       
-      initialize_programming_compiler(pparticle);
+      initialize_programming_compiler(pparticle, pathProjectDir);
 
       //if (!estatus)
       //{
@@ -767,7 +767,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       strClog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-compile-log.log";
       strLlog = plibrary->m_pathScript.folder() / "build_" + plibrary->m_pathScript.title() + "-link-log.log";
-      ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / string("introjection");
+      ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / string("introjection");
 
       //#ifdef _DEBUG
 #ifdef LINUX
@@ -1024,9 +1024,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       dir()->create(plibrary->m_pathScript.folder());
       dir()->create(strL.folder());
-      dir()->create(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
+      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration /  m_strRepos / m_strProjectName / strTransformName);
 
-      ::file::path pathN = m_pathProjectDir;
+      ::file::path pathN = m_pintegrationcontext->m_pathProjectDir;
 
       pathN -= 3;
 
@@ -1039,7 +1039,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       string strBuildCmd;
 
 #if defined(LINUX) || defined(FREEBSD)
-      strBuildCmd = dir()->install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
+      strBuildCmd = dir()->install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
       strBuildCmd.format(dir()->install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
 #else
@@ -1052,8 +1052,8 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
       str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-      str.find_replace("%VS_VARS%",m_strContext);
-      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+
+      m_pintegrationcontext->prepare_compilation_script(str);
 
       string strElem = dir()->install();
 
@@ -1077,13 +1077,12 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
       str.find_replace("%CA2_ROOT%",strElem);
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
       str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
       str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-      str.find_replace("%PLATFORM%",m_strPlatform);
-      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
 
-      str.find_replace("%SDK1%",m_strSdk1);
+
+      m_pintegrationcontext->prepare_compilation_script(str);
+
       string strT2 = plibrary->m_pathScript;
       strT2.find_replace("\\",".");
       strT2.find_replace("/",".");
@@ -1094,7 +1093,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       pathOutputFolder = 
          (strElem 
             + "time-windows/intermediate/" 
-            + m_strPlatform + "/"
+            + m_pintegrationcontext->m_strPlatform + "/"
             + m_strDynamicSourceConfiguration 
             + "/app-core/app_core_resident_desktop/" 
             + strTransformName);
@@ -1104,7 +1103,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #ifdef LINUX
 
-      string strTargetPath =  dir()->install() /"time" / m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
+      string strTargetPath =  dir()->install() /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".so");
 
@@ -1257,7 +1256,7 @@ auto tickStart = ::time::now();
 #ifndef MACOS
 
 #if defined(LINUX) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
+         strBuildCmd.format(dir()->install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
          strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
 #endif
@@ -1269,18 +1268,15 @@ auto tickStart = ::time::now();
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
          str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
-         str.find_replace("%VS_VARS%",m_strContext);
-         str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          str.find_replace("%CA2_ROOT%",strElem);
-         str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
          str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-         str.find_replace("%PLATFORM%",m_strPlatform);
-         str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
-         //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
-         str.find_replace("%SDK1%",m_strSdk1);
+
+
+         m_pintegrationcontext->prepare_linking_script(str);
+
          //string strTargetPath = lib->m_pathScript;
          //strTargetPath.find_replace("\\",".");
          //strTargetPath.find_replace("/",".");

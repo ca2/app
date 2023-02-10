@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "os_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
@@ -621,9 +621,9 @@
 
       ::file::path_array patha;
 
-      ::file::path_array pathaRelative;
+      ///::file::path_array pathaRelative;
 
-      ascendants_path(pathSource, patha, &pathaRelative);
+      ascendants_path(pathSource, patha, nullptr);
 
       for (index i = 0; i < patha.get_count(); i++)
       {

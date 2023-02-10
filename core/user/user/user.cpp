@@ -1497,6 +1497,7 @@ namespace core
 
       }
 
+      return nullptr;
 
    }
 

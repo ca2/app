@@ -286,7 +286,7 @@ public:
 
    //virtual void to_string(string & str) const override;
 
-
+   virtual ::string class_title();
 
 
 };

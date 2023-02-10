@@ -454,6 +454,8 @@ list(APPEND apex_source
         #platform/all.h
         platform/api.cpp
         platform/api.h
+        platform/api_client_base.cpp
+        platform/api_client_base.h
         platform/api_client.cpp
         platform/api_client.h
         platform/apex.cpp
@@ -504,6 +506,8 @@ list(APPEND apex_source
         platform/history.cpp
         platform/history.h
         #platform/hyperlink.h
+        platform/integration_context.cpp
+        platform/integration_context.h
         #   platform/interprocess_call.cpp
         #   platform/interprocess_call.h
         #   platform/interprocess_communication.cpp
@@ -1433,9 +1437,9 @@ elseif (LINUX OR FREEBSD)
     #target_link_options(apex PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
     if (FREEBSD)
-        target_link_libraries(apex PRIVATE dl pthread z)
+        target_link_libraries(apex PRIVATE dl pthread z archive)
     else ()
-        target_link_libraries(apex PRIVATE dl pthread idn z)
+        target_link_libraries(apex PRIVATE dl pthread idn z archive)
     endif ()
     #target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(apex PRIVATE acme)

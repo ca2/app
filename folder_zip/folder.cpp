@@ -415,48 +415,48 @@ namespace folder_zip
             nullptr, // comment
             0);
 
-         if (::const_ansi_range(szItem).begins("game/"))
-         {
-          
-            printf("%s\n", szItem);
-
-         }
-         else if(i == 237) 
-         {
-
-            printf("237 %s\n", szItem);
-
-            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
-
-            const_ansi_range rangeBlock(szItem);
-
-            auto equality = ::comparison::comparison < char >();
-
-            while (range.begin() < range.end())
-            {
-
-               if (!equality.equals(*range.begin(), *rangeBlock.begin()))
-               {
-
-                  printf("237 different\n");
-
-                  break;
-
-               }
-
-               range.begin()++;
-
-               rangeBlock.begin()++;
-
-            }
-
-            printf("237 equal if not different\n");
-
-         } else{
-
-            printf("%05d %s\n", i, szItem);
-
-         }
+//         if (::const_ansi_range(szItem).begins("game/"))
+//         {
+//
+//            printf("%s\n", szItem);
+//
+//         }
+//         else if(i == 237)
+//         {
+//
+//            printf("237 %s\n", szItem);
+//
+//            const_ansi_range range("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+//
+//            const_ansi_range rangeBlock(szItem);
+//
+//            auto equality = ::comparison::comparison < char >();
+//
+//            while (range.begin() < range.end())
+//            {
+//
+//               if (!equality.equals(*range.begin(), *rangeBlock.begin()))
+//               {
+//
+//                  printf("237 different\n");
+//
+//                  break;
+//
+//               }
+//
+//               range.begin()++;
+//
+//               rangeBlock.begin()++;
+//
+//            }
+//
+//            printf("237 equal if not different\n");
+//
+//         } else{
+//
+//            printf("%05d %s\n", i, szItem);
+//
+//         }
 
          if (function(szItem))
          {

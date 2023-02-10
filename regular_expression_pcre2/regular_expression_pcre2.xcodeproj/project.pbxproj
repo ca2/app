@@ -66,6 +66,13 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9A74E3022992F5440037B200 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC14CB6297B3350006D9BD3;
+			remoteInfo = "acme copy";
+		};
 		9A87FEF7284B8C8F0084AA05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A87FEF2284B8C8F0084AA05 /* pcre.xcodeproj */;
@@ -181,7 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				9A6543DA2666B1F300F8A254 /* libacme.dylib */,
-				9A6543DC2666B1F300F8A254 /* ios_acme.a */,
+				9A6543DC2666B1F300F8A254 /* lib_acme.a */,
+				9A74E3032992F5440037B200 /* libacme copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,12 +359,18 @@
 			remoteRef = 9A6543D92666B1F300F8A254 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6543DC2666B1F300F8A254 /* ios_acme.a */ = {
+		9A6543DC2666B1F300F8A254 /* lib_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = ios_acme.a;
-			path = libios_acme.a;
+			path = lib_acme.a;
 			remoteRef = 9A6543DB2666B1F300F8A254 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A74E3032992F5440037B200 /* libacme copy.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libacme copy.dylib";
+			remoteRef = 9A74E3022992F5440037B200 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */ = {
@@ -492,7 +506,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -590,7 +604,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,6 +645,7 @@
 		9AE12E972661E9B4009F476A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -638,6 +653,7 @@
 		9AE12E982661E9B4009F476A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

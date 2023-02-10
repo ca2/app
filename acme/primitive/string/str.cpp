@@ -5432,13 +5432,15 @@ void str::escape_find_any_character_in(::const_ansi_range & rangeXml, const char
 
    const char * prev_escape = nullptr;
 
-   while (range.has_char() && *range.m_begin && rangeCompare.has_char())
+   auto r = range();
+
+   while (r.has_char() && *r.m_begin && rangeCompare.has_char())
    {
       
-      if (escape != 0 && *range.m_begin == escape && prev_escape == nullptr)
+      if (escape != 0 && *r.m_begin == escape && prev_escape == nullptr)
       {
 
-         prev_escape = range.m_begin;
+         prev_escape = r.m_begin;
 
       }
       else
@@ -5446,7 +5448,7 @@ void str::escape_find_any_character_in(::const_ansi_range & rangeXml, const char
 
          prev_escape = nullptr;
 
-         order = tolower(*range.m_begin) <=> tolower(*rangeCompare.m_begin);
+         order = tolower(*r.m_begin) <=> tolower(*rangeCompare.m_begin);
 
          if (order != 0)
          {
@@ -5459,7 +5461,7 @@ void str::escape_find_any_character_in(::const_ansi_range & rangeXml, const char
 
       }
 
-      range.m_begin++;
+      r.m_begin++;
 
    }
 

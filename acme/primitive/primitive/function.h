@@ -45,8 +45,24 @@ public:
    class ::time      m_timeTimeout;
 
 
-   function_common() {}
+   function_common()
+   {
+
+#ifdef DEBUG
+
+       m_timeTimeout = 5_min;
+
+#else
+
+       m_timeTimeout = 15_s;
+
+#endif
+
+   }
+
+
    function_common(enum_timeout, const class time& wait): m_timeTimeout(wait) {}
+
 
    void timeout(const class time & timeWait)  { m_timeTimeout = timeWait;}
    class ::time timeout() const {return m_timeTimeout;}

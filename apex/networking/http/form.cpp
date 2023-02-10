@@ -16,7 +16,7 @@
 
 
 
-::i64 g_iMaxHttpPost = 1_gb;
+::i64 g_iMaxHttpPost = 1_GiB;
 
 void set_max_http_post(::i64 i)
 {

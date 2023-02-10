@@ -48,7 +48,12 @@ void api_client::defer_api()
       else
       {
 
-         m_papi = create_api(m_strImplementation);
+         if(!m_papi)
+         {
+
+            m_papi = create_api(m_strImplementation);
+
+         }
          
          m_papi->m_bAuthenticating = true;
 
@@ -59,7 +64,9 @@ void api_client::defer_api()
          if (m_pathProfileFolder.is_empty())
          {
 
-            m_pathProfileFolder = dir()->appdata() / "api" / m_strImplementation;
+            auto pathAppData = dir()->appdata();
+
+            m_pathProfileFolder = pathAppData / "api" / m_strImplementation;
 
          }
 

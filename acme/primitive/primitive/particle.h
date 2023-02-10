@@ -203,7 +203,7 @@ public:
    virtual void to_sz(char * sz, strsize len) const;
 
    virtual const char * topic_text() const;
-   virtual const char * class_title() const;
+   //virtual const char * raw_class_title() const;
 
 
 

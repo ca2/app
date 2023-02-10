@@ -15,6 +15,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 
 
@@ -2792,6 +2793,14 @@ void object::initialize(::particle * pparticle)
    //}
 
    //return estatus;
+
+
+   if(::is_null(m_pparticleContext))
+   {
+
+      m_pparticleContext = acmeapplication();
+
+   }
 
 }
 

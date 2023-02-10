@@ -885,6 +885,24 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 }
 
 
+::string matter::class_title()
+{
+
+   auto strName = demangle(typeid(*this).name());
+
+   auto pszLastColon = strrchr(strName, ':');
+
+   if(!pszLastColon)
+   {
+
+      return strName;
+
+   }
+
+   return pszLastColon + 1;
+
+
+}
 
 //
 //::acme::system * matteracmesystem() const

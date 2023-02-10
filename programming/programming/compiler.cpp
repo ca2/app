@@ -40,12 +40,16 @@ namespace programming
    }
 
 
-   void compiler::initialize_programming_compiler(::particle * pparticle)
+   void compiler::initialize_programming_compiler(::particle * pparticle, const ::file::path & pathProjectDir)
    {
 
       //auto estatus = 
       
-      ::apex_windows::integration::context::initialize(pparticle);
+      ::object::initialize(pparticle);
+
+      acmenode()->integration_factory();
+
+      __construct(m_pintegrationcontext);
 
       //if (!estatus)
       //{
@@ -109,11 +113,22 @@ namespace programming
 
 #endif
 
-      ::file::path path;
+      if(pathProjectDir.has_char())
+      {
 
-      path = __FILE__;
+         m_pintegrationcontext->m_pathProjectDir = pathProjectDir;
 
-      m_pathProjectDir = path.folder();
+      }
+      else
+      {
+
+         ::file::path path;
+
+         path = __FILE__;
+
+         m_pintegrationcontext->m_pathProjectDir = path.folder();
+
+      }
 
 
 #if MEMDLEAK
@@ -306,11 +321,11 @@ namespace programming
 
       string strItem;
 
-      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform;
+      strItem = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform;
 
       str = str + strItem + ";";
 
-      strItem = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source\\library";
+      strItem = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strStagePlatform / "dynamic_source\\library";
 
       str = str + strItem + ";";
 
@@ -421,7 +436,7 @@ namespace programming
       //   string strSource = "platform/time-" OPERATING_SYSTEM_NAME"/dynamic_source/";
       //   strSource += lpcszSource;
       //
-      ::file::path pathN = m_pathProjectDir;
+      ::file::path pathN = m_pintegrationcontext->m_pathProjectDir;
       pathN -= 3;
       string strN = pathN;
       strN.find_replace("\\", "/");
@@ -622,18 +637,16 @@ namespace programming
       /*string strVars = getenv("VS100COMNTOOLS");
       file()->path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
-      str.find_replace("%VS_VARS%", m_strContext);
-      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
 
       string strV(dir()->install());
       strV.find_replace("\\", "/");
       if (!string_ends(strV, "/") && !string_ends(strV, "\\"))
          strV += "/";
       str.find_replace("%CA2_ROOT%", strV);
-      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
       str.find_replace("%NETNODE_ROOT%", strN);
-      str.find_replace("%SDK1%", m_strSdk1);
       //str.replace("%DVP%", strDVP_B);
+
+      m_pintegrationcontext->prepare_compilation_script(str);
 
       string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
       ::file::path strCmd;

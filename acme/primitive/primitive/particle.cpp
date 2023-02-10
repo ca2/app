@@ -174,23 +174,23 @@ const char * particle::topic_text() const
 //}
 
 
-const char * particle::class_title() const
-{
-
-   auto pszName =  typeid(*this).name();
-
-   auto pszLastColon = strrchr(pszName, ':');
-
-   if(!pszLastColon)
-   {
-
-      return pszName;
-
-   }
-
-   return pszLastColon + 1;
-
-}
+//const char * particle::raw_class_title() const
+//{
+//
+//   auto pszName =  typeid(*this).name();
+//
+//   auto pszLastColon = strrchr(pszName, ':');
+//
+//   if(!pszLastColon)
+//   {
+//
+//      return pszName;
+//
+//   }
+//
+//   return pszLastColon + 1;
+//
+//}
 
 
 

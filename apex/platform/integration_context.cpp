@@ -83,6 +83,90 @@ namespace integration
    }
 
 
+   void context::prepare_compilation_script(::string & str)
+   {
+
+      // introjection/compiler
+      //str.find_replace("%VS_VARS%", m_strContext);
+      //str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
+      //str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      //str.find_replace("%PLATFORM%",m_strPlatform);
+      //str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+
+      //str.find_replace("%SDK1%",m_strSdk1);
+
+
+
+      // programming/compiler
+//      str.find_replace("%VS_VARS%", m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%SDK1%", m_strSdk1);
+
+
+// script_compiler cl
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+
+
+   }
+
+   void context::prepare_linking_script(::string & str)
+   {
+
+      prepare_compilation_script(str);
+
+
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 2
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 3
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 4
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+   }
+
+
    int context::command_system(const ::scoped_string & scopedstrCommand)
    {
 
@@ -248,7 +332,7 @@ namespace integration
 
       }
       ::memory memory2;
-      memory2.set_size(1_mb);
+      memory2.set_size(1_MiB);
       while (archive_read_next_header(a, &entry) == ARCHIVE_OK) 
       {
          //printf("%s\n", archive_entry_pathname(entry));

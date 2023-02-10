@@ -51,21 +51,27 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & pathBa
 
    auto path = pathBase;
 
+   ::file::path pathRelative;
+
    while (path.has_char())
    {
 
       pathaFolder.insert_at(0, path);
+      if (::is_set(ppathaRelative))
+      {
 
+         ppathaRelative->add(pathRelative);
+      }
       path = path.folder();
-
+      pathRelative = path.name() / pathRelative;
    }
 
-   if (::is_set(ppathaRelative))
-   {
-
-      throw "needs to do and redoitout";
-
-   }
+//   if (::is_set(ppathaRelative))
+//   {
+//
+//      throw "needs to do and redoitout";
+//
+//   }
 
    //string_array stra;
 

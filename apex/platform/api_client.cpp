@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
+﻿// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -73,7 +73,7 @@ void api_client::defer_api()
          try
          {
             
-            m_papi->initialize_api(this, m_pathProfileFolder, m_strBrowserAccount);
+            m_papi->initialize_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
 
          }
          catch (...)

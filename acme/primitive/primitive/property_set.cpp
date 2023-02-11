@@ -606,7 +606,16 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
    else
    {
 
-      if (payloadFile.is_empty())
+      int iQuote = strArgument.offset_of(strArgument.find_first_character_in("\"'"));
+      int iEqual = strArgument.offset_of(strArgument.find_first_character_in("="));
+
+      if (iEqual > 0 && (iQuote < 0 || iQuote > iEqual))
+      {
+
+         _008AddArgument(strArgument);
+
+      }
+      else if (payloadFile.is_empty())
       {
 
          payloadFile = strArgument;

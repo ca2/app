@@ -252,20 +252,8 @@ namespace ios
 
    string os_context::get_module_path(HMODULE hmodule)
    {
-      //   throw ::not_implemented();
       return "";
-      /*
-       string strPath;
-       ::u32 dwSize = 1;
-       while(natural(strPath.length() + 1) == dwSize)
-       {
-       dwSize = ::GetModuleFileName(
-       hmodule,
-       strPath.get_string_buffer(dwSize + 1024),
-       (dwSize + 1024));
-       strPath.ReleaseBuffer();
-       }
-       return strPath;*/
+
    }
 
 

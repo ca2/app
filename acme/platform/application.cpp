@@ -13,7 +13,7 @@
 #include "acme/platform/session.h"
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
 
 #include "acme/_operating_system.h"
@@ -487,7 +487,7 @@ namespace acme
       if (!m_bModulePath)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
          m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_p->m_psubsystem->m_hinstanceThis);
 

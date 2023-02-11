@@ -132,7 +132,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
    m_hsynchronization = ::CreateEventEx(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
-      pstrName ? nullptr : wstring(pstrName).c_str(), 
+      scopedstrName.is_empty() ? nullptr : wstring(scopedstrName).c_str(),
       dwFlags,
       DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 

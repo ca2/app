@@ -737,6 +737,7 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />
@@ -1037,7 +1038,6 @@
     <ClCompile Include="platform\procedure.cpp" />
     <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
-    <ClCompile Include="platform\request.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />

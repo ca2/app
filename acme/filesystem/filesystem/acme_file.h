@@ -102,6 +102,7 @@ public:
    //virtual bool set_line(const ::file::path & path, index iLine, const ::file::path & pathLine);
 
    virtual void copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
+   virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    
 
    virtual ::earth::time modification_time(const ::file::path & path);

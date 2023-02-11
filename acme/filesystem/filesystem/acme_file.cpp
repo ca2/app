@@ -5,6 +5,7 @@
 #include "acme_file.h"
 #include "acme_directory.h"
 #include "acme_path.h"
+#include "listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/stdio_file.h"
@@ -732,16 +733,88 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void acme_file::copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
+void acme_file::copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
+{
+
+   if (acmedirectory()->is(pathSource))
+   {
+
+      if (exists(pathTarget))
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      acmedirectory()->create(pathTarget);
+
+      ::file::listing listing;
+
+      listing.set_listing(pathSource, e_depth_recursively);
+
+      acmedirectory()->enumerate(listing);
+
+      ::file::path strDst;
+      ::file::path strSrc;
+      ::file::path strDirSrc(pathSource);
+      ::file::path strDirDst(pathTarget);
+
+      for (i32 i = 0; i < listing.size(); i++)
+      {
+
+         strSrc = listing[i];
+
+         strDst = strSrc;
+
+         strDst.case_insensitive_begins_eat(strDirSrc);
+
+         strDst = strDirDst / strDst;
+
+         if (acmedirectory()->is(strSrc))
+         {
+
+            acmedirectory()->create(strDst);
+
+         }
+         else
+         {
+
+            if (!acmedirectory()->is(strDst.folder()))
+            {
+
+               acmedirectory()->create(strDst.folder());
+
+            }
+
+            _copy(strDst, strSrc, bOverwrite);
+
+         }
+
+      }
+
+      return;
+
+   }
+   else
+   {
+
+      _copy(pathTarget, pathSource, bOverwrite);
+
+   }
+
+}
+
+
+void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
 {
 
 #ifdef WINDOWS
 
-   FILE * in = _wfopen(wstring(pathSrc), L"r"); //create the input file for reading
+   FILE * in = _wfopen(wstring(pathSource), L"r"); //create the input file for reading
 
 #else
 
-   FILE * in = fopen(pathSrc.c_str(), "r"); //create the input file for reading
+   FILE * in = fopen(pathSource.c_str(), "r"); //create the input file for reading
 
 #endif
 
@@ -750,11 +823,11 @@ void acme_file::copy(const ::file::path & pathDup, const ::file::path & pathSrc,
 
 #ifdef WINDOWS
 
-   FILE * out = _wfopen(wstring(pathDup), L"w"); // create the output file for writing
+   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
 
 #else
 
-   FILE * out = fopen(pathDup.c_str(), "w"); // create the output file for writing
+   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
 
 #endif
 

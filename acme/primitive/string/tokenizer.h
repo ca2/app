@@ -67,6 +67,40 @@ public:
 
    }
 
+
+   ::const_ansi_range & substring(::const_ansi_range& range, strsize count)
+   {
+
+      range.begin() = m_iterator;
+      range.end() = range.begin() + count;
+
+      return range;
+
+   }
+
+
+   ::const_ansi_range& substring(::const_ansi_range & range, const_iterator iterator)
+   {
+
+      range.begin() = m_iterator;
+      range.end() = iterator;
+
+      return range;
+
+   }
+
+   
+   ::const_ansi_range& substring(::const_ansi_range& range)
+   {
+
+      range.begin() = m_iterator;
+      range.end() = this->end();
+
+      return range;
+
+   }
+
+
    bool ReadLine(::string & str,
                   bool bWithSeparator = false);
    // _01Read read a token if find one of \n\r\t or space
@@ -90,6 +124,112 @@ public:
    bool _001GetNextToken(::string & strToken);
 
    bool get_next_word(::string * pstrToken = nullptr);
+
+   strsize read(void* p, strsize s)
+   {
+
+      auto iRead = minimum(s, this->m_end - m_iterator);
+
+      ::memcpy(p, m_iterator, iRead);
+
+      m_iterator += iRead;
+
+      return iRead;
+
+
+
+   }
+
+   //bool get_line(::string & strLine);
+
+   //bool get_line(::const_ansi_range & strLine);
+
+   template < primitive_range RANGE >
+   bool get_line(RANGE & rangeLine)
+   {
+
+      if (::is_end(m_iterator, this->end()))
+      {
+
+         return false;
+
+      }
+
+      const_iterator iteratorR = find("\r");
+
+      const_iterator iteratorN = find("\n");
+
+      if (::is_ok(iteratorR, this->end()))
+      {
+
+         if (::is_ok(iteratorN, this->end()))
+         {
+
+            if (iteratorR < iteratorN)
+            {
+
+               if (iteratorR + 1 == iteratorN)
+               {
+
+                  substring(rangeLine, iteratorR);
+
+                  m_iterator = iteratorN + 1;
+
+               }
+               else
+               {
+
+                  substring(rangeLine, iteratorR);
+
+                  m_iterator = iteratorR + 1;
+
+               }
+
+            }
+            else
+            {
+
+               // '\n' < '\r'
+
+               substring(rangeLine, iteratorN);
+
+               m_iterator = iteratorN + 1;
+
+            }
+
+         }
+         else
+         {
+
+            substring(rangeLine, iteratorR);
+
+            m_iterator = iteratorR + 1;
+
+
+         }
+
+      }
+      else if (::is_ok(iteratorN, this->end()))
+      {
+
+         substring(rangeLine, iteratorN);
+
+         m_iterator = iteratorN + 1;
+
+      }
+      else
+      {
+
+         substring(rangeLine);
+
+         m_iterator = end();
+
+      }
+
+      return true;
+
+   }
+
 
    ::count skip_word(::count c);
       

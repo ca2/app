@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
 #include "acme/exception/interface_only.h"
@@ -26,7 +26,7 @@ api::~api()
 }
 
 
-void api::initialize_api(::particle * pparticle, const ::file::path & pathProfile)
+void api::initialize_api(::particle * pparticle, const ::file::path & pathProfileFolder, const ::scoped_string & scopedstrBrowserAccount)
 {
 
    //auto estatus =
@@ -40,7 +40,11 @@ void api::initialize_api(::particle * pparticle, const ::file::path & pathProfil
 
    //}
 
-   m_pathProfile = pathProfile;
+   m_pathProfileFolder = pathProfileFolder;
+
+   m_strBrowserAccount = scopedstrBrowserAccount;
+   
+   load_configuration();
 
    load_profile();
 
@@ -49,10 +53,24 @@ void api::initialize_api(::particle * pparticle, const ::file::path & pathProfil
 }
 
 
+void api::load_configuration()
+{
+
+   ::file::path pathConfiguration;
+
+   pathConfiguration = "matter://api" / (m_strImplementation + ".network_payload");
+
+   string strNetworkPayload = file()->as_string(pathConfiguration);
+
+   m_setConfiguration.parse_network_payload(strNetworkPayload);
+
+}
+
+
 void api::load_profile()
 {
 
-   auto strNetworkPayload = file()->safe_get_string(m_pathProfile);
+   auto strNetworkPayload = file()->safe_get_string(m_pathProfileFolder / "profile.network_payload");
 
    try
    {
@@ -123,7 +141,7 @@ void api::save_profile()
 
    auto strNetworkPayload = m_setProfile.get_network_payload();
 
-   file()->put_text(m_pathProfile, strNetworkPayload);
+   file()->put_text(m_pathProfileFolder / "profile.network_payload", strNetworkPayload);
 
    //return ::success;
 
@@ -137,17 +155,27 @@ void api::clear_profile()
 
    m_setProfile.clear();
 
-   file()->put_text(m_pathProfile, "");
+   file()->put_text(m_pathProfileFolder / "profile.network_payload", "");
 
 }
 
 
-void api::api_login(const ::string & strConfig, const ::string & strProfile)
+void api::switch_profile_folder(const ::file::path & pathFolder)
 {
 
-   m_strConfig = strConfig;
+   file()->copy(pathFolder, m_pathProfileFolder);
 
-   m_strProfile = strProfile;
+   m_pathProfileFolder = pathFolder;
+
+}
+
+
+void api::api_login()
+{
+
+   //m_strConfig = strConfig;
+
+   //m_strProfile = strProfile;
 
    save_profile();
 
@@ -158,7 +186,7 @@ void api::api_login(const ::string & strConfig, const ::string & strProfile)
 }
 
 
-void api::api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
+void api::_api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
 {
 
    throw ::interface_only();
@@ -171,7 +199,7 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 
    string strNetworkPayload;
 
-   api_get(strNetworkPayload, strUrl, set);
+   _api_get(strNetworkPayload, strUrl, set);
 
    payload.parse_network_payload(strNetworkPayload);
 
@@ -203,7 +231,9 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
 
       save_profile();
 
-      api_login(m_strConfig, m_strProfile);
+      //api_login(m_strConfig, m_strProfile);
+
+      api_login();
 
    }
 

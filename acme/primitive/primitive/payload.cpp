@@ -1172,6 +1172,7 @@ class ::payload & payload::operator = (::i64 i)
    return *this;
 }
 
+
 class ::payload & payload::operator = (::u64 u)
 {
    if(get_type() == e_type_pu64)
@@ -1393,6 +1394,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
          // should dereference (this operator here means a content copy)
          *this = *((class property&)payload).m_pproperty;
          return *this;
+          case e_type_property_set:
+              // should dereference (this operator here means a content copy)
+              *this = payload.property_set_reference();
+              return *this;
       case e_type_pi32:
          // should dereference (this operator here means a content copy)
          *this  = *((class ::payload &)payload).m_pi32;
@@ -3842,7 +3847,7 @@ class ::memory & payload::memory_reference()
 
       auto ppath = memory_new ::file::path_object();
 
-      ppath->assign(as_file_path());
+      ppath->assign_range(as_file_path());
 
       set_type(e_type_path, false);
 
@@ -4953,6 +4958,110 @@ property & payload::get_property(const ::atom & atom)
    return *pproperty;
 
 }
+
+
+::payload payload::operator[] (const ::atom & atom) 
+{ 
+
+   if (m_etype == ::e_type_payload_pointer)
+   {
+    
+      return m_ppayload->operator[](atom);
+      
+   }  
+   else if (m_etype == ::e_type_property) 
+   { 
+     
+      return m_pproperty->operator[](atom);
+      
+   }
+   else if (atom.is_integer())
+   {
+
+      if (is_array())
+      {
+
+         return at(atom.as_index());
+
+      }
+      else if (is_text())
+      {
+
+         return as_string()[atom.as_index()];
+
+      }
+      else
+      {
+
+         return &property_set_reference()[atom];
+
+      }
+
+   }
+   else
+   {
+
+      return &property_set_reference()[atom];
+
+   }
+
+}
+
+
+::payload payload::operator[] (const ::atom & atom) const
+{
+
+   if (m_etype == ::e_type_payload_pointer)
+   {
+
+      return m_ppayload->operator[](atom);
+
+   }
+   else if (m_etype == ::e_type_property)
+   {
+
+      return m_pproperty->operator[](atom);
+
+   }
+   else if (m_etype == ::e_type_property_set)
+   {
+
+      return find_property(atom);
+
+   }
+   else if (atom.is_integer())
+   {
+
+      if (is_array())
+      {
+
+         return at(atom.as_index());
+
+      }
+      else if (is_text())
+      {
+
+         return as_string()[atom.as_index()];
+
+      }
+      else
+      {
+
+         throw exception(error_unsupported_function);
+
+      }
+
+
+   }
+   else
+   {
+
+      throw exception(error_unsupported_function);
+
+   }
+
+}
+
 
 
 

@@ -606,7 +606,16 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
    else
    {
 
-      if (payloadFile.is_empty())
+      int iQuote = strArgument.offset_of(strArgument.find_first_character_in("\"'"));
+      int iEqual = strArgument.offset_of(strArgument.find_first_character_in("="));
+
+      if (iEqual > 0 && (iQuote < 0 || iQuote > iEqual))
+      {
+
+         _008AddArgument(strArgument);
+
+      }
+      else if (payloadFile.is_empty())
       {
 
          payloadFile = strArgument;
@@ -2232,6 +2241,29 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 //   return pproperty;
 //
 //}
+
+
+string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2)
+{
+
+   ::string str;
+
+   for (auto & pproperty : *this)
+   {
+      
+      str += pproperty->m_atom.as_string();
+
+      str += scopedstrSeparator1;
+
+      str += pproperty->as_string();
+
+      str += scopedstrSeparator2;
+
+   }
+
+   return str;
+
+}
 
 
 ::index property_set::index_of(const ::atom & atom, ::index i) const

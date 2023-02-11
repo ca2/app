@@ -126,7 +126,7 @@ namespace user
 
       //::count get_count();
       //virtual ::index current_index();
-      virtual void set_current_item(::item * pitem, const ::action_context & actioncontext);
+      virtual void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
 
 
       virtual string get_current_item_string_value();

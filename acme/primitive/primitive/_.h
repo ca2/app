@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/user/user/_constant_key.h"
+#include "acme/user/user/_constant.h"
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -75,6 +75,8 @@ CLASS_DECL_ACME void openURL(const string& url_str);
 
 #endif
 
+
+#include "unit.h"
 
 
 

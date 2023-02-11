@@ -20,13 +20,13 @@
     <Filter Include="Libraries\x86">
       <UniqueIdentifier>{e906fbd2-0cd9-4e26-9e54-fa42d1cd6306}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\x86\basis">
+    <Filter Include="Libraries\x86\Debug">
       <UniqueIdentifier>{c9c634d0-e8c4-49a0-88a3-fc06ee544238}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x64">
       <UniqueIdentifier>{72888d3f-81ba-4d63-97bc-3fa90cecae7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries\x64\basis">
+    <Filter Include="Libraries\x64\Debug">
       <UniqueIdentifier>{bb7ce070-2e70-4443-8761-83814a5d7284}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -89,18 +89,18 @@
     <AppxManifest Include="Package10.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\Debug\pcre.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
-      <Filter>Libraries\x86\basis</Filter>
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\Debug\zlib.dll">
+      <Filter>Libraries\x86\Debug</Filter>
     </None>
     <None Include="..\uwp_app_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\x64\basis\pcre.dll">
-      <Filter>Libraries\x64\basis</Filter>
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
+      <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\x64\basis\zlib.dll">
-      <Filter>Libraries\x64\basis</Filter>
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
+      <Filter>Libraries\x64\Debug</Filter>
     </None>
   </ItemGroup>
 </Project>

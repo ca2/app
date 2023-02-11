@@ -328,12 +328,12 @@ public:
       //string_base & operator = (const natural_ansistring & ansistr);
       //string_base & operator = (const natural_wd16string & wd16str);
       //string_base & operator = (const natural_wd32string & wd32str);
-   string_base & operator = (const const_ansi_range & ansirange) {assign(ansirange.begin(), ansirange.end()); return *this;}
-   string_base & operator = (const const_wd16_range & wd16range) {assign(wd16range.begin(), wd16range.end()); return *this;}
-   string_base & operator = (const const_wd32_range & wd32range) {assign(wd32range.begin(), wd32range.end()); return *this;}
-   string_base & operator = (const ansi_string & ansistr) {assign(ansistr.begin(), ansistr.end()); return *this;}
-   string_base & operator = (const wd16_string & wd16str) {assign(wd16str.begin(), wd16str.end()); return *this;}
-   string_base & operator = (const wd32_string & wd32str) {assign(wd32str.begin(), wd32str.end()); return *this;}
+   string_base & operator = (const const_ansi_range & ansirange) {assign_range(ansirange); return *this;}
+   string_base & operator = (const const_wd16_range & wd16range) {assign_range(wd16range); return *this;}
+   string_base & operator = (const const_wd32_range & wd32range) {assign_range(wd32range); return *this;}
+   string_base & operator = (const ansi_string & ansistr) { assign_range(ansistr); return *this;}
+   string_base & operator = (const wd16_string & wd16str) { assign_range(wd16str); return *this;}
+   string_base & operator = (const wd32_string & wd32str) { assign_range(wd32str); return *this;}
    
    template < primitive_block BLOCK >
    string_base & operator = (const BLOCK & block) { assign((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()); return *this; }
@@ -469,9 +469,55 @@ public:
 //
 //   }
 
-   inline string_base & assign(const string_base & str);
-   inline string_base & assign(string_base && str);
-   
+
+   template < primitive_range RANGE >
+   inline string_base & assign_range(const RANGE & range)
+   {
+
+      if (sizeof(CHARACTER) == sizeof(typename RANGE::CHARACTER) && range.m_erange & e_range_string)
+      {
+
+         NATURAL_POINTER::operator = (*(string_base *)&range);
+
+      }
+      else
+      {
+
+         this->assign(range.m_begin, range.m_end);
+
+      }
+
+      return *this;
+
+   }
+
+
+   template < primitive_range RANGE >
+   inline string_base & assign_range(RANGE && range)
+   {
+
+      if (sizeof(CHARACTER) == sizeof(typename non_reference < RANGE >::CHARACTER) && (range.m_erange & e_range_string))
+      {
+
+         NATURAL_POINTER::operator = (::transfer(*(string_base *)&range));
+
+      }
+      else
+      {
+
+         this->assign(range.m_begin, range.m_end);
+
+         range.m_begin = nullptr;
+         range.m_end = nullptr;
+         range.m_erange = e_range_none;
+
+      }
+
+      return *this;
+
+   }
+
+
    template < primitive_block BLOCK >
    inline string_base & assign(const BLOCK & block) { return assign((const CHARACTER *)block.data(),(const CHARACTER *) block.end()); }
 
@@ -492,6 +538,17 @@ public:
 
    template < primitive_character CHARACTER2 >
    inline string_base & assign(const CHARACTER2 * pszSrc, strsize len);
+
+
+   template < primitive_character CHARACTER2 >
+   inline string_base & assign(const CHARACTER2 * pszSrc)
+   {
+
+      return assign(pszSrc, string_safe_length(pszSrc));
+
+   }
+
+
    //inline string_base& assign(const wd16_string& wd16str);
    //inline string_base& assign(const wd32_string& wd32str);
 //   template < primitive_character CHARACTER2 >
@@ -506,7 +563,7 @@ public:
    //inline string_base& assign(const ::wd16_character* pwd16szSrc, strsize len);
    //inline string_base& assign(const ::wd32_character* pwd32szSrc, strsize len);
    template < primitive_character CHARACTER2 >
-   inline string_base & assign(CHARACTER2 chSrc, strsize repeat);
+   inline string_base & assign(CHARACTER2 chSrc, strsize repeat = 1);
    //   inline string_base & assign(::ansi_character ansich, strsize repeat);
    //   inline string_base & assign(::wd16_character wd16ch, strsize repeat);
    //   inline string_base & assign(::wd32_character wd32ch, strsize repeat);
@@ -721,7 +778,8 @@ public:
    }
 
 
-   const SCOPED_STRING & if_empty(const SCOPED_STRING & scopedstr) const { return this->is_empty() ? scopedstr : (const SCOPED_STRING & ) *this; }
+
+   const SCOPED_STRING & if_empty(const SCOPED_STRING & scopedstr) const { return this->is_empty() ? scopedstr : *((const SCOPED_STRING *) this); }
    bool set_if_empty(const SCOPED_STRING & scopedstr) { return this->is_empty() ? (*this = scopedstr, true) : false; }
 
 
@@ -732,6 +790,15 @@ public:
    void reserve(strsize res_arg = 0);
 
    string_base & erase(strsize start = 0, strsize count = -1);
+
+   string_base& erase(const_iterator start, const_iterator end = 0)
+   {
+
+      if (!end) end = this->end();
+
+      return this->erase(this->offset_of(start), this->offset_of(end) - this->offset_of(start));
+
+   }
 
    ::count insert(strsize iIndex, CHARACTER ch);
 

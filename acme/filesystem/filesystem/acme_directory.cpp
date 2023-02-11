@@ -393,29 +393,31 @@ string acme_directory::system_short_name()
 }
 
 
-#ifdef LINUX
-
+//#ifdef LINUX
+//
+//
+//::file::path acme_directory::home()
+//{
+//
+//   return getenv("HOME");
+//
+//}
+//
+//
+//#else
+//
 
 ::file::path acme_directory::home()
 {
 
-   return getenv("HOME");
-
-}
-
-
-#else
-
-
-::file::path acme_directory::home()
-{
+   throw interface_only();
 
    return "";
 
 }
 
-
-#endif
+//
+//#endif
 
 
 //#if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)

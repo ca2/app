@@ -210,7 +210,12 @@ namespace filemanager
 
          ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
-         listingFinal.defer_add(pathFinal);
+         if(pathFinal.m_iDir >= 0)
+         {
+
+            listingFinal.defer_add(pathFinal);
+
+         }
 
       }
 
@@ -609,6 +614,7 @@ namespace filemanager
    void tree::install_message_routing(::channel * pchannel)
    {
 
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::userfs::tree::install_message_routing(pchannel);
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);

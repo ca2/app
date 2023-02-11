@@ -428,6 +428,10 @@ list(APPEND library_source
         primitive/datetime/earth_gregorian_time.cpp
         primitive/datetime/earth_gregorian_time.h
         primitive/datetime/earth_time_shift.h
+        primitive/datetime/earth_time.cpp
+        primitive/datetime/earth_time.h
+        primitive/datetime/earth_time_span.cpp
+        primitive/datetime/earth_time_span.h
         primitive/datetime/file_time.cpp
         primitive/datetime/file_time.h
         primitive/datetime/file_time_span.cpp
@@ -438,10 +442,6 @@ list(APPEND library_source
         primitive/datetime/result.cpp
         primitive/datetime/result.h
         primitive/datetime/system_time.cpp
-        primitive/datetime/time.cpp
-        #primitive/datetime/time.h
-        primitive/datetime/earth_time_span.cpp
-        primitive/datetime/earth_time_span.h
         primitive/datetime/zonetime.cpp
         primitive/datetime/zonetime.h
         #primitive/time/duration/_.h
@@ -812,8 +812,8 @@ list(APPEND library_source
         primitive/string/hex.h
         primitive/string/international.cpp
         primitive/string/international.h
-        primitive/string/international2.cpp
-        primitive/string/international2.h
+        #primitive/string/international2.cpp
+        #primitive/string/international2.h
         #primitive/string/manager.cpp
         primitive/string/network_payload.cpp
         primitive/string/network_payload.h
@@ -922,7 +922,7 @@ list(APPEND library_source
         user/user/drag_client.h
         user/user/element.cpp
         user/user/element.h
-        user/user/ewindowflag.h
+        user/user/e_window_flag.h
         user/user/mouse.h
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
@@ -1164,8 +1164,8 @@ list(APPEND library_source
         constant/status.h
         constant/status_range_authentication.h
         constant/timer.h
-        constant/user/_.h
-        constant/user/tool_item.h
+        #constant/user/_.h
+        #constant/user/tool_item.h
         exception/_.h
         exception/_c.h
         exception/_dump_context.h
@@ -1193,6 +1193,7 @@ list(APPEND library_source
         filesystem/file/_file.h
         filesystem/file/_impl.h
         filesystem/file/_impl_text_stream.h
+        filesystem/file/_impl_write_text_stream.h
         filesystem/file/_papaya.h
         filesystem/file/_papaya_impl.h
         filesystem/file/_payload_stream_impl.h
@@ -1221,6 +1222,7 @@ list(APPEND library_source
         filesystem/file/path.h
         filesystem/file/payload_stream.h
         filesystem/file/primitive.h
+        filesystem/file/read_sz_stream.h
         filesystem/file/serialize.h
         filesystem/file/status.h
         filesystem/file/stdio_file.cpp
@@ -1231,6 +1233,7 @@ list(APPEND library_source
         filesystem/file/text_file.h
         filesystem/file/text_stream.h
         filesystem/file/transfer_file.h
+        filesystem/file/write_text_stream.h
         filesystem/filesystem/_impl.h
         filesystem/filesystem/enumerator.cpp
         filesystem/filesystem/enumerator.h
@@ -1363,7 +1366,7 @@ list(APPEND library_source
         parallelization/socket_event.h
         parallelization/synchronization_array.cpp
         parallelization/synchronization_array.h
-        parallelization/synchronization_result.h
+        #parallelization/synchronization_result.h
         parallelization/synchronized_process.h
         parallelization/synchronous_lock.h
         parallelization/task.h
@@ -1500,10 +1503,12 @@ list(APPEND library_source
         primitive/comparison/less.h
         primitive/comparison/md5.h
         primitive/comparison/sign.h
+        primitive/primitive/_impl_pointer.h
+        primitive/primitive/_impl_primitive.h
         procedure.h
         template/list.h
         user/user/_.h
-        user/user/_constant_key.h
+        user/user/_constant.h
         user/user/mouse.h
         user/user/os_colors.h
         version/version.config.h
@@ -2269,7 +2274,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} filesystem/file/write_text_stream.h filesystem/file/_impl_write_text_stream.h filesystem/file/read_sz_stream.h filesystem/file/_impl_read_sz_stream.h primitive/primitive/_impl_primitive.h primitive/primitive/_impl_pointer.h filesystem/filesystem/_impl_path.h primitive/collection/_impl_string_array.h primitive/collection/_impl_payload.h primitive/primitive/_impl_payload.h primitive/primitive/_impl_property_set.h primitive/collection/_list_iterator.h primitive/collection/_impl_factory.h primitive/primitive/_impl_type.h primitive/collection/_impl_numeric_array.h primitive/collection/_impl.h primitive/_impl.h primitive/primitive/_impl_memory.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

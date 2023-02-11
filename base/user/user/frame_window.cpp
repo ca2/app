@@ -10,6 +10,8 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
+#include "acme/platform/sequencer.h"
+#include "acme/user/nano/nano.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -1721,23 +1723,76 @@ namespace user
    ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
-      auto & ptoolbartransport = m_mapToolbar[idToolbar];
-
-      if(bCreate && !ptoolbartransport)
+      try
       {
 
-         ptoolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+         auto & ptoolbartransport = m_mapToolbar[idToolbar];
 
-         if(ptoolbartransport)
+         if (bCreate && !ptoolbartransport)
          {
+
+            ptoolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
 
             add_control_bar(ptoolbartransport);
 
          }
 
+         return ptoolbartransport;
+
+      }
+      catch (const ::exception & exception)
+      {
+
+#ifdef DEBUG
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
+
+      }
+      catch (...)
+      {
+
+#ifdef DEBUG
+
+         ::exception exception(error_catch_all_exception);
+
+         auto psequencer = nano()->exception_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+
+         psequencer->do_synchronously();
+
+#endif
+
       }
 
-      return ptoolbartransport;
+//      catch (::exception & exception)
+//      {
+//
+//#ifdef DEBUG
+//
+//         throw ::exception(error_catch_all_exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+//
+//#endif
+//
+//      }
+//      catch (...)
+//      {
+//
+//#ifdef DEBUG
+//
+//         throw ::exception(error_catch_all_exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+//
+//#endif
+//
+//      }
+
+      //auto psequencer = message_box("Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+
+      //psequencer->do_asynchronously();
+
+      return nullptr;
 
    }
 

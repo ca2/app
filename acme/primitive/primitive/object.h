@@ -63,6 +63,7 @@ protected:
 public:
 
 
+   ::particle *                                    m_pparticleContext;
    //::task_pointer                                 m_pthread;
    //::pointer<::apex::application>                           m_pacmeapplication;
    //::pointer<::apex::session>                         m_psession;
@@ -83,6 +84,7 @@ public:
    //object() : m_pmeta(nullptr) { }
    object():m_pmeta(nullptr) { m_pobjectParentTask = nullptr;
    //   m_pcontext = nullptr;
+      m_pparticleContext = nullptr;
    }
    //object(::particle * pparticle);
    //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }

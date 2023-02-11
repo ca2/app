@@ -71,7 +71,11 @@ namespace filemanager
 
          m_ptree = ptree;
 
-         ptree->m_pdocument = get_document();
+         auto pdocument = get_document();
+
+         ptree->initialize_filemanager_tree(pdocument);
+
+         //ptree->m_pdocument = get_document();
 
          m_pusertree->merge(m_ptree, true);
 

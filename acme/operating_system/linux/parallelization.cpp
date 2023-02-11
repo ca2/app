@@ -2,6 +2,7 @@
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/user/nano/display.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system.h"
 
 
@@ -12,10 +13,10 @@
 //void xcb_asynchronous(::procedure function);
 
 
-void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
+void task_set_name(htask_t htask, const char * psz)
 {
 
-   string strName(scopedstr);
+   string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 
@@ -29,12 +30,12 @@ void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
 }
 
 
-//void task_set_name(const ::scoped_string & scopedstr)
-//{
-//
-//   return task_set_name((htask_t) pthread_self(), psz);
-//
-//}
+void task_set_name(const char * psz)
+{
+
+   return task_set_name((htask_t) pthread_self(), psz);
+
+}
 
 
 // void __node_init_cross_windows_threading()

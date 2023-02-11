@@ -63,7 +63,7 @@
     <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\app-simple\nanogui_example\framework.h">
+    <ClInclude Include="..\..\app-simple\nanoui_example\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="experience\frame_Minimal001.h">

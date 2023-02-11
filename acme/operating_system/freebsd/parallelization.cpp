@@ -16,14 +16,14 @@
 #define ITIMER_PROF      2
 
 
-void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
+void task_set_name(htask_t htask, const char * psz)
 {
 
-   string strName(psz);
+//   string strName(psz);
 
-   thread_name_abbreviate(strName, 15);
+  // thread_name_abbreviate(strName, 15);
 
-   if(!pthread_setname_np((pthread_t) htask, strName))
+   if(!pthread_setname_np((pthread_t) htask, psz))
    {
 
        output_debug_string("pthread_setname_np Failed\n");
@@ -33,12 +33,12 @@ void task_set_name(htask_t htask, const ::scoped_string & scopedstr)
 }
 
 
-//void task_set_name(const ::scoped_string & scopedstr)
-//{
-//
-//   return task_set_name((htask_t) pthread_self(), psz);
-//
-//}
+void task_set_name(const char * psz)
+{
+
+   return task_set_name((htask_t) pthread_self(), psz);
+
+}
 
 
 // void __node_init_cross_windows_threading()

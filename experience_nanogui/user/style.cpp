@@ -25,7 +25,7 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
    style::style()
@@ -1773,7 +1773,7 @@ namespace experience_nanogui
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

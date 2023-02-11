@@ -5079,7 +5079,7 @@ namespace apex
          if (is_true("show_application_information"))
          {
 
-            printf("return code is %llx", estatus.m_eenum);
+            printf("return code is %" PRIi64 "x", estatus.m_eenum);
 
          }
 

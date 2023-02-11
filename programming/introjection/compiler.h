@@ -63,7 +63,7 @@ namespace introjection
       compiler();
       ~compiler() override;
 
-      virtual void initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName);
+      virtual void initialize_introjection_compiler(::particle * pparticle, const ::string& pszRepos, const ::string& pszApp, const ::string& pszProjectName, const ::file::path & pathProjectDir);
 
       //void initialize_compiler();
       //void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);

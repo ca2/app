@@ -265,7 +265,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = puser->windowing();
 
       m_pwindowing = pwindowing;
 

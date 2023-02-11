@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="..\..\..\stage\x86\draw2d_direct2d.dll">
+    <None Include="..\..\..\Release\x86\draw2d_direct2d.dll">
       <Filter>Library</Filter>
     </None>
-    <None Include="..\..\..\stage\x86\experience_lite.dll">
+    <None Include="..\..\..\Release\x86\experience_lite.dll">
       <Filter>Library</Filter>
     </None>
     <None Include="..\..\..\platform\thirdparty\binary\x64\msvcp120d.dll">

@@ -3,7 +3,7 @@
 #include "networking.h"
 
 
-inline ::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
+//::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 
 namespace networking_bsd
@@ -163,7 +163,7 @@ namespace networking_bsd
    void address::set_address(const sockaddr_in& sa)
    {
 
-      ::zero(this, sizeof(u.m_sa));
+      //::zero(this, sizeof(u.m_sa));
 
       u.m_addr = sa;
 

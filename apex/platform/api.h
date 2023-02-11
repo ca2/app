@@ -23,30 +23,32 @@ protected:
 public:
 
 
+   ::string                         m_strScope;
    bool                             m_bAuthenticated;
    bool                             m_bAuthenticating;
-   string                           m_strConfig;
-   string                           m_strProfile;
+   //string                         m_strConfig;
+   ::string                         m_strImplementation;
+   string                           m_strBrowserAccount;
    string                           m_strToken;
    string                           m_strState;
-   ::file::path                     m_pathProfile;
+   ::file::path                     m_pathProfileFolder;
    ::payload                        m_payloadProfile;
    bool                             m_bWaitingResponseFromUser;
-   ::pointer<::api_client>         m_papiclient;
+   ::pointer<::api_client>          m_papiclient;
    ::manual_reset_event             m_eventResponse;
-   //;; property_set                     m_setConfig;
+   //;; property_set                m_setConfig;
    property_set                     m_setProfile;
-   property_set                     m_setConfig2;
-
-
+   property_set                     m_setConfiguration;
 
 
    api();
    ~api() override;
 
    
-   virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfile);
+   virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfileFolder, const ::scoped_string & scopedstrBrowserAccount);
 
+
+   virtual void load_configuration();
 
    virtual void load_profile();
    virtual void save_profile();
@@ -56,10 +58,16 @@ public:
    virtual void on_login_response();
 
 
-   virtual void api_login(const ::string & strConfig, const ::string & strProfile);
+   virtual ::string get_name_for_profile() = 0;
+
+   virtual void switch_profile_folder(const ::file::path & pathFolder);
+
+   //virtual void api_login(const ::string & strConfig, const ::string & strProfile);
+
+   virtual void api_login();
 
 
-   virtual void api_get(::string & str, const ::string & strUrl, property_set& set);
+   virtual void _api_get(::string & str, const ::string & strUrl, property_set& set);
 
    virtual void api_get(::payload & payload, const ::string & strUrl, property_set & set);
 

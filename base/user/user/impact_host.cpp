@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "impact_host.h"
 #include "frame_window.h"
 #include "impact.h"
@@ -885,13 +885,13 @@ namespace user
                   if (ppair->element2()->m_pplaceholder != nullptr)
                   {
 
-                     ppair->element2()->m_pplaceholder->display(e_display_none);
+                     ppair->element2()->m_pplaceholder->hide();
 
                   }
                   else if (ppair->element2()->m_puserinteraction != nullptr)
                   {
 
-                     ppair->element2()->m_puserinteraction->display(e_display_none);
+                     ppair->element2()->m_puserinteraction->hide();
 
                   }
 

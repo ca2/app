@@ -225,9 +225,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -284,9 +282,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -309,7 +305,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -354,9 +350,7 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -424,9 +418,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -495,9 +487,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
@@ -554,9 +544,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Lib />
     <Lib />
     <ProjectReference />
@@ -576,7 +564,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -624,9 +612,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -677,9 +663,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Lib />
     <Lib />
     <Lib />
@@ -802,6 +786,7 @@
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
+    <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
@@ -1022,6 +1007,7 @@
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="platform\api.h" />
     <ClInclude Include="platform\api_client.h" />
+    <ClInclude Include="platform\api_client_base.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\application_heap.h" />
     <ClInclude Include="platform\application_impl.h" />
@@ -1029,6 +1015,7 @@
     <ClInclude Include="platform\application_signal_details.h" />
     <ClInclude Include="platform\app_consumer.h" />
     <ClInclude Include="platform\app_launcher.h" />
+    <ClInclude Include="platform\array_union.h" />
     <ClInclude Include="platform\assert_running_task.h" />
     <ClInclude Include="platform\console_application.h" />
     <ClInclude Include="platform\context.h" />

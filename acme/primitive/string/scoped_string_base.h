@@ -37,8 +37,7 @@ public:
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
-   scoped_string_base(const STRING & str) :
-   RANGE(e_zero_initialize)
+   scoped_string_base(const STRING & str)
    {
 
       if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))
@@ -46,7 +45,7 @@ public:
 
          this->m_begin = str.m_begin;
          this->m_end = str.m_end;
-         this->m_erange = e_range_none;
+         this->m_erange = str.m_erange;
 
       }
       else
@@ -129,10 +128,12 @@ public:
    ~scoped_string_base()
    {
 
-      if (::is_set(this) && this->m_erange & e_range_string)
+      if (::is_set(this) && (this->m_erange & e_range_scoped_string_allocation))
       {
 
-         str().~string_base<ITERATOR_TYPE>();
+         this->m_erange -= e_range_scoped_string_allocation;
+
+         ((STRING *)this)->~string_base<ITERATOR_TYPE>();
 
       }
 
@@ -142,8 +143,15 @@ public:
    //scoped_string_base(const char (&cha)[n]) :m_str(e_zero_initialize), RANGE(e_zero_initialize) { _construct1(cha); }
 
 
-   STRING & str() { return (STRING &)*this; }
-   STRING & str(const STRING & str) { return (this->str()) = str; }
+   //STRING & str() { return (STRING &)*this; }
+   STRING & str(const STRING & str)
+   { 
+
+      this->m_erange += e_range_scoped_string_allocation;
+      
+      return ((STRING *)this)->operator = (str);
+   
+   }
 
 
    //template < primitive_character CHARACTER2 >
@@ -174,8 +182,8 @@ public:
       if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
       {
 
-         this->m_begin = range.m_begin;
-         this->m_end = range.m_end;
+         this->m_begin = (ITERATOR_TYPE) range.m_begin;
+         this->m_end = (ITERATOR_TYPE) range.m_end;
          this->m_erange = e_range_none;
 
       }
@@ -349,5 +357,9 @@ inline ::u32hash u32_hash < scoped_wd16_string >(scoped_wd16_string scopedstr);
 template < >
 inline ::u32hash u32_hash < scoped_wd32_string >(scoped_wd32_string scopedstr);
 
+
+
+
+#include  "acme/primitive/mathematics/_string.h"
 
 

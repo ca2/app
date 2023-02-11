@@ -64,7 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A81F48127500224003F38EC /* libexperience_nanogui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_nanogui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A81F48127500224003F38EC /* libexperience_nanoui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_nanoui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F57B27505EB2003F38EC /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A81F57D27505EB2003F38EC /* frame_Minimal001.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_Minimal001.h; sourceTree = "<group>"; };
 		9A81F58F27505EB3003F38EC /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		9A81F48227500224003F38EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A81F48127500224003F38EC /* libexperience_nanogui.dylib */,
+				9A81F48127500224003F38EC /* libexperience_nanoui.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,9 +242,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A81F48027500224003F38EC /* experience_nanogui */ = {
+		9A81F48027500224003F38EC /* experience_nanoui */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A81F48527500224003F38EC /* Build configuration list for PBXNativeTarget "experience_nanogui" */;
+			buildConfigurationList = 9A81F48527500224003F38EC /* Build configuration list for PBXNativeTarget "experience_nanoui" */;
 			buildPhases = (
 				9A81F47D27500224003F38EC /* Headers */,
 				9A81F47E27500224003F38EC /* Sources */,
@@ -255,9 +255,9 @@
 			dependencies = (
 				9A81F5F727505F33003F38EC /* PBXTargetDependency */,
 			);
-			name = experience_nanogui;
+			name = experience_nanoui;
 			productName = experience_core;
-			productReference = 9A81F48127500224003F38EC /* libexperience_nanogui.dylib */;
+			productReference = 9A81F48127500224003F38EC /* libexperience_nanoui.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -274,7 +274,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A81F47C27500224003F38EC /* Build configuration list for PBXProject "experience_nanogui" */;
+			buildConfigurationList = 9A81F47C27500224003F38EC /* Build configuration list for PBXProject "experience_nanoui" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -293,7 +293,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A81F48027500224003F38EC /* experience_nanogui */,
+				9A81F48027500224003F38EC /* experience_nanoui */,
 			);
 		};
 /* End PBXProject section */
@@ -402,7 +402,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -496,7 +496,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -563,7 +563,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A81F47C27500224003F38EC /* Build configuration list for PBXProject "experience_nanogui" */ = {
+		9A81F47C27500224003F38EC /* Build configuration list for PBXProject "experience_nanoui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A81F48327500224003F38EC /* Debug */,
@@ -572,7 +572,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A81F48527500224003F38EC /* Build configuration list for PBXNativeTarget "experience_nanogui" */ = {
+		9A81F48527500224003F38EC /* Build configuration list for PBXNativeTarget "experience_nanoui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A81F48627500224003F38EC /* Debug */,

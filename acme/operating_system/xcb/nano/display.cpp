@@ -1309,14 +1309,14 @@ namespace xcb
       if (atomFlag == 0)
       {
 
-         return false;
+         return error_failed;
 
       }
 
       if (atomList == 0)
       {
 
-         return false;
+         return error_failed;
 
       }
 
@@ -1327,7 +1327,7 @@ namespace xcb
 
       }
 
-      return true;
+      return ::success;
 
    }
 
@@ -1338,14 +1338,14 @@ namespace xcb
       if (atomFlag == 0)
       {
 
-         return false;
+         return ::error_failed;
 
       }
 
       if (atomList == 0)
       {
 
-         return false;
+         return ::error_failed;
 
       }
 
@@ -1354,7 +1354,7 @@ namespace xcb
       if (atoma.is_empty())
       {
 
-         return true;
+         return ::success;
 
       }
 
@@ -1367,7 +1367,7 @@ namespace xcb
 
       }
 
-      return true;
+      return ::success;
 
    }
 
@@ -1385,7 +1385,7 @@ namespace xcb
       if (!estatus1 || !estatus2 || estatus3)
       {
 
-         return error_failed;
+         return ::error_failed;
 
       }
 

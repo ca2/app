@@ -1173,7 +1173,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 
       auto remainingByteCount = pfileSrc->get_remaining_byte_count();
 
-      mem.set_size(minimum((memsize) remainingByteCount, (memsize) 8_mb));
+      mem.set_size(minimum((memsize) remainingByteCount, (memsize) 8_MiB));
 
       memsize uRead;
 

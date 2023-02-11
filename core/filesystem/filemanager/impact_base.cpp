@@ -295,32 +295,50 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
       ::pointer<::core::application>papp = get_app();
 
-      auto pfileitem = ptopic->_extended_topic()->m_pfileitem;
+      auto pfileitemTopic = ptopic->_extended_topic()->m_pfileitem;
 
-      auto bFileManagerItemSet = ::is_set(filemanager_item());
-
-      bool bEqualFilePath = bFileManagerItemSet && papp->is_equal_file_path(ptopic->_extended_topic()->m_pfileitem->final_path(), filemanager_item()->final_path());
-
-      if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
+      if (pfileitemTopic)
       {
 
-#define DBG_LOOP  1
-         for (index i = 0; i < DBG_LOOP; i++)
+         bool bSameFilePath = false;
+
+         if (::is_set(filemanager_item()))
          {
 
-            browse_sync(ptopic->m_actioncontext + ::e_source_sync);
+            ::file::path pathTopicFinal = ptopic->_extended_topic()->m_pfileitem->final_path();
+
+            ::file::path pathItemFinal = filemanager_item()->final_path();
+
+            bSameFilePath = papp->is_equal_file_path(pathTopicFinal, pathItemFinal);
 
          }
 
+         if (bSameFilePath)
+         {
+
+#define DBG_LOOP  1
+            for (index i = 0; i < DBG_LOOP; i++)
+            {
+
+               browse_sync(ptopic->m_actioncontext + ::e_source_sync);
+
+            }
+
+         }
+         else
+         {
+
+            ::file::path pathUser;
+
+            pathUser = pfileitemTopic->user_path();
+
+            knowledge(pathUser, ptopic->m_actioncontext + ::e_source_sync);
+
+         }
+
+         set_need_redraw();
+
       }
-      else
-      {
-
-         knowledge(ptopic->_extended_topic()->m_pfileitem->user_path(), ptopic->m_actioncontext + ::e_source_sync);
-
-      }
-
-      set_need_redraw();
 
    }
 

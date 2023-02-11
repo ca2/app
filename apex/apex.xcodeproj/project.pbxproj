@@ -364,6 +364,10 @@
 		9A81ECAF274EDFCA003F38EC /* api_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA8274EDFCA003F38EC /* api_client.h */; };
 		9A81ECB0274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
 		9A81ECB1274EDFCA003F38EC /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81ECA9274EDFCA003F38EC /* api.h */; };
+		9A88AA132990AAE7005FAA4E /* api_client_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA0D2990AAE6005FAA4E /* api_client_base.h */; };
+		9A88AA142990AAE7005FAA4E /* api_client_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA0D2990AAE6005FAA4E /* api_client_base.h */; };
+		9A88AA152990AAE7005FAA4E /* api_client_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA122990AAE6005FAA4E /* api_client_base.cpp */; };
+		9A88AA162990AAE7005FAA4E /* api_client_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA122990AAE6005FAA4E /* api_client_base.cpp */; };
 		9A9230C527EACE8000B5A78D /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230B427EACE7F00B5A78D /* _impl.h */; };
 		9A9230C627EACE8000B5A78D /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B527EACE7F00B5A78D /* source.cpp */; };
 		9A9230C827EACE8000B5A78D /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B727EACE7F00B5A78D /* context.cpp */; };
@@ -684,6 +688,13 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9A88AA102990AAE6005FAA4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC14CB6297B3350006D9BD3;
+			remoteInfo = "acme copy";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -962,6 +973,8 @@
 		9A81ECA7274EDFCA003F38EC /* api_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client.cpp; sourceTree = "<group>"; };
 		9A81ECA8274EDFCA003F38EC /* api_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client.h; sourceTree = "<group>"; };
 		9A81ECA9274EDFCA003F38EC /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
+		9A88AA0D2990AAE6005FAA4E /* api_client_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_client_base.h; sourceTree = "<group>"; };
+		9A88AA122990AAE6005FAA4E /* api_client_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_client_base.cpp; sourceTree = "<group>"; };
 		9A9230B427EACE7F00B5A78D /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A9230B527EACE7F00B5A78D /* source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = source.cpp; sourceTree = "<group>"; };
 		9A9230B727EACE7F00B5A78D /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
@@ -1232,7 +1245,8 @@
 			isa = PBXGroup;
 			children = (
 				9A615C2928B1B7A300377F68 /* libacme.dylib */,
-				9A615C2B28B1B7A300377F68 /* libios_acme.a */,
+				9A615C2B28B1B7A300377F68 /* lib_acme.a */,
+				9A88AA112990AAE6005FAA4E /* libacme copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1377,6 +1391,8 @@
 				9A226CFC27CE8FAB0042BAC2 /* apex.h */,
 				9A81ECA7274EDFCA003F38EC /* api_client.cpp */,
 				9A81ECA8274EDFCA003F38EC /* api_client.h */,
+				9A88AA122990AAE6005FAA4E /* api_client_base.cpp */,
+				9A88AA0D2990AAE6005FAA4E /* api_client_base.h */,
 				9A81ECA5274EDFCA003F38EC /* api.cpp */,
 				9A81ECA9274EDFCA003F38EC /* api.h */,
 				9A226CF827CE8FAA0042BAC2 /* app_consumer.h */,
@@ -2040,6 +2056,7 @@
 				9A68BE0B2511444F008DABD2 /* universal_windows.h in Headers */,
 				9A97C06B28C83B0400A43004 /* resolv_server.h in Headers */,
 				9A68BDD22511444F008DABD2 /* dir_context.h in Headers */,
+				9A88AA132990AAE7005FAA4E /* api_client_base.h in Headers */,
 				9A68BCE92511444E008DABD2 /* display.h in Headers */,
 				9A97C02F28C83B0300A43004 /* net.h in Headers */,
 				9A68BE252511444F008DABD2 /* version.h in Headers */,
@@ -2131,6 +2148,7 @@
 				9AD6931D251A754800C0EBD7 /* list.h in Headers */,
 				9AD6931F251A754800C0EBD7 /* application_signal_details.h in Headers */,
 				9AD69322251A754800C0EBD7 /* version.config.h in Headers */,
+				9A88AA142990AAE7005FAA4E /* api_client_base.h in Headers */,
 				9AD69325251A754800C0EBD7 /* message_box.h in Headers */,
 				9A787DE1264CA98C003DF8A0 /* machine_event_data.h in Headers */,
 				9AD6932C251A754800C0EBD7 /* set.h in Headers */,
@@ -2324,11 +2342,18 @@
 			remoteRef = 9A615C2828B1B7A300377F68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A615C2B28B1B7A300377F68 /* libios_acme.a */ = {
+		9A615C2B28B1B7A300377F68 /* lib_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_acme.a;
+			path = lib_acme.a;
 			remoteRef = 9A615C2A28B1B7A300377F68 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A88AA112990AAE6005FAA4E /* libacme copy.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libacme copy.dylib";
+			remoteRef = 9A88AA102990AAE6005FAA4E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2418,6 +2443,7 @@
 				9A68BCE52511444E008DABD2 /* console_application.cpp in Sources */,
 				9A239E3D26CDF9AF00F98012 /* link_in_socket.cpp in Sources */,
 				9A68BB3D2511444D008DABD2 /* stringhelper.cpp in Sources */,
+				9A88AA152990AAE7005FAA4E /* api_client_base.cpp in Sources */,
 				9AE6DFA129652F9D008A1335 /* watcher.cpp in Sources */,
 				9AC01925274896EB006BEBCC /* is_dir.cpp in Sources */,
 				9A68BDCE2511444F008DABD2 /* dir_system.cpp in Sources */,
@@ -2529,6 +2555,7 @@
 				9AD69516251A754800C0EBD7 /* edit_file.cpp in Sources */,
 				9A0F53BF28E8D8BE00025231 /* networking.cpp in Sources */,
 				9A0F53AB28E8D7F500025231 /* tcp_socket_impl.cpp in Sources */,
+				9A88AA162990AAE7005FAA4E /* api_client_base.cpp in Sources */,
 				9AD69522251A754800C0EBD7 /* file_system.cpp in Sources */,
 				9A0F53C028E8D8EB00025231 /* httpd_socket.cpp in Sources */,
 				9A787DF1264CA9F2003DF8A0 /* command.cpp in Sources */,
@@ -2700,7 +2727,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2818,7 +2845,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";

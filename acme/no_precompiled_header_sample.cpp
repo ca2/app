@@ -24,25 +24,8 @@ namespace message
 
 #include "acme/_start.h"
 #include "acme/include/_c.h"
-//#include "acme/platform/object_reference_count_debug.h"
-//
-//  
-//  // C-includes
-////#include "acme/_c.h"
-//#include "acme/memory/memory_allocate.h"
-//#include "acme/memory/secondary_memory_allocate.h"
-//#include "acme/memory/heap_c.h"
-//
-//
-//#include "acme/constant/_.h"
-//
-//
-//#include "acme/constant/thread.h"
-//#include "acme/constant/message.h"
-//#include "acme/constant/impact.h"
 
 
-//#include "_macro.h"
 #include "acme/include/_configuration.h"
 #include "acme/include/_types.h"
 #include "acme/constant/_.h"

@@ -229,7 +229,8 @@
     </CustomBuildStep>
     <CustomBuildStep />
     <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
     </ResourceCompile>
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
@@ -312,7 +313,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -582,7 +583,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -892,6 +893,7 @@
     <ClCompile Include="user\user\windowing.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="user\user\zorder.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\Debug.cpp" />
@@ -1258,6 +1260,9 @@
     <ClInclude Include="_factory.h" />
     <ClInclude Include="_h.h" />
     <ClInclude Include="_library.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="R:\main\source\app\aura\deployment.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -233,7 +233,6 @@ public:
 
 
 
-
    //inline iterator begin() { return iterator(get_start(), this); }
    //inline iterator end() { return iterator(nullptr, this); }
 
@@ -300,6 +299,30 @@ public:
    }
 
    bool erase(iterator iterator);
+
+   bool toggle(ARG_ITEM item)
+   {
+
+      auto iterator = this->find_item(item);
+
+      if (::is_ok(iterator))
+      {
+
+         this->erase(iterator);
+
+         return false;
+
+      }
+      else
+      {
+
+         set_at(item);
+
+         return true;
+
+      }
+
+   }
 
    //removing existing (item, ?) node
    inline bool erase_item(ARG_ITEM item) { auto p = this->find_item(item);  return p ? this->erase(p) : false; }

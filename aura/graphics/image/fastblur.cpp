@@ -534,7 +534,7 @@ auto tickC1 = ::time::now();
             string str1;
             str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",wj,hj,m_iRadius);
             string str2;
-            str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond().m_i);
+            str2.format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond());
 
             output_debug_string("/-----------------------------------------\n");
             output_debug_string("| \n");

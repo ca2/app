@@ -747,18 +747,20 @@ namespace html
 
       ::file::path pathUrl = payloadFile.as_file_path();
 
-      payloadFile["url"] = pathUrl;
+      ::payload payloadFile2;
 
-      string strDebugUrl1 = payloadFile.as_file_path();
+      payloadFile2["url"] = pathUrl;
+
+      string strDebugUrl1 = payloadFile2.as_file_path();
 
       if (m_strPathName.has_char())
       {
 
-         payloadFile["url"] = defer_solve_relative(pathUrl, m_strPathName);
+        payloadFile2["url"] = defer_solve_relative(pathUrl, m_strPathName);
 
       }
 
-      payloadFile["http_set"] = get_property_set()["http_propset"].propset();
+      payloadFile2["http_set"] = get_property_set()["http_propset"].propset();
 
       bool bNoCache = payloadFile["nocache"].get_bool();
 
@@ -775,26 +777,26 @@ namespace html
 
       //}
 
-      payloadFile["http_set"]["app"] = get_app();
+      payloadFile2["http_set"]["app"] = get_app();
 
       //varQuery.propset()["headers"].propset()["accept"] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      payloadFile["http_set"]["headers"].propset()["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+      payloadFile2["http_set"]["headers"].propset()["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
       //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
             //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
       //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      payloadFile["http_set"]["headers"].propset()["Cache-Control"] = "maximum-age=0";
+      payloadFile2["http_set"]["headers"].propset()["Cache-Control"] = "maximum-age=0";
 
       string str;
 
    repeat:
 
-      payloadFile["nocache"] = bNoCache;
+      payloadFile2["nocache"] = bNoCache;
 
-      string strDebugUrl2 = payloadFile.as_file_path();
+      string strDebugUrl2 = payloadFile2.as_file_path();
 
       auto pcontext = get_context();
 
-      str = pcontext->m_papexcontext->file()->as_string(payloadFile);
+      str = pcontext->m_papexcontext->file()->as_string(payloadFile2);
 
       //if (!payloadFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{

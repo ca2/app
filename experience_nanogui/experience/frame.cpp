@@ -11,7 +11,7 @@
 #include "base/user/experience/frame_window.h"
 
 
-namespace experience_nanogui
+namespace experience_nanoui
 {
 
    frame::frame()
@@ -794,7 +794,7 @@ namespace experience_nanogui
    }
 
 
-} // namespace experience_nanogui
+} // namespace experience_nanoui
 
 
 

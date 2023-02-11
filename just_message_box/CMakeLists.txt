@@ -48,7 +48,6 @@ elseif(LINUX)
 endif()
 
 
-add_dependencies(app_just_message_box ${app_common_dependencies})
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

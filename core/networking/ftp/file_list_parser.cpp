@@ -381,24 +381,24 @@ namespace ftp
             switch (iState)
             {
             case 1: // skipping perm
-               ftpFileStatus.m_strAttributes.assign(scopedstrLine(i, j - i));
+               ftpFileStatus.m_strAttributes.assign_range(scopedstrLine(i, j - i));
                iState = 2;
                break;
             case 2: // skipping nlink
                iState = 3;
-               ftpFileStatus.m_strLink.assign(scopedstrLine(i, j - i));
+               ftpFileStatus.m_strLink.assign_range(scopedstrLine(i, j - i));
                if (j - i == 6 && scopedstrLine.begin()[i] == ('f')) // for NetPresenz
                   iState = 4;
                break;
             case 3: // skipping uid
                iState = 4;
-               ftpFileStatus.m_strUID.assign(scopedstrLine(i, j - i));
+               ftpFileStatus.m_strUID.assign_range(scopedstrLine(i, j - i));
                break;
             case 4: // getting tentative size_i32
                if (!GetLong(scopedstrLine(i, j - i), lSize))
                {
                   lSize = -1;
-                  ftpFileStatus.m_strGID.assign(scopedstrLine(i, j - i));
+                  ftpFileStatus.m_strGID.assign_range(scopedstrLine(i, j - i));
                }
                iState = 5;
                break;

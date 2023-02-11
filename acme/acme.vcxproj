@@ -217,9 +217,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -274,9 +272,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -304,7 +300,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -350,9 +346,7 @@
       <Inputs>
       </Inputs>
     </CustomBuildStep>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -420,9 +414,7 @@
       </Command>
     </CustomBuildStep>
     <CustomBuildStep />
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
@@ -497,9 +489,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
@@ -555,9 +545,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Lib />
     <Lib />
     <ProjectReference>
@@ -578,7 +566,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -626,9 +614,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
@@ -679,9 +665,7 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
-    <ResourceCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../..</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <ResourceCompile />
     <Lib />
     <Lib />
     <Lib />
@@ -697,7 +681,6 @@
   <ItemGroup>
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="email.cpp" />
     <ClCompile Include="exception\assert.cpp" />
     <ClCompile Include="exception\bad_file_format.cpp" />
@@ -761,7 +744,10 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
+    <ClInclude Include="constant\aaa_thread.h" />
+    <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\activate.h" />
+    <ClInclude Include="constant\application_capability.h" />
     <ClInclude Include="constant\button_state.h" />
     <ClInclude Include="constant\character_set.h" />
     <ClInclude Include="constant\check.h" />
@@ -769,43 +755,102 @@
     <ClInclude Include="constant\context.h" />
     <ClInclude Include="constant\cursor.h" />
     <ClInclude Include="constant\data.h" />
+    <ClInclude Include="constant\data_type.h" />
+    <ClInclude Include="constant\earth.h" />
+    <ClInclude Include="constant\element.h" />
+    <ClInclude Include="constant\error_code_type.h" />
+    <ClInclude Include="constant\exception.h" />
     <ClInclude Include="constant\exclusive_instance.h" />
-    <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
-    <ClInclude Include="constant\os_text.h" />
-    <ClInclude Include="constant\scalar.h" />
-    <ClInclude Include="constant\_id.h" />
+    <ClInclude Include="constant\geometry2d.h" />
+    <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="constant\impact.h" />
+    <ClInclude Include="constant\media_library.h" />
+    <ClInclude Include="constant\memory_heap.h" />
     <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\message_box.h" />
     <ClInclude Include="constant\message_prototype.h" />
+    <ClInclude Include="constant\os_text.h" />
     <ClInclude Include="constant\parallelization.h" />
+    <ClInclude Include="constant\path.h" />
     <ClInclude Include="constant\routine.h" />
+    <ClInclude Include="constant\scalar.h" />
     <ClInclude Include="constant\simple_command.h" />
     <ClInclude Include="constant\source.h" />
     <ClInclude Include="constant\status.h" />
     <ClInclude Include="constant\status_range_authentication.h" />
-    <ClInclude Include="constant\aaa_topic.h" />
-    <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user.h" />
+    <ClInclude Include="constant\user_text.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
+    <ClInclude Include="constant\_id.h" />
     <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="constant\_message.h" />
-    <ClInclude Include="exception\bad_file_format.h" />
+    <ClInclude Include="exception\aaa_base.h" />
+    <ClInclude Include="exception\aaa_debug_stream.h" />
+    <ClInclude Include="exception\aaa_engine.h" />
+    <ClInclude Include="exception\aaa_file.h" />
     <ClInclude Include="exception\aaa_file_open.h" />
-    <ClInclude Include="exception\Debug.h" />
+    <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
+    <ClInclude Include="exception\aaa_installing.h" />
+    <ClInclude Include="exception\aaa_invalid_argument.h" />
+    <ClInclude Include="exception\aaa_invalid_character.h" />
+    <ClInclude Include="exception\aaa_invalid_handle.h" />
+    <ClInclude Include="exception\aaa_invalid_index.h" />
+    <ClInclude Include="exception\aaa_invalid_type.h" />
+    <ClInclude Include="exception\aaa_not_installed.h" />
+    <ClInclude Include="exception\aaa_not_licensed.h" />
+    <ClInclude Include="exception\aaa_not_supported.h" />
+    <ClInclude Include="exception\aaa_operation_canceled.h" />
+    <ClInclude Include="exception\aaa_os.h" />
+    <ClInclude Include="exception\aaa_overflow.h" />
+    <ClInclude Include="exception\aaa_range.h" />
+    <ClInclude Include="exception\aaa_runtime.h" />
+    <ClInclude Include="exception\aaa_simple.h" />
+    <ClInclude Include="exception\aaa_system.h" />
+    <ClInclude Include="exception\aaa_temporary.h" />
+    <ClInclude Include="exception\aaa_todo.h" />
+    <ClInclude Include="exception\aaa_user.h" />
+    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h" />
+    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
+    <ClInclude Include="exception\assert.h" />
+    <ClInclude Include="exception\bad_file_format.h" />
+    <ClInclude Include="exception\callstack.h" />
+    <ClInclude Include="exception\call_stack.h" />
+    <ClInclude Include="exception\cancel.h" />
+    <ClInclude Include="exception\debug.h" />
+    <ClInclude Include="exception\dump_context.h" />
     <ClInclude Include="exception\error_number.h" />
+    <ClInclude Include="exception\exception.h" />
+    <ClInclude Include="exception\exception2.h" />
+    <ClInclude Include="exception\exit.h" />
+    <ClInclude Include="exception\extended_status.h" />
+    <ClInclude Include="exception\extended_transport.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\io.h" />
     <ClInclude Include="exception\library_not_loaded.h" />
     <ClInclude Include="exception\not_implemented.h" />
+    <ClInclude Include="exception\no_memory.h" />
+    <ClInclude Include="exception\parsing.h" />
+    <ClInclude Include="exception\resource.h" />
     <ClInclude Include="exception\serialization.h" />
+    <ClInclude Include="exception\standard.h" />
+    <ClInclude Include="exception\status.h" />
+    <ClInclude Include="exception\translator.h" />
+    <ClInclude Include="exception\trap.h" />
+    <ClInclude Include="exception\unhandled_report.h" />
+    <ClInclude Include="exception\void_implementation.h" />
     <ClInclude Include="exception\what_exclamation_exception.h" />
+    <ClInclude Include="exception\_.h" />
+    <ClInclude Include="exception\_c.h" />
+    <ClInclude Include="exception\_dump_context.h" />
+    <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="exception\_text_stream.h" />
     <ClInclude Include="exception\__string.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
@@ -1051,6 +1096,7 @@
     <ClCompile Include="primitive\mathematics\random_number_generator.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\mathematics\_string.cpp" />
     <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\action_context.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
@@ -1081,6 +1127,7 @@
     <ClCompile Include="primitive\string\as_string.cpp" />
     <ClCompile Include="primitive\string\character.cpp" />
     <ClCompile Include="primitive\string\_string.cpp" />
+    <ClCompile Include="primitive\string\__wide.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
     <ClCompile Include="primitive\text\international_locale_schema.cpp" />
@@ -1121,50 +1168,6 @@
     <ClCompile Include="_.cpp" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="exception\aaa_base.h" />
-    <ClInclude Include="exception\aaa_debug_stream.h" />
-    <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
-    <ClInclude Include="exception\aaa_installing.h" />
-    <ClInclude Include="exception\aaa_invalid_argument.h" />
-    <ClInclude Include="exception\aaa_invalid_character.h" />
-    <ClInclude Include="exception\aaa_invalid_handle.h" />
-    <ClInclude Include="exception\aaa_invalid_index.h" />
-    <ClInclude Include="exception\aaa_invalid_type.h" />
-    <ClInclude Include="exception\no_memory.h" />
-    <ClInclude Include="exception\aaa_not_installed.h" />
-    <ClInclude Include="exception\aaa_not_licensed.h" />
-    <ClInclude Include="exception\aaa_not_supported.h" />
-    <ClInclude Include="exception\aaa_operation_canceled.h" />
-    <ClInclude Include="exception\aaa_os.h" />
-    <ClInclude Include="exception\aaa_overflow.h" />
-    <ClInclude Include="exception\aaa_range.h" />
-    <ClInclude Include="exception\aaa_runtime.h" />
-    <ClInclude Include="exception\aaa_simple.h" />
-    <ClInclude Include="exception\aaa_system.h" />
-    <ClInclude Include="exception\aaa_temporary.h" />
-    <ClInclude Include="exception\aaa_todo.h" />
-    <ClInclude Include="exception\aaa_user.h" />
-    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h" />
-    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
-    <ClInclude Include="exception\extended_status.h" />
-    <ClInclude Include="exception\extended_transport.h" />
-    <ClInclude Include="exception\parsing.h" />
-    <ClInclude Include="exception\callstack.h" />
-    <ClInclude Include="exception\call_stack.h" />
-    <ClInclude Include="exception\cancel.h" />
-    <ClInclude Include="exception\dump_context.h" />
-    <ClInclude Include="exception\exception.h" />
-    <ClInclude Include="exception\exception2.h" />
-    <ClInclude Include="exception\exit.h" />
-    <ClInclude Include="exception\standard.h" />
-    <ClInclude Include="exception\status.h" />
-    <ClInclude Include="exception\trap.h" />
-    <ClInclude Include="exception\unhandled_report.h" />
-    <ClInclude Include="exception\void_implementation.h" />
-    <ClInclude Include="exception\_.h" />
-    <ClInclude Include="exception\_c.h" />
-    <ClInclude Include="exception\_dump_context.h" />
-    <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem\acme_directory.h" />
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
@@ -1328,6 +1331,8 @@
     <ClInclude Include="primitive\collection\_map_binary_stream.h" />
     <ClInclude Include="primitive\collection\_papaya_heap.h" />
     <ClInclude Include="primitive\collection\_range.h" />
+    <ClInclude Include="primitive\collection\_std.h" />
+    <ClInclude Include="primitive\collection\_string.h" />
     <ClInclude Include="primitive\collection\_text_stream.h" />
     <ClInclude Include="primitive\collection\__payload_array.h" />
     <ClInclude Include="primitive\collection\__property_set.h" />
@@ -1338,6 +1343,7 @@
     <ClInclude Include="primitive\geometry2d\_random.h" />
     <ClInclude Include="primitive\mathematics\logarithm.h" />
     <ClInclude Include="primitive\mathematics\_random.h" />
+    <ClInclude Include="primitive\mathematics\_string.h" />
     <ClInclude Include="primitive\numeric\types.h" />
     <ClInclude Include="primitive\primitive\aaa_atom_array.h" />
     <ClInclude Include="primitive\primitive\aaa_atom_space.h" />
@@ -1354,6 +1360,7 @@
     <ClInclude Include="primitive\primitive\scope_stack.h" />
     <ClInclude Include="primitive\primitive\typed.h" />
     <ClInclude Include="primitive\primitive\aaa_factory.h" />
+    <ClInclude Include="primitive\primitive\unit.h" />
     <ClInclude Include="primitive\primitive\url.h" />
     <ClInclude Include="primitive\primitive\url_domain.h" />
     <ClInclude Include="primitive\primitive\_c_memory.h" />
@@ -1406,6 +1413,7 @@
     <ClInclude Include="primitive\string\utf8_character.h" />
     <ClInclude Include="primitive\string\_string_base_impl1.h" />
     <ClInclude Include="primitive\string\_string_range_impl.h" />
+    <ClInclude Include="primitive\string\__wide.h" />
     <ClInclude Include="primitive\time\day.h" />
     <ClInclude Include="primitive\time\floating\_.h" />
     <ClInclude Include="primitive\time\frequency.h" />
@@ -1425,8 +1433,10 @@
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="primitive\_.h" />
     <ClInclude Include="procedure.h" />
+    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
+    <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="_range.h" />
     <ClInclude Include="_library.h" />
     <ClInclude Include="_operating_system.h" />
@@ -1968,6 +1978,7 @@
     <None Include="memory\namespace_heap.inl" />
     <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <None Include="memory\_new.inl" />
+    <None Include="primitive\mathematics\int_to_string_bases_table.dynamically_generated" />
     <None Include="primitive\primitive\_impl.h" />
     <None Include="primitive\string\_defer.h" />
   </ItemGroup>

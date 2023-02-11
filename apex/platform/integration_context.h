@@ -7,7 +7,7 @@ namespace integration
 
 
    class CLASS_DECL_APEX context :
-      virtual public ::particle
+      virtual public ::object
    {
    public:
 

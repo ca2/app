@@ -775,14 +775,14 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       strObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".o";
 #else
       //strB = m_strDynamicSourceStageFolder / "front\\introjection\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".pdb";
-      strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".lib";
-      strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".exp";
+      strP = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".pdb";
+      strL = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".lib";
+      strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "introjection" / strTransformName.sibling(strScript.name()) + ".exp";
       //strCppPath = m_strDynamicSourceStageFolder / "introjection" / strTransformName.sibling(strScript.name()) + ".cpp";
       strCppPath = strName;
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
-      strDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
+      strDVP = strDynamicSourceScriptFolder / strTransformName / m_pintegrationcontext->payload("sdk1").as_string() + ".pdb";
       //strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
       //strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
       //strDO2 = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
@@ -1041,9 +1041,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #if defined(LINUX) || defined(FREEBSD)
       strBuildCmd = dir()->install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.format(dir()->install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(dir()->install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #else
-      strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
+      strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1109,7 +1109,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
 #else
 
-      string strTargetPath = dir()->install() / "time-windows" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
+      string strTargetPath = dir()->install() / "time-windows" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".dll");
 
@@ -1135,7 +1135,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       pcontext->m_papexcontext->file()->put_text(strCmdCompile, str);
 
-      process->create_child_process(str,true,m_pathProjectDir,::e_priority_highest);
+      process->create_child_process(str,true,m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
 
 #endif
 
@@ -1258,7 +1258,7 @@ auto tickStart = ::time::now();
 #if defined(LINUX) || defined(FREEBSD)
          strBuildCmd.format(dir()->install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
-         strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
+         strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1313,7 +1313,7 @@ auto tickStart = ::time::now();
 
 #else
 
-         process->create_child_process(str,true, m_pathProjectDir,::e_priority_highest);
+         process->create_child_process(str,true, m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
 #endif
 #else
 

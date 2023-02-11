@@ -58,60 +58,6 @@ namespace programming
 
       //}
 
-#ifdef WINDOWS_DESKTOP
-
-      {
-
-         auto pacmedirectory = acmedirectory();
-
-         ::file::path path;
-
-         path = pacmedirectory->config() / "programming/vs.txt";
-
-         auto pcontext = m_pcontext;
-
-         m_strVs = file()->as_string(path);
-
-         m_strVs.trim();
-
-         if (m_strVs == "2015")
-         {
-
-            m_strVsTools = "140";
-
-         }
-         else if (m_strVs == "2017")
-         {
-
-            m_strVsTools = "141";
-
-         }
-         else if (m_strVs == "2019")
-         {
-
-            m_strVsTools = "142";
-
-         }
-         else if (m_strVs == "2022")
-         {
-
-            m_strVsTools = "143";
-
-         }
-         else
-         {
-
-            string strMessage;
-
-            strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
-
-            FATAL(strMessage);
-
-         }
-
-      }
-
-#endif
 
       if(pathProjectDir.has_char())
       {
@@ -354,79 +300,79 @@ namespace programming
       ::pointer<::apex::application>papp = acmeapplication();
 
 
-#ifdef WINDOWS
-      //sleep(15000_ms);
-
-      string strBuildCmd = m_strContext;
-
-      if (m_strVs == "2015")
-      {
-
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
-
-      }
-      else if (m_strVs == "2017")
-      {
-
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
-
-      }
-      else if (m_strVs == "2019")
-      {
-
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
-
-      }
-      else if (m_strVs == "2022")
-      {
-
-         //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
-
-         strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
-
-      }
-
-      ::operating_system::process_pointer process(e_create, this);
-
-      ::file::path pathEnvTxt;
-
-      auto pacmedirectory = acmedirectory();
-
-      pathEnvTxt = pacmedirectory->system() / "env.txt";
-
-      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
-
-      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
-
-      auto psystem = acmesystem();
-
-      auto pnode = psystem->node();
-
-      pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
-
-      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
-
-      stra.add_lines(strLog);
-
-      //sleep(10000_ms);
-
-#ifdef WINDOWS_DESKTOP
-
-      property_set setEnvironment;
-
-      setEnvironment.parse_environment_variable(stra);
-
-      for (auto& pproperty : setEnvironment)
-      {
-
-         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->as_string()));
-
-      }
-
-
-
-#endif
-#endif
+//#ifdef WINDOWS
+//      //sleep(15000_ms);
+//
+//      string strBuildCmd = m_strContext;
+//
+//      if (m_strVs == "2015")
+//      {
+//
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+//
+//      }
+//      else if (m_strVs == "2017")
+//      {
+//
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
+//
+//      }
+//      else if (m_strVs == "2019")
+//      {
+//
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
+//
+//      }
+//      else if (m_strVs == "2022")
+//      {
+//
+//         //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
+//
+//         strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
+//
+//      }
+//
+//      ::operating_system::process_pointer process(e_create, this);
+//
+//      ::file::path pathEnvTxt;
+//
+//      auto pacmedirectory = acmedirectory();
+//
+//      pathEnvTxt = pacmedirectory->system() / "env.txt";
+//
+//      acmefile()->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
+//
+//      acmefile()->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+//
+//      auto psystem = acmesystem();
+//
+//      auto pnode = psystem->node();
+//
+//      pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
+//
+//      strLog = acmefile()->as_string(pacmedirectory->system() / "env.txt");
+//
+//      stra.add_lines(strLog);
+//
+//      //sleep(10000_ms);
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      property_set setEnvironment;
+//
+//      setEnvironment.parse_environment_variable(stra);
+//
+//      for (auto& pproperty : setEnvironment)
+//      {
+//
+//         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->as_string()));
+//
+//      }
+//
+//
+//
+//#endif
+//#endif
 
       //   ::file::path strFolder;
       //   strFolder = dir()->install();

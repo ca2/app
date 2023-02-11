@@ -424,13 +424,13 @@ namespace dynamic_source
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
 
-      strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
+      strP = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
 
-      strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
+      strL = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
 
-      strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
+      strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
 
-      ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
+      ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
@@ -438,7 +438,7 @@ namespace dynamic_source
       
       ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" OPERATING_SYSTEM_NAME "\\intermediate\\x64\\" + m_strDynamicSourceConfiguration + "\\app-core\\netnode_dynamic_source_script";
 
-      ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_strSdk1 + ".pdb");
+      ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_pintegrationcontext->payload("sdk1").as_string() + ".pdb");
 
       //::file::path pathCompiler;
 
@@ -446,9 +446,9 @@ namespace dynamic_source
 
          ::file::path pathHelper1 = strTransformName.sibling(strScript.name());
 
-         string strHelper1 = pathHelper1.name() + "-" + m_strSdk1 + ".pdb";
+         string strHelper1 = pathHelper1.name() + "-" + m_pintegrationcontext->payload("sdk1").as_string() + ".pdb";
 
-         auto pathDVP0 = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
+         auto pathDVP0 = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / pathHelper1.folder() / strHelper1;
 
          string strCompiler = pathHelper1.name() + "-compiler.txt";
 
@@ -718,7 +718,7 @@ namespace dynamic_source
 
          pathObjFile = strV;
          pathObjFile /= "time-" OPERATING_SYSTEM_NAME"/intermediate";
-         pathObjFile /= m_strPlatform;
+         pathObjFile /= m_pintegrationcontext->m_strPlatform;
          pathObjFile /= m_strDynamicSourceConfiguration;
          pathObjFile /= "app-core/netnode_dynamic_source_script";
          pathObjFile /= strItemName;
@@ -737,7 +737,7 @@ namespace dynamic_source
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
       strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -901,7 +901,7 @@ namespace dynamic_source
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
          strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strBuildCmd.format(dir()->install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1468,7 +1468,7 @@ namespace dynamic_source
 #ifdef LINUX
       l.m_strLibraryPath = "/aura/" / m_strDynamicSourceStage / "x86/libnetnodelibrary.so";
 #else
-      l.m_strLibraryPath = dir()->install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
+      l.m_strLibraryPath = dir()->install() / m_strDynamicSourceStage / m_pintegrationcontext->m_strPlatform / "dynamic_source/" / strName / strLib + ".dll";
 #endif
       //#else
       // plib->m_strLibraryPath.format(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
@@ -1542,7 +1542,7 @@ namespace dynamic_source
 #ifdef LINUX
          strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          //#else
@@ -1706,7 +1706,7 @@ namespace dynamic_source
 #ifdef LINUX
       strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
       //#else
       // strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

@@ -737,7 +737,7 @@ namespace dynamic_source
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
       strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -901,7 +901,7 @@ namespace dynamic_source
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
          strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat");
+         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          str = file()->as_string(strBuildCmd);

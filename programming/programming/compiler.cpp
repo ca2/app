@@ -261,6 +261,8 @@ namespace programming
 //
 //#endif
 
+      m_pintegrationcontext->prepare_compile_and_link_environment();
+
       dir()->create(dir()->install() / m_strDynamicSourceStage / "front");
 
       string str;

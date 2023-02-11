@@ -112,15 +112,16 @@ namespace integration
 //      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
 
-
+      str.find_replace("%PLATFORM%", m_strPlatform);
 
    }
 
    void context::prepare_linking_script(::string & str)
    {
 
-      prepare_compilation_script(str);
+      //prepare_compilation_script(str);
 
 
 //      str.find_replace("%VS_VARS%",m_strContext);
@@ -163,6 +164,9 @@ namespace integration
 //      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
 //      str.find_replace("%SDK1%",m_strSdk1);
 
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+
+      str.find_replace("%PLATFORM%", m_strPlatform);
 
    }
 

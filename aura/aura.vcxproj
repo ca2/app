@@ -1262,7 +1262,7 @@
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="R:\main\source\app\aura\deployment.rc" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

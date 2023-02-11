@@ -10,6 +10,7 @@
 #include "acme/user/nano/details_window.h"
 #include "acme/user/nano/popup_button.h"
 #include "acme/user/user/mouse.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
@@ -334,10 +335,10 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
 
 #if defined(_UWP)
 
-   if(pparticle->acmesystem()->m_bConsole || !is_ui_possible())
+   if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
    {
 
-      return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+      return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 
    }
    else
@@ -445,10 +446,10 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
 #if defined(_UWP)
 
-   if(pparticle->acmesystem()->m_bConsole || !is_ui_possible())
+   if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
    {
 
-      auto result = message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+      auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 
       function(result);
 

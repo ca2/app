@@ -1820,7 +1820,7 @@ namespace sandbox_windowing
 
       //}
 
-      return true;
+      return ::success;
 
    }
 

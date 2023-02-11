@@ -1,4 +1,4 @@
-// Created by camilo on 2022-09-23 01:15 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-09-23 01:15 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -8,7 +8,7 @@
 inline winrt::hstring __hstring(const ::scoped_string & scopedstr)
 {
 
-   wstring wstr(psz);
+   wstring wstr(scopedstr);
 
    return wstr.c_str();
 

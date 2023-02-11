@@ -440,6 +440,7 @@ namespace acme
 
    }
 
+
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
@@ -452,6 +453,8 @@ namespace acme
 
    }
 
+#if defined(WINDOWS_DESKTOP)
+
    void acme::initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
    {
 
@@ -461,6 +464,7 @@ namespace acme
 
    }
 
+#endif
 
 #else
 

@@ -1242,6 +1242,7 @@
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\api.cpp" />
     <ClCompile Include="platform\api_client.cpp" />
+    <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\application_menu.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />

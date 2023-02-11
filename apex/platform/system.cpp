@@ -18,7 +18,7 @@
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 //#include "apex/id.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
@@ -4856,7 +4856,7 @@ namespace apex
    bool system::window_rectangle(RECTANGLE_I32* prectangle)
    {
 
-      if (::is_null(get_session()))
+      if (::is_null(acmesession()))
       {
 
          return false;

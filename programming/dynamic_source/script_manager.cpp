@@ -154,6 +154,8 @@ namespace dynamic_source
       //   
       //}
 
+      m_pmutexSession = acmenode()->create_mutex();
+
       calc_rsa_key();
 
       //estatus = 

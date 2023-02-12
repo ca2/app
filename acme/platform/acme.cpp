@@ -453,8 +453,6 @@ namespace acme
 
    }
 
-#if defined(WINDOWS_DESKTOP)
-
    void acme::initialize(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
    {
 
@@ -463,8 +461,6 @@ namespace acme
       m_psubsystem->m_nCmdShow = nCmdShow;
 
    }
-
-#endif
 
 #else
 

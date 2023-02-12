@@ -216,6 +216,9 @@ namespace apex
 
       m_eexclusiveinstance = e_exclusive_instance_none;
 
+      factory()->add_factory_item < ::networking::application >();
+
+
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
 

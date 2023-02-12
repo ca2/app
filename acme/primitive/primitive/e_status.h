@@ -1,4 +1,4 @@
-//
+﻿//
 //  estatus.h
 //  acme
 //
@@ -26,7 +26,7 @@
 //}
 //
 
-class CLASS_DECL_ACME e_status
+class e_status
 {
 public:
 
@@ -116,7 +116,38 @@ public:
    }
 
 
-   int exit_code()const;
+   int exit_code() const
+   {
+
+      if (this->succeeded())
+      {
+
+         return 0;
+
+      }
+
+#ifdef WINDOWS
+
+      return (::i32)-(::i64)m_eenum;
+
+#else
+
+      if (this->m_eenum >= -125)
+      {
+
+         return (::i32)-(::i64)(this->m_eenum);
+
+      }
+      else
+      {
+
+         return 125;
+
+      }
+
+#endif
+
+   }
 
 
    

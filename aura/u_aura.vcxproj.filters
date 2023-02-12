@@ -1581,6 +1581,9 @@
     <ClCompile Include="graphics\image\_.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

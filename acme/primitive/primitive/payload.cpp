@@ -5047,7 +5047,7 @@ property & payload::get_property(const ::atom & atom)
       else
       {
 
-         throw exception(error_unsupported_function);
+         return e_type_new;
 
       }
 
@@ -5056,7 +5056,7 @@ property & payload::get_property(const ::atom & atom)
    else
    {
 
-      throw exception(error_unsupported_function);
+      return e_type_new;
 
    }
 

@@ -268,6 +268,12 @@ namespace interprocess
 
       ::payload payloadReply;
 
+      acmeapplication()->payload("activation.object") = strObject;
+
+      acmeapplication()->payload("activation.member") = strMember;
+
+      acmeapplication()->payload("activation.network_arguments") = strNetworkArguments;
+
       bool bShouldContinueTryingToHandle = _handle_call(payloadReply, strObject, strMember, propertyset);
 
       if (bShouldContinueTryingToHandle)

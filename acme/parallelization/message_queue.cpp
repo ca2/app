@@ -169,7 +169,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto estatus = m_eventNewMessage.wait(time);
+         auto estatus = m_eventNewMessage._wait(time);
 
          if(estatus == error_failed)
          {

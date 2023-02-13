@@ -11,15 +11,15 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
    ::wstring buffer;
 
-   size_t BufferLength = MAX_PATH;
+   DWORD dwBufferLength = MAX_PATH;
 
    for (;;)
    {
-      auto psz = buffer.get_string_buffer(BufferLength);
+      auto psz = buffer.get_string_buffer(dwBufferLength);
 
       ::SetLastError(ERROR_SUCCESS);
 
-      auto pathLength = ::GetModuleFileNameW(reinterpret_cast<HMODULE>(&__ImageBase), psz, BufferLength);
+      auto pathLength = ::GetModuleFileNameW(reinterpret_cast<HMODULE>(&__ImageBase), psz, dwBufferLength);
 
       if (pathLength == 0)
       {
@@ -37,7 +37,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
       }
 
-      BufferLength *= 2;
+      dwBufferLength *= 2;
 
    }
 

@@ -260,7 +260,7 @@ public:
    /// Request the focus to be moved to this widget
    void request_focus();
 
-   const ::scoped_string & tooltip() const { return m_tooltip; }
+   ::string tooltip() const { return m_tooltip; }
    void set_tooltip(const ::scoped_string & tooltip) { m_tooltip = tooltip; }
 //
 //   /// Return current font size. If not set the default of the current theme will be returned

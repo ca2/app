@@ -7,12 +7,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{f289422c-32bc-4e04-a471-2317633a7e3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nano2d">
-      <UniqueIdentifier>{668a2c6a-19bb-46e4-81af-00f7f62652ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\nano2d">
-      <UniqueIdentifier>{dafd4125-52d5-46d0-8dc9-58a5595515b5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -132,15 +126,6 @@
     <ClInclude Include="_nanoui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nano2d\draw2d_context.h">
-      <Filter>Header Files\nano2d</Filter>
-    </ClInclude>
-    <ClInclude Include="nano2d\context.h">
-      <Filter>Header Files\nano2d</Filter>
-    </ClInclude>
-    <ClInclude Include="nano2d\_nano2d.h">
-      <Filter>Header Files\nano2d</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -221,23 +206,11 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nano2d\context.cpp">
-      <Filter>Source Files\nano2d</Filter>
-    </ClCompile>
-    <ClCompile Include="nano2d\draw2d_context.cpp">
-      <Filter>Source Files\nano2d</Filter>
-    </ClCompile>
-    <ClCompile Include="nano2d\nano2d.cpp">
-      <Filter>Source Files\nano2d</Filter>
-    </ClCompile>
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="nano2d\font_sink.cpp">
-      <Filter>Source Files\nano2d</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

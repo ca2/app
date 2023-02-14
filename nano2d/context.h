@@ -473,6 +473,32 @@ namespace nano2d
 
 	};
 
+   class guard
+   {
+   public:
+
+      
+      context * m_pcontext;
+
+
+      guard(context * pcontext) :
+         m_pcontext(pcontext) 
+      {
+         
+         m_pcontext->save(); 
+      
+      }
+
+      
+      ~guard()
+      {
+         
+         m_pcontext->restore(); 
+      
+      }
+
+
+   };
 
 
 } // namespace nano2d

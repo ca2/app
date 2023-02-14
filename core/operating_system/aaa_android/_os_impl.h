@@ -22,7 +22,7 @@
 #include "_os_remote.h"
 
 
-void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
+void android_on_text(enum_os_text etext, const wchar_t* pwch, size_t len);
 
 
 #define  LOG_TAG    "aura : os : _os_binding"

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-10-09 20:55 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -53,10 +53,11 @@ public:
    char **                                         m_argv = nullptr;
    char **                                         m_envp = nullptr;
    
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
    
    wchar_t **                                      m_wargv = nullptr;
    wchar_t **                                      m_wenvp = nullptr;
+
    hinstance                                       m_hinstanceThis = nullptr;
    hinstance                                       m_hinstancePrev = nullptr;
    int                                             m_nCmdShow = -1;

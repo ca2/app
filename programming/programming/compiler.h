@@ -2,9 +2,9 @@
 #pragma once
 
 
-#include "acme/filesystem/filesystem/path.h"
+//#include "acme/filesystem/filesystem/path.h"
 #include "apex/platform/integration_context.h"
-#include "apex_windows/integration_context.h"
+//#include "apex_windows/integration_context.h"
 
 
 namespace programming
@@ -12,7 +12,7 @@ namespace programming
 
 
    class CLASS_DECL_APP_PROGRAMMING compiler :
-      virtual public ::apex_windows::integration::context
+      virtual public ::object
    {
    protected:
 
@@ -20,8 +20,11 @@ namespace programming
 
    public:
 
-      //::pointer < ::integration::context >      m_pintegrationcontext;
-      //::file::path                              m_pathProjectDir;
+
+      ::pointer < ::integration::context >      m_pintegrationcontext;
+
+      //::pointer < ::integration::context >    m_pintegrationcontext;
+      //::file::path                            m_pathProjectDir;
       string                                    m_strDynamicSourceConfiguration;
       ::file::path                              m_strDynamicSourceStage;
       ::file::path                              m_strDynamicSourceStageFolder;
@@ -54,7 +57,7 @@ namespace programming
       ~compiler() override;
 
 
-      virtual void initialize_programming_compiler(::particle * pparticle);
+      virtual void initialize_programming_compiler(::particle * pparticle, const ::file::path & pathProjectDir = "");
 
       virtual void prepare_compile_and_link_environment();
 

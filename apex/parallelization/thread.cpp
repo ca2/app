@@ -12,7 +12,7 @@
 #include "acme/parallelization/pool.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 

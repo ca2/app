@@ -34,7 +34,7 @@ namespace nanoui
       Window(Widget * parent, const ::scoped_string & title = "Untitled");
 
       /// Return the window title
-      const ::scoped_string & title() const { return m_title; }
+      ::string title() const { return m_title; }
       /// Set the window title
       void set_title(const ::scoped_string & title) { m_title = title; }
 

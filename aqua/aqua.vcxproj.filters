@@ -70,6 +70,9 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{5a52cb6c-76f6-41e2-8d96-4d5f2abad324}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\application.h">
@@ -419,5 +422,10 @@
     <ClCompile Include="xml\exception.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

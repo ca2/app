@@ -755,16 +755,27 @@ void payload::set_type(enum_type etype, bool bConvert)
          }
 
       }
-      else if (etype == e_type_string)
+      else
       {
 
-         ::new(&m_str) ::string();
+         if (etype == e_type_string)
+         {
 
-      }
-      else if (etype == e_type_atom)
-      {
+            ::new(&m_str) ::string();
 
-         ::new(&m_atom) ::atom();
+         }
+         else if (etype == e_type_atom)
+         {
+
+            ::new(&m_atom) ::atom();
+
+         }
+         else if (etype >= e_type_element && etype < e_type_last_element)
+         {
+
+            ::zero(m_all);
+
+         }
 
       }
 
@@ -1172,6 +1183,7 @@ class ::payload & payload::operator = (::i64 i)
    return *this;
 }
 
+
 class ::payload & payload::operator = (::u64 u)
 {
    if(get_type() == e_type_pu64)
@@ -1240,16 +1252,138 @@ class ::payload & payload::operator = (long l)
 
 class ::payload & payload::operator = (::f32 f32)
 {
-   set_type(e_type_f32, false);
-   m_f32 = f32;
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      m_ppayload->operator = (f32);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(f32);
+
+   }
+   else if (m_etype == e_type_pf64)
+   {
+
+      *m_pf64 = f32;
+
+   }
+   else if (m_etype == e_type_pf32)
+   {
+
+      *m_pf32 = f32;
+
+   }
+   else if (m_etype == e_type_pi8)
+   {
+
+      *m_pi8 = (::i8)f32;
+
+   }
+   else if (m_etype == e_type_pi16)
+   {
+
+      *m_pi16 = (::i16)f32;
+
+   }
+   else if (m_etype == e_type_pi32)
+   {
+
+      *m_pi32 = (::i32)f32;
+
+   }
+   else if (m_etype == e_type_pi64)
+   {
+
+      *m_pi64 = (::i64)f32;
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_f32)
+      {
+
+         set_type(e_type_f32, false);
+
+      }
+
+      m_f32 = f32;
+
+   }
+   
    return *this;
+
 }
+
 
 class ::payload & payload::operator = (::f64 f64)
 {
-   set_type(e_type_f64, false);
-   m_f64 = f64;
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      m_ppayload->operator = (f64);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(f64);
+
+   }
+   else if (m_etype == e_type_pf64)
+   {
+
+      *m_pf64 = f64;
+
+   }
+   else if (m_etype == e_type_pf32)
+   {
+
+      *m_pf32 = (::f32) f64;
+
+   }
+   else if (m_etype == e_type_pi8)
+   {
+
+      *m_pi8 = (::i8) f64;
+
+   }
+   else if (m_etype == e_type_pi16)
+   {
+
+      *m_pi16 = (::i16)f64;
+
+   }
+   else if (m_etype == e_type_pi32)
+   {
+
+      *m_pi32 = (::i32)f64;
+
+   }
+   else if (m_etype == e_type_pi64)
+   {
+
+      *m_pi64 = (::i64)f64;
+
+   }
+   else 
+   {
+      if (m_etype != e_type_f64)
+      {
+         set_type(e_type_f64, false);
+
+      }
+      m_f64 = f64;
+
+   }
+
    return *this;
+
 }
 
 
@@ -1321,7 +1455,7 @@ class ::payload & payload::operator = (const ::property * pproperty)
 
       set_type(e_type_property, false);
 
-      m_pproperty = (::property *)pproperty;
+      m_pproperty = (::property *) pproperty;
 
    }
 
@@ -1393,6 +1527,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
          // should dereference (this operator here means a content copy)
          *this = *((class property&)payload).m_pproperty;
          return *this;
+          case e_type_property_set:
+              // should dereference (this operator here means a content copy)
+              *this = payload.property_set_reference();
+              return *this;
       case e_type_pi32:
          // should dereference (this operator here means a content copy)
          *this  = *((class ::payload &)payload).m_pi32;
@@ -1406,7 +1544,46 @@ class ::payload & payload::operator = (const class ::payload & payload)
       }
 
       set_type(payload.get_type(), false);
-      if (payload.is_element())
+      
+      auto etypeSource = payload.get_type();
+
+      if (etypeSource == e_type_path)
+      {
+
+         m_ppath = new ::file::path_object(*payload.m_ppath);
+
+      }
+      else if (etypeSource == e_type_property_set)
+      {
+
+         m_ppropertyset = new ::property_set(*payload.m_ppropertyset);
+
+      }
+      else if (etypeSource == e_type_i32_array)
+      {
+
+         m_pia = new ::i32_array(*payload.m_pia);
+
+      }
+      else if (etypeSource == e_type_i64_array)
+      {
+
+         m_pi64a = new ::i64_array(*payload.m_pi64a);
+
+      }
+      else if (etypeSource == e_type_payload_array)
+      {
+
+         m_ppayloada = new ::payload_array(*payload.m_ppayloada);
+
+      }
+      else if (etypeSource == e_type_string_array)
+      {
+
+         m_pstra = new ::string_array(*payload.m_pstra);
+
+      }
+      else if (payload.is_element())
       {
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
@@ -1497,11 +1674,42 @@ class ::payload & payload::operator = (const class ::payload & payload)
 class ::payload & payload::operator = (const int_array & ia)
 {
 
-   release();
+   if (m_etype == e_type_payload_pointer)
+   {
 
-   set_type(e_type_i32_array, false);
+      m_ppayload->operator = (ia);
 
-   m_pia = new i32_array(ia);
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(ia);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_i32_array)
+      {
+
+         set_type(e_type_i32_array, false);
+
+      }
+
+      if (::is_null(m_pia))
+      {
+
+         m_pia = new i32_array(ia);
+
+      }
+      else
+      {
+
+         *m_pia = ia;
+
+      }
+
+   }
 
    return *this;
 
@@ -1511,11 +1719,42 @@ class ::payload & payload::operator = (const int_array & ia)
 class ::payload & payload::operator = (const class memory & memory)
 {
 
-   release();
+   if (m_etype == e_type_payload_pointer)
+   {
 
-   set_type(e_type_memory, false);
+      m_ppayload->operator = (memory);
 
-   m_pmemory = new ::memory(memory);
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(memory);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_memory)
+      {
+
+         set_type(e_type_memory, false);
+
+      }
+
+      if (::is_null(m_pmemory))
+      {
+
+         m_pmemory = new ::memory(memory);
+
+      }
+      else
+      {
+
+         *m_pmemory = memory;
+
+      }
+
+   }
 
    return *this;
 
@@ -1525,27 +1764,109 @@ class ::payload & payload::operator = (const class memory & memory)
 class ::payload & payload::operator = (const string_array & stra)
 {
 
-   release();
+   if (m_etype == e_type_payload_pointer)
+   {
 
-   set_type(e_type_string_array, false);
+      m_ppayload->operator = (stra);
 
-   m_pstra = new ::string_array(stra);
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(stra);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_string_array)
+      {
+
+         set_type(e_type_string_array, false);
+
+      }
+
+      if (::is_null(m_pstra))
+      {
+
+         m_pstra = new ::string_array(stra);
+
+      }
+      else
+      {
+
+         *m_pstra = stra;
+
+      }
+
+   }
 
    return *this;
+
+//}
+//release();
+//
+//   set_type(e_type_string_array, false);
+//
+//   m_pstra = new ::string_array(stra);
+//
+//   return *this;
 
 }
 
 
 class ::payload & payload::operator = (const payload_array & payloada)
 {
+   //{
 
-   release();
+      if (m_etype == e_type_payload_pointer)
+      {
 
-   set_type(e_type_payload_array, false);
+         m_ppayload->operator = (payloada);
 
-   m_ppayloada = new ::payload_array(payloada);
+      }
+      else if (m_etype == e_type_property)
+      {
 
-   return *this;
+         m_pproperty->operator =(payloada);
+
+      }
+      else
+      {
+
+         if (m_etype != e_type_payload_array)
+         {
+
+            set_type(e_type_payload_array, false);
+
+         }
+
+         if (::is_null(m_ppayloada))
+         {
+
+            m_ppayloada = new ::payload_array(payloada);
+
+         }
+         else
+         {
+
+            *m_ppayloada = payloada;
+
+         }
+
+      }
+
+      return *this;
+
+   //}
+
+   //release();
+
+   //set_type(e_type_payload_array, false);
+
+   //m_ppayloada = new ::payload_array(payloada);
+
+   //return *this;
 
 }
 
@@ -1553,11 +1874,49 @@ class ::payload & payload::operator = (const payload_array & payloada)
 class ::payload & payload::operator = (const property_set & propertyset)
 {
 
-   release();
+   if (m_etype == e_type_payload_pointer)
+   {
 
-   set_type(e_type_property_set, false);
+      m_ppayload->operator = (propertyset);
 
-   m_ppropertyset = new ::property_set(propertyset);
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(propertyset);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_property_set)
+      {
+
+         set_type(e_type_property_set, false);
+
+      }
+
+      if (::is_null(m_ppropertyset))
+      {
+
+         m_ppropertyset = new ::property_set(propertyset);
+
+      }
+      else
+      {
+
+         *m_ppropertyset = propertyset;
+
+      }
+
+   }
+
+
+   //release();
+
+   //set_type(e_type_property_set, false);
+
+   //m_ppropertyset = new ::property_set(propertyset);
 
    return *this;
 
@@ -1567,7 +1926,31 @@ class ::payload & payload::operator = (const property_set & propertyset)
 class ::payload & payload::operator = (const ::atom & atom)
 {
 
-   set_id(atom);
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      m_ppayload->set_id(atom);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->set_id(atom);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_atom)
+      {
+
+         set_type(e_type_atom, false);
+
+      }
+
+      set_id(atom);
+
+   }
 
    return *this;
 
@@ -1576,10 +1959,40 @@ class ::payload & payload::operator = (const ::atom & atom)
 
 class ::payload & payload::operator = (const class time & time)
 {
+   //{
 
-   set_type(e_type_time, false);
+      if (m_etype == e_type_payload_pointer)
+      {
 
-   m_time = time;
+         m_ppayload->operator =(time);
+
+      }
+      else if (m_etype == e_type_property)
+      {
+
+         m_pproperty->operator =(time);
+
+      }
+      else
+      {
+
+         if (m_etype != e_type_time)
+         {
+
+            set_type(e_type_time, false);
+
+         }
+
+         m_time = time;
+
+      }
+
+   //   return *this;
+
+
+   //set_type(e_type_time, false);
+
+   //m_time = time;
 
    return *this;
 
@@ -1605,6 +2018,12 @@ class ::payload & payload::operator = (class time * ptime)
    {
 
       return m_ppayload->operator = (block);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(block);
 
    }
    else if(m_etype == e_type_memory)
@@ -4384,10 +4803,10 @@ class ::time & payload::time_reference()
 }
 
 
-class ::payload & payload::operator = (::payload * pvar)
+class ::payload & payload::operator = (::payload * ppayload)
 {
 
-   if (m_ppayload == pvar)
+   if (m_ppayload == ppayload)
    {
 
       return *this;
@@ -4396,7 +4815,7 @@ class ::payload & payload::operator = (::payload * pvar)
 
    set_type(e_type_payload_pointer, false);
 
-   m_ppayload = pvar;
+   m_ppayload = ppayload;
 
    return *this;
 
@@ -4953,6 +5372,110 @@ property & payload::get_property(const ::atom & atom)
    return *pproperty;
 
 }
+
+
+::payload payload::operator[] (const ::atom & atom) 
+{ 
+
+   if (m_etype == ::e_type_payload_pointer)
+   {
+    
+      return m_ppayload->operator[](atom);
+      
+   }  
+   else if (m_etype == ::e_type_property) 
+   { 
+     
+      return m_pproperty->operator[](atom);
+      
+   }
+   else if (atom.is_integer())
+   {
+
+      if (is_array())
+      {
+
+         return at(atom.as_index());
+
+      }
+      else if (is_text())
+      {
+
+         return as_string()[atom.as_index()];
+
+      }
+      else
+      {
+
+         return &property_set_reference()[atom];
+
+      }
+
+   }
+   else
+   {
+
+      return &property_set_reference()[atom];
+
+   }
+
+}
+
+
+::payload payload::operator[] (const ::atom & atom) const
+{
+
+   if (m_etype == ::e_type_payload_pointer)
+   {
+
+      return m_ppayload->operator[](atom);
+
+   }
+   else if (m_etype == ::e_type_property)
+   {
+
+      return m_pproperty->operator[](atom);
+
+   }
+   else if (m_etype == ::e_type_property_set)
+   {
+
+      return find_property(atom);
+
+   }
+   else if (atom.is_integer())
+   {
+
+      if (is_array())
+      {
+
+         return at(atom.as_index());
+
+      }
+      else if (is_text())
+      {
+
+         return as_string()[atom.as_index()];
+
+      }
+      else
+      {
+
+         return e_type_new;
+
+      }
+
+
+   }
+   else
+   {
+
+      return e_type_new;
+
+   }
+
+}
+
 
 
 
@@ -9625,9 +10148,46 @@ bool payload::is_array() const
 
 payload & payload::operator = (const ::file::path & path)
 {
-   set_type(e_type_path, false);
-   m_ppath = memory_new::file::path_object(path);
+
+   if (m_etype == e_type_payload_pointer)
+   {
+
+      m_ppayload->operator = (path);
+
+   }
+   else if (m_etype == e_type_property)
+   {
+
+      m_pproperty->operator =(path);
+
+   }
+   else
+   {
+
+      if (m_etype != e_type_path)
+      {
+
+         set_type(e_type_path, false);
+
+      }
+
+      if (::is_null(m_ppath))
+      {
+
+         m_ppath = new ::file::path_object(path);
+
+      }
+      else
+      {
+
+         *m_ppath = path;
+
+      }
+
+   }
+
    return *this;
+
 }
 
 

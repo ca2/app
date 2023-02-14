@@ -87,6 +87,9 @@ namespace apex
       ::pointer<::interprocess::handler>           m_pinterprocesshandler;
       //::pointer<service>                         m_pservice;
 
+      //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
+
+
       // apex commented
       //::pointer < ::mutex >                                         m_pmutexFrame;
       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
@@ -239,6 +242,8 @@ namespace apex
 
       void init_instance() override;
 
+      virtual void defer_interprocess_communication();
+
 
       virtual void     run() override;
       //virtual void     main() override;
@@ -293,6 +298,7 @@ namespace apex
 
       virtual bool is_running();
 
+      bool pump_runnable() override;
 
       virtual void add_activation_message(const ::string & strMessage);
 

@@ -6,6 +6,7 @@
 
 ////#include "acme/primitive/primitive/property_object.h"
 //#include "acme/primitive/mathematics/c_number.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
 namespace acme
@@ -20,10 +21,11 @@ namespace acme
 
       message_union                 m_union;
 
-
-      wparam         m_wparam;
-      lparam         m_lparam;
-      lresult        m_lresult;
+      class ::time      m_time;
+      ::point_f64       m_pointMessage;
+      wparam            m_wparam;
+      lparam            m_lparam;
+      lresult           m_lresult;
 
 
    };

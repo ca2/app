@@ -609,7 +609,9 @@ inline int maximum_digits(int iBase)
    else
    {
 
-      return throw_exception(error_unexpected);
+      throw_exception(error_unexpected);
+
+      return -1;
 
    }
 
@@ -647,7 +649,9 @@ inline int maximum_digits(int iBase)
    else
    {
 
-      return throw_exception(error_unexpected);
+      throw_exception(error_unexpected);
+
+      return -1;
 
    }
 

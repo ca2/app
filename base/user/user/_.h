@@ -49,7 +49,7 @@ namespace user
    class message_window;
 #endif
    class scroll_base;
-   template < class VIEW >  class show;
+   template < class VIEW, typename BASE_VIEW = impact >  class show;
    using scroll_impact = show < scroll_base >;
    using plain_edit_impact = show < plain_edit >;
 

@@ -17,7 +17,7 @@ namespace windows
 
 #else
 
-      auto hmodule = ::LoadPackagedLibrary(wstring(pszLibrary), 0);
+      auto hmodule = ::LoadPackagedLibrary(wstring(pathParam), 0);
 
 #endif
 

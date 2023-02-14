@@ -210,7 +210,12 @@ namespace filemanager
 
          ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
-         listingFinal.defer_add(pathFinal);
+         if(pathFinal.m_iDir >= 0)
+         {
+
+            listingFinal.defer_add(pathFinal);
+
+         }
 
       }
 

@@ -4,7 +4,7 @@
 #include "aura/_.h"
 
 
-#ifdef _NANO2D_LIBRARY
+#ifdef _nano2d_project
 #define CLASS_DECL_NANO2D  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NANO2D CLASS_DECL_IMPORT
@@ -40,3 +40,7 @@ namespace nano2d
 //
 //
 //
+
+CLASS_DECL_NANO2D::object * get_nano2d_object(::nano2d::context * pcontext);
+
+

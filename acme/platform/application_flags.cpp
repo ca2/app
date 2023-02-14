@@ -460,34 +460,34 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 
 #elif defined(_UWP)
 
-
-void main::system_construct(const ::string_array & straParam)
-{
-
-   //m_poslocal = nullptr;
-
-   auto stra = straParam;
-
-   //m_argc = __argc;
-
-   //m_argv = __argv;
-
-   //m_wargv = __wargv;
-
-   //m_pfnNewAuraApplication = nullptr;
-
-   //m_pfnNewAuraLibrary = nullptr;
-
-   //m_poslocal = nullptr;
-
-   //m_edisplay = e_display_default;
-
-   //zero(m_mainrunnera);
-
-   //return ::success;
-
-}
-
+//
+//void main::system_construct(const ::string_array & straParam)
+//{
+//
+//   //m_poslocal = nullptr;
+//
+//   auto stra = straParam;
+//
+//   //m_argc = __argc;
+//
+//   //m_argv = __argv;
+//
+//   //m_wargv = __wargv;
+//
+//   //m_pfnNewAuraApplication = nullptr;
+//
+//   //m_pfnNewAuraLibrary = nullptr;
+//
+//   //m_poslocal = nullptr;
+//
+//   //m_edisplay = e_display_default;
+//
+//   //zero(m_mainrunnera);
+//
+//   //return ::success;
+//
+//}
+//
 
 #else
 

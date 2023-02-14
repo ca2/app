@@ -16,6 +16,7 @@ Makefile
 **/CVS
 **/xcuserdata
 **/Generated Files
+**/doxygen.directory
 .DS_Store
 ._.DS_Store
 *.suo

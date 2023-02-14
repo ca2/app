@@ -22,10 +22,22 @@ html_impact::~html_impact()
 }
 
 
+void html_impact::initialize(::particle * pparticle)
+{
+
+   ::user::form_impact::initialize(pparticle);
+
+   ::html_form::initialize(pparticle);
+
+}
+
+
 void html_impact::install_message_routing(::channel * pchannel)
 {
 
-   ::user::show < ::html_form >::install_message_routing(pchannel);
+   ::user::form_impact::install_message_routing(pchannel);
+
+   ::html_form::install_message_routing(pchannel);
 
    MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &html_impact::on_message_destroy);
    MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &html_impact::on_message_create);
@@ -207,6 +219,15 @@ void html_impact::on_document_complete(const ::string & strUrl)
 void html_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
+   ::user::form_impact::handle(ptopic, pcontext);
+
+   if (ptopic->m_bRet)
+   {
+
+      return;
+
+   }
+
    ::html_form::handle(ptopic, pcontext);
 
    ////__update(::update)
@@ -243,6 +264,38 @@ void html_impact::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
+bool html_impact::open_document(const ::payload & payloadFile)
+{
+
+   return html_form::open_document(payloadFile);
+
+}
+
+
+bool html_impact::open_html(const ::string & strHtml)
+{
+
+   return html_form::open_html(strHtml);
+
+}
+
+
+void html_impact::soft_reload()
+{
+
+   html_form::soft_reload();
+
+}
+
+
+void html_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::html_form::_001OnDraw(pgraphics);
+
+}
+
+
 void html_impact::on_form_implemented()
 {
 
@@ -258,4 +311,22 @@ void html_impact::on_form_implemented()
    }
 
 }
+
+
+void html_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
+{
+
+   ::html_form::on_layout(pgraphics);
+
+}
+
+
+void html_impact::set_need_load_form_data()
+{
+
+   ::html_form::set_need_load_form_data();
+
+}
+
+
 

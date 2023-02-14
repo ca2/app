@@ -4,13 +4,13 @@ project(nanoui CXX)
 
 list(APPEND library_source
    #nano2d/_component.h
-   nano2d/context.cpp
-   nano2d/context.h
-   nano2d/draw2d_context.cpp
-   nano2d/draw2d_context.h
-   nano2d/font_sink.cpp
-   nano2d/font_sink.h
-   nano2d/nano2d.cpp
+   #nano2d/context.cpp
+   #nano2d/context.h
+   #nano2d/draw2d_context.cpp
+   #nano2d/draw2d_context.h
+   #nano2d/font_sink.cpp
+   #nano2d/font_sink.h
+   #nano2d/nano2d.cpp
     _.cpp
     _.h
     ##_library.h
@@ -109,7 +109,6 @@ endif()
 add_dependencies(${PROJECT_NAME}  experience_core)
 add_dependencies(${PROJECT_NAME}  ${default_draw2d})
 add_dependencies(${PROJECT_NAME}  ${default_write_text})
-add_dependencies(${PROJECT_NAME}  ${app_common_dependencies})
 add_dependencies(${PROJECT_NAME}  database_sqlite3)
 
 

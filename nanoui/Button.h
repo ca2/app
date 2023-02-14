@@ -116,7 +116,7 @@ namespace nanoui
       Button(Widget * parent, const ::scoped_string & caption = "Untitled", int icon = 0);
 
       /// Returns the caption of this Button.
-      const ::scoped_string & caption() const { return m_caption; }
+      ::string caption() const { return m_caption; }
 
       /// Sets the caption of this Button.
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }

@@ -160,7 +160,7 @@ CLASS_DECL_AURA ::acme::library * lib(const ::string & psz);
 #define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
 
 
-CLASS_DECL_AURA ::file::path libfilename(const ::string & str);
+CLASS_DECL_AURA ::file::path library_file_name(const ::string & str);
 
 
 

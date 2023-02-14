@@ -78,25 +78,25 @@ namespace nanoui
 
       }
 
-      const ::scoped_string & default_value() const { return m_default_value; }
+      ::string default_value() const { return m_default_value; }
       void set_default_value(const ::scoped_string & default_value) { m_default_value = default_value; }
 
       Alignment alignment() const { return m_alignment; }
       void set_alignment(Alignment align) { m_alignment = align; }
 
-      const ::scoped_string & units() const { return m_units; }
+      ::string units() const { return m_units; }
       void set_units(const ::scoped_string & units) { m_units = units; }
 
       int units_image() const { return m_units_image; }
       void set_units_image(int image) { m_units_image = image; }
 
       /// Return the underlying regular expression specifying valid formats
-      const ::scoped_string & format() const { return m_format; }
+      ::string format() const { return m_format; }
       /// Specify a regular expression specifying valid formats
       void set_format(const ::scoped_string & format) { m_format = format; }
 
       /// Return the placeholder text to be displayed while the text box is empty.
-      const ::scoped_string & placeholder() const { return m_placeholder; }
+      ::string placeholder() const { return m_placeholder; }
       /// Specify a placeholder text to be displayed while the text box is empty.
       void set_placeholder(const ::scoped_string & placeholder) { m_placeholder = placeholder; }
 
@@ -345,8 +345,11 @@ public:
 
    void number_format(const ::scoped_string & format) { m_number_format = format; }
 
-   Scalar value() const {
-      return (Scalar)std::stod(TextBox::value());
+   Scalar value() const 
+   {
+      Scalar scalar;
+      ::from_string(scalar, TextBox::value());
+      return scalar;
    }
 
    void set_value(Scalar value) {
@@ -358,7 +361,8 @@ public:
 
    void set_callback(const ::function<void(Scalar)> & cb) {
       TextBox::set_callback([cb, this](const ::scoped_string & str) {
-         Scalar scalar = (Scalar)std::stod(str);
+         Scalar scalar;
+         ::from_string(scalar, str);
          set_value(scalar);
          cb(scalar);
          return true;
@@ -391,7 +395,7 @@ public:
    }
 
 
-   bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override
+   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)
@@ -437,7 +441,7 @@ public:
 
       }
 
-      return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
+      return TextBox::mouse_button_event(p, emouse, down, ekeyModifiers);
 
    }
 

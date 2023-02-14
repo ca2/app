@@ -324,7 +324,6 @@ public:
    auto & first();
    auto & first() const;
 
-
    constexpr this_iterator data()
    {
       return m_begin;
@@ -466,7 +465,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr auto _static_equals(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, EQUALITY equality)
+   static constexpr bool _static_equals(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, EQUALITY equality)
    {
 
       while (range.begin() < range.end())
@@ -491,7 +490,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr auto static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
+   static constexpr bool static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       bool b;

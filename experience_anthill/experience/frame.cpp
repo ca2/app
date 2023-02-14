@@ -686,15 +686,20 @@ namespace experience_anthill
 
          pframewindow->get_window_text(wstrWindowText);
 
-         auto pbrushText = __create < ::draw2d::brush >();
+         if(wstrWindowText.has_char())
+         {
 
-         pbrushText->create_solid(m_colorCaptionText);
+            auto pbrushText = __create<::draw2d::brush>();
 
-         pgraphics->set(pbrushText);
+            pbrushText->create_solid(m_colorCaptionText);
 
-         pgraphics->set(pframewindow->get_font(pstyle));
+            pgraphics->set(pbrushText);
 
-         pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pgraphics->set(pframewindow->get_font(pstyle));
+
+            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+
+         }
 
       }
 

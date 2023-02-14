@@ -7,7 +7,7 @@
 #include "acme/platform/system_setup.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/change_event.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 #include "acme/platform/sequencer.h"
 #include "acme/user/nano/nano.h"
 #include "apex/platform/savings.h"
@@ -1497,6 +1497,7 @@ namespace core
 
       }
 
+      return nullptr;
 
    }
 

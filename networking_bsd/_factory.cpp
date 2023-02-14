@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "address.h"
 #include "networking.h"
 #include "sockets/basic/socket_handler.h"
@@ -6,7 +6,7 @@
 #include "sockets/basic/listen_socket.h"
 
 
-__FACTORY_EXPORT void networking_bsd_factory(::factory::factory * pfactory)
+IMPLEMENT_FACTORY(networking_bsd)
 {
 
    pfactory->add_factory_item < ::networking_bsd::address, ::networking::address >();

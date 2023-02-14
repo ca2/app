@@ -7,7 +7,7 @@ namespace integration
 
 
    class CLASS_DECL_APEX context :
-      virtual public ::particle
+      virtual public ::object
    {
    public:
 
@@ -15,6 +15,8 @@ namespace integration
 
       bool              m_bMsys;
 
+
+      ::file::path      m_pathProjectDir;
 
 
       ::string          m_strVs;
@@ -27,7 +29,12 @@ namespace integration
       ::file::path      m_pathSource2;
       ::file::path      m_pathPrefix;
       ::string          m_strRelease;
+      //::string          m_strContext;
+      //::string          m_strSdk1;
+      //::string          m_strStagePlatform;
+      ::string          m_strStagePlatform;
       ::string          m_strPlatform;
+      //::string          m_strPlatform2;
       ::string          m_strConfiguration;
       ::string          m_strName;
 
@@ -48,6 +55,8 @@ namespace integration
 
       virtual void prepare_compile_and_link_environment();
 
+      virtual void prepare_compilation_script(::string & str);
+      virtual void prepare_linking_script(::string & str);
 
       virtual int command_system(const ::scoped_string & scopedstr);
 

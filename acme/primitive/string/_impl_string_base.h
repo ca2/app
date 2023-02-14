@@ -464,9 +464,9 @@ inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHA
    if (sizeof(CHARACTER) == sizeof(CHARACTER2) && (range.m_erange & e_range_string) && bDifferent)
    {
 
-      auto pbeginTest = pmetadata->begin();
+      //auto pbeginTest = pmetadata->begin();
 
-      auto pendTest = pmetadata->end();
+      //auto pendTest = pmetadata->end();
 
       pmetadata->natural_increment_reference_count();
 
@@ -4625,7 +4625,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
       }
 
-      psz++;
+      //psz++;
 
    }
 

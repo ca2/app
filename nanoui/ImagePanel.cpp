@@ -21,7 +21,7 @@
 
 
 
-::object * get_nano2d_object(::nano2d::context * pcontext);
+//::object * get_nano2d_object(::nano2d::context * pcontext);
 
 namespace nanoui
 {
@@ -135,7 +135,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
 
    pgraphics->m_bUseImageMipMapsOrResizedImages = true;
 
-   for (size_t i = 0; i < m_images.size(); ++i) {
+   for (::index i = 0; i < m_images.size(); ++i) {
       Vector2i p = m_pos + Vector2i(m_margin) +
          Vector2i((int)i % grid.x(), (int)i / grid.x()) * (m_thumb_size + m_spacing);
       int imgw, imgh;

@@ -999,28 +999,28 @@ namespace aura
 
 #if defined(LINUX)
 
-::file::path libfilename(const ::string & str)
+::file::path library_file_name(const ::string & str)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(ANDROID)
 
-::file::path libfilename(const ::string & str)
+::file::path library_file_name(const ::string & str)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(WINDOWS)
 
-::file::path libfilename(const ::string & str)
+::file::path library_file_name(const ::string & str)
 {
    return str + ".dll";
 }
 
 #elif defined(__APPLE__)
 
-::file::path libfilename(const ::string & str)
+::file::path library_file_name(const ::string & str)
 {
    return "lib" + str + ".dylib";
 }

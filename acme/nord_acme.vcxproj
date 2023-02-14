@@ -241,8 +241,8 @@
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\topic.cpp" />
-    <ClCompile Include="memory\allocate_mid_big.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
@@ -314,6 +314,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\paged_large.cpp" />
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
@@ -409,6 +410,11 @@
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\application_array.cpp" />
+    <ClCompile Include="platform\application_base.cpp" />
+    <ClCompile Include="platform\application_container.cpp" />
+    <ClCompile Include="platform\application_exit.cpp" />
+    <ClCompile Include="platform\application_flags.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
@@ -419,6 +425,7 @@
     <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
+    <ClCompile Include="platform\factory_function.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
@@ -427,7 +434,6 @@
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
-    <ClCompile Include="platform\main.cpp" />
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\node.cpp" />
@@ -440,6 +446,7 @@
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
+    <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\string_exchange.cpp" />
     <ClCompile Include="platform\sub_system.cpp" />
@@ -478,14 +485,14 @@
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
     <ClCompile Include="primitive\datetime\file_time.cpp" />
     <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\datetime\system_time.cpp" />
-    <ClCompile Include="primitive\datetime\time.cpp" />
-    <ClCompile Include="primitive\datetime\time_span.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
@@ -513,7 +520,7 @@
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
-    <ClCompile Include="primitive\primitive\estatus.cpp" />
+    <ClCompile Include="primitive\primitive\e_status.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\get_memory.cpp" />
     <ClCompile Include="primitive\primitive\integral_byte.cpp" />
@@ -538,7 +545,7 @@
     <ClCompile Include="primitive\primitive\url.cpp" />
     <ClCompile Include="primitive\primitive\url_domain.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
-    <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
+    <ClCompile Include="primitive\primitive\paged_memory.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
     <ClCompile Include="primitive\string\base64.cpp" />
@@ -550,7 +557,6 @@
     <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
     <ClCompile Include="primitive\string\international.cpp" />
-    <ClCompile Include="primitive\string\international2.cpp" />
     <ClCompile Include="primitive\string\network_payload.cpp" />
     <ClCompile Include="primitive\string\parse.cpp" />
     <ClCompile Include="primitive\string\str.cpp" />
@@ -892,6 +898,11 @@
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\app.h" />
+    <ClInclude Include="platform\application_array.h" />
+    <ClInclude Include="platform\application_base.h" />
+    <ClInclude Include="platform\application_container.h" />
+    <ClInclude Include="platform\application_exit.h" />
+    <ClInclude Include="platform\application_flags.h" />
     <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
@@ -1164,6 +1175,7 @@
     <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
     <ClInclude Include="primitive\geometry2d\_defer.h" />
     <ClInclude Include="primitive\geometry2d\_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_rectangle.h" />
     <ClInclude Include="primitive\geometry2d\_rect_impl.h" />
     <ClInclude Include="primitive\geometry2d\_size_impl.h" />
     <ClInclude Include="primitive\geometry2d\_struct.h" />
@@ -1451,7 +1463,7 @@
     <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="user\user\_constant_key.h" />
     <ClInclude Include="user\user\_style.h" />
-    <ClInclude Include="_defer.h" />
+    <ClInclude Include="_start.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />

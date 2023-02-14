@@ -28,13 +28,13 @@ namespace nanoui
    public:
       Graph(Widget * parent, const ::scoped_string & caption = "Untitled");
 
-      const ::scoped_string & caption() const { return m_caption; }
+      ::string caption() const { return m_caption; }
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
-      const ::scoped_string & header() const { return m_header; }
+      ::string header() const { return m_header; }
       void set_header(const ::scoped_string & header) { m_header = header; }
 
-      const ::scoped_string & footer() const { return m_footer; }
+      ::string footer() const { return m_footer; }
       void set_footer(const ::scoped_string & footer) { m_footer = footer; }
 
       const Color & background_color() const { return m_background_color; }

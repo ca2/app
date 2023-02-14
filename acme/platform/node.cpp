@@ -230,9 +230,9 @@ namespace acme
 
       //}
 
-      return idaPid;
-
 #endif
+
+      return idaPid;
 
    }
 

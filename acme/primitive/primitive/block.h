@@ -145,18 +145,18 @@ struct CLASS_DECL_ACME block :
 
    }
 
-   template < typename T >
-   block & operator = (const T & t)
+   template < primitive_aggregate AGGREGATE >
+   block & operator = (const AGGREGATE & aggregate)
    {
 
-      if (this->size() < sizeof(T))
+      if (this->size() < sizeof(AGGREGATE))
       {
 
          throw_exception(error_end_of_file);
 
       }
    
-      memcpy(this->m_begin, &t, sizeof(t));
+      memcpy(this->m_begin, &aggregate, sizeof(aggregate));
 
       return *this;
 
@@ -291,6 +291,12 @@ struct CLASS_DECL_ACME block :
       memcpy_dup(m_begin, block.data(), minimum(block.size(), this->size()));
 
    }
+
+
+   ::byte & first_byte(::index i = 0){return this->m_begin[i];}
+   ::byte first_byte(::index i = 0)const{return this->m_begin[i];}
+   ::byte & last_byte(::index i = -1){return this->m_end[i];}
+   ::byte last_byte(::index i = -1)const{return this->m_end[i];}
 
 };
 

@@ -26,6 +26,9 @@
     <Filter Include="Libraries\x64\Debug">
       <UniqueIdentifier>{bb7ce070-2e70-4443-8761-83814a5d7284}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UWP">
+      <UniqueIdentifier>{0d1d0907-5227-46be-bf91-9d503c3c7992}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Square71x71Logo.scale-100.png">
@@ -78,22 +81,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package10.appxmanifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\uwp_app_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
-      <Filter>Libraries\x64\Debug</Filter>
-    </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
-      <Filter>Libraries\x64\Debug</Filter>
-    </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\Debug\libcrypto-1_1-x64.dll">
-      <Filter>Libraries\x64\Debug</Filter>
-    </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\Debug\libssl-1_1-x64.dll">
-      <Filter>Libraries\x64\Debug</Filter>
-    </None>
     <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
@@ -109,10 +96,31 @@
     <None Include="..\_matter.zip">
       <Filter>Common</Filter>
     </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\binary\libcrypto-3-x64.dll">
+      <Filter>Libraries\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\binary\libssl-3-x64.dll">
+      <Filter>Libraries\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\third\binary\pcre.dll">
+      <Filter>Libraries\x64\Debug</Filter>
+    </None>
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\third\binary\zlib.dll">
+      <Filter>Libraries\x64\Debug</Filter>
+    </None>
+    <None Include="..\uwp_app_app_TemporaryKey.pfx">
+      <Filter>UWP</Filter>
+    </None>
+    <None Include="uwp_app_app_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="__implement.cpp">
+    <ClCompile Include="application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package10.appxmanifest">
+      <Filter>UWP</Filter>
+    </AppxManifest>
   </ItemGroup>
 </Project>

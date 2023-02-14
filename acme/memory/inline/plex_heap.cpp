@@ -182,31 +182,31 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    add(new plex_heap_alloc(128      , 128));
    add(new plex_heap_alloc(256      , 128));
    add(new plex_heap_alloc(512      , 64));
-   add(new plex_heap_alloc(1024     , 64));
-   add(new plex_heap_alloc(2_kb     , 32));
-   add(new plex_heap_alloc(4_kb     , 32));
-   add(new plex_heap_alloc(8_kb     , 16));
-   add(new plex_heap_alloc(16_kb    , 16));
+   add(new plex_heap_alloc(1_KiB    , 64));
+   add(new plex_heap_alloc(2_KiB    , 32));
+   add(new plex_heap_alloc(4_KiB    , 32));
+   add(new plex_heap_alloc(8_KiB    , 16));
+   add(new plex_heap_alloc(16_KiB   , 16));
 
 #if !MOBILE_PLATFORM
 
-   add(new plex_heap_alloc(24_kb    , 16));
-   add(new plex_heap_alloc(32_kb    , 16));
-   add(new plex_heap_alloc(48_kb    , 16));
-   add(new plex_heap_alloc(64_kb    , 16));
-   add(new plex_heap_alloc(128_kb   , 16));
-   add(new plex_heap_alloc(256_kb   , 8));
-   add(new plex_heap_alloc(512_kb   , 8));
-   add(new plex_heap_alloc(1024_kb  , 4));
+   add(new plex_heap_alloc(24_KiB   , 16));
+   add(new plex_heap_alloc(32_KiB   , 16));
+   add(new plex_heap_alloc(48_KiB   , 16));
+   add(new plex_heap_alloc(64_KiB   , 16));
+   add(new plex_heap_alloc(128_KiB  , 16));
+   add(new plex_heap_alloc(256_KiB  , 8));
+   add(new plex_heap_alloc(512_KiB  , 8));
+   add(new plex_heap_alloc(1_MiB    , 4));
 
 
 
 #if OSBIT > 32
 
-   add(new plex_heap_alloc(2_mb     , 2)); // 2 * 1024 * 1024
-   add(new plex_heap_alloc(4_mb     , 2)); // 4 * 1024 * 1024
-   add(new plex_heap_alloc(8_mb     , 2)); // 8 * 1024 * 1024
-   add(new plex_heap_alloc(16_mb    , 2)); // 16 * 1024 * 1024
+   add(new plex_heap_alloc(2_MiB    , 2));
+   add(new plex_heap_alloc(4_MiB    , 2));
+   add(new plex_heap_alloc(8_MiB    , 2));
+   add(new plex_heap_alloc(16_MiB   , 2));
 
 #endif
 
@@ -678,7 +678,7 @@ void * plex_heap_alloc_sync::Alloc()
    if (((iptr)m_pnodeFree->m_pnext) & 1)
    {
 
-      __debugbreak();
+      debug_break();
 
    }
 

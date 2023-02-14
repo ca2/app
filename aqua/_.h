@@ -1,4 +1,4 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 //#pragma pack(show)
@@ -7,7 +7,7 @@
 #include "apex/_.h"
 
 
-#if defined(_AQUA_LIBRARY)
+#if defined(_aqua_project)
 #define CLASS_DECL_AQUA  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

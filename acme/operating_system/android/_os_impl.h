@@ -22,7 +22,7 @@
 #include "android_operating_system.h"
 
 
-void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
+void android_on_text(enum_os_text etext, const wchar_t* pwch, size_t len);
 
 
 

@@ -440,6 +440,7 @@ namespace acme
 
    }
 
+
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
@@ -460,7 +461,6 @@ namespace acme
       m_psubsystem->m_nCmdShow = nCmdShow;
 
    }
-
 
 #else
 

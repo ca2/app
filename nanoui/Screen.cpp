@@ -1104,12 +1104,12 @@ void Screen::move_window_to_front(Window * window) {
    /* Brute force topological sort (no problem for a few windows..) */
    bool changed = false;
    do {
-      size_t base_index = 0;
-      for (size_t index = 0; index < m_children.size(); ++index)
+      ::index base_index = 0;
+      for (::index index = 0; index < m_children.size(); ++index)
          if (m_children[index] == window)
             base_index = index;
       changed = false;
-      for (size_t index = 0; index < m_children.size(); ++index) {
+      for (::index index = 0; index < m_children.size(); ++index) {
          Popup * pw = dynamic_cast<Popup *>(m_children[index]);
          if (pw && pw->parent_window() == window && index < base_index) {
             move_window_to_front(pw);

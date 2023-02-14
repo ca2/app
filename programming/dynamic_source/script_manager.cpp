@@ -154,6 +154,8 @@ namespace dynamic_source
       //   
       //}
 
+      m_pmutexSession = acmenode()->create_mutex();
+
       calc_rsa_key();
 
       //estatus = 
@@ -1682,7 +1684,7 @@ namespace dynamic_source
       strPath.find_replace("/", ".");
       strPath.find_replace("\\", ".");
 #ifdef WINDOWS
-      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
+      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
       strPath.begins_eat(".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
@@ -1715,11 +1717,11 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
 
 #else
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

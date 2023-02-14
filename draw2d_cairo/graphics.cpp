@@ -4665,7 +4665,7 @@ namespace draw2d_cairo
 
       auto rectangle = ::rectangle_f64(point_f64(x, y), size_f64(65535.0, 65535.0));
 
-      internal_draw_text(block, rectangle, e_align_none);
+      internal_draw_text(scopedstr, rectangle, e_align_none);
 
 #else
 

@@ -109,7 +109,7 @@ namespace earth
       }
 
 
-      inline time::time(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)
+      time::time(const ::earth::time & time, ::i64 iNanosecond, const time_shift & timeshift)
       {
 
          set(time, iNanosecond, timeshift);
@@ -137,7 +137,7 @@ namespace earth
       }
 
 
-      inline time::time(const class ::time & time, const time_shift & timeshift)
+      time::time(const class ::time & time, const time_shift & timeshift)
       {
 
          set(time, timeshift);
@@ -145,7 +145,7 @@ namespace earth
       }
 
 
-      inline void time::set(const class ::time & time, const time_shift & timeshift)
+      void time::set(const class ::time & time, const time_shift & timeshift)
       {
 
          set({(time_t) time.m_iSecond }, time.m_iNanosecond, timeshift);

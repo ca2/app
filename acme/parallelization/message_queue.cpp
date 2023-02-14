@@ -169,17 +169,9 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto estatus = m_eventNewMessage._wait(time);
+         auto bAcquired = m_eventNewMessage._wait(time);
 
-         if(estatus == error_failed)
-         {
-
-            pmessage->m_atom = e_message_quit;
-
-            return error_failed;
-
-         }
-         else if(estatus == error_wait_timeout)
+         if(!bAcquired)
          {
 
             return error_wait_timeout;

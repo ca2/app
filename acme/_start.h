@@ -33,7 +33,7 @@
 #endif
 
 
-#if defined(_ACME_LIBRARY)
+#if defined(_acme_project)
 #define CLASS_DECL_ACME  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

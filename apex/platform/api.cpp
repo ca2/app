@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
 #include "acme/exception/interface_only.h"
@@ -58,7 +58,20 @@ void api::load_configuration()
 
    ::file::path pathConfiguration;
 
-   pathConfiguration = "matter://api" / (m_strImplementation + ".network_payload");
+   string strPrefix;
+
+#ifdef _UWP
+
+   if (m_strImplementation.case_insensitive_equals("google"))
+   {
+
+      strPrefix = "uwp/";
+
+   }
+
+#endif
+
+   pathConfiguration = "matter://api" / (strPrefix + m_strImplementation + ".network_payload");
 
    string strNetworkPayload = file()->as_string(pathConfiguration);
 

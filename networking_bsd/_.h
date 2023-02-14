@@ -7,7 +7,7 @@
 #include "apex/_.h"
 
 
-#if defined(_NETWORKING_BSD_LIBRARY)
+#if defined(_networking_bsd_project)
 #define CLASS_DECL_NETWORKING_BSD  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NETWORKING_BSD  CLASS_DECL_IMPORT

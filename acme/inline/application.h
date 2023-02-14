@@ -104,7 +104,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #elif defined(ANDROID)
 
-   subsystem.set_resource_block(p1, p2);
+   ::acme::acme::g_p->m_psubsystem->set_resource_block(p1, p2);
 
 #endif
 

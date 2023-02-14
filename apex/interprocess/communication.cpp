@@ -796,7 +796,7 @@ namespace interprocess
             auto papp = get_app();
 
             papp->m_papexapplication->on_additional_local_instance(
-               (bool &)payload["handled"],
+               payload["handled"].bool_reference(),
                strModule,
                propertyset["pid"].as_i32(),
                strCommandLine);

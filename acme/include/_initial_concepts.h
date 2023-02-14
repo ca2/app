@@ -1,4 +1,4 @@
-// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-11-22 <3ThomasBorregaardSørensen!!
 //
 //  _numeric_concepts.h
 //  acme
@@ -267,6 +267,18 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 //   block.length_in_bytes();
 //
 //};
+
+
+#ifdef ANDROID
+
+namespace std
+{
+   template<class FROM, class TO>
+   concept convertible_to = ::std::is_convertible_v<FROM, TO>;
+
+}
+#endif
+
 
 
 template < typename TYPED_BLOCK, typename ITEM_TYPE >

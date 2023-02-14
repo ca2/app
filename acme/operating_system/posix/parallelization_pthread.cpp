@@ -653,7 +653,7 @@ using htask_t = void *;
 //}
 //
 
-void task_set_name(const ::scoped_string & scopedstrTaskName)
+void task_set_name(const char * pszTaskName)
 {
 
    //auto pthread = pthread_self();

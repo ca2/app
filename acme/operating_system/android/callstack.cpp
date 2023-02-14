@@ -65,6 +65,12 @@ namespace acme
 {
 
    
+   void node::defer_update_callstack()
+   {
+
+   }
+
+   
    string node::get_callstack(const ::scoped_string & scopedstrFormat, i32 iSkip, void * /* caller_address */, int iCount)
    {
 

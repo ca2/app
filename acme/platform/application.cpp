@@ -491,6 +491,10 @@ namespace acme
 
          m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_p->m_psubsystem->m_hinstanceThis);
 
+         #elif defined(ANDROID)
+
+         m_pathModule.empty();
+
 #else
 
          //throw ::exception(todo);

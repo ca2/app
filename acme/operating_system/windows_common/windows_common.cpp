@@ -2,6 +2,7 @@
 #include "acme/operating_system/error_code.h"
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/function.h"
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSION
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows_common/_string.h"
 

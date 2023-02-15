@@ -1736,6 +1736,9 @@
     <ClInclude Include="..\..\..\..\Debug\source\app\aura\operating_system\windows\message_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="user\common_controls.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

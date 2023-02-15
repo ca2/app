@@ -1149,6 +1149,7 @@
     <ClInclude Include="user\appearance\still.h" />
     <ClInclude Include="user\appearance\_.h" />
     <ClInclude Include="user\appearance\_component.h" />
+    <ClInclude Include="user\common_controls.h" />
     <ClInclude Include="user\menu\menu_command.h" />
     <ClInclude Include="user\menu\menu_shared.h" />
     <ClInclude Include="user\menu\menu_shared_command.h" />

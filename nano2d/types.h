@@ -234,12 +234,10 @@ namespace nano2d
 		float xform[6];
 		float extent[2];
 	};
-	typedef struct scissor scissor;
 
 	struct vertex {
 		float x, y, u, v;
 	};
-	typedef struct vertex vertex;
 
 	struct path {
 		int first;
@@ -253,7 +251,6 @@ namespace nano2d
 		int winding;
 		int convex;
 	};
-	typedef struct path path;
 
 	struct params {
 		void* userPtr;
@@ -271,7 +268,6 @@ namespace nano2d
 		void (*renderTriangles)(void* uptr, paint* paint, compositeOperationState compositeOperation, scissor* scissor, const vertex* verts, int nverts, float fringe);
 		void (*renderDelete)(void* uptr);
 	};
-	typedef struct params params;
 
 	// Constructor and destructor, called by the render back-end.
 	CLASS_DECL_NANO2D context * CreateInternal(params* params);
@@ -289,7 +285,7 @@ namespace nano2d
 		int lineCap;
 		float alpha;
 		float xform[6];
-		scissor scissor;
+		scissor m_scissor;
 		float fontSize;
 		float letterSpacing;
 		float lineHeight;

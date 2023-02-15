@@ -35,7 +35,7 @@ namespace nanoui
  *     which affects all subclasses of this Widget.  Subclasses must explicitly
  *     set a different value if needed (e.g., in their constructor).
  */
-   class NANOUI_EXPORT TextBox : public Widget {
+   class CLASS_DECL_NANOUI TextBox : public Widget {
    public:
       /// How to align the text in the text box.
       enum class Alignment {

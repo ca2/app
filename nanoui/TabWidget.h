@@ -28,7 +28,7 @@ namespace nanoui
  * closeable tabs and popup menus. No rendering of the content is done---for an
  * example implementation, refer to \ref TabWidget.
  */
-   class NANOUI_EXPORT TabWidgetBase : public Widget {
+   class CLASS_DECL_NANOUI TabWidgetBase : public Widget {
    public:
       /// Construct a memory_new tab widget
       TabWidgetBase(Widget * parent, const ::scoped_string & font = "sans-bold");
@@ -179,7 +179,7 @@ namespace nanoui
  *
  * \endrst
  */
-class NANOUI_EXPORT TabWidget : public TabWidgetBase {
+class CLASS_DECL_NANOUI TabWidget : public TabWidgetBase {
 public:
    /// Construct a memory_new tab widget
    TabWidget(Widget * parent, const ::scoped_string & font = "sans-bold");

@@ -76,14 +76,14 @@ struct NSWindow;
 //#if defined(NANOUI_SHARED)
 //#  if defined(_WIN32)
 //#    if defined(NANOUI_BUILD)
-//#      define NANOUI_EXPORT __declspec(dllexport)
+//#      define CLASS_DECL_NANOUI __declspec(dllexport)
 //#    else
-//#      define NANOUI_EXPORT __declspec(dllimport)
+//#      define CLASS_DECL_NANOUI __declspec(dllimport)
 //#    endif
 //#  elif defined(NANOUI_BUILD)
-//#    define NANOUI_EXPORT __attribute__ ((visibility("default")))
+//#    define CLASS_DECL_NANOUI __attribute__ ((visibility("default")))
 //#  else
-//#    define NANOUI_EXPORT
+//#    define CLASS_DECL_NANOUI
 //#  endif
 //#else
 //      /**
@@ -92,7 +92,7 @@ struct NSWindow;
 //       * on the compilation stage.  If undefined, it expands to nothing. **Do not**
 //       * define this directive on your own.
 //       */
-//#    define NANOUI_EXPORT
+//#    define CLASS_DECL_NANOUI
 //#endif
 
        /* Force usage of discrete GPU on laptops (macro must be invoked in main application) */
@@ -213,10 +213,10 @@ class Window;
  * and GLFW on your own, while still using NanoGUI's classes.
  * \endrst
  */
-//extern NANOUI_EXPORT void init();
+//extern CLASS_DECL_NANOUI void init();
 
 /// Static shutdown; should be called before the application terminates.
-///extern NANOUI_EXPORT void shutdown();
+///extern CLASS_DECL_NANOUI void shutdown();
 
 /**
  * \brief Enter the application main loop
@@ -254,13 +254,13 @@ class Window;
  *     wait for the termination of the main loop and then swap the two thread
  *     environments back into their initial configuration.
  */
-//extern NANOUI_EXPORT void mainloop(float refresh = -1.f);
+//extern CLASS_DECL_NANOUI void mainloop(float refresh = -1.f);
 //
 ///// Request the application main loop to terminate (e.g. if you detached mainloop).
-//extern NANOUI_EXPORT void leave();
+//extern CLASS_DECL_NANOUI void leave();
 //
 ///// Return whether or not a main loop is currently active
-//extern NANOUI_EXPORT bool active();
+//extern CLASS_DECL_NANOUI bool active();
 
 /**
  * \brief Enqueue a function to be executed executed before
@@ -269,7 +269,7 @@ class Window;
  * NanoGUI is not thread-safe, and async() provides a mechanism
  * for queuing up UI-related state changes from other threads.
  */
-//extern NANOUI_EXPORT void async(const ::function<void()> & func);
+//extern CLASS_DECL_NANOUI void async(const ::function<void()> & func);
 /**
  * \brief Open a native file open/save dialog.
  *
@@ -281,7 +281,7 @@ class Window;
  *     Set to ``true`` if you would like subsequent file dialogs to open
  *     at whatever folder they were in when they close this one.
  */
-//NANOUI_EXPORT void pick_single_file(
+//CLASS_DECL_NANOUI void pick_single_file(
 //    void * poswindow,
 //    const ::array<std::pair<::string, ::string>> & filetypes,
 //    const ::function < void(const::string &) > & promisseFile,
@@ -289,8 +289,8 @@ class Window;
 
 
 
-NANOUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
-NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage);
+CLASS_DECL_NANOUI ::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
+CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage);
 
 
 /**
@@ -306,7 +306,7 @@ NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & pa
  * \return A <tt>std::pair</tt> with two boolean values. The first indicates
  * 10-bit color support, and the second indicates EDR support.
  */
-//extern NANOUI_EXPORT std::pair<bool, bool> test_10bit_edr_support();
+//extern CLASS_DECL_NANOUI std::pair<bool, bool> test_10bit_edr_support();
 
 /**
  * \brief Open a native file open dialog, which allows multiple selection.
@@ -323,7 +323,7 @@ NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & pa
  *     Set to ``true`` if you would like to be able to select multiple
  *     files at once. May not be simultaneously true with \p save.
  */
-extern NANOUI_EXPORT void pick_multiple_file(
+extern CLASS_DECL_NANOUI void pick_multiple_file(
     void * poswindow, 
     const ::array<std::pair<::string, ::string>> & filetypes, 
     ::std::function < void(const ::array<::string> &) > promisseFiles);
@@ -336,7 +336,7 @@ extern NANOUI_EXPORT void pick_multiple_file(
  * This is function is convenient when deploying .app bundles on OSX. It
  * adjusts the file path to the parent directory containing the bundle.
  */
-extern NANOUI_EXPORT void chdir_to_bundle_parent();
+extern CLASS_DECL_NANOUI void chdir_to_bundle_parent();
 #endif
 
 /**
@@ -350,16 +350,16 @@ extern NANOUI_EXPORT void chdir_to_bundle_parent();
  * \param c
  *     The UTF32 character to be converted.
  */
-extern NANOUI_EXPORT ::string get_utf8_character(uint32_t c);
+extern CLASS_DECL_NANOUI ::string get_utf8_character(uint32_t c);
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
-//extern NANOUI_EXPORT ::array<std::pair<int, ::string>>
+//extern CLASS_DECL_NANOUI ::array<std::pair<int, ::string>>
 //load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)
 //#define ::nano2d::ImageIcon(ctx, name) nanoui::__nanoui_get_image(ctx, #name, name##_png, name##_png_size)
 ///// Helper function used by ::nano2d::_image_icon
-//extern NANOUI_EXPORT int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name,
+//extern CLASS_DECL_NANOUI int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name,
 //   uint8_t * data, uint32_t size);
 
 

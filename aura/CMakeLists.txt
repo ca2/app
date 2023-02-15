@@ -312,8 +312,6 @@ list(APPEND library_source
         platform/context.h
         platform/draw_context.cpp
         platform/draw_context2.h
-        user/user/drawable.cpp
-        user/user/drawable.h
         platform/message_queue.h
         platform/node.cpp
         platform/node.h
@@ -345,7 +343,7 @@ list(APPEND library_source
 
         #user/micro/message_box.cpp
         #user/micro/message_box.h
-        #user/user/_.cpp
+        user/user/_.cpp
         user/user/_.h
         #user/_const-.h
         user/user/_constant.h
@@ -370,8 +368,8 @@ list(APPEND library_source
         user/user/control_style.cpp
         user/user/copydesk.cpp
         user/user/copydesk.h
-        user/user/system.cpp
-        user/user/system.h
+        user/user/drawable.cpp
+        user/user/drawable.h
         user/user/form.cpp
         user/user/form.h
         user/user/form_callback.cpp
@@ -444,6 +442,8 @@ list(APPEND library_source
         user/user/style_base.h
         #user/user/style_control.cpp
         #user/user/style_control.h
+        user/user/system.cpp
+        user/user/system.h
         user/user/text_composition_client.cpp
         user/user/text_composition_client.h
         user/user/text_composition_composite.cpp

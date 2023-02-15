@@ -2,6 +2,7 @@
 
 
 #include "aura/_.h"
+#include "nano2d/_.h"
 
 
 #ifdef _nanoui_project
@@ -9,13 +10,6 @@
 #else
 #define CLASS_DECL_NANOUI CLASS_DECL_IMPORT
 #endif
-
-
-#define NANOUI_EXPORT CLASS_DECL_NANOUI
-#define NANO2D_EXPORT CLASS_DECL_NANOUI
-
-
-#include "nano2d/_.h"
 
 
 namespace nanoui
@@ -28,10 +22,10 @@ namespace nanoui
 } // namespace nanoui
 
 
-#include "_constant.h"
+//#include "nanoui/_constant.h"
 
 
-#include "_function.h"
+//#include "nanoui/_function.h"
 
 
 

@@ -28,6 +28,39 @@ CLASS_DECL_ACME const char * callstack_default_format();
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
+class CLASS_DECL_ACME operating_system_file_dialog :
+        virtual public particle
+{
+public:
+
+
+   void *                                             m_poswindow;
+   void *                                             m_posdata;
+   ::array < ::pair < ::string, ::string > >          m_filetypes;
+   ::function < void(const ::file::path_array&) >     m_function;
+   bool                                               m_bSave;
+   bool                                               m_bMultiple;
+
+   operating_system_file_dialog(
+           ::particle * pparticle,
+           void * poswindow,
+           void * posdata,
+           const ::array < ::pair < ::string, ::string > > & filetypes,
+           const ::function < void(const ::file::path_array&) > & function,
+           bool bSave,
+           bool bMultiple) :
+           m_poswindow(poswindow),
+           m_posdata(posdata),
+           m_filetypes(filetypes),
+           m_function(function),
+           m_bSave(bSave),
+           m_bMultiple(bMultiple)
+   {
+      initialize(pparticle);
+   }
+};
+
+
 namespace acme
 {
 
@@ -669,11 +702,7 @@ namespace acme
 #endif
 
 
-      virtual void operating_system_file_dialog(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > >& filetypesParam,
-         const ::function < void(const ::file::path_array&) >& function,
-         bool save, bool multiple);
+      virtual void operating_system_file_dialog(::operating_system_file_dialog * pdialog);
 
 
       void pick_single_file(

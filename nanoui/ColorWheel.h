@@ -29,7 +29,7 @@ namespace nanoui
  * \brief Fancy analog widget to select a color value.  This widget was
  *        contributed by Dmitriy Morozov.
  */
-   class NANOUI_EXPORT ColorWheel : public Widget {
+   class CLASS_DECL_NANOUI ColorWheel : public Widget {
    public:
       /**
        * Adds a ColorWheel to the specified parent.

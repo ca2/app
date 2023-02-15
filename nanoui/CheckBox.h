@@ -31,7 +31,7 @@ namespace nanoui
  *     which affects all subclasses of this Widget.  Subclasses must explicitly
  *     set a different value if needed (e.g., in their constructor).
  */
-   class NANOUI_EXPORT CheckBox : public Widget {
+   class CLASS_DECL_NANOUI CheckBox : public Widget {
    public:
 
       /// The caption text of this CheckBox.

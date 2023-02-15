@@ -30,7 +30,7 @@ namespace nanoui
  *
  * \brief Simple combo box widget based on a popup button.
  */
-   class NANOUI_EXPORT ComboBox : public PopupButton {
+   class CLASS_DECL_NANOUI ComboBox : public PopupButton {
    public:
       /// Create an empty combo box
       ComboBox(Widget * parent);

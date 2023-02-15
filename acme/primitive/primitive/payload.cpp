@@ -8322,14 +8322,7 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      auto ppath = cast < ::file::path_object > ();
-
-      if (ppath)
-      {
-
-         return *ppath;
-
-      }
+      return *m_ppath;
 
    }
 

@@ -295,7 +295,7 @@ list(APPEND library_source
         #operating_system/operating_system.h
         #operating_system/os_windowing2.h
         #operating_system/process.h
-        operating_system/text.h
+        #operating_system/text.h
         operating_system/thread.cpp
         operating_system/time.h
         operating_system/windowing.cpp

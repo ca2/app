@@ -142,7 +142,7 @@ public:
 
    virtual string as_utf8() const;
 
-   virtual char * c_str();
+   //virtual char * c_str();
 
    virtual bool begins(const ::scoped_string & scopedstr) const { return ((::const_ansi_range *)this)->begins(scopedstr); }
    //virtual bool begins(const ::scoped_string & scopedstr, strsize iCount = -1) const;

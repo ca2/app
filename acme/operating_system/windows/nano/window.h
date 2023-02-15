@@ -1,8 +1,9 @@
-// Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSørensen
+﻿// Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
 #include "acme/user/nano/window_implementation.h"
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSION
 #include "acme/_operating_system.h"
 
 

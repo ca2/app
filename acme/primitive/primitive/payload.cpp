@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/primitive/string/get_string.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
@@ -4071,8 +4071,30 @@ bool payload::as_bool() const
       f64 = atof(m_str);
 
 #else
-
-      f64 = _atof_l(m_str, ::get_task()->locale()->m_locale);
+      
+      auto ptask = ::get_task();
+      
+      ::locale * plocale = nullptr;
+      
+      if(ptask)
+      {
+         
+         plocale = ::get_task()->locale();
+         
+      }
+      
+      if(plocale)
+      {
+         
+         f64 = _atof_l(m_str, plocale->m_locale);
+         
+      }
+      else
+      {
+         
+         f64 = atof(m_str);
+      
+      }
 
 #endif
 

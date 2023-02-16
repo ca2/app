@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-26 00:24 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -73,7 +73,7 @@ public:
    constexpr frequency operator *(FLOATING d) const
    {
 
-      return FREQUENCY(m_dHertz * d);
+      return m_dHertz * d;
 
    }
 
@@ -81,7 +81,7 @@ public:
    constexpr frequency operator / (FLOATING d) const
    {
 
-      return FREQUENCY(m_dHertz / d);
+      return m_dHertz / d;
 
    }
 

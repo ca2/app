@@ -18,8 +18,8 @@ namespace filemanager
       iconoverlayer();
       ~iconoverlayer() override;
 
-      virtual void initialize(::particle * pparticle) = 0;
-      virtual void destroy() = 0;
+      void initialize(::particle * pparticle) override = 0;
+      void destroy() override = 0;
 
 
       // give a chance to cache and optimize

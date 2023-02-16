@@ -1,3 +1,4 @@
+// From apex/platform/app_launcher.h by camilo on 2023-02-15 19:26 BRT <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "launcher.h"
 #include "app_launcher.h"
@@ -224,7 +225,7 @@ namespace apex
 //
 //      auto pnode = psystem->node();
 //
-//      pnode->shell_launch(m_strApp);
+      acmenode()->shell_launch(m_strApp);
 //
 //      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
 //

@@ -8673,9 +8673,9 @@ bool payload::is_set_false() const
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
-      return m_ppayload || !*m_ppayload;
+      return m_ppayload && m_ppayload->is_set_false();
    case e_type_property:
-      return m_pproperty || !*m_pproperty;
+      return m_pproperty && m_pproperty->is_set_false();
    //case e_type_routine:
    //   return ::is_null(m_pelementProcedure);
    //case type_process:

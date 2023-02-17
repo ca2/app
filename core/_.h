@@ -1,11 +1,11 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 
 #include "bred/_.h"
 
 
-#if defined(_CORE_LIBRARY)
+#if defined(_core_project)
 #define CLASS_DECL_CORE  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

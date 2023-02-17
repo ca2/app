@@ -15,7 +15,7 @@
 
 
 
-#if defined(_crypto_openssl_openssl)
+#if defined(_crypto_openssl_project)
 #define CLASS_DECL_CRYPTO_OPENSSL  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_CRYPTO_OPENSSL  CLASS_DECL_IMPORT

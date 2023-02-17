@@ -8496,9 +8496,9 @@ bool payload::is_false() const
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
-      return m_time.is_null();
+      return m_time <= 0_s;
    case e_type_ptime:
-      return !m_ptime || m_ptime->is_null();
+      return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
       return m_atom.is_empty() || m_atom == 0 || m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom == "0";
    case e_type_patom:
@@ -8683,9 +8683,9 @@ bool payload::is_set_false() const
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
-      return m_time.is_null();
+      return m_time <= 0;
    case e_type_ptime:
-      return !m_ptime || m_ptime->is_null();
+      return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
       return m_atom.is_empty() || m_atom == 0|| m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom.case_insensitive_order("0") == 0;
    case e_type_patom:

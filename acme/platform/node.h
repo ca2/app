@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 19/01/2021. <33TBS!!
 //
 
@@ -678,7 +678,7 @@ namespace acme
 
 
 
-      virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 
 
       //virtual string process_version_dir_name();

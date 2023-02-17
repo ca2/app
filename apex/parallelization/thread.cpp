@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
@@ -4608,7 +4608,7 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
 
       auto waitNow = minimum(timeWait - timeStart.elapsed(), 100_ms);
 
-      if (!waitNow)
+      if (waitNow <= 0_s)
       {
 
          break;

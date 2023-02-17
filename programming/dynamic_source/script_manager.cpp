@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "script_manager.h"
 #include "script_cache.h"
 #include "script_compiler.h"
@@ -769,7 +769,7 @@ namespace dynamic_source
       TRACE(buf);
       del*/
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
 
       ::file::path str;
@@ -1010,7 +1010,7 @@ namespace dynamic_source
 
       auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       if (p)
       {
@@ -1713,7 +1713,7 @@ namespace dynamic_source
 
       strScript = strName.title();
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
 #ifdef WINDOWS
 

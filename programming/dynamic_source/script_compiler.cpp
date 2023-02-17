@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "script_compiler.h"
 #include "script_manager.h"
 #include "ds_script.h"
@@ -1315,7 +1315,7 @@ namespace dynamic_source
       if(::str::case_insensitive_find("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
-      auto psystem = acmesystem()->m_paurasystem;
+      //auto psystem = acmesystem()->m_paurasystem;
 
       if(m_straSync.get_count() > 1)
       {
@@ -1324,7 +1324,7 @@ namespace dynamic_source
 
             property_set set;
 
-            auto purl = psystem->url();
+            //auto purl = psystem->url();
 
             m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization?src=" +m_straSync[0] + "&url=" + ::url::encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
@@ -1409,7 +1409,7 @@ namespace dynamic_source
 
       l.m_straLibSourcePath.clear_results();
 
-      auto pcontext = m_pcontext;
+      //auto pcontext = m_pcontext;
 
       l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
@@ -2590,7 +2590,7 @@ ch_else:
 
       //auto papp = get_app();
 
-      auto pcontext = m_pcontext;
+      //auto pcontext = m_pcontext;
 
       stra.set_listing(strPath, e_depth_recursively);
 
@@ -2872,7 +2872,7 @@ ch_else:
 
       //auto papp = get_app();
 
-      auto pcontext = m_pcontext;
+      //auto pcontext = m_pcontext;
 
       ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
 

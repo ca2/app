@@ -1,4 +1,4 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 //#pragma pack(show)
@@ -7,7 +7,7 @@
 #include "base/_.h"
 
 
-#if defined(_BRED_LIBRARY)
+#if defined(_bred_project)
 #define CLASS_DECL_BRED  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

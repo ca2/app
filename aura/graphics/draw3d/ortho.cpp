@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "ortho.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/geometry3d/box.h"
@@ -321,21 +321,23 @@ namespace draw3d
             ::color::color ca;
 
             auto period = 50_s;
+            
+            throw ::exception(error_what_exclamation_exclamation);
 
-            if(iHint == 0)
-            {
+//            if(iHint == 0)
+//            {
+//
+//               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+//
+//            }
+//            else
+//            {
+//
+//               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+//
+//            }
 
-               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
-
-            }
-            else
-            {
-               
-               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
-
-            }
-
-            ::color::color clr = ca.get_rgb();
+            //::color::color clr = ca.get_rgb();
 
 
             /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));

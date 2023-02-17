@@ -1,4 +1,4 @@
-﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -50,7 +50,7 @@ public:
    constexpr time(enum_infinite)
    {
 
-      Infinite();
+      *this = ::time::infinity();
 
    }
 
@@ -141,17 +141,17 @@ public:
 
    //inline bool is_infinity() const;
    constexpr bool is_infinite() const;
-   constexpr bool is_null() const;
-   constexpr bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
-   constexpr static time infinite();
+   //constexpr bool is_zero() const;
+   //constexpr bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
+   constexpr static class ::time infinity();
    //inline static time pos_infinity();
-   constexpr static time zero();
-   constexpr bool operator !() const {return is_null();}
+   //constexpr static time zero();
+//   constexpr bool operator !() const {return is_null();}
 
-   constexpr void Infinite() {*this=infinite();}
+   //constexpr void infinite() {*this=infinity();}
    //void PosInfinity() {*this=pos_infinity();}
-   constexpr void Zero() {*this=zero();}
-   constexpr void Null() { Zero(); }
+   //constexpr void zero() { this->m_iSecond = 0; this->m_iNanosecond = 0; }
+   //constexpr void Null() { Zero(); }
 
    constexpr class ::time & operator = (const class time & time);
    constexpr class ::time & operator = (const ::earth::time_span & time);
@@ -160,7 +160,7 @@ public:
    constexpr bool timeout(const class time & time, const class time & timeNow);
    constexpr void normalize();
 
-   constexpr operator bool() const;
+   //constexpr operator bool() const;
 
 
    //constexpr  double operator() ()const { return floating_second(); }
@@ -994,15 +994,15 @@ constexpr bool time::is_infinite() const
 }
 
 
-constexpr bool time::is_null() const
-{
+//constexpr bool time::is_zero() const
+//{
+//
+//   return m_iSecond < 0 || (m_iSecond == 0 && m_iNanosecond <= 0);
+//
+//}
 
-   return m_iSecond <= 0 || (m_iSecond == 0 && m_iNanosecond <= 0);
 
-}
-
-
-constexpr  class ::time time::infinite()
+constexpr  class ::time time::infinity()
 {
 
    return {(::i64)MAXI64,(::i64)0};
@@ -1018,12 +1018,12 @@ constexpr  class ::time time::infinite()
 //}
 
 
-constexpr  class ::time time::zero()
-{
-
-   return {(::i64)0,(::i64) 0};
-
-}
+//constexpr  class ::time time::zero()
+//{
+//
+//   return {(::i64)0,(::i64) 0};
+//
+//}
 
 
 constexpr  time_t time::GetTimeSpan() const
@@ -1034,12 +1034,12 @@ constexpr  time_t time::GetTimeSpan() const
 }
 
 
-constexpr  time::operator bool() const
-{
-
-   return m_iSecond != 0 || m_iNanosecond != 0;
-
-}
+//constexpr  time::operator bool() const
+//{
+//
+//   return m_iSecond != 0 || m_iNanosecond != 0;
+//
+//}
 
 
 CLASS_DECL_ACME class ::time random(const class ::time & d1, const class ::time & d2);

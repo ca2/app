@@ -1,4 +1,4 @@
-﻿// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
+// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -149,7 +149,7 @@ public:
    //virtual bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
    //virtual string defer_solve_relative(const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstrCurrent);
    virtual void append(const ::string & strFile, const block & block);
-   virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinite());
+   virtual void append_wait(const ::string & strFile, const block & block, const class time & timeWait = ::time::infinity());
    //virtual bool file_append_wait(const ::string & strFile, const ::scoped_string & scopedstr, strsize s, const class ::time & millisTimeout = ::time::infinite());
 
    virtual void write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);

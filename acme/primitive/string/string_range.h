@@ -151,7 +151,7 @@ public:
 
     bool has_char() const { return !this->is_empty(); }
 
-    inline bool is_empty() const noexcept { return this->m_end <= this->m_begin; }
+    inline bool is_empty() const noexcept { return this->m_end <= this->m_begin || *this->m_begin == '\0'; }
     inline memsize length_in_bytes() const{return this->size() * sizeof(CHARACTER);}
 
     //inline bool has_char() const noexcept { return !this->is_empty(); }

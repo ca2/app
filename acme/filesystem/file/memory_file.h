@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/memory_container.h"
@@ -199,41 +199,12 @@ public:
 
       if (nCount > (memsize) iDiff)
          nCount = iDiff;
-
-      if (nCount == 1)
-      {
-
-         *((byte*)pdata) = m_pmemory.m_p->data()[m_position];
-
-
-      }
-      else if (nCount == 2)
-      {
-
-         *((u16 *)pdata) = *((u16 *)&m_pmemory.m_p->data()[m_position]);
-
-
-      }
-      else if (nCount == 4)
-      {
-
-         *((u32*)pdata) = *((u32*)&m_pmemory.m_p->data()[m_position]);
-
-
-      }
-      else if (nCount == 8)
-      {
-
-         *((u64 *)pdata) = *((u64 *)&m_pmemory.m_p->data()[m_position]);
-
-
-      }
-      else
-      {
-
-         ::memcpy(pdata, &m_pmemory.m_p->data()[m_position], (size_t)nCount);
-
-      }
+      
+      auto pdataThis = m_pmemory.m_p->data();
+      
+      auto pdataPosition = pdataThis + m_position;
+      
+     ::memcpy(pdata, pdataPosition, (size_t)nCount);
 
       m_position += nCount;
 

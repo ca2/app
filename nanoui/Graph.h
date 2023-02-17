@@ -24,7 +24,7 @@ namespace nanoui
  *
  * \brief Simple graph widget for showing a function plot.
  */
-   class NANOUI_EXPORT Graph : public Widget {
+   class CLASS_DECL_NANOUI Graph : public Widget {
    public:
       Graph(Widget * parent, const ::scoped_string & caption = "Untitled");
 

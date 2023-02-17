@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "theme.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -191,7 +191,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strState = pcontext->m_papexcontext->file()->as_string(pathWeatherState);
+      string strState = pcontext->m_papexcontext->file()->safe_get_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -320,7 +320,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strWeatherState = pcontext->m_papexcontext->file()->as_string(pathWeatherState);
+      string strWeatherState = pcontext->m_papexcontext->file()->safe_get_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 

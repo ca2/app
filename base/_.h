@@ -1,11 +1,11 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 
 #include "axis/_.h"
 
 
-#if defined(_BASE_LIBRARY)
+#if defined(_base_project)
 #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

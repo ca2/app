@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "image.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/primitive/data/listener.h"
@@ -155,7 +155,7 @@ namespace html
             
             single_lock lockImage(synchronization());
 
-            if (lockImage.lock(time::zero()))
+            if (lockImage.lock(0_s))
             {
                pdata->m_pcoredata->m_layoutstate3.m_cx = (float)m_pimage->width();
                if (m_pimage->height() > pdata->m_pcoredata->m_layoutstate3.m_cya.last())

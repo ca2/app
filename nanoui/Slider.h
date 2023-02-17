@@ -24,7 +24,7 @@ namespace nanoui
  *
  * \brief Fractional slider widget with mouse control.
  */
-   class NANOUI_EXPORT Slider : public Widget {
+   class CLASS_DECL_NANOUI Slider : public Widget {
    public:
       Slider(Widget * parent);
 

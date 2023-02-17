@@ -61,10 +61,10 @@ template <typename T> constexpr VariableType get_type() {
 }
 
 /// Return the size in bytes associated with a specific variable type
-extern NANOUI_EXPORT size_t type_size(VariableType type);
+extern CLASS_DECL_NANOUI size_t type_size(VariableType type);
 
 /// Return the name (e.g. "uint8") associated with a specific variable type
-extern NANOUI_EXPORT const char * type_name(VariableType type);
+extern CLASS_DECL_NANOUI const char * type_name(VariableType type);
 
 namespace detail {
    /// Detector pattern that is used to drive many type traits below

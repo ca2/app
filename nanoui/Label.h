@@ -28,7 +28,7 @@ namespace nanoui
  * The font and color can be customized. When \ref Widget::set_fixed_width()
  * is used, the text is wrapped when it surpasses the specified width.
  */
-   class NANOUI_EXPORT Label :
+   class CLASS_DECL_NANOUI Label :
       virtual public Widget
    //, virtual public ::appearance::still
    {

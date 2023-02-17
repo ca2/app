@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "task.h"
 #include "manual_reset_event.h"
 ////#include "acme/exception/exception.h"
@@ -1519,7 +1519,7 @@ bool task::task_sleep(const class time & timeWait)
 
       auto waitStep = minimum(timeWait - waitStart.elapsed(), 100_ms);
 
-      if (!waitStep)
+      if (waitStep <= 0_s)
       {
 
          return true;

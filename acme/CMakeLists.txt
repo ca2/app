@@ -186,6 +186,8 @@ list(APPEND library_source
         handler/item.h
         handler/topic.cpp
         handler/topic.h
+        handler/request.cpp
+        handler/request.h
         #include/_.cpp
         #include/path.h        #primitive/collection/comparable_array.cpp
         #memory/alloc.cpp
@@ -346,8 +348,6 @@ list(APPEND library_source
         platform/profiler.cpp
         platform/procedure.cpp
         platform/procedure.h
-        platform/request.cpp
-        platform/request.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h

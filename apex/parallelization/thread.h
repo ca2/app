@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class message_queue;
@@ -251,11 +251,11 @@ public:
 
    virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0);
 
-   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const class time & timeTimeout = ::time::infinite());
+   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const class time & timeTimeout = ::time::infinity());
 
    virtual void post_element(const ::atom & atom, wparam wParam, ::particle * pparticle);
 
-   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const class time & timeTimeout = ::time::infinite());
+   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);

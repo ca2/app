@@ -104,6 +104,13 @@ string_array get_c_args_from_string(::const_ansi_range & range)
 
       }
 
+      if (range.is_empty())
+      {
+
+         break;
+
+      }
+
       if (str == ":")
       {
 

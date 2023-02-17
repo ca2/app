@@ -290,7 +290,7 @@ int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & nam
 
 
 
-void NANOUI_EXPORT load_image_directory(::nano2d::context * pcontext, ::array<std::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<std::pair<int, ::string>> & images, const ::scoped_string & path)
 {
 
 //   ::array<std::pair<int, ::string> > result;

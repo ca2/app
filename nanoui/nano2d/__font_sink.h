@@ -15,7 +15,7 @@
 namespace nano2d
 {
 
-   class NANOUI_EXPORT font_sink :
+   class CLASS_DECL_NANOUI font_sink :
       virtual public ::object
    {
    public:

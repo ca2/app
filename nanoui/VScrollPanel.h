@@ -26,7 +26,7 @@ namespace nanoui
  * \brief Adds a vertical scrollbar around a widget that is too big to fit into
  *        a certain area.
  */
-   class NANOUI_EXPORT VScrollPanel : public Widget {
+   class CLASS_DECL_NANOUI VScrollPanel : public Widget {
    public:
 
       

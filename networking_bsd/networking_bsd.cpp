@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/exception/interface_only.h"
 // #include "acme/primitive/string/string.h"
 
@@ -39,6 +39,9 @@ u32 c_inet_to_ui(const char * src)
 
 }
 
+
+#if !defined(__APPLE__)
+
 #define XX 127
 static const uchar index_hex[256] =
 {
@@ -60,6 +63,7 @@ static const uchar index_hex[256] =
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
 };
 
+#endif
 
 #if defined(__APPLE__) || defined(FREEBSD)
 #define pr_s6_addr16 __u6_addr.__u6_addr16

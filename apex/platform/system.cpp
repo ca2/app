@@ -10,6 +10,7 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+//#include "app_launcher.h"
 //#include "log.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
@@ -149,7 +150,8 @@ namespace apex
 
       m_papexsystem = this;
       factory()->add_factory_item < ::apex::session, ::apex::session >();
-
+//      factory()->add_factory_item < ::apex::app_launcher >();
+//
 //      factory()->add_factory_item<::apex::log, ::logger>();
 
       //factory()->add_factory_item < ::thread >();

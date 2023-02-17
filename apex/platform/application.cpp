@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -860,10 +860,10 @@ namespace apex
          auto psystem = acmesystem()->m_papexsystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
+         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest <= 0_s)
          {
 
-            psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_timeAfterApplicationFirstRequest = 0_s; // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 

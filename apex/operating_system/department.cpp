@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "department.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
@@ -159,7 +159,7 @@ namespace operating_system
       if(time.is_infinite())
       {
 
-         m_timeTimeout.Null();
+         m_timeTimeout = 0_s;
 
       }
       else

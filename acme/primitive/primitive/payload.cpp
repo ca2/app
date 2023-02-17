@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/primitive/string/get_string.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
@@ -4071,8 +4071,30 @@ bool payload::as_bool() const
       f64 = atof(m_str);
 
 #else
-
-      f64 = _atof_l(m_str, ::get_task()->locale()->m_locale);
+      
+      auto ptask = ::get_task();
+      
+      ::locale * plocale = nullptr;
+      
+      if(ptask)
+      {
+         
+         plocale = ::get_task()->locale();
+         
+      }
+      
+      if(plocale)
+      {
+         
+         f64 = _atof_l(m_str, plocale->m_locale);
+         
+      }
+      else
+      {
+         
+         f64 = atof(m_str);
+      
+      }
 
 #endif
 
@@ -8322,14 +8344,7 @@ void payload::null()
    else if (m_etype == e_type_path)
    {
 
-      auto ppath = cast < ::file::path_object > ();
-
-      if (ppath)
-      {
-
-         return *ppath;
-
-      }
+      return *m_ppath;
 
    }
 
@@ -8481,9 +8496,9 @@ bool payload::is_false() const
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
-      return m_time.is_null();
+      return m_time <= 0_s;
    case e_type_ptime:
-      return !m_ptime || m_ptime->is_null();
+      return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
       return m_atom.is_empty() || m_atom == 0 || m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom == "0";
    case e_type_patom:
@@ -8668,9 +8683,9 @@ bool payload::is_set_false() const
    case e_type_type:
       return m_str.is_empty();
    case e_type_time:
-      return m_time.is_null();
+      return m_time <= 0;
    case e_type_ptime:
-      return !m_ptime || m_ptime->is_null();
+      return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
       return m_atom.is_empty() || m_atom == 0|| m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom.case_insensitive_order("0") == 0;
    case e_type_patom:
@@ -8680,9 +8695,9 @@ bool payload::is_set_false() const
    case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
-      return m_ppayload || !*m_ppayload;
+      return m_ppayload && m_ppayload->is_set_false();
    case e_type_property:
-      return m_pproperty || !*m_pproperty;
+      return m_pproperty && m_pproperty->is_set_false();
    //case e_type_routine:
    //   return ::is_null(m_pelementProcedure);
    //case type_process:

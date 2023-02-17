@@ -610,8 +610,8 @@ void TransformSkewX(float* t, float a)
 		state->alpha = 1.0f;
 		TransformIdentity(state->xform);
 
-		state->scissor.extent[0] = -1.0f;
-		state->scissor.extent[1] = -1.0f;
+		state->m_scissor.extent[0] = -1.0f;
+		state->m_scissor.extent[1] = -1.0f;
 
 		state->fontSize = 16.0f;
 		state->letterSpacing = 0.0f;

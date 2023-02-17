@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 //
 //#define _EARTH_TIME_SPAN_COMPARISON_WITH(TYPE) \
@@ -26,6 +26,7 @@ namespace earth
       constexpr time_span() noexcept;
       constexpr time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
       constexpr time_span(const time_t & time) noexcept : m_time(time) {}
+      constexpr time_span(const class ::time & time) noexcept : m_time(time.m_iSecond) {}
 
 
       constexpr i64 GetDays() const noexcept;

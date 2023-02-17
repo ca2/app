@@ -25,7 +25,7 @@ namespace nanoui
  * \brief A widget for displaying, panning, and zooming images. Numerical RGBA
  * pixel information is shown at large magnifications.
  */
-   class NANOUI_EXPORT ImageImpact : public Canvas {
+   class CLASS_DECL_NANOUI ImageImpact : public Canvas {
    public:
       using PixelCallback = ::function<void(const Vector2i &, char **, size_t)>;
 

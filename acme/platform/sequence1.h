@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/primitive/primitive/payload.h"
@@ -15,7 +15,7 @@ public:
    ::payload                              m_payloadResult;
 
 
-   virtual ::payload do_synchronously(const class time & timeWait = ::time::infinite())
+   virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity())
    {
 
       return {};

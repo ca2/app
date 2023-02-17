@@ -28,7 +28,7 @@ namespace nanoui
  *
  * \brief Storage class for basic theme-related properties.
  */
-   class NANOUI_EXPORT Theme : public Object {
+   class CLASS_DECL_NANOUI Theme : public Object {
    public:
 
       /* Fonts */

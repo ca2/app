@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "matter.h"
 //#include "payload.h"
 #include "acme/constant/id.h"
@@ -743,7 +743,7 @@ bool matter::_handle_call(::payload & payload, const ::string & strObject, const
 bool matter::handle_uri(const ::string & stringUri)
 {
 
-   return false;
+   return _handle_uri(stringUri);
 
 }
 

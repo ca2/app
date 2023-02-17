@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/parallelization/synchronization.h"
@@ -40,10 +40,10 @@ public:
    void fork();
 
 
-   sequence<SEQUENCE> * topic(const class time & timeWait = ::time::infinite());
+   sequence<SEQUENCE> * topic(const class time & timeWait = ::time::infinity());
 
 
-   virtual ::e_status wait(const class time & timeWait = ::time::infinite()) override;
+   virtual ::e_status wait(const class time & timeWait = ::time::infinity()) override;
 
 
    sequence<SEQUENCE> * then(const sequence_step < SEQUENCE > & step);
@@ -51,7 +51,7 @@ public:
    sequence<SEQUENCE> * then(const class time & time, const sequence_step < SEQUENCE > & step);
 
    
-   virtual ::atom do_synchronously(const class time & timeWait = ::time::infinite())
+   virtual ::atom do_synchronously(const class time & timeWait = ::time::infinity())
    {
       
       return m_psequence->do_synchronously(timeWait);

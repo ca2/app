@@ -2710,11 +2710,7 @@ return false;
 #endif
 
 
-   void node::operating_system_file_dialog(
-      void* poswindow,
-      const ::array < ::pair < ::string, ::string > >& filetypesParam,
-      const ::function < void(const ::file::path_array&) >& function,
-      bool save, bool multiple)
+   void node::operating_system_file_dialog(::operating_system_file_dialog * pdialog)
    {
 
 
@@ -2728,28 +2724,37 @@ return false;
       bool save)
    {
 
-      operating_system_file_dialog(
-         poswindow,
-         filetypes,
-         [function](const ::file::path_array & stra)
+      auto functionHere = [function](const ::file::path_array & stra)
+      {
+
+         if (stra.size() <= 0)
          {
 
-            if (stra.size() <= 0)
-            {
+            function("");
 
-               function("");
+         }
+         else
+         {
 
-            }
-            else
-            {
+            function(stra.first());
 
-               function(stra.first());
+         }
 
-            }
+      };
 
-         },
-         save,
-            false);
+      auto pdialog = __new(::operating_system_file_dialog(this,
+                                                        poswindow,
+                                                        nullptr,
+                                                        filetypes, functionHere, save, false));
+
+      operating_system_file_dialog(pdialog);
+
+//      operating_system_file_dialog(
+//         poswindow,
+//         filetypes,
+//,
+//         save,
+//            false);
 
    }
 
@@ -2759,13 +2764,20 @@ return false;
       const ::array < ::pair < ::string, ::string > >& filetypes,
       const ::function < void(const ::file::path_array&) >& function)
    {
+//
+//      operating_system_file_dialog(
+//         poswindow,
+//         filetypes,
+//         function,
+//         false,
+//         false);
 
-      operating_system_file_dialog(
-         poswindow,
-         filetypes,
-         function,
-         false,
-         false);
+      auto pdialog = __new(::operating_system_file_dialog(this,
+                                                        poswindow,
+                                                        nullptr,
+                                                        filetypes, function, false, false));
+
+      operating_system_file_dialog(pdialog);
 
    }
 

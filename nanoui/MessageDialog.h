@@ -25,7 +25,7 @@ namespace nanoui
  *
  * \brief Simple "OK" or "Yes/No"-style modal dialogs.
  */
-   class NANOUI_EXPORT MessageDialog : public Window {
+   class CLASS_DECL_NANOUI MessageDialog : public Window {
    public:
       /// Classification of the type of message this MessageDialog represents.
       enum class Type {

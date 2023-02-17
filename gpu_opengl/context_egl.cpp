@@ -112,7 +112,7 @@ namespace opengl
 
          const ::scoped_string & scopedstrError = eglQueryString(m_display, iError);
 
-         fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
+         fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
 
          throw ::exception(::error_failed);
 
@@ -300,9 +300,9 @@ namespace opengl
 
       }
 
-      auto pFind = stra.find_first_begins_ci("out vec4 ");
+      auto iFind = stra.find_first_begins_ci("out vec4 ");
 
-      if(::is_set(pFind))
+      if(::found(iFind))
       {
 
          stra[iFind] = "out vec4 fragmentColor;";

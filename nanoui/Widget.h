@@ -33,7 +33,7 @@ enum class Cursor; // do not put a docstring, this is already documented
  * also be used as an panel to arrange an arbitrary number of child
  * widgets using a layout generator (see \ref Layout).
  */
-class NANOUI_EXPORT Widget : 
+class CLASS_DECL_NANOUI Widget :
    public Object
 {
 public:

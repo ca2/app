@@ -324,41 +324,41 @@ namespace draw3d
             
             throw ::exception(error_what_exclamation_exclamation);
 
-//            if(iHint == 0)
+////            if(iHint == 0)
+////            {
+////
+////               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+////
+////            }
+////            else
+////            {
+////
+////               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+////
+////            }
+//
+//            //::color::color clr = ca.get_rgb();
+//
+//
+//            /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
+//            if(i < 6)
 //            {
-//
-//               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
-//
+//            ppen->m_etype = ::draw2d::e_pen_dot;
 //            }
 //            else
 //            {
-//
-//               ca.set_hls(::time::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
-//
+//            ppen->m_etype = ::draw2d::e_pen_solid;
 //            }
-
-            //::color::color clr = ca.get_rgb();
-
-
-            /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
-            if(i < 6)
-            {
-            ppen->m_etype = ::draw2d::e_pen_dot;
-            }
-            else
-            {
-            ppen->m_etype = ::draw2d::e_pen_solid;
-            }
-            m_pdc->set(ppen);*/
-
-            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
-
-            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
-            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);
-            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
-
-            throw ::exception(todo, "plgblt");
-            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);
+//            m_pdc->set(ppen);*/
+//
+//            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
+//
+//            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
+//            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);
+//            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
+//
+//            throw ::exception(todo, "plgblt");
+//            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);
 
          }
 

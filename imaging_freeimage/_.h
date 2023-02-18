@@ -4,13 +4,14 @@
 #include "aura/_.h"
 
 
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSION
 #include "acme/_operating_system.h"
 
 
 
 #ifdef _IMAGING_FREEIMAGE_STATIC
 #define CLASS_DECL_IMAGING_FREEIMAGE
-#elif defined(_IMAGING_FREEIMAGE_LIBRARY)
+#elif defined(_imaging_freeimage_project)
 #define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_IMPORT

@@ -278,7 +278,7 @@ namespace windowing
 
       }
 
-      pmonitor->get_monitor_rectangle(rectangle);
+      rectangle = pmonitor->monitor_rectangle();
 
       return true;
 
@@ -394,7 +394,7 @@ namespace windowing
 
       }
 
-      pmonitor->get_workspace_rectangle(rectangle);
+      rectangle = pmonitor->workspace_rectangle();
 
       return true;
 

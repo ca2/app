@@ -35,7 +35,7 @@ namespace windowing
    }
 
    
-   ::u32 monitor::get_monitor_color_temperature()
+   ::u32 monitor::monitor_color_temperature()
    {
 
       return 0;
@@ -51,7 +51,7 @@ namespace windowing
    }
 
 
-   void monitor::get_monitor_rectangle(::RECTANGLE_I32 & rectangle)
+   ::rectangle_i32 monitor::monitor_rectangle()
    {
 
       auto psession = acmesession()->m_paurasession;
@@ -60,12 +60,12 @@ namespace windowing
 
       pdesktopenvironment->get_monitor_rectangle(m_iIndex, m_rectangle);
 
-      copy(rectangle, m_rectangle);
+      return m_rectangle;
 
    }
 
 
-   void monitor::get_workspace_rectangle(::RECTANGLE_I32 & rectangle)
+   ::rectangle_i32 monitor::workspace_rectangle()
    {
 
       auto psession = acmesession()->m_paurasession;
@@ -74,7 +74,7 @@ namespace windowing
 
       pdesktopenvironment->get_workspace_rectangle(m_iIndex, m_rectangleWorkspace);
 
-      copy(rectangle, m_rectangleWorkspace);
+      return m_rectangleWorkspace;
 
    }
 

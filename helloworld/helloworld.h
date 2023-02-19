@@ -8,7 +8,7 @@
 #include "aura/user/html/html/html.h"
 
 
-#ifdef _APP_HELLOWORLD_LIBRARY
+#if defined(_app_helloworld_project)
 #define CLASS_DECL_APP_HELLOWORLD  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_HELLOWORLD  CLASS_DECL_IMPORT

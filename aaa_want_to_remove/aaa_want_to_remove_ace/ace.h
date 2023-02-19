@@ -33,7 +33,7 @@
 // enable debug at release for debugging release
 #define XXDEBUG
 
-#ifdef _ACID_LIBRARY
+#if defined(_acid_project)
 #define CLASS_DECL_ACE
 #elif defined(_APP_ACE_SHARED)
 #define CLASS_DECL_ACE CLASS_DECL_EXPORT
@@ -41,7 +41,7 @@
 #define CLASS_DECL_ACE CLASS_DECL_IMPORT
 #endif
 
-#if defined(_ACID_LIBRARY)
+#if defined(_acid_project)
 #define CLASS_DECL_AURA
 #elif defined(_AURA_LIBRARY)
 #define CLASS_DECL_AURA  CLASS_DECL_EXPORT

@@ -5,7 +5,7 @@
 #include "app-core/gcom/gcom/gcom.h"
 
 
-#ifdef _APP_BROWSER_LIBRARY
+#if defined(_app_browser_project)
 #define CLASS_DECL_APP_BROWSER  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_BROWSER  CLASS_DECL_IMPORT

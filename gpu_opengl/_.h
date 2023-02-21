@@ -1,4 +1,4 @@
-// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSørensen!!
+﻿// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -6,12 +6,11 @@
 #include "aura/gpu/gpu/_.h"
 
 
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
 
-#ifdef _GPU_OPENGL_STATIC
-#define CLASS_DECL_GPU_OPENGL
-#elif defined(_GPU_OPENGL_LIBRARY)
+#if defined(_gpu_opengl_project)
 #define CLASS_DECL_GPU_OPENGL  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_GPU_OPENGL  CLASS_DECL_IMPORT

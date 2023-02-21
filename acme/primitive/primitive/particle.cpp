@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "type.h"
 #include "factory.h"
@@ -917,7 +917,7 @@ bool particle::_lock(const class time & timeWait)
 void particle::_wait()
 {
 
-   _wait(::time::infinite());
+   _wait(::time::infinity());
 
 }
 
@@ -1278,7 +1278,7 @@ bool particle::is_locked() const
    try
    {
 
-      synchronouslock.lock(time::zero());
+      synchronouslock.lock(0_s);
 
    }
    catch (...)

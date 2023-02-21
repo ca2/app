@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_array.h"
 #include "aura/graphics/image/drawing.h"
 
@@ -61,7 +61,7 @@ image_frame_array::~image_frame_array()
 
    elapsed *= dSpeed;
 
-   if (m_timeTotal.is_null())
+   if (m_timeTotal <= 0_s)
    {
 
       return pframe->m_pimage;

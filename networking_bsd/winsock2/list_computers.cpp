@@ -34,6 +34,8 @@ namespace networking_bsd
 
       ::pointer_array < ::networking::address > addressa;
 
+#ifdef WINDOWS_DESKTOP
+
       ULONG u = 0;
 
       auto uResult = ::GetIpNetTable(nullptr, &u, TRUE);
@@ -71,6 +73,10 @@ namespace networking_bsd
       }
 
       //::output_debug_string(strLog);
+
+#endif
+
+      throw ::exception(error_unsupported_function);
 
       return addressa;
 

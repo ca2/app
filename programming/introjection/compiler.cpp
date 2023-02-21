@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "compiler.h"
 #include "library.h"
 ////#include "acme/exception/exception.h"
@@ -6,6 +6,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/library.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/string/str.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

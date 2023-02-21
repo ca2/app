@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tcp_socket.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
@@ -1980,9 +1980,9 @@ namespace sockets_bsd
 
                char msg[1024];
 
-               int iError = ERR_get_error();
+               auto uError = ERR_get_error();
 
-               ERR_error_string_n(iError, msg, sizeof(msg));
+               ERR_error_string_n(uError, msg, sizeof(msg));
 
                if (iErrorSSL == SSL_ERROR_SYSCALL)
                {

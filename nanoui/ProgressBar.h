@@ -25,7 +25,7 @@ namespace nanoui
  *
  * \brief Standard widget for visualizing progress.
  */
-   class NANOUI_EXPORT ProgressBar : public Widget {
+   class CLASS_DECL_NANOUI ProgressBar : public Widget {
    public:
       ProgressBar(Widget * parent);
 

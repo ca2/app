@@ -5,7 +5,7 @@
 #include "base/base/base.h"
 
 
-#ifdef _APP_HELLO_BASE_LIBRARY
+#if defined(_app_hello_base_project)
 #define CLASS_DECL_APP_HELLO_BASE  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_HELLO_BASE  CLASS_DECL_IMPORT

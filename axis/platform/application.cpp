@@ -37,7 +37,6 @@ namespace axis
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
 
-      factory()->add_factory_item < ::networking::application >();
       factory()->add_factory_item< ::axis::system, ::acme::system>();
 
    }

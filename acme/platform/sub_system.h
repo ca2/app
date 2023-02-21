@@ -58,13 +58,9 @@ public:
    wchar_t **                                      m_wargv = nullptr;
    wchar_t **                                      m_wenvp = nullptr;
 
-#ifdef WINDOWS_DESKTOP
-
    hinstance                                       m_hinstanceThis = nullptr;
    hinstance                                       m_hinstancePrev = nullptr;
    int                                             m_nCmdShow = -1;
-
-#endif
    
 #endif
    

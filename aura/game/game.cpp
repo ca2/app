@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "game.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
@@ -45,7 +45,7 @@ namespace aura
 
       string strFilePath = dir()->matter(strFileName);
 
-      return strFilePath;
+      return ::transfer(strFilePath);
 
    }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -215,6 +215,9 @@ namespace apex
       //m_http.set_app(this);
 
       m_eexclusiveinstance = e_exclusive_instance_none;
+
+      factory()->add_factory_item < ::networking::application >();
+
 
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
@@ -857,10 +860,10 @@ namespace apex
          auto psystem = acmesystem()->m_papexsystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest.is_null())
+         if (::is_set(psystem) && psystem->m_timeAfterApplicationFirstRequest <= 0_s)
          {
 
-            psystem->m_timeAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_timeAfterApplicationFirstRequest = 0_s; // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -875,6 +878,7 @@ namespace apex
 
          }
 
+         m_bAttendedFirstRequest = true;
          //::pointer<::apex::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::apex::session >();
          // todobergedge
          /*if(pbergedge != nullptr)
@@ -1739,6 +1743,8 @@ namespace apex
 
       ::acme::application::init_instance();
 
+      defer_interprocess_communication();
+
       if (m_bInterprocessCommunication)
       {
 
@@ -2169,6 +2175,24 @@ namespace apex
       //acmenode()->m_papexnode->on_start_application(this);
 
       on_start_application();
+
+   }
+
+
+   void application::defer_interprocess_communication()
+   {
+
+
+      if (m_bInterprocessCommunication)
+      {
+
+         __raw_construct_new(m_pinterprocesscommunication);
+
+         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+
+         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+
+      }
 
    }
 
@@ -6363,6 +6387,16 @@ namespace apex
    }
 
 
+   bool application::pump_runnable()
+   {
+
+      defer_process_activation_message();
+
+      return ::thread::pump_runnable();
+
+   }
+
+
    void application::add_activation_message(const ::string & strMessage)
    {
 
@@ -6401,6 +6435,8 @@ namespace apex
 
       }
 
+      //preempt(25_s);
+
       if (m_straActivationMessage.is_empty())
       {
 
@@ -6423,6 +6459,10 @@ namespace apex
          auto strUri = m_straActivationMessage.pick_first();
 
          synchronouslock.unlock();
+
+         //preempt(25_s);
+
+         payload("activation.note2") = "m_straActivationMessage.pick_first()=\"" + strUri + "\"";
 
          pinterprocesscommunication->_handle_uri(strUri);
 
@@ -10108,6 +10148,16 @@ namespace apex
       {
 
          m_pinterprocesscommunication->m_ptarget->_handle_uri(strUri);
+
+      }
+      else
+      {
+
+         //preempt(25_s);
+
+         acmeapplication()->payload("activation.note1") = "m_pinterprocesscommunication was null for uri=\"" + strUri + "\"";
+
+         add_activation_message(strUri);
 
       }
 

@@ -39,7 +39,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
    //__android_log_print(ANDROID_LOG_INFO, "output_debug_string", str);
 
-   __android_log_print(ANDROID_LOG_INFO,"output_debug_string", "%s", lpOutputString);
+   __android_log_print(ANDROID_LOG_INFO,"output_debug_string", "%s", ::string(scopedstr).c_str());
 
    //      }
 
@@ -54,7 +54,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 CLASS_DECL_ACME void simple_debug_print(const ::scoped_string & scopedstr)
 {
 
-   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
+   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", ::string(scopedstr).c_str());
 
 }
 
@@ -92,7 +92,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const ::scoped_string & s
 
    int iLevel = os_trace_level(elevel);
 
-   __android_log_print(iLevel, pszTag, "%s", pszMessage);
+   __android_log_print(iLevel, ::string(scopedstrTag).c_str(), "%s", ::string(scopedstrMessage).c_str());
 
 }
 

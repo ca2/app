@@ -13998,6 +13998,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::i32          interaction::bottom(enum_layout elayout) { return parent_client_rectangle(elayout).bottom; }
 
 
+   void interaction::window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout)
+   { 
+      
+      rect = this->window_rectangle(elayout);
+   
+   }
+
+
    ::rectangle_i32 interaction::window_rectangle(enum_layout elayout)
    {
 

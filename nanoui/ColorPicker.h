@@ -23,7 +23,7 @@ namespace nanoui
  *
  * \brief Push button with a popup to tweak a color value.
  */
-   class NANOUI_EXPORT ColorPicker : public PopupButton {
+   class CLASS_DECL_NANOUI ColorPicker : public PopupButton {
    public:
       /**
        * Attaches a ColorPicker to the specified parent.

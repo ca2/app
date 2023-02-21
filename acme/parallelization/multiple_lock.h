@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/bits.h"
@@ -23,7 +23,7 @@ public:
    void construct(const synchronization_array & synca,bool bInitialLock = false);
 
 
-   ::index lock(const class time & tickTimeout = ::time::infinite(), bool bWaitForAll = true, u32 dwWakeMask = 0);
+   ::index lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, u32 dwWakeMask = 0);
    void unlock();
    void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool is_locked(index dwItem);

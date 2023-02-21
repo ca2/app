@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "manual_reset_event.h"
 #include "task.h"
 #include "task_flag.h"
@@ -6,7 +6,9 @@
 // #include "acme/primitive/string/string.h"
 //#include "acme/primitive/collection/string_array.h"
 //#include "acme/primitive/primitive/payload.h"
-//#include "acme/_operating_system.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/sub_system.h"
+#include "acme/platform/system.h"
 
 
 #ifdef LINUX
@@ -688,6 +690,20 @@ thread_local ::pointer<task>t_ptask;
 
 CLASS_DECL_ACME ::task * get_task()
 {
+
+   if (!t_ptask)
+   {
+
+      if (::acme::acme::g_p)
+      {
+
+         t_ptask = __new(::task());
+
+         t_ptask->initialize(::acme::acme::g_p->m_psubsystem->acmesystem());
+
+      }
+
+   }
 
    return t_ptask;
 

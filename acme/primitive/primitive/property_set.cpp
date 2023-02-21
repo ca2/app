@@ -606,8 +606,9 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
    else
    {
 
-      int iQuote = strArgument.offset_of(strArgument.find_first_character_in("\"'"));
-      int iEqual = strArgument.offset_of(strArgument.find_first_character_in("="));
+      auto iQuote = strArgument.offset_of(strArgument.find_first_character_in("\"'"));
+      
+      auto iEqual = strArgument.offset_of(strArgument.find_first_character_in("="));
 
       if (iEqual > 0 && (iQuote < 0 || iQuote > iEqual))
       {

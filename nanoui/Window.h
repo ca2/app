@@ -24,7 +24,7 @@ namespace nanoui
  *
  * \brief Top-level window widget.
  */
-   class NANOUI_EXPORT Window : public Widget {
+   class CLASS_DECL_NANOUI Window : public Widget {
    public:
 
       ::pointer<::user::box>          m_pbox;

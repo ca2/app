@@ -1,11 +1,11 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 
 #include "acme/_.h"
 
 
-#if defined(_APEX_LIBRARY)
+#if defined(_apex_project)
 #define CLASS_DECL_APEX  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APEX  CLASS_DECL_IMPORT

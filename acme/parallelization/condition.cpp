@@ -280,7 +280,7 @@ bool condition::pulse()
    pthread_mutex_unlock(&m_mutex);
 
    //return e_synchronization_result_signaled_base;
-   return true;
+   return ::success;
 
 #else
 

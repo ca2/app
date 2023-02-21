@@ -1,4 +1,4 @@
-//
+﻿//
 //  _string_base_impl.h
 //  acme
 //
@@ -4625,7 +4625,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
       }
 
-      psz++;
+      //psz++;
 
    }
 

@@ -7,7 +7,7 @@
 #include "framework.h"
 
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)

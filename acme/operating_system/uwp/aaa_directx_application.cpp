@@ -97,9 +97,9 @@ namespace universal_windows
 
       }
 
-      acmesystem()->get_session()->m_frameworkview = this;
+      acmesession()->m_frameworkview = this;
 
-      acmesystem()->get_session()->m_puserinteractionHost = m_pdxi;
+      acmesession()->m_puserinteractionHost = m_pdxi;
 
       m_directx->defer_init();
 
@@ -107,7 +107,7 @@ namespace universal_windows
 
       ::user::system cs;
 
-      if (!acmesystem()->get_session()->m_puserinteractionHost->create_window_ex(cs))
+      if (!acmesession()->m_puserinteractionHost->create_window_ex(cs))
       {
 
          throw ::exception(resource_exception("Couldn't create Main Window"));
@@ -118,7 +118,7 @@ namespace universal_windows
 
       auto puserinteraction = m_pdxi;
 
-      auto pimpl = acmesystem()->get_session()->m_puserinteractionHost->m_pimpl;
+      auto pimpl = acmesession()->m_puserinteractionHost->m_pimpl;
 
       auto puwpui = pimpl->cast < ::universal_windows::interaction_impl >();
 
@@ -305,7 +305,7 @@ namespace universal_windows
             //if (papp == nullptr)
             //{
 
-            //   papp = acmesystem()->get_session()->m_pappCurrent;
+            //   papp = acmesession()->m_pappCurrent;
 
             //}
 
@@ -334,13 +334,13 @@ namespace universal_windows
    void directx_framework_impact::OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
-      if(acmesystem()->get_session() == nullptr)
+      if(acmesession() == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if (acmesession()->m_puserinteractionHost == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if (acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       ::pointer<::user::message>spbase;
@@ -350,10 +350,10 @@ namespace universal_windows
       spbase = pkey;
 
       pkey->m_atom = e_message_char;
-      pkey->m_puserinteraction = acmesystem()->get_session()->m_puserinteractionHost;
+      pkey->m_puserinteraction = acmesession()->m_puserinteractionHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
-      acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+      acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 
@@ -368,10 +368,10 @@ namespace universal_windows
       if(acmesystem() == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if (acmesession()->m_puserinteractionHost == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if (acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       ::pointer<::user::message>spbase;
@@ -380,18 +380,18 @@ namespace universal_windows
 
       spbase = pkey;
 
-      bool bTextFocus = acmesystem()->get_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = acmesession()->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
       ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || acmesystem()->get_session()->is_key_pressed(::user::e_key_control)
-         || acmesystem()->get_session()->is_key_pressed(::user::e_key_alt))
+      if(bSpecialKey || !bTextFocus || acmesession()->is_key_pressed(::user::e_key_control)
+         || acmesession()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_atom                 = e_message_key_down;
-         pkey->m_puserinteraction       = acmesystem()->get_session()->m_puserinteractionHost;
+         pkey->m_puserinteraction       = acmesession()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -405,7 +405,7 @@ namespace universal_windows
    //      pkey->m_key = args;
 
 
-         acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+         acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
       }
 
@@ -417,10 +417,10 @@ namespace universal_windows
       if(acmesystem() == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if (acmesession()->m_puserinteractionHost == nullptr)
          return;
 
-      if (acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if (acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       ::pointer<::user::message>spbase;
@@ -435,7 +435,7 @@ namespace universal_windows
          m_bFontopusShift = false;
       }
       
-      bool bTextFocus = acmesystem()->get_session()->get_focus_ui() != nullptr;
+      bool bTextFocus = acmesession()->get_focus_ui() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -445,7 +445,7 @@ namespace universal_windows
       {
 
          pkey->m_atom = e_message_key_up;
-         pkey->m_puserinteraction = acmesystem()->get_session()->m_puserinteractionHost;
+         pkey->m_puserinteraction = acmesession()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -483,7 +483,7 @@ namespace universal_windows
                //}
                //else
                //{
-         acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+         acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
          //}
 
       }
@@ -522,10 +522,10 @@ namespace universal_windows
       if(acmesystem() == nullptr)
          return;
 
-      if(acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if(acmesession()->m_puserinteractionHost == nullptr)
          return;
 
-      if(acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if(acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -541,11 +541,11 @@ namespace universal_windows
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_atom            = e_message_mouse_move;
-      pmouse->m_puserinteraction  = acmesystem()->get_session()->m_puserinteractionHost;
+      pmouse->m_puserinteraction  = acmesession()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+      acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
       m_durationLastMouseMove= ::duration::now();
 
@@ -558,10 +558,10 @@ namespace universal_windows
       if(acmesystem() == nullptr)
          return;
 
-      if(acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if(acmesession()->m_puserinteractionHost == nullptr)
          return;
 
-      if(acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if(acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
       ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
@@ -609,11 +609,11 @@ namespace universal_windows
 
       }
 
-      pmouse->m_puserinteraction = acmesystem()->get_session()->m_puserinteractionHost;
+      pmouse->m_puserinteraction = acmesession()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+      acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 
@@ -664,25 +664,25 @@ namespace universal_windows
 
       }
 
-      if (acmesystem()->get_session()->m_puserinteractionHost == nullptr)
+      if (acmesession()->m_puserinteractionHost == nullptr)
       {
 
          return;
 
       }
 
-      if (acmesystem()->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
+      if (acmesession()->m_puserinteractionHost->m_pimpl == nullptr)
       {
 
          return;
 
       }
 
-      pmouse->m_puserinteraction = acmesystem()->get_session()->m_puserinteractionHost;
+      pmouse->m_puserinteraction = acmesession()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      acmesystem()->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
+      acmesession()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
    }
 

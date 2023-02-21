@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/control_box.h"
@@ -545,7 +545,7 @@ namespace experience_tranquillum
          && m_pframewindow->m_bShowControlBox)
       {
 
-         auto time1 = ::time::now();
+         //auto time1 = ::time::now();
 
          on_draw_frame(pgraphics);
 
@@ -560,7 +560,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleIcon;
 
-         auto time2 = ::time::now();
+         //auto time2 = ::time::now();
 
          if (get_element_rect(rectangleIcon, e_element_top_left_icon))
          {
@@ -588,7 +588,7 @@ namespace experience_tranquillum
 
          //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-         auto time3 = ::time::now();
+         //auto time3 = ::time::now();
 
          ::rectangle_i32 rectangleGrip;
 
@@ -618,7 +618,7 @@ namespace experience_tranquillum
       else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
       {
 
-         auto time2 = ::time::now();
+         //auto time2 = ::time::now();
 
          //oswindow hwndDraw = m_pframewindow->get_handle();
 
@@ -697,7 +697,7 @@ namespace experience_tranquillum
 
          }
 
-         auto time3 = ::time::now();
+         //auto time3 = ::time::now();
 
          ::rectangle_i32 rectangleIcon;
 
@@ -740,7 +740,7 @@ namespace experience_tranquillum
 
          //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
-         auto time4 = ::time::now();
+         //auto time4 = ::time::now();
 
          ::rectangle_i32 rectangle;
 
@@ -776,7 +776,7 @@ namespace experience_tranquillum
 
          //class fonts & fonts = pdraw2d->fonts();
 
-         auto time5 = ::time::now();
+         //auto time5 = ::time::now();
 
          string wstrWindowText;
 

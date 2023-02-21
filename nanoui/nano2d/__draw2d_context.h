@@ -15,7 +15,7 @@ namespace nano2d
    void __font_size(::write_text::font * pfont, float size);
 
 
-   class NANOUI_EXPORT draw2d_context :
+   class CLASS_DECL_NANOUI draw2d_context :
       virtual public ::nano2d::context
    {
    protected:

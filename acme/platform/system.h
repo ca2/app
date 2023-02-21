@@ -579,7 +579,7 @@ namespace acme
 
 
 
-      ::file::path libfilename(const ::string& str);
+      //::file::path library_file_name(const ::string& str);
 
 
       //template < typename ENTRY >

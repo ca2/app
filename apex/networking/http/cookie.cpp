@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "cookie.h"
 #include <time.h>
 
@@ -293,7 +293,7 @@ namespace http
 
       cookie.m_varValue = payload;
 
-      if (time)
+      if (time > 0_s)
       {
 
          cookie.m_strExpire = expire(time);

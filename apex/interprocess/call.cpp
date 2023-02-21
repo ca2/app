@@ -1,4 +1,4 @@
-﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "call.h"
 #include "communication.h"
@@ -139,7 +139,7 @@ namespace interprocess
       if (!this->m_mapTask.is_empty())
       {
 
-         if (!_wait(::time::infinite()))
+         if (!_wait(::time::infinity()))
          {
 
             return error_wait_timeout;

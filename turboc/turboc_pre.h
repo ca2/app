@@ -4,7 +4,7 @@
 #include <time.h>
 
 #ifndef CLASS_DECL_TURBOC
-#ifdef _APP_TURBOC_LIBRARY
+#if defined(_app_turboc_project)
 #define CLASS_DECL_TURBOC  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_TURBOC  CLASS_DECL_IMPORT

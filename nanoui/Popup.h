@@ -29,7 +29,7 @@ namespace nanoui
  * Usually the Popup instance is constructed by another widget (e.g. \ref PopupButton)
  * and does not need to be created by hand.
  */
-   class NANOUI_EXPORT Popup : public Window {
+   class CLASS_DECL_NANOUI Popup : public Window {
    public:
       enum Side { Left = 0, Right };
 

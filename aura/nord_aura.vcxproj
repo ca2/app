@@ -569,7 +569,7 @@
     <ClCompile Include="graphics\image\map.cpp" />
     <ClCompile Include="graphics\image\meta.cpp" />
     <ClCompile Include="graphics\image\nanosvg.cpp" />
-    <ClCompile Include="graphics\image\pointer_array.cpp" />
+    <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
     <ClCompile Include="graphics\image\_.cpp" />
     <ClCompile Include="graphics\user\control_box_button.cpp" />

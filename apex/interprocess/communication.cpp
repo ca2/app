@@ -268,6 +268,12 @@ namespace interprocess
 
       ::payload payloadReply;
 
+      acmeapplication()->payload("activation.object") = strObject;
+
+      acmeapplication()->payload("activation.member") = strMember;
+
+      acmeapplication()->payload("activation.network_arguments") = strNetworkArguments;
+
       bool bShouldContinueTryingToHandle = _handle_call(payloadReply, strObject, strMember, propertyset);
 
       if (bShouldContinueTryingToHandle)
@@ -790,7 +796,7 @@ namespace interprocess
             auto papp = get_app();
 
             papp->m_papexapplication->on_additional_local_instance(
-               (bool &)payload["handled"],
+               payload["handled"].bool_reference(),
                strModule,
                propertyset["pid"].as_i32(),
                strCommandLine);

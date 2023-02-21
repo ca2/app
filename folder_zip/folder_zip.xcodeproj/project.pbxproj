@@ -80,6 +80,13 @@
 			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
 			remoteInfo = ios_acme;
 		};
+		9A8EF1E829A09CC100D13A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1F6EAD274DFDB1000B7A22 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC14CB6297B3350006D9BD3;
+			remoteInfo = "acme copy";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +162,7 @@
 			children = (
 				9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */,
 				9A1F6EB5274DFDB1000B7A22 /* libios_acme.a */,
+				9A8EF1E929A09CC100D13A0C /* libacme copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,8 +322,15 @@
 		9A1F6EB5274DFDB1000B7A22 /* libios_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_acme.a;
+			path = lib_acme.a;
 			remoteRef = 9A1F6EB4274DFDB1000B7A22 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8EF1E929A09CC100D13A0C /* libacme copy.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libacme copy.dylib";
+			remoteRef = 9A8EF1E829A09CC100D13A0C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -597,7 +612,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -606,7 +620,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

@@ -83,7 +83,7 @@ constexpr integral_byte operator ""_KiB(long double d)
 constexpr integral_byte operator ""_KiB(unsigned long long i)
 {
 
-   return 1'024 * i;
+   return (memsize) (i << 10);
 
 }
 
@@ -115,7 +115,7 @@ constexpr integral_byte operator ""_MiB(long double d)
 constexpr integral_byte operator ""_MiB(unsigned long long i)
 {
 
-   return (memsize)(1024 * 1024 * i);
+   return (memsize)(i << 20);
 
 }
 
@@ -147,7 +147,7 @@ constexpr integral_byte operator ""_GiB(long double d)
 constexpr integral_byte operator ""_GiB(unsigned long long i)
 {
 
-   return (memsize) (1'024 * 1'024 * 1'024 * i);
+   return (memsize) (i << 30);
 
 }
 

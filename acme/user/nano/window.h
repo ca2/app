@@ -64,7 +64,7 @@ public:
    ~nano_window() override;
 
 
-   ::payload do_synchronously(const class time & timeWait = ::time::infinite()) override;
+   ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
    void do_asynchronously() override;
 
 

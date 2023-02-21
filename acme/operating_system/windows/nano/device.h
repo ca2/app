@@ -1,10 +1,11 @@
-//
+﻿//
 // Created by camilo on 31/01/2022 14:35 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 
 
 #include "acme/user/nano/device.h"
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
 

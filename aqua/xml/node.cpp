@@ -935,7 +935,7 @@ namespace xml
          if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(rangeXml.case_insensitive_begins_consume("<!DOCTYPE"))
+            if(rangeXml.case_insensitive_begins_eat("<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -974,7 +974,7 @@ namespace xml
          rangeXml.consume_spaces(0);
          prev = rangeXml.m_begin;
          // is CDATA Node?
-         if(rangeXml.case_insensitive_begins_consume("<![CDATA["))
+         if(rangeXml.case_insensitive_begins_eat("<![CDATA["))
          {
             // processing CDATA parse
             // return pointer is next node of CDATA

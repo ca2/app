@@ -1484,7 +1484,7 @@ public:
   //
   //    ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
-      string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
+      string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_begin += this->count_left(range); return *this; }
 
   //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
   //
@@ -1492,7 +1492,7 @@ public:
   //
   //    ::strsize count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-      string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
+      string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_end -= this->count_right(range); return *this; }
 
   //    ::strsize count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::strsize c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
@@ -1646,7 +1646,8 @@ public:
   bool begins_consume(const ::scoped_string & scopedstr);
   bool begins_consume(ansi_character ansich) {return (*this->m_begin == ansich)?(static_cast<void>(this->m_begin++),true): false;}
   bool begins_consume(::ansi_character & characterReturn, ansi_character ansich) {return (bool)(*this->m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(this->m_begin++), true): false;}
-  bool case_insensitive_begins_consume(const ::scoped_string & scopedstr);
+  bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);
+  bool case_insensitive_ends_eat(const ::scoped_string & scopedstr);
   void consume(const ::ansi_character * pszToConsume);
   //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
   void consume(const ::scoped_string & scopedstr);

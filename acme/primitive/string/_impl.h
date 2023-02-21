@@ -761,7 +761,7 @@ bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scop
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::case_insensitive_begins_consume(const ::scoped_string & scopedstr)
+bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_string & scopedstr)
 {
 
    if (!this->case_insensitive_begins(scopedstr))
@@ -776,6 +776,25 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_begins_consume(const ::sco
    return true;
 
 }
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::case_insensitive_ends_eat(const ::scoped_string & scopedstr)
+{
+
+   if (!this->case_insensitive_ends(scopedstr))
+   {
+
+      return false;
+
+   }
+
+   this->m_end -= scopedstr.size();
+
+   return true;
+
+}
+
 
 //
 //template < typename ITERATOR_TYPE >

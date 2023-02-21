@@ -1,4 +1,4 @@
-﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSørensen!!
+// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -1895,7 +1895,7 @@ public:
 
                // so p is the end of the skip_any_character_in for matching items...
 
-               return range.end();
+               return range.end() + 1;
 
             }
 
@@ -1909,7 +1909,7 @@ public:
       // each skip_any_character_inned item matched some item in range...
       // return address immediately after end of skip_any_character_inning...
 
-      return range.end();
+      return range.begin();
 
    }
 

@@ -188,7 +188,7 @@ namespace calculator
       else
       {
 
-         m_ptoken->m_str = ::str::consume_nc_name(m_range);
+         m_ptoken->m_str = m_range.consume_nc_name();
 
          while (unicode_is_space_char(m_range.m_begin))
          {

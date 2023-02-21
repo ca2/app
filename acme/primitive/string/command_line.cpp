@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
+// Created by camilo on 2022-04-24 05:22 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "command_line.h"
 //#include "string.h"
@@ -624,15 +624,17 @@ bool get_command_line_parameter(string & wstrValue,const ::scoped_string & scope
 //}
 
 
-string_array get_c_args_from_c(::const_ansi_range & range)
+string_array get_c_args_from_c(const ::scoped_string & scopedstr)
 {
-
-   if (range.is_empty())
+   
+   if (scopedstr.is_empty())
    {
 
       return {};
 
    }
+
+   auto range = scopedstr();
 
    string_array stra;
 
@@ -649,7 +651,7 @@ string_array get_c_args_from_c(::const_ansi_range & range)
    while (range.has_char())
    {
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (range.is_empty())
       {
@@ -660,13 +662,13 @@ string_array get_c_args_from_c(::const_ansi_range & range)
       if (*range.m_begin == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(range);
+         str = range.consume_c_quoted_value();
 
       }
       else if (*range.m_begin == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(range);
+         str = range.consume_c_quoted_value();
 
       }
       else
@@ -689,13 +691,13 @@ string_array get_c_args_from_c(::const_ansi_range & range)
             if (*range.m_begin == '\"')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
             else if (*range.m_begin == '\'')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
 
@@ -756,7 +758,7 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
    while (range.has_char())
    {
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (range.is_empty())
       {
@@ -768,13 +770,13 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
       if (*range.m_begin == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(range);
+         str = range.consume_c_quoted_value();
 
       }
       else if (*range.m_begin == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(range);
+         str = range.consume_c_quoted_value();
 
       }
       else
@@ -797,13 +799,13 @@ string_array get_c_args_for_c(const ::scoped_string & scopedstr)
             if (*range.m_begin == '\"')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
             else if (*range.m_begin == '\'')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
 

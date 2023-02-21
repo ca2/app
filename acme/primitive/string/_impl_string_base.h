@@ -1,4 +1,4 @@
-﻿//
+//
 //  _string_base_impl.h
 //  acme
 //
@@ -625,7 +625,7 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repe
 
 
 template < typename ITERATOR_TYPE >
-inline strsize string_range < ITERATOR_TYPE >::unichar_count() const
+inline strsize const_string_range < ITERATOR_TYPE >::unichar_count() const
 {
 
    return ::unichar_count(this->begin());
@@ -2274,7 +2274,7 @@ inline const CHARACTER * FormatArgument(const typename GET_BLOCK_TYPE<CHARACTER>
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::contains_any(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::contains_any(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2296,7 +2296,7 @@ bool string_range < ITERATOR_TYPE >::contains_any(const STRING_ARRAY & stra) con
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::contains_all(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::contains_all(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2320,7 +2320,7 @@ bool string_range < ITERATOR_TYPE >::contains_all(const STRING_ARRAY & stra) con
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2342,7 +2342,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_contains_at_least_one_of(c
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2364,7 +2364,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_contains_all(const STRING_
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -2386,7 +2386,7 @@ bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_at_least_
 
 template < typename ITERATOR_TYPE >
 template < primitive_array STRING_ARRAY >
-bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_all(const STRING_ARRAY & stra) const
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains_all(const STRING_ARRAY & stra) const
 {
 
    for (auto & scopedstr : stra)
@@ -3148,7 +3148,7 @@ inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
 //}
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr) const
+bool const_string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr) const
 {
 
    return ::is_set(find(scopedstr));
@@ -3157,7 +3157,7 @@ bool string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr) c
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRING & scopedstr) const
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRING & scopedstr) const
 {
 
    return ::is_set(case_insensitive_find(scopedstr));
@@ -3365,7 +3365,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRI
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+bool const_string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    auto pFind = this->find(scopedstr);
@@ -3397,7 +3397,7 @@ bool string_range < ITERATOR_TYPE >::contains(const SCOPED_STRING & scopedstr, c
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+bool const_string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    auto pFind = this->case_insensitive_find(scopedstr);
@@ -3429,7 +3429,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_contains(const SCOPED_STRI
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(const SCOPED_STRING & scopedstr, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    auto pFind = this->unicode_case_insensitive_find(scopedstr);
@@ -3577,7 +3577,7 @@ bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(const SCO
 
 
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(const SCOPED_STRING & scopedstr) const
+bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(const SCOPED_STRING & scopedstr) const
 {
 
    return ::is_set(unicode_case_insensitive_find(scopedstr));
@@ -4172,7 +4172,7 @@ inline ::count string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove
 
 // find the first occurrence of character 'ch', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
 {
 
    return this->find_first(ch);
@@ -4243,7 +4243,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 // find the first occurrence of character 'ch', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::case_insensitive_find(CHARACTER ch) const RELEASENOTHROW
 {
    // start is in XCHARs
    //ASSERT(start >= 0);
@@ -4309,7 +4309,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find_first(CHARACTER ch) const RELEASENOTHROW
 {
    
    return ::string_find_character(this->begin(), ch);
@@ -4475,7 +4475,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4548,7 +4548,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 // find the first occurrence of string_base < ITERATOR_TYPE > 'scopedstr', starting at strsize 'start'
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    const_iterator p;
@@ -4644,7 +4644,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    auto psz = (const CHARACTER *)this->begin();
@@ -4723,7 +4723,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unicode_case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_rear_find(const SCOPED_STRING & scopedstr) const RELEASENOTHROW
 {
 
    auto psz = (const CHARACTER *)this->begin();
@@ -5064,7 +5064,7 @@ inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < IT
 //
 
 template < typename ITERATOR_TYPE >
-typename string_range < ITERATOR_TYPE >::CHARACTER string_range < ITERATOR_TYPE >::last_char(strsize count) const
+typename const_string_range < ITERATOR_TYPE >::CHARACTER const_string_range < ITERATOR_TYPE >::last_char(strsize count) const
 {
 
    return *(this->end() + count);
@@ -6041,7 +6041,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 
 
 template < typename ITERATOR_TYPE >
-inline typename string_range < ITERATOR_TYPE >::const_iterator string_range < ITERATOR_TYPE >::unichar_at(strsize iUnicharIndex) const
+inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::unichar_at(strsize iUnicharIndex) const
 {
 
    auto p = this->begin();
@@ -6213,7 +6213,7 @@ void string_base < ITERATOR_TYPE >::push_back(CHARACTER ch)
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_range < ITERATOR_TYPE > ::case_insensitive_begins(const SCOPED_STRING & scopedstr) const
+inline bool const_string_range < ITERATOR_TYPE > ::case_insensitive_begins(const SCOPED_STRING & scopedstr) const
 {
 
    return this->begins(scopedstr, ::comparison::case_insensitive < CHARACTER >());
@@ -6223,7 +6223,7 @@ inline bool string_range < ITERATOR_TYPE > ::case_insensitive_begins(const SCOPE
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_range < ITERATOR_TYPE > ::case_insensitive_ends(const SCOPED_STRING & scopedstr) const
+inline bool const_string_range < ITERATOR_TYPE > ::case_insensitive_ends(const SCOPED_STRING & scopedstr) const
 {
 
    return this->ends(scopedstr, ::comparison::case_insensitive < CHARACTER >());

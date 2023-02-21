@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "type.h"
@@ -1115,17 +1115,17 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    ::payload & operator *= (FLOATING d);
 
 
-   void consume_number(::const_ansi_range & range);
-   //void consume_number((::const_ansi_range & range);
-   void consume_identifier(::const_ansi_range & range);
-   //void consume_identifier((::const_ansi_range & range);
-   void parse_network_payload(::const_ansi_range & range);
-   //void parse_network_payload((::const_ansi_range & range);
+   void consume_number(::ansi_range & range);
+   //void consume_number((::ansi_range & range);
+   void consume_identifier(::ansi_range & range);
+   //void consume_identifier((::ansi_range & range);
+   void parse_network_payload(::ansi_range & range);
+   //void parse_network_payload((::ansi_range & range);
    const char * parse_network_payload(const ::string & strJson);
-   ::enum_type find_network_payload_child(::const_ansi_range & range, const payload & payload);
-   //::enum_type find_network_payload_child((::const_ansi_range & range, const payload & payload);
-   ::enum_type find_network_payload_id(::const_ansi_range & range, const payload & payload);
-   bool parse_network_payload_step(::const_ansi_range & range);
+   ::enum_type find_network_payload_child(::ansi_range & range, const payload & payload);
+   //::enum_type find_network_payload_child((::ansi_range & range, const payload & payload);
+   ::enum_type find_network_payload_id(::ansi_range & range, const payload & payload);
+   bool parse_network_payload_step(::ansi_range & range);
    // bool parse_network_payload_step(const char *& pszJson, const ::ansi_character * pszEnd);
 
    ::string & get_network_payload(::string & str, bool bNewLine = true) const;
@@ -1177,11 +1177,11 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
 //CLASS_DECL_ACME void var_skip_number(const char *& psz);
-CLASS_DECL_ACME void var_skip_number(::const_ansi_range & range);
+CLASS_DECL_ACME void payload_skip_number(::ansi_range & range);
 //CLASS_DECL_ACME void var_skip_identifier(const char *& psz);
-CLASS_DECL_ACME void var_skip_identifier(::const_ansi_range & range);
+CLASS_DECL_ACME void payload_skip_identifier(::ansi_range & range);
 //CLASS_DECL_ACME void var_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_skip_network_payload(::const_ansi_range & range);
+CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 

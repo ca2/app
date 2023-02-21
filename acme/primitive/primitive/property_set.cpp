@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
@@ -803,10 +803,10 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 //}
 
 
-void property_set_skip_network_payload(::const_ansi_range & range)
+void property_set_skip_network_payload(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '\0')
    {
@@ -815,9 +815,9 @@ void property_set_skip_network_payload(::const_ansi_range & range)
 
    }
 
-   ::str::consume(range, "{");
+   range.consume("{");
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '}')
    {
@@ -833,11 +833,11 @@ void property_set_skip_network_payload(::const_ansi_range & range)
 
       ::atom atom;
 
-      property_skip_network_payload_id(range);
+      property_skip_network_payload_item(range);
 
-      property_skip_network_payload_value(range);
+      property_skip_network_payload_payload(range);
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {
@@ -953,7 +953,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //}
 
 
-void property_set::parse_network_payload(::const_ansi_range & range)
+void property_set::parse_network_payload(::ansi_range & range)
 {
 
 
@@ -961,7 +961,7 @@ void property_set::parse_network_payload(::const_ansi_range & range)
    uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
 #endif
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '\0')
    {
@@ -970,9 +970,9 @@ void property_set::parse_network_payload(::const_ansi_range & range)
 
    }
 
-   ::str::consume(range, "{");
+   range.consume("{");
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '}')
    {
@@ -988,13 +988,13 @@ void property_set::parse_network_payload(::const_ansi_range & range)
 
       ::atom atom;
 
-      ::property_parse_network_payload_id(atom, range);
+      ::property_parse_network_payload_item(atom, range);
 
       auto & property = operator[](atom);
 
-      ::property_parse_network_payload_value(property, range);
+      ::property_parse_network_payload_payload(property, range);
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {

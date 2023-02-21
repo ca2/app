@@ -693,13 +693,6 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
-		9A88AA102990AAE6005FAA4E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AC14CB6297B3350006D9BD3;
-			remoteInfo = "acme copy";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -1255,7 +1248,6 @@
 			children = (
 				9A615C2928B1B7A300377F68 /* libacme.dylib */,
 				9A615C2B28B1B7A300377F68 /* lib_acme.a */,
-				9A88AA112990AAE6005FAA4E /* libacme copy.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2363,13 +2355,6 @@
 			remoteRef = 9A615C2A28B1B7A300377F68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A88AA112990AAE6005FAA4E /* libacme copy.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = "libacme copy.dylib";
-			remoteRef = 9A88AA102990AAE6005FAA4E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2753,6 +2738,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/build";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
@@ -2870,6 +2856,7 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/build";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",

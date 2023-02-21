@@ -1,10 +1,10 @@
-﻿// From _string_base_impl.h by camilo on 2012-12-18 17:04 <3ThomasBorregaardSørensen!!
+// From _string_base_impl.h by camilo on 2012-12-18 17:04 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
 
 template < typename ITERATOR_TYPE >
-constexpr ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range) const noexcept
+constexpr ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range) const noexcept
 {
 
    return this->order(range, ::comparison::comparison < CHARACTER >());
@@ -13,7 +13,7 @@ constexpr ::std::strong_ordering string_range < ITERATOR_TYPE > ::order(const SC
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range) const noexcept
+inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range) const noexcept
 {
 
    return this->order(range, ::comparison::case_insensitive < CHARACTER >());
@@ -22,7 +22,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const SCOPED_STRING & range) const noexcept
+inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::collate(const SCOPED_STRING & range) const noexcept
 {
 
    return range_collate<const CHARACTER *>(*this, range);
@@ -31,7 +31,7 @@ inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::collate(const SCO
 
 
 template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering string_range < ITERATOR_TYPE > ::case_insensitive_collate(const SCOPED_STRING & range) const noexcept
+inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::case_insensitive_collate(const SCOPED_STRING & range) const noexcept
 {
 
    return case_insensitive_range_collate<const CHARACTER *>(*this, range);

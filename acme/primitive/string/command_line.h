@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 2022-10-28 23:33 <3ThomasBorregaardSørensen!!
 //
 #pragma once
@@ -20,7 +20,7 @@ CLASS_DECL_ACME void prepare_argc_argv(int & argc, char ** argv, char * cmd_line
 
 
 CLASS_DECL_ACME string transform_to_c_arg(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME string_array get_c_args_from_string(::const_ansi_range & range);
+CLASS_DECL_ACME string_array get_c_args_from_string(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME string_array get_c_args_from_c(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME string_array get_c_args_for_c(const ::scoped_string & scopedstr);

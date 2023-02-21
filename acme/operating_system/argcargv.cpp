@@ -1,4 +1,4 @@
-﻿// argcargv.cpp
+// argcargv.cpp
 
 // based on:
 // LIBCTINY - Matt Pietrek 2001
@@ -23,17 +23,19 @@
 //#define memory_new ACME_NEW
 
 
-string_array get_c_args_from_string(::const_ansi_range & range)
+string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 {
 
    string_array stra;
 
-   if (range.is_empty())
+   if (scopedstr.is_empty())
    {
 
       return stra;
 
    }
+   
+   auto range = scopedstr();
 
    string_array straBeforeColon;
 
@@ -48,7 +50,7 @@ string_array get_c_args_from_string(::const_ansi_range & range)
    while (range.has_char())
    {
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (range.is_empty())
       {
@@ -88,13 +90,13 @@ string_array get_c_args_from_string(::const_ansi_range & range)
             if (*range.m_begin == '\"')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
             else if (*range.m_begin == '\'')
             {
 
-               ::str::consume_quoted_value_ex(range);
+               range.consume_quoted_value_ex();
 
             }
 
@@ -177,7 +179,7 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
    while (range.is_empty())
    {
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (range.is_empty())
       {
@@ -188,13 +190,13 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
       if (*range.m_begin == '\"')
       {
 
-         str = ::str::no_escape_consume_quoted_value(range);
+         str = range.no_escape_consume_quoted_value();
 
       }
       else if (*range.m_begin == '\'')
       {
 
-         str = ::str::no_escape_consume_quoted_value(range);
+         str = range.no_escape_consume_quoted_value();
 
       }
       else

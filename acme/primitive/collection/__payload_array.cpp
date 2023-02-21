@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/str.h"
 
@@ -563,7 +563,7 @@ payload_array & payload_array::operator = (const payload_array & payloada)
 int g_iRandomNumberGenerator = 0;
 
 
-void payload_array::parse_network_payload(::const_ansi_range & range)
+void payload_array::parse_network_payload(::ansi_range & range)
 {
 
    if(range.is_empty())
@@ -573,11 +573,11 @@ void payload_array::parse_network_payload(::const_ansi_range & range)
 
    }
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
-   ::str::consume(range, "[");
+   range.consume("[");
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == ']')
    {
@@ -619,7 +619,7 @@ void payload_array::parse_network_payload(::const_ansi_range & range)
 
       payload.parse_network_payload(range);
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if(*range.m_begin == ',')
       {
@@ -661,19 +661,19 @@ void payload_array::parse_network_payload(::const_ansi_range & range)
 //}
 
 
-void var_array_skip_network_payload(::const_ansi_range & range)
+void payload_array_skip_network_payload(::ansi_range & range)
 {
    
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
    
-   ::str::consume(range, "[");
+   range.consume("[");
 
    while (true)
    {
       
-      var_skip_network_payload(range);
+      payload_skip_network_payload(range);
       
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/data/node.h"
@@ -84,7 +84,7 @@ namespace xml
    protected:
 
 
-      virtual void _load(::const_ansi_range & rangeXml,parse_info * pi = nullptr);
+      virtual void _load(::ansi_range & rangeXml,parse_info * pi = nullptr);
 
 
    public:
@@ -96,15 +96,15 @@ namespace xml
       //bool consume(::const_ansi_range & rangeXml, const ::ansi_character * psz);
       //bool consume_whitespaces(::const_ansi_range & rangeXml, i32 iMinimumCount = 1);
 
-      void LoadOtherNodes(bool* pbRet,::const_ansi_range & rangeXml, parse_info * pparseinfo = nullptr);
+      void LoadOtherNodes(bool* pbRet,::ansi_range & rangeXml, parse_info * pparseinfo = nullptr);
 
       // internal load functions
       //void LoadAttributes(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
-      void LoadAttributes(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
-      void LoadProcessingInstruction(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
-      void LoadDocType(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
-      void LoadComment(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
-      void LoadCDATA(::const_ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadAttributes(::ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadProcessingInstruction(::ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadDocType(::ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadComment(::ansi_range & rangeXml, parse_info * pi = nullptr);
+      void LoadCDATA(::ansi_range & rangeXml, parse_info * pi = nullptr);
 
       
       node *                  get_child( const char * name);

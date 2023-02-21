@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Include payload.h
@@ -336,7 +336,7 @@ public:
    //void parse_ini_folder(const ::file::path& path);
 
    void parse_network_payload(const ::string & strNetworkPayload);
-   void parse_network_payload(::const_ansi_range & range);
+   void parse_network_payload(::ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);
    void parse_network_headers(const ::scoped_string & scopedstrHeaders);
@@ -404,7 +404,7 @@ public:
 
 
 //CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void property_set_skip_network_payload(::const_ansi_range & range);
+CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 
 
 //inline ::pointer<::handle::ini>operator ""_pini(const ::scoped_string & scopedstr, size_t s);

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "interaction_layout.h"
@@ -2338,6 +2338,23 @@ namespace user
 
       inline bool _001HasHorizontalBarDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
       inline bool _001HasVerticalBarDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
+      
+      
+//      virtual void pick_single_file(
+//         const ::array < ::pair < ::string, ::string > >& filetypes,
+//         const ::function < void(const ::file::path &) >& function,
+//         bool save);
+//
+//
+//      virtual void pick_multiple_file(
+//         const ::array < ::pair < ::string, ::string > > & filetypes,
+//         const ::function < void(const ::file::path_array &) >& function);
+//     
+//      virtual void pick_single_folder(
+//         //const ::array < ::pair < ::string, ::string > >& filetypes,
+//                              const ::function < void(const ::file::path &) >& function);
+//                              //,       bool save);
+
 
    };
 

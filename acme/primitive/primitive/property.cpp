@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "payload.h"
 //#include "acme/networking/as_string.h"
 #include "acme/primitive/string/str.h"
@@ -203,48 +203,48 @@ void prop_id_debug(::particle * pparticle);
 //   ::property_parse_network_payload_id(m_atom, pszJson, pszEnd);
 //   ::property_parse_network_payload_value(m_var,pszJson,pszEnd);
 //}
-//
-//
-void property_parse_network_payload_id(atom & atom, ::const_ansi_range & range)
+
+
+void property_parse_network_payload_item(atom & atom, ::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
-   atom = ::str::no_escape_consume_quoted_value(range);
+   atom = range.no_escape_consume_quoted_value();
 
 }
 
 
-void property_parse_network_payload_value(::payload & payload, ::const_ansi_range & range)
+void property_parse_network_payload_payload(::payload & payload, ::ansi_range & range)
 {
    
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
-   ::str::consume(range, ":");
+   range.consume(":");
 
    payload.parse_network_payload(range);
 
 }
 
 
-void property_skip_network_payload_id(::const_ansi_range & range)
+void property_skip_network_payload_item(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
-   ::str::no_escape_skip_quoted_value(range);
+   range.no_escape_skip_quoted_value();
 
 }
 
 
-void property_skip_network_payload_value(::const_ansi_range & range)
+void property_skip_network_payload_payload(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
-   ::str::consume(range, ":");
+   range.consume(":");
 
-   var_skip_network_payload(range);
+   payload_skip_network_payload(range);
 
 }
 

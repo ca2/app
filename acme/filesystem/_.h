@@ -6,13 +6,16 @@
 #include "file/_.h"
 
 
+namespace file
+{
 
 
+   class file_dialog;
+
+   class folder_dialog;
 
 
-
-
-
+} // namespace file
 
 
 

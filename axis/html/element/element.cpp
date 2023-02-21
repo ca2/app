@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "element.h"
 #include "acme/exception/parsing.h"
 #include "acme/primitive/primitive/url.h"
@@ -1071,13 +1071,13 @@ namespace html
    }
 
 
-   bool element::parse(html_data * phtmldata, ::const_ansi_range & range)
+   bool element::parse(html_data * phtmldata, ::ansi_range & range)
    {
 
       const char * pszStart = range.m_begin;
 
       // skip white space
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin != '<')
       {
@@ -1096,7 +1096,7 @@ namespace html
       range.m_begin++;
       
       // skip white space
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       const char * pszTag = range.m_begin;
 
@@ -1134,13 +1134,13 @@ namespace html
       {
          
          // skip white space
-         ::str::consume_spaces(range, 0);
+         range.consume_spaces(0);
          
          // Parse Attributes
          parse_attributes(phtmldata, range);
          
          // skip white space
-         ::str::consume_spaces(range, 0);
+         range.consume_spaces(0);
 
          if (*range.m_begin != '/' && *range.m_begin != '>')
          {
@@ -1153,7 +1153,7 @@ namespace html
          {
 
             // skip white space
-            ::str::consume_spaces(range, 0);
+            range.consume_spaces(0);
 
             if (*range.m_begin != '>')
             {
@@ -1209,7 +1209,7 @@ namespace html
       }
 
       // skip white space
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin != '>')
       {
@@ -1221,7 +1221,7 @@ namespace html
       range.m_begin++;
       
       // skip white space
-      ::str::consume_spaces(range, 0);      
+      range.consume_spaces(0);      
 
       const char * pszCloseTag = range.m_begin;
 
@@ -1247,7 +1247,7 @@ namespace html
    }
 
 
-   void element::parse_attributes(html_data * phtmldata, ::const_ansi_range & range)
+   void element::parse_attributes(html_data * phtmldata, ::ansi_range & range)
    {
 
       __UNREFERENCED_PARAMETER(phtmldata);

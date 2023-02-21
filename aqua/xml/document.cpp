@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "document.h"
 #include "xml.h"
 #include "exception.h"
@@ -339,7 +339,7 @@ namespace xml
    //}
 
 
-   string document::consume_entity_ref(::const_ansi_range & rangeXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
+   string document::consume_entity_ref(::ansi_range & rangeXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
    {
 
       auto rangeXml = rangeXmlParam;
@@ -351,7 +351,7 @@ namespace xml
 
       }
 
-      ::str::consume(rangeXml, "&");
+      rangeXml.consume("&");
 
       //strName.empty();
 
@@ -449,7 +449,7 @@ namespace xml
 
    // the additional parameter must end with , nullptr
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
-   char * document::patch_entity_ref(::const_ansi_range & rangeXml, int bUseExtEnt, ::acme::context * pacmecontext)
+   char * document::patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::acme::context * pacmecontext)
    {
 
       // pszXml must be a valid portion of and point_i32 to an entity ref in:

@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -11,6 +11,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/file_dialog.h"
+#include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
 #include "acme/parallelization/install_mutex.h"
@@ -2710,75 +2712,51 @@ return false;
 #endif
 
 
-   void node::operating_system_file_dialog(::operating_system_file_dialog * pdialog)
+   void node::_node_file_dialog(::file::file_dialog * pdialog)
    {
 
 
    }
 
 
-   void node::pick_single_file(
-      void* poswindow,
-      const ::array < ::pair < ::string, ::string > >& filetypes,
-      const ::function < void(const ::file::path&) >& function,
-      bool save)
+   void node::_node_folder_dialog(::file::folder_dialog * pdialog)
    {
 
-      auto functionHere = [function](const ::file::path_array & stra)
-      {
-
-         if (stra.size() <= 0)
-         {
-
-            function("");
-
-         }
-         else
-         {
-
-            function(stra.first());
-
-         }
-
-      };
-
-      auto pdialog = __new(::operating_system_file_dialog(this,
-                                                        poswindow,
-                                                        nullptr,
-                                                        filetypes, functionHere, save, false));
-
-      operating_system_file_dialog(pdialog);
-
-//      operating_system_file_dialog(
-//         poswindow,
-//         filetypes,
-//,
-//         save,
-//            false);
 
    }
 
 
-   void node::pick_multiple_file(
-      void* poswindow,
-      const ::array < ::pair < ::string, ::string > >& filetypes,
-      const ::function < void(const ::file::path_array&) >& function)
+   class file_dialog : virtual public ::file::file_dialog
    {
-//
-//      operating_system_file_dialog(
-//         poswindow,
-//         filetypes,
-//         function,
-//         false,
-//         false);
+   public:
+      
+      void run() override { acmenode()->_node_file_dialog(this); }
+      
+   };
 
-      auto pdialog = __new(::operating_system_file_dialog(this,
-                                                        poswindow,
-                                                        nullptr,
-                                                        filetypes, function, false, false));
 
-      operating_system_file_dialog(pdialog);
+   ::pointer < ::file::file_dialog > node::node_file_dialog()
+   {
+      
+      return __create_new < file_dialog >();
+      
+   }
 
+
+   class folder_dialog : virtual public ::file::folder_dialog
+   {
+   public:
+      
+      void run() override { acmenode()->_node_folder_dialog(this); }
+      
+   };
+
+
+   ::pointer < ::file::folder_dialog > node::node_folder_dialog()
+   {
+      
+      return __create_new < folder_dialog >();
+      
    }
 
 

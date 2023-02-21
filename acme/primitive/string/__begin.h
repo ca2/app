@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "c/_.h"
@@ -90,6 +90,10 @@ constexpr char __digit(int digit)
    return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[digit];
 
 }
+
+
+constexpr u32 decode_utf16_pair(u16 * units);
+
 
 
 

@@ -2901,18 +2901,18 @@ ch_else:
             try
             {
                ::str::consume_spaces(range,0);
-               string strId = ::str::consume_c_quoted_value(range);
+               string strId = range.consume_c_quoted_value();
                ::str::consume_spaces(range,1);
-               string strLocale = ::str::consume_c_quoted_value(range);
+               string strLocale = range.consume_c_quoted_value();
                ::str::consume_spaces(range,1);
-               string strSchema = ::str::consume_c_quoted_value(range);
+               string strSchema = range.consume_c_quoted_value();
                ::str::consume_spaces(range,1);
-               string strValue = ::str::consume_c_quoted_value(range);
+               string strValue = range.consume_c_quoted_value();
                strExtra = "";
                try
                {
                   ::str::consume_spaces(range,1);
-                  strExtra = ::str::consume_c_quoted_value(range);
+                  strExtra = range.consume_c_quoted_value();
                }
                catch(...)
                {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
 #include "alpha_source.h"
@@ -23,6 +23,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
+#include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
 #include "acme/platform/scoped_restore.h"
@@ -20381,6 +20382,44 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false;
       
    }
+
+
+//void interaction::pick_single_file(
+//   const ::array < ::pair < ::string, ::string > >& filetypes,
+//   const ::function < void(const ::file::path &) >& function,
+//   bool save)
+//{
+//   
+//      acmenode()->pick_single_file(oswindow(),
+//                                   filetypes,
+//                                   function,
+//                                   save);
+//   
+//}
+//
+//
+//void interaction::pick_multiple_file(
+//   const ::array < ::pair < ::string, ::string > > & filetypes,
+//   const ::function < void(const ::file::path_array &) >& function)
+//{
+//   
+//   acmenode()->pick_multiple_file(oswindow(),
+//                                filetypes,
+//                                function);
+//   
+//}
+//
+//
+//void interaction::pick_single_folder(
+//   //const ::array < ::pair < ::string, ::string > >& filetypes,
+//                        const ::function < void(const ::file::path &) >& function)
+//                        //,       bool save);
+//{
+//   
+//   acmenode()->pick_single_folder(oswindow(),
+//                                function);
+//
+//}
 
 
 } // namespace user

@@ -27,40 +27,6 @@ CLASS_DECL_ACME const char * callstack_default_format();
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
-
-class CLASS_DECL_ACME operating_system_file_dialog :
-        virtual public particle
-{
-public:
-
-
-   void *                                             m_poswindow;
-   void *                                             m_posdata;
-   ::array < ::pair < ::string, ::string > >          m_filetypes;
-   ::function < void(const ::file::path_array&) >     m_function;
-   bool                                               m_bSave;
-   bool                                               m_bMultiple;
-
-   operating_system_file_dialog(
-           ::particle * pparticle,
-           void * poswindow,
-           void * posdata,
-           const ::array < ::pair < ::string, ::string > > & filetypes,
-           const ::function < void(const ::file::path_array&) > & function,
-           bool bSave,
-           bool bMultiple) :
-           m_poswindow(poswindow),
-           m_posdata(posdata),
-           m_filetypes(filetypes),
-           m_function(function),
-           m_bSave(bSave),
-           m_bMultiple(bMultiple)
-   {
-      initialize(pparticle);
-   }
-};
-
-
 namespace acme
 {
 
@@ -700,23 +666,16 @@ namespace acme
       virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 
 #endif
+      
+
+      virtual void _node_file_dialog(::file::file_dialog * pdialog);
+      virtual void _node_folder_dialog(::file::folder_dialog * pdialog);
+
+      
+      virtual ::pointer < ::file::file_dialog > node_file_dialog();
+      virtual ::pointer < ::file::folder_dialog > node_folder_dialog();
 
 
-      virtual void operating_system_file_dialog(::operating_system_file_dialog * pdialog);
-
-
-      void pick_single_file(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > >& filetypes,
-         const ::function < void(const ::file::path &) >& function,
-         bool save);
-
-
-      void pick_multiple_file(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > > & filetypes,
-         const ::function < void(const ::file::path_array &) >& function);
-     
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 

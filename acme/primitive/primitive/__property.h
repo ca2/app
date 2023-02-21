@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Include payload.h
@@ -200,10 +200,10 @@ public:
 using property_pointer = ::property *;
 
 
-CLASS_DECL_ACME void property_parse_network_payload_id(atom & atom, ::const_ansi_range & range);
-CLASS_DECL_ACME void property_parse_network_payload_value(::payload & payload, ::const_ansi_range & range);
-CLASS_DECL_ACME void property_skip_network_payload_id(::const_ansi_range & range);
-CLASS_DECL_ACME void property_skip_network_payload_value(::const_ansi_range & range);
+CLASS_DECL_ACME void property_parse_network_payload_item(atom & atom, ::ansi_range & range);
+CLASS_DECL_ACME void property_parse_network_payload_payload(::payload & payload, ::ansi_range & range);
+CLASS_DECL_ACME void property_skip_network_payload_item(::ansi_range & range);
+CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range);
 
 
 #include "acme/primitive/collection/ptr_array.h"

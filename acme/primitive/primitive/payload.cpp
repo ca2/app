@@ -6976,7 +6976,7 @@ bool payload::has_property(const ::atom & atom) const
 }
 
 
-//void payload::consume_identifier(::const_ansi_range & range)
+//void payload::consume_identifier(::ansi_range & range)
 //{
 //
 //   consume_number(psz, psz + strlen(psz) - 1);
@@ -6984,10 +6984,10 @@ bool payload::has_property(const ::atom & atom) const
 //}
 
 
-void payload::consume_identifier(::const_ansi_range & range)
+void payload::consume_identifier(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    const ::ansi_character * pszStart = range.m_begin;
 
@@ -7035,11 +7035,11 @@ void payload::consume_identifier(::const_ansi_range & range)
 //
 //}
 
-void payload::consume_number(::const_ansi_range & range)
+void payload::consume_number(::ansi_range & range)
 {
    bool bSigned = false;
    bool bFloat = false;
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
    const ::ansi_character * pszStart = range.m_begin;
    if(*range.m_begin == '-')
    {
@@ -7164,9 +7164,9 @@ end:
 //}
 
 
-void var_skip_identifier(::const_ansi_range & range)
+void payload_skip_identifier(::ansi_range & range)
 {
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
    const ::ansi_character * pszStart = range.m_begin;
    while (ansi_char_isalpha(*range.m_begin) && range.has_char())
       range.m_begin++;
@@ -7203,10 +7203,10 @@ void var_skip_identifier(::const_ansi_range & range)
 //   var_skip_number(psz, psz + strlen(psz) - 1);
 //}
 
-void var_skip_number(::const_ansi_range & range)
+void payload_skip_number(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    const ::ansi_character * pszStart = range.m_begin;
 
@@ -7272,10 +7272,10 @@ end:
 }
 
 
-void var_skip_network_payload(::const_ansi_range & range)
+void payload_skip_network_payload(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '{')
    {
@@ -7286,25 +7286,25 @@ void var_skip_network_payload(::const_ansi_range & range)
    else if (*range.m_begin == '\"')
    {
 
-      ::str::skip_quoted_value_ex(range);
+      range.skip_quoted_value_ex();
 
    }
    else if (*range.m_begin == '\'')
    {
 
-      ::str::skip_quoted_value_ex(range);
+      range.skip_quoted_value_ex();
 
    }
    else if (ansi_char_isdigit(*range.m_begin) || *range.m_begin == '-' || *range.m_begin == '.')
    {
 
-      var_skip_number(range);
+      payload_skip_number(range);
 
    }
    else if (*range.m_begin == '[')
    {
 
-      var_array_skip_network_payload(range);
+      payload_array_skip_network_payload(range);
 
    }
    else if (*range.m_begin == ']')
@@ -7322,7 +7322,7 @@ void var_skip_network_payload(::const_ansi_range & range)
    else
    {
 
-      var_skip_identifier(range);
+      payload_skip_identifier(range);
 
    }
 
@@ -7349,10 +7349,10 @@ const char * payload::parse_network_payload(const ::string & strNetworkPayload)
 }
 
 
-void payload::parse_network_payload(::const_ansi_range & range)
+void payload::parse_network_payload(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '{')
    {
@@ -7363,7 +7363,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (*range.m_begin == '\"')
    {
 
-      ::string str = ::str::consume_quoted_value_ex(range);
+      ::string str = range.consume_quoted_value_ex();
 
       if(str.case_insensitive_begins_eat("hls://"))
       {
@@ -7437,10 +7437,10 @@ void payload::parse_network_payload(::const_ansi_range & range)
 }
 
 
-::enum_type payload::find_network_payload_child(::const_ansi_range & range, const ::payload & payloadChild)
+::enum_type payload::find_network_payload_child(::ansi_range & range, const ::payload & payloadChild)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (range.is_empty())
    {
@@ -7461,7 +7461,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    else if (*range.m_begin == '{')
    {
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (range.is_empty())
       {
@@ -7470,9 +7470,9 @@ void payload::parse_network_payload(::const_ansi_range & range)
 
       }
 
-      ::str::consume(range, "{");
+      range.consume("{");
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == '}')
       {
@@ -7488,22 +7488,22 @@ void payload::parse_network_payload(::const_ansi_range & range)
       while (true)
       {
 
-         property_parse_network_payload_id(atom, range);
+         property_parse_network_payload_item(atom, range);
 
          if (payloadChild.case_insensitive_equals(atom))
          {
 
-            ::str::consume_spaces(range, 0);
+            range.consume_spaces(0);
 
-            ::str::consume(range, ":");
+            range.consume(":");
 
             return ::e_type_property_set;
 
          }
 
-         property_skip_network_payload_value(range);
+         property_skip_network_payload_payload(range);
 
-         ::str::consume_spaces(range, 0);
+         range.consume_spaces(0);
 
          if (*range.m_begin == ',')
          {
@@ -7531,7 +7531,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    }
    else if (*range.m_begin == '\"')
    {
-      operator=(::str::consume_quoted_value_ex(range));
+      operator=(range.consume_quoted_value_ex());
       if (*this == payloadChild)
       {
          return ::e_type_string;
@@ -7555,8 +7555,8 @@ void payload::parse_network_payload(::const_ansi_range & range)
    }
    else if (*range.m_begin == '[')
    {
-      //::str::consume_spaces(range, 0);
-      ::str::consume(range, "[");
+      //range.consume_spaces(0);
+      range.consume("[");
       ::enum_type etype = find_network_payload_id(range, payloadChild);
       if (etype == ::e_type_new)
       {
@@ -7565,7 +7565,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
 
       }
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ']')
       {
@@ -7599,10 +7599,10 @@ void payload::parse_network_payload(::const_ansi_range & range)
 }
 
 
-::enum_type payload::find_network_payload_id(::const_ansi_range & range, const ::payload & payloadChild)
+::enum_type payload::find_network_payload_id(::ansi_range & range, const ::payload & payloadChild)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (range.is_empty())
    {
@@ -7619,7 +7619,7 @@ void payload::parse_network_payload(::const_ansi_range & range)
    }
    else if (*range.m_begin == '\"')
    {
-      operator=(::str::consume_quoted_value_ex(range));
+      operator=(range.consume_quoted_value_ex());
       if (*this == payloadChild)
       {
          return ::e_type_string;

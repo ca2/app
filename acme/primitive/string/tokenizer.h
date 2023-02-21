@@ -1,16 +1,16 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "string.h"
 
 
 class CLASS_DECL_ACME tokenizer :
-   public ::const_ansi_range
+   public ::ansi_range
 {
 public:
 
 
-   using RANGE = ::const_ansi_range;
+   using RANGE = ::ansi_range;
    using const_iterator = RANGE::const_iterator;
 
 
@@ -19,14 +19,14 @@ public:
 
 
    tokenizer():m_iterator(nullptr) {}
-   tokenizer(const tokenizer & range) : const_ansi_range(range) {}
-   tokenizer(tokenizer && range) : const_ansi_range(::transfer(range)) { }
+   tokenizer(const tokenizer & range) : ansi_range(range) {}
+   tokenizer(tokenizer && range) : ansi_range(::transfer(range)) { }
    tokenizer(const ::string & str) : RANGE(str), m_iterator(str.begin()) {}
    ~tokenizer() {}
 
 
-   tokenizer & operator = (const tokenizer & tokenizer) { ::const_ansi_range::operator=(tokenizer); return *this; }
-   tokenizer & operator = (tokenizer && tokenizer) { ::const_ansi_range::operator=(::transfer(tokenizer)); return *this; }
+   tokenizer & operator = (const tokenizer & tokenizer) { ::ansi_range::operator=(tokenizer); return *this; }
+   tokenizer & operator = (tokenizer && tokenizer) { ::ansi_range::operator=(::transfer(tokenizer)); return *this; }
 
 
    //strsize size() const { return m_range.size(); }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Include payload.h
@@ -98,8 +98,8 @@ public:
 
 
    //void parse_network_payload(const char * & pszJson);
-   void parse_network_payload(::const_ansi_range & range);
-   void find_network_payload_child(::const_ansi_range & range, const ::payload & payload);
+   void parse_network_payload(::ansi_range & range);
+   void find_network_payload_child(::ansi_range & range, const ::payload & payload);
 
 
    string & get_network_payload(string & str, bool bNewLine = true) const;
@@ -148,7 +148,7 @@ public:
 
 
 //CLASS_DECL_ACME void var_array_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void var_array_skip_network_payload(::const_ansi_range & range);
+CLASS_DECL_ACME void payload_array_skip_network_payload(::ansi_range & range);
 
 
 inline ::payload payload_array::value_at(::index i) const

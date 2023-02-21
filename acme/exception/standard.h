@@ -1,4 +1,4 @@
-﻿/*
+/*
  Copyright (ca) 2001
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
@@ -207,7 +207,12 @@ typedef struct _sig_ucontext
 #endif
 #else
 #ifdef _LP64
-         standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+      
+#ifdef __arm64__
+         standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__pc)
+#else
+      standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+#endif
 #else
 #ifdef SOLARIS
          ::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP])

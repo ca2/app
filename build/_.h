@@ -4,7 +4,7 @@
 #include "core/_.h"
 
 
-#ifdef _APP_BUILD_LIBRARY
+#if defined(_app_build_project)
 #define CLASS_DECL_APP_BUILD  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_BUILD  CLASS_DECL_IMPORT

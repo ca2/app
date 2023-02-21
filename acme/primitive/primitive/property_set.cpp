@@ -1800,26 +1800,19 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
    auto p = begin();
 
-   if (p)
+   while (!is_end(p))
    {
 
-      while (p)
+      if (strNetworkArguments.has_char())
       {
-
-         (*p)->get_network_arguments(strNetworkArguments);
-
-         p++;
-
-         if (is_end(p))
-         {
-
-            break;
-
-         }
 
          strNetworkArguments += "&";
 
       }
+
+      (*p)->get_network_arguments(strNetworkArguments);
+
+      p++;
 
    }
 

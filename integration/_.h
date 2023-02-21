@@ -4,7 +4,7 @@
 #include "base/_.h"
 
 
-#ifdef _APP_INTEGRATION_LIBRARY
+#if defined(_app_integration_project)
 #define CLASS_DECL_APP_INTEGRATION  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_INTEGRATION  CLASS_DECL_IMPORT

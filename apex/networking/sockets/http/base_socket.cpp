@@ -343,10 +343,12 @@ namespace sockets
 
             auto pfile = create_memory_file();
 
-            if (response().m_strFile.has_char())
+            auto & strFile = response().m_strFile;
+
+            if (strFile.has_char())
             {
 
-               acmesystem()->compress(pfile, file()->get_reader(response().m_strFile), "zlib");
+               acmesystem()->compress(pfile, file()->get_reader(strFile), "zlib");
 
                response().m_strFile.empty();
 

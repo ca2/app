@@ -7,7 +7,7 @@
 
 
 
-#ifdef __SPHERE__LIBRARY
+#if defined(__sphere__project)
 #define CLASS_DECL_SPHERE  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_SPHERE  CLASS_DECL_IMPORT

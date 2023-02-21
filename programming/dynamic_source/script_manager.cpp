@@ -138,6 +138,9 @@ namespace dynamic_source
 
       ::channel::initialize(pparticle);
 
+
+
+
       //if (!estatus)
       //{
 
@@ -154,7 +157,25 @@ namespace dynamic_source
       //   
       //}
 
+
       m_pmutexSession = acmenode()->create_mutex();
+      m_pmutexIncludeMatches = acmenode()->create_mutex();
+      m_pmutexIncludeHasScript = acmenode()->create_mutex();
+      m_pmutexShouldBuild = acmenode()->create_mutex();
+      m_pmutexIncludeExpandMd5 = acmenode()->create_mutex();
+      m_pmutexOutLink = acmenode()->create_mutex();
+      m_pmutexInLink = acmenode()->create_mutex();
+      m_pmutexTunnel = acmenode()->create_mutex();
+      m_pmutexImageSize = acmenode()->create_mutex();
+      m_pmutexSimage = acmenode()->create_mutex();
+      m_pmutexSpider = acmenode()->create_mutex();
+      m_pmutexRsa = acmenode()->create_mutex();
+      m_pmutexMusicDbPool = acmenode()->create_mutex();
+      m_pmutexWayDbPool = acmenode()->create_mutex();
+      m_pmutexPersistentStr = acmenode()->create_mutex();
+      m_pmutexUiRedir = acmenode()->create_mutex();
+      m_pmutexTagId = acmenode()->create_mutex();
+      m_pmutexTagName = acmenode()->create_mutex();
 
       calc_rsa_key();
 
@@ -971,10 +992,12 @@ namespace dynamic_source
 
    }
 
+   
    bool script_manager::include_matches_file_exists(const ::string& strPath)
    {
 
       auto pcontext = get_context();
+
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
 
       auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
@@ -995,13 +1018,15 @@ namespace dynamic_source
    }
 
 
-
-
    void script_manager::set_include_matches_file_exists(const ::string& strPath, bool bFileExists)
    {
+
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
+
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+
    }
+
 
    bool script_manager::include_matches_is_dir(const ::string& strPath)
    {
@@ -1022,14 +1047,21 @@ namespace dynamic_source
       return bIsDir;
    }
 
+
    bool script_manager::include_has_script(const ::string& strPath)
    {
 
       if (strPath.is_empty())
+      {
+
          return false;
 
+      }
+
       single_lock synchronouslock(m_pmutexIncludeHasScript, true);
+
       auto p = m_mapIncludeHasScript.plookup(strPath);
+
       if (p)
       {
 
@@ -1053,14 +1085,21 @@ namespace dynamic_source
 
    string script_manager::include_expand_md5(const ::string& strPath)
    {
+      
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+
       return m_mapIncludeExpandMd5[strPath];
+
    }
+
 
    void script_manager::set_include_expand_md5(const ::string& strPath, const ::string& strMd5)
    {
+   
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+
       m_mapIncludeExpandMd5[strPath] = strMd5;
+
    }
 
 

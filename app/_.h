@@ -4,7 +4,7 @@
 #include "aura/_.h"
 
 
-#ifdef _APP_APP_LIBRARY
+#if defined(_app_app_project)
 #define CLASS_DECL_APP_APP  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_APP  CLASS_DECL_IMPORT

@@ -6,7 +6,7 @@
 #include "core/user/experience/experience.h"    // thank you (mummy)
 
 
-#ifdef _APP_EXPERIENCE_LITE_LIBRARY
+#if defined(_app_experience_lite_project)
 #define CLASS_DECL_APP_EXPERIENCE_LITE  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_EXPERIENCE_LITE  CLASS_DECL_IMPORT

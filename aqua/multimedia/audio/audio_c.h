@@ -41,7 +41,7 @@ typedef void WAVEOUT_CALLBACK(LPWAVEOUT pwaveout, unsigned int emessage, void * 
 typedef WAVEOUT_CALLBACK * LPWAVEOUT_CALLBACK;
 
 //#ifndef CLASS_DECL_AURA
-//#if defined(_ACID_LIBRARY)
+//#if defined(_acid_project)
 //#define CLASS_DECL_AURA
 //#elif defined(_AURA_LIBRARY)
 //#define CLASS_DECL_AURA  _CLASS_DECL_EXPORT

@@ -5,7 +5,7 @@
 #ifdef CUBE
 #define CLASS_DECL_AQUA
 #else
-#if defined(_APP_AQUA_LIBRARY)
+#if defined(_app_aqua_project)
 #define CLASS_DECL_AQUA CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_AQUA CLASS_DECL_IMPORT

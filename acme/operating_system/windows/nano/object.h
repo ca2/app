@@ -5,7 +5,7 @@
 
 
 #include "acme/user/nano/object.h"
-#undef USUAL_OPERATING_SYSTEM_SUPPRESSION
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
 

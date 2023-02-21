@@ -68,31 +68,31 @@ namespace dynamic_source
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
 
-      pointer_array < plugin_map_item >                      m_pluginmapitema;
+      pointer_array < plugin_map_item >                     m_pluginmapitema;
 
 
-      ::pointer < ::mutex >                                               m_pmutexIncludeMatches;
+      ::pointer < ::mutex >                                 m_pmutexIncludeMatches;
       string_map < bool >                                   m_mapIncludeMatchesFileExists;
       string_map < bool >                                   m_mapIncludeMatchesIsDir;
-      ::pointer < ::mutex >                                               m_pmutexIncludeHasScript;
+      ::pointer < ::mutex >                                 m_pmutexIncludeHasScript;
       string_map < bool >                                   m_mapIncludeHasScript;
-      ::pointer < ::mutex >                                               m_pmutexShouldBuild;
+      ::pointer < ::mutex >                                 m_pmutexShouldBuild;
       string_map < bool >                                   m_mapShouldBuild;
-      ::pointer < ::mutex >                                               m_pmutexIncludeExpandMd5;
+      ::pointer < ::mutex >                                 m_pmutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
-      ::pointer < ::mutex >                                               m_pmutexOutLink;
-      string_map < ::pointer<::sockets::link_out_socket >> m_mapOutLink;
-      ::pointer < ::mutex >                                               m_pmutexInLink;
-      ::pointer<::sockets::in_link_map>                    m_pmapInLink;
-      ::pointer < ::mutex >                                               m_pmutexTunnel;
+      ::pointer < ::mutex >                                 m_pmutexOutLink;
+      string_map < ::pointer<::sockets::link_out_socket > > m_mapOutLink;
+      ::pointer < ::mutex >                                 m_pmutexInLink;
+      ::pointer<::sockets::in_link_map>                     m_pmapInLink;
+      ::pointer < ::mutex >                                 m_pmutexTunnel;
       strmap(tunnel_map_item)                               m_mapTunnel;
 
 
-      ::pointer < ::mutex >                                               m_pmutexImageSize;
-      string_map < ::size_i32 >                                 m_mapImageSize;
+      ::pointer < ::mutex >                                 m_pmutexImageSize;
+      string_map < ::size_i32 >                             m_mapImageSize;
 
 
 
@@ -102,38 +102,38 @@ namespace dynamic_source
       ::file::path                                          m_strNetseedPath;
       ::file::path                                          m_strNetseedDsCa2Path;
 
-      ::pointer < ::mutex >                                               m_pmutexSimage;
-      ::pointer < ::mutex >                                               m_pmutexSpider;
+      ::pointer < ::mutex >                                 m_pmutexSimage;
+      ::pointer < ::mutex >                                 m_pmutexSpider;
 
-      ::pointer < ::mutex >                                               m_pmutexRsa;
-
+      ::pointer < ::mutex >                                 m_pmutexRsa;
+      
       ::crypto::rsaptra                                     m_rsaptra;
 
-      class ::time                                                  m_timeLastRsa;
+      class ::time                                          m_timeLastRsa;
 
 
 
-      class ::time                                                   m_timeDatabaseWaitTimeOut;
+      class ::time                                          m_timeDatabaseWaitTimeOut;
 
-      ::pointer < ::mutex >                                               m_pmutexSession;
-      string_map < ::pointer<::dynamic_source::session >>  m_mapSession;
-      ::pointer < ::mutex >                                               m_pmutexMusicDbPool;
-      ::pointer < ::mutex >                                               m_pmutexWayDbPool;
-      ::pointer<script_cache>                              m_pcache;
-      ::pointer<script_compiler>                           m_pcompiler;
-      class ::time                                       m_timeBuildInterval;
-      class ::time                                       m_timeTimeRandomInterval;
+      ::pointer < ::mutex >                                 m_pmutexSession;
+      string_map < ::pointer<::dynamic_source::session > >  m_mapSession;
+      ::pointer < ::mutex >                                 m_pmutexMusicDbPool;
+      ::pointer < ::mutex >                                 m_pmutexWayDbPool;
+      ::pointer<script_cache>                               m_pcache;
+      ::pointer<script_compiler>                            m_pcompiler;
+      class ::time                                          m_timeBuildInterval;
+      class ::time                                          m_timeTimeRandomInterval;
 
       string_to_string                                      m_strmapFunUserKey;
 
       string                                                m_strPersistentError;
 
-      ::pointer < ::mutex >                                               m_pmutexPersistentStr;
-      ::pointer < ::mutex >                                               m_pmutexUiRedir;
-      ::pointer < ::mutex >                                               m_pmutexTagId;
+      ::pointer < ::mutex >                                 m_pmutexPersistentStr;
+      ::pointer < ::mutex >                                 m_pmutexUiRedir;
+      ::pointer < ::mutex >                                 m_pmutexTagId;
       string_to_string                                      m_tagid;
       string_to_string                                      m_usersecuretagid;
-      ::pointer < ::mutex >                                               m_pmutexTagName;
+      ::pointer < ::mutex >                                 m_pmutexTagName;
       string_to_string                                      m_tagname;
 
 

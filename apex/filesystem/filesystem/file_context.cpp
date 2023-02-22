@@ -23,7 +23,7 @@
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/primitive/read_only_memory.h"
 #include "acme/primitive/string/base64.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/str.h"
 #include "acme/user/user/conversation.h"
 #include "acme/user/nano/nano.h"

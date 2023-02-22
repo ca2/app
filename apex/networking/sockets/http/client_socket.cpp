@@ -3,7 +3,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/memory/counter.h"
 #include "acme/primitive/primitive/url.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "apex/constant/idpool.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"

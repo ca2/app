@@ -1,12 +1,13 @@
-﻿#include "framework.h" 
+﻿#include "framework.h"
 #include "socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/parse.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
+
 #define HEAVY_HTTP_LOG 0
 
 
@@ -15,22 +16,22 @@ namespace sockets
 
 
    http_socket::http_socket() :
-      //:
-      //::object(&h),
-      //base_socket(h),
-      //socket(h),
-      //stream_socket(h),
-      //tcp_socket(h),
-      m_bFirst(true),
-      m_bHeader(true),
-      m_bRequest(false),
-      m_bResponse(false),
-      m_body_size_left(0),
-      m_body_size_downloaded(0),
-      m_b_http_1_1(false),
-      m_b_keepalive(false),
-      m_chunk_size(0),
-      m_chunk_state(0)
+   //:
+   //::object(&h),
+   //base_socket(h),
+   //socket(h),
+   //stream_socket(h),
+   //tcp_socket(h),
+           m_bFirst(true),
+           m_bHeader(true),
+           m_bRequest(false),
+           m_bResponse(false),
+           m_body_size_left(0),
+           m_body_size_downloaded(0),
+           m_b_http_1_1(false),
+           m_b_keepalive(false),
+           m_chunk_size(0),
+           m_chunk_state(0)
    {
 
       //m_bOnlyHeaders = false;
@@ -45,7 +46,7 @@ namespace sockets
    }
 
 
-   void http_socket::initialize(::particle * pparticle)
+   void http_socket::initialize(::particle *pparticle)
    {
 
       tcp_socket::initialize(pparticle);
@@ -70,7 +71,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnRawData(char * buf, memsize len)
+   void http_socket::OnRawData(char *buf, memsize len)
    {
 
       if (!m_bHeader)
@@ -86,86 +87,88 @@ namespace sockets
 
                switch (m_chunk_state)
                {
-               case 4:
-                  while (ptr < len && (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
-                     m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
-                  {
-                     OnDataComplete();
-                     // prepare for next request(or response)
-                     m_bChunked = false;
-                     SetLineProtocol( true );
-                     m_bFirst = true;
-                     m_bHeader = true;
-                     m_body_size_left = 0;
-                     m_body_size_downloaded = 0;
-                     if (len - ptr > 0)
+                  case 4:
+                     while (ptr < len &&
+                            (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
+                        m_chunk_line += buf[ptr++];
+                     if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
                      {
-                        memory mem;
-                        mem.set_size(TCP_BUFSIZE_READ);
-                        char * tmp = (char*)mem.data();
-                        ::memcpy_dup(tmp,buf + ptr,len - ptr);
-                        tmp[len - ptr] = 0;
-                        on_read( tmp, (int) (len - ptr ));
-                        ptr = len;
+                        OnDataComplete();
+                        // prepare for next request(or response)
+                        m_bChunked = false;
+                        SetLineProtocol(true);
+                        m_bFirst = true;
+                        m_bHeader = true;
+                        m_body_size_left = 0;
+                        m_body_size_downloaded = 0;
+                        if (len - ptr > 0)
+                        {
+                           memory mem;
+                           mem.set_size(TCP_BUFSIZE_READ);
+                           char *tmp = (char *) mem.data();
+                           ::memcpy_dup(tmp, buf + ptr, len - ptr);
+                           tmp[len - ptr] = 0;
+                           on_read(tmp, (int) (len - ptr));
+                           ptr = len;
+                        }
                      }
-                  }
-                  break;
-               case 0:
-                  while (ptr < len && (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
-                     m_chunk_line += buf[ptr++];
-                  if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
+                     break;
+                  case 0:
+                     while (ptr < len &&
+                            (m_chunk_line.length() < 2 || m_chunk_line.substr(m_chunk_line.length() - 2) != "\r\n"))
+                        m_chunk_line += buf[ptr++];
+                     if (m_chunk_line.length() > 1 && m_chunk_line.substr(m_chunk_line.length() - 2) == "\r\n")
+                     {
+
+                        m_chunk_line = m_chunk_line.left(m_chunk_line.length() - 2);
+
+                        ::parse pa(m_chunk_line, ";");
+
+                        string size_str = pa.getword();
+
+                        m_chunk_size = ::hex::to_u32(size_str);
+
+                        if (!m_chunk_size)
+                        {
+
+                           m_chunk_state = 4;
+
+                           m_chunk_line = "";
+
+                        }
+                        else
+                        {
+
+                           m_chunk_state = 1;
+
+                           m_chunk_line = "";
+
+                        }
+
+                     }
+                     break;
+                  case 1:
                   {
-                     
-                     m_chunk_line = m_chunk_line.left(m_chunk_line.length() - 2);
-                     
-                     ::parse pa(m_chunk_line, ";");
-
-                     string size_str = pa.getword();
-
-                     m_chunk_size = ::hex::to_u32(size_str);
-
+                     memsize left = len - ptr;
+                     memsize sz = m_chunk_size < left ? m_chunk_size : left;
+                     OnData(buf + ptr, sz);
+                     m_chunk_size -= sz;
+                     ptr += sz;
                      if (!m_chunk_size)
                      {
-
-                        m_chunk_state = 4;
-
-                        m_chunk_line = "";
-
+                        OnEndChunk();
+                        m_chunk_state = 2;
                      }
-                     else
-                     {
-
-                        m_chunk_state = 1;
-
-                        m_chunk_line = "";
-
-                     }
-
                   }
-                  break;
-               case 1:
-               {
-                  memsize left = len - ptr;
-                  memsize sz = m_chunk_size < left ? m_chunk_size : left;
-                  OnData(buf + ptr, sz);
-                  m_chunk_size -= sz;
-                  ptr += sz;
-                  if (!m_chunk_size)
-                  {
-                     OnEndChunk();
-                     m_chunk_state = 2;
-                  }
-               }
-               break;
-               case 2: // skip CR
-                  ptr++;
-                  m_chunk_state = 3;
-                  break;
-               case 3: // skip LF
-                  ptr++;
-                  m_chunk_state = 0;
-                  break;
+                     break;
+                  case 2: // skip CR
+                     ptr++;
+                     m_chunk_state = 3;
+                     break;
+                  case 3: // skip LF
+                     ptr++;
+                     m_chunk_state = 0;
+                     break;
                }
             }
          }
@@ -213,7 +216,7 @@ namespace sockets
                   if (len - sizeData > 0)
                   {
 
-                     on_read(buf + sizeData, (int)(len - sizeData));
+                     on_read(buf + sizeData, (int) (len - sizeData));
 
                   }
 
@@ -228,7 +231,7 @@ namespace sockets
    }
 
 
-   void http_socket::OnLine(const string & line)
+   void http_socket::OnLine(const string &line)
    {
 
       if (m_bFirst)
@@ -254,8 +257,8 @@ namespace sockets
             string strHttpStatusCode = pa.getword();
             m_response.attr("http_status_code") = strHttpStatusCode;
             m_response.attr("http_status") = pa.getrest();
-            m_bResponse    = true;
-            m_bRequest     = false;
+            m_bResponse = true;
+            m_bRequest = false;
 
          }
          else // request
@@ -266,7 +269,7 @@ namespace sockets
             m_request.m_atomHttpMethod = str;
             m_request.attr("http_method") = str;
             m_request.attr("https") = IsSSL();
-            if(IsSSL())
+            if (IsSSL())
             {
                m_request.attr("http_protocol") = "https";
             }
@@ -291,8 +294,8 @@ namespace sockets
             m_request.attr("http_version") = pa.getword();
             m_b_http_1_1 = m_request.attr("http_version").as_string().ends("/1.1");
             m_b_keepalive = m_b_http_1_1;
-            m_bRequest     = true;
-            m_bResponse    = false;
+            m_bRequest = true;
+            m_bResponse = false;
 
          }
 
@@ -317,7 +320,7 @@ namespace sockets
 
          OnHeaderComplete();
 
-         if(!m_body_size_left && !m_bChunked)
+         if (!m_body_size_left && !m_bChunked)
          {
 
             OnDataComplete();
@@ -332,7 +335,7 @@ namespace sockets
       string strKey;
       string value;
       auto iFind = line.find_index(':');
-      if(::not_found(iFind))
+      if (::not_found(iFind))
       {
          strKey = line;
       }
@@ -341,12 +344,12 @@ namespace sockets
          strKey = line(0, iFind);
          strKey.trim();
          iFind++;
-         while(character_isspace(line[iFind]) && iFind < line.length())
+         while (character_isspace(line[iFind]) && iFind < line.length())
          {
             iFind++;
          }
          strsize iLen = line.length();
-         while(iLen >= iFind && character_isspace(line[iLen - 1]))
+         while (iLen >= iFind && character_isspace(line[iLen - 1]))
          {
             iLen--;
          }
@@ -359,7 +362,7 @@ namespace sockets
 
       OnHeader(key, value);
 
-      if(key == "host")
+      if (key == "host")
       {
 
          m_request.m_strHttpHost = value;
@@ -367,7 +370,7 @@ namespace sockets
          m_request.attr("http_host") = value;
 
       }
-      else if(key == "content-length")
+      else if (key == "content-length")
       {
 
          m_body_size_left = atol(value);
@@ -375,13 +378,13 @@ namespace sockets
          m_body_size_downloaded = 0;
 
       }
-      else if(key == "connection")
+      else if (key == "connection")
       {
 
          if (m_b_http_1_1)
          {
 
-            if(case_insensitive_equals(value,"close"))
+            if (case_insensitive_equals(value, "close"))
             {
 
                m_b_keepalive = false;
@@ -398,7 +401,7 @@ namespace sockets
          else
          {
 
-            if(case_insensitive_equals(value, "keep-alive"))
+            if (case_insensitive_equals(value, "keep-alive"))
             {
 
                m_b_keepalive = true;
@@ -421,7 +424,7 @@ namespace sockets
       /* If remote end tells us to keep connection alive, and we're operating
       in http/1.1 mode (not http/1.0 mode), then we mark the socket to be
       retained. */
-      if(m_b_keepalive)
+      if (m_b_keepalive)
       {
 
          SetRetain();
@@ -431,7 +434,7 @@ namespace sockets
    }
 
 
-   bool http_socket::http_filter_response_header(string & strKey, string_array & straValue)
+   bool http_socket::http_filter_response_header(string &strKey, string_array &straValue)
    {
       __UNREFERENCED_PARAMETER(strKey);
       __UNREFERENCED_PARAMETER(straValue);
@@ -443,32 +446,33 @@ namespace sockets
    {
 
       string msg;
-      
+
       string strLine;
-      
-      strLine = m_response.attr("http_version") + " " + m_response.attr("http_status_code") + " " + m_response.attr("http_status");
+
+      strLine = m_response.attr("http_version") + " " + m_response.attr("http_status_code") + " " +
+                m_response.attr("http_status");
 
       msg = strLine + "\r\n";
-      
+
       string strHost;
-      
+
       strHost = m_response.header("host");
 
-      if(strHost.has_char())
+      if (strHost.has_char())
       {
-         
+
          msg += "Host: " + strHost + "\r\n";
-         
-         INFORMATION("Host: "<<strHost);
+
+         INFORMATION("Host: " << strHost);
 
       }
 
       bool bContentLength = m_response.attr("http_status_code") != 304;
 
-      if(bContentLength)
+      if (bContentLength)
       {
 
-         if(!m_response.m_propertysetHeader.has_property("content-length"))
+         if (!m_response.m_propertysetHeader.has_property("content-length"))
          {
 
             m_response.m_propertysetHeader["content-length"] = response().file()->size();
@@ -483,12 +487,12 @@ namespace sockets
 
       }
 
-      for(auto & pproperty : m_response.m_propertysetHeader)
+      for (auto &pproperty: m_response.m_propertysetHeader)
       {
 
          string strKey = pproperty->name();
 
-         auto & straValue = pproperty->string_array_reference();
+         auto &straValue = pproperty->string_array_reference();
 
          if (!http_filter_response_header(strKey, straValue))
          {
@@ -515,7 +519,7 @@ namespace sockets
          //TRACE(strTrace + "\n");
       }
 
-      for (auto & pcookie : m_response.cookies())
+      for (auto &pcookie: m_response.cookies())
       {
 
          msg += "Set-Cookie: " + pcookie->get_cookie_string() + "\r\n";
@@ -524,9 +528,9 @@ namespace sockets
 
       msg += "\r\n";
 
-      print( msg );
+      print(msg);
 
-      if(bContentLength)
+      if (bContentLength)
       {
 
          SendResponseBody();
@@ -570,7 +574,7 @@ namespace sockets
          __transfer_to_writable(this, spfile);
 
       }
-      else if(response().file()->size() > 0)
+      else if (response().file()->size() > 0)
       {
 
          response().file()->seek_to_begin();
@@ -582,8 +586,6 @@ namespace sockets
    }
 
 
-
-
    void http_socket::SendRequest()
    {
 
@@ -591,15 +593,16 @@ namespace sockets
 
       string strLine;
 
-      msg = m_request.attr("http_method") + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") + "\r\n";
+      msg = m_request.attr("http_method") + " " + m_request.attr("request_uri") + " " + m_request.attr("http_version") +
+            "\r\n";
 
       if (m_request.m_propertysetHeader["host"].has_char())
       {
 
          strLine = "Host: " + m_request.m_propertysetHeader["host"];
 
-         if(m_iProxyPort > 0 ||
-               (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
+         if (m_iProxyPort > 0 ||
+             (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
          {
 
             strLine += ":";
@@ -612,7 +615,7 @@ namespace sockets
 
       }
 
-      for(auto & pproperty : m_request.m_propertysetHeader)
+      for (auto &pproperty: m_request.m_propertysetHeader)
       {
 
          string strKey = pproperty->name();
@@ -652,7 +655,7 @@ namespace sockets
 
       msg += "\r\n";
 
-      print( msg );
+      print(msg);
 
    }
 
@@ -672,18 +675,18 @@ namespace sockets
 
    void http_socket::Reset()
    {
-      m_bFirst       = true;
-      m_bHeader      = true;
-      m_bRequest     = false;
-      m_bResponse    = false;
+      m_bFirst = true;
+      m_bHeader = true;
+      m_bRequest = false;
+      m_bResponse = false;
       SetLineProtocol(true);
       m_request.clear();
       m_response.clear();
    }
 
 
-
-   void http_socket::url_this(string strUrl, string & strProtocol, string & strHost, ::networking::port_t & port, string & strRequestUri, string & strFile)
+   void http_socket::url_this(string strUrl, string &strProtocol, string &strHost, ::networking::port_t &port,
+                              string &strRequestUri, string &strFile)
    {
 
       if (!strUrl.eat_before(strProtocol, "://"))
@@ -693,7 +696,7 @@ namespace sockets
 
       }
 
-      if(strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
+      if (strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
       {
 
 //#ifdef HAVE_OPENSSL
@@ -742,7 +745,7 @@ namespace sockets
    {
    }
 
-   void http_socket::OnHeader(atom key, const string & value)
+   void http_socket::OnHeader(atom key, const string &value)
    {
 
 
@@ -752,7 +755,7 @@ namespace sockets
       {
          FORMATTED_TRACE("  (request)OnHeader %s: %s\n", (const char *) key, (const char *) value);
       }*/
-      if(key == "cookie")
+      if (key == "cookie")
       {
          m_request.cookies().parse_header(value);
          //m_response.cookies().parse_header(value);
@@ -804,7 +807,7 @@ namespace sockets
    {
    }
 
-   void http_socket::client_to_server(http_socket * psocket)
+   void http_socket::client_to_server(http_socket *psocket)
    {
 
       //m_ssl             = psocket->m_ssl;

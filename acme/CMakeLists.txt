@@ -166,8 +166,12 @@ list(APPEND library_source
         filesystem/filesystem/acme_file.h
         filesystem/filesystem/acme_path.cpp
         filesystem/filesystem/acme_path.h
+        filesystem/filesystem/file_dialog.cpp
+        filesystem/filesystem/file_dialog.h
         filesystem/filesystem/file_path.cpp
         filesystem/filesystem/file_path.h
+        filesystem/filesystem/folder_dialog.cpp
+        filesystem/filesystem/folder_dialog.h
         filesystem/filesystem/listing.cpp
         filesystem/filesystem/path.cpp
         filesystem/filesystem/path_object.cpp

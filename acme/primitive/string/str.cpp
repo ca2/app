@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "hex.h"
+//#include "hex.h"
 #include "international.h"
 #include "acme/exception/parsing.h"
 #include "acme/filesystem/file/file.h"

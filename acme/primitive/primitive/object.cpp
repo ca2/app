@@ -9,7 +9,7 @@
 #include "acme/constant/idpool.h"
 //#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/primitive/text/text.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/parallelization/manual_reset_event.h"

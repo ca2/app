@@ -1727,17 +1727,6 @@ template < typename ITERATOR_TYPE >
 
 }
 
-constexpr u32 decode_utf16_pair(u16 * units)
-{
-   u32 code;
-   ASSERT(utf16_is_1st_surrogate(units[0]));
-   ASSERT(utf16_is_2nd_surrogate(units[1]));
-   code = 0x10000;
-   code += (units[0] & 0x03FF) << 10;
-   code += (units[1] & 0x03FF);
-   return code;
-}
-
 
 
 //========================================================

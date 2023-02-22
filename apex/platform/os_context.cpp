@@ -809,44 +809,44 @@
    }
 
 
-   void os_context::browse_file_open(property_set & set)
-   {
+   //void os_context::browse_file_open(property_set & set)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
-
-
-   void os_context::browse_file_save(property_set & set)
-   {
-
-      throw ::interface_only();
-
-      //return false;
-
-   }
+   //}
 
 
-   void os_context::browse_folder(property_set & set)
-   {
+   //void os_context::browse_file_save(property_set & set)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
-   
-   void os_context::browse_file_or_folder(property_set & set)
-   {
 
-      throw ::interface_only();
+   //void os_context::browse_folder(property_set & set)
+   //{
 
-      //return false;
+   //   throw ::interface_only();
 
-   }
+   //   //return false;
+
+   //}
+
+   //
+   //void os_context::browse_file_or_folder(property_set & set)
+   //{
+
+   //   throw ::interface_only();
+
+   //   //return false;
+
+   //}
 
 
    void os_context::list_process(::file::path_array & patha, u32_array & uaPid)

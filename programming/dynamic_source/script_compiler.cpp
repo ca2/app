@@ -2900,18 +2900,18 @@ ch_else:
             auto range = strLine();
             try
             {
-               ::str::consume_spaces(range,0);
+               range.consume_spaces(0);
                string strId = range.consume_c_quoted_value();
-               ::str::consume_spaces(range,1);
+               range.consume_spaces(1);
                string strLocale = range.consume_c_quoted_value();
-               ::str::consume_spaces(range,1);
+               range.consume_spaces(1);
                string strSchema = range.consume_c_quoted_value();
-               ::str::consume_spaces(range,1);
+               range.consume_spaces(1);
                string strValue = range.consume_c_quoted_value();
                strExtra = "";
                try
                {
-                  ::str::consume_spaces(range,1);
+                  range.consume_spaces(1);
                   strExtra = range.consume_c_quoted_value();
                }
                catch(...)

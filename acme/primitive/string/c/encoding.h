@@ -114,13 +114,6 @@ inline strsize replacement_utf8_char(char * psz)
 //inline int_bool utf16_is_surrogate(::wd16_character u16) { return (u16 - 0xd800u) < 2048u; }
 //inline int utf16_is_high_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xd800; }
 //inline int utf16_is_low_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xdc00; }
-inline int_bool utf16_is_1st_surrogate(::wd16_character _1stSurrogateCandidate) { return (_1stSurrogateCandidate & 0xfc00) == 0xd800; } // Sober Surrogay (Told Hi)
-inline int_bool utf16_is_2nd_surrogate(::wd16_character _2ndSurrogateCandidate) { return (_2ndSurrogateCandidate & 0xfc00) == 0xdc00; } // Marginal Surro-G (Told Lo, but much more drunk)
-inline int_bool utf16_is_surrogate(::wd16_character uc) { return utf16_is_1st_surrogate(uc) || utf16_is_2nd_surrogate(uc); }
-inline int_bool utf32_is_surrogated(u32 character) { return 0x10000 <= character && character <= 0x10FFFF; }
-
-
-inline ::wd32_character utf16_surrogate_to_utf32(::wd16_character _1stSurrogateCandidate, ::wd16_character _2ndSurrogateCandidate) { return (_1stSurrogateCandidate << 10) + _2ndSurrogateCandidate - 0x35fdc00; }
 
 
 inline strsize wd16_to_wd32_char_len(const ::wd16_character * input, strsize len);

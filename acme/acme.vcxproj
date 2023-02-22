@@ -648,7 +648,9 @@
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
@@ -800,7 +802,9 @@
     <ClInclude Include="exception\__string.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
+    <ClInclude Include="filesystem\filesystem\file_dialog.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />

@@ -579,38 +579,25 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 }
 
 
-void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument)
+void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument)
 {
 
-   if (strArgument == ":")
+   auto range = strArgument();
+
+   if (range.case_insensitive_begins_eat("-"))
    {
 
-      bColon = true;
-
-      return;
-
-   }
-
-   if (strArgument.case_insensitive_begins("-"))
-   {
-
-      _008AddArgument(strArgument.substr(1));
-
-   }
-   else if (bColon)
-   {
-
-      _008AddArgument(strArgument);
+      _008AddArgument(range);
 
    }
    else
    {
 
-      auto iQuote = strArgument.offset_of(strArgument.find_first_character_in("\"'"));
+      auto quote = strArgument.find_first_character_in("\"'");
       
-      auto iEqual = strArgument.offset_of(strArgument.find_first_character_in("="));
+      auto equal = strArgument.find_first_character_in("=");
 
-      if (iEqual > 0 && (iQuote < 0 || iQuote > iEqual))
+      if (::found(equal) && (::not_found(quote) || quote > equal))
       {
 
          _008AddArgument(strArgument);
@@ -751,14 +738,12 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
 
    _008AddArgumentPairs(straArguments);
 
-   bool bColon = false;
-
    for (; i < straArguments.get_size(); i++)
    {
 
       string strArgument = straArguments[i];
 
-      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
+      _008AddArgumentOrFile(payloadFile, strArgument);
 
    }
 
@@ -788,7 +773,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 
       string strArgument = straArguments[i];
 
-      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
+      _008AddArgumentOrFile(payloadFile, strArgument);
 
    }
 

@@ -5343,10 +5343,10 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::trim_right(const 
 
    auto p = this->rear_skip_any_character_in(scopedstrCharacters);
 
-   if (p < this->end() - 1)
+   if (p < this->end())
    {
 
-      truncate(p + 1);
+      truncate(p);
 
    }
 

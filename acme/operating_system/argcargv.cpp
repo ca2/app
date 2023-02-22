@@ -37,15 +37,9 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
    
    auto range = scopedstr();
 
-   string_array straBeforeColon;
-
-   string_array straAfterColon;
-
    string str;
 
    int i = 0;
-
-   bool bColon = false;
 
    while (range.has_char())
    {
@@ -106,44 +100,9 @@ string_array get_c_args_from_string(const ::scoped_string & scopedstr)
 
       }
 
-      if (range.is_empty())
-      {
-
-         break;
-
-      }
-
-      if (str == ":")
-      {
-
-         bColon = true;
-
-      }
-      else if (!bColon && (i == 0 || str[0] != '-'))
-      {
-
-         straBeforeColon.add(str);
-
-      }
-      else
-      {
-
-         straAfterColon.add(str);
-
-      }
+      stra.add(str);
 
       i++;
-
-   }
-
-   stra = straBeforeColon;
-
-   if (straAfterColon.has_elements())
-   {
-
-      stra.add(":");
-
-      stra += straAfterColon;
 
    }
 

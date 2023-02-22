@@ -309,7 +309,7 @@ public:
    void _008ParseCommandFork(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008AddArgumentPairs(::string_array & straArguments);
-   void _008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument);
+   void _008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument);
    void _008AddArgument(const ::string & strArgument);
    void _008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 

@@ -72,11 +72,11 @@ namespace networking_bsd
 
       }
 
-      //::output_debug_string(strLog);
-
-#endif
+#else
 
       throw ::exception(error_unsupported_function);
+
+#endif
 
       return addressa;
 

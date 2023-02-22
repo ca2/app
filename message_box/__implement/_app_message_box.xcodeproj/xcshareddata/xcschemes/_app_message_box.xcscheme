@@ -4,7 +4,7 @@
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A48898524EB48DE00119EC4"
-               BuildableName = "libapp_message_box.dylib"
-               BlueprintName = "app_message_box"
-               ReferencedContainer = "container:app_message_box.xcodeproj">
+               BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+               BuildableName = "_app_message_box.app"
+               BlueprintName = "_app_message_box"
+               ReferencedContainer = "container:_app_message_box.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,15 +50,6 @@
             ReferencedContainer = "container:_app_message_box.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A48898524EB48DE00119EC4"
-            BuildableName = "libapp_message_box.dylib"
-            BlueprintName = "app_message_box"
-            ReferencedContainer = "container:app_message_box.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -70,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A48898524EB48DE00119EC4"
-            BuildableName = "libapp_message_box.dylib"
-            BlueprintName = "app_message_box"
-            ReferencedContainer = "container:app_message_box.xcodeproj">
+            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BuildableName = "_app_message_box.app"
+            BlueprintName = "_app_message_box"
+            ReferencedContainer = "container:_app_message_box.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

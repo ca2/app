@@ -2738,7 +2738,6 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/build";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
@@ -2856,7 +2855,6 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/build";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
@@ -2894,20 +2892,16 @@
 		9A68A450251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		9A68A451251143F8008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};

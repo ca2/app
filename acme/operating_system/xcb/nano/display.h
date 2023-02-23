@@ -88,8 +88,8 @@ namespace xcb
       static display * get();
 
 
-      virtual xcb_atom_t intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate);
-      virtual xcb_atom_t intern_atom(::x11::enum_atom eatom, bool bCreate);
+      virtual xcb_atom_t intern_atom(const ::scoped_string & scopedstrAtomName, bool bCreate = true);
+      virtual xcb_atom_t intern_atom(::x11::enum_atom eatom, bool bCreate = true);
 
 
       virtual long _window_get_long_property(xcb_window_t window, xcb_atom_t property, xcb_atom_t type);

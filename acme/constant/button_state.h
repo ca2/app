@@ -11,7 +11,7 @@ namespace user
    enum enum_button_state
    {
 
-
+        e_button_state_none = 0,
       e_button_state_left = 1, // MK_LBUTTON
       e_button_state_right = 2, // MK_RBUTTON
       e_button_state_shift = 4, // MK_SHIFT

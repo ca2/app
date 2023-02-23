@@ -1443,6 +1443,10 @@ namespace user
       inline ::oswindow get_safe_oswindow();
       inline ::oswindow oswindow() { return m_oswindow; }
 
+
+      //virtual ::windowing::window * window();
+
+
       //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       ////      virtual void Invalidate(bool bErase = true);
@@ -1662,8 +1666,8 @@ namespace user
       ::oswindow detach_window() override;
 
 
-      inline ::windowing::window * window() { return m_pwindow; }
-      virtual ::windowing::window * _window() override;
+      virtual ::windowing::window * window();
+      //virtual ::windowing::window * _window() override;
 
       virtual ::user::copydesk * copydesk();
 

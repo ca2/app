@@ -498,7 +498,7 @@ namespace user
       virtual oswindow detach_window();
 
 
-      virtual ::windowing::window * _window();
+      virtual ::windowing::window * window();
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);

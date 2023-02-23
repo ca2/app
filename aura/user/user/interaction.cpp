@@ -728,7 +728,7 @@ namespace user
 
 
 
-   ::windowing::window * interaction::_window()
+   ::windowing::window * interaction::window()
    {
       
       auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
@@ -12243,7 +12243,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_puserframeTopLevel = _top_level_frame();
 
-      m_pwindow = _window();
+      m_pwindow = window();
       
 #ifdef REPORT_OFFSET
 

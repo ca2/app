@@ -25,6 +25,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/windowing/window.h"
 #include "aura/message/user.h"
 #include "axis/platform/system.h"
 #include "base/user/user/user.h"
@@ -3325,8 +3326,7 @@ namespace user
 
       }
 
-      _001OnRightClick(pmouse->m_nFlags, point);
-
+      _001OnRightClick(pmouse->m_ebuttonstate, point);
 
       pmessage->m_bRet = true;
 

@@ -28,6 +28,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "axis/platform/system.h"
 #include "base/user/user/user.h"
 #include "core/user/simple/list_data.h"

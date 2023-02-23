@@ -1,4 +1,4 @@
-﻿//
+//
 //  base_static_start.h
 //  acme
 //
@@ -45,7 +45,7 @@ namespace acme
 
       }
 
-      inline static acme * g_p = nullptr;
+      static acme * g_p;
 
       critical_section m_criticalsectionSystemHeap;
 

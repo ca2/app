@@ -1926,7 +1926,7 @@ void mutable_string_range < ITERATOR_TYPE >::escape_copy(char escape, const ::co
 
    auto pTarget = this->m_begin;
 
-   auto pSource = this->m_begin;
+   auto pSource = rangeSource.m_begin;
 
    bool bEscaping = false;
 

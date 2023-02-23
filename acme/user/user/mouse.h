@@ -17,9 +17,6 @@ namespace user
 {
 
 
-    DECLARE_ENUMERATION(e_button_state, enum_button_state);
-
-
    class CLASS_DECL_ACME mouse :
       virtual public ::particle
    {

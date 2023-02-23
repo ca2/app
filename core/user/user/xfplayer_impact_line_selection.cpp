@@ -451,10 +451,10 @@ bool    bMerge)
 }
 
 
-bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
+bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point)
 {
    
-   __UNREFERENCED_PARAMETER(user);
+   __UNREFERENCED_PARAMETER(ebuttonstate);
 
    auto point1 = point;
    
@@ -500,7 +500,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
 }
 
 
-bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
+bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point)
 {
    
    if (!viewline.IsVisible())
@@ -591,9 +591,9 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
    return false;
 }
 
-bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
+bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point)
 {
-   __UNREFERENCED_PARAMETER(user);
+   __UNREFERENCED_PARAMETER(ebuttonstate);
    if(!viewline.IsVisible())
       return false;
 

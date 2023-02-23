@@ -36,6 +36,16 @@ namespace windowing
 #include "acme/constant/button_state.h"
 
 
+namespace user
+{
+
+
+    DECLARE_ENUMERATION(e_button_state, enum_button_state);
+
+
+} // namespace user
+
+
 //#include "mouse.h"
 
 

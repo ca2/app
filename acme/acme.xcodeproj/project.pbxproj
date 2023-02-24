@@ -3913,7 +3913,7 @@
 		9AD1997C2511BAA000B4C44A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9AD199862511CFB000B4C44A /* _start.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _start.h; sourceTree = "<group>"; };
 		9AD40AAF25281D3F0027B23E /* string_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_exchange.h; sourceTree = "<group>"; };
-		9AD692B6251A753A00C0EBD7 /* lib_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD692B6251A753A00C0EBD7 /* libstatic_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD7D6EE284DAA8F00AD3796 /* plane_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plane_system.h; sourceTree = "<group>"; };
 		9ADD64B126B5CB3300D11298 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		9ADD64B226B5CB3300D11298 /* object_reference_count_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_reference_count_debug.cpp; sourceTree = "<group>"; };
@@ -4299,7 +4299,7 @@
 			isa = PBXGroup;
 			children = (
 				9A68A41425114352008DABD2 /* libacme.dylib */,
-				9AD692B6251A753A00C0EBD7 /* lib_acme.a */,
+				9AD692B6251A753A00C0EBD7 /* libstatic_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5456,8 +5456,8 @@
 			isa = PBXGroup;
 			children = (
 				9A84D3ED284229AB00890F9D /* libidn.dylib */,
-				9AC14D97297B3617006D9BD3 /* lib_idn.a */,
 				9A84D3EF284229AB00890F9D /* libios_idn.a */,
+				9AC14D97297B3617006D9BD3 /* lib_idn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7729,9 +7729,9 @@
 			productReference = 9A68A41425114352008DABD2 /* libacme.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9AD68E39251A753A00C0EBD7 /* _acme */ = {
+		9AD68E39251A753A00C0EBD7 /* static_acme */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AD692B3251A753A00C0EBD7 /* Build configuration list for PBXNativeTarget "_acme" */;
+			buildConfigurationList = 9AD692B3251A753A00C0EBD7 /* Build configuration list for PBXNativeTarget "static_acme" */;
 			buildPhases = (
 				9AD68E3A251A753A00C0EBD7 /* Headers */,
 				9AD69137251A753A00C0EBD7 /* Sources */,
@@ -7741,9 +7741,9 @@
 			dependencies = (
 				9AC14D99297B361C006D9BD3 /* PBXTargetDependency */,
 			);
-			name = _acme;
+			name = static_acme;
 			productName = acme;
-			productReference = 9AD692B6251A753A00C0EBD7 /* lib_acme.a */;
+			productReference = 9AD692B6251A753A00C0EBD7 /* libstatic_acme.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -7780,7 +7780,7 @@
 			projectRoot = "";
 			targets = (
 				9A68A41325114352008DABD2 /* acme */,
-				9AD68E39251A753A00C0EBD7 /* _acme */,
+				9AD68E39251A753A00C0EBD7 /* static_acme */,
 			);
 		};
 /* End PBXProject section */
@@ -7803,7 +7803,7 @@
 		9AC14D97297B3617006D9BD3 /* lib_idn.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = lib_idn.a;
+			path = libstatic_idn.a;
 			remoteRef = 9AC14D96297B3617006D9BD3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -8893,7 +8893,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AD692B3251A753A00C0EBD7 /* Build configuration list for PBXNativeTarget "_acme" */ = {
+		9AD692B3251A753A00C0EBD7 /* Build configuration list for PBXNativeTarget "static_acme" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AD692B4251A753A00C0EBD7 /* Debug */,

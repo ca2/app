@@ -818,12 +818,12 @@ namespace user
          _NEW_MESSAGE(::message::mouse);
          pmessage->m_ebuttonstate = (::user::enum_button_state ) wparam.m_number;
 
-         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
-         {
-
-            output_debug_string("(m_ebuttonstate & 0x80000000) == (0x80000000)");
-
-         }
+//         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
+//         {
+//
+//            output_debug_string("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//
+//         }
 
          pmessage->m_point = ::point_i32(lparam);
 

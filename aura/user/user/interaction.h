@@ -1666,7 +1666,7 @@ namespace user
       ::oswindow detach_window() override;
 
 
-      virtual ::windowing::window * window();
+      ::windowing::window * window() override;
       //virtual ::windowing::window * _window() override;
 
       virtual ::user::copydesk * copydesk();

@@ -26,7 +26,7 @@ namespace user
 #ifdef LINUX
 
 
-   CLASS_DECL_AURA ::user::enum_key keysym_to_userkey(const lparam & lparam);
+   //CLASS_DECL_AURA ::user::enum_key keysym_to_userkey(const lparam & lparam);
 
 #elif defined(MACOS)
 

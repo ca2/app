@@ -1801,6 +1801,8 @@ if (LINUX OR FREEBSD)
             operating_system/x11/_.cpp
             operating_system/x11/_atom.cpp
             operating_system/x11/_atom.h
+            operating_system/x11/keyboard.cpp
+            operating_system/x11/keyboard.h
             operating_system/xcb/nano/_nano.cpp
             operating_system/xcb/nano/_.h
             operating_system/xcb/nano/display.cpp

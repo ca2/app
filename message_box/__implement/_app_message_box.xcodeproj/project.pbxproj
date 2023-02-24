@@ -30,6 +30,12 @@
 		9A8C81712783F8A7000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81702783F8A7000C8587 /* _matter.zip */; };
 		9A8C81782783F8C5000C8587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81732783F8C5000C8587 /* MainMenu.xib */; };
 		9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81752783F8C5000C8587 /* Images.xcassets */; };
+		9AB15BD729A8796500DFDF90 /* libacme_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; };
+		9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AB15BD929A8796600DFDF90 /* libapex_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; };
+		9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AB15BDB29A8796600DFDF90 /* libaura_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */; };
+		9AB15BDC29A8796600DFDF90 /* libaura_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB3DE7E278385C50025099F /* libapp_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */; };
 		9AB3DE88278386490025099F /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB3DE86278386490025099F /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB3DE89278386490025099F /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB3DE87278386490025099F /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -180,6 +186,7 @@
 			dstSubfolderSpec = 6;
 			files = (
 				9AF8CE58271B89B600BF80B7 /* libapex.dylib in Embed Libraries */,
+				9AB15BDC29A8796600DFDF90 /* libaura_darwin.dylib in Embed Libraries */,
 				9AB3DE89278386490025099F /* libcrypto.3.dylib in Embed Libraries */,
 				9A4E96B5278538E500B74C76 /* libfolder_zip.dylib in Embed Libraries */,
 				9AB3DE88278386490025099F /* libssl.3.dylib in Embed Libraries */,
@@ -189,8 +196,10 @@
 				9AC01D7B2748C4AD006BEBCC /* libcrypto_openssl.dylib in Embed Libraries */,
 				9A46D38826785B63000B22D0 /* libapex_macos.dylib in Embed Libraries */,
 				9A46D39C26785B85000B22D0 /* libaura_posix.dylib in Embed Libraries */,
+				9AB15BD829A8796500DFDF90 /* libacme_darwin.dylib in Embed Libraries */,
 				9A46D3A626785B85000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */,
 				9A46D39A26785B85000B22D0 /* libaura_macos.dylib in Embed Libraries */,
+				9AB15BDA29A8796600DFDF90 /* libapex_darwin.dylib in Embed Libraries */,
 				9A46D38626785B63000B22D0 /* libapex_apple.dylib in Embed Libraries */,
 				9A46D3A426785B85000B22D0 /* libwindowing_macos.dylib in Embed Libraries */,
 				9A46D38A26785B63000B22D0 /* libapex_posix.dylib in Embed Libraries */,
@@ -233,6 +242,9 @@
 		9A8C81742783F8C5000C8587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9A8C81752783F8C5000C8587 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8C81772783F8C5000C8587 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB3DE86278386490025099F /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../../operating-system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
 		9AB3DE87278386490025099F /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../../operating-system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9AC01D672748C46A006BEBCC /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = "<group>"; };
@@ -251,11 +263,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB15BD929A8796600DFDF90 /* libapex_darwin.dylib in Frameworks */,
 				9AB3DE7E278385C50025099F /* libapp_message_box.dylib in Frameworks */,
+				9AB15BDB29A8796600DFDF90 /* libaura_darwin.dylib in Frameworks */,
 				9AC01D822748C622006BEBCC /* libaura.dylib in Frameworks */,
 				9A46D37C26785B51000B22D0 /* libacme.dylib in Frameworks */,
 				9AC01D7C2748C510006BEBCC /* libapp_app.dylib in Frameworks */,
 				9A46D37726785AD0000B22D0 /* libapex.dylib in Frameworks */,
+				9AB15BD729A8796500DFDF90 /* libacme_darwin.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +394,9 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */,
+				9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */,
+				9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */,
 				9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */,
 				9AF8CE5C271B8A7500BF80B7 /* libacme_posix.dylib */,
 				9AF8CE59271B8A4700BF80B7 /* libacme_macos.dylib */,

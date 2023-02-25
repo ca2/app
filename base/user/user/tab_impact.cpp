@@ -1213,19 +1213,19 @@ namespace user
    void tab_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-//      if(m_pimpactTopic)
-//      {
-//
-//         m_pimpactTopic->route_command(pcommand, true);
-//
-//         if(pcommand->m_bRet)
-//         {
-//
-//            return;
-//
-//         }
-//
-//      }
+      if(m_pimpactTopic)
+      {
+
+         m_pimpactTopic->route_command(pcommand, true);
+
+         if(pcommand->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
 
       impact::route_command(pcommand, bRouteToKeyDescendant);
 

@@ -14,7 +14,7 @@ namespace file
 
 
       //void *                                           m_poswindow;
-      //void *                                           m_posdata;
+      void *                                             m_posdata;
       ::pointer < ::user::element>                       m_puserelement;
       ::array < ::pair < ::string, ::string > >          m_filetypes;
       ::function < void(::pointer<file_dialog>) >        m_function;

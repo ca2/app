@@ -1,4 +1,4 @@
-﻿// From file/binary_stream < FILE >.h by camilo on 2022-10-14 23:46 <3ThomasBorregaardSørensen!!
+// From file/binary_stream < FILE >.h by camilo on 2022-10-14 23:46 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -28,8 +28,8 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 }
 
 
-template < typename FILE, class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type m_etypeContainer >
-inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & a)
+template < typename FILE, primitive_array ARRAY >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ARRAY & a)
 {
 
    ::count c;

@@ -1214,7 +1214,7 @@ namespace user
    }
 
 
-   ::windowing::window * primitive::_window()
+   ::windowing::window * primitive::window()
    {
 
       return nullptr;

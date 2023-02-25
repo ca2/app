@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "websocket_client.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -485,7 +485,7 @@ namespace sockets
 
       }
 
-      if (m_timeClientPingTimeout.is_null())
+      if (m_timeClientPingTimeout <= 0_s)
       {
 
          return true;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "font.h"
 #include "border.h"
@@ -1105,20 +1105,20 @@ namespace html
          {
             try
             {
-               ::str::consume_spaces(range, 0);
-               ::str::consume(range, "(");
-               ::str::consume_spaces(range, 0);
-               ::str::consume_natural(range, 255);
-               ::str::consume_spaces(range, 0);
-               ::str::consume(range, ",");
-               ::str::consume_spaces(range, 0);
-               ::str::consume_natural(range, 255);
-               ::str::consume_spaces(range, 0);
-               ::str::consume(range, ",");
-               ::str::consume_spaces(range, 0);
-               ::str::consume_natural(range, 255);
-               ::str::consume_spaces(range, 0);
-               ::str::consume(range, ")");
+               range.consume_spaces(0);
+               range.consume("(");
+               range.consume_spaces(0);
+               range.consume_natural(255);
+               range.consume_spaces(0);
+               range.consume(",");
+               range.consume_spaces(0);
+               range.consume_natural(255);
+               range.consume_spaces(0);
+               range.consume(",");
+               range.consume_spaces(0);
+               range.consume_natural(255);
+               range.consume_spaces(0);
+               range.consume(")");
             }
             catch(...)
             {
@@ -1129,7 +1129,7 @@ namespace html
          {
             try
             {
-               ::str::consume_hex(range);
+               range.consume_hex();
             }
             catch(...)
             {
@@ -1251,20 +1251,20 @@ namespace html
       {
          try
          {
-            ::str::consume_spaces(range, 0);
-            ::str::consume(range, "(");
-            ::str::consume_spaces(range, 0);
-            i32 R = (i32) ::str::consume_natural(range, 255);
-            ::str::consume_spaces(range, 0);
-            ::str::consume(range, ",");
-            ::str::consume_spaces(range, 0);
-            i32 G = (i32) ::str::consume_natural(range, 255);
-            ::str::consume_spaces(range, 0);
-            ::str::consume(range, ",");
-            ::str::consume_spaces(range, 0);
-            i32 B = (i32) ::str::consume_natural(range, 255);
-            ::str::consume_spaces(range, 0);
-            ::str::consume(range, ")");
+            range.consume_spaces(0);
+            range.consume("(");
+            range.consume_spaces(0);
+            i32 R = (i32) range.consume_natural(255);
+            range.consume_spaces(0);
+            range.consume(",");
+            range.consume_spaces(0);
+            i32 G = (i32) range.consume_natural(255);
+            range.consume_spaces(0);
+            range.consume(",");
+            range.consume_spaces(0);
+            i32 B = (i32) range.consume_natural(255);
+            range.consume_spaces(0);
+            range.consume(")");
             color32 = argb(255, R, G, B);
             return true;
          }
@@ -1277,7 +1277,7 @@ namespace html
       {
          try
          {
-            ::str::consume_hex(range);
+            range.consume_hex();
             color32 = parse_color(pszStart - 1);
             return true;
          }

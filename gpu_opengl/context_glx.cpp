@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "context_glx.h"
 #include "opengl.h"
-//#include "aura_posix/_.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "aura_posix/_.h"
 //#include "aura_posix/_library.h"
 #include "aura_posix/x11/display_lock.h"
 #include "aura/platform/system.h"
@@ -322,9 +323,9 @@ namespace opengl
 
       }
 
-      auto pFind = stra.find_first_begins_ci("out vec4 ");
+      auto iFind = stra.find_first_begins_ci("out vec4 ");
 
-      if(::is_set(pFind))
+      if(::found(iFind))
       {
 
          stra[iFind] = "out vec4 fragmentColor;";

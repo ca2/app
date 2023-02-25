@@ -694,7 +694,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (::u32)pmouse->m_nFlags;
+      m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
 
       m_pointLButtonUp = pmouse->m_point;
 
@@ -798,7 +798,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      perform_right_click(pmouse->m_nFlags, pmouse->m_point);
+      perform_right_click(pmouse->m_ebuttonstate, pmouse->m_point);
 
       pmessage->m_bRet = true;
 

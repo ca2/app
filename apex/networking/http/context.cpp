@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
@@ -2178,7 +2178,7 @@ namespace http
 
       //psocket->m_integerscalarDownloaded.m_atom = set["http_downloaded_id"].atom();
 
-      if (tickTotalTimeout.is_null())
+      if (tickTotalTimeout <= 0_s)
       {
 
          tickTotalTimeout = 30_s;

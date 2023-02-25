@@ -26,7 +26,7 @@ namespace nanoui
  *
  * \brief [Normal/Toggle/Radio/Popup] Button widget.
  */
-   class NANOUI_EXPORT Button : 
+   class CLASS_DECL_NANOUI Button :
    public Widget
    //,
    //virtual public ::appearance::button

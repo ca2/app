@@ -45,7 +45,7 @@ CLASS_DECL_ACME ::i64 integral_nanosecond()
 
    utc_timespec(&timespec);
 
-    return integral_nanosecond(timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec);
+    return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
 
 }
 

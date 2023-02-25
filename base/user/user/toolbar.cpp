@@ -1308,7 +1308,7 @@ namespace user
       //   button.cbSize = sizeof(button);
       //   ::u32 uID = GetItemID(nIndex);
       //   button.pszText = (unichar *) (const unichar *) wstrText;
-      //   button.cchText = wstrText.get_length();
+      //   button.cchText = wstrText.length();
       //   button.dwMask |= TBIF_TEXT;
       //   GetToolBarCtrl().SetButtonInfo(uId, &button);
 

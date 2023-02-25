@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "type.h"
 #include "factory.h"
@@ -174,23 +174,23 @@ const char * particle::topic_text() const
 //}
 
 
-const char * particle::class_title() const
-{
-
-   auto pszName =  typeid(*this).name();
-
-   auto pszLastColon = strrchr(pszName, ':');
-
-   if(!pszLastColon)
-   {
-
-      return pszName;
-
-   }
-
-   return pszLastColon + 1;
-
-}
+//const char * particle::raw_class_title() const
+//{
+//
+//   auto pszName =  typeid(*this).name();
+//
+//   auto pszLastColon = strrchr(pszName, ':');
+//
+//   if(!pszLastColon)
+//   {
+//
+//      return pszName;
+//
+//   }
+//
+//   return pszLastColon + 1;
+//
+//}
 
 
 
@@ -917,7 +917,7 @@ bool particle::_lock(const class time & timeWait)
 void particle::_wait()
 {
 
-   _wait(::time::infinite());
+   _wait(::time::infinity());
 
 }
 
@@ -1278,7 +1278,7 @@ bool particle::is_locked() const
    try
    {
 
-      synchronouslock.lock(time::zero());
+      synchronouslock.lock(0_s);
 
    }
    catch (...)

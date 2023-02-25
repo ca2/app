@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "process.h"
 
 
@@ -75,12 +75,12 @@ namespace operating_system
 
          }
 
-         if(!timeWait.is_null())
+         if(timeWait > 0_s)
          {
 
             auto waitNow = minimum(timeWait - start.elapsed(), 100_ms);
 
-            if (!waitNow)
+            if (waitNow <= 0_s)
             {
 
                break;

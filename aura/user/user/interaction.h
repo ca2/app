@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "interaction_layout.h"
@@ -827,7 +827,7 @@ namespace user
       virtual ::i32 bottom(enum_layout elayout = e_layout_sketch);
 
 
-      virtual void window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch) { copy(rect, window_rectangle(elayout)); }
+      virtual void window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_sketch);
       virtual ::rectangle_i32 window_rectangle(enum_layout elayout = e_layout_sketch);
 
 
@@ -1443,6 +1443,10 @@ namespace user
       inline ::oswindow get_safe_oswindow();
       inline ::oswindow oswindow() { return m_oswindow; }
 
+
+      //virtual ::windowing::window * window();
+
+
       //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       ////      virtual void Invalidate(bool bErase = true);
@@ -1662,8 +1666,8 @@ namespace user
       ::oswindow detach_window() override;
 
 
-      inline ::windowing::window * window() { return m_pwindow; }
-      virtual ::windowing::window * _window() override;
+      ::windowing::window * window() override;
+      //virtual ::windowing::window * _window() override;
 
       virtual ::user::copydesk * copydesk();
 
@@ -2338,6 +2342,23 @@ namespace user
 
       inline bool _001HasHorizontalBarDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
       inline bool _001HasVerticalBarDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
+      
+      
+//      virtual void pick_single_file(
+//         const ::array < ::pair < ::string, ::string > >& filetypes,
+//         const ::function < void(const ::file::path &) >& function,
+//         bool save);
+//
+//
+//      virtual void pick_multiple_file(
+//         const ::array < ::pair < ::string, ::string > > & filetypes,
+//         const ::function < void(const ::file::path_array &) >& function);
+//     
+//      virtual void pick_single_folder(
+//         //const ::array < ::pair < ::string, ::string > >& filetypes,
+//                              const ::function < void(const ::file::path &) >& function);
+//                              //,       bool save);
+
 
    };
 

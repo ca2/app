@@ -4,7 +4,7 @@
 #include "base/_.h"
 
 
-#ifdef _APP_EXPERIENCE_CORE_LIBRARY
+#if defined(_app_experience_core_project)
     #define CLASS_DECL_APP_EXPERIENCE_CORE  CLASS_DECL_EXPORT
 #else
     #define CLASS_DECL_APP_EXPERIENCE_CORE  CLASS_DECL_IMPORT

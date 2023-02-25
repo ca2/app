@@ -1,11 +1,13 @@
-//
+﻿//
 //  memory_new.cpp
 //  acme
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 26/07/20.
 //
-
 #include "framework.h"
+
+
+#if !defined(_UWP) && !defined(ANDROID)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
@@ -20,10 +22,6 @@ void MEMORY_DECL operator delete(void * p, size_t n) del_throw_spec
 
 
 #endif
-
-
-
-
 
 
 void* MEMORY_DECL operator new(size_t nSize)
@@ -224,6 +222,8 @@ void MEMORY_DECL operator delete[](void* p, i32 nType, const char * pszFileName,
 
 #endif
 
+
+#endif // !defined(_UWP)
 
 //#endif // __ACME_ASSET_NEW_CPP__
 

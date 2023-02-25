@@ -42,7 +42,7 @@ class Texture;
  * \brief Represents a display surface (i.e. a full-screen or windowed GLFW window)
  * and forms the root element of a hierarchy of nanoui widgets.
  */
-class NANOUI_EXPORT Screen : 
+class CLASS_DECL_NANOUI Screen :
    public Widget,
    virtual public ::appearance::appearance
    //,

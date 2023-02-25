@@ -1,167 +1,150 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/library.h"
+#include "acme/platform/system.h"
 #include "_android.h"
 #include <dlfcn.h>
 
 
-CLASS_DECL_ACME void * __node_library_touch(const ::file::path & path, string & strMessage)
+namespace acme
 {
 
-   return __node_library_open(pszPath, strMessage);
 
-}
-
-
-CLASS_DECL_ACME void * __node_library_open(const ::file::path & path, string & strMessage)
-{
-
-   strMessage.empty();
-
-   string strPath(pszPath);
-
-   if(strPath == "os")
+   void * system::operating_system_library_touch(const ::file::path & path, string & strMessage)
    {
 
-      strPath = "ca2os";
-
-   }
-   else if(strPath == "app_sphere")
-   {
-
-      strPath = "basesphere";
+      return operating_system_library_open(path, strMessage);
 
    }
 
-   if (ansi_find_string(strPath, ".") == nullptr)
+
+   void * system::operating_system_library_open(const ::file::path & path, string & strMessage)
    {
 
-      strPath += ".so";
+      strMessage.empty();
+
+      string strPath(path);
+
+      if (strPath == "os")
+      {
+
+         strPath = "ca2os";
+
+      }
+      else if (strPath == "app_sphere")
+      {
+
+         strPath = "basesphere";
+
+      }
+
+      if (ansi_find_string(strPath, ".") == nullptr)
+      {
+
+         strPath += ".so";
+
+      }
+
+      if (strstr((const char *)strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      {
+
+         strPath = "lib" + strPath;
+
+      }
+
+      //void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+      void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW);
+
+      if (plibrary != nullptr)
+      {
+
+         strMessage += "Successfully loaded library : \"" + strPath + "\"!!";
+
+      }
+      else
+      {
+
+         int iError = errno;
+
+         const char * psz = strerror(iError);
+
+         const char * psz2 = dlerror();
+
+         strMessage += "Failed to load library : \"" + strPath + "\"!";
+
+         if (psz != nullptr)
+         {
+
+            strMessage += "strerror(" + ::as_string(iError) + ") = " + string(psz);
+
+         }
+
+         if (psz2 != nullptr)
+         {
+
+            strMessage += "dlerror = " + string(psz2);
+
+         }
+
+      }
+
+      return plibrary;
 
    }
 
-   if (strstr((const char *)strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+
+   void * system::operating_system_library_open_ca2(const ::file::path & path, string & strMessage)
    {
 
-      strPath = "lib" + strPath;
+      strMessage.empty();
 
-   }
-
-   //void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-   void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW);
-
-   if (plibrary != nullptr)
-   {
-
-      strMessage += "Successfully loaded library : \"" + strPath +"\"!!";
-
-   }
-   else
-   {
+      //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+      void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_NOW);
 
       int iError = errno;
 
-      const ::scoped_string & scopedstr = strerror(iError);
-
-      const ::scoped_string & scopedstr2 = dlerror();
-
-      strMessage += "Failed to load library : \"" + strPath + "\"!";
+      const char * psz = strerror(iError);
 
       if (psz != nullptr)
       {
 
-         strMessage += "strerror("+as_string(iError) +") = " + string(psz);
+         strMessage += psz;
 
       }
+
+      const char * psz2 = dlerror();
 
       if (psz2 != nullptr)
       {
 
-         strMessage += "dlerror = " + string(psz2);
+         strMessage += psz2;
 
       }
 
+      return plibrary;
+
    }
 
-   return plibrary;
 
-}
-
-
-CLASS_DECL_ACME void * __node_library_open_ca2(const ::file::path & path, string & strMessage)
-{
-
-   strMessage.empty();
-
-   //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
-   void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW);
-
-   int iError = errno;
-
-   const ::scoped_string & scopedstr = strerror(iError);
-
-   if(psz != nullptr)
+   bool system::operating_system_library_close(void * plibrary)
    {
 
-      strMessage += psz;
+      if (plibrary == nullptr)
+         return false;
+
+      return dlclose(plibrary) == 0;
 
    }
 
-   const ::scoped_string & scopedstr2 = dlerror();
 
-   if(psz2 != nullptr)
+   void * system::operating_system_library_raw_get(void * plibrary, const ::scoped_string & scopedstrEntryName)
    {
 
-      strMessage += psz2;
+      return dlsym(plibrary, scopedstrEntryName);
 
    }
 
-   return plibrary;
 
-}
-
-
-CLASS_DECL_ACME bool __node_library_close(void * plibrary)
-{
-
-   if(plibrary == nullptr)
-      return false;
-
-   return dlclose(plibrary) == 0;
-
-}
-
-
-CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const ::scoped_string & scopedstrEntryName)
-{
-
-   return dlsym(plibrary,pszEntryName);
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace acme
 
 
 

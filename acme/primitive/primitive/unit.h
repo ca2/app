@@ -83,7 +83,7 @@ constexpr integral_byte operator ""_KiB(long double d)
 constexpr integral_byte operator ""_KiB(unsigned long long i)
 {
 
-   return 1'024 * i;
+   return (memsize) (i << 10);
 
 }
 
@@ -115,7 +115,7 @@ constexpr integral_byte operator ""_MiB(long double d)
 constexpr integral_byte operator ""_MiB(unsigned long long i)
 {
 
-   return (memsize)(1024 * 1024 * i);
+   return (memsize)(i << 20);
 
 }
 
@@ -123,7 +123,7 @@ constexpr integral_byte operator ""_MiB(unsigned long long i)
 constexpr long double operator ""_M(long double d)
 {
 
-   return (memsize) (1'000 * 1'000 * d);
+   return 1'000.0 * 1'000.0 * d;
 
 }
 
@@ -131,7 +131,7 @@ constexpr long double operator ""_M(long double d)
 constexpr unsigned long long operator ""_M(unsigned long long i)
 {
 
-   return (memsize) (1'000 * 1'000 * i);
+   return 1'000 * 1'000 * i;
 
 }
 
@@ -147,7 +147,7 @@ constexpr integral_byte operator ""_GiB(long double d)
 constexpr integral_byte operator ""_GiB(unsigned long long i)
 {
 
-   return (memsize) (1'024 * 1'024 * 1'024 * i);
+   return (memsize) (i << 30);
 
 }
 
@@ -155,7 +155,7 @@ constexpr integral_byte operator ""_GiB(unsigned long long i)
 constexpr long double operator ""_G(long double d)
 {
 
-   return (memsize) (1'000.0 * 1'000.0 * 1'000.0 * d);
+   return 1'000.0 * 1'000.0 * 1'000.0 * d;
 
 }
 
@@ -163,7 +163,7 @@ constexpr long double operator ""_G(long double d)
 constexpr unsigned long long operator ""_G(unsigned long long i)
 {
 
-   return (memsize) (1'000 * 1'000 * 1'000 * i);
+   return 1'000 * 1'000 * 1'000 * i;
 
 }
 

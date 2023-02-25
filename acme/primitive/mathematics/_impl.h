@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 //template < typename T >
 //inline c_number < T > & c_number < T >::from(const ::string & str)
 //{
@@ -221,6 +219,3 @@ inline T& clip(const TMIN& minimum, const TMAX& maximum, T& t)
    return t;
 
 }
-
-
-

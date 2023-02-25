@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "string.h"
@@ -204,47 +204,6 @@ public:
 
    static string   get_word(const ::string & str, const ::string & strSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
 
-
-   static bool begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
-   static bool begins_consume(::const_ansi_range & range, ansi_character ansich) {return (*range.m_begin == ansich)?(static_cast<void>(range.m_begin++),true): false;}
-   static bool begins_consume(::ansi_character & characterReturn, ::const_ansi_range & range, ansi_character ansich) {return (bool)(*range.m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(range.m_begin++), true): false;}
-   static bool case_insensitive_begins_consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
-   static void consume(::const_ansi_range & range, const ::ansi_character * pszToConsume);
-   //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
-   static void consume(::const_ansi_range & range, const ::scoped_string & scopedstr);
-   static void consume_spaces(::const_ansi_range & range, ::count iMinimumCount = 1);
-   static u64 consume_natural(::const_ansi_range & range, u64 uiMax = ((u64)-1), u64 uiMin = 0);
-   static u64 consume_natural(string & str, u64 uiMax = ((u64)-1), u64 uiMin = 0);
-   static string consume_hex(::const_ansi_range & range);
-   //void consume_spaces(::const_ansi_range & range, ::count iMinimumCount);
-   static string consume_non_spaces(::const_ansi_range & range);
-   //string consume_non_spaces(::const_ansi_range & range);
-   static string consume_nc_name(::const_ansi_range & range);
-   //  string consume_quoted_value(const ::ansi_character * & pszParse);
-   //static void no_escape_consume_quoted_value(::const_ansi_range & range, ::ansi_character ** ppsz, strsize & iBufferSize);
-   static string no_escape_consume_quoted_value(::const_ansi_range & range);
-   static void no_escape_skip_quoted_value(::const_ansi_range & range);
-
-   //template < typename ITERATOR_TYPE >
-   //static string_base < ITERATOR_TYPE > consume_quoted_value(::string_range < ITERATOR_TYPE > & range);
-
-   
-   static string consume_quoted_value_ex(::const_ansi_range & range);
-   static void skip_quoted_value_ex(::const_ansi_range & range);
-   //static string consume_spaced_value(string & str);
-   //string consume_spaced_value(const ::ansi_character *& pszParse);
-   static string consume_spaced_value(::const_ansi_range & range);
-   //static string consume_command_line_argument(string & str);
-   //string consume_command_line_argument(const ::ansi_character *& pszParse);
-   static string consume_command_line_argument(::const_ansi_range & range);
-   static void consume_until_any_character_in(::const_ansi_range & range, const ::scoped_string & scopedstr);
-   //static bool begins_consume(::const_ansi_range & range, const ::string & psz);
-
-   static bool xml_is_comment(const ::string & pszParse);
-   static string xml_consume_comment(::const_ansi_range & range);
-
-   static string consume_c_quoted_value(::const_ansi_range & range);
-
    static string token(string & str, const ::string & pszSeparatorText, bool bWithSeparator = false);
 
    //  void token(string & strToken, ::string & strSource, const ::string & pszSeparatorText, bool bWithSeparator = false);
@@ -364,61 +323,7 @@ public:
    static inline strsize unichar_count(const ::wd32_character * pstr);
 
 
-
    static void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
-
-   //========================================================
-// Name   : _tcsechr
-// Desc   : similar with strchr with escape process
-// Param  : escape - will be escape character
-// Return :
-//--------------------------------------------------------
-// Coder    Date                      Desc
-// bro      2002-10-29
-//========================================================
-   static void escape_find_character(::const_ansi_range & range, i32 ch, i32 escape);
-   //========================================================
-   // Name   : _tcsepbrk
-   // Desc   : similar with ansi_scan with escape process
-   // Param  : escape - will be escape character
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   static void escape_find_any_character_in(::const_ansi_range & range, const char * chset, i32 escape);
-
-   //========================================================
-// Name   : _tcsenicmp
-// Desc   : similar with ansi_count_compare_ci with escape process
-// Param  : escape - will be escape character
-// Return :
-//--------------------------------------------------------
-// Coder    Date                      Desc
-// bro      2002-10-29
-//========================================================
-   static ::std::strong_ordering escape_case_insensitive_count_order(::const_ansi_range & range, const ::const_ansi_range & rangeCompare, i32 escape);
-
-   //========================================================
-   // Name   : _tcsenistr
-   // Desc   : similar with _tcsistr with escape process
-   // Param  : escape - will be escape character
-   // Return :
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   static void escape_case_insensitive_find(::const_ansi_range & range, const ::const_ansi_range & rangeFind, i32 escape);
-//========================================================
-    // Name   : _tcsecpy
-    // Desc   : similar with _tcscpy with escape process
-    // Param  : escape - will be escape character
-    // Return :
-    //--------------------------------------------------------
-    // Coder    Date                      Desc
-    // bro      2002-10-29
-    //========================================================
-   static void escape_copy(::ansi_range & rangeTarget, char escape, const ::const_ansi_range & rangeSource);
 
 
 }; // class str

@@ -26,7 +26,7 @@ CLASS_DECL_ACME ::i64 integral_nanosecond()
    if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
    {
 
-      return integral_nanosecond(0);
+      return 0;
 
    }
 

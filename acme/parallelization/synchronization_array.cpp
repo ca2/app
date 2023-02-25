@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "synchronization_array.h"
 ////#include "acme/exception/exception.h"
 #include "acme/_operating_system.h"
@@ -204,7 +204,7 @@ void synchronization_array::erase(index index)
 ::e_status synchronization_array::wait()
 {
 
-   return wait(time::infinite()) >= 0 ? ::success : ::error_failed;
+   return wait(time::infinity()) >= 0 ? ::success : ::error_failed;
 
 }
 

@@ -1,4 +1,4 @@
-﻿// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSørensen!!
+// Refactored around 2022-09-12 by camilo <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -465,7 +465,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr auto _static_equals(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, EQUALITY equality)
+   static constexpr bool _static_equals(THIS_RAW_RANGE range, THIS_RAW_RANGE rangeBlock, EQUALITY equality)
    {
 
       while (range.begin() < range.end())
@@ -490,7 +490,7 @@ public:
 
 
    template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr auto static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
+   static constexpr bool static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
       bool b;
@@ -1895,7 +1895,7 @@ public:
 
                // so p is the end of the skip_any_character_in for matching items...
 
-               return range.end();
+               return range.end() + 1;
 
             }
 
@@ -1909,7 +1909,7 @@ public:
       // each skip_any_character_inned item matched some item in range...
       // return address immediately after end of skip_any_character_inning...
 
-      return range.end();
+      return range.begin();
 
    }
 

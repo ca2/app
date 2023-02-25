@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2023-02-02 02:28 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2023-02-02 02:28 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -157,7 +157,7 @@ inline strsize itoa_base(char* psz, strsize size, ::i64 i, int base)
 
 
 template < primitive_integral INTEGRAL >
-inline INTEGRAL& _consume(INTEGRAL& i, ::const_ansi_range& range, int iBase = 10)
+inline INTEGRAL& _consume(INTEGRAL& i, ::ansi_range& range, int iBase = 10)
 {
 
    i = 0;
@@ -186,7 +186,7 @@ inline INTEGRAL& _consume(INTEGRAL& i, ::const_ansi_range& range, int iBase = 10
 
 
 template < primitive_unsigned UNSIGNED >
-inline UNSIGNED & consume(UNSIGNED& u, ::const_ansi_range& range, int iBase = 10)
+inline UNSIGNED & consume(UNSIGNED& u, ::ansi_range& range, int iBase = 10)
 {
 
    return _consume(u, range, iBase);
@@ -195,7 +195,7 @@ inline UNSIGNED & consume(UNSIGNED& u, ::const_ansi_range& range, int iBase = 10
 
 
 template < primitive_signed SIGNED >
-inline SIGNED & consume(SIGNED & s, ::const_ansi_range& range, int iBase = 10)
+inline SIGNED & consume(SIGNED & s, ::ansi_range& range, int iBase = 10)
 {
 
    bool bNegative = range.begins_eat('-');
@@ -210,7 +210,7 @@ inline SIGNED & consume(SIGNED & s, ::const_ansi_range& range, int iBase = 10)
 
 
 template < primitive_integral INTEGRAL >
-INTEGRAL consume_integral(::const_ansi_range& range, int iBase = 10)
+INTEGRAL consume_integral(::ansi_range& range, int iBase = 10)
 {
 
    INTEGRAL integral;
@@ -222,21 +222,21 @@ INTEGRAL consume_integral(::const_ansi_range& range, int iBase = 10)
 }
 
 
-inline ::i64 consume_i64(::const_ansi_range& range , int iBase = 10) { return consume_integral < ::i64 >(range, iBase); }
-inline ::i32 consume_i32(::const_ansi_range& range , int iBase = 10) { return consume_integral < ::i32 >(range, iBase); }
-inline ::i16 consume_i16(::const_ansi_range& range , int iBase = 10) { return consume_integral < ::i16 >(range, iBase); }
-inline ::i8 consume_i8(::const_ansi_range& range, int iBase = 10) { return consume_integral < ::i8 >(range, iBase); }
+inline ::i64 consume_i64(::ansi_range& range , int iBase = 10) { return consume_integral < ::i64 >(range, iBase); }
+inline ::i32 consume_i32(::ansi_range& range , int iBase = 10) { return consume_integral < ::i32 >(range, iBase); }
+inline ::i16 consume_i16(::ansi_range& range , int iBase = 10) { return consume_integral < ::i16 >(range, iBase); }
+inline ::i8 consume_i8(::ansi_range& range, int iBase = 10) { return consume_integral < ::i8 >(range, iBase); }
 
 
-inline ::u64 consume_u64(::const_ansi_range& range, int iBase = 10) { return consume_integral < ::u64 >(range, iBase); }
-inline ::u32 consume_u32(::const_ansi_range& range, int iBase = 10) { return consume_integral < ::u32 >(range, iBase); }
-inline ::u16 consume_u16(::const_ansi_range& range, int iBase = 10) { return consume_integral < ::u16 >(range, iBase); }
-inline ::u8 consume_u8(::const_ansi_range& range, int iBase = 10) { return consume_integral < ::u8 >(range, iBase); }
+inline ::u64 consume_u64(::ansi_range& range, int iBase = 10) { return consume_integral < ::u64 >(range, iBase); }
+inline ::u32 consume_u32(::ansi_range& range, int iBase = 10) { return consume_integral < ::u32 >(range, iBase); }
+inline ::u16 consume_u16(::ansi_range& range, int iBase = 10) { return consume_integral < ::u16 >(range, iBase); }
+inline ::u8 consume_u8(::ansi_range& range, int iBase = 10) { return consume_integral < ::u8 >(range, iBase); }
 
 
-inline long consume_long(::const_ansi_range& range, int iBase = 10) { return consume_integral < long >(range, iBase); }
-inline unsigned long consume_unsigned_long(::const_ansi_range& range, int iBase = 10) { return consume_integral < unsigned long >(range, iBase); }
-inline size_t consume_size_t(::const_ansi_range& range, int iBase = 10) { return consume_integral < size_t >(range, iBase); }
+inline long consume_long(::ansi_range& range, int iBase = 10) { return consume_integral < long >(range, iBase); }
+inline unsigned long consume_unsigned_long(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned long >(range, iBase); }
+inline size_t consume_size_t(::ansi_range& range, int iBase = 10) { return consume_integral < size_t >(range, iBase); }
 
 
 inline ::i64 as_i64(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_i64(r, iBase); }

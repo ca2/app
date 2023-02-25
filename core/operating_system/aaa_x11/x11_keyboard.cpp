@@ -435,72 +435,72 @@ string x11_keyboard_get_current_group_symbol()
 }
 
 
-namespace user
-{
+// namespace user
+// {
 
-   CLASS_DECL_CORE ::user::enum_key keysym_to_userkey(const lparam & lparam)
-   {
+//    CLASS_DECL_CORE ::user::enum_key keysym_to_userkey(const lparam & lparam)
+//    {
 
-      KeySym keysym = (KeySym) (iptr)lparam.m_lparam;
+//       KeySym keysym = (KeySym) (iptr)lparam.m_lparam;
 
-      switch(keysym)
-      {
-      case XK_BackSpace:
-         return key_back;
-      case XK_Shift_L:
-         return key_lshift;
-      case XK_Shift_R:
-         return key_rshift;
-      case XK_Control_L:
-         return key_lcontrol;
-      case XK_Control_R:
-         return key_rcontrol;
-      case XK_Alt_L:
-         return key_lalt;
-      case XK_Alt_R:
-         return key_ralt;
-      case XK_Delete:
-         return key_delete;
-      case XK_Return:
-         return key_return;
-      case XK_Tab:
-         return key_tab;
-      case XK_Left:
-         return key_left;
-      case XK_Right:
-         return key_right;
-      case XK_Up:
-         return key_up;
-      case XK_Down:
-         return key_down;
-      case XK_Page_Up:
-         return key_prior;
-      case XK_Page_Down:
-         return key_next;
-      case XK_Home:
-         return key_home;
-      case XK_End:
-         return key_end;
-
-
-      }
-
-      if(keysym >= 'a' && keysym <= 'z')
-      {
-
-         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'a');
-
-      }
-      else if(keysym >= 'A' && keysym <= 'Z')
-      {
-
-         return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'A');
-
-      }
-
-      return key_none;
-
-   }
+//       switch(keysym)
+//       {
+//       case XK_BackSpace:
+//          return key_back;
+//       case XK_Shift_L:
+//          return key_lshift;
+//       case XK_Shift_R:
+//          return key_rshift;
+//       case XK_Control_L:
+//          return key_lcontrol;
+//       case XK_Control_R:
+//          return key_rcontrol;
+//       case XK_Alt_L:
+//          return key_lalt;
+//       case XK_Alt_R:
+//          return key_ralt;
+//       case XK_Delete:
+//          return key_delete;
+//       case XK_Return:
+//          return key_return;
+//       case XK_Tab:
+//          return key_tab;
+//       case XK_Left:
+//          return key_left;
+//       case XK_Right:
+//          return key_right;
+//       case XK_Up:
+//          return key_up;
+//       case XK_Down:
+//          return key_down;
+//       case XK_Page_Up:
+//          return key_prior;
+//       case XK_Page_Down:
+//          return key_next;
+//       case XK_Home:
+//          return key_home;
+//       case XK_End:
+//          return key_end;
 
 
-} // namespace user
+//       }
+
+//       if(keysym >= 'a' && keysym <= 'z')
+//       {
+
+//          return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'a');
+
+//       }
+//       else if(keysym >= 'A' && keysym <= 'Z')
+//       {
+
+//          return (::user::enum_key) ((int)(::user::e_key_a) + keysym - 'A');
+
+//       }
+
+//       return key_none;
+
+//    }
+
+
+// } // namespace user

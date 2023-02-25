@@ -166,8 +166,12 @@ list(APPEND library_source
         filesystem/filesystem/acme_file.h
         filesystem/filesystem/acme_path.cpp
         filesystem/filesystem/acme_path.h
+        filesystem/filesystem/file_dialog.cpp
+        filesystem/filesystem/file_dialog.h
         filesystem/filesystem/file_path.cpp
         filesystem/filesystem/file_path.h
+        filesystem/filesystem/folder_dialog.cpp
+        filesystem/filesystem/folder_dialog.h
         filesystem/filesystem/listing.cpp
         filesystem/filesystem/path.cpp
         filesystem/filesystem/path_object.cpp
@@ -186,6 +190,8 @@ list(APPEND library_source
         handler/item.h
         handler/topic.cpp
         handler/topic.h
+        handler/request.cpp
+        handler/request.h
         #include/_.cpp
         #include/path.h        #primitive/collection/comparable_array.cpp
         #memory/alloc.cpp
@@ -346,8 +352,6 @@ list(APPEND library_source
         platform/profiler.cpp
         platform/procedure.cpp
         platform/procedure.h
-        platform/request.cpp
-        platform/request.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h
@@ -1797,6 +1801,8 @@ if (LINUX OR FREEBSD)
             operating_system/x11/_.cpp
             operating_system/x11/_atom.cpp
             operating_system/x11/_atom.h
+            operating_system/x11/keyboard.cpp
+            operating_system/x11/keyboard.h
             operating_system/xcb/nano/_nano.cpp
             operating_system/xcb/nano/_.h
             operating_system/xcb/nano/display.cpp

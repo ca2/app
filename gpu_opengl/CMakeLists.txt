@@ -3,35 +3,37 @@ project(gpu_opengl CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    _factory.cpp
-    buffer.cpp
-    buffer.h
-    context.cpp
-    context.h
-    framework.cpp
-    framework.h
-    image_opengl.cpp
+        _.cpp
+        _.h
+        _factory.cpp
+        assimp.cpp
+        assimp.h
+        buffer.cpp
+        buffer.h
+        context.cpp
+        context.h
+        framework.cpp
+        framework.h
+        image_opengl.cpp
         object.cpp
         object.h
-    opengl.cpp
-    opengl.h
-    program.cpp
-    program.h
-    shader.cpp
-    shader.h)
+        opengl.cpp
+        opengl.h
+        program.cpp
+        program.h
+        shader.cpp
+        shader.h)
 
-if(WIN32)
+if (WIN32)
     list(APPEND library_source
             context_win32.cpp
             context_win32.h
             )
 
-endif()
+endif ()
 
 
-if(LINUX OR FREEBSD)
+if (LINUX OR FREEBSD)
     list(APPEND library_source
             context_egl.cpp
             context_egl.h
@@ -39,10 +41,10 @@ if(LINUX OR FREEBSD)
             context_glx.h
             )
 
-    endif()
+endif ()
 
 
-if(APPLE)
+if (APPLE)
     list(APPEND library_source
             context_cgl.cpp
             context_cgl.h
@@ -50,7 +52,7 @@ if(APPLE)
             context_fbo.h
             )
 
-endif()
+endif ()
 
 
 list(APPEND library_references
@@ -61,13 +63,13 @@ list(APPEND library_references
         )
 
 
-if(LINUX OR FREEBSD)
+if (LINUX OR FREEBSD)
 
     list(APPEND library_references
-       aura_posix
-       )
+            aura_posix
+            )
 
-endif()
+endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
@@ -86,12 +88,12 @@ if (MSVC)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
 
 
-elseif(LINUX OR FREEBSD)
+elseif (LINUX OR FREEBSD)
 
 
-    if(NOT DONT_USE_PKG_CONFIG)
-        pkg_check_modules(PKGCONFIG glew egl)
-    endif()
+    if (NOT DONT_USE_PKG_CONFIG)
+        pkg_check_modules(PKGCONFIG glew egl assimp)
+    endif ()
     target_compile_options(gpu_opengl PRIVATE -fpermissive)
     target_compile_options(gpu_opengl PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(gpu_opengl PRIVATE ${PKGCONFIG_LDFLAGS})
@@ -101,10 +103,7 @@ elseif(LINUX OR FREEBSD)
     target_link_options(gpu_opengl PRIVATE -Wl,-z,defs)
 
 
-endif()
-
-
-
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -112,7 +111,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(gpu_opengl PRIVATE _GPU_OPENGL_LIBRARY)

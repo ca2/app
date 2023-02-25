@@ -1449,6 +1449,28 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
 
 
 template < typename ITERATOR_TYPE >
+inline const_string_range <  ITERATOR_TYPE >::const_string_range(const atom & atom)
+{
+
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline const_string_range <  ITERATOR_TYPE >::const_string_range(const block & block)
+{
+
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
 inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
 {
 
@@ -1461,6 +1483,28 @@ inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
 
 template < typename ITERATOR_TYPE >
 inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
+{
+
+
+   throw_exception(error_not_supported);
+
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//inline mutable_string_range <  ITERATOR_TYPE >::mutable_string_range(const atom & atom)
+//{
+//
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+inline mutable_string_range <  ITERATOR_TYPE >::mutable_string_range(const block & block)
 {
 
 

@@ -4,4 +4,14 @@
 #pragma once
 
 
+namespace xcb
+{
+
+
+   class display;
+
+
+} // namespace xcb
+
+
 

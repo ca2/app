@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "node.h"
 #include "document.h"
 #include "edit.h"
@@ -281,7 +281,7 @@ namespace xml
    }
 
 
-   void node::LoadDocType(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadDocType(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       auto pxml = acmesystem()->xml();
@@ -300,51 +300,51 @@ namespace xml
 
       }
 
-      ::str::consume(rangeXml, "<!DOCTYPE");
-      ::str::consume_spaces(rangeXml);
-      ::str::consume_nc_name(rangeXml);
+      rangeXml.consume("<!DOCTYPE");
+      rangeXml.consume_spaces();
+      rangeXml.consume_nc_name();
 
-      ::str::consume_spaces(rangeXml, 0);
-      if(::str::begins_consume(rangeXml, "SYSTEM"))
+      rangeXml.consume_spaces(0);
+      if(rangeXml.begins_consume("SYSTEM"))
       {
-         ::str::consume_spaces(rangeXml);
+         rangeXml.consume_spaces();
          rangeXml.consume_quoted_value();
       }
-      else if(::str::begins_consume(rangeXml, "PUBLIC"))
+      else if(rangeXml.begins_consume("PUBLIC"))
       {
-         ::str::consume_spaces(rangeXml);
+         rangeXml.consume_spaces();
          rangeXml.consume_quoted_value();
-         ::str::consume_spaces(rangeXml);
+         rangeXml.consume_spaces();
          rangeXml.consume_quoted_value();
       }
 
-      ::str::consume_spaces(rangeXml, 0);
+      rangeXml.consume_spaces(0);
 
       //markup decl
       if(*rangeXml.m_begin == '[')
       {
-         ::str::consume(rangeXml, "[");
+         rangeXml.consume("[");
 
          while(*rangeXml.m_begin != ']')
          {
-            if(::str::begins_consume(rangeXml, "<!ENTITY"))
+            if(rangeXml.begins_consume("<!ENTITY"))
             {
-               ::str::consume_spaces(rangeXml);
+               rangeXml.consume_spaces();
                string entity_name;
-               entity_name = ::str::consume_nc_name(rangeXml);
-               ::str::consume_spaces(rangeXml);
+               entity_name = rangeXml.consume_nc_name();
+               rangeXml.consume_spaces();
                string entity_value;
                string ext_entity_value;
-               if(::str::begins_consume(rangeXml, "SYSTEM"))
+               if(rangeXml.begins_consume("SYSTEM"))
                {
-                  ::str::consume_spaces(rangeXml);
+                  rangeXml.consume_spaces();
                   ext_entity_value = rangeXml.consume_quoted_value();
                }
-               else if (::str::begins_consume(rangeXml, "PUBLIC"))
+               else if (rangeXml.begins_consume("PUBLIC"))
                {
-                  ::str::consume_spaces(rangeXml);
+                  rangeXml.consume_spaces();
                   rangeXml.consume_quoted_value();
-                  ::str::consume_spaces(rangeXml);
+                  rangeXml.consume_spaces();
                   ext_entity_value = rangeXml.consume_quoted_value();
                }
                else
@@ -363,18 +363,18 @@ namespace xml
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }
-            else if(::str::xml_is_comment(rangeXml))
+            else if(rangeXml.xml_is_comment())
             {
-               ::str::xml_consume_comment(rangeXml);
+               rangeXml.xml_consume_comment();
             }
             rangeXml.m_begin++;
          }
-         ::str::consume(rangeXml, "]");
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume("]");
+         rangeXml.consume_spaces(0);
       }
 
 
-      ::str::consume(rangeXml, ">");
+      rangeXml.consume(">");
 
 
       //return (char *) pszXml;
@@ -393,7 +393,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::LoadAttributes(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadAttributes(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if(pparseinfo == nullptr)
@@ -406,7 +406,7 @@ namespace xml
       while(rangeXml.has_char() && *rangeXml.m_begin != '\0')
       {
 
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume_spaces(0);
 
          if (rangeXml.is_empty())
          {
@@ -424,7 +424,7 @@ namespace xml
 
          auto pszStart = rangeXml.m_begin;
 
-         ::str::consume_until_any_character_in(rangeXml, " =");
+         rangeXml.consume_until_any_character_in(" =");
 
          if(rangeXml.is_empty())
          {
@@ -445,7 +445,7 @@ namespace xml
 
          auto & property = m_set.get(strName);
 
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume_spaces(0);
 
          if (rangeXml.is_empty())
          {
@@ -454,10 +454,10 @@ namespace xml
 
          }
 
-         if(::str::begins_consume(rangeXml, '='))
+         if(rangeXml.begins_consume('='))
          {
 
-            ::str::consume_spaces(rangeXml, 0);
+            rangeXml.consume_spaces(0);
 
             if (rangeXml.is_empty())
             {
@@ -474,12 +474,12 @@ namespace xml
 
             ::ansi_character ansichQuote;
 
-            if(::str::begins_consume(ansichQuote, rangeXml, '"') || ::str::begins_consume(ansichQuote, rangeXml, '\''))
+            if(rangeXml.begins_consume(ansichQuote, '"') || rangeXml.begins_consume(ansichQuote, '\''))
             {
 
                pszStart = rangeXml.m_begin;
 
-               ::str::escape_find_character(rangeXml, ansichQuote, pparseinfo->m_chEscape);
+               rangeXml.escape_skip_to_character(ansichQuote, pparseinfo->m_chEscape);
 
                bQuote = true;
 
@@ -489,7 +489,7 @@ namespace xml
 
                pszStart = rangeXml.m_begin;
 
-               ::str::escape_find_any_character_in(rangeXml, " >", pparseinfo->m_chEscape);
+               rangeXml.escape_skip_to_first_character_in(" >", pparseinfo->m_chEscape);
 
                bQuote = false;
 
@@ -547,7 +547,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   void node::LoadProcessingInstruction(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadProcessingInstruction(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -560,7 +560,7 @@ namespace xml
       auto pszStart = rangeXml.m_begin;
 
       // find the end of pparseinfo
-      ::str::escape_case_insensitive_find( rangeXml, "?>", pparseinfo ? pparseinfo->m_chEscape : 0 );
+      rangeXml.escape_case_insensitive_skip_to("?>", pparseinfo ? pparseinfo->m_chEscape : 0 );
 
       if (rangeXml.is_empty())
       {
@@ -571,7 +571,7 @@ namespace xml
 
       auto pszEnd = rangeXml.m_begin;
 
-      ::str::consume_spaces(rangeXml);
+      rangeXml.consume_spaces();
 
       if (rangeXml.is_empty())
       {
@@ -589,7 +589,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
 
-         const char* pTagEnd = ::const_ansi_range(pszStart, rangeXml.m_end).find_first_character_in(" ?>");
+         const char* pTagEnd = ::ansi_range(pszStart, rangeXml.m_end).find_first_character_in(" ?>");
 
          _SetString({ pszStart, pTagEnd }, &pnode->m_strName);
 
@@ -621,7 +621,7 @@ namespace xml
 //   // Coder    Date                      Desc
 //   // bro      2004-06-14
 //   //========================================================
-//   void node::LoadAttributes(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+//   void node::LoadAttributes(::ansi_range & rangeXml, parse_info * pparseinfo)
 //   {
 //      
 //      if (pparseinfo == nullptr)
@@ -634,7 +634,7 @@ namespace xml
 //      while(rangeXml.has_char() && *rangeXml.m_begin)
 //      {
 //
-//         ::str::consume_spaces(rangeXml, 0);
+//         rangeXml.consume_spaces(0);
 //
 //         if (rangeXml.is_empty())
 //         {
@@ -678,7 +678,7 @@ namespace xml
 //         // add memory_new attr
 //         auto & property = m_set.get(strName);
 //
-//         ::str::consume_spaces(rangeXml, 0);
+//         rangeXml.consume_spaces(0);
 //
 //         // XML Attr Value
 ////         if( (xml = _tcsskip( xml )) )
@@ -687,7 +687,7 @@ namespace xml
 //         if( *rangeXml.m_begin == '=' )
 //         {
 //
-//            ::str::consume_spaces(rangeXml, 0);
+//            rangeXml.consume_spaces(0);
 //            //if( (xml = _tcsskip( ++xml )) )
 //            //{
 //               // if " or '
@@ -701,7 +701,7 @@ namespace xml
 //
 //                  pszStart++;
 //
-//                  ::str::escape_find_character(rangeXml, quote, pparseinfo->m_chEscape);
+//                  rangeXml.escape_find_character(quote, pparseinfo->m_chEscape);
 //
 //               }
 //               else
@@ -763,7 +763,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   void node::LoadComment(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadComment(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -776,7 +776,7 @@ namespace xml
       auto pszStart = rangeXml.m_begin;
 
       // find the end of comment
-      ::str::escape_case_insensitive_find(rangeXml, "-->", pparseinfo ? pparseinfo->m_chEscape : 0 );
+      rangeXml.escape_case_insensitive_skip_to("-->", pparseinfo ? pparseinfo->m_chEscape : 0 );
       
       if (rangeXml.is_empty())
       {
@@ -830,7 +830,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   void node::LoadCDATA(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadCDATA(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       if (pparseinfo == nullptr)
@@ -843,7 +843,7 @@ namespace xml
       auto pszStart = rangeXml.m_begin;
 
       // find the end of CDATA
-      ::str::escape_case_insensitive_find( rangeXml, "]]>", pparseinfo ? pparseinfo->m_chEscape : 0 );
+      rangeXml.escape_case_insensitive_skip_to("]]>", pparseinfo ? pparseinfo->m_chEscape : 0 );
 
       auto pszEnd = rangeXml.m_begin;
       
@@ -893,7 +893,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2004-06-14
    //========================================================
-   void node::LoadOtherNodes(bool* pbRet, const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::LoadOtherNodes(bool* pbRet, ansi_range & rangeXml, parse_info * pparseinfo)
    {
       
       if (pparseinfo == nullptr)
@@ -913,10 +913,10 @@ namespace xml
       {
          do_other_type = false;
 
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume_spaces(0);
          const char * prev = rangeXml.m_begin;
          // is PI( Processing Instruction ) Node?
-         if(::str::begins_consume(rangeXml, "<?"))
+         if(rangeXml.begins_consume("<?"))
          {
             // processing instrunction parse
             // return pointer is next node of pparseinfo
@@ -928,14 +928,14 @@ namespace xml
 
          if( rangeXml.m_begin != prev )
             do_other_type = true;
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume_spaces(0);
          prev = rangeXml.m_begin;
 
          //if(m_pnodeParent != nullptr && m_pnodeParent->m_enode == ::data::e_node_xml_document)
          if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(::str::case_insensitive_begins_consume(rangeXml, "<!DOCTYPE"))
+            if(rangeXml.case_insensitive_begins_eat("<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -947,12 +947,12 @@ namespace xml
 
             if( rangeXml.m_begin != prev )
                do_other_type = true;
-            ::str::consume_spaces(rangeXml, 0);
+            rangeXml.consume_spaces(0);
             prev = rangeXml.m_begin;
          }
 
          // is comment Node?
-         if (::str::begins_consume(rangeXml, "<!--"))
+         if (rangeXml.begins_consume("<!--"))
          {
             // processing comment parse
             // return pointer is next node of comment
@@ -961,7 +961,7 @@ namespace xml
             if(m_enode != ::data::e_node_xml_document && rangeXml.m_begin != prev )
             {
                *pbRet = true;
-               ::str::consume_spaces(rangeXml, 0);
+               rangeXml.consume_spaces(0);
                //return xml;
                return;
             }
@@ -971,10 +971,10 @@ namespace xml
          if( rangeXml.m_begin != prev )
             do_other_type = true;
 
-         ::str::consume_spaces(rangeXml, 0);
+         rangeXml.consume_spaces(0);
          prev = rangeXml.m_begin;
          // is CDATA Node?
-         if(::str::case_insensitive_begins_consume(rangeXml, "<![CDATA["))
+         if(rangeXml.case_insensitive_begins_eat("<![CDATA["))
          {
             // processing CDATA parse
             // return pointer is next node of CDATA
@@ -1027,7 +1027,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::_load(::const_ansi_range & rangeXml, parse_info * pparseinfo)
+   void node::_load(::ansi_range & rangeXml, parse_info * pparseinfo)
    {
 
       ////// close it
@@ -1104,7 +1104,7 @@ namespace xml
 
          auto pszStart = rangeXml.m_begin;
 
-         ::str::consume_until_any_character_in(rangeXml, " />\t\r\n");
+         rangeXml.consume_until_any_character_in(" />\t\r\n");
          _SetString({ pszStart, rangeXml.m_begin }, &pnode->m_strName);
          //rangeXml.m_begin = pTagEnd;
          // Generate XML Attributte List
@@ -1166,7 +1166,7 @@ namespace xml
 
                auto pszStart = rangeXml.m_begin;
 
-               ::str::escape_find_character(rangeXml, '<', '\\');
+               rangeXml.escape_skip_to_character('<', '\\');
 
                if (rangeXml.is_empty())
                {
@@ -1252,7 +1252,7 @@ namespace xml
                   // </close>
                   rangeXml.m_begin += 2; // C
 
-                  ::str::consume_spaces(rangeXml, 0);
+                  rangeXml.consume_spaces(0);
 
                   //if ((xml = _tcsskip(xml)))
                   {
@@ -1333,7 +1333,7 @@ namespace xml
                   {
                      // Text Value
                      auto pszStart = rangeXml.m_begin;
-                     ::str::escape_find_character(rangeXml, '<', '\\');
+                     rangeXml.escape_skip_to_character('<', '\\');
                      if (rangeXml.is_empty())
                      {
                         // error cos not exist CloseTag </TAG>

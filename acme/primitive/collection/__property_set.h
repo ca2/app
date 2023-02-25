@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // Include payload.h
@@ -309,7 +309,7 @@ public:
    void _008ParseCommandFork(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile, string & strApp);
    void _008AddArgumentPairs(::string_array & straArguments);
-   void _008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument);
+   void _008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument);
    void _008AddArgument(const ::string & strArgument);
    void _008Add(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrValue);
 
@@ -336,7 +336,7 @@ public:
    //void parse_ini_folder(const ::file::path& path);
 
    void parse_network_payload(const ::string & strNetworkPayload);
-   void parse_network_payload(::const_ansi_range & range);
+   void parse_network_payload(::ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);
    void parse_network_headers(const ::scoped_string & scopedstrHeaders);
@@ -404,7 +404,7 @@ public:
 
 
 //CLASS_DECL_ACME void property_set_skip_network_payload(const char *& pszJson);
-CLASS_DECL_ACME void property_set_skip_network_payload(::const_ansi_range & range);
+CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 
 
 //inline ::pointer<::handle::ini>operator ""_pini(const ::scoped_string & scopedstr, size_t s);

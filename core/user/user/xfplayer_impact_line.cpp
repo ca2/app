@@ -1890,7 +1890,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
    }*/
 
-   if (GetSelection().OnMouseMove(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnMouseMove(*this, pmouse->m_ebuttonstate, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;
@@ -1926,7 +1926,7 @@ void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   if (GetSelection().OnLButtonDown(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnLButtonDown(*this, pmouse->m_ebuttonstate, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;
@@ -1969,7 +1969,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 
    }
 
-   if (GetSelection().OnLButtonUp(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
+   if (GetSelection().OnLButtonUp(*this, pmouse->m_ebuttonstate, pmouse->m_point))
    {
 
       pmouse->m_bRet = true;

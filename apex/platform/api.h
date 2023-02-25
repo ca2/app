@@ -31,7 +31,7 @@ public:
    string                           m_strBrowserAccount;
    string                           m_strToken;
    string                           m_strState;
-   ::file::path                     m_pathProfile;
+   ::file::path                     m_pathProfileFolder;
    ::payload                        m_payloadProfile;
    bool                             m_bWaitingResponseFromUser;
    ::pointer<::api_client>          m_papiclient;
@@ -45,7 +45,7 @@ public:
    ~api() override;
 
    
-   virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfile, const ::scoped_string & scopedstrBrowserAccount);
+   virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfileFolder, const ::scoped_string & scopedstrBrowserAccount);
 
 
    virtual void load_configuration();

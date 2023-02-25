@@ -2619,29 +2619,24 @@ ret:
 }
 
 
-::file::path dir_context::appdata(const ::string& strAppId)
+::file::path dir_context::appdata(const ::string& strAppIdParameter)
 {
+
+   ::string strAppId(strAppIdParameter);
 
    if (strAppId.is_empty())
    {
 
-      auto psystem = acmesystem()->m_papexsystem;
-
-      //throw ::interface_only("this is an interface");
-
-      return psystem->m_pdirsystem->m_pathAppData;
+      strAppId = acmeapplication()->m_strAppId;
 
    }
-   else
-   {
 
-      string strAppFolder = _002Underscore(strAppId);
+   string strAppFolder = _002Underscore(strAppId);
 
-      return acmedirectory()->home() / "application" / strAppFolder;
-
-   }
+   return acmedirectory()->home() / "application" / strAppFolder;
 
 }
+
 
 ::file::path dir_context::cache()
 {

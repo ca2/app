@@ -427,7 +427,7 @@ namespace user
       oswindow detach_window() override;
 
 
-      ::windowing::window * _window() override;
+      ::windowing::window * window() override;
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);

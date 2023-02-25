@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
 #include "alpha_source.h"
@@ -23,6 +23,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
+#include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
 #include "acme/platform/scoped_restore.h"
@@ -727,7 +728,7 @@ namespace user
 
 
 
-   ::windowing::window * interaction::_window()
+   ::windowing::window * interaction::window()
    {
       
       auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
@@ -12242,7 +12243,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_puserframeTopLevel = _top_level_frame();
 
-      m_pwindow = _window();
+      m_pwindow = window();
       
 #ifdef REPORT_OFFSET
 
@@ -13996,6 +13997,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    ::i32          interaction::left(enum_layout elayout) { return parent_client_rectangle(elayout).left; }
    ::i32          interaction::right(enum_layout elayout) { return parent_client_rectangle(elayout).right; }
    ::i32          interaction::bottom(enum_layout elayout) { return parent_client_rectangle(elayout).bottom; }
+
+
+   void interaction::window_rectangle(RECTANGLE_I32 & rect, enum_layout elayout)
+   { 
+      
+      rect = this->window_rectangle(elayout);
+   
+   }
 
 
    ::rectangle_i32 interaction::window_rectangle(enum_layout elayout)
@@ -20373,6 +20382,44 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false;
       
    }
+
+
+//void interaction::pick_single_file(
+//   const ::array < ::pair < ::string, ::string > >& filetypes,
+//   const ::function < void(const ::file::path &) >& function,
+//   bool save)
+//{
+//   
+//      acmenode()->pick_single_file(oswindow(),
+//                                   filetypes,
+//                                   function,
+//                                   save);
+//   
+//}
+//
+//
+//void interaction::pick_multiple_file(
+//   const ::array < ::pair < ::string, ::string > > & filetypes,
+//   const ::function < void(const ::file::path_array &) >& function)
+//{
+//   
+//   acmenode()->pick_multiple_file(oswindow(),
+//                                filetypes,
+//                                function);
+//   
+//}
+//
+//
+//void interaction::pick_single_folder(
+//   //const ::array < ::pair < ::string, ::string > >& filetypes,
+//                        const ::function < void(const ::file::path &) >& function)
+//                        //,       bool save);
+//{
+//   
+//   acmenode()->pick_single_folder(oswindow(),
+//                                function);
+//
+//}
 
 
 } // namespace user

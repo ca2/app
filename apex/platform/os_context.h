@@ -120,20 +120,20 @@ public:
    /// set["default_file_extension"] : default file extension (with dot)
    /// set["folder"] : folder path
    /// set["file_name"] : in/out file name
-   virtual void browse_file_open(property_set & set);
+   //virtual void browse_file_open(property_set & set);
 
    /// set["file_filter_specs"] : string array of extensions (with dot)
    /// set["file_filter_names"] : string array of the file extensions titles
    /// set["default_file_extension"] : default file extension (with dot)
    /// set["folder"] : folder path
    /// set["file_name"] : in/out file name
-   virtual void browse_file_save(property_set & set);
+   //virtual void browse_file_save(property_set & set);
 
    /// set["folder"] : in/out folder path
-   virtual void browse_folder(property_set & set);
+   //virtual void browse_folder(property_set & set);
 
    /// set["folder"] : in/out folder path
-   virtual void browse_file_or_folder(property_set & set);
+   //virtual void browse_file_or_folder(property_set & set);
 
 
    virtual void list_process(::file::path_array & patha, u32_array & uaPid);

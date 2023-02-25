@@ -45,7 +45,6 @@
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="initializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -142,6 +144,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="winsock2\_.cpp">
+      <Filter>Source Files\winsock2</Filter>
+    </ClCompile>
+    <ClCompile Include="winsock2\list_computers.cpp">
+      <Filter>Source Files\winsock2</Filter>
+    </ClCompile>
+    <ClCompile Include="winsock2\list_network_interfaces.cpp">
       <Filter>Source Files\winsock2</Filter>
     </ClCompile>
   </ItemGroup>

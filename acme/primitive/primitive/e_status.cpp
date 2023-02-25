@@ -1,9 +1,9 @@
-//
+﻿//
 // Created by camilo on 12/11/2020.
 //
 #include "framework.h"
 // #include "acme/primitive/string/string.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 
 
 
@@ -25,38 +25,6 @@ CLASS_DECL_ACME ::e_status operator & (enum_status e1, enum_status e2)
 }
 
 
-int e_status::exit_code() const
-{
-
-   if (this->succeeded())
-   {
-
-      return 0;
-
-   }
-
-#ifdef WINDOWS
-   
-   return (::i32) - (::i64)m_eenum;
-
-#else
-
-   if (this->m_eenum >= -125)
-   {
-
-      return (::i32)-(::i64)(this->m_eenum);
-
-   }
-   else
-   {
-
-      return 125;
-
-   }
-
-#endif
-
-}
 
 
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus)

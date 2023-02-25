@@ -9,12 +9,13 @@
 #include "acme/constant/idpool.h"
 //#include "acme/primitive/text/_.h"
 #include "acme/primitive/primitive/set_bit.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/primitive/text/text.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 
 
@@ -2792,6 +2793,14 @@ void object::initialize(::particle * pparticle)
    //}
 
    //return estatus;
+
+
+   if(::is_null(m_pparticleContext))
+   {
+
+      m_pparticleContext = acmeapplication();
+
+   }
 
 }
 

@@ -24,11 +24,11 @@ namespace user
 
 
       ::pointer<tab_drop_target_window>        m_pdroptargetwindow;
-      ::user::impact_data *                     m_pimpactdata;
-      ::user::impact_data *                     m_pimpactdataOld;
-      ::user::impact_creator *                  m_pviewcreator;
-      bool                                      m_bCloseDocumentIfNoTabs;
-      //::pointer<::user::impact>                m_pimpactTopic;
+      ::user::impact_data *                    m_pimpactdata;
+      ::user::impact_data *                    m_pimpactdataOld;
+      ::user::impact_creator *                 m_pviewcreator;
+      bool                                     m_bCloseDocumentIfNoTabs;
+      ::pointer<::user::impact>                m_pimpactTopic;
 
 
       tab_impact();

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_string_range_impl.h"
@@ -12,6 +12,7 @@
 
 #include "_u32hash.h"
 #include "_conv.h"
+#include "hex.h"
 
 
 CLASS_DECL_ACME i64 strtoi(const ::scoped_string & scopedstr);
@@ -469,7 +470,7 @@ string surround_and_implode(const numeric_array < TYPE, m_etypeContainer > & a, 
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_range < ITERATOR_TYPE > ::operator==(const ::ansi_string &str) const
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::ansi_string &str) const
 {
 
    return this->equals(string_base(str));
@@ -477,10 +478,10 @@ inline bool string_range < ITERATOR_TYPE > ::operator==(const ::ansi_string &str
 }
 
 template < typename ITERATOR_TYPE >
-inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
 
 template < typename ITERATOR_TYPE >
-inline bool string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
 
 
 
@@ -488,7 +489,7 @@ template<typename ITERATOR_TYPE>
 ::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
 {
 
-   auto c = begins_count(character_is_function);
+   auto c = this->begins_count(character_is_function);
 
    if (c < minimum_count)
    {
@@ -506,7 +507,7 @@ template<typename ITERATOR_TYPE>
 
 // Convert the string_base < ITERATOR_TYPE > to lowercase
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::lowered() const
+string_base < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE > ::lowered() const
 {
 
    string_base < ITERATOR_TYPE > str(*this);
@@ -525,9 +526,9 @@ template < typename ITERATOR_TYPE >
 
    string_base < ITERATOR_TYPE > str;
 
-   auto & range = *this;
+   //auto & range = *this;
 
-   auto pszStart = range.m_begin;
+   auto pszStart = this->m_begin;
 
    if (*pszStart != '\"' && *pszStart != '\'')
    {
@@ -538,20 +539,20 @@ template < typename ITERATOR_TYPE >
 
    }
 
-   char quoting_character = *range.m_begin;
+   char quoting_character = *this->m_begin;
 
-   range.m_begin++;
+   this->m_begin++;
 
-   const typename ::string_range < ITERATOR_TYPE>::CHARACTER * pszValueStart = range.m_begin;
+   const typename ::string_range < ITERATOR_TYPE>::CHARACTER * pszValueStart = this->m_begin;
 
-   while (*range.m_begin != quoting_character)
+   while (*this->m_begin != quoting_character)
    {
 
    skip:
 
-      unicode_increment(range.m_begin);
+      unicode_increment(this->m_begin);
 
-      if (range.is_empty() || *range.m_begin == '\0')
+      if (this->is_empty() || *this->m_begin == '\0')
       {
 
          throw_parsing_exception("Quote character is required here, premature end");
@@ -560,12 +561,12 @@ template < typename ITERATOR_TYPE >
 
       }
 
-      if (*range.m_begin == '\\')
+      if (*this->m_begin == '\\')
       {
 
-         unicode_increment(range.m_begin);
+         unicode_increment(this->m_begin);
 
-         if (range.is_empty())
+         if (this->is_empty())
          {
 
             throw_parsing_exception("Quote character is required here, premature end");
@@ -580,9 +581,9 @@ template < typename ITERATOR_TYPE >
 
    }
 
-   str.assign(pszValueStart, range.m_begin - pszValueStart);
+   str.assign(pszValueStart, this->m_begin - pszValueStart);
 
-   range.m_begin++;
+   this->m_begin++;
 
    auto p = str.get_string_buffer();
 
@@ -619,6 +620,65 @@ template < typename ITERATOR_TYPE >
 }
 
 
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_token_until_any_character_in(const SCOPED_STRING & scopedstrCharacters, bool bReturnSeparator, bool bSkipAnyCharactersIn)
+{
+          
+   auto p1 = this->find_first_character_in(scopedstrCharacters);
+          
+   if(!p1)
+   {
+      
+      auto range = (*this)();
+             
+      this->m_begin = this->m_end;
+      
+      return range;
+             
+   }
+   
+   if(bSkipAnyCharactersIn)
+   {
+      
+      auto p2 = (*this)(p1).skip_any_character_in(scopedstrCharacters);
+      
+      if(bReturnSeparator)
+      {
+         
+         auto range = string_range < ITERATOR_TYPE >(this->m_begin, p2);
+         
+         this->m_begin = p2;
+         
+         return range;
+         
+      }
+         
+      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
+      
+      this->m_begin = p2;
+      
+      return range;
+      
+   }
+      
+   if(bReturnSeparator)
+   {
+      
+      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1 + 1);
+      
+      this->m_begin = p1 + 1;
+      
+      return range;
+      
+   }
+      
+   auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
+   
+   this->m_begin = p1 + 1;
+   
+   return range;
+
+}
 
 //
 //template < >
@@ -653,5 +713,1280 @@ inline ::u32hash u32_hash < wide_string >(wide_string widestr)
 {
 
    return u32_hash < const wide_string & >(widestr);
+
+}
+
+
+
+
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::consume(const char * pszToConsume)
+{
+
+   while(*pszToConsume)
+   {
+      
+      if (*this->m_begin != *pszToConsume)
+      {
+
+         throw_parsing_exception("Name does not match expected");
+
+      }
+
+      this->m_begin++;
+
+      pszToConsume++;
+
+   }
+
+}
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scopedstr)
+{
+
+   if (!this->begins(scopedstr))
+   {
+
+      return false;
+
+   }
+
+   this->m_begin += scopedstr.size();
+
+   return true;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_string & scopedstr)
+{
+
+   if (!this->case_insensitive_begins(scopedstr))
+   {
+
+      return false;
+
+   }
+
+   this->m_begin += scopedstr.size();
+
+   return true;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::case_insensitive_ends_eat(const ::scoped_string & scopedstr)
+{
+
+   if (!this->case_insensitive_ends(scopedstr))
+   {
+
+      return false;
+
+   }
+
+   this->m_end -= scopedstr.size();
+
+   return true;
+
+}
+
+
+//
+//template < typename ITERATOR_TYPE >
+//void string_base < ITERATOR_TYPE >::consume(const ::ansi_character * psz)
+//{
+//
+//   for (idx = 0; idx < len; idx++)
+//   {
+//      if (ra[idx] != psz[idx])
+//      {
+//         throw ::parsing_exception("Name does not match expected");
+//         break;
+//      }
+//   }
+//
+//   pszParse += len;
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
+{
+
+   auto rangeToConsume = scopedstr();
+
+   while(rangeToConsume.has_char())
+   {
+
+      if(this->is_empty() || (*this->m_begin != *rangeToConsume.m_begin))
+      {
+
+         throw_parsing_exception("Name does not match expected");
+
+         break;
+
+      }
+
+      rangeToConsume.m_begin++;
+
+      this->m_begin++;
+
+   }
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//void string_range < ITERATOR_TYPE >::consume_spaces(::count iMinimumCount)
+//{
+//
+//   i32 i = 0;
+//
+//   while (unicode_is_whitespace(this->m_begin))
+//   {
+//
+//      unicode_increment(this->m_begin);
+//
+//      i++;
+//
+//   }
+//
+//   if (i < iMinimumCount)
+//   {
+//
+//      throw ::parsing_exception("At least "+ ::as_string(iMinimumCount) + " space(s) is(are) required. Found " + ::as_string(i) + " whitespace(s).");
+//
+//   }
+//
+//}
+
+
+//u64 str::consume_natural(u64 uMax, u64 uMin)
+//{
+//
+//   auto u = consume_natural(this->m_begin, uMax, uMin);
+//
+//   return u;
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
+{
+
+   if (uMax < uMin)
+   {
+
+      throw ::exception(error_bad_argument, "maximum should be greater than minimum");
+
+   }
+
+   auto pszStart = this->m_begin;
+
+   i32 i = 0;
+
+   u64 u;
+
+   while (unicode_is_digit(this->m_begin))
+   {
+
+      unicode_increment(this->m_begin);
+
+      i++;
+
+   }
+
+   if (this->m_begin == pszStart)
+   {
+
+      throw_parsing_exception("empty natural found");
+
+   }
+
+   u = ::as_u32({ pszStart, this->m_begin - pszStart });
+
+   if (u < uMin)
+   {
+
+      throw_parsing_exception("natural less than minimum");
+
+   }
+   else if (u > uMax)
+   {
+
+      throw_parsing_exception("natural greater than maximum");
+
+   }
+
+   return u;
+
+}
+
+//
+//template < typename ITERATOR_TYPE >
+//void string_base < ITERATOR_TYPE >::consume_spaces(::count iMinimumCount)
+//{
+//
+//   i32 i = 0;
+//
+//   while (unicode_is_whitespace(this->m_begin))
+//   {
+//
+//      unicode_increment(this->m_begin);
+//
+//      if (this->m_begin > this->m_end)
+//      {
+//
+//         throw ::parsing_exception("premature end");
+//
+//         break;
+//
+//      }
+//
+//      i++;
+//
+//   }
+//
+//   if (i < iMinimumCount)
+//   {
+//
+//      throw ::parsing_exception("At least " + ::as_string(iMinimumCount) + " space(s) is(are) required");
+//
+//   }
+//
+//}
+
+
+//template < typename ITERATOR_TYPE >
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_spaces(const ::ansi_character *& psz)
+//{
+//
+//   return consume_non_spaces(psz, psz + strlen(psz));
+//
+//}
+//
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_spaces()
+{
+
+   auto pszStart = this->m_begin;
+
+   while (!unicode_is_whitespace(this->m_begin))
+   {
+      
+      unicode_increment(this->m_begin);
+
+      if (this->is_empty())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return { pszStart, this->m_begin - pszStart };
+
+}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_hex()
+{
+   
+   auto pszStart = this->m_begin;
+
+   while (this->is_empty())
+   {
+
+      ::i32 len;
+      
+      i64 i = unicode_index_length(this->m_begin, len);
+
+      if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
+      {
+
+         this->m_begin += len;
+
+      }
+      else
+      {
+
+         break;
+      
+      }
+
+   }
+
+   if (this->m_begin == pszStart)
+   {
+
+      throw_parsing_exception("no hex consumed");
+      
+      return "";
+
+   }
+   
+   return { pszStart, this->m_begin - pszStart };
+
+}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
+{
+   
+   auto pszStart = this->m_begin;
+   
+   if (this->is_empty() || !unicode_is_letter(this->m_begin))
+   {
+
+      throw_parsing_exception("NCName required here");
+
+      return "";
+
+   }
+   
+   do
+   {
+
+      unicode_increment(this->m_begin);
+
+   } while(this->has_char() &&
+           (unicode_is_letter_or_digit(this->m_begin)
+            || *this->m_begin == '_' || *this->m_begin == '-'));
+   
+   return { pszStart, this->m_begin - pszStart };
+
+}
+
+
+//string consume_quoted_value(const char * & pszParse)
+//{
+
+//   ::str::utf8_char utf8char;
+
+//   auto psz = pszParse;
+//   utf8char.parse(psz); // quote character
+//   if(utf8char.m_chLen != 1)
+//   {
+//      throw ::parsing_exception("Quote character is required here");
+//      return "";
+//   }
+//   char strUtf8Char = utf8char.m_sz[0];
+//   if(strUtf8Char != '\"' && strUtf8Char != '\\')
+//   {
+//      throw ::parsing_exception("Quote character is required here");
+//      return "";
+//   }
+//   int iPos = utf8char.m_chLen;
+//   string str;
+//   int iPosStart = iPos;
+//   while(true)
+//   {
+//      iPos += utf8char.parse(&psz[iPos]);
+//      if(utf8char.m_chLen <= 0)
+//      {
+//         throw ::parsing_exception("Quote character is required here, premature end");
+//         return "";
+//      }
+//      if(utf8char.m_chLen == 1 && utf8char.m_sz[0] == strUtf8Char)
+//         break;
+
+//   }
+//   str = string(&psz[iPosStart], iPos - iPosStart - 1);
+//   pszParse = &psz[iPos];
+//   return str;
+//}
+
+
+
+
+//template < typename ITERATOR_TYPE >
+// void string_base < ITERATOR_TYPE >::no_escape_consume_quoted_value(char ** ppsz, strsize & iBufferSize)
+//{
+//
+//   const ::ansi_character * pszStart = this->m_begin;
+//
+//   if (*pszStart != '\"' && *pszStart != '\\')
+//   {
+//
+//      throw ::parsing_exception("Quote character is required here");
+//
+//      return;
+//
+//   }
+//
+//   char quoting_character = *this->m_begin;
+//
+//   this->m_begin++;
+//
+//   const ::ansi_character * pszValueStart = this->m_begin;
+//
+//   while (*this->m_begin != quoting_character)
+//   {
+//
+//      unicode_increment(this->m_begin);
+//
+//      if (this->is_empty())
+//      {
+//
+//         throw ::parsing_exception("Quote character is required here, premature end");
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//   strsize iNewBufferSize = this->m_begin - pszValueStart;
+//
+//   if (iNewBufferSize > iBufferSize)
+//   {
+//
+//      *ppsz = (char *)memory_allocate(iNewBufferSize + 1);
+//
+//   }
+//
+//   ansi_count_copy(*ppsz, pszValueStart, iNewBufferSize);
+//
+//   (*ppsz)[iNewBufferSize] = '\0';
+//
+//   iBufferSize = iNewBufferSize;
+//
+//   this->m_begin++;
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::no_escape_consume_quoted_value()
+{
+
+   const ::ansi_character * pszStart = this->m_begin;
+
+   no_escape_skip_quoted_value();
+
+   return { pszStart + 1, this->m_begin - pszStart - 2 };
+
+}
+
+
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::no_escape_skip_quoted_value()
+{
+
+   if (*this->m_begin != '\"' && *this->m_begin != '\\')
+   {
+
+      throw_parsing_exception("Quote character is required here");
+
+      return;
+
+   }
+
+   char quoting_character = *this->m_begin;
+
+   this->m_begin++;
+
+   while (*this->m_begin != quoting_character)
+   {
+
+      unicode_increment(this->m_begin);
+
+      if (this->is_empty())
+      {
+
+         throw_parsing_exception("Quote character is required here, premature end");
+
+         return;
+
+      }
+
+   }
+
+   this->m_begin++;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_quoted_value_ex()
+{
+
+   string str;
+
+   this->_consume_quoted_value_ex<true>(&str);
+
+   return str;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::skip_quoted_value_ex()
+{
+   
+   this->_consume_quoted_value_ex<false>(nullptr);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value()
+{
+
+   this->consume_spaces(0);
+
+   if (this->is_empty())
+   {
+
+      return {};
+
+   }
+
+   auto pszStart = this->m_begin;
+
+   while (this->has_char() && !ansi_char_isspace(*this->m_begin))
+   {
+      
+      this->m_begin++;
+
+   }
+
+   if (this->m_begin == pszStart)
+   {
+
+      throw_parsing_exception("No spaced value to consumer");
+
+   }
+
+   return { pszStart, this->m_begin - pszStart };
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz)
+//{
+//
+//   string str(psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_spaced_value(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+//template < typename ITERATOR_TYPE >
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value(const char *& psz, const ::ansi_character * pszEnd)
+//{
+//
+//   string str(psz, pszEnd - psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_spaced_value(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument()
+{
+
+   this->consume_spaces(0);
+
+   if (*this->m_begin == '\"' || *this->m_begin == '\'')
+   {
+
+      return this->consume_quoted_value();
+
+   }
+   else
+   {
+
+      return this->consume_spaced_value();
+
+   }
+
+}
+
+
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scoped_string & scopedstr)
+{
+
+   this->m_begin = this->find_first_character_in(scopedstr);
+
+   if (not_found(this->m_begin))
+   {
+
+      throw_parsing_exception("Not found any character in \"" + scopedstr + "\"");
+
+   }
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz)
+//{
+//
+//   string str(psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_command_line_argument(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+//
+//template < typename ITERATOR_TYPE >
+//::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument(const char *& psz, const ::ansi_character * pszEnd)
+//{
+//
+//   string str(psz, pszEnd - psz);
+//
+//   strsize iOldLen = str.length();
+//
+//   string strResult = consume_command_line_argument(str);
+//
+//   psz += iOldLen - str.length();
+//
+//   return strResult;
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_c_quoted_value()
+{
+
+   //auto pszStart = this->m_begin;
+
+   if (*this->m_begin != '\"' && *this->m_begin != '\\')
+   {
+
+      throw_parsing_exception("Quote character is required here");
+
+      return "";
+
+   }
+
+   auto quoting_character = this->consume_utf8_char();
+
+   STRING_RANGE rangeCurrentChar;
+
+   STRING_BASE str;
+
+   STRING_RANGE rangePreviousChar;
+
+   while (this->has_char())
+   {
+
+//      unicode_increment(this->m_begin);
+
+      rangePreviousChar = rangeCurrentChar;
+
+      rangeCurrentChar = this->consume_utf8_char();
+
+      //string str = utf8_to_unicode(qc2);
+
+      if (rangeCurrentChar.is_empty())
+      {
+
+         throw_parsing_exception("Quote character is required here, premature end");
+
+         return "";
+
+      }
+
+      if (rangePreviousChar == "\\")
+      {
+
+         str += rangeCurrentChar;
+
+         rangeCurrentChar.m_begin = nullptr;
+         rangeCurrentChar.m_end = nullptr;
+
+      }
+      else if (rangeCurrentChar == "\\")
+      {
+
+      }
+      else
+      {
+
+         if (rangeCurrentChar == quoting_character)
+         {
+
+            break;
+
+         }
+
+         str += rangeCurrentChar;
+
+      }
+
+   }
+
+   this->consume_utf8_char();
+   //unicode_increment(this->m_begin);
+
+   return str;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < bool bWriteOutput >
+void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string * pstrOut)
+{
+
+   char quoting_character = *this->m_begin;
+
+   if (quoting_character != '\"' && quoting_character != '\'')
+   {
+
+      throw_parsing_exception("Quote character is required here, premature end");
+
+      return;
+
+   }
+
+   this->m_begin++;
+
+   const ::ansi_character * pszNext = this->m_begin;
+
+   while (true)
+   {
+
+      pszNext = unicode_next(this->m_begin);
+
+      if (pszNext > this->m_end)
+      {
+
+         throw_parsing_exception("Quote character is required here, premature end");
+
+         if (bWriteOutput)
+         {
+
+            *pstrOut = "";
+
+         }
+         
+      }
+
+      if (*this->m_begin == '\0')
+      {
+
+         throw_parsing_exception("Quote character is required here, premature end");
+
+         if (bWriteOutput)
+         {
+
+            *pstrOut = "";
+
+         }
+
+      }
+      else if (*this->m_begin == quoting_character)
+      {
+
+         this->m_begin++;
+
+         break;
+
+      }
+      else if (*this->m_begin == '\\')
+      {
+
+         this->m_begin = pszNext;
+
+         pszNext = unicode_next(this->m_begin);
+
+         if (pszNext > this->m_end)
+         {
+
+            throw_parsing_exception("Quote character is required here, premature end");
+
+            if (bWriteOutput)
+            {
+
+               *pstrOut = "";
+
+            }
+
+         }
+
+         if (*this->m_begin == 'n')
+         {
+            
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\n');
+
+            }
+
+         }
+         else if (*this->m_begin == 't')
+         {
+            
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\t');
+
+            }
+
+         }
+         else if (*this->m_begin == 'r')
+         {
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\r');
+
+            }
+
+         }
+         else if (*this->m_begin == 'u')
+         {
+
+            this->m_begin++;
+
+            u16 u16a[2];
+
+            u16a[0] = ::hex::parse_u16_exc(*this);
+
+            if (utf16_is_1st_surrogate(u16a[0]))
+            {
+
+               if (*this->m_begin != '\\')
+               {
+
+                  throw_parsing_exception("expect back slash here (for low surrogate)");
+
+               }
+
+               this->m_begin++;
+
+               if (*this->m_begin != 'u' && *this->m_begin != 'U')
+               {
+
+                  throw_parsing_exception("expect 'u' character here (for low surrogate)");
+
+               }
+
+               this->m_begin++;
+
+               u16a[1] = ::hex::parse_u16_exc(*this);
+
+               if (!utf16_is_2nd_surrogate(u16a[1]))
+               {
+
+                  throw_parsing_exception("expect low surrogate");
+
+               }
+               else
+               {
+
+                  if (bWriteOutput)
+                  {
+
+                     ::wd32_character uni = (::wd32_character)decode_utf16_pair(u16a);
+                  
+                     string strUtf8 = wd32_to_ansi_str(&uni, 1);
+
+                     pstrOut->append(strUtf8);
+
+                  }
+
+               }
+
+            }
+            else
+            {
+
+               if (bWriteOutput)
+               {
+
+                  ::wd32_character uni = u16a[0];
+                  
+                  string strUtf8 = wd32_to_ansi_str(&uni, 1);
+
+                  pstrOut->append(strUtf8);
+
+               }
+
+            }
+            
+            pszNext = this->m_begin;
+
+         }
+         else if (*this->m_begin == '\"')
+         {
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append_character('\"');
+
+            }
+
+         }
+         else
+         {
+
+            if (bWriteOutput)
+            {
+
+               pstrOut->append(this->m_begin, pszNext - this->m_begin);
+             
+            }
+
+         }
+
+      }
+      else
+      {
+
+         if (bWriteOutput)
+         {
+
+            pstrOut->append(this->m_begin, pszNext - this->m_begin);
+
+         }
+
+      }
+
+      this->m_begin = pszNext;
+
+   }
+
+}
+
+
+template < typename ITERATOR_TYPE >
+bool const_string_range < ITERATOR_TYPE >::xml_is_comment() const
+{
+
+   return this->size() > 3 && this->m_begin[0] == '<' && this->m_begin[1] == '!' && this->m_begin[2] == '-';
+
+}
+
+
+template < typename ITERATOR_TYPE >
+::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::xml_consume_comment()
+{
+
+   this->consume("<!--");
+
+   auto pszStart = this->m_begin;
+
+   while (this->m_begin[0] != '-' || this->m_begin[1] != '-' || this->m_begin[2] != '>')
+   {
+
+      if (this->is_empty() || *this->m_begin == '\0')
+      {
+
+         break;
+
+      }
+
+      unicode_increment(this->m_begin);
+
+   }
+
+   this->m_begin += 3;
+
+   return { pszStart, this->m_begin - pszStart - 3 };
+
+}
+
+
+
+//========================================================
+// Name   : _tcsechr
+// Desc   : similar with strchr with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::escape_skip_to_character(i32 ch, i32 escape)
+{
+
+  while (this->has_char() && *this->m_begin)
+  {
+
+     if (escape != 0 && *this->m_begin == escape)
+        this->m_begin++;
+     else
+        if (*this->m_begin == ch)
+           return;
+     this->m_begin++;
+  }
+  //return pch;
+}
+
+
+//========================================================
+  // Name   : _tcsepbrk
+  // Desc   : similar with ansi_scan with escape process
+  // Param  : escape - will be escape character
+  // Return :
+  //--------------------------------------------------------
+  // Coder    Date                      Desc
+  // bro      2002-10-29
+  //========================================================
+//========================================================
+  // Name   : _tcsepbrk
+  // Desc   : similar with ansi_scan with escape process
+  // Param  : escape - will be escape character
+  // Return :
+  //--------------------------------------------------------
+  // Coder    Date                      Desc
+  // bro      2002-10-29
+  //========================================================
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const char * chset, i32 escape)
+{
+  
+  const char * prev_escape = nullptr;
+
+  while (this->has_char() && *this->m_begin)
+  {
+     
+     if (escape != 0 && *this->m_begin == escape && prev_escape == nullptr)
+     {
+
+        prev_escape = this->m_begin;
+
+     }
+     else
+     {
+        
+        prev_escape = nullptr;
+
+        if (strchr(chset, *this->m_begin))
+        {
+           return;
+
+        }
+
+     }
+
+     this->m_begin++;
+
+  }
+  
+}
+//========================================================
+// Name   : _tcsenicmp
+// Desc   : similar with ansi_count_compare_ci with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+ template < typename ITERATOR_TYPE >
+::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string & scopedstr, i32 escape) const
+{
+
+  auto rangeCompare = scopedstr();
+
+  ::std::strong_ordering order = ::std::strong_ordering::equal;
+
+  const char * prev_escape = nullptr;
+
+  auto r = (*this)();
+
+  while (r.has_char() && *r.m_begin && rangeCompare.has_char())
+  {
+     
+     if (escape != 0 && *r.m_begin == escape && prev_escape == nullptr)
+     {
+
+        prev_escape = r.m_begin;
+
+     }
+     else
+     {
+
+        prev_escape = nullptr;
+
+        order = tolower(*r.m_begin) <=> tolower(*rangeCompare.m_begin);
+
+        if (order != 0)
+        {
+
+           break;
+
+        }
+
+        rangeCompare.m_begin++;
+
+     }
+
+     r.m_begin++;
+
+  }
+
+  return order;
+
+}
+
+
+//========================================================
+// Name   : _tcsenistr
+// Desc   : similar with _tcsistr with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+template < typename ITERATOR_TYPE >
+void string_range < ITERATOR_TYPE >::escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, i32 escape)
+{
+  
+  const char * prev_escape = nullptr;
+   
+  while (this->has_char() && *this->m_begin)
+  {
+
+     if (escape != 0 && *this->m_begin == escape && prev_escape == nullptr)
+     {
+
+        prev_escape = this->m_begin;
+
+     }
+     else
+     {
+        
+        prev_escape = nullptr;
+        
+        if (this->escape_case_insensitive_count_order(scopedstr, escape) == 0)
+        {
+
+           return;
+
+        }
+
+     }
+     
+     this->m_begin++;
+
+  }
+  
+}
+
+
+
+
+//========================================================
+// Name   : _tcsecpy
+// Desc   : similar with _tcscpy with escape process
+// Param  : escape - will be escape character
+// Return :
+//--------------------------------------------------------
+// Coder    Date                      Desc
+// bro      2002-10-29
+//========================================================
+template < typename ITERATOR_TYPE >
+void mutable_string_range < ITERATOR_TYPE >::escape_copy(char escape, const ::const_ansi_range & rangeSource)
+{
+
+   auto pTarget = this->m_begin;
+
+   auto pSource = rangeSource.m_begin;
+
+   bool bEscaping = false;
+
+   while(pSource < rangeSource.m_end && pTarget < this->m_end)
+   {
+
+      if(bEscaping)
+      {
+
+         bEscaping = false;
+
+         *pTarget++ = *pSource;
+
+      }
+      else if(*pSource == escape)
+      {
+
+         bEscaping = true;
+
+      }
+      else
+      {
+
+         *pTarget++ = *pSource;
+
+      }
+
+      pSource++;
+
+   }
+
+   *pTarget = '\0';
+
+   this->m_end = pTarget;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+typename const_string_range < ITERATOR_TYPE >::THIS_RANGE const_string_range < ITERATOR_TYPE >::get_utf8_char() const
+{
+
+   auto pszStart = this->m_begin;
+
+   auto pszNext = unicode_next(pszStart);
+
+   return { pszStart, minimum(pszNext, this->m_end) };
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+typename string_range < ITERATOR_TYPE >::THIS_RANGE string_range < ITERATOR_TYPE >::consume_utf8_char()
+{
+
+   auto pszStart = this->m_begin;
+
+   this->m_begin = unicode_next(pszStart);
+
+   return { pszStart, minimum(this->m_begin, this->m_end) };
 
 }

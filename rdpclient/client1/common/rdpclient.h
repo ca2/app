@@ -10,7 +10,7 @@
 #define CLASS_DECL_IMPORT CLASS_DECL_IMPORT
 #endif
 
-#ifdef _AXIS_RDPCLIENT_LIBRARY
+#if defined(_axis_rdpclient_project)
 
 #define CLASS_DECL_AXIS_RDPCLIENT CLASS_DECL_EXPORT
 

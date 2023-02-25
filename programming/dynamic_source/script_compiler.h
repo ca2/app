@@ -76,7 +76,7 @@ namespace dynamic_source
 
 
       virtual void initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
-      void prepare_compile_and_link_environment();
+      void prepare_compile_and_link_environment() override;
 
       void run_persistent();
 

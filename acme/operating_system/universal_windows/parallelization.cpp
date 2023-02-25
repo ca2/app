@@ -6,6 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "acme/parallelization/message_queue.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 
@@ -290,7 +291,7 @@ void main_asynchronous(const ::procedure& procedure)
 
    }
 
-   auto psystem = ::acme::acme:: ();
+   auto psystem = ::acme::acme::g_p->m_psubsystem->acmesystem();
 
    psystem->windowing_post(procedure);
 

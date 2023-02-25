@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/_.h"
@@ -8,7 +8,8 @@
 // zypper install sqlite3-devel
 #include <sqlite3.h>
 
-#ifdef _DATABASE_SQLITE3_LIBRARY
+
+#ifdef _database_sqlite3_project
 #define CLASS_DECL_DATABASE_SQLITE3 CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_DATABASE_SQLITE3 CLASS_DECL_IMPORT

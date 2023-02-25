@@ -6,7 +6,7 @@
 
 
 
-#ifdef _APP_CORE_HELLOAXIS_LIBRARY
+#if defined(_app_core_helloaxis_project)
 #define CLASS_DECL_APP_CORE_HELLOAXIS  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_CORE_HELLOAXIS  CLASS_DECL_IMPORT

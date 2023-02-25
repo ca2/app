@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename ARRAY >
@@ -20,8 +20,10 @@ public:
 
    const BASE_TYPE & operator[](::index iIndex)
    {
+      
+      ::index iArray = 0;
 
-      for (::index iArray = 0; iArray < m_2a.size(); iArray++)
+      for (; iArray < m_2a.size(); iArray++)
       {
 
          if (iIndex < m_2a[iArray]->size())
@@ -37,7 +39,7 @@ public:
 
       throw ::exception(error_index_out_of_bounds, "get_line with argument >= line_count");
 
-      return {};
+      return m_2a[iArray]->element_at(0);
 
    }
 

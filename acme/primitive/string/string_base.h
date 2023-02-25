@@ -1,9 +1,11 @@
-﻿#pragma once
+#pragma once
 
 
 #include "string_iterator.h"
 #include "string_meta_data.h"
+#include "string_range_const.h"
 #include "string_range.h"
+#include "string_range_mutable.h"
 #include "acme/memory/string_memory_allocator.h"
 
 
@@ -219,6 +221,10 @@ public:
 
    inline const string_base & to_string() const { return *this; }
 
+   
+   inline const CHARACTER *c_str() const { return this->data(); }
+
+   inline const CHARACTER *c_str_for_printf() const { return this->data(); }
 
 
    using NATURAL_POINTER::begin;
@@ -687,7 +693,7 @@ public:
    }
 
 
-   inline string_range < CHARACTER * > get_string_buffer_range(strsize characterCount)
+   inline mutable_string_range < CHARACTER * > get_string_buffer_range(strsize characterCount)
    {
 
       auto p = get_string_buffer(characterCount);
@@ -697,9 +703,18 @@ public:
    }
 
 
-   inline void release_string_buffer_range(const string_range < CHARACTER * > & range)
+   inline void release_string_buffer_range(const mutable_string_range < CHARACTER * > & range)
    {
-
+      
+      if(range.m_end > (this->m_begin + this->storage_character_count()))
+      {
+       
+         throw_exception(error_invalid_buffer);
+         
+      }
+      
+      ::memmove((CHARACTER *) this->m_begin, range.m_begin, range.size());
+         
       release_string_buffer(range.size());
 
    }
@@ -903,7 +918,6 @@ public:
    ::count erase_character(CHARACTER chRemove);
 
    string_base Tokenize(const SCOPED_STRING & scopedstrTokens, strsize & iStart) const;
-
 
 
    const_iterator begins_eat_any_character_in(const SCOPED_STRING & scopedstrCharacters = 0) const RELEASENOTHROW

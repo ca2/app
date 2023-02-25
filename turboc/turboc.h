@@ -10,7 +10,7 @@
 //#include FT_FREETYPE_H
 
 
-#ifdef _APP_TURBOC_LIBRARY
+#if defined(_app_turboc_project)
 #define CLASS_DECL_TURBOC  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_TURBOC  CLASS_DECL_IMPORT

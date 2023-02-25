@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "matter.h"
 //#include "payload.h"
 #include "acme/constant/id.h"
@@ -743,7 +743,7 @@ bool matter::_handle_call(::payload & payload, const ::string & strObject, const
 bool matter::handle_uri(const ::string & stringUri)
 {
 
-   return false;
+   return _handle_uri(stringUri);
 
 }
 
@@ -885,6 +885,24 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 }
 
 
+::string matter::class_title()
+{
+
+   auto strName = demangle(typeid(*this).name());
+
+   auto pszLastColon = strrchr(strName, ':');
+
+   if(!pszLastColon)
+   {
+
+      return strName;
+
+   }
+
+   return pszLastColon + 1;
+
+
+}
 
 //
 //::acme::system * matteracmesystem() const

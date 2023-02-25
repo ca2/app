@@ -209,12 +209,12 @@ namespace user
 
          auto range = strLine();
 
-         ::str::consume_spaces(range, 0);
+         range.consume_spaces(0);
 
          try
          {
 
-            strName = ::str::consume_nc_name(range);
+            strName = range.consume_nc_name();
 
             if (strName == "msgid")
             {
@@ -235,9 +235,9 @@ namespace user
 
             }
 
-            ::str::consume_spaces(range, 1);
+            range.consume_spaces(1);
 
-            str = ::str::consume_quoted_value_ex(range);
+            str = range.consume_quoted_value_ex();
 
             i++;
 
@@ -248,9 +248,9 @@ namespace user
 
                range = strLine();
 
-               ::str::consume_spaces(range, 0);
+               range.consume_spaces(0);
 
-               strName = ::str::consume_nc_name(range);
+               strName = range.consume_nc_name();
 
                if (strName.has_char())
                {
@@ -270,7 +270,7 @@ namespace user
                      try
                      {
 
-                        strHeader = ::str::consume_quoted_value_ex(range);
+                        strHeader = range.consume_quoted_value_ex();
 
                         if (strHeader.has_char())
                         {
@@ -311,9 +311,9 @@ namespace user
                else
                {
 
-                  ::str::consume_spaces(range, 0);
+                  range.consume_spaces(0);
 
-                  str += ::str::consume_quoted_value_ex(range);
+                  str += range.consume_quoted_value_ex();
 
                }
 

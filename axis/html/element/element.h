@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "axis/html/impl/_.h"
@@ -109,8 +109,8 @@ namespace html
 
 
    protected:
-      virtual bool parse(html_data * phtmldata, ::const_ansi_range & range);
-      virtual void parse_attributes(html_data * phtmldata, ::const_ansi_range & range);
+      virtual bool parse(html_data * phtmldata, ::ansi_range & range);
+      virtual void parse_attributes(html_data * phtmldata, ::ansi_range & range);
 
 
    };

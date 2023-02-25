@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/string/_str.h"
@@ -151,7 +151,7 @@ namespace xml
 
          auto rangeOut = ps->get_string_buffer_range(range.size());
 
-         ::str::escape_copy(rangeOut, escape, range);
+         rangeOut.escape_copy(escape, range);
 
          ps->release_string_buffer_range(rangeOut);
 

@@ -4,4 +4,14 @@
 #pragma once
 
 
+namespace x11
+{
+
+
+   class display;
+
+
+} // namespace x11
+
+
 

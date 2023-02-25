@@ -1,10 +1,11 @@
 ﻿// Created by camilo 2020-12-18 05:48 BRT <3TBS, Mummi and bilbo!!
 #include "framework.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/system.h"
 
 
-void task_set_name(long l, const ::scoped_string & scopedstr)
+void task_set_name(long l, const char * psz)
 {
 
    string strName(psz);
@@ -19,7 +20,7 @@ void task_set_name(long l, const ::scoped_string & scopedstr)
 }
 
 
-void task_set_name(const ::scoped_string & scopedstr)
+void task_set_name(const char * psz)
 {
 
    task_set_name(pthread_self(), psz);
@@ -64,7 +65,7 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   auto psystem = acmesystem();
+   auto psystem = ::acme::acme::g_p->m_psubsystem->acmesystem();
 
    psystem->windowing_post(predicate);
 

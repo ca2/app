@@ -634,6 +634,9 @@
     <ClCompile Include="operating_system\department.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
+    <ClCompile Include="platform\api_client_base.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">

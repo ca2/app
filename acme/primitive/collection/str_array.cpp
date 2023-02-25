@@ -30,12 +30,12 @@ CLASS_DECL_ACME string_array stringa_from_strdup(::ansi_character ** ppParam)
 CLASS_DECL_ACME ::count explode_command_line(string_array & stra, const ::string & str, address_array < char * > * argv)
 {
 
-   ::string strParse(str);
+   auto range = str();
 
-   while (strParse.has_char())
+   while (range.has_char())
    {
 
-      stra.add((::string)::str::consume_command_line_argument(strParse));
+      stra.add(range.consume_command_line_argument());
 
    }
 

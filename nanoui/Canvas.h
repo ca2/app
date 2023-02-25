@@ -40,7 +40,7 @@ namespace nanoui
  *
  * \endrst
  */
-   class NANOUI_EXPORT Canvas : public Widget {
+   class CLASS_DECL_NANOUI Canvas : public Widget {
    public:
       /**
        * Creates a memory_new Canvas widget

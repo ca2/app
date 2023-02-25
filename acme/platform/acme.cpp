@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme.h"
 #include "system.h"
 //#include "sequencer.h"
@@ -397,6 +397,7 @@ extern thread_local ::task_pointer t_pthread;
 namespace acme
 {
 
+   acme * acme::g_p = nullptr;
 
    acme::acme()
    {
@@ -440,6 +441,7 @@ namespace acme
 
    }
 
+
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
@@ -460,7 +462,6 @@ namespace acme
       m_psubsystem->m_nCmdShow = nCmdShow;
 
    }
-
 
 #else
 

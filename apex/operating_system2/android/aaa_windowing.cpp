@@ -1327,7 +1327,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 void _android_on_text(string str);
 
 
-void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
+void android_on_text(enum_os_text etext, const wchar_t * pwch, size_t len)
 {
 
    output_debug_string("here???222");

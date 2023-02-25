@@ -846,7 +846,7 @@ public:
    inline ::color::color pixel(int x, int y) const
    {
 
-      if (::is_null(this) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
+      if (::is_null(this) || ::is_null(colorref()) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
       {
 
          return 0;

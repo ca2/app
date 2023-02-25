@@ -28,6 +28,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "axis/platform/system.h"
 #include "base/user/user/user.h"
 #include "core/user/simple/list_data.h"
@@ -3616,7 +3617,7 @@ namespace user
                && !m_rangeSelection.has_item(iItemEnter))
             {
 
-               m_iMouseFlagEnter = pmouse->m_nFlags;
+               m_iMouseFlagEnter = pmouse->m_ebuttonstate;
 
                m_iItemEnter = iItemEnter;
 
@@ -4149,7 +4150,19 @@ namespace user
                   else
                   {
 
-                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, __MAKE_LPARAM(point.x, point.y));
+                      auto pmessage = __create_new < ::message::mouse >();
+
+                      pmessage->m_oswindow = oswindow();
+
+                      pmessage->m_pwindow = window();
+
+                      pmessage->m_atom = e_message_left_button_double_click;
+
+                      pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
+
+                      pmessage->m_point = point;
+
+                      post(pmessage);
 
                   }
 
@@ -4241,7 +4254,7 @@ namespace user
 
          }
          
-         m_uiRButtonUpFlags = (::u32)pmouse->m_nFlags;
+         m_uiRButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
          
          m_pointRButtonUp = pmouse->m_point;
          

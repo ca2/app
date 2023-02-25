@@ -5,7 +5,7 @@
 #include "acme/constant/id.h"
 #include "acme/parallelization/pool.h"
 #include "acme/platform/keep.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system.h"
 #include "apex/database/_binary_stream.h"
@@ -982,6 +982,10 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
+          main_asynchronous([this, strAppTitle]()
+                         {
+
+              auto papp = get_app();
          //auto psystem = acmesystem()->m_papexsystem;
 
          //auto estatus = 
@@ -1028,6 +1032,8 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
             post_message(e_message_update_notify_icon);
 
          }
+
+                         });
 
       }
 

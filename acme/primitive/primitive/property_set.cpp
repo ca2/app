@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "payload.h"
 #include "acme/exception/parsing.h"
 ////#include "acme/exception/exception.h"
@@ -579,34 +579,31 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 }
 
 
-void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument)
+void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string & strArgument)
 {
 
-   if (strArgument == ":")
+   auto range = strArgument();
+
+   if (range.case_insensitive_begins_eat("-"))
    {
 
-      bColon = true;
-
-      return;
-
-   }
-
-   if (strArgument.case_insensitive_begins("-"))
-   {
-
-      _008AddArgument(strArgument.substr(1));
-
-   }
-   else if (bColon)
-   {
-
-      _008AddArgument(strArgument);
+      _008AddArgument(range);
 
    }
    else
    {
 
-      if (payloadFile.is_empty())
+      auto quote = strArgument.find_first_character_in("\"'");
+      
+      auto equal = strArgument.find_first_character_in("=");
+
+      if (::found(equal) && (::not_found(quote) || quote > equal))
+      {
+
+         _008AddArgument(strArgument);
+
+      }
+      else if (payloadFile.is_empty())
       {
 
          payloadFile = strArgument;
@@ -741,14 +738,12 @@ void property_set::_008Parse(bool bApp, const ::scoped_string & scopedstrCmdLine
 
    _008AddArgumentPairs(straArguments);
 
-   bool bColon = false;
-
    for (; i < straArguments.get_size(); i++)
    {
 
       string strArgument = straArguments[i];
 
-      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
+      _008AddArgumentOrFile(payloadFile, strArgument);
 
    }
 
@@ -778,7 +773,7 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 
       string strArgument = straArguments[i];
 
-      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
+      _008AddArgumentOrFile(payloadFile, strArgument);
 
    }
 
@@ -793,10 +788,10 @@ void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments,
 //}
 
 
-void property_set_skip_network_payload(::const_ansi_range & range)
+void property_set_skip_network_payload(::ansi_range & range)
 {
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '\0')
    {
@@ -805,9 +800,9 @@ void property_set_skip_network_payload(::const_ansi_range & range)
 
    }
 
-   ::str::consume(range, "{");
+   range.consume("{");
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '}')
    {
@@ -823,11 +818,11 @@ void property_set_skip_network_payload(::const_ansi_range & range)
 
       ::atom atom;
 
-      property_skip_network_payload_id(range);
+      property_skip_network_payload_item(range);
 
-      property_skip_network_payload_value(range);
+      property_skip_network_payload_payload(range);
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {
@@ -943,7 +938,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //}
 
 
-void property_set::parse_network_payload(::const_ansi_range & range)
+void property_set::parse_network_payload(::ansi_range & range)
 {
 
 
@@ -951,7 +946,7 @@ void property_set::parse_network_payload(::const_ansi_range & range)
    uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
 #endif
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '\0')
    {
@@ -960,9 +955,9 @@ void property_set::parse_network_payload(::const_ansi_range & range)
 
    }
 
-   ::str::consume(range, "{");
+   range.consume("{");
 
-   ::str::consume_spaces(range, 0);
+   range.consume_spaces(0);
 
    if (*range.m_begin == '}')
    {
@@ -978,13 +973,13 @@ void property_set::parse_network_payload(::const_ansi_range & range)
 
       ::atom atom;
 
-      ::property_parse_network_payload_id(atom, range);
+      ::property_parse_network_payload_item(atom, range);
 
       auto & property = operator[](atom);
 
-      ::property_parse_network_payload_value(property, range);
+      ::property_parse_network_payload_payload(property, range);
 
-      ::str::consume_spaces(range, 0);
+      range.consume_spaces(0);
 
       if (*range.m_begin == ',')
       {
@@ -1790,26 +1785,19 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
    auto p = begin();
 
-   if (p)
+   while (!is_end(p))
    {
 
-      while (p)
+      if (strNetworkArguments.has_char())
       {
-
-         (*p)->get_network_arguments(strNetworkArguments);
-
-         p++;
-
-         if (is_end(p))
-         {
-
-            break;
-
-         }
 
          strNetworkArguments += "&";
 
       }
+
+      (*p)->get_network_arguments(strNetworkArguments);
+
+      p++;
 
    }
 

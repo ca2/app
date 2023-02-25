@@ -5,7 +5,7 @@
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/base64.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/international.h"
 #include "acme/_operating_system.h"
 
@@ -723,28 +723,28 @@ string memory_base::as_utf8() const
 }
 
 
-char * memory_base::c_str()
-{
-
-   if (size() <= 0)
-   {
-
-      return nullptr;
-
-   }
-
-   if (data()[size() - 1] != '\0')
-   {
-
-      allocate_add_up(1);
-
-      data()[size() - 1] = '\0';
-
-   }
-
-   return (char *)data();
-
-}
+//char * memory_base::c_str()
+//{
+//
+//   if (size() <= 0)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   if (data()[size() - 1] != '\0')
+//   {
+//
+//      allocate_add_up(1);
+//
+//      data()[size() - 1] = '\0';
+//
+//   }
+//
+//   return (char *)data();
+//
+//}
 
 
 //bool memory_base::begins(const ::scoped_string & scopedstr) const

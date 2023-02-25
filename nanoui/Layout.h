@@ -30,7 +30,7 @@ namespace nanoui
  *
  * \brief Basic interface of a layout engine.
  */
-class NANOUI_EXPORT Layout : public Object {
+class CLASS_DECL_NANOUI Layout : public Object {
 public:
    /**
     * Performs applies all layout computations for the given widget.
@@ -71,7 +71,7 @@ protected:
  * margins around the entire container and a custom spacing between adjacent
  * widgets.
  */
-class NANOUI_EXPORT BoxLayout : public Layout {
+class CLASS_DECL_NANOUI BoxLayout : public Layout {
 public:
    /**
     * \brief Construct a box layout which packs widgets in the given \c Orientation
@@ -149,7 +149,7 @@ protected:
  * This creates a pleasing layout where a number of widgets are grouped
  * under some high-level heading.
  */
-class NANOUI_EXPORT GroupLayout : public Layout {
+class CLASS_DECL_NANOUI GroupLayout : public Layout {
 public:
    /**
     * Creates a GroupLayout.
@@ -228,7 +228,7 @@ protected:
  * specified per axis. The horizontal/vertical alignment can be specified per
  * row and column.
  */
-class NANOUI_EXPORT GridLayout : public Layout {
+class CLASS_DECL_NANOUI GridLayout : public Layout {
 public:
    /**
     * Create a 2-column grid layout by default.
@@ -365,7 +365,7 @@ protected:
  * - https://web.archive.org/web/20070813221705/http://www.autel.cz/dmi/tutorial.html
  * - https://github.com/jaapgeurts/higlayout
  */
-class NANOUI_EXPORT AdvancedGridLayout : public Layout {
+class CLASS_DECL_NANOUI AdvancedGridLayout : public Layout {
 public:
    /**
     * \struct Anchor layout.h nanoui/layout.h

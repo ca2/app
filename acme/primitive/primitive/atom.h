@@ -1,4 +1,4 @@
-﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -307,7 +307,7 @@ public:
       enum_dialog_result   m_edialogresult;
       enum_happening       m_ehappening;
       ::string             m_str;
-      ::const_ansi_range   m_range;
+      ::ansi_range         m_range;
       ::iptr               m_iBody;
 
    };

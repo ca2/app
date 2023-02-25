@@ -7104,7 +7104,7 @@ void context_image::load_svg(::image * pimage, memory & memory)
    if (memory_find(psz, size, "<svg", 4) != nullptr)
    {
 
-      char * pszXml = memory.c_str();
+      char * pszXml = (char *) memory.data();
 
       pimage->create_nanosvg(pszXml);
 

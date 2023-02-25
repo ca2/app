@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 19/01/2021. <33TBS!!
 //
 
@@ -26,7 +26,6 @@ CLASS_DECL_ACME const char * callstack_default_format();
 
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
-
 
 namespace acme
 {
@@ -645,7 +644,7 @@ namespace acme
 
 
 
-      virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinite(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 
 
       //virtual string process_version_dir_name();
@@ -667,27 +666,16 @@ namespace acme
       virtual error_code defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
 
 #endif
+      
+
+      virtual void _node_file_dialog(::file::file_dialog * pdialog);
+      virtual void _node_folder_dialog(::file::folder_dialog * pdialog);
+
+      
+      virtual ::pointer < ::file::file_dialog > node_file_dialog();
+      virtual ::pointer < ::file::folder_dialog > node_folder_dialog();
 
 
-      virtual void operating_system_file_dialog(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > >& filetypesParam,
-         const ::function < void(const ::file::path_array&) >& function,
-         bool save, bool multiple);
-
-
-      void pick_single_file(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > >& filetypes,
-         const ::function < void(const ::file::path &) >& function,
-         bool save);
-
-
-      void pick_multiple_file(
-         void* poswindow,
-         const ::array < ::pair < ::string, ::string > > & filetypes,
-         const ::function < void(const ::file::path_array &) >& function);
-     
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 

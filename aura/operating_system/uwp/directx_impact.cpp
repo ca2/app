@@ -406,7 +406,7 @@ namespace universal_windows
             pkey->m_lparam = pkey->m_nFlags << 16;
             pkey->m_strText = m_strNewText;
 
-            auto puserinteractionHost = __user_interaction(acmesystem()->get_session()->m_puserinteractionHost);
+            auto puserinteractionHost = __user_interaction(acmesession()->m_puserinteractionHost);
 
             puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 

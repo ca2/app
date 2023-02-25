@@ -28,7 +28,7 @@ namespace nanoui
 
 
 
-void NANOUI_EXPORT load_image_directory(::nano2d::context * pcontext, ::array<std::pair<int, ::string>> & images, const ::scoped_string & path);
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<std::pair<int, ::string>> & images, const ::scoped_string & path);
 
 
 ImagePanel::ImagePanel(Widget * parent)

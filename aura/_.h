@@ -1,11 +1,11 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 
 #include "aqua/_.h"
 
 
-#if defined(_AURA_LIBRARY)
+#if defined(_aura_project)
 #define CLASS_DECL_AURA  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_AURA  CLASS_DECL_IMPORT

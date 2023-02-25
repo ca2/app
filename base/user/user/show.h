@@ -10,9 +10,9 @@ namespace user
 {
 
 
-   template < class VIEW >
+   template < class VIEW, typename BASE_VIEW >
    class show :
-      virtual public impact,
+      virtual public BASE_VIEW,
       virtual public VIEW
    {
    public:
@@ -190,8 +190,6 @@ namespace user
          VIEW::_001OnDraw(pgraphics);
 
       }
-
-
 
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override

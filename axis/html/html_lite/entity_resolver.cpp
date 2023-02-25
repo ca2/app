@@ -40,8 +40,9 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs()
    (*this)["apos"]      = '\x27';
    (*this)["lt"]      = '\x3C';
    (*this)["gt"]      = '\x3E';
+   // TODO: FROM ISO 8859-1 TO UTF8
    /** ISO 8859-1 (Latin-1) characters */
-   (*this)["nbsp"]      = '\xA0';
+   (*this)["nbsp"]      = ' ';
    (*this)["iexcl"]   = '\xA1';
    (*this)["cent"]      = '\xA2';
    (*this)["pound"]   = '\xA3';

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "integration_context.h"
 #include "acme/filesystem/file/file.h"
@@ -17,8 +17,8 @@
 #ifdef STATIC_CUBE
 #define LIBARCHIVE_STATIC
 #endif
-#include "libarchive/archive.h"
-#include "libarchive/archive_entry.h"
+#include <libarchive/archive.h>
+#include <libarchive/archive_entry.h>
 
 
 namespace integration
@@ -79,6 +79,94 @@ namespace integration
          acmedirectory()->create(m_pathPrefix);
 
       }
+
+   }
+
+
+   void context::prepare_compilation_script(::string & str)
+   {
+
+      // introjection/compiler
+      //str.find_replace("%VS_VARS%", m_strContext);
+      //str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
+      //str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+      //str.find_replace("%PLATFORM%",m_strPlatform);
+      //str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+
+      //str.find_replace("%SDK1%",m_strSdk1);
+
+
+
+      // programming/compiler
+//      str.find_replace("%VS_VARS%", m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%", m_strPlat2);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%SDK1%", m_strSdk1);
+
+
+// script_compiler cl
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+
+      str.find_replace("%PLATFORM%", m_strPlatform);
+
+   }
+
+   void context::prepare_linking_script(::string & str)
+   {
+
+      //prepare_compilation_script(str);
+
+
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 2
+//      str.find_replace("%VS_VARS%",m_strContext);
+//      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      //      str.find_replace("%LIBPLATFORM%", m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 3
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+
+// script_compiler cl 4
+//      str.find_replace("%PLATFORM%",m_strPlatform);
+//      str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
+//      str.find_replace("%LIBPLATFORM%",m_strLibPlatform);
+//      str.find_replace("%SDK1%",m_strSdk1);
+
+      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
+
+      str.find_replace("%PLATFORM%", m_strPlatform);
 
    }
 

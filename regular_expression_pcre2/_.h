@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/_.h"
@@ -13,7 +13,7 @@
 #include <pcre2.h>
 
 
-#ifdef _REGULAR_EXPRESSION_PCRE2_LIBRARY
+#if defined(_regular_expression_pcre2_project)
 #define CLASS_DECL_REGULAR_EXPRESSION_PCRE2  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_REGULAR_EXPRESSION_PCRE2  CLASS_DECL_IMPORT

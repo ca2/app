@@ -4,7 +4,7 @@
 #include "app/_.h"
 
 
-#ifdef _APP_MESSAGE_BOX_LIBRARY
+#if defined(_app_message_box_project)
 #define CLASS_DECL_APP_MESSAGE_BOX  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_MESSAGE_BOX  CLASS_DECL_IMPORT

@@ -25,7 +25,7 @@ namespace nanoui
  *
  * \brief Image panel widget which shows a number of square-shaped icons.
  */
-   class NANOUI_EXPORT ImagePanel : public Widget {
+   class CLASS_DECL_NANOUI ImagePanel : public Widget {
    public:
       typedef ::array<std::pair<int, ::string>> Images;
       ::string m_strLoadDirectory;

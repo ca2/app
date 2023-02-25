@@ -816,14 +816,14 @@ namespace user
       case ::message::e_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_nFlags = wparam;
+         pmessage->m_ebuttonstate = (::user::enum_button_state ) wparam.m_number;
 
-         if ((pmessage->m_nFlags & 0x80000000) == (0x80000000))
-         {
-
-            output_debug_string("(m_nFlags & 0x80000000) == (0x80000000)");
-
-         }
+//         if ((pmessage->m_ebuttonstate & 0x80000000) == (0x80000000))
+//         {
+//
+//            output_debug_string("(m_ebuttonstate & 0x80000000) == (0x80000000)");
+//
+//         }
 
          pmessage->m_point = ::point_i32(lparam);
 
@@ -852,7 +852,7 @@ namespace user
       {
          _NEW_MESSAGE(::message::mouse_wheel);
 
-         pmessage->m_nFlags = first_u16(wparam);
+         pmessage->m_ebuttonstate = (::user::enum_button_state) first_u16(wparam);
 
          pmessage->m_point = ::point_i32(lparam);
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
+﻿// Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -48,7 +48,12 @@ void api_client::defer_api()
       else
       {
 
-         m_papi = create_api(m_strImplementation);
+         if(!m_papi)
+         {
+
+            m_papi = create_api(m_strImplementation);
+
+         }
          
          m_papi->m_bAuthenticating = true;
 
@@ -59,14 +64,16 @@ void api_client::defer_api()
          if (m_pathProfileFolder.is_empty())
          {
 
-            m_pathProfileFolder = dir()->appdata() / "api" / m_strImplementation;
+            auto pathAppData = dir()->appdata();
+
+            m_pathProfileFolder = pathAppData / "api" / m_strImplementation;
 
          }
 
          try
          {
             
-            m_papi->initialize_api(this, m_pathProfileFolder, m_strBrowserAccount);
+            m_papi->initialize_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
 
          }
          catch (...)

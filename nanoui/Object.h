@@ -24,7 +24,7 @@ namespace nanoui
  *
  * \brief Reference counted object base class.
  */
-   class NANOUI_EXPORT Object {
+   class CLASS_DECL_NANOUI Object {
    public:
       /// Default constructor
       Object() { }

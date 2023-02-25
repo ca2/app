@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
@@ -12,7 +12,7 @@
 #include "acme/parallelization/pool.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 
@@ -4608,7 +4608,7 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
 
       auto waitNow = minimum(timeWait - timeStart.elapsed(), 100_ms);
 
-      if (!waitNow)
+      if (waitNow <= 0_s)
       {
 
          break;

@@ -10,6 +10,7 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+//#include "app_launcher.h"
 //#include "log.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
@@ -18,7 +19,7 @@
 #include "acme/exception/dump_context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 //#include "apex/id.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/operating_system/process.h"
@@ -149,7 +150,8 @@ namespace apex
 
       m_papexsystem = this;
       factory()->add_factory_item < ::apex::session, ::apex::session >();
-
+//      factory()->add_factory_item < ::apex::app_launcher >();
+//
 //      factory()->add_factory_item<::apex::log, ::logger>();
 
       //factory()->add_factory_item < ::thread >();
@@ -4856,7 +4858,7 @@ namespace apex
    bool system::window_rectangle(RECTANGLE_I32* prectangle)
    {
 
-      if (::is_null(get_session()))
+      if (::is_null(acmesession()))
       {
 
          return false;

@@ -653,7 +653,8 @@ using htask_t = void *;
 //}
 //
 
-void task_set_name(const ::scoped_string & scopedstrTaskName)
+
+void task_set_name(htask_t htask, const char * psz)
 {
 
    //auto pthread = pthread_self();
@@ -666,9 +667,9 @@ void task_set_name(const ::scoped_string & scopedstrTaskName)
 
 #else
 
-   auto pthread = pthread_self();
+   auto pthread = (pthread_t) htask;
 
-   string strName(scopedstrTaskName);
+   string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 
@@ -686,6 +687,14 @@ void task_set_name(const ::scoped_string & scopedstrTaskName)
       //return ::success;
 
    
+}
+
+
+void task_set_name(const char * psz)
+{
+
+   return task_set_name((htask_t) pthread_self(), psz);
+
 }
 
 

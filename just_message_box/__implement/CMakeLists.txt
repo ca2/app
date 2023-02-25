@@ -59,6 +59,7 @@ endif ()
 
 add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
 add_dependencies(${PROJECT_NAME} ${default_draw2d})
+add_dependencies(${PROJECT_NAME} ${default_write_text})
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

@@ -151,3 +151,7 @@ CLASS_DECL_ACME itask_t get_main_user_itask();
 
 
 
+
+#include "_winrt_foundation.h"
+
+

@@ -1098,7 +1098,7 @@ namespace user
    }
 
 
-   ::windowing::window * element::_window()
+   ::windowing::window * element::window()
    {
 
       return nullptr;

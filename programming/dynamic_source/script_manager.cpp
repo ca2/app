@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "script_manager.h"
 #include "script_cache.h"
 #include "script_compiler.h"
@@ -138,6 +138,9 @@ namespace dynamic_source
 
       ::channel::initialize(pparticle);
 
+
+
+
       //if (!estatus)
       //{
 
@@ -153,6 +156,26 @@ namespace dynamic_source
       //   return estatus;
       //   
       //}
+
+
+      m_pmutexSession = acmenode()->create_mutex();
+      m_pmutexIncludeMatches = acmenode()->create_mutex();
+      m_pmutexIncludeHasScript = acmenode()->create_mutex();
+      m_pmutexShouldBuild = acmenode()->create_mutex();
+      m_pmutexIncludeExpandMd5 = acmenode()->create_mutex();
+      m_pmutexOutLink = acmenode()->create_mutex();
+      m_pmutexInLink = acmenode()->create_mutex();
+      m_pmutexTunnel = acmenode()->create_mutex();
+      m_pmutexImageSize = acmenode()->create_mutex();
+      m_pmutexSimage = acmenode()->create_mutex();
+      m_pmutexSpider = acmenode()->create_mutex();
+      m_pmutexRsa = acmenode()->create_mutex();
+      m_pmutexMusicDbPool = acmenode()->create_mutex();
+      m_pmutexWayDbPool = acmenode()->create_mutex();
+      m_pmutexPersistentStr = acmenode()->create_mutex();
+      m_pmutexUiRedir = acmenode()->create_mutex();
+      m_pmutexTagId = acmenode()->create_mutex();
+      m_pmutexTagName = acmenode()->create_mutex();
 
       calc_rsa_key();
 
@@ -767,7 +790,7 @@ namespace dynamic_source
       TRACE(buf);
       del*/
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
 
       ::file::path str;
@@ -969,10 +992,12 @@ namespace dynamic_source
 
    }
 
+   
    bool script_manager::include_matches_file_exists(const ::string& strPath)
    {
 
       auto pcontext = get_context();
+
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
 
       auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
@@ -993,13 +1018,15 @@ namespace dynamic_source
    }
 
 
-
-
    void script_manager::set_include_matches_file_exists(const ::string& strPath, bool bFileExists)
    {
+
       single_lock synchronouslock(m_pmutexIncludeMatches, true);
+
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+
    }
+
 
    bool script_manager::include_matches_is_dir(const ::string& strPath)
    {
@@ -1008,7 +1035,7 @@ namespace dynamic_source
 
       auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       if (p)
       {
@@ -1020,14 +1047,21 @@ namespace dynamic_source
       return bIsDir;
    }
 
+
    bool script_manager::include_has_script(const ::string& strPath)
    {
 
       if (strPath.is_empty())
+      {
+
          return false;
 
+      }
+
       single_lock synchronouslock(m_pmutexIncludeHasScript, true);
+
       auto p = m_mapIncludeHasScript.plookup(strPath);
+
       if (p)
       {
 
@@ -1051,14 +1085,21 @@ namespace dynamic_source
 
    string script_manager::include_expand_md5(const ::string& strPath)
    {
+      
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+
       return m_mapIncludeExpandMd5[strPath];
+
    }
+
 
    void script_manager::set_include_expand_md5(const ::string& strPath, const ::string& strMd5)
    {
+   
       single_lock synchronouslock(m_pmutexIncludeExpandMd5, true);
+
       m_mapIncludeExpandMd5[strPath] = strMd5;
+
    }
 
 
@@ -1682,7 +1723,7 @@ namespace dynamic_source
       strPath.find_replace("/", ".");
       strPath.find_replace("\\", ".");
 #ifdef WINDOWS
-      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
+      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
       strPath.begins_eat(".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
@@ -1711,15 +1752,15 @@ namespace dynamic_source
 
       strScript = strName.title();
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
 #ifdef WINDOWS
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strPlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".dll";
 
 #else
 
-      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return dir()->install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 

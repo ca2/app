@@ -1,4 +1,4 @@
-///TBS__<3tbs
+﻿///TBS__<3tbs
 #pragma once
 
 #undef __spin_namespace
@@ -8,7 +8,7 @@
 #include "aura/_.h"
 
 
-#if defined(_AXIS_LIBRARY)
+#if defined(_axis_project)
 #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else

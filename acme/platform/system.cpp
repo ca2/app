@@ -24,11 +24,11 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
-#include "acme/platform/request.h"
+#include "acme/handler/request.h"
 #include "acme/regular_expression/context.h"
 #include "acme/primitive/datetime/datetime.h"
 //#include "acme/primitive/primitive/payload.h"
-#include "acme/primitive/string/hex.h"
+//#include "acme/primitive/string/hex.h"
 #include "acme/user/nano/nano.h"
 //#include "acme/user/user/conversation.h"
 

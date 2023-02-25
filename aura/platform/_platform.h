@@ -23,7 +23,7 @@
 //#include "aura/_.h"
 
 //
-//#ifdef _CORE_LIBRARY
+//#if defined(_core_project)
 //#define CLASS_DECL_AURA  CLASS_DECL_EXPORT
 //#else
 //#define CLASS_DECL_AURA  CLASS_DECL_IMPORT

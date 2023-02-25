@@ -1,11 +1,10 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/_.h"
-#include "apex_windows/_.h"
 
 
-#ifdef _APP_PROGRAMMING_LIBRARY
+#if defined(_programming_project)
 #define CLASS_DECL_APP_PROGRAMMING  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_APP_PROGRAMMING  CLASS_DECL_IMPORT

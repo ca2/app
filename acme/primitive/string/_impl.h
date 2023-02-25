@@ -526,7 +526,7 @@ template < typename ITERATOR_TYPE >
 
    string_base < ITERATOR_TYPE > str;
 
-   auto & range = *this;
+   //auto & range = *this;
 
    auto pszStart = this->m_begin;
 

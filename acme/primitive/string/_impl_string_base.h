@@ -4564,9 +4564,9 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto psz = (const CHARACTER *)p;
 
-   auto pszBlock = (const CHARACTER *)scopedstr.begin();
-
-   auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
+//   auto pszBlock = (const CHARACTER *)scopedstr.begin();
+//
+//   auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
 
    for (; psz < rangeScope.m_end; psz++)
    {

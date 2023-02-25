@@ -239,13 +239,13 @@ NAMESPACE_END(detail)
       Vector2i fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
-      const ::scoped_string & group_font_name() const { return m_group_font_name; }
+      ::string group_font_name() const { return m_group_font_name; }
 
       /// Sets the font name to be used for group headers.
       void set_group_font_name(const ::scoped_string & name) { m_group_font_name = name; }
 
       /// The font name being used for labels.
-      const ::scoped_string & label_font_name() const { return m_label_font_name; }
+      ::string label_font_name() const { return m_label_font_name; }
 
       /// Sets the font name being used for labels.
       void set_label_font_name(const ::scoped_string & name) { m_label_font_name = name; }

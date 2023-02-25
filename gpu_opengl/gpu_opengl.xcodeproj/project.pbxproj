@@ -12,6 +12,8 @@
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
 		07B6577B190F3CA2002DAADE /* libios_gpu_opengl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_gpu_opengl.dylib */; };
+		9A1DDEC529A9EEB500C9C80E /* assimp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1DDEC129A9EEB400C9C80E /* assimp.cpp */; };
+		9A1DDEC629A9EEB500C9C80E /* assimp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1DDEC429A9EEB500C9C80E /* assimp.h */; };
 		9A204A6E2433C68300D45614 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204A3A2433C68300D45614 /* framework.cpp */; };
 		9A204A6F2433C68300D45614 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A204A3B2433C68300D45614 /* factory_exchange.h */; };
 		9A204A742433C68300D45614 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A204A592433C68300D45614 /* _factory.cpp */; };
@@ -94,6 +96,8 @@
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9A1DDEC129A9EEB400C9C80E /* assimp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assimp.cpp; sourceTree = "<group>"; };
+		9A1DDEC429A9EEB500C9C80E /* assimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assimp.h; sourceTree = "<group>"; };
 		9A204A3A2433C68300D45614 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A204A3B2433C68300D45614 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
 		9A204A592433C68300D45614 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		9A204A2E2433C68300D45614 /* gpu_opengl */ = {
 			isa = PBXGroup;
 			children = (
+				9A1DDEC129A9EEB400C9C80E /* assimp.cpp */,
+				9A1DDEC429A9EEB500C9C80E /* assimp.h */,
 				9A204A662433C68300D45614 /* _.h */,
 				9A204A592433C68300D45614 /* _factory.cpp */,
 				9A8B645324CBE90100A93185 /* buffer.cpp */,
@@ -245,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8B646C24CBE90100A93185 /* context.h in Headers */,
+				9A1DDEC629A9EEB500C9C80E /* assimp.h in Headers */,
 				9A204A6F2433C68300D45614 /* factory_exchange.h in Headers */,
 				9A8B646724CBE90100A93185 /* opengl.h in Headers */,
 				9A204A7A2433C68300D45614 /* _.h in Headers */,
@@ -409,6 +416,7 @@
 				9A8B646D24CBE90100A93185 /* program.cpp in Sources */,
 				9A8B64E624CCAAFC00A93185 /* context_fbo.cpp in Sources */,
 				9A8B646224CBE90100A93185 /* opengl.cpp in Sources */,
+				9A1DDEC529A9EEB500C9C80E /* assimp.cpp in Sources */,
 				9A8B646824CBE90100A93185 /* shader.cpp in Sources */,
 				9A866076296689DE000C82F0 /* object.cpp in Sources */,
 				9A8B646424CBE90100A93185 /* buffer.cpp in Sources */,
@@ -582,7 +590,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
@@ -591,11 +599,9 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -607,10 +613,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -671,7 +674,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -680,11 +683,9 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -696,10 +697,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

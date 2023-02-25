@@ -322,7 +322,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -344,10 +344,7 @@
 					"$(WorkspaceDir)/operating-system/operating-system-apple",
 					"$(WorkspaceDir)/operating-system/operating-system-darwin",
 					"$(WorkspaceDir)/operating-system/operating-system-posix",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -419,7 +416,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
@@ -440,10 +437,7 @@
 					"$(WorkspaceDir)/operating-system/operating-system-apple",
 					"$(WorkspaceDir)/operating-system/operating-system-darwin",
 					"$(WorkspaceDir)/operating-system/operating-system-posix",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

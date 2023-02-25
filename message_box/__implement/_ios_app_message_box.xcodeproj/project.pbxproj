@@ -870,14 +870,14 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER) . .. $(WorkspaceDir)  $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../..";
 			};
 			name = Debug;
@@ -930,12 +930,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER) . .. $(WorkspaceDir)  $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../..";
 			};
 			name = Release;

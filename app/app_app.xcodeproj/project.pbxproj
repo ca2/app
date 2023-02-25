@@ -432,7 +432,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
@@ -444,11 +444,9 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -460,10 +458,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -546,7 +541,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "-all_load";
@@ -557,11 +552,9 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -573,10 +566,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

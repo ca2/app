@@ -1383,7 +1383,7 @@ template < typename ITERATOR_TYPE >
 ::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_c_quoted_value()
 {
 
-   auto pszStart = this->m_begin;
+   //auto pszStart = this->m_begin;
 
    if (*this->m_begin != '\"' && *this->m_begin != '\\')
    {

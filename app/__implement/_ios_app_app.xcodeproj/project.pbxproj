@@ -729,7 +729,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -737,11 +737,9 @@
 				SDKROOT = iphoneos;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -753,10 +751,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -815,18 +810,16 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -838,10 +831,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

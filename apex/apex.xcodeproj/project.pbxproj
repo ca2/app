@@ -30,6 +30,7 @@
 		9A0F53BE28E8D8A900025231 /* tunnel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFBD28C83B0100A43004 /* tunnel.cpp */; };
 		9A0F53BF28E8D8BE00025231 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C07328C83BBD00A43004 /* networking.cpp */; };
 		9A0F53C028E8D8EB00025231 /* httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFDB28C83B0200A43004 /* httpd_socket.cpp */; };
+		9A1DDEC029A9BAEC00C9C80E /* liblibarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1DD79029A98E1A00C9C80E /* liblibarchive.a */; };
 		9A1FB960287253E90042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
 		9A1FB961287253E90042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
 		9A1FB962287253E90042849A /* socket_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB95A287253E90042849A /* socket_thread.h */; };
@@ -368,7 +369,6 @@
 		9A88AA142990AAE7005FAA4E /* api_client_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88AA0D2990AAE6005FAA4E /* api_client_base.h */; };
 		9A88AA152990AAE7005FAA4E /* api_client_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA122990AAE6005FAA4E /* api_client_base.cpp */; };
 		9A88AA162990AAE7005FAA4E /* api_client_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A88AA122990AAE6005FAA4E /* api_client_base.cpp */; };
-		9A8BCB1A29A03E1B002BE91E /* libarchive.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8BCB1929A03E1B002BE91E /* libarchive.tbd */; };
 		9A9230C527EACE8000B5A78D /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230B427EACE7F00B5A78D /* _impl.h */; };
 		9A9230C627EACE8000B5A78D /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B527EACE7F00B5A78D /* source.cpp */; };
 		9A9230C827EACE8000B5A78D /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B727EACE7F00B5A78D /* context.cpp */; };
@@ -672,6 +672,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A1DD78F29A98E1A00C9C80E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1DD78B29A98E1A00C9C80E /* libarchive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1DD78429A98DE000C9C80E;
+			remoteInfo = libarchive;
+		};
+		9A1DDEBE29A9BAE000C9C80E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1DD78B29A98E1A00C9C80E /* libarchive.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1DD78329A98DE000C9C80E;
+			remoteInfo = libarchive;
+		};
 		9A615C2828B1B7A300377F68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
@@ -696,6 +710,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1DD78B29A98E1A00C9C80E /* libarchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libarchive.xcodeproj; path = ../../port/libarchive/libarchive.xcodeproj; sourceTree = "<group>"; };
 		9A1FB958287253E90042849A /* socket_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_thread.cpp; sourceTree = "<group>"; };
 		9A1FB959287253E90042849A /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
 		9A1FB95A287253E90042849A /* socket_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_thread.h; sourceTree = "<group>"; };
@@ -1120,7 +1135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8BCB1A29A03E1B002BE91E /* libarchive.tbd in Frameworks */,
+				9A1DDEC029A9BAEC00C9C80E /* liblibarchive.a in Frameworks */,
 				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1128,6 +1143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1DD78C29A98E1A00C9C80E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A1DD79029A98E1A00C9C80E /* liblibarchive.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A1FB956287253E90042849A /* netserver */ = {
 			isa = PBXGroup;
 			children = (
@@ -1247,7 +1270,7 @@
 			isa = PBXGroup;
 			children = (
 				9A615C2928B1B7A300377F68 /* libacme.dylib */,
-				9A615C2B28B1B7A300377F68 /* lib_acme.a */,
+				9A615C2B28B1B7A300377F68 /* libstatic_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1256,6 +1279,7 @@
 			isa = PBXGroup;
 			children = (
 				9A615C2228B1B7A300377F68 /* acme.xcodeproj */,
+				9A1DD78B29A98E1A00C9C80E /* libarchive.xcodeproj */,
 				9A68B4062511444A008DABD2 /* apex */,
 				9A68A447251143F8008DABD2 /* Products */,
 				9AD199A0251278DA00B4C44A /* Frameworks */,
@@ -2278,6 +2302,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A1DDEBF29A9BAE000C9C80E /* PBXTargetDependency */,
 				9A615C3628B1BC7B00377F68 /* PBXTargetDependency */,
 			);
 			name = apex;
@@ -2331,6 +2356,10 @@
 					ProductGroup = 9A615C2328B1B7A300377F68 /* Products */;
 					ProjectRef = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A1DD78C29A98E1A00C9C80E /* Products */;
+					ProjectRef = 9A1DD78B29A98E1A00C9C80E /* libarchive.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -2341,6 +2370,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A1DD79029A98E1A00C9C80E /* liblibarchive.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibarchive.a;
+			remoteRef = 9A1DD78F29A98E1A00C9C80E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A615C2928B1B7A300377F68 /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2348,10 +2384,10 @@
 			remoteRef = 9A615C2828B1B7A300377F68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A615C2B28B1B7A300377F68 /* lib_acme.a */ = {
+		9A615C2B28B1B7A300377F68 /* libstatic_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = lib_acme.a;
+			path = libstatic_acme.a;
 			remoteRef = 9A615C2A28B1B7A300377F68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2644,6 +2680,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A1DDEBF29A9BAE000C9C80E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libarchive;
+			targetProxy = 9A1DDEBE29A9BAE000C9C80E /* PBXContainerItemProxy */;
+		};
 		9A615C3628B1BC7B00377F68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -2726,7 +2767,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2740,11 +2781,9 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -2756,10 +2795,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -2844,7 +2880,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -2857,11 +2893,9 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -2873,10 +2907,7 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/port/include",
-					"$(WorkspaceDir)/source/port",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

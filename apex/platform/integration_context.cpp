@@ -248,7 +248,7 @@ namespace integration
 
       }
       ::memory memory2;
-      memory2.set_size(1_mb);
+      memory2.set_size(1_MiB);
       while (archive_read_next_header(a, &entry) == ARCHIVE_OK) 
       {
          //printf("%s\n", archive_entry_pathname(entry));

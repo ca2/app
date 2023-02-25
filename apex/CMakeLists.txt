@@ -506,6 +506,8 @@ list(APPEND apex_source
         platform/history.cpp
         platform/history.h
         #platform/hyperlink.h
+        platform/integration_context.cpp
+        platform/integration_context.h
         #   platform/interprocess_call.cpp
         #   platform/interprocess_call.h
         #   platform/interprocess_communication.cpp
@@ -1437,7 +1439,7 @@ elseif (LINUX OR FREEBSD)
     if (FREEBSD)
         target_link_libraries(apex PRIVATE dl pthread z)
     else ()
-        target_link_libraries(apex PRIVATE dl pthread idn z)
+        target_link_libraries(apex PRIVATE dl pthread idn z archive)
     endif ()
     #target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(apex PRIVATE acme)

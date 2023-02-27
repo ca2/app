@@ -17,7 +17,7 @@
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "acme/primitive/string/str.h"
 #include "aura/user/user/interaction.h"
-#include "nanosvg/nanosvg.h"
+#include "nanosvg.h"
 
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)

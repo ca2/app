@@ -1,4 +1,4 @@
-//#include "operating_system/config.h"
+﻿//#include "operating_system/config.h"
 #include <stdio.h>
 //#include <stdlib.h>
 
@@ -11,7 +11,7 @@
 
 
 #define NANOSVG_IMPLEMENTATION  // Expands implementation
-#include "nanosvg/nanosvg.h"
+#include "nanosvg.h"
 
 
 

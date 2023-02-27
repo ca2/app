@@ -1,4 +1,4 @@
-////TBS__<3tbs
+﻿////TBS__<3tbs
 //  _start.h
 //  acme
 //
@@ -13,7 +13,7 @@
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"
-#include "setup/debug.h"
+#include "configuration/debug.h"
 #include "operating_system/config.h"
 #include "include/_setup.h"
 #include "acme/include/__setup.h"

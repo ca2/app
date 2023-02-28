@@ -1,9 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "font.h"
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/host.h"
+
+
 
 
 namespace draw2d_cairo

@@ -1,8 +1,31 @@
 ﻿// Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSørensen!!
 #pragma once
 
+// Sorensen ø
+
 
 #include "acme/platform/object_reference_count_debug.h"
+
+
+#define __counter_name__ TOKEN_CONCATENATE(η_, __COUNTER__)
+
+#define η __counter_name__ 
+
+#define λ η = [&]()
+
+
+template <class PREDICATE>
+struct run_at_destructor_struct
+{
+
+   PREDICATE m_predicate;
+
+   run_at_destructor_struct(PREDICATE predicate) : m_predicate(predicate) {}
+   ~run_at_destructor_struct() { m_predicate(); }
+
+};
+
+#define at_end_of_scope run_at_destructor_struct λ
 
 
 #define ALOG_CONTEXT context_trace_object()

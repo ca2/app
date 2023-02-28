@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+
+
+
 template <class TYPE>
 struct scoped_restore_struct
 {
@@ -65,6 +68,7 @@ inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
 }
 
 
-#define scoped_restore(payload) auto TOKEN_CONCATENATE(scopedrestore, __COUNTER__) = create_scoped_restore(payload)
+#define scoped_restore(payload) auto η = create_scoped_restore(payload)
+
 
 //#define __set_restore(payload, set) ::scoped_restore < decltype(payload) > TOKEN_CONCATENATE(scopedrestore, __COUNTER__) (&payload); ::payload = set

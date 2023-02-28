@@ -3205,7 +3205,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
    if (!pwriter)
    {
 
-      pwriter = get_file(payloadFile, eopenFlags);
+      pwriter = get_file(payloadFile, eopenFlags | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    }
 

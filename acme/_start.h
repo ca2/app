@@ -14,7 +14,7 @@
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"
 #include "configuration/debug.h"
-#include "operating_system/config.h"
+#include "operating_system/configuration.h"
 #include "include/_setup.h"
 #include "acme/include/__setup.h"
 

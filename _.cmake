@@ -1,3 +1,4 @@
+# Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 
 
 set(CMAKE_CXX_STANDARD 20)
@@ -7,9 +8,18 @@ set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
 
 
+# In include(source/_.cmake) set variables like below
+#set(INCLUDE_DRAW2D_CAIRO TRUE)
+#set(INCLUDE_IMAGING_FREEIMAGE TRUE)
+#set(INCLUDE_AUDIO TRUE)
+include(source/_.cmake)
+
+
+
 include(operating-system/_.cmake)
 add_subdirectory(source/app)
 add_subdirectory(operating-system)
+add_subdirectory(port)
 add_subdirectory(source)
 
 

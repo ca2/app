@@ -31,21 +31,16 @@ add_subdirectory(regular_expression_pcre2)
 
 if(INCLUDE_DRAW2D_CAIRO)
 
-    add_subdirectory(${WORKSPACE_FOLDER}/source/app/draw2d_cairo)
+    add_subdirectory(draw2d_cairo)
 
 endif()
 
 
 if(INCLUDE_IMAGING_FREEIMAGE)
 
-    add_subdirectory(${WORKSPACE_FOLDER}/source/app/imaging_freeimage)
+    add_subdirectory(imaging_freeimage)
 
 endif()
 
 
-if(INCLUDE_AUDIO)
-
-    add_subdirectory(${WORKSPACE_FOLDER}/source/port/id3lib)
-
-endif()
 

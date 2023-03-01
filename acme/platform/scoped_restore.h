@@ -65,6 +65,34 @@ inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
 }
 
 
-#define scoped_restore(payload) auto TOKEN_CONCATENATE(scopedrestore, __COUNTER__) = create_scoped_restore(payload)
+#define scoped_restore(payload) auto η = create_scoped_restore(payload)
+
 
 //#define __set_restore(payload, set) ::scoped_restore < decltype(payload) > TOKEN_CONCATENATE(scopedrestore, __COUNTER__) (&payload); ::payload = set
+
+
+#define __counter_name__ TOKEN_CONCATENATE(η_, __COUNTER__)
+
+
+#define η __counter_name__
+
+
+#define λ η = [&]()
+
+
+template <class PREDICATE>
+struct run_at_destructor_struct
+{
+
+   PREDICATE m_predicate;
+
+   run_at_destructor_struct(PREDICATE predicate) : m_predicate(predicate) {}
+   ~run_at_destructor_struct() { m_predicate(); }
+
+};
+
+
+#define at_end_of_scope run_at_destructor_struct λ
+
+
+

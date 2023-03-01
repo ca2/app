@@ -8,11 +8,11 @@
 #pragma once
 
 
-// unit _nanosecond
+// nanosecond unit ηs
 constexpr class time operator "" _ηs(unsigned long long int u) { return integral_nanosecond(u); }
 
 
-// unit _microsecond
+// microsecond unit µs
 constexpr class time operator "" _µs(unsigned long long int u) { return integral_microsecond(u); }
 
 

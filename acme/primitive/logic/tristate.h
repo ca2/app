@@ -49,10 +49,10 @@ public:
    inline bool is_true() const { return m_eboolean > e_boolean_empty; }
 
 
-   inline bool is_true(bool bDefault) const { return m_eboolean ? isTrue() : bDefault; }
+   inline bool is_true_or_not_set() const { return m_eboolean >= e_boolean_empty; }
 
 
-   inline bool isTrue() const { return is_true(); }
+   inline bool is_true(bool bDefault) const { return m_eboolean ? is_true() : bDefault; }
 
 
    inline bool is_optional() const { return !m_eboolean; }
@@ -61,7 +61,7 @@ public:
    inline bool isOptional() const { return is_optional(); }
 
 
-   inline operator bool() const { return isTrue(); }
+   inline operator bool() const { return is_true(); }
 
 
    inline bool operator!() const { return isFalse(); }

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -5501,12 +5501,13 @@ namespace apex
 //
 //      }
 
-      //if (conditional(m_bConsole, m_bCreateAppShorcut.isTrue()))
-      //{
+      if((m_bConsole && m_bCreateAppShorcut.is_true())
+       || (!m_bConsole && m_bCreateAppShorcut.is_true_or_not_set()))
+      {
 
-      //   on_create_app_shortcut();
+         on_create_app_shortcut();
 
-      //}
+      }
 
       return true;
 

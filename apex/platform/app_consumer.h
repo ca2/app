@@ -40,7 +40,7 @@
 void on_initialize_particle() override                                             \
 {                                                                                      \
                                                                                        \
-   m_papplicationForConsumer = m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;             \
+   m_papplicationForConsumer = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
                                                                                        \
    BASE1::on_initialize_particle();                                      \
                                                                        \
@@ -108,9 +108,9 @@ class optional_interaction3 : virtual public ::particle { OPTIONAL_INTERACTION_B
 class optional_interaction4 : virtual public ::particle { OPTIONAL_INTERACTION_BODY };
 
 
-template <  typename APP, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >
-class app_consumer :
-   virtual public ::particle,
+template <  typename BASE, typename APP, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >
+class app_consumer_base :
+   virtual public BASE,
    virtual public BASE1,
    virtual public BASE2,
    virtual public BASE3,
@@ -122,7 +122,7 @@ public:
    ::pointer<APP>m_papplicationForConsumer;
 
 
-   app_consumer()
+   app_consumer_base()
    {
 
    }
@@ -245,6 +245,11 @@ public:
 
 
 };
+
+
+template < typename APP, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >
+using app_consumer = app_consumer_base < ::particle, APP, BASE1, BASE2, BASE3, BASE4 >;
+
 
 
 

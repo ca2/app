@@ -253,7 +253,63 @@ namespace experience_tranquillum
 
       }
 
-      if (eelement == ::e_element_check)
+      if (eelement == ::e_element_scrollbar)
+      {
+
+         if (is_dark_mode())
+         {
+
+            return argb(230, 45, 45, 45);
+
+         }
+         else
+         {
+
+            return argb(200, 235, 235, 235);
+
+         }
+
+      }
+      else if (eelement == ::e_element_scrollbar_strong)
+      {
+
+         if (is_dark_mode())
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return argb(120, 180, 180, 180);
+
+            }
+            else
+            {
+
+               return argb(160, 160, 160, 160);
+
+            }
+
+         }
+         else
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return argb(170, 140, 140, 140);
+
+            }
+            else
+            {
+
+               return argb(160, 160, 160, 160);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_check)
       {
 
          if (is_dark_mode())

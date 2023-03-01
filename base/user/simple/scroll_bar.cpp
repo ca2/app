@@ -1362,7 +1362,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    auto pstyle = get_style(pgraphics);
 
-   auto colorBackground = get_color(pstyle, ::e_element_background);
+   auto colorBackground = get_color(pstyle, ::e_element_scrollbar);
 
    ::rectangle_i32 rectangleClient;
 

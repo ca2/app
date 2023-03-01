@@ -85,6 +85,7 @@ enum enum_impact : ::iptr
    impact_description,
    impact_rich_edit,
    impact_update,
+   impact_store,
 
 
    impact_base = BASE_IMPACT,

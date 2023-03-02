@@ -344,7 +344,8 @@
 					"$(WorkspaceDir)/operating-system/operating-system-apple",
 					"$(WorkspaceDir)/operating-system/operating-system-darwin",
 					"$(WorkspaceDir)/operating-system/operating-system-posix",
-					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -437,7 +438,8 @@
 					"$(WorkspaceDir)/operating-system/operating-system-apple",
 					"$(WorkspaceDir)/operating-system/operating-system-darwin",
 					"$(WorkspaceDir)/operating-system/operating-system-posix",
-					"$(WorkspaceDir)/source/port/include/operating-system/$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -454,7 +456,6 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -465,7 +466,6 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

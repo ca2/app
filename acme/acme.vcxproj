@@ -45,32 +45,32 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -81,14 +81,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -613,9 +613,7 @@
     <Lib />
     <Lib />
     <Lib />
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ProjectReference />
     <Lib />
     <Lib>
       <ExportNamedFunctions>
@@ -1176,7 +1174,6 @@
     <ClInclude Include="platform\application_flags.h" />
     <ClInclude Include="platform\factory_function.h" />
     <ClInclude Include="platform\main2.h" />
-    <ClInclude Include="platform\request.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\_c.h" />
     <ClInclude Include="platform\__string.h" />
@@ -1298,10 +1295,7 @@
     <ClInclude Include="primitive\primitive\aaa_element_array.h" />
     <ClInclude Include="primitive\primitive\aaa_member.h" />
     <ClInclude Include="primitive\primitive\aaa_net.h" />
-    <ClInclude Include="primitive\primitive\aaa_uhash.h" />
     <ClInclude Include="primitive\primitive\concrete.h" />
-    <ClInclude Include="primitive\primitive\e_check.h" />
-    <ClInclude Include="primitive\primitive\move.h" />
     <ClInclude Include="primitive\primitive\muldiv64.h" />
     <ClInclude Include="primitive\primitive\particle_flags.h" />
     <ClInclude Include="primitive\primitive\ptr.h" />
@@ -1343,7 +1337,6 @@
     <ClInclude Include="primitive\string\c\_impl.h" />
     <ClInclude Include="primitive\string\c\_.h" />
     <ClInclude Include="primitive\string\encoding_exception.h" />
-    <ClInclude Include="primitive\string\Header.h" />
     <ClInclude Include="primitive\string\inline_string.h" />
     <ClInclude Include="primitive\string\scoped_string_base.h" />
     <ClInclude Include="primitive\string\str.h" />
@@ -1384,6 +1377,7 @@
     <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
+    <ClInclude Include="user\user\e_window_flag.h" />
     <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="_range.h" />
     <ClInclude Include="_library.h" />
@@ -1450,7 +1444,6 @@
     <ClInclude Include="parallelization\synchronization_array.h" />
     <ClInclude Include="parallelization\synchronous_lock.h" />
     <ClInclude Include="parallelization\synchronized_process.h" />
-    <ClInclude Include="parallelization\synchronization_result.h" />
     <ClInclude Include="parallelization\task.h" />
     <ClInclude Include="parallelization\tools.h" />
     <ClInclude Include="parallelization\_.h" />
@@ -1509,7 +1502,6 @@
     <ClInclude Include="platform\procedure.h" />
     <ClInclude Include="platform\procedure_array.h" />
     <ClInclude Include="platform\profiler.h" />
-    <ClInclude Include="platform\restore.h" />
     <ClInclude Include="platform\sequence1.h" />
     <ClInclude Include="platform\sequencer.h" />
     <ClInclude Include="platform\serial.h" />
@@ -1648,7 +1640,7 @@
     <ClInclude Include="primitive\primitive\bits.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
-    <ClInclude Include="primitive\primitive\echeck.h" />
+    <ClInclude Include="primitive\primitive\e_check.h" />
     <ClInclude Include="primitive\primitive\enumeration.h" />
     <ClInclude Include="primitive\primitive\enumeration1.h" />
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
@@ -1671,7 +1663,6 @@
     <ClInclude Include="primitive\primitive\stick.h" />
     <ClInclude Include="primitive\primitive\tuple.h" />
     <ClInclude Include="primitive\primitive\work.h" />
-    <ClInclude Include="primitive\primitive\_u32hash.h" />
     <ClInclude Include="primitive\primitive\__property.h" />
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
@@ -1690,10 +1681,6 @@
     <ClInclude Include="primitive\text\text.h" />
     <ClInclude Include="primitive\text\translator.h" />
     <ClInclude Include="primitive\text\_.h" />
-    <ClInclude Include="process\bidirectional_pipe.h" />
-    <ClInclude Include="process\exit_status.h" />
-    <ClInclude Include="process\pipe.h" />
-    <ClInclude Include="process\_.h" />
     <ClInclude Include="regular_expression\context.h" />
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\result.h" />
@@ -1718,7 +1705,6 @@
     <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\element.h" />
-    <ClInclude Include="user\user\ewindowflag.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />
     <ClInclude Include="user\user\os_theme_colors.h" />
@@ -1900,7 +1886,6 @@
     <ClInclude Include="primitive\string\x\x_defines.h" />
     <ClInclude Include="primitive\string\x\x_encodings.h" />
     <ClInclude Include="primitive\string\x\x_tables.h" />
-    <ClInclude Include="primitive\string\_string_base_impl.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\__begin.h" />
     <ClInclude Include="primitive\string\_impl.h" />

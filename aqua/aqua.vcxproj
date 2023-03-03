@@ -37,12 +37,10 @@
   <ItemGroup>
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
-    <ClInclude Include="exception.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game\estamira.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="game\_.h" />
-    <ClInclude Include="game\_component.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="inline\application.h" />
@@ -59,7 +57,6 @@
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="library.h" />
-    <ClInclude Include="multimedia\audio.h" />
     <ClInclude Include="multimedia\audio\audio_c.h" />
     <ClInclude Include="multimedia\audio\out.h" />
     <ClInclude Include="multimedia\audio\sound_track_player.h" />
@@ -84,7 +81,6 @@
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\_.h" />
-    <ClInclude Include="xml\attr.h" />
     <ClInclude Include="xml\base_array.h" />
     <ClInclude Include="xml\data.h" />
     <ClInclude Include="xml\xml.h" />
@@ -92,7 +88,6 @@
     <ClInclude Include="xml\document.h" />
     <ClInclude Include="xml\edit.h" />
     <ClInclude Include="xml\entity.h" />
-    <ClInclude Include="xml\enum.h" />
     <ClInclude Include="xml\exportable.h" />
     <ClInclude Include="xml\glue.h" />
     <ClInclude Include="xml\importable.h" />
@@ -215,7 +210,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>

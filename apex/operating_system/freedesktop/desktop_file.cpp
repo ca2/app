@@ -261,7 +261,7 @@ namespace freedesktop
 
       ::file::path path = dir()->matter("app.desktop");
 
-      m_straLine = pcontext->m_papexcontext->file()->lines(xpath);
+      m_straLine = pcontext->m_papexcontext->file()->lines(path);
 
       if(m_straLine.is_empty())
       {

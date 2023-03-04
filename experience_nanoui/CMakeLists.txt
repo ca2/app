@@ -28,6 +28,7 @@ list(APPEND library_source
         experience/frame_013.cpp
         experience/frame_013.h
         experience/frame_Minimal001.cpp
+        experience/frame_Minimal001.h
         framework.cpp
         framework.h
         user/style.cpp
@@ -37,24 +38,24 @@ list(APPEND library_source
 add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
-target_precompile_headers(experience_nanoui PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 
 
-set_target_properties(experience_nanoui PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(experience_nanoui PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_nanoui PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_nanoui PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanoui.lib")
-    target_link_options(experience_nanoui PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
-    target_link_libraries(experience_nanoui PRIVATE acme apex aqua aura axis base)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_nanoui.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
-    target_compile_options(experience_nanoui PRIVATE -fpermissive)
-    #target_link_options(experience_nanoui PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(experience_nanoui PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(experience_nanoui PRIVATE acme apex aqua aura axis base)
-    target_link_options(experience_nanoui PRIVATE -Wl,-z,defs)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 endif()
 
 
@@ -66,7 +67,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 
 
 
-target_compile_definitions(experience_nanoui PRIVATE _APP_EXPERIENCE_NANOUI_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _APP_EXPERIENCE_NANOUI_LIBRARY)
 
 
 

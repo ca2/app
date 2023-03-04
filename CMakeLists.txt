@@ -15,7 +15,7 @@ add_subdirectory(core)
 add_subdirectory(experience_anthill)
 add_subdirectory(experience_core)
 #add_subdirectory(experience_lite)
-add_subdirectory(experience_nanogui)
+add_subdirectory(experience_nanoui)
 add_subdirectory(experience_tranquillum)
 
 

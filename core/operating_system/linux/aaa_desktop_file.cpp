@@ -238,7 +238,7 @@ pacmedirectory->home();
 
       ::file::path path = pcontext->m_papexcontext->dir()->matter("app.desktop");
 
-      pcontext->m_papexcontext->file()->lines(m_straLine, path);
+      m_straLine = pcontext->m_papexcontext->file()->lines(path);
 
       if(m_straLine.is_empty())
       {

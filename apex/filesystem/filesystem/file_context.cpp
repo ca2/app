@@ -998,7 +998,7 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
 
 
 void file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
-{
+ {
 
    file_pointer pfile;
 

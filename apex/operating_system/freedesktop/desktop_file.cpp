@@ -484,6 +484,53 @@ namespace freedesktop
 //   }
 
 
+   void desktop_file::open(const ::file::path & path)
+   {
+
+      m_straLine = file()->lines(path);
+
+   }
+
+
+   ::string desktop_file::get_SessionKeyPayload(const ::scoped_string & scopedstrSession, const ::scoped_string & scopedstrKey)
+   {
+
+      auto iStart = m_straLine._007FindSection(scopedstrSession);
+
+      if(iStart < 0)
+      {
+
+         iStart = 0;
+
+      }
+
+      ::string strPayload;
+
+      m_straLine._007GetLine(strPayload, scopedstrKey, iStart);
+
+      return strPayload;
+
+
+   }
+
+
+   ::string desktop_file::get_Target()
+   {
+
+      return get_SessionKeyPayload("[Desktop Entry]", "Exec");
+
+   }
+
+
+   ::string desktop_file::get_Icon()
+   {
+
+      return get_SessionKeyPayload("[Desktop Entry]", "Icon");
+
+   }
+
+
+
 } // namespace freedesktop
 
 

@@ -31,6 +31,7 @@ namespace freedesktop
       desktop_file();
       ~desktop_file() override;
 
+      void open(const ::file::path & path);
 
       void create_default();
       void create();
@@ -45,6 +46,9 @@ namespace freedesktop
       virtual void set_app_id(const ::string & strAppId);
       virtual string get_app_id();
 
+      virtual ::string get_SessionKeyPayload(const ::scoped_string & scopedstrSession, const ::scoped_string & scopedstrKey);
+
+virtual ::string get_Target(); virtual ::string get_Icon();
 
 
       ::file::path get_board_path();

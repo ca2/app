@@ -95,6 +95,7 @@ list(APPEND library_source
         constant/earth.h
         constant/element.h
         constant/idpool.cpp
+        constant/library.h
         constant/message_box.h
         #context_glx.cpp
         #exception/callstack.cpp

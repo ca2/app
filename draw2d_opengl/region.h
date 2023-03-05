@@ -38,7 +38,7 @@ namespace draw2d_opengl
 
       virtual void destroy() override;
 
-      // operating-system-specific or operating-system-internals
+      // operating_system-specific or operating_system-internals
       // "get" set of funcionts translate ::draw2d::region data into platform specific data
       //plusplus::Region * get();
       //plusplus::Region * get_rect();

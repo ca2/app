@@ -8,7 +8,7 @@ pushd app-ca2
 git pull
 popd
 
-pushd operating-system-raspbian
+pushd operating_system-raspbian
 git pull
 popd
 
@@ -22,12 +22,12 @@ popd
 
 
 #svn commit -F /ben/app-ca2/raspi-commit.txt /ben/app-ca2
-#git commit -F /ben/app-ca2/raspi-commit.txt /ben/operating-system-raspbian
+#git commit -F /ben/app-ca2/raspi-commit.txt /ben/operating_system-raspbian
 #git commit -F /ben/app-ca2/raspi-commit.txt /ben/quasar-science
 #git commit -F /ben/app-ca2/raspi-commit.txt /ben/third
 
 #git push origin master /ben/app
-#git push origin master /ben/operating-system-raspbian
+#git push origin master /ben/operating_system-raspbian
 #git push origin master /ben/quasar-science
 #git push origin master /ben/third
 

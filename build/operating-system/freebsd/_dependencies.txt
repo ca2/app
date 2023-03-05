@@ -1,6 +1,6 @@
-operating-system-freebsd/node_freebsd
+operating_system-freebsd/node_freebsd
 app/draw2d_cairo
-operating-system-posix/write_text_pango
+operating_system-posix/write_text_pango
 app/imaging_freeimage
 app/experience_core
 app/database_sqlite3

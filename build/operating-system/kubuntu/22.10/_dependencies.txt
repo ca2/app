@@ -1,4 +1,4 @@
-operating-system-linux/node_linux
+operating_system-linux/node_linux
 app/draw2d_cairo
 platform-posix/write_text_pango
 app/imaging_freeimage

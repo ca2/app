@@ -37,15 +37,15 @@ namespace app_app
 
       auto poscontext = acmesystem()->m_papexsystem->os_context();
 
-      //::file::path path = "C:\\basis\\operating-system\\tool-windows\\bin\\hstart.exe";
+      //::file::path path = "C:\\basis\\operating_system\\tool-windows\\bin\\hstart.exe";
 
-      //poscontext->hidden_run(1_minute, path, "/NOCONSOLE /NOUAC \"C:\\basis\\operating-system\\tool-windows\\headless_monitor\\deviceinstaller64.exe enableidd 1\"");
+      //poscontext->hidden_run(1_minute, path, "/NOCONSOLE /NOUAC \"C:\\basis\\operating_system\\tool-windows\\headless_monitor\\deviceinstaller64.exe enableidd 1\"");
 
       poscontext->hidden_start("C:/Windows/system32/cmd.exe", "/c subst S: C:\\store");
 
       poscontext->hidden_start("C:/Windows/system32/cmd.exe", "/c subst T: C:\\Users\\camilo\\Desktop");
 
-      poscontext->file_open("C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe", "\"C:\\netnode\\operating-system\\operating-system-windows\\_seed\\core_netnodelite.sln\" /run \"basis|x64\"");
+      poscontext->file_open("C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/devenv.exe", "\"C:\\netnode\\operating_system\\operating_system-windows\\_seed\\core_netnodelite.sln\" /run \"basis|x64\"");
 
       preempt(30_s);
 

@@ -12,9 +12,9 @@
 #include "acme/version/version.h"
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
-#include "operating-system/platform_setup.h"
+#include "operating_system/platform_setup.h"
 #include "configuration/debug.h"
-#include "operating-system/configuration.h"
+#include "operating_system/configuration.h"
 #include "include/_setup.h"
 #include "acme/include/__setup.h"
 
@@ -22,8 +22,8 @@
 #include "__standard_type.h"
 #include "acme/include/_macro.h"
 #include "acme/constant/memory_heap.h"
-#include "operating-system/types.h"
-#include "operating-system/system.h"
+#include "operating_system/types.h"
+#include "operating_system/system.h"
 
 
 #ifdef WINDOWS

@@ -53,8 +53,8 @@
 			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app" />
 

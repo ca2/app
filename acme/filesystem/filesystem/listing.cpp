@@ -150,6 +150,13 @@ namespace file
 
             add(path);
 
+            if(m_functionOnNewPath)
+            {
+
+               m_functionOnNewPath(path);
+
+            }
+
          }
 
          if (::is_set(m_penumerator) && m_edepth > 0)
@@ -181,6 +188,13 @@ namespace file
          {
 
             add(path);
+
+            if(m_functionOnNewPath)
+            {
+
+               m_functionOnNewPath(path);
+
+            }
 
          }
 

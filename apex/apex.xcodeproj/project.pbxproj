@@ -384,6 +384,7 @@
 		9A94DE51282C045900F5C1CA /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A28126CDFF1A00F98012 /* integer.cpp */; };
 		9A94DE52282C045900F5C1CA /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A27F26CDFF1A00F98012 /* listener.cpp */; };
 		9A94DE53282C045900F5C1CA /* real.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A27E26CDFF1A00F98012 /* real.cpp */; };
+		9A95DC5B29B455ED0096712B /* liblibarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD8626429B121370054C9B3 /* liblibarchive.a */; };
 		9A97C02B28C83B0300A43004 /* tls_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97BF9B28C83B0000A43004 /* tls_socket.h */; };
 		9A97C02C28C83B0300A43004 /* sctp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9C28C83B0000A43004 /* sctp_socket.cpp */; };
 		9A97C02D28C83B0300A43004 /* sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9D28C83B0000A43004 /* sync_socket_handler.cpp */; };
@@ -622,7 +623,6 @@
 		9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4252511444A008DABD2 /* selection.cpp */; };
 		9AD695AE251A754800C0EBD7 /* ifs_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7262511444B008DABD2 /* ifs_file.cpp */; };
 		9AD695B2251A754800C0EBD7 /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7282511444B008DABD2 /* link.cpp */; };
-		9AD8628D29B1383B0054C9B3 /* liblibarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD8626429B121370054C9B3 /* liblibarchive.a */; };
 		9AE6DF4B296390D4008A1335 /* aaa_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF3A296390D3008A1335 /* aaa_handler.cpp */; };
 		9AE6DF4C296390D4008A1335 /* task.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DF3B296390D3008A1335 /* task.h */; };
 		9AE6DF4D296390D4008A1335 /* channel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DF3C296390D3008A1335 /* channel.h */; };
@@ -693,18 +693,18 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9A95DC5929B455A00096712B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1DD78329A98DE000C9C80E;
+			remoteInfo = libarchive;
+		};
 		9AD8626329B121370054C9B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A1DD78429A98DE000C9C80E;
-			remoteInfo = libarchive;
-		};
-		9AD8628B29B131B20054C9B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1DD78329A98DE000C9C80E;
 			remoteInfo = libarchive;
 		};
 /* End PBXContainerItemProxy section */
@@ -1135,7 +1135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD8628D29B1383B0054C9B3 /* liblibarchive.a in Frameworks */,
+				9A95DC5B29B455ED0096712B /* liblibarchive.a in Frameworks */,
 				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2302,7 +2302,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AD8628C29B131B20054C9B3 /* PBXTargetDependency */,
+				9A95DC5A29B455A00096712B /* PBXTargetDependency */,
 				9A615C3628B1BC7B00377F68 /* PBXTargetDependency */,
 			);
 			name = apex;
@@ -2685,10 +2685,10 @@
 			name = acme;
 			targetProxy = 9A615C3528B1BC7B00377F68 /* PBXContainerItemProxy */;
 		};
-		9AD8628C29B131B20054C9B3 /* PBXTargetDependency */ = {
+		9A95DC5A29B455A00096712B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libarchive;
-			targetProxy = 9AD8628B29B131B20054C9B3 /* PBXContainerItemProxy */;
+			targetProxy = 9A95DC5929B455A00096712B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -2225,7 +2225,23 @@ namespace apex
 
       //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
 
-      auto pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+      ::file::path pathShortcut;
+
+#ifdef WINDOWS_DESKTOP
+
+      pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+
+#else
+
+      ::string strDesktopFileName;
+
+      strDesktopFileName = m_strAppId;
+
+      strDesktopFileName.find_replace("/", ".");
+
+      pathShortcut = acmedirectory()->home() / ".local/share/applications"/ (strDesktopFileName +".desktop");
+
+#endif
 
       auto path = acmefile()->module();
 
@@ -2233,12 +2249,18 @@ namespace apex
       ::file::path pathIcon;
       int iIcon = -1;
 
+      bool bEnoughCondition1 = !acmefile()->exists(pathShortcut);
+      bool bEnoughCondition2 = !acmenode()->m_papexnode->shell_link_target(pathTarget, pathShortcut);
+      bool bEnoughCondition3 = !acmepath()->final_is_same(pathTarget, path);
+      bool bEnoughCondition4 = !acmenode()->m_papexnode->shell_link_icon(pathIcon, iIcon, path);
+      bool bEnoughCondition5 = !acmefile()->exists(pathIcon);
+
       //if (!acmefile()->exists(pathCreatedShortcut)
-      if (!acmefile()->exists(pathShortcut)
-         || !acmenode()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
-         || !acmepath()->final_is_same(pathTarget, path)
-         || !acmenode()->m_papexnode->shell_link_icon(pathIcon, iIcon, path)
-         || !acmefile()->exists(pathIcon)
+      if (bEnoughCondition1
+         || bEnoughCondition2
+         || bEnoughCondition3
+         || bEnoughCondition4
+         || bEnoughCondition5
          )
       {
 

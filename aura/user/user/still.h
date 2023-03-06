@@ -25,7 +25,8 @@ namespace user
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::draw2d::icon_pointer              m_picon;
-      ::write_text::text_out_array *      m_ptextouta;
+      ::pointer < ::write_text::text_out_array > m_ptextouta;
+      //::string                            m_strTextOutArray;
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
@@ -61,7 +62,7 @@ namespace user
 
       //virtual ::write_text::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
 
-
+      virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 
       //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 

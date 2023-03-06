@@ -17,6 +17,10 @@ namespace write_text
    public:
 
 
+      ::string       m_strLast;
+      void *         m_pLastOsData;
+
+
       DECLARE_ARRAY_OF(text_out_array, text_out, text_out);
 
 
@@ -25,6 +29,9 @@ namespace write_text
       
       
       virtual ::index hit_test(const ::point_i32& point);
+
+
+      virtual bool is_updated(const ::scoped_string & str, void * pOsData) const;
 
 
    };

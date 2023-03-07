@@ -336,6 +336,22 @@ enum enum_trace_level
 };
 
 
+constexpr int trace_level_letter(enum_trace_level etracelevel)
+{
+
+   return etracelevel < 0|| etracelevel >= e_trace_level_count? ' ': " IWEF"[(int)etracelevel];
+
+}
+
+
+inline FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace_level etracelevelInformation = e_trace_level_information)
+{
+
+   return etracelevel <= etracelevelInformation ? stdout : stderr;
+
+}
+
+
 //enum  : i64
 //{
 //

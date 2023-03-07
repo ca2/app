@@ -95,6 +95,7 @@ list(APPEND library_source
         constant/earth.h
         constant/element.h
         constant/idpool.cpp
+        constant/library.h
         constant/message_box.h
         #context_glx.cpp
         #exception/callstack.cpp
@@ -2333,8 +2334,8 @@ endif ()
 
 
 target_link_directories(acme PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
+target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -2347,9 +2348,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 
 #if(LINUX)
-#set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")
+#set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")
 #add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
-#set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/binary/x64/basis/")
+#set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/binary/x64/basis/")
 #add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
 #endif()
 

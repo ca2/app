@@ -131,12 +131,12 @@ namespace user
       virtual void PreSubClassWindow();
 
 
-#ifdef WINDOWS
-      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
-#else
-      virtual strsize _009GetWindowText(char * psz, int n);
-#endif
-      virtual strsize _009GetWindowTextLength();
+//#ifdef WINDOWS
+//      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
+//#else
+//      virtual strsize _009GetWindowText(char * psz, int n);
+//#endif
+//      virtual strsize _009GetWindowTextLength();
 
       virtual bool GetFocusRect(RECTANGLE_I32 & rectangle);
 
@@ -392,7 +392,8 @@ namespace user
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
 
-      virtual void set_window_text(const ::string & pszString);
+      virtual void set_window_text(const ::string & psz);
+      virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
       virtual strsize get_window_text(char * pszStringBuf,strsize nMaxCount);
 

@@ -65,10 +65,13 @@ task::task()
 }
 
 
+#undef TASK_DESTRUCTOR_REPORTING
+
+
 task::~task()
 {
 
-#ifdef _DEBUG
+#if defined(_DEBUG) && defined(TASK_DESTRUCTOR_REPORTING)
 
    auto strThreadName = ::task_get_name();
    auto itask = ::get_current_itask();

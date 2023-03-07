@@ -2678,7 +2678,15 @@ return false;
    }
 
 
-   void node::command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+//   void node::command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem, const class time & timeTimeout, ::particle * pparticleSynchronization, ::file::file * pfileLines)
+//   {
+//
+//      throw interface_only();
+//
+//   }
+
+
+   int node::command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction)
    {
 
       throw interface_only();

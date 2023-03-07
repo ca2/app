@@ -12,12 +12,16 @@ namespace write_text
    text_out_array::text_out_array()
    {
 
+      m_pLastOsData = nullptr;
+
    }
+
 
    text_out_array::~text_out_array()
    {
 
    }
+
 
    ::index text_out_array::hit_test(const ::point_i32& point)
    {
@@ -41,6 +45,14 @@ namespace write_text
       }
 
       return iFound;
+
+   }
+
+
+   bool text_out_array::is_updated(const ::scoped_string & str, void * pOsData) const
+   {
+
+      return m_strLast == str && m_pLastOsData == pOsData;
 
    }
 

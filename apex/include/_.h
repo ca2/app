@@ -711,7 +711,7 @@ namespace aura
 #define BAD_WCHAR ((::wide_character)(-1))
 
 
-#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
+#define ARRAY_COUNT_OF(a) (sizeof(a)/sizeof(*(a)))
 
 
 class payload;

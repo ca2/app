@@ -3,6 +3,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/string/international.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"
@@ -40,9 +41,6 @@ namespace user
 
    still::~still()
    {
-
-
-      ::release(m_ptextouta);
 
    }
 
@@ -136,7 +134,14 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw(*m_ptextouta);
+            defer_update_text_out_array(pgraphics);
+
+            if(m_ptextouta)
+            {
+
+               pgraphics->draw(*m_ptextouta);
+
+            }
 
             //pgraphics->draw_text(strText, rectangleClient, ealign, edrawtext);
 
@@ -417,7 +422,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(m_strWindowText);
+      string strText(_get_window_text());
 
       auto size = pgraphics->get_text_extent(strText);
 
@@ -530,8 +535,52 @@ namespace user
    }
 
 
-   void still::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void still::defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics)
    {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      ::pointer<::write_text::font>pfont;
+
+      auto pstyle = get_style(pgraphics);
+
+      if (m_pfont)
+      {
+
+         pfont = m_pfont;
+
+      }
+      else
+      {
+
+         pfont = get_font(pstyle, ::e_element_none);
+
+      }
+
+      ::string strText = _get_window_text();
+
+      if(strText.is_empty() || ::is_null(pfont))
+      {
+
+         if(m_ptextouta)
+         {
+
+            m_ptextouta = nullptr;
+
+         }
+
+         return;
+
+      }
+
+      auto pOsData = pfont->get_os_data(pgraphics, 0);
+
+      if(m_ptextouta && m_ptextouta->is_updated(strText, pOsData))
+      {
+
+         return;
+
+      }
 
       ::rectangle_i32 rectangleClient;
 
@@ -551,12 +600,6 @@ namespace user
 
       m_rectangleText = rectangle;
 
-      string strText;
-
-      get_window_text(strText);
-
-      auto pstyle = get_style(pgraphics);
-
       ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_none);
@@ -572,22 +615,19 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      ::pointer<::write_text::font>pfont;
-      
-      if (m_pfont)
-      {
-
-         pfont = m_pfont;
-
-      }
-      else
-      {
-
-         pfont = get_font(pstyle, ::e_element_none);
-
-      }
-
       pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
+
+      m_ptextouta->m_strLast = strText;
+
+      m_ptextouta->m_pLastOsData = pOsData;
+
+   }
+
+
+   void still::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      defer_update_text_out_array(pgraphics);
 
    }
 
@@ -1068,9 +1108,9 @@ namespace user
    ::item_pointer still::on_hit_test(const ::point_i32 & point)
    {
 
-      auto iItem = m_ptextouta->hit_test(point);
+      ::index iItem = -1;
 
-      if (iItem < 0)
+      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point)))
       {
 
          auto pitemNone = __new(::item(e_element_none));

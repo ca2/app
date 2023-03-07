@@ -16,9 +16,9 @@ include(source/_.cmake)
 
 
 
-include(operating-system/_.cmake)
+include(operating_system/_.cmake)
 add_subdirectory(source/app)
-add_subdirectory(operating-system)
+add_subdirectory(operating_system)
 add_subdirectory(port)
 add_subdirectory(source)
 

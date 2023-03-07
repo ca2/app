@@ -567,7 +567,7 @@ namespace programming
       if (!string_ends(strFolder, "/") && !string_ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "operating-system/operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
+      string strSource = "operating_system/operating_system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
       //   string strN = m_pmanager->m_strNetnodePath;

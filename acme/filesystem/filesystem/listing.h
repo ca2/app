@@ -40,14 +40,17 @@ namespace file
    public:
 
       
-      ::file::path            m_pathUser;
-      ::file::path            m_pathFinal;
-      ::file::path            m_pathBasePath;
-      ::file::e_flag          m_eflag;
-      ::enum_depth            m_edepth;
-      string_array            m_straPattern;
-      string_array            m_straIgnoreName;
-      string_array            m_straTitle;
+      ::file::path                                    m_pathUser;
+      ::file::path                                    m_pathFinal;
+      ::file::path                                    m_pathBasePath;
+      ::file::e_flag                                  m_eflag;
+      ::enum_depth                                    m_edepth;
+      string_array                                    m_straPattern;
+      string_array                                    m_straIgnoreName;
+      string_array                                    m_straTitle;
+
+
+      ::function < void(const ::file::path & path) >  m_functionOnNewPath;
 
 
       listing();

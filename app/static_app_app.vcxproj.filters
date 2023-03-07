@@ -39,7 +39,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="operating-system\windows\_app_app.cpp">
+    <ClCompile Include="operating_system\windows\_app_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

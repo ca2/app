@@ -21,9 +21,24 @@
 #include "acme/primitive/collection/string_map.h"
 //#include "acme/primitive/time/time.h"
 
+inline auto std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information)
+{
+
+   auto predicate = [&](auto etracelevel, auto & str)
+   {
+
+      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
+                ::string(str).c_str());
+
+   };
+
+   return predicate;
+
+}
 
 CLASS_DECL_ACME const char * callstack_default_format();
 
+using a_trace_function = ::function < void(enum_trace_level, const ::scoped_string & ) >;
 
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
@@ -644,7 +659,8 @@ namespace acme
 
 
 
-      virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
+      virtual int command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction = nullptr);
 
 
       //virtual string process_version_dir_name();

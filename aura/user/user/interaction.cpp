@@ -8010,7 +8010,7 @@ namespace user
    void interaction::set_window_text(const ::string & pszString)
    {
 
-      m_strWindowText = pszString;
+      m_strWindowText2 = pszString;
 
       if (m_pprimitiveimpl != nullptr)
       {
@@ -8026,12 +8026,51 @@ namespace user
    }
 
 
+   void interaction::set_window_text_source(const ::a_string_function & astringfunction)
+   {
+
+      m_astringfunctionWindowText = astringfunction;
+
+   }
+
+
+   void interaction::clear_window_text_source()
+   {
+
+      m_astringfunctionWindowText = nullptr;
+
+   }
+
+
+   ::string interaction::_get_window_text()
+   {
+
+      if(m_astringfunctionWindowText)
+      {
+
+         return m_astringfunctionWindowText();
+
+      }
+      else
+      {
+
+         synchronous_lock synchronouslock(this->synchronization());
+
+         return m_strWindowText2;
+
+      }
+
+   }
+
+
    strsize interaction::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      strsize n = minimum(nMaxCount, m_strWindowText.length());
+      ::string strWindowText = _get_window_text();
 
-      ansi_count_copy(pszStringBuf, m_strWindowText, n);
+      strsize n = minimum(nMaxCount, strWindowText.length());
+
+      ansi_count_copy(pszStringBuf, strWindowText, n);
 
       return n;
 
@@ -8050,12 +8089,10 @@ namespace user
    }
 
 
-   void interaction::get_window_text(string & rectangleString)
+   void interaction::get_window_text(string & str)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
-
-      rectangleString = m_strWindowText;
+      str = _get_window_text();
 
    }
 
@@ -9613,18 +9650,23 @@ namespace user
 
       m_bClipRectangle = false;
 
-      defer_graphics(pgraphics);
-
-      m_pprimitiveimpl->on_layout(pgraphics);
-
-      on_layout(pgraphics);
-
-      auto pappearance = get_appearance();
-
-      if (::is_set(pappearance))
+      if(pgraphics)
       {
 
-         pappearance->perform_layout(pgraphics);
+         defer_graphics(pgraphics);
+
+         m_pprimitiveimpl->on_layout(pgraphics);
+
+         on_layout(pgraphics);
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            pappearance->perform_layout(pgraphics);
+
+         }
 
       }
 
@@ -9671,7 +9713,12 @@ namespace user
 
       }
 
-      on_drag_scroll_layout(pgraphics);
+      if(pgraphics)
+      {
+
+         on_drag_scroll_layout(pgraphics);
+
+      }
 
       //if (::is_set(m_playout))
       //{
@@ -16951,59 +16998,61 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 //
 //   }
 
-
-#ifdef WINDOWS
-
-
-   strsize interaction::_009GetWindowText(wchar_t * pwsz, int n)
-   {
-
-      wstring wstr(m_strWindowText);
-
-      n = (int)minimum(wstr.length() + 1, n);
-
-      wcsncpy(pwsz, wstr.c_str(), n);
-
-      pwsz[n - 1] = '\0';
-
-      return n - 1;
-
-   }
-
-
-   strsize interaction::_009GetWindowTextLength()
-   {
-      wstring wstr(m_strWindowText);
-
-      return wstr.length();
-
-   }
-
-
-#else
-
-
-   strsize interaction::_009GetWindowText(char * psz, int n)
-   {
-
-      strncpy(psz, m_strWindowText.c_str(), n);
-
-      psz[n - 1] = '\0';
-
-      return n - 1;
-
-   }
-
-
-   strsize interaction::_009GetWindowTextLength()
-   {
-
-      return m_strWindowText.length();
-
-   }
-
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//
+//   strsize interaction::_009GetWindowText(wchar_t * pwsz, int n)
+//   {
+//
+//      wstring wstr(m_strWindowText);
+//
+//      n = (int)minimum(wstr.length() + 1, n);
+//
+//      wcsncpy(pwsz, wstr.c_str(), n);
+//
+//      pwsz[n - 1] = '\0';
+//
+//      return n - 1;
+//
+//   }
+//
+//
+//   strsize interaction::_009GetWindowTextLength()
+//   {
+//      wstring wstr(m_strWindowText);
+//
+//      return wstr.length();
+//
+//   }
+//
+//
+//#else
+//
+//
+//   strsize interaction::_009GetWindowText(char * psz, int n)
+//   {
+//
+//      auto strWindowText = _get_window_text();
+//
+//      strncpy(psz, strWindowText, n);
+//
+//      psz[n - 1] = '\0';
+//
+//      return n - 1;
+//
+//   }
+//
+//
+//   strsize interaction::_009GetWindowTextLength()
+//   {
+//
+//      return m_strWindowText.length();
+//
+//   }
+//
+//
+//#endif
 
 
 //   void interaction::send_procedure(const ::procedure & procedure)

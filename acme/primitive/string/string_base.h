@@ -1164,13 +1164,13 @@ public:
    string_base left_skipping_any_character_in(const SCOPED_STRING & scopedstrCharSet) const;
 
 
-   void format(const CHARACTER * pszFormat, ...);
+   string_base & format(const CHARACTER * pszFormat, ...);
 
-   void format_arguments(const CHARACTER * pszFormat, va_list args);
+   string_base & format_arguments(const CHARACTER * pszFormat, va_list args);
 
-   void append_format(const CHARACTER * pszFormat, ...);
+   string_base & append_format(const CHARACTER * pszFormat, ...);
 
-   void append_format_arguments(const CHARACTER * pszFormat, va_list args);
+   string_base & append_format_arguments(const CHARACTER * pszFormat, va_list args);
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 
@@ -1610,3 +1610,4 @@ inline string & operator <<(string & str, INTEGRAL i)
 
 
 
+using a_string_function = ::function < ::string(void) >;

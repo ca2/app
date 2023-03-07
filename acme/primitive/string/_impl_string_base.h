@@ -2502,9 +2502,9 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    auto pNew = this->create_meta_data(sizeStorageInBytes);
 
-   pNew->set_character_count(characterCount);
-
    this->create_assign_natural_meta_data(pNew);
+
+   pNew->set_character_count(characterCount);
 
    return (CHARACTER *) pNew->begin();
 
@@ -2539,9 +2539,9 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    }
 
-   pNew->set_character_count(characterCount);
-
    this->assign_natural_meta_data(pNew);
+
+   pNew->set_character_count(characterCount);
 
    return (CHARACTER *) pNew->begin();
 

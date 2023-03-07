@@ -925,7 +925,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					
 					"$(WorkspaceDir)/operating-system",
 				);
@@ -987,7 +987,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					
 					"$(WorkspaceDir)/operating-system",
 				);
@@ -1019,7 +1019,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					
 				);
 				PLATFORM_MODIFIER = macos;
@@ -1048,7 +1048,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					
 					"$(WorkspaceDir)/operating-system",
 				);

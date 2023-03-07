@@ -870,7 +870,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -930,7 +930,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

@@ -763,7 +763,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -848,7 +848,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(WorkspaceDir)/../operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;

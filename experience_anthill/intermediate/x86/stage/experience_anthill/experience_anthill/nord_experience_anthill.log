@@ -11,48 +11,48 @@
   frame_005.cpp
   In file included from experience\control_box_button.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
   In file included from experience\frame.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
   In file included from experience\experience.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   In file included from experience\control_box.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   1 error generated.
   1 error generated.
   In file included from experience\frame_001.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   1 error generated.
   In file included from experience\frame_002.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   1 error generated.
   In file included from experience\frame_005.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   1 error generated.
@@ -61,8 +61,8 @@ C:\basis\operating-system\operating-system-android\_seed\../../operating-system-
   1 error generated.
   In file included from experience\frame_008.cpp:1:
   In file included from .\framework.h:6:
-  In file included from C:\basis\operating-system\operating-system-android\_seed\../../../source/app\acme/_start.h:15:
-C:\basis\operating-system\operating-system-android\_seed\../../operating-system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
+  In file included from C:\basis\operating_system\operating_system-android\_seed\../../../source/app\acme/_start.h:15:
+C:\basis\operating_system\operating_system-android\_seed\../../operating_system-android\operating_system/platform_setup.h(5,10): fatal error : 'android_tv.txt' file not found
   #include "android_tv.txt"
            ^~~~~~~~~~~~~~~~
   1 error generated.

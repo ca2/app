@@ -735,9 +735,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -899,9 +899,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strBuildCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
+         strBuildCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1494,8 +1494,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batSrc = dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
       vars1batDst = dir()->install() / m_strDynamicSourceStage / "front/vc_vars.bat";
       vars2batDst = dir()->install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
@@ -1540,9 +1540,9 @@ namespace dynamic_source
 //         strCmd = dir()->install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-         strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
+         strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
 
          //#else
@@ -1704,9 +1704,9 @@ namespace dynamic_source
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
-      strCmd.format(dir()->install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strCmd.format(dir()->install() / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
 #endif
       //#else
       // strCmd.format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

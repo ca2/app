@@ -64,16 +64,16 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
+    <Import Project="..\..\..\operating_system\operating_system-android\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -115,7 +115,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
   </ItemDefinitionGroup>
@@ -134,7 +134,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
@@ -155,7 +155,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
   </ItemDefinitionGroup>
@@ -175,7 +175,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>freeimage;png;jpeg;_openexr;_openjpeg;_rawlite;_tiff4;_webp;sqlite;ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating_system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating_system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
   </ItemDefinitionGroup>
@@ -206,31 +206,31 @@
     <ClCompile Include="impact.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\acme_android\nord_acme_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\acme_android\nord_acme_android.vcxproj">
       <Project>{c296392c-dc67-41f2-badc-7ad2f2f0fb3e}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\apex_android\nord_apex_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\apex_android\nord_apex_android.vcxproj">
       <Project>{4220bcf1-dac7-4a08-b434-437cc8f763b7}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\aura_android\nord_aura_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\aura_android\nord_aura_android.vcxproj">
       <Project>{df3b00c6-a62e-427e-aa59-233b10f9f933}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\node_android\nord_node_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\node_android\nord_node_android.vcxproj">
       <Project>{e31edcb1-a35f-4d04-affe-6f37135d3bf9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\windowing_android\nord_windowing_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\windowing_android\nord_windowing_android.vcxproj">
       <Project>{c8abdf79-52b6-4fd1-92ff-42c9e6c253a7}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\write_text_android\nord_write_text_android.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-android\write_text_android\nord_write_text_android.vcxproj">
       <Project>{4991a865-caa8-40c4-8da6-ccb3a0f9bc47}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\acme_posix\nord_acme_posix.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-posix\acme_posix\nord_acme_posix.vcxproj">
       <Project>{92f2d035-26c5-48ae-8090-3e7e3aec3d45}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\apex_posix\nord_apex_posix.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-posix\apex_posix\nord_apex_posix.vcxproj">
       <Project>{7588cdd0-e83b-46a2-9910-0da2e8d37e6d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\aura_posix\nord_aura_posix.vcxproj">
+    <ProjectReference Include="..\..\..\operating_system\operating_system-posix\aura_posix\nord_aura_posix.vcxproj">
       <Project>{b23268d6-75cd-4f51-b3a7-fbfce1552c7d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\app\acme\nord_acme.vcxproj">

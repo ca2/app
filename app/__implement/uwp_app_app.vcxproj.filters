@@ -81,31 +81,31 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
     <None Include="..\_matter.zip">
       <Filter>Common</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\binary\libcrypto-3-x64.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\x64\Debug\binary\libcrypto-3-x64.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\binary\libssl-3-x64.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\x64\Debug\binary\libssl-3-x64.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\third\binary\pcre.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\x64\Debug\third\binary\pcre.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\x64\Debug\third\binary\zlib.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\x64\Debug\third\binary\zlib.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
     <None Include="..\uwp_app_app_TemporaryKey.pfx">

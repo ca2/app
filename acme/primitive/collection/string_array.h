@@ -208,6 +208,28 @@ public:
     void make_lower();
     void make_upper();
 
+   auto & append_format(const CHARACTER * psz, ...)
+   {
+
+      va_list arguments;
+
+      va_start(arguments, psz);
+
+      auto & str = this->add_new().format_arguments(psz, arguments);
+
+      va_end(arguments);
+
+      return str;
+
+   }
+
+
+   auto & add_trace(enum_trace_level etracelevel, const SCOPED_STRING & scopedstr)
+   {
+
+      return append_format("%c: %s\n", trace_level_letter(etracelevel), ::string(scopedstr).c_str());
+
+   }
 
     void debug_output(::index iStart = 0, ::count c = -1);
 

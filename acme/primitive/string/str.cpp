@@ -4004,7 +4004,7 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 }
 
 
-void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+void str::get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string &) > & functionNewLine)
 {
 
    auto iLimit = str.rear_find_index("\n");
@@ -4081,43 +4081,9 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       }
 
-      string strLine = str.substr(iLast + 1, iFindNext - iLast - 1 - iLess);
+      auto range = str(iLast + 1, iFindNext - iLast - 1 - iLess);
 
-      string strPrefixedLine;
-
-      strPrefixedLine = strPrefix + strLine;
-
-      if (::is_set(pparticleSynchronization))
-      {
-
-         pparticleSynchronization->_lock();
-
-      }
-
-      stra.add(strPrefixedLine.c_str());
-
-      if(::is_set(pparticleSynchronization))
-      {
-
-         pparticleSynchronization->unlock();
-
-      }
-
-      if(::is_set(pfileLog) && pfileLog->has_ok_flag())
-      {
-
-         try
-         {
-
-            pfileLog->write(strPrefixedLine + "\n");
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
+      functionNewLine(range);
 
       if(iFindNext >= iLimit)
       {
@@ -4138,6 +4104,55 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
    }
 
    str.erase(0, iLimit + 1);
+
+}
+
+
+void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
+{
+
+   auto functionNewLine = [&](auto & range)
+   {
+
+      string strPrefixedLine;
+
+      strPrefixedLine = strPrefix + range;
+
+      if (::is_set(pparticleSynchronization))
+      {
+
+         pparticleSynchronization->_lock();
+
+      }
+
+      stra.add(strPrefixedLine.c_str());
+
+      if (::is_set(pparticleSynchronization))
+      {
+
+         pparticleSynchronization->unlock();
+
+      }
+
+      if (::is_set(pfileLog) && pfileLog->has_ok_flag())
+      {
+
+         try
+         {
+
+            pfileLog->write(strPrefixedLine + "\n");
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   };
+
+   get_lines(str, bFinal, functionNewLine);
 
 }
 

@@ -83,22 +83,22 @@
   <ItemGroup>
     <None Include="..\uwp_app_net_TemporaryKey.pfx" />
     <None Include="..\uwp_app_simple_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
+    <None Include="..\..\..\..\operating_system\storage-universal_windows\third\binary\x64\Debug\pcre.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
+    <None Include="..\..\..\..\operating_system\storage-universal_windows\third\binary\x64\Debug\zlib.dll">
       <Filter>Libraries\x64\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\binary\libcrypto-3.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\binary\libssl-3.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\third\binary\pcre.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
-    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
+    <None Include="..\..\..\..\..\operating_system\storage-universal_windows\Win32\Debug\third\binary\zlib.dll">
       <Filter>Libraries\x86\Debug</Filter>
     </None>
     <None Include="..\_main.inl">

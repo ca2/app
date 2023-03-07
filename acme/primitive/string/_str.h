@@ -323,6 +323,9 @@ public:
    static inline strsize unichar_count(const ::wd32_character * pstr);
 
 
+   static void get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string &) > & functionNewLine);
+
+
    static void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
 
 

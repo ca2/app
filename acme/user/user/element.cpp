@@ -602,24 +602,24 @@ namespace user
    //}
 
 
-#ifdef WINDOWS
-   strsize element::_009GetWindowText(wchar_t * pwsz, int n)
-#else
-   strsize element::_009GetWindowText(char * psz, int n)
-#endif
-   {
-
-      return -1;
-
-   }
-
-
-   strsize element::_009GetWindowTextLength()
-   {
-
-      return -1;
-
-   }
+//#ifdef WINDOWS
+//   strsize element::_009GetWindowText(wchar_t * pwsz, int n)
+//#else
+//   strsize element::_009GetWindowText(char * psz, int n)
+//#endif
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//
+//   strsize element::_009GetWindowTextLength()
+//   {
+//
+//      return -1;
+//
+//   }
 
 
 
@@ -1602,6 +1602,12 @@ namespace user
 
 
    void element::set_window_text(const ::string & pszString)
+   {
+
+   }
+
+
+   void element::set_window_text_source(const ::a_string_function & astringfunction)
    {
 
    }

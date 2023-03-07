@@ -19,7 +19,7 @@
 					<Add option="-g" />
 					<Add option="-std=c++17" />
 					<Add option="-D_DEBUG" />
-					<Add directory="$(#archive)/operating-system-linux/third/include" />
+					<Add directory="$(#archive)/operating_system-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-m64" />
@@ -39,7 +39,7 @@
 					<Add option="-g" />
 					<Add option="-O0" />
 					<Add option="-std=c++17" />
-					<Add directory="$(#archive)/operating-system-linux/third/include" />
+					<Add directory="$(#archive)/operating_system-linux/third/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
@@ -84,8 +84,8 @@
 			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)" />
+			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)/_include" />
 			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
 			<Add directory="$(WORKSPACE_DIR)/../../../source/app" />
 

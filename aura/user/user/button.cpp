@@ -33,7 +33,7 @@ namespace user
 
       user_button_construct();
 
-      m_strWindowText = pszName;
+      m_strWindowText2 = pszName;
 
       m_atom = atom;
 
@@ -203,7 +203,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(m_strWindowText);
+      string strText(_get_window_text());
 
       const ::size_i32 & size = pgraphics->get_text_extent(strText);
 

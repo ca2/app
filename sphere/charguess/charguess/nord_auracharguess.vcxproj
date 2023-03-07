@@ -95,7 +95,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ForcedIncludeFiles>$(SolutionDir)../../operating-system-android/operational_system/solution_x86_basis.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)../../operating_system-android/operational_system/solution_x86_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link />
     <Link>
@@ -113,7 +113,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <ForcedIncludeFiles>$(SolutionDir)../../operating-system-android/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)../../operating_system-android/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <LibraryDependencies>aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
@@ -126,7 +126,7 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value</AdditionalOptions>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(ProjectDir);cpp;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)../../operating-system-android/operational_system/solution_arm_stage.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)../../operating_system-android/operational_system/solution_arm_stage.h</ForcedIncludeFiles>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
@@ -153,7 +153,7 @@
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir);cpp;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../..;$(ProjectDir)..;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(SolutionDir)../../operating-system-android/operational_system/solution_x86_stage.h</ForcedIncludeFiles>
+      <ForcedIncludeFiles>$(SolutionDir)../../operating_system-android/operational_system/solution_x86_stage.h</ForcedIncludeFiles>
       <PreprocessorDefinitions>_AURA_CHARGUESS</PreprocessorDefinitions>
     </ClCompile>
     <Link>

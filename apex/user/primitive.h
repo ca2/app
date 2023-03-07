@@ -24,7 +24,7 @@ namespace user
    public:
 
 
-      class ::time    m_timeFocusStart;
+      class ::time            m_timeFocusStart;
 
 
       primitive();
@@ -50,12 +50,12 @@ namespace user
 
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowTextLength);
-#ifdef WINDOWS
-      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
-#else
-      strsize _009GetWindowText(char * psz, int n) override;
-#endif
-      strsize _009GetWindowTextLength() override;
+//#ifdef WINDOWS
+//      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
+//#else
+//      strsize _009GetWindowText(char * psz, int n) override;
+//#endif
+//      strsize _009GetWindowTextLength() override;
 
       bool GetFocusRect(RECTANGLE_I32 & rectangle) override;
 
@@ -324,6 +324,7 @@ namespace user
       void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
       void set_window_text(const ::string & pszString) override;
+      void set_window_text_source(const ::a_string_function & function) override;
 
       strsize get_window_text(char * pszStringBuf,strsize nMaxCount) override;
 

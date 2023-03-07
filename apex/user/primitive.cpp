@@ -720,24 +720,24 @@ namespace user
    }
 
 
-#ifdef WINDOWS
-   strsize primitive::_009GetWindowText(wchar_t * pwsz, int n)
-#else
-   strsize primitive::_009GetWindowText(char * psz, int n)
-#endif
-   {
-
-      return -1;
-
-   }
-
-
-   strsize primitive::_009GetWindowTextLength()
-   {
-
-      return -1;
-
-   }
+//#ifdef WINDOWS
+//   strsize primitive::_009GetWindowText(wchar_t * pwsz, int n)
+//#else
+//   strsize primitive::_009GetWindowText(char * psz, int n)
+//#endif
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//
+//   strsize primitive::_009GetWindowTextLength()
+//   {
+//
+//      return -1;
+//
+//   }
 
 
 
@@ -1722,6 +1722,12 @@ namespace user
 
 
    void primitive::set_window_text(const ::string & pszString)
+   {
+
+   }
+
+
+   void primitive::set_window_text_source(const ::a_string_function & astringfunction)
    {
 
    }

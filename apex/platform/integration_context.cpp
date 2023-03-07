@@ -174,9 +174,14 @@ namespace integration
    int context::command_system(const ::scoped_string & scopedstrCommand)
    {
 
-      int iExitCode = 0;
-
-      acmenode()->command_system(m_straOutput, iExitCode, scopedstrCommand, e_command_system_inline_log);
+//      auto functionTrace = [&](auto etracelevel, auto & str)
+//      {
+//
+//         fprintf(trace_level_FILE(etracelevel), "%c: %s\n", trace_level_letter(etracelevel), str.c_str());
+//
+//      };
+//
+      auto iExitCode = acmenode()->command_system(scopedstrCommand, ::std_inline_log());
 
       return iExitCode;
 

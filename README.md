@@ -147,7 +147,7 @@
 
 It is recommended that you add the following environment variables to your .env file
 
-`%UserProfile%/simple/operating-system/tool-windows/bin`
+`%UserProfile%/simple/operating_system/tool-windows/bin`
 
 <!-- Prerequisites -->
 ## Prerequisites
@@ -182,13 +182,13 @@ git lfs install
 ### Create directory
 
 ```bash
-mkdir $HOME/operating-system
+mkdir $HOME/operating_system
 ```
 
 ### Clone the project
 
 ```bash
-git clone https://github.com/ca2/storage-windows $HOME/operating-system/storage-windows --recurse-submodules
+git clone https://github.com/ca2/storage-windows $HOME/operating_system/storage-windows --recurse-submodules
 ```
 
 ```bash

@@ -332,7 +332,9 @@ namespace user
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       ::pointer<::windowing::cursor>              m_pcursor;
-      string                                       m_strWindowText;
+      string                                       m_strWindowText2;
+      ::a_string_function                          m_astringfunctionWindowText;
+
       atom                                           m_atomModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
@@ -1384,16 +1386,19 @@ namespace user
       void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
       virtual void set_window_text(const ::string & pszString) override;
+      virtual void set_window_text_source(const ::a_string_function & astringfunction) override;
+      virtual void clear_window_text_source();
 
-#ifdef WINDOWS
-      strsize _009GetWindowText(wchar_t * pwsz, int n) override;
-#else
-      strsize _009GetWindowText(char * psz, int n) override;
-#endif
-      virtual strsize _009GetWindowTextLength() override;
+//#ifdef WINDOWS
+//      strsize _009GetWindowText(wchar_t * pwsz, int n) override;
+//#else
+//      strsize _009GetWindowText(char * psz, int n) override;
+//#endif
+//      virtual strsize _009GetWindowTextLength() override;
 
       virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount) override;
 
+      virtual ::string _get_window_text();
       virtual string get_window_text() override;
       virtual void get_window_text(string& rectangleString) override;
       virtual strsize get_window_text_length() override;

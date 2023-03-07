@@ -1040,11 +1040,11 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       string strBuildCmd;
 
 #if defined(LINUX) || defined(FREEBSD)
-      strBuildCmd = dir()->install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strBuildCmd = dir()->install() / "operating_system/operating_system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
-      strBuildCmd.format(dir()->install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.format(dir()->install() / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #else
-      strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1257,9 +1257,9 @@ auto tickStart = ::time::now();
 #ifndef MACOS
 
 #if defined(LINUX) || defined(FREEBSD)
-         strBuildCmd.format(dir()->install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
+         strBuildCmd.format(dir()->install() / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
-         strBuildCmd.format(dir()->install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat"));
+         strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);

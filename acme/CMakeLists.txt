@@ -704,6 +704,8 @@ list(APPEND library_source
         primitive/string/_.cpp
         #primitive/string/_.h
         #primitive/string/_.h
+        primitive/string/_impl_string_base.h
+        primitive/string/_impl_string_meta_data.h
         primitive/string/c/extension/_impl.h
         primitive/string/c/encoding.h
         primitive/string/c/ancient/ansi.h

@@ -8,12 +8,6 @@
 #pragma once
 
 
-//#include "acme/exception/debug.h"
-////#include "acme/primitive/primitive/scopedstr.h"
-//#include "simple_string_base.h"
-
-
-
 template < primitive_character CHARACTER, ::comparison::ordering < CHARACTER > ORDERING >
 inline ::std::strong_ordering _sz_compare(const CHARACTER * pA, const CHARACTER * pB, ORDERING ordering) noexcept
 {
@@ -484,56 +478,6 @@ inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHA
 //}
 
 
-
-//template < typename ITERATOR_TYPE >
-//template < primitive_character CHARACTER2 >
-//inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_string_base <  const CHARACTER2 * > & scopedstr)
-//{
-//
-//   auto lenSource = scopedstr.size();
-//
-//   start_count(start, count, lenSource);
-//
-//   if (count <= 0)
-//   {
-//
-//      default_construct();
-//
-//   }
-//   //else if (sizeof(CHARACTER) == sizeof(CHARACTER2) && start == 0 && count == lenSource)
-//   //{
-//
-//   //   this->create_assign_natural_meta_data((natural_meta_data < string_meta_data < CHARACTER > > *)strSource.metadata());
-//
-//   //}
-//   else
-//   {
-//
-//      auto dstlen = utf_to_utf_length(this->begin(), scopedstr.begin() + start, count);
-//
-//      auto pszTarget = create_string(dstlen);
-//
-//      utf_to_utf(pszTarget, scopedstr.begin() + start, count);
-//
-//      this->release_string_buffer(dstlen);
-//
-//   }
-//
-//}
-//
-//
-//template < typename ITERATOR_TYPE >
-//inline string_base < ITERATOR_TYPE >::string_base(const string_base & str) :
-//   string_base(e_no_initialize)
-//{
-//
-//   auto pmetadata = scopedstr.metadata();
-//
-//   this->create_assign_natural_meta_data(pmetadata);
-//
-//}
-//
-//
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
 inline string_base < ITERATOR_TYPE >::string_base(CHARACTER2 chSrc, strsize repeat) :
@@ -2489,9 +2433,13 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    auto pNew = this->create_meta_data(sizeStorageInBytes);
 
+   this->create_assign_natural_meta_data(pNew);
+
    pNew->set_character_count(characterCount);
 
-   this->create_assign_natural_meta_data(pNew);
+   this->m_end = this->m_begin + characterCount;
+
+   *(CHARACTER *)this->m_end = (CHARACTER) 0;
 
    return (CHARACTER *) pNew->begin();
 
@@ -2526,9 +2474,13 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    }
 
+   this->assign_natural_meta_data(pNew);
+
    pNew->set_character_count(characterCount);
 
-   this->assign_natural_meta_data(pNew);
+   this->m_end = this->m_begin + characterCount;
+
+   *(CHARACTER *)this->m_end = (CHARACTER) 0;
 
    return (CHARACTER *) pNew->begin();
 
@@ -2549,6 +2501,8 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::release_string_bu
    this->NATURAL_POINTER::metadata()->set_character_count(characterCount);
 
    this->m_end = this->m_begin + characterCount;
+
+   *(CHARACTER *)this->m_end = (CHARACTER) 0;
 
    return *this;
 
@@ -2625,6 +2579,8 @@ inline typename string_base < ITERATOR_TYPE >::this_iterator & string_base < ITE
          pmetadata->set_character_count(characterCount);
 
          this->m_end = this->m_begin + characterCount;
+
+         *(CHARACTER *)this->m_end = (CHARACTER) 0;
 
       }
 
@@ -6981,62 +6937,6 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & scopedstrSuffix)
 
 
 int get_mem_free_available_kb();
-
-
-template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::raw_set_character_count(::strsize countData)
-{
-
-   if (this->natural_is_shared())
-   {
-
-      throw_exception(error_wrong_state, "invalid state");
-
-   }
-
-   auto storageCharacterCount = this->storage_character_count();
-
-   if (countData > storageCharacterCount)
-   {
-
-      throw_exception(error_bad_argument);
-
-   }
-
-   this->m_countData = countData;
-
-}
-
-
-template < primitive_character CHARACTER >
-inline void string_meta_data < CHARACTER > ::set_character_count(::strsize countData)
-{
-
-   raw_set_character_count(countData);
-
-   this->begin()[countData] = (CHARACTER)0;
-
-   this->begin()[this->storage_character_count()] = (CHARACTER)0;
-
-}
-
-
-template < primitive_character CHARACTER >
-inline ::strsize string_meta_data < CHARACTER>::storage_character_count() const
-{
-
-   return (::strsize)byte_length_to_character_count(&this->begin()[0], (::strsize)this->m_sizeStorageInBytes);
-
-}
-
-
-template < primitive_character CHARACTER >
-inline ::memsize string_meta_data < CHARACTER>::character_count_in_bytes() const
-{
-
-   return character_count_to_byte_length(&this->begin()[0], this->m_countData);
-
-}
 
 
 template < primitive_character CHARACTER >

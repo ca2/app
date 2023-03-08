@@ -3,6 +3,7 @@
 
 #include "_string_range_impl.h"
 #include "_impl_string_base.h"
+#include "_impl_string_meta_data.h"
 
 #include "c/_impl.h"
 #include "sz/_impl.h"

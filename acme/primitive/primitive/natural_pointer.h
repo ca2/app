@@ -26,11 +26,10 @@ public:
    interlocked_count                   m_countReference;
    memsize_storage                     m_sizeStorageInBytes;
    memsize_storage                     m_countData;
-   DATA                                m_endofmetadata[1024];
 
 
    meta_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
-   meta_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1), m_endofmetadata{} {}
+   meta_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
    
    bool natural_is_shared() const { return m_countReference > 1; }
@@ -42,10 +41,10 @@ public:
    auto natural_decrement_reference_count() { return --m_countReference; }
 
    
-   constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
+   //constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
    
-   DATA * begin() const { return (DATA *)(((byte *)this) + natural_offset()); }
+   DATA * begin() const { return (DATA*)&(this[1]); }
 
 
    DATA * end() const { return (DATA *)(begin() + this->m_countData); }
@@ -79,7 +78,7 @@ public:
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
-      return ::is_null(pdata) ? nullptr : ((natural_meta_data < BASE_META_DATA >*)(void*)((byte*)(void*)pdata - BASE_META_DATA::natural_offset()));
+      return ::is_null(pdata) ? nullptr : &((natural_meta_data < BASE_META_DATA >*)(pdata))[-1];
 
    }
 
@@ -255,7 +254,7 @@ public:
    inline static NATURAL_META_DATA * create_meta_data(::memsize sizeStorageInBytes)
    {
 
-      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(sizeStorageInBytes + BASE_META_DATA::natural_offset());
+      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(sizeStorageInBytes + sizeof(BASE_META_DATA));
 
       pmetadata->m_countReference.construct();
 

@@ -680,24 +680,6 @@ template < typename ITERATOR_TYPE >
 
 }
 
-//
-//template < >
-//inline ::u32hash u32_hash < const ansi_string & >(const ansi_string & ansistr)
-//{
-//
-//   return u32_hash < const ::ansi_character * >(ansistr.c_str());
-//
-//}
-//
-//
-//template < >
-//inline ::u32hash u32_hash < const wide_string & >(const wide_string & widestr)
-//{
-//
-//   return u32_hash < const ::wide_character * >(widestr.c_str());
-//
-//}
-
 
 template < >
 inline ::u32hash u32_hash < ansi_string >(ansi_string ansistr)
@@ -715,8 +697,6 @@ inline ::u32hash u32_hash < wide_string >(wide_string widestr)
    return u32_hash < const wide_string & >(widestr);
 
 }
-
-
 
 
 template < typename ITERATOR_TYPE >
@@ -746,14 +726,26 @@ template < typename ITERATOR_TYPE >
 bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scopedstr)
 {
 
-   if (!this->begins(scopedstr))
+   if(scopedstr.size() > 0)
    {
 
-      return false;
+      if (!this->begins(scopedstr))
+      {
+
+         return false;
+
+      }
+
+      if(this->m_erange & e_range_string)
+      {
+
+         this->m_erange -= e_range_string;
+
+      }
+
+      this->m_begin += scopedstr.size();
 
    }
-
-   this->m_begin += scopedstr.size();
 
    return true;
 
@@ -764,14 +756,26 @@ template < typename ITERATOR_TYPE >
 bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_string & scopedstr)
 {
 
-   if (!this->case_insensitive_begins(scopedstr))
+   if(scopedstr.size() > 0)
    {
 
-      return false;
+      if (!this->case_insensitive_begins(scopedstr))
+      {
+
+         return false;
+
+      }
+
+      if(this->m_erange & e_range_string)
+      {
+
+         this->m_erange -= e_range_string;
+
+      }
+
+      this->m_begin += scopedstr.size();
 
    }
-
-   this->m_begin += scopedstr.size();
 
    return true;
 
@@ -782,37 +786,30 @@ template < typename ITERATOR_TYPE >
 bool string_range < ITERATOR_TYPE >::case_insensitive_ends_eat(const ::scoped_string & scopedstr)
 {
 
-   if (!this->case_insensitive_ends(scopedstr))
+   if(scopedstr.size() > 0)
    {
 
-      return false;
+      if (!this->case_insensitive_ends(scopedstr))
+      {
+
+         return false;
+
+      }
+
+      if(this->m_erange & e_range_string)
+      {
+
+         this->m_erange -= e_range_string;
+
+      }
+
+      this->m_end -= scopedstr.size();
 
    }
-
-   this->m_end -= scopedstr.size();
 
    return true;
 
 }
-
-
-//
-//template < typename ITERATOR_TYPE >
-//void string_base < ITERATOR_TYPE >::consume(const ::ansi_character * psz)
-//{
-//
-//   for (idx = 0; idx < len; idx++)
-//   {
-//      if (ra[idx] != psz[idx])
-//      {
-//         throw ::parsing_exception("Name does not match expected");
-//         break;
-//      }
-//   }
-//
-//   pszParse += len;
-//
-//}
 
 
 template < typename ITERATOR_TYPE >

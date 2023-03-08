@@ -267,7 +267,59 @@ const CHARACTER * string_scan(const CHARACTER * psz, const CHARACTER * pszCharac
 //}
 
 
+consteval auto string_order_folder_first()
+{
 
+   return [](const char * pszA, const char * pszB)
+   {
+
+      int i = 0;
+
+      while (*pszA && *pszB && ((i = *pszA - *pszB) == 0))
+      {
+
+         pszA++;
+         pszB++;
+
+      }
+
+      if (i == 0)
+      {
+
+         return false;
+
+      }
+      else if (*pszA == '\0')
+      {
+
+         return true;
+
+      }
+      else if (*pszB == '\0')
+      {
+
+
+         return false;
+
+      }
+      else if (*pszA == '/')
+      {
+
+         return true;
+
+      }
+      else if (*pszB == '/')
+      {
+
+         return false;
+
+      }
+
+      return i < 0;
+
+   };
+
+}
 
 
 #include "ancient/_.h"

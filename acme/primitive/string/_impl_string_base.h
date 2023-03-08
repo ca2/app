@@ -450,23 +450,10 @@ template < primitive_character CHARACTER2 >
 inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHARACTER2 * > & range)
 {
 
-   auto pmetadata = string_base < const CHARACTER2 * >::NATURAL_META_DATA::from_data(range.m_begin);
-
-   bool bDifferent = range.m_end != pmetadata->end();
-
-   if (bDifferent)
+   if (sizeof(CHARACTER) == sizeof(CHARACTER2) && (range.m_erange & e_range_string))
    {
 
-      foo123();
-
-   }
-
-   if (sizeof(CHARACTER) == sizeof(CHARACTER2) && (range.m_erange & e_range_string) && bDifferent)
-   {
-
-      //auto pbeginTest = pmetadata->begin();
-
-      //auto pendTest = pmetadata->end();
+      auto pmetadata = string_base < const CHARACTER2 * >::NATURAL_META_DATA::from_data(range.m_begin);
 
       pmetadata->natural_increment_reference_count();
 

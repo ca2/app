@@ -24,7 +24,7 @@ namespace assimp
       //const aiScene * scene = importer.ReadFile(path, 0);
       const aiScene* scene = importer.ReadFileFromMemory(data, size, aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
       if (!scene) {
-         fprintf(stderr, importer.GetErrorString());
+         fprintf(stderr, "%s", importer.GetErrorString());
          getchar();
          return false;
       }

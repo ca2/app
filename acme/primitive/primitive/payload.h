@@ -526,7 +526,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    bool operator !() const
    {
 
-      return is_false();
+      return ::is_null(this) || is_false();
 
    }
 

@@ -1125,7 +1125,7 @@ void acme_directory::erase(const ::file::path & path)
 }
 
 
-string acme_directory::get_current()
+::file::path acme_directory::get_current()
 {
 
    throw ::interface_only();

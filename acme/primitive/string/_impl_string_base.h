@@ -6677,7 +6677,8 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
    auto count = (*this)(start)._occurrence_count_of(scopedstrOld, equality);
 
    // if any changes were made, make them
-   if (count <= 0) {
+   if (count <= 0) 
+   {
 
       return 0;
 
@@ -6688,7 +6689,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    strsize nNewLength = this->size() + (nReplacementLen - nReplacedLen) * count;
 
-   string str;
+   string_base < ITERATOR_TYPE > str;
 
    CHARACTER * pszBuffer = str.get_string_buffer(nNewLength);
 
@@ -6705,11 +6706,11 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
       auto offset = pszTarget - rangeOld.begin();
 
-      memcpy(pLastNewEnd,rangeOld.begin(), offset);
+      memcpy(pLastNewEnd,rangeOld.begin(), offset * sizeof(CHARACTER));
 
       pLastNewEnd += offset;
 
-      memcpy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen);
+      memcpy(pLastNewEnd, scopedstrNew.begin(), nReplacementLen * sizeof(CHARACTER));
 
       rangeOld.m_begin = pszTarget + nReplacedLen;
 
@@ -6717,7 +6718,7 @@ inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING
 
    }
 
-   memcpy(pLastNewEnd,rangeOld.begin(), rangeOld.end() - rangeOld.begin());
+   memcpy(pLastNewEnd,rangeOld.begin(), (rangeOld.end() - rangeOld.begin()) * sizeof(CHARACTER));
 
    str.release_string_buffer(nNewLength);
 

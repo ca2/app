@@ -70,7 +70,7 @@ namespace windows
 void delete_file(const ::file::path & path)
 {
 
-   wstring wstrPath(path);
+   wstring wstrPath(path.get_os_path());
 
    if (!::DeleteFileW(wstrPath))
    {
@@ -214,7 +214,7 @@ bool is_directory(const ::file::path & path)
 
          //auto dwFileAttributes = ::windows_get_file_attributes(path1);
 
-   wstring wstrPath(path);
+   wstring wstrPath(path.get_os_path());
 
    auto dwFileAttributes = ::GetFileAttributesW(wstrPath);
 
@@ -246,13 +246,13 @@ void create_directory(const ::file::path & path)
    if (file_path_is_absolute(path))
    {
 
-      wstr = L"\\\\?\\" + wstring(path);
+      wstr = L"\\\\?\\" + path.get_os_path();
 
    }
    else
    {
 
-      wstr = path;
+      wstr = path.get_os_path();
 
    }
 

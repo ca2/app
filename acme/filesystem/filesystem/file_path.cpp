@@ -935,8 +935,6 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
       epath = e_path_url;
 
-      strPath.replace_with("/", "\\");
-
    }
    else
    {
@@ -945,20 +943,22 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
    }
 
-#ifdef WINDOWS
-   if (!bOnlyNativeFileSep && epath == e_path_file)
-#else
-   if (!bOnlyNativeFileSep)
-#endif
-   {
+   //strPath.replace_with("\\", "/");
 
-#ifdef WINDOWS
-      if (strPath == "\\\\" || strPath == "\\")
-      {
-
-      }
-      else
-#endif
+//#ifdef WINDOWS
+//   if (!bOnlyNativeFileSep && epath == e_path_file)
+//#else
+//   if (!bOnlyNativeFileSep)
+//#endif
+//   {
+//
+//#ifdef WINDOWS
+//      if (strPath == "\\\\" || strPath == "\\")
+//      {
+//
+//      }
+//      else
+//#endif
          if (strPath.has_char())
          {
 
@@ -969,7 +969,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
             for (auto & iSlash: iaSlash)
             {
 
-               psz[iSlash] = chSep;
+               psz[iSlash] = '/';
 
             }
 
@@ -977,7 +977,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
          }
 
-   }
+   //}
 
    return bCertainlySyntathicallyDir;
 

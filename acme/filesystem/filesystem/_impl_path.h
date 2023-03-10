@@ -93,539 +93,539 @@ namespace file
 {
 
 
-    inline path_meta::path_meta(enum_path epath, i64 iSize, i32 iDir, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
-    {
+   inline path_meta::path_meta(enum_path epath, i64 iSize, i32 iDir, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   {
 
-       m_epath = epath;
-       m_iSize = iSize;
-       m_iDir = iDir;
-       m_iName = (strsize)iName;
-       m_iBasePathLength = iBasePathLength;
-       m_flags = eflag;
+      m_epath = epath;
+      m_iSize = iSize;
+      m_iDir = iDir;
+      m_iName = (strsize)iName;
+      m_iBasePathLength = iBasePathLength;
+      m_flags = eflag;
 
-    }
+   }
 
 
-    inline path::path(const ::ansi_string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            string(str)
-    {
+   inline path::path(const ::ansi_string& str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      string(str)
+   {
 
-       m_iSize = iSize;
+      m_iSize = iSize;
 
-       if (epath == e_path_none)
-       {
+      if (epath == e_path_none)
+      {
 
-          m_epath = file_path_get_type(str, epath);
+         m_epath = file_path_get_type(str, epath);
 
-       }
-       else
-       {
+      }
+      else
+      {
 
-          m_epath = epath;
+         m_epath = epath;
 
-       }
+      }
 
-       if (bNormalizePath)
-       {
+      if (bNormalizePath)
+      {
 
-          bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
+         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
 
-          if (bCertainlySyntathicallyDir)
-          {
+         if (bCertainlySyntathicallyDir)
+         {
 
-             m_iDir = 1;
+            m_iDir = 1;
 
-          }
-          else
-          {
+         }
+         else
+         {
 
-             m_iDir = iDir;
+            m_iDir = iDir;
 
-          }
+         }
 
-       }
-       else
-       {
+      }
+      else
+      {
 
-          m_iDir = iDir;
+         m_iDir = iDir;
 
-       }
+      }
 
-    }
+   }
 
 
-    inline path::path(const ::wd16_string & wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::string(wd16str), epath, iDir, bNormalizePath, iSize)
-    {
+   inline path::path(const ::wd16_string& wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::string(wd16str), epath, iDir, bNormalizePath, iSize)
+   {
 
 
-    }
+   }
 
 
-    inline path::path(const ::wd32_string & wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::string(wd32str), epath, iDir, bNormalizePath, iSize)
-    {
+   inline path::path(const ::wd32_string& wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::string(wd32str), epath, iDir, bNormalizePath, iSize)
+   {
 
 
-    }
+   }
 
 
-    inline path::path(const ::ansi_character * pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::ansi_string(pansisz), epath, iDir, bNormalizePath, iSize)
-    {
+   inline path::path(const ::ansi_character* pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::ansi_string(pansisz), epath, iDir, bNormalizePath, iSize)
+   {
 
 
-    }
+   }
 
 
-    inline path::path(const ::wd16_character * pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::wd16_string(pwd16sz), epath, iDir, bNormalizePath, iSize)
-    {
+   inline path::path(const ::wd16_character* pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::wd16_string(pwd16sz), epath, iDir, bNormalizePath, iSize)
+   {
 
 
-    }
+   }
 
 
-    inline path::path(const ::wd32_character * pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::wd32_string(pwd32sz), epath, iDir, bNormalizePath, iSize)
-    {
+   inline path::path(const ::wd32_character* pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      path(::wd32_string(pwd32sz), epath, iDir, bNormalizePath, iSize)
+   {
 
 
-    }
+   }
 
 
-    inline path_meta::~path_meta()
-    {
+   inline path_meta::~path_meta()
+   {
 
 
-    }
+   }
 
 
-    //inline path::path(const ::payload& payload) :
-    //   path(payload.file_path())
-    //{
+   //inline path::path(const ::payload& payload) :
+   //   path(payload.file_path())
+   //{
 
 
-    //}
+   //}
 
 
-    //inline path::path(const ::property& property) :
-    //   path(property.file_path())
-    //{
+   //inline path::path(const ::property& property) :
+   //   path(property.file_path())
+   //{
 
 
-    //}
+   //}
 
 
-    //inline path::path(const ::atom& atom) :
-    //   path(atom.string())
-    //{
+   //inline path::path(const ::atom& atom) :
+   //   path(atom.string())
+   //{
 
 
-    //}
+   //}
 
-    //   path::path(nullptr_t)
-    //   {
-    //
-    //      m_epath = path_file;
-    //
-    //   }
+   //   path::path(nullptr_t)
+   //   {
+   //
+   //      m_epath = path_file;
+   //
+   //   }
 
 
-    //   path::path(e_path epath)
-    //   {
-    //
-    //      m_epath = epath;
-    //
-    //   }
-    //namespace file
-    //{
+   //   path::path(e_path epath)
+   //   {
+   //
+   //      m_epath = epath;
+   //
+   //   }
+   //namespace file
+   //{
 
-    //inline path::path(const path& path) :
-    //   string((const string&)path),
-    //   path_meta(path)
-    //{
+   //inline path::path(const path& path) :
+   //   string((const string&)path),
+   //   path_meta(path)
+   //{
 
-    //}
+   //}
 
 
-    //inline path::path(const path_object& path) :
-    //   ::file::path((const ::file::path&)path)
-    //{
+   //inline path::path(const path_object& path) :
+   //   ::file::path((const ::file::path&)path)
+   //{
 
-    //}
+   //}
 
 
-    //
-    //} // namespace file
-    //
+   //
+   //} // namespace file
+   //
 
 
-    //   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-    //      string(pwsz, iCount),
-    //      path_meta(epath, iSize, iDir)
-    //   {
-    //
-    //      if (m_epath == path_none)
-    //      {
-    //
-    //         m_epath = file_path_get_type(*this, epath);
-    //
-    //      }
-    //
-    //      if (bNormalizePath)
-    //      {
-    //
-    //         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
-    //
-    //         if (bCertainlySyntathicallyDir)
-    //         {
-    //
-    //            m_iDir = 1;
-    //
-    //         }
-    //         else
-    //         {
-    //
-    //            m_iDir = iDir;
-    //
-    //         }
-    //
-    //      }
-    //
-    //   }
-
-
-
-    //   path::path(const atom & atom,e_path epath, int iDir) :
-    //      path(string(atom), epath, iDir)
-    //   {
-    //
-    //   }
-
-
-    //   path::path(const ::payload & payload, e_path epath, int iDir) :
-    //      path(payload.get_string(), epath, iDir)
-    //   {
-    //
-    //
-    //   }
-
-
-    //   path::path(const path & path) :
-    //      ::ansi_string((const string &)path),
-    //      path_meta((path_meta &)path),
-    //      path_os((path_os &) path)
-    //   {
-    //
-    //   }
-
-
-    //   path::path(path && path) :
-    //      string(::transfer(path)),
-    //      path_meta((path_meta &) path),
-    //      path_os(::transfer(path))
-    //   {
-    //
-    //   }
-
-
-    //   path::path(const ::scoped_string & scopedstr, e_path epath, int iDir):
-    //      path(string(psz), epath, iDir)
-    //   {
-    //
-    //   }
-
-    //   path::path(const unichar * psz, e_path epath, int iDir) :
-    //      path(string(psz), epath, iDir)
-    //   {
-    //
-    //   }
+   //   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   //      string(pwsz, iCount),
+   //      path_meta(epath, iSize, iDir)
+   //   {
+   //
+   //      if (m_epath == path_none)
+   //      {
+   //
+   //         m_epath = file_path_get_type(*this, epath);
+   //
+   //      }
+   //
+   //      if (bNormalizePath)
+   //      {
+   //
+   //         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
+   //
+   //         if (bCertainlySyntathicallyDir)
+   //         {
+   //
+   //            m_iDir = 1;
+   //
+   //         }
+   //         else
+   //         {
+   //
+   //            m_iDir = iDir;
+   //
+   //         }
+   //
+   //      }
+   //
+   //   }
+
+
+
+   //   path::path(const atom & atom,e_path epath, int iDir) :
+   //      path(string(atom), epath, iDir)
+   //   {
+   //
+   //   }
+
+
+   //   path::path(const ::payload & payload, e_path epath, int iDir) :
+   //      path(payload.get_string(), epath, iDir)
+   //   {
+   //
+   //
+   //   }
+
+
+   //   path::path(const path & path) :
+   //      ::ansi_string((const string &)path),
+   //      path_meta((path_meta &)path),
+   //      path_os((path_os &) path)
+   //   {
+   //
+   //   }
+
+
+   //   path::path(path && path) :
+   //      string(::transfer(path)),
+   //      path_meta((path_meta &) path),
+   //      path_os(::transfer(path))
+   //   {
+   //
+   //   }
+
+
+   //   path::path(const ::scoped_string & scopedstr, e_path epath, int iDir):
+   //      path(string(psz), epath, iDir)
+   //   {
+   //
+   //   }
+
+   //   path::path(const unichar * psz, e_path epath, int iDir) :
+   //      path(string(psz), epath, iDir)
+   //   {
+   //
+   //   }
 
 
-    //   path::path(const wstring & wstr, e_path epath, int iDir):
-    //      path(string(wstr), epath, iDir)
-    //   {
-    //
-    //   }
+   //   path::path(const wstring & wstr, e_path epath, int iDir):
+   //      path(string(wstr), epath, iDir)
+   //   {
+   //
+   //   }
 
-    inline path::~path() noexcept
-    {
+   inline path::~path() noexcept
+   {
 
 
-    }
+   }
 
 
-    //   bool path::is_equal(const path & path) const
-    //   {
-    //
-    //
-    //#ifdef WINDOWS
-    //
-    //      if (((const string &)*this).case_insensitive_order((const string &)path) == 0) // undoubtely eaqual...
-    //         return true;
-    //
-    //#else
-    //
-    //      if (((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
-    //         return true;
-    //
-    //#endif
-    //
-    //      return false;
-    //
-    //      // find extend equalitys..
-    //
-    //      ::file::path_array patha1;
-    //
-    //      split(patha1);
-    //
-    //      ::file::path_array patha2;
-    //
-    //      path.split(patha2);
-    //
-    //      if(patha1.get_size() == patha2.get_size())
-    //      {
-    //
-    //         for(index i = 0; i < patha1.get_size(); i++)
-    //         {
-    //
-    //            if(patha1[i].::ansi_string::operator!=(patha2[i]))
-    //            {
-    //
-    //               goto there_s_difference_in_this_step_1;
-    //
-    //            }
-    //
-    //         }
-    //
-    //         return true;
-    //
-    //      }
-    //
-    //      there_s_difference_in_this_step_1:
-    //
-    //
-    //      return false;
-    //
-    //   }
+   //   bool path::is_equal(const path & path) const
+   //   {
+   //
+   //
+   //#ifdef WINDOWS
+   //
+   //      if (((const string &)*this).case_insensitive_order((const string &)path) == 0) // undoubtely eaqual...
+   //         return true;
+   //
+   //#else
+   //
+   //      if (((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
+   //         return true;
+   //
+   //#endif
+   //
+   //      return false;
+   //
+   //      // find extend equalitys..
+   //
+   //      ::file::path_array patha1;
+   //
+   //      split(patha1);
+   //
+   //      ::file::path_array patha2;
+   //
+   //      path.split(patha2);
+   //
+   //      if(patha1.get_size() == patha2.get_size())
+   //      {
+   //
+   //         for(index i = 0; i < patha1.get_size(); i++)
+   //         {
+   //
+   //            if(patha1[i].::ansi_string::operator!=(patha2[i]))
+   //            {
+   //
+   //               goto there_s_difference_in_this_step_1;
+   //
+   //            }
+   //
+   //         }
+   //
+   //         return true;
+   //
+   //      }
+   //
+   //      there_s_difference_in_this_step_1:
+   //
+   //
+   //      return false;
+   //
+   //   }
 
 
-    //inline void path::split(string_array& patha) const
-    //{
+   //inline void path::split(string_array& patha) const
+   //{
 
-    //   ascendants_name(patha);
+   //   ascendants_name(patha);
 
-    //}
+   //}
 
 
 
 
-    //inline string path::name(index i) const
-    //{
+   //inline string path::name(index i) const
+   //{
 
 
-    //   string_array patha;
+   //   string_array patha;
 
-    //   ascendants_name(patha);
+   //   ascendants_name(patha);
 
-    //   if (i < 0)
-    //   {
+   //   if (i < 0)
+   //   {
 
-    //      i += patha.get_size();
+   //      i += patha.get_size();
 
-    //   }
+   //   }
 
 
-    //   if (i < 0)
-    //   {
+   //   if (i < 0)
+   //   {
 
-    //      return "";
+   //      return "";
 
-    //   }
+   //   }
 
-    //   if (i >= patha.get_size())
-    //   {
+   //   if (i >= patha.get_size())
+   //   {
 
-    //      return "";
+   //      return "";
 
-    //   }
+   //   }
 
-    //   return patha[i];
+   //   return patha[i];
 
-    //}
+   //}
 
 
-    //inline string_array& path::ascendants_name(string_array& straParam) const
-    //{
+   //inline string_array& path::ascendants_name(string_array& straParam) const
+   //{
 
-    //   string strPath = *this;
+   //   string strPath = *this;
 
-    //   if (strPath == "/")
-    //   {
+   //   if (strPath == "/")
+   //   {
 
-    //      straParam.add("/");
+   //      straParam.add("/");
 
-    //      return straParam;
+   //      return straParam;
 
-    //   }
+   //   }
 
-    //   strsize iFirstColon = find(':');
-    //   strsize iFirstSlash = find('/');
-    //   strsize iSecondSlash = find('/', iFirstSlash + 1);
+   //   strsize iFirstColon = find(':');
+   //   strsize iFirstSlash = find('/');
+   //   strsize iSecondSlash = find('/', iFirstSlash + 1);
 
-    //   if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1)
-    //   {
+   //   if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1)
+   //   {
 
-    //      ::file::path path = Left(iSecondSlash + 1);
+   //      ::file::path path = Left(iSecondSlash + 1);
 
-    //      straParam.add(path);
+   //      straParam.add(path);
 
-    //      strPath = Mid(iSecondSlash + 1);
+   //      strPath = Mid(iSecondSlash + 1);
 
-    //   }
+   //   }
 
-    //   bool bWin1 = strPath.begins_eat("\\\\?\\");
+   //   bool bWin1 = strPath.begins_eat("\\\\?\\");
 
-    //   auto pFind = 0;
-    //   while (true)
-    //   {
+   //   auto pFind = 0;
+   //   while (true)
+   //   {
 
-    //      index iFind1 = strPath.find('/', iFind);
-    //      index iFind2 = strPath.find('\\', iFind);
-    //      index iFind3 = minimum_non_negative(iFind1, iFind2);
-    //      if (iFind3 < 0)
-    //      {
-    //         string str = strPath(pFind);
-    //         straParam.add(str);
-    //         break;
-    //      }
-    //      string str = strPath.substr(iFind, iFind3 - iFind);
-    //      straParam.add(str);
-    //      iFind = iFind3 + 1;
-    //   }
+   //      index iFind1 = strPath.find('/', iFind);
+   //      index iFind2 = strPath.find('\\', iFind);
+   //      index iFind3 = minimum_non_negative(iFind1, iFind2);
+   //      if (iFind3 < 0)
+   //      {
+   //         string str = strPath(pFind);
+   //         straParam.add(str);
+   //         break;
+   //      }
+   //      string str = strPath.substr(iFind, iFind3 - iFind);
+   //      straParam.add(str);
+   //      iFind = iFind3 + 1;
+   //   }
 
 
-    //   if (bWin1)
-    //   {
-    //      straParam[0] = "\\\\?\\" + straParam[0];
-    //   }
-    //   else if (this->case_insensitive_begins("/"))
-    //   {
-    //      straParam[0] = "/" + straParam[0];
-    //   }
-    //   else if (this->case_insensitive_begins("\\\\"))
-    //   {
-    //      straParam[0] = "\\\\" + straParam[0];
-    //   }
+   //   if (bWin1)
+   //   {
+   //      straParam[0] = "\\\\?\\" + straParam[0];
+   //   }
+   //   else if (this->case_insensitive_begins("/"))
+   //   {
+   //      straParam[0] = "/" + straParam[0];
+   //   }
+   //   else if (this->case_insensitive_begins("\\\\"))
+   //   {
+   //      straParam[0] = "\\\\" + straParam[0];
+   //   }
 
-    //   return straParam;
+   //   return straParam;
 
-    //}
+   //}
 
 
-    inline path path::folder(int i) const
-    {
+   inline path path::folder(int i) const
+   {
 
-       ::file::path path(*this);
+      ::file::path path(*this);
 
-       while (i > 0)
-       {
+      while (i > 0)
+      {
 
-          path = path.folder();
+         path = path.folder();
 
-          i--;
+         i--;
 
-       }
+      }
 
-       return path;
+      return path;
 
-    }
+   }
 
 
-    inline path& path::ascend()
-    {
+   inline path& path::ascend()
+   {
 
-       return *this = parent();
+      return *this = parent();
 
-    }
+   }
 
 
-    inline path& path::ascend(int i)
-    {
+   inline path& path::ascend(int i)
+   {
 
-       while (i > 0)
-       {
+      while (i > 0)
+      {
 
-          ascend();
+         ascend();
 
-          i--;
+         i--;
 
-       }
+      }
 
-       return *this;
+      return *this;
 
-    }
+   }
 
 
-//   inline path& path::operator += (const path& path)
-//   {
-//
-//      string str = path;
-//
-//      str.trim_left("\\/");
-//
-//      string::operator += (str);
-//
-//      return *this;
-//
-//   }
+   //   inline path& path::operator += (const path& path)
+   //   {
+   //
+   //      string str = path;
+   //
+   //      str.trim_left("\\/");
+   //
+   //      string::operator += (str);
+   //
+   //      return *this;
+   //
+   //   }
 
 
-    //inline path& path::operator += (const ::const_ansi_range & range)
-    //{
+       //inline path& path::operator += (const ::const_ansi_range & range)
+       //{
 
-    //   string str(range);
+       //   string str(range);
 
-    //   str.trim_left("\\/");
+       //   str.trim_left("\\/");
 
-    //   string strThis = *this;
+       //   string strThis = *this;
 
-    //   string ::operator = (file_path_normalize(strThis + str, m_epath));
+       //   string ::operator = (file_path_normalize(strThis + str, m_epath));
 
-    //   return *this;
+       //   return *this;
 
-    //}
+       //}
 
 
-    inline path & path::operator += (const ::string & str)
-    {
+   inline path& path::operator += (const ::string& str)
+   {
 
-       auto pathThis = *this;
+      auto pathThis = *this;
 
-       ::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
+      ::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
 
-       return *this;
+      return *this;
 
-    }
+   }
 
 
 
-    //   path_array path::operator / (const string_array & stra) const
-    //   {
-    //
-    //      path_array patha;
-    //
-    //      for (auto str : stra)
-    //      {
-    //
-    //         patha.add(*this / str);
-    //
-    //      }
-    //
-    //      return patha;
-    //
-    //   }
+   //   path_array path::operator / (const string_array & stra) const
+   //   {
+   //
+   //      path_array patha;
+   //
+   //      for (auto str : stra)
+   //      {
+   //
+   //         patha.add(*this / str);
+   //
+   //      }
+   //
+   //      return patha;
+   //
+   //   }
 
 
 
@@ -742,110 +742,138 @@ namespace file
     //}
 
 
-    inline void path::set_all_extensions(const ::scoped_string& scopedstrExtension)
-    {
+   inline void path::set_all_extensions(const ::scoped_string& scopedstrExtension)
+   {
 
-       string strExtension(scopedstrExtension);
+      string strExtension(scopedstrExtension);
 
-       strExtension.case_insensitive_begins_eat(".");
+      strExtension.case_insensitive_begins_eat(".");
 
-       auto range = find_all_extensions();
+      auto range = find_all_extensions();
 
-       if (range.begin() >= this->begin() + 1)
-       {
+      if (range.begin() >= this->begin() + 1)
+      {
 
-          this->operator = ((*this)(0, range.begin()) + strExtension);
+         this->operator = ((*this)(0, range.begin()) + strExtension);
 
-       }
-       else
-       {
+      }
+      else
+      {
 
-          this->operator += ("." + strExtension);
+         this->operator += ("." + strExtension);
 
-       }
+      }
 
-    }
-
-
-    inline void path::set_final_extension(const ::scoped_string& scopedstrExtension)
-    {
-
-       string strExtension(scopedstrExtension);
-
-       strExtension.case_insensitive_begins_eat(".");
-
-       auto range = find_final_extension();
-
-       if (range.begin() >= this->begin() + 1)
-       {
-
-          this->operator = ((*this)(0, range.begin()) + strExtension);
-
-       }
-       else
-       {
-
-          this->operator += ("." + strExtension);
-
-       }
-
-    }
+   }
 
 
-    inline void path::set_extension_if_no_extension(const ::scoped_string& scopedstrExtension)
-    {
+   inline void path::set_final_extension(const ::scoped_string& scopedstrExtension)
+   {
 
-       if (this->final_extension().is_empty())
-       {
+      string strExtension(scopedstrExtension);
 
-          auto p = scopedstrExtension.skip('.');
+      strExtension.case_insensitive_begins_eat(".");
 
-          if (::has_char(p))
-          {
+      auto range = find_final_extension();
 
-             this->operator = (((::ansi_string&)*this) + "." +   scopedstrExtension(p));
+      if (range.begin() >= this->begin() + 1)
+      {
 
-          }
+         this->operator = ((*this)(0, range.begin()) + strExtension);
 
-       }
+      }
+      else
+      {
 
-    }
+         this->operator += ("." + strExtension);
 
+      }
 
-    inline ::file::path path::with_all_extensions(const ::scoped_string& scopedstrExtension) const
-    {
-
-       ::file::path path(*this);
-
-       path.set_all_extensions(scopedstrExtension);
-
-       return ::transfer(path);
-
-    }
+   }
 
 
-    inline ::file::path path::with_final_extension(const ::scoped_string& scopedstrExtension) const
-    {
+   inline void path::set_extension_if_no_extension(const ::scoped_string& scopedstrExtension)
+   {
 
-       ::file::path path(*this);
+      if (this->final_extension().is_empty())
+      {
 
-       path.set_final_extension(scopedstrExtension);
+         auto p = scopedstrExtension.skip('.');
 
-       return ::transfer(path);
+         if (::has_char(p))
+         {
 
-    }
+            this->operator = (((::ansi_string&)*this) + "." + scopedstrExtension(p));
+
+         }
+
+      }
+
+   }
 
 
-    inline ::file::path path::with_extension_if_no_extension(const ::scoped_string& scopedstrExtension) const
-    {
+   inline ::file::path path::with_all_extensions(const ::scoped_string& scopedstrExtension) const
+   {
 
-       ::file::path path(*this);
+      ::file::path path(*this);
 
-       path.set_extension_if_no_extension(scopedstrExtension);
+      path.set_all_extensions(scopedstrExtension);
 
-       return ::transfer(path);
+      return ::transfer(path);
 
-    }
+   }
+
+
+   inline ::file::path path::with_final_extension(const ::scoped_string& scopedstrExtension) const
+   {
+
+      ::file::path path(*this);
+
+      path.set_final_extension(scopedstrExtension);
+
+      return ::transfer(path);
+
+   }
+
+
+   inline ::file::path path::with_extension_if_no_extension(const ::scoped_string& scopedstrExtension) const
+   {
+
+      ::file::path path(*this);
+
+      path.set_extension_if_no_extension(scopedstrExtension);
+
+      return ::transfer(path);
+
+   }
+
+
+#ifdef WINDOWS_DESKTOP
+
+   inline ::wstring path::get_os_path() const
+   {
+
+      ::string str(*this);
+
+      ::wstring wstr(str);
+
+      wstr.find_replace(L"/", L"\\");
+
+      return ::transfer(wstr);
+
+   }
+
+#else
+
+   inline ::string path::get_os_path() const
+   {
+
+      return *this;
+
+   }
+
+
+#endif
 
 
     inline void path::set_type(enum_path epath)
@@ -1004,7 +1032,7 @@ namespace file
     inline path::const_iterator path::find_name() const
     {
 
-       return maximum(this->begin(), rear_find(separator()) + 1);
+       return maximum(this->begin(), rear_find('/') + 1);
 
     }
 

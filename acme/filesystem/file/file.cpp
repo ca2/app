@@ -622,10 +622,25 @@ namespace file
 
       byte b;
 
+      byte b1 = 0;
+
       while (true)
       {
 
-         b = get_u8();
+         if (b1)
+         {
+
+            b = b1;
+
+            b1 = 0;
+
+         }
+         else
+         {
+
+            b = get_u8();
+
+         }
 
          if (is_end_of_file())
          {
@@ -648,12 +663,10 @@ namespace file
          if (b == '\r')
          {
 
-            b = get_u8();
+            b1 = get_u8();
 
-            if (b != '\n' && !is_end_of_file())
+            if (b1 != '\n' && !is_end_of_file())
             {
-
-               put_byte_back(b);
 
                b = '\r';
 

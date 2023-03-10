@@ -262,7 +262,7 @@ bool get_file_time_set(const ::file::path & path, file_time_set & file_timeset)
 bool get_file_time_set(const ::file::path & path, file_time & file_timeCreation, file_time & file_timeModified)
 {
 
-   HANDLE h = CreateFileW(wstring(path),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,nullptr,OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS,nullptr);
+   HANDLE h = CreateFileW(wstring(path.get_os_path()),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,nullptr,OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS,nullptr);
 
    if (h == INVALID_HANDLE_VALUE)
    {
@@ -310,7 +310,7 @@ CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const fil
 
    bool bOk = false;
 
-   HANDLE h = CreateFileW(wstring(path), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
+   HANDLE h = CreateFileW(wstring(path.get_os_path()), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
 
    try
    {

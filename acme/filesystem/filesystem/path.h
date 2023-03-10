@@ -199,7 +199,15 @@ namespace file
 
       //void construct() { *this = ::file::path(); }
       
+#ifdef WINDOWS_DESKTOP
 
+      ::wstring get_os_path() const;
+
+#else
+
+      ::string get_os_path() const;
+
+#endif
 
       
       void set_type(enum_path epath);
@@ -213,26 +221,26 @@ namespace file
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
-      inline char separator() const
-      {
+      //inline char separator() const
+      //{
 
-         return file_path_separator(m_epath);
+      //   return '/';
 
-      }
+      //}
 
-      inline const char* separator_sz() const
-      {
+      //inline const char* separator_sz() const
+      //{
 
-         return file_path_separator_sz(m_epath);
+      //   return "/";
 
-      }
+      //}
 
-      inline char other_separator() const
-      {
+      //inline char other_separator() const
+      //{
 
-         return file_path_other_separator(m_epath);
+      //   return file_path_other_separator(m_epath);
 
-      }
+      //}
 
 
       path & operator = (const ::file::path & path);

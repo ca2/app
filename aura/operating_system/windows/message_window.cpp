@@ -28,7 +28,7 @@ namespace user
 
       m_bMessageWindow = true;
 
-      m_strWindowText = pszName;
+      m_strWindowText2 = pszName;
 
       create_host();
 

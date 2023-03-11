@@ -71,13 +71,13 @@ BLOCK "StringFileInfo"
 BEGIN
 BLOCK "040904b0"
 BEGIN
-VALUE "CompanyName", "base"
-VALUE "FileDescription", "app"
+VALUE "CompanyName", "app"
+VALUE "FileDescription", "base"
 VALUE "FileVersion", "2023.0303.0216.56"
 VALUE "InternalName", "ca2"
 VALUE "LegalCopyright", "Copyright (C) 2023-03-03-02-16-56"
 VALUE "OriginalFilename", "ca2"
-VALUE "ProductName", "app"
+VALUE "ProductName", "base"
 VALUE "ProductVersion", "2023.0303.0216.56"
 END
 END

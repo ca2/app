@@ -1135,7 +1135,7 @@ void acme_directory::erase(const ::file::path & path)
 }
 
 
-void acme_directory::change_current(const ::scoped_string & scopedstr)
+void acme_directory::change_current(const ::file::path & path)
 {
 
    throw ::interface_only();

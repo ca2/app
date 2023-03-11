@@ -71,7 +71,7 @@ BLOCK "StringFileInfo"
 BEGIN
 BLOCK "040904b0"
 BEGIN
-VALUE "CompanyName", "scripting"
+VALUE "CompanyName", ".idea"
 VALUE "FileDescription", "app"
 VALUE "FileVersion", "2023.0303.0216.56"
 VALUE "InternalName", "ca2"

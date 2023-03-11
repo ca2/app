@@ -1,0 +1,3 @@
+operating-system-windows/draw2d_gdiplus
+operating-system-windows/node_windows
+app/crypto_openssl

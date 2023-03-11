@@ -2253,7 +2253,7 @@ namespace apex
       bool bEnoughCondition2 = !acmenode()->m_papexnode->shell_link_target(pathTarget, pathShortcut);
       bool bEnoughCondition3 = !acmepath()->final_is_same(pathTarget, path);
       bool bEnoughCondition4 = !acmenode()->m_papexnode->shell_link_icon(pathIcon, iIcon, path);
-      bool bEnoughCondition5 = !acmefile()->exists(pathIcon);
+      bool bEnoughCondition5 = pathIcon.trimmed().is_empty() || !acmefile()->exists(pathIcon);
 
       //if (!acmefile()->exists(pathCreatedShortcut)
       if (bEnoughCondition1

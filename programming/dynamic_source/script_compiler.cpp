@@ -193,7 +193,7 @@ namespace dynamic_source
 //
 //#endif
 
-      m_strTime = dir()->install() / "time-" OPERATING_SYSTEM_NAME;
+      m_pathTime = dir()->install() / "time-" OPERATING_SYSTEM_NAME;
 
       //#ifdef WINDOWS_DESKTOP
 //
@@ -386,9 +386,9 @@ namespace dynamic_source
 
       strRndTitle = "_" + pdatetime->international().get_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
-      string strTime = m_strTime;
+      string strTime = m_pathTime;
 
-      pscript->m_strCppPath.format(m_strTime / "dynamic_source\\%s.cpp",strTransformName.c_str());
+      pscript->m_strCppPath.format(m_pathTime / "dynamic_source\\%s.cpp",strTransformName.c_str());
 
       //string strCompileLogUnique;
 
@@ -405,21 +405,21 @@ namespace dynamic_source
 
       }
 
-      strClog.format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
-      strLlog.format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
+      strClog.format(m_pathTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
+      strLlog.format(m_pathTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
 
       string strPathCompiler;
-      strPathCompiler.format(m_strTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
+      strPathCompiler.format(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
       ::file::path pathCompiler(strPathCompiler);
 
       string strPathLinker;
-      strPathLinker.format(m_strTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
+      strPathLinker.format(m_pathTime / "dynamic_source/%s-linker.txt", strTransformName.c_str());
       ::file::path pathLinker(strPathLinker);
 
       //#ifdef _DEBUG
 #ifdef LINUX
       //strB = dir()->install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strO = ::file::path(m_strTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
+      strO = ::file::path(m_pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
@@ -430,7 +430,7 @@ namespace dynamic_source
 
       strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
 
-      ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
+      ::file::path strDynamicSourceScriptFolder = m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
@@ -689,7 +689,7 @@ namespace dynamic_source
 
       dir()->create(pscript->m_strScriptPath.folder());
       dir()->create(strL.folder());
-      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
@@ -1433,7 +1433,7 @@ namespace dynamic_source
          string str = l.m_straLibSourcePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
          str.find_replace(":","");
-         l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
+         l.m_straLibCppPath.add(m_pathTime / strLibRel / str + ".cpp");
       }
       //l.m_straLibIncludePath.m_pprovider = papp->m_papexapplication;
       l.m_straLibIncludePath.clear_results();
@@ -1458,7 +1458,7 @@ namespace dynamic_source
          string str = l.m_straLibIncludePath[i].relative();
          str.case_insensitive_ends_eat(".ds");
          str.find_replace(":","");
-         l.m_straLibHppPath.add(m_strTime / strLibRel / str + ".h");
+         l.m_straLibHppPath.add(m_pathTime / strLibRel / str + ".h");
       }
 
       string strLib(strName.name());
@@ -1475,7 +1475,7 @@ namespace dynamic_source
       //#endif
 
       dir()->create(l.m_strLibraryPath.folder());
-      dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1571,8 +1571,8 @@ namespace dynamic_source
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
          //str.find_replace("%DVP%", strDVP_B);
 
-         dir()->create(m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         dir()->create(m_strTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
+         dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         dir()->create(m_pathTime / "library" / m_pintegrationcontext->m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1630,9 +1630,9 @@ namespace dynamic_source
 
          }
          string strClog;
-         strClog = m_strTime / strLibRel / strRel +"-compile-log.txt";
+         strClog = m_pathTime / strLibRel / strRel +"-compile-log.txt";
 
-         ::file::path pathCompiler = m_strTime / strLibRel / strRel + "-compile-log.txt";
+         ::file::path pathCompiler = m_pathTime / strLibRel / strRel + "-compile-log.txt";
 
 
          if(!bTimeout && strLog.has_char())
@@ -1685,8 +1685,9 @@ namespace dynamic_source
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
          strRel.case_insensitive_ends_eat(".ds");
-         strObjs += m_strTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
-         strObjs += m_strTime.separator();
+         strObjs += m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
+         //strObjs += m_pathTime.separator();
+         strObjs += "/";
          strObjs += strRel;
 #ifdef LINUX
          strObjs+=".o";
@@ -1779,7 +1780,7 @@ auto tickStart = ::time::now();
 
       string strLlog;
 
-      strLlog = m_strTime / strLibRel / "link-log.txt";
+      strLlog = m_pathTime / strLibRel / "link-log.txt";
 
       if(!bTimeout && strLog.has_char())
       {

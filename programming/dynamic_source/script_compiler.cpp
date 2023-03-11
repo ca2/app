@@ -782,6 +782,8 @@ namespace dynamic_source
 
       string strCompiler = str;
 
+      strCompiler.trim();
+
       file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS

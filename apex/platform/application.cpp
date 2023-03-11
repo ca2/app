@@ -5523,11 +5523,16 @@ namespace apex
 //
 //      }
 
-      if((m_bConsole && m_bCreateAppShorcut.is_true())
-       || (!m_bConsole && m_bCreateAppShorcut.is_true_or_not_set()))
+      if (!is_service())
       {
 
-         on_create_app_shortcut();
+         if ((m_bConsole && m_bCreateAppShorcut.is_true())
+            || (!m_bConsole && m_bCreateAppShorcut.is_true_or_not_set()))
+         {
+
+            on_create_app_shortcut();
+
+         }
 
       }
 

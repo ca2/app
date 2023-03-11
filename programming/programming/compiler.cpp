@@ -606,7 +606,7 @@ namespace programming
       dir()->create(strCmd.folder());
       //file()->put_text_utf8(strCmd, str);
       file()->put_text(strCmd, str);
-      dir()->create(m_strTime / "dynamic_source");
+      dir()->create(m_pathTime / "dynamic_source");
 
 
    }

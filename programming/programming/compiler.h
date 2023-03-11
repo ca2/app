@@ -48,7 +48,7 @@ namespace programming
 
       //string                                    m_strPlat1;
       //string                                    m_strPlat2;
-      ::file::path                              m_strTime;
+      ::file::path                              m_pathTime;
 
       //string                                    m_strEnv;
 

@@ -234,7 +234,7 @@ public:
          //} // namespace dir
 
    virtual ::file::path get_current();
-   virtual void change_current(const ::scoped_string & scopedstr);
+   virtual void change_current(const ::file::path & path);
    virtual void change_to_home();
 
 

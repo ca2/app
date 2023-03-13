@@ -1,5 +1,31 @@
 #include "framework.h" // previously apex/user/user.h
-#include "acme/platform/timer_callback.h"
+#include "timer.h"
+#include "timer_callback.h"
+
+
+timer_callback::timer_callback()
+{
+
+
+}
+
+
+timer_callback::~timer_callback()
+{
+
+   for(auto & ptimer : m_timera)
+   {
+
+      if(ptimer && ptimer->m_ptimercallback == this)
+      {
+
+         ptimer->m_ptimercallback.release();
+
+      }
+
+   }
+
+}
 
 
 void timer_callback::on_timer(timer * ptimer)

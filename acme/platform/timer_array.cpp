@@ -48,6 +48,8 @@ namespace acme
 
       ptimer->m_ptimercallback = this;
 
+      m_timera.add(ptimer);
+
       //m_pcallback->add_composite(ptimer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       bool bOk = true;

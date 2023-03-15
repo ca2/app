@@ -38,8 +38,6 @@ inline auto std_inline_log(enum_trace_level etracelevelInformation = e_trace_lev
 
 CLASS_DECL_ACME const char * callstack_default_format();
 
-using a_trace_function = ::function < void(enum_trace_level, const ::scoped_string & ) >;
-
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 namespace acme

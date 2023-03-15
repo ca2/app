@@ -671,6 +671,10 @@ public:
 
 
 
+using a_trace_function = ::function < void(enum_trace_level, const ::scoped_string&) >;
+
+
+
 
 
 

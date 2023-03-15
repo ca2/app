@@ -1489,6 +1489,24 @@ namespace file
    }
 
 
+   class ::time file::modification_time()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+   
+   
+   void file::set_modification_time(const class ::time& time)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
 } // namespace file
 
 

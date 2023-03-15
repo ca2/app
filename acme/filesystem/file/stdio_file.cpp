@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "stdio_file.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/system.h"
@@ -398,12 +398,10 @@ filesize stdio_file::size() const
 }
 
 
-bool stdio_file::get_status(::file::file_status & rStatus) const
+::file::file_status stdio_file::get_status() const
 {
 
-   __UNREFERENCED_PARAMETER(rStatus);
-
-   return false;
+   return {};
 
 }
 

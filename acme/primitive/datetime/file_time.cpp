@@ -278,26 +278,26 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
 }
 
 
-CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const ::earth::time& time)
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time& time)
 {
 
-   ::file_time file_time;
+   ::file_time filetime;
 
-   time_to_file_time(&file_time.m_filetime, &time.m_time);
+   time_to_file_time(&filetime.m_filetime, &time);
 
-   set_modified_file_time(path, file_time);
+   set_modified_file_time(path, filetime);
 
 }
 
 
-CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & file_timeModified)
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & filetimeModified)
 {
 
    ::windows::file_instance file;
    
    file.create_file(path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
 
-   file.set_file_time(nullptr, nullptr, (FILETIME*)&file_timeModified);
+   file.set_file_time(nullptr, nullptr, (FILETIME*)&filetimeModified);
 
 }
 

@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 #include "file.h"
-#include "acme/primitive/primitive/memory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/exception.h"
-//#include "acme/primitive/primitive/payload.h"
+#include "acme/filesystem/file/status.h"
+#include "acme/primitive/primitive/memory.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -434,12 +434,10 @@ namespace file
    }
 
 
-   bool file::get_status(file_status & rStatus) const
+   file_status file::get_status() const
    {
 
-      __UNREFERENCED_PARAMETER(rStatus);
-
-      return false;
+      return {};
 
    }
 

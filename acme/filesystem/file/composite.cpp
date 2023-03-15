@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "composite.h"
+#include "acme/filesystem/file/status.h"
 
 
 namespace file
@@ -28,10 +29,10 @@ namespace file
    }
 
 
-   bool reference::get_status(file_status& rStatus) const
+   file_status reference::get_status() const
    {
 
-      return m_pfile->get_status(rStatus);
+      return m_pfile->get_status();
 
    }
 

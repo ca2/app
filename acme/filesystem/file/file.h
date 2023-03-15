@@ -229,7 +229,7 @@ namespace file
 
       virtual bool has_write_mode();
 
-      virtual bool get_status(file_status& rStatus) const;
+      virtual file_status get_status() const;
       virtual ::file::path get_file_path() const;
       virtual void set_file_path(const ::file::path & path);
 

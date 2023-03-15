@@ -106,7 +106,7 @@ public:
 
    void copy_this(const memory_file & file);
 
-   virtual bool get_status(::file::file_status & rStatus) const override;
+   ::file::file_status get_status() const override;
 
    memory_file & operator = (const memory_file & file);
 

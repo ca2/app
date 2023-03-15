@@ -37,7 +37,7 @@ public:
 
 
    filesize get_position() const override;
-   bool get_status(::file::file_status& rStatus) const override;
+   ::file::file_status get_status() const override;
    ::file::path get_file_path() const override;
 
 

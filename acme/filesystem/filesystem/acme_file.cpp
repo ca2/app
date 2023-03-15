@@ -850,25 +850,23 @@ void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & path
 }
 
 
-::earth::time acme_file::modification_time(const ::file::path & path)
+class ::time acme_file::modification_time(const ::file::path & path)
 {
 
    throw ::interface_only();
 
    return {};
 
-
 }
 
 
-void acme_file::set_modification_time(const ::file::path & path, const ::earth::time& time)
+void acme_file::set_modification_time(const ::file::path & path, const class ::time& time)
 {
 
    throw ::interface_only();
 
-   //throw ::interface_only();
-
 }
+
 
 //
 //::time acme_file::modification_time(const ::file::path & path)

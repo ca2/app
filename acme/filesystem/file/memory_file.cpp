@@ -855,18 +855,20 @@ void memory_file::write(::file::file* pfileIn, memsize uiBufSize)
 //}
 
 
-bool memory_file::get_status(::file::file_status & status) const
+::file::file_status memory_file::get_status() const
 {
 
-   status.m_filesize = size();
+   ::file::file_status filestatus;
 
-   status.m_mtime = 0;
+   filestatus.m_filesize = size();
 
-   status.m_ctime = 0;
+   filestatus.m_timeModification.set_null();
 
-   status.m_atime = 0;
+   filestatus.m_timeCreation.set_null();
 
-   return true;
+   filestatus.m_timeAccess.set_null();
+
+   return filestatus;
 
 }
 

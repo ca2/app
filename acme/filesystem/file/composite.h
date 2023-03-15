@@ -29,7 +29,7 @@ namespace file
 
 
       filesize get_position() const override;
-      bool get_status(file_status& rStatus) const override;
+      file_status get_status() const override;
       ::file::path get_file_path() const override;
       void set_file_path(const ::file::path & path) override;
 

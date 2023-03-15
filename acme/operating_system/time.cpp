@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
 #include "time.h"
-//#include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/system_time.h"
-//#include "acme/operating_system/time.h"
+#include "acme/primitive/time/time.h"
 #if !defined(WINDOWS)
 #include "acme/operating_system/ansi/windows_time.h"
 #endif
@@ -221,7 +221,7 @@ void file_time_to_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
 
    file_time_to_system_time(&systemtime, pfile_time);
 
-   system_time_to_time(ptime, &systemtime);
+   system_time_to_earth_time(ptime, &systemtime);
 
 }
 
@@ -292,3 +292,39 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
+
+CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime, i32 nDST)
+{
+
+   system_time_t systemtime{};
+
+   ::file_time_to_system_time(&systemtime, pfiletime);
+
+   ::earth::time earthtime{};
+
+   ::file_time_to_earth_time(&earthtime.m_time, pfiletime, nDST);
+
+   ptime->m_iSecond = earthtime.m_time;
+
+   ptime->m_iNanosecond = systemtime.wMilliseconds * 1'000'000;
+
+}
+
+
+
+CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::time * ptime)
+{
+
+   ::earth::time earthtime;
+
+   earthtime.m_time = ptime->m_iSecond;
+
+   system_time_t systemtime{};
+
+   ::earth_time_to_system_time(&systemtime, &earthtime.m_time);
+
+   systemtime.wMilliseconds = ptime->m_iNanosecond / 1'000'000;
+
+   ::system_time_to_file_time(pfiletime, &systemtime);
+
+}

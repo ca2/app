@@ -993,7 +993,7 @@ namespace sockets_bsd
          if(GetTrafficMonitor())
          {
 
-            GetTrafficMonitor()->write(buf,n);
+            GetTrafficMonitor()->write({ buf,n });
 
          }
 
@@ -1347,17 +1347,27 @@ namespace sockets_bsd
 
             //return 0;
          }
+
       }
+      
       if(n > 0)
       {
+         
          m_bytes_sent += n;
+
          if(GetTrafficMonitor())
          {
-            GetTrafficMonitor() -> write(buf,n);
+
+            GetTrafficMonitor()->write({ buf,n });
+
          }
+
          set_connection_last_activity();
+
       }
+
       return (i32)n;
+
    }
 
 
@@ -1416,10 +1426,10 @@ namespace sockets_bsd
       }
    */
 
-   void tcp_socket::write(const void * pdata,memsize len)
+   void tcp_socket::write(const ::block & block)
    {
 
-      const u8 * buf = (const u8 *)pdata;
+      const u8 * buf = (const u8 *)block.data();
 
       if(!Ready() && !is_connecting())
       {
@@ -1457,20 +1467,20 @@ namespace sockets_bsd
 
          WARNING("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
 
-         buffer(buf,(int) len);
+         buffer(buf,(int) block.size());
          return;
       }
       if(m_obuf_top)
       {
-         buffer(buf,(int) len);
+         buffer(buf,(int) block.size());
          return;
       }
       else
       {
-         i32 n = (i32)try_write(buf,(int) len);
-         if(n >= 0 && n < (i32)len)
+         i32 n = (i32)try_write(buf,(int) block.size());
+         if(n >= 0 && n < (i32)block.size())
          {
-            buffer(buf + n,(int) (len - n));
+            buffer(buf + n,(int) (block.size() - n));
          }
       }
       // if ( data in buffer || !IsConnected )
@@ -1537,7 +1547,7 @@ namespace sockets_bsd
 
       ::count length = GetSocks4Userid().length() + 8 + 1;
 
-      write(request,length);
+      write({ request,length });
 
       m_socks4_state = 0;
 

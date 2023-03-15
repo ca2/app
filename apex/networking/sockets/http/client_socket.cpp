@@ -49,7 +49,7 @@ string dump_hex(::file::file* pfile)
    while(true)
    {
 
-      auto iRead = pfile->read(buf, 16);
+      auto iRead = pfile->read({ buf, 16 });
 
       if (iRead <= 0)
       {
@@ -430,16 +430,16 @@ namespace sockets
       if(m_pfile != nullptr)
       {
 
-         if(outheader("content-encoding").case_insensitive_order("gzip") != 0)
+         if(outheader("content-encoding").case_insensitive_equals("gzip"))
          {
 
-            m_pfile->write(buf,len);
+            m_pmemoryfile->write({ buf,len });
 
          }
          else
          {
 
-            m_pmemoryfile->write(buf,len);
+            m_pfile->write({ buf,len });
 
          }
 
@@ -447,7 +447,7 @@ namespace sockets
       else
       {
 
-         m_pmemoryfile->write(buf,len);
+         m_pmemoryfile->write({ buf,len });
 
       }
 
@@ -547,7 +547,7 @@ namespace sockets
    const unsigned char *http_client_socket::GetDataPtr() const
    {
 
-      return m_pmemoryfile ? m_pmemoryfile->data() : nullptr;
+      return m_pmemoryfile ? m_pmemoryfile->full_data_begin() : nullptr;
 
    }
 
@@ -555,7 +555,7 @@ namespace sockets
    memsize http_client_socket::GetDataLength() const
    {
 
-      return (memsize)m_pmemoryfile->size();
+      return (memsize)m_pmemoryfile->full_data_size();
 
    }
 

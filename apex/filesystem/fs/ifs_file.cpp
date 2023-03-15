@@ -22,18 +22,18 @@ ifs_file::~ifs_file()
 }
 
 
-memsize ifs_file::read(void *pdata, memsize nCount)
+memsize ifs_file::read(const ::block & block)
 {
 
-   return m_phttpfile->read(pdata, nCount);
+   return m_phttpfile->read(block);
 
 }
 
 
-void ifs_file::write(const void * pdata, memsize nCount)
+void ifs_file::write(const ::block & block)
 {
 
-   m_pmemfile->write(pdata, nCount);
+   m_pmemfile->write(block);
 
 }
 

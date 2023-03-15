@@ -15,6 +15,7 @@ namespace file
 
 
       virtual memsize read(const ::block & block);
+      virtual ::file::file * get_file();
 
 
    };

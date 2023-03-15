@@ -57,19 +57,18 @@ namespace file
    }
 
 
-   void link::write(const ::file::path & pathWriteAs)
+   ::file::e_link link::write(const ::file::path & pathWriteAs)
    {
 
+      return ::file::e_link_none;
 
    }
 
 
-   ::pointer < ::file::link > link::path_find_replace(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget) const
+   ::file::e_link link::path_find_replace(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget)
    {
 
-      auto plinkPatched = create_clean_new();
-
-      plinkPatched->m_path = m_path;
+      ::file::e_link elinkChanged = ::file::e_link_none;
 
       auto pparticle = (::particle *)this;
 
@@ -90,9 +89,9 @@ namespace file
             if (bIsFileSystemObject)
             {
 
-               plinkPatched->m_pathTarget = pathNew;
+               m_pathTarget = pathNew;
 
-               plinkPatched->m_elink |= ::file::e_link_target;
+               elinkChanged |= ::file::e_link_target;
 
             }
 
@@ -113,9 +112,9 @@ namespace file
             if (bIsDir)
             {
 
-               plinkPatched->m_pathFolder = pathNew;
+               m_pathFolder = pathNew;
 
-               plinkPatched->m_elink |= ::file::e_link_folder;
+               elinkChanged |= ::file::e_link_folder;
 
             }
 
@@ -131,15 +130,15 @@ namespace file
          if (m_pathIcon != pathNew)
          {
 
-            plinkPatched->m_pathIcon = pathNew;
+            m_pathIcon = pathNew;
 
-            plinkPatched->m_elink |= ::file::e_link_icon;
+            elinkChanged |= ::file::e_link_icon;
 
          }
 
       }
 
-      return plinkPatched;
+      return elinkChanged;
 
    }
 

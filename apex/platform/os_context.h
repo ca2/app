@@ -82,7 +82,7 @@ public:
 
    virtual bool is_remote_session();
 
-   virtual void set_file_status(const ::string & strFileName, const ::file::file_status& status);
+   virtual void set_file_status(const ::file::path & path, const ::file::file_status& status);
 
    //virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
    //virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);

@@ -219,7 +219,7 @@ namespace sockets
       \lparam f Dummy flags -- not used */
       //using ::file::file::write;
       //using ::streaobject::write;
-      virtual void write(const void *buf, memsize c) override;
+      void write(const ::block & block) override;
 
       /** This callback is executed after a successful read from the socket.
       \lparam buf Pointer to the data

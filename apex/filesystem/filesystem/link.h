@@ -36,13 +36,15 @@ namespace file
 
       virtual void open(const ::file::path & path, const ::file::e_link & elink = ::file::e_link_all);
 
-      virtual void write(const ::file::path & pathWriteAs = "");
+      /// @brief 
+      /// @return flags of items that were successfully set
+      virtual ::file::e_link write(const ::file::path & pathWriteAs = "");
 
       /// @brief 
       /// @param scopedstrSource 
       /// @param scopedstrTarget 
       /// @return flags of items that were changed
-      virtual ::pointer < ::file::link > path_find_replace(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget) const;
+      virtual ::file::e_link path_find_replace(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget);
 
 
       virtual ::file::path path_find_replace(const ::file::path & path, const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget) const;

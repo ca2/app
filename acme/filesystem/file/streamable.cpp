@@ -10,6 +10,7 @@ namespace file
 {
 
 
+
    enum_status streamable::_open(const ::scoped_string & scopestrFilePath, const ::file::enum_open &eopen)
    {
 
@@ -30,6 +31,14 @@ namespace file
    {
 
       throw error_interface_only;
+
+   }
+
+
+   ::file::file * readable::get_file()
+   {
+
+      return nullptr;
 
    }
 

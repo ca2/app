@@ -94,7 +94,11 @@ namespace windows
 
 
 
+   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path);
+
    CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path);
+
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes);
 
 
    CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError);

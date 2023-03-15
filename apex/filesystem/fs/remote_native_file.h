@@ -24,11 +24,11 @@ namespace fs
       ~remote_native_file() override;
 
       using ::sockets::http_batch_buffer::read;
-      memsize read(void *pdata, memsize nCount) override;
+      memsize read(const ::block & block) override;
 
       
       using ::sockets::http_batch_buffer::write;
-      void write(const void * pdata, memsize nCount) override;
+      void write(const ::block & block) override;
 
 
       void seek(filesize lOff, ::enum_seek eseek);

@@ -113,20 +113,20 @@ namespace folder_zip
 
       //::file::path strPath(pszDir / pszRelative);
 
-      ::file::file_status status;
-
-      pfile->get_status(status);
+      auto status = pfile->get_status();
 
       zip_fileinfo zipfi;
 
       memory_set(&zipfi,0,sizeof(zipfi));
 
-      zipfi.tmz_date.tm_hour = status.m_ctime.hour();
-      zipfi.tmz_date.tm_sec  = status.m_ctime.second();
-      zipfi.tmz_date.tm_min  = status.m_ctime.minute();
-      zipfi.tmz_date.tm_year = status.m_ctime.year();
-      zipfi.tmz_date.tm_mon  = status.m_ctime.month();
-      zipfi.tmz_date.tm_mday = status.m_ctime.day();
+      ::earth::time earthtimeCreation(status.m_timeCreation.m_iSecond);
+
+      zipfi.tmz_date.tm_hour = earthtimeCreation.hour();
+      zipfi.tmz_date.tm_sec  = earthtimeCreation.second();
+      zipfi.tmz_date.tm_min  = earthtimeCreation.minute();
+      zipfi.tmz_date.tm_year = earthtimeCreation.year();
+      zipfi.tmz_date.tm_mon  = earthtimeCreation.month();
+      zipfi.tmz_date.tm_mday = earthtimeCreation.day();
 
       zipOpenNewFileInZip(m_zipfile,pszRelative,&zipfi,nullptr,0,nullptr,0,nullptr,Z_DEFLATED,Z_DEFAULT_COMPRESSION);
 

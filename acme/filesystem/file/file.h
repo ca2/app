@@ -129,16 +129,6 @@ namespace file
       virtual bool full_data_increase_size(memsize c);
 
 
-      virtual bool is_seekable();
-
-      inline translatable & position() {return *this;}
-      virtual filesize get_position() const override;
-      virtual void set_position(filesize position);
-      virtual void increment_position(filesize offset = 1);
-      virtual void decrement_position(filesize offset = 1);
-      virtual void seek_to_begin();
-      virtual void seek_to_end();
-      virtual void seek_from_end(filesize offset);
       void translate(filesize offset, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
@@ -159,6 +149,8 @@ namespace file
 
       virtual void write(const ::block & block);
       virtual memsize defer_write(const ::block & block);
+      virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);
+      virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16_MiB);
 
       //void write(const void* pdata, memsize nCount) override;
 
@@ -169,9 +161,10 @@ namespace file
       //virtual void to(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
 
 
-      virtual void write(::file::file * preader, memsize uiBufferSize = 16 * 1024);
-      virtual void write_from_beginning(::file::file * preader, memsize uiBufSize = 16 * 1024);
       ///virtual void read_file(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
+
+
+      ::file::file * get_file() override; 
 
 
       void abort() override;

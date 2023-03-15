@@ -39,26 +39,46 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path)
    {
 
       ::windows_path windowspath = path.windows_path();
 
       auto attributes = ::GetFileAttributesW(windowspath);
 
-      //if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
-      //{
+      return attributes;
 
-      //   if (::windows::get_alternate_path(wstr))
-      //   {
+   }
 
-      //      dwFileAttributes = GetFileAttributesW(wstr);
 
-      //   }
+   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
+   {
 
-      //}
+      auto attributes = _get_file_attributes(path);
+
+      if (attributes == INVALID_FILE_ATTRIBUTES)
+      {
+
+         throw_last_error_exception();
+
+      }
 
       return attributes;
+
+   }
+
+
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes)
+   {
+
+      ::windows_path windowspath = path.windows_path();
+
+      if (::SetFileAttributesW(windowspath, dwAttributes))
+      {
+
+         throw_last_error_exception();
+
+      }
 
    }
 
@@ -84,10 +104,21 @@ void delete_file(const ::file::path & path)
 bool file_exists(const ::file::path & path)
 {
 
-   auto attributes = ::windows::get_file_attributes(path);
+   auto attributes = ::windows::_get_file_attributes(path);
 
    if (attributes == INVALID_FILE_ATTRIBUTES)
    {
+
+      auto lasterror = ::GetLastError();
+
+      if (lasterror == ERROR_FILE_NOT_FOUND || lasterror == ERROR_PATH_NOT_FOUND)
+      {
+
+         return false;
+
+      }
+
+      throw_last_error_exception(nullptr, lasterror);
 
       return false;
 
@@ -108,110 +139,27 @@ bool file_exists(const ::file::path & path)
 bool is_directory(const ::file::path & path)
 {
 
-   //#ifdef _UWP
-   //
-   //      //string str;
-   //
-   //      ////str = "\\\\?\\";
-   //      ////str += path1;
-   //
-   //      //str = path1;
-   //
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //
-   //      u32 dwFileAttributes = ::windows_get_file_attributes(path1);
-   //
-   //      if (dwFileAttributes != INVALID_FILE_ATTRIBUTES)
-   //      {
-   //
-   //         return dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
-   //
-   //      }
-   //      else
-   //      {
-   //
-   //         ::u32 dwLastError = ::GetLastError();
-   //
-   //         string strPrefix;
-   //
-   //         {
-   //
-   //            string strRelative = path1;
-   //
-   //            auto folderBase = winrt_folder(strRelative, strPrefix);
-   //
-   //            if (folderBase != nullptr)
-   //            {
-   //
-   //               strRelative.replace("/", "\\");
-   //
-   //               strPrefix.replace("/", "\\");
-   //
-   //               strRelative.case_insensitive_begins_eat(strPrefix);
-   //
-   //               strRelative.trim("/\\");
-   //
-   //               //strPrefix.trim_right("/\\");
-   //
-   //               try
-   //               {
-   //
-   //                  auto folder = folderBase->GetFolderAsync(strRelative);
-   //
-   //                  if (folder != nullptr)
-   //                  {
-   //
-   //                     return true;
-   //
-   //                  }
-   //
-   //               }
-   //               catch (...)
-   //               {
-   //
-   //               }
-   //
-   //            }
-   //
-   //         }
-   //
-   //         return false;
-   //
-   //         //auto folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(path1));
-   //
-   //         //bool bOk = folder != nullptr;
-   //
-   //         //if (!bOk)
-   //         //{
-   //
-   //         //   set_last_error(dwLastError);
-   //
-   //         //}
-   //
-   //         //if (bOk)
-   //         //{
-   //
-   //         //   return true;
-   //
-   //         //}
-   //
-   //         //return bOk;
-   //
-   //      }
-   //
-   //
-   //#elif defined(WINDOWS_DESKTOP)
+   auto attributes = ::windows::_get_file_attributes(path);
 
-         //auto dwFileAttributes = ::windows_get_file_attributes(path1);
+   if (attributes == INVALID_FILE_ATTRIBUTES)
+   {
+      
+      auto lasterror = ::GetLastError();
 
-   ::windows_path windowspath = path.windows_path();
+      if (lasterror == ERROR_FILE_NOT_FOUND || lasterror == ERROR_PATH_NOT_FOUND)
+      {
 
-   auto dwFileAttributes = ::GetFileAttributesW(windowspath);
+         return false;
 
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || !(dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+      }
+
+      throw_last_error_exception(nullptr, lasterror);
+
+      return false;
+
+   }
+   
+   if(!(attributes & FILE_ATTRIBUTE_DIRECTORY))
    {
 
       return false;
@@ -219,14 +167,6 @@ bool is_directory(const ::file::path & path)
    }
 
    return true;
-
-   //#else
-   //
-   //      // dedicaverse stat -> Sir And Arthur - Cesar Serenato
-   //
-   //      return is_dir(path1);
-   //
-   //#endif
 
 }
 

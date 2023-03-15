@@ -21,10 +21,10 @@ public:
    ~ifs_file() override;
 
    using ::sockets::http_batch_buffer::read;
-   virtual memsize read(void *pdata, memsize nCount) override;
+   virtual memsize read(const ::block & block) override;
 
    using ::sockets::http_batch_buffer::write;
-   virtual void write(const void * pdata, memsize nCount) override;
+   virtual void write(const ::block & block) override;
 
 
    void translate(filesize offset, ::enum_seek eseek) override;

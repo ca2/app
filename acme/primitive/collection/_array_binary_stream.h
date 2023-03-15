@@ -85,7 +85,7 @@ inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, con
 
    stream << c;
 
-   stream.write(a.get_data(), sizeof(TYPE) * c);
+   stream.write({ a.get_data(), sizeof(TYPE) * c});
 
    return stream;
 
@@ -109,7 +109,7 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::r
 
    a.set_size(c);
 
-   auto iRead = stream.m_pfile->read(a.get_data(), sizeof(TYPE) * c);
+   auto iRead = stream.m_pfile->read({ a.get_data(), sizeof(TYPE) * c });
 
    if (stream.nok() || iRead < (memsize)(sizeof(TYPE) * c))
    {

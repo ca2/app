@@ -175,14 +175,6 @@ namespace file
    }
 
 
-   bool file::is_seekable()
-   {
-
-      return true;
-
-   }
-
-
    bool file::has_write_mode()
    {
 
@@ -190,49 +182,6 @@ namespace file
 
    }
 
-
-   filesize file::get_position() const
-   {
-
-      throw interface_only();
-
-      return 0;
-
-      //return ((file *) this)->translate(0, ::e_seek_current);
-
-   }
-
-
-   void file::set_position(filesize position)
-   {
-
-      ((file *) this)->translate(position, ::e_seek_set);
-
-   }
-
-
-    void file::increment_position(filesize offset)
-   {
-
-      translate(offset, ::e_seek_current);
-
-   }
-
-
-    void file::decrement_position(filesize offset)
-   {
-
-      return translate(-offset, ::e_seek_current);
-
-   }
-
-
-    void file::seek_from_end(filesize offset)
-   {
-
-      return translate(offset, ::e_seek_from_end);
-
-   }
 
 
    void file::abort()
@@ -934,20 +883,6 @@ namespace file
    }
 
 
-   void file::seek_to_begin()
-   {
-
-      return set_position(0);
-
-   }
-
-
-   void file::seek_to_end()
-   {
-
-      return translate(0, e_seek_from_end);
-
-   }
 
 
    filesize file::find(const void * pFind, memsize sizeFind, const filesize * psizeStop)
@@ -1210,14 +1145,23 @@ namespace file
    }*/
 
 
-   void file::write_from_beginning(::file::file * pfileIn, memsize uiBufSize)
+   void file::write_from_beginning(::file::streamable * pstreamable, memsize uiBufSize)
    {
 
-      pfileIn->seek_to_begin();
+      pstreamable->seek_to_begin();
 
-      write(pfileIn, uiBufSize);
+      write(pstreamable, uiBufSize);
 
    }
+
+
+   ::file::file * file::get_file()
+   {
+
+      return this;
+
+   }
+
 
 
    /*void file::from(::file::file * pfileIn, memsize uiBufSize)
@@ -1228,15 +1172,21 @@ namespace file
    }*/
 
 
-   void file::write(::file::file* pfileIn, memsize uiBufSize)
+   void file::write(::file::readable * preadable, memsize uiBufSize)
    {
 
-      if(pfileIn->full_data_is_set())
       {
 
-         write(pfileIn->data());
+         auto pfile = preadable->get_file();
 
-         return;
+         if (pfile && pfile->full_data_is_set())
+         {
+
+            write(pfile->data());
+
+            return;
+
+         }
 
       }
 
@@ -1255,7 +1205,7 @@ namespace file
       {
          while(true)
          {
-            uRead = pfileIn->read(buf);
+            uRead = preadable->read(buf);
             if(uRead <= 0)
             {
                break;

@@ -503,9 +503,9 @@ public:
 
 
    template < typename BLOCK >
-   inline binary_stream & operator << (const memory_template < BLOCK > & mem) { write(mem.data(), mem.size()); return *this; }
+   inline binary_stream & operator << (const memory_template < BLOCK > & mem) { write(mem.block()); return *this; }
    template < typename BLOCK >
-   inline binary_stream & operator >> (memory_template < BLOCK > & mem) { read(mem.data(), mem.size()); return *this; }
+   inline binary_stream & operator >> (memory_template < BLOCK > & mem) { read(mem.block()); return *this; }
 
 
 

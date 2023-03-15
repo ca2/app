@@ -353,7 +353,7 @@ namespace sockets
       //http_client_socket(h)
    {
 
-//      m_timeLastSpontaneousPong = 0;
+      //      m_timeLastSpontaneousPong = 0;
       m_memPong.set_size(2);
       m_memPong.data()[0] = 0x8a;
       m_memPong.data()[1] = 0;
@@ -429,7 +429,7 @@ namespace sockets
 
    }
 
-   
+
    void websocket_client::initialize_websocket_client(const string & url_in, const ::string & strProtocol)
    {
 
@@ -503,7 +503,7 @@ namespace sockets
 
       }
 
-      if ((m_eping == ping_none  || m_eping == ping_pong_received) && m_timeLastPong.elapsed() > m_timeClientPingTimeout)
+      if ((m_eping == ping_none || m_eping == ping_pong_received) && m_timeLastPong.elapsed() > m_timeClientPingTimeout)
       {
 
          m_timeLastPing.Now();
@@ -526,15 +526,16 @@ namespace sockets
 
          memory m1;
 
-         memory m;
+         //memory m;
 
          // bool bUseMask = m_bUseMask;
          bool bUseMask = false;
 
-//         client_send(m, e_opcode::PONG, m1, m_bUseMask);
-         client_send(m, e_opcode::PING, m1, bUseMask);
+         //         client_send(m, e_opcode::PONG, m1, m_bUseMask);
+         
+         auto memory = get_client_send(e_opcode::PING, m1, bUseMask);
 
-         write(m.data(), m.size());
+         write(memory);
 
          //m_memResponse.erase(0, n + header_size);
 
@@ -656,21 +657,21 @@ namespace sockets
       iHttpStatusCode = outattr("http_status_code").as_i32();
 
       string strStatus;
-      
+
       strStatus = outattr("http_status");
 
-      if (iHttpStatusCode == 101 &&  strStatus == "Switching Protocols")
+      if (iHttpStatusCode == 101 && strStatus == "Switching Protocols")
       {
 
          string strUpgrade;
-         
+
          strUpgrade = outheader("upgrade");
 
          if (strUpgrade.case_insensitive_order("websocket") == 0)
          {
 
             string strConnection;
-            
+
             strConnection = outheader("connection");
 
             if (strConnection.case_insensitive_order("Upgrade") == 0)
@@ -679,7 +680,7 @@ namespace sockets
                m_timeLastPing.Now();
 
                string strAccept;
-               
+
                strAccept = outheader("sec-websocket-accept");
 
                string strKey = m_strBase64;
@@ -707,16 +708,16 @@ namespace sockets
                if (strAccept == strKey)
                {
 
-                  m_bWebSocket            = true;
+                  m_bWebSocket = true;
 
-                  m_strWebSocketProtocol  = outheader("sec-websocket-protocol");
+                  m_strWebSocketProtocol = outheader("sec-websocket-protocol");
 
                   output_debug_string("\n\nnow : websocket\n");
 
                   if (m_strWebSocketProtocol.has_char())
                   {
 
-                     output_debug_string("Sec-WebSocket-Protocol: "+ m_strWebSocketProtocol +"\n");
+                     output_debug_string("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
 
                   }
 
@@ -735,29 +736,29 @@ namespace sockets
 
    }
 
-   void websocket_client::write(const void *buf, memsize c)
+   void websocket_client::write(const ::block & block)
    {
 
       synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
 
-      http_client_socket::write(buf, c);
+      http_client_socket::write(block);
 
    }
 
 
    void websocket_client::InitSSLClient()
    {
-//#if defined(HAVE_OPENSSL)
-//      if(m_bTls)
-//      {
-//         InitializeContext("",TLS_client_method());
-//         //m_strTlsHostName = m_host;
-//      }
-//      else
-//      {
-//         InitializeContext("", TLS_client_method());
-//      }
-//#endif
+      //#if defined(HAVE_OPENSSL)
+      //      if(m_bTls)
+      //      {
+      //         InitializeContext("",TLS_client_method());
+      //         //m_strTlsHostName = m_host;
+      //      }
+      //      else
+      //      {
+      //         InitializeContext("", TLS_client_method());
+      //      }
+      //#endif
    }
 
 
@@ -765,15 +766,15 @@ namespace sockets
    long websocket_client::cert_common_name_check(const ::string & common_name)
    {
 
-//#ifdef BSD_STYLE_SOCKETS
-//
-//      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
-//
-//#else
+      //#ifdef BSD_STYLE_SOCKETS
+      //
+      //      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
+      //
+      //#else
 
       int iResult = 0;
 
-//#endif
+      //#endif
 
 
       return iResult;
@@ -791,32 +792,28 @@ namespace sockets
 
       varNetworkPayload.get_network_payload(strNetworkPayload, true);
 
-      memory m;
+      auto memory = get_client_send_text(strNetworkPayload, true);
 
-      client_send_text(m, strNetworkPayload, true);
-
-      write(m.data(), m.size());
+      write(memory);
 
       return !Lost();
 
    }
 
 
-   bool websocket_client::send_memory(memory & memory)
+   bool websocket_client::send_memory(memory & memoryParameter)
    {
 
-      ::memory m;
+      auto memory = get_client_send_binary(memoryParameter);
 
-      client_send_binary(m, memory);
-
-      write(m.data(), m.size());
+      write(memory);
 
       return !Lost();
 
    }
 
 
-   void websocket_client::OnRawData(char *buf, memsize len)
+   void websocket_client::OnRawData(char * buf, memsize len)
    {
 
       if (m_bWebSocket)
@@ -1016,7 +1013,7 @@ namespace sockets
                if (m_fin)
                {
 
-                  on_websocket_data(m_memReceivedData.data(), (int) (m_memReceivedData.size()));
+                  on_websocket_data(m_memReceivedData.data(), (int)(m_memReceivedData.size()));
 
                   m_memReceivedData.set_size(0);
 
@@ -1043,7 +1040,7 @@ namespace sockets
                   {
 
                      //data[m_i + m_header_size] ^= m_maskingkey[m_i & 0x3];
-                     data[m_i + i+ m_header_size] ^= m_maskingkey[(m_i + i) & 0x3];
+                     data[m_i + i + m_header_size] ^= m_maskingkey[(m_i + i) & 0x3];
 
                   }
 
@@ -1051,11 +1048,9 @@ namespace sockets
 
                memory m1(&data[m_header_size], m_iN);
 
-               m_memPong.set_size(0);
+               m_memPong = get_client_send( e_opcode::PONG, m1, true);
 
-               client_send(m_memPong, e_opcode::PONG, m1, true);
-
-               write(m_memPong.data(), m_memPong.size());
+               write(m_memPong);
 
             }
             else if (m_opcode == e_opcode::PONG)
@@ -1103,7 +1098,7 @@ namespace sockets
 
       m_timeLastPong.Now();
 
-      string str((const char *) pdata, len);
+      string str((const char *)pdata, len);
 
       //::fork(get_app(), [=]()
       //{
@@ -1124,50 +1119,53 @@ namespace sockets
    }
 
 
-   int websocket_client::client_send(memory & m, int fin, memory & memory, bool useMask)
+   ::memory websocket_client::get_client_send(int fin, memory & memory, bool useMask)
    {
 
       throw interface_only();
 
-      return -1;
+      return {};
 
    }
 
 
-   int websocket_client::client_send(memory & m, int fin, const char * src)
-   {
-      throw interface_only();
-
-      return -1;
-
-
-   }
-
-   
-   int websocket_client::client_send_text(memory & m, const char * src)
+   ::memory websocket_client::get_client_send(int fin, const char * src)
    {
       
-      return client_send(m, 0x81, src);
+      throw interface_only();
+
+      return {};
 
    }
 
 
-   int websocket_client::client_send_binary(memory & m, memory & memory)
-{
+   ::memory websocket_client::get_client_send_text(const char * src)
+   {
 
-   return client_send(m, 0x82, memory, true);
+      return get_client_send(0x81, src);
 
-}
+   }
 
-   int websocket_client::client_send_text(memory & m, const char* src, bool bMasked)
-{
 
-   memory m2(src, strlen(src));
+   ::memory websocket_client::get_client_send_binary(memory & memory)
+   {
 
-   return client_send(m, 0x81, m2, bMasked);
+      return get_client_send(0x82, memory, true);
 
-}
+   }
+   
+
+   ::memory websocket_client::get_client_send_text(const char * src, bool bMasked)
+   {
+
+      memory m2(src, strlen(src));
+
+      return get_client_send(0x81, m2, bMasked);
+
+   }
+   
 
 } // namespace sockets
+
 
 

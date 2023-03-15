@@ -1127,10 +1127,10 @@ return true;
       }
    */
 
-   void tcp_socket::write(const void * pdata,memsize len)
+   void tcp_socket::write(const ::block &block)
    {
 
-      m_ptcpsocketComposite->write(pdata, len);
+      m_ptcpsocketComposite->write(block);
 
       //const u8 * buf = (const u8 *)pdata;
 

@@ -69,7 +69,8 @@ public:
 
 
    using ::file::file::write;
-   virtual void write(const ::block & block) override;
+   void write(const ::block & block) override;
+   void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
    void put_byte_back(::byte byte) override;
 
@@ -99,9 +100,7 @@ public:
    bool full_data_set_size(memsize c) override;
 
 
-   void write(::file::file * pfileIn, memsize uiBufSize) override;
-
-
+   
    //virtual void to(::file::file * pfileOut, memsize uiBufferSize = 1024 * 1024) override;
 
    void copy_this(const memory_file & file);

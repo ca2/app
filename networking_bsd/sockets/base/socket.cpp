@@ -2572,7 +2572,7 @@ namespace sockets_bsd
       if (m_pmemfileInput != nullptr)
       {
 
-         m_pmemfileInput->write(buf, n);
+         m_pmemfileInput->write({ buf, n });
 
       }
 
@@ -2801,7 +2801,7 @@ namespace sockets_bsd
    }
 
    
-   void base_socket::write(const void * buf, memsize c)
+   void base_socket::write(const ::block & block)
    {
 
 

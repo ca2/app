@@ -4063,6 +4063,9 @@
     <ClCompile Include="operating_system\windows\file1.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\file\translatable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

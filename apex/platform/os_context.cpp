@@ -415,8 +415,7 @@
    }
 
 
-   void os_context::set_file_status(const ::string & pszFileName, const ::file::file_status& status)
-
+   void os_context::set_file_status(const ::file::path & path, const ::file::file_status& status)
    {
 
       throw ::interface_only();

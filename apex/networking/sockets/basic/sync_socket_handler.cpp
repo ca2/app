@@ -52,7 +52,7 @@ namespace sockets
       if(m_psocket == psocket)
       {
 
-         m_pmemoryfile->write(pdata, len);
+         m_pmemoryfile->write({ pdata, len });
 
       }
 
@@ -70,7 +70,7 @@ namespace sockets
    void sync_socket_handler::write(const void * pdata, i32 len)
    {
 
-      m_psocket->write(pdata, len);
+      m_psocket->write({ pdata, len });
 
    }
 
@@ -104,7 +104,7 @@ namespace sockets
    {
       string str;
       char ch;
-      while(m_pmemoryfile->read(&ch, 1) > 0)
+      while(m_pmemoryfile->read(&ch))
       {
          if(ch == '\0')
          {
@@ -113,7 +113,7 @@ namespace sockets
          str += ch;
          if(ch == '\r' || ch == '\n')
          {
-            if(m_pmemoryfile->read(&ch, 1) <= 0)
+            if(!m_pmemoryfile->read(&ch))
                break;
             if(ch == '\r' || ch == '\n')
             {

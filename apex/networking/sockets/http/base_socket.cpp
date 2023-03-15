@@ -362,7 +362,7 @@ namespace sockets
 
             }
 
-            response().file()->from_begin(pfile);
+            response().file()->write_from_beginning(pfile);
 
          }
 
@@ -518,7 +518,7 @@ namespace sockets
             acmesystem()->uncompress(response().file(), preader, "zlib");
             //{
 
-               response().file()->from_begin(preader);
+               response().file()->write_from_beginning(preader);
 
             //}
 
@@ -557,7 +557,7 @@ namespace sockets
 
                }
 
-               response().file()->from(preader);
+               response().file()->write(preader);
 
             }
 
@@ -644,11 +644,11 @@ namespace sockets
                   {
                      uRead = mem.size();
                   }
-                  uRead = preader->read(mem.data(), uRead);
+                  uRead = preader->read(mem(0,uRead));
                   uTotal += uRead;
                   if (uRead == 0)
                      break;
-                  pfile->write(mem.data(), uRead);
+                  pfile->write(mem(0, uRead));
                   iPos += uRead;
                   if (iPos >= preader->size())
                      break;
@@ -719,7 +719,7 @@ namespace sockets
 
                   }
                   
-                  uRead = preader->read(mem.data(), uRead);
+                  uRead = preader->read(mem(0, uRead));
                   
                   uTotal += uRead;
 
@@ -730,7 +730,7 @@ namespace sockets
 
                   }
                   
-                  response().file()->write(mem.data(), uRead);
+                  response().file()->write(mem(0, uRead));
                   
                   iPos += uRead;
 

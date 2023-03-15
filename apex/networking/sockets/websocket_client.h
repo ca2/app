@@ -71,7 +71,7 @@ namespace sockets
 
       virtual void OnDataComplete() override;
 
-      virtual void write(const void *buf, memsize c) override;
+      virtual void write(const ::block & block) override;
 
       virtual bool send_network_payload(::payload varNetworkPayload);
       virtual bool send_memory(memory & memory);
@@ -83,12 +83,12 @@ namespace sockets
 
       virtual bool client_ping_pong_ok();
 
-      virtual int client_send(memory & m, int fin, memory & memory, bool useMask);
-      virtual int client_send(memory & m, int fin, const char * src);
+      virtual memory get_client_send(int fin, memory & memory, bool useMask);
+      virtual memory get_client_send(int fin, const char * src);
 
-      virtual int client_send_text(memory & m, const char * src);
-      virtual int client_send_text(memory & m, const char * src, bool bMasked);
-      virtual int client_send_binary(memory & m, memory & memory);
+      virtual memory get_client_send_text(const char * src);
+      virtual memory get_client_send_text(const char * src, bool bMasked);
+      virtual memory get_client_send_binary(memory & memory);
 
 
    };

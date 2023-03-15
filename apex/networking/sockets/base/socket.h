@@ -724,8 +724,8 @@ virtual string GetSocks4Host();
       ////@}
 
 
-      void write(const void * buf, memsize c) override;
-      inline void print(const ::string & str) { write(str.c_str(), str.length()); }
+      void write(const ::block & block) override;
+      inline void print(const ::string & str) { write(str); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */

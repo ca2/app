@@ -804,17 +804,19 @@ bool memory_file::full_data_set_size(memsize c)
 }
 
 
-void memory_file::write(::file::file* pfileIn, memsize uiBufSize)
+void memory_file::write(::file::readable* preadable, memsize uiBufSize)
 {
 
-   if (pfileIn->full_data_is_set())
+   ::pointer <::file::file> pfile = preadable;
+
+   if (pfile && pfile->full_data_is_set())
    {
 
-      auto size = pfileIn->size();
+      auto size = pfile->size();
 
       full_data_set_size((memsize)size);
       
-      auto read = pfileIn->read(this->data()(0, size));
+      auto read = pfile->read(this->data()(0, size));
 
       if (read != size)
       {
@@ -827,7 +829,7 @@ void memory_file::write(::file::file* pfileIn, memsize uiBufSize)
 
    }
 
-   ::file::file::write(pfileIn, uiBufSize);
+   ::file::file::write(preadable, uiBufSize);
 
 }
 

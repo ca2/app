@@ -14,7 +14,7 @@ namespace file
    public:
 
 
-      virtual memsize read(void * pdata, memsize nCount);
+      virtual memsize read(const ::block & block);
 
 
    };
@@ -25,7 +25,7 @@ namespace file
    public:
 
 
-      virtual void write(const void * pdata, memsize nCount);
+      virtual void write(const ::block & block);
 
 
    };

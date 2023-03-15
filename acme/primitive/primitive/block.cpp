@@ -142,6 +142,11 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 
 
 
+block::block(const range < ::byte * > & range) :
+   block(range.begin(), range.end())
+{
+
+}
 
 
 block::block(const memory_base & memory) :

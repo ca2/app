@@ -188,13 +188,13 @@ namespace acme
 
 inline ::u64 make64_from32(::u32 l, ::u32 h);
 
-//inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite = true);
+//inline bool is_memory_segment_ok(const void* p, memsize size, bool bReadWrite = true);
 //
 //
-//inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength = INT_MAX);
+//inline bool is_string_ok(const ::wide_character* pwsz, memsize nMaxLength = INT_MAX);
 //
 //
-//inline bool __is_valid_string(const ::scoped_string & scopedstr, memsize nMaxLength = UINT_MAX);
+//inline bool is_string_ok(const ::scoped_string & scopedstr, memsize nMaxLength = UINT_MAX);
 
 
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);

@@ -2313,7 +2313,7 @@ namespace draw2d
    void graphics::LPtoHIMETRIC(::size_f64 * psize)
    {
 
-      ASSERT(__is_valid_address(psize, sizeof(::size_f64)));
+      ASSERT(is_memory_segment_ok(psize, sizeof(::size_f64)));
 
       LPtoDP(psize);
 
@@ -2325,7 +2325,7 @@ namespace draw2d
    void graphics::HIMETRICtoLP(::size_f64 * psize)
    {
 
-      ASSERT(__is_valid_address(psize, sizeof(size_f64)));
+      ASSERT(is_memory_segment_ok(psize, sizeof(size_f64)));
 
       HIMETRICtoDP(psize);
 

@@ -155,7 +155,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       return 0;
 
    ASSERT(m_CharEntityRefs.get_count());
-   ASSERT(__is_valid_string(pszEntity));
+   ASSERT(is_string_ok(pszEntity));
 
 
    const ::ansi_character * pszBegin = pszEntity;

@@ -136,7 +136,7 @@ namespace folder_zip
 
       memsize uRead;
 
-      while((uRead = pfile->read(mem,mem.size())) > 0)
+      while((uRead = pfile->read(mem)) > 0)
       {
 
          zipWriteInFileInZip(m_zipfile,mem.begin(),(u32)uRead);

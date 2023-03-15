@@ -91,11 +91,11 @@ namespace folder_zip
 
 
       using ::file::file::read;
-      memsize read(void * pdata, memsize nCount) override;
+      memsize read(const ::block & block) override;
 
 
       using ::file::file::write;
-      void write(const void * pdata,memsize nCount) override;
+      void write(const ::block & block) override;
 
 
       void flush() override;

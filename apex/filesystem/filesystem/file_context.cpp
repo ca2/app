@@ -684,12 +684,12 @@ string file_context::as_string(const ::payload & payloadFile)
 }
 
 
-string file_context::safe_get_string(const ::payload & payloadFile)
+string file_context::safe_get_string(const ::payload & payloadFile, ::e_status * pestatus)
 {
 
    memory memory;
 
-   safe_get_memory(payloadFile, memory);
+   safe_get_memory(payloadFile, memory, pestatus);
 
    return memory.as_utf8();
 
@@ -759,7 +759,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem)
+void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem, ::e_status * pestatus)
 {
 
    file_pointer pfile;
@@ -2595,10 +2595,10 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-void file_context::resolve_link(::file::path &pathTarget, const string &strSource, string *pstrDirectory, string *pstrParams)
+::pointer < ::file::link > file_context::resolve_link(const ::file::path &path)
 {
 
-   m_pcontext->m_papexcontext->os_context()->resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
+   return m_pcontext->m_papexcontext->os_context()->resolve_link(path);
 
 }
 
@@ -3214,7 +3214,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 }
 
 
-file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen)
+file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
@@ -3394,14 +3394,14 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 }
 
 
-::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen)
+::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
 
    __construct(pfile);
 
-   pfile->open(path, eopen);
+   pfile->open(path, eopen, pfileexception);
 
    return pfile;
 
@@ -3503,7 +3503,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 //}
 
 
-bool file_context::is_link(string strPath)
+bool file_context::is_link(const ::file::path & path)
 {
 
    return false;

@@ -138,16 +138,17 @@ namespace apex
       virtual file_pointer friendly_get_file(::payload payloadFile, const ::file::e_open& eopen);
 
 
-      virtual bool os_resolve_alias(::file::path& path, const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
+      virtual ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const ::file::path & path, bool bNoUI = false, bool bNoMount = false);
 
-      virtual bool _os_resolve_alias(::file::path& path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount);
+      virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount);
 
-      virtual bool os_is_alias(const ::scoped_string & scopedstr);
+      virtual bool os_is_alias(const ::file::path & path);
 
-      virtual void sys_set(string strPath, string strValue);
-      virtual string sys_get(string strPath, string strDefault = "");
+      virtual ::file::path sys_path(const ::scoped_string & scopedstrPath);
+      virtual void sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue);
+      virtual string sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault = "");
 
 
       virtual string load_string(const ::scoped_string & scopedstr);
@@ -209,7 +210,7 @@ namespace apex
 
       //virtual void destroy() override;
 
-      file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
+      file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 
 
    };

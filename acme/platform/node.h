@@ -400,11 +400,11 @@ namespace acme
 
       virtual bool is_process_running(::u32 pid);
 
-      virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
+      virtual string get_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
 
-      virtual string expand_environment_variables(const string & str);
+      virtual string expand_environment_variables(const ::scoped_string & scopedstr);
 
-      virtual void set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
+      virtual void set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string& scopedstrValue);
 
 #ifndef _UWP
 

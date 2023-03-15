@@ -656,7 +656,7 @@ void simple_frame_window::initialize_frame_window_experience()
    try
    {
 
-      pexperienceframe = ::move_transfer(frame_experience());
+      pexperienceframe = ::pointer_transfer(frame_experience());
 
    }
    catch (const ::exception&)

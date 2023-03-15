@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   memsize readable::read(void *pdata, memsize nCount)
+   memsize readable::read(const ::block & block)
    {
 
       throw error_interface_only;
@@ -34,7 +34,7 @@ namespace file
    }
 
 
-   void writable::write(const void *pdata, memsize nCount)
+   void writable::write(const ::block & block)
    {
 
       throw error_interface_only;
@@ -88,10 +88,10 @@ namespace file
 CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file::file *pfileIn, memsize uiBufSize)
 {
 
-   if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
+   if (pfileIn->full_data().is_set())
    {
 
-      pwritable->write((u8*)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+      pwritable->write(pfileIn->data());
 
       return;
 
@@ -120,7 +120,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
       while (true)
       {
 
-         uRead = pfileIn->read(buf.data(), buf.size());
+         uRead = pfileIn->read(buf);
 
          if (uRead <= 0)
          {
@@ -129,7 +129,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          }
 
-         pwritable->write(buf.data(), uRead);
+         pwritable->write(buf(0, uRead));
 
          uiSize += uRead;
 

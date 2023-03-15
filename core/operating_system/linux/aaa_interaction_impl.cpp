@@ -248,7 +248,7 @@ namespace linux
    bool interaction_impl::_native_create_window_ex(::pointer<::user::system>pusersystem)
    {
 
-      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
 
       if (!m_puserinteraction->pre_create_window(pusersystem))
       {

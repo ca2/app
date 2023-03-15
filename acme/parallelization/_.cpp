@@ -685,7 +685,7 @@ void run_runnable(::matter * pmatter)
 //}
 
 
-thread_local ::pointer<task>t_ptask;
+thread_local ::task * t_ptask;
 
 
 CLASS_DECL_ACME ::task * get_task()
@@ -697,7 +697,7 @@ CLASS_DECL_ACME ::task * get_task()
       if (::acme::acme::g_p)
       {
 
-         t_ptask = __new(::task());
+         t_ptask = new ::task();
 
          t_ptask->initialize(::acme::acme::g_p->m_psubsystem->acmesystem());
 
@@ -729,7 +729,23 @@ CLASS_DECL_ACME ::task * get_task()
 CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   t_ptask.reset(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   auto ptaskOld = t_ptask;
+
+   if (ptask)
+   {
+
+      ptask->increment_reference_count();
+
+   }
+
+   t_ptask = ptask;
+
+   if (t_ptask)
+   {
+
+      ::release(t_ptask);
+
+   }
 
 }
 
@@ -737,7 +753,11 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   t_ptask.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+   auto ptask = t_ptask;
+
+   t_ptask = nullptr;
+
+   ::release(t_ptask);
 
 }
 
@@ -745,7 +765,7 @@ CLASS_DECL_ACME void task_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 bool task_get_run()
 {
 
-   auto ptask = t_ptask.m_p;
+   auto ptask = t_ptask;
 
    if (::is_null(ptask))
    {

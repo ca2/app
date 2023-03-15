@@ -1,27 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{ef06b4aa-aea8-481f-a357-14ec7fd18d55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\include">
-      <UniqueIdentifier>{e73b9bb9-c726-4abb-98a4-7737f7c0ecc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\inline">
-      <UniqueIdentifier>{cf6c72f9-3368-440e-b488-f352a9cf92ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\platform">
-      <UniqueIdentifier>{36ce9182-dffc-4368-ad02-15d228e1b348}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia">
-      <UniqueIdentifier>{f1408680-b59e-446f-a902-c6eeca3c2d17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multimedia\audio">
-      <UniqueIdentifier>{39ee8db8-ad28-4ad0-bd90-8d21633a64dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user">
-      <UniqueIdentifier>{168ea230-ce83-4199-a897-712f155b8049}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
     </Filter>
@@ -43,20 +22,47 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\game">
-      <UniqueIdentifier>{906a8a0b-f60b-4fa7-9981-ddd212c9e981}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{a7fafa56-be62-4b65-8e63-2449a2d57b82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\xml">
-      <UniqueIdentifier>{85117e5a-8f8f-4cc3-928b-dc7789d8938d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system">
       <UniqueIdentifier>{ed3da094-dc16-4724-bb04-3c6cdfdc4635}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\windows">
       <UniqueIdentifier>{a940bded-2113-4ed9-a6f9-1f71bb5f4b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{5a52cb6c-76f6-41e2-8d96-4d5f2abad324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ef06b4aa-aea8-481f-a357-14ec7fd18d55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{e73b9bb9-c726-4abb-98a4-7737f7c0ecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline">
+      <UniqueIdentifier>{cf6c72f9-3368-440e-b488-f352a9cf92ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{36ce9182-dffc-4368-ad02-15d228e1b348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multimedia">
+      <UniqueIdentifier>{f1408680-b59e-446f-a902-c6eeca3c2d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multimedia\audio">
+      <UniqueIdentifier>{39ee8db8-ad28-4ad0-bd90-8d21633a64dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{168ea230-ce83-4199-a897-712f155b8049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{906a8a0b-f60b-4fa7-9981-ddd212c9e981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\xml">
+      <UniqueIdentifier>{85117e5a-8f8f-4cc3-928b-dc7789d8938d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{d77e15ab-fc03-42af-855b-f31189092ab1}</UniqueIdentifier>
@@ -66,12 +72,6 @@
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{5a52cb6c-76f6-41e2-8d96-4d5f2abad324}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

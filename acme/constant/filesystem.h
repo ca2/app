@@ -19,7 +19,7 @@ namespace file
    enum enum_open
    {
 
-
+      e_open_none = 0,
       e_open_read = (i32)0x000001,
       e_open_write = (i32)0x000002,
       e_open_read_write = (i32)0x000003,

@@ -134,3 +134,9 @@ namespace windows
 //
 //
 //
+
+
+CLASS_DECL_ACME void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage = nullptr, DWORD dwLastError = 0);
+
+
+

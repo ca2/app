@@ -29,7 +29,7 @@ stdio_file::~stdio_file()
 }
 
 
-void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
+void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    string str;
@@ -166,7 +166,7 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
 #endif
 
-         throw ::exception(estatus, string("Error with file: ") + path);
+         throw_exception("fopen");
 
       }
 
@@ -200,13 +200,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
    if (fseek(m_pfile, (long)offset, nFrom))
    {
 
-      auto iErrNo = errno;
-
-      auto estatus = errno_status(iErrNo);
-
-      auto errorcode = errno_error_code(iErrNo);
-
-      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0", m_eopen);
+      throw_exception("fseek != 0");
 
    }
 
@@ -217,15 +211,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
    if(iFseekResult != 0)
    {
 
-      i32 iErrNo = errno;
-      
-      auto errorcode = errno_error_code(iErrNo);
-      
-      auto estatus = errno_status(iErrNo);
-      
-      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
-
-      //return -1;
+      throw_exception("fseek != 0");
 
    }
 
@@ -260,10 +246,10 @@ void stdio_file::close()
 }
 
 
-memsize stdio_file::read(void * pdata, memsize nCount)
+memsize stdio_file::read(const ::block & block)
 {
 
-   auto size = fread(pdata, 1, nCount, m_pfile);
+   auto size = fread(block.data(), 1, block.size(), m_pfile);
 
    int iEof = feof(m_pfile);
 
@@ -275,16 +261,10 @@ memsize stdio_file::read(void * pdata, memsize nCount)
       if (iError != 0)
       {
 
-         i32 iErrNo = errno;
-         
-         auto errorcode = errno_error_code(iErrNo);
-         
-         auto estatus = errno_status(iErrNo);
-         
-         throw ::file::exception(estatus, errorcode, m_path, "fread: !feof and ferror");
+         throw_exception("fread: !feof and ferror");
 
          return 0;
-
+         
       }
 
    }
@@ -344,10 +324,10 @@ void stdio_file::put_byte_back(::byte byte)
 }
 
 
-void stdio_file::write(const void * pdata,memsize nCount)
+void stdio_file::write(const ::block & block)
 {
 
-   fwrite(pdata,nCount, 1, m_pfile);
+   fwrite(block.data(), 1, block.size(), m_pfile);
 
 }
 
@@ -428,13 +408,6 @@ bool stdio_file::get_status(::file::file_status & rStatus) const
 }
 
 
-bool stdio_file::is_opened() const
-{
-
-   return m_pfile != nullptr;
-
-}
-
 
 string stdio_file::get_location() const
 {
@@ -464,3 +437,24 @@ string stdio_file::get_location() const
 
 
 
+
+bool stdio_file::is_opened() const
+{
+
+   return m_pfile != nullptr;
+
+}
+
+
+void stdio_file::throw_exception(const ::scoped_string & scopedstr)
+{
+
+   auto iErrNo = errno;
+
+   auto estatus = errno_status(iErrNo);
+
+   auto errorcode = errno_error_code(iErrNo);
+
+   throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
+
+}

@@ -52,13 +52,10 @@ namespace file
    }
 
 
-   //::extended::status
-      
-   void reference::open(const ::file::path & path, const ::file::e_open & eopen)
+   void reference::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-      /* return */
-      m_pfile->open(path, eopen);
+      m_pfile->open(path, eopen, pfileexception);
 
    }
 
@@ -127,18 +124,18 @@ namespace file
    }
 
 
-   memsize reference::read(void * pdata, memsize nCount)
+   memsize reference::read(const ::block & block)
    {
 
-      return m_pfile->read(pdata, nCount);
+      return m_pfile->read(block);
 
    }
 
 
-   void reference::write(const void * pdata, memsize nCount)
+   void reference::write(const ::block & block)
    {
 
-      return m_pfile->write(pdata, nCount);
+      return m_pfile->write(block);
 
    }
 

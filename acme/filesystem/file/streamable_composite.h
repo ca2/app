@@ -28,9 +28,9 @@ namespace file
 
       void translate(filesize offset, ::enum_seek eseek) override;
 
-      virtual memsize read(void * pdata, memsize nCount) override;
+      virtual memsize read(const ::block & block) override;
 
-      virtual void write(const void * pdata, memsize nCount) override;
+      virtual void write(const ::block & block) override;
 
       virtual void close() override;
 

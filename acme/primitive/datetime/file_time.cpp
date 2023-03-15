@@ -248,7 +248,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //} // namespace acme
 //
 
-bool get_file_time_set(const ::file::path & path, file_time_set & file_timeset)
+void get_file_time_set(const ::file::path & path, file_time_set & file_timeset)
 {
 
    return get_file_time_set(path, file_timeset.m_filetimeCreation, file_timeset.m_filetimeModified);
@@ -259,74 +259,48 @@ bool get_file_time_set(const ::file::path & path, file_time_set & file_timeset)
 #ifdef WINDOWS_DESKTOP
 
 
-bool get_file_time_set(const ::file::path & path, file_time & file_timeCreation, file_time & file_timeModified)
+void get_file_time_set(const ::file::path & path, file_time & file_timeCreation, file_time & file_timeModified)
 {
 
-   HANDLE h = CreateFileW(wstring(path.get_os_path()),GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,nullptr,OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS,nullptr);
-
-   if (h == INVALID_HANDLE_VALUE)
-   {
-
-      return false;
-
-   }
+   ::windows::file_instance file;
    
-   bool bOk = true;
+   file.create_file(
+      path, 
+      GENERIC_READ,
+      FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+      nullptr,
+      OPEN_EXISTING, 
+      FILE_FLAG_BACKUP_SEMANTICS,
+      nullptr);
 
-   try
-   {
-      
-      //zero(creation);
-      //zero(modified);
-      ::GetFileTime(h,(FILETIME*)&file_timeCreation,nullptr, (FILETIME *)&file_timeModified);
-
-   }
-   catch(...)
-   {
-      bOk = false;
-   }
-
-   ::CloseHandle(h);
-
-   return bOk;
+   file.get_file_time((FILETIME*)&file_timeCreation,nullptr, (FILETIME *)&file_timeModified);
 
 }
 
 
-CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const ::earth::time& time)
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const ::earth::time& time)
 {
 
    ::file_time file_time;
 
    time_to_file_time(&file_time.m_filetime, &time.m_time);
 
-   return set_modified_file_time(path, file_time);
+   set_modified_file_time(path, file_time);
 
 }
 
 
-CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const file_time & file_timeModified)
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & file_timeModified)
 {
 
-   bool bOk = false;
+   ::windows::file_instance file;
+   
+   file.create_file(path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
 
-   HANDLE h = CreateFileW(wstring(path.get_os_path()), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
-
-   try
-   {
-
-      bOk = ::SetFileTime(h, nullptr, nullptr, (FILETIME*)&file_timeModified) != false;
-
-   }
-   catch (...)
-   {
-   }
-
-   ::CloseHandle(h);
-
-   return bOk;
+   file.set_file_time(nullptr, nullptr, (FILETIME*)&file_timeModified);
 
 }
+
 
 #elif defined(_UWP)
 

@@ -471,7 +471,7 @@ public:
    inline void raw_write(const BLOCK_TYPE & t) // must be POD type // block transfer // classes/structures with no  members
    {
 
-      write(&t, sizeof(t));
+      write({ e_as_block, t });
 
    }
 
@@ -480,7 +480,7 @@ public:
    inline void raw_read(BLOCK_TYPE & t) // must be POD type // block transfer // classes/structures with no  members
    {
 
-      read(&t, sizeof(t));
+      read({ e_as_block, t });
 
    }
 
@@ -789,28 +789,29 @@ public:
 
 
 
-   void write(const void * pdata, memsize nCount)
+   void write(const ::block & block)
    {
 
-      m_pfile->write(pdata, nCount);
+      m_pfile->write(block);
 
    }
 
 
-   void write(const void * pdata, memsize nCount, memsize * dwWritten)
+   memsize defer_write(const ::block & block)
    {
 
-      m_pfile->write(pdata, nCount);
+      return m_pfile->defer_write(block);
 
-      if (dwWritten)
-      {
-
-         *dwWritten = nCount;
-
-      }
 
    }
 
+
+   //void write(const ::block & block)
+   //{
+
+   //   m_pfile->write(block);
+
+   //}
 
 
    binary_stream & operator <<(const atom & atom)
@@ -974,7 +975,7 @@ public:
       }
       break;
       default:
-         write(payload.m_all, sizeof(payload.m_all));
+         write(::block(e_as_block, payload.m_all));
          //throw ::exception(::exception("payload::write ::payload type not recognized"));
       }
 
@@ -1055,7 +1056,7 @@ public:
 
       write_buffer_length(str.length());
 
-      write(str.c_str(), str.length());
+      write(str.as_block());
 
       return *this;
 
@@ -1131,7 +1132,7 @@ public:
 
       m.set_size((memsize)u);
 
-      read(m.data(), m.size());
+      read(m);
 
       return *this;
 
@@ -1702,7 +1703,7 @@ public:
       default:
       {
          payload.set_type(etype, false);
-         read(payload.m_all, sizeof(payload.m_all));
+         read({ e_as_block ,payload.m_all });
          //payload.release();
          //setstate(::file::failbit); // stream corrupt
          break;
@@ -1740,7 +1741,7 @@ public:
 
          memsize s = character_count_to_byte_length(psz, (strsize)u);
 
-         read(psz, s - sizeof(*psz));
+         read({ psz, s - sizeof(*psz) });
 
          str.release_string_buffer((strsize)u);
 
@@ -2031,15 +2032,15 @@ public:
    //}
 
 
-   void read(void * pdata, memsize nCount)
+   void read(const ::block & block)
    {
 
       //if (!fail())
       //{
 
-      m_gcount = m_pfile->read(pdata, nCount);
+      m_gcount = m_pfile->read(block);
 
-      if (m_gcount != nCount)
+      if (m_gcount != block.size())
       {
 
          set_nok();

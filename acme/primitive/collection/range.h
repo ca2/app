@@ -285,6 +285,40 @@ public:
    void clear_string_flag() { m_erange -= e_range_string; }
 
 
+   template < primitive_integral START >
+   constexpr THIS_RAW_RANGE operator()(START start) const
+   {
+
+      return { m_begin + start, m_end };
+
+   }
+
+
+   template < primitive_integral START, primitive_integral COUNT >
+   constexpr THIS_RAW_RANGE operator()(START start, COUNT count) const
+   {
+
+      return { m_begin + start, (count < 0) ? m_end + count + 1 : m_begin + start + count };
+
+   }
+
+   template < primitive_integral START >
+   constexpr THIS_RAW_RANGE operator()(START start)
+   {
+
+      return { m_begin + start, m_end };
+
+   }
+
+
+   template < primitive_integral START, primitive_integral COUNT >
+   constexpr THIS_RAW_RANGE operator()(START start, COUNT count)
+   {
+
+      return { m_begin + start, (count < 0) ? m_end + count + 1 : m_begin + start + count };
+
+   }
+
    constexpr auto offset_of(const_iterator p) const
    {
       return p - (const_iterator)this->begin();

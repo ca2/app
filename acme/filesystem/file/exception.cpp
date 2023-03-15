@@ -81,7 +81,7 @@ namespace file
 
       //}
 
-      exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::scoped_string & scopedstrMessage, const ::file::e_open & eopen, const ::scoped_string & scopedstrDetails) :
+      exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::file::e_open & eopen, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
          ::exception(estatus, scopedstrMessage, scopedstrDetails)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK : CALLSTACK_DEFAULT_SKIP)
       {

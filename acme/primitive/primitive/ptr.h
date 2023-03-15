@@ -65,7 +65,7 @@ class ptr
    }
    
    
-   ptr(enum_move_transfer, TYPE * p)
+   ptr(enum_pointer_transfer, TYPE * p)
    {
    
       m_p = p;

@@ -2768,7 +2768,13 @@ void thread::task_osinit()
 
    {
 
-      ::set_task(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+
+      if (::get_task() != this)
+      {
+
+         ::set_task(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+
+      }
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -3839,11 +3845,11 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if (iRet == -1)
       {
 
-         auto lastError = ::GetLastError();
+         auto lasterror = ::GetLastError();
 
-         ::output_debug_string("Last Error : " + ::as_string(lastError) + "\n");
+         ::output_debug_string("Last Error : " + ::as_string(lasterror) + "\n");
 
-         auto estatus = ::windows::last_error_status(lastError);
+         auto estatus = ::windows::last_error_status(lasterror);
 
          throw ::exception(estatus);
 

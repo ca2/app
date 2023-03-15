@@ -189,7 +189,7 @@ namespace folder_zip
    //}
 
 
-memsize file::read(void* pdata, memsize nCount)
+memsize file::read(const ::block & block)
 {
 
    synchronous_lock synchronouslock(m_pfolder->synchronization());
@@ -197,12 +197,16 @@ memsize file::read(void* pdata, memsize nCount)
    //   ASSERT_VALID(this);
    ASSERT(m_pfolder->m_unzfile != nullptr);
 
+   auto nCount = block.size();
+
+   auto pdata = block.data();
+
    if (nCount == 0)
       return 0;   // avoid Win32 "nullptr-read"
 
    ASSERT(pdata != nullptr);
 
-   ASSERT(__is_valid_address(pdata, (uptr)nCount));
+   ASSERT(is_memory_segment_ok(pdata, (uptr)nCount));
 
    auto iRead = unzReadCurrentFile(m_pfolder->m_unzfile, pdata, (u32)nCount);
 
@@ -213,7 +217,7 @@ memsize file::read(void* pdata, memsize nCount)
 }
 
 
-void file::write(const void* pdata, memsize nCount)
+void file::write(const ::block & block)
 {
 
    return;

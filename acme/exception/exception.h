@@ -6,7 +6,8 @@
 //#include "acme/primitive/collection/array.h"
 
 
-class CLASS_DECL_ACME exception
+class CLASS_DECL_ACME exception :
+   virtual public ::particle
 {
 public:
 
@@ -60,7 +61,13 @@ public:
 };
 
 
-
+#define RETURN_OR_THROW(bReturn, ppexception, EXCEPTION, ...) \
+   if(bReturn) \
+   { \
+      if(ppexception) *ppexception = __new(EXCEPTION(__VA_ARGS__)); \
+      return; \
+   } \
+   throw EXCEPTION(__VA_ARGS__)
 
 
 

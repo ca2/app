@@ -699,7 +699,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 //      ASSERT(this->m_nSize >= 0);
 //      ASSERT(this->m_nMaxSize >= 0);
 //      ASSERT(this->m_nSize <= this->m_nMaxSize);
-//      ASSERT(__is_valid_address(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
+//      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
 //
 //   }
 //
@@ -1418,7 +1418,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > & raw_array < T
 ////      ASSERT(this->m_nSize >= 0);
 ////      ASSERT(this->m_nMaxSize >= 0);
 ////      ASSERT(this->m_nSize <= this->m_nMaxSize);
-////      ASSERT(__is_valid_address(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
+////      ASSERT(is_memory_segment_ok(this->m_begin, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
 ////
 ////   }
 ////

@@ -31,7 +31,7 @@ inline pointer < T > ::pointer(std::nullptr_t):
 
 template < class T >
 template < typename T2 >
-inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
+inline pointer < T > ::pointer(enum_pointer_transfer, T2 * p)
 {
 
    if(::is_set(p))
@@ -592,7 +592,7 @@ inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
 
    }
 
-   return ::move_transfer(pNew);
+   return ::pointer_transfer(pNew);
 
 }
 

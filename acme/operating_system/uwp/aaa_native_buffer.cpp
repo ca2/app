@@ -263,7 +263,7 @@ namespace universal_windows
       m_folder = nullptr;
 
       ASSERT_VALID(this);
-      ASSERT(__is_valid_string(path));
+      ASSERT(is_string_ok(path));
       ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // native_buffer objects are always binary and Createnative_buffer does not need flag
@@ -751,7 +751,7 @@ pacmedirectory->create(path.folder());
 
       ASSERT_VALID(this);
 
-      ASSERT(__is_valid_string(path));
+      ASSERT(is_string_ok(path));
 
       m_strFileName = path;
 

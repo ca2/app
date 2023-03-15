@@ -5731,7 +5731,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    strsize nCurrentLength = size();
 
@@ -5758,7 +5758,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    if (pszFormat == nullptr)
    {
@@ -5839,7 +5839,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format(const CHARACTER * pszFormat, ...)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
@@ -5859,7 +5859,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format(const CHARACTER * pszFormat, ...)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
@@ -6291,7 +6291,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_replace(cons
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_begins(const SCOPED_STRING & scopedstrPrefix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_prefix(const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->begins(scopedstrPrefix))
@@ -6307,7 +6307,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_be
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_begins_ci(const SCOPED_STRING & scopedstrPrefix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::case_insensitive_ensure_prefix(const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6323,7 +6323,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_be
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_ends(const SCOPED_STRING & scopedstrSuffix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_suffix(const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->ends(scopedstrSuffix))
@@ -6339,7 +6339,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_en
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_ends_ci(const SCOPED_STRING & scopedstrSuffix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::case_insensitive_ensure_suffix(const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->case_insensitive_ends(scopedstrSuffix))
@@ -6353,6 +6353,70 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_en
 
 }
 
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->begins(scopedstrPrefix))
+   {
+
+      return scopedstrPrefix + *this;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->case_insensitive_begins(scopedstrPrefix))
+   {
+
+      return scopedstrPrefix + *this;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->ends(scopedstrSuffix))
+   {
+
+      return *this + scopedstrSuffix;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->case_insensitive_ends(scopedstrSuffix))
+   {
+
+      return *this + scopedstrSuffix;
+
+   }
+
+   return *this;
+
+}
 
 //template < typename ITERATOR_TYPE >
 //inline bool string_base < ITERATOR_TYPE > ::begins(const CHARACTER * pszPrefix) const

@@ -127,6 +127,7 @@ public:
    //virtual ::file::path program_data();
    virtual ::file::path stage(string strAppId, string strPlatform, string strConfiguration);
    virtual ::file::path sys_temp();
+   virtual ::file::path temp();
    virtual ::string dir_root();
    //virtual ::file::path home();
    //virtual ::file::path program_data();

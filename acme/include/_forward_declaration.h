@@ -197,8 +197,17 @@ namespace windowing
 
 } // namespace windowing
 
-//using oswindow = void *;
-using windows_handle = void*;
+
+namespace windows
+{
+
+   
+   class generic_handle;
+
+
+} // namespace windows
+
+
 using hinstance = void*;
 #ifdef UNICODE
 using tchar = wchar_t;

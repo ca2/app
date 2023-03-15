@@ -79,10 +79,10 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 #define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw_exception(error_bad_argument))
 
 #define ASSERT_POINTER(p, type) \
-   ASSERT(((p) != nullptr) && __is_valid_address((p), sizeof(type), false))
+   ASSERT(((p) != nullptr) && is_memory_segment_ok((p), sizeof(type), false))
 
 #define ASSERT_NULL_OR_POINTER(p, type) \
-   ASSERT(((p) == nullptr) || __is_valid_address((p), sizeof(type), false))
+   ASSERT(((p) == nullptr) || is_memory_segment_ok((p), sizeof(type), false))
 
 
 CLASS_DECL_ACME errno_t c_runtime_error_check(errno_t error);

@@ -21,7 +21,7 @@ namespace file
    //   ::file::e_open        m_eopen;
 
 
-   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::scoped_string & strMessage, const ::file::e_open & eopen = e_null, const ::scoped_string & scopedstrDetails = "");
+   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::file::e_open & eopen = e_null, const ::scoped_string & strMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr);
 
 //      virtual ~exception();
 //

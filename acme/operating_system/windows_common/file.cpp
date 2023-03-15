@@ -11,54 +11,54 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
-   {
+   // CLASS_DECL_ACME bool alternate_path(::windows_path & windowspath)
+   // {
 
-      if (wstr.case_insensitive_begins(::str::windows_bbqb(wstr)))
-      {
+   //    if (windowspath.case_insensitive_begins(::str::windows_bbqb(wstr)))
+   //    {
 
-         return false;
+   //       return false;
 
-      }
+   //    }
 
-      if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
-      {
+   //    if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
+   //    {
 
-         wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
+   //       wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
 
-      }
-      else
-      {
+   //    }
+   //    else
+   //    {
 
-         wstr = ::str::windows_bbqb(wstr) + wstr;
+   //       wstr = ::str::windows_bbqb(wstr) + wstr;
 
-      }
+   //    }
 
-      return true;
+   //    return true;
 
-   }
+   // }
 
 
    CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
    {
 
-      wstring wstr(path);
+      ::windows_path windowspath = path.windows_path();
 
-      DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
+      auto attributes = ::GetFileAttributesW(windowspath);
 
-      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
-      {
+      //if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      //{
 
-         if (::windows::get_alternate_path(wstr))
-         {
+      //   if (::windows::get_alternate_path(wstr))
+      //   {
 
-            dwFileAttributes = GetFileAttributesW(wstr);
+      //      dwFileAttributes = GetFileAttributesW(wstr);
 
-         }
+      //   }
 
-      }
+      //}
 
-      return dwFileAttributes;
+      return attributes;
 
    }
 
@@ -66,24 +66,17 @@ namespace windows
 } // namespace windows
 
 
-
 void delete_file(const ::file::path & path)
 {
 
-   wstring wstrPath(path.get_os_path());
+   ::windows_path windowspath = path.windows_path();
 
-   if (!::DeleteFileW(wstrPath))
+   if (!::DeleteFileW(windowspath))
    {
 
-      auto dwLastError = ::GetLastError();
-
-      auto estatus = ::windows::last_error_status(dwLastError);
-
-      throw ::exception(estatus);
+      throw_last_error_exception();
 
    }
-
-   //return ::success;
 
 }
 
@@ -214,9 +207,9 @@ bool is_directory(const ::file::path & path)
 
          //auto dwFileAttributes = ::windows_get_file_attributes(path1);
 
-   wstring wstrPath(path.get_os_path());
+   ::windows_path windowspath = path.windows_path();
 
-   auto dwFileAttributes = ::GetFileAttributesW(wstrPath);
+   auto dwFileAttributes = ::GetFileAttributesW(windowspath);
 
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || !(dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
    {
@@ -241,49 +234,44 @@ bool is_directory(const ::file::path & path)
 void create_directory(const ::file::path & path)
 {
 
-   wstring wstr;
+   auto strWindowsPath = path.windows_path();
 
-   if (file_path_is_absolute(path))
+   ::windows_path windowspath = strWindowsPath;
+
+   if (!::CreateDirectoryW(windowspath, nullptr))
    {
 
-      wstr = L"\\\\?\\" + path.get_os_path();
+      auto lasterror = ::GetLastError();
 
-   }
-   else
-   {
-
-      wstr = path.get_os_path();
-
-   }
-
-   if (!::CreateDirectoryW(wstr, nullptr))
-   {
-
-      auto lastError = ::GetLastError();
-
-      if (lastError == ERROR_ALREADY_EXISTS)
+      if (lasterror == ERROR_ALREADY_EXISTS)
       {
 
          return;
 
       }
 
-      if (::windows::get_alternate_path(wstr))
-      {
+      string strDetails;
 
-         if (!::CreateDirectoryW(wstr, nullptr))
-         {
+      strDetails.format("Failed to create directory (2) \"%s\"", strWindowsPath.c_str());
 
-            auto lastError = ::GetLastError();
+      throw_last_error_exception(strDetails, lasterror);
 
-            if (lastError == ERROR_ALREADY_EXISTS)
+      //if (::windows::alternate_path(windowspath))
+      //{
+
+      //   if (!::CreateDirectoryW(windowspath, nullptr))
+      //   {
+
+         /*   auto lasterror = ::GetLastError();
+
+            if (lasterror == ERROR_ALREADY_EXISTS)
             {
 
                return;
 
             }
 
-            auto estatus = ::windows::last_error_status(lastError);
+            auto estatus = ::windows::last_error_status(lasterror);
 
             string strDetails;
 
@@ -291,21 +279,21 @@ void create_directory(const ::file::path & path)
 
             throw ::exception(estatus, strDetails);
 
-         }
+         }*/
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto estatus = ::windows::last_error_status(lastError);
+         //auto estatus = ::windows::last_error_status(lasterror);
 
-         string strDetails;
+         //string strDetails;
 
-         strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
+         //strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
 
-         throw ::exception(estatus, strDetails);
+         //throw ::exception(estatus, strDetails);
 
-      }
+      //}
 
    }
 
@@ -316,8 +304,6 @@ void create_directory(const ::file::path & path)
 
 void erase_directory(const ::file::path & path)
 {
-
-   
 
    wstring wstr;
 
@@ -337,18 +323,15 @@ void erase_directory(const ::file::path & path)
    if (!::RemoveDirectoryW(wstr))
    {
 
-      auto lastError = ::GetLastError();
+      auto lasterror = ::GetLastError();
 
-      auto estatus = ::windows::last_error_status(lastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 
    }
 
 }
-
-
-
 
 
 namespace windows
@@ -452,44 +435,6 @@ namespace windows
 } // namespace windows
 
 
-CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
-{
-
-   LARGE_INTEGER largeinteger{};
-
-   if (!::GetFileSizeEx(h, &largeinteger))
-   {
-
-      return false;
-
-   }
-
-   auto size = largeinteger.QuadPart;
-
-   if (size != iSize)
-   {
-
-      largeinteger.QuadPart = iSize;
-
-      if (!::SetFilePointerEx(h, largeinteger, nullptr, SEEK_SET))
-      {
-
-         return false;
-
-      }
-
-      if (!::SetEndOfFile(h))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
 
 
 //CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)

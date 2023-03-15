@@ -255,7 +255,7 @@ namespace android
 
 //      return false;
 
-      ENSURE_ARG(pusersystem->m_createstruct.lpszClass == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszClass));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszClass == nullptr || is_string_ok(pusersystem->m_createstruct.lpszClass));
 
       if (pusersystem->m_createstruct.hwndParent == HWND_MESSAGE)
       {

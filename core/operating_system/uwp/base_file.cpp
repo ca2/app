@@ -796,33 +796,33 @@ int_bool FILE_set_size(FILE * file,size_t iSize)
 }
 
 
-int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
-{
+// int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
+// {
 
-   ::u32 dwHi;
+//    ::u32 dwHi;
 
-   ::u32 dwLo = GetFileSize(h,&dwHi);
+//    ::u32 dwLo = GetFileSize(h,&dwHi);
 
-   if(((u64)dwLo | ((u64)dwHi << 32)) != iSize)
-   {
+//    if(((u64)dwLo | ((u64)dwHi << 32)) != iSize)
+//    {
 
-      ::i32 l = (iSize >> 32) & 0xffffffff;
+//       ::i32 l = (iSize >> 32) & 0xffffffff;
 
-      if(SetFilePointer(h,iSize & 0xffffffff,&l,SEEK_SET) != (::u32)(iSize & 0xffffffff))
-         return false;
+//       if(SetFilePointer(h,iSize & 0xffffffff,&l,SEEK_SET) != (::u32)(iSize & 0xffffffff))
+//          return false;
 
-      if(l != ((iSize >> 32) & 0xffffffff))
-         return false;
+//       if(l != ((iSize >> 32) & 0xffffffff))
+//          return false;
 
-      if(!SetEndOfFile(h))
-         return false;
+//       if(!SetEndOfFile(h))
+//          return false;
 
-   }
+//    }
 
 
-   return 1;
+//    return 1;
 
-}
+// }
 
 
 

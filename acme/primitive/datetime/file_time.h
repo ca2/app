@@ -121,29 +121,33 @@ namespace earth
 CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSeconds);
 
 
-CLASS_DECL_ACME bool get_file_time_set(const ::file::path & path, file_time_set & time);
+CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time_set & time);
 
-CLASS_DECL_ACME bool get_file_time_set(const ::file::path & path, file_time & creation, file_time & modified);
+CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time & creation, file_time & modified);
 
-CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const ::earth::time & time);
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const ::earth::time & time);
 
-CLASS_DECL_ACME bool set_modified_file_time(const ::file::path & path, const file_time & modified);
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & modified);
 
 inline file_time_set get_file_time_set(const ::file::path & path)
 {
 
-   file_time_set file_timeset;
+   file_time_set filetimeset;
 
-   if (!get_file_time_set(path, file_timeset))
+   try
    {
 
-      file_time_set timeNull = {};
-
-      return timeNull;
+      get_file_time_set(path, filetimeset);
 
    }
+   catch (...)
+   {
 
-   return file_timeset;
+      return {};
+      
+   }
+
+   return filetimeset;
 
 }
 

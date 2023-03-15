@@ -584,8 +584,10 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //}
 //
 //
+
+
 template < typename T >
-inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
+inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }; }
 
 
 //template < typename TYPE >

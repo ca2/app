@@ -380,108 +380,108 @@ void memory_base::delete_begin(memsize iSize)
 }
 
 
-void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) const
+//void memory_base::to(::file::file * pfileOut, memsize uiBufferSize) const
+//{
+//
+//   if (this->is_empty())
+//   {
+//
+//      return;
+//
+//   }
+//
+//   if(pfileOut->increase_full_data_size(size()) && pfileOut->get_internal_data() != nullptr)
+//   {
+//
+//      if(pfileOut->get_internal_data() == data())
+//         return;
+//
+//      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
+//      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
+//
+//      pfileOut->position() += size();
+//
+//   }
+//   else
+//   {
+//
+//      pfileOut->write(data(),size());
+//
+//   }
+//
+//}
+
+
+void memory_base::assign_file(::file::file * pfileIn, memsize uiBufferSize)
 {
 
-   if (data() == nullptr || this->is_empty())
+   clear();
+
+   append_file(pfileIn, uiBufferSize);
+
+}
+
+
+void memory_base::assign_entire_file(::file::file * pfileIn, memsize uiBufferSize)
+{
+
+   clear();
+
+   append_file(pfileIn, uiBufferSize);
+
+}
+
+
+void memory_base::append_file(::file::file * pfileIn,memsize uiBufferSize)
+{
+
+   if(pfileIn->full_data_is_set())
    {
+
+      append(pfileIn->data());
 
       return;
 
    }
 
-   if(pfileOut->increase_internal_data_size(size()) && pfileOut->get_internal_data() != nullptr)
+   if (uiBufferSize <= 0)
    {
 
-      if(pfileOut->get_internal_data() == data())
-         return;
-
-      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
-      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
-
-      pfileOut->position() += size();
+      uiBufferSize = 1_MiB;
 
    }
-   else
+
+   memsize position = this->size();
+
+   while (true)
    {
 
-      pfileOut->write(data(),size());
+      set_size(position + uiBufferSize);
+
+      auto amountRead = pfileIn->read((*this)(position, uiBufferSize));
+
+      if (amountRead <= 0)
+      {
+
+         break;
+
+      }
+
+      position += amountRead;
 
    }
+
+   set_size(position);
 
 }
 
 
-void memory_base::transfer_from_begin(::file::file * pfileIn,memsize uiBufferSize)
+void memory_base::append_entire_file(::file::file * pfileIn, memsize uiBufferSize)
 {
 
    pfileIn->seek_to_begin();
 
-   transfer_from(pfileIn,uiBufferSize);
-
-}
-
-
-void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
-{
-
-   if(pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
-   {
-
-      append((u8 *)pfileIn->get_internal_data() + pfileIn->get_position(),(memsize) (pfileIn->get_internal_data_size() - pfileIn->get_position()));
-
-   }
-   else
-   {
-
-      ::filesize filesize = pfileIn->size();
-
-      if (filesize >= 0)
-      {
-
-         if (filesize > ::numeric_info < memsize> ::maximum())
-         {
-
-            throw ::exception(error_no_memory);
-
-         }
-
-         set_size((::memsize) filesize);
-
-         memsize uRead = pfileIn->read(data(), (memsize) size());
-
-         set_size(uRead);
-
-      }
-      else
-      {
-
-         memsize uRead;
-
-         memsize uiSize = 0;
-
-         while (true)
-         {
-
-            set_size(uiSize + uiBufferSize);
-
-            uRead = pfileIn->read(&data()[uiSize], uiBufferSize);
-
-            if (uRead <= 0)
-            {
-               break;
-
-            }
-
-            uiSize += uRead;
-
-         }
-
-         set_size(uiSize);
-
-      }
-
-   }
+   append_file(pfileIn, uiBufferSize);
 
 }
 
@@ -2158,84 +2158,88 @@ namespace acme
 
 
 
-   CLASS_DECL_ACME void transfer_to(::file::file * pfileOut, memory_base & mem, memsize uiBufferSize)
-   {
+   //CLASS_DECL_ACME void transfer_to(::file::file * pfileOut, memory_base & mem, memsize uiBufferSize)
+   //{
 
-      if (mem.data() == nullptr || mem.size() <= 0)
-         return;
+   //   if (mem.is_empty())
+   //   {
 
-      if (pfileOut->increase_internal_data_size(mem.size()) && pfileOut->get_internal_data() != nullptr)
-      {
+   //      return;
 
-         if (pfileOut->get_internal_data() == mem.data())
-            return;
+   //   }
 
-         __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
+   //   if (pfileOut->increase_internal_data_size(mem.size()) && pfileOut->get_internal_data() != nullptr)
+   //   {
 
-         ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
+   //      if (pfileOut->get_internal_data() == mem.data())
+   //         return;
 
-         pfileOut->position() += mem.size();
+   //      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
 
-      }
-      else
-      {
+   //      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
 
-         pfileOut->write(mem.data(), mem.size());
+   //      pfileOut->position() += mem.size();
 
-      }
+   //   }
+   //   else
+   //   {
 
-   }
+   //      pfileOut->write(mem.data(), mem.size());
 
+   //   }
 
-   CLASS_DECL_ACME void transfer_from_begin(::file::file * pfileIn, memory_base & mem, memsize uiBufferSize)
-   {
-
-      pfileIn->seek_to_begin();
-
-      ::acme::transfer_from(pfileIn, mem, uiBufferSize);
-
-   }
+   //}
 
 
-   CLASS_DECL_ACME void transfer_from(::file::file * pfileIn, memory_base & mem, memsize uiBufferSize)
-   {
+   //CLASS_DECL_ACME void transfer_from_begin(::file::file * pfileIn, memory_base & mem, memsize uiBufferSize)
+   //{
 
-      if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
-      {
+   //   pfileIn->seek_to_begin();
 
-         mem.append((u8 *)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+   //   ::acme::transfer_from(pfileIn, mem, uiBufferSize);
 
-      }
-      else
-      {
-
-         memsize uRead;
-
-         memsize uiSize = 0;
-
-         while (true)
-         {
-
-            mem.set_size(uiSize + uiBufferSize);
-
-            uRead = pfileIn->read(&mem.data()[uiSize], uiBufferSize);
-
-            if (uRead <= 0)
-            {
-               break;
-
-            }
-
-            uiSize += uRead;
-
-         }
-
-         mem.set_size(uiSize);
-
-      }
+   //}
 
 
-   }
+   //CLASS_DECL_ACME void transfer_from(::file::file * pfileIn, memory_base & mem, memsize uiBufferSize)
+   //{
+
+   //   if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
+   //   {
+
+   //      mem.append((u8 *)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+
+   //   }
+   //   else
+   //   {
+
+   //      memsize uRead;
+
+   //      memsize uiSize = 0;
+
+   //      while (true)
+   //      {
+
+   //         mem.set_size(uiSize + uiBufferSize);
+
+   //         uRead = pfileIn->read(&mem.data()[uiSize], uiBufferSize);
+
+   //         if (uRead <= 0)
+   //         {
+   //            break;
+
+   //         }
+
+   //         uiSize += uRead;
+
+   //      }
+
+   //      mem.set_size(uiSize);
+
+   //   }
+
+
+   //}
 
 
 

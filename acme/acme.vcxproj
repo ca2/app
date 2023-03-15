@@ -804,6 +804,7 @@
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />

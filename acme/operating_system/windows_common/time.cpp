@@ -64,15 +64,15 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 }
 
 
-thread_local nanosecond_timer t_nanosecondtimer;
+// thread_local nanosecond_timer t_nanosecondtimer;
 
 
-CLASS_DECL_ACME void precision_wait(const class time & timeWait)
-{
+// CLASS_DECL_ACME void precision_wait(const class time & timeWait)
+// {
 
-   t_nanosecondtimer.wait(timeWait);
+//    t_nanosecondtimer.wait(timeWait);
 
-}
+// }
 
 
 
@@ -150,7 +150,7 @@ CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time
 
    system_time_t systemtime;
 
-   /*auto estatus = */ time_to_system_time(&systemtime, ptime);
+   /*auto estatus = */ earth_time_to_system_time(&systemtime, ptime);
 
    //if(!estatus)
    //{

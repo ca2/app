@@ -37,15 +37,13 @@ namespace windows
       /// @return number of bytes written 
       [[nodiscard ]] DWORD defer_write(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
 
+      void write(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
+
       /// @brief 
       /// @param block 
       /// @param lpOverlapped 
       /// @return number of bytes read 
-      [[nodiscard ]] DWORD read_file(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
-
-
-      void write(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
-
+      [[nodiscard ]] ::memsize read(const ::block& block, LPOVERLAPPED lpOverlapped = nullptr);
 
       void flush_file_buffers();
 

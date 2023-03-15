@@ -26,7 +26,7 @@ void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC);
 
 CLASS_DECL_ACME void get_system_time(system_time_t * psystemtime);
 CLASS_DECL_ACME void file_time_to_earth_time(time_t * ptime, const file_time_t* pfile_time, i32 nDST = -1);
-CLASS_DECL_ACME void file_time_to_time(class ::time* ptime, const file_time_t* pfiletime, i32 nDST = -1);
+CLASS_DECL_ACME void file_time_to_time(class ::time* ptime, const file_time_t* pfiletime);
 CLASS_DECL_ACME void system_time_to_earth_time(time_t * ptime, const system_time_t* psystemtime, i32 nDST = -1);
 CLASS_DECL_ACME void system_time_to_file_time(file_time_t * pfile_time, const system_time_t* psystemtime);
 CLASS_DECL_ACME void earth_time_to_system_time(system_time_t * psystem_time, const time_t* ptime);

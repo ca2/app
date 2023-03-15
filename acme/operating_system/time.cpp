@@ -290,23 +290,21 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
+// Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
+static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
 
 
 
-CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime, i32 nDST)
+CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime)
 {
 
-   system_time_t systemtime{};
+   uint64_t nanoseconds = *pfiletime * 100;
 
-   ::file_time_to_system_time(&systemtime, pfiletime);
+   nanoseconds -= EPOCH_DIFFERENCE_NANOS;
 
-   ::earth::time earthtime{};
+   ptime->m_iSecond = nanoseconds / 1'000'000'000;
 
-   ::file_time_to_earth_time(&earthtime.m_time, pfiletime, nDST);
-
-   ptime->m_iSecond = earthtime.m_time;
-
-   ptime->m_iNanosecond = systemtime.wMilliseconds * 1'000'000;
+   ptime->m_iNanosecond = nanoseconds % 1'000'000'000;
 
 }
 
@@ -315,16 +313,10 @@ CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* 
 CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::time * ptime)
 {
 
-   ::earth::time earthtime;
+   uint64_t nanoseconds = ptime->m_iNanosecond + ptime->m_iSecond * 1'000'000'000;
 
-   earthtime.m_time = ptime->m_iSecond;
+   nanoseconds += EPOCH_DIFFERENCE_NANOS;
 
-   system_time_t systemtime{};
-
-   ::earth_time_to_system_time(&systemtime, &earthtime.m_time);
-
-   systemtime.wMilliseconds = ptime->m_iNanosecond / 1'000'000;
-
-   ::system_time_to_file_time(pfiletime, &systemtime);
+   *pfiletime = nanoseconds / 100;
 
 }

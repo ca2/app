@@ -232,6 +232,49 @@ namespace windows
    }
 
 
+   [[nodiscard ]] memsize file::read(const ::block& block, LPOVERLAPPED lpOverlapped)
+   {
+
+      memsize totalRead = 0;
+
+      DWORD dwRead{};
+
+      auto p = block.data();
+
+      auto s = block.size();
+
+      while (s > 0)
+      {
+
+         auto amountToRead = ::minimum(s, MAXDWORD);
+
+         if (!::ReadFile(m_handle, p, amountToRead, &dwRead, lpOverlapped))
+         {
+
+            throw_exception();
+
+         }
+
+         if (dwRead <= 0)
+         {
+
+            break;
+
+         }
+
+         p += dwRead;
+
+         totalRead += dwRead;
+
+         s -= dwRead;
+
+      }
+
+      return totalRead;
+
+   }
+
+
    void file::flush_file_buffers()
    {
 

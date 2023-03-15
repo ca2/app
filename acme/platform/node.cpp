@@ -1363,7 +1363,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //void node::system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    //{
 
    //   throw ::interface_only();

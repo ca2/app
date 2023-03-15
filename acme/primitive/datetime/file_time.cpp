@@ -231,7 +231,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const ::file::path & path, int iSecon
 //
 //      }
 //
-//      estatus = system_time_to_time(ptime, &systemtime);
+//      estatus = system_time_to_earth_time(ptime, &systemtime);
 //
 //      if (!estatus)
 //      {

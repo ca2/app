@@ -36,7 +36,7 @@ namespace compress_zlib
 
       u32 uRead;
 
-      uRead = (u32)(pfileGzFileCompressed->read(memIn.data(), memIn.size()));
+      uRead = (u32)(pfileGzFileCompressed->read(memIn);
 
       z_stream zstream;
 

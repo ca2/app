@@ -125,7 +125,7 @@ CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time_set 
 
 CLASS_DECL_ACME void get_file_time_set(const ::file::path & path, file_time & creation, file_time & modified);
 
-CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const ::earth::time & time);
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time & time);
 
 CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & modified);
 

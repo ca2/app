@@ -714,7 +714,7 @@ template < typename FILE >
 void write_text_stream < FILE >::print(const ::scoped_string& str)
 {
 
-   m_pfile->write(str.c_str(), str.length_in_bytes());
+   m_pfile->write({str.begin(), str.size()});
 
 }
 

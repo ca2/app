@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/file_dialog.h"
 #include "base/user/user/image_list.h"
 
 
@@ -16,8 +17,9 @@ namespace userex
 
       ::file::path                     m_pathFolder;
       ::pointer<::file::listing>      m_plisting;
-      string_array                     m_straPattern;
-      string_array                     m_straPatternNames;
+      //string_array                     m_straPattern;
+      //string_array                     m_straPatternNames;
+      ::array < ::file::file_dialog_filter >          m_filedialogfiltera;
       string                           m_strLinkPrefix;
       int                              m_iForkAddDib;
 

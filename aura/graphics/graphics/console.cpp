@@ -273,16 +273,18 @@ namespace graphics
    }
 
 
-   void console::write(const ::block & block)
+   void console::write(const void * p, ::memsize s)
    {
+
+      auto data = (::byte *)p;
 
 #ifdef WINDOWS
 
-      string str((const char *)block.data(), minimum(strnlen_s((const char *)block.data(), (size_t)block.size()), block.size()));
+      string str((const char *)data, minimum(strnlen_s((const char *)data, (size_t)s), s));
 
 #else
 
-      string str((const char *)block.data(), minimum(strnlen((const char *)block.data(), (size_t)block.size()), block.size()));
+      string str((const char *)data, minimum(strnlen((const char *)data, (size_t)s), s));
 
 #endif
 

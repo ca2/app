@@ -212,6 +212,9 @@ public:
    const CHARACTER * c_str() const { return this->begin(); }
 
 
+   ::block as_block() const { return { (::byte *)this->begin(), this->size() * sizeof(CHARACTER) }; }
+
+
 };
 
 

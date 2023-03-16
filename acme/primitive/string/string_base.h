@@ -1156,8 +1156,8 @@ public:
 
    inline strsize length() const { return (::strsize)this->metadata()->m_countData; }
    inline strsize size() const { return this->length(); }
-   inline memsize character_count_in_bytes_without_null_terminator() const;
    inline memsize character_count_in_bytes() const;
+   inline memsize null_terminated_character_count_in_bytes() const;
 
    string_base right(strsize nCount) const;
 

@@ -1182,7 +1182,7 @@ auto tickStart = ::time::now();
 
                synchronous_lock synchronouslock(sckDataConnection.synchronization());
 
-               sckDataConnection.write(m_vBuffer.data(), static_cast<int>(m_vBuffer.size()));
+               sckDataConnection.write(m_vBuffer);
 
             }
 
@@ -1364,7 +1364,7 @@ auto tickStart = ::time::now();
             point_i32->OnSendCommand(Command, Arguments);
          const string strCommand = Command.AsString(Arguments) + "\r\n";
          //write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
-         write(strCommand, static_cast<int>(strCommand.length()));
+         write(strCommand);
       }
       catch (::sockets::transfer_socket_exception& blockingException)
       {

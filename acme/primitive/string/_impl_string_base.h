@@ -2429,7 +2429,7 @@ template < typename ITERATOR_TYPE >
 typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::create_string(strsize characterCount)
 {
 
-   auto sizeStorageInBytes = character_count_to_byte_length(this->begin(), characterCount);
+   auto sizeStorageInBytes = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
 
    auto pNew = this->create_meta_data(sizeStorageInBytes);
 
@@ -2450,7 +2450,7 @@ template < typename ITERATOR_TYPE >
 typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
 {
 
-   auto storageSizeInBytes = character_count_to_byte_length(this->begin(), characterCount);
+   auto storageSizeInBytes = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
 
    auto pNew = this->create_meta_data(storageSizeInBytes);
 
@@ -2514,11 +2514,11 @@ inline strsize string_base < ITERATOR_TYPE >::storage_character_count() const { 
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes_without_null_terminator() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes() - sizeof(CHARACTER); }
+inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes(); }
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes(); }
+inline memsize string_base < ITERATOR_TYPE >::null_terminated_character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes() + sizeof(CHARACTER); }
 
 
 template < typename ITERATOR_TYPE >

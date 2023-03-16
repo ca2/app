@@ -1044,7 +1044,7 @@ public:
 
       write_buffer_length(len);
 
-      write(psz, len);
+      write({ psz, len });
 
       return *this;
 
@@ -1741,7 +1741,7 @@ public:
 
          memsize s = character_count_to_byte_length(psz, (strsize)u);
 
-         read({ psz, s - sizeof(*psz) });
+         read({ psz, s });
 
          str.release_string_buffer((strsize)u);
 

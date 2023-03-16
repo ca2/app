@@ -102,32 +102,29 @@ ftpfs_file::~ftpfs_file()
 }
 
 
-void ftpfs_file::open(const ::file::path & filepath, const ::file::e_open & eopen)
+void ftpfs_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
-   m_filepath = filepath;
+   m_filepath = path;
 
    return m_pfile->open(m_payloadFile, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
 }
 
 
-memsize ftpfs_file::read(void *pdata, memsize nCount)
-
+memsize ftpfs_file::read(const ::block & block)
 {
 
-   return m_pfile->read(pdata, nCount);
+   return m_pfile->read(block);
 
 
 }
 
 
-void ftpfs_file::write(const void * pdata, memsize nCount)
-
+void ftpfs_file::write(const ::block & block)
 {
 
-   m_pfile->write(pdata, nCount);
-
+   m_pfile->write(block);
 
 }
 

@@ -165,13 +165,13 @@ namespace user
    }*/
 
    bool toolbar_control::SetButtons(const ::u32* pIDArray, i32 nIDCount)
-
    {
+
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
-         is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount, false));
+         is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount));
 
 
       // delete all existing buttons

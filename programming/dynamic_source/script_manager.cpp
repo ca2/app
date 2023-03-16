@@ -1443,7 +1443,7 @@ namespace dynamic_source
 
                ASSERT(pinsocket->get_input_memory_file() != nullptr);
 
-               pinsocket->get_input_memory_file()->from(phttpdsocket->get_input_memory_file());
+               pinsocket->get_input_memory_file()->write(phttpdsocket->get_input_memory_file());
 
                pinsocket->server_to_link_in(phttpdsocket);
 

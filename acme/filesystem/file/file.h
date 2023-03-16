@@ -147,6 +147,10 @@ namespace file
 
       virtual void as_memory(memory_base & memory) const;
 
+
+      template < typename TYPE >
+      void write_as_block(const TYPE & t) { write({ e_as_block, t }); }
+
       virtual void write(const ::block & block);
       virtual memsize defer_write(const ::block & block);
       virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);

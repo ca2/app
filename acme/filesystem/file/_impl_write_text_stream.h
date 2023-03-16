@@ -637,7 +637,7 @@ void write_text_stream < FILE >::raw_print(const ::string& str)
     void write_text_stream < FILE >::write(const void* psz, strsize s)
     {
 
-       m_pfile->write(psz, s);
+       m_pfile->write({ psz, s });
 
     }
 

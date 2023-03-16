@@ -246,7 +246,7 @@ namespace windows
       while (s > 0)
       {
 
-         auto amountToRead = ::minimum(s, MAXDWORD);
+         auto amountToRead = ::natural_minimum(s, MAXDWORD);
 
          if (!::ReadFile(m_handle, p, amountToRead, &dwRead, lpOverlapped))
          {

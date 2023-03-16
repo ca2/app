@@ -63,14 +63,14 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 }
 
 
-CLASS_DECL_ACME void precision_wait(const class time & time)
-{
+// CLASS_DECL_ACME void precision_wait(const class time & time)
+// {
 
-   struct timespec & timespec =  (struct timespec &) time;
+//    struct timespec & timespec =  (struct timespec &) time;
 
-   ::nanosleep(&timespec, nullptr);
+//    ::nanosleep(&timespec, nullptr);
 
-}
+// }
 
 
 //CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)

@@ -2801,7 +2801,7 @@ namespace sockets_bsd
    }
 
    
-   void base_socket::write(const ::block & block)
+   void base_socket::write(const void * p, ::memsize s)
    {
 
 

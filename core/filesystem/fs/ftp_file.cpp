@@ -112,19 +112,19 @@ void ftpfs_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 }
 
 
-memsize ftpfs_file::read(const ::block & block)
+memsize ftpfs_file::read(void * p, ::memsize s)
 {
 
-   return m_pfile->read(block);
+   return m_pfile->read(p, s);
 
 
 }
 
 
-void ftpfs_file::write(const ::block & block)
+void ftpfs_file::write(const void * p, ::memsize s)
 {
 
-   m_pfile->write(block);
+   m_pfile->write(p, s);
 
 }
 

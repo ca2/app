@@ -38,10 +38,12 @@ namespace file
 
 
       using ::file::file::read;
-      memsize read(const ::block & block) override;
+      memsize read(void * p, ::memsize s) override;
 
+      
       using ::file::file::write;
-      void write(const ::block & block) override;
+      void write(const void * p, ::memsize s) override;
+
 
       void put_byte_back(::byte byte) override;
 

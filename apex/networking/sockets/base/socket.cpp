@@ -3087,10 +3087,10 @@ namespace sockets
    }
 
    
-   void base_socket::write(const ::block & block)
+   void base_socket::write(const void * p, ::memsize s)
    {
 
-      base_socket_composite()->write(block);
+      base_socket_composite()->write(p, s);
 
    }
 

@@ -4,11 +4,59 @@
 #include "acme/primitive/primitive/memory_container.h"
 #include "file.h"
 
+#pragma pack(push, custom__integers__, 1)
+
+struct u24 { byte m_u[3]; };
+
+struct u40 { byte m_u[5]; };
+
+struct u48 { byte m_u[6]; };
+
+struct u56 { byte m_u[7]; };
+
+#pragma pack(pop, custom__integers__)
 
 class memory_file;
 
 
 typedef ::pointer<memory_file>memory_file_pointer;
+
+
+inline void inline_byte_array_copy(::byte * target, const ::byte * source, ::memsize s)
+{
+
+   switch (s)
+   {
+   case 1:
+      *target = *source;
+      break;
+   case 2:
+      *(::u16 *)target = *(::u16 *)source;
+      break;
+   case 3:
+      *(::u24 *)target = *(::u24 *)source;
+      break;
+   case 4:
+      *(::u32 *)target = *(::u32 *)source;
+      break;
+   case 5:
+      *(::u40 *)target = *(::u40 *)source;
+      break;
+   case 6:
+      *(::u48 *)target = *(::u48 *)source;
+      break;
+   case 7:
+      *(::u56 *)target = *(::u56 *)source;
+      break;
+   case 8:
+      *(::u64 *)target = *(::u64 *)source;
+      break;
+   default:
+      ::memcpy(target, source, s);
+      break;
+   }
+
+}
 
 
 class CLASS_DECL_ACME memory_file :
@@ -65,11 +113,13 @@ public:
 
 
    using ::file::file::read;
-   virtual memsize read(const ::block & block) override;
+   virtual memsize read(void * p, ::memsize s) override;
 
 
    using ::file::file::write;
-   void write(const ::block & block) override;
+   void write(const void * p, ::memsize s) override;
+
+
    void write(::file::readable * pfileIn, memsize uiBufSize = 16_MiB) override;
 
    void put_byte_back(::byte byte) override;
@@ -100,7 +150,7 @@ public:
    bool full_data_set_size(memsize c) override;
 
 
-   
+
    //virtual void to(::file::file * pfileOut, memsize uiBufferSize = 1024 * 1024) override;
 
    void copy_this(const memory_file & file);
@@ -198,63 +248,64 @@ public:
    bool read_string(memory_base & memory) override;
 
 
-   memsize read_inline(::block block)
+   memsize read_inline(void * p, ::memsize s)
    {
 
-      memsize iDiff = m_pmemory->size() - m_position;
+      auto target = (::byte *)p;
 
-      auto nCount = block.size();
+      memsize left = m_pmemory->size() - m_position;
 
-      if (iDiff <= 0)
+      if (s > left)
+      {
+
+         s = left;
+
+      }
+
+      if (s <= 0)
+      {
+
          return 0;
 
-      if (nCount > (memsize)iDiff)
-         nCount = iDiff;
+      }
 
-      auto pdataThis = m_pmemory.m_p->data();
+      auto source = m_pmemory->m_begin + m_position;
 
-      auto pdataPosition = pdataThis + m_position;
+      inline_byte_array_copy(target, source, s);
 
-      ::memcpy(block.begin(), pdataPosition, (size_t)nCount);
+      m_position += s;
 
-      m_position += nCount;
-
-      return nCount;
+      return s;
 
    }
 
 
-   void write_inline(const ::block & block)
+   void write_inline(const void * p, ::memsize s)
    {
 
-      if (block.is_empty())
+      auto source = (const ::byte *)p;
+
+      auto e = m_position + s;
+
+      if (e <= 0)
       {
 
          return;
 
       }
 
-      memsize iEndPosition = m_position + block.size();
-
-      if (iEndPosition <= 0)
+      if (e > m_pmemory->size())
       {
 
-         m_position = 0;
-
-         return;
+         set_size(e);
 
       }
 
-      if (m_pmemory.is_null() || iEndPosition > m_pmemory->size())
-      {
+      auto target = m_pmemory->m_begin + m_position;
 
-         set_size(iEndPosition);
+      inline_byte_array_copy(target, source, s);
 
-      }
-
-      ::memcpy_dup(data_begin(), block.data(), (size_t)block.size());
-
-      m_position = (memsize)iEndPosition;
+      m_position = e;
 
    }
 

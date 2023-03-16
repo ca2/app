@@ -43,18 +43,18 @@ namespace file
    }
 
    
-   memsize streamable_composite::read(const ::block & block) 
+   memsize streamable_composite::read(void * p, ::memsize s) 
    { 
       
-      return m_pstreamable->read(block); 
+      return m_pstreamable->read(p, s); 
    
    }
 
    
-   void streamable_composite::write(const ::block & block) 
+   void streamable_composite::write(const void * p, ::memsize s) 
    { 
       
-      return m_pstreamable->write(block); 
+      return m_pstreamable->write(p, s); 
    
    }
 

@@ -27,18 +27,18 @@ namespace fs
    }
 
 
-   memsize remote_native_file::read(const ::block & block)
+   memsize remote_native_file::read(void * p, ::memsize s)
    {
 
-      return m_phttpfile->read(block);
+      return m_phttpfile->read(p, s);
 
    }
 
 
-   void remote_native_file::write(const ::block & block)
+   void remote_native_file::write(const void * p, ::memsize s)
    {
 
-      m_pmemfile->write(block);
+      m_pmemfile->write(p, s);
 
    }
 

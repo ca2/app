@@ -151,10 +151,12 @@ namespace file
    }
 
 
-   memsize buffered_file:: read(const ::block & block)
+   memsize buffered_file:: read(void * p, ::memsize s)
    {
 
-      if (block.is_empty())
+      auto data = (::byte *) p;
+
+      if (::is_null(data) || s <= 0)
       {
 
          return 0;
@@ -165,24 +167,24 @@ namespace file
 
       memsize uiReadNow = 0;
 
-      while(uRead < block.size())
+      while(uRead < s)
       {
 
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
 
-            uiReadNow = minimum(block.size() - uRead, (memsize)(m_uiBufUPos - m_uiPosition + 1));
+            uiReadNow = minimum(s - uRead, (memsize)(m_uiBufUPos - m_uiPosition + 1));
 
-            if(block.size() == 1)
+            if(s == 1)
             {
 
-               ((byte *)block.data())[uRead] = m_storage.data()[m_uiPosition - m_uiBufLPos];
+               data[uRead] = m_storage.data()[m_uiPosition - m_uiBufLPos];
 
             }
             else
             {
 
-               ::memcpy_dup(&((byte *)block.data())[uRead], &m_storage.data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
+               ::memcpy_dup(data + uRead, &m_storage.data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
 
             }
 
@@ -192,7 +194,7 @@ namespace file
 
          }
 
-         if(uRead < block.size())
+         if(uRead < s)
          {
 
             if (!buffer())
@@ -271,14 +273,16 @@ namespace file
    }
 
 
-   void buffered_file::write(const ::block & block)
+   void buffered_file::write(const void * p, ::memsize s)
    {
+
+      auto data = (const ::byte *)p;
 
       memsize uiWrite = 0;
 
       memsize uiWriteNow = 0;
 
-      while(uiWrite < block.size())
+      while(uiWrite < s)
       {
 
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition < (m_uiBufLPos + m_uiBufferSize))
@@ -286,7 +290,7 @@ namespace file
 
             m_bDirty = true;
 
-            uiWriteNow = minimum(block.size() - uiWrite, (memsize)((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
+            uiWriteNow = minimum(s - uiWrite, (memsize)((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
 
             if (m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
             {
@@ -302,7 +306,7 @@ namespace file
 
             }
 
-            ::memcpy_dup(&m_storage.data()[m_uiPosition - m_uiBufLPos], &((byte *)block.data())[uiWrite], (size_t) uiWriteNow);
+            ::memcpy_dup(&m_storage.data()[m_uiPosition - m_uiBufLPos], data + uiWrite, (size_t) uiWriteNow);
 
             m_uiPosition += uiWriteNow;
 
@@ -310,10 +314,10 @@ namespace file
 
          }
 
-         if(uiWrite < block.size())
+         if(uiWrite < s)
          {
 
-            buffer(block.size() - uiWrite);
+            buffer(s - uiWrite);
 
          }
 

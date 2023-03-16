@@ -35,15 +35,15 @@ namespace windows
       /// @param block 
       /// @param lpOverlapped 
       /// @return number of bytes written 
-      [[nodiscard ]] DWORD defer_write(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
+      [[nodiscard ]] DWORD defer_write(const void * p, ::memsize s, LPOVERLAPPED lpOverlapped = nullptr);
 
-      void write(const ::block & block, LPOVERLAPPED lpOverlapped = nullptr);
+      void write(const void * p, ::memsize s, LPOVERLAPPED lpOverlapped = nullptr);
 
       /// @brief 
       /// @param block 
       /// @param lpOverlapped 
       /// @return number of bytes read 
-      [[nodiscard ]] ::memsize read(const ::block& block, LPOVERLAPPED lpOverlapped = nullptr);
+      [[nodiscard ]] ::memsize read(void * p, ::memsize s, LPOVERLAPPED lpOverlapped = nullptr);
 
       void flush_file_buffers();
 

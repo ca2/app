@@ -187,14 +187,14 @@ namespace windows
    }
 
 
-   DWORD file::defer_write(const ::block & block, LPOVERLAPPED lpOverlapped)
+   DWORD file::defer_write(const void * p, ::memsize s, LPOVERLAPPED lpOverlapped)
    {
 
       DWORD dwWritten{};
 
-      auto bytesToWrite = natural_minimum(block.size(), MAXDWORD);
+      auto bytesToWrite = natural_minimum(s, MAXDWORD);
 
-      if (!::WriteFile(m_handle, block.data(), bytesToWrite, &dwWritten, lpOverlapped))
+      if (!::WriteFile(m_handle, p, bytesToWrite, &dwWritten, lpOverlapped))
       {
 
          throw_exception();
@@ -206,24 +206,24 @@ namespace windows
    }
 
 
-   void file::write(const ::block & block, LPOVERLAPPED lpOverlapped)
+   void file::write(const void * p, ::memsize amountToWrite, LPOVERLAPPED lpOverlapped)
    {
 
-      auto amountWritten = defer_write(block, lpOverlapped);
+      auto amountWritten = defer_write(p, amountToWrite, lpOverlapped);
 
-      if (amountWritten != block.size())
+      if (amountWritten != amountToWrite)
       {
 
-         if (amountWritten < block.size())
+         if (amountWritten < amountToWrite)
          {
 
-            throw_exception("nWritten < nCount - is disk full?", -1);
+            throw_exception("amountWritten < amountToWrite - is disk full?", -1);
 
          }
          else
          {
 
-            throw_exception("nWritten >= nCount", -1);
+            throw_exception("amountWritten >= amountToWrite", -1);
 
          }
 
@@ -232,41 +232,39 @@ namespace windows
    }
 
 
-   [[nodiscard ]] memsize file::read(const ::block& block, LPOVERLAPPED lpOverlapped)
+   [[nodiscard ]] memsize file::read(void * p, ::memsize s, LPOVERLAPPED lpOverlapped)
    {
 
       memsize totalRead = 0;
 
-      DWORD dwRead{};
-
-      auto p = block.data();
-
-      auto s = block.size();
+      auto data = (::byte *)p;
 
       while (s > 0)
       {
 
          auto amountToRead = ::natural_minimum(s, MAXDWORD);
 
-         if (!::ReadFile(m_handle, p, amountToRead, &dwRead, lpOverlapped))
+         DWORD amountRead{};
+
+         if (!::ReadFile(m_handle, p, amountToRead, &amountRead, lpOverlapped))
          {
 
             throw_exception();
 
          }
 
-         if (dwRead <= 0)
+         if (amountRead <= 0)
          {
 
             break;
 
          }
 
-         p += dwRead;
+         data += amountRead;
 
-         totalRead += dwRead;
+         totalRead += amountRead;
 
-         s -= dwRead;
+         s -= amountRead;
 
       }
 

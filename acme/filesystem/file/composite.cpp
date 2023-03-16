@@ -125,18 +125,18 @@ namespace file
    }
 
 
-   memsize reference::read(const ::block & block)
+   memsize reference::read(void * p, ::memsize s)
    {
 
-      return m_pfile->read(block);
+      return m_pfile->read(p, s);
 
    }
 
 
-   void reference::write(const ::block & block)
+   void reference::write(const void * p, ::memsize s)
    {
 
-      return m_pfile->write(block);
+      return m_pfile->write(p, s);
 
    }
 

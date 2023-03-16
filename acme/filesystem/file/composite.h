@@ -51,9 +51,13 @@ namespace file
       void close() override;
 
 
-      memsize read(const ::block & block) override;
+      using ::file::file::read;
+      memsize read(void * p, ::memsize s) override;
 
-      void write(const ::block & block) override;
+
+      using ::file::file::write;
+      void write(const void * p, ::memsize s) override;
+
 
       ::string get_location() const override;
 

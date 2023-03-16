@@ -219,7 +219,8 @@ namespace sockets
       \lparam f Dummy flags -- not used */
       //using ::file::file::write;
       //using ::streaobject::write;
-      void write(const ::block & block) override;
+      using stream_socket::write;
+      void write(const void * p, ::memsize s) override;
 
       /** This callback is executed after a successful read from the socket.
       \lparam buf Pointer to the data

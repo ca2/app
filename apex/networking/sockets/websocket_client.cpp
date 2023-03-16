@@ -736,12 +736,13 @@ namespace sockets
 
    }
 
-   void websocket_client::write(const ::block & block)
+
+   void websocket_client::write(const void * p, ::memsize s)
    {
 
       synchronous_lock synchronouslock(m_pmutexWebsocketWrite);
 
-      http_client_socket::write(block);
+      http_client_socket::write(p, s);
 
    }
 

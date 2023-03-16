@@ -724,7 +724,10 @@ virtual string GetSocks4Host();
       ////@}
 
 
-      void write(const ::block & block) override;
+      using ::file::writable::write;
+      void write(const void * p, ::memsize s) override;
+
+
       inline void print(const ::string & str) { write(str); }
 
 

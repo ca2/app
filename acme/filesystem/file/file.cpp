@@ -263,7 +263,7 @@ namespace file
    }
 
 
-   memsize file::read(const ::block & block)
+   memsize file::read(void * p, ::memsize s)
    {
 
       return 0;
@@ -315,7 +315,7 @@ namespace file
    }
 
 
-   void file::write(const ::block & block)
+   void file::write(const void * p, ::memsize s)
    {
 
    }

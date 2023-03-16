@@ -126,18 +126,18 @@ memory_file::~memory_file()
 }
 
 
-memsize memory_file::read(const ::block & block)
+memsize memory_file::read(void * p, ::memsize s)
 {
 
-   return read_inline(block);
+   return read_inline(p, s);
 
 }
 
 
-void memory_file::write(const ::block & block)
+void memory_file::write(const void * p, ::memsize s)
 {
 
-   write_inline(block);
+   write_inline(p, s);
 
 }
 

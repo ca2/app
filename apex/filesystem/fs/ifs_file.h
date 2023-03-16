@@ -20,11 +20,13 @@ public:
    ifs_file(::payload payloadFile);
    ~ifs_file() override;
 
+
    using ::sockets::http_batch_buffer::read;
-   virtual memsize read(const ::block & block) override;
+   memsize read(void * p, ::memsize s) override;
+
 
    using ::sockets::http_batch_buffer::write;
-   virtual void write(const ::block & block) override;
+   void write(const void * p, ::memsize s) override;
 
 
    void translate(filesize offset, ::enum_seek eseek) override;

@@ -246,10 +246,10 @@ void stdio_file::close()
 }
 
 
-memsize stdio_file::read(const ::block & block)
+memsize stdio_file::read(void * p, ::memsize s)
 {
 
-   auto size = fread(block.data(), 1, block.size(), m_pfile);
+   auto amountRead = fread(p, 1, s, m_pfile);
 
    int iEof = feof(m_pfile);
 
@@ -269,7 +269,7 @@ memsize stdio_file::read(const ::block & block)
 
    }
 
-   return (::memsize) size;
+   return (::memsize)amountRead;
 
 }
 
@@ -324,10 +324,10 @@ void stdio_file::put_byte_back(::byte byte)
 }
 
 
-void stdio_file::write(const ::block & block)
+void stdio_file::write(const void * p, ::memsize s)
 {
 
-   fwrite(block.data(), 1, block.size(), m_pfile);
+   fwrite(p, 1, s, m_pfile);
 
 }
 

@@ -16,6 +16,7 @@ namespace file
 
       virtual memsize read(void * p, ::memsize s);
 
+      inline memsize read(const ::block & block) { return read(block.data(), block.size()); }
 
       virtual ::file::file * get_file();
 
@@ -29,6 +30,8 @@ namespace file
 
 
       virtual void write(const void * p, ::memsize s);
+
+      inline void write(const ::block & block) { write(block.data(), block.size()); }
 
 
    };

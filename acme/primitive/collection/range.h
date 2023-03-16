@@ -377,7 +377,7 @@ public:
 
    constexpr ::count size() const
    {
-      return ::is_set(this->begin()) ? maximum(0, this->end() - this->begin()) : 0;
+      return this->m_end - this->m_begin;
    }
 
    constexpr bool is_empty() const

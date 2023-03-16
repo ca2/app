@@ -71,7 +71,10 @@ namespace sockets
 
       virtual void OnDataComplete() override;
 
-      virtual void write(const ::block & block) override;
+      
+      using http_client_socket::write;
+      virtual void write(const void * p, ::memsize s) override;
+
 
       virtual bool send_network_payload(::payload varNetworkPayload);
       virtual bool send_memory(memory & memory);

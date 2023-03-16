@@ -121,7 +121,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //}
 //
 //
-//inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite)
+//inline bool is_memory_segment_ok(const void* p, memsize size, bool bReadWrite)
 //{
 //
 //#ifdef DEEP_DEBUG
@@ -166,18 +166,18 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //}
 //
 //
-//inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength)
+//inline bool is_string_ok(const ::wide_character* pwsz, memsize nMaxLength)
 //{
 //
-//   return ::__is_valid_address(pwsz, nMaxLength);
+//   return ::is_memory_segment_ok(pwsz, nMaxLength);
 //
 //}
 //
 //
-//inline bool __is_valid_string(const ::scoped_string & scopedstr, memsize nMaxLength)
+//inline bool is_string_ok(const ::scoped_string & scopedstr, memsize nMaxLength)
 //{
 //
-//   return ::__is_valid_address(psz, nMaxLength);
+//   return ::is_memory_segment_ok(psz, nMaxLength);
 //
 //}
 //

@@ -58,7 +58,7 @@ CLASS_DECL_ACME void preempt(const class time & time);
 
 
 
-CLASS_DECL_ACME void precision_wait(const class time & time);
+//CLASS_DECL_ACME void precision_wait(const class time & time);
 
 
 

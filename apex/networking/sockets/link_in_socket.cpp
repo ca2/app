@@ -51,7 +51,7 @@ namespace sockets
    void link_in_socket::link_write(void * p, memsize n)
    {
 
-      m_in->write((const char *) p, n);
+      m_in->write({ p, n });
 
    }
 

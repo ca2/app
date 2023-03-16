@@ -35,7 +35,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
 
    }
 
-   if (!__is_valid_address(pOb, sizeof(matter)))
+   if (!is_memory_segment_ok(pOb, sizeof(matter)))
    {
 
       if (__assert_failed_line(pszFileName, nLine))
@@ -49,7 +49,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
 
    }
 
-   if (!__is_valid_address(*(void **)pOb, sizeof(void *), false))
+   if (!is_memory_segment_ok(*(const void **)pOb, sizeof(void *)))
    {
 
       if (!__assert_failed_line(pszFileName, nLine))

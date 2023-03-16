@@ -438,16 +438,6 @@ constexpr ::std::strong_ordering order(T t, F f)
 //}
 
 
-template < typename TYPE1, typename TYPE2 >
-constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
-{
-
-   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
-      (largest_type<TYPE1, TYPE2>) a : (largest_type<TYPE1, TYPE2>)b;
-
-}
-
-
 template < typename TYPE >
 constexpr TYPE maximum(const TYPE & a, const TYPE & b)
 {
@@ -462,6 +452,36 @@ constexpr largest_type<TYPE1, TYPE2> maximum(const TYPE1 & a, const TYPE2 & b)
 { 
    
    return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) >= 0 ?
+      (largest_type<TYPE1, TYPE2>) a : (largest_type<TYPE1, TYPE2>)b;
+
+}
+
+
+template < primitive_number TYPE1, primitive_number TYPE2 >
+constexpr smallest_type<TYPE1, TYPE2> natural_minimum(const TYPE1 & a, const TYPE2 & b)
+{
+
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
+      (smallest_type<TYPE1, TYPE2>) maximum(0, a) : (smallest_type<TYPE1, TYPE2>)maximum(0, b);
+
+}
+
+
+template < primitive_unsigned TYPE1, primitive_unsigned TYPE2 >
+constexpr smallest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
+{
+
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
+      (smallest_type<TYPE1, TYPE2>) a : (smallest_type<TYPE1, TYPE2>)b;
+
+}
+
+
+template < typename TYPE1, typename TYPE2 >
+constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
+{
+
+   return ::comparison::comparison2<TYPE1, TYPE2>().order(a, b) <= 0 ?
       (largest_type<TYPE1, TYPE2>) a : (largest_type<TYPE1, TYPE2>)b;
 
 }

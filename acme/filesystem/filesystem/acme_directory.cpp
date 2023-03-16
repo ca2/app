@@ -447,6 +447,14 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
+::file::path acme_directory::temp()
+{
+
+   return sys_temp();
+
+}
+
+
 ::string acme_directory::dir_root()
 {
 

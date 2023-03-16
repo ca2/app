@@ -11,30 +11,42 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
+   // CLASS_DECL_ACME bool alternate_path(::windows_path & windowspath)
+   // {
+
+   //    if (windowspath.case_insensitive_begins(::str::windows_bbqb(wstr)))
+   //    {
+
+   //       return false;
+
+   //    }
+
+   //    if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
+   //    {
+
+   //       wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
+
+   //    }
+   //    else
+   //    {
+
+   //       wstr = ::str::windows_bbqb(wstr) + wstr;
+
+   //    }
+
+   //    return true;
+
+   // }
+
+
+   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path)
    {
 
-      if (wstr.case_insensitive_begins(::str::windows_bbqb(wstr)))
-      {
+      ::windows_path windowspath = path.windows_path();
 
-         return false;
+      auto attributes = ::GetFileAttributesW(windowspath);
 
-      }
-
-      if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
-      {
-
-         wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
-
-      }
-      else
-      {
-
-         wstr = ::str::windows_bbqb(wstr) + wstr;
-
-      }
-
-      return true;
+      return attributes;
 
    }
 
@@ -42,23 +54,31 @@ namespace windows
    CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
    {
 
-      wstring wstr(path);
+      auto attributes = _get_file_attributes(path);
 
-      DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
-
-      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      if (attributes == INVALID_FILE_ATTRIBUTES)
       {
 
-         if (::windows::get_alternate_path(wstr))
-         {
-
-            dwFileAttributes = GetFileAttributesW(wstr);
-
-         }
+         throw_last_error_exception();
 
       }
 
-      return dwFileAttributes;
+      return attributes;
+
+   }
+
+
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes)
+   {
+
+      ::windows_path windowspath = path.windows_path();
+
+      if (::SetFileAttributesW(windowspath, dwAttributes))
+      {
+
+         throw_last_error_exception();
+
+      }
 
    }
 
@@ -66,24 +86,17 @@ namespace windows
 } // namespace windows
 
 
-
 void delete_file(const ::file::path & path)
 {
 
-   wstring wstrPath(path.get_os_path());
+   ::windows_path windowspath = path.windows_path();
 
-   if (!::DeleteFileW(wstrPath))
+   if (!::DeleteFileW(windowspath))
    {
 
-      auto dwLastError = ::GetLastError();
-
-      auto estatus = ::windows::last_error_status(dwLastError);
-
-      throw ::exception(estatus);
+      throw_last_error_exception();
 
    }
-
-   //return ::success;
 
 }
 
@@ -91,10 +104,21 @@ void delete_file(const ::file::path & path)
 bool file_exists(const ::file::path & path)
 {
 
-   auto attributes = ::windows::get_file_attributes(path);
+   auto attributes = ::windows::_get_file_attributes(path);
 
    if (attributes == INVALID_FILE_ATTRIBUTES)
    {
+
+      auto lasterror = ::GetLastError();
+
+      if (lasterror == ERROR_FILE_NOT_FOUND || lasterror == ERROR_PATH_NOT_FOUND)
+      {
+
+         return false;
+
+      }
+
+      throw_last_error_exception(nullptr, lasterror);
 
       return false;
 
@@ -115,110 +139,27 @@ bool file_exists(const ::file::path & path)
 bool is_directory(const ::file::path & path)
 {
 
-   //#ifdef _UWP
-   //
-   //      //string str;
-   //
-   //      ////str = "\\\\?\\";
-   //      ////str += path1;
-   //
-   //      //str = path1;
-   //
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //
-   //      u32 dwFileAttributes = ::windows_get_file_attributes(path1);
-   //
-   //      if (dwFileAttributes != INVALID_FILE_ATTRIBUTES)
-   //      {
-   //
-   //         return dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
-   //
-   //      }
-   //      else
-   //      {
-   //
-   //         ::u32 dwLastError = ::GetLastError();
-   //
-   //         string strPrefix;
-   //
-   //         {
-   //
-   //            string strRelative = path1;
-   //
-   //            auto folderBase = winrt_folder(strRelative, strPrefix);
-   //
-   //            if (folderBase != nullptr)
-   //            {
-   //
-   //               strRelative.replace("/", "\\");
-   //
-   //               strPrefix.replace("/", "\\");
-   //
-   //               strRelative.case_insensitive_begins_eat(strPrefix);
-   //
-   //               strRelative.trim("/\\");
-   //
-   //               //strPrefix.trim_right("/\\");
-   //
-   //               try
-   //               {
-   //
-   //                  auto folder = folderBase->GetFolderAsync(strRelative);
-   //
-   //                  if (folder != nullptr)
-   //                  {
-   //
-   //                     return true;
-   //
-   //                  }
-   //
-   //               }
-   //               catch (...)
-   //               {
-   //
-   //               }
-   //
-   //            }
-   //
-   //         }
-   //
-   //         return false;
-   //
-   //         //auto folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(path1));
-   //
-   //         //bool bOk = folder != nullptr;
-   //
-   //         //if (!bOk)
-   //         //{
-   //
-   //         //   set_last_error(dwLastError);
-   //
-   //         //}
-   //
-   //         //if (bOk)
-   //         //{
-   //
-   //         //   return true;
-   //
-   //         //}
-   //
-   //         //return bOk;
-   //
-   //      }
-   //
-   //
-   //#elif defined(WINDOWS_DESKTOP)
+   auto attributes = ::windows::_get_file_attributes(path);
 
-         //auto dwFileAttributes = ::windows_get_file_attributes(path1);
+   if (attributes == INVALID_FILE_ATTRIBUTES)
+   {
+      
+      auto lasterror = ::GetLastError();
 
-   wstring wstrPath(path.get_os_path());
+      if (lasterror == ERROR_FILE_NOT_FOUND || lasterror == ERROR_PATH_NOT_FOUND)
+      {
 
-   auto dwFileAttributes = ::GetFileAttributesW(wstrPath);
+         return false;
 
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || !(dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+      }
+
+      throw_last_error_exception(nullptr, lasterror);
+
+      return false;
+
+   }
+   
+   if(!(attributes & FILE_ATTRIBUTE_DIRECTORY))
    {
 
       return false;
@@ -227,63 +168,50 @@ bool is_directory(const ::file::path & path)
 
    return true;
 
-   //#else
-   //
-   //      // dedicaverse stat -> Sir And Arthur - Cesar Serenato
-   //
-   //      return is_dir(path1);
-   //
-   //#endif
-
 }
 
 
 void create_directory(const ::file::path & path)
 {
 
-   wstring wstr;
+   auto strWindowsPath = path.windows_path();
 
-   if (file_path_is_absolute(path))
+   ::windows_path windowspath = strWindowsPath;
+
+   if (!::CreateDirectoryW(windowspath, nullptr))
    {
 
-      wstr = L"\\\\?\\" + path.get_os_path();
+      auto lasterror = ::GetLastError();
 
-   }
-   else
-   {
-
-      wstr = path.get_os_path();
-
-   }
-
-   if (!::CreateDirectoryW(wstr, nullptr))
-   {
-
-      auto lastError = ::GetLastError();
-
-      if (lastError == ERROR_ALREADY_EXISTS)
+      if (lasterror == ERROR_ALREADY_EXISTS)
       {
 
          return;
 
       }
 
-      if (::windows::get_alternate_path(wstr))
-      {
+      string strDetails;
 
-         if (!::CreateDirectoryW(wstr, nullptr))
-         {
+      strDetails.format("Failed to create directory (2) \"%s\"", strWindowsPath.c_str());
 
-            auto lastError = ::GetLastError();
+      throw_last_error_exception(strDetails, lasterror);
 
-            if (lastError == ERROR_ALREADY_EXISTS)
+      //if (::windows::alternate_path(windowspath))
+      //{
+
+      //   if (!::CreateDirectoryW(windowspath, nullptr))
+      //   {
+
+         /*   auto lasterror = ::GetLastError();
+
+            if (lasterror == ERROR_ALREADY_EXISTS)
             {
 
                return;
 
             }
 
-            auto estatus = ::windows::last_error_status(lastError);
+            auto estatus = ::windows::last_error_status(lasterror);
 
             string strDetails;
 
@@ -291,21 +219,21 @@ void create_directory(const ::file::path & path)
 
             throw ::exception(estatus, strDetails);
 
-         }
+         }*/
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         auto estatus = ::windows::last_error_status(lastError);
+         //auto estatus = ::windows::last_error_status(lasterror);
 
-         string strDetails;
+         //string strDetails;
 
-         strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
+         //strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
 
-         throw ::exception(estatus, strDetails);
+         //throw ::exception(estatus, strDetails);
 
-      }
+      //}
 
    }
 
@@ -316,8 +244,6 @@ void create_directory(const ::file::path & path)
 
 void erase_directory(const ::file::path & path)
 {
-
-   
 
    wstring wstr;
 
@@ -337,18 +263,15 @@ void erase_directory(const ::file::path & path)
    if (!::RemoveDirectoryW(wstr))
    {
 
-      auto lastError = ::GetLastError();
+      auto lasterror = ::GetLastError();
 
-      auto estatus = ::windows::last_error_status(lastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 
    }
 
 }
-
-
-
 
 
 namespace windows
@@ -452,44 +375,6 @@ namespace windows
 } // namespace windows
 
 
-CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
-{
-
-   LARGE_INTEGER largeinteger{};
-
-   if (!::GetFileSizeEx(h, &largeinteger))
-   {
-
-      return false;
-
-   }
-
-   auto size = largeinteger.QuadPart;
-
-   if (size != iSize)
-   {
-
-      largeinteger.QuadPart = iSize;
-
-      if (!::SetFilePointerEx(h, largeinteger, nullptr, SEEK_SET))
-      {
-
-         return false;
-
-      }
-
-      if (!::SetEndOfFile(h))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
 
 
 //CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)

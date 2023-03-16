@@ -105,8 +105,8 @@ public:
    virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    
 
-   virtual ::earth::time modification_time(const ::file::path & path);
-   virtual void set_modification_time(const ::file::path & path, const ::earth::time & time);
+   virtual class ::time modification_time(const ::file::path & path);
+   virtual void set_modification_time(const ::file::path & path, const class ::time & time);
    virtual void synchronize(const ::file::path & path1, const ::file::path & path2);
 
 

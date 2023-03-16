@@ -684,12 +684,12 @@ string file_context::as_string(const ::payload & payloadFile)
 }
 
 
-string file_context::safe_get_string(const ::payload & payloadFile)
+string file_context::safe_get_string(const ::payload & payloadFile, ::e_status * pestatus)
 {
 
    memory memory;
 
-   safe_get_memory(payloadFile, memory);
+   safe_get_memory(payloadFile, memory, pestatus);
 
    return memory.as_utf8();
 
@@ -759,7 +759,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem)
+void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem, ::e_status * pestatus)
 {
 
    file_pointer pfile;
@@ -877,7 +877,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
 
    }
 
-   auto sizeRead = pfile->read(p, sizeToRead);
+   auto sizeRead = pfile->read({ p, sizeToRead });
 
    return sizeRead;
 
@@ -926,7 +926,7 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
       if (options.m_bUtf8Bom)
       {
 
-         pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
+         pfile->write({ UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM) });
 
       }
 
@@ -1080,7 +1080,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    if(block.size() > 0)
    {
 
-      pfile->write(block.data(), block.size());
+      pfile->write(block);
 
    }
 
@@ -1118,7 +1118,7 @@ void file_context::add_contents(const ::payload &payloadFile, const ::scoped_str
 
    pfile->seek_to_end();
 
-   pfile->write(scopedstr.data(), scopedstr.size());
+   pfile->write(scopedstr);
 
 }
 
@@ -1177,10 +1177,10 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 
       memsize uRead;
 
-      while ((uRead = pfileSrc->read(mem.data(), mem.size())) > 0)
+      while ((uRead = pfileSrc->read(mem)) > 0)
       {
 
-         pfile->write(mem.data(), uRead);
+         pfile->write(mem(0, uRead));
 
       }
 
@@ -1213,7 +1213,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::scoped_st
 
    }
 
-   pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
+   pfile->write({ UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM) });
 
    string strContents(scopedstr);
 
@@ -1609,7 +1609,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          try
          {
 
-            pfileInput->get_status(st);
+            st = pfileInput->get_status();
 
          }
          catch (...)
@@ -1627,7 +1627,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             try
             {
 
-               pfileInput->get_status(st);
+               st = pfileInput->get_status();
 
             }
             catch (...)
@@ -2071,7 +2071,7 @@ void file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
    //try
    //{
 
-      pfileOut->from(pfileIn);
+      pfileOut->write(pfileIn);
 
    //}
    //catch (...)
@@ -2595,10 +2595,10 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-void file_context::resolve_link(::file::path &pathTarget, const string &strSource, string *pstrDirectory, string *pstrParams)
+::pointer < ::file::link > file_context::resolve_link(const ::file::path &path)
 {
 
-   m_pcontext->m_papexcontext->os_context()->resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
+   return m_pcontext->m_papexcontext->os_context()->resolve_link(path);
 
 }
 
@@ -2627,10 +2627,10 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    memsize iRead;
 
-   while ((iRead = (memsize) pfile->read(mem.data(), mem.size())) > 0)
+   while ((iRead = (memsize) pfile->read(mem)) > 0)
    {
 
-      phasher->update({mem.data(), iRead});
+      phasher->update(mem(0, iRead));
 
    }
 
@@ -3214,7 +3214,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 }
 
 
-file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen)
+file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
@@ -3330,7 +3330,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       else
       {
 
-         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
       
@@ -3394,14 +3394,14 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 }
 
 
-::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen)
+::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
 
    __construct(pfile);
 
-   pfile->open(path, eopen);
+   pfile->open(path, eopen, pfileexception);
 
    return pfile;
 
@@ -3503,7 +3503,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 //}
 
 
-bool file_context::is_link(string strPath)
+bool file_context::is_link(const ::file::path & path)
 {
 
    return false;
@@ -4063,7 +4063,7 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
 
    auto writer = get_writer(payloadFile);
 
-   writer->write(memory.data(), memory.size());
+   writer->write(memory);
 
    //return writer.m_estatus;
 

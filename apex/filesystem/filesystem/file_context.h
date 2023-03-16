@@ -152,9 +152,9 @@ public:
    virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
-   virtual string safe_get_string(const ::payload & payloadFile);
+   virtual string safe_get_string(const ::payload & payloadFile, ::e_status * pestatus = nullptr);
    virtual void as_memory(const ::payload & payloadFile, memory_base & mem);
-   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem);
+   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem, ::e_status * pestatus = nullptr);
    virtual ::memory as_memory(const ::payload & payloadFile);
    virtual ::memory safe_get_memory(const ::payload & payloadFile);
    virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
@@ -212,9 +212,9 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const ::payload & payloadFile);
 
-   virtual void resolve_link(::file::path & pathTarget, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
+   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path);
 
-   virtual bool is_link(string strPath);
+   virtual bool is_link(const ::file::path & path);
 
    virtual void get_last_write_time(file_time_t * pfile_time, const ::string & strFilename);
 
@@ -240,9 +240,9 @@ public:
 
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+   virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen, ::pointer < ::file::exception > * ppfileexception = nullptr) override;
 
-   virtual ::file_pointer create_native_file(const ::file::path & path, const ::file::e_open & eopen);
+   virtual ::file_pointer create_native_file(const ::file::path & path, const ::file::e_open & eopen, ::pointer < ::file::exception > * ppfileexception = nullptr);
 
    virtual ::file_pointer get_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 

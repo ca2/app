@@ -614,7 +614,7 @@ set_at(nStartIndex + i,NewArray.get_at(i));
 //      ASSERT(this->size() >= 0);
 //      ASSERT(this->m_nMaxSize >= 0);
 //      ASSERT(this->size() <= this->m_nMaxSize);
-//      ASSERT(__is_valid_address(this->m_begin, (memsize_cast) (this->m_nMaxSize * sizeof(Type))));
+//      ASSERT(is_memory_segment_ok(this->m_begin, (memsize_cast) (this->m_nMaxSize * sizeof(Type))));
 //
 //   }
 //

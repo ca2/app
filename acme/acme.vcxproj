@@ -664,6 +664,7 @@
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
+    <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -804,6 +805,7 @@
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\payload_stream.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
@@ -886,7 +888,7 @@
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
-    <ClCompile Include="operating_system\Debug.cpp" />
+    <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
@@ -898,7 +900,11 @@
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
+    <ClCompile Include="operating_system\windows\file1.cpp" />
     <ClCompile Include="operating_system\windows\file.cpp" />
+    <ClCompile Include="operating_system\windows\find_file.cpp" />
+    <ClInclude Include="operating_system\windows\find_file.h" />
+    <ClCompile Include="operating_system\windows\handle.cpp" />
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\nano\brush.cpp" />
@@ -1159,6 +1165,8 @@
     <ClInclude Include="operating_system\exit_status.h" />
     <ClInclude Include="operating_system\process1.h" />
     <ClInclude Include="operating_system\security_attributes.h" />
+    <ClInclude Include="operating_system\windows\file.h" />
+    <ClInclude Include="operating_system\windows\handle.h" />
     <ClInclude Include="operating_system\windows\_c.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />

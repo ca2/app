@@ -4,6 +4,7 @@
 #include "acme/platform/node.h"
 #include "apex/platform/context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/filesystem/link.h"
 #include "apex/filesystem/file/set.h"
 #if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <unistd.h>
@@ -414,8 +415,7 @@
    }
 
 
-   void os_context::set_file_status(const ::string & pszFileName, const ::file::file_status& status)
-
+   void os_context::set_file_status(const ::file::path & path, const ::file::file_status& status)
    {
 
       throw ::interface_only();
@@ -423,46 +423,48 @@
    }
 
 
-   void os_context::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
+   //void os_context::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+   //void os_context::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+   //void os_context::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
+   //{
+
+   //   throw ::exception(error_interface_only);
+
+   //}
+
+
+   ::pointer < ::file::link > os_context::resolve_link(const ::file::path & path, const ::file::e_link & elink)
    {
 
-      throw ::exception(error_interface_only);
-
-   }
-
-
-   void os_context::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
-   {
-
-      throw ::exception(error_interface_only);
-
-   }
-
-
-   void os_context::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
-   {
-
-      throw ::exception(error_interface_only);
-
-   }
-
-
-   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, string * pstrIcon, int * piIcon)
-   {
-
-      if(strSource.case_insensitive_ends(".desktop"))
+      if(path.case_insensitive_ends(".desktop"))
       {
 
-         auto stra = file()->lines(strSource);
+         auto stra = file()->lines(path);
 
          stra.filter_begins_ci("exec=");
 
          if(stra.get_size() <= 0)
          {
 
-            return false;
+            return nullptr;
 
          }
+
+         auto plink = __new(::file::link);
 
          string strLink = stra[0];
 
@@ -495,16 +497,11 @@
 
          strLink.trim("\'");
 
-         if (::is_set(pstrDirectory))
-         {
+         plink->m_pathFolder = ::file::path(strLink).folder();
 
-            *pstrDirectory = ::file::path(strLink).folder();
+         plink->m_pathTarget = strLink;
 
-         }
-
-         path = strLink;
-
-         return true;
+         return plink;
 
       }
       else
@@ -609,7 +606,7 @@
 
       }
 
-      return false;
+      return nullptr;
 
    }
 

@@ -64,15 +64,15 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 }
 
 
-thread_local nanosecond_timer t_nanosecondtimer;
+// thread_local nanosecond_timer t_nanosecondtimer;
 
 
-CLASS_DECL_ACME void precision_wait(const class time & timeWait)
-{
+// CLASS_DECL_ACME void precision_wait(const class time & timeWait)
+// {
 
-   t_nanosecondtimer.wait(timeWait);
+//    t_nanosecondtimer.wait(timeWait);
 
-}
+// }
 
 
 
@@ -106,7 +106,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
 
 
-void system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+void system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
 {
 
    struct tm tm;
@@ -133,7 +133,7 @@ void system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 
 //}
 
 
-void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
+void earth_time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 {
    
    struct tm tm;
@@ -145,12 +145,12 @@ void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 }
 
 
-CLASS_DECL_ACME void time_to_file_time(file_time_t* pfile_time, const time_t* ptime)
+CLASS_DECL_ACME void earth_time_to_file_time(file_time_t* pfile_time, const time_t* ptime)
 {
 
    system_time_t systemtime;
 
-   /*auto estatus = */ time_to_system_time(&systemtime, ptime);
+   /*auto estatus = */ earth_time_to_system_time(&systemtime, ptime);
 
    //if(!estatus)
    //{

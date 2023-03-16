@@ -85,7 +85,7 @@ namespace ftp
 
       }
 
-      m_file->write(pBuffer, itemSize * itemCount);
+      m_file->write({ pBuffer, itemSize * itemCount });
 
       return itemCount;
 
@@ -102,7 +102,7 @@ namespace ftp
 
       }
 
-      memsize uRead = m_file->read(pBuffer, itemSize * itemCount);
+      memsize uRead = m_file->read({ pBuffer, itemSize * itemCount });
 
       return (memsize)(uRead / itemSize);
 

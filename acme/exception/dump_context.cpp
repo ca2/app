@@ -524,7 +524,7 @@
 ////
 ////   }
 ////
-////   ASSERT(__is_valid_string(pszLine));
+////   ASSERT(is_string_ok(pszLine));
 ////
 ////   if (pszLine == nullptr)
 ////   {
@@ -533,7 +533,7 @@
 ////
 ////   }
 ////
-////   ASSERT(__is_valid_address(pby, nBytes, false));
+////   ASSERT(is_memory_segment_ok(pby, nBytes, false));
 ////   if( pby == nullptr )
 ////      throw ::exception(error_bad_argument);
 ////

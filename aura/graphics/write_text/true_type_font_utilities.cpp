@@ -82,7 +82,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
    }
 
    TT_OFFSET_TABLE ttOffsetTable;
-   f->read(&ttOffsetTable, sizeof(TT_OFFSET_TABLE));
+   f->read({ e_as_block, ttOffsetTable });
    ttOffsetTable.uNumOfTables = SWAPWORD(ttOffsetTable.uNumOfTables);
    ttOffsetTable.uMajorVersion = SWAPWORD(ttOffsetTable.uMajorVersion);
    ttOffsetTable.uMinorVersion = SWAPWORD(ttOffsetTable.uMinorVersion);
@@ -97,7 +97,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)
    {
-      f->read(&tblDir, sizeof(TT_TABLE_DIRECTORY));
+      f->read({ e_as_block, &tblDir });
       strncpy(csTemp.get_string_buffer(5), tblDir.szTag, 4);
       csTemp.release_string_buffer(4);
       if (csTemp.case_insensitive_order("name") == 0)
@@ -113,7 +113,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
    {
       f->set_position(tblDir.uOffset);
       TT_NAME_TABLE_HEADER ttNTHeader;
-      f->read(&ttNTHeader, sizeof(TT_NAME_TABLE_HEADER));
+      f->read({ e_as_block, ttNTHeader });
       ttNTHeader.uNRCount = SWAPWORD(ttNTHeader.uNRCount);
       ttNTHeader.uStorageOffset = SWAPWORD(ttNTHeader.uStorageOffset);
       TT_NAME_RECORD ttRecord;
@@ -121,7 +121,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 
       for (int i = 0; i < ttNTHeader.uNRCount; i++)
       {
-         f->read(&ttRecord, sizeof(TT_NAME_RECORD));
+         f->read({ e_as_block, ttRecord });
          ttRecord.uNameID = SWAPWORD(ttRecord.uNameID);
          if (ttRecord.uNameID == 1)
          {
@@ -135,7 +135,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
             //bug fix: see the post by SimonSays to read more about it
             char* lpszNameBuf = csTemp.get_string_buffer(ttRecord.uStringLength + 1);
             memory_set(lpszNameBuf, 0, ttRecord.uStringLength + 1);
-            f->read(lpszNameBuf, ttRecord.uStringLength);
+            f->read({ lpszNameBuf, ttRecord.uStringLength });
             csTemp.release_string_buffer();
             if (csTemp.length() > 0)
             {

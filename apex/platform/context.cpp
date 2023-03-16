@@ -17,8 +17,9 @@
 #include "acme/primitive/string/str.h"
 //#include "acme/primitive/time/integral/operator.h"
 #include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/filesystem/link.h"
 #include "apex/networking/http/context.h"
 #include "apex/parallelization/retry.h"
 
@@ -949,18 +950,22 @@ namespace apex
    //}
 
 
-   bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
+   ::pointer < ::file::link > context::os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      if (_os_resolve_alias(path, scopedstr, bNoUI, bNoMount))
+      auto plink = _os_resolve_alias(path, bNoUI, bNoMount);
+
+      if(plink)
       {
 
-         return true;
+         return plink;
 
       }
 
-      if (_os_has_alias_in_path(scopedstr))
+      if (_os_has_alias_in_path(path))
       {
+
+         ::pointer < ::file::link > plink;
 
          ::file::path_array patha;
 
@@ -973,61 +978,58 @@ namespace apex
 
             ::file::path pathAlias = patha[i];
 
-            if (os_is_alias(pathAlias))
+            auto plinkHere = _os_resolve_alias(pathAlias, bNoUI, bNoMount);
+
+            if(plinkHere)
             {
 
-               ::file::path pathTargetFolder;
+               plink = plinkHere;
 
-               if (_os_resolve_alias(pathTargetFolder, pathAlias, bNoUI, bNoMount))
-               {
-
-                  path = pathTargetFolder / pathaRelative[i];
-
-                  return true;
-
-               }
+               plink->m_pathTarget /= pathaRelative[i];
 
             }
 
          }
 
+         return plink;
+
       }
 
-      return false;
+      return nullptr;
 
    }
 
 
-   bool context::_os_has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
+   bool context::_os_has_alias_in_path(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return os_context()->has_alias_in_path(scopedstr);
+      return os_context()->has_alias_in_path(path);
 
    }
 
 
 
-   bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, bool bNoUI, bool bNoMount)
+   ::pointer < ::file::link > context::_os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      if (os_is_alias(scopedstr))
+      if (os_is_alias(path))
       {
 
-         return os_context()->resolve_link(path, scopedstr, nullptr, nullptr);
+         return os_context()->resolve_link(path);
 
       }
 
-      return false;
+      return nullptr;
 
    }
 
 //
 //#ifdef WINDOWS
 //
-   bool context::os_is_alias(const ::scoped_string & scopedstr)
+   bool context::os_is_alias(const ::file::path & path)
    {
 
-      return os_context()->is_alias(scopedstr);
+      return os_context()->is_alias(path);
 
       //return string_ends_ci(psz, ".lnk");
 
@@ -1245,25 +1247,37 @@ namespace apex
    }
 
 
-   void context::sys_set(string strPath, string strValue)
+   ::file::path context::sys_path(const ::scoped_string & scopedstrPath)
    {
 
-      file()->put_text_utf8(acmedirectory()->config() / strPath, strValue);
+      return acmedirectory()->config() / scopedstrPath;
 
    }
 
 
-   string context::sys_get(string strPath, string strDefault)
+   void context::sys_set(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrValue)
    {
 
-      string strValue = file()->safe_get_string(acmedirectory()->config() / strPath);
+      auto pathSys = sys_path(scopedstrPath);
 
-      if (strValue.is_empty())
+      file()->put_text_utf8(pathSys, scopedstrValue);
+
+   }
+
+
+   string context::sys_get(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrDefault)
+   {
+
+      auto pathSys = sys_path(scopedstrPath);
+
+      if (!file()->exists(pathSys))
       {
 
-         return strDefault;
+         return scopedstrDefault;
 
       }
+
+      auto strValue = file()->safe_get_string(pathSys);
 
       return strValue;
 
@@ -1380,10 +1394,10 @@ namespace apex
    //   }
 
 
-   file_pointer context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
+   file_pointer context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-      auto pfile = m_papexcontext->file()->get_file(payloadFile, eopen);
+      auto pfile = m_papexcontext->file()->get_file(payloadFile, eopen, pfileexception);
 
       return pfile;
 

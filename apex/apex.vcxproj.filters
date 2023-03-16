@@ -141,9 +141,6 @@
     <Filter Include="Header Files\handler">
       <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\filesystem\NewFilter1">
-      <UniqueIdentifier>{8479be1c-b262-429f-8325-423583bea44f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\progress">
       <UniqueIdentifier>{574c34b0-e44d-40e8-b3fb-f394aeda9cd6}</UniqueIdentifier>
     </Filter>
@@ -1001,6 +998,12 @@
     <ClInclude Include="platform\api_client_base.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\link.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1446,6 +1449,9 @@
     </ClCompile>
     <ClCompile Include="platform\api_client_base.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\link.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

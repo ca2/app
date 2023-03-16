@@ -9,7 +9,7 @@
 //{
 //
 //
-//   void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+//   void node::system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
 //   {
 //
 //      throw ::interface_only();
@@ -41,7 +41,7 @@ void copy(payload * ppayload, const system_time_t * psystemtime)
 
    time_t time;
 
-   system_time_to_time(&time, psystemtime);
+   system_time_to_earth_time(&time, psystemtime);
 
    ppayload->m_time.m_iSecond = time;
    ppayload->m_time.m_iNanosecond = 0;

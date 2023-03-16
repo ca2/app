@@ -63,7 +63,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
+//      ASSERT(is_memory_segment_ok(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
 //         throw ::exception(error_bad_argument);
 //
@@ -93,7 +93,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(::wd32_character),false));
+//      ASSERT(is_memory_segment_ok(pch,nLength*sizeof(::wd32_character),false));
 //      if(pch == nullptr)
 //         throw ::exception(error_bad_argument);
 //
@@ -110,7 +110,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
+//      ASSERT(is_memory_segment_ok(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
 //         throw ::exception(error_bad_argument);
 //
@@ -1135,13 +1135,13 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //i32 string::collate(const ::scoped_string & scopedstr) const noexcept
 //{
-//   //ASSERT(__is_valid_string(psz));
+//   //ASSERT(is_string_ok(psz));
 //   return(::str::string_collate(m_psz,psz));
 //}
 //
 //i32 string::case_insensitive_collate(const ::scoped_string & scopedstr) const noexcept
 //{
-//   //ASSERT(__is_valid_string(psz));
+//   //ASSERT(is_string_ok(psz));
 //   return(::str::case_insensitive_string_collate(m_psz,psz));
 //}
 //
@@ -1975,7 +1975,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(__is_valid_string(pszSub));
+//   ASSERT(is_string_ok(pszSub));
 //
 //   if(pszSub == nullptr)
 //   {
@@ -2028,7 +2028,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(__is_valid_string(pszSub));
+//   ASSERT(is_string_ok(pszSub));
 //
 //   if(pszSub == nullptr)
 //   {
@@ -2082,7 +2082,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(__is_valid_string(pszSub));
+//   ASSERT(is_string_ok(pszSub));
 //
 //   if(pszSub == nullptr)
 //   {
@@ -2134,7 +2134,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(__is_valid_string(pszSub));
+//   ASSERT(is_string_ok(pszSub));
 //
 //   if(pszSub == nullptr)
 //   {
@@ -2956,7 +2956,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //// Return the substring consisting of the leftmost characters in the set 'pszCharSet'
 //string string::skip_any_character_in(const ::scoped_string & scopedstrCharSet) const
 //{
-//   ASSERT(__is_valid_string(pszCharSet));
+//   ASSERT(is_string_ok(pszCharSet));
 //   if(pszCharSet == nullptr)
 //      throw ::exception(error_bad_argument);
 //
@@ -2966,7 +2966,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //// Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
 //string string::find_first_character_in(const ::scoped_string & scopedstrCharSet) const
 //{
-//   ASSERT(__is_valid_string(pszCharSet));
+//   ASSERT(is_string_ok(pszCharSet));
 //   if(pszCharSet == nullptr)
 //      throw ::exception(error_bad_argument);
 //
@@ -2976,7 +2976,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //void string::append_format_arguments(const ::scoped_string & scopedstrFormat,va_list args)
 //{
 //
-//   ASSERT(__is_valid_string(pszFormat));
+//   ASSERT(is_string_ok(pszFormat));
 //
 //   strsize nCurrentLength = get_length();
 //
@@ -2997,7 +2997,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //void string::printf(const ::scoped_string & scopedstrFormat,va_list args)
 //{
 //
-//   ASSERT(__is_valid_string(pszFormat));
+//   ASSERT(is_string_ok(pszFormat));
 //
 //   if(pszFormat == nullptr)
 //      throw ::exception(error_bad_argument);
@@ -3063,7 +3063,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //BSTR string::SetSysString(BSTR* pbstr) const
 //{
-//   ASSERT(__is_valid_address(pbstr,sizeof(BSTR)));
+//   ASSERT(is_memory_segment_ok(pbstr,sizeof(BSTR)));
 //
 //   if(!::str::ReAllocSysString(m_psz,pbstr,
 //                                      get_length()))
@@ -3153,7 +3153,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////
 ////void __cdecl string::_Format(const ::scoped_string & scopedstrFormat, ...)
 ////{
-////   ASSERT(__is_valid_string(pszFormat));
+////   ASSERT(is_string_ok(pszFormat));
 ////
 ////   va_list argList;
 ////   va_start(argList, pszFormat);
@@ -3165,7 +3165,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 ////// append formatted data using format string 'pszFormat'
 ////void __cdecl string::_AppendFormat(const ::scoped_string & scopedstrFormat, ...)
 ////{
-////   ASSERT(__is_valid_string(pszFormat));
+////   ASSERT(is_string_ok(pszFormat));
 ////
 ////   va_list argList;
 ////   va_start(argList, pszFormat);
@@ -3181,7 +3181,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //void __cdecl string::Format(const ::scoped_string & scopedstrFormat,...)
 //{
-//   ASSERT(__is_valid_string(pszFormat));
+//   ASSERT(is_string_ok(pszFormat));
 //
 //   va_list argList;
 //   va_start(argList,pszFormat);
@@ -3193,7 +3193,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //// append formatted data using format string 'pszFormat'
 //void __cdecl string::AppendFormat(const ::scoped_string & scopedstrFormat,...)
 //{
-//   ASSERT(__is_valid_string(pszFormat));
+//   ASSERT(is_string_ok(pszFormat));
 //
 //   va_list argList;
 //   va_start(argList,pszFormat);

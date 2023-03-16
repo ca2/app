@@ -308,14 +308,14 @@ public:
    //bool  while_begins_with_chars_eat_ci(string & str, const ::scoped_string & scopedstrChars);
 
 
-   static inline const ::ansi_character * windows_bbqbunc(const ansi_string &);
-   static inline const ::ansi_character * windows_bbqb(const ansi_string &);
-   static inline const ::ansi_character * windows_bb(const ansi_string &);
+   // static inline const ::ansi_character * windows_bbqbunc(const ansi_string &);
+   // static inline const ::ansi_character * windows_bbqb(const ansi_string &);
+   // static inline const ::ansi_character * windows_bb(const ansi_string &);
 
 
-   static inline const ::wide_character * windows_bbqbunc(const wide_string &);
-   static inline const ::wide_character * windows_bbqb(const wide_string &);
-   static inline const ::wide_character * windows_bb(const wide_string &);
+   // static inline const ::wide_character * windows_bbqbunc(const wide_string &);
+   // static inline const ::wide_character * windows_bbqb(const wide_string &);
+   // static inline const ::wide_character * windows_bb(const wide_string &);
 
 
    static inline strsize unichar_count(const ::ansi_character * pstr);

@@ -705,13 +705,13 @@ inline bool str::begins_ci_skip(const char *& psz, const ::scoped_string & scope
 }
 
 
-inline const ::ansi_character * str::windows_bbqbunc(const ansi_string &) { return "\\\\?\\UNC"; }
-inline const ::ansi_character * str::windows_bbqb(const ansi_string &) { return "\\\\?\\"; }
-inline const ::ansi_character * str::windows_bb(const ansi_string &) { return "\\\\"; }
+// inline const ::ansi_character * str::windows_bbqbunc(const ansi_string &) { return "\\\\?\\UNC"; }
+// inline const ::ansi_character * str::windows_bbqb(const ansi_string &) { return "\\\\?\\"; }
+// inline const ::ansi_character * str::windows_bb(const ansi_string &) { return "\\\\"; }
 
-inline const ::wide_character * str::windows_bbqbunc(const wide_string &) { return L"\\\\?\\UNC"; }
-inline const ::wide_character * str::windows_bbqb(const wide_string &) { return L"\\\\?\\"; }
-inline const ::wide_character * str::windows_bb(const wide_string &) { return L"\\\\"; }
+// inline const ::wide_character * str::windows_bbqbunc(const wide_string &) { return L"\\\\?\\UNC"; }
+// inline const ::wide_character * str::windows_bbqb(const wide_string &) { return L"\\\\?\\"; }
+// inline const ::wide_character * str::windows_bb(const wide_string &) { return L"\\\\"; }
 
 
 /// Returns:

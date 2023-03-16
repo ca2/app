@@ -508,11 +508,11 @@ template <class... Types> struct inherits : Types... {};
 
 
 
-template < bool, typename T1, typename T2 >
-struct boolean_type_selection { using type = T1; };
-
-template < typename T1, typename T2 >
-struct boolean_type_selection<false, T1, T2> { using type = T2; };
+//template < bool, typename T1, typename T2 >
+//struct boolean_type_selection { using type = T1; };
+//
+//template < typename T1, typename T2 >
+//struct boolean_type_selection<false, T1, T2> { using type = T2; };
 
 
 template < typename T1, typename T2 >
@@ -526,16 +526,25 @@ using largest_type = typename largest_type_struct<T1, T2>::type;
 
 
 template < typename T1, typename T2 >
-struct smaller_type {
-   using type = typename ::boolean_type_selection< (sizeof(T1) < sizeof(T2)), T1, T2>::type;
+struct smallest_type_struct 
+{
+   using type = typename if_else< (sizeof(T1) < sizeof(T2)), T1, T2>;
+};
+
+
+template < typename T1, typename T2 >
+using smallest_type = typename smallest_type_struct<T1, T2>::type;
+
+
+template < typename T1, typename T2, typename T3 >
+struct largest_type_of_3_struct {
+   using type = typename largest_type < largest_type < T1, T2 >, T3 >;
 };
 
 
 template < typename T1, typename T2, typename T3 >
-struct largest_type_of_3 {
-   using largest_type_of_1_and_2 = typename largest_type < T1, T2 >::type;
-   using type = typename ::boolean_type_selection < (sizeof(largest_type_of_1_and_2) > sizeof(T3)), largest_type_of_1_and_2, T3>::type;
-};
+using largest_type_of_3 = typename largest_type_of_3_struct < T1, T2, T3 >::type;
+
 
 
 template < typename TYPE, std::size_t SIZE >
@@ -757,10 +766,10 @@ concept an_object = !std::is_pointer < T >::value
 
 
 template<typename T>
-inline ::pointer < T > move_transfer(T * p);
+inline ::pointer < T > pointer_transfer(T * p);
 
 
-#define __new(...) ::move_transfer( memory_new __VA_ARGS__ )
+#define __new(...) ::pointer_transfer( memory_new __VA_ARGS__ )
 
 
 template < typename SEQUENCE >

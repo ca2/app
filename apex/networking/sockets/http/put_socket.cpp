@@ -119,9 +119,9 @@ namespace sockets
          memsize n;
          char buf[32768];
          m_file->seek_to_begin();
-         while ((n = m_file->read(buf, 32768)) > 0)
+         while ((n = m_file->read({ buf, 32768 })) > 0)
          {
-            write(buf, n);
+            write({ buf, n });
          }
       }
       else
@@ -133,7 +133,7 @@ namespace sockets
             char buf[32768];
             while ((n = fread(buf, 1, 32768, fil)) > 0)
             {
-               write(buf, n);
+               write({ buf, n });
             }
             fclose(fil);
          }

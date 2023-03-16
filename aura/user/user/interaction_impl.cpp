@@ -558,7 +558,7 @@ namespace user
 
       }
 
-      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
       //
       if (!m_puserinteraction->pre_create_window(pusersystem))
       {
@@ -569,7 +569,7 @@ namespace user
 
       }
 
-      m_puserinteraction->m_pthreadUserInteraction = ::get_task();
+      //m_puserinteraction->m_pthreadUserInteraction = ::get_task();
 
       //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
@@ -714,7 +714,7 @@ namespace user
 
       }
 
-//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
 //
       if (!m_puserinteraction->pre_create_window(pusersystem))
       {

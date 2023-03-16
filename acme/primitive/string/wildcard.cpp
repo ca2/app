@@ -180,7 +180,14 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * p
 
          iLen = pszStop - (pszFind + 1);
 
-         pszValue = ansi_count_find_string_ci(pszValue, pszFind + 1, iLen);
+         if (iLen <= 0)
+         {
+            pszValue = pszValue + ansi_len(pszValue);
+         }
+         else
+         {
+            pszValue = ansi_count_find_string_ci(pszValue, pszFind + 1, iLen);
+         }
 
          if (pszValue == nullptr)
             return false;

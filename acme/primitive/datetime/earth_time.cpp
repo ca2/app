@@ -145,7 +145,7 @@ namespace earth
 
       //auto pnode = acmesystem()->node();
 
-      file_time_to_time((time_t *)&m_time, &file_time.m_filetime);
+      file_time_to_earth_time((time_t *)&m_time, &file_time.m_filetime);
 
    }
 
@@ -835,7 +835,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //
 //   SYSTEMTIME systemtime;
 //
-//   pnode->system_time_to_time(__systemtime();
+//   pnode->system_time_to_earth_time(__systemtime();
 //
 //   file_time file_time = {};
 //

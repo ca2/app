@@ -25,11 +25,16 @@ public:
 
    //::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
-   void open(const ::file::path& path, const ::file::e_open& eopen) override;
+   void open(const ::file::path & pszFileName, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 
-   memsize read(void *pdata, memsize nCount) override;
+   
+   using ::file::file::read;
+   memsize read(void * p, ::memsize s) override;
 
-   void write(const void * pdata, memsize nCount) override;
+   
+   using ::file::file::write;
+   void write(const void * p, ::memsize s) override;
+
 
    void translate(filesize offset, ::enum_seek eseek) override;
 

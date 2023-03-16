@@ -1,8 +1,9 @@
 #include "framework.h"
+#include "acme/exception/exception.h"
 #include "acme/platform/constraint.h"
 // #include "acme/primitive/string/string.h"
 //#ifdef WINDOWS
-//#include "acme/operating_system.h"
+#include "acme/_operating_system.h"
 //#endif
 
 
@@ -155,6 +156,25 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
       output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
 
    }
+
+}
+
+
+void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, DWORD dwLastError)
+{
+
+   if (dwLastError == 0)
+   {
+
+      dwLastError = ::GetLastError();
+
+   }
+
+   auto estatus = ::windows::last_error_status(dwLastError);
+
+   auto errorcode = ::windows::last_error_error_code(dwLastError);
+
+   throw ::exception(estatus, { errorcode }, scopedstrErrorMessage);
 
 }
 

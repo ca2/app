@@ -54,29 +54,92 @@ namespace file
       inline bool _is_end_of_file() const { return is_end_of_file(); }
 
       virtual bool is_in_memory_file() const;
-      virtual void* get_internal_data();
-      virtual const void* get_internal_data() const;
-      virtual memsize get_internal_data_size() const;
-      virtual bool set_internal_data_size(memsize c);
-      virtual bool increase_internal_data_size(memsize c);
+      
+      virtual ::byte * full_data_begin();
 
-      virtual bool is_seekable();
+      virtual ::byte * full_data_end();
 
-      inline translatable & position() {return *this;}
-      virtual filesize get_position() const override;
-      virtual void set_position(filesize position);
-      virtual void increment_position(filesize offset = 1);
-      virtual void decrement_position(filesize offset = 1);
-      virtual void seek_to_begin();
-      virtual void seek_to_end();
-      virtual void seek_from_end(filesize offset);
+      virtual const ::byte * full_data_begin() const;
+
+      virtual const ::byte * full_data_end() const;
+
+      
+      inline ::block full_data(memsize start = 0, memsize count = -1)
+      { 
+         
+         return ::block(full_data_begin(), full_data_end())(start, count); 
+      
+      }
+
+
+      inline ::block full_data(memsize start = 0, memsize count = -1) const
+      {
+
+         return ::block(full_data_begin(), full_data_end())(start, count);
+
+      }
+
+
+      inline memsize full_data_size() const { return full_data_end() - full_data_begin(); }
+
+      inline bool full_data_is_set() const { return ::is_set(full_data_begin()); }
+
+
+      virtual ::byte * data_begin();
+
+      virtual ::byte * data_end();
+
+      virtual const ::byte * data_begin() const;
+
+      virtual const ::byte * data_end() const;
+
+      
+      inline ::block data(memsize start = 0, memsize count = -1)
+      {
+
+         return ::block(data_begin(), data_end())(start, count);
+
+      }
+
+
+      inline ::block data(memsize start = 0, memsize count = -1) const
+      {
+
+         return ::block(data_begin(), data_end())(start, count);
+
+      }
+
+      inline memsize data_size() const { return data_end() - data_begin(); }
+
+      inline bool data_is_set() const { return ::is_set(data_begin()) && data_size() > 0; }
+
+
+      //virtual const void* get_internal_data() const;
+      //virtual memsize get_internal_data_size() const;
+      
+      /// @brief full_data is plain memory segment mapping entire file
+      /// @param c 
+      /// @return true if full_data is supported
+      virtual bool full_data_set_size(memsize c);
+
+
+      /// @brief full_data is plain memory segment mapping entire file
+      /// @param c 
+      /// @return true if full_data is supported 
+      virtual bool full_data_increase_size(memsize c);
+
+
       void translate(filesize offset, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
 
       inline filesize get_remaining_byte_count() const { return size() - get_position(); }
 
-      memsize read(void* pdata, memsize nCount) override;
+      //memsize read(void* pdata, memsize nCount) override;
+
+      using ::file::readable::read;
+      memsize read(void * p, ::memsize s) override;
+
 
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
@@ -86,20 +149,32 @@ namespace file
 
       virtual void as_memory(memory_base & memory) const;
 
-      virtual void write(const ::block & block);
 
-      void write(const void* pdata, memsize nCount) override;
-
-      virtual void write(const void* pdata, memsize nCount, memsize* dwWritten);
-
-      virtual void from(::file::file * preader, memsize uiBufferSize = 16 * 1024);
-      virtual void from_begin(::file::file * preader, memsize uiBufSize = 16 * 1024);
-      virtual void to(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
+      template < typename TYPE >
+      void write_as_block(const TYPE & t) { write({ e_as_block, t }); }
 
 
-      virtual void write_file(::file::file * preader, memsize uiBufferSize = 16 * 1024);
-      virtual void write_file_from_begin(::file::file * preader, memsize uiBufSize = 16 * 1024);
-      virtual void read_file(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
+      using ::file::writable::write;
+      virtual void write(const void * p, memsize s);
+      
+
+      virtual memsize defer_write(const ::block & block);
+      virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);
+      virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16_MiB);
+
+      //void write(const void* pdata, memsize nCount) override;
+
+      //virtual void write(const void* pdata, memsize nCount, memsize* dwWritten);
+
+      //virtual void from(::file::file * preader, memsize uiBufferSize = 16 * 1024);
+      //virtual void from_begin(::file::file * preader, memsize uiBufSize = 16 * 1024);
+      //virtual void to(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
+
+
+      ///virtual void read_file(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
+
+
+      ::file::file * get_file() override; 
 
 
       void abort() override;
@@ -148,37 +223,40 @@ namespace file
       virtual void printf(const char * format, ...);
 
       ///virtual void write(const string &);
-      virtual bool full_read(void * pdata, memsize nCount);
+      virtual bool full_read(const ::block & block);
 
-      virtual void write_from_hex(const void * pdata, memsize nCount);
+      virtual void write_from_hex(const ::block & block);
 
       virtual void set_storing();
       virtual void set_loading();
 
       virtual bool has_write_mode();
 
-      virtual bool get_status(file_status& rStatus) const;
+      virtual file_status get_status() const;
       virtual ::file::path get_file_path() const;
       virtual void set_file_path(const ::file::path & path);
 
-      virtual void open(const ::file::path& pszFileName, const ::file::e_open & eopen);
-      inline void open_for_reading(const ::file::path& pszFileName, const ::file::e_open & eopen =
-         ::file::e_open_binary)
+      
+      virtual void open(const ::file::path& pszFileName, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
+      
+      
+      inline void open_for_reading(const ::file::path& pszFileName, ::file::e_open eopen =
+         ::file::e_open_binary, ::pointer < ::file::exception > * pfileexception = nullptr)
       {
-        open(pszFileName, eopen | ::file::e_open_read); 
 
-         //open(psz)
+         open(pszFileName, eopen | ::file::e_open_read); 
 
       }
       
-      virtual void open_for_writing(const ::file::path& pszFileName, const ::file::e_open & eopen =
-         ::file::e_open_binary | ::file::e_open_defer_create_directory)
-      {
-         /*return open(pszFileName, eopen | ::file::e_open_write)*/;
 
-         open(pszFileName, eopen);
+      virtual void open_for_writing(const ::file::path& pszFileName, ::file::e_open eopen =
+         ::file::e_open_binary | ::file::e_open_defer_create_directory, ::pointer < ::file::exception > * pfileexception = nullptr)
+      {
+
+         open(pszFileName, eopen | ::file::e_open_write);
 
       }
+
 
       ::file::fmtflags flags() const;
 
@@ -204,6 +282,9 @@ namespace file
 
 
       virtual void put_lines(const string_array& stra);
+
+      virtual class ::time modification_time();
+      virtual void set_modification_time(const class ::time & time);
 
 
    };

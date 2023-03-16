@@ -1363,7 +1363,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //void node::system_time_to_earth_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
    //{
 
    //   throw ::interface_only();
@@ -1763,30 +1763,26 @@ namespace acme
    }
 
 
-   string node::get_environment_variable(const ::string & pszEnvironmentVariable)
+   ::string node::get_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable)
    {
 
-      return "";
+      return {};
 
    }
 
 
-   string node::expand_environment_variables(const string & str)
+   ::string node::expand_environment_variables(const ::scoped_string & scopedstr)
    {
 
-      return str;
+      return scopedstr;
 
    }
 
 
-   void node::set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue)
+   void node::set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string & scopedstrValue)
    {
-
-      //throw ::interface_only();
 
       throw ::interface_only();
-
-      //return
 
    }
 

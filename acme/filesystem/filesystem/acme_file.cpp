@@ -229,7 +229,7 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
    while (iReadAtMostByteCount - iPos > 0)
    {
 
-      auto dwRead = pfile->read(p + iPos, (size_t)iReadAtMostByteCount - iPos);
+      auto dwRead = pfile->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
 
       if (dwRead <= 0)
       {
@@ -366,7 +366,7 @@ memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s
    while (iReadAtMostByteCount - iPos > 0)
    {
 
-      auto dwRead = file.read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+      auto dwRead = file.read({ psz + iPos, (size_t)iReadAtMostByteCount - iPos });
 
       if (dwRead <= 0)
       {
@@ -446,7 +446,7 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
    while (dwReadTotal < iReadAtMostByteCount)
    {
 
-      auto dwRead = file.read(memory.data() + dwReadTotal, (memsize)(iReadAtMostByteCount - dwReadTotal));
+      auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
 
       if (dwRead <= 0)
       {
@@ -850,25 +850,23 @@ void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & path
 }
 
 
-::earth::time acme_file::modification_time(const ::file::path & path)
+class ::time acme_file::modification_time(const ::file::path & path)
 {
 
    throw ::interface_only();
 
    return {};
 
-
 }
 
 
-void acme_file::set_modification_time(const ::file::path & path, const ::earth::time& time)
+void acme_file::set_modification_time(const ::file::path & path, const class ::time& time)
 {
 
    throw ::interface_only();
 
-   //throw ::interface_only();
-
 }
+
 
 //
 //::time acme_file::modification_time(const ::file::path & path)
@@ -1292,9 +1290,9 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 
             m.set_size((memsize)iPosStart);
 
-            pfile->read(m.data(), (memsize)iPosStart);
+            pfile->read(m);
 
-            pfile2->write(m.data(), (memsize)iPosStart);
+            pfile2->write(m);
 
          }
 
@@ -1311,9 +1309,9 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 
             m.set_size((memsize)(iEnd - iPosEnd));
 
-            pfile->read(m.data(), m.size());
+            pfile->read(m);
 
-            pfile2->write(m.data(), m.size());
+            pfile2->write(m);
 
          }
 

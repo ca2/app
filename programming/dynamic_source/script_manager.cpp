@@ -1625,7 +1625,7 @@ namespace dynamic_source
       // In all formats, the file is at least 24 bytes big, so we'll read that always
       unsigned char buf[24];
 
-      if (pfile->read(buf, 24) < 24)
+      if (pfile->read({ buf, 24 }) < 24)
       {
          return false;
       }
@@ -1645,7 +1645,7 @@ namespace dynamic_source
 
             pfile->set_position(i);
 
-            if (pfile->read(buf, 4) < 4)
+            if (pfile->read({ buf, 4 }) < 4)
                return false;
 
             if (buf[i] != 0xFF)
@@ -1656,7 +1656,7 @@ namespace dynamic_source
                //0xFFC0 is the "Start of frame" marker which contains the file size_i32
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
-               if (pfile->read(buf, 5) < 5)
+               if (pfile->read({ buf, 5 }) < 5)
                   return false;
 
                psize->cy = buf[i + 1] * 256 + buf[i + 2];

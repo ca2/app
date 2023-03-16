@@ -57,14 +57,16 @@ public:
    void close() override;
 
 
-   memsize read(const ::block & block) override;
+   using ::file::text_file::read;
+   memsize read(void * p, ::memsize s) override;
+
 
    int get_u8() override;
    int peek_byte() override;
    void put_byte_back(::byte b) override;
 
    using ::file::file::write;
-   void write(const ::block & block) override;
+   void write(const void * p, ::memsize s) override;
 
    string get_location() const override;
 

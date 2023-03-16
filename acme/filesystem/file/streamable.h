@@ -14,7 +14,9 @@ namespace file
    public:
 
 
-      virtual memsize read(const ::block & block);
+      virtual memsize read(void * p, ::memsize s);
+
+
       virtual ::file::file * get_file();
 
 
@@ -26,7 +28,7 @@ namespace file
    public:
 
 
-      virtual void write(const ::block & block);
+      virtual void write(const void * p, ::memsize s);
 
 
    };

@@ -137,7 +137,9 @@ namespace file
 
       //memsize read(void* pdata, memsize nCount) override;
 
-      memsize read(const ::block & block) override;
+      memsize read(void * p, ::memsize s) override;
+
+      inline memsize read(const ::block & block) { return read(block.data(), block.size()); }
 
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
@@ -151,7 +153,8 @@ namespace file
       template < typename TYPE >
       void write_as_block(const TYPE & t) { write({ e_as_block, t }); }
 
-      virtual void write(const ::block & block);
+      virtual void write(const void * p, memsize s);
+      inline void write(const ::block & block) { write(block.data(), block.size()); }
       virtual memsize defer_write(const ::block & block);
       virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);
       virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16_MiB);

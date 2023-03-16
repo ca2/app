@@ -27,7 +27,7 @@ namespace file
    }
 
 
-   memsize readable::read(const ::block & block)
+   memsize readable::read(void * p, ::memsize s)
    {
 
       throw error_interface_only;
@@ -43,7 +43,7 @@ namespace file
    }
 
 
-   void writable::write(const ::block & block)
+   void writable::write(const void * p, ::memsize s)
    {
 
       throw error_interface_only;

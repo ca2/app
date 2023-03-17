@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/operating_system/windows/handle.h"
+#include "acme/operating_system/windows_common/handle.h"
 
 
 namespace windows
@@ -26,9 +26,9 @@ namespace windows
 
       void create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
-      void _create_file(const ::file::path & path, const ::file::e_open & eopen);
+      void _create_file(const ::file::path & path, ::file::e_open eopen);
 
-      void create_file(const ::file::path & path, const ::file::e_open & eopen);
+      void create_file(const ::file::path & path, ::file::e_open eopen);
 
 
       /// @brief 

@@ -34,7 +34,7 @@ namespace file
 
       virtual ::pointer < ::file::link > create_clean_new() const;
 
-      virtual void open(const ::file::path & path, const ::file::e_link & elink = ::file::e_link_all);
+      virtual void open(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
 
       /// @brief 
       /// @return flags of items that were successfully set

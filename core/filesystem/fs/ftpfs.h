@@ -80,7 +80,7 @@ public:
 
    virtual bool file_move(const ::file::path & pszDst, const ::file::path & pszSrc) override;
 
-   virtual file_pointer get_file(const ::file::path & path, const ::file::e_open & eopen) override;
+   virtual file_pointer get_file(const ::file::path & path, ::file::e_open eopen) override;
 
    virtual bool file_exists(const ::file::path & pszPath) override;
    virtual ::payload file_length(const ::file::path & pszPath) override;

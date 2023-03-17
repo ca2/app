@@ -70,7 +70,7 @@
 //
 //            string strAppId = executable_get_app_id();
 //
-//            acmesystem() = ::move_transfer(platform_create_system(strAppId));
+//            acmesystem() = ::pointer_transfer(platform_create_system(strAppId));
 //
 ////            auto pappStartup = acmesystem()->new_application(strAppId);
 ////

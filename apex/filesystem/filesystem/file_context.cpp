@@ -2835,21 +2835,21 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
 }
 
 
-file_pointer file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
+file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen)
 {
 
    file_pointer pfile;
 
    __construct(pfile);
 
-   pfile->open(path, eopenFlags);
+   pfile->open(path, eopen);
 
    return pfile;
 
    //try
    //{
 
-      //auto resultstatus = pfile->open(path, eopenFlags);
+      //auto resultstatus = pfile->open(path, eopen);
 
       //if (resultstatus)
       //{
@@ -2881,7 +2881,7 @@ file_pointer file_context::file_get_file(::file::path path, const ::file::e_open
 }
 
 
-file_pointer file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
+file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 {
 
    ASSERT(strData.case_insensitive_begins("data:"));
@@ -2940,7 +2940,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 }
 
 
-folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, const ::file::e_open &eopen)
+folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen)
 {
 
    auto & pfactory = acmesystem()->folder_factory();
@@ -2996,10 +2996,10 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 }
 
 
-file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e_open eopen)
 {
 
-   if (eopenFlags & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
+   if (eopen & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
    {
 
       return nullptr;
@@ -3081,7 +3081,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
          synchronouslock.unlock();
 
-         auto pfile = file_get_file(pathCache, eopenFlags);
+         auto pfile = file_get_file(pathCache, eopen);
 
          bool bBypassCacheIfEmpty = get_bypass_cache_if_empty(payloadFile);
 
@@ -3158,15 +3158,15 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
 }
 
-::file_pointer file_context::shared_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::shared_reader(const ::payload &payloadFile, ::file::e_open eopen)
 {
 
-   return get_reader(payloadFile, eopenFlags | ::file::e_open_share_deny_none);
+   return get_reader(payloadFile, eopen | ::file::e_open_share_deny_none);
 
 }
 
 
-::file_pointer file_context::get_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::get_reader(const ::payload &payloadFile, ::file::e_open eopen)
 {
 
    ::file_pointer preader;
@@ -3181,7 +3181,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
    if (!preader)
    {
 
-      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read | ::file::e_open_no_exception_on_open);
+      preader = get_file(payloadFile, eopen | ::file::e_open_read | ::file::e_open_no_exception_on_open);
 
    }
 
@@ -3190,7 +3190,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 }
 
 
-::file_pointer file_context::get_writer(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+::file_pointer file_context::get_writer(const ::payload &payloadFile, ::file::e_open eopen)
 {
 
    ::file_pointer pwriter;
@@ -3205,7 +3205,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
    if (!pwriter)
    {
 
-      pwriter = get_file(payloadFile, eopenFlags | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+      pwriter = get_file(payloadFile, eopen | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    }
 
@@ -3214,7 +3214,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 }
 
 
-file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen, ::pointer < ::file::exception > * pfileexception)
+file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
@@ -3345,7 +3345,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
       //auto pfile = get_reader(path);
 
-      //return zip_get_file(pfile.m_p, eopenFlags);
+      //return zip_get_file(pfile.m_p, eopen);
 
       throw todo;
 
@@ -3394,7 +3394,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 }
 
 
-::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen, ::pointer < ::file::exception > * pfileexception)
+::file_pointer file_context::create_native_file(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
@@ -3795,13 +3795,13 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 
-::file_pointer file_context::friendly_get_file(const ::payload &payloadFile, const ::file::e_open & eopenFlags)
+::file_pointer file_context::friendly_get_file(const ::payload &payloadFile, ::file::e_open eopen)
 {
 
    //try
    //{
 
-      return get_file(payloadFile, eopenFlags);
+      return get_file(payloadFile, eopen);
 
    //}
    //catch (const ::exception & e)

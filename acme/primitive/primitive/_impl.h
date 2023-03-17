@@ -720,7 +720,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 //
 
 //
-//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return get_file(payloadFile, eopen | ::file::e_open_read) ;
@@ -728,7 +728,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }
 //}
 //
 //
-//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return get_file(payloadFile, eopen | ::file::e_open_write);

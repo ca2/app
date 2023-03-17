@@ -644,7 +644,7 @@ ptr < TYPE > clone(TYPE * p)
 
    }
 
-   return ::move_transfer(pNew);
+   return ::pointer_transfer(pNew);
 
 }
 

@@ -73,18 +73,18 @@ public:
 
 
    memory_file();
-   memory_file(const ::file::e_open & eopen);
+   memory_file(::file::e_open eopen);
    memory_file(memsize iSize);
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
    memory_file(const void * pmemory, memsize dwSize);
    memory_file(const ::block & block);
    template < primitive_payload PAYLOAD >
-   memory_file(PAYLOAD & payload, const ::file::e_open & eopen = e_null);
-   memory_file(memory_base & memory, const ::file::e_open & eopen = e_null);
-   memory_file(memory_base * pmemory, const ::file::e_open & eopen = e_null);
+   memory_file(PAYLOAD & payload, ::file::e_open eopen = e_null);
+   memory_file(memory_base & memory, ::file::e_open eopen = e_null);
+   memory_file(memory_base * pmemory, ::file::e_open eopen = e_null);
    template < typename MEMORY>
-   memory_file(const ::pointer<MEMORY> & pmemory, const ::file::e_open & eopen = e_null) : memory_file((MEMORY *)pmemory.get(), eopen) {}
+   memory_file(const ::pointer<MEMORY> & pmemory, ::file::e_open eopen = e_null) : memory_file((MEMORY *)pmemory.get(), eopen) {}
    ~memory_file() override;
 
 
@@ -350,7 +350,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
 
 template < primitive_payload PAYLOAD >
-memory_file::memory_file(PAYLOAD & payload, const ::file::e_open & eopen) :
+memory_file::memory_file(PAYLOAD & payload, ::file::e_open eopen) :
    memory_container(payload)
 {
 

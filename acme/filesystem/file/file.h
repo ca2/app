@@ -155,7 +155,7 @@ namespace file
 
 
       using ::file::writable::write;
-      virtual void write(const void * p, memsize s);
+      void write(const void * p, memsize s) override;
       
 
       virtual memsize defer_write(const ::block & block);
@@ -237,7 +237,7 @@ namespace file
       virtual void set_file_path(const ::file::path & path);
 
       
-      virtual void open(const ::file::path& pszFileName, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
+      virtual void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
       
       
       inline void open_for_reading(const ::file::path& pszFileName, ::file::e_open eopen =

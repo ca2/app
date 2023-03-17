@@ -83,7 +83,7 @@ namespace ios
 //      return pFile;
 //   }
 
-   ::extended::status file::open(const ::file::path& path, const ::file::e_open & eopenParam)
+   ::extended::status file::open(const ::file::path& path, ::file::e_open eopen)
    {
 
       if (m_iFile != (::u32)hFileNull)

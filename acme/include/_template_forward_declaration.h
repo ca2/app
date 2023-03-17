@@ -528,7 +528,7 @@ using largest_type = typename largest_type_struct<T1, T2>::type;
 template < typename T1, typename T2 >
 struct smallest_type_struct 
 {
-   using type = typename if_else< (sizeof(T1) < sizeof(T2)), T1, T2>;
+   using type = if_else< (sizeof(T1) < sizeof(T2)), T1, T2>;
 };
 
 
@@ -538,7 +538,7 @@ using smallest_type = typename smallest_type_struct<T1, T2>::type;
 
 template < typename T1, typename T2, typename T3 >
 struct largest_type_of_3_struct {
-   using type = typename largest_type < largest_type < T1, T2 >, T3 >;
+   using type = largest_type < largest_type < T1, T2 >, T3 >;
 };
 
 

@@ -901,10 +901,7 @@
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
-    <ClCompile Include="operating_system\windows\file.cpp" />
-    <ClCompile Include="operating_system\windows\find_file.cpp" />
     <ClInclude Include="operating_system\windows\find_file.h" />
-    <ClCompile Include="operating_system\windows\handle.cpp" />
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\nano\brush.cpp" />
@@ -918,6 +915,9 @@
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
+    <ClCompile Include="operating_system\windows_common\file1.cpp" />
+    <ClCompile Include="operating_system\windows_common\find_file.cpp" />
+    <ClCompile Include="operating_system\windows_common\handle.cpp" />
     <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />
@@ -1165,9 +1165,10 @@
     <ClInclude Include="operating_system\exit_status.h" />
     <ClInclude Include="operating_system\process1.h" />
     <ClInclude Include="operating_system\security_attributes.h" />
-    <ClInclude Include="operating_system\windows\file.h" />
-    <ClInclude Include="operating_system\windows\handle.h" />
     <ClInclude Include="operating_system\windows\_c.h" />
+    <ClInclude Include="operating_system\windows_common\file.h" />
+    <ClInclude Include="operating_system\windows_common\find_file.h" />
+    <ClInclude Include="operating_system\windows_common\handle.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />
     <ClInclude Include="operating_system\windows_common\_string.h" />

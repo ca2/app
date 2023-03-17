@@ -447,7 +447,7 @@
    //}
 
 
-   ::pointer < ::file::link > os_context::resolve_link(const ::file::path & path, const ::file::e_link & elink)
+   ::pointer < ::file::link > os_context::resolve_link(const ::file::path & path, ::file::e_link elink)
    {
 
       if(path.case_insensitive_ends(".desktop"))

@@ -253,7 +253,7 @@ namespace universal_windows
    }
 
 
-   ::extended::status native_buffer::open(const ::file::path & path, const ::file::e_open & eopenParam)
+   ::extended::status native_buffer::open(const ::file::path & path, ::file::e_open eopen)
    {
 
       ::file::e_open eopen(eopenParam);
@@ -288,7 +288,7 @@ namespace universal_windows
    }
 
 
-   ::extended::status native_buffer::open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
+   ::extended::status native_buffer::open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, ::file::e_open eopen)
    {
 
       ::file::e_open eopen(efileopenParam);

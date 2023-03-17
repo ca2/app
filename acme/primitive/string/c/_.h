@@ -314,8 +314,14 @@ consteval auto string_order_folder_first()
          return false;
 
       }
+      else if (i >= 0)
+      {
 
-      return i < 0;
+         return false;
+
+      }
+
+      return true;
 
    };
 

@@ -172,9 +172,3 @@ inline void copy(MSG & msg, const MESSAGE & message)
 
 }
 
-
-#include "acme/operating_system/windows/handle.h"
-#include "acme/operating_system/windows/file.h"
-
-
-

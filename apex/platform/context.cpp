@@ -913,7 +913,7 @@ namespace apex
 
 
 
-   file_pointer context::friendly_get_file(::payload payloadFile, const ::file::e_open & eopen)
+   file_pointer context::friendly_get_file(::payload payloadFile, ::file::e_open eopen)
    {
 
       try
@@ -1394,7 +1394,7 @@ namespace apex
    //   }
 
 
-   file_pointer context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen, ::pointer < ::file::exception > * pfileexception)
+   file_pointer context::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
       auto pfile = m_papexcontext->file()->get_file(payloadFile, eopen, pfileexception);

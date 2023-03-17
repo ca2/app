@@ -144,3 +144,9 @@ CLASS_DECL_ACME void throw_last_error_exception(const ::scoped_string & scopedst
 
 
 
+#include "acme/operating_system/windows_common/handle.h"
+#include "acme/operating_system/windows_common/file.h"
+
+
+
+

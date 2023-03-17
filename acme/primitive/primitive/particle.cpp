@@ -1816,7 +1816,7 @@ void particle::kick_idle()
 }
 
 
-::file_pointer particle::get_file(const ::payload& payloadFile, const ::file::e_open& eopen, ::pointer < ::file::exception > * pfileexception)
+::file_pointer particle::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    return m_pcontext->get_file(payloadFile, eopen, pfileexception);

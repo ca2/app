@@ -2954,13 +2954,16 @@
     <ClInclude Include="filesystem\filesystem\_.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows\file.h">
-      <Filter>Header Files\operating_system\windows</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\windows\find_file.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\windows\handle.h">
+    <ClInclude Include="operating_system\windows_common\file.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\handle.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\find_file.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3607,9 +3610,6 @@
     <ClCompile Include="operating_system\windows\nano\window.cpp">
       <Filter>Source Files\operating_system\windows\nano</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\file.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\library.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
@@ -4054,17 +4054,20 @@
     <ClCompile Include="filesystem\filesystem\folder_dialog.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\find_file.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\handle.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\file1.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\translatable.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\file1.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\handle.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\find_file.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

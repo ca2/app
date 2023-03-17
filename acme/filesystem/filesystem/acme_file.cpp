@@ -132,8 +132,7 @@ void acme_file::overwrite_if_different(const ::file::path & pathTarget, const ::
 }
 
 
-
-file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_open & eopen)
+file_pointer acme_file::open(const ::file::path & pathParam, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception)
 {
 
    auto pfile = m_pcontext->__create < ::file::file >();
@@ -1117,8 +1116,7 @@ string_array acme_file::lines(const ::file::path & pathParam)
    try
    {
 
-      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none
-      | ::file::e_open_no_exception_on_open);
+      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
 
       if (pfile.nok())
       {

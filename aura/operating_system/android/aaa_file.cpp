@@ -149,7 +149,7 @@ namespace android
    //   return pFile;
    //}
 
-   ::extended::status file::open(const ::file::path & lpszFileName, const ::file::e_open & efileopenParam)
+   ::extended::status file::open(const ::file::path & lpszFileName, ::file::e_open eopen)
    {
 
       ::file::e_open eopen(efileopenParam);

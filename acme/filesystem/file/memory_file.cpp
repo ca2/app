@@ -18,7 +18,7 @@ memory_file::memory_file() :
 }
 
 
-memory_file::memory_file(const ::file::e_open & eopen) :
+memory_file::memory_file(::file::e_open eopen) :
    memory_container(__new(class memory()))
 {
 
@@ -87,7 +87,7 @@ memory_file::memory_file(const ::block & block) :
 
 
 
-memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
+memory_file::memory_file(memory_base & memory, ::file::e_open eopen) :
    memory_container(memory)
 {
 
@@ -98,7 +98,7 @@ memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
 }
 
 
-memory_file::memory_file(memory_base* pmemory, const ::file::e_open & eopen) :
+memory_file::memory_file(memory_base* pmemory, ::file::e_open eopen) :
    memory_container(pmemory)
 {
 
@@ -110,7 +110,7 @@ memory_file::memory_file(memory_base* pmemory, const ::file::e_open & eopen) :
 
 
 
-//memory_file::memory_file(memory_base * pmemory, const ::file::e_open & eopen) :
+//memory_file::memory_file(memory_base * pmemory, ::file::e_open eopen) :
 //   memory_container(pmemory)
 //{
 //

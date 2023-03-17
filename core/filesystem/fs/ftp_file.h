@@ -23,7 +23,7 @@ public:
    ~ftpfs_file() override;
 
 
-   //::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
+   //::extended::status open(const ::file::path & path, ::file::e_open eopen) override;
 
    void open(const ::file::path & pszFileName, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 

@@ -219,7 +219,7 @@ void sequencer < SEQUENCE > ::on_sequence()
 //   acmesystem()->fork(__routine([this]()
 //      {
 //
-//         auto pHold = ::move_transfer(this);
+//         auto pHold = ::pointer_transfer(this);
 //
 //         critical_section_lock lock(get_sequence_critical_section());
 //

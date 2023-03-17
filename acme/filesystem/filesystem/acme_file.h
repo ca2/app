@@ -39,9 +39,8 @@ public:
    virtual ::file::path module();
 
 
-   virtual file_pointer open(const ::file::path& path, const ::file::e_open& eopen);
+   virtual file_pointer open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
    virtual file_pointer stdio_open(const ::file::path & path, const scoped_string & attrs, int iShare);
-
 
 
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);

@@ -135,7 +135,7 @@ namespace apex
 
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual file_pointer friendly_get_file(::payload payloadFile, const ::file::e_open& eopen);
+      virtual file_pointer friendly_get_file(::payload payloadFile, ::file::e_open eopen);
 
 
       virtual ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false);
@@ -210,7 +210,7 @@ namespace apex
 
       //virtual void destroy() override;
 
-      file_pointer get_file(const ::payload& payloadFile, const ::file::e_open& eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
+      file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 
 
    };

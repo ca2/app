@@ -284,15 +284,11 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 //void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time);
 
 
-
 //void GetSystemTime(system_time_t* psystemtime);
-
-
 
 
 // Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
 static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
-
 
 
 CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime)

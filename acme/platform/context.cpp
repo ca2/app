@@ -169,7 +169,7 @@ namespace acme
    }
 
 
-//   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+//   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
 //   {
 //
 //      auto pfile = __create < ::file::file >();

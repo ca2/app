@@ -256,7 +256,7 @@ void get_file_time_set(const ::file::path & path, file_time_set & file_timeset)
 }
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
 
 void get_file_time_set(const ::file::path & path, file_time & file_timeCreation, file_time & file_timeModified)
@@ -300,11 +300,6 @@ CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const fil
    file.set_file_time(nullptr, nullptr, (FILETIME*)&filetimeModified);
 
 }
-
-
-#elif defined(_UWP)
-
-
 
 
 #else

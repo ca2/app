@@ -972,6 +972,9 @@
     <ClInclude Include="operating_system\windows\_c.h" />
     <ClInclude Include="operating_system\windows_common\api.h" />
     <ClInclude Include="operating_system\windows_common\arg_sec_attrs.h" />
+    <ClInclude Include="operating_system\windows_common\file.h" />
+    <ClInclude Include="operating_system\windows_common\find_file.h" />
+    <ClInclude Include="operating_system\windows_common\handle.h" />
     <ClInclude Include="operating_system\windows_common\parallelization.h" />
     <ClInclude Include="operating_system\windows_common\_.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />
@@ -1588,7 +1591,9 @@
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
@@ -1614,6 +1619,7 @@
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
+    <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
@@ -1888,6 +1894,9 @@
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
+    <ClCompile Include="operating_system\windows_common\file1.cpp" />
+    <ClCompile Include="operating_system\windows_common\find_file.cpp" />
+    <ClCompile Include="operating_system\windows_common\handle.cpp" />
     <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />

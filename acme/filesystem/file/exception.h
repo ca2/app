@@ -21,7 +21,7 @@ namespace file
    //   ::file::e_open        m_eopen;
 
 
-   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::file::e_open & eopen = e_null, const ::scoped_string & strMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr);
+   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, ::file::e_open eopen = e_null, const ::scoped_string & strMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr);
 
 //      virtual ~exception();
 //
@@ -44,7 +44,7 @@ namespace file
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status& estatus);
 
-   //CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen);
+   //CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, ::file::e_open eopen);
 
    //CLASS_DECL_ACME void throw_::exception(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 

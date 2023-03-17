@@ -81,7 +81,7 @@ namespace file
 
       //}
 
-      exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::file::e_open & eopen, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
+      exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails) :
          ::exception(estatus, scopedstrMessage, scopedstrDetails)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK : CALLSTACK_DEFAULT_SKIP)
       {
@@ -349,7 +349,7 @@ namespace file
 #define EDEADLOCK       EDEADLK
 #endif
 
-      //void throw_exception(const ::e_status & estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
+      //void throw_exception(const ::e_status & estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, ::file::e_open eopen)
       //{
 
       //   throw ::exception(estatus, lOsError, iErrNo, path, eopen);
@@ -408,7 +408,7 @@ namespace file
       }
 
 
-   //void throw_exception(::e_status estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen)
+   //void throw_exception(::e_status estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, ::file::e_open eopen)
    //{
 
    //   throw ::exception(::file::exception(estatus, lOsError, iErrNo, path, eopen));

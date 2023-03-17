@@ -250,7 +250,7 @@ inline ::pointer<TDST>& clone(::pointer<TDST> dst, const ::pointer<TSRC>src)
 
    }
 
-   return dst = ::move_transfer(src->clone());
+   return dst = ::pointer_transfer(src->clone());
 
 }
 

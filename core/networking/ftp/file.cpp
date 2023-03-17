@@ -19,7 +19,7 @@ namespace ftp
    }
 
 
-   bool file::Open(const string& strFileName, const ::file::e_open & eopen)
+   bool file::Open(const string& strFileName, ::file::e_open eopen)
    {
 
       m_strFileName = strFileName;

@@ -50,7 +50,7 @@ namespace file
    }
 
 
-   void link::open(const ::file::path & path, const ::file::e_link & elink)
+   void link::open(const ::file::path & path, ::file::e_link elink)
    {
 
 

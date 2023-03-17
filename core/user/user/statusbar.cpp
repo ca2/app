@@ -98,7 +98,7 @@ namespace user
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(pIDArray == nullptr ||
 
-      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
+      //      is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount, false));
 
       ASSERT(is_window());
 

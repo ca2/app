@@ -15,7 +15,7 @@ public:
    paged_memory(const memory_base & memory);
    paged_memory(const ::scoped_string & scopedstr);
    paged_memory(memory_container * pcontainer, double dAllocationRateUp = 4096, ::u32 nAllocFlags = 0);
-   paged_memory(memory_container * pcontainer, void * pMemory, memsize dwSize);
+   paged_memory(memory_container * pcontainer, const void * pMemory, memsize dwSize);
    ~paged_memory() override;
 
 

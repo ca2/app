@@ -16,6 +16,30 @@ namespace file
 {
 
 
+   CLASS_DECL_ACME string_array get_pattern_list(const ::array < file_dialog_filter > & filedialogfiltera)
+   {
+
+      ::string_array stra;
+
+      for (auto & filedialogfilter : filedialogfiltera)
+      {
+
+         ::string_array straPattern;
+
+         straPattern.explode(";", filedialogfilter.m_strPatternList);
+
+         straPattern.trim();
+
+         stra.append_unique(straPattern);
+
+
+      }
+
+      return stra;
+
+   }
+
+
 file_dialog::file_dialog()
 {
    
@@ -32,7 +56,7 @@ file_dialog::~file_dialog()
 
    void file_dialog::pick_single_file(
       ::user::element * puserelement,
-      const ::array < ::pair < ::string, ::string > >& filetypes,
+      const ::array < file_dialog_filter >& filedialogfiltera,
       const ::function < void(::pointer<file_dialog>) >& function,
       bool bSave,
                             const ::file::path & pathStartFolder)
@@ -59,7 +83,7 @@ file_dialog::~file_dialog()
       //auto pdialog = __new(::operating_system_file_dialog(this,
    
    m_puserelement = puserelement;
-   m_filetypes = filetypes;
+   m_filedialogfiltera = filedialogfiltera;
    m_function = function;
    m_pathStartFolder = pathStartFolder;
    m_bSave = bSave;
@@ -84,7 +108,7 @@ file_dialog::~file_dialog()
 
    void file_dialog::pick_multiple_file(
       ::user::element * puserelement,
-      const ::array < ::pair < ::string, ::string > >& filetypes,
+      const ::array < file_dialog_filter >& filedialogfiltera,
       const ::function < void(::pointer<file_dialog>) >& function,
                                         const ::file::path & pathStartFolder)
    {
@@ -104,7 +128,7 @@ file_dialog::~file_dialog()
 //      operating_system_file_dialog(pdialog);
 
       m_puserelement = puserelement;
-      m_filetypes = filetypes;
+      m_filedialogfiltera = filedialogfiltera;
       m_function = function;
       m_pathStartFolder = pathStartFolder;
       m_bSave = false;

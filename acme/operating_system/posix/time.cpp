@@ -63,14 +63,14 @@ CLASS_DECL_ACME void preempt_nanosecond(::i64 i)
 }
 
 
-CLASS_DECL_ACME void precision_wait(const class time & time)
-{
+// CLASS_DECL_ACME void precision_wait(const class time & time)
+// {
 
-   struct timespec & timespec =  (struct timespec &) time;
+//    struct timespec & timespec =  (struct timespec &) time;
 
-   ::nanosleep(&timespec, nullptr);
+//    ::nanosleep(&timespec, nullptr);
 
-}
+// }
 
 
 //CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
@@ -87,7 +87,7 @@ CLASS_DECL_ACME void precision_wait(const class time & time)
 //}
 //
 //
-////void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+////void system_time_to_earth_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
 ////{
 ////
 ////   struct tm tm;
@@ -99,3 +99,27 @@ CLASS_DECL_ACME void precision_wait(const class time & time)
 ////   return ::success;
 ////
 ////}
+
+
+
+CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptime)
+{
+
+   ptimespec->tv_sec = ptime->m_iSecond;
+   ptimespec->tv_nsec = ptime->m_iNanosecond;
+
+}
+
+
+
+CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespec)
+{
+
+   ptime->m_iSecond = ptimespec->tv_sec;
+      ptime->m_iNanosecond = ptimespec->tv_nsec;
+
+
+}
+
+
+

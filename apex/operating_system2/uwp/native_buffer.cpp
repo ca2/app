@@ -263,7 +263,7 @@ namespace universal_windows
       m_folder = nullptr;
 
       ASSERT_VALID(this);
-      ASSERT(__is_valid_string(path));
+      ASSERT(is_string_ok(path));
       ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // native_buffer objects are always binary and Createnative_buffer does not need flag
@@ -288,7 +288,7 @@ namespace universal_windows
    }
 
 
-   ::extended::status native_buffer::open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
+   ::extended::status native_buffer::open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, ::file::e_open eopen)
    {
 
       ::file::e_open eopen(efileopenParam);
@@ -719,7 +719,7 @@ namespace universal_windows
 
       ASSERT_VALID(this);
 
-      ASSERT(__is_valid_string(path));
+      ASSERT(is_string_ok(path));
 
       m_strFileName = path;
 

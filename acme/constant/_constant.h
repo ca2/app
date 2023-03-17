@@ -978,10 +978,10 @@ enum enum_defer_new // memory_new - for factoryless_allocation FACTORYLESS_ALLOC
 };
 
 
-enum enum_move_transfer
+enum enum_pointer_transfer
 {
 
-   e_move_transfer
+   e_pointer_transfer
 
 };
 

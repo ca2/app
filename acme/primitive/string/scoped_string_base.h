@@ -153,6 +153,13 @@ public:
    
    }
 
+   STRING & fork()
+   {
+
+      return this->str(this->operator()());
+
+   }
+
 
    //template < primitive_character CHARACTER2 >
    //void _construct1(const CHARACTER2 * psz)
@@ -206,10 +213,27 @@ public:
    inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
 
+   const CHARACTER * null_terminated() const
+   { 
 
-   operator const CHARACTER * () const { return this->begin(); }
+      if (!*this->m_end)
+      {
 
-   const CHARACTER * c_str() const { return this->begin(); }
+         ((scoped_string_base *)this)->fork();
+
+      }
+
+      return this->m_begin;
+
+   }
+
+
+   operator const CHARACTER * () const { return this->null_terminated(); }
+
+   const CHARACTER * c_str() const { return this->null_terminated(); }
+
+
+   ::block as_block() const { return { (::byte *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 
 
 };

@@ -55,7 +55,7 @@ menu_shared::~menu_shared()
 
    }
 
-   ::pointer<menu_shared>pmenushared = ::move_transfer(memory_new menu_shared);
+   ::pointer<menu_shared>pmenushared = ::pointer_transfer(memory_new menu_shared);
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);

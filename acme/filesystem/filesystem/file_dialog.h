@@ -6,6 +6,17 @@
 namespace file
 {
 
+   struct file_dialog_filter
+   {
+
+      ::string       m_strName;
+      ::string       m_strPatternList;
+
+   };
+
+
+   CLASS_DECL_ACME string_array get_pattern_list(const ::array < file_dialog_filter > & filedialogfiltera);
+
 
    class CLASS_DECL_ACME file_dialog :
            virtual public particle
@@ -16,7 +27,7 @@ namespace file
       //void *                                           m_poswindow;
       void *                                             m_posdata;
       ::pointer < ::user::element>                       m_puserelement;
-      ::array < ::pair < ::string, ::string > >          m_filetypes;
+      ::array < file_dialog_filter >                     m_filedialogfiltera;
       ::function < void(::pointer<file_dialog>) >        m_function;
       ::file::path                                       m_pathStartFolder;
       bool                                               m_bSave;
@@ -36,7 +47,7 @@ namespace file
       
       void pick_single_file(
          ::user::element * puserelement,
-         const ::array < ::pair < ::string, ::string > >& filetypes,
+         const ::array < file_dialog_filter >& filedialogfiltera,
          const ::function < void(::pointer<file_dialog>) >& function,
          bool save,
          const ::file::path & pathStartFolder = {});
@@ -44,7 +55,7 @@ namespace file
 
       void pick_multiple_file(
                               ::user::element * puserelement,
-         const ::array < ::pair < ::string, ::string > > & filetypes,
+         const ::array < file_dialog_filter > & filedialogfiltera,
                               const ::function < void(::pointer<file_dialog>) >& function,
                               const ::file::path & pathStartFolder = {});
      

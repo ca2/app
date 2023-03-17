@@ -37,10 +37,10 @@ public:
 
 
    //using ::file::file::write;
-   void write(const void* pdata, memsize nCount)
+   void write(const ::block & block)
    {
 
-      m_str.append((const ::ansi_character *) pdata, nCount);
+      m_str.append((const ::ansi_character *) block.data(), block.size());
 
    }
 

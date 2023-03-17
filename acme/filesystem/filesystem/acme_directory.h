@@ -127,6 +127,7 @@ public:
    //virtual ::file::path program_data();
    virtual ::file::path stage(string strAppId, string strPlatform, string strConfiguration);
    virtual ::file::path sys_temp();
+   virtual ::file::path temp();
    virtual ::string dir_root();
    //virtual ::file::path home();
    //virtual ::file::path program_data();
@@ -234,7 +235,7 @@ public:
          //} // namespace dir
 
    virtual ::file::path get_current();
-   virtual void change_current(const ::scoped_string & scopedstr);
+   virtual void change_current(const ::file::path & path);
    virtual void change_to_home();
 
 

@@ -106,6 +106,8 @@ namespace simpledb
 
             synchronouslock.unlock();
 
+
+
             //auto estatus = pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
 
             try
@@ -136,7 +138,12 @@ namespace simpledb
 
                //synchronous_lock slDatabase(pdatabase->synchronization());
 
-               pdatabase->set_id_blob(pitem->m_strKey, pitem->m_memory);
+               if(pitem)
+               {
+
+                  pdatabase->set_id_blob(pitem->m_strKey, pitem->m_memory);
+
+               }
 
 //               {
 //

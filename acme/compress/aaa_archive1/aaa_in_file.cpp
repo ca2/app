@@ -292,7 +292,7 @@ namespace zip
 
    {
 
-      ASSERT(__is_valid_string(pcszFileName));
+      ASSERT(is_string_ok(pcszFileName));
 
 
       m_filea.add(pzfile);
@@ -314,7 +314,7 @@ namespace zip
 
    {
 
-      ASSERT(__is_valid_string(pcszFileName));
+      ASSERT(is_string_ok(pcszFileName));
 
 
       m_filea.add(pzfile);
@@ -368,7 +368,7 @@ namespace zip
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata,(uptr)nCount));
+      ASSERT(is_memory_segment_ok(pdata,(uptr)nCount));
 
       auto iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pdata,(u32)nCount);
 

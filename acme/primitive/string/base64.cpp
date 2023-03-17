@@ -362,7 +362,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
          igroup[0]= igroup[1]= igroup[2]= 0;
          for(n= 0; n<3; n++)
          {
-            if(pfileInput->read(&ch, 1) == 0)
+            if (pfileInput->read({ &ch, 1 }) == 0)
             {
                hiteof= true;
                break;
@@ -385,7 +385,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
             }
             for(i= 0; i<4; i++)
             {
-               pfileOutput->write(&ogroup[i], 1);
+               pfileOutput->write(ogroup[i]);
             }
          }
       }
@@ -436,7 +436,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
             }
          }
       }
-      pfileOutput->write(m.begin(), m.size());
+
+      pfileOutput->write(m);
+
    }
 
 
@@ -450,7 +452,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
       {
          for(i= 0; i<4; i++)
          {
-            if(pfileInput->read(&uch, 1) == 0)
+            if(!pfileInput->read(&uch))
             {
                if( i > 0)
                {
@@ -482,7 +484,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
          o[1]= (b[1]<<4)|(b[2]>>2);
          o[2]= (b[2]<<6)|b[3];
          i= a[2]=='='?1:(a[3]=='='?2:3);
-         pfileOutput->write(o, i);
+         pfileOutput->write({ o, i });
 
          if (i < 3)
          {
@@ -510,7 +512,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
       {
          for(i= 0; i<4; i++)
          {
-            if(pfileInput->read(&uch, 1) == 0)
+            if(!pfileInput->read(&uch))
             {
                if( i > 0)
                {

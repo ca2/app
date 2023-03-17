@@ -25,7 +25,7 @@ CLASS_DECL_ACME int_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
 wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath);
 
 
-CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize);
+//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize);
 
 
 #include "library.h"

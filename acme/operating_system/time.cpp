@@ -1,8 +1,8 @@
 ﻿#include "framework.h"
 #include "time.h"
-//#include "acme/primitive/datetime/file_time.h"
+#include "acme/primitive/datetime/earth_time.h"
 #include "acme/primitive/datetime/system_time.h"
-//#include "acme/operating_system/time.h"
+#include "acme/primitive/time/time.h"
 #if !defined(WINDOWS)
 #include "acme/operating_system/ansi/windows_time.h"
 #endif
@@ -214,14 +214,14 @@ void get_system_time_as_file_time(file_time_t* pfile_time)
 //}
 
 
-void file_time_to_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
+void file_time_to_earth_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
 {
 
    system_time_t systemtime{};
 
    file_time_to_system_time(&systemtime, pfile_time);
 
-   system_time_to_time(ptime, &systemtime);
+   system_time_to_earth_time(ptime, &systemtime);
 
 }
 
@@ -284,11 +284,35 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 //void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time);
 
 
-
 //void GetSystemTime(system_time_t* psystemtime);
 
 
+// Microseconds between 1601-01-01 00:00:00 UTC and 1970-01-01 00:00:00 UTC
+static const uint64_t EPOCH_DIFFERENCE_NANOS = 11644473600000000000ull;
+
+
+CLASS_DECL_ACME void file_time_to_time(class ::time * ptime, const file_time_t* pfiletime)
+{
+
+   uint64_t nanoseconds = *pfiletime * 100;
+
+   nanoseconds -= EPOCH_DIFFERENCE_NANOS;
+
+   ptime->m_iSecond = nanoseconds / 1'000'000'000;
+
+   ptime->m_iNanosecond = nanoseconds % 1'000'000'000;
+
+}
 
 
 
+CLASS_DECL_ACME void time_to_file_time(file_time_t* pfiletime, const class ::time * ptime)
+{
 
+   uint64_t nanoseconds = ptime->m_iNanosecond + ptime->m_iSecond * 1'000'000'000;
+
+   nanoseconds += EPOCH_DIFFERENCE_NANOS;
+
+   *pfiletime = nanoseconds / 100;
+
+}

@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "composite.h"
+#include "acme/filesystem/file/status.h"
 
 
 namespace file
@@ -28,10 +29,10 @@ namespace file
    }
 
 
-   bool reference::get_status(file_status& rStatus) const
+   file_status reference::get_status() const
    {
 
-      return m_pfile->get_status(rStatus);
+      return m_pfile->get_status();
 
    }
 
@@ -52,13 +53,10 @@ namespace file
    }
 
 
-   //::extended::status
-      
-   void reference::open(const ::file::path & path, const ::file::e_open & eopen)
+   void reference::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
-      /* return */
-      m_pfile->open(path, eopen);
+      m_pfile->open(path, eopen, pfileexception);
 
    }
 
@@ -127,18 +125,18 @@ namespace file
    }
 
 
-   memsize reference::read(void * pdata, memsize nCount)
+   memsize reference::read(void * p, ::memsize s)
    {
 
-      return m_pfile->read(pdata, nCount);
+      return m_pfile->read(p, s);
 
    }
 
 
-   void reference::write(const void * pdata, memsize nCount)
+   void reference::write(const void * p, ::memsize s)
    {
 
-      return m_pfile->write(pdata, nCount);
+      return m_pfile->write(p, s);
 
    }
 

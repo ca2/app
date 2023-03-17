@@ -584,8 +584,10 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 //}
 //
 //
+
+
 template < typename T >
-inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
+inline ::pointer < T > pointer_transfer(T* p) { return { e_pointer_transfer, p }; }
 
 
 //template < typename TYPE >
@@ -718,7 +720,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //
 
 //
-//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return get_file(payloadFile, eopen | ::file::e_open_read) ;
@@ -726,7 +728,7 @@ inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 //}
 //
 //
-//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return get_file(payloadFile, eopen | ::file::e_open_write);

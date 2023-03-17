@@ -71,32 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <PreprocessorDefinitions>_ACME_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
@@ -104,7 +91,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -124,11 +110,9 @@
     <ClCompile>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PreprocessorDefinitions>_ACME_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CppLanguageStandard>
       </CppLanguageStandard>
     </ClCompile>
@@ -143,7 +127,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <PreprocessorDefinitions>_ACME_LIBRARY;CUBE</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
@@ -152,7 +135,6 @@
       <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -169,10 +151,8 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <PreprocessorDefinitions>_ACME_LIBRARY;CUBE</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -370,7 +350,7 @@
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\pipe.cpp" />
-    <ClCompile Include="operating_system\posix\base_file.cpp" />
+    <ClCompile Include="operating_system\posix\file.cpp" />
     <ClCompile Include="operating_system\posix\chldstatus.cpp" />
     <ClCompile Include="operating_system\posix\desktop.cpp" />
     <ClCompile Include="operating_system\posix\file_lock.cpp" />
@@ -378,6 +358,7 @@
     <ClCompile Include="operating_system\posix\parallelization.cpp" />
     <ClCompile Include="operating_system\posix\parallelization_pthread.cpp" />
     <ClCompile Include="operating_system\posix\time.cpp" />
+    <ClCompile Include="operating_system\posix\_.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
@@ -832,6 +813,8 @@
     <ClInclude Include="operating_system\android\_os_impl.h" />
     <ClInclude Include="operating_system\android\_user.h" />
     <ClInclude Include="operating_system\error_code.h" />
+    <ClInclude Include="operating_system\posix\_.h" />
+    <ClInclude Include="operating_system\_.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
@@ -843,7 +826,6 @@
     <ClInclude Include="os\time.h" />
     <ClInclude Include="os\_user.h" />
     <ClInclude Include="os\winpr_input.h" />
-    <ClInclude Include="os\_.h" />
     <ClInclude Include="os\_application.h" />
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />

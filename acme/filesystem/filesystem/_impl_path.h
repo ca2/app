@@ -8,77 +8,77 @@ namespace file
 {
 
 
-//    inline path path::operator/(const path &path) const
-//    {
-//
-//       return ::transfer(*this / ::scoped_string(path));
-//
-//    }
+   //    inline path path::operator/(const path &path) const
+   //    {
+   //
+   //       return ::transfer(*this / ::scoped_string(path));
+   //
+   //    }
 
 
-//    inline path path::operator/(const ::ansi_character *psz) const
-//    {
-//
-//       return ::transfer(*this / ::scoped_string(psz));
-//
-//    }
+   //    inline path path::operator/(const ::ansi_character *psz) const
+   //    {
+   //
+   //       return ::transfer(*this / ::scoped_string(psz));
+   //
+   //    }
 
 
-//    inline path path::operator/(const ::string &str) const
-//    {
-//
-//       return ::transfer(*this / ::scoped_string(str));
-//
-//    }
+   //    inline path path::operator/(const ::string &str) const
+   //    {
+   //
+   //       return ::transfer(*this / ::scoped_string(str));
+   //
+   //    }
 
 
-    inline path path::slashed_path(const ::scoped_string & scopedstr) const
-    {
+   inline path path::slashed_path(const ::scoped_string & scopedstr) const
+   {
 
-       string strPath;
+      string strPath;
 
-       strPath = this->c_str();
+      strPath = this->c_str();
 
-       if (strPath.is_empty())
-       {
+      if (strPath.is_empty())
+      {
 
-          return scopedstr;
+         return scopedstr;
 
-       }
+      }
 
-       bool bJustAfterProtocol = scopedstr.ends("://") || scopedstr.ends(":/");
+      bool bJustAfterProtocol = scopedstr.ends("://") || scopedstr.ends(":/");
 
-       if (bJustAfterProtocol || m_epath == e_path_url)
-       {
+      if (bJustAfterProtocol || m_epath == e_path_url)
+      {
 
-          ::string str = scopedstr;
+         ::string str = scopedstr;
 
-          str.find_replace("\\", "/");
+         str.find_replace("\\", "/");
 
-          str.trim_left("/");
+         str.trim_left("/");
 
-          if (bJustAfterProtocol)
-          {
+         if (bJustAfterProtocol)
+         {
 
-             return ::file::path(strPath + str, e_path_url);
+            return ::file::path(strPath + str, e_path_url);
 
-          }
-          else
-          {
+         }
+         else
+         {
 
-             return ::file::path(strPath + "/" + str, e_path_url);
+            return ::file::path(strPath + "/" + str, e_path_url);
 
-          }
+         }
 
-       }
+      }
 
-       //strPath += separator();
+      //strPath += separator();
 
-       //str.trim_left("\\/");
+      //str.trim_left("\\/");
 
-       return ::file::path(strPath + "/" + scopedstr.skip_any_character_in("\\/"), e_path_file);
+      return ::file::path(strPath + "/" + scopedstr.skip_any_character_in("\\/"), e_path_file);
 
-    }
+   }
 
 
 } // namespace file
@@ -106,7 +106,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_string& str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::ansi_string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       string(str)
    {
 
@@ -154,7 +154,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_string& wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd16_string & wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       path(::string(wd16str), epath, iDir, bNormalizePath, iSize)
    {
 
@@ -162,7 +162,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_string& wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd32_string & wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       path(::string(wd32str), epath, iDir, bNormalizePath, iSize)
    {
 
@@ -170,7 +170,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_character* pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::ansi_character * pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       path(::ansi_string(pansisz), epath, iDir, bNormalizePath, iSize)
    {
 
@@ -178,7 +178,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_character* pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       path(::wd16_string(pwd16sz), epath, iDir, bNormalizePath, iSize)
    {
 
@@ -186,7 +186,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_character* pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       path(::wd32_string(pwd32sz), epath, iDir, bNormalizePath, iSize)
    {
 
@@ -543,7 +543,7 @@ namespace file
    }
 
 
-   inline path& path::ascend()
+   inline path & path::ascend()
    {
 
       return *this = parent();
@@ -551,7 +551,7 @@ namespace file
    }
 
 
-   inline path& path::ascend(int i)
+   inline path & path::ascend(int i)
    {
 
       while (i > 0)
@@ -598,7 +598,7 @@ namespace file
        //}
 
 
-   inline path& path::operator += (const ::string& str)
+   inline path & path::operator += (const ::string & str)
    {
 
       auto pathThis = *this;
@@ -742,7 +742,7 @@ namespace file
     //}
 
 
-   inline void path::set_all_extensions(const ::scoped_string& scopedstrExtension)
+   inline void path::set_all_extensions(const ::scoped_string & scopedstrExtension)
    {
 
       string strExtension(scopedstrExtension);
@@ -767,7 +767,7 @@ namespace file
    }
 
 
-   inline void path::set_final_extension(const ::scoped_string& scopedstrExtension)
+   inline void path::set_final_extension(const ::scoped_string & scopedstrExtension)
    {
 
       string strExtension(scopedstrExtension);
@@ -792,7 +792,7 @@ namespace file
    }
 
 
-   inline void path::set_extension_if_no_extension(const ::scoped_string& scopedstrExtension)
+   inline void path::set_extension_if_no_extension(const ::scoped_string & scopedstrExtension)
    {
 
       if (this->final_extension().is_empty())
@@ -803,7 +803,7 @@ namespace file
          if (::has_char(p))
          {
 
-            this->operator = (((::ansi_string&)*this) + "." + scopedstrExtension(p));
+            this->operator = (((::ansi_string &)*this) + "." + scopedstrExtension(p));
 
          }
 
@@ -812,7 +812,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_all_extensions(const ::scoped_string& scopedstrExtension) const
+   inline ::file::path path::with_all_extensions(const ::scoped_string & scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -824,7 +824,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_final_extension(const ::scoped_string& scopedstrExtension) const
+   inline ::file::path path::with_final_extension(const ::scoped_string & scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -836,7 +836,7 @@ namespace file
    }
 
 
-   inline ::file::path path::with_extension_if_no_extension(const ::scoped_string& scopedstrExtension) const
+   inline ::file::path path::with_extension_if_no_extension(const ::scoped_string & scopedstrExtension) const
    {
 
       ::file::path path(*this);
@@ -848,320 +848,304 @@ namespace file
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   inline ::wstring path::get_os_path() const
+   inline ::string path::windows_path() const
    {
 
       ::string str(*this);
 
-      ::wstring wstr(str);
+      str.find_replace(L"/", L"\\");
 
-      wstr.find_replace(L"/", L"\\");
-
-      return ::transfer(wstr);
+      return ::transfer(str);
 
    }
 
-#else
 
-   inline ::string path::get_os_path() const
+   inline void path::set_type(enum_path epath)
    {
+
+      if (epath != m_epath)
+      {
+
+         m_epath = epath;
+
+         ::ansi_string ::operator = (file_path_normalize(*this, m_epath));
+
+      }
+
+   }
+
+
+
+
+
+   inline path & path::operator = (const ::file::path & path)
+   {
+
+      if (&path != this)
+      {
+
+         string::operator  = ((const string &)path);
+         *((path_meta *)this) = (const path_meta &)path;
+         //#ifdef WINDOWS_DESKTOP
+         //         m_idlist = path.m_idlist;
+         //#endif
+
+      }
+
+      return *this;
+
+
+   }
+
+
+   //   inline path& path::operator = (const ::ansi_string& str)
+   //   {
+   //
+   //      *((path_meta*)this) = path_meta();
+   //
+   //      m_epath = file_path_get_type(str);
+   //
+   //      string ::operator  = (file_path_normalize(str, m_epath));
+   //
+   //      return *this;
+   //
+   //   }
+
+
+       //inline path path::operator + (const path& path) const
+       //{
+
+       //   return ::file::path((const string&)*this + string((const string&)path), m_epath);
+
+       //}
+
+
+       //inline path path::operator + (const ::ansi_string& str) const
+       //{
+
+       //   return ::file::path((const string&)*this + (m_iDir > 0 ? separator_sz() : "") + string((const string&)str), m_epath);
+
+       //}
+
+
+       //inline path path::operator + (const ::scoped_string & scopedstr) const
+       //{
+
+       //   return operator + (string(psz));
+
+       //}
+
+
+
+   //   inline path& path::operator = (const ::scoped_string & scopedstr)
+   //   {
+   //
+   //      return operator = (string(psz));
+   //
+   //   }
+
+
+       //inline path& path::operator += (const ::scoped_string & scopedstr)
+       //{
+
+       //   return operator += (string(psz));
+
+       //}
+
+   //   inline path& path::operator = (const wstring& wstr)
+   //   {
+   //
+   //      return operator = (string(wstr));
+   //
+   //   }
+
+       //inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
+
+       ////inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(psz)); }
+       //inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(psz)); }
+
+       //void path::to_string(string & str) const
+       //{
+       //
+       //   str = *this;
+
+       //}
+
+   inline path path::operator * (const path & path) const
+   {
+
+      return sibling(path);
+
+   }
+
+   inline path path::operator * (const ::ansi_string & str) const { return operator * (::file::path(str)); }
+
+   inline path & path::operator *= (const path & path)
+   {
+
+      if (this != &path)
+      {
+
+         *this = sibling(path);
+
+      }
+
+      return *this;
+
+   }
+
+   inline path & path::operator *= (const ::ansi_string & str) { return operator *= (::file::path(str)); }
+
+
+   inline ::file::path path::title() const
+   {
+
+      return ::file_path_title(c_str());
+
+   }
+
+
+   inline string path::name() const
+   {
+
+      return ::file_path_name(c_str());
+
+   }
+
+
+   inline path::const_iterator path::find_name() const
+   {
+
+      return maximum(this->begin(), rear_find('/') + 1);
+
+   }
+
+
+   inline ::scoped_string path::find_final_extension() const
+   {
+
+      return ::file_path_final_extension(*this);
+
+   }
+
+
+   inline ::scoped_string path::find_all_extensions() const
+   {
+
+      return file_path_all_extensions(*this);
+
+   }
+
+
+   inline bool path::is_relative()
+   {
+
+      return file_path_is_relative(*this) != false;
+
+   }
+
+
+   inline path path::relative() const
+   {
+
+      return substr(maximum(0, m_iBasePathLength));
+
+   }
+
+
+   inline path path::parent() const
+   {
+
+      return folder();
+
+   }
+
+
+   inline path path::ascendant(int i) const
+   {
+
+      return folder(i);
+
+   }
+
+
+   inline path & path::operator -= (int i)
+   {
+
+      return ascend(i);
+
+   }
+
+
+   inline bool path::is_empty() const
+   {
+
+      return ::ansi_string::is_empty();
+
+   }
+
+
+   inline bool path::has_char() const
+   {
+
+      return !is_empty();
+
+   }
+
+
+   inline bool path::operator == (const ::string & str) const
+   {
+
+      return operator == (path(str));
+
+   }
+
+
+   inline bool path::operator != (const ::ansi_string & str) const
+   {
+
+      return operator != (path(str));
+
+   }
+
+
+   inline path path::operator / (const ::scoped_string & scopedstr) const
+   {
+
+      return ::transfer(slashed_path(scopedstr));
+
+   }
+
+
+   inline ::file::path & path::patch_base_path(const ::file::path & pathBase)
+   {
+
+      auto iBasePathLength = m_iBasePathLength;
+
+      if (iBasePathLength < 0)
+      {
+
+         iBasePathLength = 0;
+
+      }
+
+      auto pszRelative = c_str() + iBasePathLength;
+
+      *this = pathBase / pszRelative;
+
+      m_iBasePathLength = pathBase.length() + 1;
 
       return *this;
 
    }
 
 
-#endif
+   inline bool path::operator != (const path & path) const
+   {
 
+      return !operator==(path);
 
-    inline void path::set_type(enum_path epath)
-    {
-
-       if (epath != m_epath)
-       {
-
-          m_epath = epath;
-
-          ::ansi_string ::operator = (file_path_normalize(*this, m_epath));
-
-       }
-
-    }
-
-
-
-
-
-    inline path& path::operator = (const ::file::path& path)
-    {
-
-       if (&path != this)
-       {
-
-          string::operator  = ((const string&)path);
-          *((path_meta*)this) = (const path_meta&)path;
-          //#ifdef WINDOWS_DESKTOP
-          //         m_idlist = path.m_idlist;
-          //#endif
-
-       }
-
-       return *this;
-
-
-    }
-
-
-//   inline path& path::operator = (const ::ansi_string& str)
-//   {
-//
-//      *((path_meta*)this) = path_meta();
-//
-//      m_epath = file_path_get_type(str);
-//
-//      string ::operator  = (file_path_normalize(str, m_epath));
-//
-//      return *this;
-//
-//   }
-
-
-    //inline path path::operator + (const path& path) const
-    //{
-
-    //   return ::file::path((const string&)*this + string((const string&)path), m_epath);
-
-    //}
-
-
-    //inline path path::operator + (const ::ansi_string& str) const
-    //{
-
-    //   return ::file::path((const string&)*this + (m_iDir > 0 ? separator_sz() : "") + string((const string&)str), m_epath);
-
-    //}
-
-
-    //inline path path::operator + (const ::scoped_string & scopedstr) const
-    //{
-
-    //   return operator + (string(psz));
-
-    //}
-
-
-
-//   inline path& path::operator = (const ::scoped_string & scopedstr)
-//   {
-//
-//      return operator = (string(psz));
-//
-//   }
-
-
-    //inline path& path::operator += (const ::scoped_string & scopedstr)
-    //{
-
-    //   return operator += (string(psz));
-
-    //}
-
-//   inline path& path::operator = (const wstring& wstr)
-//   {
-//
-//      return operator = (string(wstr));
-//
-//   }
-
-    //inline path& path::operator += (const wstring& wstr) { return operator += (string(wstr)); }
-
-    ////inline path& path::operator = (const ::wide_character* psz) { return operator = (wstring(psz)); }
-    //inline path& path::operator += (const ::wide_character* psz) { return operator += (wstring(psz)); }
-
-    //void path::to_string(string & str) const
-    //{
-    //
-    //   str = *this;
-
-    //}
-
-    inline path path::operator * (const path& path) const
-    {
-
-       return sibling(path);
-
-    }
-
-    inline path path::operator * (const ::ansi_string& str) const { return operator * (::file::path(str)); }
-
-    inline path& path::operator *= (const path& path)
-    {
-
-       if (this != &path)
-       {
-
-          *this = sibling(path);
-
-       }
-
-       return *this;
-
-    }
-
-    inline path& path::operator *= (const ::ansi_string& str) { return operator *= (::file::path(str)); }
-
-
-    inline ::file::path path::title() const
-    {
-
-       return ::file_path_title(c_str());
-
-    }
-
-
-    inline string path::name() const
-    {
-
-       return ::file_path_name(c_str());
-
-    }
-
-
-    inline path::const_iterator path::find_name() const
-    {
-
-       return maximum(this->begin(), rear_find('/') + 1);
-
-    }
-
-
-    inline ::scoped_string path::find_final_extension() const
-    {
-
-       return ::file_path_final_extension(*this);
-
-    }
-
-
-    inline ::scoped_string path::find_all_extensions() const
-    {
-
-       return file_path_all_extensions(*this);
-
-    }
-
-
-    inline bool path::is_relative()
-    {
-
-       return file_path_is_relative(*this) != false;
-
-    }
-
-
-    inline path path::relative() const
-    {
-
-       return substr(maximum(0, m_iBasePathLength));
-
-    }
-
-
-    inline path path::parent() const
-    {
-
-       return folder();
-
-    }
-
-
-    inline path path::ascendant(int i) const
-    {
-
-       return folder(i);
-
-    }
-
-
-    inline path& path::operator -= (int i)
-    {
-
-       return ascend(i);
-
-    }
-
-
-    inline bool path::is_empty() const
-    {
-
-       return ::ansi_string::is_empty();
-
-    }
-
-
-    inline bool path::has_char() const
-    {
-
-       return !is_empty();
-
-    }
-
-
-    inline bool path::operator == (const ::string & str) const
-    {
-
-       return operator == (path(str));
-
-    }
-
-
-    inline bool path::operator != (const ::ansi_string& str) const
-    {
-
-       return operator != (path(str));
-
-    }
-
-
-    inline path path::operator / (const ::scoped_string & scopedstr) const
-    {
-
-       return ::transfer(slashed_path(scopedstr));
-
-    }
-
-
-    inline ::file::path & path::patch_base_path(const ::file::path & pathBase)
-    {
-
-       auto iBasePathLength = m_iBasePathLength;
-
-       if (iBasePathLength < 0)
-       {
-
-          iBasePathLength = 0;
-
-       }
-
-       auto pszRelative = c_str() + iBasePathLength;
-
-       *this = pathBase / pszRelative;
-
-       m_iBasePathLength = pathBase.length() + 1;
-
-       return *this;
-
-    }
-
-
-    inline bool path::operator != (const path & path) const
-    {
-
-       return !operator==(path);
-
-    }
+   }
 
 
 
@@ -1284,3 +1268,4 @@ namespace file
 //
 
 
+using windows_path = ::wstring;

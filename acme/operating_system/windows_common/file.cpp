@@ -1,535 +1,483 @@
-﻿#include "framework.h"
-////#include "acme/exception/exception.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/primitive/string/str.h"
+// Created by camilo on 2023-03-14 09:48 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+
+
 #include "acme/_operating_system.h"
-#include <io.h>
 
 
 namespace windows
 {
 
 
-   CLASS_DECL_ACME bool get_alternate_path(wstring & wstr)
+   file::file(::file::path & path, ::windows_path & windowspath, ::file::e_open & eopen, HANDLE handleFile) :
+      handle(handleFile),
+      m_path(path),
+      m_windowspath(windowspath),
+      m_eopen(eopen)
    {
-
-      if (wstr.case_insensitive_begins(::str::windows_bbqb(wstr)))
-      {
-
-         return false;
-
-      }
-
-      if (wstr.case_insensitive_begins(::str::windows_bb(wstr)))
-      {
-
-         wstr = ::str::windows_bbqbunc(wstr) + wstr.substr(1);
-
-      }
-      else
-      {
-
-         wstr = ::str::windows_bbqb(wstr) + wstr;
-
-      }
-
-      return true;
-
-   }
-
-
-   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
-   {
-
-      wstring wstr(path);
-
-      DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
-
-      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
-      {
-
-         if (::windows::get_alternate_path(wstr))
-         {
-
-            dwFileAttributes = GetFileAttributesW(wstr);
-
-         }
-
-      }
-
-      return dwFileAttributes;
-
-   }
-
-
-} // namespace windows
-
-
-
-void delete_file(const ::file::path & path)
-{
-
-   wstring wstrPath(path.get_os_path());
-
-   if (!::DeleteFileW(wstrPath))
-   {
-
-      auto dwLastError = ::GetLastError();
-
-      auto estatus = ::windows::last_error_status(dwLastError);
-
-      throw ::exception(estatus);
-
-   }
-
-   //return ::success;
-
-}
-
-
-bool file_exists(const ::file::path & path)
-{
-
-   auto attributes = ::windows::get_file_attributes(path);
-
-   if (attributes == INVALID_FILE_ATTRIBUTES)
-   {
-
-      return false;
-
-   }
-
-   if (attributes & FILE_ATTRIBUTE_DIRECTORY)
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool is_directory(const ::file::path & path)
-{
-
-   //#ifdef _UWP
-   //
-   //      //string str;
-   //
-   //      ////str = "\\\\?\\";
-   //      ////str += path1;
-   //
-   //      //str = path1;
-   //
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //      //str.case_insensitive_ends_eat("\\");
-   //      //str.case_insensitive_ends_eat("/");
-   //
-   //      u32 dwFileAttributes = ::windows_get_file_attributes(path1);
-   //
-   //      if (dwFileAttributes != INVALID_FILE_ATTRIBUTES)
-   //      {
-   //
-   //         return dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
-   //
-   //      }
-   //      else
-   //      {
-   //
-   //         ::u32 dwLastError = ::GetLastError();
-   //
-   //         string strPrefix;
-   //
-   //         {
-   //
-   //            string strRelative = path1;
-   //
-   //            auto folderBase = winrt_folder(strRelative, strPrefix);
-   //
-   //            if (folderBase != nullptr)
-   //            {
-   //
-   //               strRelative.replace("/", "\\");
-   //
-   //               strPrefix.replace("/", "\\");
-   //
-   //               strRelative.case_insensitive_begins_eat(strPrefix);
-   //
-   //               strRelative.trim("/\\");
-   //
-   //               //strPrefix.trim_right("/\\");
-   //
-   //               try
-   //               {
-   //
-   //                  auto folder = folderBase->GetFolderAsync(strRelative);
-   //
-   //                  if (folder != nullptr)
-   //                  {
-   //
-   //                     return true;
-   //
-   //                  }
-   //
-   //               }
-   //               catch (...)
-   //               {
-   //
-   //               }
-   //
-   //            }
-   //
-   //         }
-   //
-   //         return false;
-   //
-   //         //auto folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(path1));
-   //
-   //         //bool bOk = folder != nullptr;
-   //
-   //         //if (!bOk)
-   //         //{
-   //
-   //         //   set_last_error(dwLastError);
-   //
-   //         //}
-   //
-   //         //if (bOk)
-   //         //{
-   //
-   //         //   return true;
-   //
-   //         //}
-   //
-   //         //return bOk;
-   //
-   //      }
-   //
-   //
-   //#elif defined(WINDOWS_DESKTOP)
-
-         //auto dwFileAttributes = ::windows_get_file_attributes(path1);
-
-   wstring wstrPath(path.get_os_path());
-
-   auto dwFileAttributes = ::GetFileAttributesW(wstrPath);
-
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || !(dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-   //#else
-   //
-   //      // dedicaverse stat -> Sir And Arthur - Cesar Serenato
-   //
-   //      return is_dir(path1);
-   //
-   //#endif
-
-}
-
-
-void create_directory(const ::file::path & path)
-{
-
-   wstring wstr;
-
-   if (file_path_is_absolute(path))
-   {
-
-      wstr = L"\\\\?\\" + path.get_os_path();
-
-   }
-   else
-   {
-
-      wstr = path.get_os_path();
-
-   }
-
-   if (!::CreateDirectoryW(wstr, nullptr))
-   {
-
-      auto lastError = ::GetLastError();
-
-      if (lastError == ERROR_ALREADY_EXISTS)
-      {
-
-         return;
-
-      }
-
-      if (::windows::get_alternate_path(wstr))
-      {
-
-         if (!::CreateDirectoryW(wstr, nullptr))
-         {
-
-            auto lastError = ::GetLastError();
-
-            if (lastError == ERROR_ALREADY_EXISTS)
-            {
-
-               return;
-
-            }
-
-            auto estatus = ::windows::last_error_status(lastError);
-
-            string strDetails;
-
-            strDetails.format("Failed to create directory (2) \"%s\"", string(wstr).c_str());
-
-            throw ::exception(estatus, strDetails);
-
-         }
-
-      }
-      else
-      {
-
-         auto estatus = ::windows::last_error_status(lastError);
-
-         string strDetails;
-
-         strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
-
-         throw ::exception(estatus, strDetails);
-
-      }
-
-   }
-
-   //return true;
-
-}
-
-
-void erase_directory(const ::file::path & path)
-{
-
    
-
-   wstring wstr;
-
-   if (file_path_is_absolute(path))
-   {
-
-      wstr = L"\\\\?\\" + wstring(path);
-
-   }
-   else
-   {
-
-      wstr = path;
-
    }
 
-   if (!::RemoveDirectoryW(wstr))
+
+   file::~file() 
    {
-
-      auto lastError = ::GetLastError();
-
-      auto estatus = ::windows::last_error_status(lastError);
-
-      throw ::exception(estatus);
-
+   
    }
 
-}
 
-
-
-
-
-namespace windows
-{
-
-
-   wstring CLASS_DECL_ACME get_file_path_root(const wstring & wstrPath)
+   void file::create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
    {
 
-      wstring wstrRoot;
+      m_path = path;
 
-      auto iLength = wstrPath.length();
+      auto strWindowsPath = path.windows_path();
 
-      unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
+      m_windowspath = strWindowsPath;
 
-      wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
+#ifdef _UWP
 
-      unichar * psz = pszRoot;
+      LPCREATEFILE2_EXTENDED_PARAMETERS pextendedparameters = nullptr;
 
-      for (; *psz != '\0'; psz = _wcsinc(psz))
+      CREATEFILE2_EXTENDED_PARAMETERS extendedparameters;
+
+      if (lpSecurityAttributes)
       {
 
-         // find first double slash and stop
-         if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
+         extendedparameters.lpSecurityAttributes = lpSecurityAttributes;
+
+      }
+
+      m_handle = ::CreateFile2(
+         m_windowspath,
+         dwDesiredAccess,
+         dwShareMode,
+         dwCreationDisposition,
+         pextendedparameters);
+
+#else
+
+      m_handle = CreateFileW(
+         m_windowspath,
+         dwDesiredAccess,
+         dwShareMode,
+         lpSecurityAttributes,
+         dwCreationDisposition,
+         dwFlagsAndAttributes,
+         hTemplateFile);
+
+#endif
+
+   }
+
+
+   void file::_create_file(const ::file::path & path, ::file::e_open eopen)
+   {
+
+      m_eopen = eopen;
+
+      ASSERT(sizeof(HANDLE) == sizeof(uptr));
+      ASSERT(::file::e_open_share_compat == 0);
+
+      // map read/write mode
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
+      DWORD dwDesiredAccess = 0;
+      switch (eopen & 3)
+      {
+      case ::file::e_open_read:
+         dwDesiredAccess = GENERIC_READ;
+         break;
+      case ::file::e_open_write:
+         dwDesiredAccess = GENERIC_WRITE;
+         break;
+      case ::file::e_open_read_write:
+         dwDesiredAccess = GENERIC_READ | GENERIC_WRITE;
+         break;
+      default:
+         dwDesiredAccess = GENERIC_READ;
+         break;
+      }
+
+      auto eopenShare = eopen & ::file::e_open_share_mask;
+
+      // map share mode
+      DWORD dwShareMode = 0;
+      switch (eopenShare)    // map compatibility mode to exclusive
+      {
+      default:
+         ASSERT(false);  // invalid share mode?
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
+         dwShareMode = 0;
+         break;
+      case ::file::e_open_share_deny_write:
+         dwShareMode = FILE_SHARE_READ;
+         break;
+      case ::file::e_open_share_deny_read:
+         dwShareMode = FILE_SHARE_WRITE;
+         break;
+      case ::file::e_open_share_deny_none:
+         dwShareMode = FILE_SHARE_WRITE | FILE_SHARE_READ;
+         break;
+      }
+
+
+      // Note: type_text and type_binary are used in derived classes only.
+
+      LPSECURITY_ATTRIBUTES lpSecurityattributes{};
+
+      // map modeNoInherit flag
+      SECURITY_ATTRIBUTES securityattributes;
+
+      if (eopen & ::file::e_open_no_inherit)
+      {
+
+         securityattributes.nLength = sizeof(securityattributes);
+
+         securityattributes.lpSecurityDescriptor = nullptr;
+
+         securityattributes.bInheritHandle = false;
+
+         lpSecurityattributes = &securityattributes;
+
+      }
+
+      DWORD dwCreationDisposition;
+
+      if (eopen & ::file::e_open_create)
+      {
+
+         if (eopen & ::file::e_open_no_truncate)
+         {
+
+            dwCreationDisposition = OPEN_ALWAYS;
+
+         }
+         else
+         {
+
+            dwCreationDisposition = CREATE_ALWAYS;
+
+         }
+
+      }
+      else
+      {
+
+         dwCreationDisposition = OPEN_EXISTING;
+
+      }
+
+      create_file(path, dwDesiredAccess, dwShareMode, lpSecurityattributes, dwCreationDisposition, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+   }
+
+
+   void file::create_file(const ::file::path & path, ::file::e_open eopen)
+   {
+
+      _create_file(path, eopen);
+
+      if (nok())
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   DWORD file::defer_write(const void * p, ::memsize s, LPOVERLAPPED lpOverlapped)
+   {
+
+      DWORD dwWritten{};
+
+      auto bytesToWrite = natural_minimum(s, MAXDWORD);
+
+      if (!::WriteFile(m_handle, p, bytesToWrite, &dwWritten, lpOverlapped))
+      {
+
+         throw_exception();
+
+      }
+
+      return dwWritten;
+
+   }
+
+
+   void file::write(const void * p, ::memsize amountToWrite, LPOVERLAPPED lpOverlapped)
+   {
+
+      auto amountWritten = defer_write(p, amountToWrite, lpOverlapped);
+
+      if (amountWritten != amountToWrite)
+      {
+
+         if (amountWritten < amountToWrite)
+         {
+
+            throw_exception("amountWritten < amountToWrite - is disk full?", -1);
+
+         }
+         else
+         {
+
+            throw_exception("amountWritten >= amountToWrite", -1);
+
+         }
+
+      }
+
+   }
+
+
+   [[nodiscard ]] memsize file::read(void * p, ::memsize s, LPOVERLAPPED lpOverlapped)
+   {
+
+      memsize totalRead = 0;
+
+      auto data = (::byte *)p;
+
+      while (s > 0)
+      {
+
+         auto amountToRead = ::natural_minimum(s, MAXDWORD);
+
+         DWORD amountRead{};
+
+         if (!::ReadFile(m_handle, p, amountToRead, &amountRead, lpOverlapped))
+         {
+
+            throw_exception();
+
+         }
+
+         if (amountRead <= 0)
          {
 
             break;
 
          }
 
+         data += amountRead;
+
+         totalRead += amountRead;
+
+         s -= amountRead;
+
       }
 
-      if (*psz != '\0')
+      return totalRead;
+
+   }
+
+
+   void file::flush_file_buffers()
+   {
+
+      if (!::FlushFileBuffers(m_handle))
       {
 
-         // it is a UNC name, find second slash past '\\'
-         ASSERT(IsDirSep(psz[0]));
+         auto lasterror = ::GetLastError();
 
-         ASSERT(IsDirSep(psz[1]));
-
-         psz += 2;
-
-         while (*psz != '\0' && (!IsDirSep(*psz)))
+         if (lasterror == ERROR_INVALID_HANDLE || lasterror == ERROR_ACCESS_DENIED)
          {
-
-            psz = _wcsinc(psz);
 
          }
-
-         if (*psz != '\0')
+         else if (lasterror == ERROR_NO_SYSTEM_RESOURCES)
          {
 
-            psz = _wcsinc(psz);
+            ::output_debug_string("Insufficient system resources exist to complete the requested service. (::windows::file::flush_file_buffers())");
 
          }
-
-         while (*psz != '\0' && (!IsDirSep(*psz)))
+         else
          {
 
-            psz = _wcsinc(psz);
-
-         }
-
-         // terminate it just after the UNC root (ie. '\\server\share\')
-         if (*psz != '\0')
-         {
-
-            psz[1] = '\0';
+            throw_exception();
 
          }
 
       }
-      else
+
+   }
+
+
+   ::i64 file::get_file_size() const
+   {
+
+      LARGE_INTEGER largeintegerFileSize{};
+
+      if (!::GetFileSizeEx(m_handle, &largeintegerFileSize))
       {
 
-         // not a UNC, look for just the first slash
-         psz = pszRoot;
-
-         while (*psz != '\0' && (!IsDirSep(*psz)))
-         {
-
-            psz = _wcsinc(psz);
-
-         }
-
-         // terminate it just after root (ie. 'x:\')
-         if (*psz != '\0')
-         {
-
-            psz[1] = '\0';
-
-         }
+         throw_exception();
 
       }
 
-      return ::transfer(wstrRoot);
+      return largeintegerFileSize.QuadPart;
+
+   }
+
+
+   void file::ensure_file_size(i64 iSize)
+   {
+
+      auto iSizeCurrent = get_file_size();
+
+      if (iSizeCurrent != iSize)
+      {
+
+         set_file_size(iSize);
+
+      }
+
+   }
+
+
+   void file::set_file_size(::i64 iSize)
+   {
+
+      set_file_pointer_ex(iSize, nullptr, SEEK_SET);
+
+      set_end_of_file();
+
+   }
+
+
+   void file::set_file_pointer_ex(::i64 iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
+   {
+
+      LARGE_INTEGER largeinteger{.QuadPart = iOffset };
+
+      if (!::SetFilePointerEx(m_handle, largeinteger, lpNewFilePointer, dwMoveMethod))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::set_file_pointer(::i64 iOffset, DWORD dwMoveMethod)
+   {
+
+      set_file_pointer_ex(iOffset, nullptr, dwMoveMethod);
+
+   }
+
+
+   ::i64 file::get_file_pointer() const
+   {
+
+      LARGE_INTEGER largeinteger{};
+
+      ((file *)this)->set_file_pointer_ex(0, &largeinteger, FILE_CURRENT);
+
+      return largeinteger.QuadPart;
+
+   }
+
+
+   void file::set_end_of_file()
+   {
+
+      if (!::SetEndOfFile(m_handle))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::lock_file(::i64 iOffset, ::i64 iCount)
+   {
+
+      if (!::LockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::unlock_file(::i64 iOffset, ::i64 iCount)
+   {
+
+      if (!::UnlockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::set_file_time(const FILETIME * lpCreationTime, const FILETIME * lpLastAccessTime, const FILETIME * lpLastWriteTime)
+   {
+
+      if (!::SetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::get_file_time(LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+   {
+
+      if (!::GetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   void file::get_file_information(BY_HANDLE_FILE_INFORMATION & information) const
+   {
+
+      if (!::GetFileInformationByHandle(m_handle, &information))
+      {
+
+         throw_exception();
+
+      }
+
+   }
+
+
+   [[ noreturn ]] void file::throw_exception(const ::scoped_string & scopedstrMessage, DWORD lasterror) const
+   {
+
+      if (!lasterror)
+      {
+
+         lasterror = ::GetLastError();
+
+      }
+
+      auto estatus = ::windows::last_error_status(lasterror);
+
+      auto errorcode = ::windows::last_error_error_code(lasterror);
+
+      throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstrMessage);
 
    }
 
 
 } // namespace windows
-
-
-CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
-{
-
-   LARGE_INTEGER largeinteger{};
-
-   if (!::GetFileSizeEx(h, &largeinteger))
-   {
-
-      return false;
-
-   }
-
-   auto size = largeinteger.QuadPart;
-
-   if (size != iSize)
-   {
-
-      largeinteger.QuadPart = iSize;
-
-      if (!::SetFilePointerEx(h, largeinteger, nullptr, SEEK_SET))
-      {
-
-         return false;
-
-      }
-
-      if (!::SetEndOfFile(h))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
-//{
-//
-//   DWORD dwHi;
-//
-//   DWORD dwLo = GetFileSize(h, &dwHi);
-//
-//   if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
-//   {
-//
-//      LONG l = (iSize >> 32) & 0xffffffff;
-//
-//      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (DWORD)(iSize & 0xffffffff))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      if (l != ((iSize >> 32) & 0xffffffff))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      if (!SetEndOfFile(h))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//   }
-//
-//   return 1;
-//
-//}
 
 
 

@@ -624,7 +624,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 //      ASSERT(this->m_nSize >= 0);
 //      ASSERT(this->m_nMaxSize >= 0);
 //      ASSERT(this->m_nSize <= this->m_nMaxSize);
-//      ASSERT(__is_valid_address(this->m_pData, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
+//      ASSERT(is_memory_segment_ok(this->m_pData, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
 //
 //   }
 //

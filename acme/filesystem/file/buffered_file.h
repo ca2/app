@@ -38,10 +38,12 @@ namespace file
 
 
       using ::file::file::read;
-      memsize read(void *pdata, memsize nCount) override;
+      memsize read(void * p, ::memsize s) override;
 
+      
       using ::file::file::write;
-      void write(const void * pdata, memsize nCount) override;
+      void write(const void * p, ::memsize s) override;
+
 
       void put_byte_back(::byte byte) override;
 

@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 #include "file.h"
-#include "acme/primitive/primitive/memory.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/exception.h"
-//#include "acme/primitive/primitive/payload.h"
+#include "acme/filesystem/file/status.h"
+#include "acme/primitive/primitive/memory.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -106,7 +106,7 @@ namespace file
    //}
 
 
-   void file::open(const ::file::path & path, const ::file::e_open & eopen)
+   void file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
    {
 
 //      auto pfile = __create <::file::file>();
@@ -151,7 +151,7 @@ namespace file
 
       byte byte = 0;
 
-      auto iRead = read(&byte, 1);
+      auto iRead = read({ &byte, 1 });
 
       if (iRead <= 0)
       {
@@ -175,14 +175,6 @@ namespace file
    }
 
 
-   bool file::is_seekable()
-   {
-
-      return true;
-
-   }
-
-
    bool file::has_write_mode()
    {
 
@@ -190,49 +182,6 @@ namespace file
 
    }
 
-
-   filesize file::get_position() const
-   {
-
-      throw interface_only();
-
-      return 0;
-
-      //return ((file *) this)->translate(0, ::e_seek_current);
-
-   }
-
-
-   void file::set_position(filesize position)
-   {
-
-      ((file *) this)->translate(position, ::e_seek_set);
-
-   }
-
-
-    void file::increment_position(filesize offset)
-   {
-
-      translate(offset, ::e_seek_current);
-
-   }
-
-
-    void file::decrement_position(filesize offset)
-   {
-
-      return translate(-offset, ::e_seek_current);
-
-   }
-
-
-    void file::seek_from_end(filesize offset)
-   {
-
-      return translate(offset, ::e_seek_from_end);
-
-   }
 
 
    void file::abort()
@@ -314,7 +263,7 @@ namespace file
    }
 
 
-   memsize file::read(void *pdata, memsize nCount)
+   memsize file::read(void * p, ::memsize s)
    {
 
       return 0;
@@ -322,19 +271,19 @@ namespace file
    }
 
 
-   bool file::full_read(void * pdata, memsize nCount)
+   bool file::full_read(const ::block & block)
    {
 
       memsize uRead;
 
       memsize uiPos = 0;
 
-      u8 * buf = (u8 *) pdata;
+      auto nCount = block.size();
 
       while(nCount > 0)
       {
 
-         uRead = read(&buf[uiPos], nCount);
+         uRead = read(block(uiPos, nCount));
 
          if(uRead <= 0)
          {
@@ -354,30 +303,30 @@ namespace file
    }
 
 
-   void file::write_from_hex(const void * pdata,memsize nCount)
+   void file::write_from_hex(const ::block & block)
    {
 
       memory memory;
 
-      memory.from_hex({(const ::ansi_character *)pdata, nCount});
+      memory.from_hex(block);
 
-      write(memory.data(),memory.size());
+      write(memory);
 
    }
 
 
-   void file::write(const void * pdata, memsize nCount)
+   void file::write(const void * p, ::memsize s)
    {
 
    }
 
 
-   void file::write(const ::block & block)
-   {
+   //void file::write(const ::block & block)
+   //{
 
-      write(block.data(), block.size());
+   //   write(block.data(), block.size());
 
-   }
+   //}
 
 
    void file::lock(filesize dwPos, filesize dwCount)
@@ -434,12 +383,10 @@ namespace file
    }
 
 
-   bool file::get_status(file_status & rStatus) const
+   file_status file::get_status() const
    {
 
-      __UNREFERENCED_PARAMETER(rStatus);
-
-      return false;
+      return {};
 
    }
 
@@ -479,7 +426,7 @@ namespace file
    bool file::read(byte * pbyte)
    {
 
-      if(!read(pbyte, 1))
+      if (!read({ pbyte, 1 }))
       {
 
          set_end_of_file();
@@ -504,7 +451,7 @@ namespace file
    bool file::peek(byte * pbyte)
    {
    
-      if(!read(pbyte, 1))
+      if (!read({ pbyte, 1 }))
       {
 
          set_end_of_file();
@@ -559,7 +506,7 @@ namespace file
 
       u16 u = 0;
 
-      if (read(&u, 2) != 2)
+      if (read({ &u, 2 }) != 2)
       {
 
          return -1;
@@ -574,7 +521,7 @@ namespace file
    bool file::get_u64(::u64 & u)
    {
 
-      if (read(&u, 8) != 8)
+      if (read({ &u, 8 }) != 8)
       {
 
          return false;
@@ -692,7 +639,7 @@ namespace file
    bool file::read_block(block & block)
    {
 
-      auto readBytes = read(block.data(), block.size());
+      auto readBytes = read(block);
 
       return readBytes == block.size();
 
@@ -717,12 +664,12 @@ namespace file
 
       memory.set_size((memsize)left);
 
-      auto readBytes = read(memory.data(), memory.length());
+      auto readBytes = read(memory);
 
       if(readBytes != left)
       {
          
-         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, "readBytes != left");
+         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, m_eopen, "readBytes != left");
          
       }
 
@@ -778,7 +725,7 @@ namespace file
 
       print(str);
 
-      write(LINE_SEPARATOR, STATIC_ASCII_STRING_LENGTH(LINE_SEPARATOR));
+      write({ LINE_SEPARATOR, STATIC_ASCII_STRING_LENGTH(LINE_SEPARATOR) });
 
    }
 
@@ -841,7 +788,7 @@ namespace file
    }
 
 
-   void* file::get_internal_data()
+   ::byte * file::full_data_begin()
    {
 
       return nullptr;
@@ -849,23 +796,78 @@ namespace file
    }
 
 
-   const void* file::get_internal_data() const
+   ::byte * file::full_data_end()
    {
 
-      return ((file*)this)->get_internal_data();
+      return nullptr;
+
+   }
+
+   
+   const ::byte * file::full_data_begin() const
+   {
+
+      return nullptr;
 
    }
 
 
-   memsize file::get_internal_data_size() const
+   const ::byte * file::full_data_end() const
    {
 
-      return 0;
+      return nullptr;
 
    }
 
 
-   bool file::set_internal_data_size(memsize c)
+   ::byte * file::data_begin()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::byte * file::data_end()
+   {
+
+      return nullptr;
+
+   }
+
+
+   const ::byte * file::data_begin() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   const ::byte * file::data_end() const
+   {
+
+      return nullptr;
+
+   }
+
+   //const void* file::get_internal_data() const
+   //{
+
+   //   return ((file*)this)->get_internal_data();
+
+   //}
+
+
+   //memsize file::get_internal_data_size() const
+   //{
+
+   //   return 0;
+
+   //}
+
+
+   bool file::full_data_set_size(memsize c)
    {
 
       return false;
@@ -873,28 +875,14 @@ namespace file
    }
 
 
-   bool file::increase_internal_data_size(memsize c)
+   bool file::full_data_increase_size(memsize c)
    {
 
-      return set_internal_data_size(c + get_internal_data_size());
+      return false;
 
    }
 
 
-   void file::seek_to_begin()
-   {
-
-      return set_position(0);
-
-   }
-
-
-   void file::seek_to_end()
-   {
-
-      return translate(0, e_seek_from_end);
-
-   }
 
 
    filesize file::find(const void * pFind, memsize sizeFind, const filesize * psizeStop)
@@ -992,200 +980,213 @@ namespace file
    }
 
 
-   void file::to(::file::file * pfileOut, memsize uiBufMax)
-   {
+   //void file::to(::file::file * pfileOut, memsize uiBufMax)
+   //{
 
-      pfileOut->set_size(0);
+   //   pfileOut->set_size(0);
 
-      read_file(pfileOut, uiBufMax);
-
-
-   }
+   //   read_file(pfileOut, uiBufMax);
 
 
-   void file::read_file(::file::file * pfileOut, memsize uiBufMax)
-   {
+   //}
 
-      if(get_internal_data() && get_internal_data_size() > 0)
-      {
 
-         if(pfileOut->increase_internal_data_size(get_internal_data_size()) && pfileOut->get_internal_data() != nullptr)
-         {
+   //void file::read_file(::file::file * pfileOut, memsize uiBufMax)
+   //{
 
-            if(pfileOut->get_internal_data() == get_internal_data())
-               return;
+   //   if(internal_data().is_set())
+   //   {
 
-            __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + get_internal_data_size(), ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - get_internal_data_size());
-            ::memcpy_dup(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), get_internal_data_size());
-            pfileOut->position() += get_internal_data_size();
+   //      if(pfileOut->increase_internal_data_size(internal_data().size()) && pfileOut->internal_data().is_set())
+   //      {
 
-         }
-         else
-         {
+   //         if (pfileOut->internal_data() == internal_data())
+   //         {
 
-            pfileOut->write(get_internal_data(), get_internal_data_size());
+   //            return;
 
-         }
+   //         }
 
-         return;
+   //         __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + internal_data().size(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), pfileOut->internal_data().size() - internal_data().size());
 
-      }
+   //         ::memcpy_dup(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), internal_data().data(), internal_data().size());
 
-      uiBufMax = maximum(8 * 1024, uiBufMax);
-      memsize uiBufMin = uiBufMax / 8;
-      memsize uiBufSize = uiBufMax;
-      memsize uiBufInc = uiBufSize;
-      memsize uRead;
-      ///memsize uiSize = pfileOut->get_internal_data_size();
+   //         pfileOut->position() += internal_data().size();
 
-      while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->get_internal_data() != nullptr)
-      {
-         __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufInc);
-         uRead = read(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufSize);
-         pfileOut->position() += uRead;
-         uiBufSize -= uRead;
-         if(uiBufSize < uiBufMin)
-         {
-            uiBufSize   = uiBufMax;
-            uiBufInc    = uiBufSize;
-         }
-      }
+   //      }
+   //      else
+   //      {
 
-      if(uiBufSize > 0)
-      {
-         __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
-         pfileOut->increase_internal_data_size(-(memsize)uiBufSize);
-      }
+   //         pfileOut->write(internal_data());
 
-      memory buf;
-      buf.set_size(uiBufMax);
-      if(buf.data() == nullptr)
-         throw ::exception(error_no_memory, "no memory");
-      try
-      {
-         while(true)
-         {
-            uRead = read(buf, buf.size());
-            pfileOut->write(buf, uRead);
-            if(uRead <= 0)
-            {
-               return;
-            }
-            //uiSize += uRead;
-         }
-      }
-      catch(...)
-      {
+   //      }
 
-      }
+   //      return;
 
-   }
+   //   }
+
+   //   uiBufMax = maximum(8 * 1024, uiBufMax);
+   //   memsize uiBufMin = uiBufMax / 8;
+   //   memsize uiBufSize = uiBufMax;
+   //   memsize uiBufInc = uiBufSize;
+   //   memsize uRead;
+   //   ///memsize uiSize = pfileOut->get_internal_data_size();
+
+   //   while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->internal_data().data() != nullptr)
+   //   {
+   //      __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), uiBufInc);
+   //      uRead = read(pfileOut->internal_data()(pfileOut->get_position(), uiBufSize));
+   //      pfileOut->position() += uRead;
+   //      uiBufSize -= uRead;
+   //      if(uiBufSize < uiBufMin)
+   //      {
+   //         uiBufSize   = uiBufMax;
+   //         uiBufInc    = uiBufSize;
+   //      }
+   //   }
+
+   //   if(uiBufSize > 0)
+   //   {
+
+   //      __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
+
+   //      pfileOut->increase_internal_data_size(-(memsize)uiBufSize);
+
+   //   }
+
+   //   memory buf;
+
+   //   buf.set_size(uiBufMax);
+
+   //   try
+   //   {
+   //      
+   //      while(true)
+   //      {
+   //         
+   //         uRead = read(buf);
+
+   //         pfileOut->write(buf(0, uRead));
+
+   //         if(uRead <= 0)
+   //         {
+
+   //            return;
+
+   //         }
+
+   //      }
+
+   //   }
+   //   catch(...)
+   //   {
+
+   //   }
+
+   //}
 
 
    static const memsize kBlockSize = ((u32)1 << 31);
 
 
-   void read(::file::file * pfileIn, void * data, memsize * sizeRead)
-   {
+   //memsize read(::file::file * pfileIn, const ::block & block)
+   //{
 
-      memsize size = *sizeRead;
+   //   auto p = block.data();
 
-      *sizeRead = 0;
+   //   auto sizeLeft = block.size();
 
-      while (size != 0)
-      {
+   //   memsize totalRead = 0;
 
-         memsize curSize = minimum(size, kBlockSize);
+   //   while (sizeLeft > 0)
+   //   {
 
-         memsize processedSizeLoc;
+   //      memsize sizeToRead = minimum(sizeLeft, kBlockSize);
 
-         ::e_status estatus = ::success;
+   //      ::e_status estatus = ::success;
 
-         try
-         {
+   //      auto amountRead = pfileIn->read({ p, sizeToRead });
 
-            processedSizeLoc = pfileIn->read(data, curSize);
+   //      if (amountRead <= 0)
+   //      {
 
-         }
-         catch(...)
-         {
+   //         return totalRead;
 
-             estatus = error_failed;
+   //      }
 
-         }
+   //      totalRead += amountRead;
 
-         *sizeRead += processedSizeLoc;
+   //      p += amountRead;
 
-         data = (void *)((u8 *)data + processedSizeLoc);
+   //      sizeLeft -= amountRead;
 
-         size -= processedSizeLoc;
+   //   }
 
-         if(!estatus)
-         {
+   //}
 
 
-         }
-
-         if (processedSizeLoc == 0)
-         {
-
-            //return ::success;
-
-            return;
-
-         }
-
-      }
-
-      //return ::success;
-
-   }
-
-
-   void file::write(const void *pdata, memsize nCount, memsize * dwWritten)
+   memsize file::defer_write(const ::block & block)
    {
 
       throw ::interface_only();
 
+      return 0;
+
    }
 
-   void file::from_begin(::file::file * pfileIn, memsize uiBufSize)
+
+   /*void file::from_begin(::file::file * pfileIn, memsize uiBufSize)
    {
 
       set_size(0);
 
       write_file_from_begin(pfileIn, uiBufSize);
 
+   }*/
+
+
+   void file::write_from_beginning(::file::streamable * pstreamable, memsize uiBufSize)
+   {
+
+      pstreamable->seek_to_begin();
+
+      write(pstreamable, uiBufSize);
+
    }
 
 
-   void file::write_file_from_begin(::file::file * pfileIn, memsize uiBufSize)
+   ::file::file * file::get_file()
    {
 
-      pfileIn->seek_to_begin();
+      return this;
+
+   }
+
+
+
+   /*void file::from(::file::file * pfileIn, memsize uiBufSize)
+   {
 
       write_file(pfileIn, uiBufSize);
 
-   }
+   }*/
 
 
-   void file::from(::file::file * pfileIn, memsize uiBufSize)
+   void file::write(::file::readable * preadable, memsize uiBufSize)
    {
 
-      write_file(pfileIn, uiBufSize);
-
-   }
-
-
-   void file::write_file(::file::file* pfileIn, memsize uiBufSize)
-   {
-
-      if(pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
       {
 
-         write((u8 *) pfileIn->get_internal_data() + pfileIn->get_position(), (memsize) (pfileIn->get_internal_data_size() - pfileIn->get_position()));
+         auto pfile = preadable->get_file();
 
-         return;
+         if (pfile && pfile->full_data_is_set())
+         {
+
+            write(pfile->data());
+
+            return;
+
+         }
 
       }
 
@@ -1204,12 +1205,12 @@ namespace file
       {
          while(true)
          {
-            uRead = pfileIn->read(buf.data(), buf.size());
+            uRead = preadable->read(buf);
             if(uRead <= 0)
             {
                break;
             }
-            write(buf.data(), uRead);
+            write(buf(0,  uRead));
             //uiSize += uRead;
          }
       }
@@ -1377,7 +1378,7 @@ namespace file
    */
 
 
-    void write(file * pwriter, const void * data, memsize size)
+    void write(file * pwriter, const ::block & block)
     {
 
         //::e_status estatus = ::success;
@@ -1385,7 +1386,7 @@ namespace file
         try
         {
 
-            pwriter->write(data, size);
+            pwriter->write(block);
 
         }
         catch(...)
@@ -1450,7 +1451,7 @@ namespace file
    ::file::file& file::put(char ch) 
    {
       
-      write(&ch, 1); 
+      write({ &ch, 1 });
       
       return *this; 
    
@@ -1485,6 +1486,24 @@ namespace file
          println(strLine);
 
       }
+
+   }
+
+
+   class ::time file::modification_time()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+   
+   
+   void file::set_modification_time(const class ::time& time)
+   {
+
+      throw ::interface_only();
 
    }
 

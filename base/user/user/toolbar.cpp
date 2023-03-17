@@ -375,7 +375,7 @@ namespace user
       //
       //      ASSERT(nIDCount >= 1);  // must be at least one of them
       //
-      //      ASSERT(pIDArray == nullptr || __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
+      //      ASSERT(pIDArray == nullptr || is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount, false));
       //
       //      // delete all existing buttons
       //      index nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);

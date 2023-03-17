@@ -299,8 +299,6 @@ namespace acme
 //
 //         }
 
-         ::task_release();
-
          //auto psystem = platform_create_system(strAppId);
 
          /*estatus =*/

@@ -33,29 +33,29 @@ voidpf c_zip_file_open_file_func(voidpf opaque, const char* filename, i32 mode)
 }
 
 
-uptr  c_zip_file_read_file_func(voidpf opaque, voidpf stream, void* buf, uptr size)
+uptr c_zip_file_read_file_func(voidpf opaque, voidpf stream, void* buf, uptr size)
 {
 
-   return (uptr)((::file::file*)stream)->read(buf, size);
+   return (uptr)((::file::file *)stream)->read({ buf, size });
 
 }
 
 
-uptr  c_zip_file_write_file_func(voidpf opaque, voidpf stream, const void* buf, uptr size)
+uptr c_zip_file_write_file_func(voidpf opaque, voidpf stream, const void* buf, uptr size)
 {
 
    __UNREFERENCED_PARAMETER(stream);
 
    ::file::file* pfile = (::file::file*)stream;
 
-   pfile->write(buf, size);
+   pfile->write({ buf, size });
 
    return size;
 
 }
 
 
-long   c_zip_file_tell_file_func(voidpf opaque, voidpf stream)
+long c_zip_file_tell_file_func(voidpf opaque, voidpf stream)
 {
 
    __UNREFERENCED_PARAMETER(stream);

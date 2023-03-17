@@ -183,7 +183,7 @@ public:
    inline ~string_base() {}
 
 
-
+   const ::block as_block() const { return { (::byte *)this->begin(), this->character_count_in_bytes() }; }
 
    static consteval bool is_null_terminated() { return true; }
 
@@ -1015,11 +1015,17 @@ public:
    inline bool begins_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
    inline bool ends_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
 
-   inline string_base & ensure_begins(const SCOPED_STRING & scopedstr);
-   inline string_base & ensure_begins_ci(const SCOPED_STRING & scopedstr);
+   inline string_base & ensure_prefix(const SCOPED_STRING & scopedstrPrefix);
+   inline string_base & case_insensitive_ensure_prefix(const SCOPED_STRING & scopedstrPrefix);
 
-   inline string_base & ensure_ends(const SCOPED_STRING & scopedstr);
-   inline string_base & ensure_ends_ci(const SCOPED_STRING & scopedstr);
+   inline string_base & ensure_suffix(const SCOPED_STRING & scopedstrSuffix);
+   inline string_base & case_insensitive_ensure_suffix(const SCOPED_STRING & scopedstrSuffix);
+
+   inline string_base defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const;
+   inline string_base case_insensitive_defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const;
+
+   inline string_base defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const;
+   inline string_base case_insensitive_defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const;
 
    //inline bool begins(const string_base &str) const;
    //inline bool ends(const string_base &str) const;
@@ -1033,8 +1039,8 @@ public:
    //inline bool case_insensitive_begins_eat(const string_base &str);
    //inline bool case_insensitive_ends_eat(const string_base &str);
 
-   //inline string_base& ensure_begins(const string_base &strPrefix);
-   //inline string_base& ensure_begins_ci(const string_base &strPrefix);
+   //inline string_base& ensure_prefix(const string_base &strPrefix);
+   //inline string_base& case_insensitive_ensure_prefix(const string_base &strPrefix);
 
    //inline string_base& ensure_ends(const string_base &strSuffix);
    //inline string_base& ensure_ends_ci(const string_base &strSuffix);
@@ -1150,8 +1156,8 @@ public:
 
    inline strsize length() const { return (::strsize)this->metadata()->m_countData; }
    inline strsize size() const { return this->length(); }
-   inline memsize character_count_in_bytes_without_null_terminator() const;
    inline memsize character_count_in_bytes() const;
+   inline memsize null_terminated_character_count_in_bytes() const;
 
    string_base right(strsize nCount) const;
 

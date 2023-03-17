@@ -19,7 +19,7 @@ namespace ftp
    }
 
 
-   bool file::Open(const string& strFileName, const ::file::e_open & eopen)
+   bool file::Open(const string& strFileName, ::file::e_open eopen)
    {
 
       m_strFileName = strFileName;
@@ -85,7 +85,7 @@ namespace ftp
 
       }
 
-      m_file->write(pBuffer, itemSize * itemCount);
+      m_file->write({ pBuffer, itemSize * itemCount });
 
       return itemCount;
 
@@ -102,7 +102,7 @@ namespace ftp
 
       }
 
-      memsize uRead = m_file->read(pBuffer, itemSize * itemCount);
+      memsize uRead = m_file->read({ pBuffer, itemSize * itemCount });
 
       return (memsize)(uRead / itemSize);
 

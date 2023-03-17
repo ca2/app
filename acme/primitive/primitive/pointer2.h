@@ -556,7 +556,7 @@
 //
 //   }
 //
-//   return ::move_transfer(pNew);
+//   return ::pointer_transfer(pNew);
 //
 //}
 //
@@ -608,7 +608,7 @@
 //
 //   }
 //
-//   return ::move_transfer(pNew);
+//   return ::pointer_transfer(pNew);
 //
 //}
 //

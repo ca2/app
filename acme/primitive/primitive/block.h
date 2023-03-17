@@ -59,6 +59,7 @@ struct CLASS_DECL_ACME block :
       this->m_begin = block.m_begin;
       this->m_end = block.m_end;
    }
+   block(const range < ::byte * > & range);
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);

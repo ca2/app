@@ -34,13 +34,20 @@ CLASS_DECL_ACME void set_generate_sync_io_error(int iError);
 namespace file
 {
 
+
+   class exception;
+
    
    class insert_item;
    class edit_file;
    class enumerator;
 
+   
+} // namespace file
 
-};
+
+
+
 
 
 

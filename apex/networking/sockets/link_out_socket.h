@@ -16,8 +16,8 @@ namespace sockets
    public:
       
 
-      link_in_socket * m_in;
-      socket * m_out;
+      ::pointer < link_in_socket >  m_plinkinsocket;
+      ::pointer < socket >          m_psocketOut;
       
 
       link_out_socket();

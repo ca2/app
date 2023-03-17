@@ -56,13 +56,16 @@ namespace graphics
       virtual ::draw2d::pen_pointer & get_pen1(enum_dos_color edoscolor);
 
 
-      virtual void SetWindowSize(int iHeight, int iWidth) override;
-      virtual void SetCursorVisibility(bool show) override;
-      virtual void SetCursorPosition(int y, int x) override;
-      virtual void SetTextColor(int color) override;
-      virtual void SetScreenColor(::enum_dos_color color, int iLineStart = 0, int iLineCount = -1) override;
-      virtual void write(const ::string & psz) override;
-      virtual void write(const void * pdata, memsize nCount) override;
+      void SetWindowSize(int iHeight, int iWidth) override;
+      void SetCursorVisibility(bool show) override;
+      void SetCursorPosition(int y, int x) override;
+      void SetTextColor(int color) override;
+      void SetScreenColor(::enum_dos_color color, int iLineStart = 0, int iLineCount = -1) override;
+      void write(const ::string & psz) override;
+
+
+      using ::file::text_file::write;
+      void write(const void * p, ::memsize s) override;
 
 
       virtual bool defer_write(char ch, int x, int y, int cx, int cy, int iColor);

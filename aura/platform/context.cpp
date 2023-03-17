@@ -625,7 +625,7 @@ namespace aura
 //
 //
 //
-//   file_pointer context::friendly_get_file(::payload payloadFile, const ::file::e_open& eopen)
+//   file_pointer context::friendly_get_file(::payload payloadFile, ::file::e_open eopen)
 //   {
 //
 //      try

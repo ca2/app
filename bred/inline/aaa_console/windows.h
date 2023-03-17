@@ -22,7 +22,7 @@ namespace aura
 
          aura_ref();
 
-         acmesystem() = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
+         acmesystem() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
 
          acmesystem()->console_initialize();
 

@@ -7,7 +7,8 @@ enum enum_range : ::i32
 
    e_range_none = 0,
    e_range_string = 1,
-   e_range_scoped_string_allocation = 2,
+   e_range_null_terminated = 2,
+   //e_range_scoped_string_allocation = 2,
 
 };
 
@@ -241,8 +242,10 @@ public:
    }
 
    template<::comparison::equality<ITEM> EQUALITY>
-   constexpr range(const_iterator begin, EQUALITY equality) : m_begin(
-      (this_iterator)begin), m_end((this_iterator)find_first_null_character(begin, equality))
+   constexpr range(const_iterator begin, EQUALITY equality) : 
+      m_begin((this_iterator)begin), 
+      m_end((this_iterator)find_first_null_character(begin, equality)),
+      m_erange(e_range_null_terminated)
    {
    }
 

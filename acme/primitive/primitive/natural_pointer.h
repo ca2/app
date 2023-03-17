@@ -311,25 +311,13 @@ public:
       if (pOld != pNew)
       {
 
-         if (::is_set(pNew))
-         {
-
-            auto i = pNew->natural_increment_reference_count();
-
-            if (i <= 0)
-            {
-
-               //output_debug_string("");
-
-            }
-
-            this->set_string_flag();
-
-         }
+         pNew->natural_increment_reference_count();
 
          this->m_begin = (iterator)pNew->begin();
 
          this->m_end = (iterator)pNew->end();
+
+         this->set_string_flag();
 
          natural_release(pOld);
 

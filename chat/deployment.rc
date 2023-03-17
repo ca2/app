@@ -55,8 +55,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 2023,0311,2223,54
-PRODUCTVERSION 2023,0311,2223,54
+FILEVERSION 2023,0315,2212,54
+PRODUCTVERSION 2023,0315,2212,54
 FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 FILEFLAGS 0x1L
@@ -73,12 +73,12 @@ BLOCK "040904b0"
 BEGIN
 VALUE "CompanyName", "app"
 VALUE "FileDescription", "chat"
-VALUE "FileVersion", "2023.0311.2223.54"
+VALUE "FileVersion", "2023.0315.2212.54"
 VALUE "InternalName", "ca2"
-VALUE "LegalCopyright", "Copyright (C) 2023-03-11-22-23-54"
+VALUE "LegalCopyright", "Copyright (C) 2023-03-15-22-12-54"
 VALUE "OriginalFilename", "ca2"
 VALUE "ProductName", "chat"
-VALUE "ProductVersion", "2023.0311.2223.54"
+VALUE "ProductVersion", "2023.0315.2212.54"
 END
 END
 BLOCK "VarFileInfo"

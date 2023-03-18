@@ -34,6 +34,7 @@ inline ::u64 make64_from32(::u32 l, ::u32 h)
 
 }
 
+CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i);
 
 inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 {
@@ -59,11 +60,14 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
       }
 
 #else // DEEP_MEMORY_SEGMENT_CHECK
-
-      ::i32 sum = 0;
+//      __pragma(clang)
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wunused-but-set-variable"
 
       if (s >= 1)
       {
+
+         ::i32 sum = 0;
 
          sum += p[0]; // tests read of byte p[0]
 
@@ -74,7 +78,11 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 
          }
 
+         this_is_a_debugging_consumer(sum);
+
       }
+
+//#pragma clang diagnostic pop
 
 #endif // else DEEP_MEMORY_SEGMENT_CHECK
 

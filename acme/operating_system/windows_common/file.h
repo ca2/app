@@ -71,7 +71,7 @@ namespace windows
 
       void get_file_information(BY_HANDLE_FILE_INFORMATION & information) const;
 
-      [[ noreturn ]] void throw_exception(const ::scoped_string & scopedstrMessage = nullptr, DWORD lasterror = 0) const;
+      [[ noreturn ]] void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage = nullptr, DWORD lasterror = 0) const;
 
 
    };

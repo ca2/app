@@ -180,7 +180,7 @@ namespace windows
       if (nok())
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -197,7 +197,7 @@ namespace windows
       if (!::WriteFile(m_handle, p, bytesToWrite, &dwWritten, lpOverlapped))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -217,13 +217,13 @@ namespace windows
          if (amountWritten < amountToWrite)
          {
 
-            throw_exception("amountWritten < amountToWrite - is disk full?", -1);
+            throw_last_error_exception("amountWritten < amountToWrite - is disk full?", -1);
 
          }
          else
          {
 
-            throw_exception("amountWritten >= amountToWrite", -1);
+            throw_last_error_exception("amountWritten >= amountToWrite", -1);
 
          }
 
@@ -249,7 +249,7 @@ namespace windows
          if (!::ReadFile(m_handle, p, amountToRead, &amountRead, lpOverlapped))
          {
 
-            throw_exception();
+            throw_last_error_exception();
 
          }
 
@@ -294,7 +294,7 @@ namespace windows
          else
          {
 
-            throw_exception();
+            throw_last_error_exception();
 
          }
 
@@ -311,7 +311,7 @@ namespace windows
       if (!::GetFileSizeEx(m_handle, &largeintegerFileSize))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -353,7 +353,7 @@ namespace windows
       if (!::SetFilePointerEx(m_handle, largeinteger, lpNewFilePointer, dwMoveMethod))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -386,7 +386,7 @@ namespace windows
       if (!::SetEndOfFile(m_handle))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -399,7 +399,7 @@ namespace windows
       if (!::LockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -412,7 +412,7 @@ namespace windows
       if (!::UnlockFile(m_handle, LODWORD(iOffset), HIDWORD(iOffset), LODWORD(iCount), HIDWORD(iCount)))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -425,7 +425,7 @@ namespace windows
       if (!::SetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -438,7 +438,7 @@ namespace windows
       if (!::GetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
@@ -451,28 +451,30 @@ namespace windows
       if (!::GetFileInformationByHandle(m_handle, &information))
       {
 
-         throw_exception();
+         throw_last_error_exception();
 
       }
 
    }
 
 
-   [[ noreturn ]] void file::throw_exception(const ::scoped_string & scopedstrMessage, DWORD lasterror) const
+   [[ noreturn ]] void file::throw_last_error_exception(const ::scoped_string & scopedstrMessage, DWORD lasterror) const
    {
 
-      if (!lasterror)
-      {
+      ::throw_last_error_exception(m_path, m_eopen, lasterror, scopedstrMessage);
 
-         lasterror = ::GetLastError();
+      //if (!lasterror)
+      //{
 
-      }
+        // lasterror = ::GetLastError();
 
-      auto estatus = ::windows::last_error_status(lasterror);
+      //}
 
-      auto errorcode = ::windows::last_error_error_code(lasterror);
+      //auto estatus = ::windows::last_error_status(lasterror);
 
-      throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstrMessage);
+      //auto errorcode = ::windows::last_error_error_code(lasterror);
+
+      //throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstrMessage);
 
    }
 

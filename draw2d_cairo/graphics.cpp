@@ -3190,7 +3190,7 @@ namespace draw2d_cairo
 
       _synchronous_lock synchronouslock(cairo_mutex());
 
-      bool bRestored = false;
+      //bool bRestored = false;
 
       while (m_iSaveDC >= nSavedDC)
       {
@@ -3199,7 +3199,7 @@ namespace draw2d_cairo
 
          m_iSaveDC--;
 
-         bRestored = true;
+         //bRestored = true;
 
       }
 

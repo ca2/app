@@ -68,6 +68,70 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME int_bool is_win32_accessible(DWORD dwFileAttributes, DWORD dwLastError)
+   {
+
+      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      {
+
+         if (dwLastError == ERROR_PATH_NOT_FOUND)
+         {
+
+            // Path would be accessible...
+
+            // Parent Folder is not folder...
+
+            return true;
+
+         }
+         else if (dwLastError == ERROR_FILE_NOT_FOUND)
+         {
+
+            // Path would be accessible...
+
+            // Parent folder exists...
+
+            return true;
+
+         }
+
+         return false;
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+
+   }
+
+   
+   CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path)
+   {
+   
+     auto dwFileAttributes = ::windows::_get_file_attributes(path);
+
+     if(dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+     {
+
+         auto dwLastError = ::GetLastError();
+
+         return is_win32_accessible(dwFileAttributes, dwLastError);
+
+     }
+     else
+     {
+
+      return true;
+
+     }
+
+   }
+
+
    CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes)
    {
 

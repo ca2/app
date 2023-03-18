@@ -1162,6 +1162,15 @@
     <ClCompile Include="operating_system\posix\_.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\translatable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

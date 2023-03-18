@@ -464,7 +464,7 @@
 
          }
 
-         auto plink = __new(::file::link);
+         auto plink = __create_new < ::file::link >();
 
          string strLink = stra[0];
 
@@ -561,44 +561,55 @@
    }
 
 #else
+
+         auto plink = __create_new < ::file::link >();
+         
          string strLink;
 
          char * psz = strLink.get_string_buffer(4096);
 
-         int count = (int) readlink(strSource, psz, 4096);
+         int count = (int) readlink(path, psz, 4096);
 
          if (count < 0)
          {
 
             strLink.release_string_buffer(0);
 
-            strLink = strSource;
-
-            if(pstrDirectory != nullptr)
+            if (elink & ::file::e_link_target)
             {
 
-               *pstrDirectory = ::file::path(strLink).folder();
+               plink->m_pathTarget = path;
 
             }
 
-            path = strLink;
+            if(elink & ::file::e_link_folder)
+            {
 
-            return true;
+               plink->m_pathFolder = ::file::path(strLink).folder();
+
+            }
+
+            return plink;
 
          }
 
          strLink.release_string_buffer(count);
 
-         if(pstrDirectory != nullptr)
+         if (elink & ::file::e_link_target)
          {
 
-            *pstrDirectory = ::file::path(strLink).folder();
+            plink->m_pathTarget = path;
 
          }
 
-         path = strLink;
+         if (elink & ::file::e_link_folder)
+         {
 
-         return true;
+            plink->m_pathFolder = ::file::path(strLink).folder();
+
+         }
+
+         return plink;
 
 #endif
 

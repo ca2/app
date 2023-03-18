@@ -411,6 +411,10 @@ namespace apex
    }
 
 
+   void node::on_create_app_shortcut(::acme::application * papp)
+   {
+
+   }
 
 
 } // namespace apex

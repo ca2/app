@@ -12,6 +12,9 @@ NATURAL_DATA* __nil() { return nullptr; }
 #define NATURAL_METADATA_ALIGN 32
 
 
+#pragma pack(push, meta_data, 1)
+
+
 template < typename TYPE_DATA >
 class meta_data
 {
@@ -44,13 +47,19 @@ public:
    //constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
    
-   DATA * begin() const { return (DATA*)&(this[1]); }
+   DATA * begin() const { return (DATA *)&(this[1]); }
 
 
    DATA * end() const { return (DATA *)(begin() + this->m_countData); }
 
 
+   static meta_data * meta_data_from_data(const DATA * pdata) { return &((meta_data *) pdata)[-1]; }
+
+
 };
+
+
+#pragma pack(pop, meta_data)
 
 
 template < typename BASE_META_DATA >
@@ -62,6 +71,8 @@ public:
 
    typedef typename BASE_META_DATA::META                    META;
    typedef typename BASE_META_DATA::DATA                    DATA;
+
+   ::byte            m_data[sizeof(DATA)] = {};
 
 
    natural_meta_data() {}
@@ -78,7 +89,7 @@ public:
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
-      return ::is_null(pdata) ? nullptr : &((natural_meta_data < BASE_META_DATA >*)(pdata))[-1];
+      return (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata);
 
    }
 

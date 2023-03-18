@@ -186,7 +186,7 @@ void multiple_lock::unlock()
 void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 {
 
-   bool bGotOne = false;
+   //bool bGotOne = false;
 
    for (index i=0; i < m_synchronizationa.synchronization_count(); i++)
    {
@@ -199,7 +199,7 @@ void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
          if (pSemaphore != nullptr)
          {
 
-            bGotOne = true;
+            //bGotOne = true;
 
             //if (m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount))
             m_synchronizationa.m_synchronizationa[i]->unlock(lCount, pPrevCount);

@@ -310,7 +310,7 @@ CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const fil
 #undef USE_MISC
 
 
-bool get_file_time_set(const ::file::path & path, file_time & creation, file_time & modified)
+void get_file_time_set(const ::file::path & path, file_time & creation, file_time & modified)
 {
 
    struct stat st;
@@ -320,8 +320,6 @@ bool get_file_time_set(const ::file::path & path, file_time & creation, file_tim
    creation.m_filetime = st.st_ctime;
 
    modified.m_filetime = st.st_mtime;
-
-   return true;
 
 }
 

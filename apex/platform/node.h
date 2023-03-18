@@ -114,6 +114,9 @@ namespace apex
       //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);
 
 
+      virtual void on_create_app_shortcut(::acme::application * papp);
+
+
    };
 
 

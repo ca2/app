@@ -251,3 +251,25 @@ void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, D
    throw ::exception(estatus, { errorcode }, scopedstrErrorMessage);
 
 }
+
+
+[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::file::path & path, ::file::e_open eopen, DWORD lasterror, const ::scoped_string & scopedstrErrorMessage)
+{
+
+   if (!lasterror)
+   {
+
+      lasterror = ::GetLastError();
+
+   }
+
+   auto estatus = ::windows::last_error_status(lasterror);
+
+   auto errorcode = ::windows::last_error_error_code(lasterror);
+
+   throw ::file::exception(estatus, errorcode, path, eopen, scopedstrErrorMessage);
+
+}
+
+
+

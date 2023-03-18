@@ -188,7 +188,9 @@
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
@@ -214,6 +216,7 @@
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
+    <ClCompile Include="filesystem\file\translatable.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\colorref_array.cpp" />

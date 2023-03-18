@@ -801,7 +801,7 @@ bool file_exists(const ::file::path & path)
 
       auto errorcode = errno_error_code(iErrorNumber);
 
-      throw ::file::exception(estatus, errorcode, path, "stat");
+      throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
 
    }
 
@@ -952,7 +952,7 @@ void file_delete(const ::file::path & path)
 
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_errno_file_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, int iErrNo = 0)
+[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, int iErrNo = 0)
 {
 
    if (iErrNo == 0)

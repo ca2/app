@@ -2200,7 +2200,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#ifdef _UWP
+#if defined(_UWP) || defined(ANDROID)
 
       acmenode()->m_papexnode->on_create_app_shortcut(this);
 
@@ -3988,7 +3988,7 @@ namespace apex
    void application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
    {
 
-      bool bContinue = false;
+      //bool bContinue = false;
       auto psystem = acmesystem()->m_papexsystem;
       try
       {
@@ -4014,12 +4014,12 @@ namespace apex
 
                   bHandled = ptask->m_tristateHandled.is_true();
 
-                  if (bHandled)
-                  {
+                  //if (bHandled)
+                  //{
 
-                     bContinue = ptask->m_tristateContinue.is_true();
+                     //bContinue = ptask->m_tristateContinue.is_true();
 
-                  }
+                  //}
 
                }
 
@@ -8172,14 +8172,14 @@ namespace apex
 
    void application::_001OnFileNew()
    {
-      string strId = m_strId;
-      char chFirst = '\0';
-      if (strId.length() > 0)
-      {
-         chFirst = strId[0];
-      }
-      /*      if (m_pdocmanager != nullptr)
-      document_manager()->_001OnFileNew();*/
+      //string strId = m_strId;
+      //char chFirst = '\0';
+      //if (strId.length() > 0)
+      //{
+      //   chFirst = strId[0];
+      //}
+      ///*      if (m_pdocmanager != nullptr)
+      //document_manager()->_001OnFileNew();*/
    }
 
    void application::on_file_open()

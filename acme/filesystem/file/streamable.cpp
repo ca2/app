@@ -108,8 +108,6 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
    memsize uRead;
 
-   memsize uiSize = 0;
-
    uiBufSize = maximum(32 * 1024, uiBufSize);
 
    memory buf;
@@ -140,7 +138,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          pwritable->write(buf(0, uRead));
 
-         uiSize += uRead;
+         //uiSize += uRead;
 
       }
 

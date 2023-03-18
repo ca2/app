@@ -1114,20 +1114,20 @@ namespace http
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
-      i32 iPort;
+      //i32 iPort;
 
-      if (strProtocol == "https")
-      {
+      //if (strProtocol == "https")
+      //{
 
-         iPort = 443;
+      //   iPort = 443;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         iPort = 80;
+      //   iPort = 80;
 
-      }
+      //}
 
       if (strVersion.is_empty())
       {

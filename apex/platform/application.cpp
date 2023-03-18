@@ -2200,7 +2200,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#if defined(_UWP) || defined(ANDROID)
+#if defined(ANDROID) || defined(WINDOWS)
 
       acmenode()->m_papexnode->on_create_app_shortcut(this);
 

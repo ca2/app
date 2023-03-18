@@ -104,6 +104,15 @@ namespace acme
       virtual ::file::path get_module_path();
       virtual ::file::path get_module_folder();
 
+      
+      virtual ::string app_name();
+
+      //virtual ::string app_name();
+
+      virtual ::string app_root();
+
+
+
 //
 //#ifdef WINDOWS
 //

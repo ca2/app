@@ -529,6 +529,60 @@ namespace acme
    }
 
 
+   ::string application::app_name()
+   {
+
+      ::string strAppName;
+
+      if (m_strAppName.has_char())
+      {
+
+         strAppName = m_strAppName;
+
+      }
+      else
+      {
+
+         string strAppIdUnderscore = m_strAppId;
+
+         strAppIdUnderscore.find_replace("/", "_");
+
+         strAppIdUnderscore.find_replace("-", "_");
+
+         strAppName = strAppIdUnderscore;
+
+      }
+
+      return strAppName;
+
+   }
+
+
+   //::string node::app_name()
+   //{
+
+
+
+
+   //}
+
+
+   ::string application::app_root()
+   {
+
+      auto iFind = m_strAppId.find_index('/');
+
+      if (iFind < 0)
+      {
+
+         return{};
+
+      }
+
+      return m_strAppId.left(iFind);
+
+   }
+
 
 //#ifdef WINDOWS
 //

@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "assimp.h"
 
-#define ASSIMP_USE_HUNTER
+//#define ASSIMP_USE_HUNTER
 #define ASSIMP_DLL
 
 

@@ -577,8 +577,6 @@
 		9A15A689264B59EE0080670E /* condition_variable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A63E264B59EE0080670E /* condition_variable.h */; };
 		9A15A68C264B59EE0080670E /* task.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A640264B59EE0080670E /* task.h */; };
 		9A15A68D264B59EE0080670E /* task.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A640264B59EE0080670E /* task.h */; };
-		9A15A68E264B59EE0080670E /* synchronization_result.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A641264B59EE0080670E /* synchronization_result.h */; };
-		9A15A68F264B59EE0080670E /* synchronization_result.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A641264B59EE0080670E /* synchronization_result.h */; };
 		9A15A690264B59EE0080670E /* pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A642264B59EE0080670E /* pool.h */; };
 		9A15A691264B59EE0080670E /* pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A642264B59EE0080670E /* pool.h */; };
 		9A15A692264B59EE0080670E /* condition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A15A643264B59EE0080670E /* condition.h */; };
@@ -2903,7 +2901,6 @@
 		9A15A63D264B59EE0080670E /* mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mutex.cpp; sourceTree = "<group>"; };
 		9A15A63E264B59EE0080670E /* condition_variable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = condition_variable.h; sourceTree = "<group>"; };
 		9A15A640264B59EE0080670E /* task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task.h; sourceTree = "<group>"; };
-		9A15A641264B59EE0080670E /* synchronization_result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synchronization_result.h; sourceTree = "<group>"; };
 		9A15A642264B59EE0080670E /* pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pool.h; sourceTree = "<group>"; };
 		9A15A643264B59EE0080670E /* condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = condition.h; sourceTree = "<group>"; };
 		9A15A644264B59EE0080670E /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
@@ -4250,7 +4247,6 @@
 				9A15A674264B59EE0080670E /* socket_event.h */,
 				9A15A63A264B59EE0080670E /* synchronization_array.cpp */,
 				9A15A65D264B59EE0080670E /* synchronization_array.h */,
-				9A15A641264B59EE0080670E /* synchronization_result.h */,
 				9A15A650264B59EE0080670E /* synchronized_process.h */,
 				9A08431129366676009F7FF4 /* synchronizer.cpp */,
 				9A08430F29366675009F7FF4 /* synchronizer.h */,
@@ -6744,7 +6740,6 @@
 				9A68AF4D25114435008DABD2 /* x_defines.h in Headers */,
 				9A68AE0225114435008DABD2 /* ptr_array.h in Headers */,
 				9A750DA2282B367600C4861B /* user.h in Headers */,
-				9A15A68E264B59EE0080670E /* synchronization_result.h in Headers */,
 				9A08427D2935E694009F7FF4 /* collection.h in Headers */,
 				9A08419A2935C1FD009F7FF4 /* _macro.h in Headers */,
 				9A892E0226CD9062008D6412 /* parallelization.h in Headers */,
@@ -7137,7 +7132,6 @@
 				9AA8FCCE27BA7299008FF9AA /* _.h in Headers */,
 				9AD68EFA251A753A00C0EBD7 /* string_inst.h in Headers */,
 				9AD68EFC251A753A00C0EBD7 /* _.h in Headers */,
-				9A15A68F264B59EE0080670E /* synchronization_result.h in Headers */,
 				9ADD653F26B5CFE600D11298 /* string_memory_allocate.h in Headers */,
 				9A892DE726CD9061008D6412 /* source.h in Headers */,
 				9AD68EFE251A753A00C0EBD7 /* objcpp.h in Headers */,

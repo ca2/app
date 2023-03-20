@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -2200,7 +2200,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#if defined(ANDROID) || defined(WINDOWS)
+#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS)
 
       acmenode()->m_papexnode->on_create_app_shortcut(this);
 

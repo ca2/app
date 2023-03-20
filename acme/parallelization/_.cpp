@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "manual_reset_event.h"
 #include "task.h"
 #include "task_flag.h"
@@ -688,6 +688,14 @@ void run_runnable(::matter * pmatter)
 thread_local ::task * t_ptask;
 
 
+CLASS_DECL_ACME ::task * _get_task()
+{
+   
+   return t_ptask;
+   
+}
+
+
 CLASS_DECL_ACME ::task * get_task()
 {
 
@@ -731,21 +739,11 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 
    auto ptaskOld = t_ptask;
 
-   if (ptask)
-   {
-
-      ptask->increment_reference_count();
-
-   }
+   ::increment_reference_count(ptask);
 
    t_ptask = ptask;
 
-   if (t_ptask)
-   {
-
-      ::release(t_ptask);
-
-   }
+   ::release(ptaskOld);
 
 }
 

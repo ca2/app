@@ -36,13 +36,13 @@ namespace file
 
       virtual void open(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
 
-      /// @brief 
+      /// @brief write link/shortcut to file
       /// @return flags of items that were successfully set
       virtual ::file::e_link write(const ::file::path & pathWriteAs = "");
 
-      /// @brief 
-      /// @param scopedstrSource 
-      /// @param scopedstrTarget 
+      /// @brief patches link path member with find and replace
+      /// @param scopedstrSource text to find
+      /// @param scopedstrTarget text to replace
       /// @return flags of items that were changed
       virtual ::file::e_link path_find_replace(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget);
 

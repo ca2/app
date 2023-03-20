@@ -201,8 +201,10 @@ thread::thread()
 
 #endif
 
-   //memory_counter_increment(this);
-
+   thread_common_construct();
+   
+   memory_counter_increment(this);
+   
 }
 
 
@@ -235,11 +237,13 @@ void thread::thread_common_construct()
       }
 
    }
+   
+   auto ptask = ::_get_task();
 
-   if (::get_task() != nullptr)
+   if (::is_set(ptask))
    {
 
-      m_bAvoidProcedureFork = ::get_task()->m_bAvoidProcedureFork;
+      m_bAvoidProcedureFork = ptask->m_bAvoidProcedureFork;
 
    }
    else
@@ -1772,7 +1776,7 @@ void thread::initialize(::particle * pparticle)
 
    ::channel::initialize(pparticle);
 
-   memory_counter_decrement(pparticle);
+   //memory_counter_decrement(pparticle);
 
 
    //if (!estatus)
@@ -1796,7 +1800,7 @@ void thread::initialize(::particle * pparticle)
 
    //}
 
-   thread_common_construct();
+   //thread_common_construct();
 
    //return estatus;
 
@@ -2769,7 +2773,7 @@ void thread::task_osinit()
    {
 
 
-      if (::get_task() != this)
+      if (::_get_task() != this)
       {
 
          ::set_task(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);

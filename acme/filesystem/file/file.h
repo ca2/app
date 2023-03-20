@@ -157,8 +157,10 @@ namespace file
       using ::file::writable::write;
       void write(const void * p, memsize s) override;
       
-
-      virtual memsize defer_write(const ::block & block);
+      using ::file::writable::defer_write;
+      memsize defer_write(const void * dataToWrite, memsize amountToWrite) override;
+      
+      
       virtual void write(::file::readable * preader, memsize uiBufferSize = 16_MiB);
       virtual void write_from_beginning(::file::streamable * preader, memsize uiBufSize = 16_MiB);
 

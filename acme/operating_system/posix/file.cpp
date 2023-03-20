@@ -1,7 +1,11 @@
 #include "framework.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-//#include "acme/operating_system.h"
+
+
+#include "acme/_operating_system.h"
+
+
 //#ifdef WINDOWS
 //#include <io.h>
 //#include <stdio.h>
@@ -949,10 +953,7 @@ void file_delete(const ::file::path & path)
 }
 
 
-
-
-
-[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr = nullptr, int iErrNo = 0)
+[[noreturn]] CLASS_DECL_ACME void throw_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, int iErrNo)
 {
 
    if (iErrNo == 0)
@@ -989,7 +990,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
        
     }
 
-    if (pstatus->m_timeAccess.get_time() == 0)
+    if (pstatus->m_timeAccess <= 0_s)
     {
        
        pstatus->m_timeAccess = pstatus->m_timeModification;

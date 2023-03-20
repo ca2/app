@@ -1,14 +1,13 @@
-﻿// Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
 #include "streamable.h"
 #include "file.h"
 #include "acme/primitive/primitive/memory.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace file
 {
-
 
 
    enum_status streamable::_open(const ::scoped_string & scopestrFilePath, const ::file::enum_open &eopen)
@@ -46,10 +45,19 @@ namespace file
    void writable::write(const void * p, ::memsize s)
    {
 
-      throw error_interface_only;
+      throw ::interface_only();
 
    }
 
+
+   ::memsize writable::defer_write(const void * p, ::memsize s)
+   {
+
+      throw ::interface_only();
+      
+      return 0;
+
+   }
 
    void streamable::flush()
    {

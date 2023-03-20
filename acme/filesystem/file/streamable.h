@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 
@@ -32,7 +32,10 @@ namespace file
       virtual void write(const void * p, ::memsize s);
 
       inline void write(const ::block & block) { write(block.data(), block.size()); }
+      
+      virtual ::memsize defer_write(const void * p, ::memsize s);
 
+      inline ::memsize defer_write(const ::block & block) { return defer_write(block.data(), block.size()); }
 
    };
 

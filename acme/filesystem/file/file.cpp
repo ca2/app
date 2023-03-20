@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "file.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/exception.h"
@@ -315,8 +315,21 @@ namespace file
    }
 
 
-   void file::write(const void * p, ::memsize s)
+   void file::write(const void * dataToWrite, ::memsize amountToWrite)
    {
+      
+      auto amountWritten = defer_write(dataToWrite, amountToWrite);
+      
+      if(amountWritten != amountToWrite)
+      {
+         
+         throw ::file::exception(error_disk_full,
+                                 {e_error_code_type_none, -1},
+                                 m_path,
+                                 m_eopen,
+                                 "amountWritten != amountToWrite, disk full?");
+         
+      }
 
    }
 
@@ -1125,7 +1138,7 @@ namespace file
    //}
 
 
-   memsize file::defer_write(const ::block & block)
+   memsize file::defer_write(const void * dataToWrite, ::memsize amountToWrite)
    {
 
       throw ::interface_only();
@@ -1191,7 +1204,7 @@ namespace file
       }
 
       memsize uRead;
-      //memsize uiSize = 0;
+
       uiBufSize = maximum(32 * 1024, uiBufSize);
 
       memory buf;
@@ -1199,23 +1212,37 @@ namespace file
       buf.set_size(uiBufSize);
 
       if(buf.data() == nullptr)
+      {
+         
          throw ::exception(error_no_memory);
+         
+      }
 
       try
       {
+         
          while(true)
          {
+            
             uRead = preadable->read(buf);
+            
             if(uRead <= 0)
             {
+               
                break;
+               
             }
+            
             write(buf(0,  uRead));
+            
             //uiSize += uRead;
+            
          }
+         
       }
       catch(...)
       {
+         
       }
 
    }

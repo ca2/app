@@ -142,7 +142,7 @@ public:
    //template < typename T2 >
    //inline pointer(const T2 * p);
 
-   //inline pointer(const void * p) : pointer(e_move_transfer, (T *)p) {}
+   //inline pointer(const void * p) : pointer(e_pointer_transfer, (T *)p) {}
 
    //template < class T2 >
    //inline pointer(const ::pointer<T2> t2)

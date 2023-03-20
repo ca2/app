@@ -679,6 +679,8 @@
 		9A16260626EFCD6A003D9CB9 /* install_mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16260326EFCD69003D9CB9 /* install_mutex.h */; };
 		9A16260726EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
 		9A16260826EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
+		9A1CEBFF29C7BBA500A32D62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CEBFE29C7BBA500A32D62 /* file.cpp */; };
+		9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CEBFE29C7BBA500A32D62 /* file.cpp */; };
 		9A1FB4CF2870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
 		9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
 		9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */; };
@@ -1857,8 +1859,6 @@
 		9AA8FD4627BA729A008FF9AA /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F98827BA7295008FF9AA /* process.cpp */; };
 		9AA8FD4B27BA729A008FF9AA /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8F98B27BA7295008FF9AA /* _posix.h */; };
 		9AA8FD4C27BA729A008FF9AA /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8F98B27BA7295008FF9AA /* _posix.h */; };
-		9AA8FD5127BA729A008FF9AA /* base_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F98E27BA7295008FF9AA /* base_file.cpp */; };
-		9AA8FD5227BA729A008FF9AA /* base_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F98E27BA7295008FF9AA /* base_file.cpp */; };
 		9AA8FD5327BA729A008FF9AA /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F98F27BA7295008FF9AA /* parallelization.cpp */; };
 		9AA8FD5427BA729A008FF9AA /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8F98F27BA7295008FF9AA /* parallelization.cpp */; };
 		9AA8FD5527BA729A008FF9AA /* mq_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8F99027BA7295008FF9AA /* mq_base.h */; };
@@ -2949,6 +2949,7 @@
 		9A1625F726EFCCC0003D9CB9 /* streamable_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamable_composite.h; sourceTree = "<group>"; };
 		9A16260326EFCD69003D9CB9 /* install_mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_mutex.h; sourceTree = "<group>"; };
 		9A16260426EFCD69003D9CB9 /* install_mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_mutex.cpp; sourceTree = "<group>"; };
+		9A1CEBFE29C7BBA500A32D62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		9A1FB4CD2870DE460042849A /* _main_hold_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _main_hold_base.h; sourceTree = "<group>"; };
 		9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main_hold_base.cpp; sourceTree = "<group>"; };
 		9A21AFD127611EA0001E14CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -3744,7 +3745,6 @@
 		9AA8F98527BA7295008FF9AA /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9AA8F98827BA7295008FF9AA /* process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = process.cpp; sourceTree = "<group>"; };
 		9AA8F98B27BA7295008FF9AA /* _posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _posix.h; sourceTree = "<group>"; };
-		9AA8F98E27BA7295008FF9AA /* base_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_file.cpp; sourceTree = "<group>"; };
 		9AA8F98F27BA7295008FF9AA /* parallelization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallelization.cpp; sourceTree = "<group>"; };
 		9AA8F99027BA7295008FF9AA /* mq_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mq_base.h; sourceTree = "<group>"; };
 		9AA8F99227BA7295008FF9AA /* file_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_lock.h; sourceTree = "<group>"; };
@@ -5690,8 +5690,8 @@
 				9AA8F99727BA7295008FF9AA /* _.h */,
 				9AA8F98B27BA7295008FF9AA /* _posix.h */,
 				9AA8F99327BA7295008FF9AA /* _posix2.h */,
-				9AA8F98E27BA7295008FF9AA /* base_file.cpp */,
 				9A08411429348B47009F7FF4 /* callstack.cpp */,
+				9A1CEBFE29C7BBA500A32D62 /* file.cpp */,
 				9A956D0728240B4400002F51 /* chldstatus.cpp */,
 				9AA8F99427BA7295008FF9AA /* file_lock.cpp */,
 				9AA8F99227BA7295008FF9AA /* file_lock.h */,
@@ -7836,6 +7836,7 @@
 				9A787B9A264BB13F003DF8A0 /* timer.cpp in Sources */,
 				9A787CBB264C04CC003DF8A0 /* text.cpp in Sources */,
 				9AA8F90327BA7268008FF9AA /* window_implementation.cpp in Sources */,
+				9A1CEBFF29C7BBA500A32D62 /* file.cpp in Sources */,
 				9A786256264B90B5003DF8A0 /* random_number_generator.cpp in Sources */,
 				9A0843C629366DA6009F7FF4 /* character.cpp in Sources */,
 				9A787B9C264BB13F003DF8A0 /* system.cpp in Sources */,
@@ -8021,7 +8022,6 @@
 				9A7861B1264B9096003DF8A0 /* object.cpp in Sources */,
 				9A68AE7525114435008DABD2 /* memory_c.cpp in Sources */,
 				9A97BF4428C839DA00A43004 /* int_handle.cpp in Sources */,
-				9AA8FD5127BA729A008FF9AA /* base_file.cpp in Sources */,
 				9A956D0928240B4400002F51 /* chldstatus.cpp in Sources */,
 				9AA8FCA927BA7299008FF9AA /* process.cpp in Sources */,
 				9A68AE0125114435008DABD2 /* bit_array.cpp in Sources */,
@@ -8331,6 +8331,7 @@
 				9AD691B6251A753A00C0EBD7 /* stream.cpp in Sources */,
 				9A0842762935E694009F7FF4 /* __payload_array.cpp in Sources */,
 				9AD691B7251A753A00C0EBD7 /* tokenizer.cpp in Sources */,
+				9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */,
 				9A94DE41282C034800F5C1CA /* object.cpp in Sources */,
 				9A0843D229366DBB009F7FF4 /* encoding_exception.cpp in Sources */,
 				9A787BA9264BB13F003DF8A0 /* timer_array.cpp in Sources */,
@@ -8401,7 +8402,6 @@
 				9A787B61264BB0FD003DF8A0 /* library.cpp in Sources */,
 				9AD6920D251A753A00C0EBD7 /* bit_array.cpp in Sources */,
 				9AD6920E251A753A00C0EBD7 /* _.cpp in Sources */,
-				9AA8FD5227BA729A008FF9AA /* base_file.cpp in Sources */,
 				9ADD64D426B5CB3800D11298 /* c_class.cpp in Sources */,
 				9A15A6B7264B59EF0080670E /* task.cpp in Sources */,
 				9A78621D264B90B4003DF8A0 /* scalar.cpp in Sources */,

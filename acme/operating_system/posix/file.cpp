@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/filesystem/file/exception.h"
-////#include "acme/exception/exception.h"
+#include "acme/filesystem/file/status.h"
 //#include "acme/operating_system.h"
 //#ifdef WINDOWS
 //#include <io.h>
@@ -50,7 +50,7 @@
 //
 //   }
 //
-//   return st.st_size;
+//   return pst->st_size;
 //
 //}
 //
@@ -84,7 +84,7 @@
 //
 //   }
 //
-//   if ((st.st_mode & S_IFDIR))
+//   if ((pst->st_mode & S_IFDIR))
 //   {
 //
 //      return false;
@@ -118,7 +118,7 @@
 //   if (is_set(petype))
 //   {
 //
-//      if ((st.st_mode & S_IFDIR))
+//      if ((pst->st_mode & S_IFDIR))
 //      {
 //
 //         *petype = ::file::e_type_folder;
@@ -356,7 +356,7 @@
 //
 //   struct stat st;
 //   stat(path, &st);
-//   return st.st_size;
+//   return pst->st_size;
 //
 //}
 //
@@ -655,7 +655,7 @@
 //
 //   }
 //
-//   if (!(st.st_mode & S_IFDIR))
+//   if (!(pst->st_mode & S_IFDIR))
 //   {
 //
 //      return false;
@@ -968,6 +968,40 @@ void file_delete(const ::file::path & path)
 
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 
+}
+
+
+void copy(::file::file_status * pstatus, const struct stat * pst)
+{
+    
+    pstatus->m_filesize = pst->st_size;
+
+    pstatus->m_attribute = 0;
+
+    ::copy(&pstatus->m_timeModification, &pst->st_mtimespec);
+    ::copy(&pstatus->m_timeAccess, &pst->st_atimespec);
+    ::copy(&pstatus->m_timeCreation, &pst->st_ctimespec);
+
+    if (pstatus->m_timeCreation <= 0_s)
+    {
+       
+       pstatus->m_timeCreation = pstatus->m_timeModification;
+       
+    }
+
+    if (pstatus->m_timeAccess.get_time() == 0)
+    {
+       
+       pstatus->m_timeAccess = pstatus->m_timeModification;
+       
+    }
+
+}
+
+void copy(struct status * pst, const ::file::file_status * pstatus)
+{
+    
+    
 }
 
 

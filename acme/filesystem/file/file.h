@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //////#include "acme/primitive/primitive/object.h"
@@ -118,13 +118,13 @@ namespace file
       //virtual memsize get_internal_data_size() const;
       
       /// @brief full_data is plain memory segment mapping entire file
-      /// @param c 
+      /// @param c size to set to
       /// @return true if full_data is supported
       virtual bool full_data_set_size(memsize c);
 
 
       /// @brief full_data is plain memory segment mapping entire file
-      /// @param c 
+      /// @param c size to grow by
       /// @return true if full_data is supported 
       virtual bool full_data_increase_size(memsize c);
 

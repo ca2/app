@@ -1109,6 +1109,10 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
 
    const ::ansi_character * pszArgument = scopedstrNetworkArguments.begin();
 
+   const ::ansi_character * pszArgumentEnd1;
+
+   const ::ansi_character * pszArgumentEnd2;
+
    const ::ansi_character * pszArgumentEnd;
 
    const ::ansi_character * pszKeyEnd;
@@ -1118,7 +1122,11 @@ void property_set::_parse_network_arguments(const ::scoped_string & scopedstrNet
    while (true)
    {
 
-      pszArgumentEnd = strchr(pszArgument, '&');
+      pszArgumentEnd1 = strchr(pszArgument, '&');
+
+      pszArgumentEnd2 = strchr(pszArgument, '?');
+
+      pszArgumentEnd = ::minimum_non_null(pszArgumentEnd1, pszArgumentEnd2);
 
       pszKeyEnd = strchr(pszArgument, '=');
 

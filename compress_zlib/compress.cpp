@@ -119,7 +119,9 @@ namespace compress_zlib
             // Inflate another chunk.
             status = deflate(&zstream, iFlush);
 
-            pfileOut->write(memory(0, (u32)memory.size() - zstream.avail_out));
+            auto amountToWrite = (u32)memory.size() - zstream.avail_out;
+
+            pfileOut->write(memory(0, amountToWrite));
 
             if (status == Z_STREAM_END)
             {

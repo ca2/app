@@ -339,16 +339,20 @@ namespace sockets
          if (str.case_insensitive_contains("text") || str.case_insensitive_contains("javascript"))
          {
 
-            m_response.m_propertysetHeader.set_at("content-encoding", "gzip");
-
             auto pfile = create_memory_file();
 
             auto & strFile = response().m_strFile;
 
+            ::filesize iInputFileSize = 0;
+
             if (strFile.has_char())
             {
 
-               acmesystem()->compress(pfile, file()->get_reader(strFile), "zlib");
+               auto pfileIn = file()->get_reader(strFile);
+
+               iInputFileSize = pfileIn->size();
+
+               acmesystem()->compress(pfile, pfileIn, "zlib");
 
                response().m_strFile.empty();
 
@@ -358,11 +362,22 @@ namespace sockets
 
                response().file()->seek_to_begin();
 
+               iInputFileSize = response().file()->size();
+
                acmesystem()->compress(pfile, response().file(), "zlib");
 
             }
 
-            response().file()->write_from_beginning(pfile);
+            //if (pfile->full_data_size() < iInputFileSize * 9 / 10)
+            //{
+
+               m_response.m_propertysetHeader.set_at("content-encoding", "gzip");
+
+               response().file()->clear();
+
+               response().file()->write_from_beginning(pfile);
+
+            //}
 
          }
 

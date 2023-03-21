@@ -1,4 +1,4 @@
-﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -8,6 +8,7 @@
 #include "listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
+#include "acme/filesystem/file/memory_map.h"
 #include "acme/filesystem/file/stdio_file.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
@@ -732,31 +733,31 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void acme_file::copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
+void acme_file::copy(const ::file::path & pathNew, const ::file::path & pathExisting, bool bOverwrite)
 {
 
-   if (acmedirectory()->is(pathSource))
+   if (acmedirectory()->is(pathExisting))
    {
 
-      if (exists(pathTarget))
+      if (exists(pathNew))
       {
 
-         throw ::exception(error_failed);
+         throw ::exception(error_not_supported, "currently not supported");
 
       }
 
-      acmedirectory()->create(pathTarget);
+      acmedirectory()->create(pathNew);
 
       ::file::listing listing;
 
-      listing.set_listing(pathSource, e_depth_recursively);
+      listing.set_listing(pathExisting, e_depth_recursively);
 
       acmedirectory()->enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
-      ::file::path strDirSrc(pathSource);
-      ::file::path strDirDst(pathTarget);
+      ::file::path strDirSrc(pathExisting);
+      ::file::path strDirDst(pathNew);
 
       for (i32 i = 0; i < listing.size(); i++)
       {
@@ -792,33 +793,92 @@ void acme_file::copy(const ::file::path & pathTarget, const ::file::path & pathS
       }
 
       return;
-
+      
    }
-   else
+   
+   auto pathTarget = pathNew;
+      
+   if (acmedirectory()->is(pathTarget))
    {
-
-      _copy(pathTarget, pathSource, bOverwrite);
-
+      
+      pathTarget /= pathExisting.name();
+      
    }
+      
+   _copy(pathTarget, pathExisting, bOverwrite);
 
 }
 
 
-void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
+void acme_file::_copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
+{
+   
+   if(exists(pathDup))
+   {
+      
+      return;
+      
+   }
+   
+   if(!_memory_map_file_copy(pathDup, pathSrc))
+   {
+      
+      _read_write_file_copy(pathDup, pathSrc);
+      
+   }
+   
+}
+
+
+bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
 
-#ifdef WINDOWS
+   auto pmemorymapSource = __create < ::file::memory_map >();
+   
+   auto pmemorymapTarget = __create < ::file::memory_map >();
+   
+   if(!pmemorymapSource->open_path(pathSource, true, false, false))
+   {
+      
+      return false;
+      
+   }
+      
+   if(!pmemorymapTarget->open_path(pathSource, true, true, true, pmemorymapSource->m_size))
+   {
+      
+      return false;
+      
+   }
 
-   FILE * in = _wfopen(wstring(pathSource), L"r"); //create the input file for reading
+   try
+   {
+    
+      memcpy(pmemorymapTarget->m_pdata, pmemorymapSource->m_pdata, pmemorymapSource->m_size);
+      
+   }
+   catch (...)
+   {
+      
+      return false;
+      
+   }
+   
+}
 
-#else
+void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
+{
 
-   FILE * in = fopen(pathSource.c_str(), "r"); //create the input file for reading
+   
+   auto pfileIn = __create_new < stdio_file >();
+   
+   pfileIn->open(pathSource, ::file::e_open_read | ::file::e_open_binary);
 
-#endif
+   auto pfileOut = __create_new < stdio_file >();
+   
+   pfileOut->open(pathTarget, ::file::e_open_write | ::file::e_open_binary
+                  | ::file::e_open_create | ::file::e_open_truncate);
 
-   if (in == NULL)
-      throw io_exception(error_io);
 
 #ifdef WINDOWS
 
@@ -831,18 +891,22 @@ void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & path
 #endif
 
    if (out == NULL)
+   {
+      
       throw io_exception(error_io);
+      
+   }
 
    memory memory;
 
-   memory.set_size(1024);
+   memory.set_size(::maximum(1, sizeBuffer));
 
    size_t read;
 
-   while ((read = fread(memory.data(), 1, memory.size(), in)) > 0)
+   while ((read = pfileIn->read(memory)) > 0)
    {
 
-      fwrite(memory.data(), 1, read, out); // write the input file to the output file
+      pfileOut->write(memory.data(), read);
 
    }
 

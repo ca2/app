@@ -103,6 +103,10 @@ public:
    virtual void copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    
+   virtual bool _memory_map_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc);
+   
+   virtual void _read_write_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc, ::memsize buffer_size = 1_MiB);
+
 
    virtual class ::time modification_time(const ::file::path & path);
    virtual void set_modification_time(const ::file::path & path, const class ::time & time);

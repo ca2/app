@@ -6680,10 +6680,73 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eat(string_bas
 
 }
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::begins_bitten(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->begins(scopedstrPrefix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size() };
+
+}
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::begins_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::ends_bitten(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->ends(scopedstrSuffix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin(), size() - scopedstrSuffix.size()};
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->case_insensitive_begins(scopedstrPrefix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size()};
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_ends_bitten(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->case_insensitive_ends(scopedstrSuffix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin(), size() - scopedstrSuffix.size()};
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6701,7 +6764,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eaten_ci(string_base & strEat
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::ends_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    if (!_string_ends_ci<const CHARACTER>(*this, scopedstrSuffix))

@@ -1012,8 +1012,17 @@ public:
    inline bool case_insensitive_begins_eat(string_base & strRest, const SCOPED_STRING & scopedstr) const;
    inline bool case_insensitive_ends_eat(string_base & strRest, const SCOPED_STRING & scopedstr) const;
 
-   inline bool begins_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
-   inline bool ends_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
+   inline string_base begins_bitten(const SCOPED_STRING & scopedstr) const;
+   inline string_base ends_bitten(const SCOPED_STRING & scopedstr) const;
+
+   inline string_base case_insensitive_begins_bitten(const SCOPED_STRING & scopedstr) const;
+   inline string_base case_insensitive_ends_bitten(const SCOPED_STRING & scopedstr) const;
+
+   inline bool case_insensitive_begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
+   inline bool case_insensitive_ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
+
+   inline string_base case_insensitive_begins_eaten(const SCOPED_STRING & scopedstr) const;
+   inline string_base case_insensitive_ends_eaten(const SCOPED_STRING & scopedstr) const;
 
    inline string_base & ensure_prefix(const SCOPED_STRING & scopedstrPrefix);
    inline string_base & case_insensitive_ensure_prefix(const SCOPED_STRING & scopedstrPrefix);

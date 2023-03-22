@@ -813,14 +813,14 @@ void acme_file::copy(const ::file::path & pathNew, const ::file::path & pathExis
 void acme_file::_copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
 {
    
-   if(exists(pathDup))
+   if(!bOverwrite && exists(pathDup))
    {
       
       return;
       
    }
    
-   if(!_memory_map_file_copy(pathDup, pathSrc))
+   //if(!_memory_map_file_copy(pathDup, pathSrc))
    {
       
       _read_write_file_copy(pathDup, pathSrc);
@@ -880,22 +880,22 @@ void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::f
                   | ::file::e_open_create | ::file::e_open_truncate);
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
+//
+//#else
+//
+//   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
+//
+//#endif
 
-   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
-
-#else
-
-   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
-
-#endif
-
-   if (out == NULL)
-   {
-      
-      throw io_exception(error_io);
-      
-   }
+//   if (out == NULL)
+//   {
+//
+//      throw io_exception(error_io);
+//
+//   }
 
    memory memory;
 

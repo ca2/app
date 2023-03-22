@@ -1,4 +1,4 @@
-﻿// Create on 2021-03-20 23:59 <3ThomasBS_
+// Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
 #include "acme_directory.h"
 #include "acme_file.h"
@@ -1097,7 +1097,7 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 bool acme_directory::_is(bool & bDir, const ::file::path & path)
 {
 
-   auto pathFinal = m_pacmepath->_final(path);
+   auto pathFinal = acmepath()->_final(path);
 
    bDir = ::is_directory(pathFinal);
 

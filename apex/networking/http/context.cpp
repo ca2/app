@@ -7,6 +7,7 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
@@ -505,6 +506,8 @@ namespace http
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
       payload("dw") = ::time::now();
+      
+      m_pmutexDownload = acmenode()->create_mutex();
 
       //return estatus;
 

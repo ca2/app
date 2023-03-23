@@ -93,10 +93,11 @@ namespace http
    }
 
 
-   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set)
+   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set, const             ::function < void(double, filesize, filesize) >
+ & functionProgress)
    {
 
-      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl));
+      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl), functionProgress);
 
    }
 
@@ -141,7 +142,7 @@ namespace http
    }
 
 
-   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set)
+   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
    {
 
       auto pmessage = __create_new < ::http::message >();
@@ -149,6 +150,8 @@ namespace http
       pmessage->m_ppropertyset = &set;
 
       pmessage->m_strUrl = scopedstrUrl;
+      
+      pmessage->m_functionProgress = functionProgress;
 
       get(pmessage);
 
@@ -157,14 +160,14 @@ namespace http
    }
 
 
-   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set)
+   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
    {
 
       set["get_response"] = ""; // create get_response field
 
       //auto estatus = _get(scopedstrUrl, set);
 
-      _get(scopedstrUrl, set);
+      _get(scopedstrUrl, set, functionProgress);
 
       //if (!estatus)
       //{
@@ -1725,10 +1728,10 @@ namespace http
    }
 
 
-   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set)
+   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
    {
 
-      bool bOk = http_get(session.m_psocket, scopedstrUrl, set);
+      bool bOk = http_get(session.m_psocket, scopedstrUrl, set, functionProgress);
 
       if (bOk)
       {
@@ -1764,7 +1767,7 @@ namespace http
 
 
 
-   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
+   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr)
    {
 
       //auto ptask = ::get_task();
@@ -2026,6 +2029,7 @@ namespace http
 
       //psocket->set_topic_text(strTopicText);
 
+      psocket->m_functionProgress = functionProgress;
 
       psocket->EnablePool(psockethandler->PoolEnabled());
 
@@ -2709,7 +2713,7 @@ namespace http
 
       ::pointer<::sockets::http_client_socket>psocket;
 
-      if (!http_get(psocket, pmessageMessage->m_strUrl, set))
+      if (!http_get(psocket, pmessageMessage->m_strUrl, set, pmessageMessage->m_functionProgress))
       {
 
          pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
@@ -3057,24 +3061,24 @@ namespace http
    //}
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set)
+   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
    {
 
-      ::memory_file file(memory);
+      auto pfile = create_memory_file(memory);
 
-      return put(scopedstrUrl, &file, set);
+      return put(scopedstrUrl, pfile, set, functionProgress);
 
    }
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
+   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
    {
 
       set["put"] = pfile;
 
       set["noclose"] = false;
 
-      return get(scopedstrUrl, set).is_true();
+      return get(scopedstrUrl, set, functionProgress).is_true();
 
    }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "put_socket.h"
 #include "apex/constant/idpool.h"
 #include "apex/filesystem/filesystem/file_context.h"
@@ -103,25 +103,44 @@ namespace sockets
 
       m_request.attr("http_version")   = "HTTP/1.1";
 
-      //inheader("host")                = GetUrlHost();
+      auto strHost = GetUrlHost();
+      inheader("host")                = strHost;
 
       if(m_content_type.has_char())
       {
          outheader("content-type")     = m_content_type;
       }
       inheader("content-length")      = (i64) m_content_length;
-      inheader("user_agent")          = MyUseragent();
-      inheader("connection")          = "close";
+      
+      auto strUserAgent=MyUseragent();
+      inheader("user-agent")          = strUserAgent;
+      //inheader("connection")          = "close";
       SendRequest();
-
       if(m_file.is_set())
       {
+         ::output_debug_string("Sending " + ::as_string(m_content_length)+ " bytes");
          memsize n;
-         char buf[32768];
-         m_file->seek_to_begin();
-         while ((n = m_file->read({ buf, 32768 })) > 0)
+         if(m_functionProgress)
          {
-            write({ buf, n });
+            m_functionProgress(0.0, 0, m_content_length);
+         }
+         ::memory memory;
+         memory.set_size(32_KiB);
+         m_file->seek_to_begin();
+         memsize total = 0;
+         while ((n = m_file->read(memory.data(), memory.size())) > 0)
+         {
+            write(memory.data(), n);
+            total+=n;
+            double dRate=(double)total/(double)m_content_length;
+            ::format_output_debug_string("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
+            if(m_functionProgress)
+            {
+               m_functionProgress(dRate, total, m_content_length);
+
+               
+            }
+            
          }
       }
       else

@@ -1,4 +1,4 @@
-// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -823,7 +823,7 @@ void acme_file::_copy(const ::file::path & pathDup, const ::file::path & pathSrc
    //if(!_memory_map_file_copy(pathDup, pathSrc))
    {
       
-      _read_write_file_copy(pathDup, pathSrc);
+      _read_write_file_copy(pathDup, pathSrc, 128_MiB);
       
    }
    
@@ -863,20 +863,18 @@ bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::f
       return false;
       
    }
+
+   return true;;;
    
 }
+
 
 void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
 {
 
+   auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
    
-   auto pfileIn = __create_new < stdio_file >();
-   
-   pfileIn->open(pathSource, ::file::e_open_read | ::file::e_open_binary);
-
-   auto pfileOut = __create_new < stdio_file >();
-   
-   pfileOut->open(pathTarget, ::file::e_open_write | ::file::e_open_binary
+   auto pfileOut = get_file(pathTarget, ::file::e_open_write | ::file::e_open_binary
                   | ::file::e_open_create | ::file::e_open_truncate);
 
 

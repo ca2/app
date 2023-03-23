@@ -170,6 +170,9 @@ namespace sockets
 //      };
 //      */
 //
+      ::function < void(double, filesize, filesize) > m_functionProgress;
+
+      
       /** "Default" constructor */
       base_socket();
 

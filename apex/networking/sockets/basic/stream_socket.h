@@ -15,7 +15,6 @@ namespace sockets
    {
    public:
 
-
       //bool m_bConnecting; ///< Flag indicating connection in progress
       //::second m_secsConnectionTimeout; ///< Connection timeout (seconds)
       bool m_bFlushBeforeClose; ///< Send all data before closing (default true)

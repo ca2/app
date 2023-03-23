@@ -1,4 +1,4 @@
-// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -863,8 +863,11 @@ bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::f
       return false;
       
    }
+
+   return true;;;
    
 }
+
 
 void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
 {

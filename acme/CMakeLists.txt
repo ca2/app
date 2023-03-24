@@ -161,6 +161,8 @@ list(APPEND library_source
         filesystem/file/text_stream.cpp
         filesystem/file/transfer.cpp
         filesystem/file/transfer.h
+        filesystem/file/translatable.cpp
+        filesystem/file/translatable.h
         filesystem/filesystem/acme_directory.cpp
         filesystem/filesystem/acme_directory.h
         filesystem/filesystem/acme_file.cpp

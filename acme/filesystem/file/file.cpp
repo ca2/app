@@ -627,6 +627,8 @@ namespace file
 
             if (b1 != '\n' && !is_end_of_file())
             {
+               
+               put_byte_back(b1);
 
                b = '\r';
 

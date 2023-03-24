@@ -2240,7 +2240,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
     list(APPEND library_source
             operating_system/posix/_.h
             operating_system/posix/_posix.h
-            operating_system/posix/base_file.cpp
+            operating_system/posix/file.cpp
             operating_system/posix/chldstatus.cpp
             operating_system/posix/desktop.cpp
             operating_system/posix/file_lock.cpp

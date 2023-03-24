@@ -26,6 +26,7 @@
 		9A46D3A626785B85000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A64C1D02660C7890074030F /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3AE26785D9A000B22D0 /* libapp_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B5278538E500B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A83DE0229CE125500C455B8 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9A83DE0129CE125500C455B8 /* en.lproj */; };
 		9A86606029668296000C82F0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86605F29668296000C82F0 /* application.cpp */; };
 		9A8C81712783F8A7000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81702783F8A7000C8587 /* _matter.zip */; };
 		9A8C81782783F8C5000C8587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81732783F8C5000C8587 /* MainMenu.xib */; };
@@ -43,7 +44,6 @@
 		9AC01D7C2748C510006BEBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D36526785A76000B22D0 /* libapp_app.dylib */; };
 		9AC01D7D2748C511006BEBCC /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D36526785A76000B22D0 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC01D822748C622006BEBCC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D38F26785B84000B22D0 /* libaura.dylib */; };
-		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 		9AF8CE58271B89B600BF80B7 /* libapex.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AF8CE5B271B8A4700BF80B7 /* libacme_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AF8CE59271B8A4700BF80B7 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AF8CE5E271B8A7500BF80B7 /* libacme_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AF8CE5C271B8A7500BF80B7 /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -237,6 +237,7 @@
 		9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
+		9A83DE0129CE125500C455B8 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		9A86605F29668296000C82F0 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8C81702783F8A7000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9A8C81742783F8C5000C8587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -348,6 +349,7 @@
 		9A8C81722783F8C5000C8587 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9A83DE0129CE125500C455B8 /* en.lproj */,
 				9A8C81732783F8C5000C8587 /* MainMenu.xib */,
 				9A8C81752783F8C5000C8587 /* Images.xcassets */,
 				9A8C81772783F8C5000C8587 /* Info.plist */,
@@ -625,7 +627,7 @@
 			files = (
 				9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */,
 				9A8C81712783F8A7000C8587 /* _matter.zip in Resources */,
-				9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */,
+				9A83DE0229CE125500C455B8 /* en.lproj in Resources */,
 				9A8C81782783F8C5000C8587 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,7 +896,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Message Box";
+				INFOPLIST_KEY_CFBundleDisplayName = "message box";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
@@ -913,7 +915,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Message Box";
+				INFOPLIST_KEY_CFBundleDisplayName = "message box";
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";

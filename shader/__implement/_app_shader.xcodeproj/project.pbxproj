@@ -31,6 +31,7 @@
 		9A4E96B12785387B00B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A7F3F48274D5D9000D914CC /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D3BA26785E7D000B22D0 /* libaqua.dylib */; };
 		9A7F3F49274D5DC400D914CC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A47712660E5B3004ED97A /* libaura.dylib */; };
+		9A83DE1B29CE150D00C455B8 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9A83DE1A29CE150D00C455B8 /* en.lproj */; };
 		9A842C55271BD6BD00C64F6F /* libapp_shader.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A86606829668701000C82F0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86606729668701000C82F0 /* application.cpp */; };
 		9A8AC31828B32142003CA265 /* libgpu_opengl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8AC31128B320F0003CA265 /* libgpu_opengl.dylib */; };
@@ -262,6 +263,7 @@
 		9A6A47712660E5B3004ED97A /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7ECB092651A5AB00D5BA45 /* app_shader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_shader.xcodeproj; path = ../app_shader.xcodeproj; sourceTree = "<group>"; };
+		9A83DE1A29CE150D00C455B8 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		9A86606729668701000C82F0 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8AC30A28B320F0003CA265 /* gpu_opengl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu_opengl.xcodeproj; path = ../../gpu_opengl/gpu_opengl.xcodeproj; sourceTree = "<group>"; };
 		9A8C4DF42783BEEC000C8587 /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 		9A8C5EC72783E821000C8587 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9A83DE1A29CE150D00C455B8 /* en.lproj */,
 				9A8C5EC82783E821000C8587 /* MainMenu.xib */,
 				9A8C5ECA2783E821000C8587 /* Images.xcassets */,
 				9A8C5ECC2783E821000C8587 /* Info.plist */,
@@ -675,6 +678,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A83DE1B29CE150D00C455B8 /* en.lproj in Resources */,
 				9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */,
 				9A8C816F2783F891000C8587 /* _matter.zip in Resources */,
 				9A8C5ECD2783E821000C8587 /* MainMenu.xib in Resources */,
@@ -903,7 +907,7 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Shader;
+				INFOPLIST_KEY_CFBundleDisplayName = shader;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;
@@ -923,7 +927,7 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Shader;
+				INFOPLIST_KEY_CFBundleDisplayName = shader;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;

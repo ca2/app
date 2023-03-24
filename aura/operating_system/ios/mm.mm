@@ -107,7 +107,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //char * ns_get_executable_path()
 //{
 //   
-//   return ns_string([[NSBundle mainBundle] executablePath]);
+//   return __strdup([[NSBundle mainBundle] executablePath]);
 //   
 //}
 

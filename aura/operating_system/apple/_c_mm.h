@@ -13,7 +13,7 @@
 //#include "acme/operating_system/apple/NSObject+DDExtensions.h"
 //#include "acme/operating_system/apple/DDInvocationGrabber.h"
 
-char * ns_string(NSString * str);
+char * __strdup(NSString * str);
 
 #endif
 //

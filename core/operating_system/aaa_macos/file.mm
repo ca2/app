@@ -27,7 +27,7 @@ char * ns_user_local_folder(NSSearchPathDirectory e)
       
    }
    
-   return ns_string([[pa objectAtIndex:0] path]);
+   return __strdup([[pa objectAtIndex:0] path]);
    
 }
 
@@ -111,7 +111,7 @@ char * ns_resolve_alias(const char * psz, bool bNoUI = false, bool bNoMount = fa
    
    NSString * strTarget = [urlTarget absoluteString];
    
-   return ns_string(strTarget);
+   return __strdup(strTarget);
 
 }
 

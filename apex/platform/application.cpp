@@ -10185,9 +10185,9 @@ namespace apex
 void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
 
-   auto papp = (::apex::application *)pApplication;
+   auto papp = (::acme::application *)pApplication;
 
-   papp->on_application_menu_action(pszCommand);
+   papp->m_papexapplication->on_application_menu_action(pszCommand);
 
 }
 

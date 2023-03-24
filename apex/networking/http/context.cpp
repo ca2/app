@@ -2423,10 +2423,22 @@ namespace http
       strStatus = psocket->outattr("http_status");
 
       set["http_status"] = strStatus;
+      
+      set["chunked"] = psocket->m_bChunked;
 
-      iContentLength = set["http_content_length"].as_i64();
+      bool bChunked = psocket->m_bChunked;
+      
+      set["chunk_size"] = psocket->m_chunk_size;
 
-      iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
+      memsize iChunkSize = psocket->m_chunk_size;
+      
+      set["http_content_length"] = psocket->m_content_length;
+
+      iContentLength = psocket->m_content_length;
+      
+      set["http_body_size_downloaded"] = psocket->m_body_size_downloaded;
+
+      iBodySizeDownloaded = psocket->m_body_size_downloaded;
 
       INFORMATION(LOG_HTTP_PREFIX
          << strUrl
@@ -2434,8 +2446,8 @@ namespace http
          << iStatusCode
          << " - "
          << strStatus
-         << " Content Length : "
-         << (memsize)iContentLength
+         << (bChunked ? " Chunk Size : " : " Content Length : ")
+         << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)
          << ", Body Download : "
          << iBodySizeDownloaded
          << ", Loop : "

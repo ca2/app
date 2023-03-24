@@ -1,9 +1,10 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "stdio_file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/system.h"
 
 
@@ -13,7 +14,6 @@ stdio_file::stdio_file()
    m_pfile = nullptr;
 
 }
-
 
 
 stdio_file::~stdio_file()
@@ -34,14 +34,6 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
    string str;
 
-//   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
-//   {
-//
-//      acmedirectory()->create(path.folder());
-//
-//   }
-
-   //if (eopen & ::file::e_open_no_truncate && acmefile()->exists(path))
    if (eopen & ::file::e_open_no_truncate)
    {
 
@@ -83,23 +75,12 @@ void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer
 
    open(path, str, iShare);
 
-   //throw ::exception(
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return ::success;
-
 }
 
 
 void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
 {
-
+   
    m_path = path;
 
 #ifdef WINDOWS
@@ -217,8 +198,6 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
 
 #endif
 
-   //return ftell(m_pfile);
-
 }
 
 
@@ -319,8 +298,6 @@ void stdio_file::put_byte_back(::byte byte)
 
    ::ungetc(byte, m_pfile);
 
-   //UNUSED_RETURN_VALUEreturn iCharRet;
-
 }
 
 
@@ -361,8 +338,6 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::size() const
 {
 
-   //return acmefile()->get_size(m_pfile);
-
    auto position = get_position();
 
    ((stdio_file *)this)->seek_to_end();
@@ -376,24 +351,10 @@ filesize stdio_file::size() const
 }
 
 
-//void stdio_file::assert_ok() const
-//{
-//
-//}
-//
-//
-//void stdio_file::dump(dump_context & dumpcontext) const
-//{
-//
-//   __UNREFERENCED_PARAMETER(dumpcontext);
-//
-//}
-
-
 ::file::path stdio_file::get_file_path() const
 {
 
-   return "";
+   return m_path;
 
 }
 
@@ -406,34 +367,12 @@ filesize stdio_file::size() const
 }
 
 
-
 string stdio_file::get_location() const
 {
 
    return get_file_path();
 
 }
-
-
-//CLASS_DECL_ACME file_pointer create_stdio_file(const ::file::path & path, const ::string & strAttributes, int iShare)
-//{
-//
-//   auto pfile = __new(stdio_file);
-//
-//   auto estatus = pfile->open(path, strAttributes, iShare);
-//
-//   if(!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return pfile;
-//
-//}
-
-
 
 
 bool stdio_file::is_opened() const
@@ -456,3 +395,6 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
    throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
 
 }
+
+
+

@@ -167,7 +167,7 @@ public:
 
 
    //static inline class ::time first();
-   static inline [[nodiscard]] class ::time now() { return e_now; }
+  [[nodiscard]] static inline class ::time now() { return e_now; }
 
    inline bool is_past() const { return now() > *this; }
 

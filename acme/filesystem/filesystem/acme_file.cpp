@@ -863,8 +863,11 @@ bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::f
       return false;
       
    }
+
+   return true;
    
 }
+
 
 void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
 {

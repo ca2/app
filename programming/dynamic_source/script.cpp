@@ -482,7 +482,7 @@ namespace dynamic_source
       try
       {
 
-         pinstance = ::move_transfer(m_lpfnCreateInstance());
+         pinstance = ::pointer_transfer(m_lpfnCreateInstance());
 
       }
       catch (...)

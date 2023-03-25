@@ -297,7 +297,7 @@ namespace html
 
       }
 
-      m_pelement = ::move_transfer(memory_new ::html::element);
+      m_pelement = ::pointer_transfer(memory_new ::html::element);
 
       m_pelement->initialize_html_elemental(this);
 

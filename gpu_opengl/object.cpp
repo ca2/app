@@ -13,6 +13,46 @@
 //GLuint loadDDS(const char * imagepath);
 
 
+const char * opengl_error_string(int iError)
+{
+   
+   switch(iError)
+   {
+      case GL_NO_ERROR:
+         return "GL_NO_ERROR";
+      case GL_INVALID_ENUM:
+         return "GL_INVALID_ENUM";
+
+
+      case  GL_INVALID_VALUE:
+         return "GL_INVALID_VALUE";
+
+      case GL_INVALID_OPERATION:
+   
+         return "GL_INVALID_OPERATION";
+
+      case GL_INVALID_FRAMEBUFFER_OPERATION:
+         return "GL_INVALID_FRAMEBUFFER_OPERATION";
+
+      case  GL_OUT_OF_MEMORY:
+  
+         return "GL_OUT_OF_MEMORY";
+
+      case GL_STACK_UNDERFLOW:
+     
+         return "GL_STACK_UNDERFLOW";
+
+      case GL_STACK_OVERFLOW:
+         
+         return "GL_STACK_OVERFLOW";
+      default:
+         return "Unknown GL Error";
+         
+         
+   }
+   
+}
+
 namespace opengl
 {
 
@@ -83,24 +123,30 @@ namespace opengl
       while ((iErrorN = glGetError()))
       {
        
-         pszErrorN = (const char *)gluErrorString(iErrorN);
+         pszErrorN = (const char *)opengl_error_string(iErrorN);
 
       }
 
-
+#ifdef __APPLE__
+      glGenVertexArraysAPPLE(1, (GLuint *) &m_vao_vertices); // vertext array object
+#else
       glGenVertexArrays(1, (GLuint *) &m_vao_vertices); // vertext array object
+#endif
       int iError2 = glGetError();
-      auto pszError2 = (const char *)gluErrorString(iError2);
+      auto pszError2 = (const char *)opengl_error_string(iError2);
       if(pszError2)
       {
          
          INFORMATION("error " << pszError2);
          
       }
-
-      glBindVertexArray(m_vao_vertices); 
+#ifdef __APPLE__
+      glBindVertexArrayAPPLE(m_vao_vertices);
+#else
+      glBindVertexArray(m_vao_vertices);
+#endif
       int iErrorA = glGetError();
-      auto pszErrorA = (const char *)gluErrorString(iErrorA);
+      auto pszErrorA = (const char *)opengl_error_string(iErrorA);
       if(pszErrorA)
       {
          
@@ -110,7 +156,7 @@ namespace opengl
 
       glGenBuffers(1, (GLuint *)&m_vbo_vertices); // vertex buffer object
       int iError1 = glGetError();
-      auto pszError1 = (const char *) gluErrorString(iError1);
+      auto pszError1 = (const char *) opengl_error_string(iError1);
       if(pszError1)
       {
          
@@ -121,7 +167,7 @@ namespace opengl
 
       glBindBuffer(GL_ARRAY_BUFFER, m_vbo_vertices);
       int iError5 = glGetError();
-      auto pszError5 = (const char *)gluErrorString(iError5);
+      auto pszError5 = (const char *)opengl_error_string(iError5);
       if(pszError5)
       {
          
@@ -134,7 +180,7 @@ namespace opengl
 
       glBufferData(GL_ARRAY_BUFFER, byteCount1, data1, GL_STATIC_DRAW);
       int iError4 = glGetError();
-      auto pszError4 = (const char *)gluErrorString(iError4);
+      auto pszError4 = (const char *)opengl_error_string(iError4);
       if(pszError4)
       {
          

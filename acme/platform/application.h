@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSørensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSørensen!!
@@ -104,6 +104,15 @@ namespace acme
       virtual ::file::path get_module_path();
       virtual ::file::path get_module_folder();
 
+      
+      virtual ::string app_name();
+
+      //virtual ::string app_name();
+
+      virtual ::string app_root();
+
+
+
 //
 //#ifdef WINDOWS
 //
@@ -142,6 +151,9 @@ namespace acme
       virtual ::string get_visual_studio_build();
 
 
+      virtual ::string get_application_name();
+      
+      
    };
 
 

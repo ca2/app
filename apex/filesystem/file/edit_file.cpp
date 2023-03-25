@@ -530,7 +530,7 @@ namespace file
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return (memsize) (m_position = m_pfile->read(pdata, nCount));
+         return (memsize)(m_position = m_pfile->read({ pdata, nCount }));
 
       }
 
@@ -648,7 +648,7 @@ namespace file
 
             m_pfile->set_position(m_positionIteration);
 
-            bRead = m_pfile->read(&b, 1) == 1;
+            bRead = m_pfile->read(b) == 1;
 
          }
 
@@ -924,7 +924,7 @@ namespace file
 
       pfile->seek_to_begin();
 
-      m_pfile->from(pfile);
+      m_pfile->write(pfile);
 
       m_pfile->flush();
 
@@ -945,7 +945,7 @@ namespace file
       while((uRead = read(buf, sizeof(buf))) > 0)
       {
          
-         pfile->write(buf, uRead);
+         pfile->write({ buf, uRead });
          
       }
       

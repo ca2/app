@@ -368,7 +368,7 @@ namespace fs
    }
 
 
-   file_pointer set::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_pointer set::get_file(const ::file::path & path, ::file::e_open eopen)
    {
 
       ::fs::data * pdata = path_data(path);

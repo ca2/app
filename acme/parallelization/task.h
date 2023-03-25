@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //#include "acme/operating_system/error_code.h"
@@ -303,7 +303,11 @@ CLASS_DECL_ACME string task_get_name(htask_t htask);
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 
-CLASS_DECL_ACME::task * get_task();
+CLASS_DECL_ACME ::task * _get_task();
+
+
+CLASS_DECL_ACME ::task * get_task();
+
 
 //CLASS_DECL_ACME::task* get_task();
 CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

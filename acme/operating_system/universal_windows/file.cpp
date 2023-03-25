@@ -2061,37 +2061,37 @@ filesize hfile_get_size(HANDLE h)
 //
 
 
-bool get_file_time_set(const ::file::path & path, file_time& creation, file_time& modified)
-{
-
-   HANDLE hfile = hfile_create(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   bool bOk = false;
-
-   try
-   {
-
-      zero(creation);
-      zero(modified);
-
-      if (::GetFileTime(hfile, (FILETIME*)&creation, nullptr, (FILETIME*)&modified))
-      {
-
-         bOk = true;
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-   ::CloseHandle(hfile);
-
-   return bOk;
-
-}
+//bool get_file_time_set(const ::file::path & path, file_time& creation, file_time& modified)
+//{
+//
+//   HANDLE hfile = hfile_create(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+//
+//   bool bOk = false;
+//
+//   try
+//   {
+//
+//      zero(creation);
+//      zero(modified);
+//
+//      if (::GetFileTime(hfile, (FILETIME*)&creation, nullptr, (FILETIME*)&modified))
+//      {
+//
+//         bOk = true;
+//
+//      }
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   ::CloseHandle(hfile);
+//
+//   return bOk;
+//
+//}
 
 
 

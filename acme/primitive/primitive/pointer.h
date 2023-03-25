@@ -79,7 +79,7 @@ public:
 
 
    template < typename T2 >
-   inline pointer(enum_move_transfer, T2* p);
+   inline pointer(enum_pointer_transfer, T2* p);
 
    template < class T2 >
    inline pointer(const T2 * p)
@@ -142,7 +142,7 @@ public:
    //template < typename T2 >
    //inline pointer(const T2 * p);
 
-   //inline pointer(const void * p) : pointer(e_move_transfer, (T *)p) {}
+   //inline pointer(const void * p) : pointer(e_pointer_transfer, (T *)p) {}
 
    //template < class T2 >
    //inline pointer(const ::pointer<T2> t2)
@@ -579,10 +579,10 @@ template < typename T >
 inline bool not_found(const pointer < T > & p) { return p.is_null(); }
 
 
-template < typename T >
-inline pointer < T > __move_transfer(T* p) { return { e_move_transfer, p }; }
-
-
+//template < typename T >
+//inline pointer < T > __move_transfer(T* p) { return { e_pointertransfer, p }; }
+//
+//
 template < typename TYPE >
 inline void swap(::pointer<TYPE>& a, ::pointer<TYPE> & b)
 {

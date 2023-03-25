@@ -82,12 +82,12 @@ public:
 
    virtual bool is_remote_session();
 
-   virtual void set_file_status(const ::string & strFileName, const ::file::file_status& status);
+   virtual void set_file_status(const ::file::path & path, const ::file::file_status& status);
 
-   virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
-   virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
-   virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
-   virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, string * pstrIcon = nullptr, int * piIcon = nullptr);
+   //virtual void edit_link_target(const ::file::path & path, const ::file::path & pathLink);
+   //virtual void edit_link_folder(const ::file::path & path, const ::file::path & pathLink);
+   //virtual void edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink);
+   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path, ::file::e_link elink = ::file::e_link_all);
    virtual bool has_alias_in_path(const ::scoped_string & scopedstr, bool bNoUI = false, bool bNoMount = false);
    virtual bool is_alias(const ::file::path & path);
 

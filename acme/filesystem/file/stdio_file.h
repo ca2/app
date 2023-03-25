@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "text_file.h"
@@ -23,7 +23,6 @@ public:
 
 
    FILE *                        m_pfile;
-//   string                        m_strFileName;
    e_flag                        m_eflag;
 
 
@@ -32,16 +31,12 @@ public:
    ~stdio_file() override;
 
 
-   //// void assert_ok() const override;
-   //// void dump(dump_context & dumpcontext) const override;
-
-
    filesize get_position() const override;
-   bool get_status(::file::file_status& rStatus) const override;
+   ::file::file_status get_status() const override;
    ::file::path get_file_path() const override;
 
 
-   void open(const ::file::path & path, const ::file::e_open & eopen) override;
+   void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
    virtual void open(const ::file::path & path, const ::string & strAttributes, int iShare);
 
    
@@ -57,19 +52,22 @@ public:
    void close() override;
 
 
-   memsize read(void *pdata,memsize nCount) override;
+   using ::file::text_file::read;
+   memsize read(void * p, ::memsize s) override;
+
 
    int get_u8() override;
    int peek_byte() override;
    void put_byte_back(::byte b) override;
 
    using ::file::file::write;
-   void write(const void * pdata,memsize nCount) override;
+   void write(const void * p, ::memsize s) override;
 
    string get_location() const override;
 
    bool is_opened() const override;
 
+   [[noreturn]] void throw_exception(const ::scoped_string & scopedstr);
 
 };
 

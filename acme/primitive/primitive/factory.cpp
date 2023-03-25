@@ -970,7 +970,7 @@ namespace factory
 
       //}
 
-      //auto pparticle = ::move_transfer(p);
+      //auto pparticle = ::pointer_transfer(p);
 
       //if (!pparticle)
       //{

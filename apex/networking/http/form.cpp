@@ -265,13 +265,13 @@ namespace http
                      if(pfileUpload.ok())
                      {
 
-                        while (infil -> read(&ca,1))
+                        while (infil -> read(&ca))
                         {
 
                            if (out)
                            {
 
-                              pfileUpload->write(&tempcmp[tc], 1); // %! ??? should we write value of 'ca' here?
+                              pfileUpload->write(tempcmp[tc]); // %! ??? should we write value of 'ca' here?
 
                            }
 

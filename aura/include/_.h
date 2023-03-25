@@ -922,7 +922,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////enum enum_move_transfer
 ////{
 ////
-////   e_move_transfer
+////   e_pointer_transfer
 ////
 ////};
 ////

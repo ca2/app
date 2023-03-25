@@ -29,11 +29,13 @@ namespace file
 
 
       filesize get_position() const override;
-      bool get_status(file_status& rStatus) const override;
+      file_status get_status() const override;
       ::file::path get_file_path() const override;
       void set_file_path(const ::file::path & path) override;
 
-      void open(const ::file::path & path, const ::file::e_open & eopen) override;
+      
+      void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception) override;
+
 
       void translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;
@@ -49,9 +51,13 @@ namespace file
       void close() override;
 
 
-      memsize read(void *pdata, memsize nCount) override;
+      using ::file::file::read;
+      memsize read(void * p, ::memsize s) override;
 
-      void write(const void * pdata, memsize nCount) override;
+
+      using ::file::file::write;
+      void write(const void * p, ::memsize s) override;
+
 
       ::string get_location() const override;
 

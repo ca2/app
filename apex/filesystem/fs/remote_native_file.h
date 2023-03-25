@@ -23,12 +23,13 @@ namespace fs
       remote_native_file(::payload payloadFile);
       ~remote_native_file() override;
 
+
       using ::sockets::http_batch_buffer::read;
-      memsize read(void *pdata, memsize nCount) override;
+      memsize read(void * p, ::memsize s) override;
 
       
       using ::sockets::http_batch_buffer::write;
-      void write(const void * pdata, memsize nCount) override;
+      void write(const void * p, ::memsize s) override;
 
 
       void seek(filesize lOff, ::enum_seek eseek);

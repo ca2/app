@@ -72,32 +72,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
-    <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <PreprocessorDefinitions>_APEX_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
@@ -106,7 +93,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -127,13 +113,11 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <PreprocessorDefinitions>_APEX_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link />
     <Link>
@@ -146,7 +130,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <PreprocessorDefinitions>_APEX_LIBRARY;CUBE</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
@@ -156,7 +139,6 @@
       <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ssl;crypto;idn;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -173,11 +155,9 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <PreprocessorDefinitions>_APEX_LIBRARY;CUBE</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>ssl;crypto;idn;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
@@ -204,6 +184,7 @@
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
     <ClCompile Include="filesystem\file\action.cpp" />
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />

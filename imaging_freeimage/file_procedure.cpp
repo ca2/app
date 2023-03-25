@@ -14,7 +14,7 @@ unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, 
 
    ::u32 dwTotal = count * size;
 
-   dwRead = pfile->read(buffer, dwTotal);
+   dwRead = pfile->read({ buffer, dwTotal });
 
    if (dwRead == dwTotal)
    {
@@ -40,7 +40,7 @@ unsigned DLL_CALLCONV __WriteProc2(void * buffer, unsigned size, unsigned count,
    try
    {
 
-      pfile->write(buffer, count * size);
+      pfile->write({ buffer, count * size });
 
    }
    catch (...)
@@ -121,7 +121,7 @@ u32 _stdcall  ___Ex1File__ReadProc(void * buffer, u32 size, u32 count, fi_handle
 
    file_pointer  pfile = (::file::file *) handle;
 
-   if ((dwRead = pfile->read(buffer, count * size)))
+   if ((dwRead = pfile->read({ buffer, count * size })))
    {
 
       return count;

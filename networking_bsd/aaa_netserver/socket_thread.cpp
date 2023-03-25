@@ -93,13 +93,13 @@ namespace netserver
          try
          {
 
-            m_psockethandler = ::move_transfer(new_socket_handler());
+            m_psockethandler = ::pointer_transfer(new_socket_handler());
 
             m_psockethandler->initialize(this);
 
             m_psockethandler->EnablePool();
 
-            m_plistensocket = ::move_transfer(new_listen_socket());
+            m_plistensocket = ::pointer_transfer(new_listen_socket());
 
             m_plistensocket->initialize(this);
 

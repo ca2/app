@@ -16,7 +16,7 @@ public:
 
       //aura_ref();
 
-      acmesystem() = ::move_transfer(platform_create_system(nullptr));
+      acmesystem() = ::pointer_transfer(platform_create_system(nullptr));
 
       //      acmesystem() = __new(::aura::system());
 

@@ -1,9 +1,9 @@
-﻿// Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
 #include "streamable.h"
 #include "file.h"
 #include "acme/primitive/primitive/memory.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/interface_only.h"
 
 
 namespace file
@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   memsize readable::read(void *pdata, memsize nCount)
+   memsize readable::read(void * p, ::memsize s)
    {
 
       throw error_interface_only;
@@ -34,13 +34,30 @@ namespace file
    }
 
 
-   void writable::write(const void *pdata, memsize nCount)
+   ::file::file * readable::get_file()
    {
 
-      throw error_interface_only;
+      return nullptr;
 
    }
 
+
+   void writable::write(const void * p, ::memsize s)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   ::memsize writable::defer_write(const void * p, ::memsize s)
+   {
+
+      throw ::interface_only();
+      
+      return 0;
+
+   }
 
    void streamable::flush()
    {
@@ -88,18 +105,16 @@ namespace file
 CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file::file *pfileIn, memsize uiBufSize)
 {
 
-   if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
+   if (pfileIn->full_data().is_set())
    {
 
-      pwritable->write((u8*)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+      pwritable->write(pfileIn->data());
 
       return;
 
    }
 
    memsize uRead;
-
-   memsize uiSize = 0;
 
    uiBufSize = maximum(32 * 1024, uiBufSize);
 
@@ -120,7 +135,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
       while (true)
       {
 
-         uRead = pfileIn->read(buf.data(), buf.size());
+         uRead = pfileIn->read(buf);
 
          if (uRead <= 0)
          {
@@ -129,9 +144,9 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          }
 
-         pwritable->write(buf.data(), uRead);
+         pwritable->write(buf(0, uRead));
 
-         uiSize += uRead;
+         //uiSize += uRead;
 
       }
 

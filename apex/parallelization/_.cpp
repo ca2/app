@@ -856,7 +856,7 @@ namespace apex
    //   try
    //   {
    //
-   //      ::pointer<matter>pparticle(e_move_transfer, pobjectTask);
+   //      ::pointer<matter>pparticle(e_pointer_transfer, pobjectTask);
    //
    //      try
    //      {

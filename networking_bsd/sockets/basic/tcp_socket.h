@@ -43,38 +43,38 @@ namespace sockets_bsd
 {
 
 
-   struct OUTPUT {
-      OUTPUT() : _b(0), _t(0), _q(0) {}
-      OUTPUT(const char *buf, memsize len) : _b(0), _t(len), _q(len) {
-         ::memcpy_dup(_buf, buf, len);
-      }
-      memsize Space() {
-         return TCP_OUTPUT_CAPACITY - _t;
-      }
-      void add(const char *buf, memsize len) {
-         ::memcpy_dup(_buf + _t, buf, len);
-         _t += len;
-         _q += len;
-      }
-      memsize erase(memsize len) {
-         _b += len;
-         _q -= len;
-         return _q;
-      }
-      const char *Buf() {
-         return _buf + _b;
-      }
-      memsize Len() {
-         return _q;
-      }
-      memsize _b;
-      memsize _t;
-      memsize _q;
-      char _buf[TCP_OUTPUT_CAPACITY];
-   };
+   //struct OUTPUT {
+   //   OUTPUT() : _b(0), _t(0), _q(0) {}
+   //   OUTPUT(const char *buf, memsize len) : _b(0), _t(len), _q(len) {
+   //      ::memcpy_dup(_buf, buf, len);
+   //   }
+   //   memsize Space() {
+   //      return TCP_OUTPUT_CAPACITY - _t;
+   //   }
+   //   void add(const char *buf, memsize len) {
+   //      ::memcpy_dup(_buf + _t, buf, len);
+   //      _t += len;
+   //      _q += len;
+   //   }
+   //   memsize erase(memsize len) {
+   //      _b += len;
+   //      _q -= len;
+   //      return _q;
+   //   }
+   //   const char *Buf() {
+   //      return _buf + _b;
+   //   }
+   //   memsize Len() {
+   //      return _q;
+   //   }
+   //   memsize _b;
+   //   memsize _t;
+   //   memsize _q;
+   //   char _buf[TCP_OUTPUT_CAPACITY];
+   //};
 
 
-   typedef ::list < OUTPUT *> output_list;
+   //typedef ::list < OUTPUT *> output_list;
 
 
    /** socket implementation for TCP.
@@ -188,12 +188,13 @@ namespace sockets_bsd
       \lparam f Dummy flags -- not used */
       //using ::file::file::write;
       //using ::streaobject::write;
-      virtual void write(const void *buf, memsize c) override;
+      using ::sockets::tcp_socket::write;
+      void write(const void * p, ::memsize s) override;
 
       /** This callback is executed after a successful read from the socket.
       \lparam buf Pointer to the data
       \lparam len Length of the data */
-      virtual void OnRawData(char *buf, memsize len) override;
+      void OnRawData(char *buf, memsize len) override;
 
       /** Called when output buffer has been sent.
       Note: Will only be called IF the output buffer has been used.

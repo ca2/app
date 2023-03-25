@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
 #include "session.h"
@@ -2200,73 +2200,15 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-      string strAppName;
+#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS) || defined(LINUX)
 
-      if (m_strAppName.has_char())
-      {
-
-         strAppName = m_strAppName;
-
-      }
-      else
-      {
-
-         string strAppIdUnderscore = m_strAppId;
-
-         strAppIdUnderscore.find_replace("/", "_");
-
-         strAppIdUnderscore.find_replace("-", "_");
-
-         strAppName = strAppIdUnderscore;
-
-      }
-
-      string strRoot = m_strAppId.left(m_strAppId.find('/'));
-
-      //auto pathCreatedShortcut = acmedirectory()->roaming() / m_strAppId / "created_shortcut.txt";
-
-      ::file::path pathShortcut;
-
-#ifdef WINDOWS_DESKTOP
-
-      pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+      acmenode()->m_papexnode->on_create_app_shortcut(this);
 
 #else
 
-      ::string strDesktopFileName;
-
-      strDesktopFileName = m_strAppId;
-
-      strDesktopFileName.find_replace("/", ".");
-
-      pathShortcut = acmedirectory()->home() / ".local/share/applications"/ (strDesktopFileName +".desktop");
+      throw todo();
 
 #endif
-
-      auto path = acmefile()->module();
-
-      ::file::path pathTarget;
-      ::file::path pathIcon;
-      int iIcon = -1;
-
-      bool bEnoughCondition1 = !acmefile()->exists(pathShortcut);
-      bool bEnoughCondition2 = !acmenode()->m_papexnode->shell_link_target(pathTarget, pathShortcut);
-      bool bEnoughCondition3 = !acmepath()->final_is_same(pathTarget, path);
-      bool bEnoughCondition4 = !acmenode()->m_papexnode->shell_link_icon(pathIcon, iIcon, path);
-      bool bEnoughCondition5 = pathIcon.trimmed().is_empty() || !acmefile()->exists(pathIcon);
-
-      //if (!acmefile()->exists(pathCreatedShortcut)
-      if (bEnoughCondition1
-         || bEnoughCondition2
-         || bEnoughCondition3
-         || bEnoughCondition4
-         || bEnoughCondition5
-         )
-      {
-
-         create_app_shortcut();
-
-      }
 
    }
 
@@ -4046,7 +3988,7 @@ namespace apex
    void application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
    {
 
-      bool bContinue = false;
+      //bool bContinue = false;
       auto psystem = acmesystem()->m_papexsystem;
       try
       {
@@ -4072,12 +4014,12 @@ namespace apex
 
                   bHandled = ptask->m_tristateHandled.is_true();
 
-                  if (bHandled)
-                  {
+                  //if (bHandled)
+                  //{
 
-                     bContinue = ptask->m_tristateContinue.is_true();
+                     //bContinue = ptask->m_tristateContinue.is_true();
 
-                  }
+                  //}
 
                }
 
@@ -8230,14 +8172,14 @@ namespace apex
 
    void application::_001OnFileNew()
    {
-      string strId = m_strId;
-      char chFirst = '\0';
-      if (strId.length() > 0)
-      {
-         chFirst = strId[0];
-      }
-      /*      if (m_pdocmanager != nullptr)
-      document_manager()->_001OnFileNew();*/
+      //string strId = m_strId;
+      //char chFirst = '\0';
+      //if (strId.length() > 0)
+      //{
+      //   chFirst = strId[0];
+      //}
+      ///*      if (m_pdocmanager != nullptr)
+      //document_manager()->_001OnFileNew();*/
    }
 
    void application::on_file_open()
@@ -10243,9 +10185,9 @@ namespace apex
 void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
 
-   auto papp = (::apex::application *)pApplication;
+   auto papp = (::acme::application *)pApplication;
 
-   papp->on_application_menu_action(pszCommand);
+   papp->m_papexapplication->on_application_menu_action(pszCommand);
 
 }
 

@@ -26,7 +26,7 @@ namespace linux
       virtual void init_context() override;
 
 
-      virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+      virtual ::file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen) override;
 
 
       virtual bool is_link(string strPath) override;

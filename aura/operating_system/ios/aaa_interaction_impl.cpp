@@ -432,7 +432,7 @@ namespace ios
 
       //m_puserinteraction = pinteraction;
 
-      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || is_string_ok(pusersystem->m_createstruct.lpszName));
 
       if(m_puserinteraction != nullptr)
       {

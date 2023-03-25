@@ -121,7 +121,7 @@ namespace universal_windows
    }
 
 
-   file_pointer file_context::get_file(const ::payload& payloadFile, const ::file::e_open & eopen)
+   file_pointer file_context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    {
 
       file_pointer spfile;

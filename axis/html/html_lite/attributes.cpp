@@ -50,7 +50,7 @@
 strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
 
 {
-   ASSERT(__is_valid_string(pszString));
+   ASSERT(is_string_ok(pszString));
 
 
    const char *   pszBegin = pszString;
@@ -303,9 +303,9 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, co
 
 {
 
-   ASSERT(__is_valid_string(lpszName));
+   ASSERT(is_string_ok(lpszName));
 
-   ASSERT(__is_valid_string(pszValue));
+   ASSERT(is_string_ok(pszValue));
 
 
    LiteHTMLElemAttr   *pItem = memory_new LiteHTMLElemAttr(lpszName, pszValue);
@@ -335,7 +335,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 
 {
 
-   ASSERT(__is_valid_string(pszValue));
+   ASSERT(is_string_ok(pszValue));
 
 
    m_strValue = pszValue;

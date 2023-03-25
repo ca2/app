@@ -12198,8 +12198,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          if (::is_set(puserinteractionParent))
          {
+            
+            auto pthreadParentUserInteraction =  puserinteractionParent->get_wnd()->m_pthreadUserInteraction;
 
-            if (m_pthreadUserInteraction != puserinteractionParent->get_wnd()->m_pthreadUserInteraction)
+            if (m_pthreadUserInteraction != pthreadParentUserInteraction)
             {
 
                if (m_pthreadUserInteraction)

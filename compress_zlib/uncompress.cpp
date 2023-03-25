@@ -36,7 +36,7 @@ namespace compress_zlib
 
       u32 uRead;
 
-      uRead = (u32)(pfileGzFileCompressed->read(memIn.data(), memIn.size()));
+      uRead = (u32)(pfileGzFileCompressed->read(memIn));
 
       z_stream zstream;
 
@@ -73,7 +73,7 @@ namespace compress_zlib
             // Inflate another chunk.
             status = inflate(&zstream, Z_NO_FLUSH);
 
-            pfileUncompressed->write(memory.data(), memory.size() - zstream.avail_out);
+            pfileUncompressed->write(memory(0, memory.size() - zstream.avail_out));
 
             if (status == Z_STREAM_END)
             {
@@ -90,7 +90,7 @@ namespace compress_zlib
 
          } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
-         uRead = (u32)(pfileGzFileCompressed->read(memIn.data(), memIn.size()));
+         uRead = (u32)(pfileGzFileCompressed->read(memIn));
 
          zstream.next_in = (u8*)memIn.data();
 

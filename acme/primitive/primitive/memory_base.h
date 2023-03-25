@@ -188,9 +188,12 @@ public:
    virtual memsize calc_allocation(memsize size);
 
 
-   virtual void transfer_to(::file::file * pfileOut, memsize uiBufferSize = 1024 * 1024) const;
-   virtual void transfer_from(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
-   virtual void transfer_from_begin(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
+   //virtual void transfer_to(::file::file * pfileOut, memsize uiBufferSize = 1024 * 1024) const;
+   virtual void assign_file(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
+   virtual void assign_entire_file(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
+
+   virtual void append_file(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
+   virtual void append_entire_file(::file::file * pfileIn, memsize uiBufferSize = 1024 * 1024);
 
 
    void allocate_add_up(memsize iAddUp);

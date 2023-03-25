@@ -1,6 +1,2 @@
 app/main
-<<<<<<< HEAD
 app/integration
-=======
-app-simple/drawing
->>>>>>> origin/main

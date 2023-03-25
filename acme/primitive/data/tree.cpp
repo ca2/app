@@ -453,7 +453,7 @@ namespace data
       case e_relative_first_child:
       {
 
-         bOk=pitemRelative->insert(erelativeNewItem, pitemNew);
+         bOk = pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
@@ -506,20 +506,22 @@ namespace data
          if (pitemRelative->get_next() != nullptr)
          {
 
-            insert_item(pitemNew, ::data::e_relative_first_child, pitemRelative);
+            bOk = insert_item(pitemNew, ::data::e_relative_first_child, pitemRelative);
 
          }
          else
          {
 
-            insert_item(pitemNew, ::data::e_relative_last_sibling, pitemRelative);
+            bOk = insert_item(pitemNew, ::data::e_relative_last_sibling, pitemRelative);
 
          }
 
       }
       break;
       default:
+
          throw ::exception(error_not_supported);
+
       }
 
       pitemNew->m_ptree = this;
@@ -531,7 +533,7 @@ namespace data
 
       }
 
-      return true;
+      return bOk;
 
    }
 

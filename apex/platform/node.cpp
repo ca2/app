@@ -4,8 +4,12 @@
 #include "framework.h"
 #include "node.h"
 #include "acme/constant/id.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/exception/interface_only.h"
+#include "apex/filesystem/filesystem/link.h"
 #include "apex/platform/application.h"
+#include "apex/platform/os_context.h"
 #include "apex/platform/system.h"
 
 
@@ -411,6 +415,74 @@ namespace apex
    }
 
 
+   void node::on_create_app_shortcut(::acme::application * papplication)
+   {
+
+   }
+
+
+   void node::defer_create_app_shortcut(::acme::application* papplication)
+   {
+
+      auto pathShortcut = app_shortcut_path(papplication);
+
+      auto path = acmefile()->module();
+
+      ::file::path pathTarget;
+
+      ::file::path pathIcon;
+
+      int iIcon = -1;
+
+      auto plink = os_context()->resolve_link(pathShortcut);
+
+      // Enough condition to create shortcut
+      bool bEnoughCondition1 = !plink;
+      bool bEnoughCondition2 = !(plink->m_elink & ::file::e_link_target);
+      bool bEnoughCondition3 = !acmepath()->final_is_same(plink->m_pathTarget, path);
+      bool bEnoughCondition4 = !(plink->m_elink & ::file::e_link_icon);
+      bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon);
+
+      //if (!acmefile()->exists(pathCreatedShortcut)
+      if (bEnoughCondition1
+         || bEnoughCondition2
+         || bEnoughCondition3
+         || bEnoughCondition4
+         || bEnoughCondition5
+         )
+      {
+
+         create_app_shortcut(papplication);
+
+      }
+
+   }
+
+
+   ::file::path node::app_shortcut_path(::acme::application* papplication)
+   {
+
+      //::file::path pathShortcut;
+
+      ////#ifdef WINDOWS_DESKTOP
+
+      //pathShortcut = acmedirectory()->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+
+      ////#else
+      ////
+      ////      ::string strDesktopFileName;
+      ////
+      ////      strDesktopFileName = m_strAppId;
+      ////
+      ////      strDesktopFileName.find_replace("/", ".");
+      ////
+      ////      pathShortcut = acmedirectory()->home() / ".local/share/applications" / (strDesktopFileName + ".desktop");
+      ////
+      ////#endif
+
+      return {};
+
+   }
 
 
 } // namespace apex

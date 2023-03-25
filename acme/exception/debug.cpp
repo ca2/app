@@ -78,4 +78,15 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 
 
+::i32 g_iDebuggingConsumer = 0;
+
+
+CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i)
+{
+
+   g_iDebuggingConsumer += i;
+
+}
+
+
 

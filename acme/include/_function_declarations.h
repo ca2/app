@@ -184,13 +184,17 @@ namespace acme
 
 inline ::u64 make64_from32(::u32 l, ::u32 h);
 
-inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite = true);
+
+inline bool is_memory_segment_ok(void * p, memsize s);
 
 
-inline bool __is_valid_string(const ::wide_character * pwidesz, memsize nMaxLength = INT_MAX);
+inline bool is_memory_segment_read_ok(const void* p, memsize s);
 
 
-inline bool __is_valid_string(const ::ansi_character * pansisz, memsize nMaxLength = UINT_MAX);
+inline bool is_string_ok(::wide_character * p, ::strsize s);
+
+
+inline bool is_string_ok(::ansi_character * p, ::strsize s);
 
 
 inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, strsize srclen);

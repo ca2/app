@@ -103,7 +103,7 @@ namespace linux
       auto eopen = openParam;
 
 
-      ASSERT(__is_valid_string(pszFileName));
+      ASSERT(is_string_ok(pszFileName));
 
 
       // file objects are always binary and CreateFile does not need flag
@@ -219,7 +219,7 @@ namespace linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount));
+      ASSERT(is_memory_segment_ok(pdata, nCount));
 
 
       memsize pos = 0;
@@ -263,7 +263,7 @@ namespace linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount, false));
+      ASSERT(is_memory_segment_ok(pdata, nCount, false));
 
 
       memsize pos = 0;

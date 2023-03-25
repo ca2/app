@@ -109,6 +109,8 @@ list(APPEND apex_source
         filesystem/filesystem/file_context.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h
+        filesystem/filesystem/link.cpp
+        filesystem/filesystem/link.h
         #filesystem/filesystem/path.h
         filesystem/fs/_.h
         #filesystem/fs/_fs.h

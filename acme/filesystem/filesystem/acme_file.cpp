@@ -8,6 +8,7 @@
 #include "listing.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/io.h"
+#include "acme/filesystem/file/memory_map.h"
 #include "acme/filesystem/file/stdio_file.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
@@ -132,8 +133,7 @@ void acme_file::overwrite_if_different(const ::file::path & pathTarget, const ::
 }
 
 
-
-file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_open & eopen)
+file_pointer acme_file::open(const ::file::path & pathParam, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception)
 {
 
    auto pfile = m_pcontext->__create < ::file::file >();
@@ -229,7 +229,7 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
    while (iReadAtMostByteCount - iPos > 0)
    {
 
-      auto dwRead = pfile->read(p + iPos, (size_t)iReadAtMostByteCount - iPos);
+      auto dwRead = pfile->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
 
       if (dwRead <= 0)
       {
@@ -366,7 +366,7 @@ memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s
    while (iReadAtMostByteCount - iPos > 0)
    {
 
-      auto dwRead = file.read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+      auto dwRead = file.read({ psz + iPos, (size_t)iReadAtMostByteCount - iPos });
 
       if (dwRead <= 0)
       {
@@ -446,7 +446,7 @@ void acme_file::as_memory(memory_base & memory, const ::file::path & pathParam, 
    while (dwReadTotal < iReadAtMostByteCount)
    {
 
-      auto dwRead = file.read(memory.data() + dwReadTotal, (memsize)(iReadAtMostByteCount - dwReadTotal));
+      auto dwRead = file.read(memory(dwReadTotal, (iReadAtMostByteCount - dwReadTotal)));
 
       if (dwRead <= 0)
       {
@@ -733,31 +733,31 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void acme_file::copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
+void acme_file::copy(const ::file::path & pathNew, const ::file::path & pathExisting, bool bOverwrite)
 {
 
-   if (acmedirectory()->is(pathSource))
+   if (acmedirectory()->is(pathExisting))
    {
 
-      if (exists(pathTarget))
+      if (exists(pathNew))
       {
 
-         throw ::exception(error_failed);
+         throw ::exception(error_not_supported, "currently not supported");
 
       }
 
-      acmedirectory()->create(pathTarget);
+      acmedirectory()->create(pathNew);
 
       ::file::listing listing;
 
-      listing.set_listing(pathSource, e_depth_recursively);
+      listing.set_listing(pathExisting, e_depth_recursively);
 
       acmedirectory()->enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
-      ::file::path strDirSrc(pathSource);
-      ::file::path strDirDst(pathTarget);
+      ::file::path strDirSrc(pathExisting);
+      ::file::path strDirDst(pathNew);
 
       for (i32 i = 0; i < listing.size(); i++)
       {
@@ -793,82 +793,141 @@ void acme_file::copy(const ::file::path & pathTarget, const ::file::path & pathS
       }
 
       return;
-
+      
    }
-   else
+   
+   auto pathTarget = pathNew;
+      
+   if (acmedirectory()->is(pathTarget))
    {
-
-      _copy(pathTarget, pathSource, bOverwrite);
-
+      
+      pathTarget /= pathExisting.name();
+      
    }
+      
+   _copy(pathTarget, pathExisting, bOverwrite);
 
 }
 
 
-void acme_file::_copy(const ::file::path & pathTarget, const ::file::path & pathSource, bool bOverwrite)
+void acme_file::_copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
+{
+   
+   if(!bOverwrite && exists(pathDup))
+   {
+      
+      return;
+      
+   }
+   
+   //if(!_memory_map_file_copy(pathDup, pathSrc))
+   {
+      
+      _read_write_file_copy(pathDup, pathSrc, 128_MiB);
+      
+   }
+   
+}
+
+
+bool acme_file::_memory_map_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource)
 {
 
-#ifdef WINDOWS
+   auto pmemorymapSource = __create < ::file::memory_map >();
+   
+   auto pmemorymapTarget = __create < ::file::memory_map >();
+   
+   if(!pmemorymapSource->open_path(pathSource, true, false, false))
+   {
+      
+      return false;
+      
+   }
+      
+   if(!pmemorymapTarget->open_path(pathSource, true, true, true, pmemorymapSource->m_size))
+   {
+      
+      return false;
+      
+   }
 
-   FILE * in = _wfopen(wstring(pathSource), L"r"); //create the input file for reading
+   try
+   {
+    
+      memcpy(pmemorymapTarget->m_pdata, pmemorymapSource->m_pdata, pmemorymapSource->m_size);
+      
+   }
+   catch (...)
+   {
+      
+      return false;
+      
+   }
 
-#else
+   return true;
+   
+}
 
-   FILE * in = fopen(pathSource.c_str(), "r"); //create the input file for reading
 
-#endif
+void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
+{
 
-   if (in == NULL)
-      throw io_exception(error_io);
+   auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
+   
+   auto pfileOut = get_file(pathTarget, ::file::e_open_write | ::file::e_open_binary
+                  | ::file::e_open_create | ::file::e_open_truncate);
 
-#ifdef WINDOWS
 
-   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
+//#ifdef WINDOWS
+//
+//   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
+//
+//#else
+//
+//   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
+//
+//#endif
 
-#else
-
-   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
-
-#endif
-
-   if (out == NULL)
-      throw io_exception(error_io);
+//   if (out == NULL)
+//   {
+//
+//      throw io_exception(error_io);
+//
+//   }
 
    memory memory;
 
-   memory.set_size(1024);
+   memory.set_size(::maximum(1, sizeBuffer));
 
    size_t read;
 
-   while ((read = fread(memory.data(), 1, memory.size(), in)) > 0)
+   while ((read = pfileIn->read(memory)) > 0)
    {
 
-      fwrite(memory.data(), 1, read, out); // write the input file to the output file
+      pfileOut->write(memory.data(), read);
 
    }
 
 }
 
 
-::earth::time acme_file::modification_time(const ::file::path & path)
+class ::time acme_file::modification_time(const ::file::path & path)
 {
 
    throw ::interface_only();
 
    return {};
 
-
 }
 
 
-void acme_file::set_modification_time(const ::file::path & path, const ::earth::time& time)
+void acme_file::set_modification_time(const ::file::path & path, const class ::time& time)
 {
 
    throw ::interface_only();
 
-   //throw ::interface_only();
-
 }
+
 
 //
 //::time acme_file::modification_time(const ::file::path & path)
@@ -1119,8 +1178,7 @@ string_array acme_file::lines(const ::file::path & pathParam)
    try
    {
 
-      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none
-      | ::file::e_open_no_exception_on_open);
+      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
 
       if (pfile.nok())
       {
@@ -1292,9 +1350,9 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 
             m.set_size((memsize)iPosStart);
 
-            pfile->read(m.data(), (memsize)iPosStart);
+            pfile->read(m);
 
-            pfile2->write(m.data(), (memsize)iPosStart);
+            pfile2->write(m);
 
          }
 
@@ -1311,9 +1369,9 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 
             m.set_size((memsize)(iEnd - iPosEnd));
 
-            pfile->read(m.data(), m.size());
+            pfile->read(m);
 
-            pfile2->write(m.data(), m.size());
+            pfile2->write(m);
 
          }
 

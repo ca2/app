@@ -1,6 +1,15 @@
 ﻿#pragma once
 
 
+#ifdef WINDOWS
+
+
+#include "acme/_operating_system.h"
+
+
+#endif
+
+
 class CLASS_DECL_ACME nanosecond_timer
 {
 public:
@@ -8,7 +17,7 @@ public:
 
 #ifdef WINDOWS
 
-   windows_handle      m_hTimer;
+   ::windows::handle       m_handleTimer;
 
 #endif
 

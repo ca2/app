@@ -110,8 +110,10 @@ namespace sockets
          //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         write((char *)mem.data(), (i32) mem.size());
+         write(mem);
+
       }
+
    }
 
 

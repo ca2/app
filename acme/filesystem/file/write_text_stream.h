@@ -139,7 +139,7 @@ public:
 //
 //       ::string strText;
 //
-//       ASSERT(__is_valid_string(pszFormat));
+//       ASSERT(is_string_ok(pszFormat));
 //
 //       va_list argList;
 //

@@ -18,7 +18,7 @@ namespace multimedia
       virtual ~file_application();
 
 
-      virtual file_pointer get_file(::payload payloadFile, const ::file::e_open & eopen);
+      virtual file_pointer get_file(::payload payloadFile, ::file::e_open eopen);
 
 
    };

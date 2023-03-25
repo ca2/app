@@ -292,7 +292,7 @@ namespace aqua
 
 //         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
 
-  //       __construct(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
+  //       __construct(m_pmultimedia, ::pointer_transfer(pgetnewmultimedia()));
 
 //    m_pmultimedia->initialize_multimedia(this);
 

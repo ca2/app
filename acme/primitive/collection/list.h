@@ -1965,7 +1965,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iter
 
    if (old.back())
    {
-//      ASSERT(__is_valid_address(pOldNode->m_back, sizeof(typename list < TYPE, ARG_TYPE >::node)));
+//      ASSERT(is_memory_segment_ok(pOldNode->m_back, sizeof(typename list < TYPE, ARG_TYPE >::node)));
       old.back().next() = p;
    }
    else
@@ -1995,7 +1995,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(itera
 
    // Insert it before position
    auto old = position;
-   ASSERT(__is_valid_address(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+   ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
    iterator p;
    p = memory_new typename list < TYPE, ARG_TYPE >::node(newElement);
    p.back() = old;
@@ -2004,7 +2004,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(itera
 
    if (old.next())
    {
-      ASSERT(__is_valid_address(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+      ASSERT(is_memory_segment_ok(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
       old.next().back() = p;
    }
    else

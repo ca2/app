@@ -185,7 +185,7 @@ void write_text_stream < FILE >::write_number(NUMBER number, const ::ansi_charac
 
     ::string strText;
 
-    ASSERT(__is_valid_string(pszFormat));
+    ASSERT(is_string_ok(pszFormat));
 
     va_list argList;
 
@@ -637,7 +637,7 @@ void write_text_stream < FILE >::raw_print(const ::string& str)
     void write_text_stream < FILE >::write(const void* psz, strsize s)
     {
 
-       m_pfile->write(psz, s);
+       m_pfile->write({ psz, s });
 
     }
 
@@ -714,7 +714,7 @@ template < typename FILE >
 void write_text_stream < FILE >::print(const ::scoped_string& str)
 {
 
-   m_pfile->write(str.c_str(), str.length_in_bytes());
+   m_pfile->write(str.as_block());
 
 }
 

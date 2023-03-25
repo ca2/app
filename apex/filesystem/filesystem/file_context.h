@@ -152,9 +152,9 @@ public:
    virtual ::payload as_network_payload(const ::payload & payloadFile);
    virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
-   virtual string safe_get_string(const ::payload & payloadFile);
+   virtual string safe_get_string(const ::payload & payloadFile, ::e_status * pestatus = nullptr);
    virtual void as_memory(const ::payload & payloadFile, memory_base & mem);
-   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem);
+   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem, ::e_status * pestatus = nullptr);
    virtual ::memory as_memory(const ::payload & payloadFile);
    virtual ::memory safe_get_memory(const ::payload & payloadFile);
    virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
@@ -212,9 +212,9 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const ::payload & payloadFile);
 
-   virtual void resolve_link(::file::path & pathTarget, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
+   virtual ::pointer < ::file::link > resolve_link(const ::file::path & path);
 
-   virtual bool is_link(string strPath);
+   virtual bool is_link(const ::file::path & path);
 
    virtual void get_last_write_time(file_time_t * pfile_time, const ::string & strFilename);
 
@@ -232,23 +232,23 @@ public:
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
-   virtual ::file_pointer file_get_file(::file::path path, const ::file::e_open & eopen);
+   virtual ::file_pointer file_get_file(::file::path path, ::file::e_open eopen);
 
-   virtual ::file_pointer data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer data_get_file(string strData, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer http_get_file(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+   virtual ::file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr) override;
 
-   virtual ::file_pointer create_native_file(const ::file::path & path, const ::file::e_open & eopen);
+   virtual ::file_pointer create_native_file(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr);
 
-   virtual ::file_pointer get_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer get_reader(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer shared_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer shared_reader(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer get_writer(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+   virtual ::file_pointer get_writer(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    virtual void post_output(const ::file::path & pathOut, const ::file::path & pathDownloading);
 
@@ -357,14 +357,14 @@ public:
 
    //virtual bool is_read_only(const ::file::path & psz);
 
-   inline auto open_for_reading(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_binary)
+   inline auto open_for_reading(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_binary)
    {
 
       return get_file(payloadFile, eopen | ::file::e_open_read);
 
    }
 
-   inline auto create_for_writing(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory)
+   inline auto create_for_writing(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory)
    {
 
       return get_file(payloadFile, eopen | ::file::e_open_create | ::file::e_open_write);
@@ -373,7 +373,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, const ::file::e_open & eopen);
+   virtual ::file_pointer friendly_get_file(const ::payload & payloadFile, ::file::e_open eopen);
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);

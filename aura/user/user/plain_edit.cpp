@@ -7563,9 +7563,9 @@ namespace user
          plain_edit_on_update(pgraphics, action_context);
 
       });
-
+      
       set_need_redraw();
-
+      
       post_redraw();
 
    }

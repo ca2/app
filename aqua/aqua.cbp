@@ -552,7 +552,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/audio/audioaura/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">
@@ -615,13 +615,13 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-core/weather/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\weather\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/audio/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/audio/audio/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_decode_wave/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/audio/audio_decode_wave/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio_decode_wave\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_resample_swresample/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/audio/audio_resample_swresample/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio_resample_swresample\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input/CMakeLists.txt">

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A273C7529CF172400CBEB97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C7129CF172300CBEB97 /* InfoPlist.strings */; };
-		9A273C7629CF172400CBEB97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C7329CF172300CBEB97 /* MainMenu.xib */; };
 		9A46D37726785AD0000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9A46D37C26785B51000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
 		9A46D37D26785B51000B22D0 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -636,7 +635,6 @@
 				9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */,
 				9A273C7529CF172400CBEB97 /* InfoPlist.strings in Resources */,
 				9A8C81712783F8A7000C8587 /* _matter.zip in Resources */,
-				9A273C7629CF172400CBEB97 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

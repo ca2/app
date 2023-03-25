@@ -15,7 +15,6 @@
 		9A21A734276107DD001E14CC /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CB2761068B001E14CC /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A21A735276107E0001E14CC /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A21A6CC2761068B001E14CC /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A273C6E29CF16F500CBEB97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C6A29CF16F400CBEB97 /* InfoPlist.strings */; };
-		9A273C6F29CF16F500CBEB97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C6C29CF16F400CBEB97 /* MainMenu.xib */; };
 		9A4E966A278531FF00B74C76 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4FB276161C900802DB8 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E966B2785321100B74C76 /* libapex.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4FA276161C900802DB8 /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E966C2785321900B74C76 /* libaura.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A1CF4FC276161C900802DB8 /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -609,7 +608,6 @@
 				9AEA1C692760261D006437A3 /* Images.xcassets in Resources */,
 				9A273C6E29CF16F500CBEB97 /* InfoPlist.strings in Resources */,
 				9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */,
-				9A273C6F29CF16F500CBEB97 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,7 +875,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = app;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -897,7 +894,6 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = app;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
 				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";

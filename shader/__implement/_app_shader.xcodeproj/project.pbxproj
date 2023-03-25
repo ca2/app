@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A273C7C29CF174200CBEB97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C7829CF174100CBEB97 /* InfoPlist.strings */; };
-		9A273C7D29CF174200CBEB97 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C7A29CF174100CBEB97 /* MainMenu.xib */; };
 		9A46D3B326785E4A000B22D0 /* libapp_shader.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; };
 		9A46D3C026785E7D000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D3AF26785E31000B22D0 /* libacme.dylib */; };
 		9A46D3C126785E7D000B22D0 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3AF26785E31000B22D0 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -689,7 +688,6 @@
 				9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */,
 				9A273C7C29CF174200CBEB97 /* InfoPlist.strings in Resources */,
 				9A8C816F2783F891000C8587 /* _matter.zip in Resources */,
-				9A273C7D29CF174200CBEB97 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

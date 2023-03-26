@@ -19,6 +19,8 @@ CLASS_DECL_ACME void format_output_debug_string(const char* pszFormat, ...);
 
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);
 
+inline ::string as_string(bool b) { return b ? "1" : "0"; }
+
 CLASS_DECL_ACME void throw_resource_exception(const ::scoped_string & scopedstrMessage);
 CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage);
 CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrDetails, i32 iSkip = -1);

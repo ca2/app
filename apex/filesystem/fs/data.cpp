@@ -196,7 +196,7 @@ namespace fs
    //}
 
 
-   file_pointer data::get_file(const ::file::path & payloadFile, const ::file::e_open & eopen)
+   file_pointer data::get_file(const ::file::path & payloadFile, ::file::e_open eopen)
    {
 
       __UNREFERENCED_PARAMETER(payloadFile);

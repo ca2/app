@@ -94,7 +94,15 @@ namespace windows
 
 
 
+   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path);
+
    CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path);
+
+   CLASS_DECL_ACME int_bool is_win32_accessible(DWORD dwFileAttributes, DWORD dwLastError);
+
+   CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path);
+
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes);
 
 
    CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError);
@@ -134,3 +142,15 @@ namespace windows
 //
 //
 //
+
+
+[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage = nullptr, DWORD dwLastError = 0);
+[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::file::path & path, ::file::e_open eopen, DWORD lasterror = 0, const ::scoped_string & scopedstrErrorMessage = nullptr);
+
+
+#include "acme/operating_system/windows_common/handle.h"
+#include "acme/operating_system/windows_common/file.h"
+
+
+
+

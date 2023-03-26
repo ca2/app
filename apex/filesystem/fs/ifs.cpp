@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "ifs.h"
 #include "ifs_file.h"
 ////#include "acme/exception/exception.h"
@@ -130,7 +130,7 @@ bool ifs::enumerate(::file::listing & listing)
 
       }
 
-      dir.m_timeLast.now();
+      dir.m_timeLast.Now();
 
       throw ::exception(error_failed);
 
@@ -345,7 +345,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_pointer ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
+file_pointer ifs::get_file(const ::file::path & path, ::file::e_open eopen)
 {
 
    auto pfile = __new(ifs_file( path));

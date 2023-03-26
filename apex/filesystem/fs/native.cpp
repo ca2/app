@@ -105,7 +105,7 @@ namespace fs
 
       ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
 
-      if(pathDropboxApp.has_char() && dir()->is(pathDropboxApp))
+      if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
       {
 
          ::file::path & path = listing.insert_at(0, "dropbox-app://");
@@ -118,7 +118,7 @@ namespace fs
 
       ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
       
-      if(pathOneDrive.has_char() && dir()->is(pathOneDrive))
+      if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
       {
          
          ::file::path & path = listing.insert_at(0, "onedrive://");
@@ -274,7 +274,7 @@ namespace fs
    }
 
 
-   file_pointer native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_pointer native::get_file(const ::file::path & path, ::file::e_open eopen)
    {
 
       file_pointer pfile;

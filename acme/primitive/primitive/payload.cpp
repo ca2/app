@@ -7123,6 +7123,13 @@ end:
 
       ::f64 f64 = atof(strNumber);
 
+      if (bSigned)
+      {
+
+         f64 = -f64;
+
+      }
+
 //#else
 
       //::f64 f64 = _atof_l(strNumber, ::get_task()->locale()->m_locale);
@@ -7136,6 +7143,13 @@ end:
    {
 
       ::i64 i = (::i64) atoll(strNumber);
+
+      if (bSigned)
+      {
+
+         i = -i;
+
+      }
 
       operator = (i);
 

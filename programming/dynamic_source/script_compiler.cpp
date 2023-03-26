@@ -390,6 +390,8 @@ namespace dynamic_source
 
       pscript->m_strCppPath.format(m_pathTime / "dynamic_source\\%s.cpp",strTransformName.c_str());
 
+      auto pathCa2Root = dir()->install();
+
       //string strCompileLogUnique;
 
       ::earth::time timeNow = ::earth::time::now();
@@ -436,7 +438,7 @@ namespace dynamic_source
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
       
-      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" OPERATING_SYSTEM_NAME "\\intermediate\\x64\\" + m_strDynamicSourceConfiguration + "\\app-core\\netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = pathCa2Root / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
 
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_pintegrationcontext->payload("sdk1").as_string() + ".pdb");
 
@@ -693,7 +695,9 @@ namespace dynamic_source
 
       cppize(pscript);
 
-      string strV(dir()->install());
+      //auto pathCa2Root = dir()->install();
+
+      string strV(pathCa2Root);
       strV.find_replace("\\","/");
       if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";
@@ -787,7 +791,7 @@ namespace dynamic_source
       file()->put_text_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::e_priority_highest);
+      process->create_child_process(strCompiler,true, pathCa2Root/ "source/app-core/netnode_dynamic_source_script",::e_priority_highest);
 #else
       process->create_child_process(strCompiler,true,m_pintegrationcontext->m_pathProjectDir,::e_priority_highest);
 #endif
@@ -1381,8 +1385,9 @@ namespace dynamic_source
 
       library & l = *m_mapLib[pszLibrary];
 
+      auto pathCa2Root = dir()->install();
 
-      string strV(dir()->install());
+      string strV(pathCa2Root);
       strV.find_replace("\\","/");
       if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";

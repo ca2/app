@@ -14,7 +14,7 @@ paged_memory::paged_memory(const void * pdata, memsize iCount)
 
    set_size(iCount);
 
-   ASSERT(__is_valid_address(pdata, iCount, false));
+   ASSERT(is_memory_segment_ok(pdata, iCount));
 
    ::memcpy_dup(storage_begin(), pdata, iCount);
 
@@ -37,7 +37,7 @@ paged_memory::paged_memory(const ::scoped_string & scopedstr)
 }
 
 
-paged_memory::paged_memory(memory_container * pcontainer, void * pdata, memsize size)
+paged_memory::paged_memory(memory_container * pcontainer, const void * pdata, memsize size)
 {
 
    m_beginStorage = nullptr;
@@ -46,7 +46,7 @@ paged_memory::paged_memory(memory_container * pcontainer, void * pdata, memsize 
 
    set_size(size);
 
-   ASSERT(__is_valid_address(pdata, (uptr)size, false));
+   ASSERT(is_memory_segment_ok(pdata, (uptr)size));
 
    ::memcpy_dup(storage_begin(), pdata, (size_t)size);
 

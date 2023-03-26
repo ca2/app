@@ -34,64 +34,279 @@ inline ::u64 make64_from32(::u32 l, ::u32 h)
 
 }
 
+CLASS_DECL_ACME void this_is_a_debugging_consumer(::i32 & i);
 
-inline bool __is_valid_address(const void* p, memsize size, bool bReadWrite)
+inline bool is_memory_segment_ok(const void * pMemory, memsize s)
 {
 
-#ifdef DEEP_DEBUG
+   auto p = (const ::byte *)pMemory;
 
-   byte* pbyte = (byte*)p;
+   auto e = p + s;
 
-   if (bReadWrite)
+   try
    {
 
-      for (::index i = 0; i < size; i++)
+#ifdef DEEP_MEMORY_SEGMENT_CHECK
+
+      ::i32 sum = 0;
+
+      while (p < e)
       {
 
-         ::byte& b = *pbyte;
+         sum += *b; // tests read of byte *p
+
+         p++;
+
+      }
+
+#else // DEEP_MEMORY_SEGMENT_CHECK
+//      __pragma(clang)
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Wunused-but-set-variable"
+
+      if (s >= 1)
+      {
+
+         ::i32 sum = 0;
+
+         sum += p[0]; // tests read of byte p[0]
+
+         if (s >= 2)
+         {
+
+            sum += e[-1]; // tests read of byte e[-1]
+
+         }
+
+         this_is_a_debugging_consumer(sum);
+
+      }
+
+//#pragma clang diagnostic pop
+
+#endif // else DEEP_MEMORY_SEGMENT_CHECK
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return false;
+
+}
+
+
+inline bool is_memory_segment_ok(void * pMemory, memsize s)
+{
+
+   auto p = (::byte *)pMemory;
+
+   auto e = p + s;
+
+   try
+   {
+
+#ifdef DEEP_MEMORY_SEGMENT_CHECK
+
+      while (p < e)
+      {
+
+         ::byte & b = *p;
 
          b++; // tests read/write of byte b
 
          b--; // restablish it
 
+         p++;
+
       }
 
-   }
-   else
-   {
 
-      ::i32 sum = 0;
+#else // DEEP_MEMORY_SEGMENT_CHECK
 
-      for (::index i = 0; i < size; i++)
+      if (s >= 1)
       {
 
-         ::byte& b = *pbyte;
+         ::byte & b = p[0];
 
-         sum += b; // tests read of byte b
+         b++; // tests read/write of byte p[0]
+
+         b--; // restablish it
+
+         if (s >= 2)
+         {
+
+            ::byte & b = e[-1];
+
+            b++; // tests read/write of byte e[-1]
+
+            b--; // restablish it
+
+
+         }
 
       }
 
+#endif // else DEEP_MEMORY_SEGMENT_CHECK
+
+      return true;
+
+   }
+   catch (...)
+   {
+
    }
 
-#endif // DEEP_DEBUG
-
-   return ::is_set(p);
+   return false;
 
 }
 
 
-inline bool __is_valid_string(const ::wide_character* pwsz, memsize nMaxLength)
+template < typename TYPE >
+inline bool is_array_ok(TYPE * p, ::count c)
 {
 
-   return ::__is_valid_address(pwsz, nMaxLength);
+   return is_memory_segment_ok(p, c * sizeof(TYPE));
 
 }
 
 
-inline bool __is_valid_string(const char * psz, memsize nMaxLength)
+template < typename TYPE >
+inline bool is_array_ok(const TYPE * p, ::count c)
 {
 
-   return ::__is_valid_address(psz, nMaxLength);
+   return is_memory_segment_ok(p, c * sizeof(TYPE));
+
+}
+
+
+inline bool is_string_ok(::wide_character * p, strsize s)
+{
+
+   return ::is_array_ok(p, s);
+
+}
+
+
+inline bool is_string_ok(const ::wide_character * p, strsize s)
+{
+
+   return ::is_array_ok(p, s);
+
+}
+
+
+inline bool is_string_ok(::ansi_character * p, strsize s)
+{
+
+   return ::is_array_ok(p, s);
+
+}
+
+
+inline bool is_string_ok(const ::ansi_character * p, strsize s)
+{
+
+   return ::is_array_ok(p, s);
+
+}
+
+
+template < typename TYPE >
+inline bool is_null_terminated_primitive_array_ok(TYPE * p)
+{
+
+   try
+   {
+
+      while (*p)
+      {
+
+         auto & item = *p;
+
+         item++; // tests read/write of byte b
+
+         item--; // restablish it
+
+         p++;
+
+      }
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return false;
+
+}
+
+
+template < typename TYPE >
+inline bool is_null_terminated_primitive_array_ok(const TYPE * p)
+{
+
+   try
+   {
+
+      TYPE t{};
+
+      while (*p)
+      {
+
+         t ^= *p;
+
+         p++;
+
+      }
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return false;
+
+}
+
+
+inline bool is_string_ok(::wide_character * p)
+{
+
+   return is_null_terminated_primitive_array_ok(p);
+
+}
+
+
+inline bool is_string_ok(const ::wide_character * p)
+{
+
+   return is_null_terminated_primitive_array_ok(p);
+
+}
+
+
+inline bool is_string_ok(::ansi_character * p)
+{
+
+   return is_null_terminated_primitive_array_ok(p);
+
+}
+
+
+inline bool is_string_ok(const ::ansi_character * p)
+{
+
+   return is_null_terminated_primitive_array_ok(p);
 
 }
 

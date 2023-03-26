@@ -21,7 +21,7 @@
 
 //          aura_ref();
 
-//          acmesystem() = ::move_transfer(platform_create_system(nullptr));
+//          acmesystem() = ::pointer_transfer(platform_create_system(nullptr));
 
 //          acmesystem()->console_initialize();
 

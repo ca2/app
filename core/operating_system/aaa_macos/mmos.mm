@@ -400,7 +400,7 @@ char * mm_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
 
       NSURL * url = [pos browse_folder:startDir canCreateDirectories:bCanCreateDirectories];
       
-      p = ns_string( [url absoluteString]);
+      p = __strdup( [url absoluteString]);
       
    });
             
@@ -439,13 +439,13 @@ char** mm_browse_file_open(const char ** pszStartDir, bool bMulti)
       for(; i < urla.count; i++)
       {
          
-         pp[i] = ns_string([[urla objectAtIndex:i] absoluteString]);
+         pp[i] = __strdup([[urla objectAtIndex:i] absoluteString]);
          
       }
       
       pp[i] = NULL;
       
-      *pszStartDir = ns_string([startDir absoluteString]);
+      *pszStartDir = __strdup([startDir absoluteString]);
                    
    });
    

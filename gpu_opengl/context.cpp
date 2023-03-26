@@ -258,9 +258,11 @@ namespace opengl
       else
       {
 
+#ifdef __APPLE__
+         glBindVertexArrayAPPLE(m_VAO);
+#else
          glBindVertexArray(m_VAO);
-
-         //#endif
+#endif
 
          glDrawArrays(GL_TRIANGLES, 0, 6);
 

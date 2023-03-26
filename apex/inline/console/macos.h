@@ -71,7 +71,7 @@ public:
 
       string strAppId = executable_get_app_id();
 
-      acmesystem() = ::move_transfer(platform_create_system(strAppId));
+      acmesystem() = ::pointer_transfer(platform_create_system(strAppId));
 
       acmesystem()->m_bConsole = true;
       //acmesystem()->console_initialize();

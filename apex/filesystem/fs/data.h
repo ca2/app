@@ -44,7 +44,7 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-      virtual file_pointer get_file(const ::file::path & path, const ::file::e_open & eopen);
+      virtual file_pointer get_file(const ::file::path & path, ::file::e_open eopen);
 
 
       virtual bool fast_has_subdir(const ::file::path & pszPath);

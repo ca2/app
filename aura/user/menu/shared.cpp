@@ -46,16 +46,7 @@ menu_shared::~menu_shared()
 
    int iCount = (int) straParent.get_count();
 
-   if(iCount <= 0
-      || iCount != straMenu.get_size()
-      || iCount != straId.get_size())
-   {
-
-      return nullptr;
-
-   }
-
-   ::pointer<menu_shared>pmenushared = ::move_transfer(memory_new menu_shared);
+   auto pmenushared = pparticle->__create_new < menu_shared >();
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);
@@ -185,6 +176,15 @@ void menu_shared_release(menu_shared * pmenushared)
    ::release(pmenushared);
    
 }
+
+
+::string menu_shared::application_name()
+{
+   
+   return acmeapplication()->get_application_name();
+   
+}
+
 
 
 

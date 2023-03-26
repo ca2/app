@@ -280,8 +280,8 @@ public:
    virtual bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
 
 
-   inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());
+   inline ::file_pointer get_writer(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());
    inline ::file_pointer fully_shared_reader(const ::payload& payloadFile) { return get_reader(payloadFile, ::file::e_open_share_deny_none); }
 
    //virtual void to_string(string & str) const override;
@@ -701,7 +701,7 @@ inline void particle::__id_construct(::pointer<TYPE> & p, const ::atom & atom, :
 //}
 
 
-inline ::file_pointer matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
+inline ::file_pointer matter::get_reader(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    return get_file(payloadFile, eopen | ::file::e_open_read);
@@ -709,7 +709,7 @@ inline ::file_pointer matter::get_reader(const ::payload & payloadFile, const ::
 }
 
 
-inline ::file_pointer matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
+inline ::file_pointer matter::get_writer(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    return get_file(payloadFile, eopen | ::file::e_open_write);

@@ -302,7 +302,7 @@ namespace sockets
 
       m_pmemoryfile->seek_to_end();
 
-      m_pmemoryfile->write(pbuf, n);
+      m_pmemoryfile->write({ pbuf, n });
 
    }
 
@@ -406,7 +406,7 @@ namespace sockets
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      write(m_pmemoryfile->data(), (memsize)m_pmemoryfile->size());
+      write(m_pmemoryfile->full_data());
 
    }
 

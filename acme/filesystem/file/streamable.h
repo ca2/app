@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
+// Created by camilo on 2021-08-01 22:40 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 
@@ -14,7 +14,11 @@ namespace file
    public:
 
 
-      virtual memsize read(void * pdata, memsize nCount);
+      virtual memsize read(void * p, ::memsize s);
+
+      inline memsize read(const ::block & block) { return read(block.data(), block.size()); }
+
+      virtual ::file::file * get_file();
 
 
    };
@@ -25,8 +29,13 @@ namespace file
    public:
 
 
-      virtual void write(const void * pdata, memsize nCount);
+      virtual void write(const void * p, ::memsize s);
 
+      inline void write(const ::block & block) { write(block.data(), block.size()); }
+      
+      virtual ::memsize defer_write(const void * p, ::memsize s);
+
+      inline ::memsize defer_write(const ::block & block) { return defer_write(block.data(), block.size()); }
 
    };
 

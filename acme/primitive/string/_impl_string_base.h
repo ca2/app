@@ -2429,7 +2429,7 @@ template < typename ITERATOR_TYPE >
 typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::create_string(strsize characterCount)
 {
 
-   auto sizeStorageInBytes = character_count_to_byte_length(this->begin(), characterCount);
+   auto sizeStorageInBytes = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
 
    auto pNew = this->create_meta_data(sizeStorageInBytes);
 
@@ -2450,7 +2450,7 @@ template < typename ITERATOR_TYPE >
 typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
 {
 
-   auto storageSizeInBytes = character_count_to_byte_length(this->begin(), characterCount);
+   auto storageSizeInBytes = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
 
    auto pNew = this->create_meta_data(storageSizeInBytes);
 
@@ -2514,11 +2514,11 @@ inline strsize string_base < ITERATOR_TYPE >::storage_character_count() const { 
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes_without_null_terminator() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes() - sizeof(CHARACTER); }
+inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes(); }
 
 
 template < typename ITERATOR_TYPE >
-inline memsize string_base < ITERATOR_TYPE >::character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes(); }
+inline memsize string_base < ITERATOR_TYPE >::null_terminated_character_count_in_bytes() const { return this->NATURAL_POINTER::metadata()->character_count_in_bytes() + sizeof(CHARACTER); }
 
 
 template < typename ITERATOR_TYPE >
@@ -5731,7 +5731,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    strsize nCurrentLength = size();
 
@@ -5758,7 +5758,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(const CHARACTER * pszFormat, va_list args)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    if (pszFormat == nullptr)
    {
@@ -5839,7 +5839,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format(const CHARACTER * pszFormat, ...)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
@@ -5859,7 +5859,7 @@ template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_format(const CHARACTER * pszFormat, ...)
 {
 
-   ASSERT(__is_valid_string(pszFormat));
+   ASSERT(is_string_ok(pszFormat));
 
    va_list argList;
 
@@ -6291,7 +6291,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_replace(cons
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_begins(const SCOPED_STRING & scopedstrPrefix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_prefix(const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->begins(scopedstrPrefix))
@@ -6307,7 +6307,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_be
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_begins_ci(const SCOPED_STRING & scopedstrPrefix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::case_insensitive_ensure_prefix(const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6323,7 +6323,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_be
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_ends(const SCOPED_STRING & scopedstrSuffix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_suffix(const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->ends(scopedstrSuffix))
@@ -6339,7 +6339,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_en
 
 
 template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_ends_ci(const SCOPED_STRING & scopedstrSuffix)
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::case_insensitive_ensure_suffix(const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->case_insensitive_ends(scopedstrSuffix))
@@ -6353,6 +6353,70 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_en
 
 }
 
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->begins(scopedstrPrefix))
+   {
+
+      return scopedstrPrefix + *this;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_defer_prefixed(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->case_insensitive_begins(scopedstrPrefix))
+   {
+
+      return scopedstrPrefix + *this;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->ends(scopedstrSuffix))
+   {
+
+      return *this + scopedstrSuffix;
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_defer_suffixed(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->case_insensitive_ends(scopedstrSuffix))
+   {
+
+      return *this + scopedstrSuffix;
+
+   }
+
+   return *this;
+
+}
 
 //template < typename ITERATOR_TYPE >
 //inline bool string_base < ITERATOR_TYPE > ::begins(const CHARACTER * pszPrefix) const
@@ -6542,7 +6606,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::ensure_en
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::begins_eat(string_base & strRest, const SCOPED_STRING & scopedstrPrefix) const
+inline bool string_base < ITERATOR_TYPE > ::begins_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    strsize lenPrefix;
@@ -6554,7 +6618,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eat(string_base & strRest, co
 
    }
 
-   strRest.assign(this->begin() + lenPrefix, size() - lenPrefix);
+   strBitten.assign(this->begin() + lenPrefix, size() - lenPrefix);
 
    return true;
 
@@ -6562,7 +6626,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eat(string_base & strRest, co
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::ends_eat(string_base & strRest, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::ends_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    strsize lenSuffix;
@@ -6574,7 +6638,7 @@ inline bool string_base < ITERATOR_TYPE > ::ends_eat(string_base & strRest, cons
 
    }
 
-   strRest.assign(this->begin(), size() - lenSuffix);
+   strBitten.assign(this->begin(), size() - lenSuffix);
 
    return true;
 
@@ -6582,7 +6646,7 @@ inline bool string_base < ITERATOR_TYPE > ::ends_eat(string_base & strRest, cons
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eat(string_base & strRest, const SCOPED_STRING & scopedstrPrefix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    if (!string_begins_ci<const CHARACTER>(*this, scopedstrPrefix))
@@ -6592,7 +6656,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eat(string_b
 
    }
 
-   strRest.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
+   strBitten.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
 
    return true;
 
@@ -6600,7 +6664,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eat(string_b
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eat(string_base & strRest, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    if (!string_ends_ci<const CHARACTER>(*this, scopedstrSuffix))
@@ -6610,16 +6674,80 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eat(string_bas
 
    }
 
-   strRest.assign(this->begin(), size() - scopedstrSuffix.size());
+   strBitten.assign(this->begin(), size() - scopedstrSuffix.size());
 
    return true;
 
 }
 
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::begins_bitten(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->begins(scopedstrPrefix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size() };
+
+}
+
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::begins_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::ends_bitten(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->ends(scopedstrSuffix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin(), size() - scopedstrSuffix.size()};
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->case_insensitive_begins(scopedstrPrefix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size()};
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_ends_bitten(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!this->case_insensitive_ends(scopedstrSuffix))
+   {
+
+      return *this;
+
+   }
+
+   return { this->begin(), size() - scopedstrSuffix.size()};
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6637,7 +6765,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eaten_ci(string_base & strEat
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::ends_eaten_ci(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    if (!_string_ends_ci<const CHARACTER>(*this, scopedstrSuffix))
@@ -6650,6 +6778,38 @@ inline bool string_base < ITERATOR_TYPE > ::ends_eaten_ci(string_base & strEaten
    strEaten.assign(this->begin() + length() - scopedstrSuffix.size(), scopedstrSuffix.size());
 
    return true;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_begins_eaten(const SCOPED_STRING & scopedstrPrefix) const
+{
+
+   if (!this->case_insensitive_begins(scopedstrPrefix))
+   {
+
+      return false;
+
+   }
+
+   return { this->begin(), scopedstrPrefix.size() };
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insensitive_ends_eaten(const SCOPED_STRING & scopedstrSuffix) const
+{
+
+   if (!_string_ends_ci<const CHARACTER>(*this, scopedstrSuffix))
+   {
+
+      return false;
+
+   }
+
+   return { this->begin() + length() - scopedstrSuffix.size(), scopedstrSuffix.size() };
 
 }
 

@@ -378,7 +378,7 @@ namespace integration
                }
                if (size == 0)
                   break;
-               pfile->write(memory2.data(), size);
+               pfile->write(memory2(0, size));
                //write(1, buff, size);
             }
 

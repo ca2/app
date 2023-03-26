@@ -17,7 +17,7 @@ namespace acme
    //
    //      acme_ref();
    //
-   //      //acmesystem() = ::move_transfer(platform_create_system(::GetModuleHandle(NULL)));
+   //      //acmesystem() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
    //
    ////      acmesystem() = __new(::acme::system());
    //

@@ -118,7 +118,7 @@ namespace android
    //   ::object(pparticle)
    //{
 
-   //   ASSERT(__is_valid_string(lpszFileName));
+   //   ASSERT(is_string_ok(lpszFileName));
 
    //   if(!open(lpszFileName, nOpenFlags))
    //      throw ::exception(::file::exception(::error_none, -1, lpszFileName));
@@ -149,7 +149,7 @@ namespace android
    //   return pFile;
    //}
 
-   ::extended::status file::open(const ::file::path & lpszFileName, const ::file::e_open & efileopenParam)
+   ::extended::status file::open(const ::file::path & lpszFileName, ::file::e_open eopen)
    {
 
       ::file::e_open eopen(efileopenParam);
@@ -158,7 +158,7 @@ namespace android
          close();
 
       ASSERT_VALID(this);
-      ASSERT(__is_valid_string(lpszFileName));
+      ASSERT(is_string_ok(lpszFileName));
       ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // file objects are always binary and CreateFile does not need flag
@@ -384,7 +384,7 @@ namespace android
          return 0;   // avoid Win32 "null-read"
 
       ASSERT(lpBuf != nullptr);
-      ASSERT(__is_valid_address(lpBuf, nCount));
+      ASSERT(is_memory_segment_ok(lpBuf, nCount));
 
       memsize pos = 0;
       memsize sizeRead = 0;
@@ -424,7 +424,7 @@ namespace android
          return;     // avoid Win32 "null-write" option
 
       ASSERT(lpBuf != nullptr);
-      ASSERT(__is_valid_address(lpBuf, nCount, false));
+      ASSERT(is_memory_segment_ok(lpBuf, nCount, false));
 
       memsize pos = 0;
       while(nCount > 0)

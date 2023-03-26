@@ -104,6 +104,11 @@
 		9A23A28F26CE850300F98012 /* _application_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A28E26CE850300F98012 /* _application_service.cpp */; };
 		9A24D17028516CB5000C9873 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24D16F28516CB5000C9873 /* message.cpp */; };
 		9A24D17128516CB5000C9873 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24D16F28516CB5000C9873 /* message.cpp */; };
+		9A3BFBD529C844AF005DE2BF /* libarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3BFBD229C84459005DE2BF /* libarchive.a */; };
+		9A3BFBEE29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
+		9A3BFBEF29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
+		9A3BFBF029C8492D005DE2BF /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
+		9A3BFBF129C8492D005DE2BF /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
 		9A4F4E1525311DA400733584 /* _crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0C25311DA300733584 /* _crypto.h */; };
 		9A4F4E1625311DA400733584 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0D25311DA300733584 /* _.h */; };
 		9A4F4E1825311DA400733584 /* crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0F25311DA400733584 /* crypto.cpp */; };
@@ -384,7 +389,6 @@
 		9A94DE51282C045900F5C1CA /* integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A28126CDFF1A00F98012 /* integer.cpp */; };
 		9A94DE52282C045900F5C1CA /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A27F26CDFF1A00F98012 /* listener.cpp */; };
 		9A94DE53282C045900F5C1CA /* real.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A27E26CDFF1A00F98012 /* real.cpp */; };
-		9A95DC5B29B455ED0096712B /* liblibarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD8626429B121370054C9B3 /* liblibarchive.a */; };
 		9A97C02B28C83B0300A43004 /* tls_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97BF9B28C83B0000A43004 /* tls_socket.h */; };
 		9A97C02C28C83B0300A43004 /* sctp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9C28C83B0000A43004 /* sctp_socket.cpp */; };
 		9A97C02D28C83B0300A43004 /* sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9D28C83B0000A43004 /* sync_socket_handler.cpp */; };
@@ -672,6 +676,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A3BFBD129C84459005DE2BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3BFBCD29C84459005DE2BF /* archive.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1DD78429A98DE000C9C80E;
+			remoteInfo = libarchive;
+		};
+		9A3BFBD329C84498005DE2BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3BFBCD29C84459005DE2BF /* archive.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1DD78329A98DE000C9C80E;
+			remoteInfo = archive;
+		};
 		9A615C2828B1B7A300377F68 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
@@ -692,20 +710,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
-		};
-		9A95DC5929B455A00096712B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1DD78329A98DE000C9C80E;
-			remoteInfo = libarchive;
-		};
-		9AD8626329B121370054C9B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A1DD78429A98DE000C9C80E;
-			remoteInfo = libarchive;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -782,6 +786,9 @@
 		9A23A28326CDFF1A00F98012 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A23A28E26CE850300F98012 /* _application_service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _application_service.cpp; sourceTree = "<group>"; };
 		9A24D16F28516CB5000C9873 /* message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = message.cpp; sourceTree = "<group>"; };
+		9A3BFBCD29C84459005DE2BF /* archive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = archive.xcodeproj; path = ../../../port/base/archive/archive.xcodeproj; sourceTree = "<group>"; };
+		9A3BFBEC29C8492D005DE2BF /* link.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link.cpp; sourceTree = "<group>"; };
+		9A3BFBED29C8492D005DE2BF /* link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = link.h; sourceTree = "<group>"; };
 		9A4F4E0C25311DA300733584 /* _crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _crypto.h; sourceTree = "<group>"; };
 		9A4F4E0D25311DA300733584 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A4F4E0F25311DA400733584 /* crypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto.cpp; sourceTree = "<group>"; };
@@ -1081,7 +1088,6 @@
 		9AD199C825127AB500B4C44A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9AD19ADB2512D76200B4C44A /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 		9AD695C2251A754800C0EBD7 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libarchive.xcodeproj; path = ../../../port/base/libarchive/libarchive.xcodeproj; sourceTree = "<group>"; };
 		9AE6DF3A296390D3008A1335 /* aaa_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_handler.cpp; sourceTree = "<group>"; };
 		9AE6DF3B296390D3008A1335 /* task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task.h; sourceTree = "<group>"; };
 		9AE6DF3C296390D3008A1335 /* channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = channel.h; sourceTree = "<group>"; };
@@ -1135,7 +1141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A95DC5B29B455ED0096712B /* liblibarchive.a in Frameworks */,
+				9A3BFBD529C844AF005DE2BF /* libarchive.a in Frameworks */,
 				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1258,6 +1264,14 @@
 			path = progress;
 			sourceTree = "<group>";
 		};
+		9A3BFBCE29C84459005DE2BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A3BFBD229C84459005DE2BF /* libarchive.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A615C2328B1B7A300377F68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1271,7 +1285,7 @@
 			isa = PBXGroup;
 			children = (
 				9A615C2228B1B7A300377F68 /* acme.xcodeproj */,
-				9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */,
+				9A3BFBCD29C84459005DE2BF /* archive.xcodeproj */,
 				9A68B4062511444A008DABD2 /* apex */,
 				9A68A447251143F8008DABD2 /* Products */,
 				9AD199A0251278DA00B4C44A /* Frameworks */,
@@ -1558,17 +1572,19 @@
 		9A68B6FA2511444B008DABD2 /* filesystem */ = {
 			isa = PBXGroup;
 			children = (
-				9A68B70E2511444B008DABD2 /* dir_context.cpp */,
-				9A68B6FE2511444B008DABD2 /* dir_system.cpp */,
-				9A68B7062511444B008DABD2 /* file_context.cpp */,
-				9A68B70A2511444B008DABD2 /* file_system.cpp */,
 				9A68B70F2511444B008DABD2 /* _.h */,
 				9A68B6FC2511444B008DABD2 /* _impl.h */,
+				9A68B70E2511444B008DABD2 /* dir_context.cpp */,
 				9A68B7022511444B008DABD2 /* dir_context.h */,
 				9A68B7082511444B008DABD2 /* dir_system_heap.h */,
+				9A68B6FE2511444B008DABD2 /* dir_system.cpp */,
 				9A68B6FF2511444B008DABD2 /* dir_system.h */,
+				9A68B7062511444B008DABD2 /* file_context.cpp */,
 				9A68B7072511444B008DABD2 /* file_context.h */,
+				9A68B70A2511444B008DABD2 /* file_system.cpp */,
 				9A68B70D2511444B008DABD2 /* file_system.h */,
+				9A3BFBEC29C8492D005DE2BF /* link.cpp */,
+				9A3BFBED29C8492D005DE2BF /* link.h */,
 			);
 			path = filesystem;
 			sourceTree = "<group>";
@@ -1826,14 +1842,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AD8626029B121360054C9B3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AD8626429B121370054C9B3 /* liblibarchive.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AE6DF39296390D3008A1335 /* interprocess */ = {
 			isa = PBXGroup;
 			children = (
@@ -1911,6 +1919,7 @@
 				9A97C04028C83B0400A43004 /* sctp_socket.h in Headers */,
 				9A81ECB0274EDFCA003F38EC /* api.h in Headers */,
 				9A4F4E1C25311DA400733584 /* hasher.h in Headers */,
+				9A3BFBF029C8492D005DE2BF /* link.h in Headers */,
 				9A239DD926CDF9AF00F98012 /* http_batch_buffer.h in Headers */,
 				9A68BE122511444F008DABD2 /* windows.h in Headers */,
 				9A23A28626CDFF1A00F98012 /* real.h in Headers */,
@@ -2285,6 +2294,7 @@
 				9AD69484251A754800C0EBD7 /* file_system.h in Headers */,
 				9A787D7A264C960F003DF8A0 /* service.h in Headers */,
 				9A787D90264C960F003DF8A0 /* common.h in Headers */,
+				9A3BFBF129C8492D005DE2BF /* link.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2302,7 +2312,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A95DC5A29B455A00096712B /* PBXTargetDependency */,
+				9A3BFBD429C84498005DE2BF /* PBXTargetDependency */,
 				9A615C3628B1BC7B00377F68 /* PBXTargetDependency */,
 			);
 			name = apex;
@@ -2357,8 +2367,8 @@
 					ProjectRef = 9A615C2228B1B7A300377F68 /* acme.xcodeproj */;
 				},
 				{
-					ProductGroup = 9AD8626029B121360054C9B3 /* Products */;
-					ProjectRef = 9AD8625F29B121360054C9B3 /* libarchive.xcodeproj */;
+					ProductGroup = 9A3BFBCE29C84459005DE2BF /* Products */;
+					ProjectRef = 9A3BFBCD29C84459005DE2BF /* archive.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2370,6 +2380,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A3BFBD229C84459005DE2BF /* libarchive.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libarchive.a;
+			remoteRef = 9A3BFBD129C84459005DE2BF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A615C2928B1B7A300377F68 /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2382,13 +2399,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_acme.a;
 			remoteRef = 9A615C2A28B1B7A300377F68 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AD8626429B121370054C9B3 /* liblibarchive.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = liblibarchive.a;
-			remoteRef = 9AD8626329B121370054C9B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2429,6 +2439,7 @@
 				9AE6DF9129652F62008A1335 /* native.cpp in Sources */,
 				9A81ECAA274EDFCA003F38EC /* api.cpp in Sources */,
 				9AC01926274896EB006BEBCC /* not_dir.cpp in Sources */,
+				9A3BFBEE29C8492D005DE2BF /* link.cpp in Sources */,
 				9A68BD772511444F008DABD2 /* simple_command.cpp in Sources */,
 				9A97C02C28C83B0300A43004 /* sctp_socket.cpp in Sources */,
 				9A68BD6F2511444F008DABD2 /* channel.cpp in Sources */,
@@ -2668,6 +2679,7 @@
 				9A0F53BA28E8D8A900025231 /* base_socket.cpp in Sources */,
 				9A751000282B941900C4861B /* crypto.cpp in Sources */,
 				9A0F53AE28E8D80400025231 /* socket.cpp in Sources */,
+				9A3BFBEF29C8492D005DE2BF /* link.cpp in Sources */,
 				9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */,
 				9AD695AE251A754800C0EBD7 /* ifs_file.cpp in Sources */,
 				9AD695B2251A754800C0EBD7 /* link.cpp in Sources */,
@@ -2680,15 +2692,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A3BFBD429C84498005DE2BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = archive;
+			targetProxy = 9A3BFBD329C84498005DE2BF /* PBXContainerItemProxy */;
+		};
 		9A615C3628B1BC7B00377F68 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
 			targetProxy = 9A615C3528B1BC7B00377F68 /* PBXContainerItemProxy */;
-		};
-		9A95DC5A29B455A00096712B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libarchive;
-			targetProxy = 9A95DC5929B455A00096712B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -192,6 +192,10 @@ git clone https://github.com/ca2/storage-windows $HOME/operating_system/storage-
 ```
 
 ```bash
+git clone https://github.com/ca2/tool-windows $HOME/operating_system/tool-windows
+```
+
+```bash
 git clone https://github.com/ca2/windows-simple-solution $HOME/simple --recurse-submodules
 ```
 

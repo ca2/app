@@ -89,14 +89,16 @@ namespace geo
 
       {
 
+         try
+         {
+
+
          auto memory = pfile->as_memory(pathFolder / "weather.bin");
 
          auto pfile = __new(memory_file(memory));
 
          auto stream = __binary_stream(pfile);
 
-         try
-         {
 
             stream >> m_straCity;
             stream >> m_straCityLo;
@@ -1421,7 +1423,7 @@ namespace geo
 
             auto pfile = file()->get_reader(path);
 
-            if (pfile)
+            if (pfile.ok())
             {
 
                auto reader = __binary_stream(pfile);

@@ -13,6 +13,7 @@ CLASS_DECL_ACME void throw_exit_exception(const ::e_status & estatus = error_fai
 
 CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, const ::scoped_string & strTitle = nullptr, int iMessageBox = 0);
 CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
+CLASS_DECL_ACME void format_output_debug_string(const char* pszFormat, ...);
 //CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str;
 //CLASS_DECL_ACME void output_debug_string(const ::wd32_character * psz);
 

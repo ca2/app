@@ -1792,14 +1792,13 @@ void particle::destroy_os_data()
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
 {
 
-   auto p = ::move_transfer((particle*)lparam.m_lparam);
+   auto p = ::pointer_transfer((particle*)lparam.m_lparam);
 
    lparam.m_lparam = 0;
 
    return ::transfer(p);
 
 }
-
 
 
 const char* particle::debug_note() const
@@ -1817,16 +1816,12 @@ void particle::kick_idle()
 }
 
 
-
-
-::file_pointer particle::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+::file_pointer particle::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
-   return m_pcontext->get_file(payloadFile, eopen);
+   return m_pcontext->get_file(payloadFile, eopen, pfileexception);
 
 }
-
-
 
 
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)

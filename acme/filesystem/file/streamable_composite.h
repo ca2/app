@@ -28,9 +28,11 @@ namespace file
 
       void translate(filesize offset, ::enum_seek eseek) override;
 
-      virtual memsize read(void * pdata, memsize nCount) override;
+      using ::file::streamable::read;
+      virtual memsize read(void * p, ::memsize s) override;
 
-      virtual void write(const void * pdata, memsize nCount) override;
+      using ::file::streamable::write;
+      virtual void write(const void * p, ::memsize s) override;
 
       virtual void close() override;
 

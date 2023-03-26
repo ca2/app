@@ -3,8 +3,10 @@
 
 
 
-inline  constexpr strsize     character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength + 1) * sizeof(::ansi_character)); }
-inline  constexpr strsize     byte_length_to_character_count(const_ansichar_trigger, memsize nByteLength) { return (::strsize)((nByteLength / sizeof(::ansi_character)) - 1); }
+// inline  constexpr strsize     character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength) * sizeof(::ansi_character)); }
+// inline  constexpr strsize     byte_length_to_character_count(const_ansichar_trigger, memsize nByteLength) { return (::strsize)((nByteLength / sizeof(::ansi_character))); }
+// inline  constexpr strsize     null_terminated_character_count_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize)((nCharLength + 1) * sizeof(::ansi_character)); }
+// inline  constexpr strsize     null_terminated_byte_length_to_character_count(const_ansichar_trigger, memsize nByteLength) { return (::strsize)((nByteLength / sizeof(::ansi_character)) - 1); }
 
 
 

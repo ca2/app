@@ -37,26 +37,7 @@ public:
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
-   scoped_string_base(const STRING & str)
-   {
-
-      if constexpr (sizeof(typename STRING::CHARACTER) == sizeof(CHARACTER))
-      {
-
-         this->m_begin = str.m_begin;
-         this->m_end = str.m_end;
-         this->m_erange = str.m_erange;
-
-      }
-      else
-      {
-
-         this->str(str);
-
-      }
-
-   }
-
+   scoped_string_base(const STRING & str) { construct_range(str); }
 
    template < has_as_string HAS_AS_STRING >
    scoped_string_base(const HAS_AS_STRING & has_as_string) : RANGE(e_zero_initialize) { this->str(has_as_string.as_string()); }
@@ -128,10 +109,9 @@ public:
    ~scoped_string_base()
    {
 
-      if (::is_set(this) && (this->m_erange & e_range_scoped_string_allocation))
+      //if (::is_set(this) && (this->m_erange & e_range_scoped_string_allocation))
+      if (::is_set(this) && (this->m_erange & e_range_string))
       {
-
-         this->m_erange -= e_range_scoped_string_allocation;
 
          ((STRING *)this)->~string_base<ITERATOR_TYPE>();
 
@@ -147,10 +127,18 @@ public:
    STRING & str(const STRING & str)
    { 
 
-      this->m_erange += e_range_scoped_string_allocation;
+//      this->m_erange += e_range_scoped_string_allocation;
       
       return ((STRING *)this)->operator = (str);
    
+   }
+
+
+   STRING & fork()
+   {
+
+      return this->str({this->m_begin, this->m_end});
+
    }
 
 
@@ -179,12 +167,13 @@ public:
    void construct_range(const GENERIC_RANGE & range)
    {
 
-      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
+      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER)
+         && !(range.m_erange & e_range_string))
       {
 
          this->m_begin = (ITERATOR_TYPE) range.m_begin;
          this->m_end = (ITERATOR_TYPE) range.m_end;
-         this->m_erange = e_range_none;
+         this->m_erange = range.m_erange;
 
       }
       else
@@ -206,10 +195,27 @@ public:
    inline bool operator ==(const ::scoped_wd16_string & str) const { return this->equals(scoped_string_base(str)); }
    inline bool operator ==(const ::scoped_wd32_string & str) const { return this->equals(scoped_string_base(str)); }
 
+   const CHARACTER * null_terminated() const
+   { 
 
-   operator const CHARACTER * () const { return this->begin(); }
+      if (!(this->m_erange & e_range_string) && (this->m_erange & e_range_null_terminated))
+      {
 
-   const CHARACTER * c_str() const { return this->begin(); }
+         ((scoped_string_base *)this)->fork();
+
+      }
+
+      return this->m_begin;
+
+   }
+
+
+   operator const CHARACTER * () const { return this->null_terminated(); }
+
+   const CHARACTER * c_str() const { return this->null_terminated(); }
+
+
+   ::block as_block() const { return { (::byte *)this->begin(), this->size() * sizeof(CHARACTER) }; }
 
 
 };
@@ -329,9 +335,11 @@ inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITER
 
 
 template<primitive_character CHARACTER>
-inline ::u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *> scopedstr) {
+inline ::u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *> scopedstr) 
+{
 
-   if (scopedstr.is_empty()) {
+   if (scopedstr.is_empty()) 
+   {
 
       return {0};
 
@@ -339,7 +347,9 @@ inline ::u32hash _scoped_string_u32_hash(::scoped_string_base<const CHARACTER *>
 
    u32 uHash = 0;
 
-   while (scopedstr.m_begin < scopedstr.m_end) uHash = (uHash << 5) + *(scopedstr.m_begin++);
+   auto p = scopedstr.m_begin;
+
+   while (p < scopedstr.m_end) uHash = (uHash << 5) + *(p++);
 
    return {uHash};
 

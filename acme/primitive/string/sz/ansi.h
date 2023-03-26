@@ -4,8 +4,27 @@
 
 #define const_ansichar_trigger const ::ansi_character *
 
+
 template < primitive_character CHARACTER >
 inline constexpr memsize character_count_to_byte_length(const CHARACTER * pszTrigger, strsize nCharLength)
+{
+ 
+   return (::memsize)((nCharLength) * sizeof(CHARACTER));
+
+}
+
+
+template < primitive_character CHARACTER >
+inline constexpr strsize byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
+{
+
+   return (::strsize)((nByteLength / sizeof(CHARACTER)));
+
+}
+
+
+template < primitive_character CHARACTER >
+inline constexpr memsize null_terminated_character_count_to_byte_length(const CHARACTER * pszTrigger, strsize nCharLength)
 {
  
    return (::memsize)((nCharLength + 1) * sizeof(CHARACTER));
@@ -14,7 +33,7 @@ inline constexpr memsize character_count_to_byte_length(const CHARACTER * pszTri
 
 
 template < primitive_character CHARACTER >
-inline constexpr strsize byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
+inline constexpr strsize null_terminated_byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
 {
 
    return (::strsize)((nByteLength / sizeof(CHARACTER)) - 1);

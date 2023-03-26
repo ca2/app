@@ -1339,6 +1339,24 @@
     <ClCompile Include="memory\paged_win32.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows_common\file1.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\handle.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\translatable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\find_file.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3599,6 +3617,15 @@
     </ClInclude>
     <ClInclude Include="handler\request.h">
       <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\handle.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\file.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\find_file.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

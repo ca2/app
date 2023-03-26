@@ -390,10 +390,10 @@ namespace filemanager
 
          }
 
-         memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+         memsize uRead = m_fileSrc->read({ m_pchBuffer,m_iBufferSize });
          if(uRead > 0)
          {
-            m_fileDst->write(m_pchBuffer,uRead);
+            m_fileDst->write({ m_pchBuffer,uRead });
             m_daRead[m_iFile] += uRead;
             m_dRead += uRead;
          }
@@ -413,7 +413,7 @@ namespace filemanager
                try
                {
 
-                  m_fileSrc->get_status(st);
+                  st = m_fileSrc->get_status();
 
                }
                catch(...)
@@ -511,9 +511,9 @@ namespace filemanager
 
          }
 
-         memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+         memsize uRead = m_fileSrc->read({ m_pchBuffer,m_iBufferSize });
 
-         m_fileDst->write(m_pchBuffer,uRead);
+         m_fileDst->write({ m_pchBuffer,uRead });
 
          m_daRead[m_iFile] += uRead;
 

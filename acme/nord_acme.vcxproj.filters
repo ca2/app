@@ -394,7 +394,7 @@
     <ClCompile Include="operating_system\ansi\time.cpp">
       <Filter>Source Files\operating_system\ansi</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\posix\base_file.cpp">
+    <ClCompile Include="operating_system\posix\file.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\posix\desktop.cpp">
@@ -1158,6 +1158,18 @@
     </ClCompile>
     <ClCompile Include="handler\request.cpp">
       <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\_.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\translatable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1937,9 +1949,6 @@
     </ClInclude>
     <ClInclude Include="primitive\data\tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="os\_application.h">
       <Filter>Header Files\operating_system</Filter>
@@ -3699,6 +3708,12 @@
     <ClInclude Include="primitive\geometry2d\_rectangle.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\posix\_.h">
+      <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3928,6 +3943,9 @@
     </Filter>
     <Filter Include="Source Files\primitive\time">
       <UniqueIdentifier>{121c7575-217f-40ea-bb0e-1fdc60527170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\posix">
+      <UniqueIdentifier>{22ef593a-7d47-4857-9afc-bae79ae447f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

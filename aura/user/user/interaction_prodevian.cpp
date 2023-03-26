@@ -17,11 +17,12 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #endif
 
 
-#if !defined(WINDOWS_DESKTOP)
+#if !defined(WINDOWS)
 #define PM_NOREMOVE 0
 #define PM_REMOVE 1
-
 #endif
+
+
 #define TIME_REPORTING 0
 
 

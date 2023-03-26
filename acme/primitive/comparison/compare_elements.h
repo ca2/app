@@ -7,8 +7,8 @@
 //{
 //
 //   ENSURE(pElement1 != nullptr && pElement2 != nullptr);
-//   ASSERT(__is_valid_address(pElement1, sizeof(TYPE), false));
-//   ASSERT(__is_valid_address(pElement2, sizeof(ARG_TYPE), false));
+//   ASSERT(is_memory_segment_ok(pElement1, sizeof(TYPE), false));
+//   ASSERT(is_memory_segment_ok(pElement2, sizeof(ARG_TYPE), false));
 //
 //   return *pElement1 == *pElement2;
 //

@@ -343,7 +343,7 @@ namespace apex
 
       //   psystem->common_construct();
 
-      ::set_task(psystem);
+      //::set_task(psystem);
 
       //debug_context_object(psystem);
 

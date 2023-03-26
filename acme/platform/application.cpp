@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022.
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSørensen!!
@@ -299,8 +299,6 @@ namespace acme
 //
 //         }
 
-         ::task_release();
-
          //auto psystem = platform_create_system(strAppId);
 
          /*estatus =*/
@@ -531,6 +529,60 @@ namespace acme
    }
 
 
+   ::string application::app_name()
+   {
+
+      ::string strAppName;
+
+      if (m_strAppName.has_char())
+      {
+
+         strAppName = m_strAppName;
+
+      }
+      else
+      {
+
+         string strAppIdUnderscore = m_strAppId;
+
+         strAppIdUnderscore.find_replace("/", "_");
+
+         strAppIdUnderscore.find_replace("-", "_");
+
+         strAppName = strAppIdUnderscore;
+
+      }
+
+      return strAppName;
+
+   }
+
+
+   //::string node::app_name()
+   //{
+
+
+
+
+   //}
+
+
+   ::string application::app_root()
+   {
+
+      auto iFind = m_strAppId.find_index('/');
+
+      if (iFind < 0)
+      {
+
+         return{};
+
+      }
+
+      return m_strAppId.left(iFind);
+
+   }
+
 
 //#ifdef WINDOWS
 //
@@ -694,7 +746,13 @@ namespace acme
    }
 
 
-
+   ::string application::get_application_name()
+   {
+   
+      return m_strAppName;
+      
+   }
+      
 
 } // namespace acme
 

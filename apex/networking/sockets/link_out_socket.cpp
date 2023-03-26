@@ -11,7 +11,7 @@ namespace sockets
 
 
 
-   link_out_socket::link_out_socket() : 
+   link_out_socket::link_out_socket() //: 
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -20,8 +20,8 @@ namespace sockets
       //m_in(nullptr),
       //m_out(nullptr)
       //tcp_socket(32000, 32000),
-      m_in(nullptr),
-      m_out(nullptr)
+      //m_in(nullptr),
+      //m_out(nullptr)
    {
    }
 
@@ -35,13 +35,16 @@ namespace sockets
    void link_out_socket::OnRead( char *buf, memsize n )
    {
 
-      m_in->link_write(buf, n);
+      m_plinkinsocket->link_write(buf, n);
 
    }
 
+   
    void link_out_socket::link_write(void * p, memsize size)
    {
-      m_out->write((const char *) p, size);
+      
+      m_psocketOut->write({ p, size });
+
    }
 
 

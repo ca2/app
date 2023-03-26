@@ -38,8 +38,6 @@ inline auto std_inline_log(enum_trace_level etracelevelInformation = e_trace_lev
 
 CLASS_DECL_ACME const char * callstack_default_format();
 
-using a_trace_function = ::function < void(enum_trace_level, const ::scoped_string & ) >;
-
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 namespace acme
@@ -400,11 +398,11 @@ namespace acme
 
       virtual bool is_process_running(::u32 pid);
 
-      virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
+      virtual string get_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
 
-      virtual string expand_environment_variables(const string & str);
+      virtual string expand_environment_variables(const ::scoped_string & scopedstr);
 
-      virtual void set_environment_variable(const ::string& pszEnvironmentVariable, const ::string& pszValue);
+      virtual void set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string& scopedstrValue);
 
 #ifndef _UWP
 

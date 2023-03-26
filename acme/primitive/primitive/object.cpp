@@ -3561,22 +3561,22 @@ bool object::IsSerializable() const
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());
+   //inline ::file_pointer get_writer(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-//::file_pointer object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+//::file_pointer object::get_file(const ::payload& payloadFile, ::file::e_open eopen)
 //{
 //
 //   return nullptr;
 //
 //}
 
-//inline ::file_pointer get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
-//inline ::file_pointer get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+//inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_binary);
+//inline ::file_pointer get_writer(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

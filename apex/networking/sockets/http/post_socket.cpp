@@ -453,9 +453,9 @@ namespace sockets
 
             m.set_size((u32) (content_length));
 
-            pair.element2().m_spfile->read(m.data(), m.size());
+            pair.element2().m_spfile->read(m);
 
-            write(m.data(), m.size());
+            write(m);
 
             //transfer_from(*pair.element2().m_spfile, content-length);
             //}

@@ -1,4 +1,4 @@
-﻿// From department to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSørensen!!
+// From department to datetime by camilo on 2022-11-19 04:41 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -75,7 +75,7 @@ namespace datetime
          //string local_get_date_time_for_file_with_no_spaces();
 
 
-         inline string format(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
+         inline string format(const ::scoped_string & strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(strFormat, timeshift);  }
          inline string format(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none()) { return get_date_time(time, strFormat, timeshift); }
          
          //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }

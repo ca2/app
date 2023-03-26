@@ -78,7 +78,7 @@ namespace compress_zlib
 
       memIn.set_size((memsize)maximum(1024, minimum(pfileIn->get_left(), 1024 * 64)));
 
-      i64 uRead = pfileIn->read(memIn.data(), memIn.size());
+      i64 uRead = pfileIn->read(memIn);
 
       z_stream zstream;
 
@@ -119,7 +119,9 @@ namespace compress_zlib
             // Inflate another chunk.
             status = deflate(&zstream, iFlush);
 
-            pfileOut->write(memory.data(), (u32)memory.size() - zstream.avail_out);
+            auto amountToWrite = (u32)memory.size() - zstream.avail_out;
+
+            pfileOut->write(memory(0, amountToWrite));
 
             if (status == Z_STREAM_END)
             {
@@ -136,7 +138,7 @@ namespace compress_zlib
 
          } while (zstream.avail_out == 0 || zstream.avail_in > 0);
 
-         uRead = pfileIn->read(memIn.data(), memIn.size());
+         uRead = pfileIn->read(memIn);
 
          if (uRead == 0)
          {

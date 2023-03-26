@@ -15,8 +15,9 @@ namespace file
    public:
 
 
-      virtual void translate(filesize offset, enum_seek eseek) = 0;
-      virtual ::filesize get_position() const = 0;
+      // derived class must implement these
+      virtual void translate(filesize offset, enum_seek eseek);
+      virtual ::filesize get_position() const;
 
 
       void operator++()
@@ -57,6 +58,19 @@ namespace file
          return this->get_position();
 
       }
+
+
+      virtual bool is_seekable();
+
+      inline translatable & position() { return *this; }
+      //virtual filesize get_position() const override;
+      virtual void set_position(filesize position);
+      virtual void increment_position(filesize offset = 1);
+      virtual void decrement_position(filesize offset = 1);
+      virtual void seek_to_begin();
+      virtual void seek_to_end();
+      virtual void seek_from_end(filesize offset);
+
 
 
    };

@@ -346,7 +346,7 @@ public:
    i32 getIndexFromName(const ::string & pszAttributeName) const
 
    {
-      ASSERT(__is_valid_string(pszAttributeName));
+      ASSERT(is_string_ok(pszAttributeName));
 
       LiteHTMLElemAttr   *pItem = nullptr;
       for (i32 iElem = 0; iElem < getCount(); iElem++)
@@ -389,7 +389,7 @@ public:
    LiteHTMLElemAttr operator[](const ::string & pszIndex) const
 
    {
-      ASSERT(__is_valid_string(pszIndex));
+      ASSERT(is_string_ok(pszIndex));
 
       return ((*this)[getIndexFromName(pszIndex)]);
 
@@ -415,7 +415,7 @@ public:
    LiteHTMLElemAttr getAttribute(const ::string & pszIndex) const
 
    {
-      ASSERT(__is_valid_string(pszIndex));
+      ASSERT(is_string_ok(pszIndex));
 
       return ((*this)[getIndexFromName(pszIndex)]);
 

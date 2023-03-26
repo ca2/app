@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_reader(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return file()->get_reader(payloadFile, eopen);
@@ -9,7 +9,7 @@
 //}
 //
 //
-//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
+//inline ::file_pointer matter::get_writer(const ::payload & payloadFile, ::file::e_open eopen)
 //{
 //
 //   return file()->get_writer(payloadFile, eopen);

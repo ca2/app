@@ -337,7 +337,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //{
 //   // iStart is in XCHARs
 //   ASSERT(iStart >= 0);
-//   ASSERT(__is_valid_string(pszSub));
+//   ASSERT(is_string_ok(pszSub));
 //
 //   if (pszSub == nullptr)
 //   {

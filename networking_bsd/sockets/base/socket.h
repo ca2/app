@@ -726,7 +726,8 @@ namespace sockets_bsd
       //@}
 
 
-      void write(const void * buf, memsize c) override;
+      using ::sockets::base_socket::write;
+      void write(const void * p, ::memsize s) override;
       //void inline print(const ::string & str) { write(str.c_str(), str.length()); }
 
 

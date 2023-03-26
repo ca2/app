@@ -1,9 +1,10 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "stdio_file.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/system.h"
 
 
@@ -13,7 +14,6 @@ stdio_file::stdio_file()
    m_pfile = nullptr;
 
 }
-
 
 
 stdio_file::~stdio_file()
@@ -29,19 +29,11 @@ stdio_file::~stdio_file()
 }
 
 
-void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
+void stdio_file::open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    string str;
 
-//   if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
-//   {
-//
-//      acmedirectory()->create(path.folder());
-//
-//   }
-
-   //if (eopen & ::file::e_open_no_truncate && acmefile()->exists(path))
    if (eopen & ::file::e_open_no_truncate)
    {
 
@@ -83,23 +75,12 @@ void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 
    open(path, str, iShare);
 
-   //throw ::exception(
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return ::success;
-
 }
 
 
 void stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
 {
-
+   
    m_path = path;
 
 #ifdef WINDOWS
@@ -166,7 +147,7 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
 #endif
 
-         throw ::exception(estatus, string("Error with file: ") + path);
+         throw_exception("fopen");
 
       }
 
@@ -200,13 +181,7 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
    if (fseek(m_pfile, (long)offset, nFrom))
    {
 
-      auto iErrNo = errno;
-
-      auto estatus = errno_status(iErrNo);
-
-      auto errorcode = errno_error_code(iErrNo);
-
-      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0", m_eopen);
+      throw_exception("fseek != 0");
 
    }
 
@@ -217,21 +192,11 @@ void stdio_file::translate(filesize offset, ::enum_seek eseek)
    if(iFseekResult != 0)
    {
 
-      i32 iErrNo = errno;
-      
-      auto errorcode = errno_error_code(iErrNo);
-      
-      auto estatus = errno_status(iErrNo);
-      
-      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
-
-      //return -1;
+      throw_exception("fseek != 0");
 
    }
 
 #endif
-
-   //return ftell(m_pfile);
 
 }
 
@@ -260,10 +225,10 @@ void stdio_file::close()
 }
 
 
-memsize stdio_file::read(void * pdata, memsize nCount)
+memsize stdio_file::read(void * p, ::memsize s)
 {
 
-   auto size = fread(pdata, 1, nCount, m_pfile);
+   auto amountRead = fread(p, 1, s, m_pfile);
 
    int iEof = feof(m_pfile);
 
@@ -275,21 +240,15 @@ memsize stdio_file::read(void * pdata, memsize nCount)
       if (iError != 0)
       {
 
-         i32 iErrNo = errno;
-         
-         auto errorcode = errno_error_code(iErrNo);
-         
-         auto estatus = errno_status(iErrNo);
-         
-         throw ::file::exception(estatus, errorcode, m_path, "fread: !feof and ferror");
+         throw_exception("fread: !feof and ferror");
 
          return 0;
-
+         
       }
 
    }
 
-   return (::memsize) size;
+   return (::memsize)amountRead;
 
 }
 
@@ -339,15 +298,13 @@ void stdio_file::put_byte_back(::byte byte)
 
    ::ungetc(byte, m_pfile);
 
-   //UNUSED_RETURN_VALUEreturn iCharRet;
-
 }
 
 
-void stdio_file::write(const void * pdata,memsize nCount)
+void stdio_file::write(const void * p, ::memsize s)
 {
 
-   fwrite(pdata,nCount, 1, m_pfile);
+   fwrite(p, 1, s, m_pfile);
 
 }
 
@@ -381,8 +338,6 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::size() const
 {
 
-   //return acmefile()->get_size(m_pfile);
-
    auto position = get_position();
 
    ((stdio_file *)this)->seek_to_end();
@@ -396,42 +351,18 @@ filesize stdio_file::size() const
 }
 
 
-//void stdio_file::assert_ok() const
-//{
-//
-//}
-//
-//
-//void stdio_file::dump(dump_context & dumpcontext) const
-//{
-//
-//   __UNREFERENCED_PARAMETER(dumpcontext);
-//
-//}
-
-
 ::file::path stdio_file::get_file_path() const
 {
 
-   return "";
+   return m_path;
 
 }
 
 
-bool stdio_file::get_status(::file::file_status & rStatus) const
+::file::file_status stdio_file::get_status() const
 {
 
-   __UNREFERENCED_PARAMETER(rStatus);
-
-   return false;
-
-}
-
-
-bool stdio_file::is_opened() const
-{
-
-   return m_pfile != nullptr;
+   return {};
 
 }
 
@@ -444,23 +375,26 @@ string stdio_file::get_location() const
 }
 
 
-//CLASS_DECL_ACME file_pointer create_stdio_file(const ::file::path & path, const ::string & strAttributes, int iShare)
-//{
-//
-//   auto pfile = __new(stdio_file);
-//
-//   auto estatus = pfile->open(path, strAttributes, iShare);
-//
-//   if(!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return pfile;
-//
-//}
+bool stdio_file::is_opened() const
+{
+
+   return m_pfile != nullptr;
+
+}
+
+
+void stdio_file::throw_exception(const ::scoped_string & scopedstr)
+{
+
+   auto iErrNo = errno;
+
+   auto estatus = errno_status(iErrNo);
+
+   auto errorcode = errno_error_code(iErrNo);
+
+   throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
+
+}
 
 
 

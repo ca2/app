@@ -26,8 +26,6 @@ inline oswindow __oswindow(HWND hwnd)
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
 
-
-
 CLASS_DECL_ACME bool process_modules(string_array & stra, u32 processID);
 
 
@@ -142,11 +140,6 @@ namespace windows
 } // namespace windows
 
 
-
-
-
-
-
 #include "acme/operating_system/message.h"
 
 
@@ -178,6 +171,4 @@ inline void copy(MSG & msg, const MESSAGE & message)
 
 
 }
-
-
 

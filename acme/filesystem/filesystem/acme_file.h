@@ -39,9 +39,8 @@ public:
    virtual ::file::path module();
 
 
-   virtual file_pointer open(const ::file::path& path, const ::file::e_open& eopen);
+   virtual file_pointer open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
    virtual file_pointer stdio_open(const ::file::path & path, const scoped_string & attrs, int iShare);
-
 
 
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
@@ -60,6 +59,7 @@ public:
    virtual void clear_application_data();
 
 
+   virtual void find_replace(const ::file::path & path, const ::property_set & set);
 
 
    //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);
@@ -104,9 +104,13 @@ public:
    virtual void copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    
+   virtual bool _memory_map_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc);
+   
+   virtual void _read_write_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc, ::memsize buffer_size = 1_MiB);
 
-   virtual ::earth::time modification_time(const ::file::path & path);
-   virtual void set_modification_time(const ::file::path & path, const ::earth::time & time);
+
+   virtual class ::time modification_time(const ::file::path & path);
+   virtual void set_modification_time(const ::file::path & path, const class ::time & time);
    virtual void synchronize(const ::file::path & path1, const ::file::path & path2);
 
 

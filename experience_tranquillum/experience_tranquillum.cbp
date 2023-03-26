@@ -308,7 +308,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/audio/audioaura/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">

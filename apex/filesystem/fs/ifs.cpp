@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "ifs.h"
 #include "ifs_file.h"
 ////#include "acme/exception/exception.h"
@@ -130,7 +130,7 @@ bool ifs::enumerate(::file::listing & listing)
 
       }
 
-      dir.m_timeLast.now();
+      dir.m_timeLast.Now();
 
       throw ::exception(error_failed);
 

@@ -27,7 +27,7 @@ char * ns_user_local_folder(NSSearchPathDirectory e)
       
    }
    
-   return ns_string([[pa objectAtIndex:0] path]);
+   return __strdup([[pa objectAtIndex:0] path]);
    
 }
 

@@ -25,7 +25,7 @@
 ////      
 ////   }
 ////   
-////   return ns_string(strFullPath);
+////   return __strdup(strFullPath);
 ////   
 ////}
 //
@@ -111,20 +111,20 @@
 //}
 //
 //
-//NSString * __ns_get_text(const char * psz);
+//NSString * __nsstring(const char * psz);
 //
 //
-//NSString * __ns_get_text(NSString * str)
+//NSString * __nsstring(NSString * str)
 //{
 //
 //   const char * psz = [str UTF8String];
 //   
-//   return __ns_get_text(psz);
+//   return __nsstring(psz);
 //
 //}
 //
 //
-//NSString * __ns_get_text(const char * psz)
+//NSString * __nsstring(const char * psz)
 //{
 //   
 //   int iLen = __c_get_text_length(psz);
@@ -159,6 +159,6 @@
 //char * ns_get_thread_name()
 //{
 //   
-//   return ns_string([[NSThread currentThread] name]);
+//   return __strdup([[NSThread currentThread] name]);
 //   
 //}

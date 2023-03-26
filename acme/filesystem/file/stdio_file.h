@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "text_file.h"
@@ -23,17 +23,12 @@ public:
 
 
    FILE *                        m_pfile;
-//   string                        m_strFileName;
    e_flag                        m_eflag;
 
 
    stdio_file();
    explicit stdio_file(FILE * pfile);
    ~stdio_file() override;
-
-
-   //// void assert_ok() const override;
-   //// void dump(dump_context & dumpcontext) const override;
 
 
    filesize get_position() const override;

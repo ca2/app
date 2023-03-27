@@ -45,7 +45,7 @@ string ca2_command_line()
 
 
 
-#ifndef RASPBIAN
+#ifndef RASPBERRYPIOS
 
 SnLauncheeContext* g_psncontext = nullptr;
 
@@ -70,7 +70,7 @@ void sn_start_context()
 }
 
 
-#endif // !RASPBIAN
+#endif // !RASPBERRYPIOS
 
 
 
@@ -195,7 +195,7 @@ void sn_start_context();
 // bool os_init_application()
 // {
 
-//    #ifndef RASPBIAN
+//    #ifndef RASPBERRYPIOS
 
 //     sn_start_context();
 

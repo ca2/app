@@ -2,9 +2,9 @@
 #pragma once
 
 
-
 namespace file
 {
+
 
    struct file_dialog_filter
    {

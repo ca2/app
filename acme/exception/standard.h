@@ -180,7 +180,7 @@ typedef struct _sig_ucontext
    class standard_access_violation : public standard_exception
    {
    public:
-#if defined(ANDROID) || defined(RASPBIAN)
+#if defined(ANDROID) || defined(RASPBERRYPIOS)
 
 
       standard_access_violation (i32 signal, void * psiginfo, void * pc) :
@@ -244,7 +244,7 @@ typedef struct _sig_ucontext
    public:
 #endif
    };
-#if defined(ANDROID) || defined(RASPBIAN)
+#if defined(ANDROID) || defined(RASPBERRYPIOS)
 
    class standard_sigfpe : public standard_exception
    {

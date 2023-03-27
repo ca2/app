@@ -1852,7 +1852,7 @@ if (LINUX)
             operating_system/linux/file.h
             operating_system/linux/file_lock.cpp
             operating_system/linux/graphics.cpp
-            operating_system/linux/internal.h
+            #operating_system/linux/internal.h
             operating_system/linux/library.cpp
             operating_system/linux/linux.cpp
             operating_system/linux/linux.cpp
@@ -1870,7 +1870,7 @@ if (LINUX)
             operating_system/linux/simple_app.cpp
             operating_system/linux/system.cpp
             operating_system/linux/thread.cpp
-            operating_system/linux/thread.h
+            #operating_system/linux/thread.h
             operating_system/linux/time.cpp
             operating_system/linux/trace.cpp
             operating_system/linux/user.cpp

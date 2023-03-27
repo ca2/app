@@ -13,7 +13,7 @@
 //#include <sqlite3.h>
 //#include <locale.h>
 //
-//#ifdef RASPBIAN
+//#ifdef RASPBERRYPIOS
 //#define OPERATING_SYSTEM_NAMESPACE linux
 //#endif
 //

@@ -6,6 +6,8 @@
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/file_dialog.h"
+#include "acme/platform/node.h"
 
 
 namespace user
@@ -4568,6 +4570,101 @@ namespace user
       //return true;
 
    }
+
+
+
+   void element::pick_single_file(const ::array < ::file::file_dialog_filter >& filedialogfiltera, const ::function < void(const ::file::path&) >& function, bool bSave)
+   {
+
+      auto pfiledialog = acmenode()->node_file_dialog();
+
+      pfiledialog->m_bSave = bSave;
+
+      pfiledialog->m_function = [this, function](auto pdialog)
+      {
+
+
+         if (pdialog && pdialog->m_patha.has_element())
+         {
+
+            function(pdialog->m_patha.first());
+
+         }
+         else
+         {
+
+            function({});
+
+         }
+
+
+      };
+
+      pfiledialog->call_run();
+
+   }
+
+
+   void element::pick_multiple_file(const ::array < ::file::file_dialog_filter >& filedialogfiltera, const ::function < void(const ::file::path_array&) >& function)
+   {
+
+      auto pfiledialog = acmenode()->node_file_dialog();
+
+      pfiledialog->m_function = [this, function](auto pdialog)
+      {
+
+
+         if (pdialog && pdialog->m_patha.has_element())
+         {
+
+            function(pdialog->m_patha);
+
+         }
+         else
+         {
+
+            function({});
+
+         }
+
+
+      };
+
+      pfiledialog->call_run();
+
+   }
+
+
+
+   void element::pick_single_folder(const ::function < void(const ::file::path&) >& function)
+   {
+
+      auto pfiledialog = acmenode()->node_file_dialog();
+
+      pfiledialog->m_function = [this, function](auto pdialog)
+      {
+
+
+         if (pdialog && pdialog->m_patha.has_element())
+         {
+
+            function(pdialog->m_patha.first());
+
+         }
+         else
+         {
+
+            function({});
+
+         }
+
+
+      };
+
+      pfiledialog->call_run();
+
+   }
+
 
 } // namespace user
 

@@ -18,7 +18,7 @@ inline  void           from_string(u64 & i, const ::ansi_character * psz);
 inline  void           from_string(u32 & i, i32 iBase, const ::ansi_character * psz);
 inline  void           from_string(u64 & i, i32 iBase, const ::ansi_character * psz);
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 inline  void           from_string(long & l, const ::ansi_character * psz);
 inline  void           from_string(long & l, i32 iBase, const ::ansi_character * psz);
 #endif

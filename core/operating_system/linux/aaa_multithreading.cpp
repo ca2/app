@@ -138,7 +138,7 @@ CLASS_DECL_CORE i64 get_nanos()
 {
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
    struct timeval tv;
 

@@ -327,7 +327,7 @@ public:
    binary_stream & operator <<(u64 u) {
       raw_write(u); return *this;
    }
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    binary_stream & operator <<(unsigned long u) {
       raw_write(u); return *this;
    }
@@ -402,7 +402,7 @@ public:
    binary_stream & operator >>(u64 & u) {
       raw_read(u); return *this;
    }
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    binary_stream & operator >>(unsigned long & u) {
       raw_read(u); return *this;
    }

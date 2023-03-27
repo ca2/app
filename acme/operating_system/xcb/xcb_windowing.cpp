@@ -41,7 +41,7 @@ void xcb_handle_just_hooks()
 
    xcb_generic_event_t * pevent = nullptr;
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //   XGenericEventCookie * cookie;
 //

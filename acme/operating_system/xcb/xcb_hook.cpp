@@ -84,7 +84,7 @@ void __xcb_hook_on_idle(Display * pdisplay)
 }
 
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 bool x11_process_event(Display * pdisplay, xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
 

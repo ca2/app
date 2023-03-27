@@ -24,7 +24,7 @@ bool defer_initialize_operating_system_networking();
 bool defer_finalize_operating_system_networking();
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #include <sys/types.h>
 #include <unistd.h>
 #endif

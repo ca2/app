@@ -6,18 +6,18 @@
 CLASS_DECL_ACME ::i64 integral_nanosecond()
 {
    
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
    struct timeval tv;
 
    if(gettimeofday(&tv, nullptr) != 0)
    {
 
-      return integral_nanosecond(0);
+      return 0;
 
    }
 
-   return integral_nanosecond(tv.tv_sec * 1000'000'000 + tv.tv_usec * 1'000);
+   return tv.tv_sec * 1'000'000'000 + tv.tv_usec * 1'000;
 
 #else
 

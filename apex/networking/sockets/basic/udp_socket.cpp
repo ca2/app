@@ -304,7 +304,7 @@ namespace sockets
 
 
 #if defined(LINUX) || defined(MACOSX)
-   i32 udp_socket::ReadTS(char *ioBuf, i32 inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts)
+   i32 udp_socket::ReadTS(char *ioBuf, i32 inBufSize, struct sockaddr *from, int fromlen, struct timeval *ts)
    {
 //      struct msghdr msg;
 //      struct iovec vec[1];

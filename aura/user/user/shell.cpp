@@ -23,7 +23,7 @@
 
 #include "acme/primitive/collection/_array.h"
 
-#if defined(RASPBIAN)
+#if defined(RASPBERRYPIOS)
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 

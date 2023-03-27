@@ -35,7 +35,7 @@ inline i64 atomic_increment64(i64 * pi)
 {
 
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
   
   return __sync_add_and_fetch_4(pi, 1);
   
@@ -60,7 +60,7 @@ inline i64 atomic_increment64(i64 * pi)
 inline i32 atomic_increment32(i32* pi)
 {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
 
    return __sync_add_and_fetch_4(pi, 1);
 
@@ -85,7 +85,7 @@ inline i32 atomic_increment32(i32* pi)
    inline i64 atomic_decrement64(i64 * pi)
    {
    
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
   
       return __sync_sub_and_fetch_4(pi, 1);
   
@@ -109,7 +109,7 @@ inline i32 atomic_increment32(i32* pi)
    inline i32 atomic_decrement32(i32 * pi)
    {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
 
       return __sync_sub_and_fetch_4(pi, 1);
 
@@ -134,7 +134,7 @@ inline i32 atomic_increment32(i32* pi)
 inline i64 atomic_add64(i64* pi, i64 i)
 {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
 
    return __sync_add_and_fetch_4(pi, 1);
 
@@ -159,7 +159,7 @@ inline i64 atomic_add64(i64* pi, i64 i)
 inline i32 atomic_add32(i32* pi, i32 i)
 {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
 
    return __sync_add_and_fetch_4(pi, 1);
 
@@ -184,7 +184,7 @@ inline i32 atomic_add32(i32* pi, i32 i)
    inline i64 atomic_subtract64(i64* pi, i64 i)
    {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
 
    return __sync_sub_and_fetch_4(pi, 1);
 
@@ -209,7 +209,7 @@ inline i32 atomic_add32(i32* pi, i32 i)
 inline i32 atomic_subtract32(i32* pi, i32 i)
 {
 
-#if defined(RASPBIAN) && defined(OS32BIT)
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
    
    return __sync_sub_and_fetch_4(pi, 1);
 

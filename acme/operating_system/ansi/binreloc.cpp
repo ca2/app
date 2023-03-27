@@ -15,7 +15,7 @@
 #ifndef __BINRELOC_C__
 #define __BINRELOC_C__
 
-#if defined(RASPBIAN) || defined(FREEBSD)
+#if defined(RASPBERRYPIOS) || defined(FREEBSD)
 #include <sys/types.h>
 #include <unistd.h>
 #endif

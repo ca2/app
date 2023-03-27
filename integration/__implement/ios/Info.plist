@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Drawing!!</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIconFile</key>
@@ -29,7 +29,7 @@
 	<key>LSVisibleInClassic</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2015 ca2 Desenvolvimento de Software Ltdal. All rights reserved.</string>
+	<string>Copyright © 2015-2023 ca2 Desenvolvimento de Software Ltda. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>UIApplication</string>
 	<key>UILaunchStoryboardName</key>

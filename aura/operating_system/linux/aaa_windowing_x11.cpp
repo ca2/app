@@ -170,7 +170,7 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow);
 
 int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 int xi_opcode = -1;
 ::pointer<object_array>g_pobjectaExtendedEventListener;
@@ -2794,7 +2794,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie * cookie);
@@ -2974,7 +2974,7 @@ bool x11_on_event(XEvent * pevent)
             XGenericEventCookie * cookie;
 
 
-#if defined(RASPBIAN)
+#if defined(RASPBERRYPIOS)
 
             cookie = nullptr;
 
@@ -2998,7 +2998,7 @@ bool x11_on_event(XEvent * pevent)
    if(!__x11_hook_process_event(pdisplay, pevent, cookie))
    {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
       if(!x11_process_event(pdisplaydata, pevent, cookie))
 
@@ -3071,13 +3071,13 @@ bool x11_message_handler(XEvent * pevent)
 
             XEvent & e = *pevent;
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             XGenericEventCookie * cookie;
 
 #endif
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             if(g_pobjectaExtendedEventListener)
             {
@@ -3097,7 +3097,7 @@ bool x11_message_handler(XEvent * pevent)
             if(!__x11_hook_process_event(pdisplaydata->display(), &e, cookie))
             {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
                if(!x11_process_event(pdisplaydata, &e, cookie))
 
@@ -3152,7 +3152,7 @@ bool x11_message_handler(XEvent * pevent)
    if(g_bFinishX11Thread)
    {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
       g_pobjectaExtendedEventListener.release();
 
@@ -3222,13 +3222,13 @@ bool x11_message_loop_step()
 
             XEvent e = {};
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             XGenericEventCookie * cookie;
 
 #endif
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             if(g_pobjectaExtendedEventListener)
             {
@@ -3250,7 +3250,7 @@ bool x11_message_loop_step()
             if(!__x11_hook_process_event(pdisplaydata->display(), &e, cookie))
             {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
                if(!x11_process_event(pdisplaydata, &e, cookie))
 
@@ -3310,7 +3310,7 @@ bool x11_message_loop_step()
    if(g_bFinishX11Thread)
    {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
       g_pobjectaExtendedEventListener.release();
 
@@ -3395,7 +3395,7 @@ bool x11_message_loop_step()
 //
 //    x11_
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie)
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
@@ -3418,7 +3418,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
 #endif
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
    if(cookie)
    {
@@ -4976,7 +4976,7 @@ Pixmap x11_create_pixmap(::image * pimage)
 }
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 
 HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
@@ -5118,7 +5118,7 @@ HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage
 }
 
 
-#endif // RASPBIAN
+#endif // RASPBERRYPIOS
 
 
 

@@ -5,7 +5,7 @@
 //!!!#include <X11/extensions/Xrender.h>
 
 
-#if defined(RASPBIAN)
+#if defined(RASPBERRYPIOS)
 
 Visual * get_32bit_visual(Display * disp)
 {

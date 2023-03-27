@@ -52,7 +52,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include "acme/platform/acme.h"
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
+#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
 #endif
@@ -63,7 +63,7 @@ extern char _binary__matter_zip_end[];
 
 #else
 
-//   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //
 //   void set_res(const char * p1, const char * p2);
 //
@@ -98,7 +98,7 @@ int main(int argc, char * argv[], char * envp[])
    ::acme::acme::g_p->initialize(argc, argv, envp);
 #endif
 
-#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
+#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
    ::acme::acme::g_p->m_psubsystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
@@ -214,7 +214,7 @@ int main(int argc, char * argv[], char * envp[])
 ////
 ////#endif
 ////
-////#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
+////#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 ////
 ////   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 ////

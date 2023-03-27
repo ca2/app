@@ -690,6 +690,8 @@ namespace acme
       virtual ::pointer < ::file::folder_dialog > node_folder_dialog();
 
 
+
+
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 

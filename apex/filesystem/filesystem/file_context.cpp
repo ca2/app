@@ -64,7 +64,7 @@
 
 //#define astr (*::apex::g_papexstrpool)
 
-//#ifdef RASPBIAN
+//#ifdef RASPBERRYPIOS
 //#include <openssl/md5.h>
 //#include <openssl/whrlpool.h>
 //#include "apex/crypto/crypto_openssl.h"

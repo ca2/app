@@ -385,25 +385,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <StringPooling>false</StringPooling>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ControlFlowGuard>false</ControlFlowGuard>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -417,25 +402,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <StringPooling>false</StringPooling>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ControlFlowGuard>false</ControlFlowGuard>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -448,16 +419,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -471,15 +434,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -492,19 +448,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -517,19 +464,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -542,18 +480,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -565,18 +495,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -588,16 +510,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -611,16 +525,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -634,15 +540,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|arm'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -655,15 +554,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -676,16 +568,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
@@ -700,18 +584,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -723,16 +599,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
-      <EnableModules>false</EnableModules>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
@@ -746,15 +614,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>

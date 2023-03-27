@@ -637,6 +637,23 @@ void acme_file::clear_application_data()
 }
 
 
+void acme_file::find_replace(const ::file::path & path, const ::property_set & set)
+{
+
+   auto str = as_string(path);
+
+   for(auto & pproperty : set)
+   {
+
+      str.find_replace(pproperty->name(), pproperty->as_string());
+
+   }
+
+   put_contents(path, str);
+
+}
+
+
 bool acme_file::is_true(const ::file::path & path)
 {
 

@@ -4,7 +4,7 @@
 
 #include "command_update_target.h"
 #include "conversation.h"
-//#include "acme/primitive/mathematics/c_number.h"
+#include "acme/filesystem/filesystem/file_dialog.h"
 
 
 namespace user
@@ -791,6 +791,20 @@ namespace user
       virtual ::user::element * next_user_primitive();
       virtual ::user::element * previous_user_primitive();
 
+   
+      virtual void pick_single_file(
+         const ::array < ::file::file_dialog_filter > & filedialogfiltera,
+         const ::function < void(const ::file::path &) >& function,
+         bool save);
+
+
+      virtual void pick_multiple_file(
+         const ::array < ::file::file_dialog_filter >& filedialogfiltera,
+         const ::function < void(const ::file::path_array &) >& function);
+
+
+      virtual void pick_single_folder(
+         const ::function < void(const ::file::path &) >& function);
 
 
    };

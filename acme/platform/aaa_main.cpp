@@ -366,7 +366,7 @@ void finalize_global_message_queue();
 
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 

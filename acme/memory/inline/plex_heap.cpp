@@ -453,7 +453,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #define QUOTED_KERNEL_SPACE (1024)
 #elif  defined(ANDROID)
 #define QUOTED_KERNEL_SPACE (1024 * 1024)

@@ -763,7 +763,7 @@
 //}
 //
 //
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //
 //
 //void stream::read(long& l)

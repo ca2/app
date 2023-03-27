@@ -367,7 +367,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    void as(::memory_base & memory) const;
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
@@ -607,7 +607,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    bool & bool_reference();
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long & long_reference();
    unsigned long & unsigned_long_reference();
 #endif
@@ -709,7 +709,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (::u32 u);
    payload & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
-#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    payload & operator = (long l);
 #endif
    payload & operator = (::i64 i);
@@ -1186,7 +1186,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 
-//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //
 //
 //inline payload::operator long &()

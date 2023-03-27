@@ -4540,10 +4540,10 @@ namespace user
 //      printf("_DEBUG not defined\n");
 //      #endif
 //
-//      #ifdef RASPBIAN
-//      printf("RASPBIAN defined\n");
+//      #ifdef RASPBERRYPIOS
+//      printf("RASPBERRYPIOS defined\n");
 //      #else
-//      printf("RASPBIAN not defined\n");
+//      printf("RASPBERRYPIOS not defined\n");
 //      #endif
       
 #ifdef REPORT_OFFSET

@@ -43,7 +43,7 @@ void on_term_thread();
 
 //bool apex_thread_get_run();
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 

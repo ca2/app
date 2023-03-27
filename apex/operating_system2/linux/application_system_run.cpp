@@ -53,7 +53,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //
 //
-//#ifndef RASPBIAN
+//#ifndef RASPBERRYPIOS
 //
 //SnLauncheeContext* g_psncontext = nullptr;
 //
@@ -81,7 +81,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //}
 //
 //
-//#endif // !RASPBIAN
+//#endif // !RASPBERRYPIOS
 //
 
 
@@ -156,7 +156,7 @@ namespace apex
  bool os_init_application()
  {
 
-//    #ifndef RASPBIAN
+//    #ifndef RASPBERRYPIOS
 //
 //     sn_start_context();
 //

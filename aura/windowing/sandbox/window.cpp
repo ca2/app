@@ -108,7 +108,7 @@ namespace sandbox_windowing
 
 
 
-      //#ifndef RASPBIAN
+      //#ifndef RASPBERRYPIOS
       //
       //      if (pwindowing->m_pSnLauncheeContext != nullptr && !papp->m_bSnLauncheeSetup)
       //      {
@@ -401,7 +401,7 @@ namespace sandbox_windowing
 
    //   }
 
-   //   //#endif // RASPBIAN
+   //   //#endif // RASPBERRYPIOS
 
    //   windowing_output_debug_string("\nwindow::map_window END");
 

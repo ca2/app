@@ -13,7 +13,7 @@
 //
 //#if defined(__arm__)
 //
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //#include <sys/endian.h>
 //

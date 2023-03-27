@@ -64,7 +64,7 @@ namespace windowing
 
 
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
    bool x11_process_event(display *pdisplay, void * pevent, void *cookie);
 

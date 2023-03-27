@@ -4662,7 +4662,7 @@ Pixmap x11_create_pixmap(::image * pimage)
 }
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
@@ -4801,7 +4801,7 @@ HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int 
 }
 
 
-#endif // RASPBIAN
+#endif // RASPBERRYPIOS
 
 
 

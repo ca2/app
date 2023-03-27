@@ -161,7 +161,7 @@ OSSL_PARAM_construct_end() };
 #else
 static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned char *iv, EVP_CIPHER_CTX *ctx, HMAC_CTX *hctx, int enc)
 {
-   ::networking_bsd::tcp_socket *c = (::networking_bsd::tcp_socket *) SSL_get_app_data2(s);
+   ::sockets_bsd::tcp_socket *c = (::sockets_bsd::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
    if (enc)   /* create memory_new session */

@@ -16,7 +16,7 @@ CLASS_DECL_AURA string task_get_name();
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBIAN) && !defined(ANDROID)
+#if !defined(RASPBERRYPIOS) && !defined(ANDROID)
 #include <valgrind/valgrind.h>
 #endif
 
@@ -64,7 +64,7 @@ pacmedirectory->system() / "trace.txt";
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBIAN) && !defined(ANDROID) && !defined(WINDOWS)
+#if !defined(RASPBERRYPIOS) && !defined(ANDROID) && !defined(WINDOWS)
       if (!RUNNING_ON_VALGRIND)
 #endif
       {
@@ -192,7 +192,7 @@ pacmedirectory->system() / "log.txt"))
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if defined(LINUX) && !defined(RASPBIAN)
+#if defined(LINUX) && !defined(RASPBERRYPIOS)
 
       else if (RUNNING_ON_VALGRIND)
       {

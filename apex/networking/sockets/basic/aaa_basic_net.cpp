@@ -3,7 +3,7 @@
 #include "apex/networking/_networking_impl.h"
 //#include <stdio.h>
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #include <sys/types.h>
 #include <unistd.h>
 #endif

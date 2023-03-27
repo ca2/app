@@ -3760,7 +3760,7 @@ Pixmap x11_create_pixmap(::image * pimage)
 }
 
 
-#ifndef RASPBIAN
+#ifndef RASPBERRYPIOS
 
 Picture _xrender_create_picture(oswindow window, ::image_pointer pimage)
 {
@@ -3866,16 +3866,16 @@ HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int 
    return hcursor;
 
 }
-// END IF !RASPBIAN
+// END IF !RASPBERRYPIOS
 #else 
-// IF RASPBIAN
+// IF RASPBERRYPIOS
 HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
    return nullptr;
 
 }
-// END IF RASPBIAN
+// END IF RASPBERRYPIOS
 #endif 
 
 

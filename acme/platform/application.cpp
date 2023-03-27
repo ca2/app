@@ -33,7 +33,7 @@ CLASS_DECL_ACME ::file::path get_module_path();
 
 CLASS_DECL_ACME void set_main_user_thread();
 
-//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //static const char * g_p1;
 //static const char * g_p2;
 //void set_res(const char * p1, const char * p2)
@@ -123,7 +123,7 @@ namespace acme
 //      m_hinstancePrev = g_hinstancePrev;
 //      m_nCmdShow = g_nCmdShow;
 //
-//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //
 //      m_pchar_binary__matter_zip_start = g_p1;
 //      m_pchar_binary__matter_zip_end = g_p2;

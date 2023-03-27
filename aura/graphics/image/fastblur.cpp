@@ -877,7 +877,7 @@ auto tick2 = ::time::now();
       if(dst != pdata)
       {
 
-         ::memcpy_dup(pdata,dst,m_p->m_iScan * m_p.height());
+         ::memory_copy(pdata,dst,m_p->m_iScan * m_p.height());
 
       }
 
@@ -1322,7 +1322,7 @@ auto tick2 = ::time::now();
       if(dst != pimage)
       {
 
-         ::memcpy_dup(pimage,dst,stride * h);
+         ::memory_copy(pimage,dst,stride * h);
 
       }
 

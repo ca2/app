@@ -363,7 +363,7 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
          u8 * pline = (u8 *) &((unsigned int*)data)[y * cx];
 
-         ::memcpy_dup(pdest, pline, cx* 4);
+         ::memory_copy(pdest, pline, cx* 4);
 
          pdest += iScan;
 

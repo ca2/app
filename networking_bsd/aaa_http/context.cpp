@@ -2865,7 +2865,7 @@ namespace http
 
 #ifdef _WIN32
 
-      ::memcpy_dup(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
 
 #else
 

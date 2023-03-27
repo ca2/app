@@ -2510,7 +2510,7 @@ return false;
             if (*psz == '\\')
             {
 
-               __memmov(psz, psz + 1, strlen(psz));
+               memory_transfer(psz, psz + 1, strlen(psz));
 
                unicode_increment(psz);
 

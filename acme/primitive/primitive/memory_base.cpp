@@ -227,7 +227,7 @@ void memory_base::allocate_internal(memsize sizeNew)
       if (pOldStorage && (!this->m_bOwner || this->m_bReadOnly))
       {
 
-         ::memcpy_dup(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
+         ::memory_copy(pNewStorage, pOldStorage, (memsize) minimum(sizeOld, sizeNewStorage));
 
       }
 
@@ -246,7 +246,7 @@ void memory_base::allocate_internal(memsize sizeNew)
 
          pNewStorage = impl_alloc((size_t)sizeNewStorage);
 
-         ::memcpy_dup(pNewStorage, pOldStorage, sizeOld);
+         ::memory_copy(pNewStorage, pOldStorage, sizeOld);
 
          impl_free(pOldStorage);
 
@@ -297,7 +297,7 @@ void memory_base::erase_offset()
 
    auto size = this->size();
 
-   __memmov(this->m_beginStorage,this->m_begin,size);
+   memory_transfer(this->m_beginStorage,this->m_begin,size);
 
    this->m_begin = this->m_beginStorage;
 
@@ -396,8 +396,8 @@ void memory_base::delete_begin(memsize iSize)
 //      if(pfileOut->get_internal_data() == data())
 //         return;
 //
-//      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
-//      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
+//      memory_transfer(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - size());
+//      ::memory_copy(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),data(),size());
 //
 //      pfileOut->position() += size();
 //
@@ -577,7 +577,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   __memmov(this->m_begin + pos,this->m_begin + pos + len,size() - (pos + len));
+   memory_transfer(this->m_begin + pos,this->m_begin + pos + len,size() - (pos + len));
 
    set_size(size() - len);
 
@@ -988,7 +988,7 @@ void memory_base::copy_from(const memory_base *pstorage)
 
    set_size(pstorage->size());
 
-   ::memcpy_dup(data(), pstorage->data(), (size_t) this->size());
+   ::memory_copy(data(), pstorage->data(), (size_t) this->size());
 
 }
 
@@ -997,7 +997,7 @@ void memory_base::copy_from(const void * pdata, memsize s)
 
    defer_set_size(s);
 
-   ::memcpy_dup(data(), pdata, (size_t)minimum(this->size(), s));
+   ::memory_copy(data(), pdata, (size_t)minimum(this->size(), s));
 
 }
 
@@ -1012,7 +1012,7 @@ void memory_base::copy_to(void * pdata, memsize s) const
 
    }
 
-   ::memcpy_dup(pdata, data(), (size_t)minimum(this->size(), s));
+   ::memory_copy(pdata, data(), (size_t)minimum(this->size(), s));
 
 }
 
@@ -1022,7 +1022,7 @@ void memory_base::set_data(void *pdata, memsize uiSize)
 
    set_size(uiSize);
 
-   ::memcpy_dup(data(), pdata, (size_t)uiSize);
+   ::memory_copy(data(), pdata, (size_t)uiSize);
 
 }
 
@@ -1330,7 +1330,7 @@ void memory_base::from_string(const ::scoped_string & scopedstr)
 
    set_size(scopedstr.size());
 
-   ::memcpy_dup(data(), scopedstr.begin(), this->size());
+   ::memory_copy(data(), scopedstr.begin(), this->size());
 
 }
 
@@ -1340,7 +1340,7 @@ void memory_base::from_string(const ::string & str)
 
    set_size(str.length());
 
-   ::memcpy_dup(data(), str, this->size());
+   ::memory_copy(data(), str, this->size());
 
 }
 
@@ -1370,7 +1370,7 @@ void memory_base::append_from_string(const ::scoped_string & scopedstr)
 
    allocate_add_up(lenExtra);
 
-   ::memcpy_dup(data() + sizeOld, scopedstr.begin(), lenExtra);
+   ::memory_copy(data() + sizeOld, scopedstr.begin(), lenExtra);
 
 }
 
@@ -1385,7 +1385,7 @@ void memory_base::append_from_string(const ::string & str)
 
    allocate_add_up(lenExtra);
 
-   ::memcpy_dup(data() + sizeOld, str.c_str(), lenExtra);
+   ::memory_copy(data() + sizeOld, str.c_str(), lenExtra);
    
 }
 
@@ -1455,7 +1455,7 @@ string memory_base::get_string(memsize iStart, memsize iCount) const
 
    char * psz = str.get_string_buffer(iCount + 1);
 
-   ::memcpy_dup(psz, &data()[iStart], iCount);
+   ::memory_copy(psz, &data()[iStart], iCount);
 
    psz[iCount] = '\0';
 
@@ -1506,7 +1506,7 @@ void memory_base::transfer(memsize offset, bool bGrow)
 
       }
 
-      __memmov(&this->data()[offset], this->data(), this->size() - offset);
+      memory_transfer(&this->data()[offset], this->data(), this->size() - offset);
 
    }
    else if (offset < 0)
@@ -1528,7 +1528,7 @@ void memory_base::transfer(memsize offset, bool bGrow)
 
       }
 
-      __memmov(this->data(), &this->data()[offset], this->size() - offset);
+      memory_transfer(this->data(), &this->data()[offset], this->size() - offset);
 
    }
 
@@ -1583,7 +1583,7 @@ void memory_base::append(const memory_base & mem, memsize iStart, memsize iCount
 
    allocate_add_up(iCount);
 
-   ::memcpy_dup(&data()[this->size() - iCount], &mem.data()[iStart], (size_t)iCount);
+   ::memory_copy(&data()[this->size() - iCount], &mem.data()[iStart], (size_t)iCount);
 
 }
 
@@ -1602,7 +1602,7 @@ void memory_base::append(const void * pdata, memsize iCount)
 
    allocate_add_up(iCount);
 
-   ::memcpy_dup(&data()[iOldSize], pdata, (size_t)iCount);
+   ::memory_copy(&data()[iOldSize], pdata, (size_t)iCount);
 
 }
 
@@ -1612,7 +1612,7 @@ void memory_base::assign(const void * pdata, memsize iCount)
 
    set_size(iCount);
 
-   ::memcpy_dup(data(), pdata, (size_t)iCount);
+   ::memory_copy(data(), pdata, (size_t)iCount);
 
 }
 
@@ -1622,7 +1622,7 @@ void memory_base::assign(const void * pdata, memsize iStart, memsize iCount)
 
    set_size(iCount);
 
-   ::memcpy_dup(data(), &((byte *)pdata)[iStart], (size_t)iCount);
+   ::memory_copy(data(), &((byte *)pdata)[iStart], (size_t)iCount);
 
 }
 
@@ -1675,7 +1675,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
 
       allocate_add_up(iCountSrc - iCountDst);
 
-      ::__memmov(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
+      ::memory_transfer(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
 
    }
    else if (iCountSrc < iCountDst)
@@ -1688,7 +1688,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
 
       memsize iMove = iSize - minimum(iSize, iStartDst + iCountDst);
 
-      ::__memmov(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
+      ::memory_transfer(&data()[iStartDst + iCountSrc], &data()[iStartDst + iCountDst], iMove);
 
       allocate_add_up(iCountSrc - iCountDst);
 
@@ -1697,7 +1697,7 @@ void memory_base::splice(const u8 * pbMemory, memsize iCountSrc, memsize iStartD
    if (iCountSrc > 0)
    {
 
-      ::memcpy_dup(&data()[iStartDst], pbMemory, iCountSrc);
+      ::memory_copy(&data()[iStartDst], pbMemory, iCountSrc);
 
    }
 
@@ -1820,7 +1820,7 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
 
    set_size(size);
 
-   ::memcpy_dup(data(), &a->Data[pos], size);
+   ::memory_copy(data(), &a->Data[pos], size);
 
 }
 
@@ -2174,9 +2174,9 @@ namespace acme
    //      if (pfileOut->get_internal_data() == mem.data())
    //         return;
 
-   //      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
+   //      memory_transfer(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.size());
 
-   //      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
+   //      ::memory_copy(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.data(), mem.size());
 
    //      pfileOut->position() += mem.size();
 

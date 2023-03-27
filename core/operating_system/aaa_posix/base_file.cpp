@@ -462,7 +462,7 @@ int_bool file_copy_dup(const ::string & pszNew, const ::string & pszSrc, int_boo
       return false;
    }
 
-   memcpy_dup(target, source, filesize);
+   memory_copy(target, source, filesize);
 
    msync(target, filesize, MS_SYNC);
 

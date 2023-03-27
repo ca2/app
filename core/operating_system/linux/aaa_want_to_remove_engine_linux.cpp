@@ -1259,7 +1259,7 @@ namespace exception
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, minimum(c*sizeof(*pinteraction), sizeof(m_uia)));
+      ::memory_copy(m_uia, pinteraction, minimum(c*sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

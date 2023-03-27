@@ -535,7 +535,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string
 
       psz = str.get_string_buffer(iReadAtMostByteCount);
 
-      ::memcpy_dup(psz, pnRes, iReadAtMostByteCount);
+      ::memory_copy(psz, pnRes, iReadAtMostByteCount);
 
       psz[dwResSize] = '\0';
 

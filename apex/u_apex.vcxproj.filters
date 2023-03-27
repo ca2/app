@@ -1646,8 +1646,5 @@
     <None Include="filesystem\file\_serializable_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
     </None>
-    <None Include="w_apex.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

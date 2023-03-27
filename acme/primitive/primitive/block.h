@@ -289,7 +289,7 @@ struct CLASS_DECL_ACME block :
    inline void copy(const ::block & block)
    {
 
-      memcpy_dup(m_begin, block.data(), minimum(block.size(), this->size()));
+      memory_copy(m_begin, block.data(), minimum(block.size(), this->size()));
 
    }
 

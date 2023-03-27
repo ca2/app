@@ -48,7 +48,7 @@
 //            
 //      return 0;
 //   memsize uRead = minimum(nCount, (memsize) (m_str.length() - m_iPos));
-//   ::memcpy_dup(pdata, &(m_str)[m_iPos], uRead);
+//   ::memory_copy(pdata, &(m_str)[m_iPos], uRead);
 //
 //   m_iPos += uRead;
 //   return uRead;

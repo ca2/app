@@ -58,7 +58,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 
    ASSERT(is_memory_segment_ok(pchSrc, nLength));
 
-   ::memcpy_dup(this->storage_begin(), pchSrc, nLength);
+   ::memory_copy(this->storage_begin(), pchSrc, nLength);
 
 }
 

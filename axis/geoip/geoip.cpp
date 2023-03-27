@@ -204,7 +204,7 @@ static const char * _GeoIP_inet_ntop(i32 af, const void *src, char *dst, socklen
       struct sockaddr_in in;
       memory_set(&in, 0, sizeof(in));
       in.sin_family = AF_INET;
-      ::memcpy_dup(&in.sin_addr, src, sizeof(struct in_addr));
+      ::memory_copy(&in.sin_addr, src, sizeof(struct in_addr));
       getnameinfo((struct sockaddr *)&in, sizeof(struct
                   sockaddr_in), dst, cnt, nullptr, 0, NI_NUMERICHOST);
       return dst;
@@ -214,7 +214,7 @@ static const char * _GeoIP_inet_ntop(i32 af, const void *src, char *dst, socklen
       struct sockaddr_in6 in;
       memory_set(&in, 0, sizeof(in));
       in.sin6_family = AF_INET6;
-      ::memcpy_dup(&in.sin6_addr, src, sizeof(struct in_addr6));
+      ::memory_copy(&in.sin6_addr, src, sizeof(struct in_addr6));
       getnameinfo((struct sockaddr *)&in, sizeof(struct
                   sockaddr_in6), dst, cnt, nullptr, 0, NI_NUMERICHOST);
       return dst;
@@ -239,7 +239,7 @@ static i32 _GeoIP_inet_pton(i32 af, const char *src, void *dst)
 
    while (res)
    {
-      ::memcpy_dup(dst, res->ai_addr, res->ai_addrlen);
+      ::memory_copy(dst, res->ai_addr, res->ai_addrlen);
       res = res->ai_next;
    }
 
@@ -1076,7 +1076,7 @@ _GeoIP_lookupaddress_v6(const char *host)
       /* fprintf(stderr, "Err: %s (%d %s)\n", host, gaierr, gai_strerror(gaierr)); */
       return IPV6_NULL;
    }
-   ::memcpy_dup(ipnum.s6_addr, ((struct sockaddr_in6 *) aifirst->ai_addr)->sin6_addr.s6_addr, sizeof(geoipv6_t));
+   ::memory_copy(ipnum.s6_addr, ((struct sockaddr_in6 *) aifirst->ai_addr)->sin6_addr.s6_addr, sizeof(geoipv6_t));
    freeaddrinfo(aifirst);
    /* inet_pton(AF_INET6, host, ipnum.s6_addr); */
 
@@ -1368,7 +1368,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, u32 inetaddr, GeoIPRegion *regio
       }
       else
       {
-         ::memcpy_dup(region->country_code, GeoIP_country_code[seek_region], 2);
+         ::memory_copy(region->country_code, GeoIP_country_code[seek_region], 2);
       }
    }
    else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1)
@@ -1399,7 +1399,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, u32 inetaddr, GeoIPRegion *regio
       else
       {
          /* Not US or Canada */
-         ::memcpy_dup(region->country_code, GeoIP_country_code[(seek_region - WORLD_OFFSET) / FIPS_RANGE], 2);
+         ::memory_copy(region->country_code, GeoIP_country_code[(seek_region - WORLD_OFFSET) / FIPS_RANGE], 2);
       }
    }
 }
@@ -1427,7 +1427,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
       }
       else
       {
-         ::memcpy_dup(region->country_code, GeoIP_country_code[seek_region], 2);
+         ::memory_copy(region->country_code, GeoIP_country_code[seek_region], 2);
       }
    }
    else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1)
@@ -1458,7 +1458,7 @@ void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegi
       else
       {
          /* Not US or Canada */
-         ::memcpy_dup(region->country_code, GeoIP_country_code[(seek_region - WORLD_OFFSET) / FIPS_RANGE], 2);
+         ::memory_copy(region->country_code, GeoIP_country_code[(seek_region - WORLD_OFFSET) / FIPS_RANGE], 2);
       }
    }
 }

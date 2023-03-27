@@ -289,7 +289,7 @@ int main(int argc,char *argv[])
    	32	??	Bzip2ed ctrl block
    	??	??	Bzip2ed diff block
    	??	??	Bzip2ed extra block */
-   ::memcpy_dup(header,"BSDIFF40",8);
+   ::memory_copy(header,"BSDIFF40",8);
    offtout(0, header + 8);
    offtout(0, header + 16);
    offtout(newsize, header + 24);

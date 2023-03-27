@@ -20,7 +20,7 @@ namespace aura
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::memcpy_s(_S1, (rsize_t)_S1max, _S2, (rsize_t)N));
 #else
-      ::memcpy_dup(_S1, _S2, N);
+      ::memory_copy(_S1, _S2, N);
 #endif
    }
 
@@ -29,7 +29,7 @@ namespace aura
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::wmemcpy_s(_S1, (rsize_t)_N1, _S2, (rsize_t)N));
 #else
-      ::memcpy_dup(_S1, _S2, N * sizeof(::wide_character));
+      ::memory_copy(_S1, _S2, N * sizeof(::wide_character));
 #endif
    }
 
@@ -38,7 +38,7 @@ namespace aura
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::memmove_s(_S1, (rsize_t)_S1max, _S2, (rsize_t)N));
 #else
-      __memmov(_S1, _S2, N);
+      memory_transfer(_S1, _S2, N);
 #endif
    }
 

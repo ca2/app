@@ -2706,13 +2706,13 @@ CLASS_DECL_AURA NTSTATUS CDECL wine_unix_to_nt_file_name(const ANSI_STRING *name
 
 #ifndef _UWP
 #define RtlFillMemory(Destination,Length,Fill) memory_set((Destination),(Fill),(Length))
-#define RtlMoveMemory(Destination,Source,Length) __memmov((Destination),(Source),(Length))
+#define RtlMoveMemory(Destination,Source,Length) memory_transfer((Destination),(Source),(Length))
 #define RtlZeroMemory(Destination,Length) memory_set((Destination),0,(Length))
 #endif
-#define RtlStoreUlong(p,v)  do { WINULONG _v = (v); ::memcpy_dup((p), &_v, sizeof(_v)); } while (0)
-#define RtlStoreUlonglong(p,v) do { ULONGLONG _v = (v); ::memcpy_dup((p), &_v, sizeof(_v)); } while (0)
-#define RtlRetrieveUlong(p,s) ::memcpy_dup((p), (s), sizeof(WINULONG))
-#define RtlRetrieveUlonglong(p,s) ::memcpy_dup((p), (s), sizeof(ULONGLONG))
+#define RtlStoreUlong(p,v)  do { WINULONG _v = (v); ::memory_copy((p), &_v, sizeof(_v)); } while (0)
+#define RtlStoreUlonglong(p,v) do { ULONGLONG _v = (v); ::memory_copy((p), &_v, sizeof(_v)); } while (0)
+#define RtlRetrieveUlong(p,s) ::memory_copy((p), (s), sizeof(WINULONG))
+#define RtlRetrieveUlonglong(p,s) ::memory_copy((p), (s), sizeof(ULONGLONG))
 
 
 #ifndef _UWP

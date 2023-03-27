@@ -2238,7 +2238,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 								&base64, &length);
 			if ((base64 != nullptr) && (length == sizeof(ARC_SC_PRIVATE_PACKET)))
 			{
-				::memcpy_dup(settings->ServerAutoReconnectCookie, base64, length);
+				::memory_copy(settings->ServerAutoReconnectCookie, base64, length);
 				free(base64);
 			}
 			else

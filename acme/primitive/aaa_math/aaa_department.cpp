@@ -253,7 +253,7 @@ namespace mathematics
 //
 //         mem.set_os_buffer(buffer);
 //
-//         ::memcpy_dup(p, mem.get_data(), mem.get_size());
+//         ::memory_copy(p, mem.get_data(), mem.get_size());
 //
 //      }
 //

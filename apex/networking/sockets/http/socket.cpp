@@ -106,7 +106,7 @@ namespace sockets
                            memory mem;
                            mem.set_size(TCP_BUFSIZE_READ);
                            char *tmp = (char *) mem.data();
-                           ::memcpy_dup(tmp, buf + ptr, len - ptr);
+                           ::memory_copy(tmp, buf + ptr, len - ptr);
                            tmp[len - ptr] = 0;
                            on_read(tmp, (int) (len - ptr));
                            ptr = len;

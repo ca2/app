@@ -499,9 +499,9 @@ namespace sockets
    //         nLineLength = (pch2 - m_pReadBuf) + 1;
    //         if (nLineLength >= nSize)
    //            nLineLength = nSize - 1;
-   //         ::memcpy_dup(pch, m_pReadBuf, nLineLength); // copy the line to caller
+   //         ::memory_copy(pch, m_pReadBuf, nLineLength); // copy the line to caller
    //         m_nReadBuf -= static_cast<unsigned int>(nLineLength);
-   //         __memmov(m_pReadBuf, pch2 + 1, m_nReadBuf); // shift remaining characters left
+   //         memory_transfer(m_pReadBuf, pch2 + 1, m_nReadBuf); // shift remaining characters left
    //         break;
    //      }
    //      pch1 += nBytesThisTime;
@@ -526,7 +526,7 @@ namespace sockets
 
    //   if (m_nReadBuf > 0)
    //   { // copy anything already in the recv buffer
-   //      ::memcpy_dup(pch, m_pReadBuf, m_nReadBuf);
+   //      ::memory_copy(pch, m_pReadBuf, m_nReadBuf);
    //      pch += m_nReadBuf;
    //      nBytesRead = m_nReadBuf;
    //      m_nReadBuf = 0;

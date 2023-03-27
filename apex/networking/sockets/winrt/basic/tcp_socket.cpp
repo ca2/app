@@ -844,8 +844,8 @@ namespace sockets
             port_t port = ad.get_service_number();
             in_addr addr;
             ::apexacmesystem()->sockets().net().convert(addr, ad.get_display_number());
-            ::memcpy_dup(request + 2, &port, sizeof(port_t)); // nwbo is ok here
-            ::memcpy_dup(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
+            ::memory_copy(request + 2, &port, sizeof(port_t)); // nwbo is ok here
+            ::memory_copy(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }
          else
          {

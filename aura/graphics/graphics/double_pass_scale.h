@@ -271,7 +271,7 @@ HorizScale (::color32_t*pSrc,
    if (uResWidth == uSrcWidth)
    {
       // No scaling required, just copy
-      ::memcpy_dup (pDst, pSrc, sizeof (::color::color) * uSrcHeight * uSrcWidth);
+      ::memory_copy (pDst, pSrc, sizeof (::color::color) * uSrcHeight * uSrcWidth);
    }
    // Allocate and calculate the contributions
    LineContribType * Contrib = CalcContributions (uResWidth, uSrcWidth, double(uResWidth) / double(uSrcWidth));
@@ -352,7 +352,7 @@ VertScale (::color32_t*pSrc,
    if (uSrcHeight == uResHeight)
    {
       // No scaling required, just copy
-      ::memcpy_dup (pDst, pSrc, sizeof (::color::color) * uSrcHeight * uSrcWidth);
+      ::memory_copy (pDst, pSrc, sizeof (::color::color) * uSrcHeight * uSrcWidth);
    }
    // Allocate and calculate the contributions
    LineContribType * Contrib = CalcContributions (uResHeight, uSrcHeight, double(uResHeight) / double(uSrcHeight));

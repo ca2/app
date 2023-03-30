@@ -22,6 +22,7 @@ namespace user
          e_style_image,
          e_style_image_and_text,
          e_style_push,
+         e_style_push_group,
          e_style_list,
          e_style_stock_icon,
       };
@@ -95,7 +96,7 @@ namespace user
       virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText);
 

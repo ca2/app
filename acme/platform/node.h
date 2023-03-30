@@ -698,6 +698,9 @@ namespace acme
       virtual void integration_factory();
 
 
+      virtual void unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip);
+
+
    };
 
 

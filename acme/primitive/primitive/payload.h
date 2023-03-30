@@ -135,6 +135,7 @@ public:
       ::i64                                  m_all[3];
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
+      ::function_common* m_pfunctioncommon;
 
    };
 
@@ -634,10 +635,11 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    }
 
-   inline payload & operator = (const ::procedure & procedure)
+   template < primitive_function FUNCTION >
+   inline payload & operator = (const FUNCTION & function)
    {
 
-      _set_element(procedure.m_p);
+      _set_element(function.m_pbase);
 
       return *this;
 
@@ -653,6 +655,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
       return *this;
 
    }
+
 
 
    payload & operator = (::memory * pmemory);

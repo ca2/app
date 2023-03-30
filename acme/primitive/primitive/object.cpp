@@ -1672,7 +1672,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
 
-   ptask->m_atom = typeid(*procedure.m_p).name();
+   ptask->m_atom = typeid(*procedure.m_pbase).name();
 
    ptask->branch(createtaskattributes);
 
@@ -1703,7 +1703,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
 
-   ptask->m_atom = typeid(*procedure.m_p).name();
+   ptask->m_atom = typeid(*procedure.m_pbase).name();
 
    ptask->branch_synchronously(createtaskattributes);
 

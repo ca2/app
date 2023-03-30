@@ -2782,6 +2782,14 @@ return false;
    }
 
 
+   void node::unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip)
+   {
+
+      command_system("cmd.exe -c \"unzip \"" + pathZip + "\" -d \"" + pathFolder + "\"");
+
+   }
+
+
 } // namespace acme
 
 

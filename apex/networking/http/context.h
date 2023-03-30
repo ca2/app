@@ -83,8 +83,8 @@ namespace http
 
       DECLARE_MESSAGE_HANDLER(get);
 
-      virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress);
-      virtual bool get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
+      virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual bool get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set);
       virtual string get(::http::session & session, const ::scoped_string & scopedstrUrl, property_set & set);
 
 
@@ -97,15 +97,15 @@ namespace http
 
       virtual bool request(::pointer<::sockets::http_session>& spsession, const ::scoped_string & scopedstrUrl, property_set & set);
 
-      virtual ::payload get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
+      virtual ::payload get(const ::scoped_string & scopedstrUrl, property_set & set);
 
       virtual bool request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set);
 
       virtual bool download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, ::payload payloadFile, property_set & set);
       virtual bool download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set);
 
-      virtual bool put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
-      virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
+      virtual bool put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set);
+      virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set);
 
       virtual void defer_auto_initialize_proxy_configuration();
       virtual void auto_config_proxy(i32 i);
@@ -130,7 +130,7 @@ namespace http
 
       //DECLARE_MESSAGE_HANDLER(get);
 
-      virtual bool get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
+      virtual bool get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl, property_set & set);
 
       virtual string api_get(const ::scoped_string & scopedstrUrl, property_set & set);
       virtual string api_get(const ::scoped_string & scopedstrUrl);
@@ -146,7 +146,7 @@ namespace http
       virtual ::payload length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
 
       //virtual string get(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual void _get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr);
+      virtual void _get(const ::scoped_string & scopedstrUrl, property_set & set);
 
       virtual void get(string & str, const ::scoped_string & scopedstrUrl, property_set & set);
       virtual void get(memory_base * pmemory, const ::scoped_string & scopedstrUrl, property_set & set);

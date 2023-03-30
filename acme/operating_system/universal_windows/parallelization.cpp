@@ -182,7 +182,7 @@ bool __os_term_thread()
 //
 //      HANDLE* ph = memory_new HANDLE[nCount + 1];
 //
-//      ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
+//      ::memory_copy(ph, pHandles, sizeof(HANDLE) * nCount);
 //
 //      ph[nCount] = (HANDLE)::get_message_queue(get_current_itask(), true)->m_eventNewMessage.hsync();
 //

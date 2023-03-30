@@ -3,7 +3,7 @@
 #include "apex/networking/_networking_impl.h"
 //#include <stdio.h>
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #include <sys/types.h>
 #include <unistd.h>
 #endif
@@ -287,7 +287,7 @@ namespace sockets
 //         u.a.b2 = static_cast<uchar>(pa.getvalue());
 //         u.a.b3 = static_cast<uchar>(pa.getvalue());
 //         u.a.b4 = static_cast<uchar>(pa.getvalue());
-//         ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+//         ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
 //         return true;
 //      }
 //#ifndef LINUX
@@ -296,7 +296,7 @@ namespace sockets
 //      {
 //         return false;
 //      }
-//      ::memcpy_dup(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
+//      ::memory_copy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
 //#else
 //      struct hostent he;
 //      struct hostent *result = nullptr;
@@ -308,7 +308,7 @@ namespace sockets
 //         return false;
 //      }
 //      if (he.h_addr_list && he.h_addr_list[0])
-//         ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+//         ::memory_copy(&sa.sin_addr, he.h_addr, 4);
 //      else
 //         return false;
 //#endif
@@ -360,7 +360,7 @@ namespace sockets
 //      return false;
 //   ai = vec[rand() % vec.get_count()];
 //   {
-//      ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
+//      ::memory_copy(&sa, ai -> ai_addr, ai -> ai_addrlen);
 //   }
 //   freeaddrinfo(res);
 //   item.m_ipaddr = sa.sin_addr;
@@ -440,7 +440,7 @@ namespace sockets
 //   {
 //      u16 x;
 //      u16 addr16[8];
-//      ::memcpy_dup(addr16, &ip, sizeof(addr16));
+//      ::memory_copy(addr16, &ip, sizeof(addr16));
 //      for (index i = 0; i < 6; i++)
 //      {
 //         x = ntohs(addr16[i]);
@@ -578,7 +578,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
          u.a.b2 = static_cast<uchar>(pa.getvalue());
          u.a.b3 = static_cast<uchar>(pa.getvalue());
          u.a.b4 = static_cast<uchar>(pa.getvalue());
-         ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+         ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
          return true;
       }
 #ifndef LINUX
@@ -587,7 +587,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          return false;
       }
-      ::memcpy_dup(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
+      ::memory_copy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
 #else
       struct hostent he;
       struct hostent *result = nullptr;
@@ -599,7 +599,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
          return false;
       }
       if (he.h_addr_list && he.h_addr_list[0])
-         ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+         ::memory_copy(&sa.sin_addr, he.h_addr, 4);
       else
          return false;
 #endif
@@ -636,7 +636,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
             return false;
          ai = vec[pmathematics->rnd() % vec.get_count()];
          {
-            ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
+            ::memory_copy(&sa, ai -> ai_addr, ai -> ai_addrlen);
          }
          freeaddrinfo(res);
          return true;
@@ -737,7 +737,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //            }
 //         }
 //      }
-//      ::memcpy_dup(&sa.sin6_addr, addr16, sizeof(addr16));
+//      ::memory_copy(&sa.sin6_addr, addr16, sizeof(addr16));
 //      return true;
 //   }
 //#ifdef SOLARIS
@@ -750,7 +750,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //   {
 //      return false;
 //   }
-//   ::memcpy_dup(&sa.sin6_addr,he -> h_addr_list[0],he -> h_length);
+//   ::memory_copy(&sa.sin6_addr,he -> h_addr_list[0],he -> h_length);
 //#ifdef SOLARIS
 //   free(he);
 //#endif
@@ -784,7 +784,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //      }
 //      if(addra.is_empty())
 //         return false;
-//      ::memcpy_dup(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
+//      ::memory_copy(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
 //      freeaddrinfo(res);
 //      return true;
 //   }
@@ -929,7 +929,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //            ipaddr_t l;
 //         } u;
 //         struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-//         ::memcpy_dup(&u.l, &sa_in->sin_addr, sizeof(u.l));
+//         ::memory_copy(&u.l, &sa_in->sin_addr, sizeof(u.l));
 //         char tmp[100];
 //         sprintf(tmp, "%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
 //         hostname = tmp;
@@ -958,7 +958,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //         {
 //            u16 addr16[8];
 //            struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
-//            ::memcpy_dup(addr16, &sa_in6->sin6_addr, sizeof(addr16));
+//            ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
 //            for (index i = 0; i < 8; i++)
 //            {
 //               u16 x = ntohs(addr16[i]);
@@ -1234,7 +1234,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //   if(this==&item)
 //      return *this;
 //
-//   ::memcpy_dup(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
+//   ::memory_copy(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
 //   m_durationLastChecked = item.m_durationLastChecked;
 //   m_bOk = item.m_bOk;
 //   m_bTimeout = item.m_bTimeout;

@@ -579,7 +579,7 @@ void memory_file::load_string(string &str)
 
    char * psz = str.get_string_buffer((i32)(this->size() + 1));
 
-   ::memcpy_dup(psz, data_begin(), (size_t) data_size());
+   ::memory_copy(psz, data_begin(), (size_t) data_size());
 
    psz[this->size()] = 0;
 
@@ -840,9 +840,9 @@ void memory_file::write(::file::readable* preadable, memsize uiBufSize)
 //   if (pfileOut->increase_internal_data_size(uiSize) && pfileOut->get_internal_data() != nullptr)
 //   {
 //
-//      __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
+//      memory_transfer(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + uiSize, ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - uiSize);
 //
-//      ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
+//      ::memory_copy(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
 //
 //      pfileOut->position() += get_internal_data_size();
 //

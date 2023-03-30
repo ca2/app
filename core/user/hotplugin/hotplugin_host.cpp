@@ -127,7 +127,7 @@ namespace hotplugin
       if (c > m_memory.get_size())
          c = m_memory.get_size();
 
-      memcpy_dup(puchMemory, m_memory.get_data(), c);
+      memory_copy(puchMemory, m_memory.get_data(), c);
 
       return c;
 
@@ -573,7 +573,7 @@ namespace hotplugin
 
       m_pimage->map();
 
-      ::memcpy_dup(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
+      ::memory_copy(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
       pgraphics->draw((const POINT_I32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 

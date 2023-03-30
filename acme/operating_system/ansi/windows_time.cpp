@@ -808,7 +808,7 @@ static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 
 
     if (info->Type != type) return false;
 
-    ::memcpy_dup(data, info->Data, info->DataLength);
+    ::memory_copy(data, info->Data, info->DataLength);
     return true;
 }
 

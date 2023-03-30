@@ -479,7 +479,7 @@ namespace linux
 
             }
 
-   #ifndef RASPBIAN
+   #ifndef RASPBERRYPIOS
 
             if(g_psncontext != nullptr && !papp->m_bSnLauncheeSetup)
             {

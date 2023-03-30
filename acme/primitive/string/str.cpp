@@ -1079,7 +1079,7 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 
 //      char szFind[256];
 
-//      ::memcpy_dup(szFind, strFind, iFindLen + 1);
+//      ::memory_copy(szFind, strFind, iFindLen + 1);
 
 //      make_lower(szFind);
 
@@ -1088,7 +1088,7 @@ index str::case_insensitive_find(const ::string & strFind, const ::string & str,
 
 //         char sz[256];
 
-//         ::memcpy_dup(sz, &psz[iStart], iLen + 1);
+//         ::memory_copy(sz, &psz[iStart], iLen + 1);
 
 //         make_lower(sz);
 
@@ -1536,7 +1536,7 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 //
 //     char szFind[256];
 //
-//     ::memcpy_dup(szFind, strOld, iFindLen + 1);
+//     ::memory_copy(szFind, strOld, iFindLen + 1);
 //
 //     make_lower(szFind);
 //
@@ -1545,7 +1545,7 @@ index str::utf8_find(const ::string & strOld, const ::string & str, index iStart
 //
 //        char sz[256];
 //
-//        ::memcpy_dup(sz, &str[iStart], iLen + 1);
+//        ::memory_copy(sz, &str[iStart], iLen + 1);
 //
 //        make_lower(sz);
 //
@@ -2134,7 +2134,7 @@ strsize unicode_to_utf8_length(::i64 i)
 //
 //   ::str::utf8_inc_slide(&count, pchSrc);
 //
-//   ::memcpy_dup(pchDst, pchSrc, count);
+//   ::memory_copy(pchDst, pchSrc, count);
 //
 //   pchSrc += count;
 //
@@ -3276,17 +3276,17 @@ void str::increment_digit_letter(string & str)
 //      if(wstr.get_storage_size_in_bytes() >= ((wstr.get_length() + iPrefixLen + 1) * __sizeof(unichar)))
 //      {
 //
-//         __memmov(&wstr[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
+//         memory_transfer(&wstr[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
 //
-//         memcpy_dup(wstr, pcszPrefix, iPrefixLen);
+//         memory_copy(wstr, pcszPrefix, iPrefixLen);
 //
 //      }
 //      else
 //      {
 //         wstring wstrNew;
 //         wstrNew.get_buffer((wstr.get_length() + iPrefixLen + 1) * sizeof(unichar));
-//         memcpy_dup(&wstrNew[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
-//         memcpy_dup(wstrNew, pcszPrefix, iPrefixLen * sizeof(unichar));
+//         memory_copy(&wstrNew[iPrefixLen], (const unichar *) wstr, (wstr.get_length() + 1) * sizeof(unichar));
+//         memory_copy(wstrNew, pcszPrefix, iPrefixLen * sizeof(unichar));
 //
 //         wstr.attach(wstrNew.detach());
 //      }

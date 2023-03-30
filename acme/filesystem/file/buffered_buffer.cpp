@@ -184,7 +184,7 @@ namespace file
             else
             {
 
-               ::memcpy_dup(data + uRead, &m_storage.data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
+               ::memory_copy(data + uRead, &m_storage.data()[m_uiPosition - m_uiBufLPos], (size_t) uiReadNow);
 
             }
 
@@ -306,7 +306,7 @@ namespace file
 
             }
 
-            ::memcpy_dup(&m_storage.data()[m_uiPosition - m_uiBufLPos], data + uiWrite, (size_t) uiWriteNow);
+            ::memory_copy(&m_storage.data()[m_uiPosition - m_uiBufLPos], data + uiWrite, (size_t) uiWriteNow);
 
             m_uiPosition += uiWriteNow;
 

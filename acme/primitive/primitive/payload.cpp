@@ -3483,7 +3483,7 @@ string & payload::string_reference(const char * pszOnNull)
 
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long payload::get_long(long lDefault) const
@@ -9329,7 +9329,7 @@ void number_operator_payload_test()
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long & payload::long_reference()
@@ -11885,8 +11885,5 @@ CLASS_DECL_ACME::string as_string(const ::payload & payload)
    return payload.as_string();
 
 }
-
-
-
 
 

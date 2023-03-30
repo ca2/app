@@ -83,7 +83,7 @@ extern bool b_prevent_xdisplay_lock_log;
 
 
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie * cookie);
@@ -99,7 +99,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e);
 
 
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 
 bool xcb_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
@@ -150,7 +150,7 @@ bool xcb_on_event(xcb_generic_event_t * pevent)
 
    XGenericEventCookie * cookie = nullptr;
 
-//#if defined(RASPBIAN)
+//#if defined(RASPBERRYPIOS)
 //
 //   cookie = nullptr;
 //
@@ -174,7 +174,7 @@ bool xcb_on_event(xcb_generic_event_t * pevent)
    if(!__xcb_hook_process_event(pdisplay, pevent, cookie))
    {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
       if(!xcb_process_event(pdisplaydata, pevent, cookie))
 
@@ -247,13 +247,13 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
          try
          {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             XGenericEventCookie * cookie;
 
 #endif
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //            if(g_pobjectaExtendedEventListener)
 //            {
@@ -273,7 +273,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
             if(!__xcb_hook_process_event(pdisplaydata->display(), pevent, cookie))
             {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
                if(!xcb_process_event(pdisplaydata, pevent, cookie))
 
@@ -328,7 +328,7 @@ bool xcb_message_handler(xcb_generic_event_t * pevent)
    if(g_bFinishX11Thread)
    {
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //      g_pobjectaExtendedEventListener.release();
 //
@@ -402,13 +402,13 @@ bool xcb_message_loop_step()
 
             //XEvent e = {};
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
             XGenericEventCookie * cookie;
 
 #endif
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //            if(g_pobjectaExtendedEventListener)
 //            {
@@ -430,7 +430,7 @@ bool xcb_message_loop_step()
             if(!__xcb_hook_process_event(pdisplaydata->display(), pevent, cookie))
             {
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
                if(!xcb_process_event(pdisplaydata, pevent, cookie))
 
@@ -487,7 +487,7 @@ bool xcb_message_loop_step()
    if(g_bFinishX11Thread)
    {
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //      g_pobjectaExtendedEventListener.release();
 //
@@ -572,7 +572,7 @@ bool xcb_message_loop_step()
 //
 //    x11_
 
-#if !defined(RASPBIAN)
+#if !defined(RASPBERRYPIOS)
 
 bool xcb_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * pevent, XGenericEventCookie *cookie)
 

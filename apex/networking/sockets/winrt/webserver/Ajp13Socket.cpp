@@ -63,7 +63,7 @@ namespace sockets
          put_integer(msg, ptr, 1000); // request 1000 bytes
 
          short len = htons((u_short)( ptr - 4 ));
-         ::memcpy_dup( msg + 2, &len, 2 );
+         ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
          return;
@@ -282,7 +282,7 @@ namespace sockets
          }*/
 
          short len = htons((u_short) ( ptr - 4 ));
-         ::memcpy_dup( msg + 2, &len, 2 );
+         ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
       }
@@ -308,7 +308,7 @@ namespace sockets
          ptr += (int)n;
 
          short len = htons((u_short) ( ptr - 4 ));
-         ::memcpy_dup( msg + 2, &len, 2 );
+         ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
          if (GetOutputLength() > 1)
@@ -333,7 +333,7 @@ namespace sockets
          */
 
          short len = htons((u_short) ( ptr - 4 ));
-         ::memcpy_dup( msg + 2, &len, 2 );
+         ::memory_copy( msg + 2, &len, 2 );
 
          write( msg, ptr );
 

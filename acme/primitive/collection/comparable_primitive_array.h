@@ -1,7 +1,7 @@
 #pragma once
 
 // primitive array is a special array and should be used with care
-// it uses operations like __memmov and memcopy to transfer objects and does not
+// it uses operations like memory_transfer and memcopy to transfer objects and does not
 // call constructors and destructors for the elements
 // it is faster than the more matter arrays, can be faster than raw array
 // for many "primitive" types because the arguments are passed as the own

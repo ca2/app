@@ -5,7 +5,7 @@
 
 CLASS_DECL_ACME integral_nanosecond get_integral_nanosecond()
 {
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
    struct timeval tv;
 

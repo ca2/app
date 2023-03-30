@@ -145,7 +145,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);
    pdata->m_window                  = window;
-   ::memcpy_dup(&pdata->m_visual, pvisual, sizeof(Visual));
+   ::memory_copy(&pdata->m_visual, pvisual, sizeof(Visual));
 
    ::oswindow_data::s_pdataptra->add(pdata);
 

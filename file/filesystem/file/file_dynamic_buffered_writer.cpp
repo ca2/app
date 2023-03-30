@@ -25,7 +25,7 @@ namespace file
 
       dest.SetCapacity(_size);
 
-      ::memcpy_dup(dest, _buffer, _size);
+      ::memory_copy(dest, _buffer, _size);
 
    }
 
@@ -39,7 +39,7 @@ namespace file
       byte *buf = GetBufPtrForWriting(size);
       if (!buf)
          throw ::exception(error_no_memory);
-      ::memcpy_dup(buf, data, size);
+      ::memory_copy(buf, data, size);
       UpdateSize(size);
       if (processedSize)
          *processedSize = size;

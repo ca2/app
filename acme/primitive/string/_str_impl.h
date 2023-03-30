@@ -389,7 +389,7 @@ inline void from_string(u64 & u, i32 iBase, const ::ansi_character * psz)
 }
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
 inline void from_string(long & l, const ::ansi_character * psz)
 {
 
@@ -406,7 +406,7 @@ inline void from_string(long & l, const ::ansi_character * psz)
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
 
 inline void from_string(long & l, i32 iBase, const ::ansi_character * psz)
 {

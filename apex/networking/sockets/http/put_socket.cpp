@@ -120,9 +120,9 @@ namespace sockets
       {
          ::output_debug_string("Sending " + ::as_string(m_content_length)+ " bytes");
          memsize n;
-         if(m_functionProgress)
+         if(m_transferprogressfunction)
          {
-            m_functionProgress(0.0, 0, m_content_length);
+            m_transferprogressfunction(0.0, 0, m_content_length);
          }
          ::memory memory;
          memory.set_size(32_KiB);
@@ -134,18 +134,22 @@ namespace sockets
             total+=n;
             double dRate=(double)total/(double)m_content_length;
             ::format_output_debug_string("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
-            if(m_functionProgress)
+            
+            if(m_transferprogressfunction)
             {
-               m_functionProgress(dRate, total, m_content_length);
 
+               m_transferprogressfunction(dRate, total, m_content_length);
                
             }
             
          }
+
       }
       else
       {
+
          FILE *fil = fopen(m_filename, "rb");
+
          if (fil)
          {
             memsize n;

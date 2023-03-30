@@ -273,7 +273,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ResourceCompile Include="R:\main\source\app\nano2d\deployment.rc" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="color.h" />

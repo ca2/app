@@ -516,7 +516,6 @@
     <ClInclude Include="graphics\draw2d\graphics_call.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="graphics\_.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -1050,7 +1049,6 @@
     <None Include="w_aura.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

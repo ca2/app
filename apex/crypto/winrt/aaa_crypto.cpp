@@ -1711,7 +1711,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 //
 //      }
 //
-//#if (defined(_UWP) && (!defined(RASPBIAN))) && (OPENSSL_API_COMPAT < 0x10100000L)
+//#if (defined(_UWP) && (!defined(RASPBERRYPIOS))) && (OPENSSL_API_COMPAT < 0x10100000L)
 //
 //      char* hexN = BN_bn2hex(prsa->n);
 //      char* hexE = BN_bn2hex(prsa->e);

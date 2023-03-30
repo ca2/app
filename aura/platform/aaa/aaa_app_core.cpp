@@ -13,7 +13,7 @@
 //extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 
 #include <sys/types.h>
@@ -26,7 +26,7 @@
 #ifdef LINUX
 
 
-   #ifndef RASPBIAN
+   #ifndef RASPBERRYPIOS
 
 
    void sn_start_context();

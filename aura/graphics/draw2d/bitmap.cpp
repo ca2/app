@@ -308,11 +308,11 @@ void vertical_swap(pixmap * ppixmap)
       for (int i = 0; i < halfh; i++)
       {
 
-         ::memcpy_dup(pstore, pline1, wBytes);
+         ::memory_copy(pstore, pline1, wBytes);
 
-         ::memcpy_dup(pline1, pline2, wBytes);
+         ::memory_copy(pline1, pline2, wBytes);
 
-         ::memcpy_dup(pline2, pstore, wBytes);
+         ::memory_copy(pline2, pstore, wBytes);
 
          pline1 += iStride;
 
@@ -352,7 +352,7 @@ void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyP
    for(int i = 0; i < cyParam; i++)
    {
 
-      ::memcpy_dup(pdst,psrc,cw);
+      ::memory_copy(pdst,psrc,cw);
 
       pdst -= wdst;
 
@@ -462,7 +462,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
       if (iStrideDst == iStrideSrc)
       {
 
-         ::memcpy_dup(pcolorrefDst, pcolorrefSrc, cyParam * iStrideDst);
+         ::memory_copy(pcolorrefDst, pcolorrefSrc, cyParam * iStrideDst);
 
       }
       else
@@ -477,7 +477,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
          for (int i = 0; i < cyParam; i++)
          {
 
-            ::memcpy_dup(pdst, psrc, cw);
+            ::memory_copy(pdst, psrc, cw);
 
             pdst += iStrideDst;
 
@@ -611,7 +611,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxPar
    for(int i = 0; i < cyParam; i++)
    {
 
-      ::memcpy_dup(pdst,psrc,cw);
+      ::memory_copy(pdst,psrc,cw);
 
       pdst += wdst;
 

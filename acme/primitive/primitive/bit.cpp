@@ -31,7 +31,7 @@ namespace acme
          }
          i32 iFullCount1 = iCount - (iDest % INT_ALIGN);
          i32 iFullCount2 = iFullCount1 / INT_ALIGN;
-         ::memcpy_dup(pFullDest, pFullSrc, iFullCount2);
+         ::memory_copy(pFullDest, pFullSrc, iFullCount2);
          if(pFullDest > pDest)
          {
             int_aligned_copy(pFullDest - 1, pFullSrc - 1, iDest % INT_ALIGN, INT_ALIGN - 1);

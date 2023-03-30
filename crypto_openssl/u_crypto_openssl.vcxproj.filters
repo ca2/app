@@ -30,7 +30,6 @@
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="main.h">
       <Filter>Header Files</Filter>
     </ClInclude>

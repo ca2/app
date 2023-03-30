@@ -2510,7 +2510,7 @@ return false;
             if (*psz == '\\')
             {
 
-               __memmov(psz, psz + 1, strlen(psz));
+               memory_transfer(psz, psz + 1, strlen(psz));
 
                unicode_increment(psz);
 
@@ -2778,6 +2778,14 @@ return false;
    {
 
 
+
+   }
+
+
+   void node::unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip)
+   {
+
+      command_system("cmd.exe -c \"unzip \"" + pathZip + "\" -d \"" + pathFolder + "\"");
 
    }
 

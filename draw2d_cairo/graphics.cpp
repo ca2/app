@@ -4865,7 +4865,7 @@ namespace draw2d_cairo
 
       i32 iteration;
 
-      ::memcpy_dup(dst, src, width * height * 4);
+      ::memory_copy(dst, src, width * height * 4);
 
       for (iteration = 0; iteration < MAX_ITERATIONS; iteration++)
       {
@@ -4936,7 +4936,7 @@ namespace draw2d_cairo
 
          }
 
-         ::memcpy_dup(src, dst, width * height * 4);
+         ::memory_copy(src, dst, width * height * 4);
 
       }
 

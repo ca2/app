@@ -360,7 +360,7 @@ else
 //   {
 //      piUse[i] = pblock->m_iBlockUse;
 //      pszFile[i] = pblock->m_pszFileName == nullptr ? nullptr : _strdup(pblock->m_pszFileName);
-//      ::memcpy_dup(puiStack[i], pblock->m_puiStack, pblock->m_iStack * sizeof(DWORD64));
+//      ::memory_copy(puiStack[i], pblock->m_puiStack, pblock->m_iStack * sizeof(DWORD64));
 //      piStack[i] = pblock->m_iStack;
 //      piLine[i] = pblock->m_iLine;
 //      piSize[i] = pblock->m_iSize;

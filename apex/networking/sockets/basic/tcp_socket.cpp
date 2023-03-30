@@ -1231,8 +1231,8 @@ return true;
    //         struct sockaddr_in *psockaddrin = (struct sockaddr_in *)psockaddr;
    //         if(psockaddrin->sin_family == AF_INET)
    //         {
-   //            ::memcpy_dup(request + 2,&psockaddrin->sin_port,2); // nwbo is ok here
-   //            ::memcpy_dup(request + 4,&psockaddrin->sin_addr,sizeof(struct in_addr));
+   //            ::memory_copy(request + 2,&psockaddrin->sin_port,2); // nwbo is ok here
+   //            ::memory_copy(request + 4,&psockaddrin->sin_addr,sizeof(struct in_addr));
    //         }
    //         else
    //         {
@@ -2016,9 +2016,9 @@ return true;
 //         for (i = 0; i < cnt; ++i)
 //         {
 //            j = (SSL_SESSION_TICKET_KEY_SIZE * i);
-//            ::memcpy_dup(m_ticketkeya[i].key_name, psystem->sockets().m_baTicketKey + j, 16);
-//            ::memcpy_dup(m_ticketkeya[i].hmac_key, psystem->sockets().m_baTicketKey + j + 16, 16);
-//            ::memcpy_dup(m_ticketkeya[i].aes_key, psystem->sockets().m_baTicketKey + j + 32, 16);
+//            ::memory_copy(m_ticketkeya[i].key_name, psystem->sockets().m_baTicketKey + j, 16);
+//            ::memory_copy(m_ticketkeya[i].hmac_key, psystem->sockets().m_baTicketKey + j + 16, 16);
+//            ::memory_copy(m_ticketkeya[i].aes_key, psystem->sockets().m_baTicketKey + j + 32, 16);
 //         }
 //      }
 //

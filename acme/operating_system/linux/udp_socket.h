@@ -185,7 +185,7 @@ namespace sockets
       void OnRead();
 #if defined(LINUX) || defined(MACOSX)
       /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */
-      i32 ReadTS(char * ioBuf, i32 inBufSize, struct sockaddr * from, int fromlen, struct timeval * ts);
+      i32 (char * ioBuf, i32 inBufSize, struct sockaddr * from, int fromlen, struct timeval * ts);
 #endif
 
       /** create before using sendto methods */

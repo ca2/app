@@ -105,7 +105,7 @@ namespace file
          sizeToRead = minimum(_size, size);
          if(_size > 0)
          {
-            ::memcpy_dup(data, _data, sizeToRead);
+            ::memory_copy(data, _data, sizeToRead);
             _data += sizeToRead;
             _size -= sizeToRead;
             if(_size <= 0)

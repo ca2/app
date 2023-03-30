@@ -194,7 +194,7 @@ int client_send(memory & m, int fin, memory & memory, bool useMask)
 
    }
 
-   ::memcpy_dup(&frame[iOffset], memory.get_data(), memory.get_length());
+   ::memory_copy(&frame[iOffset], memory.get_data(), memory.get_length());
 
    if (useMask)
    {

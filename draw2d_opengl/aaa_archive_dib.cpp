@@ -620,7 +620,7 @@ namespace draw2d_opengl
    //   if (pimage->get_size() != m_size)
    //      pimage = create_image (m_size);
    //   // do copy
-   //   ::memcpy_dup ( pimage->get_data(), m_pcolorref, (size_t) area() * sizeof(color32_t) );
+   //   ::memory_copy ( pimage->get_data(), m_pcolorref, (size_t) area() * sizeof(color32_t) );
    //}
 
 
@@ -630,7 +630,7 @@ namespace draw2d_opengl
    //   if (m_size !=pimage.get_size() )
    //      create ( pimage->get_size() );
    //   // do Paste
-   //   ::memcpy_dup ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
+   //   ::memory_copy ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
    //}
 
    //bool image::color_blend(color32_t color32, byte bAlpha)

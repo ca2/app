@@ -81,7 +81,7 @@ extern "C" {
 
 typedef signed char      INT8, *PINT8;
 typedef signed short     INT16, *PINT16;
-#ifndef RASPBIAN
+#ifndef RASPBERRYPIOS
 typedef i32       INT32, *PINT32;
 #endif
 typedef unsigned char    ::u328, *P::u328;

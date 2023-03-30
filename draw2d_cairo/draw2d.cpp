@@ -705,7 +705,7 @@ namespace draw2d_cairo
 //      //i32 w = cx * 4;
 //
 //      ::copy_colorref(pimageDst, pimageSrc);
-//      //::memcpy_dup(lpbDst,lpbSrc,cx * cy * 4);
+//      //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 //
 //
 //      i32 iFilterXLowerBound;

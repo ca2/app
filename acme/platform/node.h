@@ -690,10 +690,15 @@ namespace acme
       virtual ::pointer < ::file::folder_dialog > node_folder_dialog();
 
 
+
+
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
       virtual void integration_factory();
+
+
+      virtual void unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip);
 
 
    };

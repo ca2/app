@@ -93,11 +93,10 @@ namespace http
    }
 
 
-   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set, const             ::function < void(double, filesize, filesize) >
- & functionProgress)
+   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
-      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl), functionProgress);
+      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl));
 
    }
 
@@ -142,7 +141,7 @@ namespace http
    }
 
 
-   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
+   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       auto pmessage = __create_new < ::http::message >();
@@ -151,7 +150,7 @@ namespace http
 
       pmessage->m_strUrl = scopedstrUrl;
       
-      pmessage->m_functionProgress = functionProgress;
+      //pmessage->m_trans = set["transfer_progress_function"].cast < a_transfer_progress_function >();
 
       get(pmessage);
 
@@ -160,14 +159,14 @@ namespace http
    }
 
 
-   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
+   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set)
    {
 
       set["get_response"] = ""; // create get_response field
 
       //auto estatus = _get(scopedstrUrl, set);
 
-      _get(scopedstrUrl, set, functionProgress);
+      _get(scopedstrUrl, set);
 
       //if (!estatus)
       //{
@@ -1728,10 +1727,10 @@ namespace http
    }
 
 
-   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
+   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set)
    {
 
-      bool bOk = http_get(session.m_psocket, scopedstrUrl, set, functionProgress);
+      bool bOk = http_get(session.m_psocket, scopedstrUrl, set);
 
       if (bOk)
       {
@@ -1767,7 +1766,7 @@ namespace http
 
 
 
-   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress = nullptr)
+   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
    {
 
       //auto ptask = ::get_task();
@@ -2029,7 +2028,9 @@ namespace http
 
       //psocket->set_topic_text(strTopicText);
 
-      psocket->m_functionProgress = functionProgress;
+      auto ptransferprogressfunctionbase = set["transfer_progress_function"].cast < transfer_progress_function::base >();
+
+      psocket->m_transferprogressfunction = ptransferprogressfunctionbase.m_p;
 
       psocket->EnablePool(psockethandler->PoolEnabled());
 
@@ -2275,6 +2276,8 @@ namespace http
 
       }
 
+      
+
       i64 iContentLength = -1;
 
       i64 iBodySizeDownloaded = -1;
@@ -2353,6 +2356,13 @@ namespace http
          psocket->set_scalar(::e_scalar_download_progress_rate, dRateDownloaded);
 
          psocket->set_scalar(::e_scalar_download_size, iBodySizeDownloaded);
+
+         if (psocket->m_transferprogressfunction)
+         {
+
+            psocket->m_transferprogressfunction(dRateDownloaded, iBodySizeDownloaded, iContentLength);
+
+         }
 
 //         keeplive.keep-alive();
 
@@ -2725,7 +2735,7 @@ namespace http
 
       ::pointer<::sockets::http_client_socket>psocket;
 
-      if (!http_get(psocket, pmessageMessage->m_strUrl, set, pmessageMessage->m_functionProgress))
+      if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
 
          pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
@@ -2967,7 +2977,7 @@ namespace http
 
 #ifdef _WIN32
 
-      ::memcpy_dup(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
 
 #else
 
@@ -3073,24 +3083,24 @@ namespace http
    //}
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
+   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set)
    {
 
       auto pfile = create_memory_file(memory);
 
-      return put(scopedstrUrl, pfile, set, functionProgress);
+      return put(scopedstrUrl, pfile, set);
 
    }
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set, const ::function < void(double, filesize, filesize) > & functionProgress)
+   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
    {
 
       set["put"] = pfile;
 
       set["noclose"] = false;
 
-      return get(scopedstrUrl, set, functionProgress).is_true();
+      return get(scopedstrUrl, set).is_true();
 
    }
 

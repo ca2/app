@@ -7,7 +7,7 @@
 CLASS_DECL_ACME ::i64 integral_nanosecond()
 {
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
    struct timeval tv;
 

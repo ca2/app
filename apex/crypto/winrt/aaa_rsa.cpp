@@ -91,7 +91,7 @@ namespace winrt
 
       //memKey.set_size(strRsaPrivateKey.length());
 
-      //::memcpy_dup(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
+      //::memory_copy(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
 
       //m_prsa = cipher->ImportPublicKey(memKey.get_os_crypt_buffer(),::winrt::Windows::Security::Cryptography::Core::CryptographicPublicKeyBlobType::Pkcs1RsaPublicKey);
 

@@ -217,13 +217,69 @@ namespace experience_tranquillum
             if (eelement == ::e_element_background)
             {
 
-               return argb(255, 116, 160, 220);
+               if (estate & ::user::e_state_disabled)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 80, 80, 80);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 180, 180, 180);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     return argb(255, 126, 170, 230);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 116, 160, 220);
+
+                  }
+
+               }
 
             }
             else if (eelement == ::e_element_text)
             {
 
-               return argb(255, 255, 255, 255);
+               if (estate & ::user::e_state_disabled)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return argb(255, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 210, 210, 210);
+
+                  }
+
+
+               }
+               else
+               {
+
+                  return argb(255, 255, 255, 255);
+
+               }
 
             }
 

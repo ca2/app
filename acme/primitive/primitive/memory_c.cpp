@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
-//#include "_c_memory.h"
+#ifdef WINDOWS
+#include "_c_memory.h"
+#endif
 ////#include "acme/exception/exception.h"
 
 
-CLASS_DECL_ACME void* __memmov(void * dst, const void * src, memsize iSize)
+CLASS_DECL_ACME void* memory_transfer(void * dst, const void * src, memsize iSize)
 {
 
    if (::is_null(dst))
@@ -37,7 +39,8 @@ CLASS_DECL_ACME void* __memmov(void * dst, const void * src, memsize iSize)
 
 }
 
-void * memory_set(void * p, i32 i, memsize iSize)
+
+CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize)
 {
 
    if (iSize <= 0)
@@ -66,7 +69,8 @@ void * memory_set(void * p, i32 i, memsize iSize)
    //return p;
 }
 
-void * __memand(void * p, const void * p1, const void * p2, memsize iSize)
+
+CLASS_DECL_ACME void * memory_and(void * p, const void * p1, const void * p2, memsize iSize)
 {
 
    if (is_null(p)) return nullptr;
@@ -91,8 +95,7 @@ void * __memand(void * p, const void * p1, const void * p2, memsize iSize)
 }
 
 
-
-void * memcpy_dup(void * dst, const void * src, memsize iSize)
+CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize)
 {
 
    if (::is_null(dst))
@@ -141,17 +144,7 @@ void * memcpy_dup(void * dst, const void * src, memsize iSize)
 }
 
 
-void * memmov_dup(void * dst, const void * src, memsize iSize)
-{
-
-   __memmov(dst,  src, iSize);
-
-   return dst;
-
-}
-
-
-::std::strong_ordering memory_order(const void * p1, const void * p2, memsize iLen)
+CLASS_DECL_ACME ::std::strong_ordering memory_order(const void * p1, const void * p2, memsize iLen)
 {
 
    if (iLen <= 0)
@@ -195,17 +188,17 @@ void * memmov_dup(void * dst, const void * src, memsize iSize)
 }
 
 
-::wide_character * wmemcpy_dup(::wide_character * dst, const ::wide_character * src, memsize iSize)
+CLASS_DECL_ACME ::wide_character * wide_memory_copy(::wide_character * dst, const ::wide_character * src, memsize iSize)
 {
 
-   ::memcpy_dup(dst, src, iSize * sizeof(::wide_character));
+   ::memory_copy(dst, src, iSize * sizeof(::wide_character));
 
    return dst;
 
 }
 
 
-void * reverse_memory(void * p, memsize iLen)
+CLASS_DECL_ACME void * reverse_memory(void * p, memsize iLen)
 {
 
    if (::is_null(p))
@@ -226,7 +219,7 @@ void * reverse_memory(void * p, memsize iLen)
 }
 
 
-void * reverse_memcpy(void * dst, const void * src, memsize size)
+CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize size)
 {
 
    if (::is_null(dst))

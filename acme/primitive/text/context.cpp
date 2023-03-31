@@ -572,7 +572,7 @@ namespace text
    //               if(m_szMerge == m_szAlloca || !m_bOwn)
    //               {
    //                  m_szMerge = (char *)::memory_allocate(m_iMaxSize);
-   //                  ::memcpy_dup(m_szMerge,m_szAlloca,oldlen);
+   //                  ::memory_copy(m_szMerge,m_szAlloca,oldlen);
    //               }
    //               else
    //               {
@@ -587,7 +587,7 @@ namespace text
    //         for(index i = 0; i < m_pos; i++)
    //         {
    //            len = stack[i].e - stack[i].s;
-   //            ::memcpy_dup(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
+   //            ::memory_copy(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
    //            pos+=len;
    //         }
 

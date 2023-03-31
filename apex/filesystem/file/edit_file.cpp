@@ -724,7 +724,7 @@ namespace file
       pedit = __new(edit_item);
       pedit->m_position = m_position;
       pedit->m_memstorage.set_size(nCount);
-      ::memcpy_dup(pedit->m_memstorage.data(),pdata,nCount);
+      ::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
 
       TreeInsert(pedit);
       m_position += nCount;

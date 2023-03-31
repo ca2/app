@@ -2717,7 +2717,7 @@ bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
       if(::is_set(pFind))
       {
 
-         __memmov(&plist[iFind], &plist[iFind + 1], (num_items - iFind - 1) *sizeof(Atom));
+         memory_transfer(&plist[iFind], &plist[iFind + 1], (num_items - iFind - 1) *sizeof(Atom));
 
          XChangeProperty(display,window,atomList,XA_ATOM,32,PropModeReplace, (unsigned char *)plist,num_items-1);
 

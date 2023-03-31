@@ -458,7 +458,7 @@ namespace sockets_bsd
          }
          if (tv)
          {
-            ::memcpy_dup(ts, tv, sizeof(struct timeval));
+            ::memory_copy(ts, tv, sizeof(struct timeval));
          }
       }
       // The address is in network order, but that's OK right now
@@ -775,13 +775,13 @@ namespace sockets_bsd
 
       //if (paddressdepartment->convert(addr,  group ))
       //{
-      //   ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+      //   ::memory_copy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
 
       //   auto psystem = acmesystem()->m_papexsystem;
 
       //   paddressdepartment->convert(addr,  local_if);
 
-      //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
+      //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
       //   if (setsockopt(GetSocketId(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
@@ -834,10 +834,10 @@ namespace sockets_bsd
 
       //if (paddressdepartment->convert(addr, group))
       //{
-      //   ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+      //   ::memory_copy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
 
       //   paddressdepartment->convert(addr, local_if);
-      //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
+      //   ::memory_copy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
       //   if (setsockopt(GetSocketId(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {

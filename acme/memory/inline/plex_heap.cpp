@@ -415,7 +415,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
          memsize newSize = size - heap_memory_aligned_provision_get_size(0, ALIGN_BYTE_COUNT);
 
-         ::memcpy_dup(heap_memory_aligned(pNew,newSize,0, ALIGN_BYTE_COUNT, HEAP_ENUMERATE),
+         ::memory_copy(heap_memory_aligned(pNew,newSize,0, ALIGN_BYTE_COUNT, HEAP_ENUMERATE),
                 heap_memory_aligned(p,oldSize,0, ALIGN_BYTE_COUNT, HEAP_ENUMERATE),
                 minimum(oldSize, newSize));
 
@@ -424,7 +424,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 #endif
       {
 
-         ::memcpy_dup(pNew, p, minimum(sizeOld, size));
+         ::memory_copy(pNew, p, minimum(sizeOld, size));
 
       }
 
@@ -808,7 +808,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    m_pnodeLastBlock = (node *)system_heap_alloc(m_nAllocSize + 32);
 
-   ::memcpy_dup(m_pnodeLastBlock, pnode, m_nAllocSize + 32);
+   ::memory_copy(m_pnodeLastBlock, pnode, m_nAllocSize + 32);
 
 #endif
 

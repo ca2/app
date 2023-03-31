@@ -1633,7 +1633,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			uSize = GlobalSize(stg_medium.hGlobal);
 //
 //			dropFiles = (DROPFILES*) malloc(uSize);
-//			::memcpy_dup(dropFiles, globlemem, uSize);
+//			::memory_copy(dropFiles, globlemem, uSize);
 //
 //			GlobalUnlock(stg_medium.hGlobal);
 //
@@ -1697,7 +1697,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			{
 //				if (clipboard->fileDescriptor[i])
 //				{
-//					::memcpy_dup(buff + 4 + i * sizeof(FILEDESCRIPTORW), clipboard->fileDescriptor[i], sizeof(FILEDESCRIPTORW));
+//					::memory_copy(buff + 4 + i * sizeof(FILEDESCRIPTORW), clipboard->fileDescriptor[i], sizeof(FILEDESCRIPTORW));
 //				}
 //			}
 //		}

@@ -500,7 +500,7 @@ namespace sockets
    {
    struct sockaddr *point = *m_addressRemote;
    struct sockaddr_in *sa = (struct sockaddr_in *)point_i32;
-   ::memcpy_dup(&l, &sa -> sin_addr, sizeof(struct in_addr));
+   ::memory_copy(&l, &sa -> sin_addr, sizeof(struct in_addr));
    }
    return l;
    }*/
@@ -516,7 +516,7 @@ namespace sockets
    if (m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   ::memcpy_dup(&fail, point, sizeof(struct sockaddr_in6));
+   ::memory_copy(&fail, point, sizeof(struct sockaddr_in6));
    }
    else
    {

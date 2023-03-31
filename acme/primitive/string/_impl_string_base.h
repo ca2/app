@@ -2468,7 +2468,7 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
          auto sizeCopy = minimum(oldCharacterCountInBytes, storageSizeInBytes);
 
-         memcpy_dup((void *)pNew->begin(), pOld->begin(), sizeCopy);
+         memory_copy((void *)pNew->begin(), pOld->begin(), sizeCopy);
 
       }
 
@@ -6976,7 +6976,7 @@ template < primitive_character CHARACTER >
 void CopyCharsOverlapped(CHARACTER * pchDest, const CHARACTER * pchSrc, strsize nChars) noexcept
 {
 
-   __memmov(pchDest, pchSrc, nChars * sizeof(CHARACTER));
+   memory_transfer(pchDest, pchSrc, nChars * sizeof(CHARACTER));
 
 }
 
@@ -6985,7 +6985,7 @@ template < primitive_character CHARACTER >
 void CopyCharsOverlapped(CHARACTER * pchDest, size_t nDestLen, const CHARACTER * pchSrc, strsize nChars) noexcept
 {
 
-   __memmov(pchDest, pchSrc, nChars * sizeof(CHARACTER));
+   memory_transfer(pchDest, pchSrc, nChars * sizeof(CHARACTER));
 
 }
 

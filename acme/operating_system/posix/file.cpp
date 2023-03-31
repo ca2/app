@@ -479,7 +479,7 @@
 //      return false;
 //   }
 //
-//   memcpy_dup(target, source, filesize);
+//   memory_copy(target, source, filesize);
 //
 //   msync(target, filesize, MS_SYNC);
 //

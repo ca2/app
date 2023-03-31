@@ -272,13 +272,13 @@ _br_find_exe_for_symbol (const void *symbol, BrInitError *error)
          //address_string = (char *) realloc (address_string, address_string_len);
       //}
 
-      ::memcpy_dup (address_string, "0x", 2);
-      ::memcpy_dup (address_string + 2, start_addr, len);
+      ::memory_copy (address_string, "0x", 2);
+      ::memory_copy (address_string + 2, start_addr, len);
       address_string[2 + len] = '\0';
       sscanf (address_string, "%p", &start_addr_p);
 
-      ::memcpy_dup (address_string, "0x", 2);
-      ::memcpy_dup (address_string + 2, end_addr, len);
+      ::memory_copy (address_string, "0x", 2);
+      ::memory_copy (address_string + 2, end_addr, len);
       address_string[2 + len] = '\0';
       sscanf (address_string, "%p", &end_addr_p);
 
@@ -711,8 +711,8 @@ br_strcat (const char *str1, const char *str2)
    len2 = strlen (str2);
 
    result = (char *) malloc (len1 + len2 + 1);
-   ::memcpy_dup (result, str1, len1);
-   ::memcpy_dup (result + len1, str2, len2);
+   ::memory_copy (result, str1, len1);
+   ::memory_copy (result + len1, str2, len2);
    result[len1 + len2] = '\0';
 
    return result;
@@ -759,7 +759,7 @@ br_strndup (const char *str, size_t size)
       size = len;
 
    result = (char *) malloc (len + 1);
-   ::memcpy_dup (result, str, size);
+   ::memory_copy (result, str, size);
    result[size] = '\0';
    return result;
 }

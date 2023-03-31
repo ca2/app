@@ -84,7 +84,7 @@ int i;
 		return BAD_SOCK;
 	}
     /* begin hostent deep copy */
-    __memmov(server,hostent_buf,sizeof(struct hostent));
+    memory_transfer(server,hostent_buf,sizeof(struct hostent));
 #if 1
     server->h_name=strdup(hostent_buf->h_name);
     server->h_aliases=nullptr;
@@ -103,7 +103,7 @@ int i;
     { /* has at least one adress */
         server->h_addr_list=realloc(server->h_addr_list,(i+1)*sizeof(char*));
         server->h_addr_list[i]=malloc(server->h_length);
-        __memmov(server->h_addr_list[i],hostent_buf->h_addr_list[i],server->h_length);
+        memory_transfer(server->h_addr_list[i],hostent_buf->h_addr_list[i],server->h_length);
         i++;
     } 
     server->h_addr_list=realloc(server->h_addr_list, (i+1)*sizeof(char*));
@@ -111,7 +111,7 @@ int i;
     server->h_addr_list[i]='\0'; 
     /* end hostent deep copy */
 #endif
-	__memmov((char*)&(connection->sin_addr.s_addr),server->h_addr,server->h_length);
+	memory_transfer((char*)&(connection->sin_addr.s_addr),server->h_addr,server->h_length);
 	connection->sin_family=AF_INET;
 	connection->sin_port=htons(port?(unsigned short int)port:(unsigned short int)110);	/* integral size_i32 mismatch in argument - htons(port)*/
 

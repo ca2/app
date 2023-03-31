@@ -17686,80 +17686,18 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
                psession->m_puiLastLButtonDown = nullptr;
 
-               pmessage->m_bRet = on_click(m_pitemLButtonDown);
+               auto pmessageOnClick = __create_new < ::message::message>();
 
-               INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int)pmessage->m_bRet);
+               pmessageOnClick->m_atom = "on_click";
 
-               if (pmessage->m_bRet)
+               route_message(pmessageOnClick);
+
+               if (!pmessageOnClick->m_bRet)
                {
 
-                  pmouse->m_lresult = 1;
+                  pmessage->m_bRet = on_click(m_pitemLButtonDown);
 
-               }
-               else
-               {
-
-                  ::atom atom;
-
-                  if (m_pitemLButtonDown->m_atom.is_empty())
-                  {
-
-                     atom = translate_property_id(m_atom);
-
-                  }
-                  else
-                  {
-
-                     atom = translate_property_id(m_pitemLButtonDown->m_atom);
-
-                  }
-
-                  if (has_handler())
-                  {
-
-                     auto ptopic = create_topic(id_click);
-
-                     ptopic->m_puserelement = this;
-
-                     ptopic->m_pitem = m_pitemLButtonDown;
-
-                     ptopic->m_actioncontext.m_pmessage = pmouse;
-
-                     ptopic->m_actioncontext.add(::e_source_user);
-
-                     route(ptopic);
-
-                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
-
-                     pmessage->m_bRet = ptopic->m_bRet;
-
-                  }
-
-                  //if (!pmessage->m_bRet)
-                  //{
-
-                  //   auto estatus = command_handler(atom);
-
-                  //   pmessage->m_bRet = estatus.succeeded();
-
-                  //}
-
-                  if (!pmessage->m_bRet)
-                  {
-
-                     ::message::command command(atom);
-
-                     command.m_puiOther = this;
-
-                     //route_command_message(&command);
-
-                     route_command(&command);
-
-                     TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
-
-                     pmessage->m_bRet = command.m_bRet;
-
-                  }
+                  INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int)pmessage->m_bRet);
 
                   if (pmessage->m_bRet)
                   {
@@ -17767,20 +17705,93 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
                      pmouse->m_lresult = 1;
 
                   }
+                  else
+                  {
 
-                  //               if(!pmessage->m_bRet)
-                  //               {
-                  //
-                  //                  auto linkedproperty = fetch_property(m_atom);
-                  //
-                  ////                  if(linkedproperty)
-                  ////                  {
-                  ////
-                  ////                     linkproperty
-                  ////
-                  ////                  }
-                  ////
-                  ////               }
+                     ::atom atom;
+
+                     if (m_pitemLButtonDown->m_atom.is_empty())
+                     {
+
+                        atom = translate_property_id(m_atom);
+
+                     }
+                     else
+                     {
+
+                        atom = translate_property_id(m_pitemLButtonDown->m_atom);
+
+                     }
+
+                     if (has_handler())
+                     {
+
+                        auto ptopic = create_topic(id_click);
+
+                        ptopic->m_puserelement = this;
+
+                        ptopic->m_pitem = m_pitemLButtonDown;
+
+                        ptopic->m_actioncontext.m_pmessage = pmouse;
+
+                        ptopic->m_actioncontext.add(::e_source_user);
+
+                        route(ptopic);
+
+                        INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
+
+                        pmessage->m_bRet = ptopic->m_bRet;
+
+                     }
+
+                     //if (!pmessage->m_bRet)
+                     //{
+
+                     //   auto estatus = command_handler(atom);
+
+                     //   pmessage->m_bRet = estatus.succeeded();
+
+                     //}
+
+                     if (!pmessage->m_bRet)
+                     {
+
+                        ::message::command command(atom);
+
+                        command.m_puiOther = this;
+
+                        //route_command_message(&command);
+
+                        route_command(&command);
+
+                        TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
+
+                        pmessage->m_bRet = command.m_bRet;
+
+                     }
+
+                     if (pmessage->m_bRet)
+                     {
+
+                        pmouse->m_lresult = 1;
+
+                     }
+
+                     //               if(!pmessage->m_bRet)
+                     //               {
+                     //
+                     //                  auto linkedproperty = fetch_property(m_atom);
+                     //
+                     ////                  if(linkedproperty)
+                     ////                  {
+                     ////
+                     ////                     linkproperty
+                     ////
+                     ////                  }
+                     ////
+                     ////               }
+                  }
+
                }
 
             }

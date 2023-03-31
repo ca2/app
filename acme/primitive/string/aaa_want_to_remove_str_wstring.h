@@ -44,7 +44,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //   inline wstring_data * clone() const
 //   {
 //      wstring_data * pdata = (wstring_data *)aligned_memory_allocate(((m_iAllocation + 1) * sizeof(unichar)) + sizeof(count) + sizeof(count) + sizeof(unichar));
-//      memcpy_dup(pdata, this, ((m_iAllocation + 1) * sizeof(unichar)) + sizeof(count) + sizeof(count) + sizeof(unichar));
+//      memory_copy(pdata, this, ((m_iAllocation + 1) * sizeof(unichar)) + sizeof(count) + sizeof(count) + sizeof(unichar));
 //      return pdata;
 //   }
 //

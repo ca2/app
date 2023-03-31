@@ -73,7 +73,7 @@
 //
 //         if (buffer.GetCapacity() > 0)
 //         {
-//            ::memcpy_dup(this->get_data(), buffer.get_data(), buffer.GetCapacity() * sizeof(T));
+//            ::memory_copy(this->get_data(), buffer.get_data(), buffer.GetCapacity() * sizeof(T));
 //         }
 //
 //         return *this;

@@ -64,6 +64,14 @@ namespace user
    }
 
 
+   void still::set_text_align(::e_align ealignText)
+   {
+
+      m_ealignText = ealignText;
+
+   }
+
+
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 

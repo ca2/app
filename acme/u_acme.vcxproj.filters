@@ -3707,9 +3707,6 @@
     <None Include="filesystem\file\_serializable_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
     </None>
-    <None Include="u_acme.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>

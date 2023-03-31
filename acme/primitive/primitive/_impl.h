@@ -360,10 +360,9 @@ inline void particle::__construct_new(::pointer<TYPE>& p)
 
    }
 
-   ptypeNew->initialize(this);
-
    p = ptypeNew;
 
+   p->initialize(this);
 
 }
 

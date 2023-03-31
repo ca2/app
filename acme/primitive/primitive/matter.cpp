@@ -869,7 +869,7 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
    auto procedurePost = ::procedure(function);
 
-   psignalization->m_pparticleHold = procedurePost;
+   psignalization->m_pparticleHold = procedurePost.m_pbase;
 
    functionPost(procedurePost);
 

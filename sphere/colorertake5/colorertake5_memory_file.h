@@ -22,7 +22,7 @@ uptr ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uptr
   MemoryFile *mf = (MemoryFile*)opaque;
 
   if (mf->pointer+(i32)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
-  __memmov(buf, mf->stream+mf->pointer, this->get_size);
+  memory_transfer(buf, mf->stream+mf->pointer, this->get_size);
   mf->pointer += this->get_size;
   return this->get_size;
 };

@@ -16,7 +16,7 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 
    }
 
-   ::memcpy_dup(data(), block.data(), (size_t)size());
+   ::memory_copy(data(), block.data(), (size_t)size());
 
    return *data();
 

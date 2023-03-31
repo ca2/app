@@ -71,7 +71,7 @@ namespace networking_bsd
       if (sa.sa_family == AF_INET6)
       {
          m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
-         ::memcpy_dup(&u.m_addr6, &sa, m_iLen);
+         ::memory_copy(&u.m_addr6, &sa, m_iLen);
          sync_os_address();
          sync_os_service();
       }
@@ -129,7 +129,7 @@ namespace networking_bsd
 
          m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
 
-         ::memcpy_dup(&u.m_addr6, &sa, m_iLen);
+         ::memory_copy(&u.m_addr6, &sa, m_iLen);
 
          sync_os_address();
 
@@ -357,9 +357,9 @@ namespace networking_bsd
 
          auto aM = paddressMask2->u.m_addr.sin_addr;
 
-         __memand(&a1, &a1, &aM, sizeof(a1));
+         memory_and(&a1, &a1, &aM, sizeof(a1));
 
-         __memand(&a2, &a2, &aM, sizeof(a2));
+         memory_and(&a2, &a2, &aM, sizeof(a2));
 
          return ::memory_order(&a1, &a2, sizeof(aM)) == 0;
 
@@ -380,9 +380,9 @@ namespace networking_bsd
 
          auto aM = paddressMask2->u.m_addr6.sin6_addr;
 
-         __memand(&a1, &a1, &aM, sizeof(a1));
+         memory_and(&a1, &a1, &aM, sizeof(a1));
 
-         __memand(&a2, &a2, &aM, sizeof(a2));
+         memory_and(&a2, &a2, &aM, sizeof(a2));
 
          return ::memory_order(&a1, &a2, sizeof(aM)) == 0;
 
@@ -603,7 +603,7 @@ namespace networking_bsd
       if (this != &address)
       {
 
-         ::memcpy_dup(&u, &address.u, sizeof(u));
+         ::memory_copy(&u, &address.u, sizeof(u));
 
          m_iLen = address.m_iLen;
 
@@ -626,7 +626,7 @@ namespace networking_bsd
 //      a.m_iLen = -1;
 //      a.u.m_addr.sin_family = AF_INET;
 //      a.u.m_addr.sin_port = port;
-//      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
+//      ::memory_copy(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
 //#ifdef WINDOWS
 //      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
 //      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
@@ -656,7 +656,7 @@ namespace networking_bsd
 //      a.m_iLen = sizeof(sockaddr_in6);
 //      a.u.m_addr6.sin6_family = AF_INET6;
 //      a.u.m_addr6.sin6_port = port;
-//      ::memcpy_dup(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+//      ::memory_copy(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
 //
 //      a.sync_os_address();
 //      a.sync_os_service();

@@ -60,7 +60,7 @@ namespace sockets
                      if (len - ptr > 0)
                      {
                         char tmp[TCP_BUFSIZE_READ];
-                        ::memcpy_dup(tmp, buf + ptr, len - ptr);
+                        ::memory_copy(tmp, buf + ptr, len - ptr);
                         tmp[len - ptr] = 0;
                         on_read( tmp, len - ptr );
                         ptr = len;
@@ -144,7 +144,7 @@ namespace sockets
                if (len - sz > 0)
                {
                   char tmp[TCP_BUFSIZE_READ];
-                  ::memcpy_dup(tmp, buf + sz, len - sz);
+                  ::memory_copy(tmp, buf + sz, len - sz);
                   tmp[len - sz] = 0;
                   on_read( tmp, len - sz );
                }

@@ -40,15 +40,15 @@ namespace file
          auto l1 = m_max - m_t; // size_i32 left until circular border crossing
          // always copy full block to buffer(m_memory.data()) + top pointer(m_t)
          // because we have doubled the buffer size_i32 for performance reasons
-         ::memcpy_dup(m_memory.data() + m_t, s, l);
-         ::memcpy_dup(m_memory.data(), s + l1, l - l1);
+         ::memory_copy(m_memory.data() + m_t, s, l);
+         ::memory_copy(m_memory.data(), s + l1, l - l1);
          m_t = l - l1;
          m_q += l;
       }
       else
       {
-         ::memcpy_dup(m_memory.data() + m_t, s, l);
-         ::memcpy_dup(m_memory.data() + m_max + m_t, s, l);
+         ::memory_copy(m_memory.data() + m_t, s, l);
+         ::memory_copy(m_memory.data() + m_max + m_t, s, l);
          m_t += l;
          if (m_t >= m_max)
             m_t -= m_max;
@@ -78,9 +78,9 @@ namespace file
          if(s != nullptr)
          {
 
-            ::memcpy_dup(s, m_memory.data() + m_b, l1);
+            ::memory_copy(s, m_memory.data() + m_b, l1);
 
-            ::memcpy_dup(s + l1, m_memory.data(), l - l1);
+            ::memory_copy(s + l1, m_memory.data(), l - l1);
 
          }
 
@@ -95,7 +95,7 @@ namespace file
          if(s != nullptr)
          {
 
-            ::memcpy_dup(s, m_memory.data() + m_b, l);
+            ::memory_copy(s, m_memory.data() + m_b, l);
 
          }
 

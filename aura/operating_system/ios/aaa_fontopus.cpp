@@ -186,7 +186,7 @@ namespace account
 
 
       // top
-      ::memcpy_dup(pc, pa, sizeof(pb));
+      ::memory_copy(pc, pa, sizeof(pb));
       pc[2].x = pb[1].x;
       pc[2].y = pb[1].y;
       pc[3].x = pb[0].x;
@@ -213,7 +213,7 @@ namespace account
 
       }
       // left
-      ::memcpy_dup(pc, pa, sizeof(pb));
+      ::memory_copy(pc, pa, sizeof(pb));
       pc[1].x = pb[0].x;
       pc[1].y = pb[0].y;
       pc[2].x = pb[3].x;
@@ -239,7 +239,7 @@ namespace account
 
       }
       // bottom
-      ::memcpy_dup(pc, pa, sizeof(pb));
+      ::memory_copy(pc, pa, sizeof(pb));
       pc[0].x = pb[3].x;
       pc[0].y = pb[3].y;
       pc[1].x = pb[2].x;
@@ -265,7 +265,7 @@ namespace account
 
       }
       // right
-      ::memcpy_dup(pc, pa, sizeof(pb));
+      ::memory_copy(pc, pa, sizeof(pb));
       pc[0].x = pb[1].x;
       pc[0].y = pb[1].y;
       pc[3].x = pb[2].x;

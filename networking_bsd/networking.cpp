@@ -526,7 +526,7 @@ namespace networking_bsd
          u.a.b2 = static_cast<uchar>(pa.getvalue());
          u.a.b3 = static_cast<uchar>(pa.getvalue());
          u.a.b4 = static_cast<uchar>(pa.getvalue());
-         ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+         ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
          return true;
       }
 #ifndef LINUX
@@ -535,7 +535,7 @@ namespace networking_bsd
       {
          return false;
       }
-      ::memcpy_dup(&sa.sin_addr, he->h_addr, sizeof(sa.sin_addr));
+      ::memory_copy(&sa.sin_addr, he->h_addr, sizeof(sa.sin_addr));
 #else
       struct hostent he;
       struct hostent* result = nullptr;
@@ -547,7 +547,7 @@ namespace networking_bsd
          return false;
       }
       if (he.h_addr_list && he.h_addr_list[0])
-         ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+         ::memory_copy(&sa.sin_addr, he.h_addr, 4);
       else
          return false;
 #endif
@@ -599,7 +599,7 @@ namespace networking_bsd
          return false;
       ai = vec[rand() % vec.get_count()];
       {
-         ::memcpy_dup(&sa, ai->ai_addr, ai->ai_addrlen);
+         ::memory_copy(&sa, ai->ai_addr, ai->ai_addrlen);
       }
       freeaddrinfo(res);
       item.m_ipaddr = sa.sin_addr;
@@ -842,7 +842,7 @@ namespace networking_bsd
             u.a.b2 = static_cast<uchar>(pa.getvalue());
             u.a.b3 = static_cast<uchar>(pa.getvalue());
             u.a.b4 = static_cast<uchar>(pa.getvalue());
-            ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+            ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
             return true;
          }
    #ifndef LINUX
@@ -851,7 +851,7 @@ namespace networking_bsd
          {
             return false;
          }
-         ::memcpy_dup(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
+         ::memory_copy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
    #else
          struct hostent he;
          struct hostent *result = nullptr;
@@ -863,7 +863,7 @@ namespace networking_bsd
             return false;
          }
          if (he.h_addr_list && he.h_addr_list[0])
-            ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+            ::memory_copy(&sa.sin_addr, he.h_addr, 4);
          else
             return false;
    #endif
@@ -900,7 +900,7 @@ namespace networking_bsd
                return false;
             ai = vec[pmathematics->rnd() % vec.get_count()];
             {
-               ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
+               ::memory_copy(&sa, ai -> ai_addr, ai -> ai_addrlen);
             }
             freeaddrinfo(res);
             return true;
@@ -1001,7 +1001,7 @@ namespace networking_bsd
                }
             }
          }
-         ::memcpy_dup(&sa.sin6_addr, addr16, sizeof(addr16));
+         ::memory_copy(&sa.sin6_addr, addr16, sizeof(addr16));
          return true;
       }
 #ifdef SOLARIS
@@ -1014,7 +1014,7 @@ namespace networking_bsd
       {
          return false;
       }
-      ::memcpy_dup(&sa.sin6_addr, he->h_addr_list[0], he->h_length);
+      ::memory_copy(&sa.sin6_addr, he->h_addr_list[0], he->h_length);
 #ifdef SOLARIS
       free(he);
 #endif
@@ -1048,7 +1048,7 @@ namespace networking_bsd
          }
          if (addra.is_empty())
             return false;
-         ::memcpy_dup(&sa, &::acme::array::pick_random(addra)->sin6_addr, sizeof(sa));
+         ::memory_copy(&sa, &::acme::array::pick_random(addra)->sin6_addr, sizeof(sa));
          freeaddrinfo(res);
          return true;
       }
@@ -1192,7 +1192,7 @@ namespace networking_bsd
                ipaddr_t l;
             } u;
             struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-            ::memcpy_dup(&u.l, &sa_in->sin_addr, sizeof(u.l));
+            ::memory_copy(&u.l, &sa_in->sin_addr, sizeof(u.l));
             char tmp[100];
             sprintf(tmp, "%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
             hostname = tmp;
@@ -1221,7 +1221,7 @@ namespace networking_bsd
             {
                u16 addr16[8];
                struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
-               ::memcpy_dup(addr16, &sa_in6->sin6_addr, sizeof(addr16));
+               ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
                for (index i = 0; i < 8; i++)
                {
                   u16 x = ntohs(addr16[i]);
@@ -1469,7 +1469,7 @@ namespace networking_bsd
       if (this == &item)
          return *this;
 
-      ::memcpy_dup(&m_ipaddr, &item.m_ipaddr, sizeof(m_ipaddr));
+      ::memory_copy(&m_ipaddr, &item.m_ipaddr, sizeof(m_ipaddr));
       m_timeLastChecked = item.m_timeLastChecked;
       m_bOk = item.m_bOk;
       m_bTimeout = item.m_bTimeout;
@@ -1903,7 +1903,7 @@ namespace networking_bsd
    //         u.a.b2 = static_cast<uchar>(pa.getvalue());
    //         u.a.b3 = static_cast<uchar>(pa.getvalue());
    //         u.a.b4 = static_cast<uchar>(pa.getvalue());
-   //         ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+   //         ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
    //         return true;
    //      }
    //#ifndef LINUX
@@ -1912,7 +1912,7 @@ namespace networking_bsd
    //      {
    //         return false;
    //      }
-   //      ::memcpy_dup(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
+   //      ::memory_copy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
    //#else
    //      struct hostent he;
    //      struct hostent *result = nullptr;
@@ -1924,7 +1924,7 @@ namespace networking_bsd
    //         return false;
    //      }
    //      if (he.h_addr_list && he.h_addr_list[0])
-   //         ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+   //         ::memory_copy(&sa.sin_addr, he.h_addr, 4);
    //      else
    //         return false;
    //#endif
@@ -1976,7 +1976,7 @@ namespace networking_bsd
    //      return false;
    //   ai = vec[rand() % vec.get_count()];
    //   {
-   //      ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
+   //      ::memory_copy(&sa, ai -> ai_addr, ai -> ai_addrlen);
    //   }
    //   freeaddrinfo(res);
    //   item.m_ipaddr = sa.sin_addr;
@@ -2056,7 +2056,7 @@ namespace networking_bsd
    //   {
    //      u16 x;
    //      u16 addr16[8];
-   //      ::memcpy_dup(addr16, &ip, sizeof(addr16));
+   //      ::memory_copy(addr16, &ip, sizeof(addr16));
    //      for (index i = 0; i < 6; i++)
    //      {
    //         x = ntohs(addr16[i]);
@@ -2194,7 +2194,7 @@ namespace networking_bsd
             u.a.b2 = static_cast<uchar>(pa.getvalue());
             u.a.b3 = static_cast<uchar>(pa.getvalue());
             u.a.b4 = static_cast<uchar>(pa.getvalue());
-            ::memcpy_dup(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
+            ::memory_copy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
             return true;
          }
    #ifndef LINUX
@@ -2203,7 +2203,7 @@ namespace networking_bsd
          {
             return false;
          }
-         ::memcpy_dup(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
+         ::memory_copy(&sa.sin_addr, he -> h_addr, sizeof(sa.sin_addr));
    #else
          struct hostent he;
          struct hostent *result = nullptr;
@@ -2215,7 +2215,7 @@ namespace networking_bsd
             return false;
          }
          if (he.h_addr_list && he.h_addr_list[0])
-            ::memcpy_dup(&sa.sin_addr, he.h_addr, 4);
+            ::memory_copy(&sa.sin_addr, he.h_addr, 4);
          else
             return false;
    #endif
@@ -2252,7 +2252,7 @@ namespace networking_bsd
                return false;
             ai = vec[pmathematics->rnd() % vec.get_count()];
             {
-               ::memcpy_dup(&sa, ai -> ai_addr, ai -> ai_addrlen);
+               ::memory_copy(&sa, ai -> ai_addr, ai -> ai_addrlen);
             }
             freeaddrinfo(res);
             return true;
@@ -2353,7 +2353,7 @@ namespace networking_bsd
       //            }
       //         }
       //      }
-      //      ::memcpy_dup(&sa.sin6_addr, addr16, sizeof(addr16));
+      //      ::memory_copy(&sa.sin6_addr, addr16, sizeof(addr16));
       //      return true;
       //   }
       //#ifdef SOLARIS
@@ -2366,7 +2366,7 @@ namespace networking_bsd
       //   {
       //      return false;
       //   }
-      //   ::memcpy_dup(&sa.sin6_addr,he -> h_addr_list[0],he -> h_length);
+      //   ::memory_copy(&sa.sin6_addr,he -> h_addr_list[0],he -> h_length);
       //#ifdef SOLARIS
       //   free(he);
       //#endif
@@ -2400,7 +2400,7 @@ namespace networking_bsd
       //      }
       //      if(addra.is_empty())
       //         return false;
-      //      ::memcpy_dup(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
+      //      ::memory_copy(&sa, &::papaya::array::pick_random(addra)->sin6_addr, sizeof(sa));
       //      freeaddrinfo(res);
       //      return true;
       //   }
@@ -2545,7 +2545,7 @@ namespace networking_bsd
       //            ipaddr_t l;
       //         } u;
       //         struct sockaddr_in* sa_in = (struct sockaddr_in*)sa;
-      //         ::memcpy_dup(&u.l, &sa_in->sin_addr, sizeof(u.l));
+      //         ::memory_copy(&u.l, &sa_in->sin_addr, sizeof(u.l));
       //         char tmp[100];
       //         sprintf(tmp, "%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
       //         hostname = tmp;
@@ -2574,7 +2574,7 @@ namespace networking_bsd
       //         {
       //            u16 addr16[8];
       //            struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
-      //            ::memcpy_dup(addr16, &sa_in6->sin6_addr, sizeof(addr16));
+      //            ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
       //            for (index i = 0; i < 8; i++)
       //            {
       //               u16 x = ntohs(addr16[i]);
@@ -2850,7 +2850,7 @@ namespace networking_bsd
    //   if(this==&item)
    //      return *this;
    //
-   //   ::memcpy_dup(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
+   //   ::memory_copy(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
    //   m_timeLastChecked = item.m_timeLastChecked;
    //   m_bOk = item.m_bOk;
    //   m_bTimeout = item.m_bTimeout;
@@ -3269,7 +3269,7 @@ namespace networking_bsd
       a.m_iLen = -1;
       a.u.m_addr.sin_family = AF_INET;
       a.u.m_addr.sin_port = port;
-      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
+      ::memory_copy(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
    #ifdef WINDOWS
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
       ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
@@ -3300,7 +3300,7 @@ namespace networking_bsd
       a.m_iLen = sizeof(sockaddr_in6);
       a.u.m_addr6.sin6_family = AF_INET6;
       a.u.m_addr6.sin6_port = port;
-      ::memcpy_dup(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+      ::memory_copy(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
 
       a.sync_os_address();
       a.sync_os_service();

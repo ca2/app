@@ -85,7 +85,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         {
 //            m_memory.set_size(m_iTcpOuputCapacity);
 //            _buf = (char *)m_memory.get_data();
-//            ::memcpy_dup(_buf, buf, len);
+//            ::memory_copy(_buf, buf, len);
 //         }
 //
 //         virtual ~output()
@@ -98,7 +98,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //         }
 //         void add(const char * buf, i32 len)
 //         {
-//            ::memcpy_dup(_buf + _t, buf, len);
+//            ::memory_copy(_buf + _t, buf, len);
 //            _t += len;
 //            _q += len;
 //         }

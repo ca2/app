@@ -1554,7 +1554,7 @@ pacmedirectory->create("/ca2core");
    //      
    //      u64 tt;
    //      
-   //      ::memcpy_dup(&tt, &ft, sizeof(tt));
+   //      ::memory_copy(&tt, &ft, sizeof(tt));
    //
    //      tt /= 10; // make it usecs
    //      

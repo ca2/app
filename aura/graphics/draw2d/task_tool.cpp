@@ -71,7 +71,7 @@ namespace draw2d
                      {
                         if (x1 >= 0)
                         {
-                           ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                           ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                            x1 = -1;
                         }
 
@@ -106,7 +106,7 @@ namespace draw2d
                         {
                            if (x1 >= 0)
                            {
-                              ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                              ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
                            byte bA2 = (byte)~(byte)psrc2[3];
@@ -126,7 +126,7 @@ namespace draw2d
                   }
                   if (x1 >= 0)
                   {
-                     ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                     ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                      x1 = -1;
                   }
                   //pdst2 += xEnd;
@@ -168,7 +168,7 @@ restart:
                      {
                         if (x1 >= 0)
                         {
-                           ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                           ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                            x1 = -1;
                         }
 
@@ -490,7 +490,7 @@ restart:
                         {
                            if (x1 >= 0)
                            {
-                              ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                              ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                               x1 = -1;
                            }
                            bA2 = (byte)~bA2;
@@ -510,7 +510,7 @@ restart:
                   }
                   if (x1 >= 0)
                   {
-                     ::memcpy_dup(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
+                     ::memory_copy(&((::color32_t *)pdst3)[x1], &((::color32_t *)psrc3)[x1], (x - x1) * sizeof(::color32_t));
                      x1 = -1;
                   }
                   //pdst2 += xEnd;

@@ -736,7 +736,7 @@ namespace user
 
          }
 
-         ::memcpy_dup(pszDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
+         ::memory_copy(pszDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
 
       }
 

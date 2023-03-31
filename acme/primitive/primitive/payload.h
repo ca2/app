@@ -815,7 +815,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //}
 
    template < an_object T >
-   payload & operator = (const T & t)
+   payload & assign_copy(const T & t)
    {
 
       ::copy(*this, t);

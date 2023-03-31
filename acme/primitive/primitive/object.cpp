@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
 #include "acme/handler/extended_topic.h"
@@ -1671,8 +1671,10 @@ void object::branch_each(const ::procedure_array& routinea)
    }
 
    ptask->m_procedure = procedure;
+   
+   auto pbase = procedure.m_pbase.m_p;
 
-   ptask->m_atom = typeid(*procedure.m_pbase).name();
+   ptask->m_atom = typeid(*pbase).name();
 
    ptask->branch(createtaskattributes);
 
@@ -1702,8 +1704,10 @@ void object::branch_each(const ::procedure_array& routinea)
    }
 
    ptask->m_procedure = procedure;
+   
+   auto pbase = procedure.m_pbase.m_p;
 
-   ptask->m_atom = typeid(*procedure.m_pbase).name();
+   ptask->m_atom = typeid(*pbase).name();
 
    ptask->branch_synchronously(createtaskattributes);
 

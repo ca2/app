@@ -65,7 +65,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 
 
 
-#if defined(_UWP) //|| defined(ANDROID)
+#if defined(UNIVERSAL_WINDOWS) //|| defined(ANDROID)
 
 
 inline void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec

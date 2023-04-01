@@ -283,7 +283,7 @@ string file_module_path_dup()
 // };
 
 
-// #if !defined(LINUX) && !defined(MACOS) && !defined(_UWP) && !defined(ANDROID)
+// #if !defined(LINUX) && !defined(MACOS) && !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
 // //#include <Tlhelp32.h>
 // //#include <Psapi.h>
@@ -376,7 +376,7 @@ string file_module_path_dup()
 // //    }
 // // }
 
-// // #ifndef _UWP
+// // #ifndef UNIVERSAL_WINDOWS
 
 // // typedef struct _SYSTEM_HANDLE_INFORMATION
 // // {

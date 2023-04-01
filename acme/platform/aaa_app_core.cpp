@@ -1067,7 +1067,7 @@ bool app_core::has_apex_application_factory() const
 
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 

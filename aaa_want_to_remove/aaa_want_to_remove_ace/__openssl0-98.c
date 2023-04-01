@@ -37,7 +37,7 @@ int BIO_get_shutdown(BIO* a)
 }
 #endif
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 # define OPENSSL_zalloc(num) \
         CRYPTO_zalloc(num, __FILE__, __LINE__)

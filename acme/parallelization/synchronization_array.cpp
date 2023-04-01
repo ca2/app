@@ -223,7 +223,7 @@ void synchronization_array::erase(index index)
 
    u32 windowsWaitResult;
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
    if (uWakeMask)
    {
@@ -293,7 +293,7 @@ void synchronization_array::erase(index index)
       {
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
          
          if (uWakeMask)
          {

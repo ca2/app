@@ -595,19 +595,19 @@ typedef i32 ::i32;
 typedef i32 INT32;
 typedef u32 ::u32;
 typedef u32 ::u32;
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 typedef INT32 ::i32;   // ::i32, WINULONG and u32 must be 32-bit
 #endif
 //typedef ::u32 WINULONG;
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #undef u32
 typedef ::u32 u32;
 #endif
 //typedef i64 ::i64;
 //typedef u64 ULONGLONG;
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 typedef const char *const char *;
 typedef char TCHAR;
 #endif
@@ -643,7 +643,7 @@ typedef ::i32 SCODE;
 */
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define STDMETHOD_(t, f) virtual t STDMETHODCALLTYPE f
 #define STDMETHOD(f) STDMETHOD_(HRESULT, f)
 #define STDMETHODIMP_(type) type STDMETHODCALLTYPE
@@ -654,7 +654,7 @@ typedef ::i32 SCODE;
 
 #ifdef __cplusplus
 
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //DEFINE_GUID(IID_IUnknown,
 //0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
@@ -677,7 +677,7 @@ typedef ::i32 SCODE;
 #define VARIANT_TRUE ((VARIANT_BOOL)-1)
 #define VARIANT_FALSE ((VARIANT_BOOL)0)
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 enum VARENUM
 {
@@ -716,7 +716,7 @@ typedef ::u16 PROPVAR_PAD3;
 
 #ifdef __cplusplus
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 typedef struct tagPROPVARIANT
 {
@@ -777,7 +777,7 @@ typedef enum tagSTREAM_SEEK
    STREAM_SEEK_END = 2
 } STREAM_SEEK;
 
-#endif // defined(_UWP)
+#endif // defined(UNIVERSAL_WINDOWS)
 
 
 

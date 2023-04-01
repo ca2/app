@@ -55,7 +55,7 @@
 #endif
 
 
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //
 //#define AF_INET         2               // internetwork: UDP, TCP, etc.

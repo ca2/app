@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 extern void *OPENSSL_UplinkTable[];
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //extern "C"
 //__declspec(dllimport)
 //void OPENSSL_UplinkAll();
@@ -147,7 +147,7 @@ namespace sockets
 
       //}
 
-      //#if defined(_UWP)
+      //#if defined(UNIVERSAL_WINDOWS)
 //
 //      OPENSSL_Applink();
 //

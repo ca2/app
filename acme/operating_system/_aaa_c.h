@@ -30,7 +30,7 @@
 #elif defined(LINUX)
 #include "acme/operating_system/ansi/_c.h"
 #include "acme/operating_system/linux/_c.h"
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 #include "acme/operating_system/windows_common/_c.h"
 #include "acme/operating_system/universal_windows/_.h"
 #elif defined(WINDOWS_DESKTOP)

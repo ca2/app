@@ -7,7 +7,7 @@
 //::file::path dir_base_module()
 //{
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //   return "";
 //

@@ -17,7 +17,7 @@
 
 //void fastblur(::image * ppimg, i32 radius);
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 //#include <wincodec.h>
 //#include <Shcore.h>
 
@@ -1938,7 +1938,7 @@ return true;
 
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //
@@ -1961,7 +1961,7 @@ return true;
 
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //

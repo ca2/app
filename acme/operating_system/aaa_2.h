@@ -62,7 +62,7 @@ CLASS_DECL_ACME bool is_verbose();
 //#include "acme/operating_system/ansi/_.h"
 //#include "acme/operating_system/linux/_.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "acme/operating_system/ansi/_.h"
 #include "acme/operating_system/windows_common/_.h"

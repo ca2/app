@@ -7,7 +7,7 @@
 //CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 //CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
@@ -51,7 +51,7 @@ CLASS_DECL_ACME string process_version_dir_name();
 
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
 //CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
@@ -69,7 +69,7 @@ CLASS_DECL_ACME string process_version_dir_name();
 
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 //CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
 //CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif

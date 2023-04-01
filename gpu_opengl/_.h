@@ -30,7 +30,7 @@
 #include <EGL/eglplatform.h>
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 // Enable function definitions in the GL headers below

@@ -16,7 +16,7 @@ void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE pMsg,oswin
 //using HSYNC = synchronization *;
 //#endif
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 #pragma warning (disable:4273)
 
@@ -37,7 +37,7 @@ CLASS_DECL_CORE ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
 #endif
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 ::u32 WaitForSingleObject(HSYNC hsync, ::u32 dw::durations);
 
@@ -56,7 +56,7 @@ CLASS_DECL_CORE ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
 #define STATUS_TIMEOUT           ((::u32   ) 0x00000102L)
  */
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #define WAIT_FAILED              ((::u32   ) 0xFFFFFFFFL)
 #define WAIT_OBJECT_0            ((::u32   ) STATUS_WAIT_0 + 0)
@@ -103,7 +103,7 @@ union semun
 // CLASS_DECL_CORE void mq_clear(itask_t htask);
 
 
-// #ifndef _UWP
+// #ifndef UNIVERSAL_WINDOWS
 
 // CLASS_DECL_CORE ::u32 WINAPI GetThreadId(htask_t Thread);
 

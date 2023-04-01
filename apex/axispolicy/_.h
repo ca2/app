@@ -107,9 +107,9 @@
 ////
 ////#include "axis/axis/os/ansios/ansios.h"
 ////
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////
-////#include "axis/os/_UWP/_UWP.h"
+////#include "axis/os/UNIVERSAL_WINDOWS/UNIVERSAL_WINDOWS.h"
 ////
 ////#elif defined(MACOS)
 ////
@@ -144,9 +144,9 @@
 //
 //
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
-//#include "app/axis/axis/os/_UWP/_UWP_sockets.h"
+//#include "app/axis/axis/os/UNIVERSAL_WINDOWS/_UWP_sockets.h"
 //
 //#endif
 //

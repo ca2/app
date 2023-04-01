@@ -13,7 +13,7 @@ bool launcher::start()
 
    string strParams = get_params();
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    throw ::exception(::exception("todo"));
 

@@ -12,7 +12,7 @@ string get_task_name(htask_t htask)
 
    LPWSTR lpwsz = nullptr;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    hr = GetThreadDescription(htask, &lpwsz);
 
@@ -82,7 +82,7 @@ CLASS_DECL_AURA bool task_set_name(htask_t htask, const ::string & pszName)
 
    bool bOk1 = false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    bOk1 = SUCCEEDED(SetThreadDescription(htask, wstring(pszName)));
 

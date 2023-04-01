@@ -161,7 +161,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
  */
 i16 parse_http_proxy(char **proxy_host, i32 *port) {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    return 0;
 

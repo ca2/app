@@ -345,7 +345,7 @@ LPDWORD     pNumberOfBytesRead
 {
 
    SIZE_T size = 0;
-#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
+#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
    return false;
 #else
    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
@@ -367,7 +367,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, 
 {
 
    SIZE_T size = 0;
-#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
+#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
    throw ::exception(todo);
 #else
    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
@@ -1362,7 +1362,7 @@ namespace exception
 
 
       return true;
-#elif defined(_UWP) || defined(SOLARIS)
+#elif defined(UNIVERSAL_WINDOWS) || defined(SOLARIS)
 
       return _strS;
 

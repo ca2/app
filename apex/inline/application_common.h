@@ -115,7 +115,7 @@ const char* br_init_get_symbol();
 ////
 ////  psystem->([a-z0-9_]+)_factory("draw2d", "gdiplus", &([a-z0-9_]+)_factory);
 ////
-////#elif _UWP
+////#elif UNIVERSAL_WINDOWS
 ////
 ////  psystem->([a-z0-9_]+)_factory("draw2d", "direct2d", &([a-z0-9_]+)_factory);
 ////

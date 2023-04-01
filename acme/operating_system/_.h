@@ -9,7 +9,7 @@
 #include "windows_common/_.h"
 #include "windows/_.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "windows_common/_.h"
 #include "universal_windows/_.h"

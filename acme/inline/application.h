@@ -208,7 +208,7 @@ int main(int argc, char * argv[], char * envp[])
 ////
 ////      //return iExitCode;
 ////
-////#elif !defined(_UWP)
+////#elif !defined(UNIVERSAL_WINDOWS)
 ////
 ////   papp->set_args(argc, argv, envp);
 ////

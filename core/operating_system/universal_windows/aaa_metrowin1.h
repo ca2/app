@@ -7,7 +7,7 @@ namespace universal_windows
 
    class thread;
 
-   class _UWP
+   class UNIVERSAL_WINDOWS
    {
       int function();
    };
@@ -30,7 +30,7 @@ namespace universal_windows
 
 
 // helpers for registering your own WNDCLASSes
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 CLASS_DECL_CORE LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 CLASS_DECL_CORE WNDPROC __get_window_procedure();
@@ -50,7 +50,7 @@ CLASS_DECL_CORE ::i32 delete_registry_tree_helper(HKEY hParentKey, const ::strin
 
 
 
-CLASS_DECL_CORE ::_UWP::thread * __get_thread();
+CLASS_DECL_CORE ::UNIVERSAL_WINDOWS::thread * __get_thread();
 CLASS_DECL_CORE void __set_thread(::thread * pthread);
 CLASS_DECL_CORE MSG* __get_current_message();
 

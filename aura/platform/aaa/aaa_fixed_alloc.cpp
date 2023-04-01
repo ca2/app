@@ -155,7 +155,7 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 
    m_i = 0;
 
-#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
    i32 iShareCount = 0;
 #else
    i32 iShareCount = ::get_current_process_maximum_affinity() + 1;

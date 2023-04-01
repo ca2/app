@@ -2,7 +2,7 @@
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 
@@ -32,7 +32,7 @@
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #include "windows_ole_automation.h"
 #include "windows_shared_memory.h"
 #endif
@@ -47,7 +47,7 @@
 #include "windows_wincon.h"
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #include "windows_base_tsd.h"
 #endif
 
@@ -56,7 +56,7 @@
 #include "windows_internals.h"
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #include "windows_file.h"
 #include "windows_ntstatus.h"
 #include "windows_mmeapi.h"

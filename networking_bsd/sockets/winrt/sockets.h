@@ -15,7 +15,7 @@ namespace sockets
       ssl_client_context_map                    m_clientcontextmap;
 #endif
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       long                                      m_lHttpGetSerial;
 #endif
 

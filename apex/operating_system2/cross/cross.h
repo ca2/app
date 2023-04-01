@@ -36,7 +36,7 @@ class event;
 #undef inline
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #include "windows/windows_thread.h"
 

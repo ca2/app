@@ -8,7 +8,7 @@ public:
 
    u8 *      m_pbStart;
    u8 *      m_pbEnd;
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    DWORD64     m_dwTickCount;
 #else
    u32       m_dwTickCount;
@@ -22,7 +22,7 @@ public:
    }
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    inline heap_item(void * p,memsize iSize,DWORD64 class ::time)
 #else
    inline heap_item(void * p,memsize iSize,u32 class ::time)

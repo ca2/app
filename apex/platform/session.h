@@ -27,7 +27,7 @@ namespace apex
 
 
 
-//#if defined _UWP
+//#if defined UNIVERSAL_WINDOWS
 //
 //      ::universal_windows::directx_framework_impact ^                          m_frameworkview;
 //

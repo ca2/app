@@ -130,7 +130,7 @@ using LPSYSTEMTIME = SYSTEMTIME *;
 
 #endif
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #define STATUS_SUCCESS 0
 #define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
 #endif
@@ -175,7 +175,7 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //#define STATUS_SUCCESS 0
 //#define STATUS_PRIVILEGE_NOT_HELD 1
 //#endif
@@ -601,7 +601,7 @@ void RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFie
    TimeFields->Hour = rem / 60;
 }
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 const ::i64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;

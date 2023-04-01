@@ -30,7 +30,7 @@
 #include "aura/operating_system/ansi/_.h"
 #include "aura/operating_system/freebsd/_.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "aura/operating_system/ansi/_.h"
 #include "aura/operating_system/windows_common/_.h"

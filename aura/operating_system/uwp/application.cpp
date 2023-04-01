@@ -298,7 +298,7 @@ namespace aura
 //         string slask = payload + "=" + value;
 //         _putenv( (const ::string &)slask);
 //      }
-//#elif defined _UWP
+//#elif defined UNIVERSAL_WINDOWS
 //
 //
 //#else

@@ -171,7 +171,7 @@ public:
 
    inline const unichar * c_str() const { return this->operator const unichar *();  }
 
-#if defined(_UWP) && defined(__cplusplus_winrt)
+#if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
    inline operator String ^ () const { return ref memory_new String(operator const unichar *()); }
    inline operator String ^ () { return ref memory_new String(operator const unichar *()); }
 #endif

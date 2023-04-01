@@ -141,7 +141,7 @@ namespace acme
 
       ::atom_array idaPid;
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
       idaPid.add(scopedstrAppId);
 
@@ -1787,7 +1787,7 @@ namespace acme
    }
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
    ::array <::serial::port_info> node::list_serial_ports()
@@ -1890,7 +1890,7 @@ return false;
    ::file::path node::command_find_path(const ::string & pszCommand)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return "";
 

@@ -239,7 +239,7 @@ namespace crypto
       return true;
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
          ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -423,7 +423,7 @@ namespace crypto
 
       iv.set(0);
 
-#if defined(_UWP) && !defined(HAVE_OPENSSL)
+#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 
       ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
          ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -1053,7 +1053,7 @@ namespace crypto
    void crypto::hmac(void* result, const memory& memMessage, const memory& memKey)
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       unsigned int md_len = 0;
 
@@ -1069,7 +1069,7 @@ namespace crypto
    void crypto::hmac(void* result, const string& strMessage, const string& strKey)
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       unsigned int md_len = 0;
 
@@ -1216,7 +1216,7 @@ namespace crypto
 //   {
 //
 //
-//#if defined(_UWP) && !defined(HAVE_OPENSSL)
+//#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 //
 //
 //
@@ -1336,7 +1336,7 @@ namespace crypto
 //
 //      CFRelease(transform);
 //
-//#elif defined(_UWP) && !defined(HAVE_OPENSSL)
+//#elif defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 //
 //
 //
@@ -1374,7 +1374,7 @@ namespace crypto
 //   {
 //
 //
-//#if defined(_UWP) && !defined(HAVE_OPENSSL)
+//#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 //
 //
 //
@@ -1564,7 +1564,7 @@ namespace crypto
    void crypto::np_make_zigbert_rsa(const string& strDir, const string& strSignerPath, const string& strKeyPath, const string& strOthersPath, const string& strSignature)
    {
 
-#if !defined(_UWP) && defined(HAVE_OPENSSL)
+#if !defined(UNIVERSAL_WINDOWS) && defined(HAVE_OPENSSL)
 
       X509* signer = nullptr;
       {
@@ -1862,7 +1862,7 @@ stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length,
    const char* username, const char* realm, const char* password)
 {
 
-#if !defined(_UWP) || defined(HAVE_OPENSSL)
+#if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
    u32 resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
@@ -1880,7 +1880,7 @@ stunCalculateIntegrity_longterm(char* hmac, const char* input, i32 length,
 void
 stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, const char* key)
 {
-#if !defined(_UWP) || defined(HAVE_OPENSSL)
+#if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
    u32 resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
@@ -1891,7 +1891,7 @@ stunCalculateIntegrity_shortterm(char* hmac, const char* input, i32 length, cons
 
 void hmac_evp_sha1_1234(unsigned char* hmac, unsigned int* hmacSize, const unsigned char* buf, size_t bufLen)
 {
-#if !defined(_UWP) || defined(HAVE_OPENSSL)
+#if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
 
    HMAC(EVP_sha1(),
       "1234", 4,

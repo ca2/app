@@ -45,6 +45,8 @@ public:
    
    ::user::notify_icon * notify_icon() override;
 
+   
+
 
    ::user::enum_translucency get_translucency(::user::style* pstyle) override;
 

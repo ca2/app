@@ -157,6 +157,43 @@ void simple_frame_window::initialize(::particle* pparticle)
 }
 
 
+void simple_frame_window::on_update_notify_icon(int &iNotifyIconIndex)
+{
+
+   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+
+   auto c = papp->applicationmenu().get_count();
+
+   for (auto i = 0; i < c; i++)
+   {
+
+      auto& item = papp->applicationmenu()[i];
+
+      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+
+   }
+
+   if (m_pframe != nullptr
+      && m_pframe->get_control_box() != nullptr
+      && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
+   {
+
+      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
+
+      //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+      m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Transparent Frame", "transparent_frame");
+
+   }
+
+   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
+
+   //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+   m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Exit", "app_exit");
+
+
+}
+
+
 ::user::enum_translucency simple_frame_window::get_translucency(::user::style* pstyle)
 {
 

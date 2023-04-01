@@ -284,7 +284,7 @@ namespace networking_bsd
 string ip_reverse(string str)
 {
 
-#if defined(_UWP) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(FREEBSD)
+#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(FREEBSD)
 
    return c_gethostbyname(str);
 
@@ -308,13 +308,13 @@ string ip_reverse(string str)
 
 
 
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //
 //#include <openssl/ssl.h>
 //
 //
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 //
 //extern "C"
 //CLASS_DECL_APEX const SSL_METHOD * TLS_client_method()

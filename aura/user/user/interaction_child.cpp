@@ -241,7 +241,7 @@ namespace user
 ////
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////
-////#ifndef _UWP
+////#ifndef UNIVERSAL_WINDOWS
 ////      pusersystem->m_createstruct.hInstance = psystem->m_hinstance;
 ////#endif
 ////

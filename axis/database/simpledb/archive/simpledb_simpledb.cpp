@@ -45,7 +45,7 @@ namespace simpledb
 
       if(get_app()->is_system())
       {
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //         /* initialize client library */
 //         if (mysql_library_init (0, nullptr, nullptr))
 //         {

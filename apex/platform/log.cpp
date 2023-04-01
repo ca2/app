@@ -548,7 +548,7 @@ namespace apex
 ////
 ////         output_debug_string("\n" + m_strLogPath + "\n");
 ////
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 ////
 ////         auto psystem = acmesystem()->m_papexsystem;
 ////

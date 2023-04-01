@@ -107,7 +107,7 @@ namespace install
 
       virtual void deferred_prodevian_redraw();
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       virtual void on_post(::aura::ipc::rx * prx, i64 a, i64 b);
 

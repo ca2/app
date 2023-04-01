@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "universal_windows.h"
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 //#include <Shellapi.h>
 

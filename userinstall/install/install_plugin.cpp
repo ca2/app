@@ -101,7 +101,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       m_bPendingRestartCa2    = false;
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       throw ::exception(::exception("todo")); // aura::ipc::ipc
 
@@ -248,7 +248,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
       if(m_bLogin || m_bCa2Login || m_bCa2Logout)
          return false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       throw ::exception(::exception("todo"));
 
@@ -835,7 +835,7 @@ run_install:
    void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       throw ::exception(::exception("todo"));
 
@@ -1292,7 +1292,7 @@ run_install:
 
    }
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
    void plugin::on_receive(::aura::ipc::rx * prx, i32 message, void * pdata, i32 len)
@@ -1623,7 +1623,7 @@ restart:
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          throw ::exception(::exception("todo"));
 

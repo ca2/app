@@ -143,7 +143,7 @@ namespace apex
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";

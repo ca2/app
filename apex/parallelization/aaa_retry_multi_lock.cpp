@@ -64,7 +64,7 @@
 //         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
 //
 //      }
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //      else
 //      {
 //

@@ -54,7 +54,7 @@ namespace aura
 } // namespace aura
 
 
-#if defined _UWP
+#if defined UNIVERSAL_WINDOWS
 
 
 namespace aura_universal_windows
@@ -171,7 +171,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
+////#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 ////
 ////#define MOBILE_PLATFORM 1
 ////
@@ -1129,7 +1129,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////
 //////
 //////
-//////#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+//////#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //////
 //////   class native_window_initialize;
 //////
@@ -1174,7 +1174,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //   using e_flag = enumeration < enum_flag >;
 //
 //
-//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //
 //   class native_window_initialize;
 //

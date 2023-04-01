@@ -133,7 +133,7 @@ namespace crypto_openssl
       return;
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
          ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -317,7 +317,7 @@ namespace crypto_openssl
 
       iv.set(0);
 
-#if defined(_UWP) && !defined(HAVE_OPENSSL)
+#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 
       ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
          ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
@@ -975,7 +975,7 @@ namespace crypto_openssl
    void crypto::hmac(void* result, const memory& memMessage, const memory& memKey)
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       unsigned int md_len = 0;
 
@@ -989,7 +989,7 @@ namespace crypto_openssl
    void crypto::hmac(void* result, const string& strMessage, const string& strKey)
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       unsigned int md_len = 0;
 
@@ -1130,7 +1130,7 @@ namespace crypto_openssl
    void crypto::np_make_zigbert_rsa(const string& strDir, const string& strSignerPath, const string& strKeyPath, const string& strOthersPath, const string& strSignature)
    {
 
-#if !defined(_UWP) && defined(HAVE_OPENSSL)
+#if !defined(UNIVERSAL_WINDOWS) && defined(HAVE_OPENSSL)
 
       X509* signer = nullptr;
       {

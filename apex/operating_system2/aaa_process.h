@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 //
 //CLASS_DECL_APEX i32 call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 //
@@ -14,7 +14,7 @@
 //#endif
 //
 //
-//#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //
 //CLASS_DECL_APEX i32 get_current_processor_index();
 //
@@ -46,7 +46,7 @@
 //
 //CLASS_DECL_APEX ::file::path core_app_path(string strApp);
 //
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 //
 //
 //CLASS_DECL_APEX string module_path_from_pid(unsigned int pid);
@@ -64,7 +64,7 @@
 //
 //#endif
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //CLASS_DECL_APEX bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
 //CLASS_DECL_APEX void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::scoped_string & scopedstrLibrary);
 //#endif

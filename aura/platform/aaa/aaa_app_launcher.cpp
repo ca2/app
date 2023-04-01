@@ -81,7 +81,7 @@ namespace aura
    bool app_launcher::start()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return false;
 

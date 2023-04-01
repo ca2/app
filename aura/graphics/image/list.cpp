@@ -333,7 +333,7 @@ i32 image_list::reserve_image(int iItem)
 //   m_pimage->g()->fill_rectangle(rectangle, 0);
 //
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
 ////

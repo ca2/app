@@ -323,7 +323,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //inline void copy(rectangle_i32 & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 //{
@@ -345,7 +345,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //inline ::winrt::Windows::Foundation::Rect ScaleRect(::winrt::Windows::Foundation::Rect rectangle, double scale)
 //{

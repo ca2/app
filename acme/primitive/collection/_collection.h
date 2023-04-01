@@ -6,7 +6,7 @@ template < typename ITERABLE >
 inline ::count __iterable_count(const ITERABLE & iterable);
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //template < typename T >

@@ -60,7 +60,7 @@ void api::load_configuration()
 
    string strPrefix;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    if (m_strImplementation.case_insensitive_equals("google"))
    {

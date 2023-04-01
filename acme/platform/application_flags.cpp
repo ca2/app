@@ -458,7 +458,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 //
 //void main::system_construct(const ::string_array & straParam)
@@ -1594,7 +1594,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //
 //

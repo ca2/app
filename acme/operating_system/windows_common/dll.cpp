@@ -6,7 +6,7 @@
 
 #include "_c.h"
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 #include <Psapi.h>
 
@@ -192,7 +192,7 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 //CLASS_DECL_ACME void defer_initialize_callstack();
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //[MTAThread]
 //#endif
 //int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)

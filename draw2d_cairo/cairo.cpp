@@ -86,7 +86,7 @@ void term_cairo_mutex()
 //#ifdef WINDOWS
 //
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //[Platform::MTAThread]
 //#endif
 //BOOL WINAPI DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)

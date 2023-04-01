@@ -116,7 +116,7 @@ namespace user
 
       ::user::interaction::on_visual_applied();
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
       auto edisplay = const_layout().design().display();
 
@@ -185,7 +185,7 @@ namespace user
    bool box::should_save_window_rect()
    {
 
-#if defined(_UWP) || defined(APPLE_IOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS)
 
       return false;
 

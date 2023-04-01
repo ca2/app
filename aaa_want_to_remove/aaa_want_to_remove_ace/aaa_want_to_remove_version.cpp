@@ -19,7 +19,7 @@
 
 // {
 
-// #if defined(_WIN32) || defined(_UWP)
+// #if defined(_WIN32) || defined(UNIVERSAL_WINDOWS)
 
 //    /* Windows 10 Version Info */
 //    if ((pVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOA)) ||

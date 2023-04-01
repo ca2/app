@@ -255,7 +255,7 @@ public:
 
    //inline operator const CONST_STRING_RANGE & () const noexcept { return this->data(); }
 
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
    //inline operator String ^ () const { return ref memory_new String(wd16_string(*this)); }
 //#endif
 
@@ -358,7 +358,7 @@ public:
    //#ifdef WINDOWS
      // string_base & operator = (const USHORT * pshSrc) { return operator=((const ::wd16_character *)pshSrc); }
    //#endif
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
      // string_base& operator = (String^& str) { return operator=(str->Begin()); }
    //#endif
       //string_base & operator = (const ::atom & atom);

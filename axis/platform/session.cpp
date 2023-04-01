@@ -22,7 +22,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* ppa
 //#endif
 
 
-#if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -54,7 +54,7 @@ void defer_term_ui();
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 //#include "aura/operating_system/_uwp.h"
 
@@ -386,7 +386,7 @@ namespace axis
 //                     if (!plibrary->open(strLibrary, false))
 //                     {
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //                        message_box_synchronous(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 //

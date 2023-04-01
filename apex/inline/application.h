@@ -5,7 +5,7 @@
 
 #include "application/linux.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "application/universal_windows.h"
 

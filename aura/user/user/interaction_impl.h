@@ -19,7 +19,7 @@
 #endif //!__DEBUG
 
 
-#if defined _UWP && defined(__cplusplus_winrt)
+#if defined UNIVERSAL_WINDOWS && defined(__cplusplus_winrt)
 
 
 //namespace user

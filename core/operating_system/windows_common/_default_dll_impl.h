@@ -1,7 +1,7 @@
 
 #ifndef CUBE
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 [MTAThread]
 #endif
 int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID pReserved)

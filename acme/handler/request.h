@@ -9,7 +9,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #define CREATE_STRUCT_P_CREATE_PARAMS pCreateParams
 #else
 #define CREATE_STRUCT_P_CREATE_PARAMS lpCreateParams

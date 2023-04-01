@@ -81,7 +81,7 @@ simple_frame_window::simple_frame_window()
 
    m_bDefaultNotifyIcon = false;
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    m_bTransparentFrameEnable = false;
 
@@ -703,7 +703,7 @@ void simple_frame_window::initialize_frame_window_experience()
 bool simple_frame_window::would_display_notify_icon()
 {
 
-#if defined(_UWP) || defined(ANDROID) || defined(APPLE_IOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS)
 
    return false;
 
@@ -805,7 +805,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
       else
       {
 
-#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 
          m_bWindowFrame = false;
 
@@ -974,7 +974,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    }
 
-#if !defined(_UWP) && !defined(ANDROID) && !defined(APPLE_IOS)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
 
    if (!(m_ewindowflag & e_window_flag_window_created))
    {

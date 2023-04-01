@@ -126,11 +126,11 @@ int g_i134 = 0;
 #ifdef WINDOWS_DESKTOP
 #include "aura/operating_system/windows/windowing.h"
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 //#include "aura/os/universal_windows/_uwp.h"
 
-#endif // _UWP
+#endif // UNIVERSAL_WINDOWS
 
 //#define memory_new AURA_NEW
 
@@ -139,7 +139,7 @@ namespace user
 {
 
 
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //
    //   Agile<::winrt::Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pinteraction) = &interaction::get_os_window_default;
@@ -3651,7 +3651,7 @@ namespace user
          //
          //         }
 
-#if defined(MACOS) || defined(LINUX) || defined(_UWP)
+#if defined(MACOS) || defined(LINUX) || defined(UNIVERSAL_WINDOWS)
 
 //         if (strType.case_insensitive_contains("pane"))
 //         {
@@ -4311,7 +4311,7 @@ namespace user
 
       rectangle.offset(-rectangle.top_left());
 
-      //#ifdef _UWP
+      //#ifdef UNIVERSAL_WINDOWS
 
       // pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -6931,7 +6931,7 @@ namespace user
    //   oswindow interaction::get_oswindow() const
    //   {
    //
-   //#if defined(_UWP)
+   //#if defined(UNIVERSAL_WINDOWS)
    //
    //      ::pointer<::user::interaction>puserinteraction;
    //

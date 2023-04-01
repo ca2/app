@@ -24,7 +24,7 @@ class sync_object;
 
 ::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout);
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 ::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 

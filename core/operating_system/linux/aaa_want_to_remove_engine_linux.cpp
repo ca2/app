@@ -1085,7 +1085,7 @@ namespace exception
 
 
 
-#if defined(LINUX) || defined(_UWP) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(LINUX) || defined(UNIVERSAL_WINDOWS) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    char * engine::stack_trace(iptr iSkip, void * caller_address, const ::string & pszFormat, int iCount)
 #else
    bool engine::stack_trace(iptr iSkip, const ::string & pszFormat, int iCount)
@@ -1130,7 +1130,7 @@ namespace exception
 
       return true;
 
-#elif defined(_UWP) || defined(SOLARIS)
+#elif defined(UNIVERSAL_WINDOWS) || defined(SOLARIS)
 
       return _strS;
 

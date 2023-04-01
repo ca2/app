@@ -11,7 +11,7 @@ namespace windowing
 //   device_lock::device_lock(::user::interaction * pinteraction)
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      acmesystem() = pinteraction->acmesystem();
 ////
@@ -31,7 +31,7 @@ namespace windowing
 //   device_lock::~device_lock()
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      //m_D2DMultitask->Leave();
 ////

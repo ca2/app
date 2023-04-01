@@ -144,7 +144,7 @@ namespace imaging_freeimage
       void free_FreeImage(FIBITMAP * pfibitmap)
       {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          throw ::exception(todo);
 

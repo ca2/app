@@ -2,7 +2,7 @@
 #include "aura/os/_c.h"
 //#include "aura/os/_.h"
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #include <sys/stat.h>
 #include <fcntl.h>

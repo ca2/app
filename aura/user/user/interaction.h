@@ -1715,7 +1715,7 @@ namespace user
 
       //virtual ::pointer<place_holder>place_hold(::user::interaction* pinteraction) override;
 
-#if defined(_UWP) && defined(__cplusplus_winrt)
+#if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
       static Agile<::winrt::Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
       Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window()
       {

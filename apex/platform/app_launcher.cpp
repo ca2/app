@@ -128,7 +128,7 @@ namespace apex
    void app_launcher::run()
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      //return false;
 //

@@ -98,7 +98,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 #endif
 
 
-#if defined(APPLE_IOS) || defined(_UWP)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
 CLASS_DECL_AURA int ui_open_url(const ::string & psz);
 #endif
 
@@ -988,7 +988,7 @@ namespace aura
 //   ::file::path command_find_path(const ::string & pszCommand)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      return "";
 //
@@ -2945,7 +2945,7 @@ retry_license:
 //
 //      }
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      output_debug_string(strFile);
 ////
@@ -3653,7 +3653,7 @@ retry_license:
    bool application::is_sandboxed()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return true;
 
@@ -5235,7 +5235,7 @@ retry_license:
 //      if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
 //      {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //         return -1;
 //
@@ -7409,7 +7409,7 @@ namespace aura
 
 //   ::user::interaction * application::get_desktop_window()
 //   {
-//#if defined(_UWP) || defined(__APPLE__)
+//#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__)
 //      throw ::exception(todo);
 //      /*#elif defined(LINUX)
 //
@@ -7950,7 +7950,7 @@ namespace aura
    void application::ensure_app_interest()
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       auto psession = get_session();
 

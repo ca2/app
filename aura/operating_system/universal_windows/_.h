@@ -10,7 +10,7 @@
 //#endif
 
 
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //CLASS_DECL_AURA void WINAPI sleep(::u32 dw::times);
 //

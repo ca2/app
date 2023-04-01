@@ -1,7 +1,7 @@
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //typedef struct tagCREATESTRUCTA

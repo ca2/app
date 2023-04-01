@@ -2911,7 +2911,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::document2()
 {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    return image();
 

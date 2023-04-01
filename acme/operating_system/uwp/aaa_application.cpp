@@ -295,7 +295,7 @@ namespace acme
 //         string slask = payload + "=" + value;
 //         _putenv( (const char *)slask);
 //      }
-//#elif defined _UWP
+//#elif defined UNIVERSAL_WINDOWS
 //
 //
 //#else

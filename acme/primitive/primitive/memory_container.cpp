@@ -260,7 +260,7 @@ memory * memory_container::get_primitive_memory()
 }
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
 shared_memory * memory_container::get_shared_memory()

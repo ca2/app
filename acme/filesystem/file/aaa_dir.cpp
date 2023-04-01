@@ -16,7 +16,7 @@
 #elif defined(ANDROID)
 #include <sys/stat.h>
 #include <dirent.h>
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 #include "acme/operating_system/universal_windows/file_winrt.h"
 #endif
 
@@ -49,7 +49,7 @@ bool windows_file_find_is_dots(WIN32_FIND_DATAW & data);
 #endif
 
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
 #pragma push_macro("acmesystem()")
 
@@ -107,7 +107,7 @@ namespace dir
 //
 //      return acmepath()->app_module().folder();
 //
-//   #elif defined(_UWP)
+//   #elif defined(UNIVERSAL_WINDOWS)
 //
 //      wstring wstrModuleFilePath;
 //
@@ -312,7 +312,7 @@ namespace dir
    ::file::path base_module()
    {
 
-   #if defined(_UWP)
+   #if defined(UNIVERSAL_WINDOWS)
 
       return "";
 
@@ -479,7 +479,7 @@ namespace dir
 //
 //      str = strCa2ModuleFolder;
 //
-//   #elif defined(_UWP)
+//   #elif defined(UNIVERSAL_WINDOWS)
 //
 //      str = "";
 //
@@ -582,7 +582,7 @@ namespace dir
 
       strsize iLastPos;
 
-   #ifdef _UWP
+   #ifdef UNIVERSAL_WINDOWS
 
       {
 
@@ -972,7 +972,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       closedir(dirp);
 
-   #elif defined(_UWP)
+   #elif defined(UNIVERSAL_WINDOWS)
 
       ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;
 
@@ -1285,7 +1285,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       closedir(dirp);
 
-   #elif defined(_UWP)
+   #elif defined(UNIVERSAL_WINDOWS)
 
       ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 
@@ -1367,7 +1367,7 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
       closedir(dirp);
 
-   #elif defined(_UWP)
+   #elif defined(UNIVERSAL_WINDOWS)
 
       ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 

@@ -11,7 +11,7 @@ os_history::os_history(::particle * pparticle) :
 bool os_history::hist(const ::string & psz)
 {
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
    ::aura::shell_launcher launcher(nullptr, "open", psz, "", "", e_display_restored);
 

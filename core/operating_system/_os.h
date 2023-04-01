@@ -26,7 +26,7 @@
 #include "aura/os/ansios/_ansios.h"
 #include "aura/os/cross/windows/windows.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "aura/os/ansios/_ansios.h"
 #include "aura/os/universal_windows/_uwp.h"

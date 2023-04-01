@@ -125,7 +125,7 @@ void system::initialize_system()
    //
    //      //return iExitCode;
    //
-   //#elif !defined(_UWP)
+   //#elif !defined(UNIVERSAL_WINDOWS)
    //
    //      //pacmeapplication->set_args(g_argc, g_argv, g_envp);
    //
@@ -2357,7 +2357,7 @@ else if (ptopic->m_atom == id_app_activated)
             if (!plibrary)
             {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
                //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 

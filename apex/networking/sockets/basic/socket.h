@@ -16,7 +16,7 @@ namespace sockets
    {
    public:
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
       //static socket_id s_socketNextIdSeed;
 //#endif
 

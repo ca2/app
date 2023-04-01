@@ -51,7 +51,7 @@ namespace audio
 // }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 

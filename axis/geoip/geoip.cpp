@@ -186,7 +186,7 @@ const char GeoIP_country_continent[253][3] = {"--","AS","EU","EU","AS","AS","SA"
 #ifdef GEOIP_NETWORKING
 geoipv6_t _GeoIP_lookupaddress_v6 (const char *host);
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 static i32 _GeoIP_inet_pton(i32 af, const char *src, void *dst)
 {
    return c_inet_pton(af, src, dst);
@@ -290,7 +290,7 @@ char *_GeoIP_full_path_to(const char *file_name)
 
    if (custom_directory == nullptr)
    {
-#if defined(_UWP) || !defined(_WIN32)
+#if defined(UNIVERSAL_WINDOWS) || !defined(_WIN32)
       memory_set(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", GEOIPDATADIR, file_name);
 #else
@@ -998,7 +998,7 @@ const char *GeoIP_country_name_by_name (GeoIP* gi, const char *name)
 
 u32 _GeoIP_lookupaddress (const char *host)
 {
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    return c_inet_addr(c_gethostbyname(host));
 

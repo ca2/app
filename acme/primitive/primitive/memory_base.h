@@ -356,7 +356,7 @@ public:
    void patch_line_suffix(const ::block & blockPrefix, const ::block& blockSuffix, ::index iStart = 0);
 
 
-#if defined(_UWP) && defined(__cplusplus_winrt)
+#if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
 
    inline Array < uchar, 1U > ^ get_os_bytes(memsize pos = 0, memsize size = -1) const;
    inline ::winrt::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memsize pos = 0, memsize size = -1) const;

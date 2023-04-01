@@ -603,7 +603,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //}
 
 
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //comptr < IStream > memory_base::create_istream() const
 //{
@@ -1738,7 +1738,7 @@ void memory_base::assign(memsize iCount, uchar uch)
 //}
 
 
-#if defined(_UWP) && defined(__cplusplus_winrt)
+#if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
 
 
 Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const

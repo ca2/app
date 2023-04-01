@@ -175,7 +175,7 @@ namespace networking
 //   {
 //
 //      return is_ipv6() || is_ipv4()
-////#if defined _UWP && defined(__cplusplus_winrt)
+////#if defined UNIVERSAL_WINDOWS && defined(__cplusplus_winrt)
 ////         || (m_posdata != nullptr && m_posdata->m_hostname != nullptr)
 ////#endif
 //         ;

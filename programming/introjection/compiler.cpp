@@ -205,7 +205,7 @@ namespace introjection
 //
 //      ::file::path strVars;
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (m_strVs == "2015")
@@ -386,7 +386,7 @@ namespace introjection
 //
 //      auto psystem = acmesystem()->m_paurasystem;
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //
@@ -422,7 +422,7 @@ namespace introjection
 //      bool bResult = false;
 //#ifdef WINDOWS_DESKTOP
 //      //bResult = SetEnvironmentVariable("PATH",str) != false;
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      throw ::exception(todo);
 //

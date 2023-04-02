@@ -12,6 +12,7 @@ class main_hold_base;
 #include "application_exit.h"
 #include "application_flags.h"
 #include "context.h"
+#include "acme/primitive/text/text.h"
 
 
 namespace acme
@@ -70,6 +71,7 @@ namespace acme
       bool                                            m_bLicense;
 
       enum_application_capability_array               m_eapplicationcapabilitya;
+      ::text::text                                    m_textAppTitle;
 
 
       application();
@@ -111,7 +113,7 @@ namespace acme
 
       virtual ::string app_root();
 
-
+      virtual ::string get_application_title();
 
 //
 //#ifdef WINDOWS

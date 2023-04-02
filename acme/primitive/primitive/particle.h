@@ -126,6 +126,7 @@ public:
 
    ::acme::application * acmeapplication();
    ::acme::session * acmesession();
+   ::aura::application* auraapplication();
 
 
    ::acme_file * acmefile();

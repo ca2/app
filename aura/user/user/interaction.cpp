@@ -14160,7 +14160,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
    
-   void interaction::on_update_notify_icon(int & iNotifyIconIndex)
+   void interaction::on_update_notify_icon_menu(::index & iNotifyIconIndex)
    {
 
    }

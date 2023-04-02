@@ -260,7 +260,17 @@ public:
 
    virtual string notification_area_get_xml_menu();
 
+   void on_update_notify_icon_menu(::index & iNotifyIconIndex) override;
 
+   virtual void on_update_notify_icon_menu_header(::index & iNotifyIconItem);
+
+   virtual void on_update_notify_icon_menu_top(::index & iNotifyIconItem);
+
+   virtual void on_update_notify_icon_menu_main(::index & iNotifyIconItem);
+
+   virtual void on_update_notify_icon_menu_bottom(::index & iNotifyIconItem);
+
+   virtual void on_update_notify_icon_menu_footer(::index & iNotifyIconItem);
 
 };
 

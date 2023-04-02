@@ -802,7 +802,7 @@ namespace user
       
       virtual ::user::notify_icon * notify_icon();
 
-      virtual void on_update_notify_icon(int & iNotifyIconIndex);
+      virtual void on_update_notify_icon_menu(::index & iNotifyIconIndex);
       
       virtual void on_app_activated();
 

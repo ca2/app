@@ -584,6 +584,41 @@ namespace acme
    }
 
 
+   ::string application::get_application_title()
+   {
+
+      auto textAppTitle = m_textAppTitle;
+
+      string strAppTitle;
+
+      if (textAppTitle.get_text().has_char())
+      {
+
+         strAppTitle = textAppTitle.get_text();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         stra.explode("/", m_strAppId);
+
+         strAppTitle = stra.slice(1).implode(" ");
+
+         strAppTitle.replace_with(" ", "_");
+
+         strAppTitle.replace_with(" ", "-");
+
+         strAppTitle.replace_with(" ", ".");
+
+      }
+
+      return strAppTitle;
+
+   }
+
+
 //#ifdef WINDOWS
 //
 //

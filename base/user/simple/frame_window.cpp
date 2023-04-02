@@ -157,10 +157,39 @@ void simple_frame_window::initialize(::particle* pparticle)
 }
 
 
-void simple_frame_window::on_update_notify_icon(int &iNotifyIconIndex)
+void simple_frame_window::on_update_notify_icon_menu(::index & iNotifyIconItem)
 {
 
+   on_update_notify_icon_menu_header(iNotifyIconItem);
+
+   on_update_notify_icon_menu_top(iNotifyIconItem);
+
+   on_update_notify_icon_menu_main(iNotifyIconItem);
+
+   on_update_notify_icon_menu_bottom(iNotifyIconItem);
+
+   on_update_notify_icon_menu_footer(iNotifyIconItem);
+
+
+}
+
+
+void simple_frame_window::on_update_notify_icon_menu_header(::index & iNotifyIconItem)
+{
+
+   auto papp = auraapplication();
+
+   auto strAppTitle = papp->get_application_title();
+
    m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+
+}
+
+
+void simple_frame_window::on_update_notify_icon_menu_top(::index & iNotifyIconItem)
+{
+
+   auto papp = auraapplication();
 
    auto c = papp->applicationmenu().get_count();
 
@@ -172,6 +201,20 @@ void simple_frame_window::on_update_notify_icon(int &iNotifyIconIndex)
       m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
    }
+
+}
+
+
+void simple_frame_window::on_update_notify_icon_menu_main(::index & iNotifyIconItem)
+{
+
+
+
+}
+
+
+void simple_frame_window::on_update_notify_icon_menu_bottom(::index & iNotifyIconItem)
+{
 
    if (m_pframe != nullptr
       && m_pframe->get_control_box() != nullptr
@@ -185,11 +228,16 @@ void simple_frame_window::on_update_notify_icon(int &iNotifyIconIndex)
 
    }
 
+}
+
+
+void simple_frame_window::on_update_notify_icon_menu_footer(::index & iNotifyIconItem)
+{
+
    m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
    m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "Exit", "app_exit");
-
 
 }
 
@@ -984,33 +1032,6 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
    }
 
-   auto textAppTitle = papp->m_textAppTitle;
-
-   string strAppTitle;
-
-   if (textAppTitle.get_text().has_char())
-   {
-
-      strAppTitle = textAppTitle.get_text();
-
-   }
-   else
-   {
-
-      string_array stra;
-
-      stra.explode("/", papp->m_strAppId);
-
-      strAppTitle = stra.slice(1).implode(" ");
-
-      strAppTitle.replace_with(" ", "_");
-
-      strAppTitle.replace_with(" ", "-");
-
-      strAppTitle.replace_with(" ", ".");
-
-   }
-
 #if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
 
    if (!(m_ewindowflag & e_window_flag_window_created))
@@ -1019,10 +1040,10 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-          main_asynchronous([this, strAppTitle]()
+          main_asynchronous([this]()
                          {
 
-              auto papp = get_app();
+              //auto papp = get_app();
          //auto psystem = acmesystem()->m_papexsystem;
 
          //auto estatus = 
@@ -1036,7 +1057,7 @@ void simple_frame_window::on_message_create(::message::message* pmessage)
 
             index iNotifyIconItem = 0;
 
-            on_update_notify_icon(iNotifyIconItem);
+            on_update_notify_icon_menu(iNotifyIconItem);
 
             post_message(e_message_update_notify_icon);
 

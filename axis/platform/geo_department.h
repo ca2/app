@@ -119,7 +119,7 @@ namespace geo
 
       virtual string get_weather(openweather_city* pcity);
 
-      virtual string _get_weather(openweather_city* pcity);
+      virtual ::payload _get_weather(openweather_city* pcity);
 
       virtual void set_city_time_zone_modified();
 

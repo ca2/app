@@ -2988,6 +2988,12 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
          str = m_ppropertyset->get_network_payload();
 
       }
+      else if (m_etype == ::e_type_ansi_range)
+      {
+
+         str.assign(m_ansirange.data(), m_ansirange.size());
+
+      }
       else if (is_element_set())
       {
          

@@ -1538,7 +1538,7 @@ namespace geo
    }
 
 
-   string department::get_weather(openweather_city* pcity)
+   ::payload department::get_weather(openweather_city* pcity)
    {
 
       if (!m_bLoadedCityWeatherFromFile)

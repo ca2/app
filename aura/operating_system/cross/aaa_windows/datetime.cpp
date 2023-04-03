@@ -31,7 +31,7 @@
 
 #endif
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #define STATUS_SUCCESS 0
 #define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
 #endif
@@ -73,7 +73,7 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //#define STATUS_SUCCESS 0
 //#define STATUS_PRIVILEGE_NOT_HELD 1
 //#endif
@@ -471,7 +471,7 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
    TimeFields->Hour = rem / 60;
 }
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 const ::i64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
@@ -678,7 +678,7 @@ static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 
 
     if (info->Type != type) return false;
 
-    ::memcpy_dup(data, info->Data, info->DataLength);
+    ::memory_copy(data, info->Data, info->DataLength);
     return true;
 }
 
@@ -875,7 +875,7 @@ NTSTATUS WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzin
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
    struct timeval tv;
@@ -1059,7 +1059,7 @@ CLASS_DECL_AURA void GetSystemTime(LPSYSTEMTIME systime)
 }
 
 
-#endif // !defined(_UWP)
+#endif // !defined(UNIVERSAL_WINDOWS)
 
 
 

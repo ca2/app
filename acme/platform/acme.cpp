@@ -160,13 +160,13 @@ extern int g_iMemoryCountersStartable;
 
 // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
    //extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 
 //extern ::pointer< ::mutex > g_pmutexThreadIdLock;
 
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 
 //extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
 
@@ -174,7 +174,7 @@ extern int g_iMemoryCountersStartable;
 
 //extern ::pointer< ::mutex > g_pmutexTlsData;
 
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
 
 #if defined(LINUX) || defined(__APPLE__)
@@ -368,7 +368,7 @@ void finalize_global_message_queue();
 
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
@@ -601,13 +601,13 @@ namespace acme
 
    // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
 //::critical_section g_criticalsectionThreadIdLock;
 
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 
 //::critical_section g_criticalsectionPendingThreadsLock;
 
@@ -615,7 +615,7 @@ namespace acme
 
 //::critical_section g_criticalsectionTlsData;
 
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
 
 
@@ -744,13 +744,13 @@ namespace acme
 //
 //      // #endif
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 //
 ////::critical_section g_criticalsectionThreadIdHandleLock;
 //
 ////::critical_section g_criticalsectionThreadIdLock;
 //
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 //
 ////::critical_section g_criticalsectionPendingThreadsLock;
 //
@@ -758,7 +758,7 @@ namespace acme
 //
 ////::critical_section g_criticalsectionTlsData;
 //
-//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 //
 //#if defined(LINUX) || defined(__APPLE__)
 //
@@ -926,13 +926,13 @@ namespace acme
 
       // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
 //::critical_section g_criticalsectionThreadIdLock;
 
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 
 //::critical_section g_criticalsectionPendingThreadsLock;
 
@@ -940,7 +940,7 @@ namespace acme
 
 //::critical_section g_criticalsectionTlsData;
 
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
 #if defined(LINUX) || defined(__APPLE__)
 

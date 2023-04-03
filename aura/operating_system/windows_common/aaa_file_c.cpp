@@ -2,7 +2,7 @@
 #include "_file_c.h"
 #include "file.h"
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 CLASS_DECL_AURA::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, string& strPrefix);
 #endif
 
@@ -220,7 +220,7 @@ int_bool acmepath()->is_file_or_dir(const ::string & path, ::file::enum_type * p
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       ::u32 dwLastError = ::get_last_error();
 

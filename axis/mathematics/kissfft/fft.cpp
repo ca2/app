@@ -361,7 +361,7 @@ void kiss_fft_stride(kiss_fft_cfg st,const COMPLEXD *fin,COMPLEXD *fout,i32 in_s
     if (fin == fout) {
         CHECKBUF(tmpbuf,ntmpbuf,st->nfft);
         kf_work(tmpbuf,fin,1,in_stride, st->factors,st);
-        ::memcpy_dup(fout,tmpbuf,sizeof(COMPLEXD)*st->nfft);
+        ::memory_copy(fout,tmpbuf,sizeof(COMPLEXD)*st->nfft);
     }else{
         kf_work( fout, fin, 1,in_stride, st->factors,st );
     }

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "apex/networking/address.h"
@@ -24,7 +24,7 @@ namespace networking_bsd
          {
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(__APPLE__)
 
             u8 m_len;
             u8 m_u8Family;
@@ -38,7 +38,7 @@ namespace networking_bsd
 
             u16 m_port;
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(__APPLE__)
 
 
             void set_family(int family, int len)

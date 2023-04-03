@@ -168,7 +168,7 @@ LPITEMIDLIST itemidlist::_copy(LPCITEMIDLIST pidl)
    if (pidlNew)
    {
 
-      ::memcpy_dup(pidlNew, pidl, nSize);
+      ::memory_copy(pidlNew, pidl, nSize);
 
    }
 
@@ -294,11 +294,11 @@ LPITEMIDLIST itemidlist::_cat(LPCITEMIDLIST pidl1, LPCITEMIDLIST pidl2)
       if (pidl1)
       {
 
-         ::memcpy_dup(pidlNew, pidl1, cb1);
+         ::memory_copy(pidlNew, pidl1, cb1);
 
       }
 
-      ::memcpy_dup(((char *)pidlNew) + cb1, pidl2, cb2);
+      ::memory_copy(((char *)pidlNew) + cb1, pidl2, cb2);
 
    }
 
@@ -445,7 +445,7 @@ LPITEMIDLIST itemidlist::_create_one(LPCITEMIDLIST pidlf, int iIndex)
 
    ::zero(pidlRet, uSize + sizeof(pidlf->mkid.cb));
 
-   ::memcpy_dup(pidlRet, pidlf, uSize);
+   ::memory_copy(pidlRet, pidlf, uSize);
 
    return pidlRet;
 
@@ -517,7 +517,7 @@ itemidlist itemidlist::left(int nCount) const
 
    ::zero(pidlRes, nSize + sizeof(m_pidl->mkid.cb));
 
-   ::memcpy_dup((LPVOID)pidlRes, (LPVOID)m_pidl, nSize);
+   ::memory_copy((LPVOID)pidlRes, (LPVOID)m_pidl, nSize);
 
    return pidlRes;
 
@@ -933,7 +933,7 @@ LPITEMIDLIST itemidlist::_copy(LPCITEMIDLIST pidlOrg, int nCount)
 
    ::zero(pidlRes, nSize + sizeof(pidlOrg->mkid.cb));
 
-   ::memcpy_dup((LPVOID)pidlRes, (LPVOID)pidlOrg, nSize);
+   ::memory_copy((LPVOID)pidlRes, (LPVOID)pidlOrg, nSize);
 
    return pidlRes;
 

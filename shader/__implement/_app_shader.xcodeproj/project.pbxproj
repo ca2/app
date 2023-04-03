@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A273C7C29CF174200CBEB97 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A273C7829CF174100CBEB97 /* InfoPlist.strings */; };
 		9A46D3B326785E4A000B22D0 /* libapp_shader.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; };
 		9A46D3C026785E7D000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D3AF26785E31000B22D0 /* libacme.dylib */; };
 		9A46D3C126785E7D000B22D0 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3AF26785E31000B22D0 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -37,7 +38,6 @@
 		9A8AC31928B32142003CA265 /* libgpu_opengl.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8AC31128B320F0003CA265 /* libgpu_opengl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8C4E022783C27D000C8587 /* libcrypto.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4DFE2783C24F000C8587 /* libcrypto.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8C4E032783C287000C8587 /* libssl.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8C4DFF2783C24F000C8587 /* libssl.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A8C5ECD2783E821000C8587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C5EC82783E821000C8587 /* MainMenu.xib */; };
 		9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C5ECA2783E821000C8587 /* Images.xcassets */; };
 		9A8C816F2783F891000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C816E2783F891000C8587 /* _matter.zip */; };
 		9AB15BE629A87A0B00DFDF90 /* libacme_darwin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */; };
@@ -240,6 +240,8 @@
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_shader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_shader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A273C7929CF174100CBEB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		9A273C7B29CF174100CBEB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
 		9A39BB1A24EB2D1F003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
 		9A39BB1B24EB2D1F003C070E /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = ../../time/macos/libssl.3.dylib; sourceTree = "<group>"; };
 		9A39BB1C24EB2D20003C070E /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = ../../time/macos/libcrypto.3.dylib; sourceTree = "<group>"; };
@@ -267,7 +269,6 @@
 		9A8C4DF42783BEEC000C8587 /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9A8C4DFE2783C24F000C8587 /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../../../operating_system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A8C4DFF2783C24F000C8587 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../../../operating_system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
-		9A8C5EC92783E821000C8587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9A8C5ECA2783E821000C8587 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8C5ECC2783E821000C8587 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A8C816E2783F891000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
@@ -333,6 +334,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A273C7729CF174100CBEB97 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				9A273C7829CF174100CBEB97 /* InfoPlist.strings */,
+				9A273C7A29CF174100CBEB97 /* MainMenu.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		9A3E0BA12309FBD400B5459B /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,7 +403,7 @@
 		9A8C5EC72783E821000C8587 /* macos */ = {
 			isa = PBXGroup;
 			children = (
-				9A8C5EC82783E821000C8587 /* MainMenu.xib */,
+				9A273C7729CF174100CBEB97 /* en.lproj */,
 				9A8C5ECA2783E821000C8587 /* Images.xcassets */,
 				9A8C5ECC2783E821000C8587 /* Info.plist */,
 			);
@@ -676,8 +686,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */,
+				9A273C7C29CF174200CBEB97 /* InfoPlist.strings in Resources */,
 				9A8C816F2783F891000C8587 /* _matter.zip in Resources */,
-				9A8C5ECD2783E821000C8587 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,10 +762,18 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9A8C5EC82783E821000C8587 /* MainMenu.xib */ = {
+		9A273C7829CF174100CBEB97 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9A8C5EC92783E821000C8587 /* Base */,
+				9A273C7929CF174100CBEB97 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9A273C7A29CF174100CBEB97 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A273C7B29CF174100CBEB97 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -903,7 +921,7 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Shader;
+				INFOPLIST_KEY_CFBundleDisplayName = shader;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;
@@ -923,7 +941,7 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Shader;
+				INFOPLIST_KEY_CFBundleDisplayName = shader;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
 				PRODUCT_NAME = _app_shader;

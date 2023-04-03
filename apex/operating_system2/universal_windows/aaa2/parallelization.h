@@ -2,7 +2,7 @@
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 typedef struct tag_MSG
 {
@@ -26,7 +26,7 @@ typedef struct tag_MSG
 //CLASS_DECL_APEX void WINAPI TlsShutdown();
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 CLASS_DECL_APEX BOOL WINAPI SetThreadPriority(htask_t htask,int iPriority);
 

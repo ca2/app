@@ -64,7 +64,7 @@ namespace universal_windows
 
          //   memory.set_os_buffer(buffer);
 
-         //   ::memcpy_dup(&hglobal, memory.get_data(), sizeof(HGLOBAL));
+         //   ::memory_copy(&hglobal, memory.get_data(), sizeof(HGLOBAL));
 
          //   //iCount = ::DragQueryFile(hglobal , 0xFFFFFFFF, nullptr, 0);
 

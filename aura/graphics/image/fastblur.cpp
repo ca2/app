@@ -68,7 +68,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 
 
 
-#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBIAN)
+#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBERRYPIOS)
 
 #include <arm_neon.h>
 
@@ -654,7 +654,7 @@ auto tick2 = ::time::now();
 
    }
 
-#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBIAN)
+#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBERRYPIOS)
 
 
    inline void boxBlurNEON(u32* sourcePixel,u32* destinationPixel,
@@ -877,7 +877,7 @@ auto tick2 = ::time::now();
       if(dst != pdata)
       {
 
-         ::memcpy_dup(pdata,dst,m_p->m_iScan * m_p.height());
+         ::memory_copy(pdata,dst,m_p->m_iScan * m_p.height());
 
       }
 
@@ -1322,7 +1322,7 @@ auto tick2 = ::time::now();
       if(dst != pimage)
       {
 
-         ::memcpy_dup(pimage,dst,stride * h);
+         ::memory_copy(pimage,dst,stride * h);
 
       }
 

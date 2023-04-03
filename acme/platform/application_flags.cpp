@@ -458,7 +458,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //}
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 //
 //void main::system_construct(const ::string_array & straParam)
@@ -562,7 +562,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 CLASS_DECL_ACME int_bool os_init_windowing();
 CLASS_DECL_ACME void os_term_windowing();
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 
 #include <sys/types.h>
@@ -575,7 +575,7 @@ CLASS_DECL_ACME void os_term_windowing();
 #ifdef LINUX
 
 
-   #ifndef RASPBIAN
+   #ifndef RASPBERRYPIOS
 
 
    void sn_start_context();
@@ -1594,7 +1594,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //
 //

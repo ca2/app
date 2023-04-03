@@ -500,7 +500,7 @@ namespace aura
 
 
 
-      //#ifndef _UWP
+      //#ifndef UNIVERSAL_WINDOWS
 
       //virtual void get_time(timeval * point_i32) override;
 
@@ -673,7 +673,7 @@ namespace aura
 
       //      u32 guess_code_page(const ::string & str);
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      virtual bool window_rectangle(RECTANGLE_I32* prectangle);
 //

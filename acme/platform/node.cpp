@@ -141,7 +141,7 @@ namespace acme
 
       ::atom_array idaPid;
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
       idaPid.add(scopedstrAppId);
 
@@ -1787,7 +1787,7 @@ namespace acme
    }
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
    ::array <::serial::port_info> node::list_serial_ports()
@@ -1890,7 +1890,7 @@ return false;
    ::file::path node::command_find_path(const ::string & pszCommand)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return "";
 
@@ -2510,7 +2510,7 @@ return false;
             if (*psz == '\\')
             {
 
-               __memmov(psz, psz + 1, strlen(psz));
+               memory_transfer(psz, psz + 1, strlen(psz));
 
                unicode_increment(psz);
 
@@ -2778,6 +2778,32 @@ return false;
    {
 
 
+
+   }
+
+
+   void node::unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip)
+   {
+
+      command_system("cmd.exe -c \"unzip \"" + pathZip + "\" -d \"" + pathFolder + "\"");
+
+   }
+
+
+   ::string node::get_user_permanent_environment_variable(const ::scoped_string& scopedstr)
+   {
+
+      throw ::interface_only();
+
+      return {}; 
+   
+   }
+
+   
+   void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload)
+   {
+
+      throw ::interface_only();
 
    }
 

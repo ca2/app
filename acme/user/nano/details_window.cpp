@@ -30,7 +30,7 @@ void nano_details_window::calculate_size()
 {
 
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
    //int wScreen = 1280;
    //int hScreen = 768;

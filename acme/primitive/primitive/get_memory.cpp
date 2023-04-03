@@ -60,7 +60,7 @@ get_memory::~get_memory()
 
    }
 
-   ::memcpy_dup(m_block.data(), pdata, m_block.size());
+   ::memory_copy(m_block.data(), pdata, m_block.size());
 
    return true;
 
@@ -145,7 +145,7 @@ bool get_memory::get(const void * pdata, memsize s)
 
    }
 
-   ::memcpy_dup(m_block.data(), pdata, minimum(s, m_block.size()));
+   ::memory_copy(m_block.data(), pdata, minimum(s, m_block.size()));
 
    return true;
 

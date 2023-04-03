@@ -431,7 +431,7 @@ namespace acme
 //
 //         string strPrefix(get_root());
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //         //         strPrefix = "m_" + strPrefix;
 //
@@ -560,7 +560,7 @@ namespace acme
 //
 //      }
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      //      strLibraryName.case_insensitive_begins_eat("m_");
 //
@@ -615,7 +615,7 @@ namespace acme
 //
 //      }
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      //      strLibraryName.case_insensitive_begins_eat("m_");
 //
@@ -776,7 +776,7 @@ namespace acme
 ////
 ////         strAppId.begins_eat("lib");
 ////
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////
 ////         //         strPrefix = "m_" + strPrefix;
 ////

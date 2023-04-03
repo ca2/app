@@ -1245,7 +1245,7 @@ namespace user
    ////      TBBUTTON button;
    ////      _GetButton(nIndex, &button);
    ////      TBBUTTON save;
-   ////      ::memcpy_dup(&save, &button, sizeof(save));
+   ////      ::memory_copy(&save, &button, sizeof(save));
    ////      button.idCommand = nID;
    ////      button.iBitmap = iImage;
    ////      button.fsStyle = (byte)LOWORD(nStyle);

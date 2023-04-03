@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //////#include "acme/primitive/primitive/object.h"
@@ -28,7 +28,7 @@ namespace http
 
 
       string                           m_strVersion;
-
+      //::function < void(double, filesize, filesize) > m_functionProgress;
 
       message();
 

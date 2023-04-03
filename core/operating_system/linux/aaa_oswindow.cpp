@@ -169,7 +169,7 @@ i32 oswindow_data::map_window()
 
    }
 
-#ifndef RASPBIAN
+#ifndef RASPBERRYPIOS
 
    if(g_psncontext != nullptr)
    {
@@ -180,7 +180,7 @@ i32 oswindow_data::map_window()
 
    }
 
-#endif // RASPBIAN
+#endif // RASPBERRYPIOS
 
    windowing_output_debug_string("\noswindow_data::map_window END");
 

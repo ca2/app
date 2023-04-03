@@ -59,6 +59,7 @@ public:
    virtual void clear_application_data();
 
 
+   virtual void find_replace(const ::file::path & path, const ::property_set & set);
 
 
    //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);

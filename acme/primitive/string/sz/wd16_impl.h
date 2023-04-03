@@ -7,8 +7,8 @@
 
 
 
-inline void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
-inline void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memory_copy(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+inline void string_count_copy(::wd16_character * pchDest, size_t nDestLen, const ::wd16_character * pchSrc, strsize nChars) noexcept { ::memory_copy(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
 inline void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
 
 

@@ -17,7 +17,7 @@
 
 //void fastblur(::image * ppimg, i32 radius);
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 //#include <wincodec.h>
 //#include <Shcore.h>
 
@@ -590,7 +590,7 @@ return pil;
 ////
 ////#endif
 ////
-////   //   ::memcpy_dup(pShadow, pData, cbImage);
+////   //   ::memory_copy(pShadow, pData, cbImage);
 
 
 
@@ -1938,7 +1938,7 @@ return true;
 
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //
@@ -1961,7 +1961,7 @@ return true;
 
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //
@@ -2298,8 +2298,8 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
    //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 4;
    //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
    //   i32 w = cx * 3;
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(i32 y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;
@@ -3847,8 +3847,8 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
    //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 4;
    //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
    //   i32 w = cx * 4;
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(i32 y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;
@@ -6504,8 +6504,8 @@ i32 iAlpha)
    //   i32 max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //i32 bm3Width = (cy * 3 + 3) & ~0x3L;
    //   i32 w = cx * 3;
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
-   //   ::memcpy_dup(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bmWidth * bmHeight * 3);
+   //   ::memory_copy(m_lpwDestination, m_lpbSource, bm3Width * bmHeight);
    /*for(i32 y = 0; y < cy; y++)
    {
    pSource = pSrc + wSrc * y;

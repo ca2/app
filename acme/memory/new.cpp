@@ -7,7 +7,7 @@
 #include "framework.h"
 
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
@@ -92,7 +92,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 //#if !defined(_UNIVERSAL_WINDOWS)
 //
 //
-#if defined(_UWP) //|| defined(ANDROID)
+#if defined(UNIVERSAL_WINDOWS) //|| defined(ANDROID)
 
 
 void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
@@ -223,7 +223,7 @@ void MEMORY_DECL operator delete[](void* p, i32 nType, const char * pszFileName,
 #endif
 
 
-#endif // !defined(_UWP)
+#endif // !defined(UNIVERSAL_WINDOWS)
 
 //#endif // __ACME_ASSET_NEW_CPP__
 

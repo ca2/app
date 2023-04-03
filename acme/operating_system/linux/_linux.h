@@ -20,6 +20,7 @@
 
 
 #include <dirent.h>
+#include <unistd.h>
 
 
 //
@@ -63,7 +64,7 @@ CLASS_DECL_ACME const char * __get_app_name();
 
 
 
-#include "thread.h"
+//#include "thread.h"
 //#include "os_context.h"
 
 #define NULL_REF(class) (*((class *) nullptr))
@@ -83,7 +84,7 @@ i32 CLASS_DECL_ACME __linux_main(i32 argc, char * argv[]);
 
 CLASS_DECL_ACME void vfxThrowFileException(::particle * pparticle, const ::e_status & estatus, ::i32 lOsError, const ::file::path & path = nullptr);
 
-#include "internal.h"
+//#include "internal.h"
 
 CLASS_DECL_ACME void os_shell_initialize();
 

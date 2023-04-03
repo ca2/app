@@ -67,7 +67,7 @@ namespace ios
 
          in_addr addr;
 
-         ::memcpy_dup(&addr.s_addr, phostent->h_addr_list[nAdapter], phostent->h_length);
+         ::memory_copy(&addr.s_addr, phostent->h_addr_list[nAdapter], phostent->h_length);
 
          str = addr;
 

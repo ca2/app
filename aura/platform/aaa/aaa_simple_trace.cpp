@@ -154,7 +154,7 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
       g_pMemoryCounters = memory_new ::file::path();
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
       string strBasePath =          auto psystem = acmesystem();
 

@@ -212,6 +212,8 @@ namespace data
 
          pitemNew->m_pparent = m_pparent;
 
+         return true;
+
       }
       else if(erelative == e_relative_next_sibling)
       {
@@ -239,6 +241,8 @@ namespace data
 
          pitemNew->m_pparent = m_pparent;
 
+         return true;
+
       }
       else if(erelative == e_relative_last_sibling)
       {
@@ -248,6 +252,8 @@ namespace data
          pitemNew->m_iLevel = m_iLevel;
 
          pitemNew->m_pparent = m_pparent;
+
+         return true;
 
       }
       else if(erelative == e_relative_replace)
@@ -267,6 +273,8 @@ namespace data
          m_pparent = nullptr;
 
          erase_tree_item();
+
+         return true;
 
       }
 

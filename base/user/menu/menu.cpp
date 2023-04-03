@@ -465,7 +465,7 @@ namespace user
          set_tool_window();
 
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
          create_interaction(puiParent);
 

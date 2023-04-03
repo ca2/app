@@ -64,7 +64,7 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
 
    memory.set_size(size);
 
-   ::memcpy_dup(memory.data(), &CFDataGetBytePtr(data)[pos], size);
+   ::memory_copy(memory.data(), &CFDataGetBytePtr(data)[pos], size);
 
 }
 

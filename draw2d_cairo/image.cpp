@@ -519,7 +519,7 @@ namespace draw2d_cairo
 //      if(pdata != (byte *) m_pcolorrefRaw && pdata != nullptr)
 //      {
 //
-//         ::memcpy_dup(m_pcolorrefRaw, pdata, m_sizeRaw.cy * m_iScan);
+//         ::memory_copy(m_pcolorrefRaw, pdata, m_sizeRaw.cy * m_iScan);
 //
 //      }
 
@@ -609,7 +609,7 @@ namespace draw2d_cairo
 //      if(pdata != (byte *)m_pcolorrefRaw && pdata != nullptr)
 //      {
 //
-//         ::memcpy_dup(pdata, m_pcolorrefRaw, m_sizeRaw.cy * m_iScan);
+//         ::memory_copy(pdata, m_pcolorrefRaw, m_sizeRaw.cy * m_iScan);
 //
 //      }
 
@@ -1064,7 +1064,7 @@ namespace draw2d_cairo
 //
 //               psrc2 = &psrc[scanSrc * y];
 //
-//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               //::memory_copy(pdst2, psrc2, xEnd * 4);
 //               for (int x = 0; x < xEnd; x++)
 //               {
 //
@@ -1101,7 +1101,7 @@ namespace draw2d_cairo
 //
 //               psrc2 = &psrc[scanSrc * y];
 //
-//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               //::memory_copy(pdst2, psrc2, xEnd * 4);
 //               for (int x = 0; x < xEnd; x++)
 //               {
 //
@@ -1159,7 +1159,7 @@ namespace draw2d_cairo
 
                psrc2 = &psrc[scanSrc * y];
 
-               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+               //::memory_copy(pdst2, psrc2, xEnd * 4);
                for (int x = 0; x < xEnd; x++)
                {
 
@@ -1233,7 +1233,7 @@ namespace draw2d_cairo
 
                psrc2 = &psrc[scanSrc * y];
 
-               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+               //::memory_copy(pdst2, psrc2, xEnd * 4);
                for (int x = 0; x < xEnd; x++)
                {
 
@@ -1428,7 +1428,7 @@ namespace draw2d_cairo
 //
 //            psrc2 = &psrc[scanSrc * y];
 //
-//            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//            //::memory_copy(pdst2, psrc2, xEnd * 4);
 //            for (int x = 0; x < xEnd; x++)
 //            {
 //
@@ -1579,7 +1579,7 @@ namespace draw2d_cairo
 ////
 ////               psrc2 = &psrc[scanSrc * y];
 ////
-////               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+////               //::memory_copy(pdst2, psrc2, xEnd * 4);
 ////               for (int x = 0; x < xEnd; x++)
 ////               {
 ////
@@ -1616,7 +1616,7 @@ namespace draw2d_cairo
 ////
 ////               psrc2 = &psrc[scanSrc * y];
 ////
-////               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+////               //::memory_copy(pdst2, psrc2, xEnd * 4);
 ////               for (int x = 0; x < xEnd; x++)
 ////               {
 ////
@@ -1674,7 +1674,7 @@ namespace draw2d_cairo
 //
 //               psrc2 = &psrc[scanSrc * y];
 //
-//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               //::memory_copy(pdst2, psrc2, xEnd * 4);
 //               for (int x = 0; x < xEnd; x++)
 //               {
 //
@@ -1750,7 +1750,7 @@ namespace draw2d_cairo
 //
 //               psrc2 = &psrc[scanSrc * y];
 //
-//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               //::memory_copy(pdst2, psrc2, xEnd * 4);
 //               for (int x = 0; x < xEnd; x++)
 //               {
 //

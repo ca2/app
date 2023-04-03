@@ -165,7 +165,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 //
 //      g_pMemoryCounters = memory_new ::file::path();
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //      string strBasePath =          auto psystem = acmesystem();
 

@@ -167,7 +167,7 @@ namespace sockets
       time_t t = time(nullptr);
       struct tm tp;
 #ifdef _WIN32
-      ::memcpy_dup(&tp, localtime(&t), sizeof(tp));
+      ::memory_copy(&tp, localtime(&t), sizeof(tp));
 #else
       localtime_r(&t, &tp);
 #endif

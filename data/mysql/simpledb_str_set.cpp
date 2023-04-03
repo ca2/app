@@ -323,7 +323,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
 
    }
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 

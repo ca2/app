@@ -1331,12 +1331,21 @@ namespace user
     string list_box::get_current_item_string_value()
    {
 
-      index iSel = current_item()->m_iItem;
+       auto pitem = current_item();
+
+       if (::is_null(pitem))
+       {
+
+          return {};
+
+       }
+
+      index iSel = pitem->m_iItem;
 
       if (iSel < 0)
       {
 
-         return "";
+         return {};
 
       }
 

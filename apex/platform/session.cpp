@@ -25,7 +25,7 @@
 #include "apex/user/primitive.h"
 
 
-#if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -54,7 +54,7 @@ void defer_term_ui();
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 //#include "acme/operating_system/universal_windows/_universal_windows.h"
 

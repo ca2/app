@@ -203,7 +203,7 @@ namespace sockets
    void net::ResolveLocal()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       //Retrieve the ConnectionProfile
       ::winrt::Windows::Networking::Connectivity::ConnectionProfile^ InternetConnectionProfile = ::winrt::Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
@@ -345,7 +345,7 @@ namespace sockets
       {
          struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
          ipaddr_t a;
-         ::memcpy_dup(&a, &sa4 -> sin_addr, 4);
+         ::memory_copy(&a, &sa4 -> sin_addr, 4);
          string tmp;
          net::l2ip(a, tmp);
          return tmp + ":" + as_string(ntohs(sa4 -> sin_port));
@@ -482,7 +482,7 @@ namespace sockets
    bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int flags)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       switch(sa->sa_family)
       {
@@ -503,7 +503,7 @@ namespace sockets
 
             struct sockaddr_in *sa_in = (struct sockaddr_in *)sa;
 
-            ::memcpy_dup(&u.l, &sa_in -> sin_addr, sizeof(u.l));
+            ::memory_copy(&u.l, &sa_in -> sin_addr, sizeof(u.l));
 
             hostname.Format("%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
 
@@ -536,7 +536,7 @@ namespace sockets
             {
                unsigned short addr16[8];
                struct sockaddr_in6 *sa_in6 = (struct sockaddr_in6 *)sa;
-               ::memcpy_dup(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
+               ::memory_copy(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
                for (index i = 0; i < 8; i++)
                {
                   unsigned short x = ntohs(addr16[i]);
@@ -597,7 +597,7 @@ namespace sockets
                ipaddr_t l;
             } u;
             struct sockaddr_in *sa_in = (struct sockaddr_in *)sa;
-            ::memcpy_dup(&u.l, &sa_in -> sin_addr, sizeof(u.l));
+            ::memory_copy(&u.l, &sa_in -> sin_addr, sizeof(u.l));
             char tmp[100];
             sprintf(tmp, "%u.%u.%u.%u", u.a.b1, u.a.b2, u.a.b3, u.a.b4);
             hostname = tmp;
@@ -626,7 +626,7 @@ namespace sockets
             {
                unsigned short addr16[8];
                struct sockaddr_in6 *sa_in6 = (struct sockaddr_in6 *)sa;
-               ::memcpy_dup(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
+               ::memory_copy(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
                for (index i = 0; i < 8; i++)
                {
                   unsigned short x = ntohs(addr16[i]);

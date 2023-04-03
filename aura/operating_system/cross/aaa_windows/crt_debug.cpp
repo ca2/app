@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 CLASS_DECL_AURA i32 __cdecl _CrtReportBlockType(const void * p);
 
@@ -61,7 +61,7 @@ free(_Memory);
 //}
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 CLASS_DECL_AURA i32 __cdecl _CrtReportBlockType(const void * p)
 {
@@ -94,5 +94,5 @@ CLASS_DECL_AURA i32 __cdecl _CrtDumpMemoryLeaks()
 }
 
 
-// #ifndef _UWP
+// #ifndef UNIVERSAL_WINDOWS
 #endif

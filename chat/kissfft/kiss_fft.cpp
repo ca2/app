@@ -358,7 +358,7 @@ void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,
     if (fin == fout) {
         CHECKBUF(tmpbuf,ntmpbuf,st->nfft);
         kf_work(tmpbuf,fin,1,in_stride, st->factors,st);
-        ::memcpy_dup(fout,tmpbuf,sizeof(kiss_fft_cpx)*st->nfft);
+        ::memory_copy(fout,tmpbuf,sizeof(kiss_fft_cpx)*st->nfft);
     }else{
         kf_work( fout, fin, 1,in_stride, st->factors,st );
     }

@@ -23791,7 +23791,7 @@ Do not add any more error codes in that range.
 // Create an HRESULT value from component pieces
 //
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #define MAKE_HRESULT(sev,fac,code) \
    ((HRESULT)(((unsigned long)(sev) << 31) | ((unsigned long)(fac) << 16) | ((unsigned long)(code))))
@@ -32326,7 +32326,7 @@ copy protection errors.
 // Since these error codes aren't in the standard Win32 range (i.e., 0-64K), define a
 // macro to map either Win32 or SetupAPI error codes into an HRESULT.
 //
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define HRESULT_FROM_SETUPAPI(x) ((((x) & (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) == (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) \
    ? ((HRESULT)(((x)& 0x0000FFFF) | (FACILITY_SETUPAPI << 16) | 0x80000000))                               \
    : HRESULT_FROM_WIN32(x))

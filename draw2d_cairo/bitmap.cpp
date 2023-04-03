@@ -65,7 +65,7 @@ namespace draw2d_cairo
             for(i32 i = 0; i < cy; i++)
             {
 
-               ::memcpy_dup(&m_mem.data()[iStride * i], &((byte *) pdata)[iStrideParam * i], iW);
+               ::memory_copy(&m_mem.data()[iStride * i], &((byte *) pdata)[iStrideParam * i], iW);
 
             }
 
@@ -73,7 +73,7 @@ namespace draw2d_cairo
          else
          {
 
-            ::memcpy_dup(m_mem.data(), pdata, iStride * cy);
+            ::memory_copy(m_mem.data(), pdata, iStride * cy);
 
          }
 
@@ -164,7 +164,7 @@ namespace draw2d_cairo
                for(i32 i = 0; i < size.cy; i++)
                {
 
-                  ::memcpy_dup(&m_mem.data()[iStride * i], &((byte *) *ppdata)[iW * i], iW);
+                  ::memory_copy(&m_mem.data()[iStride * i], &((byte *) *ppdata)[iW * i], iW);
 
                }
 
@@ -172,7 +172,7 @@ namespace draw2d_cairo
             else
             {
 
-               ::memcpy_dup(m_mem.data(), *ppdata, iStride * size.cy);
+               ::memory_copy(m_mem.data(), *ppdata, iStride * size.cy);
 
             }
 

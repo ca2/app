@@ -28,13 +28,13 @@ public:
    virtual void defer_api();
 
 
-   virtual void api_get(::string & str, const string& strUrl, property_set& set);
+   //virtual void api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
-   virtual void api_get(::payload & payload, const string& strUrl, property_set& set);
+   virtual ::payload api_get(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
-   virtual void api_download(string strGet, const ::file::path& path, property_set& set);
+   virtual ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
 
 

@@ -206,7 +206,7 @@ namespace sockets
 CLASS_DECL_AXIS string bsd_socket_error(i32 x);
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 CLASS_DECL_AXIS const char *bsd_socket_error(i32 x);
 #define Errno get_last_error()

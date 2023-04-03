@@ -116,7 +116,7 @@ namespace imaging_freeimage
       for (int i = 0; i < pimage->height(); i++)
       {
 
-         ::memcpy_dup(
+         ::memory_copy(
             &((u8 *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
             &((u8 *)pdata)[iSrcScan * i],
             iLineSize);
@@ -144,7 +144,7 @@ namespace imaging_freeimage
       void free_FreeImage(FIBITMAP * pfibitmap)
       {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          throw ::exception(todo);
 

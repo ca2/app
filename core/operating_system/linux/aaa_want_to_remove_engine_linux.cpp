@@ -21,7 +21,7 @@
 #include <cxxabi.h>
 #endif
 
-#if defined(RASPBIAN)
+#if defined(RASPBERRYPIOS)
 #include <sys/types.h>
 #include <unistd.h>
 #endif
@@ -1085,7 +1085,7 @@ namespace exception
 
 
 
-#if defined(LINUX) || defined(_UWP) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(LINUX) || defined(UNIVERSAL_WINDOWS) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    char * engine::stack_trace(iptr iSkip, void * caller_address, const ::string & pszFormat, int iCount)
 #else
    bool engine::stack_trace(iptr iSkip, const ::string & pszFormat, int iCount)
@@ -1130,7 +1130,7 @@ namespace exception
 
       return true;
 
-#elif defined(_UWP) || defined(SOLARIS)
+#elif defined(UNIVERSAL_WINDOWS) || defined(SOLARIS)
 
       return _strS;
 
@@ -1259,7 +1259,7 @@ namespace exception
 
       *_strS = '\0';
 
-      ::memcpy_dup(m_uia, pinteraction, minimum(c*sizeof(*pinteraction), sizeof(m_uia)));
+      ::memory_copy(m_uia, pinteraction, minimum(c*sizeof(*pinteraction), sizeof(m_uia)));
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;

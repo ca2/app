@@ -45,6 +45,8 @@ public:
    void * find_item(const ::scoped_string & scopedstrParent, const ::scoped_string & scopedstrId);
    
    void on_idle_update();
+
+   ::string application_name();
    
 
 };

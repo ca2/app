@@ -143,7 +143,7 @@ namespace apex
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
@@ -415,7 +415,7 @@ namespace apex
    }
 
 
-   void node::on_create_app_shortcut(::acme::application * papp)
+   void node::on_create_app_shortcut(::acme::application * papplication)
    {
 
    }

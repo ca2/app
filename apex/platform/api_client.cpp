@@ -2,10 +2,11 @@
 #include "framework.h"
 #include "api.h"
 #include "apex/filesystem/filesystem/dir_context.h"
-////#include "acme/exception/exception.h"
+///#include "acme/exception/exception.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 api_client::api_client()
@@ -124,62 +125,44 @@ void api_client::defer_api()
 
 
 
-void api_client::api_get(::string & str, const string& strUrl, property_set& set)
-{
-
-   int iTryCount = 3;
-
-   for (int iTry = 0; iTry < iTryCount; iTry++)
-   {
-
-      defer_api();
-
-      if (!m_papi)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      m_papi->_api_get(str, strUrl, set);
-
-      int iHttpStatusCode = set["http_status_code"];
-
-      ::string strStatus = set["http_status"];
-
-      if (iHttpStatusCode == 200 || iHttpStatusCode == 400)
-      {
-
-         break;
-
-      }
-
-      m_papi->clear_profile();
-
-   }
-
-
-}
-
-
-void api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
-{
-
-   defer_api();
-
-   if (!m_papi)
-   {
-
-      throw ::exception(error_resource);
-
-   }
-
-   m_papi->api_get(payload, strUrl, set);
-
-}
+//void api_client::_api_get(::string & str, const ::scoped_string & scopedstrUrl, ::property_set & set)
+//{
+//
+//   int iTryCount = 3;
+//
+//   for (int iTry = 0; iTry < iTryCount; iTry++)
+//   {
+//
+//      defer_api();
+//
+//      if (!m_papi)
+//      {
+//
+//         throw ::exception(error_resource);
+//
+//      }
+//
+//      m_papi->_api_get(str, strUrl, set);
+//
+//      int iHttpStatusCode = set["http_status_code"];
+//
+//      ::string strStatus = set["http_status"];
+//
+//      if (iHttpStatusCode == 200 || iHttpStatusCode == 400)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      m_papi->clear_profile();
+//
+//   }
+//
+//}
 
 
-void api_client::api_download(string strGet, const ::file::path& path, property_set& set)
+::payload api_client::api_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
    defer_api();
@@ -191,7 +174,24 @@ void api_client::api_download(string strGet, const ::file::path& path, property_
 
    }
 
-   m_papi->api_download(strGet, path, set);
+   return m_papi->api_get(scopedstrUrl, set);
+
+}
+
+
+::memory api_client::api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
+{
+
+   defer_api();
+
+   if (!m_papi)
+   {
+
+      throw ::exception(error_resource);
+
+   }
+
+   return m_papi->api_memory(scopedstrUrl, set);
 
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 #include <d2d1_1.h>
 

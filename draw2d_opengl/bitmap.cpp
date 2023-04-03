@@ -780,7 +780,7 @@ namespace draw2d_opengl
    //int iScan = cxDIB * 4;
    //for (int i = 0; i < cyDIB; ++i)
    //{
-   //   ::memcpy_dup(&d->m_pcolorref[pitch * i], &m_mem.get_data()[((cyDIB - 1) - i) * iScan], iScan);
+   //   ::memory_copy(&d->m_pcolorref[pitch * i], &m_mem.get_data()[((cyDIB - 1) - i) * iScan], iScan);
    //}
 
    void bitmap::Cleanup()

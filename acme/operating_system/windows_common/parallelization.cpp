@@ -17,7 +17,7 @@ string get_task_name(htask_t htask)
 
    LPWSTR lpwsz = nullptr;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    hr = GetThreadDescription(htask, &lpwsz);
 
@@ -73,7 +73,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
 
    bool bOk1 = false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    bOk1 = SUCCEEDED(SetThreadDescription(htask, wstring(pszName)));
 

@@ -3,13 +3,13 @@
 
 
 CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize);
-CLASS_DECL_ACME void * __memand(void * p, const void * point1, const void * point2, memsize iSize);
-CLASS_DECL_ACME void * memcpy_dup(void * dst, const void * src, memsize iSize);
-CLASS_DECL_ACME void * __memmov(void * dst, const void * src, memsize iSize);
-CLASS_DECL_ACME ::wide_character * __wmemcpy(::wide_character * dst, const ::wide_character * src, memsize iSize);
+CLASS_DECL_ACME void * memory_and(void * p, const void * point1, const void * point2, memsize iSize);
+CLASS_DECL_ACME void * memory_copy(void * dst, const void * src, memsize iSize);
+CLASS_DECL_ACME void * memory_transfer(void * dst, const void * src, memsize iSize);
+CLASS_DECL_ACME ::wide_character * wide_memory_copy(::wide_character * dst, const ::wide_character * src, memsize iSize);
 
 CLASS_DECL_ACME void * reverse_memory(void * p, memsize iSize);
-CLASS_DECL_ACME void * reverse_memcpy(void * p, const void * point1, memsize iSize);
+CLASS_DECL_ACME void * reverse_memory_copy(void * p, const void * point1, memsize iSize);
 
 
 CLASS_DECL_ACME ::std::strong_ordering memory_order(const void* sz1, const void* sz2, memsize iSize);

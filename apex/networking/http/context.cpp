@@ -7,6 +7,7 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/node.h"
 #include "acme/primitive/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
@@ -148,6 +149,8 @@ namespace http
       pmessage->m_ppropertyset = &set;
 
       pmessage->m_strUrl = scopedstrUrl;
+      
+      //pmessage->m_trans = set["transfer_progress_function"].cast < a_transfer_progress_function >();
 
       get(pmessage);
 
@@ -505,6 +508,8 @@ namespace http
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
       payload("dw") = ::time::now();
+      
+      m_pmutexDownload = acmenode()->create_mutex();
 
       //return estatus;
 
@@ -837,7 +842,7 @@ namespace http
    void context::config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       psocket->m_bDirect = true;
 
@@ -2023,6 +2028,9 @@ namespace http
 
       //psocket->set_topic_text(strTopicText);
 
+      auto ptransferprogressfunctionbase = set["transfer_progress_function"].cast < transfer_progress_function::base >();
+
+      psocket->m_transferprogressfunction = ptransferprogressfunctionbase.m_p;
 
       psocket->EnablePool(psockethandler->PoolEnabled());
 
@@ -2268,6 +2276,8 @@ namespace http
 
       }
 
+      
+
       i64 iContentLength = -1;
 
       i64 iBodySizeDownloaded = -1;
@@ -2347,6 +2357,13 @@ namespace http
 
          psocket->set_scalar(::e_scalar_download_size, iBodySizeDownloaded);
 
+         if (psocket->m_transferprogressfunction)
+         {
+
+            psocket->m_transferprogressfunction(dRateDownloaded, iBodySizeDownloaded, iContentLength);
+
+         }
+
 //         keeplive.keep-alive();
 
          if (psocket->m_estatus == error_connection_timed_out
@@ -2416,10 +2433,22 @@ namespace http
       strStatus = psocket->outattr("http_status");
 
       set["http_status"] = strStatus;
+      
+      set["chunked"] = psocket->m_bChunked;
 
-      iContentLength = set["http_content_length"].as_i64();
+      bool bChunked = psocket->m_bChunked;
+      
+      set["chunk_size"] = psocket->m_chunk_size;
 
-      iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
+      memsize iChunkSize = psocket->m_chunk_size;
+      
+      set["http_content_length"] = psocket->m_content_length;
+
+      iContentLength = psocket->m_content_length;
+      
+      set["http_body_size_downloaded"] = psocket->m_body_size_downloaded;
+
+      iBodySizeDownloaded = psocket->m_body_size_downloaded;
 
       INFORMATION(LOG_HTTP_PREFIX
          << strUrl
@@ -2427,8 +2456,8 @@ namespace http
          << iStatusCode
          << " - "
          << strStatus
-         << " Content Length : "
-         << (memsize)iContentLength
+         << (bChunked ? " Chunk Size : " : " Content Length : ")
+         << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)
          << ", Body Download : "
          << iBodySizeDownloaded
          << ", Loop : "
@@ -2948,7 +2977,7 @@ namespace http
 
 #ifdef _WIN32
 
-      ::memcpy_dup(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
 
 #else
 
@@ -3057,9 +3086,9 @@ namespace http
    bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set)
    {
 
-      ::memory_file file(memory);
+      auto pfile = create_memory_file(memory);
 
-      return put(scopedstrUrl, &file, set);
+      return put(scopedstrUrl, pfile, set);
 
    }
 

@@ -13,7 +13,7 @@
 //
 //#if defined(__arm__)
 //
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //#include <sys/endian.h>
 //
@@ -37,7 +37,7 @@ namespace networking
 //      m_iLen = -1;
 //#endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -61,7 +61,7 @@ namespace networking
 //
 //#endif
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -77,7 +77,7 @@ namespace networking
 //   address::address(const sockaddr & sa, int iLen)
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -88,14 +88,14 @@ namespace networking
 //      if (sa.sa_family == AF_INET6)
 //      {
 //         m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
-//         ::memcpy_dup(&u.m_sa, &sa, m_iLen);
+//         ::memory_copy(&u.m_sa, &sa, m_iLen);
 //         sync_os_address();
 //         sync_os_service();
 //      }
 //      else if (sa.sa_family == AF_INET)
 //      {
 //         m_iLen = -1;
-//         ::memcpy_dup(&u.m_sa, &sa, sizeof(sockaddr_in));
+//         ::memory_copy(&u.m_sa, &sa, sizeof(sockaddr_in));
 //         sync_os_address();
 //         sync_os_service();
 //      }
@@ -146,7 +146,7 @@ namespace networking
 //
 //         m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
 //
-//         ::memcpy_dup(&u.m_addr6, &sa, m_iLen);
+//         ::memory_copy(&u.m_addr6, &sa, m_iLen);
 //
 //         sync_os_address();
 //
@@ -266,7 +266,7 @@ namespace networking
 //   address::address(const address & address)
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -280,7 +280,7 @@ namespace networking
    address::~address()
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      delete m_posdata;
 //
@@ -316,7 +316,7 @@ namespace networking
    string address::get_display_number() const
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (!is_ipv4() && !is_ipv6() && m_posdata != nullptr && m_posdata->m_hostname != nullptr)
 //      {
@@ -389,9 +389,9 @@ namespace networking
 ////
 ////         in_addr aM = addrMask.u.m_addr.sin_addr;
 ////
-////         __memand(&a1, &a1, &aM, sizeof(a1));
+////         memory_and(&a1, &a1, &aM, sizeof(a1));
 ////
-////         __memand(&a2, &a2, &aM, sizeof(a2));
+////         memory_and(&a2, &a2, &aM, sizeof(a2));
 ////
 ////         return __memcmp(&a1, &a2, sizeof(aM)) == 0;
 ////
@@ -412,9 +412,9 @@ namespace networking
 ////
 ////         in6_addr aM = addrMask.u.m_addr6.sin6_addr;
 ////
-////         __memand(&a1, &a1, &aM, sizeof(a1));
+////         memory_and(&a1, &a1, &aM, sizeof(a1));
 ////
-////         __memand(&a2, &a2, &aM, sizeof(a2));
+////         memory_and(&a2, &a2, &aM, sizeof(a2));
 ////
 ////         return __memcmp(&a1, &a2, sizeof(aM)) == 0;
 ////
@@ -464,7 +464,7 @@ namespace networking
 
    void address::sync_os_address()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
@@ -496,7 +496,7 @@ namespace networking
 
    void address::sync_os_service()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //#endif
    }
 
@@ -631,7 +631,7 @@ namespace networking
    //void address::copy(address *paddress)
    //{
 
-   //   //::memcpy_dup(this, &address, sizeof(address));
+   //   //::memory_copy(this, &address, sizeof(address));
 
    //   //sync_os_address();
    //   //sync_os_service();
@@ -651,7 +651,7 @@ namespace networking
 ////      a.m_iLen = -1;
 ////      a.u.m_addr.sin_family = AF_INET;
 ////      a.u.m_addr.sin_port = port;
-////      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
+////      ::memory_copy(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
 ////#ifdef WINDOWS
 ////      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
 ////      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
@@ -681,7 +681,7 @@ namespace networking
 ////      a.m_iLen = sizeof(sockaddr_in6);
 ////      a.u.m_addr6.sin6_family = AF_INET6;
 ////      a.u.m_addr6.sin6_port = port;
-////      ::memcpy_dup(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+////      ::memory_copy(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
 ////
 ////      a.sync_os_address();
 ////      a.sync_os_service();

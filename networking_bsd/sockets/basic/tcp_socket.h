@@ -46,13 +46,13 @@ namespace sockets_bsd
    //struct OUTPUT {
    //   OUTPUT() : _b(0), _t(0), _q(0) {}
    //   OUTPUT(const char *buf, memsize len) : _b(0), _t(len), _q(len) {
-   //      ::memcpy_dup(_buf, buf, len);
+   //      ::memory_copy(_buf, buf, len);
    //   }
    //   memsize Space() {
    //      return TCP_OUTPUT_CAPACITY - _t;
    //   }
    //   void add(const char *buf, memsize len) {
-   //      ::memcpy_dup(_buf + _t, buf, len);
+   //      ::memory_copy(_buf + _t, buf, len);
    //      _t += len;
    //      _q += len;
    //   }

@@ -33,7 +33,7 @@ namespace file
        if (buffer.get_size() > 0)
        {
          this->SetCapacity(buffer.get_size());
-         __memmov(this->get_data(), buffer.get_data(), buffer.get_size() * sizeof(T));
+         memory_transfer(this->get_data(), buffer.get_data(), buffer.get_size() * sizeof(T));
        }
        return *this;
      }

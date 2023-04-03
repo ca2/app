@@ -92,7 +92,7 @@ public:
    memory_base * detach();
 
    virtual class memory *          get_primitive_memory();
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
    virtual shared_memory *   get_shared_memory();
 #endif
    paged_memory *  get_virtual_memory();

@@ -35,7 +35,7 @@ BSTR SysAllocStringByteLen(const ::string & psz, ::u32 len)
     return 0;
   *(::u32 *)point = len;
   BSTR bstr = (BSTR)((::u32 *)point + 1);
-  __memmov(bstr, psz, len);
+  memory_transfer(bstr, psz, len);
   u8 *pb = ((u8 *)bstr) + len;
   for (i32 i = 0; less_than(i, sizeof(OLECHAR) * 2); i++)
     pb[i] = 0;
@@ -53,7 +53,7 @@ BSTR SysAllocString(const OLECHAR *sz)
     return 0;
   *(::u32 *)point = strLen;
   BSTR bstr = (BSTR)((::u32 *)point + 1);
-  __memmov(bstr, sz, len);
+  memory_transfer(bstr, sz, len);
   return bstr;
 }
 
@@ -114,7 +114,7 @@ HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src)
 
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 BOOL WINAPI LockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
 
@@ -171,7 +171,7 @@ CLASS_DECL_AURA int_bool is_windows_nt_lesser_than_2000()
 }
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 ::u32 get_current_process_id()
 {
 

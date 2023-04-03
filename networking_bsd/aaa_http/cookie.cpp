@@ -306,7 +306,7 @@ namespace http
 
 #ifdef _WIN32
 
-      ::memcpy_dup(&tmstruct, gmtime(&time), sizeof(tmstruct));
+      ::memory_copy(&tmstruct, gmtime(&time), sizeof(tmstruct));
 
 #else
 

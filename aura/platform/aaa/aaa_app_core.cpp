@@ -13,7 +13,7 @@
 //extern ::pointer < ::mutex >* ::auraacmesystem()->m_pmutexLibrary;
 
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 
 #include <sys/types.h>
@@ -26,7 +26,7 @@
 #ifdef LINUX
 
 
-   #ifndef RASPBIAN
+   #ifndef RASPBERRYPIOS
 
 
    void sn_start_context();
@@ -1750,7 +1750,7 @@ bool app_core::has_aura_application_factory() const
 
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 
@@ -1919,7 +1919,7 @@ bool app_core::has_aura_application_factory() const
             if (!plibrary)
             {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
                output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 

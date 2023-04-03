@@ -601,7 +601,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //u32 __cdecl char_traits::xxxget_environment_variable(const ::scoped_string & scopedstrVar, char * pszBuffer,u32 dwSize )
 //{
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //   throw ::exception(todo);
 //
@@ -796,7 +796,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   //      }
 //}
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //string::string(Array <byte > ^ a):
 //   string(::str::GetDefaultManager())

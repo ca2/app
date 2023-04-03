@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/exception/exception.h"
+//#include "acme/exception/exception.h"
 #include "acme/platform/constraint.h"
 // #include "acme/primitive/string/string.h"
 //#ifdef WINDOWS
@@ -156,6 +156,26 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
       output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
 
    }
+
+}
+
+
+void format_output_debug_string(const char* pszFormat, ...)
+{
+
+   ASSERT(is_string_ok(pszFormat));
+
+   va_list argList;
+
+   va_start(argList, pszFormat);
+
+   ::string str;
+
+   str.format_arguments(pszFormat, argList);
+
+   va_end(argList);
+
+   ::output_debug_string(str);
 
 }
 

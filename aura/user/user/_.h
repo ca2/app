@@ -143,7 +143,7 @@ namespace user
 
    //class place_holder;
 
-   //#if defined _UWP
+   //#if defined UNIVERSAL_WINDOWS
    //
    //   class CLASS_DECL_AURA native_window_initialize
    //   {

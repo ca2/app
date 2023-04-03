@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022.
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSørensen!!
@@ -33,7 +33,7 @@ CLASS_DECL_ACME ::file::path get_module_path();
 
 CLASS_DECL_ACME void set_main_user_thread();
 
-//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //static const char * g_p1;
 //static const char * g_p2;
 //void set_res(const char * p1, const char * p2)
@@ -123,7 +123,7 @@ namespace acme
 //      m_hinstancePrev = g_hinstancePrev;
 //      m_nCmdShow = g_nCmdShow;
 //
-//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //
 //      m_pchar_binary__matter_zip_start = g_p1;
 //      m_pchar_binary__matter_zip_end = g_p2;
@@ -584,6 +584,41 @@ namespace acme
    }
 
 
+   ::string application::get_application_title()
+   {
+
+      auto textAppTitle = m_textAppTitle;
+
+      string strAppTitle;
+
+      if (textAppTitle.get_text().has_char())
+      {
+
+         strAppTitle = textAppTitle.get_text();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         stra.explode("/", m_strAppId);
+
+         strAppTitle = stra.slice(1).implode(" ");
+
+         strAppTitle.replace_with(" ", "_");
+
+         strAppTitle.replace_with(" ", "-");
+
+         strAppTitle.replace_with(" ", ".");
+
+      }
+
+      return strAppTitle;
+
+   }
+
+
 //#ifdef WINDOWS
 //
 //
@@ -746,7 +781,13 @@ namespace acme
    }
 
 
-
+   ::string application::get_application_name()
+   {
+   
+      return m_strAppName;
+      
+   }
+      
 
 } // namespace acme
 

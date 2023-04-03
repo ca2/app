@@ -161,6 +161,8 @@ list(APPEND library_source
         filesystem/file/text_stream.cpp
         filesystem/file/transfer.cpp
         filesystem/file/transfer.h
+        filesystem/file/translatable.cpp
+        filesystem/file/translatable.h
         filesystem/filesystem/acme_directory.cpp
         filesystem/filesystem/acme_directory.h
         filesystem/filesystem/acme_file.cpp
@@ -1850,7 +1852,7 @@ if (LINUX)
             operating_system/linux/file.h
             operating_system/linux/file_lock.cpp
             operating_system/linux/graphics.cpp
-            operating_system/linux/internal.h
+            #operating_system/linux/internal.h
             operating_system/linux/library.cpp
             operating_system/linux/linux.cpp
             operating_system/linux/linux.cpp
@@ -1868,7 +1870,7 @@ if (LINUX)
             operating_system/linux/simple_app.cpp
             operating_system/linux/system.cpp
             operating_system/linux/thread.cpp
-            operating_system/linux/thread.h
+            #operating_system/linux/thread.h
             operating_system/linux/time.cpp
             operating_system/linux/trace.cpp
             operating_system/linux/user.cpp
@@ -2240,7 +2242,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
     list(APPEND library_source
             operating_system/posix/_.h
             operating_system/posix/_posix.h
-            operating_system/posix/base_file.cpp
+            operating_system/posix/file.cpp
             operating_system/posix/chldstatus.cpp
             operating_system/posix/desktop.cpp
             operating_system/posix/file_lock.cpp

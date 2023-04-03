@@ -71,6 +71,10 @@ public:
 };
 
 
+template < typename PRIMITIVE_FUNCTION >
+concept primitive_function = ::std::is_base_of < ::function_common, PRIMITIVE_FUNCTION >::value;
+
+
 template < typename FUNCTION >
 class function :
    public function_common
@@ -96,15 +100,17 @@ class function :
 
 template < >
 class function < void() > :
-   public ptr < ::particle >,
    public function_common
 {
 public:
 
 
+   using base = ::particle;
+
+
    template < typename ELEMENT >
    class predicate :
-      virtual public particle
+      virtual public base
    {
    public:
 
@@ -137,6 +143,10 @@ public:
 
    };
 
+
+   ::ptr < base > m_pbase;
+
+
    
    function(nullptr_t = nullptr)
    {
@@ -144,24 +154,22 @@ public:
    }
 
 
-   function(const ptr < ::particle > & p) :
-      ptr < ::particle >(p)
+   function(const ptr < ::particle > & p) 
    {
-
+      m_pbase = p;
    }
 
 
-   function(ptr < ::particle > && p) :
-      ptr < ::particle >(::transfer(p))
+   function(ptr < ::particle > && p)
    {
-
+      m_pbase = ::transfer(p);
    }
 
 
    function(enum_as_lparam, iptr iptr)
    {
 
-      m_p = (::particle *) iptr;
+      m_pbase = (::particle *) iptr;
 
    }
 
@@ -170,7 +178,7 @@ public:
    function(TYPE * p)
    {
 
-      m_p = p;
+      m_pbase = p;
 
       p->increment_reference_count();
 
@@ -181,7 +189,7 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_p = memory_new class predicate <PREDICATE >(predicateParam);
+      m_pbase = memory_new class predicate <PREDICATE >(predicateParam);
 
    }
 
@@ -196,16 +204,16 @@ public:
    }
 
 
-   function(const function & function) :
-      ptr < ::particle > (function)
+   function(const function & function)
    {
-
+      m_pbase = function.m_pbase;
    }
 
 
-   function(function && function) :
-      ptr < ::particle >(::transfer(function))
+   function(function && function)
    {
+
+      m_pbase = ::transfer(function.m_pbase);
 
    }
 
@@ -218,14 +226,14 @@ public:
    void operator()()
    {
 
-      m_p->call_run();
+      m_pbase->call_run();
 
    }
 
    void operator()() const
    {
 
-      m_p->call_run();
+      m_pbase->call_run();
 
    }
 
@@ -233,7 +241,7 @@ public:
    function & operator = (const function & function)
    {
 
-      ptr < ::particle >::operator=(function.m_p);
+      m_pbase = function.m_pbase;
 
       return *this;
 
@@ -249,15 +257,15 @@ public:
 //
 //   }
 
-   operator bool() const { return __pointer_is_set(m_p); }
+   operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_p); }
+   bool operator !() const { return !this->operator bool(); }
 
-   operator ::particle *() const { return m_p; }
+   operator ::particle *() const { return ::is_null(this) ? nullptr : m_pbase; }
 
-   const ::particle * operator -> () const { return m_p; }
+   const ::particle * operator -> () const { return m_pbase; }
 
-   ::particle * operator -> () { return m_p; }
+   ::particle * operator -> () { return m_pbase; }
    
 
 };
@@ -270,7 +278,7 @@ class function < RETURN_TYPE() > :
 public:
 
 
-   class predicate_base :
+   class base :
       virtual public ::particle
    {
    public:
@@ -282,11 +290,13 @@ public:
 
    template < typename PREDICATE >
    class predicate :
-      public predicate_base
+      public base
    {
    public:
 
+
       PREDICATE m_predicate;
+
 
       predicate(PREDICATE predicate) :
          m_predicate(predicate)
@@ -304,7 +314,7 @@ public:
 
    };
 
-   ptr<predicate_base >     m_ppredicate;
+   ptr<base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -316,20 +326,20 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_ppredicate.transfer(memory_new class predicate <PREDICATE >(predicateParam));
+      m_pbase.transfer(memory_new class predicate <PREDICATE >(predicateParam));
 
    }
 
 
    function(const function & function) :
-      m_ppredicate(function.m_ppredicate)
+      m_pbase(function.m_pbase)
    {
 
    }
 
 
    function(function && function) :
-      m_ppredicate(::transfer(function.m_ppredicate))
+      m_pbase(::transfer(function.m_pbase))
    {
 
    }
@@ -344,20 +354,20 @@ public:
    RETURN_TYPE operator()() const
    {
 
-      ASSERT(m_ppredicate);
+      ASSERT(m_pbase);
 
-      return m_ppredicate->operator()();
+      return m_pbase->operator()();
 
    }
 
 
-   void clear() { m_ppredicate.release(); }
+   void clear() { m_pbase.release(); }
 
    template < typename PREDICATE >
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_ppredicate.transfer(memory_new class predicate <PREDICATE >(predicateParam));
+      m_pbase.transfer(memory_new class predicate <PREDICATE >(predicateParam));
 
       return *this;
 
@@ -366,7 +376,7 @@ public:
    function & operator = (const function & function)
    {
 
-      m_ppredicate = function.m_ppredicate;
+      m_pbase = function.m_pbase;
 
       return *this;
 
@@ -382,14 +392,14 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_ppredicate); }
+   operator bool() const { return __pointer_is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_ppredicate); }
+   bool operator !() const { return __pointer_is_null(m_pbase); }
 
 
    
    operator ::u32hash() const {
-      return { (::u32)(::uptr)m_ppredicate.m_p };
+      return { (::u32)(::uptr)m_pbase.m_p };
    };
 
 
@@ -439,7 +449,7 @@ public:
    };
 
    
-   ptr < base >     m_pfunctionbase;
+   ptr < base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -451,7 +461,7 @@ public:
    function(enum_use, base * pbase)
    {
 
-      m_pfunctionbase = pbase;
+      m_pbase = pbase;
 
    }
 
@@ -460,20 +470,20 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pfunctionbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
+      m_pbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
 
    function(const function & function) :
-      m_pfunctionbase(function.m_pfunctionbase)
+      m_pbase(function.m_pbase)
    {
 
    }
 
 
    function(function && function) :
-      m_pfunctionbase(::transfer(function.m_pfunctionbase))
+      m_pbase(::transfer(function.m_pbase))
    {
 
    }
@@ -488,21 +498,21 @@ public:
    RETURN_TYPE operator()(TYPES... args) const
    {
 
-      //ASSERT(m_pfunctionbase);
+      //ASSERT(m_pbase);
 
-      return ((base *)m_pfunctionbase.m_p)->operator()(args...);
+      return ((base *)m_pbase.m_p)->operator()(args...);
 
    }
 
 
-   void clear() { m_pfunctionbase.release(); }
+   void clear() { m_pbase.release(); }
 
 
    template < typename FUNCTION >
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pfunctionbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -518,16 +528,16 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pfunctionbase); }
+   operator bool() const { return __pointer_is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_pfunctionbase); }
+   bool operator !() const { return __pointer_is_null(m_pbase); }
 
-   function & operator = (const function & function) { m_pfunctionbase = function.m_pfunctionbase; return *this; }
-   bool operator == (const function & function) const { return m_pfunctionbase == function.m_pfunctionbase; }
+   function & operator = (const function & function) { m_pbase = function.m_pbase; return *this; }
+   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
    operator ::u32hash() const {
-      return { (::u32)(::uptr)m_pfunctionbase.m_p };
+      return { (::u32)(::uptr)m_pbase.m_p };
    }
 
 };
@@ -577,7 +587,7 @@ public:
    };
 
    
-   ptr < base >     m_pfunctionbase;
+   ptr < base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -589,7 +599,7 @@ public:
    function(enum_use, base * pbase)
    {
 
-      m_pfunctionbase = pbase;
+      m_pbase = pbase;
 
    }
 
@@ -598,20 +608,20 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pfunctionbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
+      m_pbase.transfer(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
 
    function(const function & function) :
-      m_pfunctionbase(function.m_pfunctionbase)
+      m_pbase(function.m_pbase)
    {
 
    }
 
 
    function(function && function) :
-      m_pfunctionbase(::transfer(function.m_pfunctionbase))
+      m_pbase(::transfer(function.m_pbase))
    {
 
    }
@@ -626,21 +636,31 @@ public:
    void operator()(TYPES... args) const
    {
 
-      //ASSERT(m_pfunctionbase);
+      //ASSERT(m_pbase);
 
-      ((base *)m_pfunctionbase.m_p)->operator()(args...);
+      ((base *)m_pbase.m_p)->operator()(args...);
 
    }
 
 
-   void clear() { m_pfunctionbase.release(); }
+   void clear() { m_pbase.release(); }
 
 
    template < typename FUNCTION >
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pfunctionbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
+      m_pbase.transfer ( memory_new class implementation <FUNCTION >(functionParam));
+
+      return *this;
+
+   }
+   
+
+   function& operator = (base * pbase)
+   {
+
+      m_pbase = pbase;
 
       return *this;
 
@@ -656,16 +676,16 @@ public:
 
    }
 
-   operator bool() const { return __pointer_is_set(m_pfunctionbase.m_p); }
+   operator bool() const { return __pointer_is_set(m_pbase.m_p); }
 
-   bool operator !() const { return __pointer_is_null(m_pfunctionbase.m_p); }
+   bool operator !() const { return __pointer_is_null(m_pbase.m_p); }
 
-   function & operator = (const function & function) { m_pfunctionbase = function.m_pfunctionbase.m_p; return *this; }
-   bool operator == (const function & function) const { return m_pfunctionbase == function.m_pfunctionbase; }
+   function & operator = (const function & function) { m_pbase = function.m_pbase.m_p; return *this; }
+   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
 
-   operator ::u32hash() const { return { (::u32)(::uptr)m_pfunctionbase.m_p }; }
+   operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
 
 };
 

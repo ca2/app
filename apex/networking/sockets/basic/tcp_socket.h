@@ -88,7 +88,7 @@ namespace sockets
          {
             m_memory.set_size(m_iTcpOuputCapacity);
             _buf = (char *) m_memory.data();
-            ::memcpy_dup(_buf, buf, len);
+            ::memory_copy(_buf, buf, len);
          }
 
          virtual ~output()
@@ -101,7 +101,7 @@ namespace sockets
          }
          void add(const char *buf, i32 len)
          {
-            ::memcpy_dup(_buf + _t, buf, len);
+            ::memory_copy(_buf + _t, buf, len);
             _t += len;
             _q += len;
          }

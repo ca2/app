@@ -13,7 +13,7 @@
 //
 //#if defined(__APPLE__) || defined(FREEBSD)
 //
-//#define bcopy(src, dest, len) ::memcpy_dup(dest, src, len)
+//#define bcopy(src, dest, len) ::memory_copy(dest, src, len)
 //
 //#else
 //

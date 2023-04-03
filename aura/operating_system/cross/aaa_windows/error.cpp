@@ -122,7 +122,7 @@
 //                                  HARDERROR_RESPONSE_OPTION ResponseOption, PHARDERROR_RESPONSE Response )
 //{
 //   //  FIXME(": stub. Errorstatus was %08x\n", ErrorStatus);
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //   return 0;
 //#else
 //   return STATUS_NOT_IMPLEMENTED;
@@ -446,7 +446,7 @@
 //   0,                                      /* c0000028 (STATUS_BAD_STACK) */
 //   0,                                      /* c0000029 (STATUS_INVALID_UNWIND_TARGET) */
 //   ERROR_NOT_LOCKED,                       /* c000002a (STATUS_NOT_LOCKED) */
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //   0,
 //#else
 //   STATUS_PARITY_ERROR,                    /* c000002b (STATUS_PARITY_ERROR) */
@@ -1549,7 +1549,7 @@
 //}
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 thread_local ::u32 t_dwLastError;
@@ -1571,7 +1571,7 @@ CLASS_DECL_AURA void set_last_error(::u32 dw)
 }
 
 
-#endif // _UWP
+#endif // UNIVERSAL_WINDOWS
 
 
 

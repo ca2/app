@@ -39,7 +39,7 @@
 //////
 //////   string strAppId;
 //////
-//////#if !defined(_UWP)
+//////#if !defined(UNIVERSAL_WINDOWS)
 //////
 //////#ifdef _APP_ID
 //////

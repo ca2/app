@@ -55,6 +55,9 @@ public:
    virtual void clear_profile();
 
 
+   virtual void defer_api();
+
+
    virtual void on_login_response();
 
 
@@ -67,13 +70,17 @@ public:
    virtual void api_login();
 
 
-   virtual void _api_get(::string & str, const ::string & strUrl, property_set& set);
+   virtual void _api_get(::string & str, const ::scoped_string& scopedstrUrl, ::property_set & set);
 
-   virtual void api_get(::payload & payload, const ::string & strUrl, property_set & set);
+   virtual ::payload api_get(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
-   virtual void api_download(string strGet, const ::file::path& path, property_set& set);
+   virtual ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set);
 
    virtual string api_token(bool bForce);
+
+   virtual bool is_api_get_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string & scopedstr, const ::payload & payload, ::property_set & set);
+
+   virtual bool is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set& set, int iHttpStatusCode);
 
 
    virtual void on_login_authentication_failed();

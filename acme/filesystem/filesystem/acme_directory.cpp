@@ -1,4 +1,4 @@
-﻿// Create on 2021-03-20 23:59 <3ThomasBS_
+// Create on 2021-03-20 23:59 <3ThomasBS_
 #include "framework.h"
 #include "acme_directory.h"
 #include "acme_file.h"
@@ -184,7 +184,7 @@ void acme_directory::initialize(::particle * pparticle)
 string acme_directory::system_short_name()
 {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    return "metro";
 
@@ -210,7 +210,7 @@ string acme_directory::system_short_name()
 
 }
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 ::file::path acme_directory::app_relative()
@@ -354,7 +354,7 @@ string acme_directory::system_short_name()
 
    return acmefile()->module()-3;
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
    return "";
 
@@ -420,7 +420,7 @@ string acme_directory::system_short_name()
 //#endif
 
 
-//#if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 //
 
 ::file::path acme_directory::bookmark()
@@ -1097,7 +1097,7 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 bool acme_directory::_is(bool & bDir, const ::file::path & path)
 {
 
-   auto pathFinal = m_pacmepath->_final(path);
+   auto pathFinal = acmepath()->_final(path);
 
    bDir = ::is_directory(pathFinal);
 

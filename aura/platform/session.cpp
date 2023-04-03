@@ -17,7 +17,7 @@
 #include "aura/platform/application.h"
 
 
-#if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -41,7 +41,7 @@ extern "C"
 //void defer_term_ui();
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 //#include "aura/operating_system/universal_windows/_universal_windows.h"
 
@@ -1886,7 +1886,7 @@ namespace aura
 
       //return ::success;
 
-//#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
+//#if !defined(APPLE_IOS) && !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 //
 //      return ::success;
 //

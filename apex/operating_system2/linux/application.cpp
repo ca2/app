@@ -465,7 +465,7 @@ namespace apex
    bool application::os_on_start_application()
    {
 
-//   #ifndef RASPBIAN
+//   #ifndef RASPBERRYPIOS
 //
 //      try
 //      {

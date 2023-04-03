@@ -181,7 +181,7 @@ namespace aura
    string theme::get_current_weather()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return "";
 

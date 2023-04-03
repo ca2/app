@@ -628,7 +628,7 @@ inline void assign(::block & block, const ::payload & r)
 }
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 inline void assign(long & l, const payload & payload)
@@ -647,7 +647,7 @@ inline void assign(unsigned long & ul, const payload & payload)
 }
 
 
-#endif // defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#endif // defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 namespace file

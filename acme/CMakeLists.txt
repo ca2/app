@@ -2285,7 +2285,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

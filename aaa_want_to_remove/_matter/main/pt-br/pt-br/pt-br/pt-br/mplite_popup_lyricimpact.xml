@@ -1,7 +1,0 @@
-<menubar>
-	<menubar id="view">
-		<item id="view_encoding">view_encoding</item>
-		<item id="view_full_screen" img="full_screen_16.png">Tela Inteira</item>
-	</menubar>
-
-</menubar>

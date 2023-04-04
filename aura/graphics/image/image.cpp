@@ -29,7 +29,7 @@ double get_default_screen_dpi()
 //#ifdef WINDOWS
 //#include <wincodec.h>
 //#include <ShCore.h>
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////#include <ShCore.h>
 //#endif
 
@@ -5400,7 +5400,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //      pimage1->Fill(0, 255, 255, 255);
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //
@@ -5425,7 +5425,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //      // xxx todo pimage2->create(width(), height());
    //      pimage2->Fill(0, 0, 0, 0);
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //
@@ -5447,7 +5447,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //      // xxx todo imageM.create(width(), height());
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //

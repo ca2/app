@@ -200,7 +200,7 @@
 //
 //      }
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      return estatus;
 //

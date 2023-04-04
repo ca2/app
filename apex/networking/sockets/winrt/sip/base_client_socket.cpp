@@ -375,7 +375,7 @@ namespace sockets
 
 #else
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
          WARNING("url_this", -1, "SSL not available");

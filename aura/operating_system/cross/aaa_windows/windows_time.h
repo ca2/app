@@ -1,7 +1,7 @@
 #pragma once
 
 
-/*#ifdef _UWP
+/*#ifdef UNIVERSAL_WINDOWS
 
 struct timeval
 {
@@ -12,7 +12,7 @@ struct timeval
 
 //#endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 CLASS_DECL_AURA int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
 CLASS_DECL_AURA int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);

@@ -24,7 +24,7 @@ void acme_system_term();
 //::acme::layer g_layer;
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #include "acme/operating_system/console.inl"
 
 #endif

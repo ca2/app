@@ -148,7 +148,7 @@ void aura_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 }
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 void aura_main_data::system_construct(Array < String^ >^ refstra)

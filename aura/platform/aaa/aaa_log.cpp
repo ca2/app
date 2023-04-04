@@ -547,7 +547,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 
          output_debug_string("\n" + m_strLogPath + "\n");
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
          if (is_debugger_attached() && !::auraacmesystem()->has_aura_application_factory())
          {

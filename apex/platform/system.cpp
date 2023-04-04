@@ -162,7 +162,7 @@ namespace apex
 
       //set_layer(LAYERED_APEX, this);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       m_bPreferLessGraphicsParallelization = true;
 
@@ -400,7 +400,7 @@ namespace apex
 
       //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
       m_pmutexMatter = acmenode()->create_local_named_mutex(this, false, "ca2-appmatter");
 
@@ -615,7 +615,7 @@ namespace apex
 
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
       if (is_true("show_application_information"))
@@ -2278,7 +2278,7 @@ pacmedirectory->create("/ca2core");
    //      if (m_spmutexOpenweatherCity.is_null())
    //      {
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
    //
@@ -2524,7 +2524,7 @@ pacmedirectory->create("/ca2core");
             string strApp = pszAppName;
             strApp += "app.exe";
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
             throw ::exception(todo);
 
@@ -2564,7 +2564,7 @@ pacmedirectory->create("/ca2core");
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
             throw ::exception(todo);
 
@@ -2598,7 +2598,7 @@ pacmedirectory->create("/ca2core");
             string strParameters;
             strParameters = ": app=" + strAppName;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
             throw ::exception(todo);
 
@@ -2755,7 +2755,7 @@ pacmedirectory->create("/ca2core");
    ::file::path system::local_get_matter_path(string strMatter)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return "";
 
@@ -3354,7 +3354,7 @@ pacmedirectory->create("/ca2core");
 
    //#endif
 
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //
    //
@@ -3765,7 +3765,7 @@ pacmedirectory->create("/ca2core");
       else
       {
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
 
          string* pstrNew = memory_new string(strUrl);
@@ -3941,7 +3941,7 @@ pacmedirectory->create("/ca2core");
    void system::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
@@ -4115,7 +4115,7 @@ pacmedirectory->create("/ca2core");
    void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 #else
@@ -4159,7 +4159,7 @@ pacmedirectory->create("/ca2core");
    void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       m_pcontext->m_papexcontext->os_context()->native_full_web_browser(strUrl);
 
@@ -4413,7 +4413,7 @@ pacmedirectory->create("/ca2core");
 
 
    //#ifdef WINDOWS_DESKTOP
-   //#elif defined(_UWP)
+   //#elif defined(UNIVERSAL_WINDOWS)
    //#include "apex/operating_system/universal_windows/_universal_windows.h"
    //#endif
 
@@ -4852,7 +4852,7 @@ namespace apex
    //   }
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
    bool system::window_rectangle(RECTANGLE_I32* prectangle)

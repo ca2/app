@@ -385,7 +385,7 @@ namespace userex
 
             auto strOptionsImpact = get_app()->prepare_impact_options();
 
-#if defined(_DEBUG) && !defined(_UWP) && !defined(APPLE_IOS)
+#if defined(_DEBUG) && !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
 
             auto pcontext = m_pcontext->m_papexcontext;
 

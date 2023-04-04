@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 CLASS_DECL_AURA i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
@@ -14,7 +14,7 @@ typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 #endif
 
 
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 
 CLASS_DECL_AURA i32 get_current_processor_index();
 
@@ -46,7 +46,7 @@ CLASS_DECL_AURA string process_version_dir_name();
 
 CLASS_DECL_AURA ::file::path core_app_path(string strApp);
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
 CLASS_DECL_AURA string module_path_from_pid(unsigned int pid);
@@ -64,7 +64,7 @@ CLASS_DECL_AURA atom_array app_get_pid(const ::string & pszModuleName);
 
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 CLASS_DECL_AURA bool process_contains_module(string & strImage, ::u32 processID, const ::string & pszLibrary);
 CLASS_DECL_AURA void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 #endif

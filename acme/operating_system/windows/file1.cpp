@@ -44,7 +44,7 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 {
 
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    return "m_app.exe";
 

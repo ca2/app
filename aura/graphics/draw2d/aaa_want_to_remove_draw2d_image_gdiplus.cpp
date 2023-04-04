@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <wincodec.h>
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #include <ShCore.h>
 #endif
 
@@ -8,7 +8,7 @@
 bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * psaveimage);
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, ::image * pimage, ::save_image * psaveimage);
@@ -338,7 +338,7 @@ return hBitmapSource;
 //#endif // WINDOWS_DESKTOP
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage)
@@ -367,7 +367,7 @@ bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStr
 bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image * psaveimage)
 {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref memory_new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 
@@ -605,7 +605,7 @@ bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * p
 
 //   memory m;
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //   m.set_size(uiHeight*pimage->scan_size());
 //

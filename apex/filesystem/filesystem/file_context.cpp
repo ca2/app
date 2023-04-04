@@ -44,7 +44,7 @@
 //
 ////#include "apex/platform/app_core.h"
 //
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////#include "acme/_operating_system.h"
 //#endif
 
@@ -1760,7 +1760,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   }
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
@@ -2106,7 +2106,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 //
 //   return false;
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //   throw ::exception(todo);
 //

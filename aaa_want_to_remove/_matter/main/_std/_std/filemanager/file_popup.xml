@@ -1,8 +1,0 @@
-<menubar id="popup">
-   <item id="edit_copy">Copy</item>
-   <item id="edit_paste">Paste</item>
-   <item id="file_rename">Rename</item>
-   <menubar id="Open With">
-      <item id="open_with">open_with</item>
-   </menubar>
-</menubar>

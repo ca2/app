@@ -45,7 +45,7 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 #endif // LINUX
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 //#include "aura/_.h"
 //

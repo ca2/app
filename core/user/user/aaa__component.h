@@ -54,7 +54,7 @@
 //
 //   class place_holder;
 //
-//   //#if defined _UWP
+//   //#if defined UNIVERSAL_WINDOWS
 //   //
 //   //   class CLASS_DECL_CORE native_window_initialize
 //   //   {

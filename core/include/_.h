@@ -94,10 +94,10 @@ namespace audio
 //
 //#include "aura/operating_system/ansi/_.h"
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 ////
-////#include "aura/os/_UWP/_UWP.h"
-////#include "aura/os/_UWP/_UWP_user_impl.h"
+////#include "aura/os/UNIVERSAL_WINDOWS/UNIVERSAL_WINDOWS.h"
+////#include "aura/os/UNIVERSAL_WINDOWS/_UWP_user_impl.h"
 ////
 //#elif defined(MACOS)
 ////
@@ -162,7 +162,7 @@ namespace audio
 //} // namespace ftp
 //
 //
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 //#include "core/filesystem/fs/_fs.h"
 //#endif
 //

@@ -134,7 +134,7 @@ public:
    bool                                m_bRet; // for event handlers ( _001OnTimer() )
 
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //   ThreadPoolTimer ^    m_timer;

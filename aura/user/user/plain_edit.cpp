@@ -922,7 +922,7 @@ namespace user
 
       ::pointer<::message::create>pcreate(pmessage);
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
       //auto estatus =
 

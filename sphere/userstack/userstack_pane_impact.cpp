@@ -533,7 +533,7 @@ namespace userstack
 //      if(get_impact_id() == ::bergedge::impact_winactionarea)
 //      {
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //         ::aura::shell_launcher launcher(nullptr, nullptr, "control.exe", "desk.cpl", nullptr, SW_SHOWNORMAL);
 //
 //         launcher.execute();

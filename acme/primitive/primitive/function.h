@@ -257,11 +257,11 @@ public:
 //
 //   }
 
-   operator bool() const { return __pointer_is_set(m_pbase); }
+   operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase); }
+   bool operator !() const { return !this->operator bool(); }
 
-   operator ::particle *() const { return m_pbase; }
+   operator ::particle *() const { return ::is_null(this) ? nullptr : m_pbase; }
 
    const ::particle * operator -> () const { return m_pbase; }
 

@@ -1333,7 +1333,7 @@ namespace draw2d
    //   //      {
 
    //   //         ::image_pointer pimage1;
-   //   //         //#ifdef _UWP
+   //   //         //#ifdef UNIVERSAL_WINDOWS
    //   //         //               g_pimagea.add(pimage1);
    //   //         //#endif
 
@@ -1573,7 +1573,7 @@ namespace draw2d
       {
 
          ::image_pointer pimage1;
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //            g_pimagea.add(pimage1);
 //#endif
 
@@ -3701,7 +3701,7 @@ namespace draw2d
    }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
    void graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)

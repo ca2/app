@@ -54,6 +54,8 @@ namespace networking
 
       m_psocketthread->m_strIp = "127.0.0.1";
 
+      m_psocketthread->m_strCat = "matter://certificate/" + acmeapplication()->m_papexapplication->m_strNetworkingApplicationHostname + ".cat";
+
       auto pfolder = file()->resource_folder();
 
       m_psocketthread->branch();

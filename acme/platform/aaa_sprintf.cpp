@@ -45,7 +45,7 @@ i32 vsprintf_dup(char *dest, const char *fmt, va_list args)
 {
    #ifdef WINDOWS_DESKTOP
 	i32 retValue = wvsprintfA(dest, fmt, args);
-   #elif defined(_UWP)
+   #elif defined(UNIVERSAL_WINDOWS)
 	i32 retValue = vsprintf(dest, fmt, args);
 	#else
 	i32 retValue = vsprintf(dest, fmt, args);
@@ -82,7 +82,7 @@ i32 vswprintf_dup(::wide_character *dest, size_t n, const ::wide_character *fmt,
 
 #ifdef WINDOWS_DESKTOP
 	i32 retValue = wvsprintfW(dest, fmt, args);
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
    i32 retValue = vswprintf_s(dest, n, fmt, args);
 #else
 	i32 retValue = vswprintf(dest, n, fmt, args);

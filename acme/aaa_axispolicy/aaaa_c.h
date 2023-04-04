@@ -19,8 +19,8 @@
 //#include "axis/axis/os/macos/macos.h"
 //#elif defined(LINUX)
 //#include "axis/axis/os/linux/linux.h"
-//#elif defined(_UWP)
-//#include "axis/axis/os/_UWP/_UWP.h"
+//#elif defined(UNIVERSAL_WINDOWS)
+//#include "axis/axis/os/UNIVERSAL_WINDOWS/UNIVERSAL_WINDOWS.h"
 //#elif defined(WINDOWS)
 //#include "axis/axis/os/windows/windows.h"
 //#elif defined(SOLARIS)

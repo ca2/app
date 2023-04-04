@@ -790,7 +790,7 @@ namespace crypto
       //   {
       //
       //
-      //#if defined(_UWP) && !defined(HAVE_OPENSSL)
+      //#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
       //
       //
       //
@@ -910,7 +910,7 @@ namespace crypto
       //
       //      CFRelease(transform);
       //
-      //#elif defined(_UWP) && !defined(HAVE_OPENSSL)
+      //#elif defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
       //
       //
       //
@@ -948,7 +948,7 @@ namespace crypto
       //   {
       //
       //
-      //#if defined(_UWP) && !defined(HAVE_OPENSSL)
+      //#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
       //
       //
       //

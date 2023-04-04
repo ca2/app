@@ -203,7 +203,7 @@ namespace sockets
    void net::ResolveLocal()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       //Retrieve the ConnectionProfile
       ::winrt::Windows::Networking::Connectivity::ConnectionProfile^ InternetConnectionProfile = ::winrt::Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
@@ -482,7 +482,7 @@ namespace sockets
    bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int flags)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       switch(sa->sa_family)
       {

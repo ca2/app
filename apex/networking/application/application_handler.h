@@ -15,7 +15,6 @@ namespace networking
    {
    public:
 
-
       application_handler();
 
       ~application_handler() override;

@@ -13,7 +13,7 @@ os_history::os_history(::particle * pparticle) //:
 bool os_history::hist(const ::scoped_string & scopedstr)
 {
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
    //pointer <  > plauncher;
    

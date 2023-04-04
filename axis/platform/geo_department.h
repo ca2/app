@@ -117,9 +117,9 @@ namespace geo
 
       virtual ::datetime::time_zone _get_time_zone(double dLat, double dLng);
 
-      virtual string get_weather(openweather_city* pcity);
+      virtual ::payload get_weather(openweather_city* pcity);
 
-      virtual string _get_weather(openweather_city* pcity);
+      virtual ::payload _get_weather(openweather_city* pcity);
 
       virtual void set_city_time_zone_modified();
 

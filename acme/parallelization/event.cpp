@@ -112,7 +112,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
    }
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
    u32 dwFlags = 0;
 

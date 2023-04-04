@@ -19,7 +19,7 @@ public:
    bool                                m_bRunning;
 
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //
    //   ThreadPoolTimer ^    m_timer;

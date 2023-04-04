@@ -93,7 +93,7 @@ public:
 
    virtual void load_svg(::image* pimage, memory & memory);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    virtual bool _desk_to_image(::image* pimage);
    virtual bool _desk_has_image();
    virtual bool _image_to_desk(::image* pimage);

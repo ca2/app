@@ -22,7 +22,7 @@ namespace account
    main_window::main_window()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 

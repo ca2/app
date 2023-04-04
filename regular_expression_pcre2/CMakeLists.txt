@@ -20,11 +20,19 @@ list(APPEND regular_expression_pcre2_source
 list(APPEND library_references
    acme)
 
-add_library(regular_expression_pcre2 SHARED ${regular_expression_pcre2_source})
 
-target_precompile_headers(regular_expression_pcre2 PRIVATE framework.h)
+add_library(${PROJECT_NAME} SHARED ${regular_expression_pcre2_source})
+add_library(static_${PROJECT_NAME} STATIC ${regular_expression_pcre2_source})
+
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
 
 set_target_properties(regular_expression_pcre2 PROPERTIES LINKER_LANGUAGE CXX)
+
 
 if (MSVC)
     target_compile_options(regular_expression_pcre2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -46,8 +54,9 @@ elseif(LINUX)
    message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
-   target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
 
@@ -55,7 +64,8 @@ elseif(LINUX)
 elseif(FREEBSD)
 
 
-    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(regular_expression_pcre2 PRIVATE -I/usr/local/include)
     target_link_options(regular_expression_pcre2 PRIVATE -L/usr/local/lib)
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} pcre2-8)
@@ -69,8 +79,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(regular_expression_pcre2 PRIVATE _REGULAR_EXPRESSION_PCRE2_LIBRARY)

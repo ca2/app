@@ -171,9 +171,9 @@ typedef ::pointer<::user::interaction_impl>window_pointer;
 
 
 
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
-//#include "app/base/base/os/_UWP/_UWP_sockets.h"
+//#include "app/base/base/os/UNIVERSAL_WINDOWS/_UWP_sockets.h"
 //
 //#endif
 

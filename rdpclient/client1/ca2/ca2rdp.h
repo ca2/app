@@ -23,7 +23,7 @@
 #if defined(ANDROID)
 #include <pthread.h>
 #endif
-#if defined(_WIN32) && !defined(_UWP)
+#if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
 #include "rdpclient/client/Windows/wf_client.h"
 //#elif defined(ANDROID)
 //#include "axis/rdpclient/client/A"
@@ -93,7 +93,7 @@ namespace draw2d
 }
 
 struct ca2rdp_context :
-#if defined(_WIN32) && !defined(_UWP)
+#if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
    public wf_context
 #else
    public rdpContext

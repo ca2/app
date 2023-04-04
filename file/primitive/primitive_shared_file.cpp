@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
 namespace primitive

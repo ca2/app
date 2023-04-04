@@ -4,10 +4,10 @@ project(base CXX)
 
 list(APPEND library_source
         #const/charset.h
-   #const/GLOBAL_ID.h
+        #const/GLOBAL_ID.h
         constant/idpool.cpp
         constant/idpool.h
-   #    const/procedure.h
+        #    const/procedure.h
         #include/_.cpp
         html/user/document.cpp
         #html/user/form/impact.cpp
@@ -146,115 +146,115 @@ list(APPEND library_source
         user/user/impact_data.h
         user/user/impact_host.cpp
         user/user/impact_host.h
-   user/user/impact_kit.cpp
-   user/user/impact_kit.h
-    user/user/impact_system.cpp
-    user/user/impact_system.h
-    user/user/impact_update_hint.h
-    user/user/main_frame.h
-    user/user/margin.cpp
-    user/user/margin.h
-    user/menu/menu.cpp
-    user/menu/menu.h
-    #user/user/menu_command.cpp
-    #user/user/menu_command.h
-    user/menu/interaction.cpp
-    user/menu/interaction.h
-    user/menu/item.cpp
-    user/menu/item.h
-    user/user/multiple_document_template.cpp
-    user/user/multiple_document_template.h
-    user/user/network_configuration.cpp
-    user/user/network_configuration.h
-    #user/user/notification_area.cpp
-    #user/user/notification_area.h
-    user/user/picture.cpp
-    user/user/picture.h
-    user/user/picture_interaction.cpp
-    user/user/picture_interaction.h
-    user/user/place_holder.cpp
-    user/user/place_holder.h
-    user/user/place_holder_container.cpp
-    user/user/place_holder_container.h
-    user/user/print_task.cpp
-    user/user/print_task.h
-    user/user/server.cpp
-    user/user/server.h
-    user/user/single_document_template.cpp
-    user/user/single_document_template.h
-    user/user/split_bar.cpp
-    user/user/split_bar.h
-    user/user/split_layout.cpp
-    user/user/split_layout.h
-    user/user/split_pane.cpp
-    user/user/split_pane.h
-    user/user/split_impact.cpp
-    user/user/split_impact.h
-    #user/user/static_control.cpp
-    #user/user/static_control.h
-    user/user/style.cpp
-    user/user/style.h
-    user/user/tab.cpp
-    user/user/tab.h
-    user/user/tab_callback.cpp
-    user/user/tab_callback.h
-    user/user/tab_data.cpp
-    user/user/tab_data.h
+        user/user/impact_kit.cpp
+        user/user/impact_kit.h
+        user/user/impact_system.cpp
+        user/user/impact_system.h
+        user/user/impact_update_hint.h
+        user/user/main_frame.h
+        user/user/margin.cpp
+        user/user/margin.h
+        user/menu/menu.cpp
+        user/menu/menu.h
+        #user/user/menu_command.cpp
+        #user/user/menu_command.h
+        user/menu/interaction.cpp
+        user/menu/interaction.h
+        user/menu/item.cpp
+        user/menu/item.h
+        user/user/multiple_document_template.cpp
+        user/user/multiple_document_template.h
+        user/user/network_configuration.cpp
+        user/user/network_configuration.h
+        #user/user/notification_area.cpp
+        #user/user/notification_area.h
+        user/user/picture.cpp
+        user/user/picture.h
+        user/user/picture_interaction.cpp
+        user/user/picture_interaction.h
+        user/user/place_holder.cpp
+        user/user/place_holder.h
+        user/user/place_holder_container.cpp
+        user/user/place_holder_container.h
+        user/user/print_task.cpp
+        user/user/print_task.h
+        user/user/server.cpp
+        user/user/server.h
+        user/user/single_document_template.cpp
+        user/user/single_document_template.h
+        user/user/split_bar.cpp
+        user/user/split_bar.h
+        user/user/split_layout.cpp
+        user/user/split_layout.h
+        user/user/split_pane.cpp
+        user/user/split_pane.h
+        user/user/split_impact.cpp
+        user/user/split_impact.h
+        #user/user/static_control.cpp
+        #user/user/static_control.h
+        user/user/style.cpp
+        user/user/style.h
+        user/user/tab.cpp
+        user/user/tab.h
+        user/user/tab_callback.cpp
+        user/user/tab_callback.h
+        user/user/tab_data.cpp
+        user/user/tab_data.h
         user/user/tab_drop_target_window.cpp
-    user/user/tab_drop_target_window.h
-    user/user/tab_pane.cpp
-    user/user/tab_pane.h
-    user/user/tab_pane_array.cpp
-    user/user/tab_pane_array.cpp
-    user/user/tab_impact.cpp
-    user/user/tab_impact.h
-    user/user/toolbar.cpp
-    user/user/toolbar.h
-    user/user/user.cpp
-    user/user/user.h
-    #user/user/validate.cpp
-    user/_.h
-    user/prelude.h
-    version/version.config.h
-    version/version.h
-    _.cpp
-    _.h
-    #__matter_ca2.cpp
-    _defer.h
-    #$aaa_want_to_move_xml.h
-    application.h
-    #astr.h
-    callback.h
-    console.h
-    #context_glx.cpp
-    framework.cpp
-    framework.h
-    #framework_c.h
-    id.h
-    library.h
-    #message.h
-    procedure.h
-    #timer.mm
-    #update.h
-    user.h)
+        user/user/tab_drop_target_window.h
+        user/user/tab_pane.cpp
+        user/user/tab_pane.h
+        user/user/tab_pane_array.cpp
+        user/user/tab_pane_array.cpp
+        user/user/tab_impact.cpp
+        user/user/tab_impact.h
+        user/user/toolbar.cpp
+        user/user/toolbar.h
+        user/user/user.cpp
+        user/user/user.h
+        #user/user/validate.cpp
+        user/_.h
+        user/prelude.h
+        version/version.config.h
+        version/version.h
+        _.cpp
+        _.h
+        #__matter_ca2.cpp
+        _defer.h
+        #$aaa_want_to_move_xml.h
+        application.h
+        #astr.h
+        callback.h
+        console.h
+        #context_glx.cpp
+        framework.cpp
+        framework.h
+        #framework_c.h
+        id.h
+        library.h
+        #message.h
+        procedure.h
+        #timer.mm
+        #update.h
+        user.h)
 
-if(WIN32)
+if (WIN32)
 
     list(APPEND library_source
-        operating_system/windows/frame_window.cpp
-        )
+            operating_system/windows/frame_window.cpp
+            )
 
-endif()
+endif ()
 
-if(LINUX)
+if (LINUX)
 
     list(APPEND library_source
             operating_system/linux/frame_window.cpp
             )
 
-endif()
+endif ()
 
-if(APPLE)
+if (APPLE)
 
     list(APPEND library_source
 
@@ -265,13 +265,17 @@ if(APPLE)
 
             )
 
-endif()
+endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -287,15 +291,16 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
 
 
-elseif(LINUX OR FREEBSD)
+elseif (LINUX OR FREEBSD)
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 
-endif()
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -303,7 +308,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _BASE_LIBRARY)

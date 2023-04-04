@@ -5,7 +5,7 @@
 
 #include "apex/inline/application/linux.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "apex/inline/application/universal_windows.h"
 

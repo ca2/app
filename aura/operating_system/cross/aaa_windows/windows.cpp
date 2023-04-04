@@ -114,7 +114,7 @@ HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src)
 
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 BOOL WINAPI LockFile(HANDLE hfile, u32 dwLo, u32 dwHi, u32 dwCountLo, u32 dwCountHi);
 
@@ -171,7 +171,7 @@ CLASS_DECL_AURA int_bool is_windows_nt_lesser_than_2000()
 }
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 ::u32 get_current_process_id()
 {
 

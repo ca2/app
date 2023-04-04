@@ -9,7 +9,7 @@
 
 #include "console/linux.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "console/universal_windows.h"
 

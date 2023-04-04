@@ -101,7 +101,7 @@ namespace operating_system
 
       string strBin = consume_command_line_parameter(scopedstrCmdLine,&pszEnd);
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       auto psystem = acmesystem();
 

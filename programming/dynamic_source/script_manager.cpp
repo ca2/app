@@ -812,7 +812,7 @@ namespace dynamic_source
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       throw ::exception(todo);
 
@@ -822,7 +822,7 @@ namespace dynamic_source
       strNew += str;
 #ifdef WINDOWS_DESKTOP
       SetEnvironmentVariableW(L"PATH", wstring(strNew));
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       throw ::exception(todo);
 
@@ -837,7 +837,7 @@ namespace dynamic_source
 
       string strPath = acmenode()->get_environment_variable("PATH");
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       throw ::exception(todo);
 

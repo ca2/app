@@ -42,9 +42,13 @@ list(APPEND library_references
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(experience_anthill PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(experience_anthill PROPERTIES LINKER_LANGUAGE CXX)
@@ -60,7 +64,8 @@ if (MSVC)
 
 elseif(LINUX)
 
-    target_compile_options(experience_anthill PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     #target_link_options(experience_anthill PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(experience_anthill PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(experience_anthill PRIVATE -Wl,-z,defs)
@@ -75,6 +80,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 

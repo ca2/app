@@ -320,7 +320,7 @@ i64 oswindow_id(oswindow w)
 //
 //   return acmepath()->app_module().folder();
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //   wstring wstrModuleFilePath;
 //

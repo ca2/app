@@ -10,7 +10,6 @@
 #include "acme/parallelization/semaphore.h"
 #include "acme/platform/application.h"
 //#include "acme/primitive/mathematics/scalar.h"
-#include "acme/primitive/text/text.h"
 #include "apex/progress/real.h"
 
 
@@ -33,7 +32,7 @@ namespace apex
 
       void * m_pnativeapp;
 
-
+      ::string m_strNetworkingApplicationHostname;
       //class application_impl *                     m_pappimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
@@ -41,7 +40,6 @@ namespace apex
       ::pointer<::user::language_map>              m_puserlanguagemap;
 
       //::pointer<::apex::application>             m_pappParent;
-      ::text::text                                 m_textAppTitle;
       string                                       m_strBaseSupportId;
       string                                       m_strDatabaseAppId;
       string                                       m_strRelativeFolder;

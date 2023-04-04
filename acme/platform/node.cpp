@@ -2372,36 +2372,36 @@ return false;
    }
    
    
-   bool node::shell_execute_async(const ::string & pszFile, const ::string & pszParams)
-   {
+   //bool node::shell_execute_async(const ::string & pszFile, const ::string & pszParams)
+   //{
 
-      return false;
+   //   return false;
 
-   }
-
-
-   bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
-   {
-
-      return false;
-
-   }
-
-   
-   bool node::root_execute_async(const ::string & pszFile, const ::string & pszParams)
-   {
-
-      return false;
-
-   }
+   //}
 
 
-   bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
-   {
+   //bool node::shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
+
+   //
+   //bool node::root_execute_async(const ::string & pszFile, const ::string & pszParams)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool node::root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout)
+   //{
+
+   //   return false;
+
+   //}
 
 
    string node::executable_title_from_appid(const string & strParam)
@@ -2801,6 +2801,28 @@ return false;
 
    
    void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+   void node::_beta_use_unicode_utf8()
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+#endif
+
+
+   void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)
    {
 
       throw ::interface_only();

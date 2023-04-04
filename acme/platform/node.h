@@ -633,11 +633,11 @@ namespace acme
 
 
 
-      virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
+      //virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
-      virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
+      //virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
 
       //CLASS_DECL_ACME bool os_init_application();
@@ -704,6 +704,15 @@ namespace acme
       virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);
       virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload);
 
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual void _beta_use_unicode_utf8();
+
+#endif
+
+
+      virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
 
 
    };

@@ -71,6 +71,7 @@ if (LINUX OR FREEBSD)
 
 endif ()
 
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)
@@ -111,6 +112,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(gpu_opengl PRIVATE _GPU_OPENGL_LIBRARY)

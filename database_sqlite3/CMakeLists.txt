@@ -20,7 +20,10 @@ list(APPEND library_references
    aura
    axis)
 
-add_library(database_sqlite3 SHARED ${database_sqlite3_source})
+
+add_library(${PROJECT_NAME} SHARED ${database_sqlite3_source})
+add_library(static_${PROJECT_NAME} STATIC ${database_sqlite3_source})
+
 
 target_precompile_headers(database_sqlite3 PRIVATE framework.h)
 
@@ -58,8 +61,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(database_sqlite3 PRIVATE _DATABASE_SQLITE3_LIBRARY)

@@ -20,11 +20,16 @@ list(APPEND regular_expression_pcre2_source
 list(APPEND library_references
    acme)
 
-add_library(regular_expression_pcre2 SHARED ${regular_expression_pcre2_source})
+
+add_library(${PROJECT_NAME} SHARED ${regular_expression_pcre2_source})
+add_library(static_${PROJECT_NAME} STATIC ${regular_expression_pcre2_source})
+
 
 target_precompile_headers(regular_expression_pcre2 PRIVATE framework.h)
 
+
 set_target_properties(regular_expression_pcre2 PROPERTIES LINKER_LANGUAGE CXX)
+
 
 if (MSVC)
     target_compile_options(regular_expression_pcre2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -69,8 +74,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(regular_expression_pcre2 PRIVATE _REGULAR_EXPRESSION_PCRE2_LIBRARY)

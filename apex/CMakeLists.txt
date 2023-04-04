@@ -1416,7 +1416,8 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(${PROJECT_NAME} SHARED ${apex_source})
+add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 
@@ -1455,6 +1456,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)

@@ -4070,4 +4070,18 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
 }
 
 
+void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip)
+{
+
+   auto pfileZip = get_reader(pathZip);
+
+   auto pfolder = acmesystem()->create < ::folder >("folder", "zip");
+
+   pfolder->open_for_reading(pfileZip);
+
+   pfolder->e_extract_all(pathFolder);
+
+}
+
+
 

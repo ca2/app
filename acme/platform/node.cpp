@@ -2782,12 +2782,12 @@ return false;
    }
 
 
-   void node::unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip)
-   {
+   //void node::unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip)
+   //{
 
-      command_system("cmd.exe -c \"unzip \"" + pathZip + "\" -d \"" + pathFolder + "\"");
+   //   command_system("cmd.exe -c \"unzip \"" + pathZip + "\" -d \"" + pathFolder + "\"");
 
-   }
+   //}
 
 
    ::string node::get_user_permanent_environment_variable(const ::scoped_string& scopedstr)

@@ -698,7 +698,7 @@ namespace acme
       virtual void integration_factory();
 
 
-      virtual void unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip);
+      //virtual void unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip);
 
 
       virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);

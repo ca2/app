@@ -127,7 +127,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 #endif
 
 
-#if defined(APPLE_IOS) || defined(_UWP)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
 CLASS_DECL_APEX int ui_open_url(const ::string & psz);
 #endif
 
@@ -2200,7 +2200,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS)
+#if defined(ANDROID) || defined(WINDOWS) || defined(MACOS) || defined(LINUX)
 
       acmenode()->m_papexnode->on_create_app_shortcut(this);
 
@@ -2852,7 +2852,7 @@ namespace apex
       if (!m_bAppHasInstallerChangedProtected)
       {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          set_has_installer(false);
 
@@ -3624,7 +3624,7 @@ namespace apex
    bool application::check_exclusive(bool & bHandled)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return true;
 
@@ -4656,7 +4656,7 @@ namespace apex
 
       }
 
-      //#ifdef _UWP
+      //#ifdef UNIVERSAL_WINDOWS
       //
       //      output_debug_string(strFile);
       //
@@ -5764,7 +5764,7 @@ namespace apex
    void application::close_application()
    {
 
-      //#ifdef _UWP
+      //#ifdef UNIVERSAL_WINDOWS
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
@@ -6968,7 +6968,7 @@ namespace apex
       if (get_command_line_parameter(strValue, pszCommandLine, "enable_desktop_launch"))
       {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          //return -1;
 
@@ -9105,7 +9105,7 @@ namespace apex
 
    //   ::user::interaction * application::get_desktop_window()
    //   {
-   //#if defined(_UWP) || defined(__APPLE__)
+   //#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__)
    //      throw ::exception(todo);
    //      /*#elif defined(LINUX)
    //
@@ -9623,7 +9623,7 @@ namespace apex
    void application::ensure_app_interest()
    {
 
-      //#ifndef _UWP
+      //#ifndef UNIVERSAL_WINDOWS
       //
       //      for (i32 i = 0; i < m_straAppInterest.get_count(); i++)
       //      {
@@ -10185,9 +10185,9 @@ namespace apex
 void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
 
-   auto papp = (::apex::application *)pApplication;
+   auto papp = (::acme::application *)pApplication;
 
-   papp->on_application_menu_action(pszCommand);
+   papp->m_papexapplication->on_application_menu_action(pszCommand);
 
 }
 

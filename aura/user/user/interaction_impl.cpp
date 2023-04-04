@@ -132,7 +132,7 @@ namespace user
 
       set_per_second(12.0);
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       set_per_second(60.0);
 
@@ -803,7 +803,7 @@ namespace user
 
       m_puserinteraction->m_pinteractionimpl = this;
 
-      #if !defined(_UWP)
+      #if !defined(UNIVERSAL_WINDOWS)
 
             m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
@@ -4540,10 +4540,10 @@ namespace user
 //      printf("_DEBUG not defined\n");
 //      #endif
 //
-//      #ifdef RASPBIAN
-//      printf("RASPBIAN defined\n");
+//      #ifdef RASPBERRYPIOS
+//      printf("RASPBERRYPIOS defined\n");
 //      #else
-//      printf("RASPBIAN not defined\n");
+//      printf("RASPBERRYPIOS not defined\n");
 //      #endif
       
 #ifdef REPORT_OFFSET
@@ -4933,7 +4933,7 @@ namespace user
 
          }
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
@@ -6600,7 +6600,7 @@ namespace user
 
          //output_debug_string("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
 
-//#if !defined(_UWP) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
          if(sizeOutput != m_sizeDrawn)
          {

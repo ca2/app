@@ -126,7 +126,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* s, unsigned char key_name[16],
          {
             return -1; /* insufficient random */
          }
-         ::memcpy_dup(key_name, key.key_name, 16);
+         ::memory_copy(key_name, key.key_name, 16);
          EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
          //auto mac = EVP_MAC_fetch(0, "sha256", 0);
          //auto macctx = EVP_MAC_CTX_new(mac)
@@ -161,7 +161,7 @@ OSSL_PARAM_construct_end() };
 #else
 static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned char *iv, EVP_CIPHER_CTX *ctx, HMAC_CTX *hctx, int enc)
 {
-   ::networking_bsd::tcp_socket *c = (::networking_bsd::tcp_socket *) SSL_get_app_data2(s);
+   ::sockets_bsd::tcp_socket *c = (::sockets_bsd::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
    if (enc)   /* create memory_new session */
@@ -172,7 +172,7 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
          {
             return -1; /* insufficient random */
          }
-         ::memcpy_dup(key_name, key.key_name, 16);
+         ::memory_copy(key_name, key.key_name, 16);
          EVP_EncryptInit_ex(ctx, EVP_aes_128_cbc(), nullptr, key.aes_key, iv);
          HMAC_Init_ex(hctx, key.hmac_key, 16, EVP_sha256(), nullptr);
          return 1;
@@ -1540,8 +1540,8 @@ namespace sockets_bsd
             struct sockaddr_in *psockaddrin = (struct sockaddr_in *)psockaddr;
             if(psockaddrin->sin_family == AF_INET)
             {
-               ::memcpy_dup(request + 2,&psockaddrin->sin_port,2); // nwbo is ok here
-               ::memcpy_dup(request + 4,&psockaddrin->sin_addr,sizeof(struct in_addr));
+               ::memory_copy(request + 2,&psockaddrin->sin_port,2); // nwbo is ok here
+               ::memory_copy(request + 4,&psockaddrin->sin_addr,sizeof(struct in_addr));
             }
             else
             {
@@ -2506,9 +2506,9 @@ namespace sockets_bsd
          for (i = 0; i < cnt; ++i)
          {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);
-            ::memcpy_dup(m_ticketkeya[i].key_name, pnetworking2->m_baTicketKey + j, 16);
-            ::memcpy_dup(m_ticketkeya[i].hmac_key, pnetworking2->m_baTicketKey + j + 16, 16);
-            ::memcpy_dup(m_ticketkeya[i].aes_key, pnetworking2->m_baTicketKey + j + 32, 16);
+            ::memory_copy(m_ticketkeya[i].key_name, pnetworking2->m_baTicketKey + j, 16);
+            ::memory_copy(m_ticketkeya[i].hmac_key, pnetworking2->m_baTicketKey + j + 16, 16);
+            ::memory_copy(m_ticketkeya[i].aes_key, pnetworking2->m_baTicketKey + j + 32, 16);
          }
       }
 

@@ -18,7 +18,7 @@ int _c_lock_is_active(const ::string & pszName)
 
 int _c_lock(const ::string & pszName, void ** pdata)
 {
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    wstring wstrName(pszName);
    HANDLE hmutex = ::CreateMutexEx(nullptr, wstrName, 0, SYNCHRONIZE);
 #else

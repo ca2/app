@@ -16,7 +16,7 @@ CLASS_DECL_ACME bool is_verbose();
 CLASS_DECL_ACME int_bool os_init_windowing();
 CLASS_DECL_ACME void os_term_windowing();
 
-#ifdef RASPBIAN
+#ifdef RASPBERRYPIOS
 
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@ CLASS_DECL_ACME void os_term_windowing();
 #ifdef LINUX
 
 
-   #ifndef RASPBIAN
+   #ifndef RASPBERRYPIOS
 
 
    void sn_start_context();
@@ -1067,7 +1067,7 @@ bool app_core::has_apex_application_factory() const
 
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 

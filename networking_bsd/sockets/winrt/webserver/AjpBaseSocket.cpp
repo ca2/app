@@ -111,7 +111,7 @@ namespace sockets
             {
                memsize missing = m_length - m_ptr;
                short len = (short)(missing < left ? missing : left);
-               ::memcpy_dup(m_message + m_ptr, buf + ptr, len);
+               ::memory_copy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
                if (m_ptr < m_length)
@@ -131,7 +131,7 @@ namespace sockets
             {
                memsize missing = m_length - m_ptr;
                short len = (short)(missing < left ? missing : left);
-               ::memcpy_dup(m_message + m_ptr, buf + ptr, len);
+               ::memory_copy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
                if (m_ptr < m_length)
@@ -167,7 +167,7 @@ namespace sockets
    short AjpBaseSocket::get_integer(const char *buf, int& ptr)
    {
       short n;
-      ::memcpy_dup(&n, buf + ptr, 2);
+      ::memory_copy(&n, buf + ptr, 2);
       ptr += 2;
       return ntohs(n);
    }
@@ -207,7 +207,7 @@ namespace sockets
    void AjpBaseSocket::put_integer(char *buf, int& ptr, short zz)
    {
       short tmp = htons(zz);
-      ::memcpy_dup(buf + ptr, &tmp, 2);
+      ::memory_copy(buf + ptr, &tmp, 2);
       ptr += 2;
    }
 
@@ -217,7 +217,7 @@ namespace sockets
    {
       string str(psz);
       put_integer(buf, ptr, (short)str.length() );
-      ::memcpy_dup(buf + ptr, (const char *) str);
+      ::memory_copy(buf + ptr, (const char *) str);
       ptr += (int)str.length();
       put_byte(buf, ptr, 0);
    }

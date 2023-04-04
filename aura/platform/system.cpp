@@ -1050,7 +1050,7 @@ namespace aura
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
 //      u64 tt;
-//      ::memcpy_dup(&tt, &ft, sizeof(tt));
+//      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      point_i32->tv_sec = (long)tt / 1000000;
 //      point_i32->tv_usec = (long)tt % 1000000;
@@ -1198,7 +1198,7 @@ namespace aura
       
       return "draw2d_quartz2d";
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
       
       return "draw2d_direct2d";
 
@@ -2299,7 +2299,7 @@ namespace aura
 //      if (m_spmutexOpenweatherCity.is_null())
 //      {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //         m_spmutexOpenweatherCity = __new(::pointer < ::mutex >());
 //
@@ -2580,7 +2580,7 @@ namespace aura
 //            string strApp = pszAppName;
 //            strApp += "app.exe";
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //            throw ::exception(todo);
 //
@@ -2621,7 +2621,7 @@ namespace aura
 //            string strParameters;
 //            strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //            throw ::exception(todo);
 //
@@ -2657,7 +2657,7 @@ namespace aura
 //            string strParameters;
 //            strParameters = ": app=" + strAppName;
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //            throw ::exception(todo);
 //
@@ -2870,7 +2870,7 @@ namespace aura
 //   ::file::path system::local_get_matter_path(string strMatter)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      return "";
 //
@@ -3410,7 +3410,7 @@ namespace aura
 //
 //#endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //
@@ -3582,7 +3582,7 @@ namespace aura
 //      *prectangle = m_monitorinfoa[iMonitor].rcMonitor;
 //
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //
 //      return false;
@@ -3709,7 +3709,7 @@ namespace aura
 //      *prectangle = m_monitorinfoa[iWorkspace].rcWork;
 //
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      return get_monitor_rectangle(iWorkspace, prectangle);
 //
@@ -3820,7 +3820,7 @@ namespace aura
       if(acmeapplication()->m_bExperienceMainFrame)
       {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //         //auto psession = get_session();
 //
@@ -4011,7 +4011,7 @@ namespace aura
 //      else
 //      {
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //
 //         string * pstrNew = memory_new string(strUrl);
@@ -4150,7 +4150,7 @@ namespace aura
 //   void system::chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 //
@@ -4322,7 +4322,7 @@ namespace aura
 //   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //#else
@@ -4397,7 +4397,7 @@ namespace aura
 //   void system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      pcontext->m_papexcontext->os().native_full_web_browser(strUrl);
 //
@@ -5057,7 +5057,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
 //#include "aura/os/windows/windows_system_interaction_impl.h"
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 //#include "aura/operating_system/universal_windows/_universal_windows.h"
 #endif
 
@@ -5218,7 +5218,7 @@ namespace aura
   //
   //      add_factory_item < ::draw2d::icon >();
   //
-  //      //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+  //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
   //      //      m_possystemwindow = memory_new os_system_window();
   //      //
@@ -5253,7 +5253,7 @@ namespace aura
   //
   //      }
   //
-  //      //#ifdef _UWP
+  //      //#ifdef UNIVERSAL_WINDOWS
   //      //      m_window                                  = nullptr;
   //      //#endif
   //
@@ -6209,7 +6209,7 @@ namespace aura
    //   }
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //   bool system::window_rectangle(RECTANGLE_I32* prectangle)
@@ -6341,7 +6341,7 @@ namespace aura
 //
 //      g_pszCooperativeLevel = "aura";
 //
-//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //
 //      m_possystemwindow = memory_new os_system_window();
 //
@@ -6751,7 +6751,7 @@ namespace aura
 //   void system::main_user_async(const ::procedure & procedure, ::enum_priority epriority)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      return m_pimplMain->main_async(routine, epriority);
 //

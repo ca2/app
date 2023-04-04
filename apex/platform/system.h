@@ -96,7 +96,7 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       void system_construct(const ::string_array & stra);
 
@@ -386,7 +386,7 @@ namespace apex
 
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       virtual bool window_rectangle(RECTANGLE_I32* prectangle);
 
@@ -497,7 +497,7 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 // void CLASS_DECL_APEX __start_core_system_main(::base::system * psystem);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 CLASS_DECL_APEX int app_core_main(const ::string & psz);
 

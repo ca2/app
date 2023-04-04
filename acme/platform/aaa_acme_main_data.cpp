@@ -223,7 +223,7 @@ void apex_main_data::on_system_construct()
 //}
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 void apex_main_data::system_construct(const ::string_array & straParam)

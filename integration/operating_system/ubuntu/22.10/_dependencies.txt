@@ -2,5 +2,5 @@ app/draw2d_cairo
 app/experience_core
 app/imaging_freeimage
 operating_system-linux/node_linux
-platform-posix/windowing_x11
-platform-posix/write_text_pango
+platoperating_systemform-posix/windowing_x11
+operating_system-posix/write_text_pango

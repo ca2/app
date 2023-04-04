@@ -47,6 +47,7 @@ list(APPEND library_source
         multimedia/exception.h
         multimedia/file_application.cpp
         multimedia/file_application.h
+        multimedia/information.h
         multimedia/multimedia.cpp
         multimedia/multimedia.h
         operating_system/windows/audio.cpp
@@ -135,9 +136,13 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source} multimedia/information.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(aqua PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(aqua PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -148,9 +153,10 @@ if (MSVC)
     target_link_options(aqua PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aqua.def")
     target_link_libraries(aqua PRIVATE acme apex)
 elseif(LINUX)
-    target_compile_options(aqua PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     #target_link_options(aqua PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(aqua PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(aqua PRIVATE acme apex)
     target_link_options(aqua PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
@@ -162,6 +168,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 

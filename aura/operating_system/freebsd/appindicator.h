@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //
 //class user_notify_icon_bridge;

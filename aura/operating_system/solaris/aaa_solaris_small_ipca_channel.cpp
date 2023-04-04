@@ -118,7 +118,7 @@ namespace aura
 
             cSend = minimum(c,511);
 
-            ::memcpy_dup(data.data,&pszMessage[cPos],minimum(c,511));
+            ::memory_copy(data.data,&pszMessage[cPos],minimum(c,511));
 
             c -= cSend;
 

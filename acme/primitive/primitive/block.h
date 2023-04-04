@@ -216,7 +216,7 @@ struct CLASS_DECL_ACME block :
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //   ::winrt::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
 //   Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
@@ -289,7 +289,7 @@ struct CLASS_DECL_ACME block :
    inline void copy(const ::block & block)
    {
 
-      memcpy_dup(m_begin, block.data(), minimum(block.size(), this->size()));
+      memory_copy(m_begin, block.data(), minimum(block.size(), this->size()));
 
    }
 

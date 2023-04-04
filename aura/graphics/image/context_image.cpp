@@ -987,7 +987,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 }
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
 
 // platform implementation may use this imaging-"routing" to manipulate the image/clipboard
@@ -1018,7 +1018,7 @@ bool context_image::_image_to_desk(::image* pimage)
 }
 
 
-#endif // _UWP
+#endif // UNIVERSAL_WINDOWS
 
 
 void context_image::_task_load_image(::image * pimage, ::payload payload, bool bCache)

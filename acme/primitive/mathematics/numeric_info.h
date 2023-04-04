@@ -27,19 +27,19 @@ namespace numeric_info_internal
       typedef T TYPE;
       typedef T OFFSET_TYPE;
 
-      static inline TYPE maximum()
+      static constexpr TYPE maximum()
       {
          return (TYPE) 0;
       }
-      static inline TYPE minimum()
+      static constexpr TYPE minimum()
       {
          return (TYPE) 0;
       }
-      static inline TYPE null()
+      static constexpr TYPE null()
       {
          return (TYPE) 0;
       }
-      static inline TYPE unitary()
+      static constexpr TYPE unitary()
       {
          return (TYPE) 1;
       }

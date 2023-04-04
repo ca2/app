@@ -35,7 +35,7 @@
 ////         return 0;
 ////      }
 ////      memsize uRead = minimum(pm->get_length(), nCount);
-////      ::memcpy_dup(pdata, pm->get_data(), uRead);
+////      ::memory_copy(pdata, pm->get_data(), uRead);
 //
 ////      return uRead;
 ////   }

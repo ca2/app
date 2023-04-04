@@ -128,7 +128,7 @@ CLASS_DECL_APEX void apex_ref();
 #endif
 
 
-#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
 #define MOBILE_PLATFORM 1
 
@@ -861,10 +861,10 @@ namespace core
 
 //#include "apex/operating_system/ansi/_.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 //
-//#include "apex/os/_UWP/_UWP.h"
-//#include "apex/os/_UWP/_UWP_user_impl.h"
+//#include "apex/os/UNIVERSAL_WINDOWS/UNIVERSAL_WINDOWS.h"
+//#include "apex/os/UNIVERSAL_WINDOWS/_UWP_user_impl.h"
 //
 #elif defined(MACOS)
 //

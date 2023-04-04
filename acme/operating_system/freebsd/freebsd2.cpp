@@ -13,7 +13,7 @@
 
    return acmepath()->app_module().folder();
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
    wstring wstrModuleFilePath;
 
@@ -234,7 +234,7 @@
 ::file::path dir_base_module()
 {
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    return "";
 

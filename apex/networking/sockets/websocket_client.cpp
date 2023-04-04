@@ -199,7 +199,7 @@
 //
 //   }
 //
-//   ::memcpy_dup(&frame[iOffset], memory.data(), memory.get_length());
+//   ::memory_copy(&frame[iOffset], memory.data(), memory.get_length());
 //
 //   if (useMask)
 //   {

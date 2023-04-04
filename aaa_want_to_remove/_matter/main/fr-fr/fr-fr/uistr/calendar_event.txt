@@ -1,1 +1,0 @@
-﻿"calendar_event:birthday" = "Anniversaire"

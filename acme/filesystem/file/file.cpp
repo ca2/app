@@ -627,6 +627,8 @@ namespace file
 
             if (b1 != '\n' && !is_end_of_file())
             {
+               
+               put_byte_back(b1);
 
                b = '\r';
 
@@ -986,7 +988,7 @@ namespace file
 
       //   sizeTotalRead -= sizeSearch;
 
-      //   __memmov(buffer, buffer + sizeSearch, sizeTotalRead);
+      //   memory_transfer(buffer, buffer + sizeSearch, sizeTotalRead);
 
       //}
 
@@ -1020,9 +1022,9 @@ namespace file
 
    //         }
 
-   //         __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + internal_data().size(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), pfileOut->internal_data().size() - internal_data().size());
+   //         memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + internal_data().size(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), pfileOut->internal_data().size() - internal_data().size());
 
-   //         ::memcpy_dup(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), internal_data().data(), internal_data().size());
+   //         ::memory_copy(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), internal_data().data(), internal_data().size());
 
    //         pfileOut->position() += internal_data().size();
 
@@ -1047,7 +1049,7 @@ namespace file
 
    //   while(pfileOut->increase_internal_data_size(uiBufInc) && pfileOut->internal_data().data() != nullptr)
    //   {
-   //      __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), uiBufInc);
+   //      memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), uiBufInc);
    //      uRead = read(pfileOut->internal_data()(pfileOut->get_position(), uiBufSize));
    //      pfileOut->position() += uRead;
    //      uiBufSize -= uRead;
@@ -1061,7 +1063,7 @@ namespace file
    //   if(uiBufSize > 0)
    //   {
 
-   //      __memmov(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
+   //      memory_transfer(((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position(), ((u8 *) pfileOut->internal_data().data()) + pfileOut->get_position() + uiBufSize, uiBufSize);
 
    //      pfileOut->increase_internal_data_size(-(memsize)uiBufSize);
 

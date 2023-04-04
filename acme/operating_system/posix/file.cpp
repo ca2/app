@@ -479,7 +479,7 @@
 //      return false;
 //   }
 //
-//   memcpy_dup(target, source, filesize);
+//   memory_copy(target, source, filesize);
 //
 //   msync(target, filesize, MS_SYNC);
 //
@@ -979,9 +979,20 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
 
     pstatus->m_attribute = 0;
 
+
+#if defined(ANDROID) || defined(LINUX)
+
+    ::copy(&pstatus->m_timeModification, &pst->st_mtim);
+    ::copy(&pstatus->m_timeAccess, &pst->st_atim);
+    ::copy(&pstatus->m_timeCreation, &pst->st_ctim);
+
+#else
+
     ::copy(&pstatus->m_timeModification, &pst->st_mtimespec);
     ::copy(&pstatus->m_timeAccess, &pst->st_atimespec);
     ::copy(&pstatus->m_timeCreation, &pst->st_ctimespec);
+
+#endif
 
     if (pstatus->m_timeCreation <= 0_s)
     {

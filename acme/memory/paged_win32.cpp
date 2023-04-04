@@ -39,7 +39,7 @@ void * paged_reallocate(void * address, size_t sizeOld, size_t sizeNew)
       paged_free(address);
       return nullptr;
    }
-   ::memcpy_dup(pnew, address, minimum(sizeOld, sizeNew));
+   ::memory_copy(pnew, address, minimum(sizeOld, sizeNew));
    paged_free(address);
    return pnew;
 }

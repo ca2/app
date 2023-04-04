@@ -24,7 +24,7 @@ const WCHAR *get_locale_value_name( ::u32 lctype );
  *
  * See GetLocaleInfoA.
  */
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #ifdef WINDOWS
 WINAXISAPI
 #endif
@@ -88,7 +88,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
                   set_last_error( ERROR_INSUFFICIENT_BUFFER );
                   return 0;
                }
-               ::memcpy_dup( buffer, &number, sizeof(number) );
+               ::memory_copy( buffer, &number, sizeof(number) );
             }
          }
          else ret = get_registry_locale_info( value, buffer, len );
@@ -139,11 +139,11 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
       const WCHAR *end;
       WCHAR * tmp = (WCHAR *) malloc((*point + 1) * sizeof(WCHAR) );
       if (!tmp) return 0;
-      ::memcpy_dup( tmp, point + 1, *point * sizeof(WCHAR) );
+      ::memory_copy( tmp, point + 1, *point * sizeof(WCHAR) );
       tmp[*point] = 0;
       number = (u32) wd16_to_i64( tmp, &end, 10 );
       if (!*end)
-         ::memcpy_dup( buffer, &number, sizeof(number) );
+         ::memory_copy( buffer, &number, sizeof(number) );
       else  /* invalid number */
       {
          set_last_error( ERROR_INVALID_FLAGS );
@@ -156,7 +156,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
    }
    else
    {
-      ::memcpy_dup( buffer, point + 1, ret * sizeof(WCHAR) );
+      ::memory_copy( buffer, point + 1, ret * sizeof(WCHAR) );
       if (lctype != LOCALE_FONTSIGNATURE) buffer[ret-1] = 0;
 
       //FORMATTED_TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
@@ -220,7 +220,7 @@ static LCID lcid_LC_TELEPHONE;
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 /***********************************************************************
  *           convert_default_lcid
@@ -246,7 +246,7 @@ LCID convert_default_lcid( LCID lcid, LCTYPE lctype )
       case LOCALE_IDEFAULTCODEPAGE:
       case LOCALE_IDEFAULTEBCDICCODEPAGE:
       case LOCALE_IDEFAULTMACCODEPAGE:
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
       case LOCALE_IDEFAULTUNIXCODEPAGE:
 #endif
          default_id = lcid_LC_CTYPE;
@@ -551,7 +551,7 @@ LCID WINAPI GetSystemDefaultLCID(void)
    return lcid;
 }
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 /******************************************************************************
  *		ConvertDefaultLocale (KERNEL32.@)
  *
@@ -606,7 +606,7 @@ LCID WINAPI ConvertDefaultLocale( LCID lcid )
 NTSTATUS WINAPI NtQueryDefaultLocale( int_bool user, LCID *lcid )
 {
    *lcid = user ? user_lcid : system_lcid;
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    return 0;
 #else
    return STATUS_SUCCESS;
@@ -625,7 +625,7 @@ NTSTATUS WINAPI NtSetDefaultLocale( int_bool user, LCID lcid )
       system_lcid = lcid;
       system_ui_language = LANGIDFROMLCID(lcid); /* there is no separate call to set it */
    }
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    return 0;
 #else
    return STATUS_SUCCESS;

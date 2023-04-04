@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
 namespace primitive

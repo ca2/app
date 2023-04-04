@@ -37,7 +37,7 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 #include "apex/operating_system/posix/_.h"
 #include "apex/operating_system/freebsd/_.h"
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #include "apex/operating_system/ansi/_.h"
 #include "apex/operating_system/windows_common/_.h"

@@ -19,6 +19,7 @@
 #include "Screen.h"
 #include "aura/user/user/interaction.h"
 #include <sstream>
+#include <limits>
 
 
 namespace nanoui
@@ -172,9 +173,9 @@ template <typename Scalar> class IntBox : public TextBox {
 public:
    IntBox(Widget * parent, Scalar value = (Scalar)0) : TextBox(parent) {
       set_default_value("0");
-      set_format(std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
+      set_format(::std::is_signed<Scalar>::value ? "[-]?[0-9]*" : "[0-9]*");
       set_value_increment(1);
-      set_min_max_values(std::numeric_limits<Scalar>::lowest(), std::numeric_limits<Scalar>::max());
+      set_min_max_values(::std::numeric_limits<Scalar>::lowest(), ::std::numeric_limits<Scalar>::max());
       set_value(value);
       set_spinnable(false);
    }

@@ -12,7 +12,7 @@
 #include <iconv.h>
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 string iconv_charset_from_windows_code_page(::u32 CodePage)
 {

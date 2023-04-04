@@ -205,7 +205,7 @@ namespace sockets
 #define Errno WSAGetLastError()
 //CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 //CLASS_DECL_APEX const char *bsd_socket_error(i32 x);
 #define Errno get_last_error()

@@ -14,8 +14,10 @@
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
 
+#include "acme/_operating_system.h"
 
 #include <sys/stat.h>
+
 
 #ifdef LINUX
 //#include <unistd.h>
@@ -205,7 +207,7 @@ namespace introjection
 //
 //      ::file::path strVars;
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (m_strVs == "2015")
@@ -386,7 +388,7 @@ namespace introjection
 //
 //      auto psystem = acmesystem()->m_paurasystem;
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      throw ::exception(todo);
 //
@@ -422,7 +424,7 @@ namespace introjection
 //      bool bResult = false;
 //#ifdef WINDOWS_DESKTOP
 //      //bResult = SetEnvironmentVariable("PATH",str) != false;
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      throw ::exception(todo);
 //
@@ -1044,7 +1046,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #elif defined(__APPLE__)
       strBuildCmd.format(dir()->install() / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #else
-      strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
+      strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
       str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1053,6 +1055,8 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
       str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
+      auto pathInstall = dir()->install();
+      str.find_replace("%CA2_ROOT%", ::string(pathInstall) + "/");
 
       m_pintegrationcontext->prepare_compilation_script(str);
 
@@ -1100,7 +1104,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
             + strTransformName);
 
       dir()->create(pathOutputFolder);
-      
+
 
 #ifdef LINUX
 
@@ -1113,6 +1117,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       string strTargetPath = dir()->install() / "time-windows" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       strTargetPath.case_insensitive_ends_eat(".cpp");
       strTargetPath.case_insensitive_ends_eat(".dll");
+
+      ::SetThreadUILanguage((LANGID)65001);
+
 
 #endif
 
@@ -1259,7 +1266,7 @@ auto tickStart = ::time::now();
 #if defined(LINUX) || defined(FREEBSD)
          strBuildCmd.format(dir()->install() / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
-         strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bat"));
+         strBuildCmd.format(dir()->install() / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
          str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
@@ -1271,7 +1278,10 @@ auto tickStart = ::time::now();
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
-         str.find_replace("%CA2_ROOT%",strElem);
+//         auto pathInstall = dir()->install();
+         str.find_replace("%CA2_ROOT%", ::string(pathInstall) + "/");
+
+         //str.find_replace("%CA2_ROOT%",strElem);
          str.find_replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.find_replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
 

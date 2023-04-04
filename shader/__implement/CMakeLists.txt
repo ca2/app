@@ -68,11 +68,11 @@ add_dependencies(${PROJECT_NAME} gpu_opengl)
 
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(${PROJECT_NAME} PRIVATE ${executable_include_directories})
 
 
 target_link_directories(${PROJECT_NAME} PRIVATE ${library_link_directories})

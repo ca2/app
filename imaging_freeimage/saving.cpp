@@ -168,7 +168,7 @@ namespace imaging_freeimage
       for (int i = 0; i < pimage->height(); i++)
       {
 
-         ::memcpy_dup(
+         ::memory_copy(
             &((u8 *)pdst)[iStrideDst * (pimage->height() - i - 1)],
             &((u8 *)psrc)[iStrideSrc * i],
             iStrideDst);

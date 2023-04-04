@@ -18,7 +18,7 @@
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBIAN) && !defined(ANDROID)
+#if !defined(RASPBERRYPIOS) && !defined(ANDROID)
 #include <valgrind/valgrind.h>
 #endif
 
@@ -166,7 +166,7 @@ namespace apex
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBIAN) && !defined(ANDROID) && !defined(WINDOWS)
+#if !defined(RASPBERRYPIOS) && !defined(ANDROID) && !defined(WINDOWS)
       if (!RUNNING_ON_VALGRIND)
 #endif
       {
@@ -188,7 +188,7 @@ namespace apex
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if defined(LINUX) && !defined(RASPBIAN)
+#if defined(LINUX) && !defined(RASPBERRYPIOS)
 
       else if (RUNNING_ON_VALGRIND)
       {
@@ -548,7 +548,7 @@ namespace apex
 ////
 ////         output_debug_string("\n" + m_strLogPath + "\n");
 ////
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 ////
 ////         auto psystem = acmesystem()->m_papexsystem;
 ////

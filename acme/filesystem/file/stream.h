@@ -516,7 +516,7 @@ public:
 //   virtual void write(u32 u) { raw_write(u); }
 //   virtual void write(i64 i) { raw_write(i); }
 //   virtual void write(::u64 u) { raw_write(u); }
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void write(unsigned long ul) { raw_write(ul); }
 //   virtual void write(long l) { raw_write(l); }
 //   //inline void write (long long ll);
@@ -555,7 +555,7 @@ public:
 //#ifdef WINDOWS
 //   virtual void read(unichar & wch);
 //   virtual void read(long & l);
-//#elif defined(__APPLE__)  || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
+//#elif defined(__APPLE__)  || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(long & l);
 //#endif
 //   virtual void read(i8 & i);
@@ -565,7 +565,7 @@ public:
 //   virtual void read(u32 & u);
 //   virtual void read(i64 & i);
 //   virtual void read(::u64 & u);
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(unsigned long & u);
 //   //inline void read (long long & u);
 //#endif
@@ -602,7 +602,7 @@ public:
 //   virtual void exchange(const ::atom & atom, u32 & u) { stream_exchange(atom, u); }
 //   virtual void exchange(const ::atom & atom, i64 & i) { stream_exchange(atom, i); }
 //   virtual void exchange(const ::atom & atom, ::u64 & u) { stream_exchange(atom, u); }
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void exchange(const ::atom & atom, unsigned long & ul) { stream_exchange(atom, ul); }
 //   virtual void exchange(const ::atom & atom, long & l) { stream_exchange(atom, l); }
 //   //inline void exchange(const ::atom & atom, long long & ll);

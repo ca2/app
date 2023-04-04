@@ -135,6 +135,7 @@ public:
       ::i64                                  m_all[3];
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
+      ::function_common* m_pfunctioncommon;
 
    };
 
@@ -356,8 +357,29 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    DECL_VAR_ENUM(check);
 #undef DECL_VAR_ENUM
 
+
    template < primitive_enum ENUM >
-   bool operator ==(ENUM e) const { return equals_enum(e); }
+   bool operator ==(ENUM e) const 
+   { 
+
+      if (m_etype == e_type_atom)
+      {
+
+         return m_atom == e;
+
+      }
+      else if (m_etype == e_type_patom)
+      {
+
+         return *m_patom == e;
+
+      }
+
+      return equals_enum(e); 
+   
+   }
+
+
    //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
    //inline class ::time & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
    //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
@@ -367,7 +389,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    void as(::memory_base & memory) const;
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
@@ -607,7 +629,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
 
    bool & bool_reference();
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long & long_reference();
    unsigned long & unsigned_long_reference();
 #endif
@@ -634,10 +656,11 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
 
    }
 
-   inline payload & operator = (const ::procedure & procedure)
+   template < primitive_function FUNCTION >
+   inline payload & operator = (const FUNCTION & function)
    {
 
-      _set_element(procedure.m_p);
+      _set_element(function.m_pbase);
 
       return *this;
 
@@ -653,6 +676,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
       return *this;
 
    }
+
 
 
    payload & operator = (::memory * pmemory);
@@ -709,7 +733,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    payload & operator = (::u32 u);
    payload & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
-#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
    payload & operator = (long l);
 #endif
    payload & operator = (::i64 i);
@@ -812,7 +836,7 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    //}
 
    template < an_object T >
-   payload & operator = (const T & t)
+   payload & assign_copy(const T & t)
    {
 
       ::copy(*this, t);
@@ -1186,7 +1210,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 
-//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //
 //
 //inline payload::operator long &()

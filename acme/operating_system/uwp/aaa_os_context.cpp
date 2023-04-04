@@ -206,7 +206,7 @@ namespace universal_windows
       }
 
       CloseHandle( hProcess );
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
       strName = ":<unknown>";
 #else
       throw ::exception(todo);
@@ -231,7 +231,7 @@ namespace universal_windows
          }
          dwa.set_size(cbNeeded / sizeof(::u32));
       }
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 #else
       throw ::exception(todo);
@@ -256,7 +256,7 @@ namespace universal_windows
                   (dwSize + 1024));
          strPath.ReleaseBuffer();
       }
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
       strPath = ":<unknown>";;
 #else
       throw ::exception(todo);

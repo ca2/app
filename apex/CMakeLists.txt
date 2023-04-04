@@ -109,6 +109,8 @@ list(APPEND apex_source
         filesystem/filesystem/file_context.h
         filesystem/filesystem/file_system.cpp
         filesystem/filesystem/file_system.h
+        filesystem/filesystem/link.cpp
+        filesystem/filesystem/link.h
         #filesystem/filesystem/path.h
         filesystem/fs/_.h
         #filesystem/fs/_fs.h
@@ -1414,9 +1416,15 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(${PROJECT_NAME} SHARED ${apex_source})
+add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
-target_precompile_headers(apex PRIVATE framework.h)
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
 
 set_target_properties(apex PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -1432,16 +1440,20 @@ elseif (LINUX OR FREEBSD)
     if(NOT DONT_USE_PKG_CONFIG)
          pkg_check_modules(PKGCONFIG libarchive)
     endif()
-    target_compile_options(apex PRIVATE -fpermissive)
-    target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(apex PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
     if (FREEBSD)
         target_link_libraries(apex PRIVATE dl pthread z)
     else ()
         target_link_libraries(apex PRIVATE dl pthread idn z)
     endif ()
-    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(apex PRIVATE acme)
     target_link_options(apex PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
@@ -1452,7 +1464,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)

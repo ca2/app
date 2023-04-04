@@ -9,7 +9,7 @@
 #pragma once
 
 
-char * ns_string(NSString * str);
+char * __strdup(NSString * str);
 
 
 

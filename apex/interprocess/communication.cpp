@@ -59,7 +59,7 @@ namespace interprocess
 
       m_strApp = strApp;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       m_atomApp = strApp;
 
@@ -88,7 +88,7 @@ namespace interprocess
 
    //      ::file::path path;
    //
-   //#ifndef _UWP
+   //#ifndef UNIVERSAL_WINDOWS
    //
    //      path = module_path_from_pid(iPid);
    //
@@ -174,7 +174,7 @@ namespace interprocess
       //
       //   }
       //
-      //#if !defined(_UWP)
+      //#if !defined(UNIVERSAL_WINDOWS)
       //
       //   auto iPid = atoll(strAppPid);
       //
@@ -468,7 +468,7 @@ namespace interprocess
 
 #ifdef WINDOWS
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       string strAppId(strApp);
 
@@ -588,7 +588,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //#if !defined(_UWP)
+   //   //#if !defined(UNIVERSAL_WINDOWS)
    //   //
    //   //   auto iPid = atoll(strAppPid);
    //   //
@@ -880,7 +880,7 @@ namespace interprocess
 
       auto pnode = psystem->node();
 
-#if !defined(_UWP) && !defined(APPLE_IOS)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
 
       ::file::path pathModule;
 

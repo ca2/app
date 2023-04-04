@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 void ns_main_async(dispatch_block_t block);
 
-char * ns_string(NSString * str);
+char * __strdup(NSString * str);
 
 
 bool ns_set_thread_name(const char * pszThreadName)
@@ -28,16 +28,12 @@ bool ns_set_thread_name(const char * pszThreadName)
 char * ns_get_thread_name()
 {
 
-   return ns_string([[NSThread currentThread] name]);
+   return __strdup([[NSThread currentThread] name]);
 
 }
 
 
-
-
-
-
-char * ns_string(NSString * str)
+char * __strdup(NSString * str)
 {
 
    if(str == nil)
@@ -58,9 +54,26 @@ char * ns_string(NSString * str)
 
    return strdup(pszUtf8);
 
-
 }
 
+
+NSString * nsstring_from_strdup(char * pszUtf8)
+{
+   
+   if(pszUtf8 == nullptr)
+   {
+      
+      return NULL;
+      
+   }
+   
+   NSString * pstr = [ [NSString alloc] initWithUTF8String:pszUtf8 ];
+   
+   free(pszUtf8);
+   
+   return pstr;
+   
+}
 
 
 void ns_main_sync(dispatch_block_t block)
@@ -121,6 +134,6 @@ unsigned int m_sleep(unsigned int seconds)
 char * ns_get_executable_path()
 {
    
-   return ns_string([[NSBundle mainBundle] executablePath]);
+   return __strdup([[NSBundle mainBundle] executablePath]);
    
 }

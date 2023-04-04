@@ -13,7 +13,7 @@
 //#include <sqlite3.h>
 //#include <locale.h>
 //
-//#ifdef RASPBIAN
+//#ifdef RASPBERRYPIOS
 //#define OPERATING_SYSTEM_NAMESPACE linux
 //#endif
 //
@@ -219,13 +219,13 @@ namespace aura
 
    // #endif
 
-//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 //
 ////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 //
 ////::pointer< ::mutex > g_pmutexThreadIdLock;
 //
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 //
 ////::pointer< ::mutex > g_pmutexPendingThreadsLock;
 //
@@ -233,7 +233,7 @@ namespace aura
 //
 ////::pointer< ::mutex > g_pmutexTlsData;
 //
-//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 
 
 //#if defined(LINUX) || defined(__APPLE__)
@@ -383,13 +383,13 @@ namespace aura
 //
 //      // #endif
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 //
 ////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 //
 ////::pointer< ::mutex > g_pmutexThreadIdLock;
 //
-////#if !defined(_UWP)
+////#if !defined(UNIVERSAL_WINDOWS)
 //
 ////::pointer< ::mutex > g_pmutexPendingThreadsLock;
 //
@@ -397,7 +397,7 @@ namespace aura
 //
 ////::pointer< ::mutex > g_pmutexTlsData;
 //
-//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 //
 ////#if defined(LINUX) || defined(__APPLE__)
 ////
@@ -576,7 +576,7 @@ namespace aura
 //
 //      //g_pmapNewAuraLibrary = memory_new string_map < PFN_NEW_AURA_LIBRARY >();
 //
-////#ifndef _UWP
+////#ifndef UNIVERSAL_WINDOWS
 ////
 ////      br_init(nullptr);
 ////

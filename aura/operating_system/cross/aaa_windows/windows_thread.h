@@ -39,7 +39,7 @@
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 CLASS_DECL_AURA ::u32 WINAPI ResumeThread(htask_t htask);
@@ -53,7 +53,7 @@ CLASS_DECL_AURA i32 WINAPI GetThreadPriority(htask_t htask);
 
 
 
-#if defined(_UWP) && defined(__cplusplus_winrt)
+#if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
 
 
 

@@ -71,7 +71,7 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       m_bExclusiveMode = true;
 #else
       m_bExclusiveMode = false;
@@ -356,7 +356,7 @@ namespace user
 
       }
 
-      m_procedureUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_procedureUpdateScreen.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
       if (m_procedureWindowShow)
       {
@@ -365,7 +365,7 @@ namespace user
 
       }
 
-      m_procedureWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_procedureWindowShow.m_pbase.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 

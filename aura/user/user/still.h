@@ -48,6 +48,8 @@ namespace user
 
       void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
+      virtual void set_text_align(::e_align ealignText);
+
       void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDrawImage(::draw2d::graphics_pointer & pgraphics);

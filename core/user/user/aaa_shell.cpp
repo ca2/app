@@ -7,7 +7,7 @@
 #include "acme/primitive/primitive/atomic.h"
 
 
-#if defined(RASPBIAN)
+#if defined(RASPBERRYPIOS)
 #define OPERATING_SYSTEM_NAMESPACE linux
 #endif
 
@@ -934,7 +934,7 @@ namespace user
 //#include "aura/user/user/shell_linux.h"
 //#elif defined(ANDROID)
 //#include "aura/user/user/shell_android.h"
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //#include "aura/user/user/shell_uwp.h"
 //#else
 //#error "Implement here"

@@ -59,7 +59,7 @@
 //         do
 //         {
 //            pfni = (PFILE_NOTIFY_INFORMATION)(buffer + dwNextEntryOffset);
-//            ::memcpy_dup(wchFileName, pfni->FileName, pfni->FileNameLength);
+//            ::memory_copy(wchFileName, pfni->FileName, pfni->FileNameLength);
 //            wchFileName[pfni->FileNameLength / sizeof(WCHAR)] = L'\0';
 //            e_action eaction = translate_os_action(pfni->Action);
 //            //if(eaction != action_unexpected)

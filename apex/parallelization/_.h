@@ -274,7 +274,7 @@ class thread_startup;
 
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //#include "apex/os/universal_windows/multitasking_winrt.h"
 //
@@ -288,7 +288,7 @@ CLASS_DECL_ACME string get_task_name(htask_t htask);
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 //
 //
 //

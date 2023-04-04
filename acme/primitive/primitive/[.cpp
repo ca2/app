@@ -2752,7 +2752,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long payload::get_long(long lDefault) const
@@ -7633,7 +7633,7 @@ void number_operator_payload_test()
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long & payload::long_reference()

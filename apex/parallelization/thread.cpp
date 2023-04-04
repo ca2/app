@@ -735,7 +735,7 @@ void thread::run()
    if (m_procedure && m_procedure != this)
    {
 
-      m_atom = __type_name(*m_procedure.m_p);
+      m_atom = __type_name(*m_procedure.m_pbase);
 
       task_set_name(m_atom.as_string());
 

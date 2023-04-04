@@ -478,7 +478,7 @@ else
 ::count nOldSize = (::count) this->size();
 this->set_size((::count) (this->size() + nCount));  // grow it to memory_new size_i32
 // shift old data up to fill gap
-__memmov(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
+memory_transfer(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
 // re-init slots we copied from
 for(::index i = nIndex; i < nIndex + nCount; i++)
@@ -515,7 +515,7 @@ auto nOldSize = this->size();
 
 this->set_size(nOldSize + 1);
 
-__memmov(this->ptr_at(nIndex + 1), this->ptr_at(nIndex), (nOldSize - nIndex) * sizeof(Type));
+memory_transfer(this->ptr_at(nIndex + 1), this->ptr_at(nIndex), (nOldSize - nIndex) * sizeof(Type));
 
 for(::index i = nIndex; i < nIndex + 1; i++)
 {
@@ -811,7 +811,7 @@ string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHARAC
 }
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >

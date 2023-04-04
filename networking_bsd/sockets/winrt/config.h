@@ -211,7 +211,7 @@ namespace sockets
 
 } // namespace sockets
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
 CLASS_DECL_APEX const char *bsd_socket_error(int x);
 #define Errno get_last_error()

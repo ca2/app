@@ -804,7 +804,7 @@ namespace http
    void context::config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket)
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       psocket->m_bDirect = true;
 
@@ -2865,7 +2865,7 @@ namespace http
 
 #ifdef _WIN32
 
-      ::memcpy_dup(&tp, gmtime(&t), sizeof(tp));
+      ::memory_copy(&tp, gmtime(&t), sizeof(tp));
 
 #else
 

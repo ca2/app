@@ -24,7 +24,7 @@ CLASS_DECL_AURA int_bool GetCursorPos(POINT32 * lppointCursor);
 #define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 
@@ -524,7 +524,7 @@ const ::wide_character * lpString);
 #define WS_SIZEBOX          WS_THICKFRAME
 #define WS_TILEDWINDOW      WS_OVERLAPPEDWINDOW
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 /*
 * Common Window Styles
 */
@@ -626,7 +626,7 @@ oswindow hWnd);
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 typedef struct tagDRAWTEXTPARAMS
 {
@@ -966,7 +966,7 @@ oswindow hWnd,
 #endif
 //#endif /* WINVER >= 0x0501 */
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 struct user_menu;
 
 typedef struct _hmenu
@@ -1091,7 +1091,7 @@ POINT32       pt;
 
 */
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 HDC BeginPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
@@ -1099,7 +1099,7 @@ int_bool EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define HWND_TOP        ((::oswindow)(::iptr)0)
 #define HWND_BOTTOM     ((::oswindow)(::iptr)1)
 #define HWND_TOPMOST    ((::oswindow)(::iptr)-1)
@@ -1113,7 +1113,7 @@ int_bool WINAPI IsWindowVisible(oswindow hWnd);
 
 int_bool WINAPI IsIconic(oswindow hWnd);
 
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //#define e_zorder_top -1
 //#define ZORDER_BOTTOM -2
@@ -1234,7 +1234,7 @@ LONG_PTR l);
 #endif // !UNICODE
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 typedef struct tagNMHDR
 {
    oswindow      hwndFrom;
@@ -2626,7 +2626,7 @@ CLASS_DECL_AURA i32 WINAPI GetSystemMetrics(i32 nIndex);
 #define SCF_ISSECURE    0x00000001
 #endif /* WINVER >= 0x0600 */
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #define GET_SC_WPARAM(wParam) ((i32)wParam & 0xFFF0)
 

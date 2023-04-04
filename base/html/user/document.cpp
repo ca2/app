@@ -386,7 +386,7 @@ void html_document::on_command(::message::command * pcommand)
 
       papp->dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       auto plauncher = __new(::apex::shell_launcher);
       

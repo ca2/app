@@ -40,7 +40,7 @@ CLASS_DECL_APEX bool thread_has_sockets();
 //
 ////#include "bsd/_component.h"
 //
-//#if defined(LINUX) || defined(_UWP)
+//#if defined(LINUX) || defined(UNIVERSAL_WINDOWS)
 //
 //extern "C"
 //CLASS_DECL_APEX const SSL_METHOD * TLS_client_method();

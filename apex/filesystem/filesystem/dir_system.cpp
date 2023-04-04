@@ -80,7 +80,7 @@ void dir_system::init_system()
 
    auto pacmedirectory = acmedirectory();
 
-   #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
+   #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
    if ( pacmedirectory->is(acmesystem()->m_papexsystem->side_get_matter_path("app/_matter/main")))
    {

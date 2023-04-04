@@ -29,7 +29,7 @@
 //#include "aura/operating_system/ansi/_c.h"
 //#include "aura/operating_system/freebsd/_c.h"
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //#include "aura/operating_system/ansi/_c.h"
 //#include "aura/operating_system/windows_common/_c.h"

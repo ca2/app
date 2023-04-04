@@ -29,7 +29,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    return acmepath()->app_module().folder();
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
    wstring wstrModuleFilePath;
 
@@ -253,7 +253,7 @@ found:
 ::file::path dir_base_module()
 {
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    return "";
 
@@ -535,7 +535,7 @@ string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string
 
       psz = str.get_string_buffer(iReadAtMostByteCount);
 
-      ::memcpy_dup(psz, pnRes, iReadAtMostByteCount);
+      ::memory_copy(psz, pnRes, iReadAtMostByteCount);
 
       psz[dwResSize] = '\0';
 

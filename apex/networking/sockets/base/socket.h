@@ -170,6 +170,11 @@ namespace sockets
 //      };
 //      */
 //
+      
+      
+      transfer_progress_function    m_transferprogressfunction;
+
+      
       /** "Default" constructor */
       base_socket();
 

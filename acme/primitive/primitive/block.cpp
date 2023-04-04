@@ -36,7 +36,7 @@ block::block(const atom & atom) :
 //}
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //::winrt::Windows::Storage::Streams::IBuffer^ block::get_os_buffer(memsize pos, memsize size) const

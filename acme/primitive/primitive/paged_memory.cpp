@@ -16,7 +16,7 @@ paged_memory::paged_memory(const void * pdata, memsize iCount)
 
    ASSERT(is_memory_segment_ok(pdata, iCount));
 
-   ::memcpy_dup(storage_begin(), pdata, iCount);
+   ::memory_copy(storage_begin(), pdata, iCount);
 
 }
 
@@ -48,7 +48,7 @@ paged_memory::paged_memory(memory_container * pcontainer, const void * pdata, me
 
    ASSERT(is_memory_segment_ok(pdata, (uptr)size));
 
-   ::memcpy_dup(storage_begin(), pdata, (size_t)size);
+   ::memory_copy(storage_begin(), pdata, (size_t)size);
 
 }
 

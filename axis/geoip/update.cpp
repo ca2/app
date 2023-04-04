@@ -161,7 +161,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
  */
 i16 parse_http_proxy(char **proxy_host, i32 *port) {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    return 0;
 
@@ -293,7 +293,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //         MD5_Update (&context, buffer, (u32) len);
 //        // MD5_Update(&ctx, buffer, len);
 //      MD5_Final (buffer, &context);
-//      ::memcpy_dup(digest,buffer,16);
+//      ::memory_copy(digest,buffer,16);
 //      fclose (cur_db_fh);
 //      for (i = 0; i < 16; i++) {
 //       //  "%02x" will write 3 chars
@@ -320,7 +320,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //
 //   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short)GeoIPHTTPPort);
-//   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
+//   ::memory_copy(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;
 //
 //   if (verbose == 1){
@@ -573,7 +573,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //
 //   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short) GeoIPHTTPPort);
-//   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
+//   ::memory_copy(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;
 //
 //   if (verbose == 1) {
@@ -636,7 +636,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //        // ctx.update(buffer, len);
 //         MD5_Update (&context, buffer, (u32) len);
 //      MD5_Final (buffer, &context);
-//    ::memcpy_dup(digest,buffer,16);
+//    ::memory_copy(digest,buffer,16);
 //      fclose (cur_db_fh);
 //      for (i = 0; i < 16; i++)
 //         sprintf (&hex_digest[2*i], "%02x", digest[i]);
@@ -656,7 +656,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //
 //      memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //      sa.sin_port = htons((u_short) GeoIPHTTPPort);
-//      ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
+//      ::memory_copy(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //      sa.sin_family = AF_INET;
 //
 //      if (verbose == 1)
@@ -728,7 +728,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //   MD5_Update (&context2, (u8 *)license_key, 12);//add license key to the md5 sum
 //   MD5_Update (&context2, (u8 *)ipaddress, (u32) strlen(ipaddress));//add ip address to the md5 sum
 //   MD5_Final (bufMd5, &context2);
-//   ::memcpy_dup(digest2, bufMd5,16);
+//   ::memory_copy(digest2, bufMd5,16);
 //   for (i = 0; i < 16; i++)
 //      snprintf (&hex_digest2[2*i], 3, "%02x", digest2[i]);// machine the digest to a hex digest
 //   //strcpy(hex_digest2, ctx2.to_hex());
@@ -746,7 +746,7 @@ i16 GeoIP_update_database_general (::particle * pparticle, char * user_id,char *
 //   }
 //   memory_set(&sa, 0, sizeof(struct sockaddr_in));
 //   sa.sin_port = htons((u_short) GeoIPHTTPPort);
-//   ::memcpy_dup(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
+//   ::memory_copy(&sa.sin_addr, hostlist->h_addr_list[0], hostlist->h_length);
 //   sa.sin_family = AF_INET;
 //   if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
 //      return GEOIP_CONNECTION_ERR;

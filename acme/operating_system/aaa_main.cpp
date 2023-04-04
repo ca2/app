@@ -445,7 +445,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == '\\')
          {
 
-            __memmov(psz, psz + 1, strlen(psz));
+            memory_transfer(psz, psz + 1, strlen(psz));
 
             unicode_increment(psz);
 

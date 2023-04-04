@@ -153,16 +153,20 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if (m_estyle == e_style_push)
+      if (m_estyle == e_style_push || m_estyle == e_style_push_group)
       {
 
          _001OnButtonDrawPush(pgraphics);
+
+         _001OnButtonDrawImageAndText(pgraphics, false);
 
       }
       else if (m_estyle == e_style_list)
       {
 
          _001OnButtonDrawList(pgraphics);
+
+         _001OnButtonDrawImageAndText(pgraphics, false);
 
       }
       else if (m_estyle == e_style_image)
@@ -174,7 +178,7 @@ namespace user
       else if (m_estyle == e_style_image_and_text)
       {
 
-         _001OnButtonDrawImageAndText(pgraphics);
+         _001OnButtonDrawImageAndText(pgraphics, true);
 
       }
       else
@@ -525,6 +529,19 @@ namespace user
          {
 
             _001ToggleCheck(::e_source_user);
+
+         }
+
+      }
+      else if (m_estyle == e_style_push_group)
+      {
+
+         auto pkey = pmessage->m_union.m_pkey;
+
+         if (pkey->m_ekey == ::user::e_key_space)
+         {
+
+            _001SetCheck(::e_check_checked, ::e_source_user);
 
          }
 
@@ -932,10 +949,15 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics)
+   void button::_001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration)
    {
 
-      _001OnButtonDrawBackground(pgraphics);
+      if (bDecoration)
+      {
+
+         _001OnButtonDrawBackground(pgraphics);
+
+      }
 
       ::rectangle_i32 rectangleClient;
 
@@ -949,66 +971,70 @@ namespace user
 
       ::rectangle_i32 rectangleAspect(rectanglePadded);
 
-      if (m_pbitmap->m_pimage)
+      if (m_pbitmap)
       {
-
-         ASSERT(m_pbitmap->m_pimage); // required
-
-         // use the main bitmap for up, the selected bitmap for down
-         ::image_pointer pimage = m_pbitmap->m_pimage;
-
-         auto psession = get_session();
-
-         if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
-            pimage = m_pbitmap->m_pimageSel;
-         else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
-            pimage = m_pbitmap->m_pimageHover;
-         else if (m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
-           pimage = m_pbitmap->m_pimageFocus;   // third image for focused
-         else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
-            pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
-
-         if (pimage->area() > 0 && rectangleClient.area() > 0)
+         if (m_pbitmap->m_pimage)
          {
 
-            rectangleAspect.left = 0;
+            ASSERT(m_pbitmap->m_pimage); // required
 
-            rectangleAspect.top = 0;
+            // use the main bitmap for up, the selected bitmap for down
+            ::image_pointer pimage = m_pbitmap->m_pimage;
 
-            double dW = (double)rectanglePadded.width() / (double)pimage->width();
+            auto psession = get_session();
 
-            double dH = (double)rectanglePadded.height() / (double)pimage->height();
+            if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel.ok())
+               pimage = m_pbitmap->m_pimageSel;
+            else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover.ok())
+               pimage = m_pbitmap->m_pimageHover;
+            else if (m_pbitmap->m_pimageFocus.ok() && has_keyboard_focus())
+               pimage = m_pbitmap->m_pimageFocus;   // third image for focused
+            else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled.ok())
+               pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-            double dMin = minimum(minimum(dW, dH), 1.0);
-
-            rectangleAspect.right = (::i32) (pimage->width() * dMin);
-
-           rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
-
-            rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
-
-            pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
-
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
+            if (pimage->area() > 0 && rectangleClient.area() > 0)
             {
 
-               image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+               rectangleAspect.left = 0;
 
-               rectangle_f64 rectangle(rectangleAspect);
+               rectangleAspect.top = 0;
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               double dW = (double)rectanglePadded.width() / (double)pimage->width();
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               double dH = (double)rectanglePadded.height() / (double)pimage->height();
 
-               pgraphics->draw(imagedrawing);
+               double dMin = minimum(minimum(dW, dH), 1.0);
+
+               rectangleAspect.right = (::i32)(pimage->width() * dMin);
+
+               rectangleAspect.bottom = (::i32)(pimage->height() * dMin);
+
+               rectangleAspect.Align(e_align_bottom_left, rectanglePadded);
+
+               pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+               {
+
+                  image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+
+                  rectangle_f64 rectangle(rectangleAspect);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
+
+               }
+
+               rectangleAspect.left = rectangleAspect.right + iPadding;
+               rectangleAspect.right = rectanglePadded.right;
+               rectangleAspect.top = rectanglePadded.top;
+               rectangleAspect.bottom = rectanglePadded.bottom;
 
             }
-
-            rectangleAspect.left = rectangleAspect.right + iPadding;
-            rectangleAspect.right = rectanglePadded.right;
-            rectangleAspect.top = rectanglePadded.top;
-            rectangleAspect.bottom = rectanglePadded.bottom;
 
          }
 
@@ -1148,7 +1174,7 @@ namespace user
          //m_plist->m_pimagelistSubItemHover   = nullptr;
 
       }
-      else if(estyle == e_style_push)
+      else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
          SetTimer(16384,100_ms,nullptr);
@@ -1176,7 +1202,7 @@ namespace user
          ::acme::del(m_plist);
 
       }
-      else if(estyle == e_style_push)
+      else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
          KillTimer(16384);
@@ -1453,6 +1479,20 @@ namespace user
          //SetTimer(e_timer_check_toggle_animation, 12_ms);
 
          _001ToggleCheck(::e_source_user);
+
+         return true;
+
+      }
+      else if (m_estyle == e_style_push_group)
+      {
+
+         //m_dPosition = 0.0;
+
+         //m_timeAnimationStart.Now();
+
+         //SetTimer(e_timer_check_toggle_animation, 12_ms);
+
+         _001SetCheck(::e_check_checked, ::e_source_user);
 
          return true;
 

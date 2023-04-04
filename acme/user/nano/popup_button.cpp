@@ -30,7 +30,7 @@ popup_button::~popup_button()
 void popup_button::calculate_size_and_position(int x, int y)
 {
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
    //int wScreen = 1280;
    //int hScreen = 768;

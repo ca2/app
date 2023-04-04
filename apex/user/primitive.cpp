@@ -3803,7 +3803,7 @@ namespace user
 //         pmessage = __new(::message::kill_keyboard_focus);
 //      }
 //      break;
-//#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //      case ::message::PrototypeWindowPos:
 //      {
 //         pmessage = __new(::message::window_pos);

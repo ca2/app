@@ -4,7 +4,7 @@
 #include "aura/os/linux/_user.h"
 #elif defined(ANDROID)
 #include "aura/os/android/windowing.h"
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 #include "aura/os/universal_windows/_uwp.h"
 #elif defined(MACOS)
 #include "aura/os/macos/oswindow_data.h"
@@ -177,7 +177,7 @@ CLASS_DECL_AURA int_bool SubtractRect(RECT32 * prect, const RECT32 * prect1, con
 }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 string iconv_charset_from_windows_code_page(::u32 CodePage)
 {
@@ -627,7 +627,7 @@ oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
 }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 int_bool show_window(::oswindow oswindow, ::e_display edisplay)
@@ -768,7 +768,7 @@ int_bool WINAPI IsWindowVisible(::oswindow oswindow)
 }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA

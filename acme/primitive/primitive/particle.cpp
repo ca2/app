@@ -263,7 +263,15 @@ void particle::on_initialize_particle()
 }
 
 
-::acme::session * particle::acmesession()
+::aura::application * particle::auraapplication()
+{
+
+   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication->m_pauraapplication : nullptr;
+
+}
+
+
+::acme::session* particle::acmesession()
 {
 
    return m_pcontext ? m_pcontext->m_pacmesession : nullptr;

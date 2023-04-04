@@ -2988,6 +2988,12 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
          str = m_ppropertyset->get_network_payload();
 
       }
+      else if (m_etype == ::e_type_ansi_range)
+      {
+
+         str.assign(m_ansirange.data(), m_ansirange.size());
+
+      }
       else if (is_element_set())
       {
          
@@ -3483,7 +3489,7 @@ string & payload::string_reference(const char * pszOnNull)
 
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long payload::get_long(long lDefault) const
@@ -9329,7 +9335,7 @@ void number_operator_payload_test()
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long & payload::long_reference()
@@ -11885,8 +11891,5 @@ CLASS_DECL_ACME::string as_string(const ::payload & payload)
    return payload.as_string();
 
 }
-
-
-
 
 

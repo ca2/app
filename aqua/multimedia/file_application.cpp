@@ -40,7 +40,7 @@ namespace multimedia
       }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       if (strPath.case_insensitive_begins("rtp://") || strPath.case_insensitive_begins("rtprx://"))
       {

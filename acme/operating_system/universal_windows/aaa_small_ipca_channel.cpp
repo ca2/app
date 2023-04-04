@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/primitive/string/base64.h"
 //#include "_.h"
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 
 // loop question http://stackoverflow.com/users/2101860/loop
 // http://stackoverflow.com/questions/23709329/launch-one-metro-app-from-other-metro-app-windows-8

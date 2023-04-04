@@ -95,7 +95,7 @@ namespace file
       HRESULT result = S_OK;
       if (_buffer2 != 0)
       {
-         __memmov(_buffer2, m_memory.get_data() + (memsize) _streamPos, (size_t) size);
+         memory_transfer(_buffer2, m_memory.get_data() + (memsize) _streamPos, (size_t) size);
          _buffer2 += size;
       }
 

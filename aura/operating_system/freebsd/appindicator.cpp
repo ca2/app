@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//#if !defined(RASPBIAN)
+//#if !defined(RASPBERRYPIOS)
 //
 //
 //#include "appindicator.h"

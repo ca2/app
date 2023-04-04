@@ -404,7 +404,7 @@ namespace acme
 
       virtual void set_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable, const ::scoped_string& scopedstrValue);
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       virtual ::array <::serial::port_info> list_serial_ports();
 
@@ -553,7 +553,7 @@ namespace acme
 
 
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
       //virtual i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
@@ -566,7 +566,7 @@ namespace acme
 #endif
 
 
-//#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //
 //
 //      //virtual i32 get_current_processor_index();
@@ -600,7 +600,7 @@ namespace acme
 
       virtual ::file::path core_app_path(string strApp);
 
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 
 
       //virtual string module_path_from_pid(unsigned int pid);
@@ -618,7 +618,7 @@ namespace acme
 
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
       //virtual bool process_contains_module(string & strImage, ::u32 processID, const ::string & pszLibrary);
       //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 #endif
@@ -633,11 +633,11 @@ namespace acme
 
 
 
-      virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool shell_execute_async(const ::string & pszFile, const ::string & pszParams);
+      //virtual bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
-      virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
-      virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
+      //virtual bool root_execute_async(const ::string & pszFile, const ::string & pszParams);
+      //virtual bool root_execute_sync(const ::string & pszFile, const ::string & pszParams, const class time & timeTimeout = 1_minute);
 
 
       //CLASS_DECL_ACME bool os_init_application();
@@ -690,10 +690,29 @@ namespace acme
       virtual ::pointer < ::file::folder_dialog > node_folder_dialog();
 
 
+
+
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
 
       virtual void integration_factory();
+
+
+      virtual void unzip_to_folder(const ::file::path& pathFolder, const ::file::path& pathZip);
+
+
+      virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);
+      virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload);
+
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual void _beta_use_unicode_utf8();
+
+#endif
+
+
+      virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
 
 
    };

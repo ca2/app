@@ -3,7 +3,7 @@
 
 //#error
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //#include "acme/operating_system/windows_common/comptr.h"
 //#include <d2d1_1.h>
@@ -21,7 +21,7 @@ namespace draw2d
 //   {
 //   public:
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      comptr < ID2D1Multitask > m_D2DMultitask;
 ////

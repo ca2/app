@@ -29,7 +29,7 @@ double get_default_screen_dpi()
 //#ifdef WINDOWS
 //#include <wincodec.h>
 //#include <ShCore.h>
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////#include <ShCore.h>
 //#endif
 
@@ -701,7 +701,7 @@ void image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image* pimageS
 
       psrc2 = (color32_t*)&psrc[scanSrc * y];
 
-      ::memcpy_dup(pdst2, psrc2, xEnd * 4);
+      ::memory_copy(pdst2, psrc2, xEnd * 4);
       //for(int x = 0; x < xEnd; x++)
       //{
 
@@ -1008,7 +1008,7 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
 
          psrc2 = &psrc[scanSrc * y];
 
-         //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+         //::memory_copy(pdst2, psrc2, xEnd * 4);
          for (int x = 0; x < xEnd; x++)
          {
 
@@ -1173,7 +1173,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
             psrc2 = &psrc[scanSrc * y];
 
-            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+            //::memory_copy(pdst2, psrc2, xEnd * 4);
             for (int x = 0; x < xEnd; x++)
             {
 
@@ -1210,7 +1210,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
             psrc2 = &psrc[scanSrc * y];
 
-            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+            //::memory_copy(pdst2, psrc2, xEnd * 4);
             for (int x = 0; x < xEnd; x++)
             {
 
@@ -1268,7 +1268,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
             psrc2 = &psrc[scanSrc * y];
 
-            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+            //::memory_copy(pdst2, psrc2, xEnd * 4);
             for (int x = 0; x < xEnd; x++)
             {
 
@@ -1342,7 +1342,7 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
 
             psrc2 = &psrc[scanSrc * y];
 
-            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+            //::memory_copy(pdst2, psrc2, xEnd * 4);
             for (int x = 0; x < xEnd; x++)
             {
 
@@ -1495,7 +1495,7 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image* pimageSrc
 
          psrc2 = &psrc[scanSrc * y];
 
-         //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+         //::memory_copy(pdst2, psrc2, xEnd * 4);
          for (int x = 0; x < xEnd; x++)
          {
 
@@ -1532,7 +1532,7 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image* pimageSrc
 
          psrc2 = &psrc[scanSrc * y];
 
-         //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+         //::memory_copy(pdst2, psrc2, xEnd * 4);
          for (int x = 0; x < xEnd; x++)
          {
 
@@ -2288,7 +2288,7 @@ void image::set_rgb(i32 R, i32 G, i32 B)
 //   for (index y = 0; y < h; y++)
 //   {
 //
-//      ::memcpy_dup(&colorref()[y * dsw], &pimage->colorref()[(h - y - 1) * ssw], sw);
+//      ::memory_copy(&colorref()[y * dsw], &pimage->colorref()[(h - y - 1) * ssw], sw);
 //
 //   }
 //
@@ -3051,7 +3051,7 @@ void image::BitBlt(int cxParam, int cyParam, ::image* pimage, i32 op)
 
    pimage->map();
 
-   if (op == 1 && size() == pimage->size() && pimage->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full ::memcpy_dup
+   if (op == 1 && size() == pimage->size() && pimage->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full ::memory_copy
    {
 
       if (cyParam <= 0)
@@ -3066,11 +3066,11 @@ void image::BitBlt(int cxParam, int cyParam, ::image* pimage, i32 op)
 
 #if defined(__APPLE__)
 
-      ::memcpy_dup(&colorref()[m_iScan / 4 * (pimage->height() - cyParam)], &pimage->colorref()[m_iScan / 4 * (pimage->height() - cyParam)], cyParam * m_iScan);
+      ::memory_copy(&colorref()[m_iScan / 4 * (pimage->height() - cyParam)], &pimage->colorref()[m_iScan / 4 * (pimage->height() - cyParam)], cyParam * m_iScan);
 
 #else
 
-      ::memcpy_dup(colorref(), pimage->colorref(), cyParam * m_iScan);
+      ::memory_copy(colorref(), pimage->colorref(), cyParam * m_iScan);
 
 #endif
 
@@ -3108,7 +3108,7 @@ void image::BitBlt(int cxParam, int cyParam, ::image* pimage, i32 op)
       if (m_iScan == iStrideSrc && m_iScan == pimage->m_iScan)
       {
 
-         ::memcpy_dup(colorref(), pimage->colorref(), cyParam * m_iScan);
+         ::memory_copy(colorref(), pimage->colorref(), cyParam * m_iScan);
 
       }
       else
@@ -3127,7 +3127,7 @@ void image::BitBlt(int cxParam, int cyParam, ::image* pimage, i32 op)
          for (int i = 0; i < h; i++)
          {
 
-            ::memcpy_dup(pdst, psrc, cw);
+            ::memory_copy(pdst, psrc, cw);
 
             pdst += wdst;
 
@@ -3810,7 +3810,7 @@ void image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //   if (m_iScan == pimage->m_iScan)
 //   {
 //
-//      ::memcpy_dup(data(), pimage->data(), height() * m_iScan);
+//      ::memory_copy(data(), pimage->data(), height() * m_iScan);
 //
 //   }
 //   else
@@ -3821,7 +3821,7 @@ void image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //      for (int i = 0; i < height(); i++)
 //      {
 //
-//         ::memcpy_dup(&((u8*)data())[m_iScan * i], &((u8*)pimage->data())[pimage->m_iScan * i], iScan);
+//         ::memory_copy(&((u8*)data())[m_iScan * i], &((u8*)pimage->data())[pimage->m_iScan * i], iScan);
 //
 //      }
 //
@@ -5400,7 +5400,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //      pimage1->Fill(0, 255, 255, 255);
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //
@@ -5425,7 +5425,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //      // xxx todo pimage2->create(width(), height());
    //      pimage2->Fill(0, 0, 0, 0);
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //
@@ -5447,7 +5447,7 @@ void image::SetIconMask(::draw2d::icon* picon, i32 cx, i32 cy)
    //
    //      // xxx todo imageM.create(width(), height());
    //
-   //#ifdef _UWP
+   //#ifdef UNIVERSAL_WINDOWS
    //
    //      throw ::interface_only();
    //

@@ -9,8 +9,8 @@
 
 #define WCHAR_T_SIZE 16
 
-#ifndef _UWP
-#define _UWP
+#ifndef UNIVERSAL_WINDOWS
+#define UNIVERSAL_WINDOWS
 #endif
 
 #ifndef WINDOWS

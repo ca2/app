@@ -4,6 +4,10 @@
 #include "_constant.h"
 
 
+using transfer_progress_function =
+::function < void(double, filesize, filesize) >;
+
+
 namespace file
 {
 

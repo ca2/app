@@ -40,3 +40,4 @@ _packages.txt
 application_build_helper_input.txt
 application_build_helper_output.txt
 matter_output.txt
+deployment.rc

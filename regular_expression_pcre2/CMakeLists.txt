@@ -27,6 +27,8 @@ add_library(static_${PROJECT_NAME} STATIC ${regular_expression_pcre2_source})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(regular_expression_pcre2 PROPERTIES LINKER_LANGUAGE CXX)
@@ -55,7 +57,6 @@ elseif(LINUX)
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
 
@@ -63,7 +64,8 @@ target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 elseif(FREEBSD)
 
 
-    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(regular_expression_pcre2 PRIVATE -I/usr/local/include)
     target_link_options(regular_expression_pcre2 PRIVATE -L/usr/local/lib)
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} pcre2-8)

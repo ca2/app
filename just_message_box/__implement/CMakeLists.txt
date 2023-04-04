@@ -50,6 +50,7 @@ elseif(LINUX OR FREEBSD)
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 

@@ -1,6 +1,0 @@
-<menubar>
-	<menubar id="popup">
-		<item id="edit_copy">Copiar</item>
-		<item id="edit_paste">Colar</item>
-	</menubar>
-</menubar>

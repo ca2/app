@@ -42,6 +42,8 @@ target_link_directories(build PRIVATE ${library_link_directories})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(build PROPERTIES LINKER_LANGUAGE CXX)

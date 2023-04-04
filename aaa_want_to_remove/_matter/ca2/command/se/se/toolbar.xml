@@ -1,6 +1,0 @@
-<toolbar>
-	<button id="file_open">Open</button>
-	<button id="file_print">Print</button>
-	<button id="execute_play">Play</button>
-	<button id="edit_delete">Delete</button>
-</toolbar>

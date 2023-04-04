@@ -27,6 +27,8 @@ add_library(static_${PROJECT_NAME} STATIC ${database_sqlite3_source})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(database_sqlite3 PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -50,9 +52,7 @@ elseif(LINUX OR FREEBSD)
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
 target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(database_sqlite3 PRIVATE ${library_references})
    target_link_options(database_sqlite3 PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

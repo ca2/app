@@ -25,6 +25,8 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -47,9 +49,7 @@ elseif (FREEBSD)
     pkg_check_modules(PKGCONFIG freeimage)
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
@@ -61,7 +61,6 @@ elseif (LINUX)
     #endif()
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 

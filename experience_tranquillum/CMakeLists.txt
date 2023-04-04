@@ -48,7 +48,8 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(experience_tranquillum PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(experience_tranquillum PROPERTIES LINKER_LANGUAGE CXX)

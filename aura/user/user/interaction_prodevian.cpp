@@ -71,7 +71,7 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       m_bExclusiveMode = true;
 #else
       m_bExclusiveMode = false;

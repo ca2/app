@@ -244,7 +244,7 @@ namespace mathematics
 //
 //      }
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //      void generate_random_bytes(void* p, memsize s)
 //      {
@@ -325,7 +325,7 @@ namespace mathematics
 
    u64 mathematics::gen_rand()
    {
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      return uiLo | (uiHi << 32);

@@ -950,7 +950,9 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
    }
 
-   pmemoryfile->full_data_set_size(left);
+   auto ptrleft = (::memsize)left;
+
+   pmemoryfile->full_data_set_size(ptrleft);
 
    auto amountRead = pfile->read(pmemoryfile->full_data());
 

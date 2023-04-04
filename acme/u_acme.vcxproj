@@ -1097,7 +1097,6 @@
     <ClInclude Include="primitive\collection\var_array.h" />
     <ClInclude Include="primitive\collection\_.h" />
     <ClInclude Include="primitive\collection\_array_base_impl.h" />
-    <None Include="packages.config" />
     <None Include="primitive\collection\_array_impl2.h" />
     <None Include="primitive\collection\_collection_impl1.h" />
     <None Include="primitive\collection\_collection_impl2.h" />

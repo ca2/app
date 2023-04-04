@@ -11,7 +11,7 @@ namespace colorertake5
 
    void ParserFactory::init()
    {
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       // metrowin todo
       return;
 #endif
@@ -276,7 +276,7 @@ namespace colorertake5
       if (nameID.is_empty())
       {
          char * hrd = nullptr;
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
          hrd = getenv("COLORER5HRD");
 #endif
          hrdLocV = (hrd) ? hrdClass->pget((hrd)) : hrdClass->pget(("default"));

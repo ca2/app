@@ -27,7 +27,7 @@ string get_error_message(::u32 dwError);
 #define NULL_REF(class) (*((class *) nullptr))
 
 
-#define WIN_THREAD(pthread) (dynamic_cast < ::_UWP::thread * > (dynamic_cast < ::thread * >(pthread)))
+#define WIN_THREAD(pthread) (dynamic_cast < ::UNIVERSAL_WINDOWS::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
 //CLASS_DECL_APEX void __trace_message(const ::scoped_string & scopedstrPrefix, ::message::message * pmessage);

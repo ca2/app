@@ -24,7 +24,7 @@ const WCHAR *get_locale_value_name( ::u32 lctype );
  *
  * See GetLocaleInfoA.
  */
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #ifdef WINDOWS
 WINAXISAPI
 #endif
@@ -220,7 +220,7 @@ static LCID lcid_LC_TELEPHONE;
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 /***********************************************************************
  *           convert_default_lcid
@@ -246,7 +246,7 @@ LCID convert_default_lcid( LCID lcid, LCTYPE lctype )
       case LOCALE_IDEFAULTCODEPAGE:
       case LOCALE_IDEFAULTEBCDICCODEPAGE:
       case LOCALE_IDEFAULTMACCODEPAGE:
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
       case LOCALE_IDEFAULTUNIXCODEPAGE:
 #endif
          default_id = lcid_LC_CTYPE;
@@ -551,7 +551,7 @@ LCID WINAPI GetSystemDefaultLCID(void)
    return lcid;
 }
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 /******************************************************************************
  *		ConvertDefaultLocale (KERNEL32.@)
  *
@@ -606,7 +606,7 @@ LCID WINAPI ConvertDefaultLocale( LCID lcid )
 NTSTATUS WINAPI NtQueryDefaultLocale( int_bool user, LCID *lcid )
 {
    *lcid = user ? user_lcid : system_lcid;
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    return 0;
 #else
    return STATUS_SUCCESS;
@@ -625,7 +625,7 @@ NTSTATUS WINAPI NtSetDefaultLocale( int_bool user, LCID lcid )
       system_lcid = lcid;
       system_ui_language = LANGIDFROMLCID(lcid); /* there is no separate call to set it */
    }
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
    return 0;
 #else
    return STATUS_SUCCESS;

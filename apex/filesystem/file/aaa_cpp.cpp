@@ -8,7 +8,7 @@ namespace file
    CLASS_DECL_APEX string system_short_name()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return "metro";
 

@@ -194,7 +194,7 @@ namespace draw2d
       concrete < ::size_i32 > image_source_size() const override;
 
 
-      //#ifdef _UWP
+      //#ifdef UNIVERSAL_WINDOWS
       //
       //
       //      virtual void set_directd2d_plugin(::draw2d_directd2d::plugin * pplugin);
@@ -852,7 +852,7 @@ namespace draw2d
       //virtual void draw_text(const ::string & str, const rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 //      virtual void draw_text_ex(const ::string & str,const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 

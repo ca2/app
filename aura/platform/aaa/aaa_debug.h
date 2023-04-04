@@ -198,7 +198,7 @@
 //#endif
 //
 //
-//#if !defined(WINDOWS_DESKTOP) && !defined(_UWP)
+//#if !defined(WINDOWS_DESKTOP) && !defined(UNIVERSAL_WINDOWS)
 //#define debug_break() debug_break()
 //#endif
 //

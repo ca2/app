@@ -34,7 +34,7 @@ namespace windows
 
       m_windowspath = strWindowsPath;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       LPCREATEFILE2_EXTENDED_PARAMETERS pextendedparameters = nullptr;
 

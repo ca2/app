@@ -811,7 +811,7 @@ string_array_base < Type, RawType, m_etypeContainer > ::string_array_base(CHARAC
 }
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //template < typename Type, typename RawType, ::enum_type m_etypeContainer >

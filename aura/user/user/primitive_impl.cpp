@@ -798,7 +798,7 @@ namespace user
          pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
       }
       break;
-#if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
       case ::message::e_prototype_window_pos:
 
       {

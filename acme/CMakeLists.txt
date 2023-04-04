@@ -2286,11 +2286,15 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)
 
-    target_precompile_headers(acme PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
 
@@ -2315,15 +2319,19 @@ elseif (LINUX OR FREEBSD)
     #if(NOT DONT_USE_PKG_CONFIG)
     pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
     #endif()
-    target_compile_options(acme PRIVATE -fpermissive)
-    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})
-    if (FREEBSD)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+     if (FREEBSD)
         target_link_libraries(acme PRIVATE z dl pthread iconv execinfo)
     else ()
         target_link_libraries(acme PRIVATE z dl pthread idn)
     endif ()
-    target_link_libraries(acme PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_options(acme PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
@@ -2347,6 +2355,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)

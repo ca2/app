@@ -101,7 +101,7 @@ namespace sockets_bsd
 
       //}
 
-      //#if defined(_UWP)
+      //#if defined(UNIVERSAL_WINDOWS)
 //
 //      OPENSSL_Applink();
 //

@@ -33,7 +33,7 @@ namespace sockets
    public:
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       //string m_strTlsHostName;
 

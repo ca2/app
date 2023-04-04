@@ -7,7 +7,7 @@ namespace apex
 {
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
    shell_launcher::shell_launcher()

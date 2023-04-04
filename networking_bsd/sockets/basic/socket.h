@@ -18,7 +18,7 @@ namespace sockets_bsd
    {
    public:
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       static SOCKET s_socketNextIdSeed;
 #endif
 

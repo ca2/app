@@ -56,7 +56,7 @@ namespace audio
 // }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 
@@ -132,7 +132,7 @@ bool os_initialize()
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");

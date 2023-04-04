@@ -1,5 +1,0 @@
-﻿
-
-
-msgid "MessageBoxChangedFileAskToSave"
-msgstr "O arquivo \"%1\" foi modificado. Deseja salvar as mudanças?"

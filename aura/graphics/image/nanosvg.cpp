@@ -43,7 +43,7 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage, int iRedLower)
 
       nsvgRasterize(rast, psvgimage, 0, 0, 1, (unsigned char *)pdata, w, h, iScan);
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       u8 * pcolorref = (u8 *)pimage->colorref();
 

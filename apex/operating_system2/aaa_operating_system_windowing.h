@@ -7,7 +7,7 @@
 #pragma once
 
 
-#if defined _UWP && defined(__cplusplus_winrt)
+#if defined UNIVERSAL_WINDOWS && defined(__cplusplus_winrt)
 
 // class CLASS_DECL_APEX os_system_window
 // {

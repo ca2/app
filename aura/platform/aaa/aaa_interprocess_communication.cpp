@@ -229,7 +229,7 @@ namespace aura
 
       defer_create_synchronization();
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       m_atomApp = strApp;
 
@@ -280,7 +280,7 @@ namespace aura
 
 //      ::file::path path;
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //      path = module_path_from_pid(iPid);
 //
@@ -467,7 +467,7 @@ started:
 
 #ifdef WINDOWS
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       string strAppId(strApp);
 
@@ -775,7 +775,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
 #else
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
       idaPid.add(strApp);
 
@@ -869,7 +869,7 @@ repeat:
    void inteprocess_channel::defer_add_module(const ::string & strModule, const ::atom & idPid)
    {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
       ::file::path pathModule;
 

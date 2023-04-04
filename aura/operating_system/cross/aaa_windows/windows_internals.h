@@ -720,7 +720,7 @@ typedef enum _OBJECT_INFORMATION_CLASS
    ObjectDataInformation
 } OBJECT_INFORMATION_CLASS, *POBJECT_INFORMATION_CLASS;
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 typedef enum _PROCESSINFOCLASS
 {
    ProcessBasicInformation = 0,
@@ -2383,7 +2383,7 @@ CLASS_DECL_AURA PVOID WINAPI RtlAddVectoredExceptionHandler(WINULONG, PVECTORED_
 CLASS_DECL_AURA NTSTATUS WINAPI RtlAdjustPrivilege(WINULONG, int_bool, int_bool, PBOOLEAN);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlAllocateAndInitializeSid(PSID_IDENTIFIER_AUTHORITY, byte, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, ::u32, PSID *);
 CLASS_DECL_AURA RTL_HANDLE * WINAPI RtlAllocateHandle(RTL_HANDLE_TABLE *, WINULONG *);
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 CLASS_DECL_AURA PVOID WINAPI RtlAllocateHeap(HANDLE, WINULONG, SIZE_T) __WINE_ALLOC_SIZE(3);
 #endif
 CLASS_DECL_AURA WCHAR WINAPI RtlAnsiCharToUnicodeChar(char * *);
@@ -2561,7 +2561,7 @@ CLASS_DECL_AURA ::u32 WINAPI RtlOemStringToUnicodeSize(const STRING*);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlOemStringToUnicodeString(UNICODE_STRING*, const STRING*, int_bool);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlOemToUnicodeN(LPWSTR, ::u32, LPDWORD, const ::string &, ::u32);
 CLASS_DECL_AURA NTSTATUS WINAPI RtlOpenCurrentUser(ACCESS_MASK, PHANDLE);
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 CLASS_DECL_AURA PVOID WINAPI RtlPcToFileHeader(PVOID, PVOID*);
 #endif
 CLASS_DECL_AURA NTSTATUS WINAPI RtlPinAtomInAtomTable(RTL_ATOM_TABLE, RTL_ATOM);
@@ -2704,7 +2704,7 @@ CLASS_DECL_AURA NTSTATUS CDECL wine_unix_to_nt_file_name(const ANSI_STRING *name
 
 #define NtCurrentProcess() ((HANDLE)-1)
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define RtlFillMemory(Destination,Length,Fill) memory_set((Destination),(Fill),(Length))
 #define RtlMoveMemory(Destination,Source,Length) memory_transfer((Destination),(Source),(Length))
 #define RtlZeroMemory(Destination,Length) memory_set((Destination),0,(Length))
@@ -2715,7 +2715,7 @@ CLASS_DECL_AURA NTSTATUS CDECL wine_unix_to_nt_file_name(const ANSI_STRING *name
 #define RtlRetrieveUlonglong(p,s) ::memory_copy((p), (s), sizeof(ULONGLONG))
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, WINULONG ulBit)
 {
@@ -2751,7 +2751,7 @@ static inline WINULONG RtlUlongByteSwap(WINULONG i)
 #define IsListEmpty(le)         ((le)->Flink == (le))
 #define RemoveEntryList(e)      do { PLIST_ENTRY f = (e)->Flink, b = (e)->Blink; f->Blink = b; b->Flink = f; (e)->Flink = (e)->Blink = nullptr; } while (0)
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 static inline PLIST_ENTRY RemoveHeadList(PLIST_ENTRY le)
 {

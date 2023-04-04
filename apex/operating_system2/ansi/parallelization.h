@@ -16,7 +16,7 @@
 ////using HSYNC = synchronization *;
 ////#endif
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //#pragma warning (disable:4273)
 //
@@ -37,7 +37,7 @@
 //#endif
 //
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //::u32 WaitForSingleObject(HSYNC hsync, ::u32 dw::times);
 //
@@ -81,7 +81,7 @@
 //// CLASS_DECL_APEX void mq_clear(itask_t htask);
 //
 //
-//// #ifndef _UWP
+//// #ifndef UNIVERSAL_WINDOWS
 //
 //// CLASS_DECL_APEX ::u32 WINAPI GetThreadId(htask_t Thread);
 //

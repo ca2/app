@@ -187,7 +187,7 @@ namespace openssl
    {
 
 
-#if defined(_UWP) && !defined(HAVE_OPENSSL)
+#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
@@ -324,7 +324,7 @@ namespace openssl
 
       CFRelease(transform);
 
-#elif defined(_UWP) && !defined(HAVE_OPENSSL)
+#elif defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
@@ -391,7 +391,7 @@ namespace openssl
    {
 
 
-#if defined(_UWP) && !defined(HAVE_OPENSSL)
+#if defined(UNIVERSAL_WINDOWS) && !defined(HAVE_OPENSSL)
 
       out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 

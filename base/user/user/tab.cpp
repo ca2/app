@@ -2512,7 +2512,7 @@ namespace user
    ::user::interaction * tab::GetNotifyWnd()
    {
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
       return nullptr;
 

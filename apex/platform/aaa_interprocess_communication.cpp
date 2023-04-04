@@ -38,7 +38,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    m_strApp = strApp;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    m_atomApp = strApp;
 
@@ -67,7 +67,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
 //      ::file::path path;
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //      path = module_path_from_pid(iPid);
 //
@@ -265,7 +265,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #ifdef WINDOWS
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
    string strAppId(strApp);
 
@@ -385,7 +385,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   }
 //
-//#if !defined(_UWP)
+//#if !defined(UNIVERSAL_WINDOWS)
 //
 //   auto iPid = atoll(strAppPid);
 //
@@ -642,7 +642,7 @@ atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
 #else
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    idaPid.add(strApp);
 
@@ -744,7 +744,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    
    auto pnode = psystem->node();
 
-#if !defined(_UWP) && !defined(APPLE_IOS)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(APPLE_IOS)
 
    ::file::path pathModule;
 

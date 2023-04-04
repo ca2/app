@@ -27,7 +27,7 @@
 #endif
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //[MTAThread]
 //#endif
 

@@ -24,7 +24,7 @@
 #endif
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 [MTAThread]
 #endif
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)

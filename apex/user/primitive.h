@@ -442,7 +442,7 @@ namespace user
 
       void _000OnMouseLeave(::message::message* pmessage) override;
 
-      //#ifdef _UWP
+      //#ifdef UNIVERSAL_WINDOWS
       //      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 

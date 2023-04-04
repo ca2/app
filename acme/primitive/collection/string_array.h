@@ -73,7 +73,7 @@ public:
     }
 
     string_array_base(const string_array_base & array);
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
 //#endif
     string_array_base(CHARACTER * const * ppsz, ::count c);

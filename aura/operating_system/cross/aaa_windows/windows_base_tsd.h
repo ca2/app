@@ -129,7 +129,7 @@ typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 #define __int3264 __int32
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 typedef int             INT_PTR, *PINT_PTR;
 typedef unsigned int    UINT_PTR, *PUINT_PTR;
@@ -253,7 +253,7 @@ inline void *ULongToPtr(ULONG32 ul)
 
 #else /* FIXME: defined(_WIN32) */
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define MAXINT_PTR 0x7fffffff
 #define MININT_PTR 0x80000000
 #define MAXUINT_PTR 0xffffffff
@@ -264,13 +264,13 @@ typedef unsigned long HANDLE_PTR;
 typedef signed short HALF_PTR, *PHALF_PTR;
 typedef unsigned short UHALF_PTR, *PUHALF_PTR;
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define MAXUHALF_PTR 0xffff
 #define MAXHALF_PTR 0x7fff
 #define MINHALF_PTR 0x8000
 #endif
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #define HandleToULong(h)        ((WINULONG)(ULONG_PTR)(h))
 #define HandleToLong(h)         ((::i32)(LONG_PTR)(h))
 #define ULongToHandle(ul)       ((HANDLE)(ULONG_PTR)(ul))

@@ -11,7 +11,7 @@ namespace ansios
 {
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
    // created near revision 4405

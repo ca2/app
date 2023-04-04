@@ -41,7 +41,7 @@
 #endif
 
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 #define INLINE_CLASS_DECL_ACME CLASS_DECL_ACME
 #else
 #define INLINE_CLASS_DECL_ACME
@@ -80,7 +80,6 @@
 
 typedef iptr memsize_storage;
 typedef iptr strsize_storage;
-
 
 typedef iptr memsize;
 typedef iptr strsize;

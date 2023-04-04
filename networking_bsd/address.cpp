@@ -20,7 +20,7 @@ namespace networking_bsd
       m_iLen = -1;
 #endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -44,7 +44,7 @@ namespace networking_bsd
 
 #endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -60,7 +60,7 @@ namespace networking_bsd
    void address::set_address(const sockaddr & sa, int iLen)
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -252,7 +252,7 @@ namespace networking_bsd
    void address::set_address(::networking::address * paddress)
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -268,7 +268,7 @@ namespace networking_bsd
    address::~address()
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      delete m_posdata;
 //
@@ -304,7 +304,7 @@ namespace networking_bsd
    string address::get_display_number() const
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (!_is_ip4() && !_is_ip6() && m_posdata != nullptr && m_posdata->m_hostname != nullptr)
 //      {
@@ -434,7 +434,7 @@ namespace networking_bsd
 
    void address::sync_os_address()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
@@ -466,7 +466,7 @@ namespace networking_bsd
 
    void address::sync_os_service()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //#endif
    }
 
@@ -756,7 +756,7 @@ namespace networking_bsd
    {
 
       return is_ip6() || is_ip4()
-         //#if defined _UWP && defined(__cplusplus_winrt)
+         //#if defined UNIVERSAL_WINDOWS && defined(__cplusplus_winrt)
          //         || (m_posdata != nullptr && m_posdata->m_hostname != nullptr)
          //#endif
          ;

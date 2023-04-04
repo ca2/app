@@ -15,7 +15,7 @@ list(APPEND library_source
         main_window.h)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 list(APPEND library_references

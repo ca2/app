@@ -39,7 +39,7 @@ list(APPEND library_source
    region.h)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 target_precompile_headers(draw2d_cairo PRIVATE framework.h)

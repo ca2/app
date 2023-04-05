@@ -62,9 +62,13 @@ elseif (LINUX OR FREEBSD)
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
     #target_link_options(app_integration PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_integration PRIVATE ${library_references})
-    target_link_options(app_integration PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
 
 endif ()
 

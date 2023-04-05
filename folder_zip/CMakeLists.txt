@@ -58,7 +58,9 @@ elseif(LINUX)
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(folder_zip PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(folder_zip PRIVATE ${PKGCONFIG_LIBRARIES} acme)
-    target_link_options(folder_zip PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 

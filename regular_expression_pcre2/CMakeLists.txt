@@ -58,7 +58,9 @@ elseif(LINUX)
 target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
-   target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
 
 
 elseif(FREEBSD)
@@ -66,10 +68,14 @@ elseif(FREEBSD)
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
     target_compile_options(regular_expression_pcre2 PRIVATE -I/usr/local/include)
     target_link_options(regular_expression_pcre2 PRIVATE -L/usr/local/lib)
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} pcre2-8)
-    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
 
 
 endif()

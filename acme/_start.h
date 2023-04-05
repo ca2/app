@@ -16,7 +16,6 @@
 #include "configuration/debug.h"
 #include "operating_system/configuration.h"
 #include "include/_setup.h"
-#include "acme/include/__setup.h"
 
 
 #include "__standard_type.h"
@@ -48,14 +47,22 @@
 #endif
 
 
-
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
 #ifdef DEBUG
 #ifndef _DEBUG
-#define _DEBUG
+#define _DEBUG 1
 #endif
 #endif
 
 
+#ifdef _DEBUG
+#ifndef DEBUG
+#define DEBUG 1
+#endif
+#endif
+
+
+// From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSørensen!!
 #ifdef _DEBUG
 #ifndef __DEBUG
 #define __DEBUG
@@ -63,6 +70,7 @@
 #else
 #define NNDEBUG
 #endif
+
 
 #define CA2_ACME
 

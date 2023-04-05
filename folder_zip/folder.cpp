@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
@@ -9,9 +9,11 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
-#ifdef WINDOWS
-
 #include "acme/_operating_system.h"
+
+#ifdef _UNIX
+
+#include <utime.h>
 
 #endif
 

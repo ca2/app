@@ -326,6 +326,8 @@ list(APPEND library_source
         platform/display.cpp
         platform/exclusive.cpp
         #platform/factory.cpp
+        platform/factory_function.cpp
+        platform/factory_function.h
         platform/fixed_alloc.cpp
         platform/flags.cpp
         platform/hyperlink.cpp

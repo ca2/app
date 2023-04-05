@@ -284,10 +284,10 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 }
 
 
-#include "acme/memory/_new.inl"
-
-
 #if !defined(CUBE)
+
+
+#include "acme/memory/_new.inl"
 
 
 #include "_new_impl.h"

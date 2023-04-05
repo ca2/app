@@ -1,9 +1,0 @@
-LIBRARY      "ace"
-
-EXPORTS
-ace_memory_alloc
-ace_memory_free
-ace_memory_realloc
-ace_set_alloc
-_ca_is_basis
-_ca_is_stage

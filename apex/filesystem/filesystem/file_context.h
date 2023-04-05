@@ -420,6 +420,9 @@ public:
    //virtual ::file::path onedrive_cid_ini();
 
 
+   virtual void unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip);
+
+
 };
 
 

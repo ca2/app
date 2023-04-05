@@ -1304,9 +1304,13 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(aura PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(aura PROPERTIES LINKER_LANGUAGE CXX)
@@ -1319,14 +1323,22 @@ if (MSVC)
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX OR FREEBSD)
-    target_compile_options(aura PRIVATE -fpermissive)
-    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(aura PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(aura PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(aura PRIVATE dl pthread)
-    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(aura PRIVATE acme apex aqua)
-    target_link_options(aura PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
     message("PKGCONFIG_CFLAGS is " ${PKGCONFIG_CFLAGS})
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
@@ -1337,6 +1349,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(aura PRIVATE _AURA_LIBRARY)

@@ -1506,8 +1506,6 @@ namespace geo
       try
       {
 
-         ::payload payload;
-
          property_set set;
 
          set["post"]["lat"] = strLat;
@@ -1516,7 +1514,7 @@ namespace geo
 
          //auto estatus = 
          
-         api_get(payload, strUrl, set);
+         auto payload = api_get(strUrl, set);
 
          //if (!estatus)
          //{
@@ -1540,7 +1538,7 @@ namespace geo
    }
 
 
-   string department::get_weather(openweather_city* pcity)
+   ::payload department::get_weather(openweather_city* pcity)
    {
 
       if (!m_bLoadedCityWeatherFromFile)
@@ -1623,7 +1621,7 @@ namespace geo
    }
 
 
-   string department::_get_weather(openweather_city * pcity)
+   ::payload department::_get_weather(openweather_city * pcity)
    {
 
       property_set set;
@@ -1635,7 +1633,7 @@ namespace geo
       try
       {
 
-         string strNetworkPayload;
+         //string strNetworkPayload;
 
          property_set set;
 
@@ -1643,7 +1641,7 @@ namespace geo
 
          //auto estatus = 
          
-         api_get(strNetworkPayload, strUrl, set);
+         auto payload = api_get(strUrl, set);
 
   /*       if (!estatus)
          {
@@ -1652,7 +1650,7 @@ namespace geo
 
          }*/
 
-         return strNetworkPayload;
+         return payload;
 
       }
       catch (...)

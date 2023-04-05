@@ -357,8 +357,29 @@ inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_ety
    DECL_VAR_ENUM(check);
 #undef DECL_VAR_ENUM
 
+
    template < primitive_enum ENUM >
-   bool operator ==(ENUM e) const { return equals_enum(e); }
+   bool operator ==(ENUM e) const 
+   { 
+
+      if (m_etype == e_type_atom)
+      {
+
+         return m_atom == e;
+
+      }
+      else if (m_etype == e_type_patom)
+      {
+
+         return *m_patom == e;
+
+      }
+
+      return equals_enum(e); 
+   
+   }
+
+
    //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
    //inline class ::time & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
    //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }

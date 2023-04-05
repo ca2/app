@@ -21,6 +21,8 @@ namespace networking
 
    public:
 
+      ::string m_strHostname;
+
 
       ::pointer<::netserver::socket_thread_base>                m_psocketthread;
 

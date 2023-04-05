@@ -4,6 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/primitive/string/base64.h"
 #include "apex/crypto/crypto.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -173,6 +174,61 @@ void api::clear_profile()
 }
 
 
+void api::defer_api()
+{
+
+   if (!m_bAuthenticated)
+   {
+
+      if (m_bAuthenticating)
+      {
+
+         m_eventResponse.wait();
+
+      }
+      else
+      {
+
+         m_bAuthenticating = true;
+
+         if (m_pathProfileFolder.is_empty())
+         {
+
+            auto pathAppData = dir()->appdata();
+
+            m_pathProfileFolder = pathAppData / "api" / m_strImplementation;
+
+         }
+
+         try
+         {
+
+            initialize_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
+
+         }
+         catch (...)
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+         if (!m_bAuthenticated)
+         {
+
+            //m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+
+            api_login();
+
+         }
+
+      }
+
+   }
+
+}
+
+
 void api::switch_profile_folder(const ::file::path & pathFolder)
 {
 
@@ -199,7 +255,7 @@ void api::api_login()
 }
 
 
-void api::_api_get(string& strNetworkPayload, const string& strUrl, property_set& set)
+void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
    throw ::interface_only();
@@ -207,22 +263,55 @@ void api::_api_get(string& strNetworkPayload, const string& strUrl, property_set
 }
 
 
-void api::api_get(::payload& payload, const string & strUrl, property_set& set)
+::payload api::api_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
-   string strNetworkPayload;
+   int iTry = 0;
 
-   _api_get(strNetworkPayload, strUrl, set);
+   while (true)
+   {
 
-   payload.parse_network_payload(strNetworkPayload);
+      ::string str;
+
+      iTry++;
+
+      defer_api();
+
+      _api_get(str, scopedstrUrl, set);
+
+      ::payload payload;
+
+      payload.parse_network_payload(str);
+
+      if (is_api_get_ok(scopedstrUrl, str, payload, set))
+      {
+
+         return payload;
+
+      }
+
+      clear_profile();
+
+      if (iTry >= 3)
+      {
+
+         throw exception(error_failed);
+
+      }
+
+   }
+
+   return {};
 
 }
 
 
-void api::api_download(string strGet, const ::file::path & path, property_set& set)
+::memory api::api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
 {
 
    throw ::interface_only();
+
+   return {};
 
 }
 
@@ -233,6 +322,52 @@ void api::api_download(string strGet, const ::file::path & path, property_set& s
       throw ::interface_only();
 
       return "";
+
+   }
+
+
+   bool api::is_api_get_ok(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstr, const ::payload& payload, ::property_set & set)
+   {
+
+      if (scopedstr().trim().is_empty())
+      {
+
+         return false;
+
+      }
+      
+      if(payload.is_empty())
+      {
+
+         return false;
+
+      }
+
+      int iHttpStatusCode = set["http_status_code"];
+
+      if (!is_http_status_ok(scopedstrUrl, scopedstr, payload, set, iHttpStatusCode))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool api::is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set& set, int iHttpStatusCode)
+   {
+
+      if (iHttpStatusCode != 200)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

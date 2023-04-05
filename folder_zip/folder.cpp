@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
@@ -9,6 +9,13 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
+#include "acme/_operating_system.h"
+
+#ifdef _UNIX
+
+#include <utime.h>
+
+#endif
 
 #ifndef _MAX_PATH
 #define _MAX_PATH 400
@@ -239,7 +246,7 @@ namespace folder_zip
 
    }
 
-   
+
    ::file_pointer folder::get_file(const ::file::path & pathFile)
    {
 
@@ -284,6 +291,49 @@ namespace folder_zip
    }
 
 
+   class ::time folder::get_modification_time() const
+   {
+
+      class ::time time;
+
+#ifdef WINDOWS
+
+      auto dosDate = m_unzfileinfo.dosDate;
+
+      ::file_time_t filetimeLocal;
+      ::file_time_t filetime;
+
+      ::DosDateTimeToFileTime((WORD)(dosDate >> 16), (WORD)dosDate, (LPFILETIME) & filetimeLocal);
+
+      ::LocalFileTimeToFileTime((LPFILETIME)&filetimeLocal, (LPFILETIME)&filetime);
+
+      ::file_time_to_time(&time, &filetime);
+
+#else
+
+      auto tmu_date = m_unzfileinfo.tmu_date;
+      struct utimbuf ut;
+      struct tm newdate;
+      newdate.tm_sec = tmu_date.tm_sec;
+      newdate.tm_min = tmu_date.tm_min;
+      newdate.tm_hour = tmu_date.tm_hour;
+      newdate.tm_mday = tmu_date.tm_mday;
+      newdate.tm_mon = tmu_date.tm_mon;
+      if (tmu_date.tm_year > 1900)
+         newdate.tm_year = tmu_date.tm_year - 1900;
+      else
+         newdate.tm_year = tmu_date.tm_year;
+      newdate.tm_isdst = -1;
+
+      ut.actime = ut.modtime = mktime(&newdate);
+      utime(filename, &ut);
+#endif
+      
+      return time;
+
+   }
+
+
    void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
    {
 
@@ -308,6 +358,10 @@ namespace folder_zip
             auto pathTarget = pathTargetFolder / path;
 
             acmefile()->put_block(pathTarget, memory);
+
+            auto time = get_modification_time();
+
+            acmefile()->set_modification_time(pathTarget, time);
 
          }
 

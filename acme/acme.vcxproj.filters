@@ -267,6 +267,12 @@
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{b4dbb92c-b141-4828-976a-1b41d1c87540}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\dos">
+      <UniqueIdentifier>{052e6fc9-4511-4d37-a784-5c9c4bf2e145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\NewFilter1">
+      <UniqueIdentifier>{b3d1e97f-fdfb-4b80-a453-ed7b470fa955}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2966,6 +2972,12 @@
     <ClInclude Include="operating_system\windows_common\find_file.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\dos\dostime.h">
+      <Filter>Header Files\operating_system\dos</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\dostime.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4068,6 +4080,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\find_file.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\dostime.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

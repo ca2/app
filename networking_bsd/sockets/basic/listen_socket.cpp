@@ -485,9 +485,9 @@ namespace sockets_bsd
       return false;
    }
 
-   void listen_socket::OnOptions(i32,i32,i32,SOCKET)
+   void listen_socket::OnOptions(i32,i32,i32,SOCKET s)
    {
-      SetSoReuseaddr(true);
+      _SetSoReuseaddr(s, true);
    }
 
 

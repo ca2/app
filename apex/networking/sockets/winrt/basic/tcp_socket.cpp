@@ -1305,10 +1305,10 @@ namespace sockets
       __UNREFERENCED_PARAMETER(s);
       //TRACE("socket::OnOptions()\n");
 #ifdef SO_NOSIGPIPE
-      SetSoNosigpipe(true);
+      _SetSoNosigpipe(s, true);
 #endif
-      SetSoReuseaddr(true);
-      SetSoKeepalive(true);
+      _SetSoReuseaddr(s, true);
+      _SetSoKeepalive(s, true);
    }
 
 

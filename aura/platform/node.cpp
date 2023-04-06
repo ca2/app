@@ -7,9 +7,9 @@
 #include "acme/platform/system.h"
 
 
-#ifdef LINUX
-#include "aura/operating_system/linux/x11.h"
-#endif
+//#ifdef LINUX
+//#include "aura/operating_system/linux/x11.h"
+//#endif
 //#include "aura/user/micro/message_box.h"
 
 

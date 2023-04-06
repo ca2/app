@@ -25,7 +25,6 @@ namespace folder_zip
       unz_file_info           m_unzfileinfo;
 
 
-
       folder();
       ~folder() override;
 
@@ -46,6 +45,8 @@ namespace folder_zip
       void extract(memory& m, const ::file::path & pathFile = nullptr) override;
 
       bool is_compressed(const ::file::path & pathItem = nullptr) override;
+
+      class ::time get_modification_time() const;
 
       ::file_pointer get_file(const ::file::path & pathFile = nullptr) override;
 

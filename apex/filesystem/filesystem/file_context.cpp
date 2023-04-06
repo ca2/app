@@ -44,7 +44,7 @@
 //
 ////#include "apex/platform/app_core.h"
 //
-////#elif defined(_UWP)
+////#elif defined(UNIVERSAL_WINDOWS)
 ////#include "acme/_operating_system.h"
 //#endif
 
@@ -1760,7 +1760,7 @@ void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   }
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
@@ -2106,7 +2106,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 //
 //   return false;
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //   throw ::exception(todo);
 //
@@ -4066,6 +4066,22 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
    writer->write(memory);
 
    //return writer.m_estatus;
+
+}
+
+
+void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip)
+{
+
+   auto pfileZip = get_reader(pathZip);
+
+   auto pfolder = acmesystem()->create < ::folder >("folder", "zip");
+
+   pfolder->initialize(m_pcontext);
+
+   pfolder->open_for_reading(pfileZip);
+
+   pfolder->e_extract_all(pathFolder);
 
 }
 

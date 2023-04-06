@@ -134,7 +134,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //#if !defined(_UWP)
+   //   //#if !defined(UNIVERSAL_WINDOWS)
    //   //
    //   //   auto iPid = atoll(strAppPid);
    //   //

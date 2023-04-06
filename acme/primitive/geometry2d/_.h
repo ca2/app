@@ -1432,7 +1432,7 @@ inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 //
 //
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////inline void copy(rectangle_i32 & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 ////{
@@ -1475,7 +1475,7 @@ inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 ////inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 ////inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx, size.cy); }
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////inline ::winrt::Windows::Foundation::Rect ScaleRect(::winrt::Windows::Foundation::Rect rectangle, double scale)
 ////{

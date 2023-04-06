@@ -9,17 +9,12 @@
 //#include <VersionHelpers.h>
 
 
-namespace audio
-{
-
-   CLASS_DECL_ACME string get_default_library_name()
-   {
-
-      return "audio_xaudio";
-
-   }
-
-} // namespace audio
+//CLASS_DECL_ACME string audio_get_default_library_name()
+//{
+//
+//   return "audio_xaudio";
+//
+//}
 
 
 // int message_box_w(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)
@@ -56,7 +51,7 @@ namespace audio
 // }
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 
@@ -132,7 +127,7 @@ bool os_initialize()
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
    HMODULE hmoduleUser32 = ::LoadLibrary("User32");
    g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");

@@ -248,7 +248,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
       return true;
 
    }
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 
@@ -333,7 +333,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       return true;
 
    }
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 

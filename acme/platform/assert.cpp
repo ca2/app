@@ -8,13 +8,13 @@
 
 //void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::future future);
 
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 
 //void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::future future);
 
 //#else
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //void _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future);
 //#else
 //int _os_message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox);
@@ -30,7 +30,7 @@ CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const ::ansi_character * pszFile
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 namespace acme
@@ -84,7 +84,7 @@ namespace acme
 
 #endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)

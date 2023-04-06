@@ -8,7 +8,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
-#include "aura/operating_system/_user.h"
+//#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"

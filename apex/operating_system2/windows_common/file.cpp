@@ -2,7 +2,7 @@
 #include "apex/operating_system.h"
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, string& strPrefix);
 //#endif
 
@@ -211,7 +211,7 @@
 //   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
 //   {
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      ::u32 dwLastError = ::get_last_error();
 //

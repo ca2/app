@@ -31,8 +31,12 @@ endif()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(folder_zip PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(folder_zip PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -47,11 +51,23 @@ elseif(LINUX)
     if(NOT DONT_USE_PKG_CONFIG)
         pkg_check_modules(PKGCONFIG zlib)
     endif()
-    target_compile_options(folder_zip PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(folder_zip PRIVATE ${PKGCONFIG_LDFLAGS})
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(folder_zip PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(folder_zip PRIVATE ${PKGCONFIG_LIBRARIES} acme)
-    target_link_options(folder_zip PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
@@ -61,6 +77,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 

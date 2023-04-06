@@ -1,7 +1,0 @@
-app\stage\metastage\bergedge.spa
-stage\basis\axiscairo.dll
-stage\basis\axisfreeimage.dll
-stage\basis\axisfreetype.dll
-stage\basis\axispixman.dll
-stage\basis\axispng.dll
-stage\basis\draw2d_cairo.dll

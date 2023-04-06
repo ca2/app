@@ -724,7 +724,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 //CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
 //{
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////   return (ref memory_new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
 ////

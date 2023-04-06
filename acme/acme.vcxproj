@@ -889,6 +889,7 @@
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
@@ -901,6 +902,8 @@
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
+    <ClInclude Include="operating_system\dostime.h" />
+    <ClInclude Include="operating_system\dos\dostime.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />

@@ -23,7 +23,7 @@ namespace universal_windows
          virtual ~document_properties();
 
 
-         virtual bool initialize(::_UWP::printer * pprinter, DEVMODE * pdevmode = nullptr);
+         virtual bool initialize(::UNIVERSAL_WINDOWS::printer * pprinter, DEVMODE * pdevmode = nullptr);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 

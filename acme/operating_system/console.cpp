@@ -43,7 +43,7 @@ namespace console
 } // namespace console
 
 
-//#if !defined(_UWP) || defined(_UWP_CONSOLE)
+//#if !defined(UNIVERSAL_WINDOWS) || defined(_UWP_CONSOLE)
 
 
 void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
@@ -83,7 +83,7 @@ int safe_get_any_char(const class time & time)
 
       timeStart.Now();
 
-#if defined(_UWP) || defined(ANDROID) || defined(APPLE_IOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS)
 
       iSafeChar = getchar();
 

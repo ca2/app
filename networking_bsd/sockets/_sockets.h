@@ -48,7 +48,7 @@ namespace net
 
 //#include "bsd/_component.h"
 
-#if defined(LINUX) || defined(_UWP)
+#if defined(LINUX) || defined(UNIVERSAL_WINDOWS)
 
 extern "C"
 CLASS_DECL_NETWORKING_BSD const SSL_METHOD * TLS_client_method();

@@ -2658,7 +2658,7 @@ inline void string_base < ITERATOR_TYPE >::set_at(strsize iChar, CHARACTER ch)
 //#endif
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //
 //template < typename ITERATOR_TYPE >

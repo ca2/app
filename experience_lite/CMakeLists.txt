@@ -48,9 +48,13 @@ endif()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(experience_lite PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(experience_lite PROPERTIES LINKER_LANGUAGE CXX)
@@ -63,13 +67,25 @@ if (MSVC)
     target_link_options(experience_lite PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_lite.def")
     target_link_libraries(experience_lite PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
-    target_compile_options(experience_lite PRIVATE -fpermissive)
-       target_compile_options(experience_lite PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(experience_lite PRIVATE ${PKGCONFIG_LDFLAGS})
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(experience_lite PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(experience_lite PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(experience_lite PRIVATE acme apex aqua aura axis base)
-    target_link_options(experience_lite PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
+
 endif()
 
 
@@ -79,6 +95,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 

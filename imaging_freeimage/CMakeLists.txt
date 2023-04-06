@@ -3,25 +3,30 @@ project(imaging_freeimage CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    _factory.cpp
-    context_image.cpp
-    context_image.h
-    file_procedure.cpp
-    file_procedure_ex1.cpp
-    fimemory.h
-    framework.cpp
-    framework.h
-    loading.cpp
-    loading_multi_frame.cpp
-    saving.cpp)
+        _.cpp
+        _.h
+        _factory.cpp
+        context_image.cpp
+        context_image.h
+        file_procedure.cpp
+        file_procedure_ex1.cpp
+        fimemory.h
+        framework.cpp
+        framework.h
+        loading.cpp
+        loading_multi_frame.cpp
+        loading_svg.cpp
+        saving.cpp)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} loading_svg.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -37,7 +42,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
-elseif(FREEBSD)
+elseif (FREEBSD)
 
 
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
@@ -47,28 +52,41 @@ elseif(FREEBSD)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-elseif(LINUX)
+
+elseif (LINUX)
 
 
     #if(NOT DONT_USE_PKG_CONFIG)
     #    pkg_check_modules(PKGCONFIG librsvg-2.0)
     #endif()
-    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-endif()
+
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _IMAGING_FREEIMAGE_LIBRARY)

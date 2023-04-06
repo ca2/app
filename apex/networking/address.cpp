@@ -37,7 +37,7 @@ namespace networking
 //      m_iLen = -1;
 //#endif
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      m_posdata = memory_new os_data();
 //
@@ -61,7 +61,7 @@ namespace networking
 //
 //#endif
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -77,7 +77,7 @@ namespace networking
 //   address::address(const sockaddr & sa, int iLen)
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -266,7 +266,7 @@ namespace networking
 //   address::address(const address & address)
 //   {
 //
-////#ifdef _UWP
+////#ifdef UNIVERSAL_WINDOWS
 ////
 ////      m_posdata = memory_new os_data();
 ////
@@ -280,7 +280,7 @@ namespace networking
    address::~address()
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      delete m_posdata;
 //
@@ -316,7 +316,7 @@ namespace networking
    string address::get_display_number() const
    {
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (!is_ipv4() && !is_ipv6() && m_posdata != nullptr && m_posdata->m_hostname != nullptr)
 //      {
@@ -464,7 +464,7 @@ namespace networking
 
    void address::sync_os_address()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
@@ -496,7 +496,7 @@ namespace networking
 
    void address::sync_os_service()
    {
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //#endif
    }
 

@@ -4,19 +4,12 @@
 //extern thread_pointer < htask > t_htask;
 
 
-namespace audio
-{
-
-   CLASS_DECL_ACME string get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-} // namespace audio
-
-
+//CLASS_DECL_ACME string audio_get_default_library_name()
+//{
+//
+//   return "audio_alsa";
+//
+//}
 
 
 CLASS_DECL_ACME void __node_acme_pre_init()

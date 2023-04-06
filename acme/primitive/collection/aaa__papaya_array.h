@@ -53,7 +53,7 @@ namespace acme
       bool contains_item(const CONTAINER & container, const TYPE & t);
 
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //      template < typename T, typename ITEM >
 //      inline ::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)

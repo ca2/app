@@ -55,7 +55,7 @@ void memory_counter::initialize(::particle * pparticle)
 //
 //      g_pMemoryCounters = memory_new ::file::path();
 //
-//#if defined(_UWP)
+//#if defined(UNIVERSAL_WINDOWS)
 //
 //      string strBasePath = pmatter->acmedirectory()->system() / "memory_counters";
 //

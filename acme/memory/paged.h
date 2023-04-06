@@ -9,7 +9,7 @@
 #pragma once
 
 
-#if defined(_WIN32) && !defined(_UWP)
+#if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
 
 void SetLargePageSize();
 

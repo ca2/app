@@ -146,7 +146,7 @@ string op_sys()
    return "iOS";
 #elif defined(ANDROID)
    return "Android";
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
    return "Windows Store";
 #else
    return "";

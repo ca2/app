@@ -6,7 +6,7 @@ namespace universal_windows
 
 
    class CLASS_DECL_ACME pen :
-      virtual public ::_UWP::graphics_object,
+      virtual public ::UNIVERSAL_WINDOWS::graphics_object,
       virtual public ::ca2::pen
    {
    public:
@@ -27,7 +27,7 @@ namespace universal_windows
 
       virtual bool create_solid(::ca2::graphics * pgraphics, double dWidth, color32_t crColor);
 
-      virtual ID2D1Brush * get_os_pen_brush(::_UWP::graphics * pdc) const;
+      virtual ID2D1Brush * get_os_pen_brush(::UNIVERSAL_WINDOWS::graphics * pdc) const;
 
 
       bool destroy();

@@ -737,7 +737,7 @@ namespace hotplugin
       else
       {
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
          ::aura::ipc::ipc::close();
 
@@ -818,7 +818,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
          //m_pcolorref = my_open_map(dir::path(dir::appdata("time"),string("aura\\app_app_nest-") + m_strBitmapChannel,&m_hfileBitmap, size);
 
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //         CREATEFILE2_EXTENDED_PARAMETERS ps;
 //         zero(&ps, sizeof(ps));
 //         ps.dwSize = sizeof(ps);
@@ -859,7 +859,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 //
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //
 //         ensure_file_size_handle(m_hfileBitmap, size);
 //
@@ -901,7 +901,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //
 //#endif
 //
-//#ifdef _UWP
+//#ifdef UNIVERSAL_WINDOWS
 //      m_pcolorref = (color32_t *) MapimpactOfFileFromApp(
 //         m_hfilemapBitmap,
 //         FILE_MAP_READ | FILE_MAP_WRITE,
@@ -1136,7 +1136,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
       if(pmsg->message == e_message_window_position_changing)
          return;
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 #if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
       if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_oswindow))

@@ -35,13 +35,13 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #endif
 
 
-#ifdef LINUX
-
-
-#include "aura/operating_system/ansi/_ansi.h"
-
-
-#endif
+//#ifdef LINUX
+//
+//
+//#include "aura/operating_system/ansi/_ansi.h"
+//
+//
+//#endif
 
 
 namespace user
@@ -71,7 +71,7 @@ namespace user
 
       m_bUpdatingScreen = false;
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
       m_bExclusiveMode = true;
 #else
       m_bExclusiveMode = false;

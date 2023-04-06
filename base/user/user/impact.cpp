@@ -1249,7 +1249,7 @@ namespace user
 //
 //   DROPEFFECT impact::OnDragScroll(u32 /*dwKeyState*/, point_i32 /*point_i32*/)
 //   {
-//#if !defined(___NO_OLE_SUPPORT) && !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
+//#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
 //#else
 //      return 0;

@@ -11,7 +11,7 @@
 #if !defined(WINDOWS_DESKTOP)
 
 #include "ansios_message_loop.cpp"
-#if !defined(_UWP)
+#if !defined(UNIVERSAL_WINDOWS)
 #include "ansios_base_file.cpp"
 #include "ansios_cross_win.cpp"
 #include "ansios_cross_windows_user.cpp"

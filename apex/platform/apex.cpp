@@ -160,13 +160,13 @@ void on_term_thread();
 //
 //   // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdLock;
 ////
-//////#if !defined(_UWP)
+//////#if !defined(UNIVERSAL_WINDOWS)
 ////
 //////::pointer< ::mutex > g_pmutexPendingThreadsLock;
 ////
@@ -174,7 +174,7 @@ void on_term_thread();
 ////
 //////::pointer< ::mutex > g_pmutexTlsData;
 ////
-////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+////#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 ////
 ////
 //////#if defined(LINUX) || defined(__APPLE__)
@@ -285,13 +285,13 @@ void on_term_thread();
 ////
 ////      // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdLock;
 ////
-//////#if !defined(_UWP)
+//////#if !defined(UNIVERSAL_WINDOWS)
 ////
 //////::pointer< ::mutex > g_pmutexPendingThreadsLock;
 ////
@@ -299,7 +299,7 @@ void on_term_thread();
 ////
 //////::pointer< ::mutex > g_pmutexTlsData;
 ////
-////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+////#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 ////
 ////#if defined(LINUX) || defined(__APPLE__)
 ////

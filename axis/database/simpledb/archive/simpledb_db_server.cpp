@@ -171,7 +171,7 @@ pacmedirectory->system() / "database.sqlite";
 
    }
 
-#if !defined(_UWP) && !defined(APPLEOS)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(APPLEOS)
 
    if(!create_message_queue())
       return false;

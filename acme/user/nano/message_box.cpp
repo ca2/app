@@ -108,7 +108,7 @@ void nano_message_box::calculate_size()
 {
 
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
    //int wScreen = 1280;
    //int hScreen = 768;
@@ -333,7 +333,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
       
    }
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
    {
@@ -444,7 +444,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
       
    }
 
-#if defined(_UWP)
+#if defined(UNIVERSAL_WINDOWS)
 
    if(pparticle->acmeapplication()->m_bConsole || !is_ui_possible())
    {

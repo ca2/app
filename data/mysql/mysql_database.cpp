@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/platform/profiler.h"
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 #include "acme/operating_system.h"
 #include <mysql/mysql.h>
 #include "mysql_database.h"

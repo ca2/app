@@ -373,7 +373,7 @@ namespace aura
 
          string strPrefix(get_root());
 
-#ifdef _UWP
+#ifdef UNIVERSAL_WINDOWS
 
          //         strPrefix = "m_" + strPrefix;
 
@@ -477,7 +477,7 @@ namespace aura
 
       }
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       //      strLibraryName.case_insensitive_begins_eat("m_");
 
@@ -530,7 +530,7 @@ namespace aura
 
       }
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
       //      strLibraryName.case_insensitive_begins_eat("m_");
 
@@ -704,7 +704,7 @@ namespace aura
 //
 //         strAppId.begins_eat("lib");
 //
-//#elif defined(_UWP)
+//#elif defined(UNIVERSAL_WINDOWS)
 //
 //         //         strPrefix = "m_" + strPrefix;
 //

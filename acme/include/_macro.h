@@ -28,7 +28,7 @@
 
 
 
-#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
 #define MOBILE_PLATFORM 1
 
@@ -43,7 +43,7 @@
 #endif
 
 
-#if defined(ANDROID) || defined(APPLE_IOS) || defined(_UWP)
+#if defined(ANDROID) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
 #define SANDBOXED_PLATFORM
 #endif
 

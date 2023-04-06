@@ -152,13 +152,13 @@
 //
 //   // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
 ////
 //////extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
 //////extern ::pointer< ::mutex > g_pmutexThreadIdLock;
 ////
-//////#if !defined(_UWP)
+//////#if !defined(UNIVERSAL_WINDOWS)
 ////
 //////extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
 ////
@@ -166,7 +166,7 @@
 ////
 //////extern ::pointer< ::mutex > g_pmutexTlsData;
 ////
-////#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+////#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
 //
 ////
 ////#if defined(LINUX) || defined(__APPLE__)

@@ -2,7 +2,7 @@
 
 
 
-#ifndef _UWP
+#ifndef UNIVERSAL_WINDOWS
 
 
 #endif

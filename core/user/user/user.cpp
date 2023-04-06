@@ -1812,7 +1812,7 @@ namespace core
 
 
 
-#elif defined(_UWP)
+#elif defined(UNIVERSAL_WINDOWS)
 
 
 //   void user::enable_wallpaper_change_notification()

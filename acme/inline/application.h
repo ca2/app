@@ -10,6 +10,7 @@
 
 #ifdef CUBE
 #include  "acme/platform/factory_function.h"
+#include "slashed_operating_system_appconfig.h"
 #include "operating_system/appconfig.h"
 #include "_static_factory_.inl"
 DO_FACTORY(REFERENCE_FACTORY)
@@ -208,7 +209,7 @@ int main(int argc, char * argv[], char * envp[])
 ////
 ////      //return iExitCode;
 ////
-////#elif !defined(_UWP)
+////#elif !defined(UNIVERSAL_WINDOWS)
 ////
 ////   papp->set_args(argc, argv, envp);
 ////

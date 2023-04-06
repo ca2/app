@@ -194,7 +194,7 @@ namespace user
 //
 //#else
 //
-//#ifndef _UWP
+//#ifndef UNIVERSAL_WINDOWS
 //
 //      WCHAR wsz[KL_NAMELENGTH];
 //

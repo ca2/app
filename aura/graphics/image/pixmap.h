@@ -54,7 +54,7 @@ struct pixmap
    pixmap()
    {
 
-#if defined(FREEBSD) || (defined(_UWP) && OSBIT == 32)
+#if defined(FREEBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
       m_iRedLower = 0;
 #else
       m_iRedLower = 1;

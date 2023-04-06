@@ -48,14 +48,21 @@ elseif(LINUX OR FREEBSD)
    if(NOT DONT_USE_PKG_CONFIG)
       pkg_check_modules(PKGCONFIG sqlite3)
    endif()
+
+
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
    target_compile_options(database_sqlite3 PRIVATE -fpermissive)
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(database_sqlite3 PRIVATE ${library_references})
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 

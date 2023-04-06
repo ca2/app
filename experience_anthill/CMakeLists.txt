@@ -7,11 +7,11 @@ list(APPEND library_source
         _.h
         #aaa_want_to_erase_experience_anthill_style.cpp
         experience/control_box_button.cpp
-   experience/control_box.h
-   experience/control_box.cpp
-   experience/control_box.h
-       experience/experience.cpp
-       experience/experience.h
+        experience/control_box.h
+        experience/control_box.cpp
+        experience/control_box.h
+        experience/experience.cpp
+        experience/experience.h
         _factory.cpp
 
         experience/frame.cpp
@@ -37,8 +37,7 @@ list(APPEND library_source
 
 
 list(APPEND library_references
-   acme apex aqua aura axis base)
-
+        acme apex aqua aura axis base)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -62,11 +61,13 @@ if (MSVC)
     target_link_options(experience_anthill PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
     target_link_libraries(experience_anthill PRIVATE ${library_references})
 
-elseif(LINUX)
+elseif (LINUX)
+
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
 
     #target_link_options(experience_anthill PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(experience_anthill PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
@@ -74,9 +75,7 @@ elseif(LINUX)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-endif()
-
-
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -85,7 +84,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(experience_anthill PRIVATE _APP_EXPERIENCE_ANTHILL_LIBRARY)

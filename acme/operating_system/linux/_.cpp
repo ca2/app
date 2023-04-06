@@ -11,17 +11,13 @@
 //extern thread_pointer < htask > t_htask;
 
 
-namespace audio
-{
+//CLASS_DECL_ACME string audio_get_default_library_name()
+//{
+//
+//   return "audio_alsa";
+//
+//}
 
-   CLASS_DECL_ACME string get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-} // namespace audio
 
 //void sigfpe_handler(int iSignalNumber)
 //{

@@ -97,19 +97,12 @@ CLASS_DECL_AURA void __node_aura_pos_term()
 //}
 
 
-namespace audio
-{
-
-
-   CLASS_DECL_AURA string get_default_library_name()
-   {
-   
-      return "audio_core_audio";
-   
-   }
-
-
-} // namespace audio
+//CLASS_DECL_AURA string audio_get_default_library_name()
+//{
+//
+//   return "audio_core_audio";
+//
+//}
 
 
 

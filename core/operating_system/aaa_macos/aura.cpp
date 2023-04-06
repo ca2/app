@@ -102,19 +102,6 @@ CLASS_DECL_CORE bool __node_aura_pos_term()
 //}
 
 
-namespace audio
-{
-
-
-   CLASS_DECL_CORE string get_default_library_name()
-   {
-   
-      return "audio_core_audio";
-   
-   }
-
-
-} // namespace audio
 
 
 

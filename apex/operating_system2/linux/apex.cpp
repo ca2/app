@@ -6,19 +6,12 @@
 //extern thread_pointer < htask > t_htask;
 
 
-namespace audio
-{
-
-   CLASS_DECL_APEX string get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-} // namespace audio
-
-
+//CLASS_DECL_APEX string audio_get_default_library_name()
+//{
+//
+//   return "audio_alsa";
+//
+//}
 
 
 CLASS_DECL_APEX bool __node_apex_pre_init()

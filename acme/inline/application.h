@@ -10,6 +10,7 @@
 
 #ifdef CUBE
 #include  "acme/platform/factory_function.h"
+#include "slashed_operating_system_appconfig.h"
 #include "operating_system/appconfig.h"
 #include "_static_factory_.inl"
 DO_FACTORY(REFERENCE_FACTORY)

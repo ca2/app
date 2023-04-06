@@ -341,7 +341,7 @@ namespace sockets_bsd
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      virtual void OnOptions(int family,int type,int protocol,SOCKET s) = 0;
+      virtual void OnOptions(int family, int type, int protocol, SOCKET s);
       /** Connection retry callback - return false to abort connection attempts */
       bool OnConnectRetry()  override;
       /** a reconnect has been made */
@@ -514,7 +514,9 @@ namespace sockets_bsd
       int SoSndbuf() override;
       int SoType() override;
       bool SetSoReuseaddr(bool x = true) override;
+      virtual bool _SetSoReuseaddr(SOCKET s, bool x = true);
       bool SetSoKeepalive(bool x = true) override;
+      virtual bool _SetSoKeepalive(SOCKET s, bool x = true);
 
 #ifdef SO_BSDCOMPAT
       bool SetSoBsdcompat(bool x = true) override;
@@ -543,6 +545,9 @@ namespace sockets_bsd
 #ifdef SO_NOSIGPIPE
       bool SetSoNosigpipe(bool x = true) override;
 #endif
+      
+      virtual bool _SetSoNosigpipe(SOCKET s, bool x = true);
+
       //@}
 
       // TCP options in tcp_socket.h/tcp_socket.cpp

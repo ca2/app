@@ -1,4 +1,4 @@
-﻿/** \file socket_thread.cpp
+/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **/  
@@ -617,10 +617,20 @@ namespace sockets_bsd
    }
 
 
+   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, ::i32 iSocket)
+   {
+      
+      
+   }
+
+
    bool base_socket::OnConnectRetry()
    {
+      
       return true;
+      
    }
+
 
    void base_socket::OnReconnect()
    {
@@ -1743,16 +1753,19 @@ namespace sockets_bsd
 
 
    /* SOCKET options */
+bool base_socket::SetSoReuseaddr(bool x)
+{
+   return _SetSoReuseaddr(GetSocketId(), x);
+}
 
-
-   bool base_socket::SetSoReuseaddr(bool x)
+   bool base_socket::_SetSoReuseaddr(SOCKET s, bool x)
    {
 
 #if defined(SO_REUSEADDR) && defined(BSD_STYLE_SOCKETS)
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
 
          FATAL("setsockopt(SOL_SOCKET, SO_REUSEADDR)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
@@ -1773,15 +1786,19 @@ namespace sockets_bsd
 
    }
 
-
-   bool base_socket::SetSoKeepalive(bool x)
+bool base_socket::SetSoKeepalive(bool x)
+{
+   
+   return _SetSoKeepalive(GetSocketId(), x);
+}
+   bool base_socket::_SetSoKeepalive(SOCKET s,bool x)
    {
 
 #if defined(SO_KEEPALIVE) && defined(BSD_STYLE_SOCKETS)
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(s, SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
 
          FATAL("setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
@@ -1804,13 +1821,18 @@ namespace sockets_bsd
 
 
 #if defined(SO_NOSIGPIPE) && defined(BSD_STYLE_SOCKETS)
-
-   bool base_socket::SetSoNosigpipe(bool x)
+bool base_socket::SetSoNosigpipe(bool x)
+{
+   
+   return _SetSoNosigpipe(GetSocketId(), x);
+   
+}
+   bool base_socket::_SetSoNosigpipe(SOCKET s, bool x)
    {
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(s, SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
       {
 
          FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));

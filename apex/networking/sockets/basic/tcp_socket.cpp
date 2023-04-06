@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tcp_socket.h"
 #include "tcp_socket_impl.h"
 
@@ -2300,19 +2300,27 @@ return true;
    }
 
 
-//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,socket_id s)
+//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol, ::i32 iSocket)
 //   {
 //
-//      __UNREFERENCED_PARAMETER(family);
-//      __UNREFERENCED_PARAMETER(type);
-//      __UNREFERENCED_PARAMETER(protocol);
-//      __UNREFERENCED_PARAMETER(s);
-//      //TRACE("socket::OnOptions()\n");
-//#ifdef SO_NOSIGPIPE
-//      SetSoNosigpipe(true);
-//#endif
-//      SetSoReuseaddr(true);
-//      SetSoKeepalive(true);
+////      __UNREFERENCED_PARAMETER(family);
+////      __UNREFERENCED_PARAMETER(type);
+////      __UNREFERENCED_PARAMETER(protocol);
+////      __UNREFERENCED_PARAMETER(s);
+////      //TRACE("socket::OnOptions()\n");
+////#ifdef SO_NOSIGPIPE
+////      SetSoNosigpipe(true);
+////#endif
+////      SetSoReuseaddr(true);
+////      SetSoKeepalive(true);
+//      
+//      if(m_ptcpsocketComposite)
+//      {
+//         
+//         m_ptcpsocketComposite->OnOptions(family, type, protocol, iSocket);
+//         
+//      }
+//      
 //   }
 
 

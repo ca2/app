@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "message_queue.h"
 #include "acme/constant/message.h"
 #include "acme/operating_system/message.h"
@@ -169,7 +169,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto bAcquired = m_eventNewMessage._wait(time);
+         auto bAcquired = m_eventNewMessage.wait(time);
 
          if(!bAcquired)
          {

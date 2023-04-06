@@ -346,7 +346,7 @@ namespace sockets
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      //virtual void OnOptions(int family,int type,int protocol,socket_id s) = 0;
+      //virtual void OnOptions(int family, int type, int protocol, SOCKET s);
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */

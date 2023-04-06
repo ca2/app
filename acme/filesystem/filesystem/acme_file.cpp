@@ -1,4 +1,4 @@
-﻿// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
+// From acme/filesystem/file/_.cpp by camilo on 2021-08-09 
 // From acme_windows/acme_file.cpp
 // 04:38 BRT <3ThomasBorregaardSørensen
 #include "framework.h"
@@ -924,6 +924,8 @@ void acme_file::_read_write_file_copy(const ::file::path & pathTarget, const ::f
       pfileOut->write(memory.data(), read);
 
    }
+   
+   pfileOut->set_modification_time(pfileIn->modification_time());
 
 }
 

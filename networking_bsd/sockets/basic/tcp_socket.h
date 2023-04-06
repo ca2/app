@@ -257,7 +257,7 @@ namespace sockets_bsd
 
       void DisableInputBuffer(bool = true) override;
 
-      void OnOptions(i32,i32,i32,SOCKET) override;
+      void OnOptions(int, int, int, SOCKET s) override;
 
       void SetLineProtocol(bool = true) override;
 

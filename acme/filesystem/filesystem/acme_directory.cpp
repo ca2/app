@@ -1133,6 +1133,14 @@ void acme_directory::erase(const ::file::path & path)
 }
 
 
+void acme_directory::erase_recursively(const ::file::path &path)
+{
+   
+   
+
+}
+
+
 ::file::path acme_directory::get_current()
 {
 

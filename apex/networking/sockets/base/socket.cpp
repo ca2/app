@@ -1,4 +1,4 @@
-﻿/** \file socket_thread.cpp
+/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **/  
@@ -694,6 +694,13 @@ namespace sockets
       return base_socket_composite()->GetPort();
 
    }
+
+
+//   void base_socket::OnOptions(int family, int type, int protocol, SOCKET s)
+//   {
+//
+//
+//   }
 
 
    bool base_socket::OnConnectRetry()
@@ -1977,6 +1984,10 @@ namespace sockets
 
    bool base_socket::SetSoReuseaddr(bool x)
    {
+      
+      ///return false;
+      
+      //return _SetSoReuseaddr(socket_i)
 //
 //#if defined(SO_REUSEADDR) && defined(BSD_STYLE_SOCKETS)
 //

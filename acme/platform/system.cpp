@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -1584,36 +1584,36 @@ void system::erase_session(index iEdge)
       
    }
    
-   if (psession)
-   {
-      
-      class time time;
-      
-      time.Now();
-      
-      while (true)
-      {
-         
-         if (psession->m_countReference <= 1)
-         {
-            
-            break;
-            
-         }
-         
-         preempt(100_ms);
-         
-         if (time.elapsed() > 10_s)
-         {
-            
-            break;
-            
-         }
-         
-      }
-      
-   }
-   
+//   if (psession)
+//   {
+//      
+//      class time time;
+//      
+//      time.Now();
+//      
+//      while (true)
+//      {
+//         
+//         if (psession->m_countReference <= 1)
+//         {
+//            
+//            break;
+//            
+//         }
+//         
+//         preempt(100_ms);
+//         
+//         if (time.elapsed() > 10_s)
+//         {
+//            
+//            break;
+//            
+//         }
+//         
+//      }
+//      
+//   }
+//   
 }
 
 

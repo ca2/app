@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "listen_socket.h"
 #include "socket_handler.h"
 ////#include "acme/exception/exception.h"
@@ -485,9 +485,9 @@ namespace sockets_bsd
       return false;
    }
 
-   void listen_socket::OnOptions(i32,i32,i32,SOCKET)
+   void listen_socket::OnOptions(i32,i32,i32,SOCKET s)
    {
-      SetSoReuseaddr(true);
+      _SetSoReuseaddr(s, true);
    }
 
 

@@ -2760,19 +2760,24 @@ namespace sockets_bsd
    }
 
 
-   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,SOCKET s)
+   void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
    {
 
       __UNREFERENCED_PARAMETER(family);
       __UNREFERENCED_PARAMETER(type);
       __UNREFERENCED_PARAMETER(protocol);
-      __UNREFERENCED_PARAMETER(s);
+
       //TRACE("socket::OnOptions()\n");
+      
 #ifdef SO_NOSIGPIPE
-      SetSoNosigpipe(true);
+      
+      _SetSoNosigpipe(s, true);
+      
 #endif
-      SetSoReuseaddr(true);
-      SetSoKeepalive(true);
+      
+      _SetSoReuseaddr(s, true);
+      _SetSoKeepalive(s, true);
+      
    }
 
 

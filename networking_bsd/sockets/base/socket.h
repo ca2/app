@@ -544,10 +544,9 @@ namespace sockets_bsd
 #endif
 #ifdef SO_NOSIGPIPE
       bool SetSoNosigpipe(bool x = true) override;
+      virtual bool _SetSoNosigpipe(SOCKET s, bool x = true);
 #endif
       
-      virtual bool _SetSoNosigpipe(SOCKET s, bool x = true);
-
       //@}
 
       // TCP options in tcp_socket.h/tcp_socket.cpp

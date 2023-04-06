@@ -64,10 +64,6 @@ list(APPEND library_source
         graphics/draw2d/draw2d.cpp
         graphics/draw2d/draw2d.h
         graphics/draw2d/fwd.h
-        graphics/write_text/glyph.cpp
-        graphics/write_text/glyph.h
-        graphics/write_text/glyph_set.cpp
-        graphics/write_text/glyph_set.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
         graphics/draw2d/graphics_extension.cpp
@@ -212,6 +208,11 @@ list(APPEND library_source
         graphics/write_text/font_enumeration_item.h
         graphics/write_text/font_list.cpp
         graphics/write_text/font_list.h
+        graphics/write_text/font_utf8.cpp
+        graphics/write_text/glyph.cpp
+        graphics/write_text/glyph.h
+        graphics/write_text/glyph_set.cpp
+        graphics/write_text/glyph_set.h
         graphics/write_text/text.h
         graphics/write_text/text_box.cpp
         graphics/write_text/text_box.h
@@ -825,7 +826,6 @@ list(APPEND windowing_source
 #            #operating_system/x11/x11_keyboard.h
 #            #operating_system/x11/x11_windowing.cpp
 #            #operating_system/x11/x11_xrender.cpp
-#            graphics/write_text/font_utf8.cpp
 #            ${windowing_source}
 #            )
 #endif ()

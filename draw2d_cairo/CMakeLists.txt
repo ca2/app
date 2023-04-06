@@ -63,8 +63,13 @@ elseif(LINUX OR FREEBSD)
     if(NOT DONT_USE_PKG_CONFIG)
         pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
     endif()
+
+
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
@@ -73,7 +78,9 @@ elseif(LINUX OR FREEBSD)
     #target_link_options(draw2d_cairo PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(draw2d_cairo PRIVATE acme apex aqua aura)
-    target_link_options(draw2d_cairo PRIVATE -Wl,-z,defs)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 

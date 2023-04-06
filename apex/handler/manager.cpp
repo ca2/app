@@ -31,6 +31,9 @@ manager::~manager()
 #ifdef _DEBUG
 
 
+//#error "manager::increment_reference_count is being compiled??"
+
+
 i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 

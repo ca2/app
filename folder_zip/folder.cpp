@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
@@ -9,11 +9,13 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
-#ifdef WINDOWS
-
 #include "acme/_operating_system.h"
 
-#endif
+//#ifdef POSIX_PLATFORM
+
+//#include <utime.h>
+
+//#endif
 
 #ifndef _MAX_PATH
 #define _MAX_PATH 400
@@ -323,21 +325,25 @@ namespace folder_zip
 #else
 
       auto tmu_date = m_unzfileinfo.tmu_date;
-      struct utimbuf ut;
+
       struct tm newdate;
+
       newdate.tm_sec = tmu_date.tm_sec;
       newdate.tm_min = tmu_date.tm_min;
       newdate.tm_hour = tmu_date.tm_hour;
       newdate.tm_mday = tmu_date.tm_mday;
       newdate.tm_mon = tmu_date.tm_mon;
+
       if (tmu_date.tm_year > 1900)
          newdate.tm_year = tmu_date.tm_year - 1900;
       else
          newdate.tm_year = tmu_date.tm_year;
+
       newdate.tm_isdst = -1;
 
-      ut.actime = ut.modtime = mktime(&newdate);
-      utime(filename, &ut);
+      time.m_iSecond = mktime(&newdate);
+      time.m_iNanosecond = 0;
+
 #endif
       
       return time;

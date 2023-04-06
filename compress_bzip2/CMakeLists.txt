@@ -74,7 +74,9 @@ endif()
 
 
    target_link_libraries(compress_bzip2 PRIVATE ${library_references})
-   target_link_options(compress_bzip2 PRIVATE -Wl,-z,defs)
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
    #message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 

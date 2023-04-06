@@ -40,7 +40,7 @@
 void on_initialize_particle() override                                             \
 {                                                                                      \
                                                                                        \
-   m_papplicationForConsumer = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
+   m_papp = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
                                                                                        \
    BASE1::on_initialize_particle();                                      \
                                                                        \
@@ -119,7 +119,7 @@ class app_consumer_base :
 public:
 
 
-   ::pointer<APP>m_papplicationForConsumer;
+   ::pointer<APP>m_papp;
 
 
    app_consumer_base()
@@ -131,8 +131,8 @@ public:
    APP_CONSUMER_BODY
 
 
-   inline APP * get_app() { return m_papplicationForConsumer.get(); }
-   inline APP * get_app() const { return (APP*)m_papplicationForConsumer.get(); }
+   inline APP * get_app() { return m_papp.get(); }
+   inline APP * get_app() const { return (APP*)m_papp.get(); }
 
 
 };
@@ -149,7 +149,7 @@ class application_interaction :
 public:
 
 
-   ::pointer<APP>m_papplicationForConsumer;
+   ::pointer<APP>m_papp;
 
 
    application_interaction()
@@ -240,8 +240,8 @@ public:
    }
 
 
-   inline APP* get_app() { return m_papplicationForConsumer.get(); }
-   inline APP* get_app() const { return (APP *)m_papplicationForConsumer.get(); }
+   inline APP* get_app() { return m_papp.get(); }
+   inline APP* get_app() const { return (APP *)m_papp.get(); }
 
 
 };

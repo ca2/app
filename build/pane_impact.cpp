@@ -68,7 +68,7 @@ namespace app_build
 
       }
 
-      m_papplicationForConsumer->m_ppaneimpact = this;
+      m_papp->m_ppaneimpact = this;
 
       set_tab("Options", OPTIONS_IMPACT);
       set_tab("Build", MAIN_IMPACT);
@@ -122,7 +122,7 @@ namespace app_build
 
          auto papp = get_app();
 
-         m_papplicationForConsumer->m_ptemplateHelloMultiverseImpact->open_document_file(papp, payloadFile, true, pimpactdata->m_pplaceholder);
+         m_papp->m_ptemplateHelloMultiverseImpact->open_document_file(papp, payloadFile, true, pimpactdata->m_pplaceholder);
 
       }
       break;

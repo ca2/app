@@ -201,7 +201,7 @@ namespace app_integration
             if (atom == "openssl")
             {
 
-               auto pdocument = m_papplicationForConsumer->m_ptemplateOpenSSL->open_document_file(m_papplicationForConsumer, nullptr, true);
+               auto pdocument = m_papp->m_ptemplateOpenSSL->open_document_file(m_papp, nullptr, true);
 
                pdocument->update_all_impacts(nullptr, "openssl");
 
@@ -209,7 +209,7 @@ namespace app_integration
             else if (atom == "ffmpeg")
             {
 
-               auto pdocument = m_papplicationForConsumer->m_ptemplateFFMPEG->open_document_file(m_papplicationForConsumer, nullptr, true);
+               auto pdocument = m_papp->m_ptemplateFFMPEG->open_document_file(m_papp, nullptr, true);
 
                pdocument->update_all_impacts(nullptr, "ffmpeg");
 

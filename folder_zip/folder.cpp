@@ -266,6 +266,10 @@ namespace folder_zip
 
       pfile->m_pfolder = this;
 
+      pfile->m_estatus = ::success;
+
+      pfile->set_ok_flag();
+
       return pfile;
 
    }
@@ -275,6 +279,15 @@ namespace folder_zip
    {
 
       auto pfile = get_file(pathFile);
+
+      if (!pfile || pfile.nok())
+      {
+
+         m.clear();
+
+         return;
+
+      }
 
       m = pfile->as_memory();
 
@@ -336,6 +349,8 @@ namespace folder_zip
    {
 
       ::file::listing listing;
+
+      listing.m_bRecursive = true;
 
       enumerate(listing);
 

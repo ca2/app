@@ -4077,6 +4077,8 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
    auto pfolder = acmesystem()->create < ::folder >("folder", "zip");
 
+   pfolder->initialize(m_pcontext);
+
    pfolder->open_for_reading(pfileZip);
 
    pfolder->e_extract_all(pathFolder);

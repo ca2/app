@@ -64,10 +64,6 @@ list(APPEND library_source
         graphics/draw2d/draw2d.cpp
         graphics/draw2d/draw2d.h
         graphics/draw2d/fwd.h
-        graphics/write_text/glyph.cpp
-        graphics/write_text/glyph.h
-        graphics/write_text/glyph_set.cpp
-        graphics/write_text/glyph_set.h
         graphics/draw2d/graphics.cpp
         graphics/draw2d/graphics.h
         graphics/draw2d/graphics_extension.cpp
@@ -212,6 +208,11 @@ list(APPEND library_source
         graphics/write_text/font_enumeration_item.h
         graphics/write_text/font_list.cpp
         graphics/write_text/font_list.h
+        graphics/write_text/font_utf8.cpp
+        graphics/write_text/glyph.cpp
+        graphics/write_text/glyph.h
+        graphics/write_text/glyph_set.cpp
+        graphics/write_text/glyph_set.h
         graphics/write_text/text.h
         graphics/write_text/text_box.cpp
         graphics/write_text/text_box.h
@@ -261,45 +262,45 @@ list(APPEND library_source
         message/timer.h
         message/user.cpp
         message/user.h
-        operating_system/_.h
-        #operating_system/_node.h
-        operating_system/serial.h
-        operating_system/ansi/_.h
-        operating_system/ansi/_ansi.h
-        operating_system/ansi/_c.h
-        operating_system/ansi/ansi_file.h
-        #operating_system/ansios/callstack.h
-        operating_system/ansi/datetime_c.h
-        operating_system/ansi/exception_engine.h
-        operating_system/ansi/file.h
-        operating_system/ansi/file_c.h
-        operating_system/ansi/file_raw.h
-        operating_system/ansi/parallelization.h
-        operating_system/cairo/_.h
-        operating_system/cairo/_impl.h
-        operating_system/_.h
-        #operating_system/_application.cpp
-        operating_system/_application.h
-        #operating_system/_c.h
-        operating_system/_impl.h
-        operating_system/_operating_system.h
-        operating_system/_user.h
-        #operating_system/argcargv.cpp
-        #operating_system/binreloc.cpp
-        #operating_system/binreloc.h
-        operating_system/chronometer.h
-        operating_system/cross.h
-        operating_system/file.h
-        operating_system/graphics.h
-        operating_system/http.cpp
-        #operating_system/operating_system.h
-        #operating_system/os_windowing2.h
-        #operating_system/process.h
-        #operating_system/text.h
-        operating_system/thread.cpp
-        operating_system/time.h
-        operating_system/windowing.cpp
-        operating_system/windowing.h
+#        operating_system/_.h
+#        #operating_system/_node.h
+#        operating_system/serial.h
+#        operating_system/ansi/_.h
+#        operating_system/ansi/_ansi.h
+#        operating_system/ansi/_c.h
+#        operating_system/ansi/ansi_file.h
+#        #operating_system/ansios/callstack.h
+#        operating_system/ansi/datetime_c.h
+#        operating_system/ansi/exception_engine.h
+#        operating_system/ansi/file.h
+#        operating_system/ansi/file_c.h
+#        operating_system/ansi/file_raw.h
+#        operating_system/ansi/parallelization.h
+#        operating_system/cairo/_.h
+#        operating_system/cairo/_impl.h
+#        operating_system/_.h
+#        #operating_system/_application.cpp
+#        operating_system/_application.h
+#        #operating_system/_c.h
+#        operating_system/_impl.h
+#        operating_system/_operating_system.h
+#        operating_system/_user.h
+#        #operating_system/argcargv.cpp
+#        #operating_system/binreloc.cpp
+#        #operating_system/binreloc.h
+#        operating_system/chronometer.h
+#        operating_system/cross.h
+#        operating_system/file.h
+#        operating_system/graphics.h
+#        operating_system/http.cpp
+#        #operating_system/operating_system.h
+#        #operating_system/os_windowing2.h
+#        #operating_system/process.h
+#        #operating_system/text.h
+#        operating_system/thread.cpp
+#        operating_system/time.h
+#        operating_system/windowing.cpp
+#        operating_system/windowing.h
         platform/_features.h
         platform/_impl.h
         platform/_platform.h
@@ -611,11 +612,11 @@ if (WIN32)
 
 else ()
 
-    list(APPEND library_source
-            operating_system/cross/windows/windowing.h
-            operating_system/cross/_.h
-            operating_system/cross/cross.h
-            )
+#    list(APPEND library_source
+#            operating_system/cross/windows/windowing.h
+#            operating_system/cross/_.h
+#            operating_system/cross/cross.h
+#            )
 
 endif ()
 
@@ -646,67 +647,67 @@ if (WINDOWS_TSF)
 endif ()
 
 
-if (UWP)
-    list(APPEND library_source
-            operating_system/universal_windows/net/net_address.h
-            operating_system/universal_windows/_.h
-            operating_system/universal_windows/_uwp.h
-            operating_system/universal_windows/application.cpp
-            operating_system/universal_windows/buffer.h
-            operating_system/universal_windows/copydesk.cpp
-            operating_system/universal_windows/copydesk.h
-            operating_system/universal_windows/directx.cpp
-            operating_system/universal_windows/directx.h
-            operating_system/universal_windows/directx_impact.cpp
-            operating_system/universal_windows/directx_impact.h
-            operating_system/universal_windows/directx_interaction.cpp
-            operating_system/universal_windows/directx_interaction.h
-            operating_system/universal_windows/error.cpp
-            operating_system/universal_windows/_factory.cpp
-            operating_system/universal_windows/
-            operating_system/universal_windows/graphics_buffer.cpp
-            operating_system/universal_windows/interaction_impl.cpp
-            operating_system/universal_windows/interaction_impl.h
-            operating_system/universal_windows/timer.cpp
-            operating_system/universal_windows/trace.cpp
-            operating_system/universal_windows/util.cpp
-            operating_system/universal_windows/_.h
-            operating_system/universal_windows/_os_metrowin.cpp
-            operating_system/universal_windows/_uwp.h
-            operating_system/universal_windows/_winrt.h
-            operating_system/universal_windows/application_system_run.cpp
-            operating_system/universal_windows/aura.cpp
-            operating_system/universal_windows/base_file.h
-            operating_system/universal_windows/direct2d_tls.cpp
-            #operating_system/universal_windows/dummy_ipc.cpp
-            operating_system/universal_windows/file_winrt.h
-            operating_system/universal_windows/gdi_winrt.h
-            operating_system/universal_windows/graphics.cpp
-            operating_system/universal_windows/host_interaction.h
-            operating_system/universal_windows/lock.cpp
-            operating_system/universal_windows/main.cpp
-            operating_system/universal_windows/metrowin_metrowin.h
-            operating_system/universal_windows/multithreading.h
-            operating_system/universal_windows/multithreading_winrt.h
-            operating_system/universal_windows/oswindow.h
-            #operating_system/universal_windows/process.h
-            operating_system/universal_windows/simple_hold_handle.h
-            operating_system/universal_windows/simple_ui.h
-            operating_system/universal_windows/sockets.h
-            operating_system/universal_windows/user.cpp
-            operating_system/universal_windows/windowing.cpp
-
-
-            )
-
-else ()
-
-    list(APPEND library_source
-            #operating_system/cross/universal_windows/cross_metrowin_user.cpp
-            #operating_system/cross/universal_windows/metrowin_user.cpp
-            )
-
-endif ()
+#if (UWP)
+#    list(APPEND library_source
+#            operating_system/universal_windows/net/net_address.h
+#            operating_system/universal_windows/_.h
+#            operating_system/universal_windows/_uwp.h
+#            operating_system/universal_windows/application.cpp
+#            operating_system/universal_windows/buffer.h
+#            operating_system/universal_windows/copydesk.cpp
+#            operating_system/universal_windows/copydesk.h
+#            operating_system/universal_windows/directx.cpp
+#            operating_system/universal_windows/directx.h
+#            operating_system/universal_windows/directx_impact.cpp
+#            operating_system/universal_windows/directx_impact.h
+#            operating_system/universal_windows/directx_interaction.cpp
+#            operating_system/universal_windows/directx_interaction.h
+#            operating_system/universal_windows/error.cpp
+#            operating_system/universal_windows/_factory.cpp
+#            operating_system/universal_windows/
+#            operating_system/universal_windows/graphics_buffer.cpp
+#            operating_system/universal_windows/interaction_impl.cpp
+#            operating_system/universal_windows/interaction_impl.h
+#            operating_system/universal_windows/timer.cpp
+#            operating_system/universal_windows/trace.cpp
+#            operating_system/universal_windows/util.cpp
+#            operating_system/universal_windows/_.h
+#            operating_system/universal_windows/_os_metrowin.cpp
+#            operating_system/universal_windows/_uwp.h
+#            operating_system/universal_windows/_winrt.h
+#            operating_system/universal_windows/application_system_run.cpp
+#            operating_system/universal_windows/aura.cpp
+#            operating_system/universal_windows/base_file.h
+#            operating_system/universal_windows/direct2d_tls.cpp
+#            #operating_system/universal_windows/dummy_ipc.cpp
+#            operating_system/universal_windows/file_winrt.h
+#            operating_system/universal_windows/gdi_winrt.h
+#            operating_system/universal_windows/graphics.cpp
+#            operating_system/universal_windows/host_interaction.h
+#            operating_system/universal_windows/lock.cpp
+#            operating_system/universal_windows/main.cpp
+#            operating_system/universal_windows/metrowin_metrowin.h
+#            operating_system/universal_windows/multithreading.h
+#            operating_system/universal_windows/multithreading_winrt.h
+#            operating_system/universal_windows/oswindow.h
+#            #operating_system/universal_windows/process.h
+#            operating_system/universal_windows/simple_hold_handle.h
+#            operating_system/universal_windows/simple_ui.h
+#            operating_system/universal_windows/sockets.h
+#            operating_system/universal_windows/user.cpp
+#            operating_system/universal_windows/windowing.cpp
+#
+#
+#            )
+#
+#else ()
+#
+#    list(APPEND library_source
+#            #operating_system/cross/universal_windows/cross_metrowin_user.cpp
+#            #operating_system/cross/universal_windows/metrowin_user.cpp
+#            )
+#
+#endif ()
 
 if (UWP OR WIN32)
 
@@ -739,551 +740,550 @@ list(APPEND windowing_source
         #windowing/xrender.cpp
         )
 
-if (LINUX)
-
-    list(APPEND library_source
-            operating_system/linux/_.h
-            #operating_system/linux/_linux.h
-            operating_system/linux/application.cpp
-            operating_system/linux/application.h
-            #operating_system/linux/console.cpp
-            #operating_system/linux/console.h
-            #operating_system/linux/copydesk.cpp
-            #operating_system/linux/copydesk.h
-            operating_system/linux/_factory.cpp
-            operating_system/linux/
-            #operating_system/linux/interaction_impl.cpp
-            #operating_system/linux/interaction_impl.h
-            operating_system/linux/system.cpp
-            #operating_system/gdk/aura_gdk.cpp
-            #operating_system/gdk/aura_gdk.h
-            operating_system/linux/_.h
-            operating_system/linux/_c.h
-            operating_system/linux/_glib.h
-            #operating_system/linux/_linux.h
-            operating_system/linux/_user.h
-            operating_system/linux/appindicator.cpp
-            operating_system/linux/appindicator.h
-            operating_system/linux/application_system_run.cpp
-            operating_system/linux/aura.cpp
-            operating_system/linux/bloat_pad.h
-            operating_system/linux/cross_win_file.cpp
-            operating_system/linux/cross_win_file.h
-            operating_system/linux/cross_win_gdi.cpp
-            operating_system/linux/cross_win_gdi.h
-            operating_system/linux/cross_win_gdi_internal.h
-            operating_system/linux/debug.cpp
-            operating_system/linux/debug.h
-            #operating_system/linux/desktop_file.cpp
-            #operating_system/linux/desktop_file.h
-            #operating_system/linux/exception_engine.cpp
-            #operating_system/linux/exception_engine.h
-            operating_system/linux/file.cpp
-            operating_system/linux/file.h
-            operating_system/linux/graphics.cpp
-            operating_system/linux/graphics.h
-            operating_system/linux/graphics2.h
-            operating_system/linux/language.cpp
-            #operating_system/linux/launcher.cpp
-            operating_system/linux/library.cpp
-            operating_system/linux/linux.inl
-            operating_system/linux/linux_linux.h
-            #operating_system/linux/list_serial_ports.cpp
-            #operating_system/linux/lock.cpp
-            operating_system/linux/message_loop.cpp
-            #operating_system/linux/monitor.cpp
-            operating_system/linux/os.cpp
-            #operating_system/linux/osdisplay.cpp
-            #operating_system/linux/osdisplay.h
-            #operating_system/linux/oswindow.cpp
-            #operating_system/linux/oswindow.h
-            operating_system/linux/parallelization.cpp
-            #operating_system/linux/process.cpp
-            #operating_system/linux/process.h
-            #operating_system/linux/process_pid.cpp
-            operating_system/linux/simple_app.cpp
-            operating_system/linux/time.cpp
-            operating_system/linux/user.cpp
-            operating_system/linux/user.h
-            operating_system/linux/user_private.h
-            operating_system/linux/win_base.cpp
-            operating_system/linux/window_cairo.h
-            #operating_system/linux/window_xlib.cpp
-            #operating_system/linux/window_xlib.h
-            operating_system/linux/windowing.cpp
-            #operating_system/linux/windowing_x11.cpp
-            #operating_system/linux/windowing_xcb.cpp
-            operating_system/linux/windowing.h
-            operating_system/linux/x11.h
-            #operating_system/linux/xdisplay.cpp
-            #operating_system/linux/xdisplay.h
-            #operating_system/linux/xinerama.cpp
-            #operating_system/x11/_x11.h
-            #operating_system/x11/debug.cpp
-            #operating_system/x11/x11_exception.h
-            #operating_system/x11/x11_keyboard.cpp
-            #operating_system/x11/x11_keyboard.h
-            #operating_system/x11/x11_windowing.cpp
-            #operating_system/x11/x11_xrender.cpp
-            graphics/write_text/font_utf8.cpp
-            ${windowing_source}
-            )
-endif ()
-
-
-if (FREEBSD)
-
-    list(APPEND library_source
-            operating_system/freebsd/_.h
-            operating_system/freebsd/_freebsd.h
-            operating_system/freebsd/application.cpp
-            operating_system/freebsd/application.h
-            #operating_system/freebsd/console.cpp
-            #operating_system/freebsd/console.h
-            #operating_system/freebsd/copydesk.cpp
-            #operating_system/freebsd/copydesk.h
-            operating_system/freebsd/_factory.cpp
-            operating_system/freebsd/
-            #operating_system/freebsd/interaction_impl.cpp
-            #operating_system/freebsd/interaction_impl.h
-            operating_system/freebsd/system.cpp
-            #operating_system/gdk/aura_gdk.cpp
-            #operating_system/gdk/aura_gdk.h
-            operating_system/freebsd/_.h
-            operating_system/freebsd/_c.h
-            operating_system/freebsd/_glib.h
-            operating_system/freebsd/_freebsd.h
-            operating_system/freebsd/_user.h
-            operating_system/freebsd/appindicator.cpp
-            operating_system/freebsd/appindicator.h
-            operating_system/freebsd/application_system_run.cpp
-            operating_system/freebsd/aura.cpp
-            operating_system/freebsd/bloat_pad.h
-            operating_system/freebsd/cross_win_file.cpp
-            operating_system/freebsd/cross_win_file.h
-            operating_system/freebsd/cross_win_gdi.cpp
-            operating_system/freebsd/cross_win_gdi.h
-            operating_system/freebsd/cross_win_gdi_internal.h
-            operating_system/freebsd/debug.cpp
-            operating_system/freebsd/debug.h
-            #operating_system/freebsd/desktop_file.cpp
-            #operating_system/freebsd/desktop_file.h
-            #operating_system/freebsd/exception_engine.cpp
-            #operating_system/freebsd/exception_engine.h
-            operating_system/freebsd/file.cpp
-            operating_system/freebsd/file.h
-            operating_system/freebsd/graphics.cpp
-            operating_system/freebsd/graphics.h
-            operating_system/freebsd/graphics2.h
-            operating_system/freebsd/language.cpp
-            #operating_system/freebsd/launcher.cpp
-            operating_system/freebsd/library.cpp
-            #operating_system/freebsd/freebsd.inl
-            #operating_system/freebsd/freebsd_freebsd.h
-            #operating_system/freebsd/list_serial_ports.cpp
-            #operating_system/freebsd/lock.cpp
-            operating_system/freebsd/message_loop.cpp
-            #operating_system/freebsd/monitor.cpp
-            operating_system/freebsd/os.cpp
-            #operating_system/freebsd/osdisplay.cpp
-            #operating_system/freebsd/osdisplay.h
-            #operating_system/freebsd/oswindow.cpp
-            #operating_system/freebsd/oswindow.h
-            operating_system/freebsd/parallelization.cpp
-            #operating_system/freebsd/process.cpp
-            #operating_system/freebsd/process.h
-            #operating_system/freebsd/process_pid.cpp
-            operating_system/freebsd/simple_app.cpp
-            operating_system/freebsd/time.cpp
-            operating_system/freebsd/user.cpp
-            operating_system/freebsd/user.h
-            operating_system/freebsd/user_private.h
-            operating_system/freebsd/win_base.cpp
-            operating_system/freebsd/window_cairo.h
-            #operating_system/freebsd/window_xlib.cpp
-            #operating_system/freebsd/window_xlib.h
-            operating_system/freebsd/windowing.cpp
-            #operating_system/freebsd/windowing_x11.cpp
-            #operating_system/freebsd/windowing_xcb.cpp
-            operating_system/freebsd/windowing.h
-            operating_system/freebsd/x11.h
-            #operating_system/freebsd/xdisplay.cpp
-            #operating_system/freebsd/xdisplay.h
-            #operating_system/freebsd/xinerama.cpp
-            #operating_system/x11/_x11.h
-            #operating_system/x11/debug.cpp
-            #operating_system/x11/x11_exception.h
-            #operating_system/x11/x11_keyboard.cpp
-            #operating_system/x11/x11_keyboard.h
-            #operating_system/x11/x11_windowing.cpp
-            #operating_system/x11/x11_xrender.cpp
-            graphics/write_text/font_utf8.cpp
-            ${windowing_source}
-            )
-endif ()
-
-
-if (LINUX OR APPLE OR SOLARIS)
-    list(APPEND library_source
-            operating_system/posix/_posix.h
-            #  operating_system/posix/application.cpp
-            )
-
-endif ()
-
-
-if (MACOS)
-    list(APPEND library_source
-            operating_system/macos/_.h
-            operating_system/macos/_macos.h
-            operating_system/macos/_mm.h
-            operating_system/macos/application.cpp
-            operating_system/macos/application.h
-            #operating_system/macos/copydesk.cpp
-            #operating_system/macos/copydesk.h
-            operating_system/macos/_factory.cpp
-            operating_system/macos/
-            operating_system/macos/frame_window.cpp
-            #operating_system/macos/interaction_impl.cpp
-            #operating_system/macos/interaction_impl.h
-            #operating_system/macos/keyboard.cpp
-            #operating_system/macos/keyboard.h
-            #operating_system/macos/main.cpp
-            #operating_system/macos/mm.mm
-            #operating_system/macos/thread.cpp
-            #operating_system/macos/thread.h
-            #operating_system/macos/trace.cpp
-            #operating_system/macos/user.h
-            #operating_system/macos/util.cpp
-            #operating_system/macos/_.h
-            #operating_system/macos/_c.h
-            #operating_system/macos/_macos.h
-            #operating_system/macos/_mm.h
-            #operating_system/macos/application_system_run.cpp
-            #operating_system/macos/aura.cpp
-            #operating_system/macos/clipboard.cpp
-            #operating_system/macos/cross_win.cpp
-            #operating_system/macos/cross_win_file.cpp
-            #operating_system/macos/cross_win_gdi.h
-            #operating_system/macos/debug.cpp
-            #operating_system/macos/exception_engine.cpp
-            #operating_system/macos/exception_engine.h
-            #operating_system/macos/file.cpp
-            #operating_system/macos/file.h
-            #operating_system/macos/file.mm
-            #operating_system/macos/graphics.cpp
-            #operating_system/macos/graphics_mm.h
-            #operating_system/macos/internal.h
-            #operating_system/macos/keyboard.cpp
-            #operating_system/macos/language.cpp
-            #operating_system/macos/launcher.cpp
-            #operating_system/macos/library.cpp
-            #operating_system/macos/list_serial_ports.cpp
-            #operating_system/macos/lock.cpp
-            #operating_system/macos/macos.h
-            #operating_system/macos/main.h
-            #operating_system/macos/message_loop.cpp
-            #operating_system/macos/MessageBoxA.cpp
-            #operating_system/macos/mm.mm
-            #operating_system/macos/mm_base_user.mm
-            #operating_system/macos/mm_graphics.mm
-            #operating_system/macos/mm_oswindow.h
-            #operating_system/macos/mm_user.mm
-            #operating_system/macos/multithreading.cpp
-            #operating_system/macos/multithreading.h
-            #operating_system/macos/NSPasteboard++.mm
-            #operating_system/macos/os.cpp
-            #operating_system/macos/os.h
-            #operating_system/macos/oswindow_data.cpp
-            #operating_system/macos/oswindow_data.h
-            #      operating_system/macos/process.cpp
-            #      operating_system/macos/process_c.h
-            #      operating_system/macos/process_pid.cpp
-            #operating_system/macos/simple_app.cpp
-            #operating_system/macos/time.cpp
-            #operating_system/macos/user.cpp
-            #operating_system/macos/user.h
-            #operating_system/macos/win_base.cpp
-            #operating_system/macos/window_impl.h
-            #operating_system/macos/windowing.cpp
-            #operating_system/macos/windowing.h
-            #operating_system/macos/windowing_c.h
-            #operating_system/macos/winpr_keycode.cpp
-            )
-endif ()
+#if (LINUX)
+#
+#    list(APPEND library_source
+#            operating_system/linux/_.h
+#            #operating_system/linux/_linux.h
+#            operating_system/linux/application.cpp
+#            operating_system/linux/application.h
+#            #operating_system/linux/console.cpp
+#            #operating_system/linux/console.h
+#            #operating_system/linux/copydesk.cpp
+#            #operating_system/linux/copydesk.h
+#            operating_system/linux/_factory.cpp
+#            operating_system/linux/
+#            #operating_system/linux/interaction_impl.cpp
+#            #operating_system/linux/interaction_impl.h
+#            operating_system/linux/system.cpp
+#            #operating_system/gdk/aura_gdk.cpp
+#            #operating_system/gdk/aura_gdk.h
+#            operating_system/linux/_.h
+#            operating_system/linux/_c.h
+#            operating_system/linux/_glib.h
+#            #operating_system/linux/_linux.h
+#            operating_system/linux/_user.h
+#            operating_system/linux/appindicator.cpp
+#            operating_system/linux/appindicator.h
+#            operating_system/linux/application_system_run.cpp
+#            operating_system/linux/aura.cpp
+#            operating_system/linux/bloat_pad.h
+#            operating_system/linux/cross_win_file.cpp
+#            operating_system/linux/cross_win_file.h
+#            operating_system/linux/cross_win_gdi.cpp
+#            operating_system/linux/cross_win_gdi.h
+#            operating_system/linux/cross_win_gdi_internal.h
+#            operating_system/linux/debug.cpp
+#            operating_system/linux/debug.h
+#            #operating_system/linux/desktop_file.cpp
+#            #operating_system/linux/desktop_file.h
+#            #operating_system/linux/exception_engine.cpp
+#            #operating_system/linux/exception_engine.h
+#            operating_system/linux/file.cpp
+#            operating_system/linux/file.h
+#            operating_system/linux/graphics.cpp
+#            operating_system/linux/graphics.h
+#            operating_system/linux/graphics2.h
+#            operating_system/linux/language.cpp
+#            #operating_system/linux/launcher.cpp
+#            operating_system/linux/library.cpp
+#            operating_system/linux/linux.inl
+#            operating_system/linux/linux_linux.h
+#            #operating_system/linux/list_serial_ports.cpp
+#            #operating_system/linux/lock.cpp
+#            operating_system/linux/message_loop.cpp
+#            #operating_system/linux/monitor.cpp
+#            operating_system/linux/os.cpp
+#            #operating_system/linux/osdisplay.cpp
+#            #operating_system/linux/osdisplay.h
+#            #operating_system/linux/oswindow.cpp
+#            #operating_system/linux/oswindow.h
+#            operating_system/linux/parallelization.cpp
+#            #operating_system/linux/process.cpp
+#            #operating_system/linux/process.h
+#            #operating_system/linux/process_pid.cpp
+#            operating_system/linux/simple_app.cpp
+#            operating_system/linux/time.cpp
+#            operating_system/linux/user.cpp
+#            operating_system/linux/user.h
+#            operating_system/linux/user_private.h
+#            operating_system/linux/win_base.cpp
+#            operating_system/linux/window_cairo.h
+#            #operating_system/linux/window_xlib.cpp
+#            #operating_system/linux/window_xlib.h
+#            operating_system/linux/windowing.cpp
+#            #operating_system/linux/windowing_x11.cpp
+#            #operating_system/linux/windowing_xcb.cpp
+#            operating_system/linux/windowing.h
+#            operating_system/linux/x11.h
+#            #operating_system/linux/xdisplay.cpp
+#            #operating_system/linux/xdisplay.h
+#            #operating_system/linux/xinerama.cpp
+#            #operating_system/x11/_x11.h
+#            #operating_system/x11/debug.cpp
+#            #operating_system/x11/x11_exception.h
+#            #operating_system/x11/x11_keyboard.cpp
+#            #operating_system/x11/x11_keyboard.h
+#            #operating_system/x11/x11_windowing.cpp
+#            #operating_system/x11/x11_xrender.cpp
+#            ${windowing_source}
+#            )
+#endif ()
+#
+#
+#if (FREEBSD)
+#
+#    list(APPEND library_source
+#            operating_system/freebsd/_.h
+#            operating_system/freebsd/_freebsd.h
+#            operating_system/freebsd/application.cpp
+#            operating_system/freebsd/application.h
+#            #operating_system/freebsd/console.cpp
+#            #operating_system/freebsd/console.h
+#            #operating_system/freebsd/copydesk.cpp
+#            #operating_system/freebsd/copydesk.h
+#            operating_system/freebsd/_factory.cpp
+#            operating_system/freebsd/
+#            #operating_system/freebsd/interaction_impl.cpp
+#            #operating_system/freebsd/interaction_impl.h
+#            operating_system/freebsd/system.cpp
+#            #operating_system/gdk/aura_gdk.cpp
+#            #operating_system/gdk/aura_gdk.h
+#            operating_system/freebsd/_.h
+#            operating_system/freebsd/_c.h
+#            operating_system/freebsd/_glib.h
+#            operating_system/freebsd/_freebsd.h
+#            operating_system/freebsd/_user.h
+#            operating_system/freebsd/appindicator.cpp
+#            operating_system/freebsd/appindicator.h
+#            operating_system/freebsd/application_system_run.cpp
+#            operating_system/freebsd/aura.cpp
+#            operating_system/freebsd/bloat_pad.h
+#            operating_system/freebsd/cross_win_file.cpp
+#            operating_system/freebsd/cross_win_file.h
+#            operating_system/freebsd/cross_win_gdi.cpp
+#            operating_system/freebsd/cross_win_gdi.h
+#            operating_system/freebsd/cross_win_gdi_internal.h
+#            operating_system/freebsd/debug.cpp
+#            operating_system/freebsd/debug.h
+#            #operating_system/freebsd/desktop_file.cpp
+#            #operating_system/freebsd/desktop_file.h
+#            #operating_system/freebsd/exception_engine.cpp
+#            #operating_system/freebsd/exception_engine.h
+#            operating_system/freebsd/file.cpp
+#            operating_system/freebsd/file.h
+#            operating_system/freebsd/graphics.cpp
+#            operating_system/freebsd/graphics.h
+#            operating_system/freebsd/graphics2.h
+#            operating_system/freebsd/language.cpp
+#            #operating_system/freebsd/launcher.cpp
+#            operating_system/freebsd/library.cpp
+#            #operating_system/freebsd/freebsd.inl
+#            #operating_system/freebsd/freebsd_freebsd.h
+#            #operating_system/freebsd/list_serial_ports.cpp
+#            #operating_system/freebsd/lock.cpp
+#            operating_system/freebsd/message_loop.cpp
+#            #operating_system/freebsd/monitor.cpp
+#            operating_system/freebsd/os.cpp
+#            #operating_system/freebsd/osdisplay.cpp
+#            #operating_system/freebsd/osdisplay.h
+#            #operating_system/freebsd/oswindow.cpp
+#            #operating_system/freebsd/oswindow.h
+#            operating_system/freebsd/parallelization.cpp
+#            #operating_system/freebsd/process.cpp
+#            #operating_system/freebsd/process.h
+#            #operating_system/freebsd/process_pid.cpp
+#            operating_system/freebsd/simple_app.cpp
+#            operating_system/freebsd/time.cpp
+#            operating_system/freebsd/user.cpp
+#            operating_system/freebsd/user.h
+#            operating_system/freebsd/user_private.h
+#            operating_system/freebsd/win_base.cpp
+#            operating_system/freebsd/window_cairo.h
+#            #operating_system/freebsd/window_xlib.cpp
+#            #operating_system/freebsd/window_xlib.h
+#            operating_system/freebsd/windowing.cpp
+#            #operating_system/freebsd/windowing_x11.cpp
+#            #operating_system/freebsd/windowing_xcb.cpp
+#            operating_system/freebsd/windowing.h
+#            operating_system/freebsd/x11.h
+#            #operating_system/freebsd/xdisplay.cpp
+#            #operating_system/freebsd/xdisplay.h
+#            #operating_system/freebsd/xinerama.cpp
+#            #operating_system/x11/_x11.h
+#            #operating_system/x11/debug.cpp
+#            #operating_system/x11/x11_exception.h
+#            #operating_system/x11/x11_keyboard.cpp
+#            #operating_system/x11/x11_keyboard.h
+#            #operating_system/x11/x11_windowing.cpp
+#            #operating_system/x11/x11_xrender.cpp
+#            graphics/write_text/font_utf8.cpp
+#            ${windowing_source}
+#            )
+#endif ()
+#
+#
+#if (LINUX OR APPLE OR SOLARIS)
+#    list(APPEND library_source
+#            operating_system/posix/_posix.h
+#            #  operating_system/posix/application.cpp
+#            )
+#
+#endif ()
 
 
-if (IOS)
-    list(APPEND library_source
-            ios_aura/ios_aura.h
-            ios_aura/ios_aura.m
-            operating_system/ios/_.h
-            operating_system/ios/_ios.h
-            operating_system/ios/_m.h
-            operating_system/ios/_mm.h
-            operating_system/ios/application.cpp
-            operating_system/ios/application.h
-            operating_system/ios/aura_window.h
-            operating_system/ios/aura_window.mm
-            operating_system/ios/AuraImpactController.h
-            operating_system/ios/AuraImpactController.mm
-            operating_system/ios/AuraWindow.h
-            operating_system/ios/AuraWindow.mm
-            operating_system/ios/AuraWindowApp.h
-            operating_system/ios/AuraWindowApp.mm
-            operating_system/ios/AuraWindowFrameImpact.h
-            operating_system/ios/AuraWindowFrameImpact.mm
-            operating_system/ios/exception.cpp
-            operating_system/ios/_factory.cpp
-            operating_system/ios/
-            operating_system/ios/host_interaction.cpp
-            operating_system/ios/host_interaction.h
-            operating_system/ios/implementation.h
-            operating_system/ios/interaction_impl.cpp
-            operating_system/ios/interaction_impl.h
-            operating_system/ios/internal.h
-            operating_system/ios/ios.cpp
-            operating_system/ios/main.cpp
-            operating_system/ios/plane_system.cpp
-            operating_system/ios/plane_system.h
-            operating_system/ios/RoundCaretImpact.h
-            operating_system/ios/RoundCaretImpact.mm
-            operating_system/ios/RoundEditImpact.h
-            operating_system/ios/RoundEditImpact.mm
-            operating_system/ios/RoundTextPosition.h
-            operating_system/ios/RoundTextPosition.mm
-            operating_system/ios/RoundTextRange.h
-            operating_system/ios/RoundTextRange.mm
-            operating_system/ios/RoundTextImpact.h
-            operating_system/ios/RoundTextImpact.mm
-            operating_system/ios/state.h
-            operating_system/ios/thread.cpp
-            operating_system/ios/thread.h
-            operating_system/ios/trace.cpp
-            operating_system/ios/util.cpp
-            operating_system/ios/_.h
-            operating_system/ios/_c.h
-            operating_system/ios/_ios.h
-            operating_system/ios/_m.h
-            operating_system/ios/_mm.h
-            operating_system/ios/application_system_run.cpp
-            operating_system/ios/aura.cpp
-            operating_system/ios/base_internal.h
-            operating_system/ios/base_user.cpp
-            operating_system/ios/cross_win.cpp
-            operating_system/ios/cross_win_file.cpp
-            operating_system/ios/cross_win_gdi.h
-            operating_system/ios/crypt.cpp
-            operating_system/ios/debug.cpp
-            operating_system/ios/error.cpp
-            operating_system/ios/exception_engine.cpp
-            operating_system/ios/exception_engine.h
-            operating_system/ios/file.cpp
-            operating_system/ios/fontopus.cpp
-            operating_system/ios/gen_1.h
-            operating_system/ios/graphics.cpp
-            operating_system/ios/implementation.h
-            operating_system/ios/internal.h
-            operating_system/ios/language.cpp
-            operating_system/ios/launcher.cpp
-            operating_system/ios/library.cpp
-            operating_system/ios/lock.cpp
-            operating_system/ios/MessageBoxA_W.mm
-            operating_system/ios/mm.mm
-            operating_system/ios/mm_cross_gdi.mm
-            operating_system/ios/mm_graphics.h
-            operating_system/ios/mm_graphics.mm
-            operating_system/ios/mm_oswindow.h
-            operating_system/ios/mm_thread.mm
-            operating_system/ios/mm_user.mm
-            operating_system/ios/multithreading.cpp
-            operating_system/ios/multithreading.h
-            operating_system/ios/oswindow_data.cpp
-            operating_system/ios/oswindow_data.h
-            #      operating_system/ios/process.cpp
-            #      operating_system/ios/process.h
-            #      operating_system/ios/process_pid.cpp
-            operating_system/ios/time.cpp
-            operating_system/ios/user.cpp
-            operating_system/ios/win_base.cpp
-            operating_system/ios/window.cpp
-            operating_system/ios/window.h
-            "operating_system/ios/window_boot 2.h"
-            operating_system/ios/window_boot.h
-            operating_system/ios/window_impl.h
-            operating_system/ios/windowing.cpp
-            operating_system/ios/windowing.h
-            )
-endif ()
-
-if (SOLARIS)
-    list(APPEND library_source
-            operating_system/solaris/linux_internal.h
-            operating_system/solaris/solaris.cpp
-            operating_system/solaris/solaris.h
-            operating_system/solaris/solaris_cairo_keep.cpp
-            operating_system/solaris/solaris_cairo_keep.h
-            operating_system/solaris/solaris_cross_win_file.cpp
-            operating_system/solaris/solaris_cross_win_file.h
-            operating_system/solaris/solaris_cross_win_gdi.cpp
-            operating_system/solaris/solaris_cross_win_gdi.h
-            operating_system/solaris/solaris_cross_win_gdi_internal.h
-            operating_system/solaris/solaris_debug.h
-            operating_system/solaris/solaris_display.cpp
-            operating_system/solaris/solaris_file.cpp
-            operating_system/solaris/solaris_file.h
-            operating_system/solaris/solaris_file_watcher.cpp
-            operating_system/solaris/solaris_file_watcher.h
-            operating_system/solaris/solaris_graphics.h
-            operating_system/solaris/solaris_http.cpp
-            operating_system/solaris/solaris_http.h
-            operating_system/solaris/solaris_http_lib.cpp
-            operating_system/solaris/solaris_http_lib.h
-            operating_system/solaris/solaris_internal.h
-            operating_system/solaris/solaris_launcher.cpp
-            operating_system/solaris/solaris_library.cpp
-            operating_system/solaris/solaris_lock.cpp
-            operating_system/solaris/solaris_message_loop.cpp
-            #      operating_system/solaris/solaris_process.cpp
-            #      operating_system/solaris/solaris_process.h
-            #      operating_system/solaris/solaris_process_pid.cpp
-            operating_system/solaris/solaris_simple_ui.cpp
-            operating_system/solaris/solaris_simple_ui.h
-            operating_system/solaris/solaris_solaris.h
-            operating_system/solaris/solaris_thread.cpp
-            operating_system/solaris/solaris_user_impl.h
-            operating_system/solaris/solaris_win_base.cpp
-            operating_system/solaris/solaris_window.cpp
-            operating_system/solaris/solaris_window_xlib.cpp
-            operating_system/solaris/solaris_window_xlib.h
-            )
-
-endif ()
-
-if (ANDROID)
-    list(APPEND library_source
-            operating_system/android/Kerr/kerr.h
-            operating_system/android/Kerr/LocalMemory.h
-            operating_system/android/_.h
-            operating_system/android/_android.h
-            operating_system/android/android.cpp
-            operating_system/android/android1.cpp
-            operating_system/android/android1.h
-            operating_system/android/application.cpp
-            operating_system/android/application.h
-            operating_system/android/buffer.cpp
-            operating_system/android/buffer.h
-            operating_system/android/dir_context.cpp
-            operating_system/android/dir_context.h
-            operating_system/android/dir_system.cpp
-            operating_system/android/dir_system.h
-            operating_system/android/error.cpp
-            operating_system/android/exception.cpp
-            operating_system/android/_factory.cpp
-            operating_system/android/
-            operating_system/android/file.cpp
-            operating_system/android/file.h
-            operating_system/android/file_context.cpp
-            operating_system/android/file_context.h
-            operating_system/android/file_system.cpp
-            operating_system/android/file_system.h
-            operating_system/android/host_interaction.cpp
-            operating_system/android/host_interaction.h
-            operating_system/android/implementation.h
-            operating_system/android/interaction_impl.cpp
-            operating_system/android/interaction_impl.h
-            operating_system/android/internal.h
-            operating_system/android/main.cpp
-            operating_system/android/os_context.cpp
-            operating_system/android/os_context.h
-            #      operating_system/android/process.cpp
-            operating_system/android/thread.cpp
-            operating_system/android/thread.h
-            operating_system/android/trace.cpp
-            operating_system/android/util.cpp
-            operating_system/android/_.h
-            operating_system/android/_android.h
-            operating_system/android/_bind_app.cpp
-            operating_system/android/_bind_impact.cpp
-            operating_system/android/_c.h
-            operating_system/android/_os_android.cpp
-            operating_system/android/_os_impl.cpp
-            operating_system/android/_os_impl.h
-            operating_system/android/_os_local.h
-            operating_system/android/_os_object.cpp
-            operating_system/android/_os_object.h
-            operating_system/android/_os_remote.h
-            operating_system/android/application_system_run.cpp
-            operating_system/android/aura.cpp
-            operating_system/android/c.cpp
-            operating_system/android/cairo_keep.h
-            operating_system/android/cross_win_file.h
-            operating_system/android/cross_win_gdi.h
-            operating_system/android/cross_win_gdi_internal.h
-            operating_system/android/debug.cpp
-            operating_system/android/dir.cpp
-            operating_system/android/exception_engine.cpp
-            operating_system/android/exception_engine.h
-            operating_system/android/file.cpp
-            operating_system/android/file.h
-            operating_system/android/graphics.cpp
-            operating_system/android/graphics.h
-            operating_system/android/internal.h
-            operating_system/android/jni_launcher.cpp
-            operating_system/android/language.cpp
-            operating_system/android/launcher.cpp
-            operating_system/android/library.cpp
-            operating_system/android/locale.cpp
-            operating_system/android/lock.cpp
-            operating_system/android/main_android.cpp
-            operating_system/android/message_loop.cpp
-            operating_system/android/multithreading.cpp
-            #      operating_system/android/process.cpp
-            #      operating_system/android/process.h
-            #      operating_system/android/process_pid.cpp
-            operating_system/android/impact_bitmap.h
-            operating_system/android/win_base.cpp
-            operating_system/android/window_android.cpp
-            operating_system/android/window_android.h
-            operating_system/android/window_impl.cpp
-            operating_system/android/windowing.cpp
-            operating_system/android/windowing.h
-            )
-
-endif ()
-
-if (APPLE)
-
-    list(APPEND library_source
-            timer.mm
-            operating_system/apple/apple_timer.cpp
-            #      operating_system/apple/process.cpp
-            #      operating_system/apple/process.h
-            operating_system/apple/_.cpp
-            operating_system/apple/_.h
-            operating_system/apple/_apple.h
-            operating_system/apple/_apple.mm
-            operating_system/apple/_c_mm.h
-            operating_system/apple/_mm.h
-            operating_system/apple/_mm_common.h
-            operating_system/apple/debug.cpp
-            operating_system/apple/debug.h
-            operating_system/apple/exe_path.cpp
-            operating_system/apple/graphics.cpp
-            operating_system/apple/graphics.h
-            operating_system/apple/image_gif.cpp
-            operating_system/apple/main.cpp
-            operating_system/apple/main.h
-            operating_system/apple/multihreading.cpp
-            operating_system/apple/ns_exception.cpp
-            operating_system/apple/ns_exception.h
-            #      operating_system/apple/process.cpp
-            operating_system/apple/time.h
-            operating_system/apple/windowing.cpp
-            operating_system/apple/windowing.h
-            )
-
-endif ()
+#if (MACOS)
+#    list(APPEND library_source
+#            operating_system/macos/_.h
+#            operating_system/macos/_macos.h
+#            operating_system/macos/_mm.h
+#            operating_system/macos/application.cpp
+#            operating_system/macos/application.h
+#            #operating_system/macos/copydesk.cpp
+#            #operating_system/macos/copydesk.h
+#            operating_system/macos/_factory.cpp
+#            operating_system/macos/
+#            operating_system/macos/frame_window.cpp
+#            #operating_system/macos/interaction_impl.cpp
+#            #operating_system/macos/interaction_impl.h
+#            #operating_system/macos/keyboard.cpp
+#            #operating_system/macos/keyboard.h
+#            #operating_system/macos/main.cpp
+#            #operating_system/macos/mm.mm
+#            #operating_system/macos/thread.cpp
+#            #operating_system/macos/thread.h
+#            #operating_system/macos/trace.cpp
+#            #operating_system/macos/user.h
+#            #operating_system/macos/util.cpp
+#            #operating_system/macos/_.h
+#            #operating_system/macos/_c.h
+#            #operating_system/macos/_macos.h
+#            #operating_system/macos/_mm.h
+#            #operating_system/macos/application_system_run.cpp
+#            #operating_system/macos/aura.cpp
+#            #operating_system/macos/clipboard.cpp
+#            #operating_system/macos/cross_win.cpp
+#            #operating_system/macos/cross_win_file.cpp
+#            #operating_system/macos/cross_win_gdi.h
+#            #operating_system/macos/debug.cpp
+#            #operating_system/macos/exception_engine.cpp
+#            #operating_system/macos/exception_engine.h
+#            #operating_system/macos/file.cpp
+#            #operating_system/macos/file.h
+#            #operating_system/macos/file.mm
+#            #operating_system/macos/graphics.cpp
+#            #operating_system/macos/graphics_mm.h
+#            #operating_system/macos/internal.h
+#            #operating_system/macos/keyboard.cpp
+#            #operating_system/macos/language.cpp
+#            #operating_system/macos/launcher.cpp
+#            #operating_system/macos/library.cpp
+#            #operating_system/macos/list_serial_ports.cpp
+#            #operating_system/macos/lock.cpp
+#            #operating_system/macos/macos.h
+#            #operating_system/macos/main.h
+#            #operating_system/macos/message_loop.cpp
+#            #operating_system/macos/MessageBoxA.cpp
+#            #operating_system/macos/mm.mm
+#            #operating_system/macos/mm_base_user.mm
+#            #operating_system/macos/mm_graphics.mm
+#            #operating_system/macos/mm_oswindow.h
+#            #operating_system/macos/mm_user.mm
+#            #operating_system/macos/multithreading.cpp
+#            #operating_system/macos/multithreading.h
+#            #operating_system/macos/NSPasteboard++.mm
+#            #operating_system/macos/os.cpp
+#            #operating_system/macos/os.h
+#            #operating_system/macos/oswindow_data.cpp
+#            #operating_system/macos/oswindow_data.h
+#            #      operating_system/macos/process.cpp
+#            #      operating_system/macos/process_c.h
+#            #      operating_system/macos/process_pid.cpp
+#            #operating_system/macos/simple_app.cpp
+#            #operating_system/macos/time.cpp
+#            #operating_system/macos/user.cpp
+#            #operating_system/macos/user.h
+#            #operating_system/macos/win_base.cpp
+#            #operating_system/macos/window_impl.h
+#            #operating_system/macos/windowing.cpp
+#            #operating_system/macos/windowing.h
+#            #operating_system/macos/windowing_c.h
+#            #operating_system/macos/winpr_keycode.cpp
+#            )
+#endif ()
+#
+#
+#if (IOS)
+#    list(APPEND library_source
+#            ios_aura/ios_aura.h
+#            ios_aura/ios_aura.m
+#            operating_system/ios/_.h
+#            operating_system/ios/_ios.h
+#            operating_system/ios/_m.h
+#            operating_system/ios/_mm.h
+#            operating_system/ios/application.cpp
+#            operating_system/ios/application.h
+#            operating_system/ios/aura_window.h
+#            operating_system/ios/aura_window.mm
+#            operating_system/ios/AuraImpactController.h
+#            operating_system/ios/AuraImpactController.mm
+#            operating_system/ios/AuraWindow.h
+#            operating_system/ios/AuraWindow.mm
+#            operating_system/ios/AuraWindowApp.h
+#            operating_system/ios/AuraWindowApp.mm
+#            operating_system/ios/AuraWindowFrameImpact.h
+#            operating_system/ios/AuraWindowFrameImpact.mm
+#            operating_system/ios/exception.cpp
+#            operating_system/ios/_factory.cpp
+#            operating_system/ios/
+#            operating_system/ios/host_interaction.cpp
+#            operating_system/ios/host_interaction.h
+#            operating_system/ios/implementation.h
+#            operating_system/ios/interaction_impl.cpp
+#            operating_system/ios/interaction_impl.h
+#            operating_system/ios/internal.h
+#            operating_system/ios/ios.cpp
+#            operating_system/ios/main.cpp
+#            operating_system/ios/plane_system.cpp
+#            operating_system/ios/plane_system.h
+#            operating_system/ios/RoundCaretImpact.h
+#            operating_system/ios/RoundCaretImpact.mm
+#            operating_system/ios/RoundEditImpact.h
+#            operating_system/ios/RoundEditImpact.mm
+#            operating_system/ios/RoundTextPosition.h
+#            operating_system/ios/RoundTextPosition.mm
+#            operating_system/ios/RoundTextRange.h
+#            operating_system/ios/RoundTextRange.mm
+#            operating_system/ios/RoundTextImpact.h
+#            operating_system/ios/RoundTextImpact.mm
+#            operating_system/ios/state.h
+#            operating_system/ios/thread.cpp
+#            operating_system/ios/thread.h
+#            operating_system/ios/trace.cpp
+#            operating_system/ios/util.cpp
+#            operating_system/ios/_.h
+#            operating_system/ios/_c.h
+#            operating_system/ios/_ios.h
+#            operating_system/ios/_m.h
+#            operating_system/ios/_mm.h
+#            operating_system/ios/application_system_run.cpp
+#            operating_system/ios/aura.cpp
+#            operating_system/ios/base_internal.h
+#            operating_system/ios/base_user.cpp
+#            operating_system/ios/cross_win.cpp
+#            operating_system/ios/cross_win_file.cpp
+#            operating_system/ios/cross_win_gdi.h
+#            operating_system/ios/crypt.cpp
+#            operating_system/ios/debug.cpp
+#            operating_system/ios/error.cpp
+#            operating_system/ios/exception_engine.cpp
+#            operating_system/ios/exception_engine.h
+#            operating_system/ios/file.cpp
+#            operating_system/ios/fontopus.cpp
+#            operating_system/ios/gen_1.h
+#            operating_system/ios/graphics.cpp
+#            operating_system/ios/implementation.h
+#            operating_system/ios/internal.h
+#            operating_system/ios/language.cpp
+#            operating_system/ios/launcher.cpp
+#            operating_system/ios/library.cpp
+#            operating_system/ios/lock.cpp
+#            operating_system/ios/MessageBoxA_W.mm
+#            operating_system/ios/mm.mm
+#            operating_system/ios/mm_cross_gdi.mm
+#            operating_system/ios/mm_graphics.h
+#            operating_system/ios/mm_graphics.mm
+#            operating_system/ios/mm_oswindow.h
+#            operating_system/ios/mm_thread.mm
+#            operating_system/ios/mm_user.mm
+#            operating_system/ios/multithreading.cpp
+#            operating_system/ios/multithreading.h
+#            operating_system/ios/oswindow_data.cpp
+#            operating_system/ios/oswindow_data.h
+#            #      operating_system/ios/process.cpp
+#            #      operating_system/ios/process.h
+#            #      operating_system/ios/process_pid.cpp
+#            operating_system/ios/time.cpp
+#            operating_system/ios/user.cpp
+#            operating_system/ios/win_base.cpp
+#            operating_system/ios/window.cpp
+#            operating_system/ios/window.h
+#            "operating_system/ios/window_boot 2.h"
+#            operating_system/ios/window_boot.h
+#            operating_system/ios/window_impl.h
+#            operating_system/ios/windowing.cpp
+#            operating_system/ios/windowing.h
+#            )
+#endif ()
+#
+#if (SOLARIS)
+#    list(APPEND library_source
+#            operating_system/solaris/linux_internal.h
+#            operating_system/solaris/solaris.cpp
+#            operating_system/solaris/solaris.h
+#            operating_system/solaris/solaris_cairo_keep.cpp
+#            operating_system/solaris/solaris_cairo_keep.h
+#            operating_system/solaris/solaris_cross_win_file.cpp
+#            operating_system/solaris/solaris_cross_win_file.h
+#            operating_system/solaris/solaris_cross_win_gdi.cpp
+#            operating_system/solaris/solaris_cross_win_gdi.h
+#            operating_system/solaris/solaris_cross_win_gdi_internal.h
+#            operating_system/solaris/solaris_debug.h
+#            operating_system/solaris/solaris_display.cpp
+#            operating_system/solaris/solaris_file.cpp
+#            operating_system/solaris/solaris_file.h
+#            operating_system/solaris/solaris_file_watcher.cpp
+#            operating_system/solaris/solaris_file_watcher.h
+#            operating_system/solaris/solaris_graphics.h
+#            operating_system/solaris/solaris_http.cpp
+#            operating_system/solaris/solaris_http.h
+#            operating_system/solaris/solaris_http_lib.cpp
+#            operating_system/solaris/solaris_http_lib.h
+#            operating_system/solaris/solaris_internal.h
+#            operating_system/solaris/solaris_launcher.cpp
+#            operating_system/solaris/solaris_library.cpp
+#            operating_system/solaris/solaris_lock.cpp
+#            operating_system/solaris/solaris_message_loop.cpp
+#            #      operating_system/solaris/solaris_process.cpp
+#            #      operating_system/solaris/solaris_process.h
+#            #      operating_system/solaris/solaris_process_pid.cpp
+#            operating_system/solaris/solaris_simple_ui.cpp
+#            operating_system/solaris/solaris_simple_ui.h
+#            operating_system/solaris/solaris_solaris.h
+#            operating_system/solaris/solaris_thread.cpp
+#            operating_system/solaris/solaris_user_impl.h
+#            operating_system/solaris/solaris_win_base.cpp
+#            operating_system/solaris/solaris_window.cpp
+#            operating_system/solaris/solaris_window_xlib.cpp
+#            operating_system/solaris/solaris_window_xlib.h
+#            )
+#
+#endif ()
+#
+#if (ANDROID)
+#    list(APPEND library_source
+#            operating_system/android/Kerr/kerr.h
+#            operating_system/android/Kerr/LocalMemory.h
+#            operating_system/android/_.h
+#            operating_system/android/_android.h
+#            operating_system/android/android.cpp
+#            operating_system/android/android1.cpp
+#            operating_system/android/android1.h
+#            operating_system/android/application.cpp
+#            operating_system/android/application.h
+#            operating_system/android/buffer.cpp
+#            operating_system/android/buffer.h
+#            operating_system/android/dir_context.cpp
+#            operating_system/android/dir_context.h
+#            operating_system/android/dir_system.cpp
+#            operating_system/android/dir_system.h
+#            operating_system/android/error.cpp
+#            operating_system/android/exception.cpp
+#            operating_system/android/_factory.cpp
+#            operating_system/android/
+#            operating_system/android/file.cpp
+#            operating_system/android/file.h
+#            operating_system/android/file_context.cpp
+#            operating_system/android/file_context.h
+#            operating_system/android/file_system.cpp
+#            operating_system/android/file_system.h
+#            operating_system/android/host_interaction.cpp
+#            operating_system/android/host_interaction.h
+#            operating_system/android/implementation.h
+#            operating_system/android/interaction_impl.cpp
+#            operating_system/android/interaction_impl.h
+#            operating_system/android/internal.h
+#            operating_system/android/main.cpp
+#            operating_system/android/os_context.cpp
+#            operating_system/android/os_context.h
+#            #      operating_system/android/process.cpp
+#            operating_system/android/thread.cpp
+#            operating_system/android/thread.h
+#            operating_system/android/trace.cpp
+#            operating_system/android/util.cpp
+#            operating_system/android/_.h
+#            operating_system/android/_android.h
+#            operating_system/android/_bind_app.cpp
+#            operating_system/android/_bind_impact.cpp
+#            operating_system/android/_c.h
+#            operating_system/android/_os_android.cpp
+#            operating_system/android/_os_impl.cpp
+#            operating_system/android/_os_impl.h
+#            operating_system/android/_os_local.h
+#            operating_system/android/_os_object.cpp
+#            operating_system/android/_os_object.h
+#            operating_system/android/_os_remote.h
+#            operating_system/android/application_system_run.cpp
+#            operating_system/android/aura.cpp
+#            operating_system/android/c.cpp
+#            operating_system/android/cairo_keep.h
+#            operating_system/android/cross_win_file.h
+#            operating_system/android/cross_win_gdi.h
+#            operating_system/android/cross_win_gdi_internal.h
+#            operating_system/android/debug.cpp
+#            operating_system/android/dir.cpp
+#            operating_system/android/exception_engine.cpp
+#            operating_system/android/exception_engine.h
+#            operating_system/android/file.cpp
+#            operating_system/android/file.h
+#            operating_system/android/graphics.cpp
+#            operating_system/android/graphics.h
+#            operating_system/android/internal.h
+#            operating_system/android/jni_launcher.cpp
+#            operating_system/android/language.cpp
+#            operating_system/android/launcher.cpp
+#            operating_system/android/library.cpp
+#            operating_system/android/locale.cpp
+#            operating_system/android/lock.cpp
+#            operating_system/android/main_android.cpp
+#            operating_system/android/message_loop.cpp
+#            operating_system/android/multithreading.cpp
+#            #      operating_system/android/process.cpp
+#            #      operating_system/android/process.h
+#            #      operating_system/android/process_pid.cpp
+#            operating_system/android/impact_bitmap.h
+#            operating_system/android/win_base.cpp
+#            operating_system/android/window_android.cpp
+#            operating_system/android/window_android.h
+#            operating_system/android/window_impl.cpp
+#            operating_system/android/windowing.cpp
+#            operating_system/android/windowing.h
+#            )
+#
+#endif ()
+#
+#if (APPLE)
+#
+#    list(APPEND library_source
+#            timer.mm
+#            operating_system/apple/apple_timer.cpp
+#            #      operating_system/apple/process.cpp
+#            #      operating_system/apple/process.h
+#            operating_system/apple/_.cpp
+#            operating_system/apple/_.h
+#            operating_system/apple/_apple.h
+#            operating_system/apple/_apple.mm
+#            operating_system/apple/_c_mm.h
+#            operating_system/apple/_mm.h
+#            operating_system/apple/_mm_common.h
+#            operating_system/apple/debug.cpp
+#            operating_system/apple/debug.h
+#            operating_system/apple/exe_path.cpp
+#            operating_system/apple/graphics.cpp
+#            operating_system/apple/graphics.h
+#            operating_system/apple/image_gif.cpp
+#            operating_system/apple/main.cpp
+#            operating_system/apple/main.h
+#            operating_system/apple/multihreading.cpp
+#            operating_system/apple/ns_exception.cpp
+#            operating_system/apple/ns_exception.h
+#            #      operating_system/apple/process.cpp
+#            operating_system/apple/time.h
+#            operating_system/apple/windowing.cpp
+#            operating_system/apple/windowing.h
+#            )
+#
+#endif ()
 
 
 if (MACOS)

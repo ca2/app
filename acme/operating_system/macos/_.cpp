@@ -97,19 +97,12 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 //}
 
 
-namespace audio
-{
-
-
-   CLASS_DECL_ACME string get_default_library_name()
-   {
-   
-      return "audio_core_audio";
-   
-   }
-
-
-} // namespace audio
+//CLASS_DECL_ACME string audio_get_default_library_name()
+//{
+//
+//   return "audio_core_audio";
+//
+//}
 
 
 

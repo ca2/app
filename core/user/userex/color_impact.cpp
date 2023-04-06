@@ -8,7 +8,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
-#include "aura/operating_system/windows_common/graphics.h"
+//#include "aura/operating_system/windows_common/graphics.h"
 #include "aura/platform/system.h"
 #include "base/user/user/document.h"
 

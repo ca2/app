@@ -5158,14 +5158,14 @@ namespace aura
 //#define memory_new ACME_NEW
 #endif
 
-#ifdef LINUX
-#include <dlfcn.h>
-
-void* g_pbasecore = nullptr;
-
-
-typedef void BASECORE_INIT();
-#endif // LINUX
+//#ifdef LINUX
+//#include <dlfcn.h>
+//
+//void* g_pbasecore = nullptr;
+//
+//
+//typedef void BASECORE_INIT();
+//#endif // LINUX
 
 
 namespace aura

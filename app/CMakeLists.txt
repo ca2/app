@@ -28,8 +28,6 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 set_target_properties(app_app PROPERTIES LINKER_LANGUAGE CXX)
 

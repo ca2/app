@@ -82,7 +82,7 @@ namespace aqua
 //{
 //
 //
-//   CLASS_DECL_AQUA string get_default_library_name();
+//   CLASS_DECL_AQUA string audio_get_default_library_name();
 //
 //
 //} // namespace audio

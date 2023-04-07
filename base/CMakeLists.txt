@@ -132,6 +132,8 @@ list(APPEND library_source
         user/simple/child_frame.h
         user/simple/impact.cpp
         user/simple/impact.h
+        #user/simple/pane_document.cpp
+        #user/simple/pane_document.h
         user/user/frame_window.cpp
         user/user/frame_window.h
         user/user/hotplugin.cpp

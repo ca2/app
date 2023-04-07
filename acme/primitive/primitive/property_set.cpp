@@ -910,6 +910,53 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
+/// Example of Standard Configuration (/etc/os-release from Ubuntu 22.10)
+/// PRETTY_NAME="Ubuntu 22.10"
+/// NAME="Ubuntu"
+/// VERSION_ID="22.10"
+/// VERSION="22.10 (Kinetic Kudu)"
+/// VERSION_CODENAME=kinetic
+/// ID=ubuntu
+/// ID_LIKE=debian
+/// HOME_URL="https://www.ubuntu.com/"
+/// SUPPORT_URL="https://help.ubuntu.com/"
+/// BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+/// PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+/// UBUNTU_CODENAME=kinetic
+/// LOGO=ubuntu-logo
+void property_set::parse_standard_configuration(const ::string & strStandardConfiguration)
+{
+
+   ::string_array straLines;
+
+   straLines.add_lines(strStandardConfiguration);
+
+   for(auto & strLine : straLines)
+   {
+
+      auto range = strLine();
+
+      string strKey;
+
+      strKey = range.consume_word("=");
+
+      strKey.trim();
+
+      ::string strPayload = range;
+
+      strPayload.trim();
+
+      strPayload.paired_trim('\'', '\'');
+
+      strPayload.paired_trim('\"', '\"');
+
+      this->operator[](strKey) = strPayload;
+
+   }
+
+}
+
+
 void property_set::parse_network_payload(const ::string & strNetworkPayload)
 {
 

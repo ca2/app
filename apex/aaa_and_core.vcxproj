@@ -820,22 +820,12 @@
     <ClInclude Include="user\user\user_elastic_slider.h" />
     <ClInclude Include="user\user\user_form.h" />
     <ClInclude Include="user\user\user_form1.h" />
-    <ClInclude Include="user\user\user_form_callback.h" />
-    <ClInclude Include="user\user\user_form_list.h" />
-    <ClInclude Include="user\user\user_front_end.h" />
-    <ClInclude Include="user\user\user_front_end_schema.h" />
     <ClInclude Include="user\user\user_image_manager.h" />
     <ClInclude Include="user\user\user_inline.h" />
     <ClInclude Include="user\user\user_keyboard_layout_cfg.h" />
     <ClInclude Include="user\user\user_list.h" />
     <ClInclude Include="user\user\user_list_cache.h" />
     <ClInclude Include="user\user\user_list_cache_interface.h" />
-    <ClInclude Include="user\user\user_list_data.h" />
-    <ClInclude Include="user\user\user_list_data_interface.h" />
-    <ClInclude Include="user\user\user_list_header.h" />
-    <ClInclude Include="user\user\user_main_frame.h" />
-    <ClInclude Include="user\user\user_meta_button.h" />
-    <ClInclude Include="user\user\user_meta_control_box.h" />
     <ClInclude Include="user\user\user_multiple_document_template.h" />
     <ClInclude Include="user\user\user_network_configuration.h" />
     <ClInclude Include="user\user\user_notification_area.h" />
@@ -1211,12 +1201,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_form.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\user\user_form_callback.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="user\user\user_form_list.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="user\user\user_front_end.cpp">

@@ -171,6 +171,7 @@ public:
    virtual ::pointer<::handle::ini>get_ini(const ::payload & payloadFile);
 
 
+   virtual ::property_set parse_standard_configuration(const ::payload & payloadFile);
 
 
 };

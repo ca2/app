@@ -1642,8 +1642,19 @@ public:
 
   }
 
+   ::string_base < ITERATOR_TYPE > consume_word(const SCOPED_STRING & scopedstrCharacters = " ")
+   {
 
-  bool begins_consume(const ::scoped_string & scopedstr);
+     return consume_token_until_any_character_in(scopedstrCharacters);
+
+   }
+
+
+
+
+
+
+   bool begins_consume(const ::scoped_string & scopedstr);
   bool begins_consume(ansi_character ansich) {return (*this->m_begin == ansich)?(static_cast<void>(this->m_begin++),true): false;}
   bool begins_consume(::ansi_character & characterReturn, ansi_character ansich) {return (bool)(*this->m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(this->m_begin++), true): false;}
   bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);

@@ -510,8 +510,8 @@ list(APPEND library_source
    #message.h
    #procedure.h
    #timer.mm
-   update.h
-   user.h
+   #update.h
+   #user.h
    #xml.h
    )
 

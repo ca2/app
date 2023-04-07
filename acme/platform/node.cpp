@@ -2682,7 +2682,7 @@ return false;
 //   }
 
 
-   int node::command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction)
+   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
    {
 
       throw interface_only();
@@ -2826,6 +2826,87 @@ return false;
    {
 
       throw ::interface_only();
+
+   }
+
+
+
+   bool node::has_unix_shell_command(const ::scoped_string& scopedstrCommand)
+   {
+
+      try
+      {
+
+         ::string strCommand;
+
+         strCommand.format("command -v %s", scopedstrCommand.c_str());
+
+         auto iExitCode = unix_shell_command(strCommand);
+
+         return iExitCode == 0;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return false;
+
+   }
+
+
+//#ifdef LINUX
+
+
+   int node::unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function & tracefunction)
+   {
+//
+//      try
+//      {
+//
+//         ::string strUnixShell;
+//
+//         strUnixShell = "/bin/bash";
+//
+//         ::string strCommand;
+//
+//         ::string strCommandInner;
+//
+//         strCommandInner = scopedstrCommand.c_str();
+//
+//         strCommandInner.find_replace("\"", "\\\"");
+//
+//         strCommand.format("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
+//
+//         auto iExitCode = acmenode()->command_system(strCommand);
+//
+//         return iExitCode;
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+
+      return -1;
+
+   }
+
+
+   ::string node::unix_shell_command_string(const ::scoped_string & scopedstrCommand)
+   {
+
+      ::string strLog;
+
+      auto iExitCode = unix_shell_command(scopedstrCommand, [&strLog](auto etracelevel, auto str)
+      {
+
+         strLog += ::string(str) + "\n";
+
+      });
+
+      return strLog;
 
    }
 

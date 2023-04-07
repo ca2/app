@@ -255,13 +255,6 @@ namespace user
    class system;
 
 
-#ifdef WINDOWS_DESKTOP
-
-   class message_window;
-
-#endif
-
-
    class plain_text_set_sel_command;
    class plain_text_tree;
    class plain_text_command;

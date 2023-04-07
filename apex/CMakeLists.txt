@@ -16,11 +16,11 @@ endif ()
 list(APPEND apex_source
         asset/cube_new.inl
         asset/new.inl
-        axispolicy/_.h
-        axispolicy/_c.h
-        axispolicy/policy_objc.h
-        axispolicy/policy_objcpp.h
-        axispolicy/policy_winrt.h
+        #axispolicy/_.h
+        #axispolicy/_c.h
+        #axispolicy/policy_objc.h
+        #axispolicy/policy_objcpp.h
+        #axispolicy/policy_winrt.h
         compress/_.h
         #compress/context.cpp
         #compress/context.h
@@ -150,16 +150,16 @@ list(APPEND apex_source
         handler/source.cpp
         handler/source.h
         #include/_.cpp
-        include/_.h
+        #include/_.h
         include/_c.h
         include/_c_bridge.h
         include/_include.h
         include/_simple_templates.h
         include/_setup.h
         include/_forward_declaration.h
-        include/objc.h
-        include/objcpp.h
-        include/winrt.h
+        #include/objc.h
+        #include/objcpp.h
+        #include/winrt.h
         inline/application/android.h
         inline/application/ios.h
         inline/application/linux.h

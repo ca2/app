@@ -376,7 +376,6 @@
 		9A979D9B28C831F00013DC54 /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A97C7BE28236AFA00755A0A /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9A97C7BF28236AFA00755A0A /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
-		9ABA65A728B5D9090063B976 /* _library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,9 +429,9 @@
 		9A28192625242523009FA9CB /* aqua */ = {
 			isa = PBXGroup;
 			children = (
-				9A601E9B285B62F200151842 /* include */,
 				9A97C7BD28236AFA00755A0A /* constant */,
 				9A2E624C252588430001CC7E /* game */,
+				9A601E9B285B62F200151842 /* include */,
 				9A28196E25242523009FA9CB /* inline */,
 				9A28198F25242523009FA9CB /* multimedia */,
 				9A22739C27CF04460042BAC2 /* operating_system */,
@@ -618,7 +617,6 @@
 			isa = PBXGroup;
 			children = (
 				9A601E9D285B62F200151842 /* _.h */,
-				9ABA65A728B5D9090063B976 /* _library.h */,
 				9A601E9C285B62F200151842 /* _audio.h */,
 				9A601EA2285B631700151842 /* _estamira.h */,
 				9A979CA628C6F0560013DC54 /* _include.h */,

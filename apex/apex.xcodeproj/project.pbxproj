@@ -104,7 +104,7 @@
 		9A23A28F26CE850300F98012 /* _application_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A28E26CE850300F98012 /* _application_service.cpp */; };
 		9A24D17028516CB5000C9873 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24D16F28516CB5000C9873 /* message.cpp */; };
 		9A24D17128516CB5000C9873 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24D16F28516CB5000C9873 /* message.cpp */; };
-		9A3BFBD529C844AF005DE2BF /* libarchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3BFBD229C84459005DE2BF /* libarchive.a */; };
+		9A3BFBD529C844AF005DE2BF /* archive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3BFBD229C84459005DE2BF /* archive.a */; };
 		9A3BFBEE29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
 		9A3BFBEF29C8492D005DE2BF /* link.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3BFBEC29C8492D005DE2BF /* link.cpp */; };
 		9A3BFBF029C8492D005DE2BF /* link.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3BFBED29C8492D005DE2BF /* link.h */; };
@@ -136,12 +136,9 @@
 		9A68BB592511444D008DABD2 /* crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B42D2511444A008DABD2 /* crypto.h */; };
 		9A68BB772511444E008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4582511444A008DABD2 /* _.h */; };
 		9A68BC6D2511444E008DABD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B5772511444A008DABD2 /* framework.cpp */; };
-		9A68BC972511444E008DABD2 /* winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5AB2511444B008DABD2 /* winrt.h */; };
 		9A68BC982511444E008DABD2 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5AD2511444B008DABD2 /* _c.h */; };
 		9A68BC992511444E008DABD2 /* _c_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5AF2511444B008DABD2 /* _c_bridge.h */; };
-		9A68BC9A2511444E008DABD2 /* objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B02511444B008DABD2 /* objc.h */; };
 		9A68BC9C2511444E008DABD2 /* _include.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B22511444B008DABD2 /* _include.h */; };
-		9A68BC9D2511444E008DABD2 /* objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B52511444B008DABD2 /* objcpp.h */; };
 		9A68BC9E2511444E008DABD2 /* _setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B62511444B008DABD2 /* _setup.h */; };
 		9A68BC9F2511444E008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B72511444B008DABD2 /* _.h */; };
 		9A68BCA22511444E008DABD2 /* app_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5BC2511444B008DABD2 /* app_launcher.h */; };
@@ -493,9 +490,7 @@
 		9AD69322251A754800C0EBD7 /* version.config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7702511444B008DABD2 /* version.config.h */; };
 		9AD69325251A754800C0EBD7 /* message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5ED2511444B008DABD2 /* message_box.h */; };
 		9AD6932C251A754800C0EBD7 /* set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B72C2511444B008DABD2 /* set.h */; };
-		9AD6932D251A754800C0EBD7 /* objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B52511444B008DABD2 /* objcpp.h */; };
 		9AD69333251A754800C0EBD7 /* savings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5D72511444B008DABD2 /* savings.h */; };
-		9AD69337251A754800C0EBD7 /* objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B02511444B008DABD2 /* objc.h */; };
 		9AD69340251A754800C0EBD7 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7472511444B008DABD2 /* application_common.h */; };
 		9AD69341251A754800C0EBD7 /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B73B2511444B008DABD2 /* console_common.h */; };
 		9AD69346251A754800C0EBD7 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6412511444B008DABD2 /* _platform.h */; };
@@ -542,7 +537,6 @@
 		9AD693DF251A754800C0EBD7 /* ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7402511444B008DABD2 /* ios.h */; };
 		9AD693E1251A754800C0EBD7 /* os_history.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5F12511444B008DABD2 /* os_history.h */; };
 		9AD693F1251A754800C0EBD7 /* base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6B22511444B008DABD2 /* base.h */; };
-		9AD693F3251A754800C0EBD7 /* winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5AB2511444B008DABD2 /* winrt.h */; };
 		9AD693F4251A754800C0EBD7 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6C22511444B008DABD2 /* filesystem.h */; };
 		9AD693F5251A754800C0EBD7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6B12511444B008DABD2 /* _.h */; };
 		9AD693FA251A754800C0EBD7 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9A12511444C008DABD2 /* framework.h */; };
@@ -819,12 +813,9 @@
 		9A68B56F2511444A008DABD2 /* cube_new.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_new.inl; sourceTree = "<group>"; };
 		9A68B5702511444A008DABD2 /* new.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = new.inl; sourceTree = "<group>"; };
 		9A68B5772511444A008DABD2 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A68B5AB2511444B008DABD2 /* winrt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winrt.h; sourceTree = "<group>"; };
 		9A68B5AD2511444B008DABD2 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
 		9A68B5AF2511444B008DABD2 /* _c_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c_bridge.h; sourceTree = "<group>"; };
-		9A68B5B02511444B008DABD2 /* objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc.h; sourceTree = "<group>"; };
 		9A68B5B22511444B008DABD2 /* _include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _include.h; sourceTree = "<group>"; };
-		9A68B5B52511444B008DABD2 /* objcpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objcpp.h; sourceTree = "<group>"; };
 		9A68B5B62511444B008DABD2 /* _setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _setup.h; sourceTree = "<group>"; };
 		9A68B5B72511444B008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68B5BC2511444B008DABD2 /* app_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_launcher.h; sourceTree = "<group>"; };
@@ -1141,7 +1132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A3BFBD529C844AF005DE2BF /* libarchive.a in Frameworks */,
+				9A3BFBD529C844AF005DE2BF /* archive.a in Frameworks */,
 				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1267,7 +1258,7 @@
 		9A3BFBCE29C84459005DE2BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A3BFBD229C84459005DE2BF /* libarchive.a */,
+				9A3BFBD229C84459005DE2BF /* archive.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1401,9 +1392,6 @@
 				9A68B5AD2511444B008DABD2 /* _c.h */,
 				9A68B5B22511444B008DABD2 /* _include.h */,
 				9A68B5B62511444B008DABD2 /* _setup.h */,
-				9A68B5B02511444B008DABD2 /* objc.h */,
-				9A68B5B52511444B008DABD2 /* objcpp.h */,
-				9A68B5AB2511444B008DABD2 /* winrt.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -1961,9 +1949,7 @@
 				9AE6DF8B29652F53008A1335 /* _constant.h in Headers */,
 				9A97C03728C83B0400A43004 /* listen_socket.h in Headers */,
 				9A226CFF27CE8FAB0042BAC2 /* app_consumer.h in Headers */,
-				9A68BC9D2511444E008DABD2 /* objcpp.h in Headers */,
 				9A68BCBD2511444E008DABD2 /* savings.h in Headers */,
-				9A68BC9A2511444E008DABD2 /* objc.h in Headers */,
 				9A239DDD26CDF9AF00F98012 /* link_out_socket.h in Headers */,
 				9A4F4E1925311DA400733584 /* hasher_algorithm.h in Headers */,
 				9A68BE0E2511444F008DABD2 /* application_common.h in Headers */,
@@ -2078,7 +2064,6 @@
 				9A97C06628C83B0400A43004 /* socket.h in Headers */,
 				9A68BD862511444F008DABD2 /* base.h in Headers */,
 				9AC01923274896EB006BEBCC /* not_dir.h in Headers */,
-				9A68BC972511444E008DABD2 /* winrt.h in Headers */,
 				9A97C03E28C83B0400A43004 /* udp_socket.h in Headers */,
 				9AE6DF5A296390D4008A1335 /* _.h in Headers */,
 				9AE6DFA229652F9D008A1335 /* action.h in Headers */,
@@ -2190,9 +2175,7 @@
 				9AD69325251A754800C0EBD7 /* message_box.h in Headers */,
 				9A787DE1264CA98C003DF8A0 /* machine_event_data.h in Headers */,
 				9AD6932C251A754800C0EBD7 /* set.h in Headers */,
-				9AD6932D251A754800C0EBD7 /* objcpp.h in Headers */,
 				9AD69333251A754800C0EBD7 /* savings.h in Headers */,
-				9AD69337251A754800C0EBD7 /* objc.h in Headers */,
 				9AC2CB4526533B3800CC8096 /* primitive.h in Headers */,
 				9AD69340251A754800C0EBD7 /* application_common.h in Headers */,
 				9A787D82264C960F003DF8A0 /* threading.h in Headers */,
@@ -2248,7 +2231,6 @@
 				9AD693DF251A754800C0EBD7 /* ios.h in Headers */,
 				9AD693E1251A754800C0EBD7 /* os_history.h in Headers */,
 				9AD693F1251A754800C0EBD7 /* base.h in Headers */,
-				9AD693F3251A754800C0EBD7 /* winrt.h in Headers */,
 				9AD693F4251A754800C0EBD7 /* filesystem.h in Headers */,
 				9AD693F5251A754800C0EBD7 /* _.h in Headers */,
 				9AD693FA251A754800C0EBD7 /* framework.h in Headers */,
@@ -2380,10 +2362,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A3BFBD229C84459005DE2BF /* libarchive.a */ = {
+		9A3BFBD229C84459005DE2BF /* archive.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libarchive.a;
+			path = archive.a;
 			remoteRef = 9A3BFBD129C84459005DE2BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

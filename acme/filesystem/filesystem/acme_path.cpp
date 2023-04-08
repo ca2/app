@@ -58,13 +58,13 @@ string acme_path::from(string str)
 //
 
 
-::file::path acme_path::safe_real_path(const ::file::path & path)
+void acme_path::safe_real_path(::file::path & path)
 {
 
    try
    {
 
-      return real_path(path);
+      path = real_path(path);
 
    }
    catch (...)
@@ -73,10 +73,8 @@ string acme_path::from(string str)
 
    }
 
-   return path;
-
-
 }
+
 
 ::file::path acme_path::real_path(const ::file::path & path)
 {
@@ -105,7 +103,7 @@ string acme_path::from(string str)
 }
 
 
-bool acme_path::real_path_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix)
+bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix)
 {
 
    ::file::path path(scopedstrPrefix);

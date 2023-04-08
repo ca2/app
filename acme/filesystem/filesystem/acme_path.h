@@ -23,9 +23,7 @@ public:
 
    virtual  string from(string str);
 
-   
-   
-   virtual ::file::path safe_real_path(const ::file::path & path);
+   virtual void safe_real_path(::file::path & path);
 
    virtual ::file::path real_path(const ::file::path & path);
 
@@ -33,7 +31,7 @@ public:
 
 
 
-   virtual bool real_path_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix);
+   virtual bool case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix);
 
    virtual bool real_path_is_same(const ::file::path & path1, const ::file::path & path2);
 

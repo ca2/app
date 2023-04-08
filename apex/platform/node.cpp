@@ -439,7 +439,7 @@ namespace apex
       // Enough condition to create shortcut
       bool bEnoughCondition1 = !plink;
       bool bEnoughCondition2 = !(plink->m_elink & ::file::e_link_target);
-      bool bEnoughCondition3 = !acmepath()->final_is_same(plink->m_pathTarget, path);
+      bool bEnoughCondition3 = !acmepath()->real_path_is_same(plink->m_pathTarget, path);
       bool bEnoughCondition4 = !(plink->m_elink & ::file::e_link_icon);
       bool bEnoughCondition5 = plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon);
 

@@ -207,9 +207,15 @@ bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path
 ::file::enum_type acme_path::get_type(const ::file::path & path)
 {
 
-   throw ::interface_only();
+   return ::get_file_system_item_type(path);
 
-   return ::file::e_type_unknown;
+}
+
+
+::file::enum_type acme_path::safe_get_type(const ::file::path & path)
+{
+
+   return ::safe_get_file_system_item_type(path);
 
 }
 

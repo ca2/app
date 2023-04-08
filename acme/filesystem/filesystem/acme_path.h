@@ -39,7 +39,7 @@ public:
 
    virtual ::file::enum_type get_type(const ::file::path & path);
 
-
+   virtual ::file::enum_type safe_get_type(const ::file::path & path);
 
    virtual void create_symbolic_link(const ::scoped_string & scopedstrLink, const ::scoped_string & scopedstrSource);
 

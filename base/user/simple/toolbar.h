@@ -2,10 +2,11 @@
 
 
 #include "base/user/user/toolbar.h"
+
 class image_list;
 
 
-class CLASS_DECL_CORE simple_toolbar :
+class CLASS_DECL_BASE simple_toolbar :
    virtual public ::user::toolbar
 {
 public:
@@ -129,3 +130,6 @@ public:
 
 
 };
+
+
+

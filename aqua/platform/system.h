@@ -18,6 +18,8 @@ namespace aqua
 
       ::pointer<::aqua::multimedia>                   m_pmultimedia;
 
+      ::pointer<::aqua::audio_mixer>                  m_paudiomixer;
+
       ::pointer<::aqua::estamira>                     m_pestamira;
 
 

@@ -4,6 +4,16 @@
 #include "base/user/user/control_bar.h"
 
 
+// Styles for status bar panes
+#define SBPS_NORMAL     0x0000
+#define SBPS_NOBORDERS  SBT_NOBORDERS
+#define SBPS_POPOUT     SBT_POPOUT
+#define SBPS_OWNERDRAW  SBT_OWNERDRAW
+#define SBPS_DISABLED   0x04000000
+#define SBPS_STRETCH    0x08000000  // stretch to fill status bar
+
+
+
 namespace user
 {
 
@@ -33,7 +43,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_CORE status_bar :
+   class CLASS_DECL_BASE status_bar :
       public ::user::control_bar
    {
    public:
@@ -45,7 +55,7 @@ namespace user
 
 
       status_bar();
-      virtual ~status_bar();
+      ~status_bar() override;
 
       //using ::user::control_bar::create_window;
       //using ::user::control_bar::create_window_ex;

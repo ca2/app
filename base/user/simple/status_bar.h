@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "core/user/user/statusbar.h"
+#include "base/user/user/statusbar.h"
 
 
-class CLASS_DECL_CORE simple_status_bar :
+class CLASS_DECL_BASE simple_status_bar :
    public ::user::status_bar
 {
 public:

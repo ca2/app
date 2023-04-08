@@ -92,8 +92,12 @@ list(APPEND library_source
         user/simple/main_frame.h
         user/simple/scroll_bar.cpp
         user/simple/scroll_bar.h
+        user/simple/status_bar.cpp
+        user/simple/status_bar.h
         user/simple/tab_document.cpp
         user/simple/tab_document.h
+        user/simple/toolbar.cpp
+        user/simple/toolbar.h
         #user/user/_.cpp
         user/user/_.h
         #user/user/_constant.h
@@ -194,6 +198,8 @@ list(APPEND library_source
         user/user/split_impact.h
         #user/user/static_control.cpp
         #user/user/static_control.h
+        user/user/statusbar.cpp
+        user/user/statusbar.h
         user/user/style.cpp
         user/user/style.h
         user/user/tab.cpp

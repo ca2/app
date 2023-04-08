@@ -4,6 +4,12 @@
 #include "control_bar.h"
 #include "acme/user/user/_constant.h"
 
+#define TBSTYLE_ALIGN_LEFT     0x10000
+#define TBSTYLE_ALIGN_RIGHT    0x30000
+#define TBSTYLE_ALIGN_CENTER   0x20000
+#define TBSTYLE_ALIGN_TOP      0x40000
+#define TBSTYLE_ALIGN_BOTTOM   0x80000
+#define TBSTYLE_ALIGN_VCENTER  0xC0000
 
 namespace user
 {

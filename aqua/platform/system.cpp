@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"
-#include "aqua/multimedia/audio/audio.h"
+#include "aqua/audio/audio.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/xml.h"
 

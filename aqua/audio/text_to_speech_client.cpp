@@ -8,8 +8,8 @@
 #include "framework.h"
 #include "text_to_speech_client.h"
 #include "acme/parallelization/event.h"
-#include "aqua/multimedia/audio/audio.h"
-#include "aqua/multimedia/audio/speaker.h"
+#include "aqua/audio/audio.h"
+#include "aqua/audio/speaker.h"
 #include "aqua/platform/system.h"
 
 

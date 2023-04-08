@@ -16,7 +16,7 @@
 #include "base/user/menu/central.h"
 #include "base/user/user/user.h"
 #include "base/user/user/tab.h"
-#include "core/platform/session.h"
+#include "base/platform/session.h"
 
 
 #define TIMER_HOVER 321654
@@ -724,11 +724,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = tool_item_style(iItem);
 
-   ::pointer<::core::session>psession = get_session();
+   auto psession = acmesession()->m_pbasesession;
 
    auto puser = psession->user();
 
-   ::pointer<::user::menu_central>pmenucentral = puser->menu();
+   auto pmenucentral = puser->menu();
 
    ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
    

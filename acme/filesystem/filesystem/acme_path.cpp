@@ -76,6 +76,18 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
+::file::path acme_path::safe_get_real_path(const ::file::path & path)
+{
+
+   ::file::path pathNew = path;
+
+   safe_real_path(pathNew);
+
+   return pathNew;
+
+}
+
+
 ::file::path acme_path::real_path(const ::file::path & path)
 {
 

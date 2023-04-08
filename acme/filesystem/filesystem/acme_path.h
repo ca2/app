@@ -25,6 +25,8 @@ public:
 
    virtual void safe_real_path(::file::path & path);
 
+   virtual ::file::path safe_get_real_path(const ::file::path & path);
+
    virtual ::file::path real_path(const ::file::path & path);
 
    virtual ::file::path _real_path(const ::file::path & path);

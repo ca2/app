@@ -200,6 +200,30 @@ bool file_exists(const ::file::path & path)
 }
 
 
+bool safe_file_exists(const ::file::path & path)
+{
+
+   auto attributes = ::windows::_get_file_attributes(path);
+
+   if (attributes == INVALID_FILE_ATTRIBUTES)
+   {
+
+      return false;
+
+   }
+
+   if (attributes & FILE_ATTRIBUTE_DIRECTORY)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
 bool is_directory(const ::file::path & path)
 {
 
@@ -224,6 +248,30 @@ bool is_directory(const ::file::path & path)
    }
    
    if(!(attributes & FILE_ATTRIBUTE_DIRECTORY))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool safe_is_directory(const ::file::path & path)
+{
+
+   auto attributes = ::windows::_get_file_attributes(path);
+
+   if (attributes == INVALID_FILE_ATTRIBUTES)
+   {
+
+      return false;
+
+   }
+
+   if (!(attributes & FILE_ATTRIBUTE_DIRECTORY))
    {
 
       return false;

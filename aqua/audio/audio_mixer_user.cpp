@@ -22,4 +22,12 @@ namespace aqua
    }
 
 
+   ::pointer<::user::impact_kit>audio_mixer_user::get_audio_control_impact_kit()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace aqua

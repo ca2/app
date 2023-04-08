@@ -6,6 +6,7 @@
 
 #include "acme/platform/department.h"
 
+namespace user {class impact_kit;}
 
 namespace aqua
 {
@@ -20,7 +21,7 @@ namespace aqua
       audio_mixer_user();
       ~audio_mixer_user() override;
 
-
+      virtual ::pointer<::user::impact_kit>get_audio_control_impact_kit();
 
    };
 

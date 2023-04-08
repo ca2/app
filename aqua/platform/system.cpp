@@ -8,6 +8,7 @@
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"
 #include "aqua/audio/audio.h"
+#include "aqua/audio/audio_mixer.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/xml.h"
 
@@ -201,6 +202,21 @@ namespace aqua
    }
 
 
+   ::aqua::audio_mixer * system::get_audio_mixer()
+   {
+
+      if (!m_paudiomixer)
+      {
+
+         defer_audio_mixer();
+
+      }
+
+      return m_paudiomixer;
+
+   }
+
+
    void system::defer_multimedia()
    {
 
@@ -303,6 +319,38 @@ namespace aqua
       //   __construct(m_pmultimedia);
 
       //}
+
+   }
+
+
+   void system::defer_audio_mixer()
+   {
+
+      if (m_paudiomixer)
+      {
+
+         return;
+
+      }
+
+      ::factory::factory_pointer pfactory;
+
+#ifdef WINDOWS_DESKTOP
+
+      pfactory = factory("audio_mixer", "mmsystem");
+
+      pfactory->merge_to_global_factory();
+
+#endif
+
+      pfactory->__construct(this, m_paudiomixer);
+
+      if (m_paudiomixer)
+      {
+
+         m_paudiomixer->init1();
+
+      }
 
    }
 

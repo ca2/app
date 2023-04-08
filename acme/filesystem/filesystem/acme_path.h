@@ -23,17 +23,19 @@ public:
 
    virtual  string from(string str);
 
+   
+   
+   virtual ::file::path safe_real_path(const ::file::path & path);
+
+   virtual ::file::path real_path(const ::file::path & path);
+
+   virtual ::file::path _real_path(const ::file::path & path);
 
 
-   virtual ::file::path final(const ::file::path & path);
 
-   virtual ::file::path _final(const ::file::path & path);
+   virtual bool real_path_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix);
 
-
-
-   virtual bool final_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix);
-
-   virtual bool final_is_same(const ::file::path & path1, const ::file::path & path2);
+   virtual bool real_path_is_same(const ::file::path & path1, const ::file::path & path2);
 
    virtual ::file::enum_type get_type(const ::file::path & path);
 

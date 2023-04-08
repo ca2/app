@@ -1097,7 +1097,7 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 bool acme_directory::_is(bool & bDir, const ::file::path & path)
 {
 
-   auto pathFinal = acmepath()->_final(path);
+   auto pathFinal = acmepath()->real_path(path);
 
    bDir = ::is_directory(pathFinal);
 

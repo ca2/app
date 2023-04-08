@@ -11,14 +11,14 @@ namespace aqua
 {
 
 
-   class CLASS_DECL_AQUA audio_mixer_userbase :
+   class CLASS_DECL_AQUA audio_mixer_user :
       virtual public ::acme::department
    {
    public:
 
 
-      audio_mixer_userbase();
-      ~audio_mixer_userbase() override;
+      audio_mixer_user();
+      ~audio_mixer_user() override;
 
 
 

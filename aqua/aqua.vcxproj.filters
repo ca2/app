@@ -16,9 +16,6 @@
     <Filter Include="Source Files\multimedia">
       <UniqueIdentifier>{bed11c75-f7c6-4cbe-af2c-06540bc2ac27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multimedia\audio">
-      <UniqueIdentifier>{128aae78-6ec9-4f14-bb5d-889d991238bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,12 @@
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\audio">
+      <UniqueIdentifier>{ec397ecc-99f7-4462-acd1-f141d9fd298b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\audio">
+      <UniqueIdentifier>{b4f1d8eb-4d51-4ffa-9aaa-1ff0ab7ae826}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +291,33 @@
     <ClInclude Include="multimedia\information.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
+    <ClInclude Include="audio\_.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\_c.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio_mixer.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio_mixer_user.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\out.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\sound_track_player.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\speaker.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\text_to_speech_client.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -371,15 +401,6 @@
     <ClCompile Include="multimedia\multimedia.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\speaker.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -388,9 +409,6 @@
     </ClCompile>
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\system.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
@@ -401,11 +419,29 @@
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\audio.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="xml\exception.cpp">
       <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_mixer.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_mixer_user.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_wave_out.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\sound_track_player.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\speaker.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\text_to_speech_client.cpp">
+      <Filter>Source Files\audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

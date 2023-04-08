@@ -51,7 +51,7 @@ namespace aqua
    class audio_mixer;
 
 
-   class audio_mixer_userbase;
+   class audio_mixer_user_base;
 
 
    class sound_track_player;

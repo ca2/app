@@ -24,7 +24,7 @@ namespace aqua
       ~audio_mixer() override;
 
 
-      virtual ::aqua::audio_mixer_userbase * audio_mixer_userbase();
+      virtual ::aqua::audio_mixer_user_base * audio_mixer_user_base();
 
 
    };

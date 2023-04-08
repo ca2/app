@@ -64,7 +64,7 @@ void acme_path::safe_real_path(::file::path & path)
    try
    {
 
-      path = real_path(path);
+      path = safe_get_real_path(path);
 
    }
    catch (...)
@@ -79,11 +79,35 @@ void acme_path::safe_real_path(::file::path & path)
 ::file::path acme_path::safe_get_real_path(const ::file::path & path)
 {
 
-   ::file::path pathNew = path;
+   ::file::path pathFull = _safe_real_path(path);
 
-   safe_real_path(pathNew);
+   if (pathFull.is_empty())
+   {
 
-   return pathNew;
+      return path;
+
+   }
+
+   return pathFull;
+
+}
+
+
+::file::path acme_path::_safe_real_path(const ::file::path & path)
+{
+
+   try
+   {
+
+      return _real_path(path);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return path;
 
 }
 

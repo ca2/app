@@ -5232,9 +5232,9 @@ namespace apex
 
       path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-      path1 = acmepath()->real_path(path1);
+      path1 = acmepath()->safe_get_real_path(path1);
 
-      path2 = acmepath()->real_path(path2);
+      path2 = acmepath()->safe_get_real_path(path2);
 
       return strcmp(path1, path2) == 0;
 

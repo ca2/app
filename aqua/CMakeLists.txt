@@ -31,8 +31,8 @@ list(APPEND library_source
         audio/audio.h
         audio/audio_mixer.cpp
         audio/audio_mixer.h
-        audio/audio_mixer_userbase.cpp
-        audio/audio_mixer_userbase.h
+        audio/audio_mixer_user.cpp
+        audio/audio_mixer_user.h
         audio/audio_wave_out.cpp
         audio/out.h
         audio/sound_track_player.cpp

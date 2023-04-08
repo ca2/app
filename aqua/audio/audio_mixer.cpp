@@ -22,7 +22,7 @@ namespace aqua
    }
 
 
-   ::aqua::audio_mixer_user_base * audio_mixer::audio_mixer_user_base()
+   ::aqua::audio_mixer_user * audio_mixer::audio_mixer_user()
    {
 
       return nullptr;

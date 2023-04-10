@@ -24,6 +24,7 @@
 #include "acme/user/nano/message_box.h"
 
 
+
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
@@ -2916,6 +2917,16 @@ return false;
 
       return {};
       
+   }
+
+
+   ::pointer <::operating_system::summary > node::operating_system_summary()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
    }
 
 

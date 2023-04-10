@@ -339,9 +339,13 @@ namespace aqua
 
       pfactory = factory("audio_mixer", "mmsystem");
 
-      pfactory->merge_to_global_factory();
+#elif defined(LINUX)
+
+      pfactory = factory("audio_mixer", "alsa");
 
 #endif
+
+      pfactory->merge_to_global_factory();
 
       pfactory->__construct(this, m_paudiomixer);
 

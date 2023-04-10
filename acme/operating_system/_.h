@@ -51,14 +51,4 @@
 CLASS_DECL_ACME void flush_stdin();
 
 
-namespace operating_system
-{
-
-
-   class summary;
-
-
-} // namespace operating_system
-
-
 

@@ -485,6 +485,14 @@ namespace apex
    }
 
 
+   ::string node::get_host_name()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace apex
 
 

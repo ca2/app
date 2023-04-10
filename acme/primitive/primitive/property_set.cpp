@@ -523,7 +523,7 @@ void property_set::_008AddArgumentPairs(::string_array & straArguments)
 
       string strNextArgument = straArguments[i + 1];
 
-      if (strThisArgument.begins_eat("-"))
+      if (strThisArgument.begins_eat("--") || strThisArgument.begins_eat("-"))
       {
 
          if (strThisArgument.has_char())
@@ -584,7 +584,7 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string
 
    auto range = strArgument();
 
-   if (range.case_insensitive_begins_eat("-"))
+   if (range.begins_eat("--") || range.begins_eat("-"))
    {
 
       _008AddArgument(range);
@@ -624,27 +624,36 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string
 void property_set::_008AddArgument(const ::string & strArg)
 {
 
-   auto pFindEqual = strArg.find('=');
+   auto range = strArg();
 
-   auto pFindQuote = strArg.find('\"');
+   if(!range.begins_eat("--"))
+   {
+
+      range.begins_eat("-");
+
+   }
+
+   auto pFindEqual = range.find('=');
+
+   auto pFindQuote = range.find('\"');
 
    if (::is_set(pFindEqual))
    {
 
       string strValue;
 
-      strValue = strArg(pFindEqual + 1);
+      strValue = range(pFindEqual + 1);
 
       if (pFindEqual + 1 == pFindQuote)
       {
 
-         auto range = strValue();
+         auto rangeValue = strValue();
 
-         strValue = range.consume_quoted_value();
+         strValue = rangeValue.consume_quoted_value();
 
       }
 
-      string strKey = strArg(0, pFindEqual);
+      string strKey = range(0, pFindEqual);
 
       _008Add(strKey, strValue);
 
@@ -652,7 +661,7 @@ void property_set::_008AddArgument(const ::string & strArg)
    else
    {
 
-      _008Add(strArg, nullptr);
+      _008Add(range, nullptr);
 
    }
 
@@ -942,15 +951,13 @@ void property_set::parse_standard_configuration(const ::string & strStandardConf
 
       strKey.trim();
 
-      ::string strPayload = range;
+      range.trim();
 
-      strPayload.trim();
+      range.paired_trim('\'', '\'');
 
-      strPayload.paired_trim('\'', '\'');
+      range.paired_trim('\"', '\"');
 
-      strPayload.paired_trim('\"', '\"');
-
-      this->operator[](strKey) = strPayload;
+      this->operator[](strKey) = range;
 
    }
 

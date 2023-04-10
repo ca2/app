@@ -1655,10 +1655,12 @@ public:
 
 
    bool begins_consume(const ::scoped_string & scopedstr);
-  bool begins_consume(ansi_character ansich) {return (*this->m_begin == ansich)?(static_cast<void>(this->m_begin++),true): false;}
-  bool begins_consume(::ansi_character & characterReturn, ansi_character ansich) {return (bool)(*this->m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(this->m_begin++), true): false;}
-  bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);
-  bool case_insensitive_ends_eat(const ::scoped_string & scopedstr);
+   bool begins_consume(ansi_character ansich) {return (*this->m_begin == ansich)?(static_cast<void>(this->m_begin++),true): false;}
+   bool begins_consume(::ansi_character & characterReturn, ansi_character ansich) {return (bool)(*this->m_begin == ansich)?(static_cast<void>(characterReturn = ansich), static_cast<void>(this->m_begin++), true): false;}
+   bool begins_eat(const ::scoped_string & scopedstr);
+   bool ends_eat(const ::scoped_string & scopedstr);
+   bool case_insensitive_begins_eat(const ::scoped_string & scopedstr);
+   bool case_insensitive_ends_eat(const ::scoped_string & scopedstr);
   void consume(const ::ansi_character * pszToConsume);
   //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
   void consume(const ::scoped_string & scopedstr);

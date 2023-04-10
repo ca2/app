@@ -721,6 +721,8 @@ namespace acme
 
       virtual ::string unix_shell_command_string(const ::scoped_string & scopedstrCommand);
 
+      virtual ::string operating_system_store_release();
+      
 
    };
 

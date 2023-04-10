@@ -2911,6 +2911,14 @@ return false;
    }
 
 
+   ::string node::operating_system_store_release()
+   {
+
+      return {};
+      
+   }
+
+
 } // namespace acme
 
 

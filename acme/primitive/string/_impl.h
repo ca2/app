@@ -754,6 +754,67 @@ bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scop
 
 
 template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::begins_eat(const ::scoped_string & scopedstr)
+{
+
+   if(scopedstr.size() > 0)
+   {
+
+      if (!this->begins(scopedstr))
+      {
+
+         return false;
+
+      }
+
+      if(this->m_erange & e_range_string)
+      {
+
+         this->m_erange -= e_range_string;
+
+      }
+
+      this->m_begin += scopedstr.size();
+
+   }
+
+   return true;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+bool string_range < ITERATOR_TYPE >::ends_eat(const ::scoped_string & scopedstr)
+{
+
+   if(scopedstr.size() > 0)
+   {
+
+      if (!this->ends(scopedstr))
+      {
+
+         return false;
+
+      }
+
+      if(this->m_erange & e_range_string)
+      {
+
+         this->m_erange -= e_range_string;
+
+      }
+
+      this->m_end -= scopedstr.size();
+
+   }
+
+   return true;
+
+}
+
+
+
+template < typename ITERATOR_TYPE >
 bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_string & scopedstr)
 {
 

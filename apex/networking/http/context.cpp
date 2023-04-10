@@ -2357,7 +2357,7 @@ namespace http
 
          psocket->set_scalar(::e_scalar_download_size, iBodySizeDownloaded);
 
-         if (psocket->m_transferprogressfunction)
+         if (psocket->m_transferprogressfunction && iContentLength > 0)
          {
 
             psocket->m_transferprogressfunction(dRateDownloaded, iBodySizeDownloaded, iContentLength);

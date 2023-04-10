@@ -121,6 +121,9 @@ namespace apex
       virtual ::file::path app_shortcut_path(::acme::application* papplication);
 
 
+      virtual ::string get_host_name();
+
+
    };
 
 

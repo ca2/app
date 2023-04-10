@@ -1687,6 +1687,19 @@ void system::defer_post_initial_request()
                                                         strCommandLine,
                                                         prequest->m_payloadFile,
                                                         strApp);
+
+#if !defined(WINDOWS)
+
+      for(::index iArgument = 1; iArgument < m_psubsystem->m_argc; iArgument++)
+      {
+
+         ::string strArgument = m_psubsystem->m_argv[iArgument];
+
+         prequest->get_property_set()._008AddArgument(strArgument);
+
+      }
+
+#endif
       
       payload("command_line_arg0") = strApp;
       

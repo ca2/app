@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "earth_time.h"
 //#include "file_time.h"
 #include "date_span.h"
@@ -544,7 +544,7 @@ namespace earth
 
       auto timeUtc = time.m_time;
 
-      timeUtc += (::i32)  timeshift.m_d * 3600.0);
+      timeUtc += (::i32)  (timeshift.m_d * 3600.0);
 
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);

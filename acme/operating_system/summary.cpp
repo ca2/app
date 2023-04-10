@@ -2,7 +2,7 @@
 // Created by camilo on 07/04/23.
 //
 #include "framework.h"
-#include "distro__release_and_desktop_environment.h"
+#include "summary.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
 
@@ -18,27 +18,27 @@ summary::summary()
 }
 
 
-distro__release_and_desktop_environment::~distro__release_and_desktop_environment()
+summary::~summary()
 {
    
    
 }
 
 
-::string distro__release_and_desktop_environment::summary() const
+::string summary::get_summary() const
 {
    
    ::string strSummary;
    
-   strSummary.append_format("__SYSTEM_DISTRO is %s", m_strDistro);
-   strSummary.append_format("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily);
-   strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch);
-   strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease);
-   strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment);
-   strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSlashedOperatingSystem);
-   strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem);
-   strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall);
-   strSummary.append_format("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension);
+   strSummary.append_format("__SYSTEM_DISTRO is %s", m_strDistro.c_str());
+   strSummary.append_format("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily.c_str());
+   strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch.c_str());
+   strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease.c_str());
+   strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment.c_str());
+   strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSlashedOperatingSystem.c_str());
+   strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem.c_str());
+   strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall.c_str());
+   strSummary.append_format("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension.c_str());
    
    return strSummary;
    

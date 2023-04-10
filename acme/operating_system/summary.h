@@ -45,7 +45,7 @@ public:
    ~summary() override;
    
    
-   ::string summary() const;
+   ::string get_summary() const;
    
 //
 //   void initialize(::particle *pparticle) override;

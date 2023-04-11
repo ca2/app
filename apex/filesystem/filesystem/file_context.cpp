@@ -1203,7 +1203,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::scoped_st
 {
 
    auto pfile = get_file(payloadFile,
-                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none |
                      ::file::e_open_defer_create_directory);
 
    if (!pfile)

@@ -183,9 +183,6 @@
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{70490f20-e581-4135-a168-4ad4d3881e83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\ansi">
-      <UniqueIdentifier>{4725469b-f38f-40cb-90b5-5a1e0a0a55ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\handler">
       <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
     </Filter>
@@ -269,9 +266,6 @@
     </Filter>
     <Filter Include="Header Files\operating_system\dos">
       <UniqueIdentifier>{052e6fc9-4511-4d37-a784-5c9c4bf2e145}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\NewFilter1">
-      <UniqueIdentifier>{b3d1e97f-fdfb-4b80-a453-ed7b470fa955}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2978,6 +2972,9 @@
     <ClInclude Include="operating_system\dostime.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\summary.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4082,6 +4079,9 @@
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\dostime.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>

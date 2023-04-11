@@ -789,6 +789,7 @@
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
+    <ClCompile Include="user\user\interaction_listener.cpp" />
     <ClCompile Include="user\user\interaction_prodevian.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
@@ -1113,6 +1114,7 @@
     <ClInclude Include="user\user\interaction_child.h" />
     <ClInclude Include="user\user\interaction_impl.h" />
     <ClInclude Include="user\user\interaction_layout.h" />
+    <ClInclude Include="user\user\interaction_listener.h" />
     <ClInclude Include="user\user\interaction_prodevian.h" />
     <ClInclude Include="user\user\interaction_scaler.h" />
     <ClInclude Include="user\user\interaction_style.h" />

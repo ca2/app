@@ -19,39 +19,40 @@
 namespace operating_system
 {
 
-class summary :
-virtual public ::particle
-{
-public:
-   
-   ::string m_strDistro;
-   ::string m_strDistroFamily;
-   ::string m_strDistroBranch;
-   ::string m_strDistroRelease;
-   ::string m_strDesktopEnvironment;
-   ::string m_strSlashedOperatingSystem;
-   ::string m_strUnderscoreOperatingSystem;
-   
-   
-   ::string m_strSudoInstall;
-   ::string m_strStandardPackageFileExtension;
-   ::string m_strPackagePlatform;
-   
-   
-   ::string m_strTerminal;
-   
-   
-   summary();
-   ~summary() override;
-   
-   
-   ::string get_summary() const;
-   
-//
-//   void initialize(::particle *pparticle) override;
-//
-   
-};
+
+   class CLASS_DECL_ACME summary :
+      virtual public ::particle
+   {
+   public:
+
+      ::string m_strDistro;
+      ::string m_strDistroFamily;
+      ::string m_strDistroBranch;
+      ::string m_strDistroRelease;
+      ::string m_strDesktopEnvironment;
+      ::string m_strSlashedOperatingSystem;
+      ::string m_strUnderscoreOperatingSystem;
+
+
+      ::string m_strSudoInstall;
+      ::string m_strStandardPackageFileExtension;
+      ::string m_strPackagePlatform;
+
+
+      ::string m_strTerminal;
+
+
+      summary();
+      ~summary() override;
+
+
+      ::string get_summary() const;
+
+      //
+      //   void initialize(::particle *pparticle) override;
+      //
+
+   };
 
 
 } // namespace operating_system

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   void interaction_listener::interaction_listener_message_handler(::message::message * pmessage)
+   void interaction_listener::interaction_message_handler(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -16,7 +16,7 @@ namespace user
    }
 
 
-   void interaction_listener::install_interaction_listener_window_routing(::channel * pchannel)
+   void interaction_listener::install_interaction_message_routing(::channel * pchannel)
    {
 
    }

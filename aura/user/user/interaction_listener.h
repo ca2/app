@@ -16,9 +16,9 @@ namespace user
    public:
 
       
-      virtual void interaction_listener_message_handler(::message::message * pmessage);
+      virtual void interaction_message_handler(::message::message * pmessage);
 
-      virtual void install_interaction_listener_window_routing(::channel * pchannel);
+      virtual void install_interaction_message_routing(::channel * pchannel);
 
 
    };

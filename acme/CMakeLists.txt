@@ -255,6 +255,8 @@ list(APPEND library_source
         #operating_system/http.cpp
         operating_system/parallelization.cpp
         operating_system/process.h
+        operating_system/summary.cpp
+        operating_system/summary.h
         operating_system/time.cpp
         operating_system/windowing.cpp
         parallelization/_.cpp

@@ -14,6 +14,9 @@ namespace operating_system
 summary::summary()
 {
    
+   m_iMajorRelease = 0;
+   
+   m_iMinorRelease = 0;
    
 }
 

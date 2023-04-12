@@ -33,6 +33,11 @@ namespace operating_system
       ::string m_strSlashedOperatingSystem;
       ::string m_strUnderscoreOperatingSystem;
 
+      ::i32       m_iMajor;
+      ::i32       m_iMinor;
+      ::i32       m_iPatch;
+      
+      ::string    m_strMacosRelease;
 
       ::string m_strSudoInstall;
       ::string m_strStandardPackageFileExtension;

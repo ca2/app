@@ -81,7 +81,6 @@ namespace sockets
 
    }
 
-
    //void stream_socket::set_maximum_connection_time(i32 x)
    //{
    //   m_secsConnectionTimeout = x;

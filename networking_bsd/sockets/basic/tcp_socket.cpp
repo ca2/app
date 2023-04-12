@@ -541,7 +541,13 @@ namespace sockets_bsd
          attach(s);
          SetCallOnConnect(); // base_socket_handler must call OnConnect
       }
-
+      
+      set_connection_start_time();
+      
+      //m_timeLastRead.Now();
+      //m_timeLastWrite.Now();
+      //m_psocketParent->m_timeLastRead = m_timeLastRead;
+      //m_psocketParent->m_timeLastWrite = m_timeLastWrite;
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
       return true; //!is_connecting();
@@ -989,6 +995,8 @@ namespace sockets_bsd
       {
 
          m_bytes_received += n;
+         
+         m_timeLastRead.Now();
 
          if(GetTrafficMonitor())
          {
@@ -1355,6 +1363,8 @@ namespace sockets_bsd
          
          m_bytes_sent += n;
 
+         m_timeLastWrite.Now();
+
          if(GetTrafficMonitor())
          {
 
@@ -1363,7 +1373,7 @@ namespace sockets_bsd
          }
 
          set_connection_last_activity();
-
+         
       }
 
       return (i32)n;

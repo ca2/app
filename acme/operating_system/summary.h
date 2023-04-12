@@ -30,14 +30,16 @@ namespace operating_system
       ::string m_strDistroBranch;
       ::string m_strDistroRelease;
       ::string m_strDesktopEnvironment;
-      ::string m_strSlashedOperatingSystem;
+      ::string m_strSlashedStore;
+      ::string m_strSlashedIntegration;
       ::string m_strUnderscoreOperatingSystem;
 
       ::i32       m_iMajor;
       ::i32       m_iMinor;
       ::i32       m_iPatch;
       
-      ::string    m_strMacosRelease;
+      ::string    m_strIntegrationRelease;
+      ::string    m_strStoreRelease;
 
       ::string m_strSudoInstall;
       ::string m_strStandardPackageFileExtension;

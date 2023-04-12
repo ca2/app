@@ -14,9 +14,11 @@ namespace operating_system
 summary::summary()
 {
    
-   m_iMajorRelease = 0;
+   m_iMajor = 0;
    
-   m_iMinorRelease = 0;
+   m_iMinor = 0;
+   
+   m_iPatch = 0;
    
 }
 
@@ -38,7 +40,8 @@ summary::~summary()
    strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch.c_str());
    strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease.c_str());
    strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment.c_str());
-   strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSlashedOperatingSystem.c_str());
+   strSummary.append_format("__SYSTEM_SLASHED_STORE is %s", m_strSlashedStore.c_str());
+   strSummary.append_format("__SYSTEM_SLASHED_INTEGRATION is %s", m_strSlashedIntegration.c_str());
    strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem.c_str());
    strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall.c_str());
    strSummary.append_format("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension.c_str());

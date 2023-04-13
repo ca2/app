@@ -1340,7 +1340,7 @@ elseif (LINUX OR FREEBSD)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
     message("PKGCONFIG_CFLAGS is " ${PKGCONFIG_CFLAGS})
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
 
 

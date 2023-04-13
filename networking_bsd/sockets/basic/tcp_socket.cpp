@@ -2823,7 +2823,7 @@ namespace sockets_bsd
    void tcp_socket::on_connection_timeout()
    {
 
-      m_ptcpsocketComposite->on_connection_timeout();
+      //m_ptcpsocketComposite->on_connection_timeout();
 
       FATAL("connect: connect timeout");
 

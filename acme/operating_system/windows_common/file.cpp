@@ -25,7 +25,7 @@ namespace windows
    }
 
 
-   void file::create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
+   bool file::safe_create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
    {
 
       m_path = path;
@@ -66,6 +66,8 @@ namespace windows
          hTemplateFile);
 
 #endif
+
+      return m_handle != INVALID_HANDLE_VALUE;
 
    }
 
@@ -167,7 +169,7 @@ namespace windows
 
       }
 
-      create_file(path, dwDesiredAccess, dwShareMode, lpSecurityattributes, dwCreationDisposition, FILE_ATTRIBUTE_NORMAL, nullptr);
+      safe_create_file(path, dwDesiredAccess, dwShareMode, lpSecurityattributes, dwCreationDisposition, FILE_ATTRIBUTE_NORMAL, nullptr);
 
    }
 
@@ -475,6 +477,31 @@ namespace windows
       //auto errorcode = ::windows::last_error_error_code(lasterror);
 
       //throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstrMessage);
+
+   }
+
+
+   [[nodiscard]] ::file::path file::get_final_path_by_handle() const
+   {
+      
+      DWORD nCharacterCount = GetFinalPathNameByHandleW(m_handle, nullptr, 0, VOLUME_NAME_DOS);
+
+      if (nCharacterCount <= 0)
+      {
+
+         return {};
+
+      }
+         
+      ::windows_path windowspathFinal;
+
+      auto pwszFinalPath = windowspathFinal.get_string_buffer(nCharacterCount);
+
+      nCharacterCount = GetFinalPathNameByHandleW(m_handle, pwszFinalPath, nCharacterCount, VOLUME_NAME_DOS);
+
+      windowspathFinal.release_string_buffer(nCharacterCount);
+
+      return windowspathFinal;
 
    }
 

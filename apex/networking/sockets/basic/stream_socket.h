@@ -24,7 +24,6 @@ namespace sockets
       bool m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
       i32 m_iShutdownStatus; ///< Shutdown status
 
-
       stream_socket();
       ~stream_socket() override;
 
@@ -40,7 +39,8 @@ namespace sockets
       socket connection is established, and socket is not about to
       be closed. */
       bool Ready() override;
-
+      
+      
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */
       //void set_maximum_connection_time(i32 x);

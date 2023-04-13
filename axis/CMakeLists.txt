@@ -326,6 +326,8 @@ list(APPEND library_source
         user/user/combo_box.h
         user/user/list_box.cpp
         user/user/list_box.h
+        user/user/plus_minus.cpp
+        user/user/plus_minus.h
         user/user/simple_ui_draw.cpp
         user/user/simple_ui_draw.h
         user/user/slider.cpp

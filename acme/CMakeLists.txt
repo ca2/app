@@ -255,6 +255,8 @@ list(APPEND library_source
         #operating_system/http.cpp
         operating_system/parallelization.cpp
         operating_system/process.h
+        operating_system/summary.cpp
+        operating_system/summary.h
         operating_system/time.cpp
         operating_system/windowing.cpp
         parallelization/_.cpp
@@ -2339,7 +2341,7 @@ elseif (LINUX OR FREEBSD)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
 elseif (MACOS)

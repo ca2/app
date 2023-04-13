@@ -5,11 +5,11 @@ project(aura CXX)
 list(APPEND library_source
         asset/cube_new.inl
         asset/new.inl
-        axispolicy/_.h
-        axispolicy/_c.h
-        axispolicy/policy_objc.h
-        axispolicy/policy_objcpp.h
-        axispolicy/policy_winrt.h
+        #axispolicy/_.h
+        #axispolicy/_c.h
+        #axispolicy/policy_objc.h
+        #axispolicy/policy_objcpp.h
+        #axispolicy/policy_winrt.h
         #const/_const.h
         #const/charset.h
         constant/idpool.cpp
@@ -233,14 +233,14 @@ list(APPEND library_source
         hardware/devices.h
         #include/_.cpp
         include/_.h
-        include/_c.h
-        include/_c_bridge.h
+        #include/_c.h
+        #include/_c_bridge.h
         include/_include.h
-        include/_no_templates.h
-        include/_setup.h
-        include/objc.h
-        include/objcpp.h
-        include/winrt.h
+        #include/_no_templates.h
+        #include/_setup.h
+        #include/objc.h
+        #include/objcpp.h
+        #include/winrt.h
         inline/__debug_box_clear_impl.h
         inline/__debug_box_set_impl.h
         #inline/_acid${PROJECT_NAME}.h
@@ -1340,7 +1340,7 @@ elseif (LINUX OR FREEBSD)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
     message("PKGCONFIG_CFLAGS is " ${PKGCONFIG_CFLAGS})
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
 
 

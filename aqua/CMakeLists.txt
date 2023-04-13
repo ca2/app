@@ -25,20 +25,24 @@ list(APPEND library_source
         inline/console.h
         inline/console_common.h
         inline/library.h
-        multimedia/audio/_.h
-        multimedia/audio/audio_c.h
-        multimedia/audio/audio_wave_out.cpp
-        multimedia/audio/out.h
-        multimedia/audio/sound_track_player.cpp
-        multimedia/audio/sound_track_player.h
-        multimedia/audio/text_to_speech_client.cpp
-        multimedia/audio/text_to_speech_client.h
-        multimedia/audio/speaker.cpp
-        multimedia/audio/speaker.h
+        audio/_.h
+        audio/_c.h
+        audio/audio.cpp
+        audio/audio.h
+        audio/audio_mixer.cpp
+        audio/audio_mixer.h
+        audio/audio_mixer_user.cpp
+        audio/audio_mixer_user.h
+        audio/audio_wave_out.cpp
+        audio/out.h
+        audio/sound_track_player.cpp
+        audio/sound_track_player.h
+        audio/text_to_speech_client.cpp
+        audio/text_to_speech_client.h
+        audio/speaker.cpp
+        audio/speaker.h
         multimedia/_.h
         multimedia/_c.h
-        multimedia/audio/audio.cpp
-        multimedia/audio/audio.h
         multimedia/decoder.cpp
         multimedia/decoder.h
         multimedia/decoder_plugin.cpp
@@ -163,7 +167,7 @@ elseif(LINUX)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 

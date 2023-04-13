@@ -124,7 +124,7 @@ int g_i134 = 0;
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
-#include "aura/operating_system/windows/windowing.h"
+//#include "aura/operating_system/windows/windowing.h"
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(UNIVERSAL_WINDOWS)
 
@@ -16587,7 +16587,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::on_click(::item * pitem)
+   bool interaction::on_click_generation(::item * pitem)
    {
 
       auto pappearance = get_appearance();
@@ -16604,11 +16604,36 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
+      {
+
+         auto pmessageOnClick = __create_new<::message::message>();
+
+         pmessageOnClick->m_atom = "on_click";
+
+         route_message(pmessageOnClick);
+
+         if (pmessageOnClick->m_bRet)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return on_click(pitem);
+
+   }
+
+
+   bool interaction::on_click(::item * pitem)
+   {
+
       if (::is_set(pitem))
       {
 
          if (pitem->m_eelement == ::e_element_close_button
-            || pitem->m_eelement == ::e_element_close_icon)
+             || pitem->m_eelement == ::e_element_close_icon)
          {
 
             post_message(MESSAGE_CLOSE);
@@ -16617,7 +16642,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
          else if (pitem->m_eelement == ::e_element_switch_button
-            || pitem->m_eelement == ::e_element_switch_icon)
+                  || pitem->m_eelement == ::e_element_switch_icon)
          {
 
             post_message(e_message_switch);
@@ -16626,7 +16651,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
          else if (pitem->m_eelement == ::e_element_maximize_button
-            || pitem->m_eelement == ::e_element_maximize_icon)
+                  || pitem->m_eelement == ::e_element_maximize_icon)
          {
 
             auto edisplay = layout().sketch().display();
@@ -16648,7 +16673,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
          else if (pitem->m_eelement == ::e_element_minimize_button
-            || pitem->m_eelement == ::e_element_minimize_icon)
+                  || pitem->m_eelement == ::e_element_minimize_icon)
          {
 
             display(e_display_iconic);
@@ -16656,9 +16681,18 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
             return true;
 
          }
+
       }
 
       return false;
+
+   }
+
+
+   bool interaction::on_right_click_generation(::item * pitem)
+   {
+
+      return on_right_click(pitem);
 
    }
 
@@ -17692,18 +17726,80 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
                psession->m_puiLastLButtonDown = nullptr;
 
-               auto pmessageOnClick = __create_new < ::message::message>();
+               pmessage->m_bRet = on_click_generation(m_pitemLButtonDown);
 
-               pmessageOnClick->m_atom = "on_click";
+               INFORMATION("interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet);
 
-               route_message(pmessageOnClick);
-
-               if (!pmessageOnClick->m_bRet)
+               if (pmessage->m_bRet)
                {
 
-                  pmessage->m_bRet = on_click(m_pitemLButtonDown);
+                  pmouse->m_lresult = 1;
 
-                  INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int)pmessage->m_bRet);
+               }
+               else
+               {
+
+                  ::atom atom;
+
+                  if (m_pitemLButtonDown->m_atom.is_empty())
+                  {
+
+                     atom = translate_property_id(m_atom);
+
+                  }
+                  else
+                  {
+
+                     atom = translate_property_id(m_pitemLButtonDown->m_atom);
+
+                  }
+
+                  if (has_handler())
+                  {
+
+                     auto ptopic = create_topic(id_click);
+
+                     ptopic->m_puserelement = this;
+
+                     ptopic->m_pitem = m_pitemLButtonDown;
+
+                     ptopic->m_actioncontext.m_pmessage = pmouse;
+
+                     ptopic->m_actioncontext.add(::e_source_user);
+
+                     route(ptopic);
+
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
+
+                     pmessage->m_bRet = ptopic->m_bRet;
+
+                  }
+
+                  //if (!pmessage->m_bRet)
+                  //{
+
+                  //   auto estatus = command_handler(atom);
+
+                  //   pmessage->m_bRet = estatus.succeeded();
+
+                  //}
+
+                  if (!pmessage->m_bRet)
+                  {
+
+                     ::message::command command(atom);
+
+                     command.m_puiOther = this;
+
+                     //route_command_message(&command);
+
+                     route_command(&command);
+
+                     TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
+
+                     pmessage->m_bRet = command.m_bRet;
+
+                  }
 
                   if (pmessage->m_bRet)
                   {
@@ -17711,93 +17807,20 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
                      pmouse->m_lresult = 1;
 
                   }
-                  else
-                  {
 
-                     ::atom atom;
-
-                     if (m_pitemLButtonDown->m_atom.is_empty())
-                     {
-
-                        atom = translate_property_id(m_atom);
-
-                     }
-                     else
-                     {
-
-                        atom = translate_property_id(m_pitemLButtonDown->m_atom);
-
-                     }
-
-                     if (has_handler())
-                     {
-
-                        auto ptopic = create_topic(id_click);
-
-                        ptopic->m_puserelement = this;
-
-                        ptopic->m_pitem = m_pitemLButtonDown;
-
-                        ptopic->m_actioncontext.m_pmessage = pmouse;
-
-                        ptopic->m_actioncontext.add(::e_source_user);
-
-                        route(ptopic);
-
-                        INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
-
-                        pmessage->m_bRet = ptopic->m_bRet;
-
-                     }
-
-                     //if (!pmessage->m_bRet)
-                     //{
-
-                     //   auto estatus = command_handler(atom);
-
-                     //   pmessage->m_bRet = estatus.succeeded();
-
-                     //}
-
-                     if (!pmessage->m_bRet)
-                     {
-
-                        ::message::command command(atom);
-
-                        command.m_puiOther = this;
-
-                        //route_command_message(&command);
-
-                        route_command(&command);
-
-                        TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
-
-                        pmessage->m_bRet = command.m_bRet;
-
-                     }
-
-                     if (pmessage->m_bRet)
-                     {
-
-                        pmouse->m_lresult = 1;
-
-                     }
-
-                     //               if(!pmessage->m_bRet)
-                     //               {
-                     //
-                     //                  auto linkedproperty = fetch_property(m_atom);
-                     //
-                     ////                  if(linkedproperty)
-                     ////                  {
-                     ////
-                     ////                     linkproperty
-                     ////
-                     ////                  }
-                     ////
-                     ////               }
-                  }
-
+                  //               if(!pmessage->m_bRet)
+                  //               {
+                  //
+                  //                  auto linkedproperty = fetch_property(m_atom);
+                  //
+                  ////                  if(linkedproperty)
+                  ////                  {
+                  ////
+                  ////                     linkproperty
+                  ////
+                  ////                  }
+                  ////
+                  ////               }
                }
 
             }

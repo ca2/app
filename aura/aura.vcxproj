@@ -761,17 +761,6 @@
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="message\_.cpp" />
-    <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\thread.cpp" />
-    <ClCompile Include="operating_system\windowing.cpp" />
-    <ClCompile Include="operating_system\windows\_library.cpp" />
-    <ClCompile Include="operating_system\windows\dpi.cpp" />
-    <ClCompile Include="operating_system\windows\gdi.cpp" />
-    <ClCompile Include="operating_system\windows\graphics.cpp" />
-    <ClCompile Include="operating_system\windows\main.cpp" />
-    <ClCompile Include="operating_system\windows\message_window.cpp" />
-    <ClCompile Include="operating_system\windows\monitor.cpp" />
-    <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
@@ -800,6 +789,7 @@
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
+    <ClCompile Include="user\user\interaction_listener.cpp" />
     <ClCompile Include="user\user\interaction_prodevian.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
@@ -1124,6 +1114,7 @@
     <ClInclude Include="user\user\interaction_child.h" />
     <ClInclude Include="user\user\interaction_impl.h" />
     <ClInclude Include="user\user\interaction_layout.h" />
+    <ClInclude Include="user\user\interaction_listener.h" />
     <ClInclude Include="user\user\interaction_prodevian.h" />
     <ClInclude Include="user\user\interaction_scaler.h" />
     <ClInclude Include="user\user\interaction_style.h" />

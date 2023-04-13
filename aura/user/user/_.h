@@ -56,6 +56,8 @@ namespace user
 
    class interaction_scaler;
 
+   class interaction_listener;
+
    class style;
 
    class alpha_source;
@@ -253,13 +255,6 @@ namespace user
 
 
    class system;
-
-
-#ifdef WINDOWS_DESKTOP
-
-   class message_window;
-
-#endif
 
 
    class plain_text_set_sel_command;

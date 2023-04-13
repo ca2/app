@@ -8,6 +8,7 @@ set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
 
 
+
 # In include(source/_.cmake) set variables like below
 #set(INCLUDE_DRAW2D_CAIRO TRUE)
 #set(INCLUDE_IMAGING_FREEIMAGE TRUE)

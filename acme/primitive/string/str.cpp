@@ -4015,22 +4015,20 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
       if(bFinal)
       {
 
-         iLimit = str.length();
+         auto range = str();
 
-         if(iLimit <= 0)
+         if(str.has_char())
          {
 
-            return;
+            functionNewLine(str);
 
          }
 
-      }
-      else
-      {
-
-         return;
+         str.clear();
 
       }
+
+      return;
 
    }
 
@@ -4047,22 +4045,20 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
          if(bFinal)
          {
 
-            iFindNext = str.length();
+            auto range = str();
 
-            if(iFindNext >= iLast)
+            if(str.has_char())
             {
 
-               break;
+               functionNewLine(str);
 
             }
 
-         }
-         else
-         {
-
-            break;
+            str.clear();
 
          }
+
+         return;
 
       }
       else if(iFindNext > iLimit)

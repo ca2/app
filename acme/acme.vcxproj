@@ -898,12 +898,14 @@
     <ClCompile Include="operating_system\pipe.cpp" />
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
+    <ClCompile Include="operating_system\summary.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
     <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
+    <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />

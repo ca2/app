@@ -82,7 +82,9 @@ namespace sockets_bsd
       bool                    m_bDelete; ///< Delete by handler flag
       bool                       m_bCloseAndDelete; ///< close and delete flag
       ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      class ::time                 m_timeConnectionStart; ///< Set by SetTimeout
+      class ::time            m_timeLastRead;
+      class ::time            m_timeLastWrite;
+      class ::time            m_timeConnectionStart; ///< Set by SetTimeout
       class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
       class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
       class ::time              m_timeStart; ///< Set by SetTimeout
@@ -289,6 +291,9 @@ namespace sockets_bsd
       // LIST_TIMEOUT
 
       /** enable timeout control. 0=disable timeout check. */
+      
+      class ::time get_last_interaction_time() const override;
+
       void set_connection_start_time() override;
 
       void set_connection_last_activity() override;
@@ -544,10 +549,9 @@ namespace sockets_bsd
 #endif
 #ifdef SO_NOSIGPIPE
       bool SetSoNosigpipe(bool x = true) override;
+      virtual bool _SetSoNosigpipe(SOCKET s, bool x = true);
 #endif
       
-      virtual bool _SetSoNosigpipe(SOCKET s, bool x = true);
-
       //@}
 
       // TCP options in tcp_socket.h/tcp_socket.cpp

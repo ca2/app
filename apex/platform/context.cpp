@@ -295,31 +295,31 @@ namespace apex
 
       }
 
-      if (dir()->image().has_char() && acmepath()->final_begins_eat_ci(str, dir()->image()))
+      if (dir()->image().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (dir()->music().has_char() && acmepath()->final_begins_eat_ci(str, dir()->music()))
+      else if (dir()->music().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (dir()->video().has_char() && acmepath()->final_begins_eat_ci(str, dir()->video()))
+      else if (dir()->video().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (dir()->document().has_char() && acmepath()->final_begins_eat_ci(str, dir()->document()))
+      else if (dir()->document().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (dir()->download().has_char() && acmepath()->final_begins_eat_ci(str, dir()->download()))
+      else if (dir()->download().has_char() && acmepath()->case_insensitive_real_path_begins_eat(str, dir()->download()))
       {
 
          return ::file::path("download://") / str;

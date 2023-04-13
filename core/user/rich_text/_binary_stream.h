@@ -127,7 +127,7 @@ template < typename FILE >
 
 
 template < typename FILE >
-::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, const ::user::rich_text::edit_impl & editimpl)
+::binary_stream < FILE > & operator <<(::binary_stream < FILE > & stream, ::user::rich_text::edit_impl & editimpl)
 {
 
    stream << (const ::user::picture &) editimpl;
@@ -136,7 +136,7 @@ template < typename FILE >
 
    ::rectangle_i32 rectangleWindow;
 
-   editimpl.window_rectangle(rectangleWindow);
+   rectangleWindow = editimpl.window_rectangle();
 
    if (((::user::rich_text::edit_impl & )editimpl).get_parent() != nullptr)
    {

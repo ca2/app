@@ -617,7 +617,7 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, ::i32 iSocket)
+   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s)
    {
       
       
@@ -2484,6 +2484,14 @@ bool base_socket::SetSoNosigpipe(bool x)
 
    void base_socket::OnCancelled(SOCKET)
    {
+   }
+
+
+   class ::time base_socket::get_last_interaction_time() const
+   {
+
+      return maximum(maximum(m_timeLastRead, m_timeLastWrite), m_timeConnectionStart);
+   
    }
 
 

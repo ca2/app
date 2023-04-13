@@ -66,6 +66,8 @@ public:
 
    virtual ::file::enum_type get_type(const ::file::path & path, ::payload * pvarQuery);
    virtual ::file::enum_type get_type(const ::file::path & path);
+   virtual ::file::enum_type safe_get_type(const ::file::path& path, ::payload* pvarQuery);
+   virtual ::file::enum_type safe_get_type(const ::file::path& path);
 
 
    virtual ::payload length(const ::file::path & path);

@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
@@ -150,21 +150,21 @@ namespace nano2d
 	//	int textTriCount;
 	//};
 
-	static float __sqrtf(float a) { return sqrtf(a); }
+	inline float __sqrtf(float a) { return sqrtf(a); }
 	//static float __modf(float a, float b) { return fmodf(a, b); }
-	static float __sinf(float a) { return sinf(a); }
-	static float __cosf(float a) { return cosf(a); }
-	static float __tanf(float a) { return tanf(a); }
-	static float __atan2f(float a, float b) { return atan2f(a, b); }
-	static float __acosf(float a) { return acosf(a); }
+inline float __sinf(float a) { return sinf(a); }
+inline float __cosf(float a) { return cosf(a); }
+inline float __tanf(float a) { return tanf(a); }
+inline float __atan2f(float a, float b) { return atan2f(a, b); }
+inline float __acosf(float a) { return acosf(a); }
 
-	//static int __mini(int a, int b) { return a < b ? a : b; }
-	//static int __maxi(int a, int b) { return a > b ? a : b; }
-	//static int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
-	static float __minf(float a, float b) { return a < b ? a : b; }
-	static float __maxf(float a, float b) { return a > b ? a : b; }
-	static float __absf(float a) { return a >= 0.0f ? a : -a; }
-	static float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
+	//inline int __mini(int a, int b) { return a < b ? a : b; }
+	//inline int __maxi(int a, int b) { return a > b ? a : b; }
+	//inline int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
+inline float __minf(float a, float b) { return a < b ? a : b; }
+inline float __maxf(float a, float b) { return a > b ? a : b; }
+inline float __absf(float a) { return a >= 0.0f ? a : -a; }
+inline float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
 	//static float __clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx ? mx : a); }
 	static float __cross(float dx0, float dy0, float dx1, float dy1) { return dx1 * dy0 - dx0 * dy1; }
 

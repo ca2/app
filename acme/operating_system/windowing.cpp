@@ -130,4 +130,15 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 }
 
 
+static oswindow g_oswindowCapture;
+
+
+oswindow get_capture()
+{
+
+   return g_oswindowCapture;
+
+}
+
+
 

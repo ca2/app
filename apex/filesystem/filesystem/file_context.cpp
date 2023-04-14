@@ -121,7 +121,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    }
 
-   auto etype = get_type(path);
+   auto etype = safe_get_type(path);
 
    return etype == ::file::e_type_file || etype == ::file::e_type_element;
 
@@ -146,6 +146,79 @@ bool file_context::exists(const ::file::path &pathParam)
 
 
 ::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
+{
+
+   if (path.begins("http://") || path.begins("https://"))
+   {
+
+      property_set set;
+
+      if (path.flags() & ::file::e_flag_required)
+      {
+
+         set["required"] = true;
+
+      }
+
+      if (path.flags() & ::file::e_flag_bypass_cache)
+      {
+
+         set["nocache"] = true;
+
+      }
+
+      return m_pcontext->m_papexcontext->http().get_type(path, pvarQuery, set);
+
+   }
+
+   if (::task_flag().is_set(e_task_flag_compress_is_dir))
+   {
+
+      auto iFind = ::str::find_file_extension("zip:", path);
+
+      if (found(iFind))
+      {
+
+         if (!exists(path.substr(0, iFind + 4)))
+         {
+
+            return ::file::e_type_doesnt_exist;
+
+         }
+
+         throw todo;
+
+         //compress_context compress(this);
+
+         //::file::path pathZip;
+
+         //string_array straPath;
+
+         //if (!compress.get_patha(pathZip, straPath, path))
+         //{
+
+         //   return false;
+
+         //}
+
+         //auto pfile = file()->get_reader(pathZip);
+
+         //zip_context zip(this);
+
+         //return zip.is_file_or_dir(pfile, straPath, petype);
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+   }
+
+   return ::file::e_type_unknown;
+
+}
+
+
+::file::enum_type file_context::safe_get_type(const ::file::path& path, ::payload* pvarQuery)
 {
 
    if (path.begins("http://") || path.begins("https://"))
@@ -3626,6 +3699,23 @@ bool file_context::is_link(const ::file::path & path)
    }
 
    return acmepath()->get_type(path);
+
+}
+
+
+::file::enum_type file_context::safe_get_type(const ::file::path& path)
+{
+
+   auto etype = safe_get_type(path, nullptr);
+
+   if (etype != ::file::e_type_unknown)
+   {
+
+      return etype;
+
+   }
+
+   return acmepath()->safe_get_type(path);
 
 }
 

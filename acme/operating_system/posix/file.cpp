@@ -766,7 +766,7 @@
 
    }
 
-   if (!(stat.st_mode & S_IFDIR))
+   if (stat.st_mode & S_IFDIR)
    {
 
       return ::file::e_type_folder;

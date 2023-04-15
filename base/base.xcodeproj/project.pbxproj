@@ -167,6 +167,11 @@
 		9A93B6ED2846EB33005ACD11 /* experience_updown.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5D8D2751A98B003D9B5F /* experience_updown.cpp */; };
 		9A93B6EE2846EB33005ACD11 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DA02751A98B003D9B5F /* experience.cpp */; };
 		9A93B6EF2846EB33005ACD11 /* frame_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5D9F2751A98B003D9B5F /* frame_window.cpp */; };
+		9A94EBD529E243B900C8C249 /* toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73129E22AFD00C8C249 /* toolbar.cpp */; };
+		9A94EBD629E243BA00C8C249 /* toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73129E22AFD00C8C249 /* toolbar.cpp */; };
+		9A94EBD729E243C300C8C249 /* status_bar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73429E22AFE00C8C249 /* status_bar.cpp */; };
+		9A94EBD829E243C600C8C249 /* status_bar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73429E22AFE00C8C249 /* status_bar.cpp */; };
+		9A94EBD929E327E400C8C249 /* statusbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94E73529E22B3300C8C249 /* statusbar.cpp */; };
 		9AD1183124F51CE500177261 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1183024F51CE500177261 /* libaura.dylib */; };
 		9AD1183224F51CEC00177261 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182324F51C4100177261 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
@@ -397,6 +402,12 @@
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94E73129E22AFD00C8C249 /* toolbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toolbar.cpp; sourceTree = "<group>"; };
+		9A94E73229E22AFD00C8C249 /* status_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = status_bar.h; sourceTree = "<group>"; };
+		9A94E73329E22AFD00C8C249 /* toolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
+		9A94E73429E22AFE00C8C249 /* status_bar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = status_bar.cpp; sourceTree = "<group>"; };
+		9A94E73529E22B3300C8C249 /* statusbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = statusbar.cpp; sourceTree = "<group>"; };
+		9A94E73629E22B3300C8C249 /* statusbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = statusbar.h; sourceTree = "<group>"; };
 		9A979D5128C827660013DC54 /* impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impact.h; sourceTree = "<group>"; };
 		9A979D5228C827660013DC54 /* update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = update_hint.h; sourceTree = "<group>"; };
 		9A979D5328C827660013DC54 /* impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = impact.cpp; sourceTree = "<group>"; };
@@ -619,6 +630,8 @@
 				9A1D5DA92751A98B003D9B5F /* split_layout.h */,
 				9A1D5DB62751A98B003D9B5F /* split_pane.cpp */,
 				9A1D5DEC2751A98C003D9B5F /* split_pane.h */,
+				9A94E73529E22B3300C8C249 /* statusbar.cpp */,
+				9A94E73629E22B3300C8C249 /* statusbar.h */,
 				9A1D5DBE2751A98C003D9B5F /* style.cpp */,
 				9A1D5DB92751A98C003D9B5F /* style.h */,
 				9A1D5DE42751A98C003D9B5F /* tab_callback.cpp */,
@@ -658,8 +671,12 @@
 				9A1D5E252751A98C003D9B5F /* main_frame.h */,
 				9A1D5E232751A98C003D9B5F /* scroll_bar.cpp */,
 				9A1D5E242751A98C003D9B5F /* scroll_bar.h */,
+				9A94E73429E22AFE00C8C249 /* status_bar.cpp */,
+				9A94E73229E22AFD00C8C249 /* status_bar.h */,
 				9A615C3A28B1C5BD00377F68 /* tab_document.cpp */,
 				9A615C3928B1C5BD00377F68 /* tab_document.h */,
+				9A94E73129E22AFD00C8C249 /* toolbar.cpp */,
+				9A94E73329E22AFD00C8C249 /* toolbar.h */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -908,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A93B69F2846EB33005ACD11 /* move_manager.cpp in Sources */,
+				9A94EBD629E243BA00C8C249 /* toolbar.cpp in Sources */,
 				9A93B6A02846EB33005ACD11 /* orto_button.cpp in Sources */,
 				9A93B6A12846EB33005ACD11 /* size_manager.cpp in Sources */,
 				9A93B6A22846EB33005ACD11 /* frame_window.cpp in Sources */,
@@ -921,6 +939,7 @@
 				9A5ECD2728CCC1C20084D354 /* tab_drop_target_window.cpp in Sources */,
 				9A93B6AA2846EB33005ACD11 /* _.cpp in Sources */,
 				9A93B6AB2846EB33005ACD11 /* framework.cpp in Sources */,
+				9A94EBD829E243C600C8C249 /* status_bar.cpp in Sources */,
 				9A93B6AD2846EB33005ACD11 /* control_bar.cpp in Sources */,
 				9A93B6AF2846EB33005ACD11 /* control_property.cpp in Sources */,
 				9A93B6B12846EB33005ACD11 /* data_exchange.cpp in Sources */,
@@ -992,11 +1011,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1D5F532751B5A9003D9B5F /* move_manager.cpp in Sources */,
+				9A94EBD529E243B900C8C249 /* toolbar.cpp in Sources */,
 				9A1D5F542751B5A9003D9B5F /* orto_button.cpp in Sources */,
 				9A1D5F552751B5A9003D9B5F /* size_manager.cpp in Sources */,
 				9A1D5F562751B5A9003D9B5F /* frame_window.cpp in Sources */,
 				9A1D5F572751B5A9003D9B5F /* main_frame.cpp in Sources */,
 				9A5ECD1928CCC0260084D354 /* user.cpp in Sources */,
+				9A94EBD929E327E400C8C249 /* statusbar.cpp in Sources */,
 				9A1D5F582751B5A9003D9B5F /* scroll_bar.cpp in Sources */,
 				9A1D5F592751B5A9003D9B5F /* button.cpp in Sources */,
 				9A1D5F5A2751B5A9003D9B5F /* central.cpp in Sources */,
@@ -1005,6 +1026,7 @@
 				9A5ECD2628CCC1C00084D354 /* tab_drop_target_window.cpp in Sources */,
 				9A1D5F5E2751B5A9003D9B5F /* _.cpp in Sources */,
 				9A1D5F5F2751B5A9003D9B5F /* framework.cpp in Sources */,
+				9A94EBD729E243C300C8C249 /* status_bar.cpp in Sources */,
 				9A1D5F1F2751B58A003D9B5F /* control_bar.cpp in Sources */,
 				9A1D5F212751B58A003D9B5F /* control_property.cpp in Sources */,
 				9A1D5F232751B58A003D9B5F /* data_exchange.cpp in Sources */,
@@ -1183,7 +1205,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1281,7 +1303,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";

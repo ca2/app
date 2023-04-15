@@ -92,8 +92,12 @@ list(APPEND library_source
         user/simple/main_frame.h
         user/simple/scroll_bar.cpp
         user/simple/scroll_bar.h
+        user/simple/status_bar.cpp
+        user/simple/status_bar.h
         user/simple/tab_document.cpp
         user/simple/tab_document.h
+        user/simple/toolbar.cpp
+        user/simple/toolbar.h
         #user/user/_.cpp
         user/user/_.h
         #user/user/_constant.h
@@ -132,6 +136,8 @@ list(APPEND library_source
         user/simple/child_frame.h
         user/simple/impact.cpp
         user/simple/impact.h
+        #user/simple/pane_document.cpp
+        #user/simple/pane_document.h
         user/user/frame_window.cpp
         user/user/frame_window.h
         user/user/hotplugin.cpp
@@ -192,6 +198,8 @@ list(APPEND library_source
         user/user/split_impact.h
         #user/user/static_control.cpp
         #user/user/static_control.h
+        user/user/statusbar.cpp
+        user/user/statusbar.h
         user/user/style.cpp
         user/user/style.h
         user/user/tab.cpp
@@ -272,13 +280,19 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+list(APPEND library_references acme apex aqua aura axis)
+
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
@@ -298,10 +312,13 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references})
+
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
-
 
 
 endif ()

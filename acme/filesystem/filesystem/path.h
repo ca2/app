@@ -554,8 +554,12 @@ template < character_range RANGE1, primitive_character CHARACTER2 >
 }
 
 
-CLASS_DECL_ACME void delete_file(const ::file::path & path);
+CLASS_DECL_ACME ::file::enum_type safe_get_file_system_item_type(const ::file::path & path);
+CLASS_DECL_ACME ::file::enum_type get_file_system_item_type(const ::file::path & path);
+CLASS_DECL_ACME bool safe_file_exists(const ::file::path & path);
 CLASS_DECL_ACME bool file_exists(const ::file::path & path);
+CLASS_DECL_ACME bool safe_is_directory(const ::file::path & path);
 CLASS_DECL_ACME bool is_directory(const ::file::path & path);
 CLASS_DECL_ACME void create_directory(const ::file::path & path);
+CLASS_DECL_ACME void delete_file(const ::file::path & path);
 CLASS_DECL_ACME void erase_directory(const ::file::path & path);

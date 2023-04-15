@@ -2016,6 +2016,10 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
+      virtual bool on_click_generation(::item * pitem);
+      virtual bool on_right_click_generation(::item * pitem);
+
+
       virtual bool on_click(::item * pitem);
       virtual bool on_right_click(::item * pitem);
 

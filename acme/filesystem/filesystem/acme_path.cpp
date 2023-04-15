@@ -58,10 +58,28 @@ string acme_path::from(string str)
 //
 
 
-::file::path acme_path::final(const ::file::path & path)
+void acme_path::safe_real_path(::file::path & path)
 {
 
-   ::file::path pathFull = _final(path);
+   try
+   {
+
+      path = safe_get_real_path(path);
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+}
+
+
+::file::path acme_path::safe_get_real_path(const ::file::path & path)
+{
+
+   ::file::path pathFull = _safe_real_path(path);
 
    if (pathFull.is_empty())
    {
@@ -75,7 +93,43 @@ string acme_path::from(string str)
 }
 
 
-::file::path acme_path::_final(const ::file::path & path)
+::file::path acme_path::_safe_real_path(const ::file::path & path)
+{
+
+   try
+   {
+
+      return _real_path(path);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return path;
+
+}
+
+
+::file::path acme_path::real_path(const ::file::path & path)
+{
+
+   ::file::path pathFull = _real_path(path);
+
+   if (pathFull.is_empty())
+   {
+
+      return path;
+
+   }
+
+   return pathFull;
+
+}
+
+
+::file::path acme_path::_real_path(const ::file::path & path)
 {
 
    throw ::interface_only();
@@ -85,7 +139,7 @@ string acme_path::from(string str)
 }
 
 
-bool acme_path::final_begins_eat_ci(string & str, const ::scoped_string & scopedstrPrefix)
+bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scoped_string & scopedstrPrefix)
 {
 
    ::file::path path(scopedstrPrefix);
@@ -140,11 +194,11 @@ bool acme_path::final_begins_eat_ci(string & str, const ::scoped_string & scoped
 
       string strFull;
 
-      strFull = acmepath()->final(str);
+      strFull = acmepath()->real_path(str);
 
       string strFullPath;
 
-      strFullPath = acmepath()->final(strPath);
+      strFullPath = acmepath()->real_path(strPath);
 
       if (strFull.case_insensitive_begins_eat(strFullPath))
       {
@@ -162,12 +216,12 @@ bool acme_path::final_begins_eat_ci(string & str, const ::scoped_string & scoped
 }
 
 
-bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & path2)
+bool acme_path::real_path_is_same(const ::file::path & path1, const ::file::path & path2)
 {
 
-   ::file::path pathFull1 = final(path1);
+   ::file::path pathFull1 = real_path(path1);
 
-   ::file::path pathFull2 = final(path2);
+   ::file::path pathFull2 = real_path(path2);
 
    return pathFull1.has_char() && pathFull1.case_insensitive_order(pathFull2) == 0;
 
@@ -177,9 +231,15 @@ bool acme_path::final_is_same(const ::file::path & path1, const ::file::path & p
 ::file::enum_type acme_path::get_type(const ::file::path & path)
 {
 
-   throw ::interface_only();
+   return ::get_file_system_item_type(path);
 
-   return ::file::e_type_unknown;
+}
+
+
+::file::enum_type acme_path::safe_get_type(const ::file::path & path)
+{
+
+   return ::safe_get_file_system_item_type(path);
 
 }
 

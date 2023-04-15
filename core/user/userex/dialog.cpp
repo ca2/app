@@ -8,7 +8,7 @@
 
 #include "acme/constant/id.h"
 #include "dialog.h"
-#include "user.h"
+//#include "user.h"
 
 
 dialog::dialog()
@@ -18,6 +18,7 @@ dialog::dialog()
    m_pframe = nullptr;
 
 }
+
 
 dialog::dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent)
 {

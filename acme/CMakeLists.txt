@@ -255,6 +255,8 @@ list(APPEND library_source
         #operating_system/http.cpp
         operating_system/parallelization.cpp
         operating_system/process.h
+        operating_system/summary.cpp
+        operating_system/summary.h
         operating_system/time.cpp
         operating_system/windowing.cpp
         parallelization/_.cpp
@@ -2304,6 +2306,9 @@ endif ()
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
 
+
+
+
 if (MSVC)
 
 
@@ -2330,16 +2335,20 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-     if (FREEBSD)
-        target_link_libraries(acme PRIVATE z dl pthread iconv execinfo)
+
+    if (FREEBSD)
+        list(APPEND system_libraries z dl pthread iconv execinfo)
     else ()
-        target_link_libraries(acme PRIVATE z dl pthread idn)
+        list(APPEND system_libraries z dl pthread idn)
     endif ()
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
 elseif (MACOS)

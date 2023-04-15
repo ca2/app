@@ -1732,6 +1732,18 @@ void acme_file::_erase(const ::file::path & path)
 }
 
 
+::property_set acme_file::parse_standard_configuration(const ::payload & payloadFile)
+{
 
+
+   auto str = as_string(payloadFile);
+
+   ::property_set set;
+
+   set.parse_standard_configuration(str);
+
+   return ::transfer(set);
+
+}
 
 

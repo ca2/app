@@ -540,7 +540,7 @@ namespace user
       
          processed_path(getfileimage);
 
-         ::file::path pathFinal = acmepath()->_final(getfileimage.m_pathProcessed);
+         auto pathFinal = acmepath()->safe_get_real_path(getfileimage.m_pathProcessed);
       
          getfileimage.m_pathFinal = pathFinal;
 

@@ -66,6 +66,12 @@ namespace multimedia
 #define APPLICATION_CLASS ::aqua::application
 
 
+#include "aqua/audio/_c.h"
+
+
+#include "aqua/audio/_.h"
+
+
 #include "aqua/multimedia/_c.h"
 
 

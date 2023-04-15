@@ -73,18 +73,8 @@
 		9A281A0825242524009FA9CB /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199325242523009FA9CB /* decoder.h */; };
 		9A281A0925242524009FA9CB /* decoder_plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199425242523009FA9CB /* decoder_plugin.h */; };
 		9A281A0A25242524009FA9CB /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199525242523009FA9CB /* _c.h */; };
-		9A281A0B25242524009FA9CB /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199625242523009FA9CB /* audio.cpp */; };
-		9A281A0C25242524009FA9CB /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199725242523009FA9CB /* audio.h */; };
 		9A281A0D25242524009FA9CB /* decoder_plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199825242523009FA9CB /* decoder_plugin.cpp */; };
 		9A281A0E25242524009FA9CB /* multimedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199925242523009FA9CB /* multimedia.cpp */; };
-		9A281A0F25242524009FA9CB /* sound_track_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199B25242523009FA9CB /* sound_track_player.cpp */; };
-		9A281A1025242524009FA9CB /* speaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199C25242523009FA9CB /* speaker.cpp */; };
-		9A281A1125242524009FA9CB /* sound_track_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199D25242523009FA9CB /* sound_track_player.h */; };
-		9A281A1225242524009FA9CB /* audio_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199E25242523009FA9CB /* audio_c.h */; };
-		9A281A1325242524009FA9CB /* out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199F25242523009FA9CB /* out.h */; };
-		9A281A1425242524009FA9CB /* speaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A025242523009FA9CB /* speaker.h */; };
-		9A281A1525242524009FA9CB /* audio_wave_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2819A125242523009FA9CB /* audio_wave_out.cpp */; };
-		9A281A1625242524009FA9CB /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A225242523009FA9CB /* _.h */; };
 		9A281A1725242524009FA9CB /* decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2819A325242523009FA9CB /* decoder.cpp */; };
 		9A281A1825242524009FA9CB /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A425242523009FA9CB /* exception.h */; };
 		9A281A1925242524009FA9CB /* multimedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A525242523009FA9CB /* multimedia.h */; };
@@ -116,7 +106,6 @@
 		9A601EA1285B62F200151842 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9D285B62F200151842 /* _.h */; };
 		9A601EA3285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
 		9A601EA4285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
-		9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
 		9A865F9129661498000C82F0 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A865F8E29661498000C82F0 /* exception.h */; };
 		9A865F9229661498000C82F0 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A865F8E29661498000C82F0 /* exception.h */; };
 		9A865F9329661498000C82F0 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A865F8F29661498000C82F0 /* exception.cpp */; };
@@ -136,7 +125,6 @@
 		9A8E9E47282A3210005FF778 /* _application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28197125242523009FA9CB /* _application.h */; };
 		9A8E9E49282A3210005FF778 /* input_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28195925242523009FA9CB /* input_tree.h */; };
 		9A8E9E4A282A3210005FF778 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E6252252588430001CC7E /* _.h */; };
-		9A8E9E4B282A3210005FF778 /* out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199F25242523009FA9CB /* out.h */; };
 		9A8E9E4C282A3210005FF778 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198725242523009FA9CB /* application_common.h */; };
 		9A8E9E4D282A3210005FF778 /* var_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28196225242523009FA9CB /* var_exchange.h */; };
 		9A8E9E4E282A3210005FF778 /* base_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28196925242523009FA9CB /* base_array.h */; };
@@ -170,35 +158,27 @@
 		9A8E9E6E282A3210005FF778 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A825242523009FA9CB /* framework.h */; };
 		9A8E9E70282A3210005FF778 /* exportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28196B25242523009FA9CB /* exportable.h */; };
 		9A8E9E71282A3210005FF778 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28197A25242523009FA9CB /* _console_old.h */; };
-		9A8E9E72282A3210005FF778 /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199725242523009FA9CB /* audio.h */; };
 		9A8E9E74282A3210005FF778 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A1E25242870009FA9CB /* application.h */; };
-		9A8E9E75282A3210005FF778 /* speaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A025242523009FA9CB /* speaker.h */; };
 		9A8E9E76282A3210005FF778 /* tree_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28195A25242523009FA9CB /* tree_base.h */; };
 		9A8E9E77282A3210005FF778 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A425242523009FA9CB /* exception.h */; };
 		9A8E9E78282A3210005FF778 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819AC25242523009FA9CB /* _.h */; };
-		9A8E9E7A282A3210005FF778 /* sound_track_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199D25242523009FA9CB /* sound_track_player.h */; };
 		9A8E9E7B282A3210005FF778 /* _component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _component.h */; };
 		9A8E9E7C282A3210005FF778 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28197C25242523009FA9CB /* application.h */; };
 		9A8E9E7E282A3210005FF778 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198425242523009FA9CB /* _new_impl.h */; };
 		9A8E9E80282A3210005FF778 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28195625242523009FA9CB /* node.h */; };
 		9A8E9E81282A3210005FF778 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28193A25242523009FA9CB /* id.h */; };
-		9A8E9E82282A3210005FF778 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A225242523009FA9CB /* _.h */; };
 		9A8E9E84282A3210005FF778 /* xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194125242523009FA9CB /* xmlite.h */; };
 		9A8E9E85282A3210005FF778 /* file_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199025242523009FA9CB /* file_application.h */; };
-		9A8E9E86282A3210005FF778 /* audio_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199E25242523009FA9CB /* audio_c.h */; };
 		9A8E9E88282A3210005FF778 /* data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194F25242523009FA9CB /* data.h */; };
 		9A8E9E89282A3210005FF778 /* output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194225242523009FA9CB /* output_tree.h */; };
 		9A8E9E8B282A3210005FF778 /* tree_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195125242523009FA9CB /* tree_base.cpp */; };
 		9A8E9E8C282A3210005FF778 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195425242523009FA9CB /* node.cpp */; };
-		9A8E9E8D282A3210005FF778 /* audio_wave_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2819A125242523009FA9CB /* audio_wave_out.cpp */; };
 		9A8E9E8E282A3210005FF778 /* controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28193E25242523009FA9CB /* controller.cpp */; };
 		9A8E9E8F282A3210005FF778 /* tree_schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196C25242523009FA9CB /* tree_schema.cpp */; };
 		9A8E9E90282A3210005FF778 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195825242523009FA9CB /* data.cpp */; };
-		9A8E9E91282A3210005FF778 /* speaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199C25242523009FA9CB /* speaker.cpp */; };
 		9A8E9E92282A3210005FF778 /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E624E252588430001CC7E /* estamira.cpp */; };
 		9A8E9E94282A3210005FF778 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28192E25242523009FA9CB /* framework.cpp */; };
 		9A8E9E95282A3210005FF778 /* input_tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195025242523009FA9CB /* input_tree.cpp */; };
-		9A8E9E96282A3210005FF778 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199625242523009FA9CB /* audio.cpp */; };
 		9A8E9E97282A3210005FF778 /* var_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28195D25242523009FA9CB /* var_exchange.cpp */; };
 		9A8E9E98282A3210005FF778 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6251252588430001CC7E /* game.cpp */; };
 		9A8E9E9A282A3210005FF778 /* document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196725242523009FA9CB /* document.cpp */; };
@@ -206,7 +186,6 @@
 		9A8E9E9C282A3210005FF778 /* multimedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199925242523009FA9CB /* multimedia.cpp */; };
 		9A8E9E9D282A3210005FF778 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C7BF28236AFA00755A0A /* idpool.cpp */; };
 		9A8E9E9F282A3210005FF778 /* xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196425242523009FA9CB /* xml.cpp */; };
-		9A8E9EA0282A3210005FF778 /* sound_track_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199B25242523009FA9CB /* sound_track_player.cpp */; };
 		9A8E9EA1282A3210005FF778 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A2025242870009FA9CB /* session.cpp */; };
 		9A8E9EA2282A3210005FF778 /* exportable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196825242523009FA9CB /* exportable.cpp */; };
 		9A8E9EA3282A3210005FF778 /* exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199225242523009FA9CB /* exception.cpp */; };
@@ -222,7 +201,38 @@
 		9A8E9EAF282A3210005FF778 /* importable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28196A25242523009FA9CB /* importable.cpp */; };
 		9A8E9EB0282A3210005FF778 /* file_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199125242523009FA9CB /* file_application.cpp */; };
 		9A8E9EB1282A3210005FF778 /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28194525242523009FA9CB /* edit.cpp */; };
-		9A8E9EB2282A3210005FF778 /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
+		9A94EC2D29E46D4700C8C249 /* sound_track_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1D29E46D4700C8C249 /* sound_track_player.cpp */; };
+		9A94EC2E29E46D4700C8C249 /* sound_track_player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1D29E46D4700C8C249 /* sound_track_player.cpp */; };
+		9A94EC2F29E46D4700C8C249 /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1E29E46D4700C8C249 /* text_to_speech_client.cpp */; };
+		9A94EC3029E46D4700C8C249 /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1E29E46D4700C8C249 /* text_to_speech_client.cpp */; };
+		9A94EC3129E46D4700C8C249 /* speaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1F29E46D4700C8C249 /* speaker.cpp */; };
+		9A94EC3229E46D4700C8C249 /* speaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC1F29E46D4700C8C249 /* speaker.cpp */; };
+		9A94EC3329E46D4700C8C249 /* audio_mixer_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2029E46D4700C8C249 /* audio_mixer_user.h */; };
+		9A94EC3429E46D4700C8C249 /* audio_mixer_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2029E46D4700C8C249 /* audio_mixer_user.h */; };
+		9A94EC3529E46D4700C8C249 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2129E46D4700C8C249 /* _c.h */; };
+		9A94EC3629E46D4700C8C249 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2129E46D4700C8C249 /* _c.h */; };
+		9A94EC3729E46D4700C8C249 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2229E46D4700C8C249 /* audio.cpp */; };
+		9A94EC3829E46D4700C8C249 /* audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2229E46D4700C8C249 /* audio.cpp */; };
+		9A94EC3929E46D4700C8C249 /* audio_mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2329E46D4700C8C249 /* audio_mixer.cpp */; };
+		9A94EC3A29E46D4700C8C249 /* audio_mixer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2329E46D4700C8C249 /* audio_mixer.cpp */; };
+		9A94EC3B29E46D4700C8C249 /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2429E46D4700C8C249 /* audio.h */; };
+		9A94EC3C29E46D4700C8C249 /* audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2429E46D4700C8C249 /* audio.h */; };
+		9A94EC3D29E46D4700C8C249 /* audio_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2529E46D4700C8C249 /* audio_mixer.h */; };
+		9A94EC3E29E46D4700C8C249 /* audio_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2529E46D4700C8C249 /* audio_mixer.h */; };
+		9A94EC3F29E46D4700C8C249 /* audio_mixer_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2629E46D4700C8C249 /* audio_mixer_user.cpp */; };
+		9A94EC4029E46D4700C8C249 /* audio_mixer_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2629E46D4700C8C249 /* audio_mixer_user.cpp */; };
+		9A94EC4129E46D4700C8C249 /* sound_track_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2729E46D4700C8C249 /* sound_track_player.h */; };
+		9A94EC4229E46D4700C8C249 /* sound_track_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2729E46D4700C8C249 /* sound_track_player.h */; };
+		9A94EC4329E46D4700C8C249 /* out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2829E46D4700C8C249 /* out.h */; };
+		9A94EC4429E46D4700C8C249 /* out.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2829E46D4700C8C249 /* out.h */; };
+		9A94EC4529E46D4700C8C249 /* speaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2929E46D4700C8C249 /* speaker.h */; };
+		9A94EC4629E46D4700C8C249 /* speaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2929E46D4700C8C249 /* speaker.h */; };
+		9A94EC4729E46D4700C8C249 /* text_to_speech_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2A29E46D4700C8C249 /* text_to_speech_client.h */; };
+		9A94EC4829E46D4700C8C249 /* text_to_speech_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2A29E46D4700C8C249 /* text_to_speech_client.h */; };
+		9A94EC4929E46D4700C8C249 /* audio_wave_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2B29E46D4700C8C249 /* audio_wave_out.cpp */; };
+		9A94EC4A29E46D4700C8C249 /* audio_wave_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94EC2B29E46D4700C8C249 /* audio_wave_out.cpp */; };
+		9A94EC4B29E46D4700C8C249 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2C29E46D4700C8C249 /* _.h */; };
+		9A94EC4C29E46D4700C8C249 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94EC2C29E46D4700C8C249 /* _.h */; };
 		9A97C7C028236AFA00755A0A /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C7BE28236AFA00755A0A /* idpool.h */; };
 		9A97C7C128236AFA00755A0A /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C7BF28236AFA00755A0A /* idpool.cpp */; };
 		9ABFEA6E2850E44A008FF906 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28198D25242523009FA9CB /* _.cpp */; };
@@ -329,18 +339,8 @@
 		9A28199325242523009FA9CB /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
 		9A28199425242523009FA9CB /* decoder_plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder_plugin.h; sourceTree = "<group>"; };
 		9A28199525242523009FA9CB /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
-		9A28199625242523009FA9CB /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
-		9A28199725242523009FA9CB /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio.h; sourceTree = "<group>"; };
 		9A28199825242523009FA9CB /* decoder_plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = decoder_plugin.cpp; sourceTree = "<group>"; };
 		9A28199925242523009FA9CB /* multimedia.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multimedia.cpp; sourceTree = "<group>"; };
-		9A28199B25242523009FA9CB /* sound_track_player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound_track_player.cpp; sourceTree = "<group>"; };
-		9A28199C25242523009FA9CB /* speaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = speaker.cpp; sourceTree = "<group>"; };
-		9A28199D25242523009FA9CB /* sound_track_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound_track_player.h; sourceTree = "<group>"; };
-		9A28199E25242523009FA9CB /* audio_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_c.h; sourceTree = "<group>"; };
-		9A28199F25242523009FA9CB /* out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = out.h; sourceTree = "<group>"; };
-		9A2819A025242523009FA9CB /* speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speaker.h; sourceTree = "<group>"; };
-		9A2819A125242523009FA9CB /* audio_wave_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_wave_out.cpp; sourceTree = "<group>"; };
-		9A2819A225242523009FA9CB /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A2819A325242523009FA9CB /* decoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = decoder.cpp; sourceTree = "<group>"; };
 		9A2819A425242523009FA9CB /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		9A2819A525242523009FA9CB /* multimedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multimedia.h; sourceTree = "<group>"; };
@@ -367,16 +367,30 @@
 		9A601E9D285B62F200151842 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A601EA2285B631700151842 /* _estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _estamira.h; sourceTree = "<group>"; };
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
 		9A865F8E29661498000C82F0 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
 		9A865F8F29661498000C82F0 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9A865F9029661498000C82F0 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
 		9A8E9EB9282A3210005FF778 /* libios_aqua.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aqua.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94EC1D29E46D4700C8C249 /* sound_track_player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound_track_player.cpp; sourceTree = "<group>"; };
+		9A94EC1E29E46D4700C8C249 /* text_to_speech_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
+		9A94EC1F29E46D4700C8C249 /* speaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = speaker.cpp; sourceTree = "<group>"; };
+		9A94EC2029E46D4700C8C249 /* audio_mixer_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_mixer_user.h; sourceTree = "<group>"; };
+		9A94EC2129E46D4700C8C249 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
+		9A94EC2229E46D4700C8C249 /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
+		9A94EC2329E46D4700C8C249 /* audio_mixer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_mixer.cpp; sourceTree = "<group>"; };
+		9A94EC2429E46D4700C8C249 /* audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio.h; sourceTree = "<group>"; };
+		9A94EC2529E46D4700C8C249 /* audio_mixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_mixer.h; sourceTree = "<group>"; };
+		9A94EC2629E46D4700C8C249 /* audio_mixer_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_mixer_user.cpp; sourceTree = "<group>"; };
+		9A94EC2729E46D4700C8C249 /* sound_track_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound_track_player.h; sourceTree = "<group>"; };
+		9A94EC2829E46D4700C8C249 /* out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = out.h; sourceTree = "<group>"; };
+		9A94EC2929E46D4700C8C249 /* speaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = speaker.h; sourceTree = "<group>"; };
+		9A94EC2A29E46D4700C8C249 /* text_to_speech_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_to_speech_client.h; sourceTree = "<group>"; };
+		9A94EC2B29E46D4700C8C249 /* audio_wave_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio_wave_out.cpp; sourceTree = "<group>"; };
+		9A94EC2C29E46D4700C8C249 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A979CA628C6F0560013DC54 /* _include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _include.h; sourceTree = "<group>"; };
 		9A979D9B28C831F00013DC54 /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A97C7BE28236AFA00755A0A /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9A97C7BF28236AFA00755A0A /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
-		9ABA65A728B5D9090063B976 /* _library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,9 +444,10 @@
 		9A28192625242523009FA9CB /* aqua */ = {
 			isa = PBXGroup;
 			children = (
-				9A601E9B285B62F200151842 /* include */,
+				9A94EC1C29E46D4700C8C249 /* audio */,
 				9A97C7BD28236AFA00755A0A /* constant */,
 				9A2E624C252588430001CC7E /* game */,
+				9A601E9B285B62F200151842 /* include */,
 				9A28196E25242523009FA9CB /* inline */,
 				9A28198F25242523009FA9CB /* multimedia */,
 				9A22739C27CF04460042BAC2 /* operating_system */,
@@ -534,7 +549,6 @@
 		9A28198F25242523009FA9CB /* multimedia */ = {
 			isa = PBXGroup;
 			children = (
-				9A28199A25242523009FA9CB /* audio */,
 				9A2819A625242523009FA9CB /* _.h */,
 				9A28199525242523009FA9CB /* _c.h */,
 				9A979D9B28C831F00013DC54 /* _constant.h */,
@@ -550,24 +564,6 @@
 				9A2819A525242523009FA9CB /* multimedia.h */,
 			);
 			path = multimedia;
-			sourceTree = "<group>";
-		};
-		9A28199A25242523009FA9CB /* audio */ = {
-			isa = PBXGroup;
-			children = (
-				9A2819A225242523009FA9CB /* _.h */,
-				9A28199625242523009FA9CB /* audio.cpp */,
-				9A28199725242523009FA9CB /* audio.h */,
-				9A28199E25242523009FA9CB /* audio_c.h */,
-				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
-				9A28199F25242523009FA9CB /* out.h */,
-				9A28199B25242523009FA9CB /* sound_track_player.cpp */,
-				9A28199D25242523009FA9CB /* sound_track_player.h */,
-				9A28199C25242523009FA9CB /* speaker.cpp */,
-				9A2819A025242523009FA9CB /* speaker.h */,
-				9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */,
-			);
-			path = audio;
 			sourceTree = "<group>";
 		};
 		9A281A1D25242870009FA9CB /* platform */ = {
@@ -618,12 +614,34 @@
 			isa = PBXGroup;
 			children = (
 				9A601E9D285B62F200151842 /* _.h */,
-				9ABA65A728B5D9090063B976 /* _library.h */,
 				9A601E9C285B62F200151842 /* _audio.h */,
 				9A601EA2285B631700151842 /* _estamira.h */,
 				9A979CA628C6F0560013DC54 /* _include.h */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		9A94EC1C29E46D4700C8C249 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				9A94EC1D29E46D4700C8C249 /* sound_track_player.cpp */,
+				9A94EC1E29E46D4700C8C249 /* text_to_speech_client.cpp */,
+				9A94EC1F29E46D4700C8C249 /* speaker.cpp */,
+				9A94EC2029E46D4700C8C249 /* audio_mixer_user.h */,
+				9A94EC2129E46D4700C8C249 /* _c.h */,
+				9A94EC2229E46D4700C8C249 /* audio.cpp */,
+				9A94EC2329E46D4700C8C249 /* audio_mixer.cpp */,
+				9A94EC2429E46D4700C8C249 /* audio.h */,
+				9A94EC2529E46D4700C8C249 /* audio_mixer.h */,
+				9A94EC2629E46D4700C8C249 /* audio_mixer_user.cpp */,
+				9A94EC2729E46D4700C8C249 /* sound_track_player.h */,
+				9A94EC2829E46D4700C8C249 /* out.h */,
+				9A94EC2929E46D4700C8C249 /* speaker.h */,
+				9A94EC2A29E46D4700C8C249 /* text_to_speech_client.h */,
+				9A94EC2B29E46D4700C8C249 /* audio_wave_out.cpp */,
+				9A94EC2C29E46D4700C8C249 /* _.h */,
+			);
+			path = audio;
 			sourceTree = "<group>";
 		};
 		9A97C7BD28236AFA00755A0A /* constant */ = {
@@ -645,25 +663,30 @@
 				9A281A1A25242524009FA9CB /* _.h in Headers */,
 				9A2819C225242523009FA9CB /* property_exchange.h in Headers */,
 				9A2819C525242523009FA9CB /* disp_option.h in Headers */,
+				9A94EC3B29E46D4700C8C249 /* audio.h in Headers */,
 				9A2819C625242523009FA9CB /* smart_pointer_array.h in Headers */,
 				9A2819F425242523009FA9CB /* library.h in Headers */,
 				9A281A2625242870009FA9CB /* session.h in Headers */,
 				9A2819C325242523009FA9CB /* edit.h in Headers */,
 				9A2819DB25242523009FA9CB /* document.h in Headers */,
+				9A94EC4729E46D4700C8C249 /* text_to_speech_client.h in Headers */,
 				9A2819BA25242523009FA9CB /* controller.h in Headers */,
 				9A2819E125242523009FA9CB /* parse_info.h in Headers */,
 				9A2819EB25242523009FA9CB /* _application.h in Headers */,
 				9A2819D425242523009FA9CB /* input_tree.h in Headers */,
 				9A601E9E285B62F200151842 /* _audio.h in Headers */,
 				9A2E6259252588430001CC7E /* _.h in Headers */,
-				9A281A1325242524009FA9CB /* out.h in Headers */,
 				9A2819FE25242523009FA9CB /* application_common.h in Headers */,
 				9A2819DD25242523009FA9CB /* var_exchange.h in Headers */,
 				9A2819E425242523009FA9CB /* base_array.h in Headers */,
+				9A94EC4529E46D4700C8C249 /* speaker.h in Headers */,
 				9A2819AD25242523009FA9CB /* console.h in Headers */,
 				9A281A0825242524009FA9CB /* decoder.h in Headers */,
+				9A94EC4329E46D4700C8C249 /* out.h in Headers */,
+				9A94EC3D29E46D4700C8C249 /* audio_mixer.h in Headers */,
 				9A2819CE25242523009FA9CB /* tree_schema.h in Headers */,
 				9A2819E825242523009FA9CB /* _.h in Headers */,
+				9A94EC4129E46D4700C8C249 /* sound_track_player.h in Headers */,
 				9A281A0025242523009FA9CB /* _acid_app_impl.h in Headers */,
 				9A2819EA25242523009FA9CB /* _draw2d_impl.h in Headers */,
 				9A2819C925242523009FA9CB /* importable.h in Headers */,
@@ -672,6 +695,7 @@
 				9A865F9129661498000C82F0 /* exception.h in Headers */,
 				9A2819F725242523009FA9CB /* console_common.h in Headers */,
 				9A281A2B25242870009FA9CB /* _platform.h in Headers */,
+				9A94EC3529E46D4700C8C249 /* _c.h in Headers */,
 				9A2273B627CF04470042BAC2 /* _.h in Headers */,
 				9A2819E925242523009FA9CB /* console.h in Headers */,
 				9A601EA0285B62F200151842 /* _.h in Headers */,
@@ -689,28 +713,25 @@
 				9A2819FC25242523009FA9CB /* __debug_box_clear_impl.h in Headers */,
 				9A281A0A25242524009FA9CB /* _c.h in Headers */,
 				9A281A2925242870009FA9CB /* system.h in Headers */,
+				9A94EC4B29E46D4700C8C249 /* _.h in Headers */,
 				9A97C7C028236AFA00755A0A /* idpool.h in Headers */,
 				9A2819C725242523009FA9CB /* _constant.h in Headers */,
 				9A2E6254252588430001CC7E /* estamira.h in Headers */,
+				9A94EC3329E46D4700C8C249 /* audio_mixer_user.h in Headers */,
 				9A281A1B25242524009FA9CB /* framework.h in Headers */,
 				9A2819E625242523009FA9CB /* exportable.h in Headers */,
 				9A2819F325242523009FA9CB /* _console_old.h in Headers */,
-				9A281A0C25242524009FA9CB /* audio.h in Headers */,
 				9A281A2525242870009FA9CB /* application.h in Headers */,
-				9A281A1425242524009FA9CB /* speaker.h in Headers */,
 				9A2819D525242523009FA9CB /* tree_base.h in Headers */,
 				9A281A1825242524009FA9CB /* exception.h in Headers */,
 				9A281A1C25242524009FA9CB /* _.h in Headers */,
-				9A281A1125242524009FA9CB /* sound_track_player.h in Headers */,
 				9A2E6256252588430001CC7E /* _component.h in Headers */,
 				9A2819F525242523009FA9CB /* application.h in Headers */,
 				9A2819FB25242523009FA9CB /* _new_impl.h in Headers */,
 				9A2819D125242523009FA9CB /* node.h in Headers */,
 				9A2819B925242523009FA9CB /* id.h in Headers */,
-				9A281A1625242524009FA9CB /* _.h in Headers */,
 				9A2819BC25242523009FA9CB /* xmlite.h in Headers */,
 				9A281A0525242524009FA9CB /* file_application.h in Headers */,
-				9A281A1225242524009FA9CB /* audio_c.h in Headers */,
 				9A2819CA25242523009FA9CB /* data.h in Headers */,
 				9A601EA3285B631700151842 /* _estamira.h in Headers */,
 				9A2819BD25242523009FA9CB /* output_tree.h in Headers */,
@@ -724,25 +745,30 @@
 				9A8E9E3B282A3210005FF778 /* _.h in Headers */,
 				9A8E9E3C282A3210005FF778 /* property_exchange.h in Headers */,
 				9A8E9E3D282A3210005FF778 /* disp_option.h in Headers */,
+				9A94EC3C29E46D4700C8C249 /* audio.h in Headers */,
 				9A8E9E3E282A3210005FF778 /* smart_pointer_array.h in Headers */,
 				9A8E9E3F282A3210005FF778 /* library.h in Headers */,
 				9A8E9E40282A3210005FF778 /* session.h in Headers */,
 				9A8E9E41282A3210005FF778 /* edit.h in Headers */,
 				9A8E9E42282A3210005FF778 /* document.h in Headers */,
+				9A94EC4829E46D4700C8C249 /* text_to_speech_client.h in Headers */,
 				9A8E9E43282A3210005FF778 /* controller.h in Headers */,
 				9A8E9E46282A3210005FF778 /* parse_info.h in Headers */,
 				9A8E9E47282A3210005FF778 /* _application.h in Headers */,
 				9A8E9E49282A3210005FF778 /* input_tree.h in Headers */,
 				9A601E9F285B62F200151842 /* _audio.h in Headers */,
 				9A8E9E4A282A3210005FF778 /* _.h in Headers */,
-				9A8E9E4B282A3210005FF778 /* out.h in Headers */,
 				9A8E9E4C282A3210005FF778 /* application_common.h in Headers */,
 				9A8E9E4D282A3210005FF778 /* var_exchange.h in Headers */,
 				9A8E9E4E282A3210005FF778 /* base_array.h in Headers */,
+				9A94EC4629E46D4700C8C249 /* speaker.h in Headers */,
 				9A8E9E4F282A3210005FF778 /* console.h in Headers */,
 				9A8E9E50282A3210005FF778 /* decoder.h in Headers */,
+				9A94EC4429E46D4700C8C249 /* out.h in Headers */,
+				9A94EC3E29E46D4700C8C249 /* audio_mixer.h in Headers */,
 				9A8E9E52282A3210005FF778 /* tree_schema.h in Headers */,
 				9A8E9E53282A3210005FF778 /* _.h in Headers */,
+				9A94EC4229E46D4700C8C249 /* sound_track_player.h in Headers */,
 				9A8E9E54282A3210005FF778 /* _acid_app_impl.h in Headers */,
 				9A8E9E55282A3210005FF778 /* _draw2d_impl.h in Headers */,
 				9A8E9E56282A3210005FF778 /* importable.h in Headers */,
@@ -751,6 +777,7 @@
 				9A865F9229661498000C82F0 /* exception.h in Headers */,
 				9A8E9E59282A3210005FF778 /* console_common.h in Headers */,
 				9A8E9E5A282A3210005FF778 /* _platform.h in Headers */,
+				9A94EC3629E46D4700C8C249 /* _c.h in Headers */,
 				9A8E9E5B282A3210005FF778 /* _.h in Headers */,
 				9A8E9E5D282A3210005FF778 /* console.h in Headers */,
 				9A601EA1285B62F200151842 /* _.h in Headers */,
@@ -768,28 +795,25 @@
 				9A8E9E68282A3210005FF778 /* __debug_box_clear_impl.h in Headers */,
 				9A8E9E69282A3210005FF778 /* _c.h in Headers */,
 				9A8E9E6A282A3210005FF778 /* system.h in Headers */,
+				9A94EC4C29E46D4700C8C249 /* _.h in Headers */,
 				9A8E9E6B282A3210005FF778 /* idpool.h in Headers */,
 				9A8E9E6C282A3210005FF778 /* _constant.h in Headers */,
 				9A8E9E6D282A3210005FF778 /* estamira.h in Headers */,
+				9A94EC3429E46D4700C8C249 /* audio_mixer_user.h in Headers */,
 				9A8E9E6E282A3210005FF778 /* framework.h in Headers */,
 				9A8E9E70282A3210005FF778 /* exportable.h in Headers */,
 				9A8E9E71282A3210005FF778 /* _console_old.h in Headers */,
-				9A8E9E72282A3210005FF778 /* audio.h in Headers */,
 				9A8E9E74282A3210005FF778 /* application.h in Headers */,
-				9A8E9E75282A3210005FF778 /* speaker.h in Headers */,
 				9A8E9E76282A3210005FF778 /* tree_base.h in Headers */,
 				9A8E9E77282A3210005FF778 /* exception.h in Headers */,
 				9A8E9E78282A3210005FF778 /* _.h in Headers */,
-				9A8E9E7A282A3210005FF778 /* sound_track_player.h in Headers */,
 				9A8E9E7B282A3210005FF778 /* _component.h in Headers */,
 				9A8E9E7C282A3210005FF778 /* application.h in Headers */,
 				9A8E9E7E282A3210005FF778 /* _new_impl.h in Headers */,
 				9A8E9E80282A3210005FF778 /* node.h in Headers */,
 				9A8E9E81282A3210005FF778 /* id.h in Headers */,
-				9A8E9E82282A3210005FF778 /* _.h in Headers */,
 				9A8E9E84282A3210005FF778 /* xmlite.h in Headers */,
 				9A8E9E85282A3210005FF778 /* file_application.h in Headers */,
-				9A8E9E86282A3210005FF778 /* audio_c.h in Headers */,
 				9A8E9E88282A3210005FF778 /* data.h in Headers */,
 				9A601EA4285B631700151842 /* _estamira.h in Headers */,
 				9A8E9E89282A3210005FF778 /* output_tree.h in Headers */,
@@ -897,27 +921,28 @@
 			files = (
 				9A2819CC25242523009FA9CB /* tree_base.cpp in Sources */,
 				9A2819CF25242523009FA9CB /* node.cpp in Sources */,
-				9A281A1525242524009FA9CB /* audio_wave_out.cpp in Sources */,
 				9A2819BB25242523009FA9CB /* controller.cpp in Sources */,
 				9A2819E725242523009FA9CB /* tree_schema.cpp in Sources */,
 				9ABFEA6E2850E44A008FF906 /* _.cpp in Sources */,
 				9A2819D325242523009FA9CB /* data.cpp in Sources */,
-				9A281A1025242524009FA9CB /* speaker.cpp in Sources */,
 				9A2E6255252588430001CC7E /* estamira.cpp in Sources */,
 				9A2819B025242523009FA9CB /* framework.cpp in Sources */,
 				9A2819CB25242523009FA9CB /* input_tree.cpp in Sources */,
-				9A281A0B25242524009FA9CB /* audio.cpp in Sources */,
 				9A2819D825242523009FA9CB /* var_exchange.cpp in Sources */,
 				9A2E6258252588430001CC7E /* game.cpp in Sources */,
+				9A94EC4929E46D4700C8C249 /* audio_wave_out.cpp in Sources */,
 				9A2819E225242523009FA9CB /* document.cpp in Sources */,
 				9A281A0D25242524009FA9CB /* decoder_plugin.cpp in Sources */,
 				9A281A0E25242524009FA9CB /* multimedia.cpp in Sources */,
 				9A97C7C128236AFA00755A0A /* idpool.cpp in Sources */,
 				9A2819DF25242523009FA9CB /* xml.cpp in Sources */,
-				9A281A0F25242524009FA9CB /* sound_track_player.cpp in Sources */,
+				9A94EC3729E46D4700C8C249 /* audio.cpp in Sources */,
+				9A94EC3F29E46D4700C8C249 /* audio_mixer_user.cpp in Sources */,
 				9A281A2725242870009FA9CB /* session.cpp in Sources */,
 				9A2819E325242523009FA9CB /* exportable.cpp in Sources */,
 				9A281A0725242524009FA9CB /* exception.cpp in Sources */,
+				9A94EC3929E46D4700C8C249 /* audio_mixer.cpp in Sources */,
+				9A94EC3129E46D4700C8C249 /* speaker.cpp in Sources */,
 				9A2819D725242523009FA9CB /* disp_option.cpp in Sources */,
 				9A281A2A25242870009FA9CB /* application.cpp in Sources */,
 				9A2819C125242523009FA9CB /* parse_info.cpp in Sources */,
@@ -931,7 +956,8 @@
 				9A281A0625242524009FA9CB /* file_application.cpp in Sources */,
 				9A865F9329661498000C82F0 /* exception.cpp in Sources */,
 				9A2819C025242523009FA9CB /* edit.cpp in Sources */,
-				9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */,
+				9A94EC2D29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
+				9A94EC2F29E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,27 +967,28 @@
 			files = (
 				9A8E9E8B282A3210005FF778 /* tree_base.cpp in Sources */,
 				9A8E9E8C282A3210005FF778 /* node.cpp in Sources */,
-				9A8E9E8D282A3210005FF778 /* audio_wave_out.cpp in Sources */,
 				9A8E9E8E282A3210005FF778 /* controller.cpp in Sources */,
 				9A8E9E8F282A3210005FF778 /* tree_schema.cpp in Sources */,
 				9ABFEA6F2850E44C008FF906 /* _.cpp in Sources */,
 				9A8E9E90282A3210005FF778 /* data.cpp in Sources */,
-				9A8E9E91282A3210005FF778 /* speaker.cpp in Sources */,
 				9A8E9E92282A3210005FF778 /* estamira.cpp in Sources */,
 				9A8E9E94282A3210005FF778 /* framework.cpp in Sources */,
 				9A8E9E95282A3210005FF778 /* input_tree.cpp in Sources */,
-				9A8E9E96282A3210005FF778 /* audio.cpp in Sources */,
 				9A8E9E97282A3210005FF778 /* var_exchange.cpp in Sources */,
 				9A8E9E98282A3210005FF778 /* game.cpp in Sources */,
+				9A94EC4A29E46D4700C8C249 /* audio_wave_out.cpp in Sources */,
 				9A8E9E9A282A3210005FF778 /* document.cpp in Sources */,
 				9A8E9E9B282A3210005FF778 /* decoder_plugin.cpp in Sources */,
 				9A8E9E9C282A3210005FF778 /* multimedia.cpp in Sources */,
 				9A8E9E9D282A3210005FF778 /* idpool.cpp in Sources */,
 				9A8E9E9F282A3210005FF778 /* xml.cpp in Sources */,
-				9A8E9EA0282A3210005FF778 /* sound_track_player.cpp in Sources */,
+				9A94EC3829E46D4700C8C249 /* audio.cpp in Sources */,
+				9A94EC4029E46D4700C8C249 /* audio_mixer_user.cpp in Sources */,
 				9A8E9EA1282A3210005FF778 /* session.cpp in Sources */,
 				9A8E9EA2282A3210005FF778 /* exportable.cpp in Sources */,
 				9A8E9EA3282A3210005FF778 /* exception.cpp in Sources */,
+				9A94EC3A29E46D4700C8C249 /* audio_mixer.cpp in Sources */,
+				9A94EC3229E46D4700C8C249 /* speaker.cpp in Sources */,
 				9A8E9EA4282A3210005FF778 /* disp_option.cpp in Sources */,
 				9A8E9EA5282A3210005FF778 /* application.cpp in Sources */,
 				9A8E9EA6282A3210005FF778 /* parse_info.cpp in Sources */,
@@ -975,7 +1002,8 @@
 				9A8E9EB0282A3210005FF778 /* file_application.cpp in Sources */,
 				9A865F9429661498000C82F0 /* exception.cpp in Sources */,
 				9A8E9EB1282A3210005FF778 /* edit.cpp in Sources */,
-				9A8E9EB2282A3210005FF778 /* text_to_speech_client.cpp in Sources */,
+				9A94EC2E29E46D4700C8C249 /* sound_track_player.cpp in Sources */,
+				9A94EC3029E46D4700C8C249 /* text_to_speech_client.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,7 +1100,7 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1187,7 +1215,7 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";

@@ -7,35 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A3CA81727EAE970009ADCD2 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71A27EAE8F0009ADCD2 /* context.cpp */; };
-		9A3CA81827EAE970009ADCD2 /* nano2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */; };
-		9A3CA81927EAE970009ADCD2 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */; };
+		9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E429E878D600502330 /* font_sink.cpp */; };
+		9A2976EE29E878DA00502330 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E529E878D600502330 /* context.cpp */; };
+		9A2976EF29E878DA00502330 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E629E878D700502330 /* color.h */; };
+		9A2976F029E878DA00502330 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E729E878D700502330 /* color.cpp */; };
+		9A2976F129E878DA00502330 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E829E878D800502330 /* draw2d_context.cpp */; };
+		9A2976F229E878DA00502330 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E929E878D800502330 /* font_sink.h */; };
+		9A2976F329E878DA00502330 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EA29E878D800502330 /* types.h */; };
+		9A2976F429E878DA00502330 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EB29E878D900502330 /* context.h */; };
+		9A2976F529E878DA00502330 /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EC29E878D900502330 /* draw2d_context.h */; };
 		9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C327EAE8F2009ADCD2 /* _.cpp */; };
-		9A3CA81B27EAE970009ADCD2 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA72927EAE8F0009ADCD2 /* Button.cpp */; };
-		9A3CA81C27EAE970009ADCD2 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */; };
-		9A3CA81D27EAE970009ADCD2 /* CheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */; };
-		9A3CA81E27EAE970009ADCD2 /* ColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */; };
-		9A3CA81F27EAE970009ADCD2 /* ColorWheel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */; };
-		9A3CA82027EAE970009ADCD2 /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */; };
-		9A3CA82127EAE970009ADCD2 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70927EAE8EF009ADCD2 /* common.cpp */; };
 		9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73227EAE8F0009ADCD2 /* framework.cpp */; };
-		9A3CA82327EAE970009ADCD2 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */; };
-		9A3CA82427EAE970009ADCD2 /* ImagePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */; };
-		9A3CA82527EAE970009ADCD2 /* ImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */; };
-		9A3CA82627EAE970009ADCD2 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */; };
-		9A3CA82727EAE970009ADCD2 /* Layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */; };
-		9A3CA82827EAE970009ADCD2 /* MessageDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */; };
-		9A3CA82927EAE970009ADCD2 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */; };
-		9A3CA82A27EAE970009ADCD2 /* PopupButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */; };
-		9A3CA82B27EAE970009ADCD2 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */; };
-		9A3CA82C27EAE970009ADCD2 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */; };
-		9A3CA82D27EAE970009ADCD2 /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */; };
-		9A3CA82E27EAE970009ADCD2 /* TabWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */; };
-		9A3CA82F27EAE970009ADCD2 /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */; };
-		9A3CA83027EAE970009ADCD2 /* Theme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */; };
-		9A3CA83127EAE970009ADCD2 /* VScrollPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */; };
-		9A3CA83227EAE970009ADCD2 /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */; };
-		9A3CA83327EAE970009ADCD2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73527EAE8F1009ADCD2 /* Window.cpp */; };
 		9A3CA83627EAE981009ADCD2 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83527EAE981009ADCD2 /* libacme.dylib */; };
 		9A3CA83827EAE988009ADCD2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83727EAE988009ADCD2 /* libapex.dylib */; };
 		9A3CA83A27EAE990009ADCD2 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83927EAE990009ADCD2 /* libaqua.dylib */; };
@@ -43,8 +25,6 @@
 		9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA84527EAEB68009ADCD2 /* platform.mm */; };
 		9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84727EAED75009ADCD2 /* AppKit.framework */; };
 		9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84927EAED95009ADCD2 /* IOKit.framework */; };
-		9A97D56527FD814900A67537 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97D56327FD814900A67537 /* font_sink.cpp */; };
-		9A97D56627FD814900A67537 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97D56427FD814900A67537 /* font_sink.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,72 +59,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A2976E429E878D600502330 /* font_sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
+		9A2976E529E878D600502330 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
+		9A2976E629E878D700502330 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
+		9A2976E729E878D700502330 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
+		9A2976E829E878D800502330 /* draw2d_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
+		9A2976E929E878D800502330 /* font_sink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
+		9A2976EA29E878D800502330 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		9A2976EB29E878D900502330 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		9A2976EC29E878D900502330 /* draw2d_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
 		9A2AA65C27F952B000DB0519 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A3CA6E527EAE89B009ADCD2 /* libnanoui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnanoui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
-		9A3CA70727EAE8EF009ADCD2 /* ColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
-		9A3CA70927EAE8EF009ADCD2 /* common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
-		9A3CA70A27EAE8F0009ADCD2 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
-		9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckBox.cpp; sourceTree = "<group>"; };
-		9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VScrollPanel.cpp; sourceTree = "<group>"; };
-		9A3CA70E27EAE8F0009ADCD2 /* ColorWheel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWheel.h; sourceTree = "<group>"; };
-		9A3CA71127EAE8F0009ADCD2 /* ProgressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBar.h; sourceTree = "<group>"; };
-		9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorPicker.cpp; sourceTree = "<group>"; };
-		9A3CA71727EAE8F0009ADCD2 /* TextBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextBox.h; sourceTree = "<group>"; };
-		9A3CA71927EAE8F0009ADCD2 /* _nano2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _nano2d.h; sourceTree = "<group>"; };
-		9A3CA71A27EAE8F0009ADCD2 /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9A3CA71B27EAE8F0009ADCD2 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
-		9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
-		9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano2d.cpp; sourceTree = "<group>"; };
-		9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
-		9A3CA72027EAE8F0009ADCD2 /* ImagePanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePanel.h; sourceTree = "<group>"; };
-		9A3CA72127EAE8F0009ADCD2 /* Label.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
-		9A3CA72227EAE8F0009ADCD2 /* traits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = traits.h; sourceTree = "<group>"; };
-		9A3CA72927EAE8F0009ADCD2 /* Button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
-		9A3CA72C27EAE8F0009ADCD2 /* Popup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
-		9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
-		9A3CA73127EAE8F0009ADCD2 /* Widget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3CA73227EAE8F0009ADCD2 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A3CA73327EAE8F0009ADCD2 /* ComboBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComboBox.h; sourceTree = "<group>"; };
-		9A3CA73527EAE8F1009ADCD2 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
-		9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
-		9A3CA73727EAE8F1009ADCD2 /* PopupButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopupButton.h; sourceTree = "<group>"; };
-		9A3CA73927EAE8F1009ADCD2 /* Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icons.h; sourceTree = "<group>"; };
-		9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
-		9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
-		9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolButton.h; sourceTree = "<group>"; };
-		9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Layout.cpp; sourceTree = "<group>"; };
-		9A3CA7A727EAE8F1009ADCD2 /* Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
-		9A3CA7AD27EAE8F2009ADCD2 /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
-		9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabWidget.cpp; sourceTree = "<group>"; };
-		9A3CA7B027EAE8F2009ADCD2 /* Graph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
-		9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageView.cpp; sourceTree = "<group>"; };
-		9A3CA7B827EAE8F2009ADCD2 /* CheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBox.h; sourceTree = "<group>"; };
-		9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgressBar.cpp; sourceTree = "<group>"; };
-		9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComboBox.cpp; sourceTree = "<group>"; };
-		9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Theme.cpp; sourceTree = "<group>"; };
-		9A3CA7C027EAE8F2009ADCD2 /* Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
-		9A3CA7C127EAE8F2009ADCD2 /* Slider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
-		9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
 		9A3CA7C327EAE8F2009ADCD2 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A3CA7C427EAE8F2009ADCD2 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImagePanel.cpp; sourceTree = "<group>"; };
-		9A3CA7C727EAE8F2009ADCD2 /* Button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
-		9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorWheel.cpp; sourceTree = "<group>"; };
-		9A3CA7D027EAE8F2009ADCD2 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
-		9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MessageDialog.cpp; sourceTree = "<group>"; };
-		9A3CA7D227EAE8F3009ADCD2 /* _nanoui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _nanoui.h; sourceTree = "<group>"; };
-		9A3CA7D427EAE8F3009ADCD2 /* Screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
 		9A3CA7D527EAE8F3009ADCD2 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
-		9A3CA7D827EAE8F3009ADCD2 /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
-		9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
-		9A3CA7E627EAE8F3009ADCD2 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
-		9A3CA7F527EAE8F3009ADCD2 /* MessageDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDialog.h; sourceTree = "<group>"; };
-		9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VScrollPanel.h; sourceTree = "<group>"; };
-		9A3CA7FC27EAE8F4009ADCD2 /* FormHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormHelper.h; sourceTree = "<group>"; };
-		9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PopupButton.cpp; sourceTree = "<group>"; };
-		9A3CA80027EAE8F4009ADCD2 /* TabWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabWidget.h; sourceTree = "<group>"; };
 		9A3CA80327EAE8F4009ADCD2 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A3CA83527EAE981009ADCD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3CA83727EAE988009ADCD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +83,6 @@
 		9A3CA84527EAEB68009ADCD2 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
 		9A3CA84727EAED75009ADCD2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A3CA84927EAED95009ADCD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		9A97D56327FD814900A67537 /* font_sink.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
-		9A97D56427FD814900A67537 /* font_sink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				9A2AA65C27F952B000DB0519 /* aura.xcodeproj */,
-				9A3CA6F427EAE8EF009ADCD2 /* nanoui */,
+				9A3CA6F427EAE8EF009ADCD2 /* nano2d */,
 				9A3CA6E627EAE89B009ADCD2 /* Products */,
 				9A3CA83427EAE981009ADCD2 /* Frameworks */,
 			);
@@ -198,92 +125,31 @@
 		9A3CA6E627EAE89B009ADCD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A3CA6E527EAE89B009ADCD2 /* libnanoui.dylib */,
+				9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A3CA6F427EAE8EF009ADCD2 /* nanoui */ = {
+		9A3CA6F427EAE8EF009ADCD2 /* nano2d */ = {
 			isa = PBXGroup;
 			children = (
-				9A3CA71827EAE8F0009ADCD2 /* nano2d */,
 				9A3CA7C327EAE8F2009ADCD2 /* _.cpp */,
 				9A3CA80327EAE8F4009ADCD2 /* _.h */,
-				9A3CA7D227EAE8F3009ADCD2 /* _nanoui.h */,
-				9A3CA72927EAE8F0009ADCD2 /* Button.cpp */,
-				9A3CA7C727EAE8F2009ADCD2 /* Button.h */,
-				9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */,
-				9A3CA7D827EAE8F3009ADCD2 /* Canvas.h */,
-				9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */,
-				9A3CA7B827EAE8F2009ADCD2 /* CheckBox.h */,
-				9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */,
-				9A3CA70727EAE8EF009ADCD2 /* ColorPicker.h */,
-				9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */,
-				9A3CA70E27EAE8F0009ADCD2 /* ColorWheel.h */,
-				9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */,
-				9A3CA73327EAE8F0009ADCD2 /* ComboBox.h */,
-				9A3CA70927EAE8EF009ADCD2 /* common.cpp */,
+				9A2976E729E878D700502330 /* color.cpp */,
+				9A2976E629E878D700502330 /* color.h */,
 				9A3CA7C427EAE8F2009ADCD2 /* common.h */,
-				9A3CA7FC27EAE8F4009ADCD2 /* FormHelper.h */,
+				9A2976E529E878D600502330 /* context.cpp */,
+				9A2976EB29E878D900502330 /* context.h */,
+				9A2976E829E878D800502330 /* draw2d_context.cpp */,
+				9A2976EC29E878D900502330 /* draw2d_context.h */,
+				9A2976E429E878D600502330 /* font_sink.cpp */,
+				9A2976E929E878D800502330 /* font_sink.h */,
 				9A3CA73227EAE8F0009ADCD2 /* framework.cpp */,
 				9A3CA7D527EAE8F3009ADCD2 /* framework.h */,
-				9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */,
-				9A3CA7B027EAE8F2009ADCD2 /* Graph.h */,
-				9A3CA73927EAE8F1009ADCD2 /* Icons.h */,
-				9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */,
-				9A3CA72027EAE8F0009ADCD2 /* ImagePanel.h */,
-				9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */,
-				9A3CA7AD27EAE8F2009ADCD2 /* ImageView.h */,
-				9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */,
-				9A3CA72127EAE8F0009ADCD2 /* Label.h */,
-				9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */,
-				9A3CA7C027EAE8F2009ADCD2 /* Layout.h */,
-				9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */,
-				9A3CA7F527EAE8F3009ADCD2 /* MessageDialog.h */,
-				9A3CA7D027EAE8F2009ADCD2 /* Object.h */,
 				9A3CA84527EAEB68009ADCD2 /* platform.mm */,
-				9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */,
-				9A3CA72C27EAE8F0009ADCD2 /* Popup.h */,
-				9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */,
-				9A3CA73727EAE8F1009ADCD2 /* PopupButton.h */,
-				9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */,
-				9A3CA71127EAE8F0009ADCD2 /* ProgressBar.h */,
-				9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */,
-				9A3CA7D427EAE8F3009ADCD2 /* Screen.h */,
-				9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */,
-				9A3CA7C127EAE8F2009ADCD2 /* Slider.h */,
-				9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */,
-				9A3CA80027EAE8F4009ADCD2 /* TabWidget.h */,
-				9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */,
-				9A3CA71727EAE8F0009ADCD2 /* TextBox.h */,
-				9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */,
-				9A3CA70A27EAE8F0009ADCD2 /* Theme.h */,
-				9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */,
-				9A3CA72227EAE8F0009ADCD2 /* traits.h */,
-				9A3CA7E627EAE8F3009ADCD2 /* vector.h */,
-				9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */,
-				9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */,
-				9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */,
-				9A3CA73127EAE8F0009ADCD2 /* Widget.h */,
-				9A3CA73527EAE8F1009ADCD2 /* Window.cpp */,
-				9A3CA7A727EAE8F1009ADCD2 /* Window.h */,
+				9A2976EA29E878D800502330 /* types.h */,
 			);
-			name = nanoui;
-			sourceTree = "<group>";
-		};
-		9A3CA71827EAE8F0009ADCD2 /* nano2d */ = {
-			isa = PBXGroup;
-			children = (
-				9A3CA71927EAE8F0009ADCD2 /* _nano2d.h */,
-				9A3CA71A27EAE8F0009ADCD2 /* context.cpp */,
-				9A3CA71B27EAE8F0009ADCD2 /* context.h */,
-				9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */,
-				9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */,
-				9A97D56327FD814900A67537 /* font_sink.cpp */,
-				9A97D56427FD814900A67537 /* font_sink.h */,
-				9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */,
-			);
-			path = nano2d;
+			name = nano2d;
 			sourceTree = "<group>";
 		};
 		9A3CA83427EAE981009ADCD2 /* Frameworks */ = {
@@ -307,16 +173,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A97D56627FD814900A67537 /* font_sink.h in Headers */,
+				9A2976F429E878DA00502330 /* context.h in Headers */,
+				9A2976F329E878DA00502330 /* types.h in Headers */,
+				9A2976F529E878DA00502330 /* draw2d_context.h in Headers */,
+				9A2976F229E878DA00502330 /* font_sink.h in Headers */,
+				9A2976EF29E878DA00502330 /* color.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A3CA6E427EAE89B009ADCD2 /* nanoui */ = {
+		9A3CA6E427EAE89B009ADCD2 /* nano2d */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nanoui" */;
+			buildConfigurationList = 9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nano2d" */;
 			buildPhases = (
 				9A3CA6E127EAE89B009ADCD2 /* Headers */,
 				9A3CA6E227EAE89B009ADCD2 /* Sources */,
@@ -327,9 +197,9 @@
 			dependencies = (
 				9A2AA66927F952C900DB0519 /* PBXTargetDependency */,
 			);
-			name = nanoui;
+			name = nano2d;
 			productName = nanoui;
-			productReference = 9A3CA6E527EAE89B009ADCD2 /* libnanoui.dylib */;
+			productReference = 9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -346,7 +216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nanoui" */;
+			buildConfigurationList = 9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nano2d" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -365,7 +235,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A3CA6E427EAE89B009ADCD2 /* nanoui */,
+				9A3CA6E427EAE89B009ADCD2 /* nano2d */,
 			);
 		};
 /* End PBXProject section */
@@ -399,37 +269,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2976F129E878DA00502330 /* draw2d_context.cpp in Sources */,
 				9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */,
-				9A3CA81727EAE970009ADCD2 /* context.cpp in Sources */,
-				9A3CA81827EAE970009ADCD2 /* nano2d.cpp in Sources */,
-				9A3CA81927EAE970009ADCD2 /* draw2d_context.cpp in Sources */,
+				9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */,
+				9A2976EE29E878DA00502330 /* context.cpp in Sources */,
+				9A2976F029E878DA00502330 /* color.cpp in Sources */,
 				9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */,
-				9A3CA81B27EAE970009ADCD2 /* Button.cpp in Sources */,
-				9A3CA81C27EAE970009ADCD2 /* Canvas.cpp in Sources */,
-				9A3CA81D27EAE970009ADCD2 /* CheckBox.cpp in Sources */,
-				9A3CA81E27EAE970009ADCD2 /* ColorPicker.cpp in Sources */,
-				9A3CA81F27EAE970009ADCD2 /* ColorWheel.cpp in Sources */,
-				9A3CA82027EAE970009ADCD2 /* ComboBox.cpp in Sources */,
-				9A3CA82127EAE970009ADCD2 /* common.cpp in Sources */,
 				9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */,
-				9A3CA82327EAE970009ADCD2 /* Graph.cpp in Sources */,
-				9A3CA82427EAE970009ADCD2 /* ImagePanel.cpp in Sources */,
-				9A3CA82527EAE970009ADCD2 /* ImageView.cpp in Sources */,
-				9A3CA82627EAE970009ADCD2 /* Label.cpp in Sources */,
-				9A3CA82727EAE970009ADCD2 /* Layout.cpp in Sources */,
-				9A3CA82827EAE970009ADCD2 /* MessageDialog.cpp in Sources */,
-				9A3CA82927EAE970009ADCD2 /* Popup.cpp in Sources */,
-				9A3CA82A27EAE970009ADCD2 /* PopupButton.cpp in Sources */,
-				9A3CA82B27EAE970009ADCD2 /* ProgressBar.cpp in Sources */,
-				9A3CA82C27EAE970009ADCD2 /* Screen.cpp in Sources */,
-				9A3CA82D27EAE970009ADCD2 /* Slider.cpp in Sources */,
-				9A3CA82E27EAE970009ADCD2 /* TabWidget.cpp in Sources */,
-				9A3CA82F27EAE970009ADCD2 /* TextBox.cpp in Sources */,
-				9A3CA83027EAE970009ADCD2 /* Theme.cpp in Sources */,
-				9A97D56527FD814900A67537 /* font_sink.cpp in Sources */,
-				9A3CA83127EAE970009ADCD2 /* VScrollPanel.cpp in Sources */,
-				9A3CA83227EAE970009ADCD2 /* Widget.cpp in Sources */,
-				9A3CA83327EAE970009ADCD2 /* Window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +357,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -608,7 +454,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -673,7 +519,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nanoui" */ = {
+		9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nano2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A3CA6E727EAE89B009ADCD2 /* Debug */,
@@ -682,7 +528,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nanoui" */ = {
+		9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nano2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A3CA6EA27EAE89B009ADCD2 /* Debug */,

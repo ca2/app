@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
@@ -935,6 +935,13 @@ namespace windowing
    //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
    //}
+
+   ::user::interaction * windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
+   {
+
+      return nullptr;
+
+   }
 
 
 } // namespace windowing

@@ -658,7 +658,7 @@ namespace acme
 
 
       //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
-      virtual int command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction = nullptr);
+      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
 
 
       //virtual string process_version_dir_name();
@@ -714,6 +714,17 @@ namespace acme
 
       virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
 
+
+      virtual bool has_unix_shell_command(const ::scoped_string& scopedstrCommand);
+
+      virtual int unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function & tracefunction = nullptr);
+
+      virtual ::string unix_shell_command_string(const ::scoped_string & scopedstrCommand);
+
+      virtual ::string operating_system_store_release();
+
+      virtual ::pointer <::operating_system::summary > operating_system_summary();
+      
 
    };
 

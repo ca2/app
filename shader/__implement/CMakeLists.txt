@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_shader CXX)
 
 
-add_executable(${PROJECT_NAME} application.cpp)
+add_executable(shared_${PROJECT_NAME} application.cpp)
+add_executable(static_${PROJECT_NAME} application.cpp)
 
 
 list(APPEND executable_references
@@ -41,19 +42,19 @@ endif()
 if (MSVC)
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
+   target_compile_options(shared_${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(shared_${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(shared_${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(shared_${PROJECT_NAME} PRIVATE ${executable_references})
 
 
 elseif(LINUX OR FREEBSD)
 
 
-   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   target_compile_options(shared_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_link_libraries(shared_${PROJECT_NAME} PRIVATE ${executable_references})
+   target_link_options(shared_${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
 
@@ -61,12 +62,12 @@ endif ()
 
 
 
-add_dependencies(${PROJECT_NAME} ${default_draw2d})
-add_dependencies(${PROJECT_NAME} ${default_write_text})
-add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
-add_dependencies(${PROJECT_NAME} crypto_openssl)
-add_dependencies(${PROJECT_NAME} folder_zip)
-add_dependencies(${PROJECT_NAME} gpu_opengl)
+add_dependencies(shared_${PROJECT_NAME} ${default_draw2d})
+add_dependencies(shared_${PROJECT_NAME} ${default_write_text})
+add_dependencies(shared_${PROJECT_NAME} ${app_common_dependencies})
+add_dependencies(shared_${PROJECT_NAME} crypto_openssl)
+add_dependencies(shared_${PROJECT_NAME} folder_zip)
+add_dependencies(shared_${PROJECT_NAME} gpu_opengl)
 
 
 
@@ -74,12 +75,12 @@ list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${executable_include_directories})
+target_include_directories(shared_${PROJECT_NAME} PRIVATE ${executable_include_directories})
 
 
-target_link_directories(${PROJECT_NAME} PRIVATE ${library_link_directories})
+target_link_directories(shared_${PROJECT_NAME} PRIVATE ${library_link_directories})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(shared_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 

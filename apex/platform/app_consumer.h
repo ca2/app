@@ -139,7 +139,7 @@ public:
 
 
 template <  typename APP, typename BASE1 = optional_interaction1, typename BASE2 = optional_interaction2, typename BASE3 = optional_interaction3, typename BASE4 = optional_interaction4 >
-class application_interaction :
+class app_interaction :
    virtual public ::object,
    virtual public BASE1, 
    virtual public BASE2,
@@ -152,7 +152,7 @@ public:
    ::pointer<APP>m_papp;
 
 
-   application_interaction()
+   app_interaction()
    {
 
    }

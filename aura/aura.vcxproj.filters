@@ -25,15 +25,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{dece585b-ddd3-4047-a40b-0cec81db082f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system">
-      <UniqueIdentifier>{0aeac56d-81e7-4972-91e2-754238a47ba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows_common">
-      <UniqueIdentifier>{045106eb-83c9-44ea-af42-0167c2d20346}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows">
-      <UniqueIdentifier>{b6a8a5a4-bc31-48b2-a213-e3cde51f5b3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{66e22b87-1135-4647-86db-aefd001b4235}</UniqueIdentifier>
     </Filter>
@@ -360,36 +351,6 @@
     <ClCompile Include="platform\theme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\http.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\thread.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windowing.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\_library.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\dpi.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\gdi.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\graphics.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\main.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\monitor.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\windowing.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="message\_.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
@@ -650,9 +611,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\message_window.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\user\layout_state.cpp">
       <Filter>Source Files\user\user</Filter>

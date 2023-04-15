@@ -617,7 +617,7 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, ::i32 iSocket)
+   void base_socket::OnOptions(::i32 family, ::i32 type, ::i32 protocol, SOCKET s)
    {
       
       

@@ -1731,7 +1731,7 @@ public:
 
       ::u64 u = 0;
 
-      u = m_pfile->_get_left() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
+      u = m_pfile->_right_size() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
 
       //if (!fail() && u > 0)
       if (u > 0)

@@ -836,17 +836,8 @@ namespace operating_system
 } // namespace operating_system
 
 
-
-
-
-
-
-
-
-
 namespace acme
 {
-
 
    class static_start;
 
@@ -1585,3 +1576,5 @@ namespace nano
    class nano;
 
 } // namespace nano
+
+

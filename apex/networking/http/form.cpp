@@ -362,7 +362,7 @@ namespace http
 
          string strNetworkArguments;
 
-         strNetworkArguments = infil->as_string();
+         strNetworkArguments = infil->full_string();
 
          //strsize len = str.length();
 //         strsize clen = content-length;

@@ -661,70 +661,35 @@ namespace file
    }
 
 
-   void file::as(memory_base & memory)
-   {
+   //void file::as(memory_base & memory)
+   //{
 
-      auto left = get_left();
+   //   auto left = this->left_size();
 
-      if(left > 100000000000000)
-      {
+   //   if(left > 100000000000000)
+   //   {
 
-         int i = 1;
+   //      int i = 1;
 
-         int j = 2;
+   //      int j = 2;
 
-         int l = i+j;
+   //      int l = i+j;
 
-      }
+   //   }
 
-      memory.set_size((memsize)left);
+   //   memory.set_size((memsize)left);
 
-      auto readBytes = read(memory);
+   //   auto readBytes = read(memory);
 
-      if(readBytes != left)
-      {
-         
-         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, m_eopen, "readBytes != left");
-         
-      }
+   //   if(readBytes != left)
+   //   {
+   //      
+   //      throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, m_eopen, "readBytes != left");
+   //      
+   //   }
 
-   }
+   //}
 
-
-   ::memory file::as_memory()
-   {
-      
-      ::memory memory;
-      
-      as(memory);
-      
-      return ::transfer(memory);
-      
-   }
-
-
-   void file::as(string & str)
-   {
-
-      ::memory memory;
-
-      as(memory);
-
-      str = memory.get_string();
-
-   }
-
-
-   ::string file::as_string()
-   {
-      
-      ::string string;
-      
-      as(string);
-      
-      return ::transfer(string);
-      
-   }
 
 
    void file::print(const ::string & str)
@@ -1437,7 +1402,7 @@ namespace file
     }
 
 
-    filesize file::get_left() const
+    filesize file::right_size() const
     {
 
         return size() - get_position();
@@ -1445,36 +1410,6 @@ namespace file
     }
 
 
-   string file::as_string() const
-   {
-
-      string str;
-
-      auto pfile = (file *)this;
-
-      auto position = pfile->get_position();
-
-      pfile->as(str);
-
-      pfile->set_position(position);
-
-      return str;
-
-   }
-
-
-   void file::as_memory(memory_base & memory) const
-   {
-
-      auto pfile = (file*)this;
-
-      auto position = pfile->get_position();
-
-      pfile->as(memory);
-
-      pfile->set_position(position);
-
-   }
 
 
    ::file::file& file::put(char ch) 

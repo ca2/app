@@ -810,7 +810,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //   try
   // {
 
-   mem = pfile->as_memory();
+   mem = pfile->full_memory();
    
    
 //      {
@@ -868,7 +868,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    try
    {
 
-      pfile->as_memory(mem);
+      pfile->full_memory(mem);
 
    }
    catch (...)

@@ -77,7 +77,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, enum_dos_color edoscolor);
 
-      string as_string() const override;
+      string right_string(::memsize iReadAtMostByteCount) override;
 
 
    };

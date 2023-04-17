@@ -128,6 +128,8 @@
 
 
 #include "acme/primitive/string/scoped_string_base.h"
+#include "acme/operating_system/_.h"
+
 
 #include "_string.h"
 

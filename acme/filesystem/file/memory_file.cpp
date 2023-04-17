@@ -941,7 +941,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
    auto pmemoryfile = create_memory_file();
 
-   auto left = pfile->get_left();
+   auto left = pfile->right_size();
 
    if (left > UINTPTR_MAX)
    {

@@ -291,7 +291,7 @@ namespace folder_zip
 
       }
 
-      m = pfile->as_memory();
+      m = pfile->full_memory();
 
    }
 

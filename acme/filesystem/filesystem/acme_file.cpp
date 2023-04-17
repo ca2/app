@@ -247,6 +247,36 @@ memory acme_file::as_memory(const ::file::path & pathParam, strsize iReadAtMostB
 }
 
 
+memory acme_file::safe_get_memory(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+{
+
+   auto pfile = m_pcontext->__create_new < stdio_file >();
+
+   pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
+
+   auto path = acmepath()->defer_process_relative_path(pathParam);
+
+   pfile->open(path, "rb", _SH_DENYNO);
+
+   if (bNoExceptionIfNotFound)
+   {
+
+      if (pfile->m_eflag & stdio_file::flag_file_not_found)
+      {
+
+         return {};
+
+      }
+
+   }
+
+   auto memory = pfile->right_memory();
+
+   return memory;
+
+}
+
+
 string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
    
@@ -346,6 +376,42 @@ string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostB
    return str;
 
 }
+
+
+string acme_file::safe_get_string(const ::file::path & pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+{
+
+   auto memory = safe_get_memory(pathParam, iReadAtMostByteCount);
+
+   ::string str;
+
+   auto data = (char *)memory.data();
+
+   auto size = memory.size();
+
+   if (::is_null(data) || size <= 0)
+   {
+
+      return {};
+
+   }
+   else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
+   {
+
+      return { (const char *)data + 3, size - 3 };
+
+   }
+   else
+   {
+
+      return { (const char *)data, size };
+
+   }
+
+   return str;
+
+}
+
 
 
 memsize acme_file::as_memory(const ::file::path & pathParam, void * p, memsize s)
@@ -844,6 +910,60 @@ void acme_file::_copy(const ::file::path & pathDup, const ::file::path & pathSrc
       
    }
    
+}
+
+
+bool acme_file::text_is_different(const ::file::path & path1, const ::file::path & path2, ::string * pstr1, ::string * pstr2)
+{
+
+   ::string str1 = this->safe_get_string(path1);
+
+   ::string str2 = this->safe_get_string(path2);
+
+   if (pstr1)
+   {
+
+      *pstr1 = str1;
+
+   }
+
+   if (pstr2)
+   {
+
+      *pstr2 = str2;
+
+   }
+
+   bool bIsDifferent = str1 != str2;
+   
+   return bIsDifferent;
+
+}
+
+
+bool acme_file::copy_if_text_is_different(const ::file::path & pathTarget, const ::file::path & pathSource, const ::procedure & procedureRunIfFilesAreDifferentAndAfterCopy)
+{
+
+   ::string strSource;
+
+   bool bIsDifferent = text_is_different(pathTarget, pathSource, nullptr, &strSource);
+
+   if (bIsDifferent)
+   {
+
+      this->put_contents(pathTarget, strSource);
+
+      if (procedureRunIfFilesAreDifferentAndAfterCopy)
+      {
+
+         procedureRunIfFilesAreDifferentAndAfterCopy();
+
+      }
+
+   }
+
+   return bIsDifferent;
+
 }
 
 
@@ -1714,7 +1834,7 @@ void acme_file::_erase(const ::file::path & path)
 
    string str;
 
-   preader->as(str);
+   preader->right_string(str);
 
    auto pini = __create_new < handle::ini >();
 
@@ -1732,6 +1852,18 @@ void acme_file::_erase(const ::file::path & path)
 }
 
 
+::property_set acme_file::parse_standard_configuration(const ::payload & payloadFile)
+{
 
+
+   auto str = as_string(payloadFile);
+
+   ::property_set set;
+
+   set.parse_standard_configuration(str);
+
+   return ::transfer(set);
+
+}
 
 

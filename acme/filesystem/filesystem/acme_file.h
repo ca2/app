@@ -103,6 +103,11 @@ public:
 
    virtual void copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
+
+
+   virtual bool text_is_different(const ::file::path & path1, const ::file::path & path2, ::string * pstr1 = nullptr, ::string * pstr2 = nullptr);
+   virtual bool copy_if_text_is_different(const ::file::path & pathTarget, const ::file::path & pathSource, const ::procedure & procedureRunIfFilesAreDifferentAndAfterCopy = {});
+
    
    virtual bool _memory_map_file_copy(const ::file::path & pathNew, const ::file::path & pathSrc);
    
@@ -125,7 +130,9 @@ public:
    //virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory as_memory(const ::file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
+   virtual memory safe_get_memory(const file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string as_string(const ::file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
+   virtual string safe_get_string(const ::file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
 
 
    virtual void put_block(const ::file::path & path, const block & block);
@@ -171,6 +178,7 @@ public:
    virtual ::pointer<::handle::ini>get_ini(const ::payload & payloadFile);
 
 
+   virtual ::property_set parse_standard_configuration(const ::payload & payloadFile);
 
 
 };

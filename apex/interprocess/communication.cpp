@@ -890,7 +890,7 @@ namespace interprocess
 
       pathModule /= "module_list.txt";
 
-      ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.as_i64());
+      ::file::path pathPid = pnode->process_identifier_module_path((::u32)idPid.as_i64());
 
       string strModuleList = acmefile()->as_string(pathModule);
 
@@ -921,7 +921,7 @@ namespace interprocess
 
                stra2.add_unique_ci(a[0]);
 
-               string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
+               string strPath = pnode->process_identifier_module_path(atoi(a[1]));
 
                if (strPath.has_char())
                {

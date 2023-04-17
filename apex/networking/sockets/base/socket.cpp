@@ -2735,6 +2735,14 @@ namespace sockets
    }*/
 
 
+   class ::time base_socket::get_last_interaction_time() const
+   {
+
+      return base_socket_composite()->get_last_interaction_time();
+      
+   }
+
+
    void base_socket::set_connection_start_time()
    {
 

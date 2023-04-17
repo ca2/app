@@ -24,7 +24,7 @@ namespace windows
       ~file();
 
 
-      void create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+      bool safe_create_file(const ::file::path & path, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
       void _create_file(const ::file::path & path, ::file::e_open eopen);
 
@@ -70,6 +70,8 @@ namespace windows
       void get_file_time(LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime);
 
       void get_file_information(BY_HANDLE_FILE_INFORMATION & information) const;
+
+      [[nodiscard]] ::file::path get_final_path_by_handle() const;
 
       [[ noreturn ]] void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage = nullptr, DWORD lasterror = 0) const;
 

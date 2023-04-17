@@ -372,31 +372,31 @@ namespace acme
       
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
-      virtual void create_process(const ::string & pszCommandLine, u32 * pprocessID);
+      virtual ::process_identifier create_process(const ::string & pszCommandLine);
 
       virtual void run_silent(const ::string & strFunct, const ::string & strstrParams);
 
-      virtual bool process_modules(string_array& stra, u32 processID);
+      virtual bool process_modules(string_array& stra, ::process_identifier processidentifier);
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
-      virtual atom_array get_pids();
+      virtual ::process_identifier_array processes_identifiers();
 
-      virtual atom_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
+      virtual ::process_identifier_array module_path_processes_identifiers(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
 
-      virtual string module_path_from_pid(u32 pid);
+      virtual string process_identifier_module_path(::process_identifier processidentifier);
 
-      virtual string command_line_from_pid(u32 pid);
+      virtual string process_identifier_command_line(::process_identifier processidentifier);
 
-      virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+      virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
 
       virtual bool is_shared_library_busy(const string_array& stra);
 
-      virtual bool process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary);
+      virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
 
-      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary);
+      virtual ::process_identifier_array shared_library_process(string_array& straProcesses, const ::string & pszLibrary);
 
-      virtual bool is_process_running(::u32 pid);
+      virtual bool is_process_running(::process_identifier processidentifier);
 
       virtual string get_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
 
@@ -498,7 +498,7 @@ namespace acme
 //      virtual ::string get_callstack();
 
 
-      virtual ::i64 get_current_process_id();
+      virtual ::iptr get_current_process_id();
 
 
       virtual bool stdin_has_input_events();
@@ -603,13 +603,13 @@ namespace acme
 #if !defined(UNIVERSAL_WINDOWS)
 
 
-      //virtual string module_path_from_pid(unsigned int pid);
+      //virtual string module_path_from_pid(::process_identifier processidentifier);
       //virtual atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
-      virtual string_array cmdline_from_pid(unsigned int pid);
+      virtual string_array cmdline_from_pid(::process_identifier processidentifier);
       virtual atom_array app_get_pid(const ::string & pszModuleName);
 
 
@@ -619,13 +619,13 @@ namespace acme
 #endif
 
 #ifndef UNIVERSAL_WINDOWS
-      //virtual bool process_contains_module(string & strImage, ::u32 processID, const ::string & pszLibrary);
+      //virtual bool process_contains_module(string & strImage, ::::process_identifier processidentifier, const ::string & pszLibrary);
       //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 #endif
 
 
 
-      //virtual bool is_shared_library_busy(u32 processid, const string_array & stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra);
       //virtual bool is_shared_library_busy(const string_array & stra);
 
 
@@ -658,7 +658,7 @@ namespace acme
 
 
       //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
-      virtual int command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction = nullptr);
+      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
 
 
       //virtual string process_version_dir_name();
@@ -713,6 +713,23 @@ namespace acme
 
 
       virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
+
+
+      virtual bool has_unix_shell_command(const ::scoped_string& scopedstrCommand);
+
+      virtual int unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function & tracefunction = nullptr);
+
+      virtual ::string unix_shell_command_string(const ::scoped_string & scopedstrCommand);
+
+      virtual ::string operating_system_store_release();
+
+      virtual ::pointer <::operating_system::summary > operating_system_summary();
+      
+
+      //virtual void module_path_main_window_post_close(const ::scoped_string & scopestr);
+
+
+      virtual ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr);
 
 
    };

@@ -130,19 +130,19 @@ namespace filemanager
 } // namespace filemanager
 
 
-namespace user
-{
+// namespace user
+// {
 
 
-   //class impact_data;
-   class form_callback;
-//   class split_impact;
+//    //class impact_data;
+//    class form_callback;
+// //   class split_impact;
 
-   class combo_box;
-   class list_box;
+//    class combo_box;
+//    class list_box;
 
 
-} // namespace user
+// } // namespace user
 
 
 

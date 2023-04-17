@@ -94,7 +94,6 @@ payload::payload()
 {
 
    m_etype = e_type_new;
-   //clear_data();
 
 }
 
@@ -102,10 +101,9 @@ payload::payload()
 payload::payload(enum_type etype)
 {
 
-   m_etype = e_type_null;
+   m_etype = e_type_new;
 
    set_type(etype, false);
-   //clear_data();
 
 }
 

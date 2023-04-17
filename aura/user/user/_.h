@@ -56,6 +56,8 @@ namespace user
 
    class interaction_scaler;
 
+   class interaction_listener;
+
    class style;
 
    class alpha_source;

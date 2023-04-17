@@ -1466,41 +1466,34 @@ namespace user
    }
 
 
-   bool button::on_click(::item * pitem)
+   bool button::on_click_generation(::item * pitem)
    {
 
       if (m_estyle == e_style_push)
       {
 
-         //m_dPosition = 0.0;
-
-         //m_timeAnimationStart.Now();
-
-         //SetTimer(e_timer_check_toggle_animation, 12_ms);
-
          _001ToggleCheck(::e_source_user);
-
-         return true;
 
       }
       else if (m_estyle == e_style_push_group)
       {
 
-         //m_dPosition = 0.0;
-
-         //m_timeAnimationStart.Now();
-
-         //SetTimer(e_timer_check_toggle_animation, 12_ms);
-
          _001SetCheck(::e_check_checked, ::e_source_user);
-
-         return true;
 
       }
 
-      return ::user::interaction::on_click(pitem);
+      return ::user::interaction::on_click_generation(pitem);
 
    }
+
+
+//   bool button::on_click(::item * pitem)
+//   {
+//
+//
+//      return ::user::interaction::on_click(pitem);
+//
+//   }
 
 
 } // namespace user

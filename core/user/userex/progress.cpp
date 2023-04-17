@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "progress.h"
-#include "user.h"
+//#include "user.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"

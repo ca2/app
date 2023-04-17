@@ -91,30 +91,6 @@ class image_list;
 //
 //} // namespace filemanager
 
-//
-//namespace user
-//{
-//
-//
-//   class form_callback;
-//
-//   class combo_box;
-//   class list_box;
-//
-//
-//} // namespace user
-//
-//
-//namespace dynamic_source
-//{
-//
-//
-//   class script;
-//   class script_manager;
-//
-//
-//} // namespace dynamic_source
-
 
 namespace acme
 {

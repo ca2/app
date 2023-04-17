@@ -732,6 +732,146 @@
 //
 
 
+::file::enum_type safe_get_file_system_item_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      int iErrNo = errno;
+
+      if(iErrNo == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = errno_status(iErrNo);
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      //fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
+
+      //throw ::exception(estatus);
+
+      return ::file::e_type_doesnt_exist;
+
+   }
+
+   if (stat.st_mode & S_IFDIR)
+   {
+
+      return ::file::e_type_folder;
+
+   }
+
+   return ::file::e_type_file;
+
+}
+
+
+
+::file::enum_type get_file_system_item_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      int iErrNo = errno;
+
+      if(iErrNo == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = errno_status(iErrNo);
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
+
+      throw ::exception(estatus);
+
+      return ::file::e_type_doesnt_exist;
+
+   }
+
+   if (!(stat.st_mode & S_IFDIR))
+   {
+
+      return ::file::e_type_folder;
+
+   }
+
+   return ::file::e_type_file;
+
+}
+
+
+
+bool safe_is_directory(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      int iErrNo = errno;
+
+      if(iErrNo == ENOTDIR)
+      {
+
+         return false;
+
+      }
+
+      auto estatus = errno_status(iErrNo);
+
+      if(estatus == error_file_not_found)
+      {
+
+         return false;
+
+      }
+
+      ///fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), iErrNo);
+
+      //throw ::exception(estatus);
+
+      return false;
+
+   }
+
+   if (!(stat.st_mode & S_IFDIR))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
 bool is_directory(const ::file::path & path)
 {
 
@@ -765,6 +905,53 @@ bool is_directory(const ::file::path & path)
    }
 
    if (!(stat.st_mode & S_IFDIR))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool safe_file_exists(const ::file::path & path)
+{
+
+   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
+
+   struct stat stat = {};
+
+   if (::stat(path, &stat))
+   {
+
+      int iErrorNumber = errno;
+
+      auto estatus = errno_status(iErrorNumber);
+
+      if(estatus == error_file_not_found)
+      {
+
+         return false;
+
+      }
+      else if(estatus == error_not_a_directory)
+      {
+
+         return false;
+
+      }
+
+      //auto errorcode = errno_error_code(iErrorNumber);
+
+      //throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
+
+      return false;
+
+   }
+
+   if ((stat.st_mode & S_IFDIR))
    {
 
       return false;

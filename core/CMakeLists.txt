@@ -325,16 +325,16 @@ list(APPEND library_source
    user/simple/simple.h
    #user/simple/static.cpp
    #user/simple/static.h
-   user/simple/status_bar.cpp
-   user/simple/status_bar.h
+   #user/simple/status_bar.cpp
+   #user/simple/status_bar.h
         user/simple/still.cpp
         user/simple/still.h
    user/simple/tab_control.cpp
    user/simple/tab_control.h
    user/simple/tab_impact.cpp
    user/simple/tab_impact.h
-   user/simple/toolbar.cpp
-   user/simple/toolbar.h
+   #user/simple/toolbar.cpp
+   #user/simple/toolbar.h
    user/simple/tree_impact.cpp
    user/simple/tree_impact.h
    #user/user/00.h
@@ -392,8 +392,8 @@ list(APPEND library_source
    user/user/mesh_data.h
    user/user/mesh_item.cpp
    user/user/mesh_item.h
-   user/user/statusbar.cpp
-   user/user/statusbar.h
+   #user/user/statusbar.cpp
+   #user/user/statusbar.h
    user/user/step_slider.cpp
    user/user/step_slider.h
    user/user/toggle_switch.cpp
@@ -510,8 +510,8 @@ list(APPEND library_source
    #message.h
    #procedure.h
    #timer.mm
-   update.h
-   user.h
+   #update.h
+   #user.h
    #xml.h
    )
 

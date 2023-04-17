@@ -25,20 +25,24 @@ list(APPEND library_source
         inline/console.h
         inline/console_common.h
         inline/library.h
-        multimedia/audio/_.h
-        multimedia/audio/audio_c.h
-        multimedia/audio/audio_wave_out.cpp
-        multimedia/audio/out.h
-        multimedia/audio/sound_track_player.cpp
-        multimedia/audio/sound_track_player.h
-        multimedia/audio/text_to_speech_client.cpp
-        multimedia/audio/text_to_speech_client.h
-        multimedia/audio/speaker.cpp
-        multimedia/audio/speaker.h
+        audio/_.h
+        audio/_c.h
+        audio/audio.cpp
+        audio/audio.h
+        audio/audio_mixer.cpp
+        audio/audio_mixer.h
+        audio/audio_mixer_user.cpp
+        audio/audio_mixer_user.h
+        audio/audio_wave_out.cpp
+        audio/out.h
+        audio/sound_track_player.cpp
+        audio/sound_track_player.h
+        audio/text_to_speech_client.cpp
+        audio/text_to_speech_client.h
+        audio/speaker.cpp
+        audio/speaker.h
         multimedia/_.h
         multimedia/_c.h
-        multimedia/audio/audio.cpp
-        multimedia/audio/audio.h
         multimedia/decoder.cpp
         multimedia/decoder.h
         multimedia/decoder_plugin.cpp
@@ -136,11 +140,23 @@ else()
 endif()
 
 
+list(APPEND library_references
+        acme
+        apex)
+
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+
+
+
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
@@ -158,12 +174,13 @@ elseif(LINUX)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
     #target_link_options(aqua PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(aqua PRIVATE acme apex)
+    target_link_libraries(${PROJECT_NAME} PRIVATE )
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 

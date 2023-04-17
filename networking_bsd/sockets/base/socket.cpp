@@ -2487,6 +2487,14 @@ bool base_socket::SetSoNosigpipe(bool x)
    }
 
 
+   class ::time base_socket::get_last_interaction_time() const
+   {
+
+      return maximum(maximum(m_timeLastRead, m_timeLastWrite), m_timeConnectionStart);
+   
+   }
+
+
    void base_socket::set_connection_start_time()
    {
       

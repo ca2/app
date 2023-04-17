@@ -896,7 +896,7 @@ namespace dynamic_source
 
             //}
 
-            pscript->m_strError = ostreamError.m_pfile->as_string();
+            pscript->m_strError = ostreamError.m_pfile->full_string();
 
             return;
 

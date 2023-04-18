@@ -11810,6 +11810,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
+      bool bZorder = false;
+
       if (is_top_level())
       {
 
@@ -11818,11 +11820,22 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
             layout().design() = layout().sketch().zorder();
 
+            bZorder = true;
+
          }
 
       }
 
+      bool bActivation = layout().sketch().m_eactivation != ::e_activation_default;
+
       layout().design() = layout().sketch().appearance();
+
+      if (bActivation)
+      {
+
+         layout().design().m_eactivation = layout().sketch().m_eactivation;
+
+      }
 
       layout().sketch().clear_activation();
 
@@ -11857,9 +11870,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      bool bZorder = check_child_zorder();
+      if (check_child_zorder())
+      {
 
-      m_bUpdateVisual |= bDisplay || bZorder || bLayout;
+         bZorder = true;
+
+      }
+
+      m_bUpdateVisual |= bDisplay || bZorder || bLayout || bActivation;
 
       bUpdateBuffer = bLayout;
 

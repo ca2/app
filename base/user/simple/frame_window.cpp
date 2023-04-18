@@ -3307,6 +3307,8 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
          default_notify_icon_topic();
 
+         ptopic->m_bRet = true;
+
       }
 
    }

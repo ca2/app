@@ -6331,7 +6331,7 @@ namespace user
 
       }
 
-      bool bWasVisible = ::is_screen_visible(edisplayWindow);
+      bool bWindowVisible = m_pwindow->is_window_visible();
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
 
@@ -6406,7 +6406,7 @@ namespace user
 
 //#endif
 
-      bool bVisibilityChange = is_different(bWasVisible, shouldGetVisible);
+      bool bVisibilityChange = is_different(bWindowVisible, shouldGetVisible);
 
       bool bShow = false;
 
@@ -6425,6 +6425,17 @@ namespace user
          {
 
             bHide = true;
+
+         }
+
+      }
+      else
+      {
+
+         if (shouldGetVisible)
+         {
+
+            bShow = true;
 
          }
 

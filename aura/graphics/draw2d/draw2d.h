@@ -52,7 +52,7 @@ namespace draw2d
 
 
       critical_section                                         m_criticalsectionObjectList;
-      pointer_array < ::draw2d::object >                        m_objecta;
+      numeric_array < ::draw2d::object * >                        m_objecta;
 
       critical_section                                         m_criticalsectionImageList;
       ::pointer<image_array>                                  m_pimagea;

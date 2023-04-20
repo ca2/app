@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-11 00:09 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-11 00:09 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -23,7 +23,7 @@ namespace interprocess
 
       ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
       string                                       m_strApp;
-      atom_array                                     m_iaExclude;
+      ::process_identifier_array                                     m_processidentifieraExclude;
       bool                                         m_bAutoLaunch;
 
       // idPid - Task
@@ -52,7 +52,7 @@ namespace interprocess
       bool _wait(const class time & timeWait) override;
 
 
-      virtual atom_array prepare_call();
+      virtual ::process_identifier_array prepare_call();
 
 
       virtual void send_call();

@@ -498,7 +498,7 @@ namespace acme
 //      virtual ::string get_callstack();
 
 
-      virtual ::iptr get_current_process_id();
+      virtual ::process_identifier current_process_identifier();
 
 
       virtual bool stdin_has_input_events();

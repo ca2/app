@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -624,7 +624,7 @@ namespace apex
          printf("%s", "\n\nApplication Information\n");
          output_debug_string("\n\nApplication Information\n");
 
-         auto iPid = acmenode()->get_current_process_id();
+         auto iPid = acmenode()->current_process_identifier();
 
          printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
@@ -933,7 +933,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto pid = acmenode()->get_current_process_id();
+      auto pid = acmenode()->current_process_identifier();
 
       string strPid = ::as_string(pid);
 

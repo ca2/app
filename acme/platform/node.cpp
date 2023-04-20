@@ -2205,7 +2205,7 @@ return false;
    //}
 
 
-   ::i64 node::get_current_process_id()
+::process_identifier node::current_process_identifier()
    {
 
       return -1;
@@ -2689,7 +2689,7 @@ return false;
 #if !defined(WINDOWS)
 
 
-   string_array node::cmdline_from_pid(unsigned int pid)
+   string_array node::cmdline_from_pid(::process_identifier pid)
    {
 
       throw interface_only();

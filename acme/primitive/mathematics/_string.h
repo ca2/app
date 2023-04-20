@@ -435,8 +435,29 @@ inline void from_string(INTEGRAL & i, const ::scoped_string & scopedstr, int iBa
 {
 
    auto r = scopedstr();
-
-   consume(i, r, iBase);
+   
+   if(r.case_insensitive_equals("FALSE") ||
+      r.case_insensitive_equals("OFF") ||
+      r.case_insensitive_equals("NO"))
+   {
+      
+      i = 0;
+      
+   }
+   else if(r.case_insensitive_equals("TRUE") ||
+      r.case_insensitive_equals("ON") ||
+      r.case_insensitive_equals("YES"))
+   {
+      
+      i = 1;
+      
+   }
+   else
+   {
+      
+      consume(i, r, iBase);
+      
+   }
    
 }
 

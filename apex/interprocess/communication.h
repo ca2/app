@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-11 00:06 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-11 00:06 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -62,7 +62,7 @@ namespace interprocess
 
       virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & idPid);
 
-      virtual atom_array get_pid(const ::string & strApp);
+      virtual ::process_identifier_array processes_identifiers(const ::string & strApp);
 
       virtual string key(const string & strApp, const ::atom & idPid);
 

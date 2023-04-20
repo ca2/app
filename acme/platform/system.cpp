@@ -1839,7 +1839,7 @@ void system::report_system_instance()
       
       string strPid;
       
-      strPid = ::as_string(acmenode()->get_current_process_id());
+      strPid = ::as_string(acmenode()->current_process_identifier());
       
       strModifier = strDate + "_" + strPid;
       

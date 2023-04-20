@@ -1,4 +1,4 @@
-﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "communication.h"
 #include "target.h"
@@ -65,7 +65,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) acmenode()->get_current_process_id();
+      m_atomApp = (::i64) acmenode()->current_process_identifier();
 
 #endif
 
@@ -330,7 +330,7 @@ namespace interprocess
 
       synchronous_lock synchronouslock(pmutex);
 
-      auto idaPid = get_pid(strApp);
+      auto idaPid = processes_identifiers(strApp);
 
       if (idaPid.get_count() > 0)
       {
@@ -354,7 +354,7 @@ namespace interprocess
 
       {
 
-         auto ida = get_pid(strApp);
+         auto ida = processes_identifiers(strApp);
 
          if (ida.is_empty())
          {
@@ -377,7 +377,7 @@ namespace interprocess
 
                iStep++;
 
-               ida = get_pid(strApp);
+               ida = processes_identifiers(strApp);
 
                if (ida.has_element())
                {
@@ -838,10 +838,10 @@ namespace interprocess
    }
 
 
-   atom_array communication::get_pid(const ::string & strApp)
+::process_identifier_array communication::processes_identifiers(const ::string & strApp)
    {
 
-      atom_array idaPid;
+      ::process_identifier_array idaPid;
 
       auto psystem = acmesystem();
 
@@ -851,7 +851,7 @@ namespace interprocess
 
       ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 
-      idaPid = pnode->module_path_get_pid(path, false);
+      idaPid = pnode->module_path_processes_identifiers(path, false);
 
 #else
 

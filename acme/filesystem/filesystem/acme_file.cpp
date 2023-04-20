@@ -1760,7 +1760,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
 bool acme_file::_exists(const ::file::path & path)
 {
 
-   bool bOk = ::file_exists(path.c_str());
+   bool bOk = ::safe_file_exists(path.c_str());
 
    return bOk;
 

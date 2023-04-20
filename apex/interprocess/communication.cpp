@@ -857,7 +857,7 @@ namespace interprocess
 
 //#if 0
 
-      idaPid = pnode->get_pid_from_module_list_file(strApp);
+      idaPid = pnode->module_list_file_processes_identifiers(strApp);
 
 //#else
 //

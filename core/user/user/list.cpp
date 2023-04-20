@@ -3600,7 +3600,7 @@ namespace user
 
       {
 
-         update_hover(pmouse);
+         update_hover(pmouse, false);
 
          pmessage->m_bRet = true;
 

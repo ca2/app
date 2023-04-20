@@ -127,19 +127,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::argb(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return ::color::color(255, 235, 235, 255);
+                     return ::argb(255, 235, 235, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 200, 200, 200);
+                     return ::argb(255, 200, 200, 200);
 
                   }
 
@@ -150,19 +150,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::argb(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return ::color::color(255, 20, 20, 20);
+                     return ::argb(255, 20, 20, 20);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 55, 55, 55);
+                     return ::argb(255, 55, 55, 55);
 
                   }
 
@@ -178,19 +178,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::argb(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return ::color::color(255, 235, 235, 255);
+                     return ::argb(255, 235, 235, 255);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 200, 200, 200);
+                     return ::argb(255, 200, 200, 200);
 
                   }
 
@@ -201,19 +201,19 @@ namespace experience_anthill
                   if (estate & ::user::e_state_selected)
                   {
 
-                     return ::color::color(255, 255, 255, 255);
+                     return ::argb(255, 255, 255, 255);
 
                   }
                   else if (estate & ::user::e_state_hover)
                   {
 
-                     return ::color::color(255, 20, 20, 20);
+                     return ::argb(255, 20, 20, 20);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 100, 100, 100);
+                     return ::argb(255, 100, 100, 100);
 
                   }
 
@@ -232,13 +232,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 0, 0, 0);
+                  return ::argb(255, 0, 0, 0);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 255);
+                  return ::argb(255, 255, 255, 255);
 
                }
 
@@ -254,14 +254,14 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  //return ::color::color(255, 0x20, 0x45, 0x60);
+                  //return ::argb(255, 0x20, 0x45, 0x60);
                   return pinteraction->top_level_frame()->get_moveable_border_color();
 
                }
                else
                {
 
-                  //return ::color::color(255, 0x30, 0x75, 0xA0);
+                  //return ::argb(255, 0x30, 0x75, 0xA0);
                   return pinteraction->top_level_frame()->get_moveable_border_color();
 
                }
@@ -279,13 +279,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::color(255, 0, 0, 0);
+                  return ::argb(255, 0, 0, 0);
 
                }
                else
                {
 
-                  return ::color::color(255, 255, 255, 255);
+                  return ::argb(255, 255, 255, 255);
 
                }
 
@@ -296,14 +296,14 @@ namespace experience_anthill
                if (estate & ::user::e_state_disabled)
                {
 
-                  return ::color::color(255, 128, 128, 128);
+                  return ::argb(255, 128, 128, 128);
 
                }
 
                if (estate & ::user::e_state_pressed)
                {
 
-                  return ::color::color(255, 0x07, 0x6D, 0x91);
+                  return ::argb(255, 0x07, 0x6D, 0x91);
 
                }
 
@@ -315,11 +315,11 @@ namespace experience_anthill
                   colorHover.lightness_rate(0.2);
 
                   return colorHover;
-                  //return ::color::color(255, 0x55, 0x99, 0xC2);
+                  //return ::argb(255, 0x55, 0x99, 0xC2);
 
                }
 
-               //return ::color::color(255, 0x30, 0x75, 0xA0);
+               //return ::argb(255, 0x30, 0x75, 0xA0);
                return pinteraction->top_level_frame()->get_moveable_border_color();
 
             }
@@ -360,14 +360,14 @@ namespace experience_anthill
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 185, 185, 180);
+               return ::argb(255, 185, 185, 180);
 
             }
             else
             {
 
 
-               return ::color::color(255, 235, 235, 230);
+               return ::argb(255, 235, 235, 230);
 
             }
 
@@ -378,14 +378,14 @@ namespace experience_anthill
             if (is_dark_mode())
             {
 
-               return ::color::color(255, 125, 125, 120);
+               return ::argb(255, 125, 125, 120);
 
             }
             else
             {
 
 
-               return ::color::color(255, 175, 175, 170);
+               return ::argb(255, 175, 175, 170);
 
             }
 
@@ -400,13 +400,13 @@ namespace experience_anthill
          if (is_dark_mode())
          {
 
-            return ::color::color(255, 0, 0, 0);
+            return ::argb(255, 0, 0, 0);
 
          }
          else
          {
 
-            return ::color::color(255, 255, 255, 255);
+            return ::argb(255, 255, 255, 255);
 
          }
 
@@ -421,13 +421,13 @@ namespace experience_anthill
             if (estate & ::user::e_state_new_input)
             {
 
-               return ::color::color(255, 127, 127, 127);
+               return ::argb(255, 127, 127, 127);
 
             }
             else
             {
 
-               return ::color::color(255, 255, 255, 255);
+               return ::argb(255, 255, 255, 255);
 
             }
 
@@ -438,13 +438,13 @@ namespace experience_anthill
             if (estate & ::user::e_state_new_input)
             {
 
-               return ::color::color(255, 192, 192, 192);
+               return ::argb(255, 192, 192, 192);
 
             }
             else
             {
 
-               return ::color::color(255, 0, 0, 0);
+               return ::argb(255, 0, 0, 0);
 
             }
 
@@ -454,7 +454,7 @@ namespace experience_anthill
       else if (eelement == ::e_element_border)
       {
 
-         return ::color::color(255, 127, 127, 127);
+         return ::argb(255, 127, 127, 127);
 
       }
       else if (eelement == ::e_element_item_text)
@@ -599,7 +599,7 @@ namespace experience_anthill
                else
                {
 
-                  return ::color::color(50, 120, 190, 127);
+                  return ::color::color(50, 120, 190, 50);
 
                }
 
@@ -644,8 +644,290 @@ namespace experience_anthill
 
 
       }
+      else if (eelement == ::e_element_scrollbar)
+      {
 
-      return ::color::color();
+         return argb(100, 192, 192, 192);
+
+      }
+      else if (eelement == ::e_element_scrollbar_trackbar)
+      {
+
+         return argb(160, 140, 140, 140);
+
+      }
+      else if (eelement == ::e_element_scrollbar_rectA)
+      {
+
+         return argb(160, 140, 140, 140);
+
+      }
+      else if (eelement == ::e_element_scrollbar_rectB)
+      {
+
+         return argb(160, 140, 140, 140);
+
+      }
+      else if (eelement == ::e_element_item_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return argb(255, 192, 192, 192);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return argb(255, 40, 40, 40);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_item_background)
+      {
+
+         if (estate & ::user::e_state_hover)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 150, 150, 150);
+
+               }
+               else
+               {
+
+                  return argb(255, 160, 160, 160);
+
+               }
+
+            }
+            else
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 110, 110, 110);
+
+               }
+               else
+               {
+
+                  return argb(255, 200, 200, 200);
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 130, 130, 130);
+
+               }
+               else
+               {
+
+                  return argb(255, 180, 180, 180);
+
+               }
+
+            }
+            else
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return argb(255, 80, 80, 80);
+
+               }
+               else
+               {
+
+                  return argb(255, 255, 255, 255);
+
+               }
+
+            }
+
+         }
+
+         }
+      else if (eelement == ::e_element_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return argb(255, 192, 192, 192);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return argb(255, 40, 40, 40);
+
+            }
+
+         }
+
+         }
+      else if (eelement == ::e_element_border)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return argb(255, 192, 192, 192);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return argb(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return argb(255, 40, 40, 40);
+
+            }
+
+         }
+
+         }
+      else if (eelement == ::e_element_background)
+      {
+
+         if (is_dark_mode())
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return argb(127, 120, 120, 120);
+
+            }
+            else
+            {
+
+               return argb(127, 80, 80, 80);
+
+            }
+
+         }
+         else
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return argb(127, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return argb(127, 210, 210, 210);
+
+            }
+
+
+         }
+
+         }
+      else
+      {
+
+         if (is_dark_mode())
+         {
+
+            return argb(255, 50, 50, 50);
+
+         }
+         else
+         {
+
+            return argb(255, 40, 40, 40);
+
+         }
+
+      }
+
+
+      return {};
 
    }
 

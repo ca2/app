@@ -2466,7 +2466,7 @@ namespace user
          display_restored();
 
       }
-      else if (edisplay == e_display_hide)
+      else if (edisplay == e_display_hide || edisplay == e_display_none)
       {
 
 #ifdef INFO_LAYOUT_DISPLAY
@@ -4751,7 +4751,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pgraphicscalla)
       {
@@ -4761,7 +4761,7 @@ namespace user
 
             auto pcall = m_pgraphicscalla->pick_first();
 
-            //synchronouslock.unlock();
+            synchronouslock.unlock();
 
             try
             {
@@ -4774,7 +4774,7 @@ namespace user
 
             }
 
-            //synchronouslock.lock();
+            synchronouslock.lock();
 
          }
 

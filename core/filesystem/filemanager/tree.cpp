@@ -275,57 +275,62 @@ namespace filemanager
 
          ::pointer<::userfs::item>pitemChild;
 
-         ::data::tree_item * ptreeitemParent = get_base_item();
-
-         ::file::path_array patha;
-
-         ascendants_path(pathUser, patha);
-
-         for (auto & pathAscendant : patha)
+         if (dir()->is(pathUser))
          {
 
-            ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
+            ::data::tree_item * ptreeitemParent = get_base_item();
 
-            string strName;
+            ::file::path_array patha;
 
-            strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+            ascendants_path(pathUser, patha);
 
-            if (pathAscendant.has_char() && strName.has_char())
+            for (auto & pathAscendant : patha)
             {
 
-               if (ptreeitemChild == nullptr)
+               ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
+
+               string strName;
+
+               strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
+
+               if (pathAscendant.has_char() && strName.has_char())
                {
 
-                  pitemChild = __new(::userfs::item(this));
-
-                  pitemChild->set_user_path(pathAscendant);
-
-                  pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
-
-                  pitemChild->m_strName = strName;
-
-                  pitemChild->m_flags.add(::file::e_flag_folder);
-
-                  ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
-
-                  if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+                  if (ptreeitemChild == nullptr)
                   {
 
-                     ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+                     pitemChild = __new(::userfs::item(this));
+
+                     pitemChild->set_user_path(pathAscendant);
+
+                     pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
+
+                     pitemChild->m_strName = strName;
+
+                     pitemChild->m_flags.add(::file::e_flag_folder);
+
+                     ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
+
+                     if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
+                     {
+
+                        ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     ptreeitemChild->set_parent(ptreeitemParent);
 
                   }
 
                }
-               else
-               {
 
-                  ptreeitemChild->set_parent(ptreeitemParent);
-
-               }
+               ptreeitemParent = ptreeitemChild;
 
             }
-
-            ptreeitemParent = ptreeitemChild;
 
          }
 

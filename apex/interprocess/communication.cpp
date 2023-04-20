@@ -82,7 +82,7 @@ namespace interprocess
 
       //}
 
-      int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
+      ::process_identifier iPid = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
       //defer_add_module(file()->module(), iPid);
 

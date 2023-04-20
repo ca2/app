@@ -140,7 +140,7 @@ namespace acme
       virtual void call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode);
 
 
-      virtual ::atom_array get_pid_from_module_list_file(const ::scoped_string & scopedstr);
+      virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr);
 
 
       //idaPid = pnode->(path, false);

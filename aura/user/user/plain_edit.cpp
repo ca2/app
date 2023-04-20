@@ -8257,7 +8257,22 @@ namespace user
 
       psystem->_001AddPacks(m_base64map, strText);
 
-      if (!m_bMultiLine)
+      if (m_bMultiLine)
+      {
+
+#ifdef WINDOWS_DESKTOP
+
+         if (strText.contains('\r') && !strText.contains('\n'))
+         {
+
+            strText.find_replace("\r", "\r\n");
+
+         }
+
+#endif
+
+      }
+      else
       {
 
          strText.find_replace("\n", "");

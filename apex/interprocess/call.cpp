@@ -77,7 +77,7 @@ namespace interprocess
    void call::exclude_pid(::i32 iPid)
    {
 
-      m_iaExclude.add(iPid);
+      m_processidentifieraExclude.add(iPid);
 
    }
 
@@ -165,12 +165,12 @@ namespace interprocess
    }
 
 
-   atom_array call::prepare_call()
+   ::process_identifier_array call::prepare_call()
    {
 
       ///exclude_this_app();
 
-      auto iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
+      auto iaPid = m_pinterprocesscommunication->processes_identifiers(m_strApp);
 
       if (iaPid.is_empty())
       {
@@ -184,11 +184,11 @@ namespace interprocess
 
          m_pinterprocesscommunication->start(m_strApp);
 
-         iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
+         iaPid = m_pinterprocesscommunication->processes_identifiers(m_strApp);
 
       }
 
-      iaPid -= m_iaExclude;
+      iaPid -= m_processidentifieraExclude;
 
       return iaPid;
 

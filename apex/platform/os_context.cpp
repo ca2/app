@@ -66,32 +66,31 @@
    }
 
 
-   bool os_context::path_pid(u32& dwPid, const ::string & lpszName)
+   ::process_identifier os_context::module_path_process_identifier(const ::string & lpszName)
    {
 
       __UNREFERENCED_PARAMETER(lpszName);
-      __UNREFERENCED_PARAMETER(dwPid);
 
       throw ::interface_only("this is an interface");
 
-      return false;
+      return -1;
 
    }
 
 
-   bool os_context::title_pid(u32& dwPid, const ::string & lpszName)
+   ::process_identifier os_context::title_process_identifier(const ::string & lpszName)
    {
 
       __UNREFERENCED_PARAMETER(lpszName);
-      __UNREFERENCED_PARAMETER(dwPid);
       
       throw ::interface_only("this is an interface");
-      return false;
+
+      return -1;
 
    }
 
 
-   int os_context::get_pid()
+   ::process_identifier os_context::current_process_identifier()
    {
       
       throw ::interface_only("this is an interface");
@@ -101,24 +100,22 @@
    }
 
    
-   ::file::path os_context::get_process_path(u32 dwPid)
+   ::file::path os_context::process_identifier_module_path(::process_identifier dwPid)
    {
       
       __UNREFERENCED_PARAMETER(dwPid);
 
       throw ::interface_only("this is an interface");
 
-      return "";
+      return {};
 
    }
 
    
-   void os_context::get_all_processes(u32_array & dwa )
+   ::process_identifier_array os_context::processes_identifiers()
    {
 
-      __UNREFERENCED_PARAMETER(dwa);
-
-      throw ::interface_only("this is an interface");
+      return acmenode()->processes_identifiers();
 
    }
 
@@ -857,9 +854,21 @@
    //}
 
 
-   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array& patha, ::process_identifier_array& uaPid)
    {
 
+      ASSERT(sizeof(::u32) == sizeof(u32));
+
+      uaPid = this->processes_identifiers();
+
+      patha.set_size(uaPid.get_count());
+
+      for (index i = 0; i < uaPid.get_count(); i++)
+      {
+
+         patha[i] = process_identifier_module_path(uaPid[i]);
+
+      }
 
    }
 
@@ -869,7 +878,7 @@
 
       ::file::path_array patha;
 
-      u32_array uaPid;
+      ::process_identifier_array uaPid;
 
       list_process(patha, uaPid);
 

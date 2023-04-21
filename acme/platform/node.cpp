@@ -137,10 +137,10 @@ namespace acme
    }
 
 
-   ::atom_array node::get_pid_from_module_list_file(const ::scoped_string & scopedstrAppId)
+   ::process_identifier_array node::module_list_file_processes_identifiers(const ::scoped_string & scopedstrAppId)
    {
 
-      ::atom_array idaPid;
+      ::process_identifier_array idaPid;
 
 #if defined(UNIVERSAL_WINDOWS)
 
@@ -2205,7 +2205,7 @@ return false;
    //}
 
 
-   ::i64 node::get_current_process_id()
+::process_identifier node::current_process_identifier()
    {
 
       return -1;
@@ -2689,7 +2689,7 @@ return false;
 #if !defined(WINDOWS)
 
 
-   string_array node::cmdline_from_pid(unsigned int pid)
+   string_array node::cmdline_from_pid(::process_identifier pid)
    {
 
       throw interface_only();

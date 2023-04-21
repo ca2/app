@@ -245,6 +245,8 @@ list(APPEND library_source
         #operating_system/ansi/memory.cpp
         operating_system/ansi/process.cpp
         #operating_system/ansi/user.cpp
+        operating_system/application.cpp
+        operating_system/application.h
         operating_system/argcargv.cpp
         operating_system/chronometer.cpp
         operating_system/console.cpp
@@ -253,6 +255,8 @@ list(APPEND library_source
         operating_system/debug.cpp
         operating_system/file.cpp
         #operating_system/http.cpp
+        operating_system/main_window.cpp
+        operating_system/main_window.h
         operating_system/parallelization.cpp
         operating_system/process.h
         operating_system/summary.cpp

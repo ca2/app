@@ -838,10 +838,10 @@ namespace interprocess
    }
 
 
-::process_identifier_array communication::processes_identifiers(const ::string & strApp)
+   ::atom_array communication::get_pid(const ::string & strApp)
    {
 
-      ::process_identifier_array idaPid;
+      ::atom_array idaPid;
 
       auto psystem = acmesystem();
 
@@ -857,7 +857,14 @@ namespace interprocess
 
 //#if 0
 
-      idaPid = pnode->module_list_file_processes_identifiers(strApp);
+      auto pids = pnode->module_list_file_processes_identifiers(strApp);
+
+      for (auto & pid : pids)
+      {
+
+         idaPid.add(pid);
+
+      }
 
 //#else
 //

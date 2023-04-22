@@ -74,10 +74,10 @@ namespace interprocess
 
    //m_pcontext->m_papexcontext->os_context()->get_pid()
 
-   void call::exclude_pid(::i32 iPid)
+   void call::exclude_pid(const ::atom & idPid)
    {
 
-      m_processidentifieraExclude.add(iPid);
+      m_atomaExclude.add(idPid);
 
    }
 
@@ -165,7 +165,7 @@ namespace interprocess
    }
 
 
-   ::process_identifier_array call::prepare_call()
+   ::atom_array call::prepare_call()
    {
 
       ///exclude_this_app();
@@ -188,7 +188,7 @@ namespace interprocess
 
       }
 
-      iaPid -= m_processidentifieraExclude;
+      iaPid -= m_atomaExclude;
 
       return iaPid;
 

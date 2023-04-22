@@ -364,7 +364,20 @@ public:
    //atom(const ::lparam & lparam);
    template < primitive_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
-   atom(::atom && atom) { m_etype = atom.m_etype; m_u = atom.m_u; atom.m_etype = e_type_integer; atom.m_u = 0; }
+   atom(::atom && atom) 
+   { 
+      m_etype = atom.m_etype; 
+      if (atom.m_etype & e_type_text)
+      {
+         ::new(&m_str) ::string(::transfer(atom.m_str));
+      }
+      else
+      {
+         m_u = atom.m_u;
+      }
+      atom.m_etype = e_type_integer; 
+      atom.m_u = 0; 
+   }
    ~atom()
    {
 

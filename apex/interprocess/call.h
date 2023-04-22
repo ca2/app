@@ -23,7 +23,7 @@ namespace interprocess
 
       ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
       string                                       m_strApp;
-      ::process_identifier_array                                     m_processidentifieraExclude;
+      atom_array                                   m_atomaExclude;
       bool                                         m_bAutoLaunch;
 
       // idPid - Task
@@ -41,7 +41,7 @@ namespace interprocess
 
       bool is_auto_launch() const;
 
-      void exclude_pid(::i32 iPid);
+      void exclude_pid(const ::atom & idPid);
 
       //virtual void post(const ::atom& idPid);
       virtual void send(const ::atom & idPid);

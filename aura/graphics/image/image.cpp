@@ -10268,7 +10268,7 @@ void image::_unmap()
    if (::is_null(m_pextension))
    {
 
-      m_pextension = memory_new image_extension();
+      __construct_new(m_pextension);
 
    }
 

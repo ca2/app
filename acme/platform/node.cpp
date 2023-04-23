@@ -2681,7 +2681,17 @@ return false;
    int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
    {
 
+      return command_system(scopedstr, {}, tracefunction);
+
+   }
+
+
+   int node::command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction)
+   {
+
       throw interface_only();
+
+      return -1;
 
    }
 

@@ -133,8 +133,22 @@ void acme_file::overwrite_if_different(const ::file::path & pathTarget, const ::
 }
 
 
-file_pointer acme_file::open(const ::file::path & pathParam, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception)
+file_pointer acme_file::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
 {
+
+   if (payloadFile.m_etype == e_type_element)
+   {
+
+      auto pfile = payloadFile.cast < ::file::file>();
+
+      if (pfile)
+      {
+
+         return pfile;
+
+      }
+
+   }
 
    auto pfile = m_pcontext->__create < ::file::file >();
 
@@ -145,7 +159,9 @@ file_pointer acme_file::open(const ::file::path & pathParam, ::file::e_open eope
 
    }
 
-   auto path = acmepath()->defer_process_relative_path(pathParam);
+   auto pathFile = payloadFile.as_file_path();
+
+   auto path = acmepath()->defer_process_relative_path(pathFile);
 
    pfile->open(path, eopen);
 
@@ -1317,7 +1333,7 @@ string_array acme_file::lines(const ::file::path & pathParam)
    try
    {
 
-      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
+      auto pfile = get_file(path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
 
       if (pfile.nok())
       {
@@ -1373,7 +1389,7 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
 
    m_pacmedirectory->create(path.folder());
 
-   auto pfile = open(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
+   auto pfile = get_file(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
 
    //if (!pfile)
    //{
@@ -1466,7 +1482,7 @@ void acme_file::set_line(const ::file::path & pathParam, index iLine, const ::sc
       {
 
          auto pfile2 =
-            open(
+            get_file(
                pathTime, 
                ::file::e_open_write 
                | ::file::e_open_share_exclusive 
@@ -1823,7 +1839,7 @@ void acme_file::_erase(const ::file::path & path)
 ::pointer<::handle::ini>acme_file::get_ini(const ::payload & payloadFile)
 {
 
-   auto preader = this->open(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
+   auto preader = this->get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
 
    if (preader.nok())
    {

@@ -3339,6 +3339,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
 
             pfile->m_estatus = error_not_a_file;
 
+            pfile->set_nok();
+
             return pfile;
 
          }
@@ -3396,6 +3398,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
          __construct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
+
+         pfile->set_nok();
 
          return pfile;
 

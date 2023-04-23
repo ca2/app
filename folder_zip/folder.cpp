@@ -135,6 +135,8 @@ namespace folder_zip
       zipfi.tmz_date.tm_mon = earthtimeCreation.month();
       zipfi.tmz_date.tm_mday = earthtimeCreation.day();
 
+#ifdef WINDOWS_DESKTOP
+
       FILETIME filetimeLocal;
 
       ::time_to_file_time((file_time_t *) & filetimeLocal, &timeModification);
@@ -145,6 +147,8 @@ namespace folder_zip
       ::FileTimeToDosDateTime(&filetimeLocal, &dosDate, &dosTime);
 
       zipfi.dosDate = (dosDate << 16) | (dosTime);
+
+#endif
 
       zipOpenNewFileInZip(m_zipfile, pszRelative, &zipfi, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, Z_DEFAULT_COMPRESSION);
 

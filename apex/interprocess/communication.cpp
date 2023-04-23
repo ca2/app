@@ -851,7 +851,14 @@ namespace interprocess
 
       ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 
-      idaPid = pnode->module_path_processes_identifiers(path, false);
+      auto processesidentifiers = pnode->module_path_processes_identifiers(path, false);
+
+      for(auto & processidentifier : processesidentifiers)
+      {
+
+         idaPid.add(processidentifier);
+
+      }
 
 #else
 

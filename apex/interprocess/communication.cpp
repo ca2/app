@@ -330,7 +330,7 @@ namespace interprocess
 
       synchronous_lock synchronouslock(pmutex);
 
-      auto idaPid = processes_identifiers(strApp);
+      auto idaPid = get_pid(strApp);
 
       if (idaPid.get_count() > 0)
       {
@@ -354,7 +354,7 @@ namespace interprocess
 
       {
 
-         auto ida = processes_identifiers(strApp);
+         auto ida = get_pid(strApp);
 
          if (ida.is_empty())
          {
@@ -377,7 +377,7 @@ namespace interprocess
 
                iStep++;
 
-               ida = processes_identifiers(strApp);
+               ida = get_pid(strApp);
 
                if (ida.has_element())
                {

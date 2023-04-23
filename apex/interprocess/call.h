@@ -52,7 +52,7 @@ namespace interprocess
       bool _wait(const class time & timeWait) override;
 
 
-      virtual ::process_identifier_array prepare_call();
+      virtual ::atom_array prepare_call();
 
 
       virtual void send_call();

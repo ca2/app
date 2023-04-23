@@ -170,7 +170,7 @@ namespace interprocess
 
       ///exclude_this_app();
 
-      auto iaPid = m_pinterprocesscommunication->processes_identifiers(m_strApp);
+      auto iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
 
       if (iaPid.is_empty())
       {
@@ -184,7 +184,7 @@ namespace interprocess
 
          m_pinterprocesscommunication->start(m_strApp);
 
-         iaPid = m_pinterprocesscommunication->processes_identifiers(m_strApp);
+         iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
 
       }
 

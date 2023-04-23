@@ -39,7 +39,7 @@ public:
    virtual ::file::path module();
 
 
-   virtual file_pointer open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
+   file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
    virtual file_pointer stdio_open(const ::file::path & path, const scoped_string & attrs, int iShare);
 
 

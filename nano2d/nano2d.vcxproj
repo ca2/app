@@ -291,9 +291,9 @@
     <ClInclude Include="_nano2d_config.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="color.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="draw2d_context.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="font_sink.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -306,7 +306,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

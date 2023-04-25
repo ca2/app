@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A2976F829E8793000502330 /* libnanoui.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2976E129E8781C00502330 /* libnanoui.dylib */; };
 		9A29773729E87E1000502330 /* ImageImpact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A29773529E87DC800502330 /* ImageImpact.cpp */; };
 		9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C327EAE8F2009ADCD2 /* _.cpp */; };
 		9A3CA81B27EAE970009ADCD2 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA72927EAE8F0009ADCD2 /* Button.cpp */; };
@@ -41,58 +40,29 @@
 		9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA84527EAEB68009ADCD2 /* platform.mm */; };
 		9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84727EAED75009ADCD2 /* AppKit.framework */; };
 		9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84927EAED95009ADCD2 /* IOKit.framework */; };
+		9A9E579B29F8602B001559E9 /* libnano2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E579829F8600F001559E9 /* libnano2d.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A2976E029E8781C00502330 /* PBXContainerItemProxy */ = {
+		9A9E579729F8600F001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2976DB29E8781700502330 /* nano2d.xcodeproj */;
+			containerPortal = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A3CA6E527EAE89B009ADCD2;
-			remoteInfo = nanoui;
-		};
-		9A2976F629E8790900502330 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2976DB29E8781700502330 /* nano2d.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A3CA6E427EAE89B009ADCD2;
+			remoteGlobalIDString = 9A9E560829F8556C001559E9;
 			remoteInfo = nano2d;
 		};
-		9A2AA66227F952B000DB0519 /* PBXContainerItemProxy */ = {
+		9A9E579929F8601C001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
-		};
-		9A2AA66427F952B000DB0519 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AEA1773275FF4F2006437A3;
-			remoteInfo = ios_aura;
-		};
-		9A2AA66627F952B000DB0519 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
-		};
-		9A2AA66827F952C900DB0519 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+			containerPortal = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 9A9E560729F8556C001559E9;
+			remoteInfo = nano2d;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A2976DB29E8781700502330 /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = "<group>"; };
 		9A29773529E87DC800502330 /* ImageImpact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageImpact.cpp; sourceTree = "<group>"; };
 		9A29773629E87DC800502330 /* ImageImpact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageImpact.h; sourceTree = "<group>"; };
-		9A2AA65C27F952B000DB0519 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A3CA6E527EAE89B009ADCD2 /* libnanoui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnanoui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
 		9A3CA70727EAE8EF009ADCD2 /* ColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
@@ -158,6 +128,7 @@
 		9A3CA84527EAEB68009ADCD2 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
 		9A3CA84727EAED75009ADCD2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A3CA84927EAED95009ADCD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		9A9E579229F8600F001559E9 /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2976F829E8793000502330 /* libnanoui.dylib in Frameworks */,
+				9A9E579B29F8602B001559E9 /* libnano2d.dylib in Frameworks */,
 				9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */,
 				9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */,
 				9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */,
@@ -178,29 +149,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A2976DC29E8781700502330 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A2976E129E8781C00502330 /* libnanoui.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A2AA65D27F952B000DB0519 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A2AA66327F952B000DB0519 /* libaura.dylib */,
-				9A2AA66527F952B000DB0519 /* libios_aura.a */,
-				9A2AA66727F952B000DB0519 /* aura_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A3CA6DC27EAE89B009ADCD2 = {
 			isa = PBXGroup;
 			children = (
-				9A2976DB29E8781700502330 /* nano2d.xcodeproj */,
-				9A2AA65C27F952B000DB0519 /* aura.xcodeproj */,
+				9A9E579229F8600F001559E9 /* nano2d.xcodeproj */,
 				9A3CA6F427EAE8EF009ADCD2 /* nanoui */,
 				9A3CA6E627EAE89B009ADCD2 /* Products */,
 				9A3CA83427EAE981009ADCD2 /* Frameworks */,
@@ -295,6 +247,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A9E579329F8600F001559E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A9E579829F8600F001559E9 /* libnano2d.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -319,8 +279,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A2976F729E8790900502330 /* PBXTargetDependency */,
-				9A2AA66927F952C900DB0519 /* PBXTargetDependency */,
+				9A9E579A29F8601C001559E9 /* PBXTargetDependency */,
 			);
 			name = nanoui;
 			productName = nanoui;
@@ -354,12 +313,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A2AA65D27F952B000DB0519 /* Products */;
-					ProjectRef = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A2976DC29E8781700502330 /* Products */;
-					ProjectRef = 9A2976DB29E8781700502330 /* nano2d.xcodeproj */;
+					ProductGroup = 9A9E579329F8600F001559E9 /* Products */;
+					ProjectRef = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -370,32 +325,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A2976E129E8781C00502330 /* libnanoui.dylib */ = {
+		9A9E579829F8600F001559E9 /* libnano2d.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libnanoui.dylib;
-			remoteRef = 9A2976E029E8781C00502330 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2AA66327F952B000DB0519 /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A2AA66227F952B000DB0519 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2AA66527F952B000DB0519 /* libios_aura.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_aura.a;
-			remoteRef = 9A2AA66427F952B000DB0519 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2AA66727F952B000DB0519 /* aura_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 9A2AA66627F952B000DB0519 /* PBXContainerItemProxy */;
+			path = libnano2d.dylib;
+			remoteRef = 9A9E579729F8600F001559E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -438,15 +372,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A2976F729E8790900502330 /* PBXTargetDependency */ = {
+		9A9E579A29F8601C001559E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = nano2d;
-			targetProxy = 9A2976F629E8790900502330 /* PBXContainerItemProxy */;
-		};
-		9A2AA66927F952C900DB0519 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9A2AA66827F952C900DB0519 /* PBXContainerItemProxy */;
+			targetProxy = 9A9E579929F8601C001559E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -1,4 +1,4 @@
-﻿//   Creator : El Barto (ef00@luc.ac.be)
+//   Creator : El Barto (ef00@luc.ac.be)
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
@@ -72,11 +72,27 @@ image::image()
 
 image::~image()
 {
+   
+   auto psystem = acmesystem();
 
-   if (acmesystem())
+   if (::is_set(psystem))
    {
-
-      acmesystem()->m_paurasystem->draw2d()->erase_image(this);
+      
+      auto paurasystem = psystem->m_paurasystem;
+      
+      if(::is_set(paurasystem))
+      {
+         
+         auto pdraw2d = paurasystem->draw2d();
+         
+         if(::is_set(pdraw2d))
+         {
+            
+            pdraw2d->erase_image(this);
+            
+         }
+         
+      }
 
    }
 

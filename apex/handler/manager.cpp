@@ -380,7 +380,7 @@ void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 void manager::__s_erase_signal_handler(const ::signal_handler& signalhandler)
 {
 
-   critical_section_lock synchronouslock(s_pcriticalsection);
+   critical_section_lock synchronouslock(&s_criticalsection);
 
    for (auto & passociation : s_managerset)
    {

@@ -43,19 +43,12 @@ public:
 };
 
 
-
-::critical_section_impl* create_critical_section_impl()
-{
-
-   return new ::critical_section_impl;
-
-}
-
-
 critical_section::critical_section()
 {
 
-   m_pimpl = create_critical_section_impl();
+   m_pimpl = (::critical_section_impl*)malloc(sizeof(critical_section_impl));
+
+   ::new(&m_pimpl) ::critical_section_impl();
 
 }
 
@@ -63,7 +56,9 @@ critical_section::critical_section()
 critical_section::~critical_section()
 {
 
-   delete m_pimpl;
+   m_pimpl->~critical_section_impl();
+
+   free(m_pimpl);
 
 }
 

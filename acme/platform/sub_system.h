@@ -45,7 +45,7 @@ class CLASS_DECL_ACME sub_system :
 public:
 
 
-   critical_section                                m_criticalsection;
+   ::critical_section                              m_criticalsection;
    
    ::e_display                                     m_edisplay;
    ::e_activation                                  m_eactivativation;

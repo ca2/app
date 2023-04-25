@@ -8,7 +8,11 @@
 #include "acme/primitive/comparison/compare.h"
 
 
+#include "acme/primitive/time/time.h"
+
+
 #include "_string.h"
+
 
 using dword_array = ::numeric_array < DWORD >;
 

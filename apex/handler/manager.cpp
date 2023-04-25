@@ -6,7 +6,7 @@
 //#include "acme/primitive/collection/set.h"
 
 
-critical_section manager::s_criticalsection;
+::critical_section manager::s_criticalsection;
    
 
 ::set<manager_pointer > manager::s_managerset;
@@ -380,7 +380,7 @@ void manager::erase_signal_handler(const ::signal_handler& signalhandler)
 void manager::__s_erase_signal_handler(const ::signal_handler& signalhandler)
 {
 
-   critical_section_lock synchronouslock(&s_criticalsection);
+   critical_section_lock synchronouslock(s_pcriticalsection);
 
    for (auto & passociation : s_managerset)
    {

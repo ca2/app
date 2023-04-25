@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/_operating_system.h"
+
+
 #include "condition_variable.h"
 #include "acme/primitive/primitive/particle.h"
 
@@ -26,8 +29,8 @@ public:
 
 #else
 
-   critical_section     m_criticalsection;
-   condition_variable   m_conditionvariable;
+   CRITICAL_SECTION                    m_criticalsection;
+   condition_variable                  m_conditionvariable;
 
 #endif
 

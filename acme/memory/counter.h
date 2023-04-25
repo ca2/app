@@ -12,11 +12,11 @@ class CLASS_DECL_ACME memory_counter :
 public:
 
 
-   int m_iMemoryCounters = -1;
+   int                        m_iMemoryCounters = -1;
 
-   critical_section m_criticalsection;
+   ::critical_section         m_criticalsection;
 
-   int m_iMemoryCountersStartable = 0;
+   int                        m_iMemoryCountersStartable = 0;
 
    ::string_map < iptr >      m_mapMemoryCounter;
 

@@ -24,7 +24,7 @@ namespace acme
       pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
 
 
-      critical_section m_criticalsectionChannel;
+      ::critical_section m_criticalsectionChannel;
 
 
       ::critical_section* channel_critical_section()
@@ -35,7 +35,7 @@ namespace acme
       }
 
 
-      critical_section m_criticalsectionMessageDispatch;
+      ::critical_section m_criticalsectionMessageDispatch;
 
 
       ::critical_section* message_dispatch_critical_section()
@@ -47,7 +47,7 @@ namespace acme
 
       static acme * g_p;
 
-      critical_section m_criticalsectionSystemHeap;
+      ::critical_section m_criticalsectionSystemHeap;
 
       ::critical_section* system_heap_critical_section() { return &m_criticalsectionSystemHeap; }
 
@@ -71,13 +71,13 @@ namespace acme
 
 #if !defined(WINDOWS)
 
-      critical_section m_criticalsectionDemangle;
+      ::critical_section m_criticalsectionDemangle;
 
 
 #endif
 
 
-      //critical_section m_criticalsectionSystemHeap;
+      //::critical_section m_criticalsectionSystemHeap;
 
 
 #ifdef WINDOWS
@@ -100,7 +100,7 @@ namespace acme
 
 #ifdef ANDROID
 
-      ::critical_section m_criticalsectionOutputDebugStringA;
+      ::::critical_section m_criticalsectionOutputDebugStringA;
 
 
 #endif

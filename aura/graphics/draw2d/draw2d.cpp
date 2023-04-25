@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "lock.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/save_image.h"
@@ -103,6 +103,13 @@ namespace draw2d
 
    void draw2d::erase_object(::draw2d::object * pobject)
    {
+      
+      if(::is_null(this))
+      {
+         
+         return;
+         
+      }
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 

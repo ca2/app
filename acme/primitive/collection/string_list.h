@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "comparable_list.h"
@@ -18,17 +18,17 @@ public:
    ~string_list() override;
 
 
-   void explode(::const_ansi_range rangeSeparator, ::const_ansi_range range);
+   void explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr);
 
-   void implode(string & rwstr, ::const_ansi_range rangeSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
+   void implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
 
-   string implode(::const_ansi_range rangeSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
+   string implode(const ::scoped_string & scopedstrSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
 
-   void reverse_implode(string & rwstr, ::const_ansi_range rangeSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
+   void reverse_implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
 
-   string reverse_implode(::const_ansi_range rangeSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
+   string reverse_implode(const ::scoped_string & scopedstrSeparator = nullptr, index iStart = 0, ::count iCount = -1) const;
 
-   void add_tail_tokens(::const_ansi_range range, ::const_ansi_range rangeSeparator, bool bAddEmpty);
+   void add_tail_tokens(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bAddEmpty);
 
 
    //virtual ::stream & read(::stream & stream) override;

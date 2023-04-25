@@ -1,4 +1,4 @@
-﻿	//
+	//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
@@ -127,13 +127,13 @@ namespace nano2d
 		virtual void shape_anti_alias(int enabled);
 
 		// Sets current stroke style to a solid color.
-		virtual void stroke_color(::nano2d::color color);
+		virtual void stroke_color(::color::color color);
 
 		// Sets current stroke style to a paint, which can be a one of the gradients or a pattern.
 		virtual void stroke_paint(paint paint);
 
 		// Sets current fill style to a solid color.
-		virtual void fill_color(::nano2d::color color);
+		virtual void fill_color(::color::color color);
 
 		// Sets current fill style to a paint, which can be a one of the gradients or a pattern.
 		virtual void fill_paint(paint paint);
@@ -245,19 +245,19 @@ namespace nano2d
 		// Creates and returns a linear gradient. Parameters (sx,sy)-(ex,ey) specify the start and end coordinates
 		// of the linear gradient, icol specifies the start color and ocol the end color.
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
-		virtual ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey, ::nano2d::color icol, ::nano2d::color ocol);
+		virtual ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey, ::color::color icol, ::color::color ocol);
 
 		// Creates and returns a box gradient. Box gradient is a feathered rounded rectangle, it is useful for rendering
 		// drop shadows or highlights for boxes. Parameters (x,y) define the top-left corner of the rectangle,
 		// (w,h) define the size of the rectangle, r defines the corner radius, and f feather. Feather defines how blurry
 		// the border of the rectangle is. Parameter icol specifies the inner color and ocol the outer color of the gradient.
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
-		virtual ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::nano2d::color icol, ::nano2d::color ocol);
+		virtual ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::color::color icol, ::color::color ocol);
 
 		// Creates and returns a radial gradient. Parameters (cx,cy) specify the center, inr and outr specify
 		// the inner and outer radius of the gradient, icol specifies the start color and ocol the end color.
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
-		virtual ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::nano2d::color icol, ::nano2d::color ocol);
+		virtual ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::color::color icol, ::color::color ocol);
 
 		// Creates and returns an image pattern. Parameters (ox,oy) specify the left-top location of the image pattern,
 		// (ex,ey) the size of one image, angle rotation around the top-left corner, image is handle to the image to render.

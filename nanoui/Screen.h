@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/screen.h -- Top-level widget and interface between NanoGUI and GLFW
 
     A significant redesign of this code was contributed by Christian Schueller.
@@ -69,7 +69,7 @@ public:
       Widget * m_drag_widget = nullptr;
       class ::time m_last_interaction;
    //   bool m_process_events = true;
-      Color m_background;
+      ::color::color m_background;
    //   ::string m_caption;
    //   bool m_shutdown_glfw_on_destruct;
       bool m_fullscreen;
@@ -156,10 +156,10 @@ public:
 //   void set_caption(const ::scoped_string & caption);
 //
    /// Return the screen's background color
-   const Color & background() const { return m_background; }
+   const ::color::color & background() const { return m_background; }
 
    /// Set the screen's background color
-   void set_background(const Color & background) { m_background = background; }
+   void set_background(const ::color::color & background) { m_background = background; }
 
    ::image_pointer create_image(const ::size_i32 & size);
 
@@ -320,7 +320,7 @@ public:
 
    virtual void on_close();
    //bool on_mouse_move(const ::point_i32 & point) override;
-   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
 //   void drop_callback_event(int count, const char ** filenames);
@@ -353,7 +353,7 @@ public:
    void on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifierss) override;
    void on_mouse_leave() override;
 
-   bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
+   bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick) override;
    bool on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
    bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;

@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/textbox.h -- Fancy text box with builtin regular
     expression-based validation
 
@@ -45,7 +45,7 @@ namespace nanoui
          Right
       };
 
-      Color                         m_colorBackground = Color(32, 32);
+      ::color::color                         m_colorBackground = ::color::color(32, 32);
       
       ::write_text::font_pointer       m_pfontSpin;
 
@@ -111,7 +111,7 @@ namespace nanoui
       void set_callback(const ::function<bool(const ::scoped_string & str)> & callback) { m_callback = callback; }
 
       bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
@@ -220,7 +220,7 @@ public:
       set_max_value(max_value);
    }
 
-   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override
+   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)
@@ -246,7 +246,7 @@ public:
          return true;
       }
 
-      return TextBox::mouse_button_event(p, emouse, down, ekeyModifiers);
+      return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
    }
 
 
@@ -396,7 +396,7 @@ public:
    }
 
 
-   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override
+   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)

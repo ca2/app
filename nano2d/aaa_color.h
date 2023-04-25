@@ -76,40 +76,40 @@
 //// Colors in NanoVG are stored as unsigned ints in ABGR format.
 //
 //// Returns a color value from red, green, blue values. Alpha will be set to 255 (1.0f).
-//	CLASS_DECL_NANO2D	::nano2d::color RGB_color(unsigned char r, unsigned char g, unsigned char b);
+//	CLASS_DECL_NANO2D	::color::color RGB_color(unsigned char r, unsigned char g, unsigned char b);
 //
 //	// Returns a color value from red, green, blue values. Alpha will be set to 1.0f.
-//	CLASS_DECL_NANO2D ::nano2d::color RGBf_color(float r, float g, float b);
+//	CLASS_DECL_NANO2D ::color::color RGBf_color(float r, float g, float b);
 //
 //	// Returns a color value from red, green, blue and alpha values.
-//	CLASS_DECL_NANO2D ::nano2d::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+//	CLASS_DECL_NANO2D ::color::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 //
 //	// Returns a color value from red, green, blue and alpha values.
-//	CLASS_DECL_NANO2D::nano2d::color RGBAf_color(float r, float g, float b, float a);
+//	CLASS_DECL_NANO2D::color::color RGBAf_color(float r, float g, float b, float a);
 //
 //	// Linearly interpolates from color c0 to c1, and returns resulting color value.
-//	CLASS_DECL_NANO2D::nano2d::color LerpRGBA_color(color c0, color c1, float u);
+//	CLASS_DECL_NANO2D::color::color LerpRGBA_color(color c0, color c1, float u);
 //
 //	// Sets transparency of a color value.
-//	CLASS_DECL_NANO2D::nano2d::color TransRGBA_color(color c0, unsigned char a);
+//	CLASS_DECL_NANO2D::color::color TransRGBA_color(color c0, unsigned char a);
 //
 //	// Sets transparency of a color value.
-//	CLASS_DECL_NANO2D::nano2d::color TransRGBAf(color c0, float a);
+//	CLASS_DECL_NANO2D::color::color TransRGBAf(color c0, float a);
 //
 //	// Returns color value specified by hue, saturation and lightness.
 //	// HSL values are all in range [0..1], alpha will be set to 255.
-//	CLASS_DECL_NANO2D::nano2d::color HSL_color(float h, float s, float l);
+//	CLASS_DECL_NANO2D::color::color HSL_color(float h, float s, float l);
 //
 //	// Returns color value specified by hue, saturation and lightness and alpha.
 //	// HSL values are all in range [0..1], alpha in range [0..255]
-//	CLASS_DECL_NANO2D::nano2d::color HSLA_color(float h, float s, float l, unsigned char a);
+//	CLASS_DECL_NANO2D::color::color HSLA_color(float h, float s, float l, unsigned char a);
 //
 //
 //
 //} // namespace nano2d
 
 
-inline ::color::color as_color(::nano2d::color color)
+inline ::color::color as_color(::color::color color)
 {
 
 	return { color.r, color.g, color.b, color.a };
@@ -117,7 +117,7 @@ inline ::color::color as_color(::nano2d::color color)
 }
 
 
-//inline ::nano2d::color as_nano2d_color(const ::color::color& color)
+//inline ::color::color as_nano2d_color(const ::color::color& color)
 //{
 //
 //	return { color.fr(), color.fg(), color.fb(), color.fa() };

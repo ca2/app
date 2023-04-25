@@ -2210,6 +2210,7 @@ namespace user
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_subject, pchannel, this, &interaction::on_message_subject);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &::user::interaction::on_message_left_button_double_click);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDataUpdateDefaultHandling)
@@ -6321,9 +6322,20 @@ namespace user
 
       if (m_pappearance)
       {
-
-
-         m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+         
+         if(pmessage->m_wparam.m_number != 0)
+         {
+          
+            m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+            
+         }
+         
+         for(auto psz = pmessage->m_union.m_pkey->m_strText.c_str(); psz < pmessage->m_union.m_pkey->m_strText.end(); psz = ::unicode_next(psz))
+         {
+            
+            m_pappearance->on_character(unicode_index(psz));
+            
+         }
 
          pmessage->m_bRet = true;
 
@@ -17427,7 +17439,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
             auto ekeyModifiers = psession->key_modifiers();
 
-            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers))
+            bool bDoubleClick = false;
+            
+            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
             {
 
                pmouse->m_bRet = true;
@@ -17869,6 +17883,200 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
+void interaction::on_message_left_button_double_click(::message::message * pmessage)
+{
+
+   auto pmouse = pmessage->m_union.m_pmouse;
+
+   auto pszType = typeid(*this).name();
+   
+   ::output_debug_string("interaction::on_message_left_button_double_click" + ::string(pszType));
+   
+   auto pappearance = get_appearance();
+
+   if (::is_set(pappearance))
+   {
+
+      ::point_i32 pointClient;
+
+      pointClient = pmouse->m_point + screen_to_client();
+
+      auto psession = m_puserinteraction->get_session();
+
+      auto ekeyModifiers = psession->key_modifiers();
+      
+      bool bDoubleClick = true;
+
+      if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers, bDoubleClick))
+      {
+
+         pmessage->m_bRet = true;
+
+         return;
+
+      }
+
+   }
+
+   if (!is_window_enabled())
+   {
+
+      return;
+
+   }
+   
+   if (pmouse->previous())
+   {
+
+      return;
+
+   }
+
+
+   if (has_mouse_capture())
+   {
+
+      auto pwindowing = windowing();
+
+      pwindowing->release_mouse_capture();
+
+   }
+
+   auto psession = get_session();
+
+   auto pitemLeftButtonDoubleClick = hit_test(pmouse);
+
+   bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
+
+   bool bSameItemAsMouseDown = ::is_same_item(m_pitemLButtonDown, pitemLeftButtonDoubleClick);
+
+
+      if (::is_set(m_pitemLButtonDown) && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+      {
+
+         psession->m_puiLastLButtonDown = nullptr;
+
+         pmessage->m_bRet = on_click_generation(m_pitemLButtonDown);
+
+         INFORMATION("interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet);
+
+         if (pmessage->m_bRet)
+         {
+
+            pmouse->m_lresult = 1;
+
+         }
+         else
+         {
+
+            ::atom atom;
+
+            if (m_pitemLButtonDown->m_atom.is_empty())
+            {
+
+               atom = translate_property_id(m_atom);
+
+            }
+            else
+            {
+
+               atom = translate_property_id(m_pitemLButtonDown->m_atom);
+
+            }
+
+            if (has_handler())
+            {
+
+               auto ptopic = create_topic(id_left_button_double_click);
+
+               ptopic->m_puserelement = this;
+
+               ptopic->m_pitem = m_pitemLButtonDown;
+
+               ptopic->m_actioncontext.m_pmessage = pmouse;
+
+               ptopic->m_actioncontext.add(::e_source_user);
+
+               route(ptopic);
+
+               INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet);
+
+               pmessage->m_bRet = ptopic->m_bRet;
+
+            }
+
+            //if (!pmessage->m_bRet)
+            //{
+
+            //   auto estatus = command_handler(atom);
+
+            //   pmessage->m_bRet = estatus.succeeded();
+
+            //}
+
+            if (!pmessage->m_bRet)
+            {
+
+               ::message::command command(atom);
+
+               command.m_puiOther = this;
+
+               //route_command_message(&command);
+
+               route_command(&command);
+
+               TRACE("interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet);
+
+               pmessage->m_bRet = command.m_bRet;
+
+            }
+
+            if (pmessage->m_bRet)
+            {
+
+               pmouse->m_lresult = 1;
+
+            }
+
+            //               if(!pmessage->m_bRet)
+            //               {
+            //
+            //                  auto linkedproperty = fetch_property(m_atom);
+            //
+            ////                  if(linkedproperty)
+            ////                  {
+            ////
+            ////                     linkproperty
+            ////
+            ////                  }
+            ////
+            ////               }
+         }
+
+      }
+      //            else
+      //            {
+      //
+      //               if (pmessage->previous())
+      //               {
+      //
+      //                  return;
+      //
+      //               }
+      //
+      //               simple_on_control_event(pmessage, ::id_button_down);
+      //
+      //            }
+
+      psession->m_puiLastLButtonDown = nullptr;
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+   
+
    void interaction::on_message_right_button_down(::message::message * pmessage)
    {
 
@@ -17903,7 +18111,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
             auto ekeyModifiers = psession->key_modifiers();
 
-            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers))
+            bool bDoubleClick = false;
+            
+            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers, true))
             {
 
                pmouse->m_bRet = true;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "tokenizer.h"
 #include <stdio.h>
 //#include "acme/memory/_memory.h"
@@ -45,18 +45,18 @@
 //}
 
 
-bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, bool bWithSeparator)
+bool tokenizer::get_next_token(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator)
 {
 
    const_iterator iterator;
 
-   if((iterator = find(strSeparator)) != nullptr)
+   if((iterator = find(scopedstrSeparator)) != nullptr)
    {
 
       if (bWithSeparator)
       {
        
-         substring(strToken, iterator + strSeparator.size());
+         substring(strToken, iterator + scopedstrSeparator.size());
 
       }
       else
@@ -66,7 +66,7 @@ bool tokenizer::get_next_token(string &strToken, const ::string & strSeparator, 
 
       }
 
-      m_iterator = iterator + strSeparator.size();
+      m_iterator = iterator + scopedstrSeparator.size();
 
       return true;
 
@@ -340,7 +340,7 @@ bool tokenizer::get_next_smallest_token(string & strToken, const string_array & 
 }
 
 
-bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparator, bool bWithSeparator, bool bSkipAdjacent)
+bool tokenizer::get_next_token_ex(string &strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator, bool bSkipAdjacent)
 {
 
    strsize i;
@@ -349,7 +349,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
    
    substring(strMid);
 
-   if(found(i = strMid.find_first_character_in_index(strSeparator)))
+   if(found(i = strMid.find_first_character_in_index(scopedstrSeparator)))
    {
 
       if (bWithSeparator)
@@ -370,7 +370,7 @@ bool tokenizer::get_next_token_ex(string &strToken, const ::string & strSeparato
       if(bSkipAdjacent)
       {
 
-         m_iterator = (*this)(m_iterator).skip_any_character_in(strSeparator);
+         m_iterator = (*this)(m_iterator).skip_any_character_in(scopedstrSeparator);
 
       }
 

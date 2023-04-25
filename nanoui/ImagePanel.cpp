@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/imagepanel.cpp -- Image panel widget which shows a number of
     square-shaped icons
 
@@ -71,7 +71,7 @@ bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel 
 }
 
 
-bool ImagePanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key & /* modifiers */) 
+bool ImagePanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
 {
 
    int index = index_for_position(p);
@@ -193,7 +193,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
 
       ::nano2d::paint shadow_paint =
          pcontext->box_gradient(p.x() - 1.f, (float)p.y(), m_thumb_size + 2.f, m_thumb_size + 2.f, 5.f, 3.f,
-            ::nano2d::RGBA_color(0, 0, 0, 128), ::nano2d::RGBA_color(0, 0, 0, 0));
+            ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
       pcontext->begin_path();
       pcontext->rectangle(p.x() - 5.f, p.y() - 5.f, m_thumb_size + 10.f, m_thumb_size + 10.f);
       pcontext->rounded_rectangle((float)p.x(), (float)p.y(), (float)m_thumb_size, (float)m_thumb_size, 6.f);
@@ -204,7 +204,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
       pcontext->begin_path();
       pcontext->rounded_rectangle(p.x() + 0.5f, p.y() + 0.5f, m_thumb_size - 1.f, m_thumb_size - 1.f, 4.f - 0.5f);
       pcontext->stroke_width(1.0f);
-      pcontext->stroke_color(::nano2d::RGBA_color(255, 255, 255, 80));
+      pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 80));
       pcontext->stroke();
    }
 }

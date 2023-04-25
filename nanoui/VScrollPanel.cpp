@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/vscrollpanel.cpp -- Adds a vertical scrollbar around a widget
     that is too big to fit into a certain area
 
@@ -115,9 +115,9 @@ bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel, co
 }
 
 
-bool VScrollPanel::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
+bool VScrollPanel::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) 
 {
-   if (Widget::mouse_button_event(p, emouse, down, ekeyModifiers))
+   if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
       return true;
 
    if (down && emouse == ::user::e_mouse_left_button && !m_children.empty() &&
@@ -291,7 +291,7 @@ void VScrollPanel::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint paint = pcontext->box_gradient(
       (float)m_pos.x() + m_size.x() - 12 + 1, (float)m_pos.y() + 4 + 1, 8,
-      (float)m_size.y() - 8, 3.f, 4.f, Color(0, 32), Color(0, 92));
+      (float)m_size.y() - 8, 3.f, 4.f, ::color::color(0, 32),  ::color::color(0, 92));
    pcontext->begin_path();
    pcontext->rounded_rectangle(m_pos.x() + m_size.x() - 12.f, m_pos.y() + 4.f, 8.f,
       m_size.y() - 8.f, 3.f);
@@ -301,7 +301,7 @@ void VScrollPanel::draw(::nano2d::context * pcontext) {
    paint = pcontext->box_gradient(
       m_pos.x() + m_size.x() - 12.f - 1.f,
       m_pos.y() + 4.f + (m_size.y() - 8.f - fTrackBarHeight) * m_scroll - 1.f, 8.f , (float)fTrackBarHeight,
-      3.f, 4.f, Color(220, 100), Color(128, 100));
+      3.f, 4.f,  ::color::color(220, 100),  ::color::color(128, 100));
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(m_pos.x() + m_size.x() - 12.f + 1.f,

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E429E878D600502330 /* font_sink.cpp */; };
 		9A2976EE29E878DA00502330 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E529E878D600502330 /* context.cpp */; };
-		9A2976EF29E878DA00502330 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E629E878D700502330 /* color.h */; };
-		9A2976F029E878DA00502330 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E729E878D700502330 /* color.cpp */; };
+		9A2976EF29E878DA00502330 /* aaa_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E629E878D700502330 /* aaa_color.h */; };
+		9A2976F029E878DA00502330 /* aaa_color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E729E878D700502330 /* aaa_color.cpp */; };
 		9A2976F129E878DA00502330 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E829E878D800502330 /* draw2d_context.cpp */; };
 		9A2976F229E878DA00502330 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E929E878D800502330 /* font_sink.h */; };
 		9A2976F329E878DA00502330 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EA29E878D800502330 /* types.h */; };
@@ -61,8 +61,8 @@
 /* Begin PBXFileReference section */
 		9A2976E429E878D600502330 /* font_sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
 		9A2976E529E878D600502330 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9A2976E629E878D700502330 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
-		9A2976E729E878D700502330 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
+		9A2976E629E878D700502330 /* aaa_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_color.h; sourceTree = "<group>"; };
+		9A2976E729E878D700502330 /* aaa_color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_color.cpp; sourceTree = "<group>"; };
 		9A2976E829E878D800502330 /* draw2d_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
 		9A2976E929E878D800502330 /* font_sink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
 		9A2976EA29E878D800502330 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
@@ -135,8 +135,8 @@
 			children = (
 				9A3CA7C327EAE8F2009ADCD2 /* _.cpp */,
 				9A3CA80327EAE8F4009ADCD2 /* _.h */,
-				9A2976E729E878D700502330 /* color.cpp */,
-				9A2976E629E878D700502330 /* color.h */,
+				9A2976E729E878D700502330 /* aaa_color.cpp */,
+				9A2976E629E878D700502330 /* aaa_color.h */,
 				9A3CA7C427EAE8F2009ADCD2 /* common.h */,
 				9A2976E529E878D600502330 /* context.cpp */,
 				9A2976EB29E878D900502330 /* context.h */,
@@ -177,7 +177,7 @@
 				9A2976F329E878DA00502330 /* types.h in Headers */,
 				9A2976F529E878DA00502330 /* draw2d_context.h in Headers */,
 				9A2976F229E878DA00502330 /* font_sink.h in Headers */,
-				9A2976EF29E878DA00502330 /* color.h in Headers */,
+				9A2976EF29E878DA00502330 /* aaa_color.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +273,7 @@
 				9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */,
 				9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */,
 				9A2976EE29E878DA00502330 /* context.cpp in Sources */,
-				9A2976F029E878DA00502330 /* color.cpp in Sources */,
+				9A2976F029E878DA00502330 /* aaa_color.cpp in Sources */,
 				9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */,
 				9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */,
 			);

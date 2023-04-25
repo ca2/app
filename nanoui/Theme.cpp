@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/theme.cpp -- Storage class for basic theme-related properties
 
     The text box widget was contributed by Christian Schueller.
@@ -43,36 +43,36 @@ Theme::Theme()
    m_tab_button_horizontal_padding = 10;
    m_tab_button_vertical_padding = 2;
 
-   m_drop_shadow = Color(0, 128);
-   m_transparent = Color(0, 0);
-   m_border_dark = Color(29, 255);
-   m_border_light = Color(92, 255);
-   m_border_medium = Color(35, 255);
-   m_text_color = Color(255, 160);
-   m_disabled_text_color = Color(255, 80);
-   m_text_color_shadow = Color(0, 160);
+   m_drop_shadow = ::color::color(0, 128);
+   m_transparent = ::color::color(0, 0);
+   m_border_dark = ::color::color(29, 255);
+   m_border_light = ::color::color(92, 255);
+   m_border_medium = ::color::color(35, 255);
+   m_text_color = ::color::color(255, 160);
+   m_disabled_text_color = ::color::color(255, 80);
+   m_text_color_shadow = ::color::color(0, 160);
    m_icon_color = m_text_color;
 
-   m_button_gradient_top_focused = Color(64, 255);
-   m_button_gradient_bot_focused = Color(48, 255);
-   m_button_gradient_top_unfocused = Color(74, 255);
-   m_button_gradient_bot_unfocused = Color(58, 255);
-   m_button_gradient_top_pushed = Color(41, 255);
-   m_button_gradient_bot_pushed = Color(29, 255);
+   m_button_gradient_top_focused = ::color::color(64, 255);
+   m_button_gradient_bot_focused = ::color::color(48, 255);
+   m_button_gradient_top_unfocused = ::color::color(74, 255);
+   m_button_gradient_bot_unfocused = ::color::color(58, 255);
+   m_button_gradient_top_pushed = ::color::color(41, 255);
+   m_button_gradient_bot_pushed = ::color::color(29, 255);
 
    /* Window-related */
-   m_window_fill_unfocused = Color(43, 230);
-   m_window_fill_focused = Color(45, 230);
-   m_window_title_unfocused = Color(220, 160);
-   m_window_title_focused = Color(255, 190);
+   m_window_fill_unfocused = ::color::color(43, 230);
+   m_window_fill_focused = ::color::color(45, 230);
+   m_window_title_unfocused = ::color::color(220, 160);
+   m_window_title_focused = ::color::color(255, 190);
 
    m_window_header_gradient_top = m_button_gradient_top_unfocused;
    m_window_header_gradient_bot = m_button_gradient_bot_unfocused;
    m_window_header_sep_top = m_border_light;
    m_window_header_sep_bot = m_border_dark;
 
-   m_window_popup = Color(50, 255);
-   m_window_popup_transparent = Color(50, 0);
+   m_window_popup = ::color::color(50, 255);
+   m_window_popup_transparent = ::color::color(50, 0);
 
    m_check_box_icon = FA_CHECK;
    m_message_information_icon = FA_INFO_CIRCLE;

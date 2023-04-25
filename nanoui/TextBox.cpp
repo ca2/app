@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/textbox.cpp -- Fancy text box with builtin regular
     expression-based validation
 
@@ -92,13 +92,13 @@ void TextBox::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint bg = pcontext->box_gradient(
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(255, 32), m_colorBackground);
+      3.f, 4.f, ::color::color(255, 32), m_colorBackground);
    ::nano2d::paint fg1 = pcontext->box_gradient(
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(150, 32), m_colorBackground);
+      3.f, 4.f,  ::color::color(150, 32), m_colorBackground);
    ::nano2d::paint fg2 = pcontext->box_gradient(
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, ::nano2d::RGBA_color(255, 0, 0, 100), m_colorBackground);
+      3.f, 4.f, ::color::RGBA_color(255, 0, 0, 100), m_colorBackground);
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f,
@@ -116,7 +116,7 @@ void TextBox::draw(::nano2d::context * pcontext) {
    pcontext->begin_path();
    pcontext->rounded_rectangle(m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1.f,
       m_size.y() - 1.f, 2.5f);
-   pcontext->stroke_color(Color(0, 48));
+   pcontext->stroke_color(::color::color(0, 48));
    pcontext->stroke();
 
    pcontext->font_size(font_size());
@@ -145,7 +145,7 @@ void TextBox::draw(::nano2d::context * pcontext) {
    }
    else if (m_units.has_char()) {
       unit_width = pcontext->text_bounds(0, 0, m_units, nullptr);
-      pcontext->fill_color(Color(255, m_enabled ? 64 : 32));
+      pcontext->fill_color(::color::color(255, m_enabled ? 64 : 32));
       pcontext->text_align(::nano2d::e_align_right | ::nano2d::e_align_middle);
       pcontext->text(m_pos.x() + m_size.x() - x_spacing, (float) draw_pos.y(), m_units);
       unit_width += 2;
@@ -266,7 +266,7 @@ void TextBox::draw(::nano2d::context * pcontext) {
 
             // draw selection
             pcontext->begin_path();
-            pcontext->fill_color(::nano2d::RGBA_color(255, 255, 255, 80));
+            pcontext->fill_color(::color::RGBA_color(255, 255, 255, 80));
             pcontext->rectangle(caretx, draw_pos.y() - lineh * 0.5f, selx - caretx,
                lineh);
             pcontext->fill();
@@ -278,7 +278,7 @@ void TextBox::draw(::nano2d::context * pcontext) {
          pcontext->begin_path();
          pcontext->move_to(caretx, draw_pos.y() - lineh * 0.5f);
          pcontext->line_to(caretx, draw_pos.y() + lineh * 0.5f);
-         pcontext->stroke_color(::nano2d::RGBA_color(255, 192, 0, 255));
+         pcontext->stroke_color(::color::RGBA_color(255, 192, 0, 255));
          pcontext->stroke_width(1.0f);
          pcontext->stroke();
       }
@@ -299,7 +299,7 @@ bool TextBox::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_
 }
 
 
-bool TextBox::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
+bool TextBox::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) 
 {
 
    if (emouse == ::user::e_mouse_left_button && down && !m_focused)
@@ -313,7 +313,8 @@ bool TextBox::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, boo
          m_mouse_down_pos = p;
          m_mouse_down_modifier = ekeyModifiers;
 
-         if ( m_last_click.elapsed() < 250_ms) {
+         //if ( m_last_click.elapsed() < 250_ms) {
+         if (bDoubleClick) {
             /* Double-click: select all text */
             m_selection_pos = 0;
             m_cursor_pos = (int)m_value_temp.size();

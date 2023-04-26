@@ -214,7 +214,7 @@ namespace acme
    ::factory::factory_pointer& application::factory()
    {
 
-      return ::acme::acme::g_p->m_psubsystem->factory();
+      return ::acme::acme::g_pacme->m_psubsystem->factory();
 
    }
 
@@ -268,7 +268,7 @@ namespace acme
 
          //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-         auto pfactoryitem = ::acme::acme::g_p->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+         auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
 
          ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 

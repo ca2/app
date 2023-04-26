@@ -21,9 +21,6 @@ namespace acme
 
       ::acme::application * m_pacmeapplication;
 
-//      pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
-
-
       ::critical_section m_criticalsectionChannel;
 
 
@@ -45,7 +42,7 @@ namespace acme
 
       }
 
-      static acme * g_p;
+      static acme * g_pacme;
 
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)

@@ -396,12 +396,12 @@ extern thread_local ::task_pointer t_pthread;
 namespace acme
 {
 
-   acme * acme::g_p = nullptr;
+   acme * acme::g_pacme = nullptr;
 
    acme::acme()
    {
 
-      g_p = this;
+      g_pacme = this;
       m_pacmeapplication = nullptr;
       m_pmemorycounter = nullptr;
 
@@ -418,13 +418,11 @@ namespace acme
    void acme::acme_initialize()
    {
 
-
       initialize_memory_counter();
 
       acme_construct();
 
       ::__raw_construct_new(m_psubsystem);
-
 
    }
      

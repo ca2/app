@@ -87,7 +87,7 @@ system::~system()
 void system::initialize_system()
 {
    
-   m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+   m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
    
    m_psubsystem->initialize(this);
    

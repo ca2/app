@@ -47,9 +47,6 @@ namespace acme
 
       static acme * g_p;
 
-      ::critical_section m_criticalsectionSystemHeap;
-
-      ::critical_section* system_heap_critical_section() { return &m_criticalsectionSystemHeap; }
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 

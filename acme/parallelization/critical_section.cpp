@@ -97,12 +97,36 @@ void critical_section::unlock()
 
 
 
-critical_section_impl::critical_section_impl() { ::InitializeCriticalSection(&m_criticalsection); }
-critical_section_impl::~critical_section_impl() { ::DeleteCriticalSection(&m_criticalsection); }
+critical_section_impl::critical_section_impl() 
+{ 
+   
+   ::InitializeCriticalSection(&m_criticalsection); 
+
+}
 
 
-void critical_section_impl::lock() { ::EnterCriticalSection(&m_criticalsection);  }
-void critical_section_impl::unlock() { ::LeaveCriticalSection(&m_criticalsection); }
+critical_section_impl::~critical_section_impl() 
+{
+   
+   ::DeleteCriticalSection(&m_criticalsection); 
+
+}
+
+
+void critical_section_impl::lock() 
+{ 
+   
+   ::EnterCriticalSection(&m_criticalsection);  
+
+}
+
+
+void critical_section_impl::unlock() 
+{
+   
+   ::LeaveCriticalSection(&m_criticalsection); 
+
+}
 
 
 #endif

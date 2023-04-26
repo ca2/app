@@ -62,7 +62,10 @@ namespace acme
 
    application::application()
    {
+      
+      m_acme.m_pacmeapplication = this;
 
+      m_pacmeapplication = this;
       m_papexapplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
@@ -108,8 +111,6 @@ namespace acme
       //   g_p = this;
 
       //}
-
-      m_pacmeapplication = this;
 
       //acmeapplication() = this;
 

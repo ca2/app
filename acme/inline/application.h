@@ -1,4 +1,4 @@
-﻿//#include "application_common.h"
+//#include "application_common.h"
 //#include "__apps.inl"
 
 
@@ -86,26 +86,26 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   if (::acme::acme::g_p->m_pacmeapplication->has_finishing_flag())
+   if (::acme::acme::g_pacme->m_pacmeapplication->has_finishing_flag())
    {
 
-      return ::acme::acme::g_p->m_pacmeapplication->m_iExitCode;
+      return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 
    }
 
 #if defined(WINDOWS)
-   ::acme::acme::g_p->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+   ::acme::acme::g_pacme->initialize(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 #else
-   ::acme::acme::g_p->initialize(argc, argv, envp);
+   ::acme::acme::g_pacme->initialize(argc, argv, envp);
 #endif
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
 
-   ::acme::acme::g_p->m_psubsystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+   ::acme::acme::g_pacme->m_psubsystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
 #elif defined(ANDROID)
 
-   ::acme::acme::g_p->m_psubsystem->set_resource_block(p1, p2);
+   ::acme::acme::g_pacme->m_psubsystem->set_resource_block(p1, p2);
 
 #endif
 
@@ -114,9 +114,9 @@ int main(int argc, char * argv[], char * envp[])
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::acme::g_p->m_pacmeapplication->implement_application();
+   ::acme::acme::g_pacme->m_pacmeapplication->implement_application();
 
-   return ::acme::acme::g_p->m_pacmeapplication->m_iExitCode;
+   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 
 //   acme::acme acme;
 //

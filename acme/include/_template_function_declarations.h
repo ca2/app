@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-01 23:14 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -110,10 +110,10 @@ inline void assign(::i64& i64, const ::payload& r);
 inline void assign(::u64& u64, const ::payload& r);
 
 
-CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
-
-
-CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
+//CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
+//
+//
+//CLASS_DECL_ACME void add_release_on_end(::matter* pmatter);
 
 
 

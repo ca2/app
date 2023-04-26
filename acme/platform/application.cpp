@@ -71,12 +71,12 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-      if (m_pacme && !m_pacme->m_pacmeapplication)
-      {
-
-         m_pacme->m_pacmeapplication = this;
-
-      }
+//      if (m_pacme && !m_pacme->m_pacmeapplication)
+//      {
+//
+//         m_pacme->m_pacmeapplication = this;
+//
+//      }
 
 //      if (g_p == nullptr)
 //      {

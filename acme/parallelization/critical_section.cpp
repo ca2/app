@@ -82,19 +82,39 @@ void critical_section::unlock()
 #ifdef PARALLELIZATION_PTHREAD
 
 
+critical_section_impl::critical_section_impl()
+{
+   
+   ::pthread_recursive_mutex_init(&m_mutex);
+   
+}
 
-   critical_section_impl::critical_section_impl() { ::pthread_recursive_mutex_init((pthread_mutex_t*)aligned_this()); }
-   critical_section_impl::~critical_section_impl() { ::pthread_mutex_destroy((pthread_mutex_t*)aligned_this()); }
+
+critical_section_impl::~critical_section_impl()
+{
+   
+   ::pthread_mutex_destroy(&m_mutex);
+   
+}
 
 
-   void critical_section_impl::lock() { ::pthread_mutex_lock((pthread_mutex_t*)aligned_this()); }
-   void critical_section_impl::unlock() { ::pthread_mutex_unlock((pthread_mutex_t*)aligned_this()); }
+void critical_section_impl::lock()
+{
+   
+   ::pthread_mutex_lock(&m_mutex);
+   
+}
 
 
+void critical_section_impl::unlock()
+{
+   
+   ::pthread_mutex_unlock(&m_mutex);
+   
+}
 
 
 #else
-
 
 
 critical_section_impl::critical_section_impl() 

@@ -114,7 +114,8 @@ void fixed_alloc_sync::FreeAll()
       {
       }
 
-      m_criticalsectiona[i]->unlock();
+      m_criticalsectiona[i].unlock();
+      
 #endif
 
    }

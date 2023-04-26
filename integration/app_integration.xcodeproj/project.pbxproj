@@ -455,7 +455,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "10.13";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = macos;
@@ -524,7 +524,7 @@
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating_system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "10.13";
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,7 +540,7 @@
 		9AEB75A816F78DF10085103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "10.13";
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -548,7 +548,7 @@
 		9AEB75A916F78DF10085103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "10.13";
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

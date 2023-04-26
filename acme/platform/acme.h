@@ -21,7 +21,7 @@ namespace acme
 
       ::acme::application * m_pacmeapplication;
 
-      pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
+//      pointer_array < ::particle >* m_pelementaddraReleaseOnEnd = nullptr;
 
 
       ::critical_section m_criticalsectionChannel;
@@ -220,7 +220,7 @@ namespace acme
 
       void delete_all_release_on_end();
 
-      void add_release_on_end(::particle* pparticle);
+      //void add_release_on_end(::particle* pparticle);
 
 
    };

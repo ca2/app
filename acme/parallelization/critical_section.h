@@ -9,15 +9,81 @@ class CLASS_DECL_ACME critical_section
 public:
 
 
-   critical_section_impl* m_pimpl;
+#ifdef PARALLELIZATION_PTHREAD
+
+   pthread_mutex_t m_mutex;
+
+   critical_section()
+{
+   
+   ::pthread_recursive_mutex_init(&m_mutex);
+   
+}
 
 
-   critical_section();
-   ~critical_section();
+~critical_section()
+{
+   
+   ::pthread_mutex_destroy(&m_mutex);
+   
+}
 
 
-   void lock();
-   void unlock();
+void lock()
+{
+   
+   ::pthread_mutex_lock(&m_mutex);
+   
+}
+
+
+void unlock()
+{
+   
+   ::pthread_mutex_unlock(&m_mutex);
+   
+}
+
+
+#else
+
+   CRITICAL_SECTION m_criticalsection;
+   
+   
+critical_section()
+{
+   
+   ::InitializeCriticalSection(&m_criticalsection);
+
+}
+
+
+~critical_section()
+{
+   
+   ::DeleteCriticalSection(&m_criticalsection);
+
+}
+
+
+void lock()
+{
+   
+   ::EnterCriticalSection(&m_criticalsection);
+
+}
+
+
+void unlock()
+{
+   
+   ::LeaveCriticalSection(&m_criticalsection);
+
+}
+
+
+#endif
+
 
 
 };

@@ -45,10 +45,14 @@ public:
 
 critical_section::critical_section()
 {
+   
+   int iSize = sizeof(critical_section_impl);
 
-   m_pimpl = (::critical_section_impl*)malloc(sizeof(critical_section_impl));
+   auto p = ::malloc(iSize);
 
-   ::new(&m_pimpl) ::critical_section_impl();
+   ::new(&p) ::critical_section_impl();
+   
+   m_pimpl = (::critical_section_impl *) p;
 
 }
 
@@ -77,79 +81,6 @@ void critical_section::unlock()
    m_pimpl->unlock();
 
 }
-
-
-#ifdef PARALLELIZATION_PTHREAD
-
-
-critical_section_impl::critical_section_impl()
-{
-   
-   ::pthread_recursive_mutex_init(&m_mutex);
-   
-}
-
-
-critical_section_impl::~critical_section_impl()
-{
-   
-   ::pthread_mutex_destroy(&m_mutex);
-   
-}
-
-
-void critical_section_impl::lock()
-{
-   
-   ::pthread_mutex_lock(&m_mutex);
-   
-}
-
-
-void critical_section_impl::unlock()
-{
-   
-   ::pthread_mutex_unlock(&m_mutex);
-   
-}
-
-
-#else
-
-
-critical_section_impl::critical_section_impl() 
-{ 
-   
-   ::InitializeCriticalSection(&m_criticalsection); 
-
-}
-
-
-critical_section_impl::~critical_section_impl() 
-{
-   
-   ::DeleteCriticalSection(&m_criticalsection); 
-
-}
-
-
-void critical_section_impl::lock() 
-{ 
-   
-   ::EnterCriticalSection(&m_criticalsection);  
-
-}
-
-
-void critical_section_impl::unlock() 
-{
-   
-   ::LeaveCriticalSection(&m_criticalsection); 
-
-}
-
-
-#endif
 
 
 

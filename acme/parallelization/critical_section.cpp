@@ -41,46 +41,46 @@ public:
 
 
 };
+//
+//
+//critical_section::critical_section()
+//{
+//
+//   int iSize = sizeof(critical_section_impl);
+//
+//   auto p = ::malloc(iSize);
+//
+//   ::new(&p) ::critical_section_impl();
+//
+//   m_pimpl = (::critical_section_impl *) p;
+//
+//}
 
-
-critical_section::critical_section()
-{
-   
-   int iSize = sizeof(critical_section_impl);
-
-   auto p = ::malloc(iSize);
-
-   ::new(&p) ::critical_section_impl();
-   
-   m_pimpl = (::critical_section_impl *) p;
-
-}
-
-
-critical_section::~critical_section()
-{
-
-   m_pimpl->~critical_section_impl();
-
-   free(m_pimpl);
-
-}
-
-
-void critical_section::lock()
-{
-
-   m_pimpl->lock();
-
-}
-
-
-void critical_section::unlock()
-{
-
-   m_pimpl->unlock();
-
-}
+//
+//critical_section::~critical_section()
+//{
+//
+//   m_pimpl->~critical_section_impl();
+//
+//   free(m_pimpl);
+//
+//}
+//
+//
+//void critical_section::lock()
+//{
+//
+//   m_pimpl->lock();
+//
+//}
+//
+//
+//void critical_section::unlock()
+//{
+//
+//   m_pimpl->unlock();
+//
+//}
 
 
 

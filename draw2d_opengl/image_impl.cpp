@@ -49,20 +49,23 @@ namespace draw2d_opengl
 
 
 
-   void image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   void image::create(const ::size_i32& size, ::enum_flag eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
-      if(m_pbitmap.is_set()
+      if (m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
             && m_size == size)
-         return true;
+         //return true;
+         return;
 
       destroy();
 
-      if (!size_i32)
+      if (!size)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
@@ -94,25 +97,28 @@ namespace draw2d_opengl
 
          m_iScan     = 0;
 
-         return false;
+         //return false;
 
       }
+
 
       color32_t * pcolorref = nullptr;
+      m_pbitmap->create_bitmap(nullptr, size, (void **)&pcolorref, &iStride);
+      //if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pcolorref, &iStride))
+      //{
 
-      if(!m_pbitmap->create_bitmap(nullptr, size, (void **) & pcolorref, &iStride))
-      {
+        // return false;
 
-         return false;
-
-      }
+      //}
 
       if(m_pbitmap->get_os_data() == nullptr)
       {
 
          destroy();
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
@@ -122,14 +128,14 @@ namespace draw2d_opengl
 
       this->init(size, pcolorref, iStride);
 
-      m_eobject = eobjectCreate;
+      m_eflagElement = eobjectCreate;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::dc_select(bool bSelect)
+   void image::dc_select(bool bSelect)
    {
       /*      if(bSelect)
             {
@@ -140,7 +146,7 @@ namespace draw2d_opengl
                return m_pgraphics->set(m_hbitmapOriginal) != nullptr;
             }*/
 
-      return true;
+      //return true;
 
    }
 
@@ -150,22 +156,28 @@ namespace draw2d_opengl
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
 
-      if(pbitmap == nullptr)
-         return false;
-
-      if (!create(pbitmap->get_size()))
+      if (pbitmap == nullptr)
       {
-         return false;
+
+         return;
+         //return false;
+
+      }
+
+      //if (!create(pbitmap->get_size()))
+      create(pbitmap->get_size());
+      {
+         //return false;//
       }
 
       from(pgraphics);
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::destroy ()
+   void image::destroy ()
    {
 
       m_pbitmap.release();
@@ -174,18 +186,18 @@ namespace draw2d_opengl
 
       set_nok();
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc)
-   {
+   //bool image::to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc)
+   //{
 
-      return pgraphics->draw(point, size, get_graphics(), point);
+   //   return pgraphics->draw(point, size, get_graphics(), point);
 
-     
-   }
+   //  
+   //}
 
 
    bool image::from(::draw2d::graphics * pgraphics)
@@ -195,25 +207,27 @@ namespace draw2d_opengl
 
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
-      auto estatus = GL2D_GRAPHICS(pgraphics)->set(bitmap);
+      //auto estatus =
+      GL2D_GRAPHICS(pgraphics)->set(bitmap);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       ::size_i32 size = pgraphics->m_pimage->get_size();
 
-      if(!create(size))
-      {
+      //if(!create(size))
+      create(size);
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      throw ::exception(todo("::opengl::image"));
+      throw ::exception(todo, "::opengl::image");
 
       //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
@@ -2323,13 +2337,13 @@ namespace draw2d_opengl
    //}
 
 
-   bool image::stretch_image(::image * pimage)
+   void image::stretch_image(::image * pimage)
    {
 
       if (::is_null(pimage))
       {
 
-         return false;
+         return;
 
       }
 
@@ -2345,7 +2359,7 @@ namespace draw2d_opengl
 
       //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectangleDest, rectangleSource, plusplus::UnitPixel);
 
-      return true;
+      //return true;
 
    }
 
@@ -2662,34 +2676,42 @@ namespace draw2d_opengl
 //#define memory_new ACME_NEW
 
 
-   bool image::map(bool bApplyTransform)
+   void image::map(bool bApplyTransform) const
    {
 
       if (m_bMapped)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
       if (!m_pgraphics)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
       if (!m_size)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
       if (::is_null(m_pcolorrefRaw))
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
@@ -2701,39 +2723,47 @@ namespace draw2d_opengl
 
       m_bMapped = true;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool image::_unmap()
+   void image::unmap() const
    {
 
       if (!m_bMapped)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
       if (!m_pgraphics)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
       if (!m_size)
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
       if (::is_null(m_pcolorrefRaw))
       {
 
-         return false;
+         //return false;
+
+         return;
 
       }
 
@@ -2743,7 +2773,7 @@ namespace draw2d_opengl
 
       m_bMapped = false;
 
-      return true;
+      //return true;
 
    }
 

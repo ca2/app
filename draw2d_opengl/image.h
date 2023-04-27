@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/image/image.h"
+
+
 struct OffscreenContext;
 
 
@@ -31,22 +34,22 @@ namespace draw2d_opengl
 
       bool host(const ::pixmap* ppixmap);
 
-      virtual bool stretch_image(::image * pimage) override;
+      void stretch_image(::image * pimage) override;
 
-      bool dc_select(bool bSelect = true);
+      void dc_select(bool bSelect = true) override;
 
       using ::image::create;
 
-      virtual void create(const ::size_i32& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual void create(const ::size_i32& size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
       virtual void create(::draw2d::graphics* pgraphics);
 
-      bool destroy();
+      void destroy() override;
 
       bool from(::draw2d::graphics * pgraphics);
       //bool from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz);
 
-      virtual bool to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
+      //void to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
 
 
       //void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
@@ -138,8 +141,8 @@ namespace draw2d_opengl
       //double pi();
 
 
-      virtual bool map(bool bApplyTransform = true) override;
-      virtual bool _unmap() override;
+      void map(bool bApplyAlphaTransform = true) const override; // some implementations may requrire to map to m_pcolorref before manipulate it
+      void unmap() const override; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
       //virtual bool update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer = true) override;
       //virtual bool print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage) override;

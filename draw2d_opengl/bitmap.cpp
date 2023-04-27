@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/exception/interface_only.h"
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
 
@@ -100,7 +101,7 @@ namespace draw2d_opengl
    }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -113,12 +114,20 @@ namespace draw2d_opengl
 
       m_memOut.set_size(abs(m_iStride * size.cy));
 
-      if(m_memOut.get_data() == nullptr)
-         return false;
+      if (m_memOut.data() == nullptr)
+      {
+
+         return;
+
+         //return false;
+
+      }
 
       if(ppcolorref != nullptr)
       {
-         *ppcolorref = m_memOut.get_data();
+         
+         *ppcolorref = m_memOut.data();
+
       }
 
       if(piScan != nullptr)
@@ -128,14 +137,16 @@ namespace draw2d_opengl
 
       m_osdata[0] = (void *) 1;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage)
    {
-      return false;
+      
+      // return false;
+
    }
 
 
@@ -194,24 +205,28 @@ namespace draw2d_opengl
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return false;
    }
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+   
+   
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return true;
+      //return true;
 
    }
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+
+
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return true;
+      //return true;
    }
 
 
@@ -226,31 +241,31 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
 
 
-   void bitmap::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
+   //void bitmap::dump(dump_context & dumpcontext) const
+   //{
+   //   ::draw2d::object::dump(dumpcontext);
 
-      /*         if (get_handle() == nullptr)
-                  return;
+   //   /*         if (get_handle() == nullptr)
+   //               return;
 
-               if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_BITMAP)
-               {
-                  // not a valid object
-                  dumpcontext << "has ILLEGAL HBITMAP!";
-                  return;
-               }*/
+   //            if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_BITMAP)
+   //            {
+   //               // not a valid object
+   //               dumpcontext << "has ILLEGAL HBITMAP!";
+   //               return;
+   //            }*/
 
-      /*BITMAP bm;
-      VERIFY(GetObject(sizeof(bm), &bm));
-      dumpcontext << "bm.bmType = " << bm.bmType;
-      dumpcontext << "\nbm.bmHeight = " << bm.bmHeight;
-      dumpcontext << "\nbm.bmWidth = " << bm.bmWidth;
-      dumpcontext << "\nbm.bmWidthBytes = " << bm.bmWidthBytes;
-      dumpcontext << "\nbm.bmPlanes = " << bm.bmPlanes;
-      dumpcontext << "\nbm.bmBitsPixel = " << bm.bmBitsPixel;
-      */
-      dumpcontext << "\n";
-   }
+   //   /*BITMAP bm;
+   //   VERIFY(GetObject(sizeof(bm), &bm));
+   //   dumpcontext << "bm.bmType = " << bm.bmType;
+   //   dumpcontext << "\nbm.bmHeight = " << bm.bmHeight;
+   //   dumpcontext << "\nbm.bmWidth = " << bm.bmWidth;
+   //   dumpcontext << "\nbm.bmWidthBytes = " << bm.bmWidthBytes;
+   //   dumpcontext << "\nbm.bmPlanes = " << bm.bmPlanes;
+   //   dumpcontext << "\nbm.bmBitsPixel = " << bm.bmBitsPixel;
+   //   */
+   //   dumpcontext << "\n";
+   //}
 
 
 
@@ -259,20 +274,20 @@ namespace draw2d_opengl
    {
 
 //      return (void *) (plusplus::Bitmap *) m_pbitmap;
-      return m_memOut.get_data();
+      return m_memOut.data();
 
    }
 
-   bool bitmap::attach(void * posdata)
-   {
-      //::acme::del(m_pbitmap);
-      //
-      //m_pbitmap = (plusplus::Bitmap *) posdata;
+   //bool bitmap::attach(void * posdata)
+   //{
+   //   //::acme::del(m_pbitmap);
+   //   //
+   //   //m_pbitmap = (plusplus::Bitmap *) posdata;
 
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    void * bitmap::detach()
    {
@@ -356,7 +371,7 @@ namespace draw2d_opengl
       }
 
 
-      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.get_data(), m_sizeOut.cx, m_sizeOut.cy);
+      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.data(), m_sizeOut.cx, m_sizeOut.cy);
 
       glGenTextures(1, &m_texture);
 
@@ -389,55 +404,55 @@ namespace draw2d_opengl
 
       }
 
-      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx, m_sizeIn.cy, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.get_data());
+      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx, m_sizeIn.cy, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
       e = glGetError();
 
 
 
    }
 
-#ifdef WINDOWS
-   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
-   {
-      static TCHAR szBuffer[32] = { 0 };
-
-      switch (msg)
-      {
-      case e_message_create:
-         //         timeBeginPeriod(1);
-         //SetTimer(hWnd, 1, 1000, 0);
-         return 0;
-
-      case e_message_destroy:
-         //KillTimer(hWnd, 1);
-         //       timeEndPeriod(1);
-         //PostQuitMessage(0);
-         return 0;
-
-      case e_message_key_down:
-         //if (wParam == VK_ESCAPE)
-      {
-         //SendMessage(hWnd, MESSAGE_CLOSE, 0, 0);
-         // return 0;
-      }
-      break;
-
-      case e_message_non_client_hit_test:
-         return HTCAPTION;   // allows dragging of the window
-
-      case e_message_timer:
-         //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
-         //set_window_text(hWnd, szBuffer);
-         //         g_frames = 0;
-         return 0;
-
-      default:
-         break;
-      }
-
-      return DefWindowProc(hWnd, msg, wParam, lParam);
-   }
-#endif
+//#ifdef WINDOWS
+//   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
+//   {
+//      static TCHAR szBuffer[32] = { 0 };
+//
+//      switch (msg)
+//      {
+//      case e_message_create:
+//         //         timeBeginPeriod(1);
+//         //SetTimer(hWnd, 1, 1000, 0);
+//         return 0;
+//
+//      case e_message_destroy:
+//         //KillTimer(hWnd, 1);
+//         //       timeEndPeriod(1);
+//         //PostQuitMessage(0);
+//         return 0;
+//
+//      case e_message_key_down:
+//         //if (wParam == VK_ESCAPE)
+//      {
+//         //SendMessage(hWnd, MESSAGE_CLOSE, 0, 0);
+//         // return 0;
+//      }
+//      break;
+//
+//      case e_message_non_client_hit_test:
+//         return HTCAPTION;   // allows dragging of the window
+//
+//      case e_message_timer:
+//         //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
+//         //set_window_text(hWnd, szBuffer);
+//         //         g_frames = 0;
+//         return 0;
+//
+//      default:
+//         break;
+//      }
+//
+//      return DefWindowProc(hWnd, msg, wParam, lParam);
+//   }
+//#endif
 
 
 //   bool bitmap::flash()
@@ -552,7 +567,7 @@ namespace draw2d_opengl
          glPixelStorei(GL_PACK_ALIGNMENT, 1);
          e = glGetError();
 
-         color32_t * pdata = (color32_t *) m_memOut.get_data();
+         color32_t * pdata = (color32_t *) m_memOut.data();
 
          glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
          e = glGetError();
@@ -841,7 +856,7 @@ void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)
    //memory m;
    m.set_size(sizeof(int) * w2* h2);
    //int[] temp = memory_new int[w2*h2];
-   int * temp = (int *)m.get_data();
+   int * temp = (int *)m.data();
    int a, b, c, d, x, y, index;
    float x_ratio = ((float)(w - 1)) / w2;
    float y_ratio = ((float)(h - 1)) / h2;

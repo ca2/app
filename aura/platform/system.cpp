@@ -1200,7 +1200,9 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      return implementation_name("draw2d", "gdiplus");
+      //return implementation_name("draw2d", "gdiplus");
+
+      return implementation_name("draw2d", "opengl");
 
 #elif __APPLE__
       

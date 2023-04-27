@@ -63,11 +63,11 @@ namespace draw2d_opengl
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
+   //void font::dump(dump_context & dumpcontext) const
+   //{
+   //   ::draw2d::object::dump(dumpcontext);
 
-   }
+   //}
 
    void font::destroy()
    {
@@ -81,10 +81,10 @@ namespace draw2d_opengl
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
-      if (m_hdcFont == nullptr || is_modified())
+      if (m_hdcFont == nullptr || is_modified(iCreate))
       {
 
 
@@ -124,7 +124,7 @@ namespace draw2d_opengl
 
       }
 
-      return m_hfont;
+      //return m_hfont;
 
    }
 

@@ -412,12 +412,12 @@ namespace draw2d
       virtual ::size_f64 scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
 
       // Coordinate Functions
-      virtual void DPtoLP(::point_f64 * ppoint,count nCount = 1);
+      virtual void DPtoLP(::point_f64 * ppoint, ::count nCount = 1);
       virtual void DPtoLP(::rectangle_f64 * prectd);
 
       virtual void DPtoLP(::size_f64 * pSize);
 
-      virtual void LPtoDP(::point_f64 * ppoint,count nCount = 1);
+      virtual void LPtoDP(::point_f64 * ppoint, ::count nCount = 1);
       virtual void LPtoDP(::rectangle_f64 * prectd);
 
       virtual void LPtoDP(::size_f64 * pSize);
@@ -626,18 +626,18 @@ namespace draw2d
 
 
       //virtual void polygon_i32(const ::point_f64 * ppoints, count nCount);
-      virtual void polygon(const POINT_F64 * ppoints, count nCount);
+      virtual void polygon(const ::point_f64 * ppoints, count nCount);
       //virtual void draw_polygon(const ::point_f64 * ppoints, count nCount);
-      virtual void draw_polygon(const POINT_F64 * ppoints, count nCount);
+      virtual void draw_polygon(const ::point_f64 * ppoints, count nCount);
       //virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
-      virtual void fill_polygon(const POINT_F64 * ppoints,count nCount);
+      virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
 
       //virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
       //virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
       //virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
 
 
       virtual void rectangle(const ::rectangle_f64 & rectangle);
@@ -689,7 +689,7 @@ namespace draw2d
 
       //virtual void round_rectd(const ::rectangle_f64 & rectangle, const ::point_f64 & point);
 
-      virtual void round_rectangle(const ::rectangle_f64 & rectangle_f64, double dRadius);
+      void round_rectangle(const ::rectangle_f64 & rectangle_f64, double dRadius);
 
 
       //virtual void from(const ::point_f64 & pointDst, const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc);

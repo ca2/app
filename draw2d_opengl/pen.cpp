@@ -67,31 +67,31 @@ namespace draw2d_opengl
 
    /////////////////////////////////////////////////////////////////////////////
 
-
-   void pen::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
-
-/*      if (get_handle() == nullptr)
-         return;
-
-      if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_PEN)
-      {
-         // not a valid object
-         dumpcontext << "has ILLEGAL HPEN!";
-         return;
-      }
-
-      LOGPEN lp;
-      VERIFY(GetObject(sizeof(lp), &lp));
-      dumpcontext << "lgpn.lopnStyle = " << lp.lopnStyle;
-      dumpcontext << "\nlgpn.lopnWidth.x (width) = " << lp.lopnWidth.x;
-      dumpcontext << "\nlgpn.lopnColor = " << (void *)(uptr)lp.lopnColor;
-
-      dumpcontext << "\n";*/
-   }
-
-
+//
+//   void pen::dump(dump_context & dumpcontext) const
+//   {
+//      ::draw2d::object::dump(dumpcontext);
+//
+///*      if (get_handle() == nullptr)
+//         return;
+//
+//      if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_PEN)
+//      {
+//         // not a valid object
+//         dumpcontext << "has ILLEGAL HPEN!";
+//         return;
+//      }
+//
+//      LOGPEN lp;
+//      VERIFY(GetObject(sizeof(lp), &lp));
+//      dumpcontext << "lgpn.lopnStyle = " << lp.lopnStyle;
+//      dumpcontext << "\nlgpn.lopnWidth.x (width) = " << lp.lopnWidth.x;
+//      dumpcontext << "\nlgpn.lopnColor = " << (void *)(uptr)lp.lopnColor;
+//
+//      dumpcontext << "\n";*/
+//   }
+//
+//
 
 
 

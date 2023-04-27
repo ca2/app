@@ -57,22 +57,22 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
    // ::draw2d::object
 
-
-   void object::dump(dump_context & dumpcontext) const
-   {
-      //::object::dump(dumpcontext);
-
-//      dumpcontext << "get_handle() = " << get_handle();
-  //    dumpcontext << "\n";
-   }
-
-
-   void object::assert_ok() const
-   {
-      //::object::assert_ok();
-      //ASSERT(get_handle() == nullptr ||
-        // (::windows_definition::Data.bWin95 || ::GetObjectType(get_handle()) != 0));
-   }
+//
+//   void object::dump(dump_context & dumpcontext) const
+//   {
+//      //::object::dump(dumpcontext);
+//
+////      dumpcontext << "get_handle() = " << get_handle();
+//  //    dumpcontext << "\n";
+//   }
+//
+//
+//   void object::assert_ok() const
+//   {
+//      //::object::assert_ok();
+//      //ASSERT(get_handle() == nullptr ||
+//        // (::windows_definition::Data.bWin95 || ::GetObjectType(get_handle()) != 0));
+//   }
 
 
    /*void * object::detach_os_data()

@@ -2,7 +2,8 @@
 
 
 #include "aura/_.h"
-
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
+#include "acme/_operating_system.h"
 #include "gl/glew.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -60,7 +61,7 @@ namespace opengl
    inline void color(color32_t color32)
    {
 
-      ::opengl::color::color(
+      ::opengl::color(
          colorref_get_r_value(color32),
          colorref_get_g_value(color32),
          colorref_get_b_value(color32),
@@ -72,7 +73,7 @@ namespace opengl
    inline void color(const ::color::color & color)
    {
 
-      ::opengl::color::color(color.m_iR, color.m_iG, color.m_iB, color.m_iA);
+      ::opengl::color(color.red, color.green, color.blue, color.alpha);
 
    }
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/memory.h"
+#include "aura/graphics/draw2d/bitmap.h"
+
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glext.h>
@@ -167,11 +171,11 @@ namespace draw2d_opengl
       bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
       bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 stride);
       bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap);
-      bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
-      bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
+      void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
+      void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       
-      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan) override;
-      virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage) override;
+      void create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan) override;
+      void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage) override;
 
 
       i32 GetBitmap(BITMAP* pBitMap);
@@ -185,7 +189,7 @@ namespace draw2d_opengl
       // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool attach(void * posdata);
+      virtual void attach(void * posdata);
       virtual void * detach();
 
       virtual HBITMAP _GetHBITMAP();

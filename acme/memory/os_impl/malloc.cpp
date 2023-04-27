@@ -62,6 +62,7 @@ void check_bounds(u8 * p)
       output_debug_string("memory corruption before allocation");
 
    }
+
    if (memory_order(&p[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
    {
 
@@ -72,7 +73,7 @@ void check_bounds(u8 * p)
 }
 
 
-void * os_impl_alloc(memsize size)
+void * operating_system_memory_allocate(memsize size)
 {
 
 #ifdef WINDOWS
@@ -81,19 +82,6 @@ void * os_impl_alloc(memsize size)
 
 #else
 
-//   if(size == 0)
-//   {
-//
-//      size = 1;
-//
-//   }
-//   else if(size > 2_mb)
-//   {
-//
-//      output_debug_string("size_i32 > 2_mb");
-//
-//   }
-
    return malloc(size);
 
 #endif
@@ -101,7 +89,7 @@ void * os_impl_alloc(memsize size)
 }
 
 
-void * os_impl_realloc(void * p, memsize size)
+void * operating_system_memory_reallocate(void * p, memsize size)
 {
 
 #ifdef WINDOWS
@@ -117,7 +105,7 @@ void * os_impl_realloc(void * p, memsize size)
 }
 
 
-void os_impl_free(void * p)
+void operating_system_memory_free(void * p)
 {
 
 #ifdef WINDOWS
@@ -133,7 +121,7 @@ void os_impl_free(void * p)
 }
 
 
-size_t os_impl_size(void * p)
+memsize operating_system_memory_size(void * p)
 {
 
 #ifdef __APPLE__
@@ -151,7 +139,6 @@ size_t os_impl_size(void * p)
 #endif
 
 }
-
 
 
 

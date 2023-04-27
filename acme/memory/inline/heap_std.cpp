@@ -220,15 +220,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
 void * _memory_allocate(memsize size)
 {
 
-//#if defined(__APPLE__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
-
    return aligned_memory_allocate(size);
-
-//#else
-
-//   return unaligned_memory_allocate(size);
-
-//#endif
 
 }
 

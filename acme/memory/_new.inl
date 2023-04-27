@@ -12,7 +12,7 @@
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
 
- void MEMORY_DECL operator delete(void* p, size_t n) del_throw_spec
+void MEMORY_DECL operator delete(void* p, size_t n) del_throw_spec
 {
 
    ::operator delete(p);
@@ -23,11 +23,7 @@
 #endif
 
 
-
-
-
-
- void* MEMORY_DECL operator new(size_t nSize)
+void* MEMORY_DECL operator new(size_t nSize)
 {
 
    return memory_allocate(nSize);
@@ -36,7 +32,7 @@
 
 
 
- void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
+void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 {
 
    return memory_allocate(nSize);
@@ -44,7 +40,7 @@
 }
 
 
- void MEMORY_DECL operator delete(void* p) del_throw_spec
+void MEMORY_DECL operator delete(void* p) del_throw_spec
 {
 
    memory_free(p);
@@ -54,7 +50,7 @@
 
 #ifdef WINDOWS
 
- void* MEMORY_DECL operator new[](size_t nSize)
+void* MEMORY_DECL operator new[](size_t nSize)
 {
 
    return ::operator new(nSize);
@@ -63,7 +59,7 @@
 
 #else
 
- void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
+void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
 {
 
    return ::operator new(nSize);
@@ -72,7 +68,7 @@
 
 #endif
 
- void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
+void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 {
 
    return memory_allocate(nSize);
@@ -80,7 +76,7 @@
 }
 
 
- void MEMORY_DECL operator delete[](void* p) del_throw_spec
+void MEMORY_DECL operator delete[](void* p) del_throw_spec
 {
 
    ::operator delete(p);
@@ -98,7 +94,7 @@
 #if defined(UNIVERSAL_WINDOWS) //|| defined(ANDROID)
 
 
- void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
 {
 
    __UNREFERENCED_PARAMETER(nSize);
@@ -108,7 +104,7 @@
 }
 
 
- void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
+void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 {
 
    __UNREFERENCED_PARAMETER(p);
@@ -151,7 +147,7 @@
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
 
- void* MEMORY_DECL operator new(size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, const char* pszFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -159,7 +155,7 @@
 }
 
 
- void* MEMORY_DECL operator new[](size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new[](size_t nSize, const char* pszFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -167,7 +163,7 @@
 }
 
 
- void MEMORY_DECL operator delete(void* pData, const char * /* pszFileName */, i32 /* nLine */) del_throw_spec
+void MEMORY_DECL operator delete(void* pData, const char* /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -175,7 +171,7 @@
 }
 
 
- void MEMORY_DECL operator delete[](void* pData, const char * /* pszFileName */, i32 /* nLine */) del_throw_spec
+void MEMORY_DECL operator delete[](void* pData, const char* /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -183,7 +179,7 @@
 }
 
 
- void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
+void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName, i32 nLine)
 {
 
 #if MEMDLEAK
@@ -199,7 +195,7 @@
 }
 
 
- void MEMORY_DECL operator delete(void* p, i32 nType, const char * /* pszFileName */, i32 /* nLine */)
+void MEMORY_DECL operator delete(void* p, i32 nType, const char* /* pszFileName */, i32 /* nLine */)
 {
 
    memory_free_debug(p, nType);
@@ -207,7 +203,7 @@
 }
 
 
- void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
+void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const char* pszFileName, i32 nLine)
 {
 
    return ::operator new(nSize, nType, pszFileName, nLine);
@@ -215,7 +211,7 @@
 }
 
 
- void MEMORY_DECL operator delete[](void* p, i32 nType, const char * pszFileName, i32 nLine)
+void MEMORY_DECL operator delete[](void* p, i32 nType, const char* pszFileName, i32 nLine)
 {
 
    ::operator delete(p, nType, pszFileName, nLine);

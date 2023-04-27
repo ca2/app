@@ -1,6 +1,8 @@
 #include "framework.h"
 
 
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
 
@@ -16,71 +18,136 @@
 #endif
 
 
-class CLASS_DECL_ACME critical_section_impl
+class critical_section_impl
 {
 public:
 
 
+   inline void* operator new(size_t s)
+   {
+
+      return ::malloc(s);
+
+   }
+
+
+   inline void operator delete(void * p)
+   {
+
+      return ::free(p);
+
+   }
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
-   pthread_mutex_t      m_mutex;
+   pthread_mutex_t m_mutex;
+
+   critical_section_impl()
+   {
+
+      ::pthread_recursive_mutex_init(&m_mutex);
+
+   }
+
+
+   ~critical_section_impl()
+   {
+
+      ::pthread_mutex_destroy(&m_mutex);
+
+   }
+
+
+   void lock()
+   {
+
+      ::pthread_mutex_lock(&m_mutex);
+
+   }
+
+
+   void unlock()
+   {
+
+      ::pthread_mutex_unlock(&m_mutex);
+
+   }
+
 
 #else
 
-   CRITICAL_SECTION     m_criticalsection;
+   CRITICAL_SECTION m_criticalsection;
+
+
+   critical_section_impl()
+   {
+
+      ::InitializeCriticalSection(&m_criticalsection);
+
+   }
+
+
+   ~critical_section_impl()
+   {
+
+      ::DeleteCriticalSection(&m_criticalsection);
+
+   }
+
+
+   void lock()
+   {
+
+      ::EnterCriticalSection(&m_criticalsection);
+
+   }
+
+
+   void unlock()
+   {
+
+      ::LeaveCriticalSection(&m_criticalsection);
+
+   }
+
 
 #endif
 
 
-   inline critical_section_impl();
-   inline ~critical_section_impl();
-
-
-   void lock();
-   void unlock();
-
-
 };
-//
-//
-//critical_section::critical_section()
-//{
-//
-//   int iSize = sizeof(critical_section_impl);
-//
-//   auto p = ::malloc(iSize);
-//
-//   ::new(&p) ::critical_section_impl();
-//
-//   m_pimpl = (::critical_section_impl *) p;
-//
-//}
 
-//
-//critical_section::~critical_section()
-//{
-//
-//   m_pimpl->~critical_section_impl();
-//
-//   free(m_pimpl);
-//
-//}
-//
-//
-//void critical_section::lock()
-//{
-//
-//   m_pimpl->lock();
-//
-//}
-//
-//
-//void critical_section::unlock()
-//{
-//
-//   m_pimpl->unlock();
-//
-//}
+
+critical_section::critical_section()
+{
+
+   m_pimpl = new ::critical_section_impl();
+
+}
+
+
+critical_section::~critical_section()
+{
+
+   delete m_pimpl;
+
+}
+
+
+void critical_section::lock()
+{
+
+   m_pimpl->lock();
+
+}
+
+
+void critical_section::unlock()
+{
+
+   m_pimpl->unlock();
+
+}
 
 
 

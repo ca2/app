@@ -6,15 +6,6 @@
 #include "acme.h"
 
 
-#ifdef WINDOWS
-
-
-void defer_initialize_system_heap();
-
-
-#endif
-
-
 namespace acme
 {
 
@@ -22,20 +13,7 @@ namespace acme
    application_base::application_base()
    {
 
-      //if (!::acme::acme::g_p)
-      {
-
-#ifdef WINDOWS
-
-         defer_initialize_system_heap();
-
-#endif
-
-//         ::acme::acme::g_p = &m_acme;
-
-         m_acme.acme_initialize();
-
-      }
+      m_acme.acme_initialize();
 
    }
 

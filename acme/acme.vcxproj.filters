@@ -270,6 +270,9 @@
     <Filter Include="Header Files\operating_system\NewFilter1">
       <UniqueIdentifier>{5856c1a9-b688-48e0-b8ae-dfdd23ca9a2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\memory\osdjfh">
+      <UniqueIdentifier>{cee577fc-e955-46fe-887e-6e28e36017d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4107,6 +4110,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\user.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\osdjfh</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\aaa_select.cpp">
+      <Filter>Source Files\memory\osdjfh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

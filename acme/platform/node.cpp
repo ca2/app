@@ -387,7 +387,7 @@ namespace acme
    }
 
 
-   string node::audio_get_default_library_name()
+   string node::audio_get_default_implementation_name()
    {
 
       return "";
@@ -395,26 +395,26 @@ namespace acme
    }
 
 
-   string node::multimedia_audio_get_default_library_name()
+   string node::multimedia_audio_get_default_implementation_name()
    {
 
-      return "audio_alsa";
+      return acmesystem()->implementation_name("audio", "alsa");
 
    }
 
 
-   string node::multimedia_audio_mixer_get_default_library_name()
+   string node::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return "audio_mixer_alsa";
+      return acmesystem()->implementation_name("audio_mixer", "alsa");
 
    }
 
 
-   string node::veriwell_multimedia_music_midi_get_default_library_name()
+   string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return "music_midi_alsa";
+      return acmesystem()->implementation_name("music_midi", "alsa");
 
    }
 

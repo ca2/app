@@ -171,10 +171,10 @@ namespace acme
       //virtual void element_quit_post_quit();
 
 
-      virtual string audio_get_default_library_name();
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+      virtual string audio_get_default_implementation_name();
+      virtual string multimedia_audio_get_default_implementation_name();
+      virtual string multimedia_audio_mixer_get_default_implementation_name();
+      virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 
 
       virtual void _launch_macos_app(const ::string & pszAppFolder);

@@ -131,7 +131,7 @@ namespace draw2d
       virtual void term_instance() override;
 
 
-      virtual string write_text_get_default_library_name();
+      virtual string write_text_get_default_implementation_name();
 
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,

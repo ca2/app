@@ -1404,12 +1404,12 @@ void draw2d::emboss_predicate(
    ::pointer<::factory::factory>& draw2d::write_text_factory()
    {
 
-      string strLibrary;
+      string strImplementationName;
 
       if (has_property("write_text"))
       {
 
-         strLibrary = payload("write_text");
+         strImplementationName = payload("write_text");
 
          //strDraw2d.trim();
 
@@ -1428,12 +1428,12 @@ void draw2d::emboss_predicate(
 
       ::e_status estatus;
 
-      if (strLibrary.has_char())
+      if (strImplementationName.has_char())
       {
 
          ::pointer<::aura::system>psystem = acmesystem();
 
-         auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
+         auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
          if (pfactoryWriteText)
          {
@@ -1444,18 +1444,18 @@ void draw2d::emboss_predicate(
 
       }
 
-      strLibrary = write_text_get_default_library_name();
+      strImplementationName = write_text_get_default_implementation_name();
 
-      if (strLibrary.is_empty())
+      if (strImplementationName.is_empty())
       {
 
 #ifdef WINDOWS
 
-         strLibrary = "write_text_gdiplus";
+         strImplementationName = acmesystem()->implementation_name("write_text", "gdiplus");
 
 #else
 
-         strLibrary = "write_text_pango";
+         strImplementationName = acmesystem()->implementation_name("write_text", "pango");
 
 #endif
 
@@ -1463,7 +1463,7 @@ void draw2d::emboss_predicate(
 
       auto psystem = acmesystem();
 
-      auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
+      auto & pfactoryWriteText = psystem->factory("write_text", strImplementationName);
 
       if (pfactoryWriteText)
       {
@@ -1475,7 +1475,7 @@ void draw2d::emboss_predicate(
 
 #ifdef WINDOWS_DESKTOP
 
-      if (strLibrary != "write_text_gdiplus")
+      if (strImplementationName != acmesystem()->implementation_name("write_text", "gdiplus"))
       {
 
          ::pointer<::aura::system>psystem = acmesystem();
@@ -1492,7 +1492,7 @@ void draw2d::emboss_predicate(
       }
 
 
-      if (strLibrary != "write_text_direct2d")
+      if (strImplementationName != acmesystem()->implementation_name("write_text", "direct2d"))
       {
 
          ::pointer<::aura::system>psystem = acmesystem();
@@ -1511,7 +1511,7 @@ void draw2d::emboss_predicate(
 
 #endif
 
-      if (strLibrary != "write_text_pango")
+      if (strImplementationName != acmesystem()->implementation_name("write_text", "pango"))
       {
 
          auto psystem = acmesystem();
@@ -1557,7 +1557,7 @@ void draw2d::emboss_predicate(
    }
 
 
-   string draw2d::write_text_get_default_library_name()
+   string draw2d::write_text_get_default_implementation_name()
    {
 
 #ifdef LINUX

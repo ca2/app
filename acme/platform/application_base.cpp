@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 2022-12-01 08:42 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
@@ -22,7 +22,7 @@ namespace acme
    application_base::application_base()
    {
 
-      if (!::acme::acme::g_p)
+      //if (!::acme::acme::g_p)
       {
 
 #ifdef WINDOWS
@@ -31,15 +31,9 @@ namespace acme
 
 #endif
 
-         auto p = ::malloc(sizeof(::acme::acme));
+//         ::acme::acme::g_p = &m_acme;
 
-         new (p) ::acme::acme();
-
-         ::acme::acme::g_p = (::acme::acme *) p;
-
-         ::acme::acme::g_p->acme_initialize();
-
-         m_pacme = ::acme::acme::g_p;
+         m_acme.acme_initialize();
 
       }
 
@@ -49,18 +43,9 @@ namespace acme
    application_base::~application_base()
    {
 
-      if (m_pacme == ::acme::acme::g_p)
-      {
+      //::acme::acme::g_p->acme_finalize();
 
-         m_pacme = nullptr;
-
-         ::acme::acme::g_p->acme_finalize();
-
-         ::acme::acme::g_p->~acme();
-
-         ::acme::free(::acme::acme::g_p);
-
-      }
+      //::acme::acme::g_p->~acme();
 
    }
 

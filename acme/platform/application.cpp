@@ -62,7 +62,10 @@ namespace acme
 
    application::application()
    {
+      
+      m_acme.m_pacmeapplication = this;
 
+      m_pacmeapplication = this;
       m_papexapplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
@@ -71,12 +74,12 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-      if (m_pacme && !m_pacme->m_pacmeapplication)
-      {
-
-         m_pacme->m_pacmeapplication = this;
-
-      }
+//      if (m_pacme && !m_pacme->m_pacmeapplication)
+//      {
+//
+//         m_pacme->m_pacmeapplication = this;
+//
+//      }
 
 //      if (g_p == nullptr)
 //      {
@@ -108,8 +111,6 @@ namespace acme
       //   g_p = this;
 
       //}
-
-      m_pacmeapplication = this;
 
       //acmeapplication() = this;
 
@@ -214,7 +215,7 @@ namespace acme
    ::factory::factory_pointer& application::factory()
    {
 
-      return ::acme::acme::g_p->m_psubsystem->factory();
+      return ::acme::acme::g_pacme->m_psubsystem->factory();
 
    }
 
@@ -268,7 +269,7 @@ namespace acme
 
          //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-         auto pfactoryitem = ::acme::acme::g_p->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+         auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
 
          ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 

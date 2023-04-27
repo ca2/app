@@ -7,29 +7,80 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
-critical_section::critical_section() { ::pthread_recursive_mutex_init((pthread_mutex_t *)aligned_this()); }
-critical_section::~critical_section() { ::pthread_mutex_destroy((pthread_mutex_t *)aligned_this()); }
-
-
-void critical_section::lock() { ::pthread_mutex_lock((pthread_mutex_t *)aligned_this()); }
-void critical_section::unlock() { ::pthread_mutex_unlock((pthread_mutex_t*)aligned_this()); }
-
-
 #else
 
 
 #include "acme/_operating_system.h"
 
 
-critical_section::critical_section() { ::InitializeCriticalSection((CRITICAL_SECTION *)aligned_this()); }
-critical_section::~critical_section() { ::DeleteCriticalSection((CRITICAL_SECTION *)aligned_this()); }
+#endif
 
 
-void critical_section::lock() { ::EnterCriticalSection((CRITICAL_SECTION *)aligned_this()); }
-void critical_section::unlock() { ::LeaveCriticalSection((CRITICAL_SECTION*)aligned_this()); }
+class CLASS_DECL_ACME critical_section_impl
+{
+public:
 
+
+#ifdef PARALLELIZATION_PTHREAD
+
+   pthread_mutex_t      m_mutex;
+
+#else
+
+   CRITICAL_SECTION     m_criticalsection;
 
 #endif
+
+
+   inline critical_section_impl();
+   inline ~critical_section_impl();
+
+
+   void lock();
+   void unlock();
+
+
+};
+//
+//
+//critical_section::critical_section()
+//{
+//
+//   int iSize = sizeof(critical_section_impl);
+//
+//   auto p = ::malloc(iSize);
+//
+//   ::new(&p) ::critical_section_impl();
+//
+//   m_pimpl = (::critical_section_impl *) p;
+//
+//}
+
+//
+//critical_section::~critical_section()
+//{
+//
+//   m_pimpl->~critical_section_impl();
+//
+//   free(m_pimpl);
+//
+//}
+//
+//
+//void critical_section::lock()
+//{
+//
+//   m_pimpl->lock();
+//
+//}
+//
+//
+//void critical_section::unlock()
+//{
+//
+//   m_pimpl->unlock();
+//
+//}
 
 
 

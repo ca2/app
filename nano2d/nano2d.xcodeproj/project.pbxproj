@@ -28,7 +28,7 @@
 		9A9E578829F85B9D001559E9 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578129F85B9C001559E9 /* draw2d_context.cpp */; };
 		9A9E578929F85B9D001559E9 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578229F85B9D001559E9 /* font_sink.cpp */; };
 		9A9E578A29F85B9D001559E9 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578329F85B9D001559E9 /* common.h */; };
-		9A9E578D29F85EB9001559E9 /* factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578B29F85EB9001559E9 /* factory.cpp */; };
+		9A9E578D29F85EB9001559E9 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578B29F85EB9001559E9 /* _factory.cpp */; };
 		9A9E578E29F85EB9001559E9 /* _function.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578C29F85EB9001559E9 /* _function.h */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +88,7 @@
 		9A9E578129F85B9C001559E9 /* draw2d_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
 		9A9E578229F85B9D001559E9 /* font_sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
 		9A9E578329F85B9D001559E9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		9A9E578B29F85EB9001559E9 /* factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = factory.cpp; sourceTree = "<group>"; };
+		9A9E578B29F85EB9001559E9 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A9E578C29F85EB9001559E9 /* _function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _function.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				9A9E578C29F85EB9001559E9 /* _function.h */,
-				9A9E578B29F85EB9001559E9 /* factory.cpp */,
+				9A9E578B29F85EB9001559E9 /* _factory.cpp */,
 				9A9E578329F85B9D001559E9 /* common.h */,
 				9A9E577F29F85B9C001559E9 /* context.cpp */,
 				9A9E578029F85B9C001559E9 /* context.h */,
@@ -288,7 +288,7 @@
 				9A9E578929F85B9D001559E9 /* font_sink.cpp in Sources */,
 				9A9E578629F85B9D001559E9 /* context.cpp in Sources */,
 				9A9E578829F85B9D001559E9 /* draw2d_context.cpp in Sources */,
-				9A9E578D29F85EB9001559E9 /* factory.cpp in Sources */,
+				9A9E578D29F85EB9001559E9 /* _factory.cpp in Sources */,
 				9A9E575929F85AFB001559E9 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

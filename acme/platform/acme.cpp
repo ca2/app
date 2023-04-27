@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "acme.h"
 #include "system.h"
-//#include "sequencer.h"
 #include "library.h"
 #include "sub_system.h"
 #include "acme/memory/counter.h"
@@ -397,11 +396,12 @@ extern thread_local ::task_pointer t_pthread;
 namespace acme
 {
 
-   acme * acme::g_p = nullptr;
+   acme * acme::g_pacme = nullptr;
 
    acme::acme()
    {
 
+      g_pacme = this;
       m_pacmeapplication = nullptr;
       m_pmemorycounter = nullptr;
 
@@ -418,13 +418,11 @@ namespace acme
    void acme::acme_initialize()
    {
 
-
       initialize_memory_counter();
 
       acme_construct();
 
       ::__raw_construct_new(m_psubsystem);
-
 
    }
      
@@ -1019,7 +1017,7 @@ namespace acme
 
 #endif
 
-      __defer_new(m_pelementaddraReleaseOnEnd);
+      //__defer_new(m_pelementaddraReleaseOnEnd);
 
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
@@ -1836,9 +1834,9 @@ void acme::delete_all_release_on_end()
 
    critical_section_lock criticalsectionlock(globals_critical_section());
 
-   m_pelementaddraReleaseOnEnd->erase_all();
+   //m_pelementaddraReleaseOnEnd->erase_all();
 
-   ::acme::del(m_pelementaddraReleaseOnEnd);
+  // ::acme::del(m_pelementaddraReleaseOnEnd);
 
    //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
 //   {
@@ -1856,22 +1854,22 @@ void acme::delete_all_release_on_end()
 
 }
 
-
-void acme::add_release_on_end(::particle * pparticle)
-{
-
-   critical_section_lock criticalsectionlock(globals_critical_section());
-
-//   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
-//   {
 //
-//      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
+//void acme::add_release_on_end(::particle * pparticle)
+//{
 //
-//   }
-
-   m_pelementaddraReleaseOnEnd->add(pparticle);
-
-}
+//   critical_section_lock criticalsectionlock(globals_critical_section());
+//
+////   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
+////   {
+////
+////      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
+////
+////   }
+//
+//   //m_pelementaddraReleaseOnEnd->add(pparticle);
+//
+//}
 
 //
 //namespace acme

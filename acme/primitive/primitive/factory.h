@@ -2,9 +2,9 @@
 
 
 ////#include "acme/exception/exception.h"
+#include "acme/parallelization/critical_section.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/primitive/primitive/particle.h"
-//#include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/collection/list_iterator.h"
 //////#include "acme/exception/exception.h"
@@ -155,7 +155,7 @@ namespace factory
 
       ::atom                                 m_atomSource;
       ::pointer<::acme::library>             m_plibrary;
-      critical_section                       m_criticalsection;
+      ::critical_section                     m_criticalsection;
 
 
       factory();

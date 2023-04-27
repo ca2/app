@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "library.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -468,7 +468,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&::acme::acme::g_p->m_psubsystem->m_criticalsection);
+      critical_section_lock synchronouslock(&::acme::acme::g_pacme->m_psubsystem->m_criticalsection);
 
       try
       {

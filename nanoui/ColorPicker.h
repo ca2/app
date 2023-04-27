@@ -31,8 +31,8 @@ namespace nanoui
        * \param parent
        *     The Widget to add this ColorPicker to.
        *
-       * \param ::color::color
-       *     The ::color::color initially selected by this ColorPicker (default: Red).
+       * \param color
+       *     The color initially selected by this ColorPicker (default: Red).
        */
 
       ColorPicker(Widget * parent, const ::color::color & color = ::color::color(1.f, 0.f, 0.f, 1.f));

@@ -106,7 +106,7 @@
 
 #include "acme/constant/parallelization.h"
 #include "acme/filesystem/file/_c.h"
-#include "acme/parallelization/critical_section.h"
+//#include "acme/parallelization/critical_section.h"
 #include "acme/platform/display.h"
 #include "acme/platform/lparam.h"
 #include "acme/primitive/comparison/compare.h"

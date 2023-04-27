@@ -16,8 +16,8 @@ namespace url
    public:
 
 
-      string_array                  m_straPublicDomainExtension;
-      critical_section              m_csPublicDomainExtension;
+      string_array                     m_straPublicDomainExtension;
+      ::critical_section               m_csPublicDomainExtension;
 
 
       url();

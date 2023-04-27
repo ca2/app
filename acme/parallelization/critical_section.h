@@ -1,32 +1,93 @@
 #pragma once
 
 
+class critical_section_impl;
+
+
 class CLASS_DECL_ACME critical_section
 {
 public:
 
 
-#ifdef WINDOWS
-   char sz[128 + 32]; // I hope it is enough to hold a union of CRITICAL_SECTION
-   // It should be enough to hold union of a CRITICAL_SECTION
+#ifdef PARALLELIZATION_PTHREAD
+
+   pthread_mutex_t m_mutex;
+
+   critical_section()
+{
+   
+   ::pthread_recursive_mutex_init(&m_mutex);
+   
+}
+
+
+~critical_section()
+{
+   
+   ::pthread_mutex_destroy(&m_mutex);
+   
+}
+
+
+void lock()
+{
+   
+   ::pthread_mutex_lock(&m_mutex);
+   
+}
+
+
+void unlock()
+{
+   
+   ::pthread_mutex_unlock(&m_mutex);
+   
+}
+
+
 #else
-   char sz[80 + 32]; // I hope it is enough to hold a union of pthread_mutex_t
-   // It should be enough to hold union of a pthread_mutex_t
+
+   CRITICAL_SECTION m_criticalsection;
+   
+   
+critical_section()
+{
+   
+   ::InitializeCriticalSection(&m_criticalsection);
+
+}
+
+
+~critical_section()
+{
+   
+   ::DeleteCriticalSection(&m_criticalsection);
+
+}
+
+
+void lock()
+{
+   
+   ::EnterCriticalSection(&m_criticalsection);
+
+}
+
+
+void unlock()
+{
+   
+   ::LeaveCriticalSection(&m_criticalsection);
+
+}
+
+
 #endif
 
 
-   critical_section();
-   ~critical_section();
-
-
-   void * aligned_this() { return (void *) ((((::uptr)(byte *)this) + 31) & (~(::uptr)31)); }
-
-
-   void lock();
-   void unlock();
-
 
 };
+
 
 
 class CLASS_DECL_ACME critical_section_lock
@@ -38,8 +99,8 @@ public:
    critical_section *      m_pcriticalsection;
 
 
-   inline critical_section_lock(critical_section* pcs, bool bInitialLock = true) : 
-      m_pcriticalsection(pcs), 
+   inline critical_section_lock(critical_section * pcriticalsection, bool bInitialLock = true) : 
+      m_pcriticalsection(pcriticalsection),
       m_bLocked(false) 
    { 
       

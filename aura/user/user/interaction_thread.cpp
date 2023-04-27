@@ -418,7 +418,7 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            output_debug_string("test");
+            output_debug_string("pump_message e_message_left_button_down");
 
          }
 

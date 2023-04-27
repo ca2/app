@@ -102,7 +102,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //}
 
 
-//CLASS_DECL_APEX string audio_get_default_library_name()
+//CLASS_DECL_APEX string audio_get_default_implementation_name()
 //{
 //
 //   return "audio_core_audio";

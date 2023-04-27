@@ -3365,7 +3365,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("test");
+      output_debug_string("file_context::get_file yesno.xhtml");
 
    }
 

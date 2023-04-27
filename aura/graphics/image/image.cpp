@@ -6084,7 +6084,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         output_debug_string("test");
+         output_debug_string("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8379,7 +8379,7 @@ void image::set_rgb(color32_t cr)
       if (areaRgba < areaRgbaLast)
       {
 
-         output_debug_string("test");
+         output_debug_string("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 

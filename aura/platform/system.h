@@ -383,10 +383,10 @@ namespace aura
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
       virtual ::pointer<::factory::factory>& draw2d_factory();
-      virtual string draw2d_get_default_library_name();
+      virtual ::string draw2d_get_default_implementation_name();
 
       virtual ::pointer<::factory::factory>& imaging_factory();
-      virtual string imaging_get_default_library_name();
+      virtual ::string imaging_get_default_implementation_name();
 
       virtual void init_task() override;
       virtual void term_task() override;
@@ -785,6 +785,9 @@ namespace aura
 
       void windowing_send(const ::procedure & procedure) override;
       void windowing_post(const ::procedure & procedure) override;
+
+
+      //::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 
 
    };

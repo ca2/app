@@ -577,11 +577,15 @@ namespace sockets_bsd
                      if (psocket->IsSSL()) // SSL Enabled socket
                      {
 
+                        _INFORMATION(ptcpsocket, "OnSSLConnect");
+
                         psocket->OnSSLConnect();
 
                      }
                      else if (psocket->Socks4())
                      {
+
+                        _INFORMATION(ptcpsocket, "OnSocks4Connect");
 
                         psocket->OnSocks4Connect();
 
@@ -595,6 +599,8 @@ namespace sockets_bsd
                            if (ptcpsocket->GetOutputLength())
                            {
 
+                              _INFORMATION(ptcpsocket, "OnWrite");
+
                               psocket->OnWrite();
 
                            }
@@ -603,6 +609,8 @@ namespace sockets_bsd
 
                         if (ptcpsocket && ptcpsocket->IsReconnect())
                         {
+
+                           _INFORMATION(ptcpsocket, "OnReconnect");
 
                            psocket->OnReconnect();
 
@@ -1077,12 +1085,16 @@ end_processing_adding:
                   // memory_new SSL negotiate method
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
+
+                     _INFORMATION(ppairSocket->m_psocket, "SSLNegotiate");
                      
                      ppairSocket->m_psocket->SSLNegotiate();
 
                   }
                   else
                   {
+
+                     _INFORMATION(ppairSocket->m_psocket, "OnRead");
                      
                      ppairSocket->m_psocket->OnRead();
 
@@ -1112,11 +1124,15 @@ end_processing_adding:
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
 
+                     _INFORMATION(ppairSocket->m_psocket, "SSLNegotiate");
+
                      ppairSocket->m_psocket->SSLNegotiate();
 
                   }
                   else
                   {
+
+                     _INFORMATION(ppairSocket->m_psocket, "OnWrite");
 
                      ppairSocket->m_psocket->OnWrite();
 

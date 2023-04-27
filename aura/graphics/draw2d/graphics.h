@@ -689,7 +689,7 @@ namespace draw2d
 
       //virtual void round_rectd(const ::rectangle_f64 & rectangle, const ::point_f64 & point);
 
-      void round_rectangle(const ::rectangle_f64 & rectangle_f64, double dRadius);
+      virtual void round_rectangle(const ::rectangle_f64 & rectangle, double dRadius);
 
 
       //virtual void from(const ::point_f64 & pointDst, const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc);

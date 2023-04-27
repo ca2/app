@@ -1018,7 +1018,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1028,7 +1028,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1038,7 +1038,7 @@ namespace draw2d
    }
 
 
-   void graphics::polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::polygon(const ::point_f64 * ppoints, count nCount)
    {
 
       fill_polygon(ppoints, nCount);
@@ -1050,7 +1050,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1062,7 +1062,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;
@@ -1089,7 +1089,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;

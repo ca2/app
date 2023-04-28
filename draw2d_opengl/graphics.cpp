@@ -9,7 +9,7 @@
 
 #include <math.h>
 #include <dwmapi.h>
-
+#include <gl/freeglut.h>
 //int  opengl_init();
 
 
@@ -136,7 +136,7 @@ namespace draw2d_opengl
    void graphics::create_memory_graphics(const ::size_i32 & sizeParam)
    {
 
-      ::size_i32 size;
+      ::size_i32 size(sizeParam);
 
       if (sizeParam.is_empty())
       {
@@ -5806,10 +5806,10 @@ namespace opengl
       //glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
       ////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
       //glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
-      glOrtho(0.f, size.cx, 0.f, size.cy, -1.0f, 1.0f);
-
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
+      //glOrtho(0.f, size.cx, 0.f, size.cy, -1.0f, 1.0f);
+      gluOrtho2D(0.f, size.cx, 0.f, size.cy);
+      //glMatrixMode(GL_MODELVIEW);
+      //glLoadIdentity();
 
       // Clear
       //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -5817,7 +5817,7 @@ namespace opengl
 
       // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
       //if (OpenGL::accuracyTweak())
-      glTranslatef(0.375f, 0.375f, 0);
+      glTranslatef(0.5f, 0.5f, 0);
 
    }
 

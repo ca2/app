@@ -124,7 +124,7 @@ namespace draw2d_opengl
 
       m_pgraphics->set(m_pbitmap);
 
-      m_pgraphics->create_memory_graphics(m_size);
+      m_pgraphics->create_memory_graphics(size);
 
       m_pgraphics->m_pimage = this;
 

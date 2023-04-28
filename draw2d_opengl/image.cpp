@@ -124,11 +124,17 @@ namespace draw2d_opengl
 
       m_pgraphics->set(m_pbitmap);
 
+      m_pgraphics->create_memory_graphics(m_size);
+
       m_pgraphics->m_pimage = this;
 
       this->init(size, pcolorref, iStride);
 
       m_eflagElement = eobjectCreate;
+
+      set_ok_flag();
+
+      m_estatus = ::success;
 
       //return true;
 
@@ -2717,9 +2723,40 @@ namespace draw2d_opengl
 
       m_pgraphics->thread_select();
 
+      int hasAlphaBits = 0;
+
+      glGetIntegerv(GL_ALPHA_BITS, &hasAlphaBits);
+
+      glFlush();
+
+      //glReadBuffer(GL_BACK);
+      //glReadBuffer(GL_FRONT);
+
+
+
+      ::pointer < graphics > pgraphics = m_pgraphics;
+
+      int cx = pgraphics->m_sizeWindow.cx;
+
+      int cy = pgraphics->m_sizeWindow.cy;
+
+      ::opengl::resize(pgraphics->m_sizeWindow);
+
       glReadBuffer(GL_BACK);
 
-      glReadPixels(0, 0, m_size.cx, m_size.cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pcolorrefRaw);
+      glPixelStorei(GL_PACK_SWAP_BYTES, 0);
+
+      glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
+
+      glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pcolorrefRaw);
+
+      //glReadPixels(0, 0, m_size.cx, m_size.cy, GL_ARGB, GL_UNSIGNED_BYTE, m_pcolorrefRaw);
+
+      int i1280 = GL_INVALID_ENUM;
+
+      int i1281 = GL_INVALID_VALUE;
+
+      int iError = glGetError();
 
       m_bMapped = true;
 

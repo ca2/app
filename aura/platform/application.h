@@ -1047,6 +1047,7 @@ namespace aura
 
 #endif
 
+      virtual string draw2d_get_default_implementation_name();
 
 
    };

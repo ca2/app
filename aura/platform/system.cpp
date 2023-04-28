@@ -1174,35 +1174,42 @@ namespace aura
    string system::draw2d_get_default_implementation_name()
    {
 
-      string str;
+      string strImplementationName;
+
+      strImplementationName = acmeapplication()->m_pauraapplication->draw2d_get_default_implementation_name();
+
+      if (strImplementationName.has_char())
+      {
+
+         return strImplementationName;
+
+      }
 
       ::file::path path = acmedirectory()->roaming() / "system/draw2d.txt";
 
-      str = acmefile()->as_string(path);
+      strImplementationName = acmefile()->as_string(path);
 
-      if(str.has_char())
+      if(strImplementationName.has_char())
       {
 
-         return implementation_name("draw2d", str);
+         return implementation_name("draw2d", strImplementationName);
 
       }
 
       path = acmedirectory()->roaming()/acmeapplication()->m_strAppId / "draw2d.txt";
 
-      str = acmefile()->as_string(path);
+      strImplementationName = acmefile()->as_string(path);
 
-      if(str.has_char())
+      if(strImplementationName.has_char())
       {
 
-         return implementation_name("draw2d", str);
+         return implementation_name("draw2d", strImplementationName);
 
       }
 
 #ifdef WINDOWS_DESKTOP
-      
-      return implementation_name("draw2d", "gdiplus");
 
-      //return implementation_name("draw2d", "opengl");
+      return implementation_name("draw2d", "gdiplus");
 
 #elif __APPLE__
       

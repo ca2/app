@@ -189,7 +189,7 @@ namespace draw2d_opengl
       // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void attach(void * posdata);
+      //virtual void attach(void * posdata);
       virtual void * detach();
 
       virtual HBITMAP _GetHBITMAP();

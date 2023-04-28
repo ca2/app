@@ -65,6 +65,8 @@ namespace app_app
       
       m_iCloseButtonDraw = 0;
 
+      m_dDrawOnlyMainRectangles = true;
+
       ::rectangle_i32 rectangleClient;
 
       client_rectangle(rectangleClient);
@@ -80,14 +82,18 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      if (acmenode()->background_color().get_luminance() < 0.5) {
+      if (acmenode()->background_color().get_luminance() < 0.5) 
+      {
 
          pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
 
-      }else{
+      }
+      else
+      {
 
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));}
+      }
       
       auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
 
@@ -102,6 +108,13 @@ namespace app_app
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb_color(127, 40, 150, 235));
 
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb_color(127, 255, 110, 150));
+
+      if (m_dDrawOnlyMainRectangles)
+      {
+
+         return;
+
+      }
       
       rectangleClient.deflate((::i32) dBase);
 
@@ -129,6 +142,12 @@ namespace app_app
 
       }
 
+      m_dDrawControlBox = false;
+
+      if(m_dDrawControlBox)
+      {
+
+
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       auto pitemClose = get_user_item(::e_element_close_button);
@@ -141,7 +160,7 @@ namespace app_app
          bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
 
          double dSourcePeriod;
-         
+
          if (bHover)
          {
 
@@ -203,7 +222,7 @@ namespace app_app
 
          }
 
-         int iSize = (int) (::sin(angle) * 20.0 + 64.0);
+         int iSize = (int)(::sin(angle) * 20.0 + 64.0);
 
          client_rectangle(pitemClose->m_rectangle);
 
@@ -247,7 +266,7 @@ namespace app_app
 
          }
 
-
+         }
 
       }
 

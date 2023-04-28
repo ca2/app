@@ -8992,6 +8992,14 @@ namespace aura
    }
 
 
+   string application::draw2d_get_default_implementation_name()
+   {
+
+      return {};
+
+   }
+
+
 } // namespace aura
 
 

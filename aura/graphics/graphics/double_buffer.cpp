@@ -27,7 +27,7 @@ namespace graphics
    {
 
       //auto estatus = 
-      
+
       graphics::initialize_graphics_graphics(pimpl);
 
       //if (!estatus)
@@ -67,93 +67,52 @@ namespace graphics
 
       auto sizeWindow = window_size();
 
-      //if (pimage->size() != sizeWindow)
+      auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
+
+      auto sizeReserved = ::size_i32(1920, 1080);
+
+      if (sizeWindow.cx > sizeImage.cx)
       {
-         
-//         if(pimage->size().area() < sizeWindow.area())
-//         {
-//
-//            ::size_i32 sizeImage(1920, 1080);
-//
-//            if(sizeWindow.area() > sizeImage.area())
-//            {
-//
-//               sizeImage = sizeWindow;
-//
-//            }
-//
-//
 
-//         if(sizeWindow.cx == 1)
-//         {
-//
-//            printf("cx=1");
-//
-//         }
-//         else
-//         {
-//            printf("cx!=1");
-//
-//         }
-          
-         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
-         auto sizeReserved = ::size_i32(1920, 1080);
-          
-          if(sizeWindow.cx > sizeImage.cx)
-          {
-              sizeImage.cx = sizeWindow.cx;
-              
-          }
-          if(sizeWindow.cy > sizeImage.cy)
-          {
-              sizeImage.cy = sizeWindow.cy;
-              
-          }
-          if(sizeReserved.cx > sizeImage.cx)
-          {
-              sizeImage.cx = sizeReserved.cx;
-              
-          }
-          if(sizeReserved.cy > sizeImage.cy)
-          {
-              sizeImage.cy = sizeReserved.cy;
-              
-          }
+         sizeImage.cx = sizeWindow.cx;
 
-
-          //pimage->create(sizeWindow);
-          // 
-           pimage->create(sizeImage);
-            //if (!pimage->create(sizeWindow))
-            //{
-
-            //   return nullptr;
-
-            //}
-            
-//         }
-//
-//         if(pimage->size().area() > sizeWindow.area())
-//         {
-//
-//            pimage->map();
-//
-//            pimage->m_iScan = sizeWindow.width() * sizeof(::color32_t);
-//
-//            pimage->m_size = sizeWindow;
-//
-//         }
-//
       }
 
-      if (!pimage)
+      if (sizeWindow.cy > sizeImage.cy)
+      {
+
+         sizeImage.cy = sizeWindow.cy;
+
+      }
+
+      if (sizeReserved.cx > sizeImage.cx)
+      {
+
+         sizeImage.cx = sizeReserved.cx;
+
+      }
+
+      if (sizeReserved.cy > sizeImage.cy)
+      {
+
+         sizeImage.cy = sizeReserved.cy;
+
+      }
+
+      pimage->create(sizeImage);
+
+      if (pimage.nok())
       {
 
          return nullptr;
 
       }
 
-      return pimage->g();
+      auto pgraphics = pimage->g();
+
+      pgraphics->resize(sizeWindow);
+
+      return pgraphics;
 
    }
 
@@ -189,7 +148,7 @@ namespace graphics
 
    }
 
-   
+
    ::index double_buffer::get_buffer_index() const
    {
 
@@ -233,14 +192,14 @@ namespace graphics
    {
 
       _synchronous_lock slBuffer(get_buffer_sync());
-      
+
       _synchronous_lock slScreen(get_screen_sync());
 
       if (m_iCurrentBuffer == 0)
       {
 
          m_iCurrentBuffer = 1;
-         
+
          //output_debug_string("buffer_lock_round_swap_key_buffers (1)\n");
 
       }
@@ -252,47 +211,47 @@ namespace graphics
          //output_debug_string("buffer_lock_round_swap_key_buffers (0)\n");
 
       }
-      
-//      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
 
-      //if (get_buffer_image()->is_ok())
-      //{
+      //      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
 
-      //   get_buffer_image()->fill(0);
+            //if (get_buffer_image()->is_ok())
+            //{
 
-      //}
+            //   get_buffer_image()->fill(0);
 
-//      int debug = 1;
-//
-//      if (debug)
-//      {
-//
-//         auto pimageScreen = get_screen_image();
-//
-//         if(::is_null(pimageScreen))
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         pimageScreen->map();
-//
-//         auto pdata = pimageScreen->get_data();
-//
-//         byte * p = (byte *)pdata;
-//
-//         byte r = p[0];
-//
-//         byte g = p[1];
-//
-//         byte b = p[2];
-//
-//         byte a = p[3];
-//
-//         //::output_debug_string("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
-//
-//      }
+            //}
+
+      //      int debug = 1;
+      //
+      //      if (debug)
+      //      {
+      //
+      //         auto pimageScreen = get_screen_image();
+      //
+      //         if(::is_null(pimageScreen))
+      //         {
+      //
+      //            return false;
+      //
+      //         }
+      //
+      //         pimageScreen->map();
+      //
+      //         auto pdata = pimageScreen->get_data();
+      //
+      //         byte * p = (byte *)pdata;
+      //
+      //         byte r = p[0];
+      //
+      //         byte g = p[1];
+      //
+      //         byte b = p[2];
+      //
+      //         byte a = p[3];
+      //
+      //         //::output_debug_string("argb " +as_string(r) + "," + as_string(g) + "," +as_string(b) + "," + as_string(a));
+      //
+      //      }
 
       return true;
 
@@ -325,7 +284,7 @@ namespace graphics
 
    void double_buffer::destroy_buffer()
    {
-      
+
       m_imageaBuffer[0].release();
       m_imageaBuffer[1].release();
 

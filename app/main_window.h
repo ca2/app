@@ -14,8 +14,10 @@ namespace app_app
    public:
 
 
+      bool              m_dDrawControlBox;
+      bool              m_dDrawOnlyMainRectangles;
       double            m_dBreathPeriod;
-      class ::time        m_timeStart;
+      class ::time      m_timeStart;
       double            m_dPhaseShift;
       int               m_iCloseButtonDraw;
 

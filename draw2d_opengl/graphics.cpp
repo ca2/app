@@ -1,14 +1,16 @@
 #include "framework.h"
+#include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
+#include "aura/user/user/interaction.h"
 
 
 #include <math.h>
 #include <dwmapi.h>
 
-
+//int  opengl_init();
 
 
 namespace opengl
@@ -43,7 +45,7 @@ public:
 namespace draw2d_opengl
 {
 
-   ATOM class_atom = NULL;
+   //ATOM class_atom = NULL;
 
    graphics * thread_graphics()
    {
@@ -102,7 +104,7 @@ namespace draw2d_opengl
    graphics::~graphics()
    {
 
-      opengl_delete_offscreen_buffer();
+      //opengl_delete_offscreen_buffer();
 
       DeleteDC();
 
@@ -131,10 +133,28 @@ namespace draw2d_opengl
    }
 
 
+   void graphics::create_memory_graphics(const ::size_i32 & sizeParam)
+   {
+
+      ::size_i32 size;
+
+      if (sizeParam.is_empty())
+      {
+
+         size = { 1920, 1080 };
+
+      }
+
+      opengl_create_offscreen_buffer(size);
+
+   }
+
+
    void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      //return true;
+      opengl_create_offscreen_buffer({ 1920, 1080 });
+      //opengl_create_offscreen_buffer(pgraphics->m_pimage->size());
 
    }
 
@@ -142,19 +162,19 @@ namespace draw2d_opengl
    bool graphics::opengl_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      if (class_atom == 0) {
+      if (draw2d_opengl()->m_atomClass == 0) {
          TRACE("MS GDI - RegisterClass failed\n");
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
 
-      glewExperimental = GL_TRUE;
-      GLenum err = glewInit();
-      if (err != GLEW_OK) {
-         // Problem: glewInit failed, something is seriously wrong.
-         FORMATTED_TRACE( "glewInit failed: %s\n",glewGetErrorString(err));
-         return false;
-      }
+      //glewExperimental = GL_TRUE;
+      //GLenum err = glewInit();
+      //if (err != GLEW_OK) {
+      //   // Problem: glewInit failed, something is seriously wrong.
+      //   FORMATTED_TRACE( "glewInit failed: %s\n",glewGetErrorString(err));
+      //   return false;
+      //}
       LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
       LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
       //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
@@ -245,6 +265,8 @@ namespace draw2d_opengl
       m_hdc = dev_context;
       m_hglrc = gl_render_context;
       m_size = size;
+
+      ::opengl::resize(size);
 
       return true;
 
@@ -1534,11 +1556,21 @@ namespace draw2d_opengl
    void graphics::draw_rectangle(const ::rectangle_f64& rectangle, ::draw2d::pen* ppen)
    {
 
-      glLineWidth(ppen->m_dWidth);
+      if (::is_set(ppen))
+      {
+
+         glLineWidth(ppen->m_dWidth);
+
+      }
 
       glBegin(GL_LINE_LOOP);
-      
-      ::opengl::color(ppen->m_color);
+
+      if (::is_set(ppen))
+      {
+
+         ::opengl::color(ppen->m_color);
+
+      }
       
       ::opengl::vertex2f(rectangle);
       
@@ -2054,6 +2086,17 @@ namespace draw2d_opengl
    }
 
 
+   void graphics::resize(const ::size_i32 & sizeWindow)
+   {
+
+      m_sizeWindow = sizeWindow;
+
+      ::opengl::resize(sizeWindow);
+
+   }
+
+
+
    //bool graphics::ResetDC(const DEVMODE* lpDevMode)
    //{
    //   // ASSERT(m_hdc != nullptr);
@@ -2453,6 +2496,27 @@ namespace draw2d_opengl
 //      return m_ppath->Flatten() == plusplus::Status::Ok;
       //return true;
 
+   }
+
+   
+   void graphics::stroke_and_fill_path()
+   {
+
+
+   }
+
+
+   void graphics::stroke_path()
+   {
+
+
+   }
+
+
+   void graphics::widen_path()
+   {
+
+      
    }
 
 
@@ -3508,7 +3572,12 @@ namespace draw2d_opengl
    // {
 //      return ::draw2d_opengl::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
+   ::draw2d_opengl::draw2d * graphics::draw2d_opengl()
+   {
 
+      return dynamic_cast < ::draw2d_opengl::draw2d * >(acmesystem()->m_paurasystem->draw2d());
+
+   }
 
    ::draw2d::object* graphics::SelectStockObject(::i32 nIndex)
    {
@@ -4635,20 +4704,20 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::draw_text_ex(const ::scoped_string & str, const ::rectangle_i32 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
-   {
+   //void graphics::draw_text_ex(const ::scoped_string & str, const ::rectangle_i32 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   //{
 
-      // ASSERT(m_hdc != nullptr);
+   //   // ASSERT(m_hdc != nullptr);
 
-      // these flags would modify the string
-      //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
-      //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      //wstring wstr = utf8_to_unicode(str);
-      //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(double)wcslen(wstr),(::rectangle_f64 *) &rectangleParam,nFormat,lpDTParams);
-      
-      //return false;
+   //   // these flags would modify the string
+   //   //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
+   //   //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
+   //   //wstring wstr = utf8_to_unicode(str);
+   //   //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(double)wcslen(wstr),(::rectangle_f64 *) &rectangleParam,nFormat,lpDTParams);
+   //   
+   //   //return false;
 
-   }
+   //}
 
 
    //void graphics::draw_text_ex(const ::scoped_string & str,const ::rectangle_i32 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
@@ -4955,11 +5024,21 @@ namespace draw2d_opengl
    void graphics::line_to(double x, double y)
    {
 
-      glLineWidth(m_ppen->m_dWidth);
+      if (::is_set(m_ppen))
+      {
+
+         glLineWidth(m_ppen->m_dWidth);
+
+      }
 
       glBegin(GL_LINES);
 
-      ::opengl::color(m_ppen->m_color);
+      if (::is_set(m_ppen))
+      {
+
+         ::opengl::color(m_ppen->m_color);
+
+      }
 
       glVertex2f(m_point.x, m_point.y);
       glVertex2f(x, y);
@@ -4974,50 +5053,51 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::text_out(::i32 x, ::i32 y, const ::scoped_string & lpszString, strsize nCount)
-   //{
+   void graphics::text_out(double x, double y, const ::scoped_string & scopedstr)
+   {
 
-   //   if (m_pfont.is_null())
-   //   {
+      if (m_pfont.is_null())
+      {
 
-   //      return false;
+         return;
 
-   //   }
+      }
 
-   //   if (::draw2d::graphics::text_out(x, y, lpszString, nCount))
-   //   {
+      //::draw2d::graphics::text_out(x, y, lpszString);
+      //if (::draw2d::graphics::text_out(x, y, lpszString, nCount))
+      //{
 
-   //      return true;
+      //   return true;
 
-   //   }
+      //}
 
-   //   return true;
+      //return true;
 
-   //   set(m_pfont);
+      set(m_pfont);
 
-   //   ::pointer<font>pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
-   //   int length = 0;
+      int length = 0;
 
-   //   for (unsigned int loop = 0; loop < (strlen(lpszString)); loop++)	// Loop To Find Text Length
-   //   {
+      for (unsigned int loop = 0; loop < scopedstr.size(); loop++)	// Loop To Find Text Length
+      {
 
-   //      length += pfont->m_gmf[lpszString[loop]].gmfCellIncX;			// Increase Length By Each Characters Width
+         length += pfont->m_gmf[scopedstr[loop]].gmfCellIncX;			// Increase Length By Each Characters Width
 
-   //   }
+      }
 
-   //   glTranslatef(x, y, 0.0f);					// Center Our Text On The Screen
+      glTranslatef(x, y, 0.0f);					// Center Our Text On The Screen
 
-   //   glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
-   //   glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
-   //   glCallLists((GLsizei) strlen(lpszString), GL_UNSIGNED_BYTE, lpszString);	// Draws The Display List Text
-   //   glPopAttrib();										// Pops The Display List Bits      }
+      glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
+      glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
+      glCallLists((GLsizei)scopedstr.size(), GL_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
+      glPopAttrib();										// Pops The Display List Bits      }
 
-   //   glTranslatef(-x, -y, 0.0f);					// Center Our Text On The Screen
+      glTranslatef(-x, -y, 0.0f);					// Center Our Text On The Screen
 
-   //   return true;
+      //return true;
 
-   //}
+   }
 
 
    void graphics::set(::draw2d::region* pregion)
@@ -5598,17 +5678,41 @@ namespace draw2d_opengl
    }
 
 
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
+   {
+
+
+   }
+
    //void graphics::on_begin_draw(oswindow wnd, const ::size_i32 & sz)
    void graphics::on_begin_draw()
    {
 
       thread_select();
 
-      //::opengl::resize(sz);
+      ::size_i32 size;
+
+      if (m_puserinteraction && !m_puserinteraction->size().is_empty())
+      {
+
+         size = m_puserinteraction->size();
+
+      }
+      else
+      {
+
+         size = { 1920, 1080 };
+
+      }
+
+      ::opengl::resize(size);
 
       m_z = 0.f;
 
+      glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
    }
 
@@ -5635,6 +5739,14 @@ namespace draw2d_opengl
       wglMakeCurrent(m_hdc, m_hglrc);
 
       thread_graphics(this);
+
+   }
+
+
+   bool graphics::_is_ok() const
+   {
+
+      return ::is_set(this) & ::is_set(m_hglrc);
 
    }
 
@@ -5682,9 +5794,11 @@ namespace opengl
 
       //double d = 200.0 / 72.0;
 
-      double d = 1.0;
+      //double d = 1.0;
 
-      glViewport(0, 0, size.cx * d, size.cy * d);
+      //glViewport(0, 0, size.cx * d, size.cy * d);
+
+      glViewport(0, 0, size.cx, size.cy);
 
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();
@@ -5692,10 +5806,18 @@ namespace opengl
       //glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
       ////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
       //glOrtho(0, size.cx, size.cy, 0.0f, -1000.0f, 1000.0f);
-      glOrtho(0, size.cx, 0.f, size.cy, -1000.0f, 1000.0f);
+      glOrtho(0.f, size.cx, 0.f, size.cy, -1.0f, 1.0f);
 
       glMatrixMode(GL_MODELVIEW);
       glLoadIdentity();
+
+      // Clear
+      //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
+      //if (OpenGL::accuracyTweak())
+      glTranslatef(0.375f, 0.375f, 0);
 
    }
 
@@ -5728,6 +5850,9 @@ namespace opengl
       }
       glEnd();
    }
+
+
+
 
 
 } // namespace opengl

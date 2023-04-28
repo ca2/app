@@ -16,6 +16,7 @@
 namespace draw2d_opengl
 {
 
+   class draw2d;
 
    class CLASS_DECL_DRAW2D_OPENGL graphics :
       virtual public ::draw2d::graphics
@@ -34,6 +35,8 @@ namespace draw2d_opengl
       float                         m_z;
       point_i32                         m_pointTranslate;
       // bool                                      m_bFont;
+      ::size_i32                    m_sizeWindow;
+
 
       graphics();
       ~graphics() override;
@@ -53,7 +56,7 @@ namespace draw2d_opengl
       virtual void thread_select();
 
 
-      void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
+      //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
 
       //virtual bool Attach(HDC hdc);   // attach/detach affects only the Output DC
@@ -101,6 +104,7 @@ namespace draw2d_opengl
                     const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
                     const char * lpszOutput, const void * lpInitData);
+      void create_memory_graphics(const ::size_i32 & size = nullptr) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       virtual bool opengl_create_offscreen_buffer(const ::size_i32 & size);
@@ -111,10 +115,14 @@ namespace draw2d_opengl
       // Device-Context Functions
       i32 SaveDC()override;
       void RestoreDC(i32 nSavedDC)override;
-      i32 GetDeviceCaps(i32 nIndex) override;
+      //i32 GetDeviceCaps(i32 nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
       ::u32 GetBoundsRect(rectangle_f64 * rectangleBounds, ::u32 flags) override;
       //bool ResetDC(const DEVMODE* lpDevMode);
+
+
+      void resize(const ::size_i32 & sizeWindow) override;
+
 
       // Drawing-Tool Functions
       point_i32 GetBrushOrg() const;
@@ -125,6 +133,10 @@ namespace draw2d_opengl
 
       // Type-safe selection helpers
    public:
+
+      ::draw2d_opengl::draw2d * draw2d_opengl();
+
+
       virtual ::draw2d::object* SelectStockObject(i32 nIndex);
       ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
       ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
@@ -221,7 +233,7 @@ namespace draw2d_opengl
       virtual i32 get_clip_box(rectangle_f64 * prectangle) const;
       virtual bool PtVisible(i32 x, i32 y) const;
       bool PtVisible(const ::point_i32 & point) const;
-      virtual bool RectVisible(const ::rectangle_i32 & rectangle_i32) const;
+      //virtual bool RectVisible(const ::rectangle_i32 & rectangle_i32) const;
       i32 SelectClipRgn(::draw2d::region* pRgn);
       i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
       i32 ExcludeClipRect(const ::rectangle_i32 & rectangle_i32);
@@ -231,6 +243,9 @@ namespace draw2d_opengl
       i32 OffsetClipRgn(i32 x, i32 y);
       i32 OffsetClipRgn(const ::size_i32 & size);
       i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode);
+
+
+      void text_out(double x, double y, const ::scoped_string & scopedstr) override;
 
       // Line-Output Functions
       // point_i32 GetCurrentPosition() const;
@@ -256,7 +271,7 @@ namespace draw2d_opengl
       //i32 GetArcDirection() const;
       //i32 SetArcDirection(i32 nArcDirection);
 
-      void polydraw(const ::point_f64* lpPoints, const byte* lpTypes,::count nCount);
+      //void polydraw(const ::point_f64* lpPoints, const byte* lpTypes,::count nCount);
       void polyline_to(const ::point_f64 * lpPoints,::count nCount);
       void poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints,::count nCount);
 
@@ -370,11 +385,11 @@ namespace draw2d_opengl
 
       void draw_text(const ::scoped_string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      void draw_text_ex(const ::scoped_string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+      //void draw_text_ex(const ::scoped_string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
       void draw_text(const ::scoped_string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      void draw_text_ex(const ::string & str, const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //void draw_text_ex(const ::string & str, const ::rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual size_f64 get_text_extent(const ::scoped_string & lpszString, strsize nCount, strsize iIndex) override;
       //virtual size_f64 get_text_extent(const ::scoped_string & lpszString, strsize nCount) override;
@@ -510,8 +525,8 @@ namespace draw2d_opengl
       void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
-      void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
+      //void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
+      //void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
 
 
       
@@ -554,7 +569,7 @@ namespace draw2d_opengl
 
       //virtual void enum_fonts(::write_text::font_enumeration_item_array& itema) override;
 
-      void prefer_mapped_image_on_mix() override;
+      //void prefer_mapped_image_on_mix() override;
 
       virtual void set(::draw2d::region* pregion) override;
       virtual void set(::draw2d::pen* ppen) override;
@@ -566,9 +581,15 @@ namespace draw2d_opengl
       void CreateWindowDC(oswindow wnd) override;
       void is_valid_update_window_thread() override;
 
+
+      void _add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape) override;
+
+
       void on_begin_draw() override;
       void on_end_draw(oswindow wnd) override;
 
+      
+      bool _is_ok() const override;
 
 
    };

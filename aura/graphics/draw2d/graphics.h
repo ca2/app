@@ -186,6 +186,7 @@ namespace draw2d
       inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return this; }
       inline ::size_f64 origin() const { return ::size_f64(); }
 
+      bool _is_ok() const override;
 
       ::image_pointer image_source_image(const concrete < ::size_i32 > & sizeDst) override;
 
@@ -276,7 +277,7 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual void create_memory_graphics();
+      virtual void create_memory_graphics(const ::size_i32 & size = nullptr);
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
@@ -290,6 +291,11 @@ namespace draw2d
       virtual i32 GetDeviceCaps(i32 nIndex);
       virtual ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags);
       virtual ::u32 GetBoundsRect(::rectangle_f64 * rectdBounds, ::u32 flags);
+
+
+      virtual void resize(const ::size_i32 & sizeWindow);
+
+
       
 //#ifdef WINDOWS
 //      virtual void ResetDC(const DEVMODE* pDevMode);

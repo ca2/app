@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "application.h"
 #include "main_window.h"
+#include "acme/platform/system.h"
 
 
 namespace app_app
@@ -49,6 +50,14 @@ namespace app_app
       pmainwindow->set_need_redraw();
 
       pmainwindow->post_redraw();
+
+   }
+
+
+   string application::draw2d_get_default_implementation_name()
+   {
+
+      return acmesystem()->implementation_name("draw2d", "opengl");
 
    }
 

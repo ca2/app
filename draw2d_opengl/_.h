@@ -49,11 +49,12 @@ namespace opengl
    inline void color(byte r, byte g, byte b, byte a)
    {
 
-      glColor4f(
-         (float) r * (float) a / 65355.f, 
-         (float) g * (float) a / 65355.f,
-         (float) b * (float) a / 65355.f,
-         (float) a / 255.f);
+      auto fr = (float)r * (float)a / 65355.f;
+      auto fg = (float)g * (float)a / 65355.f;
+      auto fb = (float)b * (float)a / 65355.f;
+      auto fa = (float)a / 255.f;
+
+      glColor4f(fr, fg, fb, fa);
 
    }
 
@@ -96,6 +97,17 @@ namespace opengl
    void draw_arc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
 
 } // namespace opengl
+
+
+
+namespace draw2d_opengl
+{
+
+
+   class draw2d;
+
+
+} // namespace draw2d_opengl
 
 
 

@@ -4934,7 +4934,7 @@ namespace user
          }
 
 //#ifdef UNIVERSAL_WINDOWS
-         if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
+         if (pgraphics->nok())
          {
 
 //#define SEVERITY_HIGH 5

@@ -38,11 +38,18 @@ namespace draw2d_opengl
       //__creatable_from_base(draw2d, ::draw2d::draw2d);
       string_map < ::pointer<private_font >>m_mapPrivateFont;
 
+      bool        m_bGlewInitialized;
+
+
       draw2d();
       ~draw2d() override;
 
 
       void initialize(::particle * pparticle) override;
+
+
+      void defer_initialize_glew();
+
 
       virtual string write_text_get_default_implementation_name() override;
 

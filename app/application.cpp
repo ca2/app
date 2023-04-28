@@ -58,6 +58,7 @@ namespace app_app
    {
 
       return acmesystem()->implementation_name("draw2d", "opengl");
+      //return acmesystem()->implementation_name("draw2d", "gdiplus");
 
    }
 

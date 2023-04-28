@@ -1064,10 +1064,10 @@ namespace draw2d
       //virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color & color);
 
-      virtual void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, double dWidth, const ::e_border & eborder = e_border_all);
       //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      virtual void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, double dWidth, const ::e_border & eborder = e_border_all);
       virtual void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
       //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& color, const ::e_border & eborder = e_border_all);
 

@@ -133,14 +133,7 @@ namespace app_app
 
       }
 
-      for (int i = 0; i < dBase; i++)
-      {
-
-         pgraphics->draw_inset_rectangle(rectangleClient, colorInset);
-
-         rectangleClient.deflate(1, 1);
-
-      }
+      pgraphics->draw_inset_rectangle(rectangleClient, colorInset, dBase);
 
       m_dDrawControlBox = true;
 

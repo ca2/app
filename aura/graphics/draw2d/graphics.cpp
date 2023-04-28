@@ -2463,7 +2463,7 @@ namespace draw2d
 
 
 
-   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, double dWidth, const ::e_border & eborder)
    {
 
       auto smooth_mode = get_smooth_mode();
@@ -2478,7 +2478,7 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft);
+         fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), dWidth), colorTopLeft);
 
       }
 
@@ -2487,9 +2487,9 @@ namespace draw2d
 
          fill_rectangle(rectangle_f64_dimension(
             rectangle.left,
-            rectangle.top + (eborder & e_border_top ? 1.0 : 0),
-            1.0,
-            rectangle.height() - (eborder & e_border_top ? 1.0 : 0)), colorTopLeft);
+            rectangle.top + (eborder & e_border_top ? dWidth : 0),
+            dWidth,
+            rectangle.height() - (eborder & e_border_top ? dWidth : 0)), colorTopLeft);
          //{
 
          //   return false;
@@ -2502,10 +2502,10 @@ namespace draw2d
       {
 
          fill_rectangle(rectangle_f64_dimension(
-            rectangle.left + (eborder & e_border_left ? 1.0 : 0),
-            rectangle.bottom - 1.0,
-            rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
-            1.0), colorBottomRight);
+            rectangle.left + (eborder & e_border_left ? dWidth : 0),
+            rectangle.bottom - dWidth,
+            rectangle.width() - (eborder & e_border_left ? dWidth : 0),
+            dWidth), colorBottomRight);
          //{
 
          //   return false;
@@ -2520,10 +2520,10 @@ namespace draw2d
          //if (!
          fill_rectangle(
             ::rectangle_f64_dimension(
-               rectangle.right - 1.0,
-               rectangle.top + (eborder & e_border_top ? 1.0 : 0),
-               1.0,
-               rectangle.height() - (eborder & e_border_top ? 1.0 : 0) - (eborder & e_border_bottom ? 1.0 : 0)),
+               rectangle.right - dWidth,
+               rectangle.top + (eborder & e_border_top ? dWidth : 0),
+               dWidth,
+               rectangle.height() - (eborder & e_border_top ? dWidth : 0) - (eborder & e_border_bottom ? dWidth : 0)),
             colorBottomRight);
          //{
 
@@ -2545,11 +2545,11 @@ namespace draw2d
    }
 
 
-   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double dWidth, const ::e_border & eborder)
    {
 
       //if (!
-      draw_inset_3d_rectangle(rectangle, color, color, eborder);
+      draw_inset_3d_rectangle(rectangle, color, color, dWidth, eborder);
       //{
 
       //   return false;

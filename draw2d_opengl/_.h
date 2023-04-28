@@ -49,9 +49,12 @@ namespace opengl
    inline void color(byte r, byte g, byte b, byte a)
    {
 
-      auto fr = (float)r * (float)a / 65355.f;
-      auto fg = (float)g * (float)a / 65355.f;
-      auto fb = (float)b * (float)a / 65355.f;
+      //auto fr = (float)r * (float)a / 65355.f;
+      //auto fg = (float)g * (float)a / 65355.f;
+      //auto fb = (float)b * (float)a / 65355.f;
+      auto fr = (float)r / 255.f;
+      auto fg = (float)g / 255.f;
+      auto fb = (float)b / 255.f;
       auto fa = (float)a / 255.f;
 
       glColor4f(fr, fg, fb, fa);

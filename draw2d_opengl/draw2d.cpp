@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "draw2d.h"
+#include "acme/exception/resource.h"
 #include "acme/primitive/primitive/memory.h"
 
 
@@ -30,6 +31,7 @@ namespace draw2d_opengl
    {
 
       m_atomClass = NULL;
+      m_bGlewInitialized = false;
 
    }
 
@@ -60,6 +62,7 @@ namespace draw2d_opengl
 
       //estatus = 
 
+
       opengl_init();
 
 
@@ -73,6 +76,31 @@ namespace draw2d_opengl
       //}
 
       //return estatus;
+
+   }
+
+
+   void draw2d::defer_initialize_glew()
+   {
+
+      if (m_bGlewInitialized)
+      {
+
+         return;
+
+      }
+
+      glewExperimental = GL_TRUE;
+      GLenum err = glewInit();
+      if (err != GLEW_OK) {
+         // Problem: glewInit failed, something is seriously wrong.
+         FORMATTED_TRACE("glewInit failed: %s\n", glewGetErrorString(err));
+         //return false;
+         throw resource_exception();
+      }
+
+      m_bGlewInitialized = true;
+
 
    }
 

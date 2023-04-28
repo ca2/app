@@ -55,7 +55,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, argb(255, 235, 235, 235));
 
-      pgraphics->draw_inset_rectangle(rectangle, argb(255, 128, 128, 128));
+      pgraphics->draw_inset_rectangle(rectangle, argb(255, 128, 128, 128), 1.0);
 
       rectangle.deflate(1, 1);
 

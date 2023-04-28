@@ -750,7 +750,7 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, colorBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, colorBorder, 1.0);
 
       }
 

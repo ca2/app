@@ -168,13 +168,7 @@ namespace draw2d_opengl
          return false;
       }
 
-      //glewExperimental = GL_TRUE;
-      //GLenum err = glewInit();
-      //if (err != GLEW_OK) {
-      //   // Problem: glewInit failed, something is seriously wrong.
-      //   FORMATTED_TRACE( "glewInit failed: %s\n",glewGetErrorString(err));
-      //   return false;
-      //}
+
       LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
       LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
       //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
@@ -260,6 +254,10 @@ namespace draw2d_opengl
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
+
+
+      draw2d_opengl()->defer_initialize_glew();
+
 
       m_hwnd = window;
       m_hdc = dev_context;
@@ -3251,15 +3249,23 @@ namespace draw2d_opengl
    */
 
    
-   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangleParam,
-                             const ::color::color & clrTopLeft, const ::color::color & clrBottomRight,
-      const ::e_border & eborder)
-   {
+   //void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangleParam,
+   //                          const ::color::color & clrTopLeft, const ::color::color & clrBottomRight,
+   //   const ::e_border & eborder)
+   //{
 
-      //draw3d_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left,
-        //         rectangleParam.bottom - rectangleParam.top, clrTopLeft, clrBottomRight);
+   //   //draw3d_rectangle(rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left,
+   //     //         rectangleParam.bottom - rectangleParam.top, clrTopLeft, clrBottomRight);
 
-   }
+   //}
+
+   //
+   //void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   //{
+
+
+   //}
+
 
    //void graphics::Draw3dRect(double x, double y, double cx, double cy,
    //                          color32_t clrTopLeft, color32_t clrBottomRight)
@@ -5221,7 +5227,15 @@ namespace draw2d_opengl
          if(m_ealphamode == ::draw2d::e_alpha_mode_blend)
          {
             glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            //glColorMask(false, false, false, true);
+            //glColorMask(true, true, true, false);
+            //glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
+            //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            //glBlendFunc(GL_ZERO, GL_SRC_ALPHA);
+            glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+            glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ZERO, GL_ONE);
+            //glDisable(GL_DEPTH_TEST);
+            //glDepthFunc(GL_NEVER);
          }
          else if(m_ealphamode == ::draw2d::e_alpha_mode_set)
          {
@@ -5751,6 +5765,9 @@ namespace draw2d_opengl
    }
 
 
+
+
+
 } // namespace draw2d_opengl
 
 
@@ -5850,7 +5867,6 @@ namespace opengl
       }
       glEnd();
    }
-
 
 
 

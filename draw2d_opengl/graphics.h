@@ -522,10 +522,10 @@ namespace draw2d_opengl
                       color32_t clrTopLeft, color32_t clrBottomRight);
 */
 
-      void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      //void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
+      //void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double dWidth, const ::e_border & eborder = e_border_all) override;
       //void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all) override;
 
 

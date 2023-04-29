@@ -1931,6 +1931,13 @@ namespace user
 //
 //      }
 
+         if (!pxmldocument->root())
+         {
+
+            return;
+
+         }
+
       auto & children = pxmldocument->root()->children();
 
       ::pointer<::user::tool_item>ptoolitem;

@@ -989,6 +989,22 @@ public:
    }
 
 
+   string_base unicode_substr(::strsize start) const
+   {
+
+      return { (this->unicode_begin() + start).c_str(), this->end()};
+
+   }
+
+
+   string_base unicode_substr(::strsize start, ::strsize count) const
+   {
+
+      return { (this->unicode_begin() + start).c_str(), (this->unicode_begin() + start + count).c_str()};
+
+   }
+
+
    //inline bool begins(const CHARACTER * pszPrefix) const;
 
    //inline bool begins(const string_base &strPrefix) const;

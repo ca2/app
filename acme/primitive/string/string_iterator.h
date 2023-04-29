@@ -27,8 +27,30 @@ public:
    unicode_iterator & operator ++();
    unicode_iterator operator ++(int);
 
+   unicode_iterator operator +(int i) const
+   {
+
+      auto iterator = *this;
+
+      while (i > 0)
+      {
+
+         iterator++;
+
+         i--;
+
+      }
+
+      return iterator;
+
+   }
+
    bool operator == (const unicode_iterator & it) const { return m_psz == it.m_psz;}
 
    bool operator != (const unicode_iterator & it) const { return !operator==(it);}
+
+
+   const CHARACTER * c_str() const { return m_psz; }
+
 
 };

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "_opengl.h"
+#include "object.h"
+
 
 namespace draw2d_opengl
 {
@@ -13,11 +16,15 @@ namespace draw2d_opengl
       //delete_object(); 
    }
    
-   i32 object::get_object(i32 nCount, LPVOID lpObject) const
+   
+   i32 object::get_object(i32 nCount, void * lpObject) const
    { 
+
       //return ::GetObject(get_handle(), nCount, lpObject); 
       return 0;
+
    }
+
 
    bool object::CreateStockObject(i32 nIndex)
    {

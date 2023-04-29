@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 //struct OffscreenContext
@@ -36,7 +36,7 @@ namespace draw2d_opengl
       point_i32                         m_pointTranslate;
       // bool                                      m_bFont;
       ::size_i32                    m_sizeWindow;
-
+      HGLRC m_hrc;
 
       graphics();
       ~graphics() override;

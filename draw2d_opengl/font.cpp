@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "_opengl.h"
+#include "font.h"
 
 
 namespace draw2d_opengl

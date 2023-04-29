@@ -751,8 +751,10 @@
     <ClInclude Include="vase_rend_draft_1.h" />
     <ClInclude Include="vase_rend_draft_2.h" />
     <ClInclude Include="windows_interaction_impl.h" />
+    <ClInclude Include="_opengl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="initialize_opengl_version.cpp" />
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="draw2d.cpp" />
@@ -774,7 +776,6 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="path.cpp" />
     <ClCompile Include="pen.cpp" />
-    <ClCompile Include="thumbnail_dc.cpp" />
     <ClCompile Include="region.cpp" />
     <ClCompile Include="windows_interaction_impl.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

@@ -5,7 +5,7 @@
 #ifdef WINDOWS_DESKTOP
 
 
-#pragma comment (lib, "glew.lib")
+#pragma comment (lib, "glad.lib")
 
 
 #endif

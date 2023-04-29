@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_opengl.h"
 #include "image.h"
 #include "graphics.h"
 #include "bitmap.h"

@@ -110,7 +110,7 @@ namespace user
 
          pgraphics->fill_rectangle(rectangle, crBk);
 
-         pgraphics->draw_inset_rectangle(rectangle, crBorder);
+         pgraphics->draw_inset_rectangle(rectangle, crBorder, 1.0);
 
       }
 

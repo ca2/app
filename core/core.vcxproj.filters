@@ -683,9 +683,6 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\progress.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>

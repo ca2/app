@@ -845,7 +845,6 @@
     <ClInclude Include="include\_include.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="update.h" />
-    <ClInclude Include="user.h" />
     <ClInclude Include="user\account\_component.h" />
     <ClInclude Include="user\netuser\network_configuration.h" />
     <ClInclude Include="user\netuser\_.h" />

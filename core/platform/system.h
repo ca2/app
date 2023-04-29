@@ -24,8 +24,6 @@ namespace core
       virtual void initialize(::particle * pparticle) override;
 
 
-      //virtual void on_add_session(::apex::session * papexsession) override;
-
       virtual void initialize_rich_text();
 
       virtual void InsertTime(::ftp::file_status& ftpFileStatus);

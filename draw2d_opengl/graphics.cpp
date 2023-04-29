@@ -1,5 +1,10 @@
 #include "framework.h"
+#include "_opengl.h"
 #include "draw2d.h"
+#include "pen.h"
+#include "font.h"
+#include "brush.h"
+#include "image.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/primitive/mathematics/mathematics.h"
@@ -10,7 +15,18 @@
 #include <math.h>
 #include <dwmapi.h>
 #include <gl/freeglut.h>
+#define GLAD_GLAPI_EXPORT
+
+#include "glad_wgl.h"
+#define WGL_CONTEXT_FLAGS_ARB 0X2094
+#define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
+#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
+
 //int  opengl_init();
+
+
+HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor);
+
 
 
 namespace opengl
@@ -65,6 +81,7 @@ namespace draw2d_opengl
    graphics::graphics()
    {
 
+      m_hrc = nullptr;
       m_hwnd = nullptr;
       m_hglrc = nullptr;
       m_pointTranslate = ::point_i32();
@@ -204,8 +221,8 @@ namespace draw2d_opengl
 
       PIXELFORMATDESCRIPTOR pixformat;
       int chosenformat;
-      HDC dev_context = GetDC(window);
-      if (dev_context == nullptr) 
+      HDC hdc = GetDC(window);
+      if (hdc == nullptr)
       {
          TRACE("MS GDI - GetDC failed\n");
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
@@ -222,7 +239,7 @@ namespace draw2d_opengl
       pixformat.cDepthBits = 24;
       pixformat.cStencilBits = 8;
 
-      chosenformat = ChoosePixelFormat(dev_context, &pixformat);
+      chosenformat = ChoosePixelFormat(hdc, &pixformat);
       if (chosenformat == 0) 
       {
          TRACE("MS GDI - ChoosePixelFormat failed\n");
@@ -230,7 +247,7 @@ namespace draw2d_opengl
          return false;
       }
 
-      bool spfok = SetPixelFormat(dev_context, chosenformat, &pixformat);
+      bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
       if (!spfok) 
       {
          TRACE("MS GDI - SetPixelFormat failed\n");
@@ -238,8 +255,8 @@ namespace draw2d_opengl
          return false;
       }
 
-      HGLRC gl_render_context = wglCreateContext(dev_context);
-      if (gl_render_context == nullptr) 
+      HGLRC hglrcTime = wglCreateContext(hdc);
+      if (hglrcTime == nullptr)
       {
          TRACE("MS WGL - wglCreateContext failed\n");
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
@@ -247,21 +264,58 @@ namespace draw2d_opengl
          return false;
       }
 
-      bool mcok = wglMakeCurrent(dev_context, gl_render_context);
-      if (!mcok) 
+      bool okMakeCurrent = wglMakeCurrent(hdc, hglrcTime);
+      if (!okMakeCurrent)
       {
          TRACE("MS WGL - wglMakeCurrent failed\n");
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
          return false;
       }
+      //glfwInit();
+      // ... <snip> ... setup a window and a context
+      
+      auto wglCurrentContext = wglGetCurrentContext();
 
+      // Load all OpenGL functions using the glfw loader function
+      // If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
+      //if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+      //   std::cout << "Failed to initialize OpenGL context" << std::endl;
+      //   return -1;
+      //}
+      if (!gladLoadWGL(hdc))
+      {
+         // Problem: glewInit failed, something is seriously wrong.
+         FORMATTED_TRACE("gladLoadWGL failed");
+         //return false;
+         //throw resource_exception();
 
-      draw2d_opengl()->defer_initialize_glew();
+         return false;
+
+      }
+      int attribs[] =
+      {
+         WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+         WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+         WGL_CONTEXT_FLAGS_ARB, 0,
+         WGL_CONTEXT_PROFILE_MASK_ARB,
+         WGL_CONTEXT_COREPROFILE_BIT_ARB, 0
+      };
+
+      //PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
+      //wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+
+      auto hglrc =  wglCreateContextAttribsARB(hdc, 0, attribs);
+      wglMakeCurrent(nullptr, nullptr);
+      wglDeleteContext(hglrcTime);
+         wglMakeCurrent(hdc, m_hglrc);
+      //draw2d_opengl()->defer_initialize_glew();
+      
+      //draw2d_opengl()->defer_initialize_glew();
 
 
       m_hwnd = window;
-      m_hdc = dev_context;
-      m_hglrc = gl_render_context;
+      m_hdc = hdc;
+      m_hglrc = hglrc;
       m_size = size;
 
       ::opengl::resize(size);

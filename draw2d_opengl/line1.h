@@ -73,31 +73,31 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		A=1.0f;
 	
 	//determine parameters t,R
-	/*   */if ( w>=0.0 && w<1.0) {
-		t=0.05; R=0.48+0.32*f;
+	/*   */if ( w>=0.0f && w<1.0f) {
+		t=0.05f; R=0.48f+0.32f*f;
 		if ( !alphablend) {
-			Cr+=0.88*(1-f);
-			Cg+=0.88*(1-f);
-			Cb+=0.88*(1-f);
-			if ( Cr>1.0) Cr=1.0;
-			if ( Cg>1.0) Cg=1.0;
-			if ( Cb>1.0) Cb=1.0;
+			Cr+= 0.88f*(1-f);
+			Cg+= 0.88f*(1-f);
+			Cb+= 0.88f*(1-f);
+			if ( Cr>1.0f) Cr=1.0f;
+			if ( Cg>1.0f) Cg=1.0f;
+			if ( Cb>1.0f) Cb=1.0f;
 		} else {
 			A*=f;
 		}
 	} else if ( w>=1.0 && w<2.0) {
-		t=0.05+f*0.33; R=0.768+0.312*f;
-	} else if ( w>=2.0 && w<3.0){
-		t=0.38+f*0.58; R=1.08;
-	} else if ( w>=3.0 && w<4.0){
-		t=0.96+f*0.48; R=1.08;
-	} else if ( w>=4.0 && w<5.0){
-		t=1.44+f*0.46; R=1.08;
-	} else if ( w>=5.0 && w<6.0){
-		t=1.9+f*0.6; R=1.08;
-	} else if ( w>=6.0){
+		t=0.05f+f*0.33f; R=0.768f+0.312f*f;
+	} else if ( w>=2.0f && w<3.0f){
+		t=0.38f+f*0.58f; R=1.08f;
+	} else if ( w>=3.0f && w<4.0f){
+		t=0.96f+f*0.48f; R=1.08f;
+	} else if ( w>=4.0f && w<5.0f){
+		t=1.44f+f*0.46f; R=1.08f;
+	} else if ( w>=5.0f && w<6.0f){
+		t=1.9f+f*0.6f; R=1.08f;
+	} else if ( w>=6.0f){
 		double ff=w-6.0;
-		t=2.5+ff*0.50; R=1.08;
+		t=2.5f+ff*0.50f; R=1.08f;
 	}
 	//printf( "w=%f, f=%f, C=%.4f\n", w,f,C);
 	

@@ -16,19 +16,19 @@ namespace draw2d_opengl
    public:
 
 
-      class private_font :
-         virtual public ::matter
-      {
-      public:
+      //class private_font :
+      //   virtual public ::matter
+      //{
+      //public:
 
-         auto_pointer < Gdiplus::PrivateFontCollection >    m_pcollection;
-         raw_array < Gdiplus::FontFamily >                  m_familya;
-         int                                                m_iFamilyCount;
+      //   auto_pointer < Gdiplus::PrivateFontCollection >    m_pcollection;
+      //   raw_array < Gdiplus::FontFamily >                  m_familya;
+      //   int                                                m_iFamilyCount;
 
-         private_font();
-         ~private_font() override;
+      //   private_font();
+      //   ~private_font() override;
 
-      };
+      //};
 
 
       ATOM m_atomClass;
@@ -36,7 +36,7 @@ namespace draw2d_opengl
 
 
       //__creatable_from_base(draw2d, ::draw2d::draw2d);
-      string_map < ::pointer<private_font >>m_mapPrivateFont;
+      //string_map < ::pointer<private_font >>m_mapPrivateFont;
 
       bool        m_bGlewInitialized;
 
@@ -54,7 +54,7 @@ namespace draw2d_opengl
       virtual string write_text_get_default_implementation_name() override;
 
 
-      virtual private_font * get_file_private_font(::acme::context * pcontext, const ::file::path & path);
+      //virtual private_font * get_file_private_font(::acme::context * pcontext, const ::file::path & path);
       virtual int  opengl_init();
 
    };

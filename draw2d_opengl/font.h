@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/_operating_system.h"
+
+
 #include "aura/graphics/write_text/font.h"
 
 

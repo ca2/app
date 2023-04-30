@@ -108,11 +108,11 @@ namespace calculator
 
             auto pparser = __create_new< parser >();
 
-            error e;
+            auto perror = __create_new < ::user::plain_edit_error >();
 
-            e.m_iEnd = -1;
-            e.m_iStart = -1;
-            e.m_tick.Now();
+            perror->m_iEnd = -1;
+            perror->m_iStart = -1;
+            perror->m_tick.Now();
 
             ::calculator::element * pcalculatorelement = nullptr;
 
@@ -120,101 +120,150 @@ namespace calculator
 
             if (strExp.case_insensitive_ends_eat("FPS"))
             {
+               
                strSource = "Hz";
+
             }
             else if (strExp.case_insensitive_ends_eat("Frames Per Second"))
             {
+               
                strSource = "Hz";
+
             }
             else if (strExp.case_insensitive_ends_eat("SPF"))
             {
+               
                strSource = "s";
+
             }
             else if (strExp.case_insensitive_ends_eat("Seconds per frame"))
             {
+               
                strSource = "s";
+
             }
             else if (strExp.case_insensitive_ends_eat("Hz"))
             {
+               
                strSource = "Hz";
+
             }
             else if (strExp.case_insensitive_ends_eat("minute"))
             {
+               
                strSource = "minimum";
+
             }
             else if (strExp.case_insensitive_ends_eat("minutes"))
             {
+               
                strSource = "minimum";
+
             }
             else if (strExp.case_insensitive_ends_eat("minimum"))
             {
+               
                strSource = "minimum";
+
             }
             else if (strExp.case_insensitive_ends_eat("mins"))
             {
+               
                strSource = "minimum";
+
             }
             else if (strExp.case_insensitive_ends_eat("days"))
             {
+               
                strSource = "day";
+
             }
             else if (strExp.case_insensitive_ends_eat("minutes"))
             {
+               
                strSource = "minimum";
+
             }
             else if (strExp.case_insensitive_ends_eat("hours"))
             {
+               
                strSource = "hour";
+
             }
             else if (strExp.case_insensitive_ends_eat("hour"))
             {
+               
                strSource = "hour";
+
             }
             else if (strExp.case_insensitive_ends_eat("day"))
             {
+               
                strSource = "day";
+
             }
             else if (strExp.case_insensitive_ends_eat("ms"))
             {
+               
                strSource = "ms";
+
             }
             else if (strExp.case_insensitive_ends_eat("s"))
             {
+               
                strSource = "s";
+
             }
             else
             {
+               
                strSource = m_strFormat;
+
             }
+            
             string strFormat(m_strFormat);
 
             if (strFormat.case_insensitive_ends_eat("FPS"))
             {
+               
                strFormat = "Hz";
+
             }
             else if (strFormat.case_insensitive_ends_eat("Frames Per Second"))
             {
+               
                strFormat = "Hz";
+
             }
             else if (strFormat.case_insensitive_ends_eat("SPF"))
             {
+               
                strFormat = "s";
+
             }
             else if (strFormat.case_insensitive_ends_eat("Seconds per frame"))
             {
+               
                strFormat = "s";
+
             }
             else if (strFormat.case_insensitive_ends_eat("Hz"))
             {
+               
                strFormat = "Hz";
+
             }
             else if (strFormat.case_insensitive_ends_eat("s"))
             {
+               
                strFormat = "s";
+
             }
             else
             {
+               
                strFormat = m_strFormat;
+
             }
             
             strExp.trim();
@@ -229,9 +278,11 @@ namespace calculator
             catch (const ::exception & exception)
             {
 
-               e.m_strMessage = exception.get_message();
-               e.m_iStart = 0;
-               e.m_iEnd = strExp.length();
+               perror = __create_new < ::user::plain_edit_error >();
+               
+               perror->m_strMessage = exception.get_message();
+               perror->m_iStart = 0;
+               perror->m_iEnd = strExp.length();
 
 
             }
@@ -250,7 +301,7 @@ namespace calculator
             string strVal;
             bool bConv = true;
 
-            if (e.m_iStart < 0)
+            if (::is_null(perror))
             {
 
                if (strSource.has_char())
@@ -319,7 +370,14 @@ namespace calculator
                }
                else
                {
-                  e.m_strMessage = "(unknown conversion)";
+                  if (!perror)
+                  {
+                     perror = __create_new < ::user::plain_edit_error >();
+
+                  }
+                  perror->m_strMessage = "(unknown conversion)";
+                  perror->m_iStart = -1;
+                  perror->m_iEnd = -1;
                   bConv = false;
                   strVal = m_result.to_string();
                }
@@ -331,8 +389,14 @@ namespace calculator
 
             if (!bConv)
             {
-               e.m_iStart = (strExp + string(" ")).length();
-               e.m_iEnd = e.m_iStart + strSource.length();
+               if (!perror)
+               {
+
+                  perror = __create_new < ::user::plain_edit_error >();
+
+               }
+               perror->m_iStart = (strExp + string(" ")).length();
+               perror->m_iEnd = perror->m_iStart + strSource.length();
 
             }
             str = strExp + string(" ") + strSource + string(" = ") + strVal;
@@ -355,9 +419,9 @@ namespace calculator
 
             }
 
-            if (e.m_iStart >= 0)
+            if (::is_set(perror))
             {
-               m_errora.add(e);
+               m_errora.add(perror);
             }
             else
             {

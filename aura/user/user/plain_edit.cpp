@@ -619,13 +619,13 @@ namespace user
 
                auto timePeriod = 100_ms;
 
-               if (m_errora[0].m_tick.elapsed() > timePeriod)
+               if (m_errora[0]->m_tick.elapsed() > timePeriod)
                {
 
-                  if (m_errora[0].m_tick.elapsed() < (timeTimeout + timePeriod))
+                  if (m_errora[0]->m_tick.elapsed() < (timeTimeout + timePeriod))
                   {
 
-                     iErrorA = (strsize)((m_errora[0].m_tick.elapsed() - timeTimeout) * 255 / timePeriod);
+                     iErrorA = (strsize)((m_errora[0]->m_tick.elapsed() - timeTimeout) * 255 / timePeriod);
 
                   }
                   else
@@ -635,8 +635,8 @@ namespace user
 
                   }
 
-                  iErrorBeg = m_errora[0].m_iStart;
-                  iErrorEnd = m_errora[0].m_iEnd;
+                  iErrorBeg = m_errora[0]->m_iStart;
+                  iErrorEnd = m_errora[0]->m_iEnd;
                   iErrorBeg -= lim;
                   iErrorEnd -= lim;
                   iErrorBeg = maximum(0, iErrorBeg);

@@ -460,6 +460,7 @@
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="mathematics\calculator\calculator.h" />
     <ClInclude Include="mathematics\calculator\element.h" />
+    <ClInclude Include="mathematics\calculator\error.h" />
     <ClInclude Include="mathematics\calculator\parser.h" />
     <ClInclude Include="mathematics\calculator\parser_exception.h" />
     <ClInclude Include="mathematics\calculator\result.h" />
@@ -588,6 +589,7 @@
     <ClCompile Include="html\user\form.cpp" />
     <ClCompile Include="mathematics\calculator\calculator.cpp" />
     <ClCompile Include="mathematics\calculator\element.cpp" />
+    <ClCompile Include="mathematics\calculator\error.cpp" />
     <ClCompile Include="mathematics\calculator\parser.cpp" />
     <ClCompile Include="mathematics\calculator\parser_exception.cpp" />
     <ClCompile Include="mathematics\calculator\result.cpp" />

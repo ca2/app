@@ -115,7 +115,7 @@ namespace experience_anthill
       }
       //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
 
-      m_pfastblur->blur(pimage1, 2, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+      m_pfastblur->blur(pimage1, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
 
       //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
       //rectangleClient.deflate(1, 1);
@@ -585,7 +585,7 @@ namespace experience_anthill
             while (i < rectangleGrip.width() - 5 + 1)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangle_i32_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+               pgraphics->draw_inset_3d_rectangle(rectangle_i32_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130), 1.0);
 
                i += 5;
 

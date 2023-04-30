@@ -124,3 +124,79 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::r
 
 
 
+template < typename FILE, class ITEM >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & stream, const ::pointer_array < ITEM > & itema)
+{
+
+   ::count c = itema.get_count();
+
+   stream << c;
+
+   for (auto & pitem : itema)
+   {
+
+      stream << *pitem;
+
+      if (stream.nok())
+      {
+
+         break;
+
+      }
+
+   }
+
+   return stream;
+
+}
+
+
+template < typename FILE, class ITEM >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::pointer_array < ITEM > & itema)
+{
+
+   ::count c;
+
+   stream >> c;
+
+   if (stream.nok())
+   {
+
+      return stream;
+
+   }
+
+   itema.set_size(c);
+
+   ::index i = 0;
+
+   try
+   {
+
+      for (; i < c && stream.has_ok_flag(); i++)
+      {
+
+         itema.__construct(itema[i]);
+
+         stream >> *itema[i];
+
+      }
+
+   }
+   catch (...)
+   {
+
+      stream.set_nok();
+
+   }
+
+   if (stream.nok())
+   {
+
+      itema.set_size(i);
+
+   }
+
+   return stream;
+
+}

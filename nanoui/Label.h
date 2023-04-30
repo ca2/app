@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/label.h -- Text label with an arbitrary font, color, and size
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -37,7 +37,7 @@ namespace nanoui
 
          ::string m_caption;
          ::string m_font;
-         Color m_color;
+         ::color::color m_color;
          Vector2i m_sizePreferred;
 
       Label(Widget * parent, const ::scoped_string & caption,
@@ -54,9 +54,9 @@ namespace nanoui
       ::string font() const { return m_font; }
 
       /// Get the label color
-      Color color() const { return m_color; }
+      ::color::color color() const { return m_color; }
       /// Set the label color
-      void set_color(const Color & color) { m_color = color; }
+      void set_color(const ::color::color & color) { m_color = color; }
 
       /// Set the \ref Theme used to draw this widget
       virtual void set_theme(Theme * theme) override;

@@ -3,55 +3,60 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E429E878D600502330 /* font_sink.cpp */; };
-		9A2976EE29E878DA00502330 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E529E878D600502330 /* context.cpp */; };
-		9A2976EF29E878DA00502330 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E629E878D700502330 /* color.h */; };
-		9A2976F029E878DA00502330 /* color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E729E878D700502330 /* color.cpp */; };
-		9A2976F129E878DA00502330 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2976E829E878D800502330 /* draw2d_context.cpp */; };
-		9A2976F229E878DA00502330 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976E929E878D800502330 /* font_sink.h */; };
-		9A2976F329E878DA00502330 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EA29E878D800502330 /* types.h */; };
-		9A2976F429E878DA00502330 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EB29E878D900502330 /* context.h */; };
-		9A2976F529E878DA00502330 /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2976EC29E878D900502330 /* draw2d_context.h */; };
-		9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C327EAE8F2009ADCD2 /* _.cpp */; };
-		9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73227EAE8F0009ADCD2 /* framework.cpp */; };
-		9A3CA83627EAE981009ADCD2 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83527EAE981009ADCD2 /* libacme.dylib */; };
-		9A3CA83827EAE988009ADCD2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83727EAE988009ADCD2 /* libapex.dylib */; };
-		9A3CA83A27EAE990009ADCD2 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83927EAE990009ADCD2 /* libaqua.dylib */; };
-		9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83B27EAE999009ADCD2 /* libaura.dylib */; };
-		9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA84527EAEB68009ADCD2 /* platform.mm */; };
-		9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84727EAED75009ADCD2 /* AppKit.framework */; };
-		9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84927EAED95009ADCD2 /* IOKit.framework */; };
+		9A9E563F29F8576C001559E9 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E563E29F8576C001559E9 /* libacme.dylib */; };
+		9A9E564129F8576C001559E9 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E564029F8576C001559E9 /* libapex.dylib */; };
+		9A9E564329F8576C001559E9 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E564229F8576C001559E9 /* libaqua.dylib */; };
+		9A9E564429F8576C001559E9 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E563329F85655001559E9 /* libaura.dylib */; };
+		9A9E575429F85AFB001559E9 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E564629F85AF7001559E9 /* aaa__library.h */; };
+		9A9E575629F85AFB001559E9 /* aaa_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E565929F85AF8001559E9 /* aaa_color.h */; };
+		9A9E575829F85AFB001559E9 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E566F29F85AF8001559E9 /* types.h */; };
+		9A9E575929F85AFB001559E9 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E567029F85AF8001559E9 /* framework.cpp */; };
+		9A9E577429F85AFB001559E9 /* ImageImpact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E571529F85AF9001559E9 /* ImageImpact.h */; };
+		9A9E577529F85AFB001559E9 /* aaaa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E571729F85AFA001559E9 /* aaaa_context.h */; };
+		9A9E577629F85AFB001559E9 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E571829F85AFA001559E9 /* _.cpp */; };
+		9A9E577929F85AFB001559E9 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E572529F85AFA001559E9 /* resource.h */; };
+		9A9E577A29F85AFB001559E9 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E572929F85AFA001559E9 /* framework.h */; };
+		9A9E577B29F85AFB001559E9 /* _n2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E573629F85AFA001559E9 /* _n2d.h */; };
+		9A9E578429F85B9D001559E9 /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E577D29F85B9B001559E9 /* draw2d_context.h */; };
+		9A9E578529F85B9D001559E9 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E577E29F85B9B001559E9 /* font_sink.h */; };
+		9A9E578629F85B9D001559E9 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E577F29F85B9C001559E9 /* context.cpp */; };
+		9A9E578729F85B9D001559E9 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578029F85B9C001559E9 /* context.h */; };
+		9A9E578829F85B9D001559E9 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578129F85B9C001559E9 /* draw2d_context.cpp */; };
+		9A9E578929F85B9D001559E9 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578229F85B9D001559E9 /* font_sink.cpp */; };
+		9A9E578A29F85B9D001559E9 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578329F85B9D001559E9 /* common.h */; };
+		9A9E578D29F85EB9001559E9 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578B29F85EB9001559E9 /* _factory.cpp */; };
+		9A9E578E29F85EB9001559E9 /* _function.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578C29F85EB9001559E9 /* _function.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A2AA66227F952B000DB0519 /* PBXContainerItemProxy */ = {
+		9A9E563229F85655001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9A2AA66427F952B000DB0519 /* PBXContainerItemProxy */ = {
+		9A9E563429F85655001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEA1773275FF4F2006437A3;
 			remoteInfo = ios_aura;
 		};
-		9A2AA66627F952B000DB0519 /* PBXContainerItemProxy */ = {
+		9A9E563629F85655001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
 		};
-		9A2AA66827F952C900DB0519 /* PBXContainerItemProxy */ = {
+		9A9E563829F85665001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
@@ -59,238 +64,247 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A2976E429E878D600502330 /* font_sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
-		9A2976E529E878D600502330 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9A2976E629E878D700502330 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
-		9A2976E729E878D700502330 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
-		9A2976E829E878D800502330 /* draw2d_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
-		9A2976E929E878D800502330 /* font_sink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
-		9A2976EA29E878D800502330 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		9A2976EB29E878D900502330 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
-		9A2976EC29E878D900502330 /* draw2d_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
-		9A2AA65C27F952B000DB0519 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA73227EAE8F0009ADCD2 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A3CA7C327EAE8F2009ADCD2 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9A3CA7C427EAE8F2009ADCD2 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		9A3CA7D527EAE8F3009ADCD2 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
-		9A3CA80327EAE8F4009ADCD2 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A3CA83527EAE981009ADCD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA83727EAE988009ADCD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA83927EAE990009ADCD2 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA83B27EAE999009ADCD2 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A3CA84527EAEB68009ADCD2 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
-		9A3CA84727EAED75009ADCD2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		9A3CA84927EAED95009ADCD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		9A9E560829F8556C001559E9 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A9E562C29F85655001559E9 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A9E563E29F8576C001559E9 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A9E564029F8576C001559E9 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A9E564229F8576C001559E9 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A9E564629F85AF7001559E9 /* aaa__library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa__library.h; sourceTree = "<group>"; };
+		9A9E565929F85AF8001559E9 /* aaa_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_color.h; sourceTree = "<group>"; };
+		9A9E566F29F85AF8001559E9 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		9A9E567029F85AF8001559E9 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A9E568B29F85AF8001559E9 /* aaa_color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_color.cpp; sourceTree = "<group>"; };
+		9A9E571529F85AF9001559E9 /* ImageImpact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageImpact.h; sourceTree = "<group>"; };
+		9A9E571729F85AFA001559E9 /* aaaa_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaaa_context.h; sourceTree = "<group>"; };
+		9A9E571829F85AFA001559E9 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A9E571E29F85AFA001559E9 /* aaa_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_context.cpp; sourceTree = "<group>"; };
+		9A9E572529F85AFA001559E9 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		9A9E572929F85AFA001559E9 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9A9E573629F85AFA001559E9 /* _n2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _n2d.h; sourceTree = "<group>"; };
+		9A9E577D29F85B9B001559E9 /* draw2d_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
+		9A9E577E29F85B9B001559E9 /* font_sink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
+		9A9E577F29F85B9C001559E9 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
+		9A9E578029F85B9C001559E9 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		9A9E578129F85B9C001559E9 /* draw2d_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
+		9A9E578229F85B9D001559E9 /* font_sink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
+		9A9E578329F85B9D001559E9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		9A9E578B29F85EB9001559E9 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
+		9A9E578C29F85EB9001559E9 /* _function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _function.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9A3CA6E327EAE89B009ADCD2 /* Frameworks */ = {
+		9A9E560629F8556C001559E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */,
-				9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */,
-				9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */,
-				9A3CA83A27EAE990009ADCD2 /* libaqua.dylib in Frameworks */,
-				9A3CA83827EAE988009ADCD2 /* libapex.dylib in Frameworks */,
-				9A3CA83627EAE981009ADCD2 /* libacme.dylib in Frameworks */,
+				9A9E563F29F8576C001559E9 /* libacme.dylib in Frameworks */,
+				9A9E564129F8576C001559E9 /* libapex.dylib in Frameworks */,
+				9A9E564329F8576C001559E9 /* libaqua.dylib in Frameworks */,
+				9A9E564429F8576C001559E9 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A2AA65D27F952B000DB0519 /* Products */ = {
+		9A9E55FF29F8556C001559E9 = {
 			isa = PBXGroup;
 			children = (
-				9A2AA66327F952B000DB0519 /* libaura.dylib */,
-				9A2AA66527F952B000DB0519 /* libios_aura.a */,
-				9A2AA66727F952B000DB0519 /* aura_iosTests.xctest */,
+				9A9E562C29F85655001559E9 /* aura.xcodeproj */,
+				9A9E564529F85AF7001559E9 /* nano2d */,
+				9A9E560929F8556C001559E9 /* Products */,
+				9A9E563D29F8576C001559E9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9A9E560929F8556C001559E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A9E560829F8556C001559E9 /* libnano2d.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A3CA6DC27EAE89B009ADCD2 = {
+		9A9E562D29F85655001559E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A2AA65C27F952B000DB0519 /* aura.xcodeproj */,
-				9A3CA6F427EAE8EF009ADCD2 /* nano2d */,
-				9A3CA6E627EAE89B009ADCD2 /* Products */,
-				9A3CA83427EAE981009ADCD2 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		9A3CA6E627EAE89B009ADCD2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */,
+				9A9E563329F85655001559E9 /* libaura.dylib */,
+				9A9E563529F85655001559E9 /* libios_aura.a */,
+				9A9E563729F85655001559E9 /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A3CA6F427EAE8EF009ADCD2 /* nano2d */ = {
+		9A9E563D29F8576C001559E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A3CA7C327EAE8F2009ADCD2 /* _.cpp */,
-				9A3CA80327EAE8F4009ADCD2 /* _.h */,
-				9A2976E729E878D700502330 /* color.cpp */,
-				9A2976E629E878D700502330 /* color.h */,
-				9A3CA7C427EAE8F2009ADCD2 /* common.h */,
-				9A2976E529E878D600502330 /* context.cpp */,
-				9A2976EB29E878D900502330 /* context.h */,
-				9A2976E829E878D800502330 /* draw2d_context.cpp */,
-				9A2976EC29E878D900502330 /* draw2d_context.h */,
-				9A2976E429E878D600502330 /* font_sink.cpp */,
-				9A2976E929E878D800502330 /* font_sink.h */,
-				9A3CA73227EAE8F0009ADCD2 /* framework.cpp */,
-				9A3CA7D527EAE8F3009ADCD2 /* framework.h */,
-				9A3CA84527EAEB68009ADCD2 /* platform.mm */,
-				9A2976EA29E878D800502330 /* types.h */,
-			);
-			name = nano2d;
-			sourceTree = "<group>";
-		};
-		9A3CA83427EAE981009ADCD2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9A3CA84927EAED95009ADCD2 /* IOKit.framework */,
-				9A3CA84727EAED75009ADCD2 /* AppKit.framework */,
-				9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */,
-				9A3CA83B27EAE999009ADCD2 /* libaura.dylib */,
-				9A3CA83927EAE990009ADCD2 /* libaqua.dylib */,
-				9A3CA83727EAE988009ADCD2 /* libapex.dylib */,
-				9A3CA83527EAE981009ADCD2 /* libacme.dylib */,
+				9A9E563E29F8576C001559E9 /* libacme.dylib */,
+				9A9E564029F8576C001559E9 /* libapex.dylib */,
+				9A9E564229F8576C001559E9 /* libaqua.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A9E564529F85AF7001559E9 /* nano2d */ = {
+			isa = PBXGroup;
+			children = (
+				9A9E578C29F85EB9001559E9 /* _function.h */,
+				9A9E578B29F85EB9001559E9 /* _factory.cpp */,
+				9A9E578329F85B9D001559E9 /* common.h */,
+				9A9E577F29F85B9C001559E9 /* context.cpp */,
+				9A9E578029F85B9C001559E9 /* context.h */,
+				9A9E578129F85B9C001559E9 /* draw2d_context.cpp */,
+				9A9E577D29F85B9B001559E9 /* draw2d_context.h */,
+				9A9E578229F85B9D001559E9 /* font_sink.cpp */,
+				9A9E577E29F85B9B001559E9 /* font_sink.h */,
+				9A9E571829F85AFA001559E9 /* _.cpp */,
+				9A9E568B29F85AF8001559E9 /* aaa_color.cpp */,
+				9A9E571E29F85AFA001559E9 /* aaa_context.cpp */,
+				9A9E567029F85AF8001559E9 /* framework.cpp */,
+				9A9E573629F85AFA001559E9 /* _n2d.h */,
+				9A9E564629F85AF7001559E9 /* aaa__library.h */,
+				9A9E565929F85AF8001559E9 /* aaa_color.h */,
+				9A9E571729F85AFA001559E9 /* aaaa_context.h */,
+				9A9E572929F85AFA001559E9 /* framework.h */,
+				9A9E571529F85AF9001559E9 /* ImageImpact.h */,
+				9A9E572529F85AFA001559E9 /* resource.h */,
+				9A9E566F29F85AF8001559E9 /* types.h */,
+			);
+			name = nano2d;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9A3CA6E127EAE89B009ADCD2 /* Headers */ = {
+		9A9E560429F8556C001559E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2976F429E878DA00502330 /* context.h in Headers */,
-				9A2976F329E878DA00502330 /* types.h in Headers */,
-				9A2976F529E878DA00502330 /* draw2d_context.h in Headers */,
-				9A2976F229E878DA00502330 /* font_sink.h in Headers */,
-				9A2976EF29E878DA00502330 /* color.h in Headers */,
+				9A9E575829F85AFB001559E9 /* types.h in Headers */,
+				9A9E577A29F85AFB001559E9 /* framework.h in Headers */,
+				9A9E578729F85B9D001559E9 /* context.h in Headers */,
+				9A9E577529F85AFB001559E9 /* aaaa_context.h in Headers */,
+				9A9E577429F85AFB001559E9 /* ImageImpact.h in Headers */,
+				9A9E575629F85AFB001559E9 /* aaa_color.h in Headers */,
+				9A9E578E29F85EB9001559E9 /* _function.h in Headers */,
+				9A9E577929F85AFB001559E9 /* resource.h in Headers */,
+				9A9E578A29F85B9D001559E9 /* common.h in Headers */,
+				9A9E578529F85B9D001559E9 /* font_sink.h in Headers */,
+				9A9E577B29F85AFB001559E9 /* _n2d.h in Headers */,
+				9A9E578429F85B9D001559E9 /* draw2d_context.h in Headers */,
+				9A9E575429F85AFB001559E9 /* aaa__library.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A3CA6E427EAE89B009ADCD2 /* nano2d */ = {
+		9A9E560729F8556C001559E9 /* nano2d */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nano2d" */;
+			buildConfigurationList = 9A9E561129F8556C001559E9 /* Build configuration list for PBXNativeTarget "nano2d" */;
 			buildPhases = (
-				9A3CA6E127EAE89B009ADCD2 /* Headers */,
-				9A3CA6E227EAE89B009ADCD2 /* Sources */,
-				9A3CA6E327EAE89B009ADCD2 /* Frameworks */,
+				9A9E560429F8556C001559E9 /* Headers */,
+				9A9E560529F8556C001559E9 /* Sources */,
+				9A9E560629F8556C001559E9 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A2AA66927F952C900DB0519 /* PBXTargetDependency */,
+				9A9E563929F85665001559E9 /* PBXTargetDependency */,
 			);
 			name = nano2d;
-			productName = nanoui;
-			productReference = 9A3CA6E527EAE89B009ADCD2 /* libnano2d.dylib */;
+			productName = nano2d;
+			productReference = 9A9E560829F8556C001559E9 /* libnano2d.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9A3CA6DD27EAE89B009ADCD2 /* Project object */ = {
+		9A9E560029F8556C001559E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					9A3CA6E427EAE89B009ADCD2 = {
-						CreatedOnToolsVersion = 13.3;
+					9A9E560729F8556C001559E9 = {
+						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nano2d" */;
-			compatibilityVersion = "Xcode 13.0";
+			buildConfigurationList = 9A9E560329F8556C001559E9 /* Build configuration list for PBXProject "nano2d" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 9A3CA6DC27EAE89B009ADCD2;
-			productRefGroup = 9A3CA6E627EAE89B009ADCD2 /* Products */;
+			mainGroup = 9A9E55FF29F8556C001559E9;
+			productRefGroup = 9A9E560929F8556C001559E9 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A2AA65D27F952B000DB0519 /* Products */;
-					ProjectRef = 9A2AA65C27F952B000DB0519 /* aura.xcodeproj */;
+					ProductGroup = 9A9E562D29F85655001559E9 /* Products */;
+					ProjectRef = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9A3CA6E427EAE89B009ADCD2 /* nano2d */,
+				9A9E560729F8556C001559E9 /* nano2d */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A2AA66327F952B000DB0519 /* libaura.dylib */ = {
+		9A9E563329F85655001559E9 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaura.dylib;
-			remoteRef = 9A2AA66227F952B000DB0519 /* PBXContainerItemProxy */;
+			remoteRef = 9A9E563229F85655001559E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2AA66527F952B000DB0519 /* libios_aura.a */ = {
+		9A9E563529F85655001559E9 /* libios_aura.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_aura.a;
-			remoteRef = 9A2AA66427F952B000DB0519 /* PBXContainerItemProxy */;
+			remoteRef = 9A9E563429F85655001559E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2AA66727F952B000DB0519 /* aura_iosTests.xctest */ = {
+		9A9E563729F85655001559E9 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
-			remoteRef = 9A2AA66627F952B000DB0519 /* PBXContainerItemProxy */;
+			remoteRef = 9A9E563629F85655001559E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9A3CA6E227EAE89B009ADCD2 /* Sources */ = {
+		9A9E560529F8556C001559E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2976F129E878DA00502330 /* draw2d_context.cpp in Sources */,
-				9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */,
-				9A2976ED29E878DA00502330 /* font_sink.cpp in Sources */,
-				9A2976EE29E878DA00502330 /* context.cpp in Sources */,
-				9A2976F029E878DA00502330 /* color.cpp in Sources */,
-				9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */,
-				9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */,
+				9A9E577629F85AFB001559E9 /* _.cpp in Sources */,
+				9A9E578929F85B9D001559E9 /* font_sink.cpp in Sources */,
+				9A9E578629F85B9D001559E9 /* context.cpp in Sources */,
+				9A9E578829F85B9D001559E9 /* draw2d_context.cpp in Sources */,
+				9A9E578D29F85EB9001559E9 /* _factory.cpp in Sources */,
+				9A9E575929F85AFB001559E9 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A2AA66927F952C900DB0519 /* PBXTargetDependency */ = {
+		9A9E563929F85665001559E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
-			targetProxy = 9A2AA66827F952C900DB0519 /* PBXContainerItemProxy */;
+			targetProxy = 9A9E563829F85665001559E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9A3CA6E727EAE89B009ADCD2 /* Debug */ = {
+		9A9E560F29F8556C001559E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -298,7 +312,6 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -324,9 +337,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -340,7 +356,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -357,15 +376,23 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
@@ -375,6 +402,9 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-apple",
+					"$(WorkspaceDir)/operating_system/operating_system-darwin",
+					"$(WorkspaceDir)/operating_system/operating_system-posix",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
@@ -391,7 +421,7 @@
 			};
 			name = Debug;
 		};
-		9A3CA6E827EAE89B009ADCD2 /* Release */ = {
+		9A9E561029F8556C001559E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -399,7 +429,6 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -425,9 +454,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -454,13 +486,22 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/port/_",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app",
+				);
 				USER_HEADER_SEARCH_PATHS = (
 					.,
 					"$(WorkspaceDir)/source",
@@ -470,6 +511,9 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-apple",
+					"$(WorkspaceDir)/operating_system/operating_system-darwin",
+					"$(WorkspaceDir)/operating_system/operating_system-posix",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
@@ -487,57 +531,42 @@
 			};
 			name = Release;
 		};
-		9A3CA6EA27EAE89B009ADCD2 /* Debug */ = {
+		9A9E561229F8556C001559E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
-		9A3CA6EB27EAE89B009ADCD2 /* Release */ = {
+		9A9E561329F8556C001559E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				ENABLE_NS_ASSERTIONS = NO;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nano2d" */ = {
+		9A9E560329F8556C001559E9 /* Build configuration list for PBXProject "nano2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A3CA6E727EAE89B009ADCD2 /* Debug */,
-				9A3CA6E827EAE89B009ADCD2 /* Release */,
+				9A9E560F29F8556C001559E9 /* Debug */,
+				9A9E561029F8556C001559E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nano2d" */ = {
+		9A9E561129F8556C001559E9 /* Build configuration list for PBXNativeTarget "nano2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A3CA6EA27EAE89B009ADCD2 /* Debug */,
-				9A3CA6EB27EAE89B009ADCD2 /* Release */,
+				9A9E561229F8556C001559E9 /* Debug */,
+				9A9E561329F8556C001559E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9A3CA6DD27EAE89B009ADCD2 /* Project object */;
+	rootObject = 9A9E560029F8556C001559E9 /* Project object */;
 }

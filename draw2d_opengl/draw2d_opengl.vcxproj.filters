@@ -62,6 +62,12 @@
     <ClInclude Include="image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="draw2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_opengl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -85,7 +91,7 @@
     <ClCompile Include="graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="image_impl.cpp">
+    <ClCompile Include="image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
@@ -97,13 +103,16 @@
     <ClCompile Include="pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thumbnail_dc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initialize_opengl_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

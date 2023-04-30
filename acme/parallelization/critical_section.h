@@ -1,4 +1,8 @@
+// Created by camilo on 2023-04-25 23:51 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+class critical_section_impl;
 
 
 class CLASS_DECL_ACME critical_section
@@ -6,20 +10,11 @@ class CLASS_DECL_ACME critical_section
 public:
 
 
-#ifdef WINDOWS
-   char sz[128 + 32]; // I hope it is enough to hold a union of CRITICAL_SECTION
-   // It should be enough to hold union of a CRITICAL_SECTION
-#else
-   char sz[80 + 32]; // I hope it is enough to hold a union of pthread_mutex_t
-   // It should be enough to hold union of a pthread_mutex_t
-#endif
+   critical_section_impl* m_pimpl;
 
 
    critical_section();
    ~critical_section();
-
-
-   void * aligned_this() { return (void *) ((((::uptr)(byte *)this) + 31) & (~(::uptr)31)); }
 
 
    void lock();
@@ -27,6 +22,7 @@ public:
 
 
 };
+
 
 
 class CLASS_DECL_ACME critical_section_lock
@@ -38,8 +34,8 @@ public:
    critical_section *      m_pcriticalsection;
 
 
-   inline critical_section_lock(critical_section* pcs, bool bInitialLock = true) : 
-      m_pcriticalsection(pcs), 
+   inline critical_section_lock(critical_section * pcriticalsection, bool bInitialLock = true) : 
+      m_pcriticalsection(pcriticalsection),
       m_bLocked(false) 
    { 
       
@@ -87,7 +83,6 @@ public:
       if (m_bLocked)
       {
 
-
          if (m_pcriticalsection != nullptr)
          {
 
@@ -98,6 +93,34 @@ public:
          }
 
       }
+
+   }
+
+
+};
+
+
+class CLASS_DECL_ACME raw_critical_section_lock
+{
+public:
+
+
+   critical_section* m_pcriticalsection;
+
+
+   inline raw_critical_section_lock(critical_section* pcriticalsection) :
+      m_pcriticalsection(pcriticalsection)
+   {
+
+      m_pcriticalsection->lock();
+
+   }
+
+
+   inline ~raw_critical_section_lock()
+   {
+
+      m_pcriticalsection->unlock();
 
    }
 

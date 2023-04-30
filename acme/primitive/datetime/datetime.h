@@ -55,6 +55,7 @@ namespace datetime
 
 
          void parse_str(const string & str, property_set & set);
+         ::earth::time parse_str(const string & str);
 
 
          string get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());

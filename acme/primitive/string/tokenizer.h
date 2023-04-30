@@ -1,9 +1,6 @@
 #pragma once
 
 
-//#include "string.h"
-
-
 class CLASS_DECL_ACME tokenizer :
    public ::ansi_range
 {
@@ -14,31 +11,49 @@ public:
    using const_iterator = RANGE::const_iterator;
 
 
-   //RANGE                         m_range;
    const_iterator      m_iterator;
 
 
    tokenizer():m_iterator(nullptr) {}
    tokenizer(const tokenizer & range) : ansi_range(range) {}
    tokenizer(tokenizer && range) : ansi_range(::transfer(range)) { }
-   tokenizer(const ::string & str) : RANGE(str), m_iterator(str.begin()) {}
+   tokenizer(const ::ansi_range & range) :
+      RANGE(range), m_iterator(range.begin())
+   {}
    ~tokenizer() {}
 
 
-   tokenizer & operator = (const tokenizer & tokenizer) { ::ansi_range::operator=(tokenizer); return *this; }
-   tokenizer & operator = (tokenizer && tokenizer) { ::ansi_range::operator=(::transfer(tokenizer)); return *this; }
-
-
-   //strsize size() const { return m_range.size(); }
-
-   const_iterator find(const ::const_ansi_range & range) const 
-   { 
+   tokenizer & operator = (const tokenizer & tokenizer)
+   {
       
-      return ::const_ansi_range(m_iterator, this->m_end).find(range, ::comparison::comparison < ::ansi_character >()); 
+      ::ansi_range::operator=(tokenizer);
+      
+      return *this;
+      
+   }
    
+   
+   tokenizer & operator = (tokenizer && tokenizer)
+   {
+      
+      ::ansi_range::operator=(::transfer(tokenizer));
+      
+      return *this;
+      
    }
 
-   ::string& substring(::string& str, strsize count)
+
+   const_iterator find(const ::scoped_string & scopedstrSeparator) const
+   { 
+      
+      auto iterator = (*this)(m_iterator).find(scopedstrSeparator, ::comparison::comparison < ::ansi_character >());
+   
+      return iterator;
+      
+   }
+
+   
+   ::string & substring(::string & str, strsize count)
    {
 
       str.assign(m_iterator, count);
@@ -58,7 +73,7 @@ public:
    }
 
 
-   ::string& substring(::string& str)
+   ::string & substring(::string & str)
    {
 
       str.assign(m_iterator, m_end - m_iterator);
@@ -68,21 +83,25 @@ public:
    }
 
 
-   ::const_ansi_range & substring(::const_ansi_range& range, strsize count)
+   template < primitive_range RANGE >
+   RANGE & substring(RANGE & range, strsize count)
    {
 
       range.begin() = m_iterator;
+      
       range.end() = range.begin() + count;
 
       return range;
 
    }
 
-
-   ::const_ansi_range& substring(::const_ansi_range & range, const_iterator iterator)
+   
+   template < primitive_range RANGE >
+   RANGE & substring(RANGE & range, const_iterator iterator)
    {
 
       range.begin() = m_iterator;
+      
       range.end() = iterator;
 
       return range;
@@ -90,10 +109,12 @@ public:
    }
 
    
-   ::const_ansi_range& substring(::const_ansi_range& range)
+   template < primitive_range RANGE >
+   RANGE & substring(RANGE & range)
    {
 
       range.begin() = m_iterator;
+      
       range.end() = this->end();
 
       return range;
@@ -101,25 +122,24 @@ public:
    }
 
 
-   bool ReadLine(::string & str,
-                  bool bWithSeparator = false);
-   // _01Read read a token if find one of \n\r\t or space
+   bool ReadLine(::string & str, bool bWithSeparator = false);
    bool _01Read(i32 & i);
    bool _01Read(::u32 & user);
    bool _01ReadHex(i32 & i);
    bool _01ReadHex(::u32 & user);
-   //bool _01Read(char * psz);
 
    bool _01Read(::string & str);
    bool ExtractFolderPath(const ::scoped_string & scopedstrFilePath);
 
-   void reset() { m_iterator = this->begin(); };
-   void reset(const ::string & str) { RANGE::operator= (str); reset(); }
-   bool get_next_token(::string &strToken, const ::string & strSeparator, bool bWithSeparator = false);
+   void reset() { m_iterator = this->begin(); }
+   
+   void reset(const ::ansi_range & range) { RANGE::operator = (range); reset(); }
+   
+   bool get_next_token(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator = false);
 
-   bool get_next_smallest_token(::string &strToken, const ::string_array & straSeparator, bool bWithSeparator = false);
-   // Any of separator character
-   bool get_next_token_ex(::string &strToken, const ::string & strSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
+   bool get_next_smallest_token(::string & strToken, const ::string_array & straSeparator, bool bWithSeparator = false);
+
+   bool get_next_token_ex(::string & strToken, const ::scoped_string & scopedstrSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 
    bool _001GetNextToken(::string & strToken);
 
@@ -136,13 +156,8 @@ public:
 
       return iRead;
 
-
-
    }
 
-   //bool get_line(::string & strLine);
-
-   //bool get_line(::const_ansi_range & strLine);
 
    template < primitive_range RANGE >
    bool get_line(RANGE & rangeLine)
@@ -205,7 +220,6 @@ public:
 
             m_iterator = iteratorR + 1;
 
-
          }
 
       }
@@ -230,10 +244,10 @@ public:
 
    }
 
-
    ::count skip_word(::count c);
       
    ::string get_word();
+   
 
 };
 

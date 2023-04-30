@@ -1,4 +1,4 @@
-﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSørensen!!
+// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include "exception.h"
 #include "callstack.h"
@@ -482,7 +482,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 
    auto pacmenode = pparticle->acmenode();
 
-   auto processid = pacmenode->get_current_process_id();
+   auto processid = pacmenode->current_process_identifier();
 
    auto strProcessId = ::as_string(processid);
 

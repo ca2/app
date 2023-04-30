@@ -984,14 +984,14 @@ namespace experience_anthill
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;

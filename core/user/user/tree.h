@@ -49,7 +49,7 @@ namespace user
       ::write_text::font_pointer                m_pfontTreeItem;
       status < ::color::color >                 m_colorTreeBackground;
 
-
+      bool                                      m_bPendingDrawingObjectsUpdate;
       bool                                      m_bHoverStart;
       class ::time                              m_timeHoverStart;
       class ::time                              m_timeHoverEnd;
@@ -83,6 +83,7 @@ namespace user
       virtual bool contains(::data::item * pitem);
       virtual bool contains(::data::tree_item * pitem);
 
+      void update_drawing_objects();
 
       void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 

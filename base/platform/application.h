@@ -493,9 +493,9 @@ namespace base
 //      virtual void _001OnFileNew(::message::message * pmessage);
 //
 //
-//      virtual string multimedia_audio_get_default_library_name();
-//      virtual string multimedia_audio_mixer_get_default_library_name();
-//      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+//      virtual string multimedia_audio_get_default_implementation_name();
+//      virtual string multimedia_audio_mixer_get_default_implementation_name();
+//      virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 //
 //      virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate);
 //

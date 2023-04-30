@@ -32,7 +32,7 @@ namespace compress_zlib
 
       class memory memIn;
 
-      memIn.set_size((memsize)minimum(1024 * 4, pfileGzFileCompressed->get_left()));
+      memIn.set_size((memsize)minimum(1024 * 4, pfileGzFileCompressed->right_size()));
 
       u32 uRead;
 

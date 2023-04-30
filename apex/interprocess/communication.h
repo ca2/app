@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-11 00:06 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-11 00:06 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -50,9 +50,9 @@ namespace interprocess
       void destroy() override;
 
 
-      virtual void defer_add_module(const ::string & strModule, const ::atom & idPid);
+      virtual void defer_add_module(const ::string & strModule, const ::atom & atomPid);
 
-      virtual ::pointer<::interprocess::task>create_task(::interprocess::call * pcall, const ::atom & idPid);
+      virtual ::pointer<::interprocess::task>create_task(::interprocess::call * pcall, const ::atom & atomPid);
 
       virtual ::pointer<::interprocess::task>get_task(i64 iTask);
 
@@ -60,11 +60,11 @@ namespace interprocess
 
       virtual ::pointer<::interprocess::call>create_call(const ::string & strObject, const ::string & strMember);
 
-      virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & idPid);
+      virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & atomPid);
 
-      virtual atom_array get_pid(const ::string & strApp);
+      virtual ::atom_array get_pid(const ::string & strApp);
 
-      virtual string key(const string & strApp, const ::atom & idPid);
+      virtual string key(const string & strApp, const ::atom & atomPid);
 
       virtual string str_from_va(const payload_array & va);
 
@@ -76,9 +76,9 @@ namespace interprocess
 
       virtual void start(const ::string & strApp);
 
-      virtual void connect(const ::string & strApp, const ::atom & idPid);
+      virtual void connect(const ::string & strApp, const ::atom & atomPid);
 
-      virtual void on_new_instance(const ::string & strModule, const ::atom & idPid);
+      virtual void on_new_instance(const ::string & strModule, const ::atom & atomPid);
 
       void interprocess_communication_open(const ::file::path & path);
 

@@ -41,6 +41,21 @@ namespace user
    };
 
 
+   class plain_edit_error :
+      virtual public ::particle
+   {
+   public:
+
+
+      strsize                 m_iStart;
+      strsize                 m_iEnd;
+      class ::time            m_tick;
+      string                  m_strMessage;
+
+
+   };
+
+
    class CLASS_DECL_AURA plain_edit :
       virtual public ::user::scroll_base,
       virtual public ::data::listener
@@ -69,14 +84,6 @@ namespace user
 
       };
 
-      class error
-      {
-      public:
-         strsize                          m_iStart;
-         strsize                          m_iEnd;
-         class ::time                             m_tick;
-         string                           m_strMessage;
-      };
 
       //enum enum_call
       //{
@@ -167,10 +174,10 @@ namespace user
 
       //};
 
-      int                                 m_iDrawTextFlags;
-      class ::time                              m_timeLastDraw;
-      array < error >                     m_errora;
-      ::pointer<::message::key>          m_pmessagekeyLast;
+      int                                    m_iDrawTextFlags;
+      class ::time                           m_timeLastDraw;
+      ::pointer_array < plain_edit_error >   m_errora;
+      ::pointer<::message::key>              m_pmessagekeyLast;
 
       //bool                                m_bPendingOnSetText;
       //bool                                m_bPendingOnUpdate;

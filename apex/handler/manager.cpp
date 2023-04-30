@@ -6,7 +6,7 @@
 //#include "acme/primitive/collection/set.h"
 
 
-critical_section manager::s_criticalsection;
+::critical_section manager::s_criticalsection;
    
 
 ::set<manager_pointer > manager::s_managerset;

@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/popup.cpp -- Simple popup widget which is attached to another given
     window (can be nested)
 
@@ -51,7 +51,8 @@ void Popup::draw(::nano2d::context * pcontext)
    if (!m_visible)
       return;
 
-   int ds = m_theme->m_window_drop_shadow_size, cr = m_theme->m_window_corner_radius;
+   int ds = m_theme->m_window_drop_shadow_size;
+   int cr = m_theme->m_window_corner_radius;
 
    pcontext->save();
    pcontext->reset_scissor();

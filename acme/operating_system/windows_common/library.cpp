@@ -8,12 +8,12 @@ namespace windows
 {
 
 
-   void * get_library_symbol_address(const ::file::path & pathParam, const ::scoped_string & scopedstrSymbolName)
+   void * get_library_symbol_address(const ::file::path& pathLibrary, const ::scoped_string & scopedstrSymbolName)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      auto hmodule = ::GetModuleHandleW(wstring(pathParam));
+      auto hmodule = ::GetModuleHandleW(::wstring(pathLibrary.windows_path()));
 
 #else
 

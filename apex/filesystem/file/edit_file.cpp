@@ -648,7 +648,7 @@ namespace file
 
             m_pfile->set_position(m_positionIteration);
 
-            bRead = m_pfile->read(b) == 1;
+            bRead = m_pfile->read(&b, 1) == 1;
 
          }
 

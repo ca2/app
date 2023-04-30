@@ -672,7 +672,7 @@ namespace universal_windows
 
 
       // void _001UpdateWindow();
-      virtual bool has_focus() override;
+      virtual bool has_keyboard_focus() override;
       virtual bool is_active() override;
 
 

@@ -18,6 +18,8 @@
 
 #include "vector.h"
 #include "Object.h"
+//#include "nano2d/color.h"
+
 
 namespace nanoui
 {
@@ -79,127 +81,127 @@ namespace nanoui
 
       /* Generic colors */
       /**
-       * The color of the drop shadow drawn behind widgets
-       * (default: intensity=``0``, alpha=``128``; see \ref nanoui::Color::Color(int,int)).
+       * The color::color of the drop shadow drawn behind widgets
+       * (default: intensity=``0``, alpha=``128``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_drop_shadow;
+      color::color m_drop_shadow;
       /**
-       * The transparency color
-       * (default: intensity=``0``, alpha=``0``; see \ref nanoui::Color::Color(int,int)).
+       * The transparency color::color
+       * (default: intensity=``0``, alpha=``0``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_transparent;
+      color::color m_transparent;
       /**
-       * The dark border color
-       * (default: intensity=``29``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The dark border color::color
+       * (default: intensity=``29``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_border_dark;
+      color::color m_border_dark;
       /**
-       * The light border color
-       * (default: intensity=``92``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The light border color::color
+       * (default: intensity=``92``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_border_light;
+      color::color m_border_light;
       /**
-       * The medium border color
-       * (default: intensity=``35``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The medium border color::color
+       * (default: intensity=``35``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_border_medium;
+      color::color m_border_medium;
       /**
-       * The text color
-       * (default: intensity=``255``, alpha=``160``; see \ref nanoui::Color::Color(int,int)).
+       * The text color::color
+       * (default: intensity=``255``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_text_color;
+      color::color m_text_color;
       /**
-       * The disable dtext color
-       * (default: intensity=``255``, alpha=``80``; see \ref nanoui::Color::Color(int,int)).
+       * The disable dtext color::color
+       * (default: intensity=``255``, alpha=``80``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_disabled_text_color;
+      color::color m_disabled_text_color;
       /**
-       * The text shadow color
-       * (default: intensity=``0``, alpha=``160``; see \ref nanoui::Color::Color(int,int)).
+       * The text shadow color::color
+       * (default: intensity=``0``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_text_color_shadow;
-      /// The icon color (default: \ref nanoui::Theme::m_text_color).
-      Color m_icon_color;
+      color::color m_text_color_shadow;
+      /// The icon color::color (default: \ref nanoui::Theme::m_text_color).
+      color::color m_icon_color;
 
       /* Button colors */
       /**
-       * The top gradient color for buttons in focus
-       * (default: intensity=``64``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The top gradient color::color for buttons in focus
+       * (default: intensity=``64``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_top_focused;
+      color::color m_button_gradient_top_focused;
       /**
-       * The bottom gradient color for buttons in focus
-       * (default: intensity=``48``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The bottom gradient color::color for buttons in focus
+       * (default: intensity=``48``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_bot_focused;
+      color::color m_button_gradient_bot_focused;
       /**
-       * The top gradient color for buttons not in focus
-       * (default: intensity=``74``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The top gradient color::color for buttons not in focus
+       * (default: intensity=``74``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_top_unfocused;
+      color::color m_button_gradient_top_unfocused;
       /**
-       * The bottom gradient color for buttons not in focus
-       * (default: intensity=``58``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The bottom gradient color::color for buttons not in focus
+       * (default: intensity=``58``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_bot_unfocused;
+      color::color m_button_gradient_bot_unfocused;
       /**
-       * The top gradient color for buttons currently pushed
-       * (default: intensity=``41``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The top gradient color::color for buttons currently pushed
+       * (default: intensity=``41``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_top_pushed;
+      color::color m_button_gradient_top_pushed;
       /**
-       * The bottom gradient color for buttons currently pushed
-       * (default: intensity=``29``, alpha=``255``; see \ref nanoui::Color::Color(int,int)).
+       * The bottom gradient color::color for buttons currently pushed
+       * (default: intensity=``29``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_button_gradient_bot_pushed;
+      color::color m_button_gradient_bot_pushed;
 
       /* Window colors */
       /**
-       * The fill color for a Window that is not in focus
-       * (default: intensity=``43``, alpha=``230``; see \ref nanoui::Color::Color(int,int)).
+       * The fill color::color for a Window that is not in focus
+       * (default: intensity=``43``, alpha=``230``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_window_fill_unfocused;
+      color::color m_window_fill_unfocused;
       /**
-       * The fill color for a Window that is in focus
-       * (default: intensity=``45``, alpha=``230``; see \ref nanoui::Color::Color(int,int)).
+       * The fill color::color for a Window that is in focus
+       * (default: intensity=``45``, alpha=``230``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_window_fill_focused;
+      color::color m_window_fill_focused;
       /**
-       * The title color for a Window that is not in focus
-       * (default: intensity=``220``, alpha=``160``; see \ref nanoui::Color::Color(int,int)).
+       * The title color::color for a Window that is not in focus
+       * (default: intensity=``220``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_window_title_unfocused;
+      color::color m_window_title_unfocused;
       /**
-       * The title color for a Window that is in focus
-       * (default: intensity=``255``, alpha=``190``; see \ref nanoui::Color::Color(int,int)).
+       * The title color::color for a Window that is in focus
+       * (default: intensity=``255``, alpha=``190``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      Color m_window_title_focused;
+      color::color m_window_title_focused;
 
       /**
-       * The top gradient color for Window headings
+       * The top gradient color::color for Window headings
        * (default: \ref nanoui::Theme::m_button_gradient_top_unfocused).
        */
-      Color m_window_header_gradient_top;
+      color::color m_window_header_gradient_top;
       /**
-       * The bottom gradient color for Window headings
+       * The bottom gradient color::color for Window headings
        * (default: \ref nanoui::Theme::m_button_gradient_bot_unfocused).
        */
-      Color m_window_header_gradient_bot;
-      /// The Window header top separation color (default: \ref nanoui::Theme::m_border_light).
-      Color m_window_header_sep_top;
-      /// The Window header bottom separation color (default: \ref nanoui::Theme::m_border_dark).
-      Color m_window_header_sep_bot;
+      color::color m_window_header_gradient_bot;
+      /// The Window header top separation color::color (default: \ref nanoui::Theme::m_border_light).
+      color::color m_window_header_sep_top;
+      /// The Window header bottom separation color::color (default: \ref nanoui::Theme::m_border_dark).
+      color::color m_window_header_sep_bot;
 
       /**
-       * The popup window color
-       * (default: intensity=``50``, alpha=``255``; see \ref nanoui::Color::Color(int,int))).
+       * The popup window color::color
+       * (default: intensity=``50``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int))).
        */
-      Color m_window_popup;
+      color::color m_window_popup;
       /**
-       * The transparent popup window color
-       * (default: intensity=``50``, alpha=``0``; see \ref nanoui::Color::Color(int,int))).
+       * The transparent popup window color::color
+       * (default: intensity=``50``, alpha=``0``; see \ref nanoui::color::color::color::color(int,int))).
        */
-      Color m_window_popup_transparent;
+      color::color m_window_popup_transparent;
 
       /// Icon to use for check box widgets (default: ``FA_CHECK``).
       int m_check_box_icon;

@@ -27,9 +27,7 @@ namespace handle
    ini::ini(::file::file * pfile)
    {
 
-      string str;
-
-      pfile->as(str);
+      auto str = pfile->full_string();
 
       parse_ini(str);
 

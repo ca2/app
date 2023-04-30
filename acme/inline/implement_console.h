@@ -69,9 +69,9 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    //}
 
-   ::acme::acme::g_p->initialize(argc, argv, envp);
+   ::acme::acme::g_pacme->initialize(argc, argv, envp);
 
-   ::acme::acme::g_p->m_pacmeapplication->m_bConsole = true;
+   ::acme::acme::g_pacme->m_pacmeapplication->m_bConsole = true;
 
    string_array stra{ "StringNumber1", "StringNumber2", "StringNumber5" };
 
@@ -83,9 +83,9 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    ////   application.m_applicationflags.m_bConsole = true;
 ////
 ////
-   ::acme::acme::g_p->m_pacmeapplication->implement_application();
+   ::acme::acme::g_pacme->m_pacmeapplication->implement_application();
 
-   return ::acme::acme::g_p->m_pacmeapplication->m_iExitCode;
+   return ::acme::acme::g_pacme->m_pacmeapplication->m_iExitCode;
 
 
 //   //sub_system subsystem(&acme);

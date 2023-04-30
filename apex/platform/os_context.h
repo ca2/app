@@ -26,13 +26,13 @@ public:
 //      virtual ::file::path get_module_path(HMODULE hmodule);
 //#endif
 
-   virtual bool path_pid(u32& dwPid, const ::string & strName);
-   virtual bool title_pid(u32& dwPid, const ::string & strName);
-   virtual void get_all_processes(u32_array & dwa);
-   virtual ::file::path get_process_path(u32 dwPid);
+   virtual ::process_identifier module_path_process_identifier(const ::string & strName);
+   virtual ::process_identifier title_process_identifier(const ::string & strName);
+   virtual ::process_identifier_array processes_identifiers();
+   virtual ::file::path process_identifier_module_path(::process_identifier dwPid);
 
 
-   virtual int get_pid();
+   virtual ::process_identifier current_process_identifier();
 
    virtual ::payload connection_settings_get_auto_detect();
    virtual ::payload connection_settings_get_auto_config_url();
@@ -136,7 +136,7 @@ public:
    //virtual void browse_file_or_folder(property_set & set);
 
 
-   virtual void list_process(::file::path_array & patha, u32_array & uaPid);
+   virtual void list_process(::file::path_array & patha, ::process_identifier_array& uaPid);
 
 
    ::file::path_array list_process_path();

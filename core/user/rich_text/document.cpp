@@ -57,9 +57,7 @@ namespace user
       bool document::on_open_document(::file::file * pfile)
       {
 
-         string str;
-
-         str = pfile->as_string();
+         auto str = pfile->full_string();
 
          parse_rtf_text(str);
 

@@ -1165,11 +1165,11 @@ SizingNone:;
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
+      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow), 1.0);
 
       rectangle.deflate(1, 1);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
+      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow), 1.0);
 
       rectangle.deflate(1, 1);
 

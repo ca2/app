@@ -267,6 +267,12 @@
     <Filter Include="Header Files\operating_system\dos">
       <UniqueIdentifier>{052e6fc9-4511-4d37-a784-5c9c4bf2e145}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\NewFilter1">
+      <UniqueIdentifier>{5856c1a9-b688-48e0-b8ae-dfdd23ca9a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\memory\osdjfh">
+      <UniqueIdentifier>{cee577fc-e955-46fe-887e-6e28e36017d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1247,7 +1253,7 @@
     <ClInclude Include="primitive\primitive\holder.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\_.h">
+    <ClInclude Include="operating_system\_operating_system.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\_aaa_c.h">
@@ -2975,6 +2981,15 @@
     <ClInclude Include="operating_system\summary.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\main_window.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4083,6 +4098,24 @@
     </ClCompile>
     <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\main_window.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\process.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\user.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\osdjfh</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\aaa_select.cpp">
+      <Filter>Source Files\memory\osdjfh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

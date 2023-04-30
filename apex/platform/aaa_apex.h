@@ -44,9 +44,9 @@ namespace apex
 
       virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+      virtual string multimedia_audio_get_default_implementation_name();
+      virtual string multimedia_audio_mixer_get_default_implementation_name();
+      virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 
 
       virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);

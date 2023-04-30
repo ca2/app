@@ -1493,6 +1493,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);

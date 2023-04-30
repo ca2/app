@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/object.h"
+
+
 namespace draw2d_opengl
 {
 
@@ -21,7 +24,7 @@ namespace draw2d_opengl
       bool delete_object();
 
 
-      i32 get_object(i32 nCount, LPVOID lpObject) const;
+      i32 get_object(i32 nCount, void * lpObject) const;
       ::u32 GetObjectType() const;
       bool CreateStockObject(i32 nIndex);
       bool UnrealizeObject();

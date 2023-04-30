@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/ImageImpact.cpp -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -53,7 +53,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
 
    m_image_border_color = m_theme->m_border_dark;
    m_draw_image_border = true;
-   m_image_background_color = Color(0.f, 0.f, 0.f, 0.f);
+   m_image_background_color = ::color::color(0.f, 0.f, 0.f, 0.f);
 }
 
 // opengl

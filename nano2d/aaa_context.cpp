@@ -97,7 +97,7 @@ namespace nano2d
 
 
    ::nano2d::paint context::linear_gradient(float sx, float sy, float ex, float ey,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       return {};
@@ -106,7 +106,7 @@ namespace nano2d
 
 
    ::nano2d::paint context::box_gradient(float x, float y, float w, float h, float r, float f,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       return {};
@@ -115,7 +115,7 @@ namespace nano2d
 
 
    ::nano2d::paint context::radial_gradient(float cx, float cy, float inr, float outr,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       return {};
@@ -164,7 +164,7 @@ namespace nano2d
 //   }
 
 
-   void context::fill_color(::nano2d::color color)
+   void context::fill_color(::color::color color)
    {
 
    }
@@ -203,7 +203,7 @@ namespace nano2d
    }
 
 
-   void context::stroke_color(::nano2d::color color)
+   void context::stroke_color(::color::color color)
    {
 
 

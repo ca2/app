@@ -1,5 +1,5 @@
-﻿/*
-    src/colorwheel.cpp -- fancy analog widget to select a color value
+/*
+    src/colorwheel.cpp -- fancy analog widget to select a ::color::color value
 
     This widget was contributed by Dmitriy Morozov.
 
@@ -23,7 +23,7 @@ namespace nanoui
 {
 
 
-ColorWheel::ColorWheel(Widget * parent, const Color & rgb)
+ColorWheel::ColorWheel(Widget * parent, const ::color::color & rgb)
    : Widget(parent), m_drag_region(None) {
    set_color(rgb);
 }
@@ -74,8 +74,8 @@ void ColorWheel::draw(::nano2d::context * pcontext)
       float bx = (float)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
       float by = (float)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
       paint = pcontext->linear_gradient(ax, ay, bx, by,
-         ::nano2d::HSLA_color(a0 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255),
-         ::nano2d::HSLA_color(a1 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255));
+         ::color::HSLA_color(a0 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255),
+         ::color::HSLA_color(a1 / (::nano2d::f_pi * 2), 1.0f, 0.55f, 255));
       pcontext->fill_paint(paint);
       pcontext->fill();
    }
@@ -83,7 +83,7 @@ void ColorWheel::draw(::nano2d::context * pcontext)
    pcontext->begin_path();
    pcontext->circle(cx, cy, r0 - 0.5f);
    pcontext->circle(cx, cy, r1 + 0.5f);
-   pcontext->stroke_color(::nano2d::RGBA_color(0, 0, 0, 64));
+   pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
    pcontext->stroke_width(1.0f);
    pcontext->stroke();
 
@@ -98,10 +98,10 @@ void ColorWheel::draw(::nano2d::context * pcontext)
    pcontext->stroke_width(u);
    pcontext->begin_path();
    pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
-   pcontext->stroke_color(::nano2d::RGBA_color(255, 255, 255, 192));
+   pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
    pcontext->stroke();
 
-   paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, ::nano2d::RGBA_color(0, 0, 0, 128), ::nano2d::RGBA_color(0, 0, 0, 0));
+   paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, ::color::RGBA_color(0, 0, 0, 128), ::color::RGBA_color(0, 0, 0, 0));
    pcontext->begin_path();
    pcontext->rectangle(r0 - 2 - 10, -4 - 10, r1 - r0 + 4 + 20, 8 + 20);
    pcontext->rectangle(r0 - 2, -4, r1 - r0 + 4, 8);
@@ -120,13 +120,13 @@ void ColorWheel::draw(::nano2d::context * pcontext)
    pcontext->line_to(ax, ay);
    pcontext->line_to(bx, by);
    pcontext->close_path();
-   paint = pcontext->linear_gradient(r, 0, ax, ay, ::nano2d::HSLA_color(hue, 1.0f, 0.5f, 255), ::nano2d::RGBA_color(255, 255, 255, 255));
+   paint = pcontext->linear_gradient(r, 0, ax, ay, ::color::HSLA_color(hue, 1.0f, 0.5f, 255), ::color::RGBA_color(255, 255, 255, 255));
    pcontext->fill_paint(paint);
    pcontext->fill();
-   paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, ::nano2d::RGBA_color(0, 0, 0, 0), ::nano2d::RGBA_color(0, 0, 0, 255));
+   paint = pcontext->linear_gradient((r + ax) * 0.5f, (0 + ay) * 0.5f, bx, by, ::color::RGBA_color(0, 0, 0, 0), ::color::RGBA_color(0, 0, 0, 255));
    pcontext->fill_paint(paint);
    pcontext->fill();
-   pcontext->stroke_color(::nano2d::RGBA_color(0, 0, 0, 64));
+   pcontext->stroke_color(::color::RGBA_color(0, 0, 0, 64));
    pcontext->stroke();
 
    // Select circle on triangle
@@ -136,7 +136,7 @@ void ColorWheel::draw(::nano2d::context * pcontext)
    pcontext->stroke_width(u);
    pcontext->begin_path();
    pcontext->circle(sx, sy, 2 * u);
-   pcontext->stroke_color(::nano2d::RGBA_color(255, 255, 255, 192));
+   pcontext->stroke_color(::color::RGBA_color(255, 255, 255, 192));
    pcontext->stroke();
 
    pcontext->restore();
@@ -145,9 +145,9 @@ void ColorWheel::draw(::nano2d::context * pcontext)
 }
 
 
-bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key& ekeyModifiers)
+bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick,  const ::user::e_key& ekeyModifiers)
 {
-   Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
+   Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
    if (!m_enabled || emouse != ::user::e_mouse_left_button)
       return false;
 
@@ -198,7 +198,7 @@ ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region consid
       m_hue /= 2 * ::nano2d::f_pi;
 
       if (m_callback)
-         m_callback(color());
+         m_callback(::color::color());
 
       return OuterCircle;
    }
@@ -229,14 +229,14 @@ ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region consid
       m_white = l0;
       m_black = l1;
       if (m_callback)
-         m_callback(color());
+         m_callback(::color::color());
       return InnerTriangle;
    }
 
    return None;
 }
 
-Color ColorWheel::hue2rgb(float h) const {
+::color::color ColorWheel::hue2rgb(float h) const {
    float s = 1.f;
    float v = 1.f;
 
@@ -300,15 +300,15 @@ Color ColorWheel::hue2rgb(float h) const {
    return { r, g, b, 1.f };
 }
 
-Color ColorWheel::color() const {
-   Color rgb = hue2rgb(m_hue);
-   Color black{ 0.f, 0.f, 0.f, 1.f };
-   Color white{ 1.f, 1.f, 1.f, 1.f };
+::color::color ColorWheel::color() const {
+   ::color::color rgb = hue2rgb(m_hue);
+   ::color::color black{ 0.f, 0.f, 0.f, 1.f };
+   ::color::color white{ 1.f, 1.f, 1.f, 1.f };
    return rgb * (1 - m_white - m_black) + black * m_black + white * m_white;
 }
 
-void ColorWheel::set_color(const Color & rgb) {
-   float r = rgb[0], g = rgb[1], b = rgb[2];
+void ColorWheel::set_color(const ::color::color & rgb) {
+   float r = rgb.fr(), g = rgb.fg(), b = rgb.fb();
 
    float M = std::max({ r, g, b });
    float m = std::min({ r, g, b });
@@ -330,9 +330,9 @@ void ColorWheel::set_color(const Color & rgb) {
          h = (r - g) / d + 4;
       h /= 6;
 
-      Color ch = hue2rgb(m_hue);
-      float M2 = std::max({ ch[0], ch[1], ch[2] });
-      float m2 = std::min({ ch[0], ch[1], ch[2] });
+      ::color::color ch = hue2rgb(m_hue);
+      float M2 = std::max({ ch.fr(), ch.fb(), ch.fb() });
+      float m2 = std::min({ ch.fr(), ch.fg(), ch.fb() });
 
       m_white = (M * m2 - m * M2) / (m2 - M2);
       m_black = (M + m2 + m * M2 - m - M * m2 - M2) / (m2 - M2);

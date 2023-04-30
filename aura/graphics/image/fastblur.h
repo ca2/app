@@ -306,26 +306,24 @@ namespace draw2d
       void initialize(::size_i32 sz, i32 iRadius);
 
 
-      virtual void blur(::image * pimage, i32 iRadius, const ::rectangle_i32 & rectangle);
+      virtual void blur(::image * pimage, const ::rectangle_i32 & rectangle);
 
 
-      virtual void blur(::image * pimage, i32 iRadius = -1);
+      virtual void blur(::image * pimage);
 
-      void do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
-      void do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
+
+      void do_fastblur(u32 * pdata,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
+      void do_fastblur(u32 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
 #if VECTOR3_SSE
-      void do_boxblur(vector4 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
-      void do_stackblur(vector4 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
+      void do_boxblur(vector4 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
+      void do_stackblur(vector4 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup);
 #endif // VECTOR3_SSE
+
 
    };
 
+
 } // namespace draw2d
-
-
-
-
-
 
 
 

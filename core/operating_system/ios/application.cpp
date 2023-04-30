@@ -389,29 +389,29 @@ namespace aura
 //
 
 
-//   string application::draw2d_get_default_library_name()
+//   string application::draw2d_get_default_implementation_name()
 //   {
 //
 //      return "draw2d_quartz2d";
 //
 //   }
-   string application::multimedia_audio_get_default_library_name()
+   string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return "audio_core_audio";
+      return acmesystem()->implementation_name("audio", "core_audio");
 
    }
 
-   string application::multimedia_audio_mixer_get_default_library_name()
+   string application::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return "audio_mixer_core_audio";
+      return acmesystem()->implementation_name("audio_mixer", "core_audio");
 
    }
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
+   string application::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return "music_midi_core_audio";
+      return acmesystem()->implementation_name("music_midi", "core_midi");
 
    }
 

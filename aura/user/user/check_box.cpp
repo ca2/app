@@ -224,13 +224,13 @@ namespace user
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200), 1.0);
 
          }
          else
          {
 
-            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128), 1.0);
 
          }
 

@@ -429,12 +429,16 @@ namespace apex
                __keep_task_flag(e_task_flag_resolve_alias);
 
                //if (!os_resolve_alias(path, path,::is_set(get_app())? get_app()->m_puiCurrent.get(): nullptr))
-               if (!os_resolve_alias(path, path))
+               auto plink = os_resolve_alias(path);
+
+               if(!plink || plink->m_pathTarget.is_empty() || plink->m_pathTarget == path)
                {
 
                   break;
 
                }
+
+               path = plink->m_pathTarget;
 
             }
             catch (...)
@@ -516,40 +520,63 @@ namespace apex
    }
 
 
+   bool context::_001IsProtocol(::file::path & path, const ::string & strProtocol)
+   {
+
+      if (path.case_insensitive_begins_eat(strProtocol))
+      {
+
+         return true;
+
+      }
+      else if ((path.length() <= strProtocol.length()) && path.case_insensitive_begins(strProtocol(0, strProtocol.length() - 3)))
+      {
+
+         path.clear();
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    bool context::defer_process_known_folder_path(::file::path & path)
    {
 
-      if (path.case_insensitive_begins_eat("music://"))
+      if (_001IsProtocol(path, "music://"))
       {
 
          path = dir()->music() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("video://"))
+      else if (_001IsProtocol(path, "video://"))
       {
 
          path = dir()->video() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("image://"))
+      else if (_001IsProtocol(path, "image://"))
       {
 
          path = dir()->image() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("document://"))
+      else if (_001IsProtocol(path, "document://"))
       {
 
          path = dir()->document() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("dropbox://"))
+      else if (_001IsProtocol(path, "dropbox://"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("dropbox-app://"))
+      else if (_001IsProtocol(path, "dropbox-app://"))
       {
 
          auto papplication = acmeapplication();
@@ -564,37 +591,37 @@ namespace apex
          path = dir()->dropbox_app() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("onedrive://"))
+      else if (_001IsProtocol(path, "onedrive://"))
       {
 
          path = dir()->onedrive() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("appconfig://"))
+      else if (_001IsProtocol(path, "appconfig://"))
       {
 
          path = get_app()->m_papexapplication->appconfig_folder() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("download://"))
+      else if (_001IsProtocol(path, "download://"))
       {
 
          path = dir()->download() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("usersystem://"))
+      else if (_001IsProtocol(path, "usersystem://"))
       {
 
          path = acmedirectory()->system() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("desktop://"))
+      else if (_001IsProtocol(path, "desktop://"))
       {
 
          path = dir()->desktop() / path;
 
       }
-      else if (path.case_insensitive_begins_eat("bookmark://"))
+      else if (_001IsProtocol(path, "bookmark://"))
       {
 
          path = dir()->bookmark() / path;
@@ -1095,9 +1122,7 @@ namespace apex
       if (pfile)
       {
 
-         string str;
-
-         pfile->as(str);
+         auto str = pfile->full_string();
 
          ini.parse_ini(str);
 

@@ -73,9 +73,11 @@ namespace color
 
       color() {}
       color(enum_zero_init) { red = green = blue = alpha = 0; }
-      template < typename R, typename G, typename B >
+      template < primitive_number GRAY, primitive_number ALPHA >
+      color(GRAY gray, ALPHA alpha) { set_red(gray); set_green(gray); set_blue(gray); set_alpha(alpha); }
+      template < primitive_number R, primitive_number G, primitive_number B >
       color(R r, G g, B b) { set_red(r); set_green(g); set_blue(b); }
-      template < typename R, typename G, typename B, typename A >
+      template < primitive_number R, primitive_number G, primitive_number B, primitive_number A >
       color(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_alpha(a); }
       color(::color32_t color32) { u32 = color32; }
       color(const ::color::color & color) { u32 = color.u32; }
@@ -91,7 +93,10 @@ namespace color
       double db() const { return blue / 255.; }
       double da() const { return alpha / 255.; }
 
-
+      color contrasting_color() const {
+         float luminance = 0.299f * fr() + 0.587f * fg() + 0.144f * fb();
+         return color(luminance < 0.5f ? 1.f : 0.f, 1.f);
+      }
 
       color & operator =(const ::payload & payload);
 
@@ -161,45 +166,45 @@ namespace color
       template < typename R, typename G, typename B, typename A >
       void set(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_alpha(a); }
 
-      void set_red(byte r) { this->red = r; }
+      ::byte set_red(byte r) { return this->red = r; }
 
-      void set_green(byte g) { this->green = g; }
+      ::byte set_green(byte g) { return this->green = g; }
 
-      void set_blue(byte b) { this->blue = b; }
+      ::byte set_blue(byte b) { return this->blue = b; }
 
-      void set_alpha(byte a) { this->alpha = a; }
+      ::byte set_alpha(byte a) { return this->alpha = a; }
 
-      void set_red(::u16 r) { this->red = r >> 8; }
+      ::u16 set_red(::u16 r) { this->red = r >> 8; return r; }
 
-      void set_green(::u16 g) { this->green = g >> 8; }
+      ::u16 set_green(::u16 g) { this->green = g >> 8; return g;}
 
-      void set_blue(::u16 b) { this->blue = b >> 8; }
+      ::u16 set_blue(::u16 b) { this->blue = b >> 8; return b;}
 
-      void set_alpha(::u16 a) { this->alpha = a >> 8; }
+      ::u16 set_alpha(::u16 a) { this->alpha = a >> 8; return a;}
 
-      void set_red(::i32 r) { this->red = r; }
+      ::i32 set_red(::i32 r) { this->red = r; return r; }
 
-      void set_green(::i32 g) { this->green = g; }
+      ::i32 set_green(::i32 g) { this->green = g; return g; }
 
-      void set_blue(::i32 b) { this->blue = b; }
+      ::i32 set_blue(::i32 b) { this->blue = b; return b;}
 
-      void set_alpha(::i32 a) { this->alpha = a; }
+      ::i32 set_alpha(::i32 a) { this->alpha = a; return a;}
 
-      void set_red(float f) { this->red = (byte)(f * 255.0f); }
+      float set_red(float f) { this->red = (byte)(f * 255.0f); return f; }
 
-      void set_green(float f) { this->green = (byte)(f * 255.0f); }
+      float set_green(float f) { this->green = (byte)(f * 255.0f); return f;  }
 
-      void set_blue(float f) { this->blue = (byte)(f * 255.0f); }
+      float set_blue(float f) { this->blue = (byte)(f * 255.0f); return f;  }
 
-      void set_alpha(float f) { this->alpha = (byte)(f * 255.0f); }
+      float set_alpha(float f) { this->alpha = (byte)(f * 255.0f); return f;  }
 
-      void set_red(double f) { this->red = (byte)(f * 255.0); }
+      double set_red(double f) { this->red = (byte)(f * 255.0); return f; }
 
-      void set_green(double f) { this->green = (byte)(f * 255.0); }
+      double set_green(double f) { this->green = (byte)(f * 255.0); return f; }
 
-      void set_blue(double f) { this->blue = (byte)(f * 255.0); }
+      double set_blue(double f) { this->blue = (byte)(f * 255.0); return f; }
 
-      void set_alpha(double f) { this->alpha = (byte)(f * 255.0); }
+      double set_alpha(double f) { this->alpha = (byte)(f * 255.0); return f; }
 
       void set_byte(byte R, byte G, byte B) { red = R; green = G; blue = B; alpha = 255; }
       void set_byte(byte R, byte G, byte B, byte A) { red = R; green = G; blue = B; alpha = A; }
@@ -335,6 +340,42 @@ namespace color
 
 
    using array = ::array < color >;
+
+
+
+//
+// Color utils
+//
+// Colors in NanoVG are stored as unsigned ints in ABGR format.
+
+// Returns a color value from red, green, blue values. Alpha will be set to 255 (1.0f).
+CLASS_DECL_ACME   ::color::color RGB_color(unsigned char r, unsigned char g, unsigned char b);
+
+// Returns a color value from red, green, blue values. Alpha will be set to 1.0f.
+CLASS_DECL_ACME ::color::color RGBf_color(float r, float g, float b);
+
+// Returns a color value from red, green, blue and alpha values.
+CLASS_DECL_ACME ::color::color RGBA_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+
+// Returns a color value from red, green, blue and alpha values.
+CLASS_DECL_ACME::color::color RGBAf_color(float r, float g, float b, float a);
+
+// Linearly interpolates from color c0 to c1, and returns resulting color value.
+CLASS_DECL_ACME::color::color LerpRGBA_color(color c0, color c1, float u);
+
+// Sets transparency of a color value.
+CLASS_DECL_ACME::color::color TransRGBA_color(color c0, unsigned char a);
+
+// Sets transparency of a color value.
+CLASS_DECL_ACME::color::color TransRGBAf(color c0, float a);
+
+// Returns color value specified by hue, saturation and lightness.
+// HSL values are all in range [0..1], alpha will be set to 255.
+CLASS_DECL_ACME::color::color HSL_color(float h, float s, float l);
+
+// Returns color value specified by hue, saturation and lightness and alpha.
+// HSL values are all in range [0..1], alpha in range [0..255]
+CLASS_DECL_ACME ::color::color HSLA_color(float h, float s, float l, unsigned char a);
 
 
 } // namespace color

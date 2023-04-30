@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "_iterator.h"
@@ -219,17 +219,31 @@ public:
    }
 
 
-   array_base & operator = (const array_base & array_base)
+   array_base & operator = (const array_base & a)
    {
 
-      if (this != &array_base)
+      if (this != &a)
       {
+         
+         auto c = a.size();
+         
+         set_size(c);
+         
+         auto ptarget = this->data();
+         
+         auto psource = a.data();
 
-         for (auto & item : array_base)
+         while(c > 0)
          {
-
-            add(item);
-
+            
+            *ptarget = *psource;
+            
+            ptarget++;
+            
+            psource++;
+            
+            c--;
+            
          }
 
       }

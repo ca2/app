@@ -165,7 +165,6 @@ namespace factory
 
        critical_section_lock cs(&m_criticalsection);
 
-
        return this->operator[](atom);
 
     }

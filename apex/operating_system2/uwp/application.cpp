@@ -336,15 +336,15 @@ namespace apex
 //   }
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
+   string application::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return "music_midi_winrt";
+      return acmesystem()->implementation_name("music_midi", "winrt");
 
    }
 
 
-   string application::multimedia_audio_mixer_get_default_library_name()
+   string application::multimedia_audio_mixer_get_default_implementation_name()
    {
 
       return "";
@@ -352,10 +352,10 @@ namespace apex
    }
 
 
-   string application::multimedia_audio_get_default_library_name()
+   string application::multimedia_audio_get_default_implementation_name()
    {
 
-      return "audio_xaudio";
+      return acmesystem()->implementation_name("audio", "xaudio");
 
    }
 

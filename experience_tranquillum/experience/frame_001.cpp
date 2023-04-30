@@ -1167,11 +1167,11 @@ SizingNone:;
 
       //rectangle.bottom++;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
+      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow), 1.0);
 
       rectangle.deflate(1, 1);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
+      pgraphics->draw_inset_3d_rectangle(rectangle, opaque(crButtonHilite), opaque(crButtonShadow), 1.0);
 
       rectangle.deflate(1, 1);
 

@@ -68,26 +68,12 @@ fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShar
    m_i = 0;
    m_iShareCount = iShareCount;
    m_allocptra.allocate(iShareCount);
-   m_protectptra.allocate(iShareCount);
+   m_criticalsectiona.set_size(iShareCount);
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
-   }
-   for(i32 i = 0; i < m_protectptra.get_count(); i++)
-   {
-      m_protectptra[i] = memory_new critical_section();
    }
 
-   m_allocptra.allocate(iShareCount);
-   m_protectptra.allocate(iShareCount);
-   for(i32 i = 0; i < m_allocptra.get_count(); i++)
-   {
-      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
-   }
-   for(i32 i = 0; i < m_protectptra.get_count(); i++)
-   {
-      m_protectptra[i] = memory_new critical_section();
-   }
 }
 
 fixed_alloc_sync::~fixed_alloc_sync()
@@ -96,10 +82,7 @@ fixed_alloc_sync::~fixed_alloc_sync()
    {
       delete m_allocptra[i];
    }
-   for(i32 i = 0; i < m_protectptra.get_count(); i++)
-   {
-      delete m_protectptra[i];
-   }
+
 }
 
 void fixed_alloc_sync::FreeAll()
@@ -108,7 +91,7 @@ void fixed_alloc_sync::FreeAll()
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
 
-      m_protectptra[i]->lock();
+      m_criticalsectiona[i].lock();
 
 #ifdef WINDOWS
 
@@ -118,7 +101,7 @@ void fixed_alloc_sync::FreeAll()
       }
       __finally
       {
-         m_protectptra[i]->unlock();
+         m_criticalsectiona[i].unlock();
       }
 
 #else
@@ -131,7 +114,8 @@ void fixed_alloc_sync::FreeAll()
       {
       }
 
-      m_protectptra[i]->unlock();
+      m_criticalsectiona[i].unlock();
+      
 #endif
 
    }

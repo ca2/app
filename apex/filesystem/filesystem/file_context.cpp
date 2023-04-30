@@ -810,7 +810,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //   try
   // {
 
-   mem = pfile->as_memory();
+   mem = pfile->full_memory();
    
    
 //      {
@@ -868,7 +868,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    try
    {
 
-      pfile->as_memory(mem);
+      pfile->full_memory(mem);
 
    }
    catch (...)
@@ -3339,6 +3339,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
 
             pfile->m_estatus = error_not_a_file;
 
+            pfile->set_nok();
+
             return pfile;
 
          }
@@ -3363,7 +3365,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("test");
+      output_debug_string("file_context::get_file yesno.xhtml");
 
    }
 
@@ -3396,6 +3398,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
          __construct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
+
+         pfile->set_nok();
 
          return pfile;
 

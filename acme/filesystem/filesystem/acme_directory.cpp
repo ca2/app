@@ -1099,7 +1099,7 @@ bool acme_directory::_is(bool & bDir, const ::file::path & path)
 
    auto pathFinal = acmepath()->safe_get_real_path(path);
 
-   bDir = ::is_directory(pathFinal);
+   bDir = ::safe_is_directory(pathFinal);
 
    return true;
 

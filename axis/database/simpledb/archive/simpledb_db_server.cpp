@@ -79,7 +79,7 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::str
 bool db_server::initialize()
 {
 
-   if(psystem->m_varTopicQuery["app"] == "app-core/netnodelite"
+   if(psystem->m_varTopicQuery["app"] == "app-core/netnode_desktop"
          || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
          || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
          || psystem->m_varTopicQuery["app"] == "app-core/netnodecfg"

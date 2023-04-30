@@ -113,7 +113,7 @@ namespace dynamic_source
 
       auto pacmedirectory = acmedirectory();
 
-      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
+      dir()->create(pacmedirectory->system() / "netnode_desktop/symbols");
 
 
       ::programming::compiler::prepare_compile_and_link_environment();
@@ -953,7 +953,7 @@ namespace dynamic_source
 
          auto pacmedirectory = acmedirectory();
 
-         strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strSymbolName;
+         strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strSymbolName;
 
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
@@ -1286,7 +1286,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//             ::output_debug_string(\"netnodelite script initializing : " + strCppPath + "!\\n\"); \r\n \
+//             ::output_debug_string(\"netnode_desktop script initializing : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \
@@ -1294,7 +1294,7 @@ namespace dynamic_source
 //         { \r\n \
 // \r\n \
 // \r\n \
-//            ::output_debug_string(\"netnodelite script terminating : " + strCppPath + "!\\n\"); \r\n \
+//            ::output_debug_string(\"netnode_desktop script terminating : " + strCppPath + "!\\n\"); \r\n \
 // \r\n \
 // \r\n \
 //         } \r\n \

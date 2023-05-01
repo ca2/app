@@ -1381,7 +1381,6 @@
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="primitive\_.h" />
     <ClInclude Include="procedure.h" />
-    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
     <ClInclude Include="user\user\e_window_flag.h" />

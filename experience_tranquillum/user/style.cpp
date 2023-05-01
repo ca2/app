@@ -918,6 +918,8 @@ namespace experience_tranquillum
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
    {
 
+      //return true;
+
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectangleBorder;
       ::rectangle_i32 rectangleText;
@@ -982,7 +984,7 @@ namespace experience_tranquillum
 
       pgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
 
-
+      //return true;
 
       ::index iTab = -1;
 

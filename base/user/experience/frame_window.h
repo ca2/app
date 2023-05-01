@@ -71,6 +71,10 @@ namespace experience
       bool is_full_screen_enabled() override;
 
 
+      ::item_pointer hit_test(::user::mouse * pmouse) override;
+
+
+
       bool sketch_on_display() override;
 
 

@@ -13,6 +13,7 @@ namespace user
    {
    public:
 
+
       ::channel *                      m_pchannel;
       ::pointer<::windowing::window>   m_pwindow;
       bool                             m_bConditional;

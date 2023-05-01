@@ -304,12 +304,12 @@ namespace draw2d_cairo
       void Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void Pie(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
 
-      void fill_polygon(const POINT_F64 * lpPoints, count nCount) override;
+      void fill_polygon(const ::point_f64 * lpPoints, count nCount) override;
 
-      void draw_polygon(const POINT_F64 * lpPoints, count nCount) override;
+      void draw_polygon(const ::point_f64 * lpPoints, count nCount) override;
 
 
-      void polygon(const POINT_F64 * lpPoints, count nCount) override;
+      void polygon(const ::point_f64 * lpPoints, count nCount) override;
       void rectangle(const ::rectangle_f64 & rectangle_f64) override;
       //virtual bool draw_rectangle(double x1, double y1, double x2, double y2) override;
       //virtual bool DrawRectangle(const ::rectangle_f64 & rectangle_f64) override;

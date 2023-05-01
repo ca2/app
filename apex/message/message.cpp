@@ -22,11 +22,29 @@ namespace message
    //}
 
 
+   message::message(const ::atom & atom)
+   { 
+      
+      m_atom = atom;
+      
+      m_union.m_p = nullptr;
+      m_pdispatchera = nullptr;
+      m_pchannel = nullptr;
+      m_wparam = {};
+      m_iRouteIndex = -1;
+      m_iParam = 0;
+      m_bRet = false;
+      m_uiMessageFlags = 0;
+      m_estatus = ::success;
+      m_lresult = 0;
+
+   }
+
+
    message::~message()
    {
 
    }
-
 
 
    //bool message::route_message()

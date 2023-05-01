@@ -377,6 +377,7 @@ namespace user
       ::pointer<::object>                         m_pmenuitem;
       pointer_array < interaction >                 m_menua;
       ::pointer<::appearance::appearance>         m_pappearance;
+      bool                                         m_bEmptyAreaIsClientArea;
 
 
       interaction();

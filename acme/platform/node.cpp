@@ -192,17 +192,23 @@ namespace acme
             if (a.get_size() >= 2)
             {
 
-               stra2.add_unique_ci(a[0]);
+               string strProcessName = a[0];
 
-               string strPath = pnode->process_identifier_module_path(ansi_to_i32(a[1]));
+               string strProcessId = a[1];
+
+               int iProcessId = ansi_to_i32(strProcessId);
+
+               stra2.add_unique_ci(strProcessName);
+
+               string strPath = pnode->process_identifier_module_path(iProcessId);
 
                if (strPath.has_char())
                {
 
-                  if (strPath.case_insensitive_order(a[0]) == 0)
+                  if (acmepath()->real_path_is_same(strPath, strProcessName))
                   {
 
-                     idaPid.add(ansi_to_i32(a[1]));
+                     idaPid.add(iProcessId);
 
                   }
 

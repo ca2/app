@@ -66,26 +66,26 @@
    }
 
 
-   ::process_identifier os_context::module_path_process_identifier(const ::string & lpszName)
+   ::process_identifier_array os_context::module_path_processes_identifiers(const ::scoped_string & scopedstrName)
    {
 
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(scopedstrName);
 
       throw ::interface_only("this is an interface");
 
-      return -1;
+      return {};
 
    }
 
 
-   ::process_identifier os_context::title_process_identifier(const ::string & lpszName)
+   ::process_identifier_array os_context::title_processes_identifiers(const ::scoped_string & scopedstrName)
    {
 
-      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(scopedstrName);
       
       throw ::interface_only("this is an interface");
 
-      return -1;
+      return {};
 
    }
 

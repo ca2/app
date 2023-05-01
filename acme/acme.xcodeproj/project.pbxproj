@@ -683,6 +683,8 @@
 		9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
 		9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */; };
 		9A1FB4D22870DE460042849A /* _main_hold_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */; };
+		9A214F542A002CB100BA8E28 /* malloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08422F2935E024009F7FF4 /* malloc.cpp */; };
+		9A214F552A002CBB00BA8E28 /* malloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08422F2935E024009F7FF4 /* malloc.cpp */; };
 		9A220F09251A1993002B42B7 /* printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A220EA7251A1993002B42B7 /* printf.cpp */; };
 		9A220F66251A1993002B42B7 /* printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F06251A1993002B42B7 /* printf.h */; };
 		9A22670A27CDDD9C0042BAC2 /* popup_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670727CDDD9C0042BAC2 /* popup_button.cpp */; };
@@ -2680,7 +2682,6 @@
 		9A0842142935DD6D009F7FF4 /* wd16_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wd16_impl.h; sourceTree = "<group>"; };
 		9A0842152935DD6D009F7FF4 /* wd32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wd32.h; sourceTree = "<group>"; };
 		9A0842162935DD6D009F7FF4 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A08422E2935E024009F7FF4 /* _select.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _select.cpp; sourceTree = "<group>"; };
 		9A08422F2935E024009F7FF4 /* malloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = malloc.cpp; sourceTree = "<group>"; };
 		9A0842302935E024009F7FF4 /* WindowsHeapAlloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowsHeapAlloc.cpp; sourceTree = "<group>"; };
 		9A0842322935E024009F7FF4 /* _select.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _select.cpp; sourceTree = "<group>"; };
@@ -4156,7 +4157,6 @@
 		9A08422D2935E024009F7FF4 /* os_impl */ = {
 			isa = PBXGroup;
 			children = (
-				9A08422E2935E024009F7FF4 /* _select.cpp */,
 				9A08422F2935E024009F7FF4 /* malloc.cpp */,
 				9A0842302935E024009F7FF4 /* WindowsHeapAlloc.cpp */,
 			);
@@ -8185,6 +8185,7 @@
 				9A68AD6F25114434008DABD2 /* assert.cpp in Sources */,
 				9AC0190527489356006BEBCC /* implementable.cpp in Sources */,
 				9A68AEEC25114435008DABD2 /* _c_trait_ansi.cpp in Sources */,
+				9A214F542A002CB100BA8E28 /* malloc.cpp in Sources */,
 				9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */,
 				9A08433B29366748009F7FF4 /* _synchronization.cpp in Sources */,
 				9A08442529367B73009F7FF4 /* pipe.cpp in Sources */,
@@ -8331,6 +8332,7 @@
 				9AD6918A251A753A00C0EBD7 /* profiler.cpp in Sources */,
 				9A1625EA26EFCA54003D9CB9 /* sequence.cpp in Sources */,
 				9ADD654F26B5CFE700D11298 /* memory_allocate.cpp in Sources */,
+				9A214F552A002CBB00BA8E28 /* malloc.cpp in Sources */,
 				9AD6918C251A753A00C0EBD7 /* lparam.cpp in Sources */,
 				9AD6918E251A753A00C0EBD7 /* printf.cpp in Sources */,
 				9A94DE4D282C03AD00F5C1CA /* regular_expression.cpp in Sources */,
@@ -8719,7 +8721,7 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(OS_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -8832,7 +8834,7 @@
 					"$(WorkspaceDir)/operating_system",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(OS_MACOS_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;

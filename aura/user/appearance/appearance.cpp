@@ -84,7 +84,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick)
    {
 
       return false;

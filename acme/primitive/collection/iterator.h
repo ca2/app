@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-12-07 16:42 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -164,9 +164,9 @@ constexpr bool is_end(const_iterator_base < ITERATOR_TYPE > p) { return !is_ok(p
 
 
 template < typename TYPE >
-constexpr bool is_ok(TYPE* p, TYPE * end) { return p < end; }
+constexpr bool is_ok(TYPE* p, TYPE * end) { return ::is_set(p) && p < end; }
 template < typename TYPE >
-constexpr bool is_end(TYPE* p, TYPE* end) { return is_ok(p, end); }
+constexpr bool is_end(TYPE* p, TYPE* end) { return !is_ok(p, end); }
 
 
 

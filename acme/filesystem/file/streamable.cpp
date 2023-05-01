@@ -99,6 +99,151 @@ namespace file
    }
 
 
+   filesize streamable::right_size() const
+   {
+
+      throw error_interface_only;
+
+   }
+
+
+   void streamable::right_memory(::memory_base & memory, ::memsize iReadAtMostByteCount)
+   {
+
+      auto uSize = this->right_size();
+
+      if (iReadAtMostByteCount < 0)
+      {
+
+         iReadAtMostByteCount = (strsize)uSize;
+
+      }
+      else
+      {
+
+         iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
+
+      }
+
+      memory.set_size(iReadAtMostByteCount);
+
+      auto p = memory.data();
+
+      ::size_t iPos = 0;
+
+      while (iReadAtMostByteCount - iPos > 0)
+      {
+
+         auto dwRead = this->read({ p + iPos, (size_t)iReadAtMostByteCount - iPos });
+
+         if (dwRead <= 0)
+         {
+
+            break;
+
+         }
+
+         iPos += dwRead;
+
+      }
+
+   }
+
+
+   ::memory streamable::right_memory(::memsize iReadAtMostByteCount)
+   {
+
+      ::memory memory;
+
+      right_memory(memory, iReadAtMostByteCount);
+
+      return ::transfer(memory);
+
+   }
+
+
+   void streamable::right_string(string & str, ::memsize iReadAtMostByteCount)
+   {
+
+      ::memory memory;
+
+      right_memory(memory, iReadAtMostByteCount);
+
+      str = memory.get_string();
+
+   }
+
+
+   ::string streamable::right_string(::memsize iReadAtMostByteCount)
+   {
+
+      ::string str;
+
+      right_string(str, iReadAtMostByteCount);
+
+      return ::transfer(str);
+
+   }
+
+
+   ::string streamable::full_string(::memsize iReadAtMostByteCount)
+   {
+
+      seek_to_begin();
+
+      return ::transfer(right_string(iReadAtMostByteCount));
+
+   }
+
+   //string file::as_string() const
+   //{
+
+   //   string str;
+
+   //   auto pfile = (file *)this;
+
+   //   auto position = pfile->get_position();
+
+   //   pfile->as(str);
+
+   //   pfile->set_position(position);
+
+   //   return str;
+
+   //}
+
+
+   void streamable::full_memory(memory_base & memory, ::memsize iReadAtMostByteCount)
+   {
+
+      /*auto pfile = (file *)this;
+
+      auto position = pfile->get_position();
+
+      pfile->as(memory);
+
+      pfile->set_position(position);*/
+
+      seek_to_begin();
+
+      right_memory(memory, iReadAtMostByteCount);
+
+
+   }
+
+   
+   ::memory streamable::full_memory(::memsize iReadAtMostByteCount)
+   {
+
+      ::memory memory;
+
+      full_memory(memory, iReadAtMostByteCount);
+
+      return ::transfer(memory);
+
+   }
+
+
 } // namespace file
 
 

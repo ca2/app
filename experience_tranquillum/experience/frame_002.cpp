@@ -998,14 +998,14 @@ SizingNone:;
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;

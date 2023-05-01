@@ -799,7 +799,7 @@ namespace graphics
    }
 
 
-   string console::as_string() const
+   string console::right_string(::memsize iReadAtMostByteCount)
    {
 
       throw ::not_implemented();

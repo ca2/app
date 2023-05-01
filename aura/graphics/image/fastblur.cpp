@@ -303,29 +303,24 @@ namespace draw2d
    }
 
 
-   void fastblur::blur(::image * pimage, i32 iRadius, const ::rectangle_i32 & rectangle)
+   void fastblur::blur(::image * pimage, const ::rectangle_i32 & rectangle)
    {
 
       pixmap_lock lock(pimage, rectangle);
 
-      return blur(pimage, iRadius);
+      return blur(pimage);
 
    }
 
 
-   void fastblur::blur(::image * pimage, int iRadius)
+   void fastblur::blur(::image * pimage)
    {
 
       int cx = pimage->width();
 
       int cy = pimage->height();
 
-      if (iRadius <= 0)
-      {
-
-         iRadius = m_iRadius;
-
-      }
+      int iRadius = m_iRadius;
 
       if (cx <= 0 || cy <= 0 || iRadius <= 0)
       {
@@ -608,7 +603,6 @@ auto tickC1 = ::time::now();
                 (u32*)pimage->colorref(),
                 m_size.cx,
                 m_size.cy,
-                m_iRadius,
                 m_uia.get_data(),
                 m_uchaDiv.get_data(),
                 pimage->scan_size(),
@@ -1346,8 +1340,10 @@ auto tick2 = ::time::now();
 
 
 
-   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,i32 radius,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pdata,i32 w,i32 h,u32 * prgba,u8 * dv,i32 stride,int cx,int cy,int bottomup)
    {
+
+      int radius = m_iRadius;
 
       if(radius <= 0)
       {
@@ -1586,7 +1582,7 @@ auto tick2 = ::time::now();
 
 #endif // VECTOR3_SSE
 
-   void fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(u32 * pix,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
    {
 
       throw ::exception(error_wrong_state);

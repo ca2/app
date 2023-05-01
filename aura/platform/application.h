@@ -605,9 +605,9 @@ namespace aura
       virtual void _001OnFileNew(::message::message * pmessage) override;
 
 
-      //virtual string multimedia_audio_get_default_library_name() override;
-      //virtual string multimedia_audio_mixer_get_default_library_name() override;
-      //virtual string veriwell_multimedia_music_midi_get_default_library_name() override;
+      //virtual string multimedia_audio_get_default_implementation_name() override;
+      //virtual string multimedia_audio_mixer_get_default_implementation_name() override;
+      //virtual string veriwell_multimedia_music_midi_get_default_implementation_name() override;
 
       //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate) override;
 
@@ -1047,6 +1047,7 @@ namespace aura
 
 #endif
 
+      virtual string draw2d_get_default_implementation_name();
 
 
    };

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "_opengl.h"
+#include "object.h"
+
 
 namespace draw2d_opengl
 {
@@ -13,11 +16,15 @@ namespace draw2d_opengl
       //delete_object(); 
    }
    
-   i32 object::get_object(i32 nCount, LPVOID lpObject) const
+   
+   i32 object::get_object(i32 nCount, void * lpObject) const
    { 
+
       //return ::GetObject(get_handle(), nCount, lpObject); 
       return 0;
+
    }
+
 
    bool object::CreateStockObject(i32 nIndex)
    {
@@ -57,22 +64,22 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
    // ::draw2d::object
 
-
-   void object::dump(dump_context & dumpcontext) const
-   {
-      //::object::dump(dumpcontext);
-
-//      dumpcontext << "get_handle() = " << get_handle();
-  //    dumpcontext << "\n";
-   }
-
-
-   void object::assert_ok() const
-   {
-      //::object::assert_ok();
-      //ASSERT(get_handle() == nullptr ||
-        // (::windows_definition::Data.bWin95 || ::GetObjectType(get_handle()) != 0));
-   }
+//
+//   void object::dump(dump_context & dumpcontext) const
+//   {
+//      //::object::dump(dumpcontext);
+//
+////      dumpcontext << "get_handle() = " << get_handle();
+//  //    dumpcontext << "\n";
+//   }
+//
+//
+//   void object::assert_ok() const
+//   {
+//      //::object::assert_ok();
+//      //ASSERT(get_handle() == nullptr ||
+//        // (::windows_definition::Data.bWin95 || ::GetObjectType(get_handle()) != 0));
+//   }
 
 
    /*void * object::detach_os_data()

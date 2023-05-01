@@ -172,3 +172,16 @@ inline void copy(MSG & msg, const MESSAGE & message)
 
 }
 
+
+namespace windows
+{
+
+ 
+   CLASS_DECL_ACME ::string get_window_text_timeout(HWND hwnd, const class time & timeSendMessageMax = 1_s);
+   CLASS_DECL_ACME HWND child_at(HWND hwnd, iptr i);
+
+
+} // namespace windows
+
+
+

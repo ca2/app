@@ -450,7 +450,7 @@
 //   }
 
 
-//   string system::draw2d_get_default_library_name()
+//   string system::draw2d_get_default_implementation_name()
 //   {
 //
 //      return "draw2d_cairo";

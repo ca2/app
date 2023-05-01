@@ -75,7 +75,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    auto prequest= pcreate->get_request();
 
-   if (prequest && prequest->m_payloadArgs.is_true("window_frame"))
+   if (prequest && prequest->m_payloadArguments.is_true("window_frame"))
    {
 
       m_bWindowFrame = true;

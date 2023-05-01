@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/graphics/image/drawing.h"
@@ -18,15 +18,13 @@ namespace nano2d
    class CLASS_DECL_NANO2D draw2d_context :
       virtual public ::nano2d::context
    {
-   protected:
+   public:
 
       
       ::draw2d::graphics_pointer       m_pgraphics;
       ::pointer<::nano2d::font_sink>  m_pfontsink;
       int                              m_iPaint = -1;
 
-      
-   public:
 
 
       class state :
@@ -120,18 +118,18 @@ namespace nano2d
       void stroke() override;
 
 
-      ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey, ::nano2d::color icol, ::nano2d::color ocol) override;
-      ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::nano2d::color icol, ::nano2d::color ocol) override;
-      ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::nano2d::color icol, ::nano2d::color ocol) override;
+      ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey, ::color::color icol, ::color::color ocol) override;
+      ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::color::color icol, ::color::color ocol) override;
+      ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::color::color icol, ::color::color ocol) override;
       ::nano2d::paint image_pattern(float cx, float cy, float w, float h, float angle, int image, float alpha) override;
 
 
 
       void font_face(const ::scoped_string & scopedstr) override;
       void font_size(float size) override;
-      void fill_color(::nano2d::color color) override;
+      void fill_color(::color::color color) override;
       void stroke_width(float width) override;
-      void stroke_color(::nano2d::color color) override;
+      void stroke_color(::color::color color) override;
       void text_align(int align) override;
 
 

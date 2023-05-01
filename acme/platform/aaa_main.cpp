@@ -296,17 +296,7 @@ void finalize_memory_management();
 
 LARGE_INTEGER g_largeintegerFrequency;
 
-void defer_initialize_system_heap();
-
-
 #endif
-
-//#ifdef WINDOWS_DESKTOP
-//
-//#include "acme/operating_system/windows/callstack.h"
-//
-//#endif
-
 
 namespace mathematics
 {
@@ -725,12 +715,6 @@ extern thread_local ::task_pointer t_pthread;
    {
 
       m_timeStart.Now();
-
-#ifdef WINDOWS
-
-      defer_initialize_system_heap();
-
-#endif
 
       initialize_memory_management();
 

@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "_opengl.h"
+#include "bitmap.h"
+#include "acme/exception/interface_only.h"
+
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
 
@@ -17,31 +21,31 @@ GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
 GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
 //GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
-#ifdef WINDOWS
-typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
-typedef BOOL(WINAPI * PFNWGLQUERYPBUFFERARBPROC) (HPBUFFERARB hPbuffer, int iAttribute, int *piValue);
-typedef HDC(WINAPI * PFNWGLGETPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer);
-typedef HPBUFFERARB(WINAPI * PFNWGLCREATEPBUFFERARBPROC) (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int *piAttribList);
-typedef int (WINAPI * PFNWGLRELEASEPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer, HDC hDC);
-
-PFNWGLDESTROYPBUFFERARBPROC                       wglDestroyPbufferARB;
-PFNWGLQUERYPBUFFERARBPROC                         wglQueryPbufferARB;
-PFNWGLGETPBUFFERDCARBPROC                         wglGetPbufferDCARB;
-PFNWGLCREATEPBUFFERARBPROC                        wglCreatePbufferARB;
-PFNWGLRELEASEPBUFFERDCARBPROC                     wglReleasePbufferDCARB;
-
-
-typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, ::u32 nMaxFormats, int *piFormats, ::u32 *nNumFormats);
-typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, FLOAT *pfValues);
-typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, int *piValues);
-
-PFNWGLCHOOSEPIXELFORMATARBPROC                    wglChoosePixelFormatARB;
-PFNWGLGETPIXELFORMATATTRIBFVARBPROC               wglGetPixelFormatAttribfvARB;
-PFNWGLGETPIXELFORMATATTRIBIVARBPROC               wglGetPixelFormatAttribivARB;
-
-
-
-#endif
+//#ifdef WINDOWS
+//typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
+//typedef BOOL(WINAPI * PFNWGLQUERYPBUFFERARBPROC) (HPBUFFERARB hPbuffer, int iAttribute, int *piValue);
+//typedef HDC(WINAPI * PFNWGLGETPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer);
+//typedef HPBUFFERARB(WINAPI * PFNWGLCREATEPBUFFERARBPROC) (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int *piAttribList);
+//typedef int (WINAPI * PFNWGLRELEASEPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer, HDC hDC);
+//
+//PFNWGLDESTROYPBUFFERARBPROC                       wglDestroyPbufferARB;
+//PFNWGLQUERYPBUFFERARBPROC                         wglQueryPbufferARB;
+//PFNWGLGETPBUFFERDCARBPROC                         wglGetPbufferDCARB;
+//PFNWGLCREATEPBUFFERARBPROC                        wglCreatePbufferARB;
+//PFNWGLRELEASEPBUFFERDCARBPROC                     wglReleasePbufferDCARB;
+//
+//
+//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, ::u32 nMaxFormats, int *piFormats, ::u32 *nNumFormats);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, FLOAT *pfValues);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, int *piValues);
+//
+//PFNWGLCHOOSEPIXELFORMATARBPROC                    wglChoosePixelFormatARB;
+//PFNWGLGETPIXELFORMATATTRIBFVARBPROC               wglGetPixelFormatAttribfvARB;
+//PFNWGLGETPIXELFORMATATTRIBIVARBPROC               wglGetPixelFormatAttribivARB;
+//
+//
+//
+//#endif
 
 #include <assert.h>
 #ifdef WINDOWS
@@ -100,7 +104,7 @@ namespace draw2d_opengl
    }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -113,12 +117,20 @@ namespace draw2d_opengl
 
       m_memOut.set_size(abs(m_iStride * size.cy));
 
-      if(m_memOut.get_data() == nullptr)
-         return false;
+      if (m_memOut.data() == nullptr)
+      {
+
+         return;
+
+         //return false;
+
+      }
 
       if(ppcolorref != nullptr)
       {
-         *ppcolorref = m_memOut.get_data();
+         
+         *ppcolorref = m_memOut.data();
+
       }
 
       if(piScan != nullptr)
@@ -128,14 +140,16 @@ namespace draw2d_opengl
 
       m_osdata[0] = (void *) 1;
 
-      return true;
+      //return true;
 
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage)
    {
-      return false;
+      
+      // return false;
+
    }
 
 
@@ -194,24 +208,28 @@ namespace draw2d_opengl
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return false;
    }
-   bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+   
+   
+   void bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return true;
+      //return true;
 
    }
-   bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
+
+
+   void bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)
    {
 
 //      ::acme::del(m_pbitmap);
 
       //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
-      return true;
+      //return true;
    }
 
 
@@ -226,31 +244,31 @@ namespace draw2d_opengl
    /////////////////////////////////////////////////////////////////////////////
 
 
-   void bitmap::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
+   //void bitmap::dump(dump_context & dumpcontext) const
+   //{
+   //   ::draw2d::object::dump(dumpcontext);
 
-      /*         if (get_handle() == nullptr)
-                  return;
+   //   /*         if (get_handle() == nullptr)
+   //               return;
 
-               if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_BITMAP)
-               {
-                  // not a valid object
-                  dumpcontext << "has ILLEGAL HBITMAP!";
-                  return;
-               }*/
+   //            if (!::windows_definition::Data.bWin95 && ::GetObjectType(get_handle()) != OBJ_BITMAP)
+   //            {
+   //               // not a valid object
+   //               dumpcontext << "has ILLEGAL HBITMAP!";
+   //               return;
+   //            }*/
 
-      /*BITMAP bm;
-      VERIFY(GetObject(sizeof(bm), &bm));
-      dumpcontext << "bm.bmType = " << bm.bmType;
-      dumpcontext << "\nbm.bmHeight = " << bm.bmHeight;
-      dumpcontext << "\nbm.bmWidth = " << bm.bmWidth;
-      dumpcontext << "\nbm.bmWidthBytes = " << bm.bmWidthBytes;
-      dumpcontext << "\nbm.bmPlanes = " << bm.bmPlanes;
-      dumpcontext << "\nbm.bmBitsPixel = " << bm.bmBitsPixel;
-      */
-      dumpcontext << "\n";
-   }
+   //   /*BITMAP bm;
+   //   VERIFY(GetObject(sizeof(bm), &bm));
+   //   dumpcontext << "bm.bmType = " << bm.bmType;
+   //   dumpcontext << "\nbm.bmHeight = " << bm.bmHeight;
+   //   dumpcontext << "\nbm.bmWidth = " << bm.bmWidth;
+   //   dumpcontext << "\nbm.bmWidthBytes = " << bm.bmWidthBytes;
+   //   dumpcontext << "\nbm.bmPlanes = " << bm.bmPlanes;
+   //   dumpcontext << "\nbm.bmBitsPixel = " << bm.bmBitsPixel;
+   //   */
+   //   dumpcontext << "\n";
+   //}
 
 
 
@@ -259,20 +277,20 @@ namespace draw2d_opengl
    {
 
 //      return (void *) (plusplus::Bitmap *) m_pbitmap;
-      return m_memOut.get_data();
+      return m_memOut.data();
 
    }
 
-   bool bitmap::attach(void * posdata)
-   {
-      //::acme::del(m_pbitmap);
-      //
-      //m_pbitmap = (plusplus::Bitmap *) posdata;
+   //bool bitmap::attach(void * posdata)
+   //{
+   //   //::acme::del(m_pbitmap);
+   //   //
+   //   //m_pbitmap = (plusplus::Bitmap *) posdata;
 
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    void * bitmap::detach()
    {
@@ -356,7 +374,7 @@ namespace draw2d_opengl
       }
 
 
-      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.get_data(), m_sizeOut.cx, m_sizeOut.cy);
+      resizeBilinear(m_memIn, m_sizeIn.cx, m_sizeIn.cy, (int*)m_memOut.data(), m_sizeOut.cx, m_sizeOut.cy);
 
       glGenTextures(1, &m_texture);
 
@@ -389,55 +407,55 @@ namespace draw2d_opengl
 
       }
 
-      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx, m_sizeIn.cy, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.get_data());
+      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx, m_sizeIn.cy, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
       e = glGetError();
 
 
 
    }
 
-#ifdef WINDOWS
-   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
-   {
-      static TCHAR szBuffer[32] = { 0 };
-
-      switch (msg)
-      {
-      case e_message_create:
-         //         timeBeginPeriod(1);
-         //SetTimer(hWnd, 1, 1000, 0);
-         return 0;
-
-      case e_message_destroy:
-         //KillTimer(hWnd, 1);
-         //       timeEndPeriod(1);
-         //PostQuitMessage(0);
-         return 0;
-
-      case e_message_key_down:
-         //if (wParam == VK_ESCAPE)
-      {
-         //SendMessage(hWnd, MESSAGE_CLOSE, 0, 0);
-         // return 0;
-      }
-      break;
-
-      case e_message_non_client_hit_test:
-         return HTCAPTION;   // allows dragging of the window
-
-      case e_message_timer:
-         //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
-         //set_window_text(hWnd, szBuffer);
-         //         g_frames = 0;
-         return 0;
-
-      default:
-         break;
-      }
-
-      return DefWindowProc(hWnd, msg, wParam, lParam);
-   }
-#endif
+//#ifdef WINDOWS
+//   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
+//   {
+//      static TCHAR szBuffer[32] = { 0 };
+//
+//      switch (msg)
+//      {
+//      case e_message_create:
+//         //         timeBeginPeriod(1);
+//         //SetTimer(hWnd, 1, 1000, 0);
+//         return 0;
+//
+//      case e_message_destroy:
+//         //KillTimer(hWnd, 1);
+//         //       timeEndPeriod(1);
+//         //PostQuitMessage(0);
+//         return 0;
+//
+//      case e_message_key_down:
+//         //if (wParam == VK_ESCAPE)
+//      {
+//         //SendMessage(hWnd, MESSAGE_CLOSE, 0, 0);
+//         // return 0;
+//      }
+//      break;
+//
+//      case e_message_non_client_hit_test:
+//         return HTCAPTION;   // allows dragging of the window
+//
+//      case e_message_timer:
+//         //         _stprintf(szBuffer, _TEXT("%d FPS"), g_frames);
+//         //set_window_text(hWnd, szBuffer);
+//         //         g_frames = 0;
+//         return 0;
+//
+//      default:
+//         break;
+//      }
+//
+//      return DefWindowProc(hWnd, msg, wParam, lParam);
+//   }
+//#endif
 
 
 //   bool bitmap::flash()
@@ -552,7 +570,7 @@ namespace draw2d_opengl
          glPixelStorei(GL_PACK_ALIGNMENT, 1);
          e = glGetError();
 
-         color32_t * pdata = (color32_t *) m_memOut.get_data();
+         color32_t * pdata = (color32_t *) m_memOut.data();
 
          glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
          e = glGetError();
@@ -692,86 +710,86 @@ namespace draw2d_opengl
    bool bitmap::InitGLExtensions()
    {
 
-#ifdef WINDOWS
-#define GPA(x) wglGetProcAddress(x)
-
-      // WGL_ARB_pbuffer.
-      wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC)GPA("wglDestroyPbufferARB");
-      wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC)GPA("wglQueryPbufferARB");
-      wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC)GPA("wglGetPbufferDCARB");
-      wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC)GPA("wglCreatePbufferARB");
-      wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC)GPA("wglReleasePbufferDCARB");
-
-      // WGL_ARB_pixel_format.
-      wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)GPA("wglChoosePixelFormatARB");
-      wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC)GPA("wglGetPixelFormatAttribfvARB");
-      wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC)GPA("wglGetPixelFormatAttribivARB");
-
-#undef GPA
-
-      if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
-      {
-         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-
-      if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
-      {
-         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-#endif
+//#ifdef WINDOWS
+//#define GPA(x) wglGetProcAddress(x)
+//
+//      // WGL_ARB_pbuffer.
+//      wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC)GPA("wglDestroyPbufferARB");
+//      wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC)GPA("wglQueryPbufferARB");
+//      wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC)GPA("wglGetPbufferDCARB");
+//      wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC)GPA("wglCreatePbufferARB");
+//      wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC)GPA("wglReleasePbufferDCARB");
+//
+//      // WGL_ARB_pixel_format.
+//      wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)GPA("wglChoosePixelFormatARB");
+//      wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC)GPA("wglGetPixelFormatAttribfvARB");
+//      wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC)GPA("wglGetPixelFormatAttribivARB");
+//
+//#undef GPA
+//
+//      if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
+//      {
+//         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//
+//      if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
+//      {
+//         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//#endif
       return true;
    }
 
    bool bitmap::InitPBuffer()
    {
-#ifdef WINDOWS
-      // Create a pbuffer for off-screen rendering. Notice that since we aren't
-      // going to be using the pbuffer for dynamic texturing (i.e., using the
-      // pbuffer containing our rendered scene as a texture) we don't need to
-      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list.
-
-      int attribList[] =
-      {
-         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
-         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
-         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
-         WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
-         WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
-         WGL_BLUE_BITS_ARB, 8,              // minimum 8-bits for blue channel
-         WGL_ALPHA_BITS_ARB, 8,              // minimum 8-bits for alpha channel
-         WGL_DEPTH_BITS_ARB, 16,             // minimum 16-bits for depth buffer
-         0
-      };
-
-      int format = 0;
-      ::u32 matchingFormats = 0;
-
-      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
-      {
-         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-
-      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx, m_sizeOut.cy, 0)))
-      {
-         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-
-      if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
-      {
-         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-
-      if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
-      {
-         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
-         return false;
-      }
-#endif
+//#ifdef WINDOWS
+//      // Create a pbuffer for off-screen rendering. Notice that since we aren't
+//      // going to be using the pbuffer for dynamic texturing (i.e., using the
+//      // pbuffer containing our rendered scene as a texture) we don't need to
+//      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list.
+//
+//      int attribList[] =
+//      {
+//         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
+//         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
+//         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
+//         WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
+//         WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
+//         WGL_BLUE_BITS_ARB, 8,              // minimum 8-bits for blue channel
+//         WGL_ALPHA_BITS_ARB, 8,              // minimum 8-bits for alpha channel
+//         WGL_DEPTH_BITS_ARB, 16,             // minimum 16-bits for depth buffer
+//         0
+//      };
+//
+//      int format = 0;
+//      ::u32 matchingFormats = 0;
+//
+//      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
+//      {
+//         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//
+//      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx, m_sizeOut.cy, 0)))
+//      {
+//         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//
+//      if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
+//      {
+//         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//
+//      if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
+//      {
+//         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
+//         return false;
+//      }
+//#endif
       return true;
    }
 
@@ -795,8 +813,8 @@ namespace draw2d_opengl
       if (g_hPBuffer)
       {
          wglDeleteContext(g_hPBufferRC);
-         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-         wglDestroyPbufferARB(g_hPBuffer);
+         //wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
+         //wglDestroyPbufferARB(g_hPBuffer);
          g_hPBufferRC = 0;
          g_hPBufferDC = 0;
          g_hPBuffer = 0;
@@ -841,7 +859,7 @@ void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)
    //memory m;
    m.set_size(sizeof(int) * w2* h2);
    //int[] temp = memory_new int[w2*h2];
-   int * temp = (int *)m.get_data();
+   int * temp = (int *)m.data();
    int a, b, c, d, x, y, index;
    float x_ratio = ((float)(w - 1)) / w2;
    float y_ratio = ((float)(h - 1)) / h2;

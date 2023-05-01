@@ -1,4 +1,4 @@
-﻿// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "communication.h"
 #include "target.h"
@@ -65,7 +65,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (::i64) acmenode()->get_current_process_id();
+      m_atomApp = (::i64) acmenode()->current_process_identifier();
 
 #endif
 
@@ -82,7 +82,7 @@ namespace interprocess
 
       //}
 
-      int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
+      ::process_identifier iPid = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
       //defer_add_module(file()->module(), iPid);
 
@@ -838,10 +838,10 @@ namespace interprocess
    }
 
 
-   atom_array communication::get_pid(const ::string & strApp)
+   ::atom_array communication::get_pid(const ::string & strApp)
    {
 
-      atom_array idaPid;
+      ::atom_array idaPid;
 
       auto psystem = acmesystem();
 
@@ -851,13 +851,27 @@ namespace interprocess
 
       ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 
-      idaPid = pnode->module_path_get_pid(path, false);
+      auto processesidentifiers = pnode->module_path_processes_identifiers(path, false);
+
+      for(auto & processidentifier : processesidentifiers)
+      {
+
+         idaPid.add(processidentifier);
+
+      }
 
 #else
 
 //#if 0
 
-      idaPid = pnode->get_pid_from_module_list_file(strApp);
+      auto pids = pnode->module_list_file_processes_identifiers(strApp);
+
+      for (auto & pid : pids)
+      {
+
+         idaPid.add(pid);
+
+      }
 
 //#else
 //
@@ -890,7 +904,7 @@ namespace interprocess
 
       pathModule /= "module_list.txt";
 
-      ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.as_i64());
+      ::file::path pathPid = pnode->process_identifier_module_path((::u32)idPid.as_i64());
 
       string strModuleList = acmefile()->as_string(pathModule);
 
@@ -921,7 +935,7 @@ namespace interprocess
 
                stra2.add_unique_ci(a[0]);
 
-               string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
+               string strPath = pnode->process_identifier_module_path(atoi(a[1]));
 
                if (strPath.has_char())
                {

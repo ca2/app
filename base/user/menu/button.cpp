@@ -317,7 +317,7 @@ namespace user
 
                auto colorHilite = pstyle->get_color(this, ::e_element_hilite);
 
-               pgraphics->draw_inset_3d_rectangle(rectangleImageBorder, colorDarkShadow, colorHilite);
+               pgraphics->draw_inset_3d_rectangle(rectangleImageBorder, colorDarkShadow, colorHilite, 1.0);
 
             }
 

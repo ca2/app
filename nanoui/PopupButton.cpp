@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/popupbutton.cpp -- Button which launches a popup widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -51,12 +51,12 @@ void PopupButton::draw(::nano2d::context * pcontext) {
 
    if (m_chevron_icon) {
       auto icon = get_utf8_character(m_chevron_icon);
-      ::nano2d::color text_color =
-         m_text_color.w() == 0 ? m_theme->m_text_color : m_text_color;
+      ::color::color text_color =
+         m_text_color.alpha == 0 ? m_theme->m_text_color : m_text_color;
 
       pcontext->font_size((m_font_size < 0 ? m_theme->m_button_font_size : m_font_size) * icon_scale());
       pcontext->font_face("icons");
-      pcontext->fill_color(m_enabled ? text_color : ::nano2d::color(m_theme->m_disabled_text_color));
+      pcontext->fill_color(m_enabled ? text_color : ::color::color(m_theme->m_disabled_text_color));
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
       float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);

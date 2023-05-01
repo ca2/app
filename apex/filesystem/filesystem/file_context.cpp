@@ -121,7 +121,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    }
 
-   auto etype = get_type(path);
+   auto etype = safe_get_type(path);
 
    return etype == ::file::e_type_file || etype == ::file::e_type_element;
 
@@ -146,6 +146,79 @@ bool file_context::exists(const ::file::path &pathParam)
 
 
 ::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
+{
+
+   if (path.begins("http://") || path.begins("https://"))
+   {
+
+      property_set set;
+
+      if (path.flags() & ::file::e_flag_required)
+      {
+
+         set["required"] = true;
+
+      }
+
+      if (path.flags() & ::file::e_flag_bypass_cache)
+      {
+
+         set["nocache"] = true;
+
+      }
+
+      return m_pcontext->m_papexcontext->http().get_type(path, pvarQuery, set);
+
+   }
+
+   if (::task_flag().is_set(e_task_flag_compress_is_dir))
+   {
+
+      auto iFind = ::str::find_file_extension("zip:", path);
+
+      if (found(iFind))
+      {
+
+         if (!exists(path.substr(0, iFind + 4)))
+         {
+
+            return ::file::e_type_doesnt_exist;
+
+         }
+
+         throw todo;
+
+         //compress_context compress(this);
+
+         //::file::path pathZip;
+
+         //string_array straPath;
+
+         //if (!compress.get_patha(pathZip, straPath, path))
+         //{
+
+         //   return false;
+
+         //}
+
+         //auto pfile = file()->get_reader(pathZip);
+
+         //zip_context zip(this);
+
+         //return zip.is_file_or_dir(pfile, straPath, petype);
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+   }
+
+   return ::file::e_type_unknown;
+
+}
+
+
+::file::enum_type file_context::safe_get_type(const ::file::path& path, ::payload* pvarQuery)
 {
 
    if (path.begins("http://") || path.begins("https://"))
@@ -737,7 +810,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //   try
   // {
 
-   mem = pfile->as_memory();
+   mem = pfile->full_memory();
    
    
 //      {
@@ -795,7 +868,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    try
    {
 
-      pfile->as_memory(mem);
+      pfile->full_memory(mem);
 
    }
    catch (...)
@@ -1203,7 +1276,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::scoped_st
 {
 
    auto pfile = get_file(payloadFile,
-                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none |
                      ::file::e_open_defer_create_directory);
 
    if (!pfile)
@@ -3266,6 +3339,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
 
             pfile->m_estatus = error_not_a_file;
 
+            pfile->set_nok();
+
             return pfile;
 
          }
@@ -3290,7 +3365,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("test");
+      output_debug_string("file_context::get_file yesno.xhtml");
 
    }
 
@@ -3323,6 +3398,8 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
          __construct_new(pfile);
 
          pfile->m_estatus = error_file_not_found;
+
+         pfile->set_nok();
 
          return pfile;
 
@@ -3626,6 +3703,23 @@ bool file_context::is_link(const ::file::path & path)
    }
 
    return acmepath()->get_type(path);
+
+}
+
+
+::file::enum_type file_context::safe_get_type(const ::file::path& path)
+{
+
+   auto etype = safe_get_type(path, nullptr);
+
+   if (etype != ::file::e_type_unknown)
+   {
+
+      return etype;
+
+   }
+
+   return acmepath()->safe_get_type(path);
 
 }
 

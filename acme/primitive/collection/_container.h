@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-11-08 17:25 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-11-08 17:25 <3ThomasBorregaardSørensen!!
 // Created by camilo on 2023-01-20 22:25 <3ThomasBorregaardSørensen!!
 // 2023-01-20 22:25 - Mummi, Lucinho, Bilbo, Blue, Carol e Zibia contribution through ca2 HQ!!
 // 2023-01-20 22:25 - lowluds, shegotmad, mrsteinbergplease and octaelliptical contribution through Twitch.TV!!
@@ -74,12 +74,33 @@ inline ::string as_string(const CONTAINER& container, const ::scoped_string& sco
 
 }
 
+template < typename ITEM >
+inline ::string as_string(const ::set < ITEM > & set, const ::scoped_string& scopedstrSeparator = "|")
+{
 
+   ::string str;
 
+   for (const auto& item : set)
+   {
+
+      if (str.has_char())
+      {
+
+         str += scopedstrSeparator;
+
+      }
+
+      str += ::as_string(item.item());
+
+   }
+
+   return str;
+
+}
 
 
 template < primitive_container CONTAINER >
-inline void from_string(CONTAINER& container, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSeparator = "|")
+inline void from_string(CONTAINER & container, const ::scoped_string  & scopedstr, const ::scoped_string  & scopedstrSeparator = "|")
 {
 
    ::tokenizer tokenizer(scopedstr);

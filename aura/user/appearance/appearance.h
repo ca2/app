@@ -40,7 +40,7 @@ namespace appearance
       virtual void on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
       virtual void on_mouse_leave();
 
-      virtual bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
+      virtual bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick);
       virtual bool on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
 
       virtual bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);

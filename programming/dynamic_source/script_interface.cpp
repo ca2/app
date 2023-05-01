@@ -275,7 +275,7 @@ namespace dynamic_source
 
       bool bRerun = rerun();
 
-      bool bOk = false;
+      bool bOk = true;
 
       try
       {

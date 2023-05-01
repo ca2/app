@@ -699,6 +699,9 @@
     <ClInclude Include="user\user\aaa__component.h">
       <Filter>Header Files\user\form</Filter>
     </ClInclude>
+    <ClInclude Include="mathematics\calculator\error.h">
+      <Filter>Header Files\mathematics\calculator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -982,6 +985,9 @@
     </ClCompile>
     <ClCompile Include="database\database\composite.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\error.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

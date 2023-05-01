@@ -4,7 +4,7 @@
 //#include <VersionHelpers.h>
 
 
-//CLASS_DECL_APEX string audio_get_default_library_name()
+//CLASS_DECL_APEX string audio_get_default_implementation_name()
 //{
 //
 //   return "audio_xaudio";

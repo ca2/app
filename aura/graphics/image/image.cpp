@@ -1,4 +1,4 @@
-﻿//   Creator : El Barto (ef00@luc.ac.be)
+//   Creator : El Barto (ef00@luc.ac.be)
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
@@ -72,11 +72,27 @@ image::image()
 
 image::~image()
 {
+   
+   auto psystem = acmesystem();
 
-   if (acmesystem())
+   if (::is_set(psystem))
    {
-
-      acmesystem()->m_paurasystem->draw2d()->erase_image(this);
+      
+      auto paurasystem = psystem->m_paurasystem;
+      
+      if(::is_set(paurasystem))
+      {
+         
+         auto pdraw2d = paurasystem->draw2d();
+         
+         if(::is_set(pdraw2d))
+         {
+            
+            pdraw2d->erase_image(this);
+            
+         }
+         
+      }
 
    }
 
@@ -6068,7 +6084,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         output_debug_string("test");
+         output_debug_string("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8363,7 +8379,7 @@ void image::set_rgb(color32_t cr)
       if (areaRgba < areaRgbaLast)
       {
 
-         output_debug_string("test");
+         output_debug_string("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 
@@ -10268,7 +10284,7 @@ void image::_unmap()
    if (::is_null(m_pextension))
    {
 
-      m_pextension = memory_new image_extension();
+      __construct_new(m_pextension);
 
    }
 

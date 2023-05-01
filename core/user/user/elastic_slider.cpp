@@ -241,15 +241,15 @@ namespace user
       
       GetSliderRect(rectangle);
 
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255));
+      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
       
       rectangle.deflate(1, 1);
       
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,0));
+      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,0), 1.0);
       
       rectangle.deflate(1, 1);
       
-      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255));
+      pgraphics->draw_inset_rectangle(rectangle,argb(bAlpha,255,255,255), 1.0);
 
       if(m_bSlide)
       {

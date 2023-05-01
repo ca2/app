@@ -1171,9 +1171,29 @@ bool object::check_tasks_finished()
          if (ptaskChild)
          {
 
-            string strType = __type_name(ptaskChild);
+            string strType;
 
-            ptaskChild->set_finish();
+            try
+            {
+
+               try
+               {
+
+                  strType = __type_name(ptaskChild);
+
+               }
+               catch (...)
+               {
+
+               }
+
+               ptaskChild->set_finish();
+
+            }
+            catch (...)
+            {
+
+            }
 
          }
 

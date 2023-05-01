@@ -7,6 +7,9 @@
 typedef u64 file_time_t;
 
 
+using process_identifier = ::i64;
+
+
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 

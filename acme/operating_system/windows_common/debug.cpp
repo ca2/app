@@ -234,6 +234,12 @@ namespace windows
 
 
 
+
+
+
+
+
+
 void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, DWORD dwLastError)
 {
 

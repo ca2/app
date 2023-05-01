@@ -1811,7 +1811,7 @@ namespace apex
 
          auto pathModule = file()->module();
 
-         auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
+         auto processId = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
          m_pinterprocesscommunication->on_new_instance(pathModule, processId);
 
@@ -3941,7 +3941,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
+            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
             (*pcall)["command_line"] = psystem->command_line_text();
 
@@ -4000,7 +4000,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
+            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
             (*pcall)["command_line"] = psystem->command_line_text();
 

@@ -1,18 +1,18 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "string_list.h"
-//#include "acme/primitive/string/tokenizer.h"
 
 
 string_list::string_list()
 {
 }
 
+
 string_list::~string_list()
 {
 }
 
 
-void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index start, ::count count) const
+void string_list::implode(string & str, const ::scoped_string & scopedstrSeparator, index start, ::count count) const
 {
 
    str.empty();
@@ -49,7 +49,7 @@ void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index
       if(i > start)
       {
 
-         str += rangeSeparator;
+         str += scopedstrSeparator;
 
       }
 
@@ -62,19 +62,19 @@ void string_list::implode(string & str, ::const_ansi_range rangeSeparator, index
 }
 
 
-string string_list::implode(::const_ansi_range rangeSeparator, index iStart, index iEnd) const
+string string_list::implode(const ::scoped_string & scopedstrSeparator, index iStart, index iEnd) const
 {
 
    string str;
 
-   implode(str, rangeSeparator, iStart, iEnd);
+   implode(str, scopedstrSeparator, iStart, iEnd);
 
    return str;
 
 }
 
 
-void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparator, index start, ::count count) const
+void string_list::reverse_implode(string & str, const ::scoped_string & scopedstrSeparator, index start, ::count count) const
 
 {
 
@@ -111,7 +111,9 @@ void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparato
 
       if(i < last)
       {
-         str += rangeSeparator;
+         
+         str += scopedstrSeparator;
+         
       }
 
       str += *p;
@@ -123,39 +125,39 @@ void string_list::reverse_implode(string & str, ::const_ansi_range rangeSeparato
 }
 
 
-string string_list::reverse_implode(::const_ansi_range rangeSeparator, index iStart, index iEnd) const
+string string_list::reverse_implode(const ::scoped_string & scopedstrSeparator, index iStart, index iEnd) const
 {
 
    string str;
 
-   reverse_implode(str, rangeSeparator, iStart, iEnd);
+   reverse_implode(str, scopedstrSeparator, iStart, iEnd);
 
    return str;
 
 }
 
 
-void string_list::explode(::const_ansi_range rangeSeparator, ::const_ansi_range range)
+void string_list::explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr)
 {
 
    erase_all();
 
-   add_tail_tokens(range, rangeSeparator, true);
+   add_tail_tokens(scopedstr, scopedstrSeparator, true);
 
 }
 
 
-void string_list::add_tail_tokens(::const_ansi_range range, ::const_ansi_range rangeSeparator, bool bAddEmpty)
+void string_list::add_tail_tokens(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bAddEmpty)
 {
    
-   ::tokenizer tokenizer(range);
+   ::tokenizer tokenizer(scopedstr);
 
    string strToken;
 
    if(bAddEmpty)
    {
 
-      while(tokenizer.get_next_token(strToken, rangeSeparator, false))
+      while(tokenizer.get_next_token(strToken, scopedstrSeparator, false))
       {
 
          add_tail(strToken);
@@ -166,7 +168,7 @@ void string_list::add_tail_tokens(::const_ansi_range range, ::const_ansi_range r
    else
    {
       
-      while(tokenizer.get_next_token(strToken, rangeSeparator, false))
+      while(tokenizer.get_next_token(strToken, scopedstrSeparator, false))
       {
 
          if (strToken.has_char())

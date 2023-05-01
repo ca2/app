@@ -598,7 +598,7 @@ namespace core
 
       prequest->m_puserelementParent = puserinteractionParent;
 
-      prequest->m_payloadArgs = varArgs;
+      prequest->m_payloadArguments = varArgs;
 
       auto pathFile = payload.as_file_path();
 
@@ -1074,9 +1074,9 @@ namespace core
 
       prequest->m_puserelementAlloc = pimpact;
 
-      prequest->m_payloadArgs = varArgs;
+      prequest->m_payloadArguments = varArgs;
 
-      prequest->m_payloadArgs["form_callback"] = pcallback;
+      prequest->m_payloadArguments["form_callback"] = pcallback;
 
       auto pathFile = payload.as_file_path();
 
@@ -1119,86 +1119,86 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
-   {
+   //::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   //{
 
-      auto ptemplateForm = m_ptemplateForm;
+   //   auto ptemplateForm = m_ptemplateForm;
 
-      //::aura::application * papp = ::get_app(pparticle);
+   //   //::aura::application * papp = ::get_app(pparticle);
 
-      //if (papp == nullptr)
-      //{
+   //   //if (papp == nullptr)
+   //   //{
 
-      //   if (puserinteractionParent.is_set())
-      //   {
+   //   //   if (puserinteractionParent.is_set())
+   //   //   {
 
-      //      papp = puserinteractionParent->get_app();
+   //   //      papp = puserinteractionParent->get_app();
 
-      //   }
-      //   else if (pcallback != nullptr)
-      //   {
+   //   //   }
+   //   //   else if (pcallback != nullptr)
+   //   //   {
 
-      //      papp = pcallback->get_app();
+   //   //      papp = pcallback->get_app();
 
-      //   }
-      //   else
-      //   {
+   //   //   }
+   //   //   else
+   //   //   {
 
-      //      papp = get_app();
+   //   //      papp = get_app();
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      auto prequest = ::__create_new < ::request >(pparticle);
+   //   auto prequest = ::__create_new < ::request >(pparticle);
 
-      prequest->m_bMakeVisible = false;
+   //   prequest->m_bMakeVisible = false;
 
-      prequest->m_puserelementParent = puserinteractionParent;
+   //   prequest->m_puserelementParent = puserinteractionParent;
 
-      prequest->m_payloadArgs = varArgs;
+   //   prequest->m_payloadArguments = varArgs;
 
-      prequest->m_payloadArgs["form_callback"] = pcallback;
+   //   prequest->m_payloadArguments["form_callback"] = pcallback;
 
-      auto pathFile = payload.as_file_path();
+   //   auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
-      {
+   //   if (pathFile.has_char())
+   //   {
 
-         prequest->m_payloadFile = pathFile;
+   //      prequest->m_payloadFile = pathFile;
 
-      }
+   //   }
 
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
-      {
+   //   if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
+   //   {
 
-         prequest->m_bHold = false;
+   //      prequest->m_bHold = false;
 
-      }
+   //   }
 
-      ptemplateForm->request(prequest);
+   //   ptemplateForm->request(prequest);
 
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+   //   ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
-      if (pformdocument.is_null())
-      {
+   //   if (pformdocument.is_null())
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+   //   ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
-      if (pform.is_set() && ::is_null(pform->get_form_callback()))
-      {
+   //   if (pform.is_set() && ::is_null(pform->get_form_callback()))
+   //   {
 
-         pform->set_form_callback(pcallback);
+   //      pform->set_form_callback(pcallback);
 
-      }
+   //   }
 
-      return pformdocument;
+   //   return pformdocument;
 
-   }
+   //}
 
 
    ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
@@ -1245,9 +1245,9 @@ namespace core
 
       prequest->m_puserelementAlloc = pimpact;
 
-      prequest->m_payloadArgs = varArgs;
+      prequest->m_payloadArguments = varArgs;
 
-      prequest->m_payloadArgs["form_callback"] = pcallback;
+      prequest->m_payloadArguments["form_callback"] = pcallback;
 
       auto pathFile = payload.as_file_path();
 
@@ -1292,79 +1292,79 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
-   {
+   //::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   //{
 
-      auto papp = pparticle->acmeapplication();
+   //   auto papp = pparticle->acmeapplication();
 
-      if (papp == nullptr)
-      {
+   //   if (papp == nullptr)
+   //   {
 
-         if (puserinteractionParent.is_set())
-         {
+   //      if (puserinteractionParent.is_set())
+   //      {
 
-            papp = puserinteractionParent->get_app();
+   //         papp = puserinteractionParent->get_app();
 
-         }
-         else if (pcallback != nullptr)
-         {
+   //      }
+   //      else if (pcallback != nullptr)
+   //      {
 
-            papp = pcallback->get_app();
+   //         papp = pcallback->get_app();
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            papp = get_app();
+   //         papp = get_app();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      auto prequest = ::__create_new < ::request > (pparticle);
+   //   auto prequest = ::__create_new < ::request > (pparticle);
 
-      prequest->m_bMakeVisible = true;
+   //   prequest->m_bMakeVisible = true;
 
-      prequest->m_puserelementParent = puserinteractionParent;
+   //   prequest->m_puserelementParent = puserinteractionParent;
 
-      prequest->m_payloadArgs = varArgs;
+   //   prequest->m_payloadArguments = varArgs;
 
-      prequest->m_payloadArgs["form_callback"] = pcallback;
+   //   prequest->m_payloadArguments["form_callback"] = pcallback;
 
-      auto pathFile = payload.as_file_path();
+   //   auto pathFile = payload.as_file_path();
 
-      if (pathFile.has_char())
-      {
+   //   if (pathFile.has_char())
+   //   {
 
-         prequest->m_payloadFile = pathFile;
+   //      prequest->m_payloadFile = pathFile;
 
-      }
+   //   }
 
-      prequest->finish_initialization();
+   //   prequest->finish_initialization();
 
-      m_ptemplateChildForm->request(prequest);
+   //   m_ptemplateChildForm->request(prequest);
 
-      ::pointer<::form_document>pformdocument = ::user::__document(prequest);
+   //   ::pointer<::form_document>pformdocument = ::user::__document(prequest);
 
-      if (pformdocument.is_null())
-      {
+   //   if (pformdocument.is_null())
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+   //   ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
-      if (pform.is_set() && ::is_set(pcallback))
-      {
+   //   if (pform.is_set() && ::is_set(pcallback))
+   //   {
 
-         pform->set_form_callback(pcallback);
+   //      pform->set_form_callback(pcallback);
 
-      }
+   //   }
 
-      return pformdocument;
+   //   return pformdocument;
 
-   }
+   //}
 
    
    bool is_html_file(string strFilePath)
@@ -1444,7 +1444,7 @@ namespace core
 
          prequest->m_puserelementParent = puserinteractionParent;
 
-         prequest->m_payloadArgs = varArgs;
+         prequest->m_payloadArguments = varArgs;
 
          if (pathFile.has_char())
          {

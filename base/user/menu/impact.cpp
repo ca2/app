@@ -472,6 +472,8 @@ namespace user
             if (pnodeItem->get_name() == "item")
             {
 
+               ::string strId = pnodeItem->attribute("id").as_string();
+
                string strItem;
 
                strItem = pnodeItem->get_value();
@@ -549,13 +551,13 @@ namespace user
                   pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMap[pnodeItem->attribute("id").as_atom()];
+                  pimage1 = m_pimageMap[strId];
 
                }
                else
                {
 
-                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").as_atom()];
+                  pimage1 = m_pimageMapGray[strId];
 
                }
 
@@ -747,7 +749,9 @@ namespace user
             if (pimage1)
             {
 
-               m_pimageMap[pnode->child_at(iCommand)->attribute("id").as_atom()] = pimage1;
+               ::string strId = pnode->child_at(iCommand)->attribute("id").as_string();
+
+               m_pimageMap[strId] = pimage1;
 
                ::image_pointer pimageGray;
 
@@ -757,7 +761,7 @@ namespace user
 
                pimageGray->saturation(0.0);
 
-               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").as_atom()] = pimageGray;
+               m_pimageMapGray[strId] = pimageGray;
 
             }
 

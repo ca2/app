@@ -48,7 +48,7 @@ namespace user
 
 
       combo_box();
-      virtual ~combo_box();
+      ~combo_box() override;
 
 
       void user_combo_box_common_construct();

@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/graph.cpp -- Simple graph widget for showing a function plot
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -23,10 +23,10 @@ namespace nanoui
 
 Graph::Graph(Widget * parent, const ::scoped_string & caption)
    : Widget(parent), m_caption(caption) {
-   m_background_color = Color(20, 128);
-   m_fill_color = Color(255, 192, 0, 128);
-   m_stroke_color = Color(100, 255);
-   m_text_color = Color(240, 192);
+   m_background_color = ::color::color(20, 128);
+   m_fill_color = ::color::color(255, 192, 0, 128);
+   m_stroke_color = ::color::color(100, 255);
+   m_text_color = ::color::color(240, 192);
 }
 
 Vector2i Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
@@ -56,7 +56,7 @@ void Graph::draw(::nano2d::context * pcontext) {
    pcontext->line_to((float)m_pos.x() + m_size.x(), (float)m_pos.y() + m_size.y());
    pcontext->stroke_color(m_stroke_color);
    pcontext->stroke();
-   if (m_fill_color.w() > 0) {
+   if (m_fill_color.alpha > 0) {
       pcontext->fill_color(m_fill_color);
       pcontext->fill();
    }
@@ -86,7 +86,7 @@ void Graph::draw(::nano2d::context * pcontext) {
 
    pcontext->begin_path();
    pcontext->rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y());
-   pcontext->stroke_color(Color(100, 255));
+   pcontext->stroke_color(::color::color(100, 255));
    pcontext->stroke();
 }
 

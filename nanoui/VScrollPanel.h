@@ -49,7 +49,7 @@ namespace nanoui
 
       virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(::nano2d::context * pcontext) override;

@@ -8,7 +8,14 @@
 #include "acme/primitive/comparison/compare.h"
 
 
+#include "acme/primitive/time/time.h"
+
+
 #include "_string.h"
+
+
+using dword_array = ::numeric_array < DWORD >;
+
 
 
 #ifdef MEMDLEAK
@@ -150,6 +157,20 @@ namespace windows
 
 #include "acme/operating_system/windows_common/handle.h"
 #include "acme/operating_system/windows_common/file.h"
+
+
+namespace windows
+{
+
+
+   CLASS_DECL_ACME void enum_processes(dword_array & dwaProcesses);
+   CLASS_DECL_ACME dword_array enum_processes();
+
+
+} // namespace windows
+
+
+
 
 
 

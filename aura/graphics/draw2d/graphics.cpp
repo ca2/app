@@ -111,6 +111,14 @@ namespace draw2d
    //}
 
 
+   bool graphics::_is_ok() const
+   {
+
+      return ::is_set(this) & ::is_set(this->get_os_data());
+
+   }
+
+
    ::image_pointer graphics::image_source_image(const concrete < ::size_i32 > & sizeDst)
    {
       
@@ -310,9 +318,11 @@ namespace draw2d
    }
 
 
-   void graphics::create_memory_graphics()
+   void graphics::create_memory_graphics(const ::size_i32 & size)
    {
 
+      __UNREFERENCED_PARAMETER(size);
+      
       CreateCompatibleDC(nullptr);
       //if (!CreateCompatibleDC(nullptr))
       //{
@@ -1018,7 +1028,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1028,7 +1038,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * ppoints, count nCount)
    {
       
       throw ::interface_only();
@@ -1038,7 +1048,7 @@ namespace draw2d
    }
 
 
-   void graphics::polygon(const POINT_F64 * ppoints, count nCount)
+   void graphics::polygon(const ::point_f64 * ppoints, count nCount)
    {
 
       fill_polygon(ppoints, nCount);
@@ -1050,7 +1060,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1062,7 +1072,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;
@@ -1089,7 +1099,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
    {
 
       //bool bOk = true;
@@ -1908,6 +1918,13 @@ namespace draw2d
    }
 
 
+   void graphics::resize(const ::size_i32 & size)
+   {
+
+
+   }
+
+
 //#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //
 //
@@ -2446,7 +2463,7 @@ namespace draw2d
 
 
 
-   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, double dWidth, const ::e_border & eborder)
    {
 
       auto smooth_mode = get_smooth_mode();
@@ -2461,7 +2478,7 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft);
+         fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), dWidth), colorTopLeft);
 
       }
 
@@ -2470,9 +2487,9 @@ namespace draw2d
 
          fill_rectangle(rectangle_f64_dimension(
             rectangle.left,
-            rectangle.top + (eborder & e_border_top ? 1.0 : 0),
-            1.0,
-            rectangle.height() - (eborder & e_border_top ? 1.0 : 0)), colorTopLeft);
+            rectangle.top + (eborder & e_border_top ? dWidth : 0),
+            dWidth,
+            rectangle.height() - (eborder & e_border_top ? dWidth : 0)), colorTopLeft);
          //{
 
          //   return false;
@@ -2485,10 +2502,10 @@ namespace draw2d
       {
 
          fill_rectangle(rectangle_f64_dimension(
-            rectangle.left + (eborder & e_border_left ? 1.0 : 0),
-            rectangle.bottom - 1.0,
-            rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
-            1.0), colorBottomRight);
+            rectangle.left + (eborder & e_border_left ? dWidth : 0),
+            rectangle.bottom - dWidth,
+            rectangle.width() - (eborder & e_border_left ? dWidth : 0),
+            dWidth), colorBottomRight);
          //{
 
          //   return false;
@@ -2503,10 +2520,10 @@ namespace draw2d
          //if (!
          fill_rectangle(
             ::rectangle_f64_dimension(
-               rectangle.right - 1.0,
-               rectangle.top + (eborder & e_border_top ? 1.0 : 0),
-               1.0,
-               rectangle.height() - (eborder & e_border_top ? 1.0 : 0) - (eborder & e_border_bottom ? 1.0 : 0)),
+               rectangle.right - dWidth,
+               rectangle.top + (eborder & e_border_top ? dWidth : 0),
+               dWidth,
+               rectangle.height() - (eborder & e_border_top ? dWidth : 0) - (eborder & e_border_bottom ? dWidth : 0)),
             colorBottomRight);
          //{
 
@@ -2528,11 +2545,11 @@ namespace draw2d
    }
 
 
-   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   void graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double dWidth, const ::e_border & eborder)
    {
 
       //if (!
-      draw_inset_3d_rectangle(rectangle, color, color, eborder);
+      draw_inset_3d_rectangle(rectangle, color, color, dWidth, eborder);
       //{
 
       //   return false;
@@ -4868,33 +4885,58 @@ namespace draw2d
 
          draw_rectangle(rect2);
 
-         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
-         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
-         line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
+         if (::is_set(m_ppen))
+         {
+
+            m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
+            m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
+            set_current_point(rect2.top_left() + ::size_f64(0., (m_ppen->m_dWidth / 2.0)));
+            line_to(rect2.top_right() + ::size_f64(0., (m_ppen->m_dWidth / 2.0)));
+            set_current_point(rect2.top_left() + ::size_f64(0., (m_ppen->m_dWidth)));
+            line_to(rect2.top_right() + ::size_f64(0., (m_ppen->m_dWidth)));
+
+         }
 
 
          set_current_point(rect1.top_left());
          line_to(rect1.top_right());
-         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
-         line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
 
+         if (::is_set(m_ppen))
+         {
 
+            set_current_point(rect1.top_left() + ::size_f64(0., (m_ppen->m_dWidth / 2.0)));
+            line_to(rect1.top_right() + ::size_f64(0., (m_ppen->m_dWidth / 2.0)));
+            set_current_point(rect1.top_left() + ::size_f64(0., (m_ppen->m_dWidth)));
+            line_to(rect1.top_right() + ::size_f64(0., (m_ppen->m_dWidth)));
 
-         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
-         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
-         m_ppen->set_modified();
+         }
 
-         set_current_point(rect1.top_left() + ::size_f64(0,(m_ppen->m_dWidth)));
+         if (::is_set(m_ppen))
+         {
+
+            m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
+            m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
+            m_ppen->set_modified();
+
+         }
+
+         if (::is_set(m_ppen))
+         {
+
+            set_current_point(rect1.top_left() + ::size_f64(0, (m_ppen->m_dWidth)));
+
+         }
+
          line_to(rect1.bottom_left());
          line_to(rect2.bottom_left());
 
-         set_current_point(rect1.top_right() + ::size_f64(0,(m_ppen->m_dWidth)));
-         line_to(point_f64(rect1.right,(int)(rect2.top - (m_ppen->m_dWidth))));
+         if (::is_set(m_ppen))
+         {
+
+            set_current_point(rect1.top_right() + ::size_f64(0, (m_ppen->m_dWidth)));
+            line_to(point_f64(rect1.right, (int)(rect2.top - (m_ppen->m_dWidth))));
+
+         }
 
       }
       else if(estockicon == e_stock_icon_iconify)
@@ -4930,13 +4972,23 @@ namespace draw2d
 
          ::rectangle_f64 rect1(rectangle);
 
-         rect1.deflate((i32)(m_ppen->m_dWidth / 2.0),(i32)(m_ppen->m_dWidth / 2.0));
+         if (::is_set(m_ppen))
+         {
+
+            rect1.deflate((i32)(m_ppen->m_dWidth / 2.0), (i32)(m_ppen->m_dWidth / 2.0));
+
+         }
 
          draw_ellipse(rect1);
 
          ::rectangle_f64 rect2(rectangle);
 
-         rect2.deflate((i32)(m_ppen->m_dWidth),(i32)(m_ppen->m_dWidth));
+         if (::is_set(m_ppen))
+         {
+
+            rect2.deflate((i32)(m_ppen->m_dWidth), (i32)(m_ppen->m_dWidth));
+
+         }
 
          draw_ellipse(rect2);
 

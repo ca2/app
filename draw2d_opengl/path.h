@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/path.h"
+
+
 namespace draw2d_opengl
 {
 
@@ -43,23 +46,23 @@ namespace draw2d_opengl
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::line& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::lined& pline) override;
+      //virtual bool _set(::draw2d::graphics* pgraphics, const ::lined& pline) override;
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::lines& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
+      //virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle) override;
+      //virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_i32& ppolygon) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond) override;
+      //virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::text_out& ptextout) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::text_out& ptextout) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::draw_text& pdrawtext) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& pdrawtext) override;
 
 
    };

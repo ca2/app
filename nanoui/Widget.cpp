@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/widget.cpp -- Base class of all widgets
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -200,7 +200,7 @@ const Widget * Widget::find_widget(const Vector2i & p) const
 }
 
 
-bool Widget::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) 
+bool Widget::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) 
 {
 
    for (auto it = m_children.get_upper_bound(); it >= 0; it--) 
@@ -208,7 +208,7 @@ bool Widget::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool
 
       Widget* child = m_children[it];
 
-      if (child->visible() && child->contains(p - m_pos) && child->mouse_button_event(p - m_pos, emouse, down, ekeyModifiers))
+      if (child->visible() && child->contains(p - m_pos) && child->mouse_button_event(p - m_pos, emouse, down, bDoubleClick, ekeyModifiers))
       {
 
          return true;
@@ -457,7 +457,7 @@ void Widget::draw(::nano2d::context * pcontext)
    
    pcontext->rectangle(ctx, m_pos.x() - 0.5f, m_pos.y() - 0.5f, m_size.x() + 1, m_size.y() + 1);
    
-   pcontext->stroke_color(ctx, ::nano2d::RGBA_color(255, 0, 0, 255));
+   pcontext->stroke_color(ctx, ::color::RGBA_color(255, 0, 0, 255));
    
    pcontext->stroke(ctx);
 

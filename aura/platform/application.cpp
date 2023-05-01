@@ -8155,6 +8155,8 @@ namespace aura
          if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
          {
 
+            pframe->set_finish();
+
             _001TryCloseApplication();
 
          }
@@ -8986,6 +8988,14 @@ namespace aura
    {
 
       return m_pcontext && m_pcontext->m_pacmesession ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+
+   }
+
+
+   string application::draw2d_get_default_implementation_name()
+   {
+
+      return {};
 
    }
 

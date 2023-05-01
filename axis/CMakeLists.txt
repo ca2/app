@@ -326,6 +326,8 @@ list(APPEND library_source
         user/user/combo_box.h
         user/user/list_box.cpp
         user/user/list_box.h
+        user/user/plus_minus.cpp
+        user/user/plus_minus.h
         user/user/simple_ui_draw.cpp
         user/user/simple_ui_draw.h
         user/user/slider.cpp
@@ -371,6 +373,10 @@ list(APPEND library_references
    aura)
 
 
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
@@ -407,7 +413,8 @@ elseif(LINUX OR FREEBSD)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-    target_link_libraries(axis PRIVATE ${library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

@@ -422,7 +422,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, crBorder, 1.0);
 
       }
 
@@ -634,7 +634,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
@@ -693,15 +693,15 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
@@ -1345,7 +1345,8 @@ namespace user
          pgraphics->draw_inset_3d_rectangle(
          rectangleClient,
          rgb(255,255,255),
-         rgb(155,155,105));
+         rgb(155,155,105),
+            1.0);
 
          if(m_plist->m_pimagelistSubItemHover != nullptr)
          {

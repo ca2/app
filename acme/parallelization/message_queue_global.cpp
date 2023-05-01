@@ -20,7 +20,8 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 
 #endif
 
-critical_section g_criticalsectionMq;
+
+::critical_section g_criticalsectionMq;
 
 
 map < itask_t, ::pointer<message_queue >>* g_pmapMq;

@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -9,7 +9,7 @@
 /**
  * \file nanoui/colorwheel.h
  *
- * \brief Fancy analog widget to select a color value.  This widget was
+ * \brief Fancy analog widget to select a color::color value.  This widget was
  *        contributed by Dmitriy Morozov.
  */
 
@@ -26,7 +26,7 @@ namespace nanoui
 /**
  * \class ColorWheel colorwheel.h nanoui/colorwheel.h
  *
- * \brief Fancy analog widget to select a color value.  This widget was
+ * \brief Fancy analog widget to select a color::color value.  This widget was
  *        contributed by Dmitriy Morozov.
  */
    class CLASS_DECL_NANOUI ColorWheel : public Widget {
@@ -40,19 +40,19 @@ namespace nanoui
        * \param color
        *     The initial color of the ColorWheel (default: Red).
        */
-      ColorWheel(Widget * parent, const Color & color = Color(1.0f, 0.0f, 0.0f, 1.0f));
+      ColorWheel(Widget * parent, const color::color & color = color::color(1.0f, 0.0f, 0.0f, 1.0f));
 
       /// The callback to execute when a user changes the ColorWheel value.
-      ::function<void(const Color &)> callback() const { return m_callback; }
+      ::function<void(const color::color &)> callback() const { return m_callback; }
 
       /// Sets the callback to execute when a user changes the ColorWheel value.
-      void set_callback(const ::function<void(const Color &)> & callback) { m_callback = callback; }
+      void set_callback(const ::function<void(const color::color &)> & callback) { m_callback = callback; }
 
-      /// The current Color this ColorWheel has selected.
-      Color color() const;
+      /// The current color::color this ColorWheel has selected.
+      color::color color() const;
 
-      /// Sets the current Color this ColorWheel has selected.
-      void set_color(const Color & color);
+      /// Sets the current color::color this ColorWheel has selected.
+      void set_color(const color::color & color);
 
       /// The preferred size of this ColorWheel.
       Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
@@ -61,7 +61,7 @@ namespace nanoui
       void draw(::nano2d::context * pcontext) override;
 
       /// Handles mouse button click events for the ColorWheel.
-      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
       /// Handles mouse drag events for the ColorWheel.
       bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
@@ -75,25 +75,25 @@ namespace nanoui
       };
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
-      Color hue2rgb(float h) const;
+      color::color hue2rgb(float h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
       Region adjust_position(const Vector2i & p, Region considered_regions = Both);
 
    protected:
-      /// The current hue in the HSV color model.
+      /// The current hue in the HSV color::color model.
       float m_hue;
 
       /**
-       * The 'V' (value) component of the HSV color model.  See implementation \ref
-       * nanoui::ColorWheel::color for its usage.  Valid values are in the range
+       * The 'V' (value) component of the HSV color::color model.  See implementation \ref
+       * nanoui::ColorWheel::color::color for its usage.  Valid values are in the range
        * ``[0, 1]``.
        */
       float m_white;
 
       /**
-       * The 'S' (satration) component of the HSV color model.  See implementation
-       * \ref nanoui::ColorWheel::color for its usage.  Valid values are in the
+       * The 'S' (satration) component of the HSV color::color model.  See implementation
+       * \ref nanoui::ColorWheel::color::color for its usage.  Valid values are in the
        * range ``[0, 1]``.
        */
       float m_black;
@@ -101,8 +101,8 @@ namespace nanoui
       /// The current region the mouse is interacting with.
       Region m_drag_region;
 
-      /// The current callback to execute when the color value has changed.
-      ::function<void(const Color &)> m_callback;
+      /// The current callback to execute when the color::color value has changed.
+      ::function<void(const color::color &)> m_callback;
 };
 
 

@@ -55,15 +55,17 @@ namespace app_app
 
 #endif
 
-      
+
 
    }
 
 
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
       m_iCloseButtonDraw = 0;
+
+      m_dDrawOnlyMainRectangles = false;
 
       ::rectangle_i32 rectangleClient;
 
@@ -80,16 +82,20 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      if (acmenode()->background_color().get_luminance() < 0.5) {
+      if (acmenode()->background_color().get_luminance() < 0.5)
+      {
 
          pgraphics->fill_rectangle(rectangleClient, argb(255, 127, 127, 127));
 
-      }else{
+      }
+      else
+      {
 
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));}
-      
-      auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
+      }
+
+      auto dMinimumDimension = (double)rectangleClient.minimum_signed_absolute_dimension();
 
       double dBase = dMinimumDimension / 17.0;
 
@@ -102,8 +108,15 @@ namespace app_app
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ::argb_color(127, 40, 150, 235));
 
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ::argb_color(127, 255, 110, 150));
-      
-      rectangleClient.deflate((::i32) dBase);
+
+      if (m_dDrawOnlyMainRectangles)
+      {
+
+         return;
+
+      }
+
+      rectangleClient.deflate((::i32)dBase);
 
       ::color::color colorInset;
 
@@ -120,134 +133,132 @@ namespace app_app
 
       }
 
-      for (int i = 0; i < dBase; i++)
+      pgraphics->draw_inset_rectangle(rectangleClient, colorInset, dBase);
+
+      m_dDrawControlBox = true;
+
+      if (m_dDrawControlBox)
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, colorInset);
+         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         rectangleClient.deflate(1, 1);
+         auto pitemClose = get_user_item(::e_element_close_button);
+         auto pitemZoom = get_user_item(::e_element_maximize_button);
+         auto pitemIcon = get_user_item(::e_element_minimize_button);
 
-      }
-
-      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
-
-      auto pitemClose = get_user_item(::e_element_close_button);
-      auto pitemZoom = get_user_item(::e_element_maximize_button);
-      auto pitemIcon = get_user_item(::e_element_minimize_button);
-
-      if (::is_set(pitemClose))
-      {
-
-         bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
-
-         double dSourcePeriod;
-         
-         if (bHover)
+         if (::is_set(pitemClose))
          {
 
-            dSourcePeriod = 0.5;
+            bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
 
-         }
-         else
-         {
+            double dSourcePeriod;
 
-            dSourcePeriod = 5.0;
+            if (bHover)
+            {
 
-         }
+               dSourcePeriod = 0.5;
 
-         double time = m_timeStart.elapsed().floating_second();
+            }
+            else
+            {
 
-         double dFrequency = 1.0 / m_dBreathPeriod;
+               dSourcePeriod = 5.0;
 
-         auto pmathematics = ::mathematics::mathematics();
+            }
 
-         double omega = 2.0 * pmathematics->get_pi() * dFrequency;
+            double time = m_timeStart.elapsed().floating_second();
 
-         double angle = omega * time;
-
-         angle += m_dPhaseShift;
-
-         double dNewPeriod = m_dBreathPeriod;
-
-         if (dSourcePeriod < dNewPeriod)
-         {
-
-            dNewPeriod -= dNewPeriod * 0.01;
-
-         }
-         else if (dSourcePeriod > dNewPeriod)
-         {
-
-            dNewPeriod += dNewPeriod * 0.01;
-
-         }
-
-         if (dNewPeriod != m_dBreathPeriod)
-         {
-
-            m_dBreathPeriod = dNewPeriod;
-
-            dFrequency = 1.0 / m_dBreathPeriod;
+            double dFrequency = 1.0 / m_dBreathPeriod;
 
             auto pmathematics = ::mathematics::mathematics();
 
-            omega = 2.0 * pmathematics->get_pi() * dFrequency;
+            double omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
-            double angleNew = omega * time;
+            double angle = omega * time;
 
-            m_dPhaseShift = angle - angleNew;
+            angle += m_dPhaseShift;
 
-            //auto pmathematics = ::mathematics::mathematics();
+            double dNewPeriod = m_dBreathPeriod;
 
-            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
-
-         }
-
-         int iSize = (int) (::sin(angle) * 20.0 + 64.0);
-
-         client_rectangle(pitemClose->m_rectangle);
-
-         pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
-
-         pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
-
-         auto pointCursor = get_cursor_position();
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = pointCursor;
-
-         update_hover(pmouse);
-
-         if (::is_set(pitemZoom))
-         {
-
-            client_rectangle(pitemZoom->m_rectangle);
-
-            pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
-
-            pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
-
-            pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
-
-
-            if (::is_set(pitemIcon))
+            if (dSourcePeriod < dNewPeriod)
             {
 
-               client_rectangle(pitemIcon->m_rectangle);
+               dNewPeriod -= dNewPeriod * 0.01;
 
-               pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+            }
+            else if (dSourcePeriod > dNewPeriod)
+            {
 
-               pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+               dNewPeriod += dNewPeriod * 0.01;
 
-               pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
+            }
 
+            if (dNewPeriod != m_dBreathPeriod)
+            {
+
+               m_dBreathPeriod = dNewPeriod;
+
+               dFrequency = 1.0 / m_dBreathPeriod;
+
+               auto pmathematics = ::mathematics::mathematics();
+
+               omega = 2.0 * pmathematics->get_pi() * dFrequency;
+
+               double angleNew = omega * time;
+
+               m_dPhaseShift = angle - angleNew;
+
+               //auto pmathematics = ::mathematics::mathematics();
+
+               m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
+
+            }
+
+            int iSize = (int)(::sin(angle) * 20.0 + 64.0);
+
+            client_rectangle(pitemClose->m_rectangle);
+
+            pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
+
+            pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
+
+            auto pointCursor = get_cursor_position();
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = pointCursor;
+
+            update_hover(pmouse);
+
+            if (::is_set(pitemZoom))
+            {
+
+               client_rectangle(pitemZoom->m_rectangle);
+
+               pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
+
+               pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+
+               pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
+
+
+               if (::is_set(pitemIcon))
+               {
+
+                  client_rectangle(pitemIcon->m_rectangle);
+
+                  pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+
+                  pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+
+                  pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
+
+
+               }
 
             }
 
          }
-
-
 
       }
 
@@ -257,7 +268,7 @@ namespace app_app
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer & pgraphics, ::item * pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -284,7 +295,7 @@ namespace app_app
          return;
 
       }
-      
+
       ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
 
    }

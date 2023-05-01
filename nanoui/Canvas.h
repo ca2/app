@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -83,18 +83,18 @@ namespace nanoui
       bool draw_border() const { return m_draw_border; }
 
       /// Specify the widget border color
-      void set_border_color(const Color & border_color) {
+      void set_border_color(const ::color::color & border_color) {
          m_border_color = border_color;
       }
 
       /// Return whether the widget border is drawn
-      const Color & border_color() const { return m_border_color; }
+      const ::color::color & border_color() const { return m_border_color; }
 
       /// Specify the widget background color
-      void set_background_color(const Color & background_color);
+      void set_background_color(const ::color::color & background_color);
 
       /// Return whether the widget border is drawn
-      Color background_color() const;
+      ::color::color background_color() const;
 
       /// Draw the widget contents. Override this method.
       virtual void draw_contents(::nano2d::context * pcontext);
@@ -111,7 +111,7 @@ namespace nanoui
 //      ref<RenderPass> m_render_pass_resolved;
 //#endif
       bool m_draw_border;
-      Color m_border_color;
+      ::color::color m_border_color;
       // opengl
       //bool m_render_to_texture;
 };

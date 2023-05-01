@@ -123,7 +123,7 @@ void acme_directory::initialize(::particle * pparticle)
 ::file::path acme_directory::appdata()
 {
 
-   return ca2roaming() / "appdata" / app_relative();
+   return roaming() / appid();
 
 }
 
@@ -224,16 +224,10 @@ string acme_directory::system_short_name()
 #else
 
 
-::file::path acme_directory::app_relative()
+::string acme_directory::appid()
 {
 
-   ::file::path path = acmefile()->module();
-
-   path.find_replace(":", "");
-
-   path = file_path_folder(path);
-
-   return path;
+   return acmeapplication()->m_strAppId;
 
 }
 
@@ -1099,7 +1093,7 @@ bool acme_directory::_is(bool & bDir, const ::file::path & path)
 
    auto pathFinal = acmepath()->safe_get_real_path(path);
 
-   bDir = ::is_directory(pathFinal);
+   bDir = ::safe_is_directory(pathFinal);
 
    return true;
 

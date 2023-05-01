@@ -129,9 +129,4 @@
       <Filter>Header Files\client\common</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="rdpclient.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
 </Project>

@@ -1416,6 +1416,14 @@ else ()
 endif ()
 
 
+list(APPEND library_references acme)
+
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
+
 add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
@@ -1448,16 +1456,19 @@ elseif (LINUX OR FREEBSD)
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
     if (FREEBSD)
-        target_link_libraries(apex PRIVATE dl pthread z)
+        list(APPEND system_libraries dl pthread z)
     else ()
-        target_link_libraries(apex PRIVATE dl pthread idn z)
+        list(APPEND system_libraries dl pthread idn z)
     endif ()
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(apex PRIVATE acme)
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries})
+
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
 
 

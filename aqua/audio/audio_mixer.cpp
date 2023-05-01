@@ -50,9 +50,14 @@ namespace aqua
    void audio_mixer::defer_audio_mixer_user()
    {
 
-      acmesystem()->factory("audio_mixer_user", "base");
+      if (!m_paudiomixeruser)
+      {
 
-      __defer_construct_new(m_paudiomixeruser);
+         auto pfactory = acmesystem()->factory("audio_mixer_user", "base");
+
+         pfactory->__construct(this, m_paudiomixeruser);
+
+      }
 
    }
 

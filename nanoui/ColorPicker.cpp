@@ -20,15 +20,15 @@ namespace nanoui
 {
 
 
-ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(parent, "") {
+ColorPicker::ColorPicker(Widget * parent, const ::color::color & color) : PopupButton(parent, "") {
    set_background_color(color);
    Popup * popup = this->popup();
    popup->set_layout(memory_new GroupLayout());
 
    // initialize callback to do nothing; this is for users to hook into
    // receiving a memory_new color value
-   m_callback = [](const Color &) {};
-   m_final_callback = [](const Color &) {};
+   m_callback = [](const ::color::color &) {};
+   m_final_callback = [](const ::color::color &) {};
 
    // set the color wheel to the specified color
    m_color_wheel = memory_new ColorWheel(popup, color);
@@ -52,7 +52,7 @@ ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(par
       }
       });
 
-   m_color_wheel->set_callback([&](const Color & value) {
+   m_color_wheel->set_callback([&](const ::color::color & value) {
       m_pick_button->set_background_color(value);
       m_pick_button->set_text_color(value.contrasting_color());
       m_callback(value);
@@ -60,7 +60,7 @@ ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(par
 
    m_pick_button->set_callback([&]() {
       if (m_bChecked) {
-         Color value = m_color_wheel->color();
+         ::color::color value = m_color_wheel->color();
          set_check(false);
          set_color(value);
          m_final_callback(value);
@@ -68,8 +68,8 @@ ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(par
       });
 
    m_reset_button->set_callback([&]() {
-      Color bg = m_reset_button->background_color();
-      Color fg = m_reset_button->text_color();
+      ::color::color bg = m_reset_button->background_color();
+      ::color::color fg = m_reset_button->text_color();
 
       m_color_wheel->set_color(bg);
       m_pick_button->set_background_color(bg);
@@ -80,14 +80,14 @@ ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(par
       });
 }
 
-Color ColorPicker::color() const {
+::color::color ColorPicker::color() const {
    return background_color();
 }
 
-void ColorPicker::set_color(const Color & color) {
+void ColorPicker::set_color(const ::color::color & color) {
    /* Ignore set_color() calls when the user is currently editing */
    if (!m_bChecked) {
-      Color fg = color.contrasting_color();
+      ::color::color fg = color.contrasting_color();
       set_background_color(color);
       set_text_color(fg);
       m_color_wheel->set_color(color);

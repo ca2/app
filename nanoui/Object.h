@@ -24,7 +24,9 @@ namespace nanoui
  *
  * \brief Reference counted object base class.
  */
-   class CLASS_DECL_NANOUI Object {
+   class CLASS_DECL_NANOUI Object :
+      virtual public ::particle
+   {
    public:
       /// Default constructor
       Object() { }
@@ -66,7 +68,7 @@ namespace nanoui
  * needed. When the last reference goes out of scope, the associated object
  * will be deallocated.
  *
- * The advantage over C++ solutions such as ``std::shared_ptr`` is that
+ * The advantage over C++ solutions such as ``::pointer`` is that
  * the reference count is very compactly integrated into the base object
  * itself.
  */

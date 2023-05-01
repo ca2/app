@@ -76,7 +76,7 @@ namespace compress_zlib
 
       class memory memIn;
 
-      memIn.set_size((memsize)maximum(1024, minimum(pfileIn->get_left(), 1024 * 64)));
+      memIn.set_size((memsize)maximum(1024, minimum(pfileIn->right_size(), 1024 * 64)));
 
       i64 uRead = pfileIn->read(memIn);
 

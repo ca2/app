@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -35,7 +35,7 @@ public:
    /**
     * Performs applies all layout computations for the given widget.
     *
-    * \param ctx
+    * \param pcontext
     *     The ``NanoVG`` context being used for drawing.
     *
     * \param widget
@@ -46,7 +46,7 @@ public:
    /**
     * Compute the preferred size for a given layout and widget
     *
-    * \param ctx
+    * \param pcontext
     *     The ``NanoVG`` context being used for drawing.
     *
     * \param widget

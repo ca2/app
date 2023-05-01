@@ -4,7 +4,7 @@
 //extern thread_pointer < htask > t_htask;
 
 
-//CLASS_DECL_CORE string audio_get_default_library_name()
+//CLASS_DECL_CORE string audio_get_default_implementation_name()
 //{
 //
 //   return "audio_alsa";

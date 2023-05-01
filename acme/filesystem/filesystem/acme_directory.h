@@ -104,7 +104,7 @@ public:
    virtual ::file::path beforeca2();
    virtual ::file::path module();
    virtual ::file::path relative(::file::path path);
-   virtual ::file::path app_relative();
+   virtual ::string appid();
    virtual ::file::path appdata(); // appdata
    virtual ::file::path archive();
    virtual ::file::path tool();

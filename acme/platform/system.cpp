@@ -87,7 +87,7 @@ system::~system()
 void system::initialize_system()
 {
    
-   m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+   m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
    
    m_psubsystem->initialize(this);
    
@@ -1839,7 +1839,7 @@ void system::report_system_instance()
       
       string strPid;
       
-      strPid = ::as_string(acmenode()->get_current_process_id());
+      strPid = ::as_string(acmenode()->current_process_identifier());
       
       strModifier = strDate + "_" + strPid;
       

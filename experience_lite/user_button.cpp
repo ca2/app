@@ -74,7 +74,7 @@ namespace user
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
       }
-      else if (has_focus())
+      else if (has_keyboard_focus())
       {
 
          pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackFocus);

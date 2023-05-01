@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "_opengl.h"
+#include "brush.h"
 
 
 namespace draw2d_opengl

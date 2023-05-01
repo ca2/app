@@ -117,7 +117,8 @@ namespace apex
          service_handler()->start_service();
 
       }
-      else if (has_property("run"))
+      //else if (has_property("run"))
+      else 
       {
 
          __construct(m_pservicehandler);

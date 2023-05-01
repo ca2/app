@@ -55,7 +55,7 @@ namespace user
       virtual const char * _get_notification_area_action_label(int iIndex);
       virtual const char * _get_notification_area_action_accelerator(int iIndex);
       virtual const char * _get_notification_area_action_description(int iIndex);
-      virtual void call_notification_area_action(const ::string & pszId);
+      virtual void call_notification_area_action(const ::scoped_string & pszId);
 
 
       virtual bool notify_icon_insert_item(index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");

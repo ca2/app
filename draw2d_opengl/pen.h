@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/draw2d/pen.h"
+#include "object.h"
 
 
 #define minimum minimum

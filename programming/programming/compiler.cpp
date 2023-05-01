@@ -107,7 +107,7 @@ namespace programming
 //
 //      auto pacmedirectory = acmedirectory();
 //
-//      dir()->create(pacmedirectory->system() / "netnodelite/symbols");
+//      dir()->create(pacmedirectory->system() / "netnode_desktop/symbols");
 //
 //      ::file::path strVars;
 //

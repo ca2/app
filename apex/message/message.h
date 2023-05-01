@@ -52,25 +52,11 @@ namespace message
 
 
 
-      message(const ::atom & atom = ::atom()) { m_atom = atom; common_construct(); }
-      virtual ~message();
+      message(const ::atom & atom = ::atom());
+      ~message() override;
 
 
-      inline void common_construct()
-      {
-
-         m_union.m_p = nullptr;
-         m_pdispatchera = nullptr;
-         m_pchannel = nullptr;
-         m_wparam = {};
-         m_iRouteIndex = -1;
-         m_iParam = 0;
-         m_bRet = false;
-         m_uiMessageFlags = 0;
-         m_estatus = ::success;
-         m_lresult = 0;
-
-      }
+      //void common_construct();
 
 
       inline bool is_message() const { return m_atom.is_message(); }

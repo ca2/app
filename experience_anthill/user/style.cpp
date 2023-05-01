@@ -2090,7 +2090,7 @@ namespace experience_anthill
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255),1.0);
+               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255), 1.0);
 
             }
 

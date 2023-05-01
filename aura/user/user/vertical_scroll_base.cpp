@@ -78,7 +78,8 @@ namespace user
             rectangleNewPos.left = rectangleClient.right - iScrollBarWidth;
             rectangleNewPos.top = rectangleClient.top;
             rectangleNewPos.right = rectangleClient.right;
-            rectangleNewPos.bottom = rectangleNewPos.top + rectangleClient.height() - get_final_x_scroll_bar_width();
+            //rectangleNewPos.bottom = rectangleNewPos.top + rectangleClient.height() - get_final_x_scroll_bar_width();
+            rectangleNewPos.bottom = rectangleNewPos.top + rectangleClient.height() - iScrollBarWidth;
 
             m_pscrollbarVertical->order(e_zorder_top);
 
@@ -467,7 +468,9 @@ namespace user
    int vertical_scroll_base::get_final_y_scroll_bar_width()
    {
 
-      return m_pscrolldataVertical->m_bScroll && m_pscrolldataVertical->m_bScrollEnable ? m_pscrolldataVertical->m_iWidth : 0;
+      //return m_pscrolldataVertical->m_bScroll && m_pscrolldataVertical->m_bScrollEnable ? m_pscrolldataVertical->m_iWidth : 0;
+
+      return m_pscrolldataVertical->m_iWidth;
 
    }
 

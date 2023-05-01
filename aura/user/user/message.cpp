@@ -20,6 +20,9 @@ namespace user
 
    }
 
+   
+
+
 
    //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam)
    //{

@@ -151,6 +151,7 @@ namespace user
    interaction::interaction()
    {
       
+      m_bEmptyAreaIsClientArea = true;
       
       m_bBarDragScrollLeftButtonDown = false;
       
@@ -17521,7 +17522,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
       {
 
-         if (::is_set(m_pitemLButtonDown))
+         if (::is_item_set(m_pitemLButtonDown))
          {
 
             auto psession = get_session();
@@ -18719,14 +18720,14 @@ void interaction::on_message_left_button_double_click(::message::message * pmess
 
       }
 
-      auto rectangle = this->rectangle(::e_element_client);
+      auto rectangleClient = this->rectangle(::e_element_client);
 
-      if (rectangle.contains(point))
+      if (rectangleClient.ok() && rectangleClient.contains(point))
       {
 
          auto pitemClient = __new(::item(e_element_client));
 
-         pitemClient->m_rectangle = rectangle;
+         pitemClient->m_rectangle = rectangleClient;
 
          return pitemClient;
 
@@ -19992,6 +19993,13 @@ void interaction::on_message_left_button_double_click(::message::message * pmess
 
       if (eelement == e_element_client)
       {
+
+         if (!m_bEmptyAreaIsClientArea)
+         {
+
+            return false;
+
+         }
 
          client_rectangle(rectangle);
 

@@ -75,6 +75,18 @@ enum enum_element : ::i64
    e_element_minimize_button,
    e_element_minimize_icon,
    e_element_resize,
+   e_element_resize_first,
+   e_element_resize_left = e_element_resize_first,
+   e_element_resize_top,
+   e_element_resize_right,
+   e_element_resize_bottom,
+   e_element_resize_top_left,
+   e_element_resize_top_right,
+   e_element_resize_bottom_left,
+   e_element_resize_bottom_right,
+   e_element_resize_last = e_element_resize_bottom_right,
+
+
    //e_element_bar_drag_scroll_horizontal,
    //e_element_bar_drag_scroll_vertical,
 

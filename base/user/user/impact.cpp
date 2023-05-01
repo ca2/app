@@ -27,6 +27,8 @@ namespace user
 
       m_bToolbar = false;
 
+      m_bEmptyAreaIsClientArea = false;
+
    }
 
 

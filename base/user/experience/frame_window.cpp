@@ -2,6 +2,7 @@
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
+#include "acme/handler/item.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
@@ -1374,6 +1375,47 @@ namespace experience
    {
 
       return m_bFullScreenEnable;
+
+   }
+
+
+   ::item_pointer frame_window::hit_test(::user::mouse * pmouse)
+   {
+
+      if (is_sizing_enabled())
+      {
+
+         if (m_psizemanager->m_eframeCursor != e_frame_none)
+         {
+
+
+            switch (m_psizemanager->m_eframeCursor)
+            {
+            case e_frame_sizing_left:
+               return __new(::item(e_element_resize_left));
+            case e_frame_sizing_top:
+               return __new(::item(e_element_resize_top));
+            case e_frame_sizing_right:
+               return __new(::item(e_element_resize_right));
+            case e_frame_sizing_bottom:
+               return __new(::item(e_element_resize_bottom));
+            case e_frame_sizing_top_left:
+               return __new(::item(e_element_resize_top_left));
+            case e_frame_sizing_top_right:
+               return __new(::item(e_element_resize_top_right));
+            case e_frame_sizing_bottom_left:
+               return __new(::item(e_element_resize_bottom_left));
+            case e_frame_sizing_bottom_right:
+               return __new(::item(e_element_resize_bottom_right));
+
+
+            }
+
+         }
+
+      }
+
+      return ::user::frame_window::hit_test(pmouse);
 
    }
 

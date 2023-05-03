@@ -7,8 +7,8 @@ list(APPEND library_source
         _.h
         _function.h
         _constant.h
-        color.cpp
-        color.h
+        #color.cpp
+        #color.h
         context.cpp
         context.h
         draw2d_context.cpp

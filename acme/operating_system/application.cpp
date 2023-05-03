@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "application.h"
 #include "acme/exception/interface_only.h"
+#include "acme/platform/node.h"
 
 
 namespace operating_system
@@ -23,7 +24,15 @@ namespace operating_system
    }
 
    
-   void application::open_by_module_path(const ::scoped_string & scopedstr)
+void application::open_by_process_identifier(::process_identifier processidentifier)
+{
+
+   m_processidentifier = processidentifier;
+
+}
+
+
+void application::open_by_module_path(const ::scoped_string & scopedstr)
    {
 
       throw interface_only();
@@ -36,6 +45,44 @@ namespace operating_system
 
       throw interface_only();
 
+   }
+
+
+   ::string application::name()
+   {
+
+      throw interface_only();
+      
+      return {};
+      
+   }
+
+
+   ::string application::main_window_title()
+   {
+   
+      throw interface_only();
+      
+      return {};
+      
+   }
+
+   
+   ::count application::window_count() const
+   {
+
+      throw interface_only();
+      
+      return -1;
+      
+   }
+
+
+   ::file::path application::module_path()
+   {
+   
+      return acmenode()->process_identifier_module_path(m_processidentifier);
+      
    }
 
 

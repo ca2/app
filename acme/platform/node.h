@@ -732,6 +732,9 @@ namespace acme
 
       virtual ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr);
 
+      virtual ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier);
+
+      virtual ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function);
 
    };
 

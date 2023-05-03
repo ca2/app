@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
+#include "acme/operating_system/application.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
@@ -2955,6 +2956,29 @@ return false;
       return nullptr;
 
    }
+
+   
+   ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
+   {
+      
+      auto papplication = __create < ::operating_system::application >();
+      
+      papplication->open_by_process_identifier(processidentifier);
+      
+      return papplication;
+      
+   }
+
+
+   ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace acme

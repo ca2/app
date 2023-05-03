@@ -1221,7 +1221,7 @@ namespace aura
 
 #else
       
-      return component_name("draw2d", "cairo");
+      return implementation_name("draw2d", "cairo");
 
 #endif
 

@@ -385,7 +385,7 @@ namespace xcb
    display * display::get(::particle * pparticle, bool bBranch, void * pX11Display)
    {
 
-      critical_section_lock lock(::acme::acme::g_p->globals_critical_section());
+      critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
 
       if (g_p == nullptr)
       {

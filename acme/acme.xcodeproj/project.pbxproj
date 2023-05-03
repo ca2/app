@@ -740,6 +740,12 @@
 		9A4387BA299E499A00D2EE15 /* request.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4387B8299E499900D2EE15 /* request.h */; };
 		9A4F4E0225311C8600733584 /* matter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0025311C8600733584 /* matter.cpp */; };
 		9A4F4E0325311C8600733584 /* matter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0125311C8600733584 /* matter.h */; };
+		9A5219972A00B37500EA2057 /* operating_system_summary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219922A00B37500EA2057 /* operating_system_summary.h */; };
+		9A5219982A00B37500EA2057 /* operating_system_summary.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219922A00B37500EA2057 /* operating_system_summary.h */; };
+		9A5219992A00B37500EA2057 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5219952A00B37500EA2057 /* main_window.cpp */; };
+		9A52199A2A00B37500EA2057 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5219952A00B37500EA2057 /* main_window.cpp */; };
+		9A52199B2A00B37600EA2057 /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219962A00B37500EA2057 /* main_window.h */; };
+		9A52199C2A00B37600EA2057 /* main_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5219962A00B37500EA2057 /* main_window.h */; };
 		9A5D737D2655A76100D5C39E /* ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D737B2655A76000D5C39E /* ellipse.h */; };
 		9A5D737E2655A76100D5C39E /* ellipse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D737B2655A76000D5C39E /* ellipse.h */; };
 		9A5DCE21271A3BCC00C2ED86 /* nanosecond_timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */; };
@@ -3004,6 +3010,9 @@
 		9A4387B8299E499900D2EE15 /* request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
 		9A4F4E0025311C8600733584 /* matter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matter.cpp; sourceTree = "<group>"; };
 		9A4F4E0125311C8600733584 /* matter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matter.h; sourceTree = "<group>"; };
+		9A5219922A00B37500EA2057 /* operating_system_summary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = operating_system_summary.h; sourceTree = "<group>"; };
+		9A5219952A00B37500EA2057 /* main_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
+		9A5219962A00B37500EA2057 /* main_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A5D737B2655A76000D5C39E /* ellipse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ellipse.h; sourceTree = "<group>"; };
 		9A5DCE1F271A3BCB00C2ED86 /* nanosecond_timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nanosecond_timer.cpp; sourceTree = "<group>"; };
 		9A5DCE20271A3BCB00C2ED86 /* nanosecond_timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosecond_timer.h; sourceTree = "<group>"; };
@@ -5665,9 +5674,12 @@
 				9A8FDB5F2852061E00D947A8 /* file.cpp */,
 				9AA8F9E427BA7296008FF9AA /* file.h */,
 				9AA8FC0327BA7297008FF9AA /* graphics.h */,
+				9A5219952A00B37500EA2057 /* main_window.cpp */,
+				9A5219962A00B37500EA2057 /* main_window.h */,
 				9A08441E29367B71009F7FF4 /* message.cpp */,
 				9A08441829367B6F009F7FF4 /* message.h */,
 				9AA8FC0227BA7297008FF9AA /* microsecond_sleep.h */,
+				9A5219922A00B37500EA2057 /* operating_system_summary.h */,
 				9AA8FB7927BA7297008FF9AA /* os_windowing2.h */,
 				9AA8FAE327BA7296008FF9AA /* parallelization.cpp */,
 				9AA8FB7A27BA7297008FF9AA /* parallelization.h */,
@@ -6060,6 +6072,7 @@
 				9AA8FDB927BA729B008FF9AA /* macos.h in Headers */,
 				9A08410A29348AAB009F7FF4 /* nanosecond.h in Headers */,
 				9A15A73A264B6F2D0080670E /* item.h in Headers */,
+				9A52199B2A00B37600EA2057 /* main_window.h in Headers */,
 				9A08433729366748009F7FF4 /* _synchronization.h in Headers */,
 				9AA8F8FB27BA7268008FF9AA /* brush.h in Headers */,
 				9AA8FF2527BA729E008FF9AA /* aaa_2.h in Headers */,
@@ -6307,6 +6320,7 @@
 				9A68AFA025114436008DABD2 /* _file.h in Headers */,
 				9A0843DF29366DF5009F7FF4 /* unicode_impl.h in Headers */,
 				9A865FA8296616BA000C82F0 /* list_iterator.h in Headers */,
+				9A5219972A00B37500EA2057 /* operating_system_summary.h in Headers */,
 				9A0842952935E694009F7FF4 /* aaa__sort_array_impl.h in Headers */,
 				9A68ADAA25114434008DABD2 /* std_iterator.h in Headers */,
 				9A08437329366BAD009F7FF4 /* ___url.h in Headers */,
@@ -7263,6 +7277,7 @@
 				9AA8F8E027BA7268008FF9AA /* pen.h in Headers */,
 				9ADD64CC26B5CB3800D11298 /* object_type_counter.h in Headers */,
 				9AD68F70251A753A00C0EBD7 /* _text_stream_impl.h in Headers */,
+				9A5219982A00B37500EA2057 /* operating_system_summary.h in Headers */,
 				9A08421A2935DD6E009F7FF4 /* _impl.h in Headers */,
 				9A08428E2935E694009F7FF4 /* _iterator.h in Headers */,
 				9AD68F71251A753A00C0EBD7 /* _app_impl1.h in Headers */,
@@ -7333,6 +7348,7 @@
 				9A0843512936677C009F7FF4 /* sequencer.h in Headers */,
 				9A0842042935DD5D009F7FF4 /* _.h in Headers */,
 				9AD68FB2251A753A00C0EBD7 /* dimension.h in Headers */,
+				9A52199C2A00B37600EA2057 /* main_window.h in Headers */,
 				9AD68FB4251A753A00C0EBD7 /* _acid_app_impl.h in Headers */,
 				9AC018EA27489248006BEBCC /* plain_text_file_options.h in Headers */,
 				9AD68FB6251A753A00C0EBD7 /* _struct.h in Headers */,
@@ -7867,6 +7883,7 @@
 				9A0842DC2935EB40009F7FF4 /* particle.cpp in Sources */,
 				9ADD64D326B5CB3800D11298 /* c_class.cpp in Sources */,
 				9A97C7A5282365C600755A0A /* unicode.cpp in Sources */,
+				9A5219992A00B37500EA2057 /* main_window.cpp in Sources */,
 				9A865FB5296616BA000C82F0 /* str_array.cpp in Sources */,
 				9A68AF2525114435008DABD2 /* strx.cpp in Sources */,
 				9A15A6A4264B59EF0080670E /* multiple_lock.cpp in Sources */,
@@ -8416,6 +8433,7 @@
 				9AA8FCCC27BA7299008FF9AA /* time.cpp in Sources */,
 				9A94DE29282C034800F5C1CA /* linked_property.cpp in Sources */,
 				9A78620D264B90B4003DF8A0 /* number_integer.cpp in Sources */,
+				9A52199A2A00B37500EA2057 /* main_window.cpp in Sources */,
 				9A08443629367B73009F7FF4 /* message.cpp in Sources */,
 				9A787CBC264C04CC003DF8A0 /* text.cpp in Sources */,
 				9AA8FCBC27BA7299008FF9AA /* filesystem.cpp in Sources */,

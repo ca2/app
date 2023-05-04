@@ -15441,6 +15441,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
 
+      bool bShowWindow = pshowwindow->m_bShow;
+
       if (!layout().design().is_screen_visible()
          || layout().design().m_edisplay == e_display_iconic)
       {

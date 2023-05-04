@@ -700,6 +700,12 @@ namespace user
          display(e_display_restored);
          
       }
+      else if (!::is_visible(edisplayPrevious))
+      {
+
+         layout().sketch().display() = e_display_restore;
+
+      }
       else
       {
       

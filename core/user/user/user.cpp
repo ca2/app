@@ -547,7 +547,7 @@ namespace core
 
 
 
-   ::pointer<::form_document>user::create_form(::particle * pparticle, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       if (!type)
@@ -577,10 +577,10 @@ namespace core
       if (pparticle == nullptr)
       {
 
-         if (puserinteractionParent.is_set())
+         if (::is_set(puserelementParent))
          {
 
-            pparticle = puserinteractionParent;
+            pparticle = puserelementParent;
 
          }
          else
@@ -596,9 +596,9 @@ namespace core
 
       prequest->m_bMakeVisible = true;
 
-      prequest->m_puserelementParent = puserinteractionParent;
+      prequest->m_puserelementParent = puserelementParent;
 
-      prequest->m_payloadArguments = varArgs;
+      prequest->m_payloadArguments = payloadArgs;
 
       auto pathFile = payload.as_file_path();
 
@@ -1056,7 +1056,7 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_form(::particle * pparticle, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1070,11 +1070,11 @@ namespace core
 
       prequest->m_bMakeVisible = false;
 
-      prequest->m_puserelementParent = puserinteractionParent;
+      prequest->m_puserelementParent = puserelementParent;
 
-      prequest->m_puserelementAlloc = pimpact;
+      prequest->m_puserelementAlloc = pform;
 
-      prequest->m_payloadArguments = varArgs;
+      prequest->m_payloadArguments = payloadArgs;
 
       prequest->m_payloadArguments["form_callback"] = pcallback;
 
@@ -1105,12 +1105,12 @@ namespace core
 
       }
 
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
 
-      if (pform.is_set())
+      if (pformwindow.is_set())
       {
 
-         pform->set_form_callback(pcallback);
+         pformwindow->set_form_callback(pcallback);
 
       }
 
@@ -1201,7 +1201,7 @@ namespace core
    //}
 
 
-   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pcallback, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1216,10 +1216,10 @@ namespace core
       if (papp == nullptr)
       {
 
-         if (puserinteractionParent.is_set())
+         if (::is_set(puserelementParent))
          {
 
-            papp = puserinteractionParent->get_app();
+            papp = puserelementParent->get_app();
 
          }
          else if (pcallback != nullptr)
@@ -1241,11 +1241,11 @@ namespace core
 
       prequest->m_bMakeVisible = false;
 
-      prequest->m_puserelementParent = puserinteractionParent;
+      prequest->m_puserelementParent = puserelementParent;
 
-      prequest->m_puserelementAlloc = pimpact;
+      prequest->m_puserelementAlloc = pform;
 
-      prequest->m_payloadArguments = varArgs;
+      prequest->m_payloadArguments = payloadArgs;
 
       prequest->m_payloadArguments["form_callback"] = pcallback;
 
@@ -1278,12 +1278,12 @@ namespace core
 
       }
 
-      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window> pformwindow = pformdocument->get_typed_impact < ::user::form_window >();
 
-      if (pform.is_set())
+      if (pformwindow.is_set())
       {
 
-         pform->set_form_callback(pcallback);
+         pformwindow->set_form_callback(pcallback);
 
       }
 
@@ -1375,7 +1375,7 @@ namespace core
    }
 
 
-   ::pointer<::form_document>user::create_child_form(::particle * pparticle, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload, const ::payload & payloadArgs)
    {
 
       auto pathFile = payload.as_file_path();
@@ -1423,10 +1423,10 @@ namespace core
          if (pparticle == nullptr)
          {
 
-            if (puserinteractionParent.is_set())
+            if (::is_set(puserelementParent))
             {
 
-               pparticle = puserinteractionParent;
+               pparticle = puserelementParent;
 
             }
             else
@@ -1442,9 +1442,9 @@ namespace core
 
          prequest->m_bMakeVisible = false;
 
-         prequest->m_puserelementParent = puserinteractionParent;
+         prequest->m_puserelementParent = puserelementParent;
 
-         prequest->m_payloadArguments = varArgs;
+         prequest->m_payloadArguments = payloadArgs;
 
          if (pathFile.has_char())
          {

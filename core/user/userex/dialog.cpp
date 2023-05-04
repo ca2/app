@@ -95,7 +95,7 @@ bool dialog::show(const ::string & pszMatter)
    
    auto puser = psession->m_puser->m_pcoreuser;
 
-   m_pformdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
+   m_pformdocument = puser->create_form(this, nullptr, this, psession->get_user_interaction_host(), payload, varArgs);
 
    if(m_pformdocument == nullptr)
    {

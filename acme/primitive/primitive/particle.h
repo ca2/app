@@ -52,15 +52,15 @@ struct PARTICLE :
 
 
    ::acme::context *                   m_pcontext;
-   union
-   {
-      mutable ::particle *             m_pparticleSynchronization;
-      mutable hsynchronization         m_hsynchronization;
-   };
+   ::particle *                        m_pparticleSynchronization;
+   hsynchronization                    m_hsynchronization;
 
 
-
-   PARTICLE() : m_pcontext(nullptr), m_pparticleSynchronization(nullptr)  {}
+   PARTICLE() : 
+      m_pcontext(nullptr), 
+      m_pparticleSynchronization(nullptr),
+      m_hsynchronization(nullptr)
+   {}
 
 
 

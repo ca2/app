@@ -1,8 +1,8 @@
 {
 
-   "auth_endpoint": "netnode.cognitiveservices",
+   "auth_endpoint": "https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
    "endpoint": "eastus",
-   "subscription_key": "ee5d1c948ab148b697da064ff1d2cfc2"
+   "subscription_key": "98cf117f1ac54fc68082effff0e5349a"
 
 }
 

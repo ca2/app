@@ -30,13 +30,13 @@ api_client_base::~api_client_base()
 //}
 
 
-::pointer < ::api > api_client_base::create_new_profile(::string & strProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount)
+::pointer < ::api > api_client_base::create_new_profile(::string & strProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount)
 {
 
    if (m_pathFolder.is_empty())
    {
 
-      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation;
+      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation / scopedstrService;
 
    }
 
@@ -61,7 +61,7 @@ api_client_base::~api_client_base()
 
    }
 
-   auto papi = api_client_base::create_profile_api(pathProfile, scopedstrImplementation, scopedstrBrowserAccount);
+   auto papi = api_client_base::create_profile_api(pathProfile, scopedstrImplementation, scopedstrService, scopedstrBrowserAccount);
 
    strProfile = papi->get_name_for_profile();
 
@@ -81,18 +81,18 @@ api_client_base::~api_client_base()
 }
 
 
-::pointer < ::api > api_client_base::create_profile_api(const ::file::path & pathProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount)
+::pointer < ::api > api_client_base::create_profile_api(const ::file::path & pathProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount)
 {
 
    if (m_pathFolder.is_empty())
    {
 
-      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation;
+      m_pathFolder = dir()->appdata() / "api" / scopedstrImplementation / scopedstrService;
 
    }
 
 
-   auto papi = create_api(scopedstrImplementation);
+   auto papi = create_api(scopedstrImplementation, scopedstrService);
    //if (!m_papi || !m_papi->m_bAuthenticated)
    //{
 
@@ -154,7 +154,7 @@ api_client_base::~api_client_base()
 //}
 
 
-::pointer < ::api > api_client_base::create_api(const ::scoped_string & scopedstrImplementation)
+::pointer < ::api > api_client_base::create_api(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService)
 {
 
    auto & pfactory = acmesystem()->factory("api", scopedstrImplementation);
@@ -178,6 +178,8 @@ api_client_base::~api_client_base()
    papi->m_papiclient = this;
 
    papi->m_strImplementation = scopedstrImplementation;
+
+   papi->m_strService = scopedstrService;
 
    return papi;
 

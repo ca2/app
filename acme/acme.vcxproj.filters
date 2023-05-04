@@ -2939,9 +2939,6 @@
     <ClInclude Include="primitive\collection\_std.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\__wide.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>

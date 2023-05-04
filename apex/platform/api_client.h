@@ -16,13 +16,14 @@ public:
    string               m_strImplementation;
    string               m_strBrowserAccount;
    ::file::path         m_pathProfileFolder;
+   string               m_strService;
 
 
    api_client();
    ~api_client() override;
 
 
-   virtual void initialize_api_client(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount = "", const ::file::path & pathProfileFolder = "");
+   virtual void initialize_api_client(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount = "", const ::file::path & pathProfileFolder = "");
 
 
    virtual void defer_api();

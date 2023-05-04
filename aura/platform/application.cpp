@@ -9000,6 +9000,46 @@ namespace aura
    }
 
 
+   void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   {
+
+      auto prequest = __create_new<::request >();
+
+      prequest->_001ParseCommandLine(strCommandLine);
+
+      m_puserinteractionMain->frame_toggle_restore();
+
+      //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
+
+      //if (pinteraction != nullptr)
+      //{
+
+      //   ::user::frame * pframe = pinteraction->top_level_frame();
+
+      //   if (pframe != nullptr)
+      //   {
+
+      //      pframe->frame_toggle_restore();
+
+      //      //if (pframe->is_window_visible() && !pframe->layout().is_iconic())
+      //      //{
+
+      //      //   pframe->order(e_zorder_top);
+
+      //      //}
+
+      //      //pframe->display(e_display_restored);
+
+      //   }
+
+      //}
+
+      bHandled = true;
+
+   }
+
+
+
 } // namespace aura
 
 

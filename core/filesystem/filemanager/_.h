@@ -52,6 +52,11 @@ namespace filemanager
    } // namespace fs
 
 
+   class save_as_edit_impact;
+   class save_as_button_impact;
+   class save_as_impact;
+
+
 } // namespace filemanager
 
 

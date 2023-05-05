@@ -34,7 +34,6 @@ namespace folder_zip
       m_zipfile(nullptr)
    {
 
-      defer_create_synchronization();
       //m_pzlibfilefuncdef = zip_filefuncdef_malloc();
 
    }
@@ -80,6 +79,8 @@ namespace folder_zip
 
       //auto estatus =
       ::object::initialize(pparticle);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{

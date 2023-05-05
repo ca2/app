@@ -1856,7 +1856,7 @@ void scalar::set(::number number)
 }
 
 
-::number scalar::get()
+::number scalar::get() const
 {
 
    if (m_psource == nullptr || m_escalar == e_scalar_none)

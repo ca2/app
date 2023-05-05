@@ -914,7 +914,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   defer_create_synchronization();
+   //defer_create_synchronization();
 
    _synchronous_lock synchronouslockParent1(synchronization());
 
@@ -1042,8 +1042,6 @@ void object::transfer_tasks_from(::object* ptask)
       return;
 
    }
-
-   defer_create_synchronization();
 
    _synchronous_lock synchronouslock(this->synchronization());
 

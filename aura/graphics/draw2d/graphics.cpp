@@ -54,8 +54,6 @@ namespace draw2d
 
       m_bOutline = false;
 
-      defer_create_synchronization();
-
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
       m_pdrawcontext             = nullptr;
@@ -72,6 +70,18 @@ namespace draw2d
    {
 
    }
+
+
+   void graphics::on_initialize_particle()
+   {
+
+      ::aura::simple_chain < ::aura::draw_context >::on_initialize_particle();
+
+      defer_create_synchronization();
+
+   }
+
+
 
 
    void graphics::prefer_mapped_image_on_mix()

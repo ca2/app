@@ -17,7 +17,7 @@
 particle::~particle()
 {
 
-   ::release(m_pparticleSynchronization);
+   //::release(m_pparticleSynchronization);
 
 }
 
@@ -108,7 +108,7 @@ void particle::set_synchronization(::particle *pparticleSynchronization)
 
    }
 
-   ::release(m_pparticleSynchronization);
+   m_pparticleSynchronization.release();
 
    m_pparticleSynchronization = pparticleSynchronization;
 
@@ -124,6 +124,14 @@ void particle::defer_create_synchronization()
       set_synchronization(::__create< ::mutex >(this));
 
    }
+
+}
+
+
+hsynchronization particle::get_synchronization_handle()
+{
+
+   return nullptr;
 
 }
 

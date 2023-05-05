@@ -10213,7 +10213,7 @@ payload & payload::operator = (const ::file::path & path)
       else
       {
 
-         *m_ppath = path;
+         ((::file::path &) * m_ppath) = path;
 
       }
 

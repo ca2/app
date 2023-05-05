@@ -40,7 +40,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
    wstring wstrName(pstrName);
 
-   m_hsynchronization = ::CreateSemaphoreExW(
+   m_handleSemaphore = ::CreateSemaphoreExW(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       lInitialCount,
       lMaxCount,
@@ -48,7 +48,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       0,
       SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
-   if (m_hsynchronization == nullptr)
+   if (m_handleSemaphore == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -374,7 +374,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 #ifdef WINDOWS
 
-   /*return */ ::ReleaseSemaphore(m_hsynchronization, lCount, (LPLONG)pPrevCount) /*  != false */;
+   /*return */ ::ReleaseSemaphore(m_handleSemaphore, lCount, (LPLONG)pPrevCount) /*  != false */;
 
 #elif defined(ANDROID)
 

@@ -16,6 +16,13 @@ class CLASS_DECL_ACME event :
 public:
 
 
+#ifdef WINDOWS_DESKTOP
+
+   hsynchronization     m_handle;
+
+#endif
+
+
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
    /// Private Mutexes
@@ -42,6 +49,10 @@ public:
 
    // using event_base::lock;
    //bool lock(const ::wait & wait = wait::infinite()) override;
+
+
+   hsynchronization get_synchronization_handle() override;
+
 
    using particle::unlock;
    void unlock() override;

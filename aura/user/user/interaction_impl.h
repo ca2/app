@@ -178,6 +178,8 @@ namespace user
 
       void user_common_construct();
 
+      void on_initialize_particle() override;
+
       virtual bool __windows_message_bypass(::windowing::window * pwindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult);
 
       void install_message_routing(::channel * pchannel) override;

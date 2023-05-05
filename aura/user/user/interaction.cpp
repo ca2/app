@@ -395,6 +395,17 @@ namespace user
    }
 
 
+   void interaction::on_initialize_particle()
+   {
+
+      ::user::primitive::on_initialize_particle();
+
+      defer_create_synchronization();
+
+   }
+
+
+
    //class control_descriptor & interaction::descriptor()
    //{
 
@@ -5401,8 +5412,6 @@ namespace user
          }
 
       }
-
-      defer_create_synchronization();
 
       //try
       //{

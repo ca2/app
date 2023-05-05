@@ -2973,7 +2973,23 @@ return false;
    ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
    {
 
-      throw ::interface_only();
+      auto processidentifiera = processes_identifiers();
+
+      for (auto & processidentifier : processidentifiera)
+      {
+
+         auto papplication = __create < ::operating_system::application >();
+
+         papplication->open_by_process_identifier(processidentifier);
+
+         if (function(papplication))
+         {
+
+            return papplication;
+
+         }
+
+      }
 
       return nullptr;
 

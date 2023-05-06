@@ -130,13 +130,13 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
    }
 
-   m_hsynchronization = ::CreateEventEx(
+   m_handle = ::CreateEventEx(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       scopedstrName.is_empty() ? nullptr : wstring(scopedstrName).c_str(),
       dwFlags,
       DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
-   if (m_hsynchronization == nullptr)
+   if (m_handle == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -267,12 +267,18 @@ event::~event()
 }
 
 
+#ifdef WINDOWS
+
+
 hsynchronization event::get_synchronization_handle()
 {
 
    return m_handle;
 
 }
+
+
+#endif
 
 
 bool event::SetEvent()

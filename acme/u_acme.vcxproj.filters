@@ -233,6 +233,9 @@
     <Filter Include="Source Files\primitive\time">
       <UniqueIdentifier>{881c9292-2e02-419b-9b57-fdafb10e5b91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\memory\os_impl">
+      <UniqueIdentifier>{0ff4a59c-221c-40ab-86dd-1156a2a89624}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -332,9 +335,6 @@
       <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
     <ClCompile Include="memory\os_alloc\no_bounds_check.cpp">
-      <Filter>Source Files\memory\os_alloc</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
       <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp">
@@ -1356,6 +1356,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\find_file.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp">
+      <Filter>Source Files\memory\os_impl</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\main_window.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3626,6 +3635,12 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows_common\find_file.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\main_window.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

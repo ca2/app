@@ -113,11 +113,13 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
-#ifdef WINDOWS_DESKTOP
+
+#ifdef WINDOWS
 
    virtual hsynchronization get_synchronization_handle();
 
 #endif
+
 
    virtual enum_type get_payload_type() const;
 

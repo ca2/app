@@ -48,9 +48,19 @@ namespace windowing
 
       auto psession = get_session();
 
-      auto puser = psession->user();
+      if (psession)
+      {
 
-      puser->on_initialize_window_object();
+         auto puser = psession->user();
+
+         if (puser)
+         {
+
+            puser->on_initialize_window_object();
+
+         }
+
+      }
 
    }
 

@@ -4940,7 +4940,7 @@ namespace user
          }
 
 //#ifdef UNIVERSAL_WINDOWS
-         if (pgraphics->nok())
+         if (::is_null(pgraphics) || pgraphics->nok())
          {
 
 //#define SEVERITY_HIGH 5

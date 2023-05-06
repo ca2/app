@@ -145,7 +145,7 @@ namespace acme
 
 #if defined(UNIVERSAL_WINDOWS)
 
-      idaPid.add(scopedstrAppId);
+      idaPid.add(-1);
 
 #else
 

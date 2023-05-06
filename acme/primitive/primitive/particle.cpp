@@ -128,12 +128,18 @@ void particle::defer_create_synchronization()
 }
 
 
+#ifdef WINDOWS
+
+
 hsynchronization particle::get_synchronization_handle()
 {
 
    return nullptr;
 
 }
+
+
+#endif
 
 
 const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)

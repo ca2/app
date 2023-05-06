@@ -22,6 +22,52 @@
 #endif
 
 
+#ifdef UNIVERSAL_WINDOWS
+#define TICKSPERSEC        10000000
+#define SECSPERDAY         86400
+#define SECS_1601_TO_1970  ((369 * 365 + 89) * (ULONGLONG)SECSPERDAY)
+#define TICKS_1601_TO_1970 (SECS_1601_TO_1970 * TICKSPERSEC)
+void WINAPI RtlSecondsSince1970ToFileTime(DWORD Seconds, LPFILETIME ft) {
+   ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+   ft->dwLowDateTime = (DWORD)secs;
+   ft->dwHighDateTime = (DWORD)(secs >> 32);
+   //TRACEN((printf("RtlSecondsSince1970ToFileTime %lx => %lx %lx\n", (long)Seconds, (long)ft->dwHighDateTime, (long)ft->dwLowDateTime)))
+}
+
+
+BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
+   struct tm newtm;
+#ifndef HAVE_TIMEGM
+
+   struct tm * gtm;
+   time_t time1, time2;
+#endif
+
+   //TRACEN((printf("DosDateTimeToFileTime\n")))
+   newtm.tm_sec = (fattime & 0x1f) * 2;
+   newtm.tm_min = (fattime >> 5) & 0x3f;
+   newtm.tm_hour = (fattime >> 11);
+   newtm.tm_mday = (fatdate & 0x1f);
+   newtm.tm_mon = ((fatdate >> 5) & 0x0f) - 1;
+   newtm.tm_year = (fatdate >> 9) + 80;
+#ifdef HAVE_TIMEGM
+
+   TRACEN((printf("DosDateTimeToFileTime-1\n")))
+      RtlSecondsSince1970ToFileTime(timegm(&newtm), ft);
+#else
+
+   //TRACEN((printf("DosDateTimeToFileTime-2\n")))
+   time1 = mktime(&newtm);
+   gtm = gmtime(&time1);
+   time2 = mktime(gtm);
+   RtlSecondsSince1970ToFileTime(2 * time1 - time2, ft);
+#endif
+
+   return TRUE;
+}
+
+#endif
+
 namespace folder_zip
 {
 

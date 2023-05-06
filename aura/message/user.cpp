@@ -441,7 +441,7 @@ namespace message
    point_i32 context_menu::GetPoint()
    {
 
-      return ::point_i32(m_lparam);
+      return m_pointMessage;
 
    }
 

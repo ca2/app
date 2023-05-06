@@ -61,6 +61,8 @@ namespace user
       m_bMenuOk = false;
       m_pmenuitemSub = nullptr;
 
+      m_bEnableDragClient = true;
+
    }
 
 
@@ -84,6 +86,8 @@ namespace user
       m_bOwnItem = false;
       m_bInline = false;
       m_bMenuOk = false;
+
+      
 
    }
 

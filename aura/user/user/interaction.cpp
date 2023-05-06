@@ -400,6 +400,15 @@ namespace user
 
       ::user::primitive::on_initialize_particle();
 
+      if (m_bEnableDragClient)
+      {
+
+         m_bHoverDefaultMouseHandling = true;
+
+         m_bClickDefaultMouseHandling = true;
+
+      }
+
       defer_create_synchronization();
 
    }

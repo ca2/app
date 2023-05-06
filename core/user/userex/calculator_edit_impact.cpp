@@ -108,11 +108,7 @@ namespace calculator
 
             auto pparser = __create_new< parser >();
 
-            auto perror = __create_new < ::user::plain_edit_error >();
-
-            perror->m_iEnd = -1;
-            perror->m_iStart = -1;
-            perror->m_tick.Now();
+            ::pointer < ::user::plain_edit_error > perror;
 
             ::calculator::element * pcalculatorelement = nullptr;
 

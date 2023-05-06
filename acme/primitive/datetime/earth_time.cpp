@@ -361,7 +361,7 @@ namespace earth
 
       ptm = tm_struct(&ttm, timeshift);
 
-      return ptm ? ptm->tm_wday + 1 : 0 ;
+      return ptm ? ptm->tm_wday : 0 ;
 
    }
 

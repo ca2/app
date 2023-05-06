@@ -1364,11 +1364,11 @@ inline iptr payload::as_iptr(::iptr iDefault) const
 
 #if defined(OS64BIT)
 
-   return i64(iDefault);
+   return as_i64(iDefault);
 
 #else
 
-   return i32(iDefault);
+   return as_i32(iDefault);
 
 #endif
 
@@ -1380,11 +1380,11 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 
 #ifdef OS64BIT
 
-   return u64(uiDefault);
+   return as_u64(uiDefault);
 
 #else
 
-   return u32(uiDefault);
+   return as_u32(uiDefault);
 
 #endif
 
@@ -1399,7 +1399,7 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 inline payload::operator long() const
 {
 
-   return i64();
+   return as_i64();
 
 }
 
@@ -1409,9 +1409,9 @@ inline payload::operator long() const
 inline payload::operator unsigned long() const
 {
 #if LONG_IS_32BIT
-   return u32();
+   return as_u32();
 #else
-   return u64();
+   return as_u64();
 #endif
 }
 

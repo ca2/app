@@ -424,7 +424,7 @@ namespace user
 
       m_puserinteractionParent = puiParent;
 
-#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
 
       auto pwindow = m_puserinteractionParent->get_wnd();
 
@@ -471,7 +471,9 @@ namespace user
 
 #if defined(UNIVERSAL_WINDOWS)
 
-         create_interaction(puiParent);
+         //create_interaction(puiParent);
+
+         create_interaction(puiParent->top_level());
 
          //if (!create_interaction(puiParent))
          //{

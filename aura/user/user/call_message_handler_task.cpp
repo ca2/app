@@ -2,40 +2,40 @@
 // twitch streams... twitch chatting...
 #include "framework.h"
 
-#include "call_message_handler_task.h"
-#include "interaction.h"
+// #include "call_message_handler_task.h"
+// #include "interaction.h"
 
 
-namespace user
-{
+// namespace user
+// {
 
 
-   call_message_handler_task::call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam) :
-      m_atom(atom),
-      m_pinteraction(pinteraction),
-      m_wparam(wparam),
-      m_lparam(lparam)
-   {
+//    call_message_handler_task::call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam) :
+//       m_atom(atom),
+//       m_pinteraction(pinteraction),
+//       m_wparam(wparam),
+//       m_lparam(lparam)
+//    {
 
-   }
+//    }
 
-   call_message_handler_task::~call_message_handler_task()
-   {
+//    call_message_handler_task::~call_message_handler_task()
+//    {
 
-   }
-
-
-   void call_message_handler_task::run()
-   {
-
-      m_pinteraction->call_message_handler(m_atom, m_wparam, m_lparam);
-
-      //return ::success;
-
-   }
+//    }
 
 
-} // namespace user
+//    void call_message_handler_task::run()
+//    {
+
+//       m_pinteraction->call_message_handler(m_atom, m_wparam, m_lparam);
+
+//       //return ::success;
+
+//    }
+
+
+// } // namespace user
 
 
 

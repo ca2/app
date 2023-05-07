@@ -649,12 +649,7 @@ ptr < TYPE > clone(TYPE * p)
 }
 
 
-
-
-
 #include "acme/platform/lparam.h"
-
-
 
 
 template < class T >
@@ -662,11 +657,19 @@ inline pointer < T >::pointer(lparam & lparam)
 {
 
    m_pparticle = (::particle *)(::iptr)lparam.m_lparam;
+   
    m_p = dynamic_cast <T *>(m_pparticle);
+   
+   if(::is_null(m_p) && ::is_set(m_pparticle))
+   {
+
+      ::release(m_pparticle);
+
+   }
+
    lparam.m_lparam = 0;
 
 }
-
 
 
 template < class c_derived >

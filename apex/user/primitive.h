@@ -417,7 +417,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
+      //bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);

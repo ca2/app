@@ -488,7 +488,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
+      //virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
 
 
       //virtual void GuieProc(::message::message * pmessage);

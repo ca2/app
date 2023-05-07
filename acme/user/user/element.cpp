@@ -3718,63 +3718,63 @@ namespace user
 //   }
 
 
-   bool element::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
-   {
+   // bool element::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
+   // {
 
-      //auto pmessage = get_message(atom, wparam, lparam);
+   //    //auto pmessage = get_message(atom, wparam, lparam);
 
-      //try
-      //{
+   //    //try
+   //    //{
 
-      //   message_handler(pmessage);
+   //    //   message_handler(pmessage);
 
-      //}
-      //catch (const ::exception & e)
-      //{
+   //    //}
+   //    //catch (const ::exception & e)
+   //    //{
 
-      //   if (::get_task()->handle_exception(e))
-      //   {
+   //    //   if (::get_task()->handle_exception(e))
+   //    //   {
 
-      //      return false;
+   //    //      return false;
 
-      //   }
+   //    //   }
 
-      //}
-      //catch (...)
-      //{
+   //    //}
+   //    //catch (...)
+   //    //{
 
-      //}
+   //    //}
 
-      //if (!pmessage->m_bRet)
-      //{
+   //    //if (!pmessage->m_bRet)
+   //    //{
 
-      //   return false;
+   //    //   return false;
 
-      //}
+   //    //}
 
-      //if (plresult)
-      //{
+   //    //if (plresult)
+   //    //{
 
-      //   try
-      //   {
+   //    //   try
+   //    //   {
 
-      //      *plresult = pmessage->m_lresult;
+   //    //      *plresult = pmessage->m_lresult;
 
-      //   }
-      //   catch (...)
-      //   {
+   //    //   }
+   //    //   catch (...)
+   //    //   {
 
-      //   }
+   //    //   }
 
-      //}
+   //    //}
 
-      //return true;
+   //    //return true;
 
-      throw ::interface_only();
+   //    throw ::interface_only();
 
-      return false;
+   //    return false;
 
-   }
+   // }
 
 /*
    element::element()

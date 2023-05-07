@@ -2854,7 +2854,20 @@ namespace user
          if (mouse_hover_erase(this))
          {
 
-            call_message_handler(e_message_mouse_leave);
+            //auto pmessage 
+
+            //call_message_handler(e_message_mouse_leave);
+
+            auto pmessage = __create_new<::user::message>();
+
+            pmessage->m_atom = e_message_mouse_leave;
+            pmessage->m_pwindow = window();
+            pmessage->m_oswindow = window();
+            pmessage->m_wparam = 0;
+            pmessage->m_lparam = 0;
+//          pmessage->m_time = pevent->time;
+
+            post(pmessage);
 
          }
 

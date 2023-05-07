@@ -9327,8 +9327,12 @@ namespace user
       }
       else if (edisplaySketch == ::e_display_restore)
       {
+
+         bool bIsUniversalWindows = is_universal_windows();
+
+         bool bIsSandboxed = is_sandboxed();
          
-         if (get_parent() != nullptr)
+         if (get_parent() != nullptr || bIsSandboxed || bIsUniversalWindows)
          {
 
             WARNING("restoring child window?");

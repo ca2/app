@@ -4509,14 +4509,6 @@ namespace user
    }
 
 
-   //bool primitive::_is_window() const
-   //{
-
-   //   return m_bUserElementOk;
-
-   //}
-
-
    void primitive::set_need_redraw(bool bAscendants)
    {
 

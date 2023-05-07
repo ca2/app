@@ -677,7 +677,9 @@ void draw2d::emboss_predicate(
       for (iptr i = 0; i < iBlur; i++)
       {
 
-         blur.blur(pimageBlur, iEffectiveBlurRadius);
+         blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
+
+         blur.blur(pimageBlur);
 
       }
 

@@ -936,7 +936,7 @@ namespace windowing
 
    //}
 
-   ::user::interaction * windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
+   ::pointer < ::user::interaction > windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
    {
 
       return nullptr;

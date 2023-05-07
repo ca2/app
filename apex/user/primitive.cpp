@@ -3310,22 +3310,28 @@ namespace user
    //}
 
 
-   void primitive::_001OnExitIconic()
-   {
+   //bool primitive::_001OnExitIconic()
+   //{
 
-   }
+   //   return ::user::element::_001OnExitIconic();
 
-
-   void primitive::_001OnExitFullScreen()
-   {
-
-   }
+   //}
 
 
-   void primitive::_001OnExitZoomed()
-   {
+   //bool primitive::_001OnExitFullScreen()
+   //{
 
-   }
+   //   return ::user::element::_001OnExitFullScreen();
+
+   //}
+
+
+   //bool primitive::_001OnExitZoomed()
+   //{
+
+   //   return ::user::element::_001OnExitZoomed();
+
+   //}
 
 
    void primitive::on_add_owned(::user::primitive * pprimitive)

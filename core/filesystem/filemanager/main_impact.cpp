@@ -221,7 +221,7 @@ namespace filemanager
 
             //if (pframe != nullptr)
             //{
-            //   //xxx               pframe->WindowDataLoadWindowRect();
+            //   //xxx               pframe->WindowDataLoadWindowRectangle();
             //   //xxx          pframe->WindowDataEnableSaveWindowRect(true);
             //}
 

@@ -978,7 +978,7 @@ void object::add_task(::object* pobjectTask)
 }
 
 
-void object::erase_task(::object* pobjectTask)
+void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object * pobjectTaskNewParent)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -1010,7 +1010,7 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   pobjectTask->m_pobjectParentTask = nullptr;
+   pobjectTask->m_pobjectParentTask = pobjectTaskNewParent;
 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
@@ -1079,9 +1079,18 @@ void object::transfer_tasks_from(::object* ptask)
       try
       {
 
-         pobjectTask->m_pobjectParentTask = this;
-
          m_pparticleaChildrenTask->add(pobjectTask);
+
+         try
+         {
+
+            ptask->erase_task_and_set_task_new_parent(pobjectTask, this);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
       catch (...)

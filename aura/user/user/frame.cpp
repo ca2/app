@@ -574,7 +574,7 @@ namespace user
 
 #else
 
-      WindowDataLoadWindowRect();
+      WindowDataLoadWindowRectangle();
 
 #endif
 

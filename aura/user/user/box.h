@@ -68,17 +68,17 @@ namespace user
       virtual void defer_update_display() override;
 
 
-      virtual bool should_save_window_rect() override;
+      bool should_save_window_rectangle() override;
       
-      bool FancyWindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
-      bool WindowDataLoadWindowRect() override;
-      void WindowDataSaveWindowRect() override;
+      bool FancyWindowDataLoadWindowRectangle(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+      bool WindowDataLoadWindowRectangle() override;
+      void WindowDataSaveWindowRectangle() override;
 
       virtual string window_data_key_modifier();
 
-      virtual bool FancyLoadWindowRect_(const ::scoped_string & strDataKey, bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool LoadWindowRect_(const ::scoped_string & strDataKey);
-      virtual void SaveWindowRect_(const ::scoped_string & strDataKey);
+      virtual bool FancyLoadWindowRectangle(const ::scoped_string & strDataKey, bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool LoadWindowRectangle(const ::scoped_string & strDataKey);
+      virtual void SaveWindowRectangle(const ::scoped_string & strDataKey);
 
 
       void on_simple_command(::message::simple_command * psimplecommand) override;

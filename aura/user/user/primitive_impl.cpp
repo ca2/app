@@ -1103,21 +1103,26 @@ namespace user
    //}
 
    
-   void primitive_impl::_001OnExitIconic()
+   void primitive_impl::_001OnAfterExitIconic()
+   {
+
+   }
+
+
+   void primitive_impl::_001OnAfterExitNormal()
+   {
+
+   }
+
+
+   void primitive_impl::_001OnAfterExitZoomed()
    {
 
 
    }
 
 
-   void primitive_impl::_001OnExitFullScreen()
-   {
-
-
-   }
-
-
-   void primitive_impl::_001OnExitZoomed()
+   void primitive_impl::_001OnAfterExitFullScreen()
    {
 
 

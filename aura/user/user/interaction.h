@@ -227,6 +227,12 @@ namespace user
 
       //::oswindow                                   m_oswindow;
       e_window_flag                                m_ewindowflag;
+      bool                                         m_bAutomaticallyStoreWindowRectangle;
+      bool                                         m_bPendingSaveWindowRectangle;
+      bool                                         m_bLoadingWindowRectangle;
+
+
+      bool                                         m_bVisualChanged;
 
       // <3ThomasBorreggardSørensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;
@@ -548,9 +554,9 @@ namespace user
       inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
       inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
+      //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      //inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
       bool is_ok() const
@@ -700,11 +706,11 @@ namespace user
 
       //auto prodevian() { return __new(::prodevian(this)); }
 
-      virtual bool should_save_window_rect();
+      virtual bool should_save_window_rectangle();
       
-      virtual bool FancyWindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool WindowDataLoadWindowRect();
-      virtual void WindowDataSaveWindowRect();
+      virtual bool FancyWindowDataLoadWindowRectangle(bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool WindowDataLoadWindowRectangle();
+      virtual void WindowDataSaveWindowRectangle();
 
       virtual void on_defer_display();
 
@@ -739,7 +745,7 @@ namespace user
 
       virtual void prodevian_redraw(bool bUpdateBuffer) override;
 
-      virtual void _001OnAfterAppearance();
+      //virtual void _001OnAfterAppearance();
 
 
       virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
@@ -1179,6 +1185,7 @@ namespace user
 
       virtual bool scroll_bar_get_client_rect(RECTANGLE_I32 & rectangle);
 
+      virtual void window_show();
       virtual void on_visual_applied();
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -1747,16 +1754,34 @@ namespace user
       //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
       //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
 
-
-      virtual void _001OnExitIconic() override;
-      virtual void _001OnExitNormal() override;
-      virtual void _001OnExitZoomed() override;
-      virtual void _001OnExitFullScreen() override;
-
+      bool _001OnBeforeEnterIconic() override;
+      bool _001OnBeforeEnterNormal() override;
+      bool _001OnBeforeEnterZoomed() override;
+      bool _001OnBeforeEnterFullScreen() override;
 
 
-      virtual bool _001OnBeforeAppearance();
-      virtual bool _001OnExitAppearance();
+      bool _001OnBeforeEnterAppearance() override;
+
+
+      void _001OnAfterEnterAppearance() override;
+
+
+      bool _001OnBeforeExitIconic() override;
+      bool _001OnBeforeExitNormal() override;
+      bool _001OnBeforeExitZoomed() override;
+      bool _001OnBeforeExitFullScreen() override;
+
+
+      bool _001OnBeforeExitAppearance() override;
+
+
+      void _001OnAfterExitIconic() override;
+      void _001OnAfterExitNormal() override;
+      void _001OnAfterExitZoomed() override;
+      void _001OnAfterExitFullScreen() override;
+
+
+      void _001OnAfterExitAppearance() override;
 
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;

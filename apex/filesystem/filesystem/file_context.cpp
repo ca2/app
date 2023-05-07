@@ -74,8 +74,6 @@
 file_context::file_context()
 {
 
-   defer_create_synchronization();
-
 }
 
 
@@ -89,6 +87,8 @@ void file_context::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
+
+   defer_create_synchronization();
 
    //if (!estatus)
    //{

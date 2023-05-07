@@ -24,10 +24,11 @@ api_client::~api_client()
 
 
 
-void api_client::initialize_api_client(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount, const ::file::path & pathProfileFolder)
+void api_client::initialize_api_client(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount, const ::file::path & pathProfileFolder)
 {
 
    m_strImplementation = scopedstrImplementation;
+   m_strService = scopedstrService;
    m_strBrowserAccount = scopedstrBrowserAccount;
    m_pathProfileFolder = pathProfileFolder;
 
@@ -52,7 +53,7 @@ void api_client::defer_api()
          if(!m_papi)
          {
 
-            m_papi = create_api(m_strImplementation);
+            m_papi = create_api(m_strImplementation, m_strService);
 
          }
          

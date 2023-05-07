@@ -12,10 +12,17 @@ namespace userex
    }
 
 
-   void failure_dialog::Initialize(const ::exception & e)
+   failure_dialog::~failure_dialog()
    {
 
-      m_exception = e;
+
+   }
+
+
+   void failure_dialog::initialize(::exception * pexception)
+   {
+
+      m_pexception = pexception;
 
    }
 

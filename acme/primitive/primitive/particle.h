@@ -45,6 +45,8 @@ CLASS_DECL_ACME ::factory::factory * get_system_factory();
 using hsynchronization = void *;
 
 #include "particle_flags.h"
+#include "ptr.h"
+
 
 struct PARTICLE :
    public PARTICLE_FLAGS
@@ -52,15 +54,12 @@ struct PARTICLE :
 
 
    ::acme::context *                   m_pcontext;
-   union
-   {
-      mutable ::particle *             m_pparticleSynchronization;
-      mutable hsynchronization         m_hsynchronization;
-   };
+   ::ptr < ::particle >                m_pparticleSynchronization;
 
 
-
-   PARTICLE() : m_pcontext(nullptr), m_pparticleSynchronization(nullptr)  {}
+   PARTICLE() : 
+      m_pcontext(nullptr)
+   {}
 
 
 
@@ -114,6 +113,12 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
+
+#ifdef WINDOWS
+
+   virtual hsynchronization get_synchronization_handle();
+
+#endif
 
 
    virtual enum_type get_payload_type() const;

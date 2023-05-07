@@ -57,8 +57,8 @@ namespace app_app
    string application::draw2d_get_default_implementation_name()
    {
 
-      return acmesystem()->implementation_name("draw2d", "opengl");
-      //return acmesystem()->implementation_name("draw2d", "gdiplus");
+      //return acmesystem()->implementation_name("draw2d", "opengl");
+      return acmesystem()->implementation_name("draw2d", "gdiplus");
 
    }
 

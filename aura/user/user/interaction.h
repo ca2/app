@@ -387,6 +387,7 @@ namespace user
 
       virtual void on_create_user_interaction();
 
+      void on_initialize_particle() override;
 
       virtual bool is_branch_current() const override;
 

@@ -25,6 +25,18 @@ namespace windows
    }
 
 
+   handle & handle::operator = (HANDLE handle)
+   {
+
+      close_handle();
+
+      m_handle = handle;
+
+      return *this;
+
+   }
+
+
    void handle::close_handle()
    {
 

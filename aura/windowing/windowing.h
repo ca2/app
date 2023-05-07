@@ -249,7 +249,7 @@ namespace windowing
       virtual void install_mouse_hook(::matter * pmatterListener);
       virtual void uninstall_mouse_hook(::matter * pmatterListener);
 
-      virtual ::user::interaction * create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
+      virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
 
 
    };

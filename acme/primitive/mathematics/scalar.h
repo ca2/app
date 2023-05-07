@@ -510,10 +510,11 @@ public:
    bool is_set() const { return !is_null(); }
 
    void set(::number dValue);
-   ::number get();
+   ::number get() const;
 
 
    scalar& operator = (::number dValue) { set(dValue); return *this; }
+   scalar & operator = (const ::scalar & scalar) { set(scalar.get()); return *this; }
 
    number maximum();
    number minimum();

@@ -119,8 +119,6 @@ namespace user
       m_bUpdatingBuffer = false;
       m_bCursorRedraw = false;
 
-      defer_create_synchronization();
-
       m_bScreenRelativeMouseMessagePosition  = true;
       m_bTranslateMouseMessageCursor         = true;
       m_bComposite                           = true;
@@ -141,6 +139,14 @@ namespace user
       set_per_second(60.0);
 
 #endif
+
+   }
+
+
+   void interaction_impl::on_initialize_particle()
+   {
+
+      defer_create_synchronization();
 
    }
 
@@ -4934,7 +4940,7 @@ namespace user
          }
 
 //#ifdef UNIVERSAL_WINDOWS
-         if (pgraphics->nok())
+         if (::is_null(pgraphics) || pgraphics->nok())
          {
 
 //#define SEVERITY_HIGH 5

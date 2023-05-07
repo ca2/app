@@ -30,8 +30,6 @@ namespace windowing
       m_iMainMonitor = 0;
       m_iMainWorkspace = 0;
 
-      defer_create_synchronization();
-
    }
 
 
@@ -50,6 +48,8 @@ namespace windowing
       //auto estatus =
       
       initialize(pwindowing);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{

@@ -26,13 +26,13 @@ public:
    //void initialize(::particle * pparticle) override;
 
 
-   virtual ::pointer < ::api > create_new_profile(::string & strProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount);
+   virtual ::pointer < ::api > create_new_profile(::string & strProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount);
 
 
-   virtual ::pointer < ::api > create_profile_api(const ::file::path & pathProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrBrowserAccount);
+   virtual ::pointer < ::api > create_profile_api(const ::file::path & pathProfile, const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService, const ::scoped_string & scopedstrBrowserAccount);
 
 
-   virtual ::pointer < ::api > create_api(const ::scoped_string & scopedstrImplementation);
+   virtual ::pointer < ::api > create_api(const ::scoped_string & scopedstrImplementation, const ::scoped_string & scopedstrService);
 
    
    //virtual ::pointer < ::api > create_api(const ::scoped_string & strImplementation);

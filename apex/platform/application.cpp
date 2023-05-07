@@ -1743,6 +1743,13 @@ namespace apex
 
       ::acme::application::init_instance();
 
+      if (m_eexclusiveinstance != e_exclusive_instance_none)
+      {
+
+         m_bInterprocessCommunication = true;
+
+      }
+
       defer_interprocess_communication();
 
       if (m_bInterprocessCommunication)

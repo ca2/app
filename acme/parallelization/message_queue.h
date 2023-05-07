@@ -27,6 +27,9 @@ public:
    ~message_queue() override;
 
 
+   void on_initialize_particle() override;
+
+
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage);
    ::e_status get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time = ::time::infinity());
    void post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam);

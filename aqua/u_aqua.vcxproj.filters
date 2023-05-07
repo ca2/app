@@ -34,9 +34,6 @@
     <Filter Include="Source Files\multimedia">
       <UniqueIdentifier>{c2a37f76-1266-40db-8d91-3c7e386d3e8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\multimedia\audio">
-      <UniqueIdentifier>{9a0c5add-18ea-40be-bde4-b121fb058452}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{235739c5-73d1-40be-8038-bb569441238d}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,12 @@
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{a0220a7b-0cf5-4e31-8fe5-f4854de6f9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\audio">
+      <UniqueIdentifier>{9dc7c11c-3a4e-480f-a0aa-7d358a43417e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\audio">
+      <UniqueIdentifier>{ca0cde81-00fc-464d-bb48-cb70d174adff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -132,15 +135,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
-    <ClCompile Include="multimedia\audio\speaker.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="multimedia\decoder.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
@@ -171,17 +165,32 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio\audio.cpp">
-      <Filter>Source Files\multimedia\audio</Filter>
-    </ClCompile>
     <ClCompile Include="xml\exception.cpp">
       <Filter>Source Files\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_mixer.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_mixer_user.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audio_wave_out.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\sound_track_player.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\speaker.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\text_to_speech_client.cpp">
+      <Filter>Source Files\audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +313,33 @@
     </ClInclude>
     <ClInclude Include="multimedia\audio\text_to_speech_client.h">
       <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\text_to_speech_client.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\speaker.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\sound_track_player.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\out.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio_mixer_user.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio_mixer.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audio.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\_c.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\_.h">
+      <Filter>Header Files\audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

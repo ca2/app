@@ -174,6 +174,7 @@ namespace user
 
 
       friend class interaction;
+      friend class box;
       
    protected:
 

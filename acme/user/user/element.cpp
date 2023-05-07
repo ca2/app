@@ -4342,18 +4342,8 @@ namespace user
 
    void element::on_reset_focus_start_tick()
    {
-//
-  //    m_timeFocusStart.Now();
 
    }
-
-
-   //bool element::_is_window() const
-   //{
-
-   //   return m_bUserElementOk;
-
-   //}
 
    
    float element::preferred_dpi_x()

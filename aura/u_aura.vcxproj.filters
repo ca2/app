@@ -109,24 +109,6 @@
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{6c4bf7cc-5025-4a6a-9f85-3f1c2f844b3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system">
-      <UniqueIdentifier>{0bdea6d2-5d04-4a22-b702-c94fc8fba4d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows_common">
-      <UniqueIdentifier>{aafcea4a-d4e9-42a2-858c-b825a5d78176}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\universal_windows">
-      <UniqueIdentifier>{1020ffab-d15f-40e2-830e-5584d33782fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system">
-      <UniqueIdentifier>{db48ae43-0e33-4274-a363-bf6684db0ae5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\universal_windows">
-      <UniqueIdentifier>{009e7946-528e-4031-b7b6-820866a52476}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\operating_system">
-      <UniqueIdentifier>{3cd24c1f-4703-40f5-add3-71319b3449b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{bf6bd182-ae84-4c17-8ae1-9ad49aa7b6a4}</UniqueIdentifier>
     </Filter>
@@ -656,51 +638,6 @@
     </ClInclude>
     <ClInclude Include="graphics\write_text\font_enumeration_item.h">
       <Filter>Header Files\graphics\write_text</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_universal_windows.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_user.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\_windows_runtime.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\base_file.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\file_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\gdi_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\host_interaction.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\metrowin_metrowin.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\oswindow.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\parallelization.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\parallelization_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_hold_handle.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_ui.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\sockets.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\callback.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1275,12 +1212,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\device_lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\aura.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\graphics.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp">
       <Filter>Source Files\graphics\write_text</Filter>

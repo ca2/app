@@ -17,7 +17,7 @@ namespace windows
 
 #else
 
-      auto hmodule = ::LoadPackagedLibrary(wstring(pathParam), 0);
+      auto hmodule = ::LoadPackagedLibrary(::wstring(pathLibrary.windows_path()), 0);
 
 #endif
 

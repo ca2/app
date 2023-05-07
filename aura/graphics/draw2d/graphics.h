@@ -127,6 +127,9 @@ namespace draw2d
       ~graphics() override;
 
 
+      void on_initialize_particle() override;
+
+
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
       

@@ -38,15 +38,7 @@ namespace draw2d
    draw2d::draw2d()
    {
 
-      defer_create_synchronization();
-
       m_pimpl = nullptr;
-
-
-
-      //m_pmutexFont = __new(::pointer < ::mutex >);
-
-      //add_factory_item < e_cursor_set >();
 
    }
 
@@ -63,6 +55,8 @@ namespace draw2d
       //auto estatus = 
 
       ::acme::department::initialize(pparticle);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{
@@ -683,7 +677,9 @@ void draw2d::emboss_predicate(
       for (iptr i = 0; i < iBlur; i++)
       {
 
-         blur.blur(pimageBlur, iEffectiveBlurRadius);
+         blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
+
+         blur.blur(pimageBlur);
 
       }
 

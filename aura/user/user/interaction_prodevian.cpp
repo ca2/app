@@ -165,6 +165,8 @@ namespace user
       
       initialize(pimpl);
 
+      defer_create_synchronization();
+
       //if (!estatus)
       //{
 

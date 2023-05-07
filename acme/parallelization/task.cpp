@@ -811,7 +811,7 @@ void task::term_task()
 
    //}
 
-   synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pnotifya)
    //{

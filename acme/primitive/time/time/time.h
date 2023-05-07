@@ -332,7 +332,7 @@ public:
    constexpr bool on_off(const class time & period, const class time & now) const
    {
 
-      return elapsed(now) < (period / 2);
+      return (elapsed(now) % period) < (period / 2);
 
    }
 

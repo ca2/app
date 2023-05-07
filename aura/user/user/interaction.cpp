@@ -395,6 +395,26 @@ namespace user
    }
 
 
+   void interaction::on_initialize_particle()
+   {
+
+      ::user::primitive::on_initialize_particle();
+
+      if (m_bEnableDragClient)
+      {
+
+         m_bHoverDefaultMouseHandling = true;
+
+         m_bClickDefaultMouseHandling = true;
+
+      }
+
+      defer_create_synchronization();
+
+   }
+
+
+
    //class control_descriptor & interaction::descriptor()
    //{
 
@@ -5415,8 +5435,6 @@ namespace user
 
       }
 
-      defer_create_synchronization();
-
       //try
       //{
       //   if ((get_parent() != nullptr && get_parent() != psession->get_user_interaction_host())
@@ -9322,8 +9340,12 @@ namespace user
       }
       else if (edisplaySketch == ::e_display_restore)
       {
+
+         bool bIsUniversalWindows = is_universal_windows();
+
+         bool bIsSandboxed = is_sandboxed();
          
-         if (get_parent() != nullptr)
+         if (get_parent() != nullptr || bIsSandboxed || bIsUniversalWindows)
          {
 
             WARNING("restoring child window?");
@@ -15453,6 +15475,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    {
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
+
+      bool bShowWindow = pshowwindow->m_bShow;
 
       if (!layout().design().is_screen_visible()
          || layout().design().m_edisplay == e_display_iconic)

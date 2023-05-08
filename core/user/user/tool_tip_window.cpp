@@ -42,8 +42,10 @@ namespace user
       {
       case e_message_mouse_move:
       {
+
+         auto puserinteraction = ::user::message_user_interaction(pusermessage);
          
-         if(ptool->BaseToolTipGetWnd()->top_level() == pusermessage->userinteraction())
+         if(ptool->BaseToolTipGetWnd()->top_level() == puserinteraction)
          {
             
 //            auto pwindow = window();

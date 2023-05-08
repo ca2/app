@@ -280,7 +280,6 @@
     <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\main_window.h" />
-    <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\notify_icon.h" />
     <ClInclude Include="user\user\notify_icon_listener.h" />
@@ -525,7 +524,6 @@
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
-    <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />

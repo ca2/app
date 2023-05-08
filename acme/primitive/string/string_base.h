@@ -988,8 +988,8 @@ public:
 
    }
 
-
-   string_base unicode_substr(::strsize start) const
+   template < primitive_integral START >
+   string_base unicode_substr(START start) const
    {
 
       return { (this->unicode_begin() + start).c_str(), this->end()};
@@ -997,7 +997,8 @@ public:
    }
 
 
-   string_base unicode_substr(::strsize start, ::strsize count) const
+   template < primitive_integral START, primitive_integral COUNT >
+   string_base unicode_substr(START start, COUNT count) const
    {
 
       return { (this->unicode_begin() + start).c_str(), (this->unicode_begin() + start + count).c_str()};

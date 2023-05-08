@@ -1519,7 +1519,7 @@ namespace experience_anthill
 
       ptab->m_bDrawTabAtBackground = true;
 
-      ptab->defer_handle_auto_hide_tabs(false);
+      //ptab->defer_handle_auto_hide_tabs(false);
 
       pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
@@ -1653,7 +1653,7 @@ namespace experience_anthill
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
          ptab->get_data()->m_rectangleTabClient.top = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleTabClient.right = rectangleClient.right;
          ptab->get_data()->m_rectangleTabClient.bottom = ptab->get_data()->m_rectangleTab.bottom;
@@ -1791,7 +1791,7 @@ namespace experience_anthill
          auto & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
          rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
          rectangleTabClient.bottom = rectangleClient.bottom;
 

@@ -52,19 +52,29 @@ namespace user
 
       m_econtroltype = e_control_type_tab;
 
+      m_bVisibleTabs = true;
+
+      m_bEffectiveVisibleTabs = false;
+
+      m_bTabVisibilityChanging = false;
+
+      m_bOverrideVisibleTabs = false;
+
+      m_bHideTabsOnFullScreenOrTransparentFrame = true;
+
       //m_bMouseDown = false;
 
       m_iTabSize = 0;
-      m_edisplayParentFrameAutoHide = ::e_display_none;
+
       m_estate = e_state_initial;
 
       m_iRestoredTabCount = 0;
 
       m_bDisableSavingRestorableTabs           = true;
 
-      m_bShowTabs                      = true;
+      //m_bShowTabs                      = true;
 
-      m_bNoTabs                        = false;
+      //m_bNoTabs                        = false;
 
       m_bDrawTabAtBackground           = true;
 
@@ -427,186 +437,167 @@ namespace user
    }
 
 
-
-   bool tab::defer_handle_auto_hide_tabs(bool bLayout)
+   void tab::calculate_tab_visibility()
    {
 
-      //if (!get_wnd()->is_ok())
+      if (m_bForceNoTabs)
+      {
+
+         m_bEffectiveVisibleTabs = false;
+
+      }
+      else if (m_bHideTabsOnFullScreenOrTransparentFrame)
+      {
+
+         auto bNewVisible = full_screen_or_transparent_frame_tab_visibility();
+
+         if (is_different(bNewVisible, m_bEffectiveVisibleTabs))
+         {
+
+            if (!m_bTabVisibilityChanging)
+            {
+
+               m_bTabVisibilityChanging = true;
+
+               m_timeLastTabVisibilityChange.Now();
+
+               SetTimer(e_timer_defer_handle_auto_hide_tabs, 100_ms);
+
+            }
+            else if (m_timeLastTabVisibilityChange.elapsed() > 2_s)
+            {
+
+               m_bTabVisibilityChanging = false;
+
+               m_bEffectiveVisibleTabs = bNewVisible;
+
+            }
+
+         }
+
+      }
+      else if (m_bVisibleTabs)
+      {
+
+         m_bEffectiveVisibleTabs = m_bVisibleTabs;
+
+      }
+
+      //return m_bCalculatedVisibleTabs;
+
+      //auto bVisible = are_tabs_visible();
+
+      //auto puiTopLevel = top_level();
+
+      //if (puiTopLevel->frame_is_transparent() && !top_level_frame()->layout().is_full_screen())
       //{
 
-      //   return false;
+      //   if (m_bShowTabs)
+      //   {
+
+      //      m_bShowTabs = false;
+
+      //      set_need_layout();
+
+      //   }
+
+      //   return;
 
       //}
 
-      //::pointer<::experience::frame_window>pchannel = top_level_frame();
-      //
-      //if (pchannel != nullptr && pchannel->m_bInitialFramePosition)
+      //if(m_bNoTabs)
       //{
-      //   return false;
+
+      //   if(m_bShowTabs)
+      //   {
+
+      //      m_bShowTabs = false;
+
+      //      set_need_layout();
+
+      //   }
+
+      //   return;
+
       //}
 
-      bool bNeedLayout = false;
+      //if(m_bShowTabs)
+      //{
 
-      auto puiTopLevel = top_level();
+      //   if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
+      //   {
 
-      if (puiTopLevel != nullptr)
-      {
+      //      ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
 
-         if (puiTopLevel->frame_is_transparent() && !top_level_frame()->layout().is_full_screen())
-         {
+      //      rectangleTab+=client_to_screen();
 
-            if (m_bShowTabs)
-            {
+      //      auto pointCursor = get_cursor_position();
 
-               m_bShowTabs = false;
+      //      bool bShowTabs = rectangleTab.contains(pointCursor);
 
-               if (bLayout)
-               {
+      //      if(is_different(bShowTabs, m_bShowTabs))
+      //      {
 
-                  set_need_layout();
+      //         m_bShowTabs = bShowTabs;
 
-               }
+      //         set_need_layout();
 
-               bNeedLayout = true;
+      //         bNeedLayout = true;
 
-            }
+      //      }
 
-            m_edisplayParentFrameAutoHide = top_level_frame()->const_layout().design().display();
+      //   }
 
-            return bNeedLayout;
+      //}
+      //else
+      //{
 
-         }
+      //   auto pframe = parent_frame();
 
-      }
+      //   if(::is_set(pframe) && !pframe->layout().is_full_screen())
+      //   {
 
-      if(m_bNoTabs)
-      {
+      //      m_bShowTabs = true;
 
-         if(m_bShowTabs)
-         {
+      //      set_need_layout();
 
-            m_bShowTabs = false;
+      //   }
+      //   else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
+      //   {
 
-            if (bLayout)
-            {
+      //      ::rectangle_i32 rectangleWindow;
 
-               set_need_layout();
+      //      window_rectangle(rectangleWindow);
 
-            }
+      //      bool bShowTabs;
 
-            bNeedLayout = true;
+      //      auto pointCursor = get_cursor_position();
 
-         }
+      //      if(get_data()->m_bVertical)
+      //      {
 
-         m_edisplayParentFrameAutoHide = top_level_frame()->const_layout().design().display();
+      //         bShowTabs = pointCursor.x <= rectangleWindow.left;
 
-         return bNeedLayout;
+      //      }
+      //      else
+      //      {
 
-      }
+      //         bShowTabs = pointCursor.y <= rectangleWindow.top;
 
-      if(m_bShowTabs)
-      {
+      //      }
 
-         if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
-         {
+      //      m_bShowTabs = bShowTabs;
 
-            ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
+      //      if(bShowTabs)
+      //      {
 
-            rectangleTab+=client_to_screen();
+      //         set_need_layout();
 
-            auto pointCursor = get_cursor_position();
+      //      }
 
-            bool bShowTabs = rectangleTab.contains(pointCursor);
+      //   }
 
-            if(is_different(bShowTabs, m_bShowTabs))
-            {
-
-               m_bShowTabs = bShowTabs;
-
-               if (bLayout)
-               {
-
-                  set_need_layout();
-
-               }
-
-               bNeedLayout = true;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         auto pframe = parent_frame();
-
-         if(::is_set(pframe) && !pframe->layout().is_full_screen())
-         {
-
-            m_bShowTabs = true;
-
-            if (bLayout)
-            {
-
-               set_need_layout();
-
-            }
-
-            bNeedLayout = true;
-
-         }
-         else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
-         {
-
-            ::rectangle_i32 rectangleWindow;
-
-            window_rectangle(rectangleWindow);
-
-            bool bShowTabs;
-
-            auto pointCursor = get_cursor_position();
-
-            if(get_data()->m_bVertical)
-            {
-
-               bShowTabs = pointCursor.x <= rectangleWindow.left;
-
-            }
-            else
-            {
-               bShowTabs = pointCursor.y <= rectangleWindow.top;
-            }
-
-            m_bShowTabs = bShowTabs;
-
-            if(bShowTabs)
-            {
-
-               if (bLayout)
-               {
-
-                  set_need_layout();
-
-               }
-
-               bNeedLayout = true;
-
-            }
-
-         }
-
-      }
-
-      if (parent_frame() != nullptr && (bNeedLayout || !parent_frame()->is_this_screen_visible()))
-      {
-
-         m_edisplayParentFrameAutoHide = parent_frame()->const_layout().design().display();
-
-      }
-
-      return bNeedLayout;
+      //}
 
    }
 
@@ -618,21 +609,19 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      defer_handle_auto_hide_tabs();
-
-      if (m_bNoTabs || !m_bShowTabs)
+      if (!m_bEffectiveVisibleTabs)
       {
 
          return;
 
       }
 
-      if (top_level()->frame_is_transparent())
-      {
+      //if (top_level()->frame_is_transparent())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //point_i32 pointContextOffset = pgraphics->get_origin();
 
@@ -1370,7 +1359,7 @@ namespace user
 
       }
 
-      defer_handle_auto_hide_tabs(false);
+      //defer_handle_auto_hide_tabs(false);
 
       pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
@@ -1473,7 +1462,7 @@ namespace user
          get_data()->m_rectangleTab.right      = get_data()->m_rectangleTab.left + get_data()->m_iTabWidth;
          get_data()->m_rectangleTab.bottom     = rectangleClient.bottom;
 
-         get_data()->m_rectangleTabClient.left       = m_bShowTabs ? get_data()->m_rectangleTab.right : rectangleClient.left;
+         get_data()->m_rectangleTabClient.left       = m_bEffectiveVisibleTabs ? get_data()->m_rectangleTab.right : rectangleClient.left;
          get_data()->m_rectangleTabClient.top        = get_data()->m_rectangleTab.top;
          get_data()->m_rectangleTabClient.right      = rectangleClient.right;
          get_data()->m_rectangleTabClient.bottom     = get_data()->m_rectangleTab.bottom;
@@ -1588,10 +1577,8 @@ namespace user
 
          ::rectangle_i32 & rectangleTabClient = get_data()->m_rectangleTabClient;
 
-         bool bTabbedClient = m_bShowTabs;
-
          rectangleTabClient.left       = get_data()->m_rectangleTab.left;
-         rectangleTabClient.top        = bTabbedClient ? get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top        = m_bEffectiveVisibleTabs ? get_data()->m_rectangleTab.bottom : rectangleClient.top;
          rectangleTabClient.right      = get_data()->m_rectangleTab.right;
          rectangleTabClient.bottom     = rectangleClient.bottom;
 
@@ -1905,62 +1892,14 @@ namespace user
    void tab::on_message_mouse_move(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_union.m_pmouse;
-      
+      ::pointer < ::message::mouse > pmouse(pmessage);
+
       if(pmessage->previous())
       {
          
          return;
          
       }
-
-      //if(m_bDragScrollLeftButtonDown)
-      //{
-
-      //   {
-      //      
-      //      if (::is_element(m_pitemClick, e_element_tab_far_scroll))
-      //      {
-
-      //         if (m_pointDragScroll.x < m_pointDragScrollMax.x)
-      //         {
-
-      //            m_pointDragScroll.x++;
-
-      //            set_need_redraw();
-
-      //            post_redraw();
-
-      //            pmouse->m_bRet = true;
-
-      //            return;
-
-      //         }
-
-      //      }
-      //      else if (::is_element(m_pitemClick, e_element_tab_near_scroll))
-      //      {
-
-      //         if (m_pointDragScroll.x > 0)
-      //         {
-
-      //            m_pointDragScroll.x--;
-
-      //            set_need_redraw();
-
-      //            post_redraw();
-
-      //            pmouse->m_bRet = true;
-
-      //            return;
-
-      //         }
-
-      //      }
-
-      //   }
-
-      //}
 
       if(get_data()->m_iClickTab >= 0)
       {
@@ -1971,6 +1910,40 @@ namespace user
             get_data()->m_pcallback->_001DropTargetWindowRelay(this);
 
          }
+
+      }
+
+      auto pointClient = pmouse->m_point + screen_to_client();
+
+      auto ptabdata = get_data();
+
+      if (pointClient.y <= 1)
+      {
+
+         if (m_bHideTabsOnFullScreenOrTransparentFrame)
+         {
+
+            m_bOverrideVisibleTabs = true;
+
+            set_need_layout();
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+
+      }
+      else if (pointClient.y > ptabdata->m_iTabHeight)
+      {
+
+         m_bOverrideVisibleTabs = false;
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
 
       }
 
@@ -2572,7 +2545,7 @@ namespace user
       if(psystem->has_property("no_tabs"))
       {
          
-         m_bNoTabs = false;
+         m_bForceNoTabs = false;
          
       }
 
@@ -2601,7 +2574,7 @@ namespace user
 
       pusermessage->m_lresult = 0;
 
-      SetTimer(e_timer_defer_handle_auto_hide_tabs, 300_ms);
+      //SetTimer(e_timer_defer_handle_auto_hide_tabs, 300_ms);
 
       //post_message(WM_USER + 1342);
 
@@ -3214,6 +3187,72 @@ namespace user
 //   }
 
 
+   bool tab::full_screen_or_transparent_frame_tab_visibility()
+   {
+
+      if (!m_bHideTabsOnFullScreenOrTransparentFrame)
+      {
+
+         return true;
+
+      }
+
+      if (m_bOverrideVisibleTabs)
+      {
+
+         return true;
+
+      }
+
+      auto puiTopLevel = top_level();
+
+      if (puiTopLevel->frame_is_transparent() || top_level_frame()->layout().is_full_screen())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   //bool tab::are_tabs_visible() const
+   //{
+   //   
+   //   if (m_bHideTabsOnFullScreenOrTransparentFrame)
+   //   {
+
+   //      auto bVisible = full_screen_or_transparent_frame_tab_visibility();
+   //      
+   //      if (is_different(bVisible, m_bCalculatedVisibleTabs))
+   //      {
+
+   //         m_timeLastTabVisibilityChange.Now();
+
+   //         if (m_timeLastTabVisibityChange.elapsed() > 2_s)
+   //         {
+
+   //            m_bCalculatedVisibleTabs = bVisible;
+
+   //         }
+
+   //      }
+
+   //   }
+   //   else if (m_bVisibleTabs)
+   //   {
+
+   //      m_bCalculatedVisibleTabs = m_bVisibleTabs;
+
+   //   }
+
+   //   return m_bCalculatedVisibleTabs;
+
+   //}
+
+
    void tab::on_change_cur_sel()
    {
 
@@ -3614,12 +3653,18 @@ namespace user
       if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)
       {
 
-         if (defer_handle_auto_hide_tabs(false))
+         calculate_tab_visibility();
+
+         if(!m_bTabVisibilityChanging)
          {
+
+            KillTimer(e_timer_defer_handle_auto_hide_tabs);
 
             set_need_layout();
 
             set_need_redraw();
+
+            post_redraw();
 
          }
 

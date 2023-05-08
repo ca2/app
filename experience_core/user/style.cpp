@@ -999,7 +999,7 @@ namespace experience_core
 
       }
 
-      ptab->defer_handle_auto_hide_tabs(false);
+      // ptab->defer_handle_auto_hide_tabs(false);
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
@@ -1086,7 +1086,7 @@ namespace experience_core
          m_rectangleTab.height(),
          0);*/
 
-         pdata->m_rectangleTabClient.left = ptab->m_bShowTabs ? pdata->m_rectangleTab.right : rectangleClient.left;
+         pdata->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.right : rectangleClient.left;
          pdata->m_rectangleTabClient.top = pdata->m_rectangleTab.top;
          pdata->m_rectangleTabClient.right = rectangleClient.right;
          pdata->m_rectangleTabClient.bottom = pdata->m_rectangleTab.bottom;
@@ -1212,10 +1212,10 @@ namespace experience_core
          rectangle_i32 & rectangleTabClient = pdata->m_rectangleTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
-         bool bTabbedClient = ptab->m_bShowTabs;
+         //bool bTabbedClient = ptab->m_bShowTabs;
 
          rectangleTabClient.left = pdata->m_rectangleTab.left;
-         rectangleTabClient.top = bTabbedClient ? pdata->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? pdata->m_rectangleTab.bottom : rectangleClient.top;
          rectangleTabClient.right = pdata->m_rectangleTab.right;
          rectangleTabClient.bottom = rectangleClient.bottom;
 

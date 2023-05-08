@@ -76,14 +76,14 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	/*   */if ( w>=0.0f && w<1.0f) {
 		t=0.05f; R=0.48f+0.32f*f;
 		if ( !alphablend) {
-			Cr+= 0.88f*(1-f);
-			Cg+= 0.88f*(1-f);
-			Cb+= 0.88f*(1-f);
+			Cr+= 0.88f*(1.0f - (float)f);
+			Cg+= 0.88f*(1.0f - (float)f);
+			Cb+= 0.88f*(1.0f - (float)f);
 			if ( Cr>1.0f) Cr=1.0f;
 			if ( Cg>1.0f) Cg=1.0f;
 			if ( Cb>1.0f) Cb=1.0f;
 		} else {
-			A*=f;
+			A*=(float)f;
 		}
 	} else if ( w>=1.0 && w<2.0) {
 		t=0.05f+f*0.33f; R=0.768f+0.312f*f;
@@ -164,19 +164,19 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	//draw the line by triangle strip m:1
 glBegin(GL_TRIANGLE_STRIP);
 	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-	glVertex2f( x1-tx-Rx-cx, y1-ty-Ry-cy); //fading edge
-	glVertex2f( x2-tx-Rx+cx, y2-ty-Ry+cy);
+	glVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
+	glVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
 	
 	if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-	glVertex2f( x1-tx-cx,y1-ty-cy); //aura
-	glVertex2f( x2-tx+cx,y2-ty+cy);
-	glVertex2f( x1+tx-cx,y1+ty-cy);
-	glVertex2f( x2+tx+cx,y2+ty+cy);
+	glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
+	glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+	glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+	glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
 	
 	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-	glVertex2f( x1+tx+Rx-cx, y1+ty+Ry-cy); //fading edge
-	glVertex2f( x2+tx+Rx+cx, y2+ty+Ry+cy);
-glEnd();
+	glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
+	glVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
+   glEnd();
 
 	//cap
 	if ( w < 3) {
@@ -185,29 +185,29 @@ glEnd();
 		//draw cap
 	glBegin(GL_TRIANGLE_STRIP);
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x1-tx-Rx-cx, y1-ty-Ry-cy);
-		glVertex2f( x1-tx-Rx, y1-ty-Ry);
+		glVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
+		glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
 		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f( x1-tx-cx, y1-ty-cy);
+		glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x1+tx+Rx, y1+ty+Ry);
+		glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
 		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f( x1+tx-cx, y1+ty-cy);
+		glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x1+tx+Rx-cx, y1+ty+Ry-cy);
+		glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
 	glEnd();
 	glBegin(GL_TRIANGLE_STRIP);
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x2-tx-Rx+cx, y2-ty-Ry+cy);
-		glVertex2f( x2-tx-Rx, y2-ty-Ry);
+		glVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
+		glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
 		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f( x2-tx+cx, y2-ty+cy);
+		glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x2+tx+Rx, y2+ty+Ry);
+		glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
 		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f( x2+tx+cx, y2+ty+cy);
+		glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
 		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f( x2+tx+Rx+cx, y2+ty+Ry+cy);
+		glVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
 	glEnd();
 	}
 }
@@ -258,19 +258,19 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	
 	//draw the line by triangle strip
 glBegin(GL_TRIANGLE_STRIP);
-	if ( !alphablend) {glColor3f( 1,1,1);} else {glColor4f( C,C,C, 0);}
-	glVertex2f( x1-tx-Rx, y1-ty-Ry); //fading edge
-	glVertex2f( x2-tx-Rx, y2-ty-Ry);
+	if ( !alphablend) {glColor3f( 1.0f,1.0f,1.0f);} else {glColor4f((float) C, (float)C, (float)C, 0.0f);}
+	glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
+	glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
 	
-	glColor3f( C,C,C);	
-	glVertex2f( x1-tx,y1-ty); //aura
-	glVertex2f( x2-tx,y2-ty);
-	glVertex2f( x1+tx,y1+ty);
-	glVertex2f( x2+tx,y2+ty);
+	glColor3f((float)(C), (float)(C), (float)(C));
+	glVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
+	glVertex2f((float)(x2-tx), (float)(y2-ty));
+	glVertex2f((float)(x1+tx), (float)(y1+ty));
+	glVertex2f((float)(x2+tx), (float)(y2+ty));
 	
-	if ( !alphablend) {glColor3f( 1,1,1);} else {glColor4f( C,C,C, 0);}
-	glVertex2f( x1+tx+Rx, y1+ty+Ry); //fading edge
-	glVertex2f( x2+tx+Rx, y2+ty+Ry);
+	if ( !alphablend) {glColor3f( 1.f,1.f,1.f);} else {glColor4f((float) C, (float)C, (float)C, 0.f);}
+	glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
+	glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
 glEnd();
 }
 
@@ -280,11 +280,11 @@ void line_raw( double x1, double y1, double x2, double y2,
 	double Cr, double Cg, double Cb,
 	double,double,double, bool)
 {
-	glLineWidth(w);
+	glLineWidth((float)(w));
 glBegin(GL_LINES);
-	glColor3f( Cr,Cg,Cb);
-	glVertex2f( x1,y1);
-	glVertex2f( x2,y2);
+	glColor3f((float)(Cr), (float)(Cg), (float)(Cb));
+	glVertex2f((float)(x1), (float)(y1));
+	glVertex2f((float)(x2), (float)(y2));
 glEnd();
 }
 

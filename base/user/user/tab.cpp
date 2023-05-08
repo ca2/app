@@ -46,15 +46,13 @@ namespace user
    tab::tab()
    {
 
-
-
       m_bHoverDefaultMouseHandling = true;
 
       m_econtroltype = e_control_type_tab;
 
       m_bVisibleTabs = true;
 
-      m_bEffectiveVisibleTabs = false;
+      m_bEffectiveVisibleTabs = m_bVisibleTabs;
 
       m_bTabVisibilityChanging = false;
 
@@ -1305,6 +1303,15 @@ namespace user
 
       }
 
+      //if (is_top_level_full_screen_or_transparent())
+      //{
+
+      //   m_bEffectiveVisibleTabs = false;
+
+      //}
+      
+      calculate_tab_visibility();
+
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
@@ -1917,13 +1924,27 @@ namespace user
 
       auto ptabdata = get_data();
 
-      if (pointClient.y <= 1)
+      if (m_bEffectiveVisibleTabs 
+         && m_bTabVisibilityChanging
+         && pointClient.y < ptabdata->m_iTabHeight)
+      {
+
+         KillTimer(e_timer_defer_handle_auto_hide_tabs);
+
+         m_bOverrideVisibleTabs = true;
+
+         m_bTabVisibilityChanging = false;
+
+      }
+      else if (pointClient.y <= 1)
       {
 
          if (m_bHideTabsOnFullScreenOrTransparentFrame)
          {
 
             m_bOverrideVisibleTabs = true;
+
+            m_bEffectiveVisibleTabs = true;
 
             set_need_layout();
 
@@ -2521,6 +2542,10 @@ namespace user
 
    void tab::on_message_create(::message::message * pmessage)
    {
+
+      top_level()->add_handler(this);
+
+      m_bEffectiveVisibleTabs = m_bVisibleTabs;
 
       if (is_sandboxed())
       {
@@ -3187,6 +3212,23 @@ namespace user
 //   }
 
 
+   bool tab::is_top_level_full_screen_or_transparent()
+   {
+
+      auto puiTopLevel = top_level();
+
+      if (puiTopLevel->frame_is_transparent() || top_level_frame()->layout().is_full_screen())
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    bool tab::full_screen_or_transparent_frame_tab_visibility()
    {
 
@@ -3204,9 +3246,7 @@ namespace user
 
       }
 
-      auto puiTopLevel = top_level();
-
-      if (puiTopLevel->frame_is_transparent() || top_level_frame()->layout().is_full_screen())
+      if (is_top_level_full_screen_or_transparent())
       {
 
          return false;
@@ -3590,7 +3630,19 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_get_topic_impact_id)
+      if (ptopic->m_atom == id_on_after_enter_full_screen)
+      {
+
+         m_bEffectiveVisibleTabs = false;
+
+      }
+      else if (ptopic->m_atom == id_on_set_transparent_frame)
+      {
+
+         m_bEffectiveVisibleTabs = false;
+
+      }
+      else if (ptopic->m_atom == id_get_topic_impact_id)
       {
 
          ptopic->payload(id_id) = get_current_tab_id();

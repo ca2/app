@@ -12029,6 +12029,16 @@ namespace user
 
       m_layout.m_statea[elayout].m_eappearance.toggle(eappearance);
 
+      if(eappearance == e_appearance_transparent_frame
+      && m_layout.m_statea[elayout].m_eappearance & e_appearance_transparent_frame)
+      {
+
+         auto ptopic = create_topic(id_on_set_transparent_frame);
+
+         route(ptopic);
+
+      }
+
    }
 
    // void interaction::window_apply_visual(const struct layout_state & windowstate)
@@ -13768,6 +13778,38 @@ namespace user
    }
 
 
+   void interaction::_001OnAfterEnterIconic()
+   {
+
+      ::user::primitive::_001OnAfterEnterIconic();
+
+   }
+
+
+   void interaction::_001OnAfterEnterNormal()
+   {
+
+      ::user::primitive::_001OnAfterEnterNormal();
+
+   }
+
+
+   void interaction::_001OnAfterEnterZoomed()
+   {
+
+      ::user::primitive::_001OnAfterEnterZoomed();
+
+   }
+
+
+   void interaction::_001OnAfterEnterFullScreen()
+   {
+
+      ::user::primitive::_001OnAfterEnterFullScreen();
+
+   }
+
+
    void interaction::_001OnAfterEnterAppearance()
    {
 
@@ -13781,11 +13823,9 @@ namespace user
 
             _001OnAfterEnterIconic();
 
-         }
-         else if (edisplayDesign == e_display_zoomed)
-         {
+            auto ptopic = create_topic(id_on_after_enter_iconic);
 
-            _001OnAfterEnterZoomed();
+            route(ptopic);
 
          }
          else if (edisplayDesign == e_display_restore || edisplayDesign == e_display_restored)
@@ -13793,11 +13833,29 @@ namespace user
 
             _001OnAfterEnterNormal();
 
+            auto ptopic = create_topic(id_on_after_enter_normal);
+
+            route(ptopic);
+
+         }
+         else if (edisplayDesign == e_display_zoomed)
+         {
+
+            _001OnAfterEnterZoomed();
+
+            auto ptopic = create_topic(id_on_after_enter_zoomed);
+
+            route(ptopic);
+
          }
          else if (layout().design().display() == e_display_full_screen)
          {
 
             _001OnAfterEnterFullScreen();
+
+            auto ptopic = create_topic(id_on_after_enter_full_screen);
+
+            route(ptopic);
 
          }
 

@@ -11,7 +11,6 @@ namespace user
    class tab_callback;
 
 
-
    class CLASS_DECL_BASE tab :
       virtual public ::user::interaction,
       virtual public place_holder_container
@@ -257,6 +256,8 @@ namespace user
       virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
 
       void _001OnTimer(::timer * ptimer) override;
+
+      virtual bool is_top_level_full_screen_or_transparent();
 
       virtual bool full_screen_or_transparent_frame_tab_visibility();
 

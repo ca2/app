@@ -298,7 +298,14 @@ enum enum_id : ::uptr
 
    id_array,
 
+   
+   id_on_set_transparent_frame,
 
+
+   id_on_after_enter_iconic,
+   id_on_after_enter_normal,
+   id_on_after_enter_zoomed,
+   id_on_after_enter_full_screen,
 
 
 };

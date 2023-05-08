@@ -1763,6 +1763,12 @@ namespace user
       bool _001OnBeforeEnterAppearance() override;
 
 
+      void _001OnAfterEnterIconic() override;
+      void _001OnAfterEnterNormal() override;
+      void _001OnAfterEnterZoomed() override;
+      void _001OnAfterEnterFullScreen() override;
+
+
       void _001OnAfterEnterAppearance() override;
 
 

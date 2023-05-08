@@ -1071,6 +1071,10 @@ void object::transfer_tasks_from(::object* ptask)
 
    objectaChildrenTask = *ptask->m_pparticleaChildrenTask;
 
+   *m_pparticleaChildrenTask = objectaChildrenTask;
+
+   ptask->m_pparticleaChildrenTask.release();
+
    for (auto pobjectTask : objectaChildrenTask)
    {
 
@@ -1079,18 +1083,7 @@ void object::transfer_tasks_from(::object* ptask)
       try
       {
 
-         m_pparticleaChildrenTask->add(pobjectTask);
-
-         try
-         {
-
-            ptask->erase_task_and_set_task_new_parent(pobjectTask, this);
-
-         }
-         catch (...)
-         {
-
-         }
+         pobjectTask->m_pobjectParentTask = this;
 
       }
       catch (...)
@@ -1099,8 +1092,6 @@ void object::transfer_tasks_from(::object* ptask)
       }
 
    }
-
-   ptask->m_pparticleaChildrenTask.release();
 
 }
 
@@ -3733,11 +3724,34 @@ bool object::IsSerializable() const
 void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 {
 
-   __defer_construct(ptask);
+   if (::is_null(ptask))
+   {
 
-   ptask->m_procedure = procedure;
+      __construct(ptask);
 
-   ptask->branch();
+      ::pointer < ::object > pobjectHoldThis = this;
+
+      ptask->m_procedure = [procedure, &ptask, pobjectHoldThis]()
+      {
+
+         try
+         {
+
+            procedure();
+
+         }
+         catch (...)
+         {
+
+         }
+
+         ptask = nullptr;
+
+      };
+
+      ptask->branch();
+
+   }
 
 }
 

@@ -125,7 +125,7 @@ public:
    //virtual void erase_notify(::matter* pmatter);
 
    void post_procedure(const ::procedure & procedure) override;
-   
+  
 
    virtual void run_posted_procedures();
 

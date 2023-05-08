@@ -204,7 +204,7 @@ template < class T >
 inline bool pointer < T > ::is_set() const
 {
 
-   return !is_null();
+   return !is_null() && m_pparticle->is_set();
 
 }
 

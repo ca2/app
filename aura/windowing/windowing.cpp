@@ -630,9 +630,25 @@ namespace windowing
    bool windowing::route_message(::user::message * pusermessage)
    {
 
-      auto puserinteraction = pusermessage->userinteraction();
+      auto pwindow = pusermessage->window();
 
-      puserinteraction->m_pinteractionimpl->message_handler(pusermessage);
+      if (!pwindow)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+
+      if (!puserinteractionimpl)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      puserinteractionimpl->message_handler(pusermessage);
 
       return true;
 

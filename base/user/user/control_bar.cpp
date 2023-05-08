@@ -589,9 +589,9 @@ namespace user
    void control_bar::_001OnCtlColor(::message::message * pmessage)
    {
       
-      ::pointer<::message::ctl_color>pctlcolor(pmessage);
+      ::pointer < ::message::ctl_color > pctlcolor(pmessage);
 
-      auto pinteraction =pctlcolor->userinteraction();
+      auto pinteraction = ::user::message_user_interaction(pctlcolor);
       
       if (::is_set(pinteraction) && pinteraction->OnChildNotify(pctlcolor))
       {

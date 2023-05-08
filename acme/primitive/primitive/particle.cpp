@@ -477,6 +477,14 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
+bool particle::_is_set() const
+{
+
+   return true;
+
+}
+
+
 bool particle::_is_ok() const
 {
 

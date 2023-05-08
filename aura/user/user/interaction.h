@@ -358,15 +358,15 @@ namespace user
       // references
       ::pointer<::file::insert_item>            m_pitemComposing;
       ::pointer<::thread>                       m_pthreadUserInteraction;
-      ::pointer<::user::interaction>              m_puserinteractionParent;
-      ::pointer<::user::interaction>              m_pupdowntarget;
-      ::task_pointer                               m_ptaskModal;
-      ::pointer<interaction>                      m_puserinteractionOwner;
+      ::pointer<::user::interaction>            m_puserinteractionParent;
+      ::pointer<::user::interaction>            m_pupdowntarget;
+      ::task_pointer                            m_ptaskModal;
+      ::pointer<interaction>                    m_puserinteractionOwner;
 
       // ownership
-      ::pointer<::user::system>                   m_pusersystem;
+      ::pointer<::user::system>                 m_pusersystem;
    protected:
-      ::user::interaction_layout                   m_layout;
+      ::user::interaction_layout                m_layout;
    public:
       //::pointer<drag_move>                        m_pdragmove;
       ::pointer<::draw2d::graphics_call_array>    m_pgraphicscalla;

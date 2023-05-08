@@ -498,9 +498,17 @@ namespace user
    }
 
 
-   void primitive_impl::post(::message::message* pusermessage)
+   void primitive_impl::post(::message::message* pmessage)
    {
 
+      if (!m_puserinteraction)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_puserinteraction->post(pmessage);
 
    }
 

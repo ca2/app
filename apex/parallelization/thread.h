@@ -52,9 +52,9 @@ public:
 
 
    //bool                                               m_bBranchHandling : 1;
-   ::pointer<message_queue>                        m_pmessagequeue;
+   ::pointer<message_queue>                           m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
-   ::pointer < ::request >             m_prequest;
+   ::pointer < ::request >                            m_prequest;
 
 
    MESSAGE                                            m_message;
@@ -63,30 +63,28 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   //::e_status                                        m_estatus;
    ::pointer < ::user::primitive_array >              m_puserprimitiveaThread;
-   ::pointer< ::mutex >                                          m_pmutexThreadUiPtra;
+   ::pointer< ::mutex >                               m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
 
 
-   ::pointer<manual_reset_event>                     m_peventStarted;
-   ::pointer<manual_reset_event>                     m_peventSync;
-   ::pointer<manual_reset_event>                     m_peventReady;
-   ::pointer<manual_reset_event>                     m_peventFinished;
+   ::pointer<manual_reset_event>                      m_peventStarted;
+   ::pointer<manual_reset_event>                      m_peventSync;
+   ::pointer<manual_reset_event>                      m_peventReady;
+   ::pointer<manual_reset_event>                      m_peventFinished;
 
    enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   class ::time                                         m_timeHeartBeat;
+   class ::time                                       m_timeHeartBeat;
    bool                                               m_bReady;
-   //::e_status                                        m_estatus;
-   ::pointer<::user::primitive>                      m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   ::pointer<::user::primitive>                      m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
+   ::pointer<::user::primitive>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
+   ::pointer<::user::primitive>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
-   ::pointer<file_info>                              m_pfileinfo;
+   ::pointer<file_info>                               m_pfileinfo;
 
    bool                                               m_bDupHandle;
 
@@ -100,11 +98,8 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   //::procedure_array                                    m_procedurea;
-
-
-   ::pointer<manual_reset_event>                     m_pevent1;
-   enum_priority                                         m_epriority;
+   ::pointer<manual_reset_event>                      m_pevent1;
+   enum_priority                                      m_epriority;
 
 
    string                                             m_strDebug;
@@ -112,7 +107,9 @@ public:
    int                                                m_iLine;
 
    bool                                               m_bTemporary;
-   ::pointer<::object>                               m_pobjectScript;
+   ::pointer<::object>                                m_pobjectScript;
+
+   ::pointer_array < ::message::message >             m_messagea;
 
 
 //#ifdef MACOS
@@ -423,7 +420,9 @@ public:
    virtual void inline_init();
    virtual void inline_term();
 
+   virtual void post(::message::message * pmessage);
 
+   virtual void handle_posted_messages();
 
    virtual bool initialize_message_queue();
 

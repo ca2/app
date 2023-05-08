@@ -272,10 +272,12 @@ bool image::host(const ::pixmap* ppixmap)
 }
 
 
-bool image::on_host_read_pixels(const ::pixmap* ppixmap)
+bool image::on_host_read_pixels(::pixmap* ppixmapHost) const
 {
 
-   //return false;
+   //map();
+
+   //::copy_colorref(ppixmapHost, this);
 
    return false;
 

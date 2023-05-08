@@ -325,20 +325,34 @@ namespace message
       try
       {
 
-         auto puserinteraction = userinteraction();
+         auto pwindow = window();
 
-         if(puserinteraction)
+         if (pwindow)
          {
 
-            auto pwindow = puserinteraction->window();
+            auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
 
-            if (pwindow)
+            if (puserinteractionimpl)
             {
 
-               if (m_pcursor)
+               auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+               if (puserinteraction)
                {
 
-                  pwindow->set_mouse_cursor(m_pcursor);
+                  auto pwindow = puserinteraction->window();
+
+                  if (pwindow)
+                  {
+
+                     if (m_pcursor)
+                     {
+
+                        pwindow->set_mouse_cursor(m_pcursor);
+
+                     }
+
+                  }
 
                }
 

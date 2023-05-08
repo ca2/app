@@ -7649,6 +7649,16 @@ namespace user
    }
 
 
+   ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage)
+   {
+
+      auto pwindow = pusermessage->window();
+
+      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+
+   }
+
+
 } // namespace user
 
 
@@ -7678,3 +7688,5 @@ CLASS_DECL_AURA::user::interaction_impl * __interaction_impl(::windowing::window
    return pimpl;
 
 }
+
+

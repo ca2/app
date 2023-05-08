@@ -2,7 +2,6 @@
 #include "interaction_child.h"
 #include "scroll_info.h"
 #include "alpha_source.h"
-#include "message.h"
 #include "interaction.h"
 #include "interaction_impl.h"
 #include "interaction_scaler.h"
@@ -15,11 +14,9 @@
 #include "acme/constant/message.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
-#include "aura/message/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/keep.h"
 #include "acme/user/user/drag.h"
-#include "apex/message/simple_command.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
@@ -27,17 +24,19 @@
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/primitive/time/_string.h"
-#include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/draw2d/path.h"
-#include "aura/graphics/graphics/graphics.h"
-#include "aura/graphics/image/image.h"
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "acme/primitive/string/international.h"
+#include "acme/primitive/time/_string.h"
 #include "apex/message/simple_command.h"
+#include "apex/user/message.h"
 #include "aqua/user/controller.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/image/image.h"
+#include "aura/message/timer.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/user/user/calc_size.h"
 #include "aura/user/user/system.h"
@@ -6707,9 +6706,16 @@ namespace user
 
       }
 
-      ::lparam lparam(pmessage);
+      ::pointer < ::user::message > pusermessage = pmessage;
 
-      post_message(e_message_post_user, 1, lparam);
+      if (pusermessage)
+      {
+
+         pusermessage->m_pchannel = this;
+
+      }
+      
+      m_pthreadUserInteraction->post(pmessage);
 
    }
 
@@ -10991,137 +10997,8 @@ namespace user
    }
 
 
-   //   void interaction::route_handling(control_event * pevent)
-   //   {
-   //
-   //      handle(ptopic, pcontext);
-   //
-   //      if (ptopic->m_bRet)
-   //      {
-   //
-   //         return;
-   //
-   //      }
-   //
-   //      on_notify_control_event(pevent);
-   //
-   //      if (ptopic->m_bRet)
-   //      {
-   //
-   //         return;
-   //
-   //      }
-   //
-   //   }
-
-
-   //   void interaction::on_notify_control_event(control_event* pevent)
-   //   {
-   //
-   //      auto pusercallback = get_user_callback();
-   //
-   //      if (pusercallback)
-   //      {
-   //
-   //         pusercallback->handle(ptopic, pcontext);
-   //
-   //         if (ptopic->m_bRet)
-   //         {
-   //
-   //            return;
-   //
-   //         }
-   //
-   //      }
-   //
-   //      ::pointer<::user::interaction>pinteractionBind = get_bind_ui();
-   //
-   //      if (pinteractionBind && pinteractionBind != pusercallback)
-   //      {
-   //
-   //         pinteractionBind->handle(ptopic, pcontext);
-   //
-   //         if (ptopic->m_bRet)
-   //         {
-   //
-   //            return;
-   //
-   //         }
-   //
-   //      }
-   //
-   //      auto puiOwner = get_owner();
-   //
-   //      if (puiOwner && puiOwner != pinteractionBind && puiOwner != pusercallback)
-   //      {
-   //
-   //         puiOwner->route_handling(pevent);
-   //
-   //         return;
-   //
-   //      }
-   //
-   //      auto puserinteractionParent = get_parent();
-   //
-   //      if (puserinteractionParent && puserinteractionParent != puiOwner && puserinteractionParent != pinteractionBind && puserinteractionParent != pusercallback)
-   //      {
-   //
-   //         puserinteractionParent->route_handling(pevent);
-   //
-   //         return;
-   //
-   //      }
-   //
-   //      auto papp = get_app();
-   //
-   //      if (papp && papp != pusercallback)
-   //      {
-   //
-   //         papp->route_handling(pevent);
-   //
-   //         return;
-   //
-   //      }
-   //
-   //
-   //   }
-
-
-
-
    void interaction::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
-
-      if (m_pprimitiveimpl.is_null())
-      {
-
-         //return false;
-
-         return;
-
-      }
-
-      if (atom == e_message_key_down)
-      {
-
-         output_debug_string("::user::interaction::post_message e_message_key_down");
-
-      }
-      else if (atom == MESSAGE_CLOSE)
-      {
-
-         output_debug_string("::user::interaction::post_message MESSAGE_CLOSE");
-
-      }
-
-      auto type = __object_type(*this);
-
-      //      if (type.name_contains("list_box"))
-      //      {
-      //
-      //         ::output_debug_string("list_box");
-      //
-      //      }
 
       return m_pprimitiveimpl->post_message(atom, wparam, lparam);
 
@@ -21017,6 +20894,16 @@ namespace user
    //                                function);
    //
    //}
+
+
+   ::user::interaction * message_user_interaction(::user::message * pusermessage)
+   {
+
+      auto pimpl = message_interaction_impl(pusermessage);
+
+      return pimpl ? pimpl->m_puserinteraction : nullptr;
+
+   }
 
 
 } // namespace user

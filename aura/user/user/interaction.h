@@ -577,6 +577,9 @@ namespace user
       virtual::e_display window_previous_display();
 
 
+      virtual void set_window_previous_display(::e_display edisplayPrevious);
+
+
       virtual int get_derived_height(int iWidth);
       virtual int get_derived_width(int iHeight);
 

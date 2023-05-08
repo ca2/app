@@ -1416,7 +1416,7 @@ bool simple_frame_window::frame_is_transparent()
 
    }
 
-   auto eappearance = const_layout().design().appearance();
+   auto eappearance = const_layout().sketch().appearance();
 
    if (eappearance & ::e_appearance_transparent_frame)
    {

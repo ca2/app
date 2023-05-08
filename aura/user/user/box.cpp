@@ -106,6 +106,14 @@ namespace user
    }
 
 
+   void box::set_window_previous_display(::e_display edisplayPrevious)
+   {
+
+      m_windowrectangle.m_edisplayPrevious = edisplayPrevious;
+
+   }
+
+
    void box::on_visual_applied()
    {
 
@@ -691,13 +699,6 @@ namespace user
    void box::design_iconic()
    {
       
-      if (const_layout().design().display() != e_display_iconic)
-      {
-
-         m_windowrectangle.m_edisplayPrevious = const_layout().design().display();
-
-      }
-
       ::user::interaction::design_iconic();
       
    }

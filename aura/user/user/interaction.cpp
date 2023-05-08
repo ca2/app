@@ -9050,6 +9050,13 @@ namespace user
 
    }
 
+   
+   void interaction::set_window_previous_display(::e_display edisplayPrevious)
+   {
+
+
+   }
+
 
    bool interaction::is_full_screen_enabled()
    {
@@ -9307,7 +9314,16 @@ namespace user
 
       }
 
+      auto edisplayPrevious = layout().design().display();
+
       auto edisplaySketch = layout().sketch().display();
+
+      if(edisplayPrevious != edisplaySketch)
+      {
+
+         set_window_previous_display(edisplayPrevious);
+
+      }
 
       if (edisplaySketch == ::e_display_full_screen)
       {
@@ -12029,13 +12045,25 @@ namespace user
 
       m_layout.m_statea[elayout].m_eappearance.toggle(eappearance);
 
-      if(eappearance == e_appearance_transparent_frame
-      && m_layout.m_statea[elayout].m_eappearance & e_appearance_transparent_frame)
+      if(eappearance == e_appearance_transparent_frame)
       {
+      
+         if(m_layout.m_statea[elayout].m_eappearance & e_appearance_transparent_frame)
+         {
 
-         auto ptopic = create_topic(id_on_set_transparent_frame);
+            auto ptopic = create_topic(id_on_set_transparent_frame);
 
-         route(ptopic);
+            route(ptopic);
+
+         }
+         else
+         {
+
+            auto ptopic = create_topic(id_on_clear_transparent_frame);
+
+            route(ptopic);
+
+         }
 
       }
 
@@ -14040,11 +14068,9 @@ namespace user
 
                _001OnAfterExitIconic();
 
-            }
-            else if (edisplayPrevious == e_display_zoomed)
-            {
+               auto ptopic = create_topic(id_on_after_exit_iconic);
 
-               _001OnAfterExitZoomed();
+               route(ptopic);
 
             }
             else if (edisplayPrevious == e_display_restore || edisplayPrevious == e_display_restored)
@@ -14052,11 +14078,29 @@ namespace user
 
                _001OnAfterExitNormal();
 
+               auto ptopic = create_topic(id_on_after_exit_normal);
+
+               route(ptopic);
+
+            }
+            else if (edisplayPrevious == e_display_zoomed)
+            {
+
+               _001OnAfterExitZoomed();
+
+               auto ptopic = create_topic(id_on_after_exit_zoomed);
+
+               route(ptopic);
+
             }
             else if (edisplayPrevious == e_display_full_screen)
             {
 
                _001OnAfterExitFullScreen();
+
+               auto ptopic = create_topic(id_on_after_exit_full_screen);
+
+               route(ptopic);
 
             }
 

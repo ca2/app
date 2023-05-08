@@ -300,6 +300,7 @@ enum enum_id : ::uptr
 
    
    id_on_set_transparent_frame,
+   id_on_clear_transparent_frame,
 
 
    id_on_after_enter_iconic,
@@ -307,6 +308,10 @@ enum enum_id : ::uptr
    id_on_after_enter_zoomed,
    id_on_after_enter_full_screen,
 
+   id_on_after_exit_iconic,
+   id_on_after_exit_normal,
+   id_on_after_exit_zoomed,
+   id_on_after_exit_full_screen,
 
 };
 

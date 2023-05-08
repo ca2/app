@@ -3642,6 +3642,18 @@ namespace user
          m_bEffectiveVisibleTabs = false;
 
       }
+      else if(ptopic->m_atom == id_on_after_exit_full_screen)
+      {
+
+         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
+
+      }
+      else if (ptopic->m_atom == id_on_clear_transparent_frame)
+      {
+
+         m_bEffectiveVisibleTabs = full_screen_or_transparent_frame_tab_visibility();
+
+      }
       else if (ptopic->m_atom == id_get_topic_impact_id)
       {
 

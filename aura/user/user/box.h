@@ -48,24 +48,26 @@ namespace user
       void design_iconic() override;
       
 
-      virtual::e_display window_stored_display() override;
-      virtual::e_display window_previous_display() override;
+      ::e_display window_stored_display() override;
+      ::e_display window_previous_display() override;
+
+      void set_window_previous_display(::e_display edisplayPrevious) override;
 
 
-      virtual void on_visual_applied() override;
+      void on_visual_applied() override;
 
-      virtual void window_show_change_visibility() override;
-
-
-      virtual void design_window_restore(::e_display edisplay) override;
+      void window_show_change_visibility() override;
 
 
-      virtual string get_display_tag() override;
+      void design_window_restore(::e_display edisplay) override;
+
+
+      string get_display_tag() override;
 
       
       virtual string calculate_display();
       virtual bool does_display_match();
-      virtual void defer_update_display() override;
+      void defer_update_display() override;
 
 
       bool should_save_window_rectangle() override;

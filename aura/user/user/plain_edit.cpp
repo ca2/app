@@ -1174,7 +1174,7 @@ namespace user
 
             INFORMATION("Keyboard Focus");
 
-            _001OnKeyboardFocusTimer(ptimer->m_uEvent);
+            _001OnKeyboardFocusTimer(ptimer->m_etimer);
 
          }
          else
@@ -6989,10 +6989,10 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyboardFocusTimer(u64 iTimer)
+   void plain_edit::_001OnKeyboardFocusTimer(::enum_timer etimer)
    {
 
-      if (iTimer == e_timer_caret_flashing)
+      if (etimer == e_timer_caret_flashing)
       {
 
          if (has_keyboard_focus() && is_window_visible())// && m_timeLastDraw.elapsed() > m_timeCaretPeriod / 8)

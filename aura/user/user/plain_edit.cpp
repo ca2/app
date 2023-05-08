@@ -1164,7 +1164,7 @@ namespace user
 
 
       }
-      else if (ptimer->m_uEvent == e_timer_caret_flashing)
+      else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
 
          INFORMATION("_001OnTimer e_timer_caret_flashing");

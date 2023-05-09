@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "data.h"
 #include "main_impact.h"
 #include "left_impact.h"
 #include "thumbnail.h"
@@ -108,7 +109,7 @@ namespace filemanager
 
       //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_impact < file_list >(1);
+      m_pfilelist = create_pane_impact(filemanager_data()->m_typeFileList, 1);
 
       if(m_pfilelist == nullptr)
       {

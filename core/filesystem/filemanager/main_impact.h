@@ -15,7 +15,7 @@ namespace filemanager
 
 
       
-      file_list *                               m_pfilelist;
+      ::pointer < file_list >                   m_pfilelist;
       thumbnail *                               m_pthumbnail;
       ::pointer<file_properties_form>        m_ppropform;
       ::pointer<::file::item_array>            m_pitema;

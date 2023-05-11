@@ -8,7 +8,7 @@
 
 #include "acme/constant/id.h"
 #include "dialog.h"
-#include "user.h"
+//#include "user.h"
 
 
 dialog::dialog()
@@ -18,6 +18,7 @@ dialog::dialog()
    m_pframe = nullptr;
 
 }
+
 
 dialog::dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent)
 {
@@ -94,7 +95,7 @@ bool dialog::show(const ::string & pszMatter)
    
    auto puser = psession->m_puser->m_pcoreuser;
 
-   m_pformdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
+   m_pformdocument = puser->create_form(this, nullptr, this, psession->get_user_interaction_host(), payload, varArgs);
 
    if(m_pformdocument == nullptr)
    {

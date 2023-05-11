@@ -35,6 +35,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audio\audio.h" />
+    <ClInclude Include="audio\audio_mixer.h" />
+    <ClInclude Include="audio\audio_mixer_user.h" />
+    <ClInclude Include="audio\out.h" />
+    <ClInclude Include="audio\sound_track_player.h" />
+    <ClInclude Include="audio\speaker.h" />
+    <ClInclude Include="audio\text_to_speech_client.h" />
+    <ClInclude Include="audio\_.h" />
+    <ClInclude Include="audio\_c.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="framework.h" />
@@ -108,6 +117,13 @@
     <ClInclude Include="__defer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="audio\audio.cpp" />
+    <ClCompile Include="audio\audio_mixer.cpp" />
+    <ClCompile Include="audio\audio_mixer_user.cpp" />
+    <ClCompile Include="audio\audio_wave_out.cpp" />
+    <ClCompile Include="audio\sound_track_player.cpp" />
+    <ClCompile Include="audio\speaker.cpp" />
+    <ClCompile Include="audio\text_to_speech_client.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -121,11 +137,6 @@
     </ClCompile>
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="multimedia\audio\audio.cpp" />
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
-    <ClCompile Include="multimedia\audio\speaker.cpp" />
-    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp" />
     <ClCompile Include="multimedia\decoder.cpp" />
     <ClCompile Include="multimedia\decoder_plugin.cpp" />
     <ClCompile Include="multimedia\exception.cpp" />
@@ -321,7 +332,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
-      <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
@@ -363,14 +373,11 @@
     <ClCompile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
-      <StringPooling>true</StringPooling>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -419,12 +426,7 @@
     <CustomBuildStep />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
-    <ClCompile>
-      <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
-    </ClCompile>
+    <ClCompile />
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -433,6 +435,10 @@
       <AdditionalDependencies>Mfplat.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent />
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <ClCompile />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -461,16 +467,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
     <ClCompile>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -3310,22 +3310,28 @@ namespace user
    //}
 
 
-   void primitive::_001OnExitIconic()
-   {
+   //bool primitive::_001OnExitIconic()
+   //{
 
-   }
+   //   return ::user::element::_001OnExitIconic();
 
-
-   void primitive::_001OnExitFullScreen()
-   {
-
-   }
+   //}
 
 
-   void primitive::_001OnExitZoomed()
-   {
+   //bool primitive::_001OnExitFullScreen()
+   //{
 
-   }
+   //   return ::user::element::_001OnExitFullScreen();
+
+   //}
+
+
+   //bool primitive::_001OnExitZoomed()
+   //{
+
+   //   return ::user::element::_001OnExitZoomed();
+
+   //}
 
 
    void primitive::on_add_owned(::user::primitive * pprimitive)
@@ -3866,97 +3872,97 @@ namespace user
 //   }
 
 
-   bool primitive::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
-   {
+   // bool primitive::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
+   // {
       
-      if(atom == e_message_post_user)
-      {
+   //    if(atom == e_message_post_user)
+   //    {
 
-         if(wparam==1)
-         {
+   //       if(wparam==1)
+   //       {
 
-            ::pointer<::message::message>pmessage(lparam);
+   //          ::pointer<::message::message>pmessage(lparam);
 
-            lparam = 0;
+   //          lparam = 0;
 
-            if(pmessage)
-            {
+   //          if(pmessage)
+   //          {
 
-               message_handler(pmessage);
+   //             message_handler(pmessage);
 
-               //if (pmessage->m_bRet)
-               //{
+   //             //if (pmessage->m_bRet)
+   //             //{
 
-                  return true;
+   //                return true;
 
-               //}
+   //             //}
 
-            }
+   //          }
 
-         }
+   //       }
 
-      }
+   //    }
 
-      auto pmessage = get_message(atom, wparam, lparam);
+   //    auto pmessage = get_message(atom, wparam, lparam);
 
-      try
-      {
+   //    try
+   //    {
 
-         message_handler(pmessage);
+   //       message_handler(pmessage);
 
-         if (pmessage->m_bRet)
-         {
+   //       if (pmessage->m_bRet)
+   //       {
 
-            return true;
+   //          return true;
 
-         }
+   //       }
 
-      }
-      catch (const ::exception & e)
-      {
+   //    }
+   //    catch (const ::exception & e)
+   //    {
 
-         handle_exception(e);
+   //       handle_exception(e);
 
-         //if (::get_task()->handle_exception(e))
-         //{
+   //       //if (::get_task()->handle_exception(e))
+   //       //{
 
-         //   return false;
+   //       //   return false;
 
-         //}
+   //       //}
 
-      }
-      catch (...)
-      {
+   //    }
+   //    catch (...)
+   //    {
 
-      }
+   //    }
 
-      if (!pmessage->m_bRet)
-      {
+   //    if (!pmessage->m_bRet)
+   //    {
 
-         //return;
-         return false;
+   //       //return;
+   //       return false;
 
-      }
+   //    }
 
-      if (plresult)
-      {
+   //    if (plresult)
+   //    {
 
-         try
-         {
+   //       try
+   //       {
 
-            *plresult = pmessage->m_lresult;
+   //          *plresult = pmessage->m_lresult;
 
-         }
-         catch (...)
-         {
+   //       }
+   //       catch (...)
+   //       {
 
-         }
+   //       }
 
-      }
+   //    }
 
-      return true;
+   //    return true;
 
-   }
+   // }
 
 /*
    primitive::primitive()
@@ -4507,14 +4513,6 @@ namespace user
       m_timeFocusStart.Now();
 
    }
-
-
-   //bool primitive::_is_window() const
-   //{
-
-   //   return m_bUserElementOk;
-
-   //}
 
 
    void primitive::set_need_redraw(bool bAscendants)

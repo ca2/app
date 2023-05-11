@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -84,11 +84,11 @@ namespace nanoui
       /// The current flags of this button (see \ref nanoui::Button::Flags for options).
       int m_flags;
 
-      /// The background color of this Button.
-      Color m_background_color;
+      /// The background color::color of this Button.
+      color::color m_background_color;
 
-      /// The color of the caption text of this Button.
-      Color m_text_color;
+      /// The color::color of the caption text of this Button.
+      color::color m_text_color;
 
       /// The callback issued for all types of buttons.
       ::function<void()> m_callback;
@@ -121,15 +121,15 @@ namespace nanoui
       /// Sets the caption of this Button.
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
-      /// Returns the background color of this Button.
-      const Color & background_color() const { return m_background_color; }
-      /// Sets the background color of this Button.
-      void set_background_color(const Color & background_color) { m_background_color = background_color; }
+      /// Returns the background color::color of this Button.
+      const color::color & background_color() const { return m_background_color; }
+      /// Sets the background color::color of this Button.
+      void set_background_color(const color::color & background_color) { m_background_color = background_color; }
 
-      /// Returns the text color of the caption of this Button.
-      const Color & text_color() const { return m_text_color; }
-      /// Sets the text color of the caption of this Button.
-      void set_text_color(const Color & text_color) { m_text_color = text_color; }
+      /// Returns the text color::color of the caption of this Button.
+      const color::color & text_color() const { return m_text_color; }
+      /// Sets the text color::color of the caption of this Button.
+      void set_text_color(const color::color & text_color) { m_text_color = text_color; }
    
    
       /// Returns the icon of this Button.  See \ref nanoui::Button::m_icon.
@@ -171,7 +171,7 @@ namespace nanoui
       virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       /// The callback that is called when any type of mouse button event is issued to this Button.
       virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
       /// Responsible for drawing the Button.
       virtual void draw(::nano2d::context * pcontext) override;
 

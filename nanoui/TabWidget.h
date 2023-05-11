@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/tabwidget.h -- Widget for organizing multiple
     sub-widgets into tabs
 
@@ -79,12 +79,12 @@ namespace nanoui
       void set_padding(int value) { m_padding = value; }
 
       /// Set the widget's background color (a global property)
-      void set_background_color(const Color & background_color) {
+      void set_background_color(const ::color::color & background_color) {
          m_background_color = background_color;
       }
 
       /// Return the widget's background color (a global property)
-      const Color & background_color() const {
+      const ::color::color & background_color() const {
          return m_background_color;
       }
 
@@ -107,7 +107,7 @@ namespace nanoui
      void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
      Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
      void draw(::nano2d::context * pcontext) override;
-     bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
      bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
 
@@ -135,7 +135,7 @@ namespace nanoui
       ::function<void(int)> m_callback;
       ::function<void(int)> m_close_callback;
       ::function<Popup * (int, Screen *)> m_popup_callback;
-      Color m_background_color;
+      ::color::color m_background_color;
 };
 
 /**

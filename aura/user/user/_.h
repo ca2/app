@@ -56,6 +56,8 @@ namespace user
 
    class interaction_scaler;
 
+   class interaction_listener;
+
    class style;
 
    class alpha_source;
@@ -182,6 +184,11 @@ namespace user
 
    class notify_icon;
 
+   CLASS_DECL_AURA ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage);
+
+   CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
+
+
 } // namespace user
 
 
@@ -253,13 +260,6 @@ namespace user
 
 
    class system;
-
-
-#ifdef WINDOWS_DESKTOP
-
-   class message_window;
-
-#endif
 
 
    class plain_text_set_sel_command;

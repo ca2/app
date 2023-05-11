@@ -1,4 +1,4 @@
-﻿// Create on 2021-03-20 23:59 <3ThomasBS_
+// Create on 2021-03-20 23:59 <3ThomasBS_
 #pragma once
 
 
@@ -104,7 +104,7 @@ public:
    virtual ::file::path beforeca2();
    virtual ::file::path module();
    virtual ::file::path relative(::file::path path);
-   virtual ::file::path app_relative();
+   virtual ::string appid();
    virtual ::file::path appdata(); // appdata
    virtual ::file::path archive();
    virtual ::file::path tool();
@@ -185,6 +185,7 @@ public:
          virtual void _create2(const ::file::path & path);
          virtual void __create(const ::file::path & path);
          virtual void erase(const ::file::path & path);
+         virtual void erase_recursively(const ::file::path & path);
 
 
          //virtual void enumerate_recursively(::file::path_array & stra, const ::scoped_string & scopedstr);

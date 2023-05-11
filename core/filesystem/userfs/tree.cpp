@@ -603,6 +603,14 @@ namespace userfs
                      return pitem;
 
                   }
+                  else if(pathTreeItem.case_insensitive_ends("://")
+                     && pathUser.length() <= pathTreeItem.length()
+                     && pathUser.begins(pathTreeItem(0, pathTreeItem.length() - 3)))
+                  {
+
+                     return pitem;
+
+                  }
 
                }
 

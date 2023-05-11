@@ -524,9 +524,9 @@ namespace sockets
 
       bool HasCreator() { return m_bHasCreate; }
 
-      void OnOptions(int,int,int,SOCKET)
+      void OnOptions(int,int,int,SOCKET s)
       {
-         SetSoReuseaddr(true);
+         _SetSoReuseaddr(s, true);
       }
 
       int m_depth;

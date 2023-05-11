@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "_opengl.h"
+#include "font.h"
 
 
 namespace draw2d_opengl
@@ -63,11 +65,11 @@ namespace draw2d_opengl
    }
 
 
-   void font::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
+   //void font::dump(dump_context & dumpcontext) const
+   //{
+   //   ::draw2d::object::dump(dumpcontext);
 
-   }
+   //}
 
    void font::destroy()
    {
@@ -81,10 +83,10 @@ namespace draw2d_opengl
    }
 
 
-   bool font::create(::draw2d::graphics * pgraphics, i8 iCreate)
+   void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
-      if (m_hdcFont == nullptr || is_modified())
+      if (m_hdcFont == nullptr || is_modified(iCreate))
       {
 
 
@@ -94,7 +96,7 @@ namespace draw2d_opengl
 
          ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 
-         ((font *)this)->m_hfont = CreateFont(-m_dFontSize,							// Height Of Font
+         ((font *)this)->m_hfont = CreateFont((int) (-m_dFontSize),							// Height Of Font
             0,								// Width Of Font
             0,								// Angle Of Escapement
             0,								// Orientation Angle
@@ -124,7 +126,7 @@ namespace draw2d_opengl
 
       }
 
-      return m_hfont;
+      //return m_hfont;
 
    }
 

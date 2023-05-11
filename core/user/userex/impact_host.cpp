@@ -329,7 +329,7 @@ namespace userex
 
                pframewindow->set_need_layout();
 
-               pframewindow->WindowDataSaveWindowRect();
+               pframewindow->WindowDataSaveWindowRectangle();
 
             }
 
@@ -754,7 +754,7 @@ namespace userex
          if (pframewindow.is_set())
          {
 
-            pframewindow->WindowDataLoadWindowRect();
+            pframewindow->WindowDataLoadWindowRectangle();
 
             pframewindow->set_need_redraw();
 

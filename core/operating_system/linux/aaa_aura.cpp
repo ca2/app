@@ -4,19 +4,12 @@
 //extern thread_pointer < htask > t_htask;
 
 
-namespace audio
-{
-
-   CLASS_DECL_CORE string get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-} // namespace audio
-
-
+//CLASS_DECL_CORE string audio_get_default_implementation_name()
+//{
+//
+//   return "audio_alsa";
+//
+//}
 
 
 CLASS_DECL_CORE bool __node_aura_pre_init()

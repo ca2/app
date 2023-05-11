@@ -702,12 +702,12 @@ CLASS_DECL_ACME ::task * get_task()
    if (!t_ptask)
    {
 
-      if (::acme::acme::g_p)
+      if (::acme::acme::g_pacme)
       {
 
          t_ptask = new ::task();
 
-         t_ptask->initialize(::acme::acme::g_p->m_psubsystem->acmesystem());
+         t_ptask->initialize(::acme::acme::g_pacme->m_psubsystem->acmesystem());
 
       }
 

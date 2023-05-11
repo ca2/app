@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
+#include "pane_document.h"
 #include "base/user/user/impact.h"
-#include "core/user/simple/pane_document.h"
 
 
 simple_pane_document::simple_pane_document()

@@ -1790,7 +1790,7 @@ namespace http
       //TRACE("");
       set["http_get_serial"] = iHttpGetSerial;
 
-      auto tickStart = ::time::now();
+      //auto tickStart = ::time::now();
 
       int iTry = 0;
 
@@ -2289,7 +2289,7 @@ namespace http
       while (psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
 
-         if (tickStart.elapsed() > tickTotalTimeout)
+         if (psocket->get_last_interaction_time().elapsed() > tickTotalTimeout)
          {
 
             INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
@@ -2300,7 +2300,7 @@ namespace http
 
          iEnteredLoop = 1;
 
-         auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
+         auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - psocket->get_last_interaction_time().elapsed()));
 
          auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second();
 
@@ -2321,12 +2321,12 @@ namespace http
 
             iBodySizeDownloaded = iBodySizeDownloadedNow;
 
-            if (iBodySizeDownloaded > 0)
-            {
-
-               tickStart = ::time::now();
-
-            }
+//            if (iBodySizeDownloaded > 0)
+//            {
+//
+//               tickStart = ::time::now();
+//
+//            }
 
          }
 
@@ -2357,7 +2357,7 @@ namespace http
 
          psocket->set_scalar(::e_scalar_download_size, iBodySizeDownloaded);
 
-         if (psocket->m_transferprogressfunction)
+         if (psocket->m_transferprogressfunction && iContentLength > 0)
          {
 
             psocket->m_transferprogressfunction(dRateDownloaded, iBodySizeDownloaded, iContentLength);
@@ -2483,9 +2483,9 @@ namespace http
       else if (iStatusCode == 0)
       {
 
-         class ::time tickElapse = tickStart.elapsed();
+         class ::time tickElapsed = psocket->get_last_interaction_time().elapsed();
 
-         if (iTry < iTryCount && tickElapse < tickTotalTimeout)
+         if (iTry < iTryCount && tickElapsed < tickTotalTimeout)
          {
 
             task_sleep(300_ms);

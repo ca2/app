@@ -164,10 +164,11 @@ namespace user
    }
 
 
-   void notify_icon_listener::call_notification_area_action(const ::string & pszId)
+   void notify_icon_listener::call_notification_area_action(const ::scoped_string & pszId)
    {
 
    }
+
 
    notify_icon_listener::item::item()
    {

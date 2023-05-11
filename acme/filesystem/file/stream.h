@@ -165,6 +165,16 @@ public:
    ::i8                       m_precision;
 
 
+   print_formatting()
+   {
+
+      m_fmtflags = ::file::nofmtflags;
+      m_width = 2;
+      m_precision = 2;
+
+   }
+
+
    print_formatting & operator <<(::file::fmtflags e)
    {
 

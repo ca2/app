@@ -235,7 +235,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
     <ClCompile>
-      <StringPooling>false</StringPooling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -247,10 +246,8 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <SDLCheck>true</SDLCheck>
       <Optimization>Disabled</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
@@ -353,7 +350,6 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -366,10 +362,8 @@
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <SDLCheck>false</SDLCheck>
       <OmitFramePointers>true</OmitFramePointers>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -473,24 +467,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
     <ClCompile>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <StringPooling>false</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <FloatingPointExceptions>true</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <SDLCheck>true</SDLCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <OmitFramePointers>false</OmitFramePointers>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -590,14 +567,10 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <SDLCheck>false</SDLCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -761,17 +734,6 @@
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="message\_.cpp" />
-    <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\thread.cpp" />
-    <ClCompile Include="operating_system\windowing.cpp" />
-    <ClCompile Include="operating_system\windows\_library.cpp" />
-    <ClCompile Include="operating_system\windows\dpi.cpp" />
-    <ClCompile Include="operating_system\windows\gdi.cpp" />
-    <ClCompile Include="operating_system\windows\graphics.cpp" />
-    <ClCompile Include="operating_system\windows\main.cpp" />
-    <ClCompile Include="operating_system\windows\message_window.cpp" />
-    <ClCompile Include="operating_system\windows\monitor.cpp" />
-    <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
@@ -800,6 +762,7 @@
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
+    <ClCompile Include="user\user\interaction_listener.cpp" />
     <ClCompile Include="user\user\interaction_prodevian.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
@@ -807,7 +770,6 @@
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
-    <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
@@ -1124,6 +1086,7 @@
     <ClInclude Include="user\user\interaction_child.h" />
     <ClInclude Include="user\user\interaction_impl.h" />
     <ClInclude Include="user\user\interaction_layout.h" />
+    <ClInclude Include="user\user\interaction_listener.h" />
     <ClInclude Include="user\user\interaction_prodevian.h" />
     <ClInclude Include="user\user\interaction_scaler.h" />
     <ClInclude Include="user\user\interaction_style.h" />
@@ -1132,7 +1095,7 @@
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\layout_state.h" />
     <ClInclude Include="user\user\main_window.h" />
-    <ClInclude Include="user\user\message.h" />
+    <ClInclude Include="user\user\aaa_message.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\message_window.h" />
     <ClInclude Include="user\user\message_window_listener.h" />

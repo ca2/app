@@ -4,17 +4,12 @@
 //#include <VersionHelpers.h>
 
 
-namespace audio
-{
-
-   CLASS_DECL_CORE string get_default_library_name()
-   {
-
-      return "audio_xaudio";
-
-   }
-
-} // namespace audio
+//CLASS_DECL_CORE string audio_get_default_implementation_name()
+//{
+//
+//   return "audio_xaudio";
+//
+//}
 
 
 // int message_box_w(oswindow window,const unichar * pszMessage,const unichar * pszTitle,int iFlags)

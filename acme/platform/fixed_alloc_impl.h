@@ -21,7 +21,7 @@ inline void * fixed_alloc_sync::Alloc()
 
 
    void * p = nullptr;
-   m_protectptra.get_data()[i]->lock();
+   m_criticalsectiona[0].lock();
    try
    {
       p = m_allocptra.get_data()[i]->Alloc();
@@ -29,7 +29,7 @@ inline void * fixed_alloc_sync::Alloc()
    catch(...)
    {
    }
-   m_protectptra.get_data()[i]->unlock();
+   m_criticalsectiona[i].unlock();
    if(p == nullptr)
       return nullptr;
    ((i32 *) p)[0] = i;
@@ -44,7 +44,7 @@ inline void fixed_alloc_sync::Free(void * p)
 
    i32 i = ((i32 *)p)[-1];
 
-   critical_section_lock l(m_protectptra.get_data()[i]);
+   critical_section_lock l(&m_criticalsectiona[i]);
 
    m_allocptra.get_data()[i]->Free(&((i32 *)p)[-1]);
 

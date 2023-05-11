@@ -1,36 +1,41 @@
 
 
-void * os_alloc(memsize size)
+void* operating_system_memory_allocate(memsize size);
+void* operating_system_memory_reallocate(void* p, memsize size);
+void operating_system_memory_free(void* p);
+memsize operating_system_memory_size(void* p);
+
+
+void * __operating_system_memory_allocate(memsize size)
 {
 
-	return os_impl_alloc(size);
-
+	return operating_system_memory_allocate(size);
 
 }
 
 
-void * os_realloc(void * p, memsize size)
+void * __operating_system_memory_reallocate(void * p, memsize size)
 {
 
-	return os_impl_realloc(p, size);
+	return operating_system_memory_reallocate(p, size);
 
 }
 
 
-void os_free(void * p)
+void __operating_system_memory_free(void * p)
 {
 
-	return os_impl_free(p);
+	return operating_system_memory_free(p);
 
 }
 
-size_t os_size(void * p)
+
+memsize __operating_system_memory_size(void * p)
 {
 
-	return os_impl_size(p);
+	return operating_system_memory_size(p);
 
 }
-
 
 
 

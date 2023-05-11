@@ -2,7 +2,7 @@
 #include "sequencer.h"
 
 
-critical_section g_criticalsectionSequence;
+::critical_section g_criticalsectionSequence;
 
 
 critical_section * get_sequence_critical_section()

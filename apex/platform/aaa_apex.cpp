@@ -114,7 +114,7 @@ namespace apex
     }
 
 
-   string apex::multimedia_audio_get_default_library_name()
+   string apex::multimedia_audio_get_default_implementation_name()
    {
 
       return "";
@@ -122,7 +122,7 @@ namespace apex
    }
 
 
-   string apex::multimedia_audio_mixer_get_default_library_name()
+   string apex::multimedia_audio_mixer_get_default_implementation_name()
    {
 
       return "";
@@ -130,7 +130,7 @@ namespace apex
    }
 
 
-   string apex::veriwell_multimedia_music_midi_get_default_library_name()
+   string apex::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
       return "";

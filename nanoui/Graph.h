@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/graph.h -- Simple graph widget for showing a function plot
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -37,17 +37,17 @@ namespace nanoui
       ::string footer() const { return m_footer; }
       void set_footer(const ::scoped_string & footer) { m_footer = footer; }
 
-      const Color & background_color() const { return m_background_color; }
-      void set_background_color(const Color & background_color) { m_background_color = background_color; }
+      const ::color::color & background_color() const { return m_background_color; }
+      void set_background_color(const ::color::color & background_color) { m_background_color = background_color; }
 
-      const Color & stroke_color() const { return m_stroke_color; }
-      void set_stroke_color(const Color & stroke_color) { m_stroke_color = stroke_color; }
+      const ::color::color & stroke_color() const { return m_stroke_color; }
+      void set_stroke_color(const ::color::color & stroke_color) { m_stroke_color = stroke_color; }
 
-      const Color & fill_color() const { return m_fill_color; }
-      void set_fill_color(const Color & fill_color) { m_fill_color = fill_color; }
+      const ::color::color & fill_color() const { return m_fill_color; }
+      void set_fill_color(const ::color::color & fill_color) { m_fill_color = fill_color; }
 
-      const Color & text_color() const { return m_text_color; }
-      void set_text_color(const Color & text_color) { m_text_color = text_color; }
+      const ::color::color & text_color() const { return m_text_color; }
+      void set_text_color(const ::color::color & text_color) { m_text_color = text_color; }
 
       const ::array<float> & values() const { return m_values; }
       ::array<float> & values() { return m_values; }
@@ -57,7 +57,7 @@ namespace nanoui
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       ::string m_caption, m_header, m_footer;
-      Color m_background_color, m_fill_color, m_stroke_color, m_text_color;
+      ::color::color m_background_color, m_fill_color, m_stroke_color, m_text_color;
       ::array<float> m_values;
 };
 

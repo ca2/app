@@ -219,6 +219,13 @@ namespace user
    void tree::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      if (m_bPendingDrawingObjectsUpdate)
+      {
+
+         update_drawing_objects();
+
+      }
+
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -912,6 +919,38 @@ namespace user
 
    }
 
+   
+   void tree::update_drawing_objects()
+   {
+   
+      //      style_context context(this);
+
+      auto psystem = acmesystem()->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      auto pstyle = get_style(pgraphics);
+
+      m_colorTreeBackground = get_color(pstyle, ::e_element_background);
+
+      __defer_construct(m_pbrushTextSelectedHighlight);
+      __defer_construct(m_pbrushTextSelected);
+      __defer_construct(m_pbrushTextHighlight);
+      __defer_construct(m_pbrushText);
+
+      __defer_construct(m_pfontTreeItem);
+
+      m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
+      m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
+
+      m_pfontTreeItem = get_font(pstyle);
+
+   }
+
 
    void tree::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
@@ -1092,6 +1131,7 @@ namespace user
             pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
 
             _001OnItemCollapse(pitem, context);
+            bRedraw = true;
 
          }
       }
@@ -1100,6 +1140,7 @@ namespace user
       if (bRedraw)
       {
          set_need_redraw();
+         post_redraw();
       }
 
    }
@@ -1192,31 +1233,7 @@ namespace user
 
       pmessage->previous();
 
-      //      style_context context(this);
-
-      auto psystem = acmesystem()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-      auto pstyle = get_style(pgraphics);
-
-      m_colorTreeBackground = get_color(pstyle, ::e_element_background);
-
-      __defer_construct(m_pbrushTextSelectedHighlight);
-      __defer_construct(m_pbrushTextSelected);
-      __defer_construct(m_pbrushTextHighlight);
-      __defer_construct(m_pbrushText);
-
-      __defer_construct(m_pfontTreeItem);
-
-      m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
-      m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
-      m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
-      m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
-
-      m_pfontTreeItem = get_font(pstyle);
+      m_bPendingDrawingObjectsUpdate = true;
 
    }
 

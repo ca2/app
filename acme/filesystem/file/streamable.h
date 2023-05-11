@@ -60,6 +60,23 @@ namespace file
       virtual void set_size(filesize dwNewLen);
 
       virtual filesize size() const;
+      virtual filesize right_size() const;
+
+
+      virtual ::memory right_memory(::memsize iReadAtMostByteCount = -1);
+      virtual void right_memory(memory_base & memory, ::memsize iReadAtMostByteCount = -1);
+      virtual ::string right_string(::memsize iReadAtMostByteCount = -1);
+      virtual void right_string(::string & str, ::memsize iReadAtMostByteCount = -1);
+
+      virtual string full_string(::memsize iReadAtMostByteCount = -1);
+
+      virtual void full_memory(memory_base & memory, ::memsize iReadAtMostByteCount = -1);
+      virtual ::memory full_memory(::memsize iReadAtMostByteCount = -1);
+
+
+
+
+      // virtual ::memory left_memory(::memsize iReadAtMostByteCount = -1);
 
 
    };

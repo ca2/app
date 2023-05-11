@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#include "earth_time.h"
 //#include "file_time.h"
 #include "date_span.h"
@@ -361,7 +361,7 @@ namespace earth
 
       ptm = tm_struct(&ttm, timeshift);
 
-      return ptm ? ptm->tm_wday + 1 : 0 ;
+      return ptm ? ptm->tm_wday : 0 ;
 
    }
 
@@ -542,13 +542,17 @@ namespace earth
 
       string str;
 
+      auto timeUtc = time.m_time;
+
+      timeUtc += (::i32)  (timeshift.m_d * 3600.0);
+
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
    #if OSBIT == 32
-      const time_t timet = (const time_t) time.m_time;
-      struct tm * ptmTemp = localtime(&timet);
+      const time_t timet = (const time_t) timeUtc;
+      struct tm * ptmTemp = gmtime(&timet);
       #else
-      struct tm * ptmTemp = localtime(&time.m_time);
+      struct tm * ptmTemp = gmtime(&timeUtc);
       #endif
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat.c_str(), ptmTemp))
       {
@@ -567,7 +571,7 @@ namespace earth
 
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
 
-      struct tm * ptmTemp = localtime((time_t *)&time.m_time);
+      struct tm * ptmTemp = gmtime((time_t *)&time.m_time);
 
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
@@ -586,7 +590,7 @@ namespace earth
 
       struct tm ptmTemp;
 
-      errno_t err = _localtime64_s(&ptmTemp, &m_time);
+      errno_t err = _gmbtime64_s(&ptmTemp, &m_time);
 
       if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
       {

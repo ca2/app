@@ -8,12 +8,12 @@ single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLoc
 
    m_pparticleSynchronization = pparticleSynchronization;
 
-   if (::is_set(m_pparticleSynchronization))
-   {
+   //if (::is_set(m_pparticleSynchronization))
+   //{
 
-      m_pparticleSynchronization->increment_reference_count();
+   //   m_pparticleSynchronization->increment_reference_count();
 
-   }
+   //}
 
    set_own_synchronization_flag();
 
@@ -37,7 +37,7 @@ single_lock::~single_lock()
 
    }
 
-   ::release(m_pparticleSynchronization);
+   // ::release(m_pparticleSynchronization);
 
    clear_own_synchronization_flag();
 
@@ -315,7 +315,7 @@ _single_lock::~_single_lock()
 
    unlock();
 
-   ::release(m_pparticleSynchronization);
+   //::release(m_pparticleSynchronization);
 
 }
 

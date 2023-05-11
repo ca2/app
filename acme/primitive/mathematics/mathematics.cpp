@@ -20,9 +20,10 @@ namespace mathematics
       virtual public ::matter
    {
 
+
       int                              m_i;
       i32                              m_iRngReSeedCountDown;
-      critical_section                 m_criticalsection;
+      ::critical_section               m_criticalsection;
       random_number_generator          m_randomnumbergenerator;
 
 //#ifdef WINDOWS_DESKTOP

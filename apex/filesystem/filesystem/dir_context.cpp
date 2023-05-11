@@ -2086,7 +2086,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
    if (patha[0].contains("yesno.xhtml"))
    {
 
-      output_debug_string("test");
+      output_debug_string("matter_from_locator yesno.xhtml");
 
    }
 
@@ -2631,9 +2631,7 @@ ret:
 
    }
 
-   string strAppFolder = _002Underscore(strAppId);
-
-   return acmedirectory()->home() / "application" / strAppFolder;
+   return acmedirectory()->roaming() / strAppId;
 
 }
 

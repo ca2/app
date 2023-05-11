@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/progressbar.cpp -- Standard widget for visualizing progress
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -30,7 +30,7 @@ void ProgressBar::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint paint = pcontext->box_gradient(
       m_pos.x() + 1.f, m_pos.y() + 1.f,
-      m_size.x() - 2.f, (float)m_size.y(), 3.f, 4.f, Color(0, 32), Color(0, 92));
+      m_size.x() - 2.f, (float)m_size.y(), 3.f, 4.f, ::color::color(0, 32),  ::color::color(0, 92));
    pcontext->begin_path();
    pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), 3.f);
    pcontext->fill_paint(paint);
@@ -42,7 +42,7 @@ void ProgressBar::draw(::nano2d::context * pcontext) {
    paint = pcontext->box_gradient(
       (float)m_pos.x(), (float)m_pos.y(),
       bar_pos + 1.5f, m_size.y() - 1.f, 3.f, 4.f,
-      Color(220, 100), Color(128, 100));
+      ::color::color(220, 100),       ::color::color(128, 100));
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(

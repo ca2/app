@@ -102,19 +102,12 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //}
 
 
-namespace audio
-{
-
-
-   CLASS_DECL_APEX string get_default_library_name()
-   {
-   
-      return "audio_core_audio";
-   
-   }
-
-
-} // namespace audio
+//CLASS_DECL_APEX string audio_get_default_implementation_name()
+//{
+//
+//   return "audio_core_audio";
+//
+//}
 
 
 

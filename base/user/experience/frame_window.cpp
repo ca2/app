@@ -2,10 +2,10 @@
 #include "frame_window.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
+#include "acme/handler/item.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
-////#include "aura/message.h"
 #include "aura/message/user.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -179,25 +179,25 @@ namespace experience
    void frame_window::pre_translate_message(::message::message * pmessage)
    {
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (pmessage->m_atom == WM_GETTEXT)
-//      {
-//
-//         return;
-//
-//      }
-//      else if (pmessage->m_atom == WM_GETTEXTLENGTH)
-//      {
-//
-//         return;
-//
-//      }
-//      else
-//
-//#endif
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      if (pmessage->m_atom == WM_GETTEXT)
+      //      {
+      //
+      //         return;
+      //
+      //      }
+      //      else if (pmessage->m_atom == WM_GETTEXTLENGTH)
+      //      {
+      //
+      //         return;
+      //
+      //      }
+      //      else
+      //
+      //#endif
 
-         if (pmessage->m_atom == e_message_mouse_move)
+      if (pmessage->m_atom == e_message_mouse_move)
       {
 
          return;
@@ -213,7 +213,7 @@ namespace experience
 
          auto psession = get_session();
 
-         if (pkey->userinteraction() == this)
+         if(::user::message_user_interaction(pkey) == this)
          {
 
             if (pmessage->m_atom == e_message_key_down || pmessage->m_atom == e_message_sys_key_down)
@@ -397,83 +397,83 @@ namespace experience
    }
 
 
-//   void frame_window::frame_toggle_restore()
-//   {
-//
-//      if(m_pimpl2 && m_pimpl2->m_pwindow)
-//      {
-//
-//         return m_pimpl2->m_pwindow->frame_toggle_restore();
-//
-//      }
-//      else
-//      {
-//
-//         return ::user::frame_window::frame_toggle_restore();
-//
-//      }
-//
-//
-//
-////#ifdef MACOS
-////
-////
-////#else
-////
-////
-////#endif
-//
-//   }
+   //   void frame_window::frame_toggle_restore()
+   //   {
+   //
+   //      if(m_pimpl2 && m_pimpl2->m_pwindow)
+   //      {
+   //
+   //         return m_pimpl2->m_pwindow->frame_toggle_restore();
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         return ::user::frame_window::frame_toggle_restore();
+   //
+   //      }
+   //
+   //
+   //
+   ////#ifdef MACOS
+   ////
+   ////
+   ////#else
+   ////
+   ////
+   ////#endif
+   //
+   //   }
 
 
-   void frame_window::message_handler(::message::message* pusermessage)
+   void frame_window::message_handler(::message::message * pusermessage)
    {
 
-//      int iMessage = pusermessage->m_atom;
+      //      int iMessage = pusermessage->m_atom;
 
 
-      //if (pusermessage->m_atom == WM_GETTEXT)
-      //{
+            //if (pusermessage->m_atom == WM_GETTEXT)
+            //{
 
-      //   _008GetWindowText(pusermessage);
+            //   _008GetWindowText(pusermessage);
 
-      //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
-      //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
+            //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
+            //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
 
-      //   if (!pusermessage->m_bRet)
-      //   {
+            //   if (!pusermessage->m_bRet)
+            //   {
 
-      //      default_window_procedure();
+            //      default_window_procedure();
 
-      //   }
+            //   }
 
-      //   return;
+            //   return;
 
-      //}
-      //else if (pusermessage->m_atom == WM_GETTEXTLENGTH)
-      //{
+            //}
+            //else if (pusermessage->m_atom == WM_GETTEXTLENGTH)
+            //{
 
-      //   _008GetWindowTextLength(pusermessage);
+            //   _008GetWindowTextLength(pusermessage);
 
-      //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
-      //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
+            //   pusermessage->m_uiMessageFlags |= 3; // message considered pre translated
+            //   pusermessage->m_uiMessageFlags |= 16384; //  by early optmization
 
-      //   if (!pusermessage->m_bRet)
-      //   {
+            //   if (!pusermessage->m_bRet)
+            //   {
 
-      //      default_window_procedure();
+            //      default_window_procedure();
 
-      //   }
+            //   }
 
-      //   return;
+            //   return;
 
-      //}
-      //else
-      //{
+            //}
+            //else
+            //{
 
-         relay_event(pusermessage);
+      relay_event(pusermessage);
 
-//      }
+      //      }
 
       if (pusermessage->m_bRet)
       {
@@ -533,7 +533,7 @@ namespace experience
          try
          {
 
-            if(m_pframe->m_bPendingStyleChange)
+            if (m_pframe->m_bPendingStyleChange)
             {
 
                m_pframe->m_bPendingStyleChange = false;
@@ -678,7 +678,7 @@ namespace experience
       if (m_pmovemanager == nullptr)
       {
 
-         __construct(m_pmovemanager,__new(class move_manager));
+         __construct(m_pmovemanager, __new(class move_manager));
 
          try
          {
@@ -736,59 +736,59 @@ namespace experience
 
       }
 
-//      m_pdockmanager->SetSWPFlags(SWP_SHOWWINDOW);
+      //      m_pdockmanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-//      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      //      m_psizemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-//      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
+      //      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      //if(estatusMoveManager.succeeded())
-      //{
+            //if(estatusMoveManager.succeeded())
+            //{
 
-      //   if (!m_pmovemanager->set_frame_window(this))
-      //   {
+            //   if (!m_pmovemanager->set_frame_window(this))
+            //   {
 
-      //      estatusMoveManager = error_failed;
+            //      estatusMoveManager = error_failed;
 
-      //   }
+            //   }
 
-      //}
+            //}
 
-      //if(estatusDockManager.succeeded())
-      //{
+            //if(estatusDockManager.succeeded())
+            //{
 
-      //   if (!m_pdockmanager->set_frame_window(this))
-      //   {
+            //   if (!m_pdockmanager->set_frame_window(this))
+            //   {
 
-      //      estatusDockManager = error_failed;
+            //      estatusDockManager = error_failed;
 
-      //   }
+            //   }
 
-      //}
+            //}
 
-      //if(estatusSizeManager.succeeded())
-      //{
+            //if(estatusSizeManager.succeeded())
+            //{
 
-      //   if (!m_psizemanager->set_frame_window(this))
-      //   {
+            //   if (!m_psizemanager->set_frame_window(this))
+            //   {
 
-      //      estatusSizeManager = error_failed;
+            //      estatusSizeManager = error_failed;
 
-      //   }
+            //   }
 
-      //}
+            //}
 
-      //if(estatusMenuManager.succeeded())
-      //{
+            //if(estatusMenuManager.succeeded())
+            //{
 
-      //   if (!m_pmenumanager->set_frame_window(this))
-      //   {
+            //   if (!m_pmenumanager->set_frame_window(this))
+            //   {
 
-      //      estatusMenuManager = error_failed;
+            //      estatusMenuManager = error_failed;
 
-      //   }
+            //   }
 
-      //}
+            //}
 
       try
       {
@@ -1053,7 +1053,7 @@ namespace experience
    }
 
 
-   void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
+   void frame_window::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       ::user::frame_window::route_command(pcommand, bRouteToKeyDescendant);
@@ -1100,7 +1100,7 @@ namespace experience
    void frame_window::display_previous_restore()
    {
 
-      if(::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
+      if (::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
       {
 
          return display(m_windowrectangle.m_edisplayPrevious);
@@ -1186,14 +1186,14 @@ namespace experience
             m_pframe->OnActivate();
 
          }
-         
+
          if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
          {
 
             set_need_redraw();
 
             post_redraw();
-            
+
          }
 
       }
@@ -1269,13 +1269,13 @@ namespace experience
    size_manager * frame_window::size_manager()
    {
 
-      if(m_psizemanager == nullptr)
+      if (m_psizemanager == nullptr)
       {
 
          __construct(m_psizemanager, __new(class size_manager));
 
          //auto estatus = 
-         
+
          m_psizemanager->initialize_size_manager(this);
 
          //if (!estatus)
@@ -1341,16 +1341,16 @@ namespace experience
 
       ::pointer<::user::interaction>pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
-      if(pActive == nullptr)
+      if (pActive == nullptr)
       {
 
       }
-      else if(base_class < ::user::list_box >::bases(pActive))
+      else if (base_class < ::user::list_box >::bases(pActive))
       {
 
          ::user::list_box * plist = dynamic_cast <::user::list_box *> (pActive.m_p);
 
-         if(plist != nullptr && plist->m_bComboList)
+         if (plist != nullptr && plist->m_bComboList)
          {
 
             pactivate->m_bRet = true;
@@ -1378,6 +1378,47 @@ namespace experience
    }
 
 
+   ::item_pointer frame_window::hit_test(::user::mouse * pmouse)
+   {
+
+      if (is_sizing_enabled())
+      {
+
+         if (m_psizemanager->m_eframeCursor != e_frame_none)
+         {
+
+
+            switch (m_psizemanager->m_eframeCursor)
+            {
+            case e_frame_sizing_left:
+               return __new(::item(e_element_resize_left));
+            case e_frame_sizing_top:
+               return __new(::item(e_element_resize_top));
+            case e_frame_sizing_right:
+               return __new(::item(e_element_resize_right));
+            case e_frame_sizing_bottom:
+               return __new(::item(e_element_resize_bottom));
+            case e_frame_sizing_top_left:
+               return __new(::item(e_element_resize_top_left));
+            case e_frame_sizing_top_right:
+               return __new(::item(e_element_resize_top_right));
+            case e_frame_sizing_bottom_left:
+               return __new(::item(e_element_resize_bottom_left));
+            case e_frame_sizing_bottom_right:
+               return __new(::item(e_element_resize_bottom_right));
+
+
+            }
+
+         }
+
+      }
+
+      return ::user::frame_window::hit_test(pmouse);
+
+   }
+
+
    void frame_window::window_enable_full_screen(bool bEnable)
    {
 
@@ -1391,29 +1432,22 @@ namespace experience
 
       ::user::frame_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &frame_window::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &frame_window::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::on_message_mouse_move);
-      MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
-      MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
-      MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
-      MESSAGE_LINK(e_message_non_client_hit_test,pchannel,this,&frame_window::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
-      //MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
-
-//#ifdef WINDOWS_DESKTOP
-
-//      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-
-//#endif
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &frame_window::on_message_mouse_move);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &frame_window::_001OnNcLButtonDown);
+      MESSAGE_LINK(e_message_non_client_left_button_up, pchannel, this, &frame_window::_001OnNcLButtonUp);
+      MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &frame_window::_001OnNcMouseMove);
+      MESSAGE_LINK(e_message_non_client_hit_test, pchannel, this, &frame_window::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
 
    }
 
 
-   void frame_window::on_message_size(::message::message* pmessage)
+   void frame_window::on_message_size(::message::message * pmessage)
    {
 
    }
@@ -1424,7 +1458,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
 
          pmouse->m_bRet = false;
@@ -1433,14 +1467,14 @@ namespace experience
 
       }
 
-      if(::is_set(m_pframe))
+      if (::is_set(m_pframe))
       {
 
          m_pframe->on_message_left_button_down(pmouse);
 
       }
 
-      if(pmouse->m_bRet)
+      if (pmouse->m_bRet)
       {
 
          pmouse->m_lresult = 1;
@@ -1456,13 +1490,6 @@ namespace experience
       ::user::frame_window::on_visual_applied();
 
 
-      //if (layout().is_docking())
-      //{
-
-      //   dock_manager()->defer_cursor_pos();
-
-      //}
-
    }
 
 
@@ -1471,14 +1498,14 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
 
          return;
 
       }
 
-      if(::is_set(m_pframe))
+      if (::is_set(m_pframe))
       {
 
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
@@ -1509,7 +1536,7 @@ namespace experience
 
       }
 
-      if(pmouse->m_bRet)
+      if (pmouse->m_bRet)
       {
 
          pmouse->m_lresult = 1;
@@ -1524,7 +1551,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
 
          pmouse->m_bRet = false;
@@ -1537,7 +1564,7 @@ namespace experience
 
       m_pframe->on_message_left_button_up(pmouse);
 
-      if(pmouse->m_bRet)
+      if (pmouse->m_bRet)
       {
 
          pmouse->m_lresult = 1;
@@ -1547,7 +1574,7 @@ namespace experience
    }
 
 
-   void frame_window::on_message_left_button_double_click(::message::message* pmessage)
+   void frame_window::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1633,7 +1660,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
 
          pmouse->m_bRet = false;
@@ -1646,7 +1673,7 @@ namespace experience
 
       m_pframe->_001OnNcLButtonDown(pmouse);
 
-      if(pmouse->m_bRet)
+      if (pmouse->m_bRet)
       {
 
          pmouse->m_lresult = 1;
@@ -1660,7 +1687,7 @@ namespace experience
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
 
          pmouse->m_bRet = false;
@@ -1673,27 +1700,27 @@ namespace experience
 
       m_pframe->_001OnNcMouseMove(pmouse);
 
-   if(pmouse->m_bRet)
-   {
-   pmouse->m_lresult = 1;
-   }
+      if (pmouse->m_bRet)
+      {
+         pmouse->m_lresult = 1;
+      }
 
    }
 
    void frame_window::_001OnNcLButtonUp(::message::message * pmessage)
    {
-   auto pmouse = pmessage->m_union.m_pmouse;
-   if(!is_frame_experience_enabled())
-   {
-   pmouse->m_bRet = false;
-   return;
-   }
-   ASSERT(m_pframe != nullptr);
-   m_pframe->_001OnNcLButtonUp(pmouse);
-   if(pmouse->m_bRet)
-   {
-   pmouse->m_lresult = 1;
-   }
+      auto pmouse = pmessage->m_union.m_pmouse;
+      if (!is_frame_experience_enabled())
+      {
+         pmouse->m_bRet = false;
+         return;
+      }
+      ASSERT(m_pframe != nullptr);
+      m_pframe->_001OnNcLButtonUp(pmouse);
+      if (pmouse->m_bRet)
+      {
+         pmouse->m_lresult = 1;
+      }
 
    }
 
@@ -1703,19 +1730,19 @@ namespace experience
 
       ::pointer<::message::nc_hit_test>pnchittest(pmessage);
 
-      if(!is_frame_experience_enabled())
+      if (!is_frame_experience_enabled())
       {
-   
+
          pnchittest->m_bRet = false;
-   
+
          return;
-   
+
       }
-      
+
       ASSERT(m_pframe != nullptr);
 
       enum_hit_test ehittest = e_hit_test_error;
-   
+
       pnchittest->m_bRet = m_pframe->_001OnNcHitTest(pnchittest->m_point, ehittest);
 
       if (pnchittest->m_bRet)
@@ -1779,7 +1806,7 @@ namespace experience
    void frame_window::set_frame(::experience::frame * pframe)
    {
 
-      if(m_pframe != nullptr && m_pframe != pframe)
+      if (m_pframe != nullptr && m_pframe != pframe)
       {
 
          m_pframe->frame_on_detach();
@@ -1788,7 +1815,7 @@ namespace experience
 
       }
 
-      if(pframe == nullptr)
+      if (pframe == nullptr)
       {
 
          return;
@@ -1829,7 +1856,7 @@ namespace experience
       if (!pcontrolbox)
       {
 
-         return nullptr; 
+         return nullptr;
 
       }
 
@@ -1847,13 +1874,74 @@ namespace experience
    }
 
 
-   bool frame_window::_001CallOnBeforeAppearance()
+   //bool frame_window::_001CallOnBeforeAppearance()
+   //{
+
+   //   if (!_001OnBeforeAppearance())
+   //   {
+
+   //      display(const_layout().design().display());
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   bool frame_window::sketch_on_display()
    {
 
-      if (!_001OnBeforeAppearance())
+      if (!is_frame_experience_enabled())
       {
 
-         display(const_layout().design().display());
+         return ::user::frame_window::sketch_on_display();
+
+      }
+
+      auto edisplay = const_layout().sketch().display();
+
+      //auto eactivation = layout().sketch().activation();
+
+      if (edisplay == e_display_iconic)
+      {
+
+         if (m_bitMinimizeToTray)
+         {
+
+            display(e_display_notify_icon);
+
+         }
+
+      }
+      else if (edisplay == e_display_zoomed)
+      {
+
+         if (m_bFullScreenOnMaximize)
+         {
+
+            display(e_display_full_screen);
+
+         }
+
+      }
+      else if (edisplay == ::e_display_up)
+      {
+
+         m_eupdown = e_updown_up;
+
+      }
+      else if (edisplay == ::e_display_down)
+      {
+
+         m_eupdown = e_updown_down;
+
+      }
+
+      if (!::user::frame_window::sketch_on_display())
+      {
 
          return false;
 
@@ -1864,544 +1952,438 @@ namespace experience
    }
 
 
-      bool frame_window::sketch_on_display()
-      {
-
-         if (!is_frame_experience_enabled())
-         {
-
-            return ::user::frame_window::sketch_on_display();
-
-         }
-
-         auto edisplay = const_layout().sketch().display();
-
-         //auto eactivation = layout().sketch().activation();
-
-         if (edisplay == e_display_iconic)
-         {
-
-            if (m_bitMinimizeToTray)
-            {
-
-               display(e_display_notify_icon);
-
-            }
-
-         }
-         else if (edisplay == e_display_zoomed)
-         {
-
-            if (m_bFullScreenOnMaximize)
-            {
-
-               display(e_display_full_screen);
-
-            }
-
-         }
-         else if (edisplay == ::e_display_up)
-         {
-
-            m_eupdown = e_updown_up;
-
-         }
-         else if (edisplay == ::e_display_down)
-         {
-
-            m_eupdown = e_updown_down;
-
-         }
-
-         if (!_001CallOnBeforeAppearance())
-         {
-
-            return false;
-
-         }
-
-         if (!::user::frame_window::sketch_on_display())
-         {
-
-            return false;
-
-         }
-
-         return true;
-
-      }
-
-
 #define ZONEING_COMPARE ::comparison
 
 
-      index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   {
+
+      //i64 g_i_get_best_zoneing = 0;
+
+      ::rectangle_i32 rectangle;
+
+      if (rectangleRequest.is_set())
       {
 
-         //i64 g_i_get_best_zoneing = 0;
+         rectangle = rectangleRequest;
 
-         ::rectangle_i32 rectangle;
+      }
+      else
+      {
 
-         if (rectangleRequest.is_set())
+         rectangle = screen_rect();
+
+      }
+
+      ::rectangle_i32 rectangleWorkspace;
+
+      index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+
+      if (rectangle.is_empty())
+      {
+
+         return iBestWorkspace;
+
+      }
+
+      auto sizeMinimum = get_window_minimum_size();
+
+      if (rectangle.height() < sizeMinimum.cy)
+      {
+
+         rectangle.set_height(sizeMinimum.cy);
+
+         rectangle._001ConstrainY(rectangleWorkspace);
+
+      }
+
+      if (rectangle.width() < sizeMinimum.cx)
+      {
+
+         rectangle.set_width(sizeMinimum.cx);
+
+         rectangle._001ConstrainX(rectangleWorkspace);
+
+      }
+
+      if (iBestWorkspace >= 0)
+      {
+
+         ::rectangle rectangleOld(rectangle);
+
+         auto pwindowing = windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_good_move(rectangle, rectangleOld, this);
+
+      }
+
+      if (!is_docking_appearance(edisplay))
+      {
+
+         edisplay = e_display_none;
+
+      }
+
+      ::e_display edisplayPrevious = edisplay != e_display_none ? edisplay : const_layout().design().display();
+
+      bool bCursorPosition = layout().is_moving();
+
+      ::point_i32 pointCursor(e_no_initialize);
+
+      if (bCursorPosition)
+      {
+
+         auto pwindow = window();
+
+         pointCursor = pwindow->get_cursor_position();
+
+      }
+
+      auto psystem = acmesystem()->m_pbasesystem;
+
+      double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
+
+      if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+      {
+
+         edisplay |= e_display_top;
+
+         if (bPreserveSize)
          {
 
-            rectangle = rectangleRequest;
+            rectangle.move_top_to(rectangleWorkspace.top);
 
          }
          else
          {
 
-            rectangle = screen_rect();
+            rectangle.top = rectangleWorkspace.top;
 
          }
 
-         ::rectangle_i32 rectangleWorkspace;
+      }
+      else
+      {
 
-         index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+         edisplay -= e_display_top;
 
-         if(rectangle.is_empty())
+      }
+
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      {
+
+         edisplay |= e_display_bottom;
+
+         if (bPreserveSize)
          {
 
-            return iBestWorkspace;
+            rectangle.move_bottom_to(rectangleWorkspace.bottom);
+
+         }
+         else
+         {
+
+            rectangle.bottom = rectangleWorkspace.bottom;
 
          }
 
-         auto sizeMinimum = get_window_minimum_size();
+      }
+      else
+      {
 
-         if (rectangle.height() < sizeMinimum.cy)
+         edisplay -= e_display_bottom;
+
+      }
+
+      if (ZONEING_COMPARE::is_equal(rectangle.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
+      {
+
+         edisplay |= e_display_left;
+
+         if (bPreserveSize)
          {
 
-            rectangle.set_height(sizeMinimum.cy);
+            rectangle.move_left_to(rectangleWorkspace.left);
 
-            rectangle._001ConstrainY(rectangleWorkspace);
+         }
+         else
+         {
+
+            rectangle.left = rectangleWorkspace.left;
 
          }
 
-         if (rectangle.width() < sizeMinimum.cx)
+      }
+      else
+      {
+
+         edisplay -= e_display_left;
+
+      }
+
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
+      {
+
+         edisplay |= e_display_right;
+
+         if (bPreserveSize)
          {
 
-            rectangle.set_width(sizeMinimum.cx);
+            rectangle.move_right_to(rectangleWorkspace.right);
 
-            rectangle._001ConstrainX(rectangleWorkspace);
+         }
+         else
+         {
+
+            rectangle.right = rectangleWorkspace.right;
 
          }
 
-         if (iBestWorkspace >= 0)
+      }
+      else
+      {
+
+         edisplay -= e_display_right;
+
+      }
+
+      if (!(edisplay & e_display_top || edisplay & e_display_bottom)
+         && is_different(edisplay & e_display_left, edisplay & e_display_right))
+      {
+
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
          {
 
-            ::rectangle rectangleOld(rectangle);
-
-            auto pwindowing = windowing();
-
-            auto pdisplay = pwindowing->display();
-
-            pdisplay->get_good_move(rectangle, rectangleOld, this);
-
-         }
-
-         if (!is_docking_appearance(edisplay))
-         {
-
-            edisplay = e_display_none;
-
-         }
-
-         ::e_display edisplayPrevious = edisplay != e_display_none ? edisplay : const_layout().design().display();
-
-         bool bCursorPosition = layout().is_moving();
-
-         ::point_i32 pointCursor(e_no_initialize);
-
-         if (bCursorPosition)
-         {
-
-            auto pwindow = window();
-
-            pointCursor = pwindow->get_cursor_position();
-
-         }
-
-         auto psystem = acmesystem()->m_pbasesystem;
-
-         double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectangleWorkspace.area()));
-
-         if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
-         {
-
-            edisplay |= e_display_top;
-
-            if (bPreserveSize)
+            if (dock_manager()->window_is_docking())
             {
 
-               rectangle.move_top_to(rectangleWorkspace.top);
+               edisplay |= e_display_bottom;
 
-            }
-            else
-            {
+               edisplay |= e_display_top;
+
+               rectangle.bottom = rectangleWorkspace.bottom;
 
                rectangle.top = rectangleWorkspace.top;
 
             }
 
          }
-         else
+         else if ((edisplayPrevious & (e_display_left | e_display_right))
+            != (edisplay & (e_display_left | e_display_right)))
          {
 
-            edisplay -= e_display_top;
+            edisplay = e_display_none;
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      }
+
+      if (!(edisplay & e_display_left || edisplay & e_display_right)
+         && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
+      {
+
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
          {
 
-            edisplay |= e_display_bottom;
-
-            if (bPreserveSize)
+            if (dock_manager()->window_is_docking())
             {
 
-               rectangle.move_bottom_to(rectangleWorkspace.bottom);
+               edisplay |= e_display_left;
 
-            }
-            else
-            {
-
-               rectangle.bottom = rectangleWorkspace.bottom;
-
-            }
-
-         }
-         else
-         {
-
-            edisplay -= e_display_bottom;
-
-         }
-
-         if (ZONEING_COMPARE::is_equal(rectangle.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
-         {
-
-            edisplay |= e_display_left;
-
-            if (bPreserveSize)
-            {
-
-               rectangle.move_left_to(rectangleWorkspace.left);
-
-            }
-            else
-            {
+               edisplay |= e_display_right;
 
                rectangle.left = rectangleWorkspace.left;
-
-            }
-
-         }
-         else
-         {
-
-            edisplay -= e_display_left;
-
-         }
-
-         if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
-         {
-
-            edisplay |= e_display_right;
-
-            if (bPreserveSize)
-            {
-
-               rectangle.move_right_to(rectangleWorkspace.right);
-
-            }
-            else
-            {
 
                rectangle.right = rectangleWorkspace.right;
 
             }
 
          }
-         else
+         else if ((edisplayPrevious & (e_display_top | e_display_bottom))
+            != (edisplay & (e_display_top | e_display_bottom)))
          {
 
-            edisplay -= e_display_right;
+            edisplay = e_display_none;
 
          }
-
-         if (!(edisplay & e_display_top || edisplay & e_display_bottom)
-            && is_different(edisplay & e_display_left, edisplay & e_display_right))
-         {
-
-            if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
-            {
-
-               if (dock_manager()->window_is_docking())
-               {
-
-                  edisplay |= e_display_bottom;
-
-                  edisplay |= e_display_top;
-
-                  rectangle.bottom = rectangleWorkspace.bottom;
-
-                  rectangle.top = rectangleWorkspace.top;
-
-               }
-
-            }
-            else if((edisplayPrevious & (e_display_left | e_display_right))
-               != (edisplay & (e_display_left | e_display_right)))
-            {
-
-               edisplay = e_display_none;
-
-            }
-
-         }
-
-         if (!(edisplay & e_display_left || edisplay & e_display_right)
-            && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
-         {
-
-            if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
-            {
-
-               if (dock_manager()->window_is_docking())
-               {
-
-                  edisplay |= e_display_left;
-
-                  edisplay |= e_display_right;
-
-                  rectangle.left = rectangleWorkspace.left;
-
-                  rectangle.right = rectangleWorkspace.right;
-
-               }
-
-            }
-            else if ((edisplayPrevious & (e_display_top | e_display_bottom))
-               != (edisplay & (e_display_top | e_display_bottom)))
-            {
-
-               edisplay = e_display_none;
-
-            }
-
-         }
-
-         bool bLeftXorRight = is_different(edisplay & e_display_left, edisplay & e_display_right);
-
-         bool bTopXorBottom = is_different(edisplay & e_display_top, edisplay & e_display_bottom);
-
-         bool bTopAndBottom = edisplay & e_display_top && edisplay & e_display_bottom;
-
-         bool bLeftAndRight = edisplay & e_display_left && edisplay & e_display_right;
-
-         if (bLeftXorRight && bTopXorBottom)
-         {
-
-         }
-         else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
-         {
-
-            if (const_layout().sketch().display() == e_display_full_screen)
-            {
-
-               edisplay = e_display_full_screen;
-
-            }
-            else
-            {
-
-               edisplay = e_display_zoomed;
-
-            }
-
-         }
-
-         if (edisplay == e_display_none)
-         {
-
-            edisplay = e_display_restored;
-
-         }
-
-         if (is_docking_appearance(edisplay))
-         {
-
-            *prectangle = rectangle;
-
-         }
-         else if (edisplay == e_display_zoomed)
-         {
-
-            *prectangle = rectangleWorkspace;
-
-         }
-         else
-         {
-
-            *prectangle = rectangleRequest;
-
-         }
-
-         return iBestWorkspace;
 
       }
+
+      bool bLeftXorRight = is_different(edisplay & e_display_left, edisplay & e_display_right);
+
+      bool bTopXorBottom = is_different(edisplay & e_display_top, edisplay & e_display_bottom);
+
+      bool bTopAndBottom = edisplay & e_display_top && edisplay & e_display_bottom;
+
+      bool bLeftAndRight = edisplay & e_display_left && edisplay & e_display_right;
+
+      if (bLeftXorRight && bTopXorBottom)
+      {
+
+      }
+      else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
+      {
+
+         if (const_layout().sketch().display() == e_display_full_screen)
+         {
+
+            edisplay = e_display_full_screen;
+
+         }
+         else
+         {
+
+            edisplay = e_display_zoomed;
+
+         }
+
+      }
+
+      if (edisplay == e_display_none)
+      {
+
+         edisplay = e_display_restored;
+
+      }
+
+      if (is_docking_appearance(edisplay))
+      {
+
+         *prectangle = rectangle;
+
+      }
+      else if (edisplay == e_display_zoomed)
+      {
+
+         *prectangle = rectangleWorkspace;
+
+      }
+      else
+      {
+
+         *prectangle = rectangleRequest;
+
+      }
+
+      return iBestWorkspace;
+
+   }
 
 
 #undef ZONEING_COMPARE
 
 
-      void frame_window::_001OnAfterAppearance()
+   //void frame_window::_001OnAfterExitAppearance()
+   //{
+//
+  // }
+
+
+   //      void frame_window::on_message_dock_button_left_button_down(::message::message *pmessage)
+   //      {
+   //
+   //         auto pmouse = pmessage->m_union.m_pmouse;
+   //
+   //         if (!WfiOnStartDock())
+   //         {
+   //
+   //            return;
+   //
+   //         }
+   //
+   //         dock_manager()->on_message_left_button_down(pmouse);
+   //
+   //         //::rectangle_i32 rectangleWindow;
+   //
+   //         //ptopic->user_interaction()->window_rectangle(rectangleWindow);
+   //
+   //         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
+   //
+   //      }
+
+
+   bool frame_window::_001OnBeforeEnterAppearance()
+   {
+
+      auto edisplayRequest = const_layout().sketch().display();
+
+      if (edisplayRequest == e_display_notify_icon)
       {
 
-      }
-
-
-//      void frame_window::on_message_dock_button_left_button_down(::message::message *pmessage)
-//      {
-//
-//         auto pmouse = pmessage->m_union.m_pmouse;
-//
-//         if (!WfiOnStartDock())
-//         {
-//
-//            return;
-//
-//         }
-//
-//         dock_manager()->on_message_left_button_down(pmouse);
-//
-//         //::rectangle_i32 rectangleWindow;
-//
-//         //ptopic->user_interaction()->window_rectangle(rectangleWindow);
-//
-//         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
-//
-//      }
-
-
-      bool frame_window::_001OnBeforeAppearance()
-      {
-
-         auto edisplay = const_layout().sketch().display();
-
-         if (edisplay == e_display_notify_icon)
+         if (!window_is_notify_icon_enabled())
          {
 
-            if(!window_is_notify_icon_enabled())
-            {
-
-               return false;
-
-            }
-
-         }
-
-         return true;
-
-      }
-
-
-      void frame_window::_001OnExitFullScreen()
-      {
-
-         ::user::box::_001OnExitFullScreen();
-
-         set_need_layout();
-
-      }
-
-
-      void frame_window::frame_Attach()
-      {
-
-         if (m_pupdowntarget != nullptr)
-         {
-
-            m_pupdowntarget->UpDownTargetAttach(this);
+            return false;
 
          }
 
       }
 
+      return ::user::frame_window::_001OnBeforeEnterAppearance();
 
-      void frame_window::frame_Detach()
+   }
+
+
+   //bool frame_window::_001OnEnterFullScreen()
+   //{
+
+   //   return true;
+
+   //}
+
+
+   //void frame_window::_001OnExitFullScreen()
+   //{
+
+   //   ::user::box::_001OnExitFullScreen();
+
+   //   set_need_layout();
+
+   //}
+
+
+   void frame_window::frame_Attach()
+   {
+
+      if (m_pupdowntarget != nullptr)
       {
 
-         if (m_pupdowntarget != nullptr)
-         {
-
-            m_pupdowntarget->UpDownTargetDetach(this);
-
-         }
+         m_pupdowntarget->UpDownTargetAttach(this);
 
       }
 
-
-      //void frame_window::_001OnTimer(::timer * ptimer)
-      //{
-
-      //   _001OnTimer(ptimer);
-
-      //}
+   }
 
 
-      //bool frame_window::update()
-      //{
+   void frame_window::frame_Detach()
+   {
 
-      //   if (m_pframewindow == nullptr)
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   if (m_pframe == nullptr)
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   //try
-      //   //{
-
-      //   //   if (m_pframe->m_puserstyle.is_null())
-      //   //   {
-
-      //   //      m_pframe->m_puserstyle = m_puserstyle;
-
-      //   //   }
-
-      //   //}
-      //   //catch (...)
-      //   //{
-
-      //   //}
-
-
-      //   return false;
-
-      //}
-
-
-      void frame_window::defer_save_window_placement()
+      if (m_pupdowntarget != nullptr)
       {
 
+         m_pupdowntarget->UpDownTargetDetach(this);
 
       }
 
+   }
 
-      bool frame_window::window_is_notify_icon_enabled()
-      {
 
-         return false;
 
-      }
+   void frame_window::defer_save_window_placement()
+   {
+
+
+   }
+
+
+   bool frame_window::window_is_notify_icon_enabled()
+   {
+
+      return false;
+
+   }
 
 
    bool frame_window::is_frame_experience_enabled()
@@ -2449,7 +2431,7 @@ namespace experience
          defer_restore(m_windowrectangle.m_rectangleRestored);
 
       }
-      else if(rectangleRequest.size() == m_sizeRestoreBroad)
+      else if (rectangleRequest.size() == m_sizeRestoreBroad)
       {
 
          if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestoreBroad)
@@ -2486,24 +2468,8 @@ namespace experience
       set_need_redraw();
 
       post_redraw();
-      
-      //return ::success;
 
    }
-
-
-
-   //void frame_window::handle(::topic * ptopic, ::context * pcontext)
-   //{
-
-   //   if(ptopic->m_atom == id_app_activated)
-   //   {
-
-   //      frame_toggle_restore();
-
-   //   }
-
-   //}
 
 
 } // namespace experience

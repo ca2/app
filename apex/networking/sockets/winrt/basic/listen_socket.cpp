@@ -379,9 +379,9 @@ namespace sockets
       return false;
    }
 
-   void listen_socket_base::OnOptions(i32, i32, i32, SOCKET)
+   void listen_socket_base::OnOptions(i32, i32, i32, SOCKET s)
    {
-      SetSoReuseaddr(true);
+      _SetSoReuseaddr(s, true);
    }
 
 

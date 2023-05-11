@@ -72,7 +72,7 @@ namespace app_build
 
       int iPane;
 
-      if (m_papplicationForConsumer->m_bMultiverseChat)
+      if (m_papp->m_bMultiverseChat)
       {
 
          SetPaneCount(2);

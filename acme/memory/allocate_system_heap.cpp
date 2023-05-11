@@ -1,8 +1,6 @@
 #include "framework.h"
 #include "acme/exception/no_memory.h"
 
-//#include <crtdbg.h>
-
 
 #include "memory/os_alloc.h"
 
@@ -21,7 +19,7 @@ extern thread_pointer < memdleak_block > t_plastblock;
 void * system_heap_alloc_normal(memsize size)
 {
 
-   void * p = ::os_alloc(size);
+   void * p = ::__operating_system_memory_allocate(size);
 
    if(p == nullptr)
    {
@@ -56,7 +54,7 @@ void * system_heap_alloc_debug(memsize size, int nBlockUse, const ::file::path &
 
    memdleak_block * pblock;
 
-   pblock = (memdleak_block *) ::os_alloc(nAllocSize);
+   pblock = (memdleak_block *) ::__operating_system_memory_allocate(nAllocSize);
 
    p = pblock;
 
@@ -76,18 +74,21 @@ void * system_heap_alloc_debug(memsize size, int nBlockUse, const ::file::path &
 void * system_heap_realloc_normal(void * p, memsize size)
 {
 
-   return ::os_realloc(p, size);
+   return ::__operating_system_memory_reallocate(p, size);
 
 }
+
 
 memsize system_heap_alloc_size(void * p)
 {
 
-   return ::os_size(p);
+   return ::__operating_system_memory_size(p);
 
 }
 
+
 #ifdef MEMDLEAK
+
 
 void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const ::file::path & path, i32 iLine)
 {
@@ -132,7 +133,7 @@ void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const :
 
    //memsize * psizeNew = nullptr;
 
-   p = (memdleak_block *) ::os_realloc(p, size);
+   p = (memdleak_block *) ::__operating_system_memory_reallocate(p, size);
 
 
 //   p->m_iEnabled = memdleak_enabled();
@@ -201,7 +202,7 @@ void system_heap_free(void * p)
       try
       {
 
-         ::os_free(p);
+         ::__operating_system_memory_free(p);
 
       }
       catch (...)

@@ -104,7 +104,7 @@ namespace userpresence
 
       }
 
-      if(papp->payload("app") == "simpledbcfg" || papp->payload("app") == "app-core/netnodelite")
+      if(papp->payload("app") == "simpledbcfg" || papp->payload("app") == "app-core/netnode_desktop")
       {
 
          return true;

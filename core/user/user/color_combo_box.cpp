@@ -438,7 +438,7 @@ namespace user
 
             color2.hls_rate(0.0, 0.3, 0.5);
 
-            pgraphics->draw_inset_rectangle(rEdit, color2);
+            pgraphics->draw_inset_rectangle(rEdit, color2, 1.0);
 
          }
 

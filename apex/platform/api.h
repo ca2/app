@@ -28,6 +28,7 @@ public:
    bool                             m_bAuthenticating;
    //string                         m_strConfig;
    ::string                         m_strImplementation;
+   ::string                         m_strService;
    string                           m_strBrowserAccount;
    string                           m_strToken;
    string                           m_strState;

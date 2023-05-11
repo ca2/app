@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -129,7 +129,7 @@ extern "C" {
    typedef struct GLFWwindow GLFWwindow;
 }
 
-//struct ::nano2d::color;
+//struct ::color::color;
 //struct ::nano2d::glyphPosition;
 struct GLFWcursor;
 

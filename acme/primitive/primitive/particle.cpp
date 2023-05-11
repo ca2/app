@@ -17,7 +17,7 @@
 particle::~particle()
 {
 
-   ::release(m_pparticleSynchronization);
+   //::release(m_pparticleSynchronization);
 
 }
 
@@ -108,7 +108,7 @@ void particle::set_synchronization(::particle *pparticleSynchronization)
 
    }
 
-   ::release(m_pparticleSynchronization);
+   m_pparticleSynchronization.release();
 
    m_pparticleSynchronization = pparticleSynchronization;
 
@@ -126,6 +126,20 @@ void particle::defer_create_synchronization()
    }
 
 }
+
+
+#ifdef WINDOWS
+
+
+hsynchronization particle::get_synchronization_handle()
+{
+
+   return nullptr;
+
+}
+
+
+#endif
 
 
 const char * __sz_defer_skip(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSkip)
@@ -435,7 +449,7 @@ void particle::on_initialize_particle()
 ::factory::factory_pointer & particle::factory()
 {
 
-   return ::acme::acme::g_p->m_psubsystem->factory();
+   return ::acme::acme::g_pacme->m_psubsystem->factory();
 
 }
 
@@ -459,6 +473,14 @@ void particle::on_initialize_particle()
 void particle::handle(::topic * ptopic, ::context * pcontext)
 {
 
+
+}
+
+
+bool particle::_is_set() const
+{
+
+   return true;
 
 }
 

@@ -55,9 +55,12 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_nanoui.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
+
+
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
 
     #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})

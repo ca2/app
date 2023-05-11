@@ -35,13 +35,13 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #endif
 
 
-#ifdef LINUX
-
-
-#include "aura/operating_system/ansi/_ansi.h"
-
-
-#endif
+//#ifdef LINUX
+//
+//
+//#include "aura/operating_system/ansi/_ansi.h"
+//
+//
+//#endif
 
 
 namespace user
@@ -165,6 +165,8 @@ namespace user
       
       initialize(pimpl);
 
+      defer_create_synchronization();
+
       //if (!estatus)
       //{
 
@@ -192,7 +194,7 @@ namespace user
             if (m_pimpl)
             {
 
-               m_pimpl->window_show();
+               m_puserinteraction->window_show();
 
             }
 
@@ -841,7 +843,9 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_pimpl->window_show();
+            m_puserinteraction->window_show();
+
+            //m_pimpl->window_show();
 
          }
 
@@ -927,8 +931,9 @@ namespace user
          if (bStartWindowVisual)
          {
 
+            m_puserinteraction->window_show();
 
-            m_pimpl->m_pwindow->window_show();
+            //m_pimpl->m_pwindow->window_show();
             //m_puserinteraction->post_procedure(m_procedureWindowShow);
 
          }
@@ -1270,18 +1275,6 @@ namespace user
 
             }
 
-
-            if (m_puserinteraction)
-            {
-
-               if (m_puserinteraction->is_visual_changed())
-               {
-
-                  m_puserinteraction->on_visual_applied();
-
-               }
-
-            }
 
          }
 

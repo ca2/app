@@ -1,4 +1,4 @@
-﻿// Created on 2021-03-42 16:35 <3ThomasBS_!!
+// Created on 2021-03-42 16:35 <3ThomasBS_!!
 #pragma once
 
 
@@ -12,11 +12,11 @@ class CLASS_DECL_ACME memory_counter :
 public:
 
 
-   int m_iMemoryCounters = -1;
+   int                        m_iMemoryCounters = -1;
 
-   critical_section m_criticalsection;
+   ::critical_section         m_criticalsection;
 
-   int m_iMemoryCountersStartable = 0;
+   int                        m_iMemoryCountersStartable = 0;
 
    ::string_map < iptr >      m_mapMemoryCounter;
 
@@ -109,10 +109,10 @@ template < typename T >
 void memory_counter_increment(T* pthis)
 {
 
-   if (::acme::acme::g_p->m_pmemorycounter)
+   if (::acme::acme::g_pacme->m_pmemorycounter)
    {
 
-      ::acme::acme::g_p->m_pmemorycounter->memory_counter_increment(pthis);
+      ::acme::acme::g_pacme->m_pmemorycounter->memory_counter_increment(pthis);
 
    }
 
@@ -123,10 +123,10 @@ template < typename T >
 void memory_counter_decrement(T* pthis)
 {
 
-   if (::acme::acme::g_p->m_pmemorycounter)
+   if (::acme::acme::g_pacme->m_pmemorycounter)
    {
 
-      ::acme::acme::g_p->m_pmemorycounter->memory_counter_decrement(pthis);
+      ::acme::acme::g_pacme->m_pmemorycounter->memory_counter_decrement(pthis);
 
    }
 

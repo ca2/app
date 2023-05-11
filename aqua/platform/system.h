@@ -18,6 +18,8 @@ namespace aqua
 
       ::pointer<::aqua::multimedia>                   m_pmultimedia;
 
+      ::pointer<::aqua::audio_mixer>                  m_paudiomixer;
+
       ::pointer<::aqua::estamira>                     m_pestamira;
 
 
@@ -47,9 +49,13 @@ namespace aqua
 
       virtual void defer_multimedia();
 
+      virtual void defer_audio_mixer();
+
       bool has_audio() override;
 
       virtual ::aqua::multimedia* defer_get_multimedia();
+
+      virtual ::aqua::audio_mixer * get_audio_mixer();
 
 
       inline ::aqua::audio * audio() { return m_paudio; }

@@ -332,6 +332,7 @@ public:
 
 
    void parse_ini(const ::string & strIni);
+   void parse_standard_configuration(const ::string & strStandardConfiguration);
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 

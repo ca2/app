@@ -33,8 +33,13 @@ endif()
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+list(APPEND library_references acme)
+
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
+
 target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
@@ -48,20 +53,32 @@ if (MSVC)
     target_link_libraries(folder_zip PRIVATE acme apex aqua aura Gdiplus)
 elseif(LINUX)
 
-    if(NOT DONT_USE_PKG_CONFIG)
+    #if(NOT DONT_USE_PKG_CONFIG)
         pkg_check_modules(PKGCONFIG zlib)
-    endif()
+    #endif()
+
+
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(folder_zip PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(folder_zip PRIVATE ${PKGCONFIG_LIBRARIES} acme)
+
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
+
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 

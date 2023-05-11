@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "socket.h"
 
 
@@ -195,9 +195,6 @@ namespace sockets
 //      attach(INVALID_SOCKET);
 //      return s;
 //   }
-
-
-
 
 
    void socket::set(bool bRead, bool bWrite, bool bException)

@@ -21,6 +21,8 @@ namespace windows
       ~handle();
 
 
+      handle & operator = (HANDLE handle);
+
       void close_handle();
 
 
@@ -30,6 +32,8 @@ namespace windows
 
       bool nok() const { return m_handle == INVALID_HANDLE_VALUE || m_handle == NULL; }
       bool is_ok() const { return !nok(); }
+
+
 
 
    };

@@ -20,6 +20,16 @@ namespace opengl
 } // namespace opengl
 
 
+namespace operating_system
+{
+
+
+   class summary;
+
+
+} // namespace operating_system
+
+
 namespace message
 {
 
@@ -826,17 +836,8 @@ namespace operating_system
 } // namespace operating_system
 
 
-
-
-
-
-
-
-
-
 namespace acme
 {
-
 
    class static_start;
 
@@ -1575,3 +1576,5 @@ namespace nano
    class nano;
 
 } // namespace nano
+
+

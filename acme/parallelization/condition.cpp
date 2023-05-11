@@ -172,7 +172,7 @@ bool condition::pulse()
 
    SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
-      &(CRITICAL_SECTION&)m_criticalsection, 
+      &m_criticalsection, 
       INFINITE);
 
 #elif defined(ANDROID)

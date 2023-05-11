@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/slider.cpp -- Fractional slider widget with mouse control
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -21,7 +21,7 @@ namespace nanoui
 Slider::Slider(Widget * parent)
    : Widget(parent), m_value(0.0f), m_range(0.f, 1.f),
    m_highlighted_range(0.f, 0.f) {
-   m_highlight_color = Color(255, 80, 80, 70);
+   m_highlight_color =  ::color::color(255, 80, 80, 70);
 }
 
 
@@ -47,7 +47,7 @@ bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */, co
    return true;
 }
 
-bool Slider::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & /* modifiers */) {
+bool Slider::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) {
    if (!m_enabled)
       return false;
 
@@ -78,7 +78,7 @@ void Slider::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint bg = pcontext->box_gradient(
       start_x, center.y() - 3 + 1, width_x, 6, 3, 3,
-      Color(0, m_enabled ? 32 : 10), Color(0, m_enabled ? 128 : 210));
+                                               ::color::color(0, m_enabled ? 32 : 10),  ::color::color(0, m_enabled ? 128 : 210));
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(start_x, center.y() - 3 + 1, width_x, 6, 2);
@@ -98,7 +98,7 @@ void Slider::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint knob_shadow =
       pcontext->radial_gradient(knob_pos.x(), knob_pos.y(), kr - kshadow,
-         kr + kshadow, Color(0, 64), m_theme->m_transparent);
+         kr + kshadow,  ::color::color(0, 64), m_theme->m_transparent);
 
    pcontext->begin_path();
    pcontext->rectangle(knob_pos.x() - kr - 5, knob_pos.y() - kr - 5, kr * 2 + 10,
@@ -124,7 +124,7 @@ void Slider::draw(::nano2d::context * pcontext) {
    pcontext->fill();
    pcontext->begin_path();
    pcontext->circle(knob_pos.x(), knob_pos.y(), kr / 2);
-   pcontext->fill_color(Color(150, m_enabled ? 255 : 100));
+   pcontext->fill_color( ::color::color(150, m_enabled ? 255 : 100));
    pcontext->stroke_paint(knob_reverse);
    pcontext->stroke();
    pcontext->fill();

@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
@@ -42,6 +42,8 @@ namespace nano2d
       m_pgraphics = pgraphics;
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+      
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       _create_new_state();
 
@@ -326,7 +328,7 @@ namespace nano2d
 
 
    ::nano2d::paint draw2d_context::linear_gradient(float sx, float sy, float ex, float ey,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       auto & paintimage = _create_new_paint_image();
@@ -336,8 +338,8 @@ namespace nano2d
       paintimage.m_pbrush->CreateLinearGradientBrush(
          ::point_f64(sx, sy),
          ::point_f64(ex, ey),
-         ::as_color(icol),
-         ::as_color(ocol));
+         icol,
+         ocol);
    
       ::nano2d::paint paint{};
       
@@ -350,7 +352,7 @@ namespace nano2d
 
 
    ::nano2d::paint draw2d_context::box_gradient(float x, float y, float w, float h, float r, float f,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       auto & paintimage = _create_new_paint_image();
@@ -359,10 +361,10 @@ namespace nano2d
 
       paintimage.m_pbrush->CreateBoxGradientBrush(
          ::point_f64(x, y),
-         ::point_f64(w, h),
+         ::size_f64(w, h),
          r,
-         ::as_color(icol),
-         ::as_color(ocol));
+         icol,
+         ocol);
 
       ::nano2d::paint paint{};
 
@@ -374,7 +376,7 @@ namespace nano2d
 
 
    ::nano2d::paint draw2d_context::radial_gradient(float cx, float cy, float inr, float outr,
-      ::nano2d::color icol, ::nano2d::color ocol)
+      ::color::color icol, ::color::color ocol)
    {
 
       auto & paintimage = _create_new_paint_image();
@@ -384,8 +386,8 @@ namespace nano2d
       paintimage.m_pbrush->CreateRadialGradientBrush(
          ::point_f64(cx - inr, cy - outr),
          ::size_f64(inr * 2.0f, outr * 2.0f),
-         ::as_color(icol),
-         ::as_color(ocol));
+         icol,
+         ocol);
 
       ::nano2d::paint paint{};
 
@@ -525,14 +527,16 @@ namespace nano2d
    }
 
 
-   void draw2d_context::fill_color(::nano2d::color color)
+   void draw2d_context::fill_color(::color::color color)
    {
 
       m_pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
-      m_pstate->m_pbrush->m_color = ::as_color(color);
+      m_pstate->m_pbrush->m_color = color;
 
       m_pstate->m_pbrush->set_modified();
+      
+      m_iPaint = -1;
 
    }
 
@@ -620,10 +624,10 @@ namespace nano2d
    }
 
 
-   void draw2d_context::stroke_color(::nano2d::color color)
+   void draw2d_context::stroke_color(::color::color color)
    {
 
-      m_pstate->m_ppen->m_color = ::as_color(color);
+      m_pstate->m_ppen->m_color = color;
 
       m_pstate->m_ppen->set_modified();
 

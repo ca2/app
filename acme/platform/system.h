@@ -593,6 +593,8 @@ namespace acme
 //#define LIBCALL(library, entry)  (acmesystem()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
+      virtual ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
+      virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
    };

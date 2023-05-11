@@ -498,9 +498,17 @@ namespace user
    }
 
 
-   void primitive_impl::post(::message::message* pusermessage)
+   void primitive_impl::post(::message::message* pmessage)
    {
 
+      if (!m_puserinteraction)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_puserinteraction->post(pmessage);
 
    }
 
@@ -1103,21 +1111,26 @@ namespace user
    //}
 
    
-   void primitive_impl::_001OnExitIconic()
+   void primitive_impl::_001OnAfterExitIconic()
+   {
+
+   }
+
+
+   void primitive_impl::_001OnAfterExitNormal()
+   {
+
+   }
+
+
+   void primitive_impl::_001OnAfterExitZoomed()
    {
 
 
    }
 
 
-   void primitive_impl::_001OnExitFullScreen()
-   {
-
-
-   }
-
-
-   void primitive_impl::_001OnExitZoomed()
+   void primitive_impl::_001OnAfterExitFullScreen()
    {
 
 
@@ -2255,14 +2268,40 @@ namespace user
    void primitive_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      if (::is_null(m_puserinteraction))
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      if (m_puserinteraction)
       {
 
-         throw ::exception(error_wrong_state);
+         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+
+      }
+      else
+      {
+
+         pmessage = get_message(atom, wparam, lparam);
 
       }
 
-      m_puserinteraction->interaction_post(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      pmessage->m_pchannel = m_puserinteraction;
+
+      //return message_call(pmessage);
+
+      post(pmessage);
+
 
    }
 

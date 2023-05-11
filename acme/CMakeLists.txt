@@ -213,6 +213,7 @@ list(APPEND library_source
         #memory/new.cpp
         memory/os_alloc.cpp
         memory/os_alloc.h
+        memory/os_impl/malloc.cpp
         memory/paged.h
         memory/paged_large.cpp
         memory/property_memory_allocate.cpp
@@ -245,6 +246,8 @@ list(APPEND library_source
         #operating_system/ansi/memory.cpp
         operating_system/ansi/process.cpp
         #operating_system/ansi/user.cpp
+        operating_system/application.cpp
+        operating_system/application.h
         operating_system/argcargv.cpp
         operating_system/chronometer.cpp
         operating_system/console.cpp
@@ -253,8 +256,12 @@ list(APPEND library_source
         operating_system/debug.cpp
         operating_system/file.cpp
         #operating_system/http.cpp
+        operating_system/main_window.cpp
+        operating_system/main_window.h
         operating_system/parallelization.cpp
         operating_system/process.h
+        operating_system/summary.cpp
+        operating_system/summary.h
         operating_system/time.cpp
         operating_system/windowing.cpp
         parallelization/_.cpp
@@ -326,6 +333,8 @@ list(APPEND library_source
         platform/display.cpp
         platform/exclusive.cpp
         #platform/factory.cpp
+        platform/factory_function.cpp
+        platform/factory_function.h
         platform/fixed_alloc.cpp
         platform/flags.cpp
         platform/hyperlink.cpp
@@ -2302,6 +2311,9 @@ endif ()
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
 
+
+
+
 if (MSVC)
 
 
@@ -2328,16 +2340,20 @@ elseif (LINUX OR FREEBSD)
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-     if (FREEBSD)
-        target_link_libraries(acme PRIVATE z dl pthread iconv execinfo)
+
+    if (FREEBSD)
+        list(APPEND system_libraries z dl pthread iconv execinfo)
     else ()
-        target_link_libraries(acme PRIVATE z dl pthread idn)
+        list(APPEND system_libraries z dl pthread idn)
     endif ()
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
 elseif (MACOS)

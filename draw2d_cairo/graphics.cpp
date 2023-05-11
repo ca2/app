@@ -1340,7 +1340,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_polygon(const POINT_F64 * pa, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * pa, count nCount)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -1370,7 +1370,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_polygon(const POINT_F64 * pa, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * pa, count nCount)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -1400,7 +1400,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polygon(const POINT_F64 * pa, count nCount)
+   void graphics::polygon(const ::point_f64 * pa, count nCount)
    {
 
       _synchronous_lock ml(cairo_mutex());

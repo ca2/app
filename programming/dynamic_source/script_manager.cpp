@@ -630,116 +630,124 @@ namespace dynamic_source
 
       ::payload payload;
 
-      ::pointer<script_interface>pimpl;
-
-      ::pointer<::dynamic_source::script_instance>pinstance;
-
-      ::pointer<script>pscript;
-
       {
 
-         auto pmain = pinstanceParent->main();
+         ::pointer<script>pscript;
 
-         pinstance = get(strName, pscript);
-
-         if (pinstance == nullptr || pscript == nullptr)
          {
 
-            return false;
+            ::pointer<script_interface>pimpl;
 
-         }
+            ::pointer<::dynamic_source::script_instance>pinstance;
 
-         if (pinstance && pinstanceParent && pscript)
-         {
-
-            pimpl = pmain;
-
-            //pimpl = ::__create < script_interface >();
-
-            //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
-
-            //pimpl->initialize(pinstanceParent);
-
-            //pimpl->m_pscript2 = pinstance->m_pscript2;
-
-            //pimpl->run_property(ID_CREATE);
-            //
-            //pimpl->call_routine(CREATE_ROUTINE);
-
-            //pimpl->init1();
-
-            pinstance->initialize(pimpl);
-
-            pinstance->m_pinstanceParent2 = pinstanceParent;
-
-            pinstance->run_property(ID_CREATE);
-
-            pinstance->call_procedures(ID_CREATE);
-
-            if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
 
-               pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
+               auto pmain = pinstanceParent->main();
 
-               pinstanceParent->m_strDebugThisScript = strName;
+               pinstance = get(strName, pscript);
 
-               ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
-
-               if (pdsscript != nullptr)
+               if (pinstance == nullptr || pscript == nullptr)
                {
 
-                  try
+                  return false;
+
+               }
+
+               if (pinstance && pinstanceParent && pscript)
+               {
+
+                  pimpl = pmain;
+
+                  //pimpl = ::__create < script_interface >();
+
+                  //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
+
+                  //pimpl->initialize(pinstanceParent);
+
+                  //pimpl->m_pscript2 = pinstance->m_pscript2;
+
+                  //pimpl->run_property(ID_CREATE);
+                  //
+                  //pimpl->call_routine(CREATE_ROUTINE);
+
+                  //pimpl->init1();
+
+                  pinstance->initialize(pimpl);
+
+                  pinstance->m_pinstanceParent2 = pinstanceParent;
+
+                  pinstance->run_property(ID_CREATE);
+
+                  pinstance->call_procedures(ID_CREATE);
+
+                  if (pinstanceParent->m_pmain->m_iDebug > 0)
                   {
 
-                     if (pdsscript->m_strError.has_char())
+                     pinstanceParent->m_strDebugRequestUri = pinstanceParent->m_pmain->netnodesocket()->m_request.m_strRequestUri;
+
+                     pinstanceParent->m_strDebugThisScript = strName;
+
+                     ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
+
+                     if (pdsscript != nullptr)
                      {
 
-                        pinstanceParent->output_file()->print(pscript->m_strError);
+                        try
+                        {
+
+                           if (pdsscript->m_strError.has_char())
+                           {
+
+                              pinstanceParent->output_file()->print(pscript->m_strError);
+
+                           }
+
+                        }
+                        catch (...)
+                        {
+
+                        }
 
                      }
-
-                  }
-                  catch (...)
-                  {
 
                   }
 
                }
 
+               if (pscript->HasCompileOrLinkError())
+               {
+
+                  try
+                  {
+
+                     pinstance->destroy();
+
+                  }
+
+                  catch (...)
+                  {
+
+                  }
+                  return false;
+
+               }
+
+               pinstance->dinit();
+
+               payload = pinstance->run_script();
+
+               try
+               {
+
+                  pinstance->destroy();
+
+               }
+               catch (...)
+               {
+
+               }
+
             }
-
-         }
-
-         if (pscript->HasCompileOrLinkError())
-         {
-
-            try
-            {
-
-               pinstance->destroy();
-
-            }
-
-            catch (...)
-            {
-
-            }
-            return false;
-
-         }
-
-         pinstance->dinit();
-
-         payload = pinstance->run_script();
-
-         try
-         {
-
-            pinstance->destroy();
-
-         }
-         catch (...)
-         {
 
          }
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/tabwidget.cpp -- Widget for organizing multiple
     sub-widgets into tabs
 
@@ -25,7 +25,7 @@ namespace nanoui
 
 
 TabWidgetBase::TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont)
-   : Widget(parent), m_font(scopedstrFont), m_background_color(Color(0.f, 0.f)) {
+   : Widget(parent), m_font(scopedstrFont), m_background_color(::color::color(0.f, 0.f)) {
    m_tab_offsets.push_back(0);
 }
 
@@ -153,7 +153,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
 
    int tab_height = (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
 
-   if (m_background_color.w() != 0.f) {
+   if (m_background_color.fa() != 0.f) {
       pcontext->fill_color(m_background_color);
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
@@ -228,7 +228,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
       pcontext->begin_path();
       pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_tab_drag_max - m_tab_drag_min),
          tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-      pcontext->fill_color(Color(255, 255, 255, 30));
+      pcontext->fill_color(::color::color(255, 255, 255, 30));
       pcontext->fill();
    }
    pcontext->restore();
@@ -278,7 +278,7 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test
    return { -1, false };
 }
 
-bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key& ekeyModifiers)
+bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
 {
    int index; bool close;
    std::tie(index, close) = tab_at_position(p);
@@ -287,7 +287,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
    Screen* screen = this->screen();
    if (m_popup) {
       m_popup->mouse_button_event(
-         p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),emouse, down, ekeyModifiers);
+         p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),emouse, down, bDoubleClick, ekeyModifiers);
       screen->update_focus(this);
       screen->remove_child(m_popup);
       m_popup = nullptr;
@@ -369,7 +369,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
       handled = true;
    }
 
-   handled |= Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
+   handled |= Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
 
    return handled;
 

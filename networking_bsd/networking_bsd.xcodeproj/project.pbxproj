@@ -166,14 +166,11 @@
 		9A0F8A6928D1166C002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A0F8A6A28D1166C002601B1 /* _system_sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
 		9A0F8A8C28D1166C002601B1 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A0F8A8F28D1166C002601B1 /* _net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _net.h; sourceTree = "<group>"; };
 		9A0F8A9128D1166C002601B1 /* address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = address.h; sourceTree = "<group>"; };
 		9A0F8A9528D1166C002601B1 /* _operating_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
 		9A0F8A9F28D1166C002601B1 /* port_forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = port_forward.h; sourceTree = "<group>"; };
 		9A0F8AA128D1166C002601B1 /* ip_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ip_enum.cpp; sourceTree = "<group>"; };
-		9A0F8AA328D1166C002601B1 /* _networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _networking.h; sourceTree = "<group>"; };
 		9A0F8AA428D1166C002601B1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9A0F8AA528D1166C002601B1 /* _networking_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _networking_impl.h; sourceTree = "<group>"; };
 		9A0F8AAA28D1166C002601B1 /* address.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = address.cpp; sourceTree = "<group>"; };
 		9A0F8AAD28D1166C002601B1 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
 		9A0F8AB828D1166C002601B1 /* _references.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
@@ -224,9 +221,6 @@
 				9A0F8AB928D1166C002601B1 /* _byte_order.h */,
 				9A0F8AE628D1166D002601B1 /* _factory.cpp */,
 				9A0F89B328D1166C002601B1 /* _impl.h */,
-				9A0F8A8F28D1166C002601B1 /* _net.h */,
-				9A0F8AA528D1166C002601B1 /* _networking_impl.h */,
-				9A0F8AA328D1166C002601B1 /* _networking.h */,
 				9A0F8A9528D1166C002601B1 /* _operating_system.h */,
 				9A0F8AB828D1166C002601B1 /* _references.txt */,
 				9A0F8AAA28D1166C002601B1 /* address.cpp */,
@@ -297,24 +291,24 @@
 		9A0F89CE28D1166C002601B1 /* basic */ = {
 			isa = PBXGroup;
 			children = (
-				9A0F89CF28D1166C002601B1 /* tls_socket.h */,
-				9A0F89D028D1166C002601B1 /* sctp_socket.cpp */,
-				9A0F89D128D1166C002601B1 /* tcp_socket.h */,
-				9A0F89D228D1166C002601B1 /* socket.cpp */,
-				9A0F89D328D1166C002601B1 /* tcp_socket.cpp */,
-				9A0F89D528D1166C002601B1 /* socket_handler.h */,
-				9A0F89D628D1166C002601B1 /* udp_socket.cpp */,
-				9A0F89D728D1166C002601B1 /* listen_socket.h */,
-				9A0F89D828D1166C002601B1 /* socket_handler.cpp */,
-				9A0F89DA28D1166C002601B1 /* stream_socket.h */,
-				9A0F89DC28D1166C002601B1 /* listen_socket.cpp */,
-				9A0F89DD28D1166C002601B1 /* tls_socket.cpp */,
-				9A0F89DE28D1166C002601B1 /* stream_socket.cpp */,
-				9A0F89DF28D1166C002601B1 /* aaa_net.h */,
-				9A0F89E028D1166C002601B1 /* udp_socket.h */,
-				9A0F89E128D1166C002601B1 /* socket.h */,
-				9A0F89E228D1166C002601B1 /* sctp_socket.h */,
 				9A0F89E328D1166C002601B1 /* _.h */,
+				9A0F89DF28D1166C002601B1 /* aaa_net.h */,
+				9A0F89DC28D1166C002601B1 /* listen_socket.cpp */,
+				9A0F89D728D1166C002601B1 /* listen_socket.h */,
+				9A0F89D028D1166C002601B1 /* sctp_socket.cpp */,
+				9A0F89E228D1166C002601B1 /* sctp_socket.h */,
+				9A0F89D828D1166C002601B1 /* socket_handler.cpp */,
+				9A0F89D528D1166C002601B1 /* socket_handler.h */,
+				9A0F89D228D1166C002601B1 /* socket.cpp */,
+				9A0F89E128D1166C002601B1 /* socket.h */,
+				9A0F89DE28D1166C002601B1 /* stream_socket.cpp */,
+				9A0F89DA28D1166C002601B1 /* stream_socket.h */,
+				9A0F89D328D1166C002601B1 /* tcp_socket.cpp */,
+				9A0F89D128D1166C002601B1 /* tcp_socket.h */,
+				9A0F89DD28D1166C002601B1 /* tls_socket.cpp */,
+				9A0F89CF28D1166C002601B1 /* tls_socket.h */,
+				9A0F89D628D1166C002601B1 /* udp_socket.cpp */,
+				9A0F89E028D1166C002601B1 /* udp_socket.h */,
 			);
 			path = basic;
 			sourceTree = "<group>";
@@ -370,11 +364,11 @@
 		9A0F8A6228D1166C002601B1 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				9A0F8A6328D1166C002601B1 /* socket_thread.cpp */,
-				9A0F8A6428D1166C002601B1 /* socket.cpp */,
-				9A0F8A6528D1166C002601B1 /* socket_thread.h */,
-				9A0F8A6628D1166C002601B1 /* socket_handler.h */,
 				9A0F8A6728D1166C002601B1 /* socket_handler.cpp */,
+				9A0F8A6628D1166C002601B1 /* socket_handler.h */,
+				9A0F8A6328D1166C002601B1 /* socket_thread.cpp */,
+				9A0F8A6528D1166C002601B1 /* socket_thread.h */,
+				9A0F8A6428D1166C002601B1 /* socket.cpp */,
 				9A0F8A6828D1166C002601B1 /* socket.h */,
 			);
 			path = base;
@@ -622,7 +616,7 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 			};
@@ -633,7 +627,7 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 			};
@@ -703,7 +697,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -796,7 +790,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

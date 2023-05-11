@@ -416,12 +416,12 @@ namespace sockets_bsd
 //
 //      }
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-      auto paddressBind2 = __Address(paddressBind);
+      ::pointer < ::networking_bsd::address > pnetworkingbsdaddressBind = paddressBind;
 
       // if not, create memory_new connection
-      SOCKET s = CreateSocket(paddress2->get_family(),SOCK_STREAM,"tcp");
+      SOCKET s = CreateSocket(pnetworkingbsdaddress->get_family(),SOCK_STREAM,"tcp");
 
       if(s == INVALID_SOCKET)
       {
@@ -451,7 +451,7 @@ namespace sockets_bsd
       if(paddressBind->get_service_number() != 0)
       {
          
-         bind(s,paddressBind2->sa(),paddressBind2->sa_len());
+         bind(s, pnetworkingbsdaddressBind->sa(), pnetworkingbsdaddressBind->sa_len());
 
       }
       
@@ -460,16 +460,16 @@ namespace sockets_bsd
       if(!skip_socks && addrSocks4.has_char() && GetSocks4Port())
       {
          
-         auto paddressSocks4 = __SystemNetworking(acmesystem())->create_address(addrSocks4);
+         auto paddressSocks4 = acmesystem()->m_papexsystem->networking()->create_address(addrSocks4);
 
-         //::networking::address sa(GetSocks4Host(),GetSocks4Port());
+         ::pointer < ::networking_bsd::address > pnetworkingbsdaddressSocks4 = paddressSocks4;
 
-         if (paddressSocks4 && paddressSocks4->is_ip4())
+         if (pnetworkingbsdaddressSocks4 && pnetworkingbsdaddressSocks4->is_ip4())
          {
 
 
 
-            auto paddressSocks4_2 = __Address(paddressSocks4);
+            //auto paddressSocks4_2 = __Address(paddressSocks4);
 
             //{
             //   
@@ -485,7 +485,7 @@ namespace sockets_bsd
 
             SetSocks4();
 
-            n = connect(s, paddressSocks4_2->sa(), paddressSocks4_2->sa_len());
+            n = connect(s, pnetworkingbsdaddressSocks4->sa(), pnetworkingbsdaddressSocks4->sa_len());
 
             SetRemoteHostname(paddress);
 
@@ -494,9 +494,13 @@ namespace sockets_bsd
       }
       else
       {
-         n = connect(s,paddress2->sa(),paddress2->sa_len());
+         
+         n = connect(s, pnetworkingbsdaddress->sa(), pnetworkingbsdaddress->sa_len());
+
          SetRemoteHostname(paddress);
+
       }
+
       if(n == -1)
       {
 #ifdef _WIN32
@@ -541,7 +545,13 @@ namespace sockets_bsd
          attach(s);
          SetCallOnConnect(); // base_socket_handler must call OnConnect
       }
-
+      
+      set_connection_start_time();
+      
+      //m_timeLastRead.Now();
+      //m_timeLastWrite.Now();
+      //m_psocketParent->m_timeLastRead = m_timeLastRead;
+      //m_psocketParent->m_timeLastWrite = m_timeLastWrite;
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
       return true; //!is_connecting();
@@ -553,7 +563,7 @@ namespace sockets_bsd
 
       SetCloseAndDelete(false);
 
-      auto pnetworking2 = __SystemNetworking(acmesystem());
+      auto pnetworking = acmesystem()->m_papexsystem->networking();
 
       ::networking::address_pointer paddress;
 
@@ -570,7 +580,7 @@ namespace sockets_bsd
 
          //}
 
-         paddress = pnetworking2->create_ip6_address(host);
+         paddress = pnetworking->create_ip6_address(host, port);
 
          //if(!paddressdepartment->convert(a,host))
          if (!paddress)
@@ -597,7 +607,7 @@ namespace sockets_bsd
 
          //}
 
-         paddress = pnetworking2->create_ip4_address(host);
+         paddress = pnetworking->create_ip4_address(host, port);
 
          //if(!paddressdepartment->convert(a,host))
          if (!paddress)
@@ -611,19 +621,13 @@ namespace sockets_bsd
 
       }
 
-      paddress->set_service_number(port);
-
-      auto paddress2 = __Address(paddress);
-
-      //::networking::address ad(a,port);
-
-      //::networking::address addrLocal;
+      ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
       auto paddressLocal = __new(::networking_bsd::address);
 
-      paddressLocal->set_family(paddress2->get_family());
+      paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
-      if (!open(paddress, paddressLocal.m_p))
+      if (!open(paddress, paddressLocal))
       {
 
          return false;
@@ -989,6 +993,8 @@ namespace sockets_bsd
       {
 
          m_bytes_received += n;
+         
+         m_timeLastRead.Now();
 
          if(GetTrafficMonitor())
          {
@@ -1355,6 +1361,8 @@ namespace sockets_bsd
          
          m_bytes_sent += n;
 
+         m_timeLastWrite.Now();
+
          if(GetTrafficMonitor())
          {
 
@@ -1363,7 +1371,7 @@ namespace sockets_bsd
          }
 
          set_connection_last_activity();
-
+         
       }
 
       return (i32)n;
@@ -2760,19 +2768,24 @@ namespace sockets_bsd
    }
 
 
-   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,SOCKET s)
+   void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
    {
 
       __UNREFERENCED_PARAMETER(family);
       __UNREFERENCED_PARAMETER(type);
       __UNREFERENCED_PARAMETER(protocol);
-      __UNREFERENCED_PARAMETER(s);
+
       //TRACE("socket::OnOptions()\n");
+      
 #ifdef SO_NOSIGPIPE
-      SetSoNosigpipe(true);
+      
+      _SetSoNosigpipe(s, true);
+      
 #endif
-      SetSoReuseaddr(true);
-      SetSoKeepalive(true);
+      
+      _SetSoReuseaddr(s, true);
+      _SetSoKeepalive(s, true);
+      
    }
 
 
@@ -2808,7 +2821,7 @@ namespace sockets_bsd
    void tcp_socket::on_connection_timeout()
    {
 
-      m_ptcpsocketComposite->on_connection_timeout();
+      //m_ptcpsocketComposite->on_connection_timeout();
 
       FATAL("connect: connect timeout");
 

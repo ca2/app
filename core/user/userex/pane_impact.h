@@ -31,7 +31,7 @@ namespace userex
 
 
       pane_impact();
-      virtual ~pane_impact();
+      ~pane_impact() override;
 
 
       void on_create_impact(::user::impact_data * pimpactdata) override;

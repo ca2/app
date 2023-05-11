@@ -22,6 +22,7 @@
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/simple/frame_window.h"
 #include "base/user/simple/main_frame.h"
+#include "base/user/simple/toolbar.h"
 #include "base/user/menu/list_impact.h"
 #include "base/user/menu/button.h"
 #include "base/user/menu/item.h"
@@ -137,6 +138,10 @@ namespace base
       factory()->add_factory_item <::user::tab_impact >();
 
       factory()->add_factory_item < ::user::form_impact >();
+      
+      
+      factory()->add_factory_item <simple_toolbar >();
+      factory()->add_factory_item <simple_toolbar, ::user::toolbar >();
 
 
 

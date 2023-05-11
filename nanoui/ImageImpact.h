@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/ImageImpact.h -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -91,8 +91,8 @@ namespace nanoui
       float m_scale = 0;
       Vector2f m_offset = 0;
       bool m_draw_image_border;
-      Color m_image_border_color;
-      Color m_image_background_color;
+      ::color::color m_image_border_color;
+      ::color::color m_image_background_color;
       PixelCallback m_pixel_callback;
 };
 

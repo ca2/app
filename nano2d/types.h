@@ -1,4 +1,4 @@
-﻿	//
+	//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "color.h"
+//#include "color.h"
 
 
 namespace nano2d
@@ -80,8 +80,8 @@ namespace nano2d
 		float extent[2];
 		float radius;
 		float feather;
-		  color innerColor;
-		  color outerColor;
+      ::color::color innerColor;
+		::color::color outerColor;
 		int image;
 	};
 	typedef struct paint paint;

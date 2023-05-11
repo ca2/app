@@ -822,7 +822,7 @@ using u16_array = numeric_array < u16 >;
 using u32_array = numeric_array < u32 >;
 using u64_array = numeric_array < u64 >;
 
-using dword_array = u32_array;
+
 using int_array = i32_array;
 
 
@@ -861,6 +861,8 @@ using float_array = numeric_array < float  >;
 using double_array = numeric_array < double  >;
 
 using strsize_array = iptr_array;
+
+using process_identifier_array = ::numeric_array < process_identifier >;
 
 //using strsize_ptr_array = ptr_array < strsize *  >;
 

@@ -2,19 +2,12 @@
 // #include "acme/primitive/string/string.h"
 
 
-namespace audio
-{
-
-   
-   string get_default_library_name()
-   {
-
-      return "audio_mmsystem";
-
-   }
-
-
-} // namespace audio
+//string audio_get_default_implementation_name()
+//{
+//
+//   return "audio_mmsystem";
+//
+//}
 
 
 

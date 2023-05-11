@@ -37,6 +37,12 @@ string windows_font_name(enum_font efont)
          return "Georgia";
       case e_font_monospace:
          return "Courier New";
+      case e_font_monospace_ui:
+         return "Segoe UI Mono";
+      case e_font_monospace_ex:
+         return "Lucida Sans";
+      case e_font_monospace_fx:
+         return "Consolas";
       default:
          return "sans-serif";
    }
@@ -67,6 +73,12 @@ string ubuntu_font_name(enum_font efont)
          return "Bitstream Charter";
       case e_font_monospace:
          return "Ubuntu Mono";
+      case e_font_monospace_ui:
+         return "Free Mono";
+      case e_font_monospace_ex:
+         return "Liberation Mono";
+      case e_font_monospace_fx:
+         return "Nimbus Mono";
       default:
          return "sans-serif";
    }

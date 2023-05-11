@@ -143,11 +143,7 @@ namespace file
 
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
-      virtual ::filesize get_left() const;
-
-      virtual string as_string() const;
-
-      virtual void as_memory(memory_base & memory) const;
+      ::filesize right_size() const override;
 
 
       template < typename TYPE >
@@ -209,16 +205,17 @@ namespace file
       inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }
 
 
-      inline filesize _get_left() { return get_left(); }
+      inline filesize _right_size() { return this->right_size(); }
 
 
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);
       virtual bool read_block(block & block);
-      virtual ::memory as_memory();
-      virtual void as(memory_base & memory);
-      virtual ::string as_string();
-      virtual void as(::string & str);
+      
+      //virtual ::memory right_memory();
+      //virtual void right_memory(memory_base & memory);
+      //virtual ::string right_string();
+      //virtual void right_string(::string & str);
 
       virtual void print(const ::string & str);
       virtual void println(const ::string & str);

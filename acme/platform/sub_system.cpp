@@ -1,4 +1,4 @@
-﻿// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-10-09 21:01 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "sub_system.h"
 #include "acme.h"
@@ -564,7 +564,8 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
    string strLibrary;
 
-   strLibrary = library_name(strComponent, strImplementation);
+   //strLibrary = library_name(strComponent, strImplementation);
+   strLibrary = strComponent + "_" + strImplementation;
 
    auto& plibrary = library(strLibrary);
 
@@ -666,7 +667,7 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 void sub_system::factory_terminate()
 {
 
-   critical_section_lock synchronouslock(::acme::acme::g_p->factory_critical_section());
+   critical_section_lock synchronouslock(::acme::acme::g_pacme->factory_critical_section());
 
    m_pfactory->erase_all();
 
@@ -822,7 +823,7 @@ void sub_system::factory_terminate()
 CLASS_DECL_ACME ::factory::factory * get_system_factory()
 {
 
-   return ::acme::acme::g_p->m_psubsystem->m_pfactory;
+   return ::acme::acme::g_pacme->m_psubsystem->m_pfactory;
 
 }
 

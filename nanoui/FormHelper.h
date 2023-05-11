@@ -1,4 +1,4 @@
-﻿/*
+/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
@@ -73,7 +73,7 @@ NAMESPACE_BEGIN(detail)
  *      template <>
  *      class FormWidget<::string, std::true_type> : public TextBox
  *
- * - Inheritance from :class:`nanoui::ColorPicker` for :class:`nanoui::Color` types:
+ * - Inheritance from :class:`nanoui::ColorPicker` for :class:`::color::color` types:
  *
  *   .. code-block:: cpp
  *
@@ -385,19 +385,20 @@ public:
 /**
  * A specialization for adding a ColorPicker to a FormHelper.
  */
-template <> class FormWidget<Color, std::true_type> : public ColorPicker {
+template <> class FormWidget<::color::color, std::true_type> : public ColorPicker {
 public:
    /// Creates a memory_new FormWidget with underlying type ColorPicker.
    FormWidget(Widget * p) : ColorPicker(p) { }
 
    /// Pass-through function for \ref nanoui::ColorPicker::set_color.
-   void set_value(const Color & c) { set_color(c); }
+   void set_value(const ::color::color & c) { set_color(c); }
 
    /// Pass-through function for \ref nanoui::Widget::set_enabled.
    void set_editable(bool e) { set_enabled(e); }
 
    /// Returns the value of \ref nanoui::ColorPicker::color.
-   Color value() const { return color(); }
+   ::color::color value() const { return color(); }
+
 };
 
 NAMESPACE_END(detail)

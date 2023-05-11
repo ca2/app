@@ -27,7 +27,8 @@ namespace user
          e_style_stock_icon,
       };
 
-      class bitmap
+      class bitmap :
+         virtual public ::particle
       {
       public:
 
@@ -40,7 +41,8 @@ namespace user
       };
 
 
-      class list
+      class list :
+         virtual public ::particle
       {
       public:
 
@@ -65,8 +67,8 @@ namespace user
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::rectangle_i32                     m_rectangleCheckBox;
-      bitmap *                            m_pbitmap;
-      list *                              m_plist;
+      ::pointer < bitmap >                m_pbitmap;
+      ::pointer < list >                  m_plist;
 
 
       button();
@@ -157,7 +159,10 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click_generation(::item * pitem) override;
+
+
+      //bool on_click(::item * pitem) override;
 
 
    };

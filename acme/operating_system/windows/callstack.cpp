@@ -77,6 +77,7 @@
 
 ::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
 
+
 namespace acme
 {
 

@@ -1743,6 +1743,13 @@ namespace apex
 
       ::acme::application::init_instance();
 
+      if (m_eexclusiveinstance != e_exclusive_instance_none)
+      {
+
+         m_bInterprocessCommunication = true;
+
+      }
+
       defer_interprocess_communication();
 
       if (m_bInterprocessCommunication)
@@ -1811,7 +1818,7 @@ namespace apex
 
          auto pathModule = file()->module();
 
-         auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
+         auto processId = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
          m_pinterprocesscommunication->on_new_instance(pathModule, processId);
 
@@ -3941,7 +3948,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
+            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
             (*pcall)["command_line"] = psystem->command_line_text();
 
@@ -4000,7 +4007,7 @@ namespace apex
 
             (*pcall)["module"] = file()->module();
 
-            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
+            (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->current_process_identifier();
 
             (*pcall)["command_line"] = psystem->command_line_text();
 
@@ -5232,9 +5239,9 @@ namespace apex
 
       path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-      path1 = acmepath()->final(path1);
+      path1 = acmepath()->safe_get_real_path(path1);
 
-      path2 = acmepath()->final(path2);
+      path2 = acmepath()->safe_get_real_path(path2);
 
       return strcmp(path1, path2) == 0;
 

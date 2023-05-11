@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/m_pcheckbox.cpp -- Two-state check box widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -28,10 +28,10 @@ namespace nanoui
    }
 
 
-   bool CheckBox::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, const ::user::e_key& ekeyModifiers)
+   bool CheckBox::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
-      Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
+      Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
 
       if (!m_enabled)
       {
@@ -127,8 +127,8 @@ namespace nanoui
 
       ::nano2d::paint bg = pcontext->box_gradient(m_pos.x() + 1.5f, m_pos.y() + 1.5f,
          m_size.y() - 2.0f, m_size.y() - 2.0f, 3, 3,
-         m_bMouseDown ? Color(0, 100) : Color(0, 32),
-         Color(0, 0, 0, 180));
+         m_bMouseDown ? ::color::color(0, 100) :  ::color::color(0, 32),
+                                                  ::color::color(0, 0, 0, 180));
 
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x() + 1.0f, m_pos.y() + 1.0f, m_size.y() - 2.0f,

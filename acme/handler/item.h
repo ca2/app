@@ -154,6 +154,10 @@ public:
    {
 
    }
+
+
+   bool _is_set() const override;
+
    
    inline ::index menu_impact_index() const { return (::index) m_iItem; }
    inline ::index menu_impact_group() const { return (::index) m_iSubItem; }

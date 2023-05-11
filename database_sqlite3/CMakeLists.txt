@@ -20,6 +20,10 @@ list(APPEND library_references
    aura
    axis)
 
+list(APPEND static_library_references ${library_references})
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 
 add_library(${PROJECT_NAME} SHARED ${database_sqlite3_source})
 add_library(static_${PROJECT_NAME} STATIC ${database_sqlite3_source})
@@ -48,16 +52,25 @@ elseif(LINUX OR FREEBSD)
    if(NOT DONT_USE_PKG_CONFIG)
       pkg_check_modules(PKGCONFIG sqlite3)
    endif()
-   target_compile_options(database_sqlite3 PRIVATE -fpermissive)
-   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-   target_link_libraries(database_sqlite3 PRIVATE ${library_references})
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-   message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
+
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+
+   message(STATUS "PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
 endif()

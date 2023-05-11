@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
@@ -150,21 +150,21 @@ namespace nano2d
 	//	int textTriCount;
 	//};
 
-	static float __sqrtf(float a) { return sqrtf(a); }
+	inline float __sqrtf(float a) { return sqrtf(a); }
 	//static float __modf(float a, float b) { return fmodf(a, b); }
-	static float __sinf(float a) { return sinf(a); }
-	static float __cosf(float a) { return cosf(a); }
-	static float __tanf(float a) { return tanf(a); }
-	static float __atan2f(float a, float b) { return atan2f(a, b); }
-	static float __acosf(float a) { return acosf(a); }
+inline float __sinf(float a) { return sinf(a); }
+inline float __cosf(float a) { return cosf(a); }
+inline float __tanf(float a) { return tanf(a); }
+inline float __atan2f(float a, float b) { return atan2f(a, b); }
+inline float __acosf(float a) { return acosf(a); }
 
-	//static int __mini(int a, int b) { return a < b ? a : b; }
-	//static int __maxi(int a, int b) { return a > b ? a : b; }
-	//static int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
-	static float __minf(float a, float b) { return a < b ? a : b; }
-	static float __maxf(float a, float b) { return a > b ? a : b; }
-	static float __absf(float a) { return a >= 0.0f ? a : -a; }
-	static float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
+	//inline int __mini(int a, int b) { return a < b ? a : b; }
+	//inline int __maxi(int a, int b) { return a > b ? a : b; }
+	//inline int __clampi(int a, int mn, int mx) { return a < mn ? mn : (a > mx ? mx : a); }
+inline float __minf(float a, float b) { return a < b ? a : b; }
+inline float __maxf(float a, float b) { return a > b ? a : b; }
+inline float __absf(float a) { return a >= 0.0f ? a : -a; }
+inline float __signf(float a) { return a >= 0.0f ? 1.0f : -1.0f; }
 	//static float __clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx ? mx : a); }
 	static float __cross(float dx0, float dy0, float dx1, float dy1) { return dx1 * dy0 - dx0 * dy1; }
 
@@ -555,8 +555,8 @@ void TransformSkewX(float* t, float a)
 		return rad / ::nano2d::f_pi * 180.0f;
 	}
 
-	//static void context::__setPaintColor)(::nano2d::paint * p, ::nano2d::color color)
-	void __setPaintColor(::nano2d::paint* p, ::nano2d::color color)
+	//static void context::__setPaintColor)(::nano2d::paint * p, ::color::color color)
+	void __setPaintColor(::nano2d::paint* p, ::color::color color)
 	{
 		memset(p, 0, sizeof(*p));
 		TransformIdentity(p->xform);
@@ -599,8 +599,8 @@ void TransformSkewX(float* t, float a)
 
 		memset(state, 0, sizeof(*state));
 
-		__setPaintColor(&state->fill, RGBA_color(255, 255, 255, 255));
-		__setPaintColor(&state->stroke, RGBA_color(0, 0, 0, 255));
+		__setPaintColor(&state->fill, ::color::RGBA_color(255, 255, 255, 255));
+		__setPaintColor(&state->stroke, ::color::RGBA_color(0, 0, 0, 255));
 		state->compositeOperation = __compositeOperationState(::nano2d::e_composite_operation_source_over);
 		state->shapeAntiAlias = 1;
 		state->strokeWidth = 1.0f;
@@ -754,7 +754,7 @@ void TransformSkewX(float* t, float a)
 		memcpy(xform, state->xform, sizeof(float) * 6);
 	}
 
-	void context::stroke_color(::nano2d::color color)
+	void context::stroke_color(::color::color color)
 	{
 		//::nano2d::state * state = __getState();
 		//context::__setPaintColor)(&state->stroke, color);
@@ -772,7 +772,7 @@ void TransformSkewX(float* t, float a)
 		//stroke_paint(paint);
 	}
 
-	void context::fill_color(::nano2d::color color)
+	void context::fill_color(::color::color color)
 	{
 		//::nano2d::state * state = __getState();
 		//context::__setPaintColor)(&state->fill, color);
@@ -869,7 +869,7 @@ void TransformSkewX(float* t, float a)
 	
 	::nano2d::paint context::linear_gradient(
 		float sx, float sy, float ex, float ey,
-		::nano2d::color icol, ::nano2d::color ocol)
+		::color::color icol, ::color::color ocol)
 	{
 
 		//return linear_gradient(sx, sy, ex, ey, icol, ocol);
@@ -912,7 +912,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::nano2d::paint context::radial_gradient(float cx, float cy, float inr, float outr, ::nano2d::color icol, ::nano2d::color ocol)
+	::nano2d::paint context::radial_gradient(float cx, float cy, float inr, float outr, ::color::color icol, ::color::color ocol)
 	{
 
 		return {};
@@ -945,7 +945,7 @@ void TransformSkewX(float* t, float a)
 	
 	::nano2d::paint context::box_gradient(
 		float x, float y, float w, float h, float r, float f,
-		::nano2d::color icol, ::nano2d::color ocol)
+		::color::color icol, ::color::color ocol)
 	{
 
 		return {};

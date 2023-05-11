@@ -81,6 +81,7 @@ namespace sockets
 //      bool                    m_bDelete; ///< Delete by handler flag
       //bool                    m_bCloseAndDelete; ///< close and delete flag
       //::pointer<base_socket>          m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      
       //class ::time              m_timeConnectionStart; ///< Set by SetTimeout
       //class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
       //class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
@@ -183,7 +184,7 @@ namespace sockets
 
       virtual void initialize_socket(base_socket_handler* phandler);
 
-
+      
       virtual base_socket * base_socket_composite();
       virtual const base_socket * base_socket_composite() const;
 
@@ -294,6 +295,10 @@ namespace sockets
       // LIST_TIMEOUT
 
       /** enable timeout control. 0=disable timeout check. */
+      
+      
+      virtual class ::time get_last_interaction_time() const;
+
       virtual void set_connection_start_time();
 
       virtual void set_connection_last_activity();
@@ -346,7 +351,7 @@ namespace sockets
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      //virtual void OnOptions(int family,int type,int protocol,socket_id s) = 0;
+      //virtual void OnOptions(int family, int type, int protocol, SOCKET s);
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */

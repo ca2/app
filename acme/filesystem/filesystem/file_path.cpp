@@ -24,7 +24,7 @@ void copy_character_per_character(char * pszTarget, const char * pszSource)
 }
 
 
-::scoped_string file_path_name(const ::scoped_string & scopedstrPath)
+::string file_path_name(const ::scoped_string & scopedstrPath)
 {
 
    auto p = scopedstrPath.rear_find_first_character_in("\\/");
@@ -41,7 +41,7 @@ void copy_character_per_character(char * pszTarget, const char * pszSource)
 }
 
 
-::scoped_string file_path_final_extension(const ::scoped_string & scopedstrPath)
+::string file_path_final_extension(const ::scoped_string & scopedstrPath)
 {
 
    auto scopedstrName = file_path_name(scopedstrPath);
@@ -60,7 +60,7 @@ void copy_character_per_character(char * pszTarget, const char * pszSource)
 }
 
 
-::scoped_string file_path_all_extensions(const ::scoped_string & scopedstrPath)
+::string file_path_all_extensions(const ::scoped_string & scopedstrPath)
 {
 
    auto scopedstrName = file_path_name(scopedstrPath);
@@ -79,7 +79,7 @@ void copy_character_per_character(char * pszTarget, const char * pszSource)
 }
 
 
-string url_dir_name_for_relative(const ::file::path & path)
+::string url_dir_name_for_relative(const ::file::path & path)
 {
 
    ASSERT(!path.ends("/"));
@@ -598,7 +598,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //}
 
 
-::scoped_string file_path_folder(const ::scoped_string & scopedstrPath)
+::string file_path_folder(const ::scoped_string & scopedstrPath)
 {
 
    auto p = scopedstrPath.rear_find_first_character_in("\\/");
@@ -621,7 +621,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 
    }
 
-   return {scopedstrPath.begin(), p };
+   return scopedstrPath(0, p);
 
 }
 
@@ -720,7 +720,7 @@ CLASS_DECL_ACME string defer_solve_relative(const ::scoped_string & scopedstrRel
 //}
 
 
-::scoped_string file_path_title(const ::scoped_string & scopedstrPath)
+::string file_path_title(const ::scoped_string & scopedstrPath)
 {
 
    auto scopedstrName = file_path_name(scopedstrPath);

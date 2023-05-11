@@ -97,7 +97,7 @@ using interlocked_count = ::interlocked_i64;
 inline void interlocked_i64::construct(::i64 l)
 {
 
-   m_plong = (::i64*)(((::iptr)this + 7) & ~7);
+   m_plong = (::i64*)(((::iptr)m_sz + 7) & ~7);
 
    *m_plong = l;
 
@@ -198,7 +198,7 @@ inline interlocked_i64& interlocked_i64::operator-=(::i64 l)
 inline void interlocked_i32::construct(::i32 l)
 {
 
-   m_plong = (::i32*)(((iptr)this + 7) & ~7);
+   m_plong = (::i32*)(((iptr)m_sz + 7) & ~7);
 
    *m_plong = l;
 

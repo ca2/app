@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "toolbar.h"
+#include "base/user/simple/toolbar.h"
 #include "menu_bar.h"
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
@@ -204,7 +204,9 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    ::pointer<::user::message>pusermessage(pmessage);
 
-   if (pusermessage->m_atom == WM_USER && pusermessage->userinteraction() == this)
+   auto puserinteraction = ::user::message_user_interaction(pusermessage);
+
+   if (pusermessage->m_atom == WM_USER && puserinteraction == this)
    {
 
       if (pusermessage->m_wparam == 33)

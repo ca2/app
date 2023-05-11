@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -375,27 +375,27 @@ namespace apex
 
       __construct_new(m_pthreading);
 
-      ::earth::time timeNow = ::earth::time::now();
-
-      auto pnode = node();
-
-      if (pnode)
-      {
-
-         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
-         {
-
-            pnode->set_simple_ui_darkness(0);
-
-         }
-         else
-         {
-
-            pnode->set_simple_ui_darkness(255);
-
-         }
-
-      }
+//      ::earth::time timeNow = ::earth::time::now();
+//
+//      auto pnode = node();
+//
+//      if (pnode)
+//      {
+//
+//         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
+//         {
+//
+//            pnode->set_dark_mode(false);
+//
+//         }
+//         else
+//         {
+//
+//            pnode->set_dark_mode(true);
+//
+//         }
+//
+//      }
 
 
       //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
@@ -624,7 +624,7 @@ namespace apex
          printf("%s", "\n\nApplication Information\n");
          output_debug_string("\n\nApplication Information\n");
 
-         auto iPid = acmenode()->get_current_process_id();
+         auto iPid = acmenode()->current_process_identifier();
 
          printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
@@ -933,7 +933,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto pid = acmenode()->get_current_process_id();
+      auto pid = acmenode()->current_process_identifier();
 
       string strPid = ::as_string(pid);
 
@@ -4439,15 +4439,15 @@ pacmedirectory->create("/ca2core");
 //#define memory_new ACME_NEW
 #endif
 
-#ifdef LINUX
-#include <dlfcn.h>
-
-void* g_pbasecore = nullptr;
-
-
-typedef void BASECORE_INIT();
-#endif // LINUX
-
+//#ifdef LINUX
+//#include <dlfcn.h>
+//
+////void* g_pbasecore = nullptr;
+//
+//
+//typedef void BASECORE_INIT();
+//#endif // LINUX
+//
 
 namespace apex
 {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "library.h"
 #include "node.h"
 #include "acme.h"
@@ -87,7 +87,7 @@ system::~system()
 void system::initialize_system()
 {
    
-   m_psubsystem = ::acme::acme::g_p->m_psubsystem;
+   m_psubsystem = ::acme::acme::g_pacme->m_psubsystem;
    
    m_psubsystem->initialize(this);
    
@@ -1481,7 +1481,7 @@ void system::create_session(index iEdge)
    
    ::pointer<::acme::session>psession;
    
-   //auto estatus = 
+   //auto estatus =
    __construct(psession);
    
    psession->m_pacmeapplication = m_pacmeapplication;
@@ -1584,36 +1584,36 @@ void system::erase_session(index iEdge)
       
    }
    
-   if (psession)
-   {
-      
-      class time time;
-      
-      time.Now();
-      
-      while (true)
-      {
-         
-         if (psession->m_countReference <= 1)
-         {
-            
-            break;
-            
-         }
-         
-         preempt(100_ms);
-         
-         if (time.elapsed() > 10_s)
-         {
-            
-            break;
-            
-         }
-         
-      }
-      
-   }
-   
+   //   if (psession)
+   //   {
+   //
+   //      class time time;
+   //
+   //      time.Now();
+   //
+   //      while (true)
+   //      {
+   //
+   //         if (psession->m_countReference <= 1)
+   //         {
+   //
+   //            break;
+   //
+   //         }
+   //
+   //         preempt(100_ms);
+   //
+   //         if (time.elapsed() > 10_s)
+   //         {
+   //
+   //            break;
+   //
+   //         }
+   //
+   //      }
+   //
+   //   }
+   //
 }
 
 
@@ -1687,6 +1687,19 @@ void system::defer_post_initial_request()
                                                         strCommandLine,
                                                         prequest->m_payloadFile,
                                                         strApp);
+      
+#if !defined(WINDOWS)
+      
+      for(::index iArgument = 1; iArgument < m_psubsystem->m_argc; iArgument++)
+      {
+         
+         ::string strArgument = m_psubsystem->m_argv[iArgument];
+         
+         prequest->get_property_set()._008AddArgument(strArgument);
+         
+      }
+      
+#endif
       
       payload("command_line_arg0") = strApp;
       
@@ -1826,7 +1839,7 @@ void system::report_system_instance()
       
       string strPid;
       
-      strPid = ::as_string(acmenode()->get_current_process_id());
+      strPid = ::as_string(acmenode()->current_process_identifier());
       
       strModifier = strDate + "_" + strPid;
       
@@ -2019,365 +2032,365 @@ void system::system_id_update(::i64 iId, ::i64 iPayload)
 }
 void system::handle(::topic* ptopic, ::context* pcontext)
 {
-
-
-if (ptopic->m_atom == id_set_dark_mode)
-{
    
-   if (ptopic->payload("wparam").is_true())
+   
+   if (ptopic->m_atom == id_set_dark_mode)
    {
       
-      m_pnode->background_color(::color::black);
+      if (ptopic->payload("wparam").is_true())
+      {
+         
+         m_pnode->background_color(::color::black);
+         
+      }
+      else
+      {
+         
+         m_pnode->background_color(::color::white);
+         
+      }
+      
+      m_pnano->handle(ptopic, pcontext);
       
    }
-   else
+   else if (ptopic->m_atom == id_operating_system_user_theme_change)
    {
       
-      m_pnode->background_color(::color::white);
+      auto pnode = node();
+      
+      string strTheme = pnode->os_get_user_theme();
+      
+      if (strTheme != m_strOsUserTheme)
+      {
+         
+         m_strOsUserTheme = strTheme;
+         
+      }
+      
+   }
+   else if (ptopic->m_atom == id_open_hyperlink)
+   {
+      
+      auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
+      
+      if (plink)
+      {
+         
+         //if (plink->m_bProfile)
+         {
+            
+            open_profile_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
+            
+         }
+         //else
+         {
+            
+            // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
+            
+         }
+         
+      }
+      
+   }
+   else if (ptopic->m_atom == id_app_activated)
+   {
+      
+      if (::is_set(acmeapplication()))
+      {
+         
+         acmeapplication()->handle(ptopic, pcontext);
+         
+      }
       
    }
    
-   m_pnano->handle(ptopic, pcontext);
+   
    
 }
-else if (ptopic->m_atom == id_operating_system_user_theme_change)
+
+
+void system::add_handler(::matter * pmatter, bool bPriority)
 {
+   
+   
+}
+
+
+void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal)
+{
+   
+   
+}
+
+
+void system::node_will_finish_launching()
+{
+   
+   //   auto pnode = node();
+   //
+   //   pnode->_will_finish_launching();
+   
+   //   auto pnode = acmesession()->m_paurasession;
+   //
+   //   auto puser = psession->user();
+   //
+   //   auto pwindowing = puser->windowing();
+   //
+   //   pwindowing->_will_finish_launching();
    
    auto pnode = node();
    
-   string strTheme = pnode->os_get_user_theme();
+   pnode->_will_finish_launching();
    
-   if (strTheme != m_strOsUserTheme)
-   {
-      
-      m_strOsUserTheme = strTheme;
-      
-   }
+   //return ::success;
    
 }
-else if (ptopic->m_atom == id_open_hyperlink)
+
+
+void system::on_open_untitled_file()
 {
    
-   auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
-   
-   if (plink)
+   if (!m_bPostedInitialRequest)
    {
       
-      //if (plink->m_bProfile)
-      {
-         
-         open_profile_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
-         
-      }
-      //else
-      {
-         
-         // open_link(plink->m_strLink, plink->m_strProfile, plink->m_strTarget);
-         
-      }
+      defer_post_initial_request();
       
    }
    
+   //      throw ::interface_only();
+   
+   //throw ::interface_only();
+   
 }
-else if (ptopic->m_atom == id_app_activated)
+
+
+void system::on_open_file(const ::string & pszFile)
 {
    
-   if (::is_set(acmeapplication()))
-   {
-      
-      acmeapplication()->handle(ptopic, pcontext);
-      
-   }
+   throw ::interface_only();
    
 }
 
 
-
+void system::new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation)
+{
+   
+   auto pcompress = create < ::compress >("compress", scopedstrImplementation);
+   
+   if (!pcompress)
+   {
+      
+      throw ::exception(error_resource);
+      
+   }
+   
+   *ppcompress = pcompress;
+   
+   pcompress->increment_reference_count();
+   
+   //return ::success;
+   
 }
 
 
-   void system::add_handler(::matter * pmatter, bool bPriority)
+void system::new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation)
+{
+   
+   auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
+   
+   if (!puncompress)
    {
-
-
+      
+      throw ::exception(error_resource);
+      
    }
-
-
-   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal)
-   {
-
-
-   }
-
-
-   void system::node_will_finish_launching()
-   {
-
-      //   auto pnode = node();
-      //      
-      //   pnode->_will_finish_launching();
-
-      //   auto pnode = acmesession()->m_paurasession;
-      //
-      //   auto puser = psession->user();
-      //
-      //   auto pwindowing = puser->windowing();
-      //
-      //   pwindowing->_will_finish_launching();
-
-      auto pnode = node();
-
-      pnode->_will_finish_launching();
-
-      //return ::success;
-
-   }
-
-
-   void system::on_open_untitled_file()
-   {
-
-      if (!m_bPostedInitialRequest)
-      {
-
-         defer_post_initial_request();
-
-      }
-
-      //      throw ::interface_only();
-
-         //throw ::interface_only();
-
-   }
-
-
-   void system::on_open_file(const ::string & pszFile)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   void system::new_compress(::compress ** ppcompress, const ::scoped_string & scopedstrImplementation)
-   {
-
-      auto pcompress = create < ::compress >("compress", scopedstrImplementation);
-
-      if (!pcompress)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      *ppcompress = pcompress;
-
-      pcompress->increment_reference_count();
-
-      //return ::success;
-
-   }
-
-
-   void system::new_uncompress(::uncompress ** ppuncompress, const ::scoped_string & scopedstrImplementation)
-   {
-
-      auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
-
-      if (!puncompress)
-      {
-
-         throw ::exception(error_resource);
-
-      }
-
-      *ppuncompress = puncompress;
-
-      puncompress->increment_reference_count();
-
-      //return puncompress;
-
-   }
-
-   void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
-   {
-
-      ::pointer<::compress>pcompress;
-
-      /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
-
-      /*  if (!estatus)
-      {
-
-         return estatus;
-
-      }*/
-
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
-
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
-
-      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
-
-
-   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
-   {
-
-      ::pointer<::uncompress>puncompress;
-
-      /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
-
-      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
-
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
-
-
-   bool system::fast_is_decompressable_folder(const ::file::path & path)
-   {
-
-      auto bZip = path.case_insensitive_ends(".zip");
-
-      if (bZip)
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-
-
-   //pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   
+   *ppuncompress = puncompress;
+   
+   puncompress->increment_reference_count();
+   
+   //return puncompress;
+   
+}
+
+void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+{
+   
+   ::pointer<::compress>pcompress;
+   
+   /*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
+   
+   /*  if (!estatus)
+    {
+    
+    return estatus;
+    
+    }*/
+   
+   auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+   
+   auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+   
+   /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+   
+   //if (!estatus)
    //{
-   //
-   //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
-   //
-   //   psequencer->do_synchronously();
-   //
-   //   return psequencer;
-   //
+   
+   //   return estatus;
+   
    //}
+   
+   //return estatus;
+   
+}
+
+
+void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+{
+   
+   ::pointer<::uncompress>puncompress;
+   
+   /*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+   
+   //if (!estatus)
+   //{
+   
+   //   return estatus;
+   
+   //}
+   
+   auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+   
+   auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+   
+   /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
+   
+   //if (!estatus)
+   //{
+   
+   //   return estatus;
+   
+   //}
+   
+   //return estatus;
+   
+}
+
+
+bool system::fast_is_decompressable_folder(const ::file::path & path)
+{
+   
+   auto bZip = path.case_insensitive_ends(".zip");
+   
+   if (bZip)
+   {
+      
+      return true;
+      
+   }
+   
+   return false;
+   
+}
+
+
+
+
+//pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//{
+//
+//   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+//
+//   psequencer->do_synchronously();
+//
+//   return psequencer;
+//
+//}
 
    ::pointer<::acme::application>system::new_app(const ::scoped_string & scopedstrAppId)
    {
-
+      
       ::pointer<::acme::application>papp;
-
+      
       string strAppId = scopedstrAppId;
-
+      
       auto psetup = system_setup::get_first(::system_setup::flag_application, strAppId);
-
+      
       if (psetup)
       {
-
+         
          auto pelementApp = psetup->create_application_as_particle();
-
+         
          papp = pelementApp;
-
+         
          papp.reset(papp.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
-
+         
          if (papp)
          {
-
+            
             strAppId = papp->m_strAppId;
-
+            
          }
-
+         
       }
-
+      
       //#ifndef CUBE
-
+      
       if (!papp)
       {
-
+         
          if (strAppId.is_empty() || acmeapplication()->m_bConsole)
          {
-
+            
             papp = __create < ::acme::application >();
-
+            
             papp->increment_reference_count();
-
+            
          }
          else
          {
-
+            
             string strLibrary = strAppId;
-
+            
             strLibrary.replace_with("_", "/");
-
+            
             strLibrary.replace_with("_", "-");
-
+            
             if (acmeapplication()->m_bVerbose)
             {
-
+               
                ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
-
+               
             }
-
+            
             //auto psystem = acmesystem()->m_papexsystem;
-
+            
             auto & plibrary = m_psubsystem->library(strLibrary);
-
+            
             if (!plibrary)
             {
-
-#ifndef UNIVERSAL_WINDOWS
-
+               
+   #ifndef UNIVERSAL_WINDOWS
+               
                //            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
-
-                           //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
-
+               
+               //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
+               
                output_debug_string("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + "ca2");
-
-#endif
-
+               
+   #endif
+               
                return nullptr;
-
+               
             }
-
+            
             if (acmeapplication()->m_bVerbose)
             {
-
+               
                ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
-
+               
             }
-
+            
             // error anticipation is not perfect prediction and may affect results
             // so anticipation may be counter-self-healing
             // specially if what it would avoid on error is exactly we want if successful
@@ -2390,72 +2403,72 @@ else if (ptopic->m_atom == id_app_activated)
             //             return nullptr;
             //
             //          }
-
+            
             if (acmeapplication()->m_bVerbose)
             {
-
+               
                ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
-
+               
             }
-
+            
             ::factory::factory_pointer pfactory;
-
+            
             plibrary->create_factory(pfactory);
-
+            
             if (pfactory)
             {
-
+               
                papp = pfactory->create < ::acme::application >();
-
+               
                if (!papp)
                {
-
+                  
                   ::output_debug_string("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
-
+                  
                }
-
+               
                ::e_status estatus;
-
+               
                //         if(papp)
                //         {
                //
                //            estatus = papp->initialize(pparticle);
                //
                //         }
-
+               
                ::output_debug_string("\n\n\n|(4)----");
                ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
                ::output_debug_string("|\n");
                ::output_debug_string("|\n");
                ::output_debug_string("|----");
-
+               
             }
-
+            
          }
-
+         
       }
-
+      
       //#endif
-
+      
       if (!papp)
       {
-
+         
          return nullptr;
-
+         
       }
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      WCHAR wsz[1024];
-//
-//      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-//
-//      GetUserNameW(wsz, &dwSize);
-//
-//      string strUserName = wsz;
-//
-//#endif // WINDOWS_DESKTOP
-
+      
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      WCHAR wsz[1024];
+      //
+      //      DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+      //
+      //      GetUserNameW(wsz, &dwSize);
+      //
+      //      string strUserName = wsz;
+      //
+      //#endif // WINDOWS_DESKTOP
+      
       //   if (is_verbose())
       //   {
       //
@@ -2489,18 +2502,18 @@ else if (ptopic->m_atom == id_app_activated)
       //      ::output_debug_string("|----");
       //
       //   }
-
+      
       papp->m_strAppId = strAppId;
-
+      
       //if (m_strAppId.is_empty())
       //{
-
+      
       //   m_strAppId = strAppId;
-
+      
       //}
-
+      
       return papp;
-
+      
    }
 
 
@@ -2509,83 +2522,99 @@ else if (ptopic->m_atom == id_app_activated)
       
       try
       {
-
+         
          bool bOk = false;
-
+         
          if (m_pacmeapplication)
          {
-
+            
             if (m_pacmeapplication->_handle_call(payload, strObject, strMember, propertyset))
             {
-
+               
                return true;
-
+               
             }
-
+            
          }
-
+         
       }
       catch (...)
       {
-
+         
       }
-
+      
       return false;
-            
+      
    }
 
 
    string system::get_latest_deployment_number(const ::string & strBranch)
    {
-
+      
       return "(lastest deployed build)";
-
+      
    }
 
 
    void system::windowing_send(const ::procedure & procedure)
    {
-
+      
       auto pmanualresetevent = __new(manual_reset_event);
-
+      
       windowing_post([pmanualresetevent, procedure]()
-         {
-
-            procedure();
-
-            pmanualresetevent->set_event();
-
-         }
-
-      );
-
+                     {
+         
+         procedure();
+         
+         pmanualresetevent->set_event();
+         
+      }
+                     
+                     );
+      
       pmanualresetevent->wait(procedure.m_timeTimeout);
-
+      
    }
 
 
    void system::destroy()
    {
-
-#if !defined(WINDOWS)
-
+      
+   #if !defined(WINDOWS)
+      
       if(::is_set(m_pexceptiontranslator))
       {
-
+         
          m_pexceptiontranslator->detach();
-
+         
          m_pexceptiontranslator->destroy();
-
+         
          m_pexceptiontranslator.release();
-
+         
       }
-
-#endif
-
+      
+   #endif
+      
       ::acme::context::destroy();
-
+      
       ::task::destroy();
+      
+   }
 
+
+   ::string system::implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
+   {
+      
+      return scopedstrImplementation;
+      
+   }
+
+
+   ::string system::library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
+   {
+      
+      return scopedstrComponent + "_" + scopedstrImplementation;
+      
    }
 
 

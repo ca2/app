@@ -114,6 +114,8 @@ namespace userex
          if (m_pathFolder.has_char())
          {
 
+            __defer_construct_new(m_plisting);
+
             m_plisting->erase_all();
 
             m_plisting->set_pattern_file_listing(m_pathFolder, get_ls_pattern_stra());
@@ -183,7 +185,7 @@ namespace userex
                if (pimage1->is_set())
                {
 
-                  pimage1->extension()->payload("read_only_link") = get_link_prefix() + path.name();
+                  pimage1->get_extension()->payload("read_only_link") = get_link_prefix() + path.name();
 
                   synchronouslock.lock();
 

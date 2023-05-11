@@ -201,9 +201,9 @@ namespace sockets_bsd
          throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(networking_last_error()));
          return INVALID_SOCKET;
       }
-      attach(s);
+      //attach(s);
       OnOptions(af, iType, protno, s);
-      attach(INVALID_SOCKET);
+      //attach(INVALID_SOCKET);
       return s;
    }
 

@@ -1,2 +1,3 @@
 app/aura
 default_opengl1
+port/assimp

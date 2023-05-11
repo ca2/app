@@ -158,7 +158,7 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         m_pdocGeneral = puser->create_form(this, this, m_ptabimpact);
+         m_pdocGeneral = puser->create_form(this, nullptr, this, m_ptabimpact);
 
          if(m_pdocGeneral != nullptr)
          {

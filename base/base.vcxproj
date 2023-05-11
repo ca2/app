@@ -680,7 +680,9 @@
     <ClCompile Include="user\simple\impact.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
+    <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_document.cpp" />
+    <ClCompile Include="user\simple\toolbar.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
@@ -707,6 +709,7 @@
     <ClCompile Include="user\user\split_layout.cpp" />
     <ClCompile Include="user\user\split_pane.cpp" />
     <ClCompile Include="user\user\split_impact.cpp" />
+    <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\_aaa_static_control.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
     <ClCompile Include="user\user\tab_callback.cpp" />
@@ -851,9 +854,6 @@
     <ClInclude Include="user\user\picture.h" />
     <ClInclude Include="user\user\picture_interaction.h" />
     <ClInclude Include="user\user\form_data.h" />
-    <ClInclude Include="user\user\menu.h" />
-    <ClInclude Include="user\user\menu_interaction.h" />
-    <ClInclude Include="user\user\menu_item.h" />
     <ClInclude Include="user\user\place_holder.h" />
     <ClInclude Include="user\user\place_holder_container.h" />
     <ClInclude Include="user\user\simple_impact.h" />

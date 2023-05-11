@@ -1,4 +1,4 @@
-﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
@@ -630,9 +630,25 @@ namespace windowing
    bool windowing::route_message(::user::message * pusermessage)
    {
 
-      auto puserinteraction = pusermessage->userinteraction();
+      auto pwindow = pusermessage->window();
 
-      puserinteraction->m_pinteractionimpl->message_handler(pusermessage);
+      if (!pwindow)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+
+      if (!puserinteractionimpl)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      puserinteractionimpl->message_handler(pusermessage);
 
       return true;
 
@@ -935,6 +951,13 @@ namespace windowing
    //   return ::is_set(acmesystem()) ? dynamic_cast <::aura::system*> (acmesystem()) : nullptr;
 
    //}
+
+   ::pointer < ::user::interaction > windowing::create_message_window(const ::string & pszName, ::user::interaction_listener * plistener)
+   {
+
+      return nullptr;
+
+   }
 
 
 } // namespace windowing

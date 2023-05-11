@@ -52,7 +52,7 @@ namespace draw2d
 
 
       critical_section                                         m_criticalsectionObjectList;
-      pointer_array < ::draw2d::object >                        m_objecta;
+      numeric_array < ::draw2d::object * >                        m_objecta;
 
       critical_section                                         m_criticalsectionImageList;
       ::pointer<image_array>                                  m_pimagea;
@@ -131,7 +131,7 @@ namespace draw2d
       virtual void term_instance() override;
 
 
-      virtual string write_text_get_default_library_name();
+      virtual string write_text_get_default_implementation_name();
 
       virtual void embossed_text_out(
          ::draw2d::graphics_pointer & pgraphics,

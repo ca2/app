@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
+#include "acme/operating_system/application.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
@@ -22,6 +23,7 @@
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
+
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
@@ -136,14 +138,14 @@ namespace acme
    }
 
 
-   ::atom_array node::get_pid_from_module_list_file(const ::scoped_string & scopedstrAppId)
+   ::process_identifier_array node::module_list_file_processes_identifiers(const ::scoped_string & scopedstrAppId)
    {
 
-      ::atom_array idaPid;
+      ::process_identifier_array idaPid;
 
 #if defined(UNIVERSAL_WINDOWS)
 
-      idaPid.add(scopedstrAppId);
+      idaPid.add(-1);
 
 #else
 
@@ -191,17 +193,23 @@ namespace acme
             if (a.get_size() >= 2)
             {
 
-               stra2.add_unique_ci(a[0]);
+               string strProcessName = a[0];
 
-               string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
+               string strProcessId = a[1];
+
+               int iProcessId = ansi_to_i32(strProcessId);
+
+               stra2.add_unique_ci(strProcessName);
+
+               string strPath = pnode->process_identifier_module_path(iProcessId);
 
                if (strPath.has_char())
                {
 
-                  if (strPath.case_insensitive_order(a[0]) == 0)
+                  if (acmepath()->real_path_is_same(strPath, strProcessName))
                   {
 
-                     idaPid.add(ansi_to_i32(a[1]));
+                     idaPid.add(iProcessId);
 
                   }
 
@@ -386,7 +394,7 @@ namespace acme
    }
 
 
-   string node::audio_get_default_library_name()
+   string node::audio_get_default_implementation_name()
    {
 
       return "";
@@ -394,26 +402,26 @@ namespace acme
    }
 
 
-   string node::multimedia_audio_get_default_library_name()
+   string node::multimedia_audio_get_default_implementation_name()
    {
 
-      return "audio_alsa";
+      return acmesystem()->implementation_name("audio", "alsa");
 
    }
 
 
-   string node::multimedia_audio_mixer_get_default_library_name()
+   string node::multimedia_audio_mixer_get_default_implementation_name()
    {
 
-      return "audio_mixer_alsa";
+      return acmesystem()->implementation_name("audio_mixer", "alsa");
 
    }
 
 
-   string node::veriwell_multimedia_music_midi_get_default_library_name()
+   string node::veriwell_multimedia_music_midi_get_default_implementation_name()
    {
 
-      return "music_midi_alsa";
+      return acmesystem()->implementation_name("music_midi", "alsa");
 
    }
 
@@ -974,14 +982,23 @@ namespace acme
 
       m_dLuminance = m_colorBackground.get_luminance();
 
-      m_bDarkMode = m_dLuminance < 0.5;
+      set_dark_mode(m_dLuminance < 0.5);
 
-      if(m_bDarkMode)
+   }
+
+
+   void node::set_dark_mode(bool bDark)
+   {
+
+      m_bDarkMode = bDark;
+
+      if (m_bDarkMode)
       {
 
          ::output_debug_string("background_color :: Dark\n");
 
-      } else
+      }
+      else
       {
 
          ::output_debug_string("background_color :: Lite\n");
@@ -993,21 +1010,21 @@ namespace acme
    }
 
 
+//   int node::get_simple_ui_darkness()
+//   {
+//
+//      return m_iWeatherDarkness;
+//
+//   }
+//
+//
+//   void node::set_simple_ui_darkness(int iWeatherDarkness)
+//   {
+//
+//      m_iWeatherDarkness = iWeatherDarkness;
+//
+//   }
 
-   int node::get_simple_ui_darkness()
-   {
-
-      return m_iWeatherDarkness;
-
-   }
-
-
-   void node::set_simple_ui_darkness(int iWeatherDarkness)
-   {
-
-      m_iWeatherDarkness = iWeatherDarkness;
-
-   }
 
    void node::fetch_user_color()
    {
@@ -1598,14 +1615,12 @@ namespace acme
    }
 
 
-
-   void node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
+   ::process_identifier node::create_process(const ::string & pszCommandLine)
    {
 
-      //throw ::interface_only();
-
       throw ::interface_only();
-      //return false;
+      
+      return -1;
 
    }
 
@@ -1620,7 +1635,7 @@ namespace acme
    }
 
 
-   bool node::process_modules(string_array& stra, u32 processID)
+   bool node::process_modules(string_array& stra, ::process_identifier processidentifier)
    {
 
       throw ::interface_only();
@@ -1642,7 +1657,7 @@ namespace acme
    }
 
 
-   atom_array node::get_pids()
+   ::process_identifier_array node::processes_identifiers()
    {
       
       //throw ::interface_only();
@@ -1654,36 +1669,33 @@ namespace acme
    }
 
 
-   atom_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
+   ::process_identifier_array node::module_path_processes_identifiers(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
+
+      ::process_identifier_array processesidentifiers;
       
-      atom_array iaPid;
+      auto processesidentifiersAll = processes_identifiers();
 
-      atom_array pids = get_pids();
-
-      string strPath;
-
-      for(auto & iCurrentPid : pids)
+      for(auto & processidentifier : processesidentifiersAll)
       {
 
-         strPath = module_path_from_pid(iCurrentPid.as_i32());
+         auto path = process_identifier_module_path(processidentifier);
 
-         if(strPath.case_insensitive_order(pszModulePath) == 0 )
+         if(path.case_insensitive_equals(pszModulePath))
          {
 
-            iaPid.add(iCurrentPid);
+            processesidentifiers.add(processidentifier);
 
          }
 
       }
 
-      return iaPid;
-
+      return processesidentifiers;
 
    }
 
 
-   string node::module_path_from_pid(u32 pid)
+   string node::process_identifier_module_path(::process_identifier processidentifier)
    {
       
       //throw ::interface_only();
@@ -1695,7 +1707,7 @@ namespace acme
    }
 
 
-   string node::command_line_from_pid(u32 pid)
+   string node::process_identifier_command_line(::process_identifier processidentifier)
    {
       
       //throw ::interface_only();
@@ -1707,7 +1719,7 @@ namespace acme
    }
 
 
-   bool node::is_shared_library_busy(u32 processid, const string_array& stra)
+   bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array& stra)
    {
 
       throw ::interface_only();
@@ -1727,7 +1739,7 @@ namespace acme
    }
 
 
-   bool node::process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary)
+   bool node::process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary)
    {
 
       //throw ::interface_only();
@@ -1739,7 +1751,7 @@ namespace acme
    }
 
 
-   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary)
+   ::process_identifier_array node::shared_library_process(string_array& straProcesses, const ::string & pszLibrary)
    {
 
       //throw ::interface_only();
@@ -1749,7 +1761,7 @@ namespace acme
    }
 
 
-   bool node::is_process_running(::u32 pid)
+   bool node::is_process_running(::process_identifier processidentifier)
    {
 
       //throw ::interface_only();
@@ -2209,7 +2221,7 @@ return false;
    //}
 
 
-   ::i64 node::get_current_process_id()
+::process_identifier node::current_process_identifier()
    {
 
       return -1;
@@ -2682,10 +2694,20 @@ return false;
 //   }
 
 
-   int node::command_system(const ::scoped_string & scopedstr, const a_trace_function & aTraceFunction)
+   int node::command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction)
+   {
+
+      return command_system(scopedstr, {}, tracefunction);
+
+   }
+
+
+   int node::command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction)
    {
 
       throw interface_only();
+
+      return -1;
 
    }
 
@@ -2693,7 +2715,7 @@ return false;
 #if !defined(WINDOWS)
 
 
-   string_array node::cmdline_from_pid(unsigned int pid)
+   string_array node::cmdline_from_pid(::process_identifier pid)
    {
 
       throw interface_only();
@@ -2828,6 +2850,160 @@ return false;
       throw ::interface_only();
 
    }
+
+
+
+   bool node::has_unix_shell_command(const ::scoped_string& scopedstrCommand)
+   {
+
+      try
+      {
+
+         ::string strCommand;
+
+         strCommand.format("command -v %s", scopedstrCommand.c_str());
+
+         auto iExitCode = unix_shell_command(strCommand);
+
+         return iExitCode == 0;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return false;
+
+   }
+
+
+//#ifdef LINUX
+
+
+   int node::unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function & tracefunction)
+   {
+//
+//      try
+//      {
+//
+//         ::string strUnixShell;
+//
+//         strUnixShell = "/bin/bash";
+//
+//         ::string strCommand;
+//
+//         ::string strCommandInner;
+//
+//         strCommandInner = scopedstrCommand.c_str();
+//
+//         strCommandInner.find_replace("\"", "\\\"");
+//
+//         strCommand.format("\"%s\" -c \"%s\"", strUnixShell.c_str(), strCommandInner.c_str());
+//
+//         auto iExitCode = acmenode()->command_system(strCommand);
+//
+//         return iExitCode;
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+
+      return -1;
+
+   }
+
+
+   ::string node::unix_shell_command_string(const ::scoped_string & scopedstrCommand)
+   {
+
+      ::string strLog;
+
+      auto iExitCode = unix_shell_command(scopedstrCommand, [&strLog](auto etracelevel, auto str)
+      {
+
+         strLog += ::string(str) + "\n";
+
+      });
+
+      return strLog;
+
+   }
+
+
+   ::string node::operating_system_store_release()
+   {
+
+      return {};
+      
+   }
+
+
+   ::pointer <::operating_system::summary > node::operating_system_summary()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   //void node::module_path_main_window_post_close(const ::scoped_string & scopestr)
+   //{
+
+   //}
+
+
+   ::pointer < ::operating_system::application > node::module_path_application(const ::scoped_string & scopestr)
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+   
+   ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
+   {
+      
+      auto papplication = __create < ::operating_system::application >();
+      
+      papplication->open_by_process_identifier(processidentifier);
+      
+      return papplication;
+      
+   }
+
+
+   ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
+   {
+
+      auto processidentifiera = processes_identifiers();
+
+      for (auto & processidentifier : processidentifiera)
+      {
+
+         auto papplication = __create < ::operating_system::application >();
+
+         papplication->open_by_process_identifier(processidentifier);
+
+         if (function(papplication))
+         {
+
+            return papplication;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace acme

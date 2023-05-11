@@ -1,7 +1,6 @@
 #include "framework.h"
-
-
-
+#include "_opengl.h"
+#include "path.h"
 
 
 namespace draw2d_opengl
@@ -55,7 +54,7 @@ namespace draw2d_opengl
       else
       {
 
-         throw ::exception(::exception("path does not have last point_i32"));
+         throw ::exception(error_failed, "path does not have last point_i32");
 
       }
 
@@ -207,7 +206,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::arc& parc)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
@@ -217,97 +216,97 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::line& pline)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::lined& pline)
-   {
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::lined& pline)
+   //{
 
-      throw ::exception(todo("::opengl::path"));
+   //   throw ::exception(todo("::opengl::path"));
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool path::_set(::draw2d::graphics* pgraphics, const ::lines& pline)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::linesd& pline)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::linesd& pline)
+   //{
+
+   //   throw ::exception(todo("::opengl::path"));
+
+   //   return false;
+
+   //}
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle & prectangle)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle)
+   //{
+
+   //   throw ::exception(todo("::opengl::path"));
+
+   //   return false;
+
+   //}
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle)
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond)
+   //{
+
+   //   throw ::exception(todo("::opengl::path"));
+
+   //   return false;
+
+   //}
+
+
+   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::text_out& ptextout)
    {
 
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_i32& ppolygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& pdrawtext)
    {
 
-      throw ::exception(todo("::opengl::path"));
-
-      return false;
-
-   }
-
-
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond)
-   {
-
-      throw ::exception(todo("::opengl::path"));
-
-      return false;
-
-   }
-
-
-   bool path::_set(::draw2d::graphics* pgraphics, const ::text_out& ptextout)
-   {
-
-      throw ::exception(todo("::opengl::path"));
-
-      return false;
-
-   }
-
-
-   bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text& pdrawtext)
-   {
-
-      throw ::exception(todo("::opengl::path"));
+      throw ::exception(todo, "::opengl::path");
 
       return false;
 

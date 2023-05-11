@@ -23,7 +23,7 @@ class ::time g_timeLastDebuggerAttachedCheck;
 i32 __node_is_debugger_attached()
 {
 
-   critical_section_lock lock(::acme::acme::g_p->globals_critical_section());
+   critical_section_lock lock(::acme::acme::g_pacme->globals_critical_section());
 
    if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
    {
@@ -221,7 +221,7 @@ i32 gdb_check()
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 
-   if(::acme::acme::g_p->m_bOutputDebugString)
+   if(::acme::acme::g_pacme->m_bOutputDebugString)
    {
 
       if(strstr(scopedstr, "font_list"))
@@ -243,7 +243,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 void output_debug_string(const ::wide_character * pOutputString)
 {
 
-   if(::acme::acme::g_p->m_bOutputDebugString)
+   if(::acme::acme::g_pacme->m_bOutputDebugString)
    {
 
       output_debug_string(string(pOutputString));

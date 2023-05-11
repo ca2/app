@@ -40,7 +40,7 @@
 void on_initialize_particle() override                                             \
 {                                                                                      \
                                                                                        \
-   m_papplicationForConsumer = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
+   m_papp = this->m_pcontext ? this->m_pcontext->m_pacmeapplication : nullptr;             \
                                                                                        \
    BASE1::on_initialize_particle();                                      \
                                                                        \
@@ -119,7 +119,7 @@ class app_consumer_base :
 public:
 
 
-   ::pointer<APP>m_papplicationForConsumer;
+   ::pointer<APP>m_papp;
 
 
    app_consumer_base()
@@ -131,15 +131,15 @@ public:
    APP_CONSUMER_BODY
 
 
-   inline APP * get_app() { return m_papplicationForConsumer.get(); }
-   inline APP * get_app() const { return (APP*)m_papplicationForConsumer.get(); }
+   inline APP * get_app() { return m_papp.get(); }
+   inline APP * get_app() const { return (APP*)m_papp.get(); }
 
 
 };
 
 
 template <  typename APP, typename BASE1 = optional_interaction1, typename BASE2 = optional_interaction2, typename BASE3 = optional_interaction3, typename BASE4 = optional_interaction4 >
-class application_interaction :
+class app_interaction :
    virtual public ::object,
    virtual public BASE1, 
    virtual public BASE2,
@@ -149,10 +149,10 @@ class application_interaction :
 public:
 
 
-   ::pointer<APP>m_papplicationForConsumer;
+   ::pointer<APP>m_papp;
 
 
-   application_interaction()
+   app_interaction()
    {
 
    }
@@ -240,8 +240,8 @@ public:
    }
 
 
-   inline APP* get_app() { return m_papplicationForConsumer.get(); }
-   inline APP* get_app() const { return (APP *)m_papplicationForConsumer.get(); }
+   inline APP* get_app() { return m_papp.get(); }
+   inline APP* get_app() const { return (APP *)m_papp.get(); }
 
 
 };

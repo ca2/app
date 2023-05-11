@@ -70,16 +70,15 @@ inline void fixed_alloc_no_sync::Free(void * p)
 }
 
 
-
 class CLASS_DECL_ACME fixed_alloc_sync
 {
 public:
 
 
-   i32                                      m_i;
-   i32                                      m_iShareCount;
-   address_array < critical_section *  >        m_protectptra;
-   address_array < fixed_alloc_no_sync * >      m_allocptra;
+   i32                                       m_i;
+   i32                                       m_iShareCount;
+   ::array < ::critical_section >            m_criticalsectiona;
+   address_array < fixed_alloc_no_sync * >   m_allocptra;
 
 
    fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize = 64, i32 iShareCount = 2);

@@ -67,9 +67,11 @@ if (MSVC)
 
 elseif(LINUX)
 
+
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
 
     #target_link_options(experience_tranquillum PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(experience_tranquillum PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})

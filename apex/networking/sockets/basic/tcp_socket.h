@@ -1,4 +1,4 @@
-﻿/** \file tcp_socket.h
+/** \file tcp_socket.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
@@ -53,7 +53,7 @@ namespace sockets
    /*   array < ssl_ticket_key >   m_ticketkeya;
 */
 
-      ::pointer<tcp_socket>        m_ptcpsocketComposite;
+      ::pointer<tcp_socket>         m_ptcpsocketComposite;
       bool                          m_bImpl;
       //static bool s_bReuseSession; // Default psystem Wide Setting
 
@@ -287,7 +287,7 @@ namespace sockets
 
       virtual void DisableInputBuffer(bool = true);
 
-      //void OnOptions(i32,i32,i32,socket_id) override;
+      //void OnOptions(int,int,int,SOCKET) override;
 
       void SetLineProtocol(bool = true) override;
 

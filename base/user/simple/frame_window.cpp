@@ -409,7 +409,7 @@ void simple_frame_window::task_intensive_save_window_placement()
 
          m_bPendingSaveWindowRect = false;
 
-         WindowDataSaveWindowRect();
+         WindowDataSaveWindowRectangle();
 
          break;
 
@@ -431,7 +431,7 @@ void simple_frame_window::defer_save_window_placement()
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   if (!should_save_window_rect())
+   if (!should_save_window_rectangle())
    {
 
       return;
@@ -447,7 +447,7 @@ void simple_frame_window::defer_save_window_placement()
 }
 
 
-bool simple_frame_window::WindowDataLoadWindowRect()
+bool simple_frame_window::WindowDataLoadWindowRectangle()
 {
 
    if (wfi_has_up_down())
@@ -492,7 +492,7 @@ bool simple_frame_window::WindowDataLoadWindowRect()
          INFORMATION("-------------------------------------------------------------------");
          INFORMATION("");
          INFORMATION("");
-         INFORMATION("interaction_child::WindowDataLoadWindowRect (3)");
+         INFORMATION("interaction_child::WindowDataLoadWindowRectangle (3)");
          INFORMATION("");
          INFORMATION("");
 
@@ -505,16 +505,16 @@ bool simple_frame_window::WindowDataLoadWindowRect()
    INFORMATION("-------------------------------------------------------------------");
    INFORMATION("");
    INFORMATION("");
-   INFORMATION("interaction_child::WindowDataLoadWindowRect (4)");
+   INFORMATION("interaction_child::WindowDataLoadWindowRectangle (4)");
    INFORMATION("");
    INFORMATION("");
 
-   return ::experience::frame_window::WindowDataLoadWindowRect();
+   return ::experience::frame_window::WindowDataLoadWindowRectangle();
 
 }
 
 
-void simple_frame_window::WindowDataSaveWindowRect()
+void simple_frame_window::WindowDataSaveWindowRectangle()
 {
 
    if (wfi_has_up_down())
@@ -530,39 +530,24 @@ void simple_frame_window::WindowDataSaveWindowRect()
 
    }
 
-   return ::experience::frame_window::WindowDataSaveWindowRect();
+   return ::experience::frame_window::WindowDataSaveWindowRectangle();
 
 }
 
 
-bool simple_frame_window::_001OnBeforeAppearance()
+bool simple_frame_window::_001OnBeforeEnterAppearance()
 {
 
-   ::e_display edisplay = const_layout().sketch().display();
+   ::e_display edisplayRequest = const_layout().sketch().display();
 
-   if (edisplay == ::e_display_up || edisplay == ::e_display_down)
+   if (edisplayRequest == ::e_display_up || edisplayRequest == ::e_display_down)
    {
-
 
       initialize_frame_window_experience();
 
-      //if (!initialize_frame_window_experience())
-      //{
-
-      //   return false;
-
-      //}
-
    }
 
-   if (!::experience::frame_window::_001OnBeforeAppearance())
-   {
-
-      return false;
-
-   }
-
-   if (!::user::frame_window::_001OnBeforeAppearance())
+   if (!::experience::frame_window::_001OnBeforeEnterAppearance())
    {
 
       return false;
@@ -572,22 +557,6 @@ bool simple_frame_window::_001OnBeforeAppearance()
    return true;
 
 }
-
-
-//void simple_frame_window::assert_ok() const
-//{
-//
-//   ::user::frame_window::assert_ok();
-//
-//}
-//
-//
-//void simple_frame_window::dump(dump_context & dumpcontext) const
-//{
-//
-//   ::user::frame_window::dump(dumpcontext);
-//
-//}
 
 
 ::pointer<::user::interaction>simple_frame_window::WindowDataGetWnd()
@@ -1447,7 +1416,7 @@ bool simple_frame_window::frame_is_transparent()
 
    }
 
-   auto eappearance = const_layout().design().appearance();
+   auto eappearance = const_layout().sketch().appearance();
 
    if (eappearance & ::e_appearance_transparent_frame)
    {
@@ -1461,12 +1430,22 @@ bool simple_frame_window::frame_is_transparent()
 }
 
 
-void simple_frame_window::_001OnExitFullScreen()
+void simple_frame_window::_001OnAfterEnterFullScreen()
 {
 
-   show_control_bars();
+   show_control_bars(e_display_hide);
 
-   ::experience::frame_window::_001OnExitFullScreen();
+   ::experience::frame_window::_001OnAfterEnterFullScreen();
+
+}
+
+
+void simple_frame_window::_001OnAfterExitFullScreen()
+{
+
+   ::experience::frame_window::_001OnAfterExitFullScreen();
+
+   show_control_bars();
 
 }
 
@@ -2061,7 +2040,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
       }
 
-      if (should_save_window_rect())
+      if (should_save_window_rectangle())
       {
 
          //bool bForceRestore = false;
@@ -2070,7 +2049,7 @@ bool simple_frame_window::LoadFrame(const ::string& pszMatter, u32 dwDefaultStyl
 
          //m_puserinteractionParent = puiParent;
 
-         //WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
+         //WindowDataLoadWindowRectangle(bForceRestore, bInitialFramePosition);
 
          //_001FancyInitialFramePlacement();
 
@@ -2333,7 +2312,7 @@ void simple_frame_window::on_frame_position()
 //
 //            m_bInitialFramePosition = true;
 //
-//            WindowDataLoadWindowRect(bForceRestore, true);
+//            WindowDataLoadWindowRectangle(bForceRestore, true);
 //
 //         }
 //
@@ -2766,7 +2745,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
 bool simple_frame_window::on_before_set_parent(::pointer<::user::interaction>pinteraction)
 {
 
-   WindowDataSaveWindowRect();
+   WindowDataSaveWindowRectangle();
 
    if (!::user::box::on_before_set_parent(pinteraction))
    {
@@ -2951,7 +2930,7 @@ void simple_frame_window::WfiToggleShow()
    else
    {
 
-      WindowDataLoadWindowRect();
+      WindowDataLoadWindowRectangle();
 
    }
 
@@ -3306,6 +3285,8 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
          //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_atom);
 
          default_notify_icon_topic();
+
+         ptopic->m_bRet = true;
 
       }
 
@@ -4261,10 +4242,10 @@ void simple_frame_window::on_visual_applied()
    if (get_parent() == nullptr)
    {
 
-      if (m_ewindowflag & e_window_flag_auto_store_window_rect)
+      if (m_bAutomaticallyStoreWindowRectangle)
       {
 
-         if (m_ewindowflag & e_window_flag_pending_save_window_rect)
+         if (m_bPendingSaveWindowRectangle)
          {
 
             defer_save_window_placement();
@@ -4273,19 +4254,19 @@ void simple_frame_window::on_visual_applied()
 
       }
 
-      m_ewindowflag -= e_window_flag_loading_window_rect;
+      m_bLoadingWindowRectangle = false;
 
    }
 
 }
 
-
-void simple_frame_window::_001OnAfterAppearance()
-{
-
-   ::experience::frame_window::_001OnAfterAppearance();
-
-}
+//
+//void simple_frame_window::_001OnAfterAppearance()
+//{
+//
+//   ::experience::frame_window::_001OnAfterAppearance();
+//
+//}
 
 
 

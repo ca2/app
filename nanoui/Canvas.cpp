@@ -1,4 +1,4 @@
-﻿/*
+/*
     nanoui/canvas.cpp -- Canvas widget for rendering full-fledged
     OpenGL content within its designated area. Very useful for
     displaying and manipulating 3D objects or scenes. Subclass it and
@@ -129,18 +129,18 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
 }
 
 
-void Canvas::set_background_color(const Color & background_color) 
+void Canvas::set_background_color(const ::color::color & background_color) 
 {
 
-   m_colorClear = ::as_color(background_color);
+   m_colorClear = background_color;
    //m_render_pass->set_clear_color(0, background_color);
 
 }
 
 
-Color Canvas::background_color() const {
+::color::color Canvas::background_color() const {
    //return m_render_pass->clear_color(0);
-   return ::nanoui::Color(
+   return ::color::color(
       m_colorClear.fr(), 
       m_colorClear.fg(), m_colorClear.fb(), m_colorClear.fa());
 

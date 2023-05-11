@@ -123,7 +123,7 @@ void acme_directory::initialize(::particle * pparticle)
 ::file::path acme_directory::appdata()
 {
 
-   return ca2roaming() / "appdata" / app_relative();
+   return roaming() / appid();
 
 }
 
@@ -210,35 +210,13 @@ string acme_directory::system_short_name()
 
 }
 
-#ifdef UNIVERSAL_WINDOWS
 
-
-::file::path acme_directory::app_relative()
+::string acme_directory::appid()
 {
 
-   return "";
+   return acmeapplication()->m_strAppId;
 
 }
-
-
-#else
-
-
-::file::path acme_directory::app_relative()
-{
-
-   ::file::path path = acmefile()->module();
-
-   path.find_replace(":", "");
-
-   path = file_path_folder(path);
-
-   return path;
-
-}
-
-
-#endif
 
 
 ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)
@@ -1097,9 +1075,9 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 bool acme_directory::_is(bool & bDir, const ::file::path & path)
 {
 
-   auto pathFinal = acmepath()->_final(path);
+   auto pathFinal = acmepath()->safe_get_real_path(path);
 
-   bDir = ::is_directory(pathFinal);
+   bDir = ::safe_is_directory(pathFinal);
 
    return true;
 
@@ -1129,6 +1107,14 @@ void acme_directory::erase(const ::file::path & path)
 {
 
    ::erase_directory(path);
+
+}
+
+
+void acme_directory::erase_recursively(const ::file::path &path)
+{
+   
+   
 
 }
 

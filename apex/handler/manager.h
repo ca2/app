@@ -12,9 +12,9 @@ class CLASS_DECL_APEX manager :
 public:
 
 
-   ::pointer<signal_map>                                m_psignalmap;
+   ::pointer<signal_map>                                 m_psignalmap;
 
-   static critical_section                               s_criticalsection;
+   static ::critical_section                             s_criticalsection;
    // todo implement keyset
    // a hashmap of just the key (but not a value)
    // like std::set?

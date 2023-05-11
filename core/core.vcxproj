@@ -661,8 +661,11 @@
     <ClCompile Include="filesystem\filemanager\operation_thread.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\path_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_button_impact.cpp" />
+    <ClInclude Include="filesystem\filemanager\save_as_button_impact.h" />
+    <ClCompile Include="filesystem\filemanager\save_as_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
-    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\impact_base.cpp" />
@@ -728,10 +731,8 @@
     <ClCompile Include="user\simple\pane_document.cpp" />
     <ClCompile Include="user\simple\printer_list_impact.cpp" />
     <ClCompile Include="user\simple\still.cpp" />
-    <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
-    <ClCompile Include="user\simple\toolbar.cpp" />
     <ClCompile Include="user\simple\tree_impact.cpp" />
     <ClCompile Include="user\userex\failure_dialog.cpp" />
     <ClCompile Include="user\userex\calculator_edit_impact.cpp" />
@@ -780,7 +781,6 @@
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
     <ClCompile Include="user\user\mesh_item.cpp" />
-    <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\text_format_object.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
@@ -800,6 +800,7 @@
     <ClInclude Include="filesystem\filehandler\_binary_stream.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_impact.h" />
     <ClInclude Include="filesystem\filemanager\_impl.h" />
     <ClInclude Include="filesystem\filemanager\_tree.h" />
     <ClInclude Include="filesystem\userfs\_binary_stream.h" />
@@ -848,7 +849,6 @@
     <ClInclude Include="include\_include.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="update.h" />
-    <ClInclude Include="user.h" />
     <ClInclude Include="user\account\_component.h" />
     <ClInclude Include="user\netuser\network_configuration.h" />
     <ClInclude Include="user\netuser\_.h" />
@@ -924,7 +924,7 @@
     <ClInclude Include="filesystem\filemanager\operation_impact.h" />
     <ClInclude Include="filesystem\filemanager\path_impact.h" />
     <ClInclude Include="filesystem\filemanager\thumbnail.h" />
-    <ClInclude Include="filesystem\filemanager\save_as_name_impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />
     <ClInclude Include="filesystem\filemanager\tree.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />

@@ -1,4 +1,4 @@
-﻿/*
+/*
     src/button.cpp -- [Normal/Toggle/Radio/Popup] Button widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
@@ -24,8 +24,8 @@ namespace nanoui
 Button::Button(Widget * parent, const ::scoped_string & caption, int icon)
    : Widget(parent), m_caption(caption), m_icon(icon),
    m_icon_position(IconPosition::LeftCentered), m_bMouseDown(false), m_bChecked(false),
-   m_flags(NormalButton), m_background_color(Color(0, 0)),
-   m_text_color(Color(0, 0)),
+   m_flags(NormalButton), m_background_color( ::color::color(0, 0)),
+   m_text_color( ::color::color(0, 0)),
    m_tw(-1.f),m_iw(-1.f),m_ih(-1.f)
 {
 
@@ -75,10 +75,10 @@ Vector2i Button::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSi
 //}
 
 
-bool Button::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, const ::user::e_key & ekeyModifiers)
+bool Button::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers)
 {
 
-   Widget::mouse_button_event(p, emouse, down, ekeyModifiers);
+   Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
    /* Temporarily increase the reference count of the button in case the
       button causes the parent window to be destructed */
    ref<Button> self = this;
@@ -238,8 +238,8 @@ void Button::draw(::nano2d::context * pcontext)
    
    Widget::draw(pcontext);
 
-   ::nano2d::color grad_top = m_theme->m_button_gradient_top_unfocused;
-   ::nano2d::color grad_bot = m_theme->m_button_gradient_bot_unfocused;
+   ::color::color grad_top = m_theme->m_button_gradient_top_unfocused;
+   ::color::color grad_bot = m_theme->m_button_gradient_bot_unfocused;
 
    bool bPressed = false;
 
@@ -270,16 +270,16 @@ void Button::draw(::nano2d::context * pcontext)
    pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 2.f,
       m_size.y() - 2.f, m_theme->m_button_corner_radius - 1.f);
 
-   if (m_background_color.w() != 0) {
-      pcontext->fill_color(Color(m_background_color[0], m_background_color[1],
-         m_background_color[2], 1.f));
+   if (m_background_color.alpha != 0) {
+      pcontext->fill_color( ::color::color(m_background_color.red, m_background_color.green,
+         m_background_color.blue, 1.f));
       pcontext->fill();
       if (bPressed) {
-         grad_top.a = grad_bot.a = 0.8f;
+         grad_top.set_alpha(grad_bot.set_alpha(0.8f));
       }
       else {
-         double v = 1 - m_background_color.w();
-         grad_top.a = grad_bot.a = (float) (m_enabled ? v : v * .5 + .5);
+         double v = 1 - m_background_color.fa();
+         grad_top.set_alpha(grad_bot.set_alpha((float) (m_enabled ? v : v * .5 + .5)));
       }
    }
 
@@ -309,8 +309,8 @@ void Button::draw(::nano2d::context * pcontext)
 
    Vector2f center = Vector2f(m_pos) + Vector2f(m_size) * 0.5f;
    Vector2f text_pos(center.x() - tw * 0.5f, center.y() - 1);
-   ::nano2d::color text_color =
-      m_text_color.w() == 0 ? m_theme->m_text_color : m_text_color;
+   ::color::color text_color =
+      m_text_color.alpha == 0 ? m_theme->m_text_color : m_text_color;
    if (!m_enabled)
       text_color = m_theme->m_disabled_text_color;
 

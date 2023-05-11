@@ -100,7 +100,7 @@ void dir_system::init_system()
 
    }
 
-   m_pfilewatcher.create(this);
+   __construct(m_pfilewatcher);
 
    pacmedirectory->create(acmedirectory()->bookmark());
 
@@ -118,7 +118,7 @@ void dir_system::init_system()
 
    //}
 
-   string strRelative = acmedirectory()->app_relative();
+   ::string strAppId = acmedirectory()->appid();
 
    m_pathDefaultAppData = compute_default_app_data_path();
 

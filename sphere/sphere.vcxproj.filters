@@ -651,11 +651,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sphere.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>

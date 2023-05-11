@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "message_queue.h"
 #include "acme/constant/message.h"
 #include "acme/operating_system/message.h"
@@ -32,13 +32,19 @@ message_queue::message_queue()
 
    //m_bKickIdle = false;
 
-   defer_create_synchronization();
-
 }
 
 
 message_queue::~message_queue()
 {
+
+}
+
+
+void message_queue::on_initialize_particle()
+{
+
+   defer_create_synchronization();
 
 }
 
@@ -169,7 +175,7 @@ void message_queue::kick_idle()
 
          synchronouslock.unlock();
 
-         auto bAcquired = m_eventNewMessage._wait(time);
+         auto bAcquired = m_eventNewMessage.wait(time);
 
          if(!bAcquired)
          {

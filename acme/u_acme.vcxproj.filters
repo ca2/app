@@ -1357,6 +1357,9 @@
     <ClCompile Include="operating_system\windows_common\find_file.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\dostime.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3626,6 +3629,9 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows_common\find_file.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\dostime.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

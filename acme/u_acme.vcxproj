@@ -690,6 +690,7 @@
     <ClInclude Include="operating_system\chronometer.h" />
     <ClInclude Include="operating_system\console.h" />
     <ClInclude Include="operating_system\cross.h" />
+    <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\file.h" />
     <ClInclude Include="operating_system\graphics.h" />
     <ClInclude Include="operating_system\microsecond_sleep.h" />
@@ -1612,6 +1613,7 @@
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\Debug.cpp" />
+    <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />

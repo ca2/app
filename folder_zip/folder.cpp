@@ -2,10 +2,10 @@
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/operating_system/dos_time.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
@@ -296,7 +296,11 @@ namespace folder_zip
 
 #ifdef WINDOWS
 
+
       auto dosDate = m_unzfileinfo.dosDate;
+
+
+#ifdef WINDOWS_DESKTOP
 
       ::file_time_t filetimeLocal;
       ::file_time_t filetime;
@@ -306,6 +310,13 @@ namespace folder_zip
       ::LocalFileTimeToFileTime((LPFILETIME)&filetimeLocal, (LPFILETIME)&filetime);
 
       ::file_time_to_time(&time, &filetime);
+
+#else
+
+      time.m_iSecond = dos_time_unix_time(dosDate);
+      time.m_iNanosecond = 0;
+
+#endif
 
 #else
 

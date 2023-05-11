@@ -1010,12 +1010,6 @@ namespace user
    }
 
 
-   ::user::interaction::enum_type impact::get_window_type()
-   {
-      return type_impact;
-   }
-
-
    //void impact::on_draw_impact_nc(::image * pimage)
    //{
 

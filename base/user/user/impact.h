@@ -176,8 +176,6 @@ namespace user
       virtual i32  get_total_page_count(::context * ptopic) override;
 
 
-      virtual ::user::interaction::enum_type get_window_type() override;
-
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
 
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;

@@ -13452,15 +13452,21 @@ namespace user
 
    }
 
+   
    u32 interaction::get_window_default_style()
    {
+      
       return 0;
+
    }
 
-   ::user::interaction::enum_type interaction::get_window_type()
-   {
-      return type_window;
-   }
+
+   //::user::enum_window_type interaction::get_window_type()
+   //{
+   //   
+   //   return e_window_type_window;
+
+   //}
 
 
    //bool interaction::post_simple_command(e_simple_command ecommand,lparam lparam)

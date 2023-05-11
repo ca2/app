@@ -113,7 +113,7 @@ namespace acme
       bool                                                  m_bDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
-      int                                                   m_iWeatherDarkness;
+      //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
       ::user::enum_desktop                                  m_edesktop;
@@ -271,9 +271,11 @@ namespace acme
 
       virtual void background_color(const ::color::color & color);
 
-      virtual int get_simple_ui_darkness();
+//      virtual int get_simple_ui_darkness();
 
-      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+
+      virtual void set_dark_mode(bool bDark);
 
       virtual void fetch_user_color();
 

@@ -32,6 +32,9 @@ enum enum_font
    e_font_serif_fx,
 
    e_font_monospace,
+   e_font_monospace_ui,
+   e_font_monospace_ex,
+   e_font_monospace_fx,
 
 };
 

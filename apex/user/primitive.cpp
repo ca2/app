@@ -3130,12 +3130,12 @@ namespace user
    }
 
 
-   ::user::primitive::enum_type primitive::get_window_type()
-   {
+   //::user::primitive::enum_type primitive::get_window_type()
+   //{
 
-      return type_window;
+   //   return type_window;
 
-   }
+   //}
 
 
 

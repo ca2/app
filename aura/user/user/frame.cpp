@@ -513,6 +513,15 @@ namespace user
 
 
 
+   enum_window_type frame::get_window_type()
+   {
+
+      return e_window_type_frame;
+
+   }
+
+
+
    void frame::handle(::topic * ptopic, ::context * pcontext)
    {
 

@@ -3049,10 +3049,10 @@ namespace user
    }
 
 
-   ::user::element::enum_type element::get_window_type()
+   ::user::enum_window_type element::get_window_type()
    {
 
-      return type_window;
+      return e_window_type_window;
 
    }
 

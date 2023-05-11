@@ -1714,7 +1714,7 @@ namespace user
       virtual string get_window_default_matter() override;
       virtual string get_window_icon_matter() override;
       virtual u32 get_window_default_style() override;
-      virtual enum_type get_window_type() override;
+      //virtual enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command* psimplecommand) override;

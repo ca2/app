@@ -11,6 +11,17 @@ namespace user
 {
 
 
+   enum enum_window_type
+   {
+
+      e_window_type_window,
+      e_window_type_frame,
+      e_window_type_impact
+
+   };
+
+
+
    enum enum_next
    {
 
@@ -55,15 +66,6 @@ namespace user
          GeneralEventPosCreate3,
          GeneralEventPosCreate4,
          GeneralEventPosCreate5
-
-      };
-
-      enum enum_type
-      {
-
-         type_window,
-         type_frame,
-         type_impact
 
       };
 
@@ -529,7 +531,7 @@ namespace user
       virtual string get_window_default_matter();
       virtual string get_window_icon_matter();
       virtual u32 get_window_default_style();
-      virtual enum_type get_window_type();
+      virtual enum_window_type get_window_type();
 
 
       virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);

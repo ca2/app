@@ -458,7 +458,7 @@ namespace user
       string get_window_default_matter() override;
       string get_window_icon_matter() override;
       u32 get_window_default_style() override;
-      virtual enum_type get_window_type() override;
+      //virtual enum_type get_window_type() override;
 
 
       virtual void add_child_handler(const ::signal_handler & signalhandler, const ::atom & idChild, bool bPriority = false) override;

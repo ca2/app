@@ -200,10 +200,10 @@ public:
     void trim();
 
     ::index add_unique(const Type & str);
-    ::index add_unique_ci(const Type & str);
+    ::index case_insensitive_add_unique(const Type & str);
 
     ::count append_unique(const string_array_base & stra);
-    ::count append_unique_ci(const string_array_base & stra);
+    ::count case_insensitive_append_unique(const string_array_base & stra);
 
     void make_lower();
     void make_upper();

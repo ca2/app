@@ -1626,14 +1626,25 @@ namespace acme
    }
 
 
-   bool node::process_modules(string_array& stra, ::process_identifier processidentifier)
+   ::file::path_array node::process_identifier_modules_paths(::process_identifier processidentifier)
    {
 
       throw ::interface_only();
 
-      //return false;
+      return {};
 
    }
+
+
+   ::file::path_array node::modules_paths()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
 
 
    bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir)
@@ -1710,24 +1721,49 @@ namespace acme
    }
 
 
-   bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array& stra)
-   {
+   //bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra) override;
 
-      throw ::interface_only();
+        //bool is_shared_library_busy(const string_array & stra) override;
+   
+   
+   //bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array & stra)
+   //{
 
-      return false;
+   //   auto straModulesPaths = process_identifier_modules_paths(processidentifier);
 
-   }
+   //   for (auto & strModulePath : straModulesPaths)
+   //   {
+
+   //      ::file::path path = strModulePath;
+
+   //      if(stra.path.name() )
+
+   //   }
 
 
-   bool node::is_shared_library_busy(const string_array& stra)
-   {
+   //      straSuffix.surround("\\");
 
-      throw ::interface_only();
+   //   return ::windows::for_each_process_module(processidentifier, [&](auto & moduleentry32)
+   //      {
 
-      return false;
+   //      return !straSuffix.case_insensitive_suffixes(string(moduleentry32.szModule)) && !stra.case_insensitive_contains(string(moduleentry32.szModule));
 
-   }
+   //      });
+
+   //}
+
+
+   //bool node::is_shared_library_busy(const string_array & stra)
+   //{
+
+   //   return ::acme_windows::predicate_process([&](auto pid)
+   //      {
+
+   //      return !is_shared_library_busy(pid, stra);
+
+   //      });
+
+   //}
 
 
    bool node::process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary)

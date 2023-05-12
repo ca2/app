@@ -51,9 +51,9 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    ::string application::name()
    {
 
-      throw interface_only();
+      auto pathModule = this->module_path();
       
-      return {};
+      return pathModule.title();
       
    }
 

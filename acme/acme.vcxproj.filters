@@ -4114,6 +4114,9 @@
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <Filter>Source Files\memory\osdjfh</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

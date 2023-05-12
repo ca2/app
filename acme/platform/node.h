@@ -376,7 +376,9 @@ namespace acme
 
       virtual void run_silent(const ::string & strFunct, const ::string & strstrParams);
 
-      virtual bool process_modules(string_array& stra, ::process_identifier processidentifier);
+      virtual ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier);
+
+      virtual ::file::path_array modules_paths();
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
@@ -388,9 +390,9 @@ namespace acme
 
       virtual string process_identifier_command_line(::process_identifier processidentifier);
 
-      virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
 
-      virtual bool is_shared_library_busy(const string_array& stra);
+      //virtual bool is_shared_library_busy(const string_array& stra);
 
       virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
 

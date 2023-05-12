@@ -933,7 +933,7 @@ namespace interprocess
             if (a.get_size() >= 2)
             {
 
-               stra2.add_unique_ci(a[0]);
+               stra2.case_insensitive_add_unique(a[0]);
 
                string strPath = pnode->process_identifier_module_path(atoi(a[1]));
 
@@ -973,7 +973,7 @@ namespace interprocess
       for(auto & strItem : m_straModule)
       {
 
-         straUnique.add_unique_ci(strItem);
+         straUnique.case_insensitive_add_unique(strItem);
 
       }
 
@@ -996,7 +996,7 @@ namespace interprocess
       }
 
 
-      m_straModule.add_unique_ci(strItem);
+      m_straModule.case_insensitive_add_unique(strItem);
 
       strModuleList = m_straModule.implode("\n");
 

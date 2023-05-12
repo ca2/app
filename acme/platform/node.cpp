@@ -192,7 +192,7 @@ namespace acme
             if (a.get_size() >= 2)
             {
 
-               stra2.add_unique_ci(a[0]);
+               stra2.case_insensitive_add_unique(a[0]);
 
                string strPath = pnode->process_identifier_module_path(ansi_to_i32(a[1]));
 

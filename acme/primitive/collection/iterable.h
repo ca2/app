@@ -30,7 +30,7 @@ namespace iter
    bool add_unique(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITYPE >
-   bool add_unique_ci(ITERABLE & iterable, const ITYPE & pcsz);
+   bool case_insensitive_add_unique(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITERABLE2, typename ITYPE >
    typename ::count add_unique_iter(ITERABLE & iterable, const ITERABLE & stra);
@@ -1611,7 +1611,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   bool add_unique_ci(ITERABLE & iterable, const ITYPE & str)
+   bool case_insensitive_add_unique(ITERABLE & iterable, const ITYPE & str)
    {
 
       if (::iter::case_insensitive_contains(iterable, str))
@@ -1661,7 +1661,7 @@ end:
       for (auto & str : iterable2)
       {
 
-         if (iterable.add_unique_ci(str) != iterable.end())
+         if (iterable.case_insensitive_add_unique(str) != iterable.end())
          {
 
             count++;
@@ -4057,10 +4057,10 @@ public:
 
 
    template < typename ITYPE >
-   bool add_unique_ci(const ITYPE & str)
+   bool case_insensitive_add_unique(const ITYPE & str)
    {
 
-      return ::iter::add_unique_ci(*this, str);
+      return ::iter::case_insensitive_add_unique(*this, str);
 
    }
 

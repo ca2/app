@@ -3292,19 +3292,7 @@ void simple_frame_window::handle(::topic* ptopic, ::context* pcontext)
 
    }
 
-
-   //#endif
-
    ::experience::frame_window::handle(ptopic, pcontext);
-
-   if (ptopic->m_bRet)
-   {
-
-      return;
-
-   }
-
-   return ::user::frame_window::handle(ptopic, pcontext);
 
 }
 

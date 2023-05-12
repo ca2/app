@@ -947,6 +947,8 @@ namespace experience
 
       }
 
+      ::user::frame_window::handle(ptopic, pcontext);
+
    }
 
 

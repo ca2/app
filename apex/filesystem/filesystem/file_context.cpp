@@ -74,8 +74,6 @@
 file_context::file_context()
 {
 
-   defer_create_synchronization();
-
 }
 
 
@@ -89,6 +87,8 @@ void file_context::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
+
+   defer_create_synchronization();
 
    //if (!estatus)
    //{
@@ -3365,7 +3365,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    if (path.contains("yesno.xhtml"))
    {
 
-      output_debug_string("test");
+      output_debug_string("file_context::get_file yesno.xhtml");
 
    }
 

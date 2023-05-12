@@ -346,9 +346,9 @@ namespace user
       if (!GetDocString(strDocName, impact_system::docName) || strDocName.is_empty())
       {
 
-         auto papp = get_app();
+         //auto papp = get_app();
 
-         strDocName = papp->m_papexapplication->load_string("untitled");
+         //strDocName = papp->m_papexapplication->load_string("untitled");
 
       }
 

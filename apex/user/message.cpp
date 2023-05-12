@@ -1,8 +1,9 @@
-﻿#include "framework.h"
-#include "windowing/window.h"
+// From aura/user/user/message by camilo on 2023-05-07 23:14 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+//#include "windowing/window.h"
 #include "message.h"
-#include "interaction_impl.h"
-#include "interaction.h"
+//#include "interaction_impl.h"
+//#include "interaction.h"
 
 
 namespace user
@@ -19,6 +20,9 @@ namespace user
       m_bDoSystemDefault = true;
 
    }
+
+
+
 
 
    //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam)
@@ -126,7 +130,7 @@ namespace user
 
    //}
 
-   
+
 
 #ifdef WINDOWS_DESKTOP
 
@@ -140,24 +144,24 @@ namespace user
 #endif
 
 
-   ::user::interaction_impl * message::userinteractionimpl()
-   {
+   //::user::interaction_impl * message::userinteractionimpl()
+   //{
 
-      auto pwindow = window();
+   //   auto pwindow = window();
 
-      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+   //   return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
 
-   }
+   //}
 
 
-   ::user::interaction * message::userinteraction()
-   {
+   //::user::interaction * message::userinteraction()
+   //{
 
-      auto pimpl = userinteractionimpl();
+   //   auto pimpl = userinteractionimpl();
 
-      return pimpl ? pimpl->m_puserinteraction : nullptr;
+   //   return pimpl ? pimpl->m_puserinteraction : nullptr;
 
-   }
+   //}
 
 
 } // namespace user

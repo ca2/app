@@ -123,7 +123,7 @@ void acme_directory::initialize(::particle * pparticle)
 ::file::path acme_directory::appdata()
 {
 
-   return ca2roaming() / "appdata" / app_relative();
+   return roaming() / appid();
 
 }
 
@@ -210,35 +210,13 @@ string acme_directory::system_short_name()
 
 }
 
-#ifdef UNIVERSAL_WINDOWS
 
-
-::file::path acme_directory::app_relative()
+::string acme_directory::appid()
 {
 
-   return "";
+   return acmeapplication()->m_strAppId;
 
 }
-
-
-#else
-
-
-::file::path acme_directory::app_relative()
-{
-
-   ::file::path path = acmefile()->module();
-
-   path.find_replace(":", "");
-
-   path = file_path_folder(path);
-
-   return path;
-
-}
-
-
-#endif
 
 
 ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)

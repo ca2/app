@@ -19,11 +19,15 @@ namespace windows
 
          DWORD dwBytesGot = 0;
 
-         EnumProcesses(dwaProcesses.data(), dwaProcesses.get_size_in_bytes(), &dwBytesGot);
+         DWORD dwSizeInBytes = (DWORD)dwaProcesses.get_size_in_bytes();
+
+         EnumProcesses(dwaProcesses.data(), dwSizeInBytes, &dwBytesGot);
 
          auto dwProcessCount = dwBytesGot / sizeof(DWORD);
 
-         if (dwProcessCount < dwaProcesses.get_size())
+         auto dwProcesses = (DWORD) dwaProcesses.get_size();
+
+         if (dwProcessCount < dwProcesses)
          {
 
             dwaProcesses.set_size(dwProcessCount);

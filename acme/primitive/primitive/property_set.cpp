@@ -969,7 +969,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 #ifdef LINUX
 
-   uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
+   uselocale(::acme::acme::g_pacme->m_psubsystem->m_localeC);
 
 #endif
 
@@ -997,7 +997,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 
 
 #ifdef LINUX
-   uselocale(::acme::acme::g_p->m_psubsystem->m_localeC);
+   uselocale(::acme::acme::g_pacme->m_psubsystem->m_localeC);
 #endif
 
    range.consume_spaces(0);

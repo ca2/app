@@ -127,6 +127,9 @@ namespace draw2d
       ~graphics() override;
 
 
+      void on_initialize_particle() override;
+
+
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
       
@@ -186,6 +189,7 @@ namespace draw2d
       inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return this; }
       inline ::size_f64 origin() const { return ::size_f64(); }
 
+      bool _is_ok() const override;
 
       ::image_pointer image_source_image(const concrete < ::size_i32 > & sizeDst) override;
 
@@ -276,7 +280,7 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual void create_memory_graphics();
+      virtual void create_memory_graphics(const ::size_i32 & size = nullptr);
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
@@ -290,6 +294,11 @@ namespace draw2d
       virtual i32 GetDeviceCaps(i32 nIndex);
       virtual ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags);
       virtual ::u32 GetBoundsRect(::rectangle_f64 * rectdBounds, ::u32 flags);
+
+
+      virtual void resize(const ::size_i32 & sizeWindow);
+
+
       
 //#ifdef WINDOWS
 //      virtual void ResetDC(const DEVMODE* pDevMode);
@@ -412,12 +421,12 @@ namespace draw2d
       virtual ::size_f64 scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
 
       // Coordinate Functions
-      virtual void DPtoLP(::point_f64 * ppoint,count nCount = 1);
+      virtual void DPtoLP(::point_f64 * ppoint, ::count nCount = 1);
       virtual void DPtoLP(::rectangle_f64 * prectd);
 
       virtual void DPtoLP(::size_f64 * pSize);
 
-      virtual void LPtoDP(::point_f64 * ppoint,count nCount = 1);
+      virtual void LPtoDP(::point_f64 * ppoint, ::count nCount = 1);
       virtual void LPtoDP(::rectangle_f64 * prectd);
 
       virtual void LPtoDP(::size_f64 * pSize);
@@ -626,18 +635,18 @@ namespace draw2d
 
 
       //virtual void polygon_i32(const ::point_f64 * ppoints, count nCount);
-      virtual void polygon(const POINT_F64 * ppoints, count nCount);
+      virtual void polygon(const ::point_f64 * ppoints, count nCount);
       //virtual void draw_polygon(const ::point_f64 * ppoints, count nCount);
-      virtual void draw_polygon(const POINT_F64 * ppoints, count nCount);
+      virtual void draw_polygon(const ::point_f64 * ppoints, count nCount);
       //virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
-      virtual void fill_polygon(const POINT_F64 * ppoints,count nCount);
+      virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
 
       //virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
       //virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void draw_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
       //virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
-      virtual void fill_poly_polygon(const POINT_F64 * ppoints, const i32 * pPolyCounts, count nCount);
+      virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount);
 
 
       virtual void rectangle(const ::rectangle_f64 & rectangle);
@@ -689,7 +698,7 @@ namespace draw2d
 
       //virtual void round_rectd(const ::rectangle_f64 & rectangle, const ::point_f64 & point);
 
-      virtual void round_rectangle(const ::rectangle_f64 & rectangle_f64, double dRadius);
+      virtual void round_rectangle(const ::rectangle_f64 & rectangle, double dRadius);
 
 
       //virtual void from(const ::point_f64 & pointDst, const ::size_f64 & ::size_f64, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & pointSrc);
@@ -1058,10 +1067,10 @@ namespace draw2d
       //virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color & color);
 
-      virtual void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, double dWidth, const ::e_border & eborder = e_border_all);
       //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      virtual void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
+      virtual void draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, double dWidth, const ::e_border & eborder = e_border_all);
       virtual void frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
       //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& color, const ::e_border & eborder = e_border_all);
 

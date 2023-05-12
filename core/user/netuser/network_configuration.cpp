@@ -38,7 +38,7 @@ namespace usernet
       
       auto puser = psession->m_puser->m_pcoreuser;
 
-      m_pdocument = puser->create_form(this, this, puiParent);
+      m_pdocument = puser->create_form(this, nullptr, this, puiParent);
 
       if(m_pdocument != nullptr)
       {
@@ -65,7 +65,7 @@ namespace usernet
       
       auto puser = psession->m_puser->m_pcoreuser;
 
-      puser->create_child_form(this, this, puiParent);
+      puser->create_child_form(this, nullptr, this, puiParent);
 
       if(m_pdocument != nullptr)
       {

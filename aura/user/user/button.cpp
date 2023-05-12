@@ -43,12 +43,6 @@ namespace user
    button::~button()
    {
 
-      ::acme::del(m_pbitmap);
-
-      ::acme::del(m_plist);
-
-      set_button_style(e_style_none);
-
    }
 
 
@@ -422,7 +416,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_inset_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, crBorder, 1.0);
 
       }
 
@@ -634,7 +628,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
@@ -693,15 +687,15 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
             rectanglePush.deflate(1, 1, 0, 1);
 
@@ -1193,13 +1187,13 @@ namespace user
       if(estyle == e_style_image|| estyle == e_style_image_and_text)
       {
 
-         ::acme::del(m_pbitmap);
+         m_pbitmap.release();
 
       }
       else if(estyle == e_style_list)
       {
 
-         ::acme::del(m_plist);
+         m_plist.release();
 
       }
       else if(estyle == e_style_push || estyle == e_style_push_group)
@@ -1268,10 +1262,6 @@ namespace user
       return m_pbitmap->m_pimage->is_set() && m_pbitmap->m_pimage->area() > 0;
 
    }
-
-
-
-
 
 
    void button::pre_translate_message(::message::message * pmessage)
@@ -1345,7 +1335,8 @@ namespace user
          pgraphics->draw_inset_3d_rectangle(
          rectangleClient,
          rgb(255,255,255),
-         rgb(155,155,105));
+         rgb(155,155,105),
+            1.0);
 
          if(m_plist->m_pimagelistSubItemHover != nullptr)
          {

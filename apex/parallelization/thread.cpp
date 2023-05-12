@@ -7,6 +7,7 @@
 #include "acme/platform/log.h"
 #include "acme/constant/id.h"
 #include "apex/platform/node.h"
+#include "apex/user/message.h"
 #include "apex/user/primitive.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
@@ -757,6 +758,8 @@ void thread::run()
 
 bool thread::pump_runnable()
 {
+
+   handle_posted_messages();
 
    run_posted_procedures();
 
@@ -4019,6 +4022,62 @@ thread::operator htask_t() const
 {
 
    return is_set() ? m_htask : nullptr;
+
+}
+
+
+void thread::post(::message::message * pmessage)
+{
+
+   if (!pmessage)
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   synchronous_lock synchronouslock(this->synchronization());
+
+   m_messagea.add(pmessage);
+
+   kick_idle();
+
+}
+
+
+
+void thread::handle_posted_messages()
+{
+
+   synchronous_lock synchronouslock(this->synchronization());
+
+   while (m_messagea.has_elements())
+   {
+
+      auto pmessage = m_messagea.first_pointer();
+
+      m_messagea.erase_at(0);
+
+      synchronouslock.unlock();
+
+      ::pointer < ::user::message > pusermessage = pmessage;
+
+      if (pusermessage)
+      {
+
+         pusermessage->m_pchannel->message_handler(pmessage);
+
+      }
+      else
+      {
+
+         message_handler(pmessage);
+
+      }
+
+      synchronouslock.lock();
+
+   }
 
 }
 

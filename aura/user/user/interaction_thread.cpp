@@ -5,12 +5,11 @@
 #include "interaction.h"
 #include "user.h"
 #include "system.h"
-#include "message.h"
 #include "acme/constant/message.h"
-////#include "acme/exception/exception.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
+#include "apex/user/message.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/platform/session.h"
@@ -335,27 +334,6 @@ namespace user
    bool thread::pump_runnable()
    {
 
-      //{
-
-      //   synchronous_lock synchronouslock(this->synchronization());
-
-      //   if (m_messagebasea.has_elements())
-      //   {
-
-      //      auto pusermessage = m_messagebasea.first_pointer();
-
-      //      m_messagebasea.erase_at(0);
-
-      //      synchronouslock.unlock();
-
-      //      m_pimpl->m_puserinteraction->message_handler(pusermessage);
-
-      //      return true;
-
-      //   }
-
-      //}
-
       return ::thread::pump_runnable();
 
    }
@@ -418,7 +396,7 @@ namespace user
          if(m_message.m_atom == e_message_left_button_down)
          {
 
-            output_debug_string("test");
+            output_debug_string("pump_message e_message_left_button_down");
 
          }
 
@@ -706,10 +684,10 @@ namespace user
 
       ::pointer<::user::message>pusermessage(pmessage);
 
-      if(::is_set(pusermessage))
+      if (::is_set(pusermessage))
       {
 
-         auto puserinteraction = pusermessage->userinteraction();
+         auto puserinteraction = ::user::message_user_interaction(pusermessage);
 
          if (::is_set(puserinteraction))
          {

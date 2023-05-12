@@ -396,7 +396,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_inset_rectangle(rectangleClient, argb(255, 192, 192, 192));
+      pgraphics->draw_inset_rectangle(rectangleClient, argb(255, 192, 192, 192), 1.0);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -603,11 +603,11 @@ namespace user
 
                   rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
 
                   rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder, 1.0);
 
                }
 

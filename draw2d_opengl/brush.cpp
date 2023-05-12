@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "_opengl.h"
+#include "brush.h"
 
 
 namespace draw2d_opengl
@@ -97,22 +98,22 @@ namespace draw2d_opengl
 //   }
 
 
-   void brush::dump(dump_context & dumpcontext) const
-   {
-      ::draw2d::object::dump(dumpcontext);
-
-      //if (get_os_data() == nullptr)
-        // return;
-
-/*      LOGBRUSH lb;
-      VERIFY(GetObject(sizeof(lb), &lb));
-      dumpcontext << "lb.lbStyle = " << lb.lbStyle;
-      dumpcontext << "\nlb.lbHatch = " << lb.lbHatch;
-      dumpcontext << "\nlb.lbColor = " << (void *)(uptr)lb.lbColor;
-
-      dumpcontext << "\n";
-      */
-   }
+//   void brush::dump(dump_context & dumpcontext) const
+//   {
+//      ::draw2d::object::dump(dumpcontext);
+//
+//      //if (get_os_data() == nullptr)
+//        // return;
+//
+///*      LOGBRUSH lb;
+//      VERIFY(GetObject(sizeof(lb), &lb));
+//      dumpcontext << "lb.lbStyle = " << lb.lbStyle;
+//      dumpcontext << "\nlb.lbHatch = " << lb.lbHatch;
+//      dumpcontext << "\nlb.lbColor = " << (void *)(uptr)lb.lbColor;
+//
+//      dumpcontext << "\n";
+//      */
+//   }
 
 
 

@@ -7127,12 +7127,12 @@ end:
 
       ::f64 f64 = atof(strNumber);
 
-      if (bSigned)
-      {
+      //if (bSigned)
+      //{
 
-         f64 = -f64;
+      //   f64 = -f64;
 
-      }
+      //}
 
 //#else
 
@@ -7148,12 +7148,12 @@ end:
 
       ::i64 i = (::i64) atoll(strNumber);
 
-      if (bSigned)
-      {
+      //if (bSigned)
+      //{
 
-         i = -i;
+      //   i = -i;
 
-      }
+      //}
 
       operator = (i);
 
@@ -10213,7 +10213,7 @@ payload & payload::operator = (const ::file::path & path)
       else
       {
 
-         *m_ppath = path;
+         ((::file::path &) * m_ppath) = path;
 
       }
 

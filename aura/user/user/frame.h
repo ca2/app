@@ -76,6 +76,9 @@ namespace user
       virtual void on_user_style_change();
 
 
+      enum_window_type get_window_type() override;
+
+
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 

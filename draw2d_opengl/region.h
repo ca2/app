@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/region.h"
+
+
 namespace draw2d_opengl
 {
 

@@ -836,6 +836,17 @@
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc.cpp" />
+    <ClCompile Include="memory\os_impl\WindowsHeapAlloc.cpp" />
+    <ClCompile Include="memory\os_impl\aaa_select.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="memory\paged_win32.cpp" />
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
@@ -884,6 +895,7 @@
     <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
     <ClInclude Include="operating_system\main_window.h" />
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\library.cpp" />
@@ -1370,7 +1382,6 @@
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="primitive\_.h" />
     <ClInclude Include="procedure.h" />
-    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
     <ClInclude Include="user\user\e_window_flag.h" />

@@ -4,14 +4,14 @@
 #include "acme/primitive/primitive/particle.h"
 //// #include "acme/primitive/string/string.h"
 
+#undef ACME_MUTEX_DEBUG
 
 class CLASS_DECL_ACME mutex :
    virtual public particle
 {
 public:
 
-
-#ifdef _DEBUG
+#ifdef ACME_MUTEX_DEBUG
    string                  m_strThread;
    itask_t                 m_itask;
 #endif

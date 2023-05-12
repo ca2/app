@@ -504,8 +504,8 @@ namespace acme
       return ::GetProcAddress((HINSTANCE)plibrary, scopedstrEntryName);
 
    }
-
-
+   
+   
 } // namespace acme
 
 

@@ -1076,7 +1076,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       auto pacmedirectory = acmedirectory();
 
-      strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnode_desktop\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");
       dir()->create(::file::path(strHmhLctvWildPdbPath).folder());
       str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);

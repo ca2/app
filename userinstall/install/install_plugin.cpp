@@ -907,7 +907,7 @@ run_install:
             if(m_phost->m_pbasecomposer->m_bFocus)
             {
 
-               if(!has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               if(!has_keyboard_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
                   m_phost->m_pbasecomposer->m_bFocus = false;
@@ -924,7 +924,7 @@ run_install:
             else
             {
 
-               if(has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               if(has_keyboard_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
                   m_phost->m_pbasecomposer->m_bFocus = true;

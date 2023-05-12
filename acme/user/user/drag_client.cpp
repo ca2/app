@@ -10,9 +10,6 @@ namespace user
 {
 
 
-
-
-
    drag_client::drag_client()
    {
 

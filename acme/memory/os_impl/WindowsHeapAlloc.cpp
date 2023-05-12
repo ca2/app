@@ -1,42 +1,60 @@
-﻿extern HANDLE g_handleSystemHeap;
+﻿#include "framework.h"
 
 
-::critical_section* critical_section_system_heap()
+#include "acme/_operating_system.h"
+
+
+#pragma warning(disable : 4074)
+//#pragma init_seg(".CRT$XCA1")
+#pragma init_seg(compiler)
+
+
+class WindowsHeapAlloc
+{
+public:
+
+
+   HANDLE                  m_handle;
+   ::critical_section      m_criticalsection;
+
+
+   WindowsHeapAlloc()
+   {
+
+      m_handle = ::HeapCreate(0, 0, 0);
+
+   }
+
+
+} g_windowsheapalloc;
+
+
+void* operating_system_memory_allocate(memsize size)
 {
 
-   static ::critical_section g_criticalsectionSystemHeap;
+   raw_critical_section_lock criticalsectionlock(&g_windowsheapalloc.m_criticalsection);
 
-   return &g_criticalsectionSystemHeap;
+   return ::HeapAlloc(g_windowsheapalloc.m_handle, 0, size);
 
 }
 
 
-void * os_impl_alloc(size_t size)
+void* operating_system_memory_reallocate(void* p, memsize size)
 {
 
-   critical_section_lock criticalsectionlock(critical_section_system_heap());
+   raw_critical_section_lock criticalsectionlock(&g_windowsheapalloc.m_criticalsection);
 
-   return ::HeapAlloc(g_handleSystemHeap, 0, size);
+   return ::HeapReAlloc(g_windowsheapalloc.m_handle, 0, p, size);
 
 }
 
 
-void * os_impl_realloc(void * p, size_t size)
+void operating_system_memory_free(void* p)
 {
 
-   critical_section_lock criticalsectionlock(critical_section_system_heap());
+   raw_critical_section_lock criticalsectionlock(&g_windowsheapalloc.m_criticalsection);
 
-   return ::HeapReAlloc(g_handleSystemHeap, 0, p, size);
-
-}
-
-
-void os_impl_free(void * p)
-{
-
-   critical_section_lock criticalsectionlock(critical_section_system_heap());
-
-   if (!::HeapFree(g_handleSystemHeap, 0, p))
+   if (!::HeapFree(g_windowsheapalloc.m_handle, 0, p))
    {
 
       DWORD dwError = ::GetLastError();
@@ -47,14 +65,15 @@ void os_impl_free(void * p)
 
 }
 
-size_t os_impl_size(void * p)
+
+memsize operating_system_memory_size(void* p)
 {
 
-   critical_section_lock criticalsectionlock(critical_section_system_heap());
+   raw_critical_section_lock criticalsectionlock(&g_windowsheapalloc.m_criticalsection);
 
-   SIZE_T s = ::HeapSize(g_handleSystemHeap, 0, p);
+   SIZE_T s = ::HeapSize(g_windowsheapalloc.m_handle, 0, p);
 
-   if(s == (SIZE_T) -1)
+   if (s == (SIZE_T)-1)
    {
 
       ::output_debug_string("os_impl_size : Failed to get memory size_i32");

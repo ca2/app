@@ -468,7 +468,7 @@ namespace aura
 //   }
 
 
-//   string system::draw2d_get_default_library_name()
+//   string system::draw2d_get_default_implementation_name()
 //   {
 //
 //      return "draw2d_cairo";
@@ -476,7 +476,7 @@ namespace aura
 //   }
 
 
-//   string application::multimedia_audio_get_default_library_name()
+//   string application::multimedia_audio_get_default_implementation_name()
 //   {
 //
 //      return "audio_alsa";
@@ -484,7 +484,7 @@ namespace aura
 //   }
 //
 //
-//   string application::multimedia_audio_mixer_get_default_library_name()
+//   string application::multimedia_audio_mixer_get_default_implementation_name()
 //   {
 //
 //      return "audio_mixer_alsa";
@@ -492,7 +492,7 @@ namespace aura
 //   }
 //
 //
-//   string application::veriwell_multimedia_music_midi_get_default_library_name()
+//   string application::veriwell_multimedia_music_midi_get_default_implementation_name()
 //   {
 //
 //      return "music_midi_alsa";

@@ -3,36 +3,36 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/matter.h"
+// //#include "acme/primitive/primitive/matter.h"
 
 
-namespace user
-{
+// namespace user
+// {
 
 
-   class CLASS_DECL_AURA call_message_handler_task :
-      virtual public matter
-   {
-   public:
+//    class CLASS_DECL_AURA call_message_handler_task :
+//       virtual public matter
+//    {
+//    public:
 
 
-      ::pointer<interaction>       m_pinteraction;
-      ::atom                        m_atom;
-      wparam                        m_wparam;
-      lparam                        m_lparam;
+//       ::pointer<interaction>       m_pinteraction;
+//       ::atom                        m_atom;
+//       wparam                        m_wparam;
+//       lparam                        m_lparam;
 
 
-      call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam);
-      ~call_message_handler_task() override;
+//       call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam);
+//       ~call_message_handler_task() override;
 
 
-      void run() override;
+//       void run() override;
 
 
-   };
+//    };
 
 
-} // namespace user
+// } // namespace user
 
 
 

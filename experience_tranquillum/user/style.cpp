@@ -664,7 +664,7 @@ namespace experience_tranquillum
 
       ptab->m_bDrawTabAtBackground = true;
 
-      ptab->defer_handle_auto_hide_tabs(false);
+      //ptab->defer_handle_auto_hide_tabs(false);
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
@@ -756,7 +756,7 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+         ptab->get_data()->m_rectangleTabClient.left = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
          ptab->get_data()->m_rectangleTabClient.top = ptab->get_data()->m_rectangleTab.top;
          ptab->get_data()->m_rectangleTabClient.right = rectangleClient.right;
          ptab->get_data()->m_rectangleTabClient.bottom = ptab->get_data()->m_rectangleTab.bottom;
@@ -884,10 +884,10 @@ namespace experience_tranquillum
          rectangle_i32& rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
-         bool bTabbedClient = ptab->m_bShowTabs;
+         // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
 
          rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.top = ptab->m_bEffectiveVisibleTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
          rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
          rectangleTabClient.bottom = rectangleClient.bottom;
 
@@ -917,6 +917,8 @@ namespace experience_tranquillum
 
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer& pgraphics, ::user::tab* ptab)
    {
+
+      //return true;
 
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectangleBorder;
@@ -982,7 +984,7 @@ namespace experience_tranquillum
 
       pgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
 
-
+      //return true;
 
       ::index iTab = -1;
 

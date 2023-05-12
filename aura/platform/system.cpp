@@ -28,6 +28,13 @@
 #include "aura/hardware/devices.h"
 
 
+//CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
+//{
+//
+//   return scopedstrImplementation;
+//
+//}
+
 int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 
@@ -1163,48 +1170,58 @@ namespace aura
    }
 
 
-   string system::draw2d_get_default_library_name()
+
+   string system::draw2d_get_default_implementation_name()
    {
 
-      string str;
+      string strImplementationName;
 
-      ::file::path path = acmedirectory()->config() / "system/draw2d.txt";
+      strImplementationName = acmeapplication()->m_pauraapplication->draw2d_get_default_implementation_name();
 
-      str = acmefile()->as_string(path);
-
-      if(str.has_char())
+      if (strImplementationName.has_char())
       {
 
-         return "draw2d_" + str;
+         return strImplementationName;
 
       }
 
-      path = acmedirectory()->appdata() / "draw2d.txt";
+      ::file::path path = acmedirectory()->roaming() / "system/draw2d.txt";
 
-      str = acmefile()->as_string(path);
+      strImplementationName = acmefile()->as_string(path);
 
-      if(str.has_char())
+      if(strImplementationName.has_char())
       {
 
-         return "draw2d_" + str;
+         return implementation_name("draw2d", strImplementationName);
+
+      }
+
+      path = acmedirectory()->roaming()/acmeapplication()->m_strAppId / "draw2d.txt";
+
+      strImplementationName = acmefile()->as_string(path);
+
+      if(strImplementationName.has_char())
+      {
+
+         return implementation_name("draw2d", strImplementationName);
 
       }
 
 #ifdef WINDOWS_DESKTOP
-      
-      return "draw2d_gdiplus";
+
+      return implementation_name("draw2d", "gdiplus");
 
 #elif __APPLE__
       
-      return "draw2d_quartz2d";
+      return implementation_name("draw2d", "quartz2d");
 
 #elif defined(UNIVERSAL_WINDOWS)
       
-      return "draw2d_direct2d";
+      return implementation_name("draw2d", "direct2d");
 
 #else
       
-      return "draw2d_cairo";
+      return implementation_name("draw2d", "cairo");
 
 #endif
 
@@ -1214,36 +1231,21 @@ namespace aura
    ::pointer<::factory::factory>& system::draw2d_factory()
    {
 
-      string strLibrary;
+      ::string strImplementationName;
 
       if (has_property("draw2d"))
       {
 
-         strLibrary = payload("draw2d");
-
-         //strDraw2d.trim();
-
-         //if (strDraw2d.has_char())
-         //{
-
-         //   strDraw2d.case_insensitive_begins_eat("draw2d_");
-
-         //   strDraw2d.case_insensitive_begins_eat("draw2d");
-
-         //   strLibrary = "draw2d_" + strDraw2d;
-
-         //}
+         strImplementationName = payload("draw2d");
 
       }
 
       ::e_status estatus;
 
-      if (strLibrary.has_char())
+      if (strImplementationName.has_char())
       {
 
-         auto & pfactoryDraw2d = factory("draw2d", strLibrary);
-
-         //if(pfactoryDraw2d)
+         auto & pfactoryDraw2d = factory("draw2d", strImplementationName);
 
          if(pfactoryDraw2d)
          {
@@ -1254,24 +1256,24 @@ namespace aura
 
       }
 
-      strLibrary = draw2d_get_default_library_name();
+      strImplementationName = draw2d_get_default_implementation_name();
 
-      if (strLibrary.is_empty())
+      if (strImplementationName.is_empty())
       {
 
 #ifdef WINDOWS
 
-         strLibrary = "draw2d_gdiplus";
+         strImplementationName = implementation_name("draw2d", "gdiplus");
 
 #else
 
-         strLibrary = "draw2d_cairo";
+         strImplementationName = implementation_name("draw2d", "cairo");
 
 #endif
 
       }
 
-      auto & pfactoryDraw2d = factory("draw2d", strLibrary);
+      auto & pfactoryDraw2d = factory("draw2d", strImplementationName);
 
       if(pfactoryDraw2d)
       {
@@ -1280,11 +1282,9 @@ namespace aura
 
       }
 
-
 #ifdef WINDOWS_DESKTOP
 
-
-      if (strLibrary != "draw2d_gdiplus")
+      if (strImplementationName != implementation_name("draw2d", "gdiplus"))
       {
 
          auto & pfactoryDraw2d = factory("draw2d", "gdiplus");
@@ -1298,8 +1298,7 @@ namespace aura
 
       }
 
-
-      if (strLibrary != "draw2d_direct2d")
+      if (strImplementationName != implementation_name("draw2d", "direct2d"))
       {
 
          auto & pfactoryDraw2d = factory("draw2d", "direct2d");
@@ -1316,7 +1315,7 @@ namespace aura
 
 #endif
 
-      if (strLibrary != "draw2d_cairo")
+      if (strImplementationName != implementation_name("draw2d", "cairo"))
       {
 
          auto & pfactoryDraw2d = factory("draw2d", "cairo");
@@ -1363,38 +1362,23 @@ namespace aura
    ::pointer<::factory::factory>& system::imaging_factory()
    {
 
-      string strLibrary;
+      string strImplementationName;
 
       if (has_property("imaging"))
       {
 
-         string strImaging;
-         
-         strImaging = payload("imaging");
+         strImplementationName = payload("imaging");
 
-         strImaging.trim();
-
-         if (strImaging.has_char())
-         {
-
-            strImaging.case_insensitive_ends_eat("_imaging");
-
-            strImaging.case_insensitive_ends_eat("imaging");
-
-            strImaging.case_insensitive_begins_eat("imaging_");
-
-            strImaging.case_insensitive_begins_eat("imaging");
-
-         }
+         strImplementationName.trim();
 
       }
 
       ::e_status estatus = ::error_failed;
 
-      if (strLibrary.has_char())
+      if (strImplementationName.has_char())
       {
 
-         auto & pfactoryImaging = factory("imaging", strLibrary);
+         auto & pfactoryImaging = factory("imaging", strImplementationName);
 
          if(pfactoryImaging)
          {
@@ -1405,28 +1389,28 @@ namespace aura
 
       }
 
-      strLibrary = imaging_get_default_library_name();
+      strImplementationName = imaging_get_default_implementation_name();
 
-      if (strLibrary.is_empty())
+      if (strImplementationName.is_empty())
       {
 
 #ifdef WINDOWS
 
-         strLibrary = "imaging_wic";
+         strImplementationName = implementation_name("imaging", "wic");
 
 #elif defined(__APPLE__)
 
-         strLibrary = "imaging_coreimage";
+         strImplementationName = implementation_name("imaging", "coreimage");
 
 #else
 
-         strLibrary = "imaging_freeimage";
+         strImplementationName = implementation_name("imaging", "freeimage");
 
 #endif
 
       }
 
-      auto & pfactoryImaging = factory("imaging", strLibrary);
+      auto & pfactoryImaging = factory("imaging", strImplementationName);
 
       if(pfactoryImaging)
       {
@@ -1437,7 +1421,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
 
-      if (strLibrary != "imaging_wic")
+      if (strImplementationName != implementation_name("imaging", "wic"))
       {
 
          auto & pfactoryImaging = factory("imaging", "wic");
@@ -1453,7 +1437,7 @@ namespace aura
 
 #endif
 
-      if (strLibrary != "imaging_freeimage")
+      if (strImplementationName != implementation_name("imaging", "freeimage"))
       {
 
          auto & pfactoryImaging = factory("imaging", "freeimage");
@@ -1496,20 +1480,20 @@ namespace aura
    }
 
 
-   string system::imaging_get_default_library_name()
+   string system::imaging_get_default_implementation_name()
    {
 
 #ifdef WINDOWS
 
-      return "imaging_wic";
+      return implementation_name("imaging", "wic");
 
 #elif defined(__APPLE__)
 
-      return "imaging_coreimage";
+      return implementation_name("imaging", "coreimage");
 
 #else
 
-      return "imaging_freeimage";
+      return implementation_name("imaging", "freeimage");
 
 #endif
 

@@ -208,9 +208,10 @@ namespace user
       //virtual ::user::element* get_keyboard_focus();
 
 
-      virtual void _001OnExitIconic();
-      virtual void _001OnExitFullScreen();
-      virtual void _001OnExitZoomed();
+      virtual void _001OnAfterExitIconic();
+      virtual void _001OnAfterExitNormal();
+      virtual void _001OnAfterExitZoomed();
+      virtual void _001OnAfterExitFullScreen();
 
 
       virtual void _001OnTriggerMouseInside();

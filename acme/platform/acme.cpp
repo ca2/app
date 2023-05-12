@@ -15,21 +15,10 @@
 
 #include "acme/operating_system/ansi/binreloc.h"
 
-//void initialize_system();
-//void finalize_system();
-
-//   class CLASS_DECL_ACME acme
-//   {
-//   public:
-//
-//      acme() {::acme::initialize();}
-//      ~acme() {::acme::finalize();}
-//
-//   };
-
 
 CLASS_DECL_ACME bool should_output_debug_string();
 CLASS_DECL_ACME bool add_matter(::matter * pmatter);
+
 
 #ifdef WINDOWS
 CLASS_DECL_ACME _locale_t get_c_locale();
@@ -50,45 +39,24 @@ extern map < const char *, const char *, ::i64, ::i64 > * g_pmapObjTypCtr;
 #endif
 
 
-//extern CLASS_DECL_ACME critical_section
-  // *
-   //g_pcsGlobal;
-
 #if OBJECT_TYPE_COUNTER
 
 extern int g_iObjTypCtrInit;
 
 #endif
 
-//extern ::pointer< ::mutex > g_pmutexChildren;
-
 #ifdef WINDOWS
 
 
 #else
 
-//extern DWORD_PTR g_tlsindexLastError;
 extern char * g_pszDemangle;
-//extern critical_section * g_pcsDemangle;
 
 #endif
 
 
-//extern ::pointer< ::mutex > acmesystem()->g_mutexLibrary;
-
-//extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
-
-//extern critical_section* g_pcsGlobal;
-
 extern bool g_bOutputDebugString;
 
-// acme commented
-//extern critical_section* g_pcsTrace;
-
-//extern ::matter* g_ptrace;
-
-//// acme commented
-//extern simple_trace* g_psimpletrace;
 
 #ifdef __APPLE__
 
@@ -106,18 +74,7 @@ extern double g_machtime_conversion_factor;
 #endif
 
 
-//extern ::pointer< ::mutex > g_pmutexCred;
-
-
-//extern class ::exception_engine * g_pengine;
-
-
-///extern ::pointer< ::mutex > g_pmutexMessageDispatch;
-
-
-extern CLASS_DECL_ACME ::array<matter *>
-   *
-   g_paAura;
+extern CLASS_DECL_ACME ::array<matter *> * g_paAura;
 
 
 extern id_to_id * g_pmapRTL;
@@ -133,180 +90,27 @@ extern locale_t g_localeC;
 
 #endif
 
-//extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
-
 
 extern ::nanosecond g_nanosecondFirst;
 
-//plex_heap_alloc_array * g_pplexheapallocarray;
 
 extern int g_iMemoryCountersStartable;
-//extern ::pointer< ::mutex > g_pmutexTrait;
-//extern ::pointer< ::mutex > g_pmutexFactory;
-
-//extern ::pointer< ::mutex > g_pmutexUiDestroyed;
-
-#ifdef ANDROID
-
-//extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
-
-#endif
-
-
-// #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-// extern ::pointer< ::mutex > g_pmutexMq;
-
-// #endif
-
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
-
-   //extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
-
-//extern ::pointer< ::mutex > g_pmutexThreadIdLock;
-
-//#if !defined(UNIVERSAL_WINDOWS)
-
-//extern ::pointer< ::mutex > g_pmutexPendingThreadsLock;
-
-//#endif
-
-//extern ::pointer< ::mutex > g_pmutexTlsData;
-
-#endif // defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS)
-
-
-#if defined(LINUX) || defined(__APPLE__)
-
-
-//extern ::pointer< ::mutex > g_pmutexTz;
-
-//extern ::pointer< ::mutex > g_pmutexThreadHandleLock;
-
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-//extern ::pointer< ::mutex > g_pmutexCvt;
-
-
-#endif
-
-
-//CLASS_DECL_ACME void ref();
-
-
-//global_particle * g_pglobalParticle = nullptr;
-//
-//
-//global_particle::global_particle()
-//{
-//
-//   critical_section_lock criticalsectionlock(globals_critical_section());
-//
-//   m_pglobalparticleNext = g_pglobalParticle;
-//
-//   g_pglobalParticle = this;
-//
-//}
-//
-//
-//global_particle::~global_particle()
-//{
-//
-//
-//}
-//
-
-//static void erase_all_global_particles()
-//{
-//
-//   critical_section_lock criticalsectionlock(globals_critical_section());
-//
-//   auto pglobalparticle = g_pglobalParticle;
-//
-//   while(pglobalparticle)
-//   {
-//
-//      auto pglobalparticleNext = pglobalparticle->m_pglobalparticleNext;
-//
-//      if(pglobalparticleNext)
-//      {
-//
-//         ::release(pglobalparticleNext);
-//
-//      }
-//
-//      pglobalparticle = pglobalparticleNext;
-//
-//   }
-//
-//   g_pglobalParticle = nullptr;
-//
-//}
-//
 
 
 void initialize_memory_management();
 void finalize_memory_management();
 
+
 #define ThomasBS_Acme this
-
-
-//namespace main_memory_allocate_heap
-//{
-//
-//
-//   void initialize();
-//
-//   void destroy();
-//
-//
-//} // namespace main_memory_allocate_heap
-//
-//
-//namespace string_memory_allocate_heap
-//{
-//
-//   void initialize();
-//   void destroy();
-//
-//} // namespace string_memory_allocate_heap
-//
-//namespace property_memory_allocate_heap
-//{
-//
-//   void initialize();
-//   void destroy();
-//
-//} // namespace property_memory_allocate_heap
-//
-//namespace array_memory_allocate_heap
-//{
-//
-//   void initialize();
-//   void destroy();
-//
-//} // namespace array_memory_allocate_heap
 
 
 #ifdef WINDOWS
 
-LARGE_INTEGER g_largeintegerFrequency;
 
-void defer_initialize_system_heap();
+LARGE_INTEGER g_largeintegerFrequency;
 
 
 #endif
-
-//#ifdef WINDOWS_DESKTOP
-//
-//#include "acme/operating_system/windows/callstack.h"
-//
-//#endif
 
 
 namespace mathematics

@@ -854,9 +854,6 @@
     <ClInclude Include="user\user\picture.h" />
     <ClInclude Include="user\user\picture_interaction.h" />
     <ClInclude Include="user\user\form_data.h" />
-    <ClInclude Include="user\user\menu.h" />
-    <ClInclude Include="user\user\menu_interaction.h" />
-    <ClInclude Include="user\user\menu_item.h" />
     <ClInclude Include="user\user\place_holder.h" />
     <ClInclude Include="user\user\place_holder_container.h" />
     <ClInclude Include="user\user\simple_impact.h" />

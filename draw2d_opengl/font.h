@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "acme/_operating_system.h"
+
+
+#include "aura/graphics/write_text/font.h"
+
+
 namespace draw2d_opengl
 {
 
@@ -22,17 +28,17 @@ namespace draw2d_opengl
 
 
       font();
-      virtual ~font();
+      ~font() override;
 
 
-      virtual void construct(const ::write_text::font & pfontParam);
+      void construct(const ::write_text::font & pfontParam);
 
       
       // void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool create(::draw2d::graphics* pgraphics, i8 iCreate) override;
-      virtual void destroy() override;
+      void create(::draw2d::graphics* pgraphics, i8 iCreate) override;
+      void destroy() override;
 
 
    };

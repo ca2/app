@@ -11,11 +11,13 @@
 simple_main_frame::simple_main_frame()
 {
 
-   m_ewindowflag              |= e_window_flag_auto_store_window_rect;
+   m_bAutomaticallyStoreWindowRectangle = true;
+   //m_ewindowflag              |= e_window_flag_auto_store_window_rect;
    m_ewindowflag              |= e_window_flag_main_frame;
    ///m_bAutoWindowFrame         = false;
    m_bPlacing                 = false;
    m_bExplicitTranslucency    = false;
+   
 
 }
 
@@ -75,7 +77,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    auto prequest= pcreate->get_request();
 
-   if (prequest && prequest->m_payloadArgs.is_true("window_frame"))
+   if (prequest && prequest->m_payloadArguments.is_true("window_frame"))
    {
 
       m_bWindowFrame = true;

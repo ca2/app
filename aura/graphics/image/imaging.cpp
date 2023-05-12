@@ -2220,7 +2220,9 @@ void imaging::blur(::image * pimage, i32 iRadius)
 
    ::draw2d::fastblur f;
 
-   f.blur(pimage, iRadius);
+   f.initialize(pimage->size(), iRadius);
+
+   f.blur(pimage);
 
    //return true;
 

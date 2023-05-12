@@ -282,7 +282,7 @@ namespace hi5
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            m_pformdocumentAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+            m_pformdocumentAuth = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
             if (m_pformdocumentAuth != nullptr)
             {

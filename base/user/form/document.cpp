@@ -43,7 +43,7 @@ bool form_document::on_open_document(const ::payload & payloadFile)
    if (m_prequest && ::is_null(pformcallback))
    {
 
-      auto pcallback = m_prequest->m_payloadArgs["form_callback"].cast < ::user::form_callback >();
+      auto pcallback = m_prequest->m_payloadArguments["form_callback"].cast < ::user::form_callback >();
 
       if (pcallback)
       {

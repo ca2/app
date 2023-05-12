@@ -64,7 +64,7 @@
 /** \brief Return the minimum possible value.
  *
  * This function returns the minimum DOS time that can be represented
- * in a dostime_t parameter.
+ * in a dos_time_t parameter.
  *
  * At this time we use a 32 bit field (like the Zip archive) so the
  * maximum is Dec 31, 2107 23:59:59.
@@ -78,7 +78,7 @@
  *
  * \return The smallest possible DOS time.
  */
-dostime_t mindostime()
+dos_time_t minimum_dos_time()
 {
     // Jan 1, 1980 00:00:00 is the minimum
     return 0x00210000;
@@ -88,7 +88,7 @@ dostime_t mindostime()
 /** \brief Return the maximum possible value .
  *
  * This function returns the maximum DOS time that can be represented
- * in a dostime_t parameter.
+ * in a dos_time_t parameter.
  *
  * At this time we use a 32 bit field (like the Zip archive) so the
  * maximum is Dec 31, 2107 23:59:59.
@@ -102,7 +102,7 @@ dostime_t mindostime()
  *
  * \return The largest possible DOS time.
  */
-dostime_t maxdostime()
+dos_time_t maximum_dos_time()
 {
     // Dec 31, 2107 23:59:59 is the maximum
     return 0xFF9FBF7D;
@@ -128,7 +128,7 @@ dostime_t maxdostime()
  *
  * \sa dostime()
  */
-time_t dos2unixtime(dostime_t dostime)
+time_t dos_time_unix_time(dos_time_t dostime)
 {
     struct tm t;         /* argument for mktime() */
 
@@ -171,7 +171,7 @@ time_t dos2unixtime(dostime_t dostime)
  * out of range.
  *
  * \todo
- * The dostime_t type is 32 bits, although if it were 64 bits we would
+ * The dos_time_t type is 32 bits, although if it were 64 bits we would
  * never have an overflow with the maximum. However, the Zip archive
  * format only supports 32 bits as far as I know.
  *
@@ -185,7 +185,7 @@ time_t dos2unixtime(dostime_t dostime)
  * \return The date parameters transformed in a DOS time value or zero if the
  *         date is considered invalid.
  */
-dostime_t dostime(int year, int month, int day, int hour, int minute, int second)
+dos_time_t dos_time(int year, int month, int day, int hour, int minute, int second)
 {
     if(year < 1980 || year > 2107
     || month < 1 || month > 12
@@ -197,12 +197,12 @@ dostime_t dostime(int year, int month, int day, int hour, int minute, int second
         return 0;
     }
 
-    return (((dostime_t) year - 1980) << 25)
-         | (((dostime_t) month      ) << 21)
-         | (((dostime_t) day        ) << 16)
-         | (((dostime_t) hour       ) << 11)
-         | (((dostime_t) minute     ) <<  5)
-         | (((dostime_t) second     ) >>  1);  // 1 every other second
+    return (((dos_time_t) year - 1980) << 25)
+         | (((dos_time_t) month      ) << 21)
+         | (((dos_time_t) day        ) << 16)
+         | (((dos_time_t) hour       ) << 11)
+         | (((dos_time_t) minute     ) <<  5)
+         | (((dos_time_t) second     ) >>  1);  // 1 every other second
 }
 
 
@@ -216,14 +216,14 @@ dostime_t dostime(int year, int month, int day, int hour, int minute, int second
  * \return The Unix date in DOS format unless it is out of range for
  *         a DOS time and date in which case zero (0) is returned.
  */
-dostime_t unix2dostime(time_t unix_time)
+dos_time_t unix_time_dos_time(time_t unix_time)
 {
     time_t even_time;
     struct tm *s;         /* result of localtime() */
 
     even_time = (unix_time + 1) & ~1;         /* Round up to even seconds. */
     s = localtime(&even_time);         /* Use local time since MSDOS does. */
-    return dostime(s->tm_year + 1900, s->tm_mon + 1, s->tm_mday,
+    return dos_time(s->tm_year + 1900, s->tm_mon + 1, s->tm_mday,
                    s->tm_hour, s->tm_min, s->tm_sec);
 }
 
@@ -236,3 +236,7 @@ dostime_t unix2dostime(time_t unix_time)
 // End:
 
 // vim: ts=4 sw=4 et
+
+
+
+

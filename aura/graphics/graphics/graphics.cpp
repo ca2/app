@@ -15,8 +15,6 @@ namespace graphics
    graphics::graphics()
    {
 
-      defer_create_synchronization();
-
       m_uptrBuffer = 0;
 
       m_bNewBuffer = false;
@@ -42,6 +40,8 @@ namespace graphics
       //auto estatus = 
       
       object::initialize(pimpl);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{

@@ -272,10 +272,12 @@ bool image::host(const ::pixmap* ppixmap)
 }
 
 
-bool image::on_host_read_pixels(const ::pixmap* ppixmap)
+bool image::on_host_read_pixels(::pixmap* ppixmapHost) const
 {
 
-   //return false;
+   //map();
+
+   //::copy_colorref(ppixmapHost, this);
 
    return false;
 
@@ -6084,7 +6086,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
       if (lineDst < 0)
       {
 
-         output_debug_string("test");
+         output_debug_string("image::Rotate034 lineDst < 0");
 
       }
 
@@ -8379,7 +8381,7 @@ void image::set_rgb(color32_t cr)
       if (areaRgba < areaRgbaLast)
       {
 
-         output_debug_string("test");
+         output_debug_string("_001GetTopLeftWeightedOpaqueArea areaRgba < areaRgbaLast");
 
       }
 

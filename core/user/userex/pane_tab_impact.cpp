@@ -609,17 +609,17 @@ namespace userex
       else if (pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
-            if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
-               || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
-            {
+         if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
+            || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
+         {
 
-               auto puser = user()->m_pcoreuser;
+            auto puser = user()->m_pcoreuser;
 
-               m_pformdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+            m_pformdocumentMenu = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
-               pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
+            pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
-            }
+         }
 
       }
       else if (is_font_sel(pimpactdata->m_atom))
@@ -865,7 +865,7 @@ namespace userex
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            ::pointer<form_document>pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+            ::pointer<form_document>pdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
             if (pdocument.is_set())
             {

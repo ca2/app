@@ -345,14 +345,19 @@ namespace aqua
 
 #endif
 
-      pfactory->merge_to_global_factory();
-
-      pfactory->__construct(this, m_paudiomixer);
-
-      if (m_paudiomixer)
+      if (pfactory)
       {
 
-         m_paudiomixer->init1();
+         pfactory->merge_to_global_factory();
+
+         pfactory->__construct(this, m_paudiomixer);
+
+         if (m_paudiomixer)
+         {
+
+            m_paudiomixer->init1();
+
+         }
 
       }
 

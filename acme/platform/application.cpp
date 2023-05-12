@@ -25,35 +25,13 @@ CLASS_DECL_ACME::file::path get_module_path(HMODULE hmodule);
 #else
 
 
-CLASS_DECL_ACME ::file::path get_module_path();
+CLASS_DECL_ACME::file::path get_module_path();
 
 
 #endif
 
 
 CLASS_DECL_ACME void set_main_user_thread();
-
-//#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
-//static const char * g_p1;
-//static const char * g_p2;
-//void set_res(const char * p1, const char * p2)
-//{
-//
-//   g_p1 = p1;
-//   g_p2 = p2;
-//}
-//#endif
-//#ifdef WINDOWS
-//static HINSTANCE g_hinstanceThis;
-//static HINSTANCE g_hinstancePrev;
-//static int g_nCmdShow;
-//CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow)
-//{
-//   g_hinstanceThis = hinstanceThis;
-//   g_hinstancePrev = hinstancePrev;
-//   g_nCmdShow = nCmdShow;
-//}
-//#endif
 
 
 namespace acme
@@ -62,7 +40,7 @@ namespace acme
 
    application::application()
    {
-      
+
       m_acme.m_pacmeapplication = this;
 
       m_pacmeapplication = this;
@@ -74,62 +52,8 @@ namespace acme
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
 
-//      if (m_pacme && !m_pacme->m_pacmeapplication)
-//      {
-//
-//         m_pacme->m_pacmeapplication = this;
-//
-//      }
-
-//      if (g_p == nullptr)
-//      {
-//
-//         g_p = this;
-//         
-//#ifdef WINDOWS
-//
-//         defer_initialize_system_heap();
-//
-//#endif
-//
-//         g_p->m_pmain = memory_new ::main();
-//
-//      }
-//      else
-//      {
-//
-//         m_pmain = g_p->m_pmain;
-//
-//      }
-
-       factory()->add_factory_item < ::acme::system >();
-       factory()->add_factory_item < ::acme::session >();
-
-      //if (!g_p)
-      //{
-
-      //   g_p = this;
-
-      //}
-
-      //acmeapplication() = this;
-
-      //acmeapplication() = this;
-
-      //::acme::initialize();
-
-//#if defined(WINDOWS)
-//
-//      m_hinstanceThis = g_hinstanceThis;
-//      m_hinstancePrev = g_hinstancePrev;
-//      m_nCmdShow = g_nCmdShow;
-//
-//#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
-//
-//      m_pchar_binary__matter_zip_start = g_p1;
-//      m_pchar_binary__matter_zip_end = g_p2;
-//
-//#endif
+      factory()->add_factory_item < ::acme::system >();
+      factory()->add_factory_item < ::acme::session >();
 
    }
 
@@ -137,24 +61,24 @@ namespace acme
    application::~application()
    {
 
-   /*   if (g_p == this)
-      {
+      /*   if (g_p == this)
+         {
 
-         m_pmain->m_psubsystem.release();
+            m_pmain->m_psubsystem.release();
 
-         ::acme::del(m_pmain);
+            ::acme::del(m_pmain);
 
-         g_p = nullptr;
+            g_p = nullptr;
 
 
 
-      }*/
-      //   ::acme::finalize_system();
+         }*/
+         //   ::acme::finalize_system();
 
    }
 
 
-   void application::initialize(::particle * pparticle)
+   void application::initialize(::particle* pparticle)
    {
 
       ::task::initialize(pparticle);
@@ -211,7 +135,7 @@ namespace acme
    //{
 
    //}
-   
+
    ::factory::factory_pointer& application::factory()
    {
 
@@ -235,61 +159,61 @@ namespace acme
 
 
 
-         set_main_user_thread();
+      set_main_user_thread();
 
-         task_guard taskguard;
+      task_guard taskguard;
 
-         ::e_status estatus = error_failed;
+      ::e_status estatus = error_failed;
 
-         ::e_status estatusEnd = error_failed;
+      ::e_status estatusEnd = error_failed;
 
-         string strAppId;
+      string strAppId;
 
-         if (!m_bConsole)
-         {
+      if (!m_bConsole)
+      {
 
-            strAppId = m_strAppId;
+         strAppId = m_strAppId;
 
-         }
-
-
-         {
-
-            string strPrgName = m_strAppId;
-
-            strPrgName.replace_with(".", "/");
-
-            strPrgName.replace_with("-", "_");
-
-            m_strProgName = "com." + strPrgName;
-
-         }
+      }
 
 
+      {
 
-         //main.m_bAudio = main_hold_base::is_audio_enabled();
+         string strPrgName = m_strAppId;
 
-         auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
+         strPrgName.replace_with(".", "/");
 
-         ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
+         strPrgName.replace_with("-", "_");
 
-         ::set_task(psystem);
+         m_strProgName = "com." + strPrgName;
 
-         psystem->initialize_system();
+      }
 
-         //psystem->acmeapplication() = pacmeapplication;
 
-         //psystem->m_psubsystem = psubsystem;
 
-         psystem->system_construct(this);
+      //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-         psystem->create_os_node();
+      auto pfactoryitem = ::acme::acme::g_pacme->m_psubsystem->m_pfactory->get_factory_item<::acme::system>();
 
-         auto pnode = psystem->node();
+      ::pointer<::acme::system> psystem = pfactoryitem->create_particle();
 
-         pnode->implement(pnode, psystem);
+      ::set_task(psystem);
 
-         //pnode->start_application(pnode, psystem);
+      psystem->initialize_system();
+
+      //psystem->acmeapplication() = pacmeapplication;
+
+      //psystem->m_psubsystem = psubsystem;
+
+      psystem->system_construct(this);
+
+      psystem->create_os_node();
+
+      auto pnode = psystem->node();
+
+      pnode->implement(pnode, psystem);
+
+      //pnode->start_application(pnode, psystem);
 
 //         if (m_iExitCode == 0 && m_iExitCode != 0)
 //         {
@@ -332,7 +256,7 @@ namespace acme
    void application::initialize_application_flags()
    {
 
-      if(m_bVerbose.undefined())
+      if (m_bVerbose.undefined())
       {
 
          m_bVerbose = true;
@@ -488,9 +412,9 @@ namespace acme
 
 #ifdef WINDOWS_DESKTOP
 
-         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_p->m_psubsystem->m_hinstanceThis);
+         m_pathModule = ::get_module_path((HMODULE)::acme::acme::g_pacme->m_psubsystem->m_hinstanceThis);
 
-         #elif defined(ANDROID)
+#elif defined(ANDROID)
 
          m_pathModule.empty();
 
@@ -620,43 +544,43 @@ namespace acme
    }
 
 
-//#ifdef WINDOWS
-//
-//
-//   void application::get_arguments_from_command_line()
-//   {
-//
-//      m_argc = __argc;
-//
-//      m_argv = __argv;
-//
-//      m_envp = *__p__environ();
-//
-//      m_wargv = __wargv;
-//
-//      m_wenvp = *__p__wenviron();
-//
-//      m_strCommandLine = ::GetCommandLineW();
-//
-//   }
-//
-//
-//#else
-//
-//
-//   void application::set_args(int argc, char * argv[], char * envp[])
-//   {
-//
-//      m_argc = argc;
-//
-//      m_argv = argv;
-//
-//      m_envp = envp;
-//
-//   }
-//
-//
-//#endif
+   //#ifdef WINDOWS
+   //
+   //
+   //   void application::get_arguments_from_command_line()
+   //   {
+   //
+   //      m_argc = __argc;
+   //
+   //      m_argv = __argv;
+   //
+   //      m_envp = *__p__environ();
+   //
+   //      m_wargv = __wargv;
+   //
+   //      m_wenvp = *__p__wenviron();
+   //
+   //      m_strCommandLine = ::GetCommandLineW();
+   //
+   //   }
+   //
+   //
+   //#else
+   //
+   //
+   //   void application::set_args(int argc, char * argv[], char * envp[])
+   //   {
+   //
+   //      m_argc = argc;
+   //
+   //      m_argv = argv;
+   //
+   //      m_envp = envp;
+   //
+   //   }
+   //
+   //
+   //#endif
 
 
    int application::__implement()
@@ -721,7 +645,7 @@ namespace acme
    //__main(main);
 
 
-   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool application::handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
    {
 
       if (strObject == "application")
@@ -732,11 +656,11 @@ namespace acme
       }
 
       return false;
-      
+
    }
 
 
-   bool application::handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+   bool application::handle_application_call(::payload& payload, const ::string& strMember, ::property_set& propertyset)
    {
 
       return false;
@@ -784,29 +708,29 @@ namespace acme
 
    ::string application::get_application_name()
    {
-   
+
       return m_strAppName;
-      
+
    }
-      
+
 
 } // namespace acme
 
 
-void * application_system(void * pApplication)
+void* application_system(void* pApplication)
 {
 
-   auto papp = (::acme::application *)pApplication;
+   auto papp = (::acme::application*)pApplication;
 
    return papp->acmesystem();
 
 }
 
-bool application_get_bool(void * pApplication, const char * pszItem)
+bool application_get_bool(void* pApplication, const char* pszItem)
 {
-   
-   auto papp = (::acme::application *)pApplication;
-   
+
+   auto papp = (::acme::application*)pApplication;
+
    return papp->payload(pszItem).as_bool();
-   
+
 }

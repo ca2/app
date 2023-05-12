@@ -97,7 +97,7 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 //}
 
 
-//CLASS_DECL_ACME string audio_get_default_library_name()
+//CLASS_DECL_ACME string audio_get_default_implementation_name()
 //{
 //
 //   return "audio_core_audio";

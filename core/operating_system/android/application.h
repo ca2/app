@@ -48,7 +48,7 @@
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual itask_t get_thread_id();
-//      string draw2d_get_default_library_name();
+//      string draw2d_get_default_implementation_name();
 //
 //
 //   };

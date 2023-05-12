@@ -21,6 +21,10 @@ namespace acme
 
       ::acme::application * m_pacmeapplication;
 
+
+      ::critical_section m_criticalsectionSystemHeap;
+
+
       ::critical_section m_criticalsectionChannel;
 
 

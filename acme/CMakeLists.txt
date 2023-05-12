@@ -213,6 +213,7 @@ list(APPEND library_source
         #memory/new.cpp
         memory/os_alloc.cpp
         memory/os_alloc.h
+        memory/os_impl/malloc.cpp
         memory/paged.h
         memory/paged_large.cpp
         memory/property_memory_allocate.cpp

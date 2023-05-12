@@ -404,7 +404,7 @@
     <ClInclude Include="filesystem\filemanager\thumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\save_as_name_impact.h">
+    <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\tab_impact.h">
@@ -683,9 +683,6 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\progress.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -935,6 +932,12 @@
     <ClInclude Include="user\user\_binary_stream.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filemanager\save_as_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\save_as_button_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1132,7 +1135,7 @@
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
+    <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp">
@@ -1425,6 +1428,12 @@
     </ClCompile>
     <ClCompile Include="user\user\text_format_object.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\save_as_button_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\save_as_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

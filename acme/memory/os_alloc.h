@@ -1,10 +1,10 @@
 #pragma once
 
 
-void * os_alloc(memsize size);
-void * os_realloc(void * p, memsize size);
-void os_free(void * p);
-size_t os_size(void * p);
+void * __operating_system_memory_allocate(memsize size);
+void * __operating_system_memory_reallocate(void * p, memsize size);
+void __operating_system_memory_free(void * p);
+memsize __operating_system_memory_size(void * p);
 
 
 

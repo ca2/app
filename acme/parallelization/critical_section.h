@@ -1,3 +1,4 @@
+// Created by camilo on 2023-04-25 23:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -9,81 +10,15 @@ class CLASS_DECL_ACME critical_section
 public:
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-   pthread_mutex_t m_mutex;
-
-   critical_section()
-{
-   
-   ::pthread_recursive_mutex_init(&m_mutex);
-   
-}
+   critical_section_impl* m_pimpl;
 
 
-~critical_section()
-{
-   
-   ::pthread_mutex_destroy(&m_mutex);
-   
-}
+   critical_section();
+   ~critical_section();
 
 
-void lock()
-{
-   
-   ::pthread_mutex_lock(&m_mutex);
-   
-}
-
-
-void unlock()
-{
-   
-   ::pthread_mutex_unlock(&m_mutex);
-   
-}
-
-
-#else
-
-   CRITICAL_SECTION m_criticalsection;
-   
-   
-critical_section()
-{
-   
-   ::InitializeCriticalSection(&m_criticalsection);
-
-}
-
-
-~critical_section()
-{
-   
-   ::DeleteCriticalSection(&m_criticalsection);
-
-}
-
-
-void lock()
-{
-   
-   ::EnterCriticalSection(&m_criticalsection);
-
-}
-
-
-void unlock()
-{
-   
-   ::LeaveCriticalSection(&m_criticalsection);
-
-}
-
-
-#endif
-
+   void lock();
+   void unlock();
 
 
 };
@@ -148,7 +83,6 @@ public:
       if (m_bLocked)
       {
 
-
          if (m_pcriticalsection != nullptr)
          {
 
@@ -159,6 +93,34 @@ public:
          }
 
       }
+
+   }
+
+
+};
+
+
+class CLASS_DECL_ACME raw_critical_section_lock
+{
+public:
+
+
+   critical_section* m_pcriticalsection;
+
+
+   inline raw_critical_section_lock(critical_section* pcriticalsection) :
+      m_pcriticalsection(pcriticalsection)
+   {
+
+      m_pcriticalsection->lock();
+
+   }
+
+
+   inline ~raw_critical_section_lock()
+   {
+
+      m_pcriticalsection->unlock();
 
    }
 

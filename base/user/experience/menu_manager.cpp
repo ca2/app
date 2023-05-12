@@ -56,7 +56,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow == nullptr || pusermessage->userinteraction() != m_pframewindow)
+      if (m_pframewindow == nullptr || ::user::message_user_interaction(pusermessage) != m_pframewindow)
       {
 
          return;

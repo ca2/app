@@ -104,19 +104,10 @@
     <ClInclude Include="user\user\edit_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\menu.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\place_holder_container.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\place_holder.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="inline\__debug_box_clear_impl.h">

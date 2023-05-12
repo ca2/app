@@ -3,6 +3,14 @@
 #include "item.h"
 
 
+bool item_base::_is_set() const
+{
+
+   return m_eelement != e_element_none;
+
+}
+
+
 item & item::operator = (enum_element eelement)
 {
 

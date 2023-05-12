@@ -988,6 +988,23 @@ public:
 
    }
 
+   template < primitive_integral START >
+   string_base unicode_substr(START start) const
+   {
+
+      return { (this->unicode_begin() + start).c_str(), this->end()};
+
+   }
+
+
+   template < primitive_integral START, primitive_integral COUNT >
+   string_base unicode_substr(START start, COUNT count) const
+   {
+
+      return { (this->unicode_begin() + start).c_str(), (this->unicode_begin() + start + count).c_str()};
+
+   }
+
 
    //inline bool begins(const CHARACTER * pszPrefix) const;
 

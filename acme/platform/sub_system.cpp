@@ -564,7 +564,8 @@ void sub_system::set_factory_from(const ::atom& atom, const ::atom& atomSource, 
 
    string strLibrary;
 
-   strLibrary = library_name(strComponent, strImplementation);
+   //strLibrary = library_name(strComponent, strImplementation);
+   strLibrary = strComponent + "_" + strImplementation;
 
    auto& plibrary = library(strLibrary);
 

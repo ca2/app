@@ -113,7 +113,7 @@ namespace acme
       bool                                                  m_bDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
-      int                                                   m_iWeatherDarkness;
+      //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
       ::user::enum_desktop                                  m_edesktop;
@@ -171,10 +171,10 @@ namespace acme
       //virtual void element_quit_post_quit();
 
 
-      virtual string audio_get_default_library_name();
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+      virtual string audio_get_default_implementation_name();
+      virtual string multimedia_audio_get_default_implementation_name();
+      virtual string multimedia_audio_mixer_get_default_implementation_name();
+      virtual string veriwell_multimedia_music_midi_get_default_implementation_name();
 
 
       virtual void _launch_macos_app(const ::string & pszAppFolder);
@@ -271,9 +271,11 @@ namespace acme
 
       virtual void background_color(const ::color::color & color);
 
-      virtual int get_simple_ui_darkness();
+//      virtual int get_simple_ui_darkness();
 
-      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+
+      virtual void set_dark_mode(bool bDark);
 
       virtual void fetch_user_color();
 
@@ -732,6 +734,9 @@ namespace acme
 
       virtual ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr);
 
+      virtual ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier);
+
+      virtual ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function);
 
    };
 

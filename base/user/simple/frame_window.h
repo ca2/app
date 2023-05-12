@@ -82,31 +82,38 @@ public:
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
    void SetBorderRect(const ::rectangle_i32 & rectangle) override;
-   virtual void GetBorderRect(RECTANGLE_I32 * prectangle) override;
+   void GetBorderRect(RECTANGLE_I32 * prectangle) override;
 
-   virtual ::color::color get_border_main_body_color() override;
+   ::color::color get_border_main_body_color() override;
 
    void ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame);
 
    virtual void ToggleFullScreen();
-   virtual void WfiOnFullScreen() override;
-   virtual void _001OnExitFullScreen() override;
+   void WfiOnFullScreen() override;
+   
+
+   void _001OnAfterEnterFullScreen() override;
+   
+   
+   void _001OnAfterExitFullScreen() override;
+
+
    virtual void show_control_bars(const ::e_display & edisplay = e_display_restored, bool bLeaveFullScreenBarsOnHide = false);
 
-   virtual bool _001OnBeforeAppearance() override;
-   virtual void initialize_frame_window_experience() override;
+   bool _001OnBeforeEnterAppearance() override;
+   void initialize_frame_window_experience() override;
 
 
-   virtual void _001OnAfterAppearance() override;
+   //void _001OnAfterExitAppearance() override;
 
    virtual void WfiToggleShow();
 
-   virtual bool window_is_notify_icon_enabled() override;
+   bool window_is_notify_icon_enabled() override;
    void OnUpdateControlBarMenu(::message::command * pcommand);
 
-   void WindowDataSaveWindowRect() override;
-   bool WindowDataLoadWindowRect() override;
-   //bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+   void WindowDataSaveWindowRectangle() override;
+   bool WindowDataLoadWindowRectangle() override;
+   //bool WindowDataLoadWindowRectangle(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
    using ::experience::frame_window::frame_experience;
    virtual ::experience::frame * frame_experience();

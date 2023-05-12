@@ -275,7 +275,7 @@ public:
 
 
    virtual bool host(const ::pixmap * ppixmap);
-   virtual bool on_host_read_pixels(const ::pixmap * ppixmap);
+   virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
    void destroy() override;
    void destroy_os_data() override;
    //virtual void detach(::image * pimage);

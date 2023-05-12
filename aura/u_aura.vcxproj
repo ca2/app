@@ -234,21 +234,6 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h" />
-    <ClInclude Include="operating_system\universal_windows\base_file.h" />
-    <ClInclude Include="operating_system\universal_windows\file_winrt.h" />
-    <ClInclude Include="operating_system\universal_windows\gdi_winrt.h" />
-    <ClInclude Include="operating_system\universal_windows\host_interaction.h" />
-    <ClInclude Include="operating_system\universal_windows\metrowin_metrowin.h" />
-    <ClInclude Include="operating_system\universal_windows\oswindow.h" />
-    <ClInclude Include="operating_system\universal_windows\parallelization.h" />
-    <ClInclude Include="operating_system\universal_windows\parallelization_winrt.h" />
-    <ClInclude Include="operating_system\universal_windows\simple_hold_handle.h" />
-    <ClInclude Include="operating_system\universal_windows\simple_ui.h" />
-    <ClInclude Include="operating_system\universal_windows\sockets.h" />
-    <ClInclude Include="operating_system\universal_windows\_.h" />
-    <ClInclude Include="operating_system\universal_windows\_universal_windows.h" />
-    <ClInclude Include="operating_system\universal_windows\_user.h" />
-    <ClInclude Include="operating_system\universal_windows\_windows_runtime.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\drawable.h" />
@@ -295,7 +280,6 @@
     <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\main_window.h" />
-    <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\notify_icon.h" />
     <ClInclude Include="user\user\notify_icon_listener.h" />
@@ -504,8 +488,6 @@
     <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="operating_system\universal_windows\aura.cpp" />
-    <ClCompile Include="operating_system\universal_windows\graphics.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
@@ -542,7 +524,6 @@
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
-    <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />

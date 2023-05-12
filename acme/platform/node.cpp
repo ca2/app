@@ -145,7 +145,7 @@ namespace acme
 
 #if defined(UNIVERSAL_WINDOWS)
 
-      idaPid.add(scopedstrAppId);
+      idaPid.add(-1);
 
 #else
 
@@ -982,14 +982,23 @@ namespace acme
 
       m_dLuminance = m_colorBackground.get_luminance();
 
-      m_bDarkMode = m_dLuminance < 0.5;
+      set_dark_mode(m_dLuminance < 0.5);
 
-      if(m_bDarkMode)
+   }
+
+
+   void node::set_dark_mode(bool bDark)
+   {
+
+      m_bDarkMode = bDark;
+
+      if (m_bDarkMode)
       {
 
          ::output_debug_string("background_color :: Dark\n");
 
-      } else
+      }
+      else
       {
 
          ::output_debug_string("background_color :: Lite\n");
@@ -1001,21 +1010,21 @@ namespace acme
    }
 
 
+//   int node::get_simple_ui_darkness()
+//   {
+//
+//      return m_iWeatherDarkness;
+//
+//   }
+//
+//
+//   void node::set_simple_ui_darkness(int iWeatherDarkness)
+//   {
+//
+//      m_iWeatherDarkness = iWeatherDarkness;
+//
+//   }
 
-   int node::get_simple_ui_darkness()
-   {
-
-      return m_iWeatherDarkness;
-
-   }
-
-
-   void node::set_simple_ui_darkness(int iWeatherDarkness)
-   {
-
-      m_iWeatherDarkness = iWeatherDarkness;
-
-   }
 
    void node::fetch_user_color()
    {

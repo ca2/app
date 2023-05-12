@@ -17,8 +17,8 @@ namespace experience
       bool                                         m_bHoverModeOn;
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
-      ::pointer<::experience::frame>            m_pframe;
-      ::rectangle_i32                                       m_rectanglePending;
+      ::pointer<::experience::frame>               m_pframe;
+      ::rectangle_i32                              m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -26,15 +26,15 @@ namespace experience
       bool                                         m_bFullScreenCtrl;
 
 
-      ::tristate                                 m_bitMinimizeToTray;
+      ::tristate                                   m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
       
       ::u32                                        m_uiSWPFlags;
 
-      ::pointer<class move_manager>              m_pmovemanager;
-      ::pointer<class size_manager>              m_psizemanager;
-      ::pointer<class dock_manager>              m_pdockmanager;
-      ::pointer<class menu_manager>              m_pmenumanager;
+      ::pointer<class move_manager>                m_pmovemanager;
+      ::pointer<class size_manager>                m_psizemanager;
+      ::pointer<class dock_manager>                m_pdockmanager;
+      ::pointer<class menu_manager>                m_pmenumanager;
 
       bool                                         m_bDockEnable;
       bool                                         m_bMoveEnable;
@@ -92,20 +92,19 @@ namespace experience
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
-      virtual void _001OnExitFullScreen() override;
-
-      virtual bool _001CallOnBeforeAppearance();
-      virtual bool _001OnBeforeAppearance() override;
+      //bool _001CallOnEnterAppearance();
+      bool _001OnBeforeEnterAppearance() override;
 
 
+      //bool _001OnBeforeExitFullScreen() override;
 
-      virtual void _001OnAfterAppearance() override;
 
-
+      //void _001OnAfterExitAppearance() override;
 
 
       virtual bool updown_get_up_enable() = 0;
       virtual bool updown_get_down_enable() = 0;
+
 
       virtual void frame_Attach();
       virtual void frame_Detach();

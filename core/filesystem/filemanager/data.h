@@ -48,6 +48,7 @@ namespace filemanager
       ::user::document *                  m_pdocumentTopic;
       ::filemanager::document *                    m_pdocument;
       string m_strTitle;
+      ::type m_typeFileList;
       //    callback   *                        m_pfilemanager;
 //      callback *                          m_pcallback;
 //      bool                                m_bTransparentBackground;

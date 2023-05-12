@@ -57,7 +57,7 @@ namespace draw2d_opengl
 
       //void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
 
-      virtual bool on_host_read_pixels(const ::pixmap* ppixmap) override;
+      bool on_host_read_pixels(::pixmap* ppixmap) const override;
 
       //bool color_blend(color32_t color32, byte bAlpha);
       //bool Blend(imagepimage, ::image::image * pimageA, i32 A);

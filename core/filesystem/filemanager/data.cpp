@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "data.h"
 #include "document.h"
+#include "file_list.h"
 #include "acme/primitive/data/listener.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
@@ -84,7 +85,7 @@ namespace filemanager
       //{
 
       //   return estatus;
-
+      m_typeFileList = __type(file_list);
       //}
       m_pfont.create(this);
 

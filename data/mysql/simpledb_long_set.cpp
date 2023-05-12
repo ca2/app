@@ -557,7 +557,7 @@ bool db_long_set::MoveWindow_(const ::string & lpKey, ::user::interaction_impl *
 }
 
 
-bool db_long_set::SaveWindowRect_(const ::string & lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SaveWindowRectangle(const ::string & lpKey, ::user::interaction_impl * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP

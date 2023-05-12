@@ -132,14 +132,6 @@ namespace user
    }
 
 
-   ::user::interaction::enum_type frame_window::get_window_type()
-   {
-
-      return type_frame;
-
-   }
-
-
    void frame_window::on_simple_command(::message::simple_command * psimplecommand)
    {
 

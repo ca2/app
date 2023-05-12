@@ -16,7 +16,7 @@ class CLASS_DECL_ACME event :
 public:
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
    hsynchronization     m_handle;
 
@@ -51,7 +51,11 @@ public:
    //bool lock(const ::wait & wait = wait::infinite()) override;
 
 
+#ifdef WINDOWS
+
    hsynchronization get_synchronization_handle() override;
+
+#endif
 
 
    using particle::unlock;

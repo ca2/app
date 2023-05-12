@@ -131,7 +131,9 @@
     <ClInclude Include="user\simple\frame_window.h" />
     <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\scroll_bar.h" />
+    <ClInclude Include="user\simple\status_bar.h" />
     <ClInclude Include="user\simple\tab_document.h" />
+    <ClInclude Include="user\simple\toolbar.h" />
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_component.h" />
     <ClInclude Include="user\simple\_impl.h" />
@@ -193,6 +195,7 @@
     <ClInclude Include="user\user\split_layout.h" />
     <ClInclude Include="user\user\split_impact.h" />
     <ClInclude Include="user\user\static_control.h" />
+    <ClInclude Include="user\user\statusbar.h" />
     <ClInclude Include="user\user\style.h" />
     <ClInclude Include="user\user\tab.h" />
     <ClInclude Include="user\user\tab_callback.h" />
@@ -265,7 +268,9 @@
     <ClCompile Include="user\simple\impact.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
+    <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_document.cpp" />
+    <ClCompile Include="user\simple\toolbar.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
@@ -296,6 +301,7 @@
     <ClCompile Include="user\user\split_layout.cpp" />
     <ClCompile Include="user\user\split_pane.cpp" />
     <ClCompile Include="user\user\split_impact.cpp" />
+    <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
     <ClCompile Include="user\user\tab_callback.cpp" />

@@ -1380,13 +1380,13 @@ namespace user
 
             }
 
-            for(auto & pinteraction : uiptraToolWindow)
+            for (auto & pinteraction : uiptraToolWindow)
             {
 
-               if(pinteraction != pmouse->userinteraction())
+               if (pinteraction != ::user::message_user_interaction(pmouse))
                {
 
-                  if(pinteraction->m_ewindowflag & e_window_flag_focus)
+                  if (pinteraction->m_ewindowflag & e_window_flag_focus)
                   {
 
                      pinteraction->post_message(e_message_kill_focus);

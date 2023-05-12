@@ -3,6 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/parallelization/single_lock.h"
+#include "acme/platform/keep.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "aura/platform/application.h"
@@ -17,10 +18,6 @@ namespace user
 
    box::box()
    {
-
-      //m_strDataKey = "WindowRect";
-
-      //m_strDataKey.m_bLocalData = true;
 
       m_windowrectangleStore.m_edisplay = ::e_display_undefined;
 
@@ -44,8 +41,6 @@ namespace user
          m_atom = __type_name(this);
 
       }
-
-      //m_strDataKey = m_atom;
 
    }
 
@@ -107,6 +102,14 @@ namespace user
       auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;
 
       return edisplayPrevious;
+
+   }
+
+
+   void box::set_window_previous_display(::e_display edisplayPrevious)
+   {
+
+      m_windowrectangle.m_edisplayPrevious = edisplayPrevious;
 
    }
 
@@ -182,7 +185,7 @@ namespace user
    }
 
 
-   bool box::should_save_window_rect()
+   bool box::should_save_window_rectangle()
    {
 
 #if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS)
@@ -198,12 +201,12 @@ namespace user
    }
 
 
-   void box::WindowDataSaveWindowRect()
+   void box::WindowDataSaveWindowRectangle()
    {
 
       bool bSave = false;
 
-      if (should_save_window_rect())
+      if (should_save_window_rectangle())
       {
 
          if (const_layout().sketch().display() == ::e_display_none)
@@ -217,7 +220,7 @@ namespace user
 
          string strDataKey = get_data_key(window_data_key_modifier());
 
-         SaveWindowRect_(strDataKey);
+         SaveWindowRectangle(strDataKey);
 
       }
 
@@ -243,7 +246,7 @@ namespace user
    }
 
 
-   bool box::WindowDataLoadWindowRect()
+   bool box::WindowDataLoadWindowRectangle()
    {
 
       bool bLoad = false;
@@ -252,18 +255,12 @@ namespace user
 
       auto strDataKey = get_data_key(window_data_key_modifier());
 
-      bLoad = LoadWindowRect_(strDataKey);
+      bLoad = LoadWindowRectangle(strDataKey);
 
       if (!bLoad)
       {
 
-         m_ewindowflag |= e_window_flag_loading_window_rect;
-
-         //auto psession = get_session();
-
-         //auto puser = psession->user();
-
-         //auto pwindowing = puser->windowing();
+         m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -289,7 +286,7 @@ namespace user
 
 
 
-   bool box::FancyWindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+   bool box::FancyWindowDataLoadWindowRectangle(bool bForceRestore, bool bInitialFramePosition)
    {
 
       bool bLoad = false;
@@ -298,18 +295,12 @@ namespace user
 
       auto strDataKey = get_data_key(window_data_key_modifier());
 
-      bLoad = FancyLoadWindowRect_(strDataKey, bForceRestore, bInitialFramePosition);
+      bLoad = FancyLoadWindowRectangle(strDataKey, bForceRestore, bInitialFramePosition);
 
       if (!bLoad)
       {
 
-         m_ewindowflag |= e_window_flag_loading_window_rect;
-
-         //auto psession = get_session();
-
-         //auto puser = psession->user();
-
-         //auto pwindowing = puser->windowing();
+         m_bLoadingWindowRectangle = true;
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -333,17 +324,17 @@ namespace user
    }
 
 
-   bool box::LoadWindowRect_(const ::scoped_string & strDataKey)
+   bool box::LoadWindowRectangle(const ::scoped_string & strDataKey)
    {
 
-      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
+      if (!m_bAutomaticallyStoreWindowRectangle)
       {
 
          return false;
 
-         //return;
-
       }
+
+      m_bLoadingWindowRectangle = true;
 
       ::user::window_rectangle windowrectangle;
 
@@ -356,8 +347,6 @@ namespace user
 
       }
 
-      m_ewindowflag |= e_window_flag_loading_window_rect;
-
       m_windowrectangleStore = windowrectangle;
 
       m_windowrectangle = m_windowrectangleStore;
@@ -365,13 +354,6 @@ namespace user
       enum_display edisplay = windowrectangle.m_edisplay;
 
       const_layout().sketch().appearance() = windowrectangle.m_eappearance;
-
-      //if (edisplay == e_display_iconic && bInitialFramePosition)
-      //{
-
-      //   edisplay = windowrectangle.m_edisplayPrevious;
-
-      //}
 
       order(e_zorder_top);
 
@@ -463,17 +445,17 @@ namespace user
    }
 
 
-   bool box::FancyLoadWindowRect_(const ::scoped_string & strDataKey, bool bForceRestore, bool bInitialFramePosition)
+   bool box::FancyLoadWindowRectangle(const ::scoped_string & strDataKey, bool bForceRestore, bool bInitialFramePosition)
    {
 
-      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
+      if (!m_bAutomaticallyStoreWindowRectangle)
       {
 
          return false;
 
-         //return;
-
       }
+
+      m_bLoadingWindowRectangle = true;
 
       ::user::window_rectangle windowrectangle;
 
@@ -485,8 +467,6 @@ namespace user
          return false;
 
       }
-
-      m_ewindowflag |= e_window_flag_loading_window_rect;
 
       m_windowrectangleStore = windowrectangle;
 
@@ -573,10 +553,10 @@ namespace user
    }
 
 
-   void box::SaveWindowRect_(const ::scoped_string & strDataKey)
+   void box::SaveWindowRectangle(const ::scoped_string & strDataKey)
    {
 
-      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
+      if (!m_bAutomaticallyStoreWindowRectangle)
       {
 
          return;
@@ -719,13 +699,6 @@ namespace user
    void box::design_iconic()
    {
       
-      if (const_layout().design().display() != e_display_iconic)
-      {
-
-         m_windowrectangle.m_edisplayPrevious = const_layout().design().display();
-
-      }
-
       ::user::interaction::design_iconic();
       
    }
@@ -895,9 +868,9 @@ namespace user
       {
          case e_simple_command_load_window_rect:
 
-            //WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
+            //WindowDataLoadWindowRectangle(psimplecommand->m_lparam != false);
 
-            WindowDataLoadWindowRect();
+            WindowDataLoadWindowRectangle();
 
             psimplecommand->m_bRet = true;
 

@@ -461,8 +461,6 @@ namespace core
       factory()->add_factory_item <form_frame >();
       factory()->add_factory_item <form_child_frame >();
 
-      factory()->add_factory_item <simple_toolbar >();
-      factory()->add_factory_item <simple_toolbar, ::user::toolbar >();
       factory()->add_factory_item <::experience::orto_button >();
 
       //estatus = 

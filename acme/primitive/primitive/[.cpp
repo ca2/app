@@ -7267,7 +7267,7 @@ void payload::_001Add(const string_array & straParam)
 
    }
 
-   stra().add_unique_ci(straParam);
+   stra().case_insensitive_add_unique(straParam);
 
 }
 

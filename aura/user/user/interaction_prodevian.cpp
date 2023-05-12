@@ -194,7 +194,7 @@ namespace user
             if (m_pimpl)
             {
 
-               m_pimpl->window_show();
+               m_puserinteraction->window_show();
 
             }
 
@@ -843,7 +843,9 @@ namespace user
          if (bStartWindowVisual)
          {
 
-            m_pimpl->window_show();
+            m_puserinteraction->window_show();
+
+            //m_pimpl->window_show();
 
          }
 
@@ -929,8 +931,9 @@ namespace user
          if (bStartWindowVisual)
          {
 
+            m_puserinteraction->window_show();
 
-            m_pimpl->m_pwindow->window_show();
+            //m_pimpl->m_pwindow->window_show();
             //m_puserinteraction->post_procedure(m_procedureWindowShow);
 
          }
@@ -1272,18 +1275,6 @@ namespace user
 
             }
 
-
-            if (m_puserinteraction)
-            {
-
-               if (m_puserinteraction->is_visual_changed())
-               {
-
-                  m_puserinteraction->on_visual_applied();
-
-               }
-
-            }
 
          }
 

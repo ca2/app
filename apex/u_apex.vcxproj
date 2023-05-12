@@ -952,6 +952,7 @@
     <ClCompile Include="progress\real.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
+    <ClCompile Include="user\message.cpp" />
     <ClCompile Include="user\primitive.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

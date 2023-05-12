@@ -210,19 +210,6 @@ string acme_directory::system_short_name()
 
 }
 
-#ifdef UNIVERSAL_WINDOWS
-
-
-::file::path acme_directory::app_relative()
-{
-
-   return "";
-
-}
-
-
-#else
-
 
 ::string acme_directory::appid()
 {
@@ -230,9 +217,6 @@ string acme_directory::system_short_name()
    return acmeapplication()->m_strAppId;
 
 }
-
-
-#endif
 
 
 ::file::path acme_directory::inplace_install(string strAppId, string strPlatform, string strConfiguration)

@@ -38,6 +38,14 @@ namespace operating_system
    }
 
 
+   void main_window::post_application_exit()
+   {
+
+      throw interface_only();
+
+   }
+
+
    ::string main_window::get_window_text(const ::iptr_array & idPath)
    {
 

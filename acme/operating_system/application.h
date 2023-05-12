@@ -27,6 +27,8 @@ namespace operating_system
       virtual void open_by_module_path(const ::scoped_string & scopedstr);
 
       virtual void post_close();
+
+      virtual void post_exit();
       
       virtual ::string name();
 

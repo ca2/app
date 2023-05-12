@@ -199,7 +199,7 @@ namespace acme
 
                int iProcessId = ansi_to_i32(strProcessId);
 
-               stra2.add_unique_ci(strProcessName);
+               stra2.case_insensitive_add_unique(strProcessName);
 
                string strPath = pnode->process_identifier_module_path(iProcessId);
 
@@ -1648,12 +1648,22 @@ namespace acme
    ::file::path_array node::modules_paths()
    {
 
-      throw ::interface_only();
+      auto processidentifiera = processes_identifiers();
 
-      return {};
+      ::file::path_array patha;
+
+      for (auto processidentifier : processidentifiera)
+      {
+
+         auto pathaProcessModules = process_identifier_modules_paths(processidentifier);
+
+         patha.case_insensitive_append_unique(pathaProcessModules);
+
+      }
+
+      return ::transfer(patha);
 
    }
-
 
 
    bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir)

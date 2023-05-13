@@ -14,6 +14,7 @@
 #include "enumerator.h"
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/primitive/collection/map.h"
+#include "acme/primitive/collection/string_map.h"
 #include "acme/parallelization/mutex.h"
 
 
@@ -235,12 +236,19 @@ public:
 
          //} // namespace dir
 
+   virtual string_to_string map_content(const ::file::path & path);
+   virtual ::string_array enumerate_content(const ::file::path & path);
+
+
+
+
    virtual ::file::path get_current();
    virtual void change_current(const ::file::path & path);
    virtual void change_to_home();
 
 
    virtual void add_media_library_item(::media_library::item* pmedialibraryitem);
+
 
 
 };

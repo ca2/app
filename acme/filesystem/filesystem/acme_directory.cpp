@@ -1119,6 +1119,52 @@ void acme_directory::erase_recursively(const ::file::path &path)
 }
 
 
+string_to_string acme_directory::map_content(const ::file::path & path)
+{
+
+   ::string_to_string stringmap;
+
+   ::file::listing listing;
+
+   listing.set_file_listing(path);
+
+   enumerate(listing);
+
+   for(auto & path : listing)
+   {
+
+      stringmap[path] = acmefile()->safe_get_string(path);
+
+   }
+
+   return ::transfer(stringmap);
+
+}
+
+
+string_array acme_directory::enumerate_content(const ::file::path &path)
+{
+
+   ::string_array stra;
+
+   ::file::listing listing;
+
+   listing.set_file_listing(path);
+
+   enumerate(listing);
+
+   for(auto & path : listing)
+   {
+
+      stra.add(acmefile()->safe_get_string(path));
+
+   }
+
+   return ::transfer(stra);
+
+}
+
+
 ::file::path acme_directory::get_current()
 {
 

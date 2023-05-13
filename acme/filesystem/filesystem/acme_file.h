@@ -126,6 +126,9 @@ public:
    virtual void put_contents(const ::file::path & path, const memory_base & memory);
    virtual void put_contents(const ::file::path & path, const scoped_string & contents);
    virtual void put_lines(const ::file::path& path, const ::string_array& straLines);
+   virtual ::string_array column_cells(const ::file::path& path, ::index iColumn);
+   virtual ::string_array case_insensitive_unique_column_cells(const ::file::path& path, ::index iColumn);
+   virtual void for_each_column_cell(const ::file::path& path, ::index iColumn, const ::function < void(const ::scoped_string & scopedstrCell) > & function);
    virtual void as_memory(memory_base & memory, const ::file::path & path, memsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    //virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory as_memory(const ::file::path & path, strsize iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);

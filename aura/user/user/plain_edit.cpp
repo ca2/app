@@ -1167,12 +1167,12 @@ namespace user
       else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
 
-         INFORMATION("_001OnTimer e_timer_caret_flashing");
+         //INFORMATION("_001OnTimer e_timer_caret_flashing");
 
          if (has_keyboard_focus())
          {
 
-            INFORMATION("Keyboard Focus");
+            //INFORMATION("Keyboard Focus");
 
             _001OnKeyboardFocusTimer(ptimer->m_etimer);
 
@@ -1180,7 +1180,7 @@ namespace user
          else
          {
 
-            INFORMATION("No keyboard Focus");
+            //INFORMATION("No keyboard Focus");
 
          }
 
@@ -7000,36 +7000,36 @@ namespace user
 
             auto bCaretOn = is_caret_on();
 
-            if (bCaretOn)
-            {
-
-               INFORMATION("CARET ON!!!!");
-
-            }
-            else
-            {
-
-               INFORMATION("CARET OFF!!!!");
-
-            }
+//            if (bCaretOn)
+//            {
+//
+//               INFORMATION("CARET ON!!!!");
+//
+//            }
+//            else
+//            {
+//
+//               INFORMATION("CARET OFF!!!!");
+//
+//            }
 
             if (is_different(m_bLastCaret, bCaretOn))
             {
 
                m_bLastCaret = bCaretOn;
 
-               if (bCaretOn)
-               {
-
-                  INFORMATION("CARET ON!!!!");
-
-               }
-               else
-               {
-
-                  INFORMATION("CARET OFF!!!!");
-
-               }
+//               if (bCaretOn)
+//               {
+//
+//                  INFORMATION("CARET ON!!!!");
+//
+//               }
+//               else
+//               {
+//
+//                  INFORMATION("CARET OFF!!!!");
+//
+//               }
 
                set_need_redraw();
 

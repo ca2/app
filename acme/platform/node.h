@@ -50,6 +50,7 @@ namespace acme
    protected:
 
 
+
 #ifdef LINUX
 
       enum_linux_distribution                            m_elinuxdistribution;
@@ -89,6 +90,11 @@ namespace acme
 
       bool                                                  m_bCallstackInitialized;
       bool                                                  m_bUpdateCallstack;
+
+
+      string                                                m_strTheme;
+      string                                                m_strIconTheme;
+
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -290,6 +296,8 @@ namespace acme
       virtual void os_set_user_theme(const ::string & strUserTheme);
 
       virtual void os_process_user_theme(string strTheme);
+
+      virtual void os_process_user_icon_theme(string strIconTheme);
 
       virtual bool set_wallpaper(index iScreen, string strLocalImagePath);
 

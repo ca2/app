@@ -205,6 +205,7 @@ enum enum_id : ::uptr
    id_after_show_main_dialog,
    id_run,
    id_operating_system_user_theme_change,
+   id_operating_system_user_icon_theme_change,
    id_operating_system_user_color_change,
    id_operating_system_font_list_change,
    id_font_enumeration,

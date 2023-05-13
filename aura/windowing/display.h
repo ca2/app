@@ -35,6 +35,9 @@ namespace windowing
       double                        m_dpi;
 
 
+      ::string                      m_strDarkModeAnnotation;
+
+
       display();
       ~display() override;
 

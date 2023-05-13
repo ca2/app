@@ -1098,6 +1098,12 @@ namespace acme
    }
 
 
+   void node::os_process_user_icon_theme(string strTheme)
+   {
+
+   }
+
+
    bool node::set_wallpaper(index iScreen, string strLocalImagePath)
    {
 

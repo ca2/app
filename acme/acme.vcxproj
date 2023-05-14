@@ -1350,6 +1350,7 @@
     <ClInclude Include="primitive\string\string_iterator.h" />
     <ClInclude Include="primitive\string\aaaa_simple_string_base.h" />
     <ClInclude Include="primitive\string\string_range.h" />
+    <ClInclude Include="primitive\string\string_range_mutable.h" />
     <ClInclude Include="primitive\string\sz\ansi.h" />
     <ClInclude Include="primitive\string\sz\ansi_impl.h" />
     <ClInclude Include="primitive\string\sz\wd16.h" />

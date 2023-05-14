@@ -2987,6 +2987,9 @@
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\string_range_mutable.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

@@ -70,16 +70,20 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 #elif defined(WINDOWS)
 
 
-   wstring wstrModuleFolder(e_get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFolder;
 
 
-   wstring wstrModuleFilePath(e_get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFilePath;
 
 
    HMODULE hmodule = ::GetModuleHandleA("acme.dll");
 
-   if(hmodule == nullptr)
+   if (hmodule == nullptr)
+   {
+
       hmodule = ::GetModuleHandleA("spalib.dll");
+
+   }
 
    if(hmodule == nullptr)
    {
@@ -95,7 +99,11 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
             nullptr,
             &pwstr);
 
-         wcscpy(wstrModuleFilePath, pwstr);
+         auto p = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+
+         wcscpy(p, pwstr);
+
+         wstrModuleFilePath.release_string_buffer();
 
       }
       catch (...)
@@ -121,9 +129,11 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
       //   wstrModuleFilePath[wcslen(wstrModuleFilePath) - 1] = '\0';
 
       //}
-      wcscat(wstrModuleFilePath, L"\\ca2\\");
+
+      wstrModuleFilePath += L"\\ca2\\";
 
 #ifdef X86
+
       wstrModuleFilePath += L"/stage/x86/";
 
 #else
@@ -131,16 +141,16 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
 #endif
 
-      wcscpy(wstrModuleFolder, wstrModuleFilePath);
-
-      wstrModuleFilePath.release_string_buffer();
+      wstrModuleFolder = wstrModuleFilePath;
 
       return string(wstrModuleFolder);
 
 
    }
 
-   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
+   auto p = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+
+   if (!GetModuleFileNameW(hmodule, p, MAX_PATH * 8))
    {
 
       return "";
@@ -151,7 +161,9 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
 
    LPWSTR pszModuleFileName;
 
-   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+   auto pFolder = wstrModuleFolder.get_string_buffer(MAX_PATH * 8);
+
+   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
    {
 
       return "";
@@ -275,19 +287,22 @@ found:
    if (hmodule == nullptr)
    {
 
-      wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
-
+      wstrModuleFilePath = _wgetenv(L"PROGRAMFILES(X86)");
 
       if (wstrModuleFilePath.is_empty())
       {
 
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
+         auto p = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+
+         SHGetSpecialFolderPathW(nullptr, p, CSIDL_PROGRAM_FILES, false);
+
+         wstrModuleFilePath.release_string_buffer();
 
       }
 
       wstrModuleFilePath.trim_right(L"\\/");
 
-      wcscat(wstrModuleFilePath, L"\\ca2\\");
+      wstrModuleFilePath += L"\\ca2\\";
 
 #ifdef X86
 
@@ -298,13 +313,15 @@ found:
 
 #endif
 
-      wcscpy(wstrModuleFolder, wstrModuleFilePath);
+      wstrModuleFolder = wstrModuleFilePath;
 
       return string(wstrModuleFolder);
 
    }
 
-   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
+   auto pModuleFilePath = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+
+   if (!GetModuleFileNameW(hmodule, pModuleFilePath, MAX_PATH * 8))
    {
 
       return "";
@@ -313,7 +330,9 @@ found:
 
    LPWSTR pszModuleFileName;
 
-   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+   auto pFolder = wstrModuleFolder.get_string_buffer(MAX_PATH *8);
+
+   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
    {
 
       return "";

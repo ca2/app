@@ -317,6 +317,13 @@ namespace folder_zip
       if (pathFile.has_char())
       {
 
+         if (pathFile.contains("-256.png"))
+         {
+
+            ::output_debug_string("-256.png");
+
+         }
+
          if (!locate_file(pathFile))
          {
 
@@ -326,7 +333,16 @@ namespace folder_zip
 
       }
 
-      auto pfile = __new(::folder_zip::file);
+      return this->get_file();
+
+   }
+
+
+
+   ::file_pointer folder::get_file()
+   {
+
+      auto pfile = __create_new < ::folder_zip::file >();
 
       pfile->m_pfolder = this;
 
@@ -365,6 +381,15 @@ namespace folder_zip
 
    }
 
+
+   void didnt_locate_file(const char * pszFile)
+   {
+
+      ::output_debug_string("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+
+      ::fflush(stdout);
+
+   }
 
    class ::time folder::get_modification_time() const
    {
@@ -489,6 +514,8 @@ namespace folder_zip
 
          if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
          {
+
+            didnt_locate_file(strFile);
 
             return false;
 

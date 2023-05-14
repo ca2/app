@@ -1728,13 +1728,6 @@ public:
    ///========================================================
    void escape_skip_to_first_character_in(const char * chset, i32 escape);
 
-   const_iterator skip_to_first_character_in(const ::scoped_string & scopedstringCharacters)
-   {
-
-      return this->m_begin = this->find_first_character_in(scopedstringCharacters);
-
-   }
-
         
    ///========================================================
    /// Name   : _tcsenistr

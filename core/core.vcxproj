@@ -661,8 +661,11 @@
     <ClCompile Include="filesystem\filemanager\operation_thread.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\path_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_button_impact.cpp" />
+    <ClInclude Include="filesystem\filemanager\save_as_button_impact.h" />
+    <ClCompile Include="filesystem\filemanager\save_as_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
-    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\save_as_edit_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\impact_base.cpp" />
@@ -797,6 +800,7 @@
     <ClInclude Include="filesystem\filehandler\_binary_stream.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_impact.h" />
     <ClInclude Include="filesystem\filemanager\_impl.h" />
     <ClInclude Include="filesystem\filemanager\_tree.h" />
     <ClInclude Include="filesystem\userfs\_binary_stream.h" />
@@ -920,7 +924,7 @@
     <ClInclude Include="filesystem\filemanager\operation_impact.h" />
     <ClInclude Include="filesystem\filemanager\path_impact.h" />
     <ClInclude Include="filesystem\filemanager\thumbnail.h" />
-    <ClInclude Include="filesystem\filemanager\save_as_name_impact.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_edit_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />
     <ClInclude Include="filesystem\filemanager\tree.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />

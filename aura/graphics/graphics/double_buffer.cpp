@@ -67,50 +67,60 @@ namespace graphics
 
       auto sizeWindow = window_size();
 
-      auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
-
-      auto sizeReserved = ::size_i32(1920, 1080);
-
-      if (sizeWindow.cx > sizeImage.cx)
+      if (!m_bDibIsHostingBuffer)
       {
 
-         sizeImage.cx = sizeWindow.cx;
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
 
-      }
+         auto sizeReserved = ::size_i32(1920, 1080);
 
-      if (sizeWindow.cy > sizeImage.cy)
-      {
+         if (sizeWindow.cx > sizeImage.cx)
+         {
 
-         sizeImage.cy = sizeWindow.cy;
+            sizeImage.cx = sizeWindow.cx;
 
-      }
+         }
 
-      if (sizeReserved.cx > sizeImage.cx)
-      {
+         if (sizeWindow.cy > sizeImage.cy)
+         {
 
-         sizeImage.cx = sizeReserved.cx;
+            sizeImage.cy = sizeWindow.cy;
 
-      }
+         }
 
-      if (sizeReserved.cy > sizeImage.cy)
-      {
+         if (sizeReserved.cx > sizeImage.cx)
+         {
 
-         sizeImage.cy = sizeReserved.cy;
+            sizeImage.cx = sizeReserved.cx;
 
-      }
+         }
 
-      pimage->create(sizeImage);
+         if (sizeReserved.cy > sizeImage.cy)
+         {
 
-      if (pimage.nok())
-      {
+            sizeImage.cy = sizeReserved.cy;
 
-         return nullptr;
+         }
+
+         pimage->create(sizeImage);
+
+         if (pimage.nok())
+         {
+
+            return nullptr;
+
+         }
 
       }
 
       auto pgraphics = pimage->g();
 
-      pgraphics->resize(sizeWindow);
+      if (!m_bDibIsHostingBuffer)
+      {
+
+         pgraphics->resize(sizeWindow);
+
+      }
 
       return pgraphics;
 

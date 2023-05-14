@@ -132,7 +132,7 @@ namespace user
       //virtual void NotifyFloatingWindows(u32 dwFlags);
 
       virtual string get_window_default_matter() override;
-      virtual ::user::interaction::enum_type get_window_type() override;
+      //virtual ::user::interaction::enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;

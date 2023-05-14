@@ -11,7 +11,6 @@ namespace user
    class tab_callback;
 
 
-
    class CLASS_DECL_BASE tab :
       virtual public ::user::interaction,
       virtual public place_holder_container
@@ -38,10 +37,6 @@ namespace user
       };
 
 
-
-
-
-
       class CLASS_DECL_BASE erase_tab_exception
       {
       public:
@@ -56,22 +51,25 @@ namespace user
       };
 
 
-      enum_state                       m_estate;
-      ::pointer<tab_data>             m_pdata;
-      ::pointer<::draw2d::graphics_extension>    m_pdcextension;
-      bool                             m_bDisableSavingRestorableTabs;
-      bool                             m_bShowTabs;
-      bool                             m_bNoTabs;
-      ::item_pointer                   m_pitemClick;
-      ::write_text::font_pointer           m_pfontTab;
-      //::pointer<::create>             m_pcreate;
-      ::count                          m_iRestoredTabCount;
-      bool                             m_bDrawTabAtBackground;
-      ::tristate                     m_bitLastShowTabs;
-      enum_display                        m_edisplayParentFrameAutoHide;
-      int                              m_iTabSize;
-      bool                             m_bCreatedTabs;
-      bool                             m_bAutoCreateTabsOnCreate;
+      enum_state                                   m_estate;
+      ::pointer<tab_data>                          m_pdata;
+      ::pointer<::draw2d::graphics_extension>      m_pdcextension;
+      bool                                         m_bDisableSavingRestorableTabs;
+      bool                                         m_bEffectiveVisibleTabs;
+      bool                                         m_bTabVisibilityChanging;
+      bool                                         m_bVisibleTabs;
+      bool                                         m_bOverrideVisibleTabs;
+      bool                                         m_bForceNoTabs;
+      bool                                         m_bHideTabsOnFullScreenOrTransparentFrame;
+      class ::time                                 m_timeLastTabVisibilityChange;
+      ::item_pointer                               m_pitemClick;
+      ::write_text::font_pointer                   m_pfontTab;
+      ::count                                      m_iRestoredTabCount;
+      bool                                         m_bDrawTabAtBackground;
+      ::tristate                                   m_bitLastShowTabs;
+      int                                          m_iTabSize;
+      bool                                         m_bCreatedTabs;
+      bool                                         m_bAutoCreateTabsOnCreate;
 
 
       tab();
@@ -99,7 +97,6 @@ namespace user
 
 
       inline tab_data * get_data() { return m_pdata; }
-
 
       virtual void on_change_cur_sel();
 
@@ -260,8 +257,11 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
 
-      virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
+      virtual bool is_top_level_full_screen_or_transparent();
 
+      virtual bool full_screen_or_transparent_frame_tab_visibility();
+
+      virtual void calculate_tab_visibility();
 
 
    };

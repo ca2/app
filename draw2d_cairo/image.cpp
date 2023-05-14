@@ -1792,10 +1792,10 @@ namespace draw2d_cairo
 //   }
 
 
-   bool image::on_host_read_pixels(const ::pixmap * ppixmap)
+   bool image::on_host_read_pixels(::pixmap * ppixmap) const
    {
 
-    return false;
+      return false;
 
    }
 

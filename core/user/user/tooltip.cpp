@@ -194,10 +194,10 @@ namespace user
    }
 
 
-   ::user::interaction::enum_type tooltip::get_window_type()
+   ::user::enum_window_type tooltip::get_window_type()
    {
 
-      return type_frame;
+      return e_window_type_frame;
 
    }
 

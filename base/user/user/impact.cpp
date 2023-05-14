@@ -674,6 +674,15 @@ namespace user
    }
 
 
+   enum_window_type impact::get_window_type()
+   {
+
+      return e_window_type_impact;
+
+   }
+
+
+
    void impact::OnUpdateSplitCmd(::message::command* pCmdUI)
    {
       __UNREFERENCED_PARAMETER(pCmdUI);
@@ -998,12 +1007,6 @@ namespace user
 
       return 1;
 
-   }
-
-
-   ::user::interaction::enum_type impact::get_window_type()
-   {
-      return type_impact;
    }
 
 

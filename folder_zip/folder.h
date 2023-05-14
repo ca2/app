@@ -48,7 +48,9 @@ namespace folder_zip
 
       class ::time get_modification_time() const;
 
-      ::file_pointer get_file(const ::file::path & pathFile = nullptr) override;
+      ::file_pointer get_file(const ::file::path & pathFile) override;
+
+      ::file_pointer get_file() override;
 
       void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
 

@@ -590,9 +590,11 @@ namespace filemanager
       case MessageMainPostCreateImageListItemRedraw:
       {
 
-         pusermessage->userinteraction()->set_need_redraw();
+         auto puserinteraction = ::user::message_user_interaction(pusermessage);
+            
+         puserinteraction->set_need_redraw();
 
-         pusermessage->userinteraction()->KillTimer(123);
+         puserinteraction->KillTimer(123);
 
          /*
          ::rectangle_i32 rectangle;

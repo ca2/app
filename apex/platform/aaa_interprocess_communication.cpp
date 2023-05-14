@@ -690,7 +690,7 @@ repeat:
          if (a.get_size() >= 2)
          {
 
-            stra2.add_unique_ci(a[0]);
+            stra2.case_insensitive_add_unique(a[0]);
 
             string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
 
@@ -783,7 +783,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
          if (a.get_size() >= 2)
          {
 
-            stra2.add_unique_ci(a[0]);
+            stra2.case_insensitive_add_unique(a[0]);
 
             string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
 
@@ -823,7 +823,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    forallref(m_straModule)
    {
 
-      straUnique.add_unique_ci(item);
+      straUnique.case_insensitive_add_unique(item);
 
    }
 
@@ -846,7 +846,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    }
 
 
-   m_straModule.add_unique_ci(strItem);
+   m_straModule.case_insensitive_add_unique(strItem);
 
    strModuleList = m_straModule.implode("\n");
 

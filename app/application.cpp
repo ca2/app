@@ -58,7 +58,8 @@ namespace app_app
    {
 
       //return acmesystem()->implementation_name("draw2d", "opengl");
-      return acmesystem()->implementation_name("draw2d", "gdiplus");
+      //return acmesystem()->implementation_name("draw2d", "gdiplus");
+      return ::aura::application::draw2d_get_default_implementation_name();
 
    }
 

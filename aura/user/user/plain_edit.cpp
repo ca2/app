@@ -1164,15 +1164,26 @@ namespace user
 
 
       }
-      else if (ptimer->m_uEvent >= 100
-         && ptimer->m_uEvent <= 200)
+      else if (ptimer->m_etimer == e_timer_caret_flashing)
       {
+
+         //INFORMATION("_001OnTimer e_timer_caret_flashing");
+
          if (has_keyboard_focus())
          {
 
-            _001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
+            //INFORMATION("Keyboard Focus");
+
+            _001OnKeyboardFocusTimer(ptimer->m_etimer);
 
          }
+         else
+         {
+
+            //INFORMATION("No keyboard Focus");
+
+         }
+
       }
       else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
       {
@@ -6978,18 +6989,47 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyboardFocusTimer(u64 iTimer)
+   void plain_edit::_001OnKeyboardFocusTimer(::enum_timer etimer)
    {
-      if (iTimer == 0)
+
+      if (etimer == e_timer_caret_flashing)
       {
 
          if (has_keyboard_focus() && is_window_visible())// && m_timeLastDraw.elapsed() > m_timeCaretPeriod / 8)
          {
 
-            if (is_different(m_bLastCaret, is_caret_on()))
+            auto bCaretOn = is_caret_on();
+
+//            if (bCaretOn)
+//            {
+//
+//               INFORMATION("CARET ON!!!!");
+//
+//            }
+//            else
+//            {
+//
+//               INFORMATION("CARET OFF!!!!");
+//
+//            }
+
+            if (is_different(m_bLastCaret, bCaretOn))
             {
 
-               m_bLastCaret = is_caret_on();
+               m_bLastCaret = bCaretOn;
+
+//               if (bCaretOn)
+//               {
+//
+//                  INFORMATION("CARET ON!!!!");
+//
+//               }
+//               else
+//               {
+//
+//                  INFORMATION("CARET OFF!!!!");
+//
+//               }
 
                set_need_redraw();
 
@@ -6999,14 +7039,8 @@ namespace user
 
          }
 
-         //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
-         //{
-         // auto m_timeFocusStart = ::time::now();
-         //   m_bCaretOn = !m_bCaretOn;
-         //   //set_need_redraw();
-         //   set_need_redraw();
-         //}
       }
+
    }
 
 
@@ -7806,32 +7840,18 @@ namespace user
    void plain_edit::on_set_keyboard_focus()
    {
 
+      INFORMATION("plain_edit::on_set_keyboard_focus");
+
       m_ewindowflag |= e_window_flag_focus;
 
-      SetTimer(100, 50_ms, nullptr);
+      SetTimer(e_timer_caret_flashing, 50_ms, nullptr);
+
+      on_reset_focus_start_tick();
 
       if (!m_bCaretVisible)
       {
 
          m_bCaretVisible = true;
-
-         //#ifdef WINDOWS_DESKTOP
-         //
-         //         HWND hwnd = get_handle();
-         //
-         //         ::CreateCaret(hwnd, 0, 1, (int) m_dLineHeight);
-         //
-         //         ::point_i32 pointCaret = layout().design().origin();
-         //
-         //         client_to_screen(pointCaret);
-         //
-         //         ::screen_to_client(hwnd, pointCaret);
-         //
-         //         ::SetCaretPos(pointCaret.x, pointCaret.y);
-         //
-         //         ::ShowCaret(hwnd);
-         //
-         //#endif
 
       }
 
@@ -7866,23 +7886,15 @@ namespace user
 
       }
 
-
    }
 
 
    void plain_edit::on_kill_keyboard_focus()
    {
 
-      //      auto puserinteractionHost = get_host_window();
-      //      if (puserinteractionHost)
-      //      {
-      //
-      //
-      //         puserinteractionHost->edit_on_kill_focus(this);
-      //
-      //      }
+      INFORMATION("plain_edit::on_kill_keyboard_focus");
 
-      KillTimer(100);
+      KillTimer(e_timer_caret_flashing);
 
       if (m_bCaretVisible)
       {
@@ -7896,8 +7908,6 @@ namespace user
 #endif
 
       }
-
-      //DestroyImeWindow();
 
       m_ewindowflag -= e_window_flag_focus;
 

@@ -74,7 +74,6 @@ namespace user
 
 
 
-
 //CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
 //CLASS_DECL_ACME::winrt::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
 //CLASS_DECL_ACME bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);

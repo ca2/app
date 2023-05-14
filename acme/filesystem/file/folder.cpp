@@ -76,6 +76,16 @@ bool folder::locate(const ::function < bool(const char*) >& function)
 }
 
 
+::file_pointer folder::get_file()
+{
+
+   throw ::interface_only();
+
+   return nullptr;
+
+}
+
+
 ::file_pointer folder::get_file(const ::file::path & pathFile)
 {
 

@@ -11,6 +11,17 @@ namespace user
 {
 
 
+   enum enum_window_type
+   {
+
+      e_window_type_window,
+      e_window_type_frame,
+      e_window_type_impact
+
+   };
+
+
+
    enum enum_next
    {
 
@@ -55,15 +66,6 @@ namespace user
          GeneralEventPosCreate3,
          GeneralEventPosCreate4,
          GeneralEventPosCreate5
-
-      };
-
-      enum enum_type
-      {
-
-         type_window,
-         type_frame,
-         type_impact
 
       };
 
@@ -488,7 +490,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
+      //virtual bool call_message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = nullptr, lresult * presult = nullptr);
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -529,7 +531,7 @@ namespace user
       virtual string get_window_default_matter();
       virtual string get_window_icon_matter();
       virtual u32 get_window_default_style();
-      virtual enum_type get_window_type();
+      virtual enum_window_type get_window_type();
 
 
       virtual void add_child_handler(const ::signal_handler& signalhandler, const ::atom & idChild, bool bPriority = false);
@@ -598,10 +600,40 @@ namespace user
       virtual void clear_bitmap_source();
 
 
-      virtual void _001OnExitIconic();
-      virtual void _001OnExitNormal();
-      virtual void _001OnExitZoomed();
-      virtual void _001OnExitFullScreen();
+      virtual bool _001OnBeforeEnterIconic();
+      virtual bool _001OnBeforeEnterNormal();
+      virtual bool _001OnBeforeEnterZoomed();
+      virtual bool _001OnBeforeEnterFullScreen();
+
+
+      virtual bool _001OnBeforeEnterAppearance();
+
+
+      virtual void _001OnAfterEnterIconic();
+      virtual void _001OnAfterEnterNormal();
+      virtual void _001OnAfterEnterZoomed();
+      virtual void _001OnAfterEnterFullScreen();
+
+
+      virtual void _001OnAfterEnterAppearance();
+
+
+      virtual bool _001OnBeforeExitIconic();
+      virtual bool _001OnBeforeExitNormal();
+      virtual bool _001OnBeforeExitZoomed();
+      virtual bool _001OnBeforeExitFullScreen();
+
+
+      virtual bool _001OnBeforeExitAppearance();
+
+
+      virtual void _001OnAfterExitIconic();
+      virtual void _001OnAfterExitNormal();
+      virtual void _001OnAfterExitZoomed();
+      virtual void _001OnAfterExitFullScreen();
+
+
+      virtual void _001OnAfterExitAppearance();
 
 
       //virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);

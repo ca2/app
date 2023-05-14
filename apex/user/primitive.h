@@ -417,7 +417,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
+      //bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -458,7 +458,7 @@ namespace user
       string get_window_default_matter() override;
       string get_window_icon_matter() override;
       u32 get_window_default_style() override;
-      virtual enum_type get_window_type() override;
+      //virtual enum_type get_window_type() override;
 
 
       virtual void add_child_handler(const ::signal_handler & signalhandler, const ::atom & idChild, bool bPriority = false) override;
@@ -550,9 +550,9 @@ namespace user
       virtual void WfiOnClose();
       virtual void WfiOnNotifyIcon();
 
-      void _001OnExitIconic() override;
-      void _001OnExitFullScreen() override;
-      void _001OnExitZoomed() override;
+      //bool _001OnBeforeExitIconic() override;
+      //bool _001OnBeforeExitFullScreen() override;
+      //bool _001OnBeforeExitZoomed() override;
 
       //virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
       //virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);

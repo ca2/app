@@ -846,7 +846,7 @@
     <ClInclude Include="user\user\impact_host.h" />
     <ClInclude Include="user\user\impact_system.h" />
     <ClInclude Include="user\user\impact_update_hint.h" />
-    <ClInclude Include="user\user\main_frame.h" />
+    <ClInclude Include="user\user\aaa_main_frame.h" />
     <ClInclude Include="user\user\margin.h" />
     <ClInclude Include="user\user\multiple_document_template.h" />
     <ClInclude Include="user\user\network_configuration.h" />

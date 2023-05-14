@@ -43,12 +43,6 @@ namespace user
    button::~button()
    {
 
-      ::acme::del(m_pbitmap);
-
-      ::acme::del(m_plist);
-
-      set_button_style(e_style_none);
-
    }
 
 
@@ -1193,13 +1187,13 @@ namespace user
       if(estyle == e_style_image|| estyle == e_style_image_and_text)
       {
 
-         ::acme::del(m_pbitmap);
+         m_pbitmap.release();
 
       }
       else if(estyle == e_style_list)
       {
 
-         ::acme::del(m_plist);
+         m_plist.release();
 
       }
       else if(estyle == e_style_push || estyle == e_style_push_group)
@@ -1268,10 +1262,6 @@ namespace user
       return m_pbitmap->m_pimage->is_set() && m_pbitmap->m_pimage->area() > 0;
 
    }
-
-
-
-
 
 
    void button::pre_translate_message(::message::message * pmessage)

@@ -4,7 +4,10 @@
 #include "_c.h"
 
 
-#include <Tlhelp32.h>
+#include "acme/_operating_system.h"
+
+
+//#include <Tlhelp32.h>
 
 
 inline HWND __hwnd(oswindow oswindow)
@@ -32,114 +35,17 @@ CLASS_DECL_ACME bool process_modules(string_array & stra, u32 processID);
 CLASS_DECL_ACME bool load_modules_diff(string_array & straOld, string_array & straNew, const ::scoped_string & scopedstrExceptDir);
 
 
-namespace windows
-{
-
-   template < typename PRED >
-   bool predicate_process_module(::process_identifier processidentifier, PRED pred)
-   {
-
-      HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
-
-      MODULEENTRY32 me32;
-
-      bool bStopped = false;
-
-      DWORD dwProcess = (DWORD)processidentifier;
-
-      hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, dwProcess);
-
-      if (hModuleSnap == INVALID_HANDLE_VALUE)
-      {
-
-         return false;
-
-      }
-
-      me32.dwSize = sizeof(MODULEENTRY32);
-
-      if (!Module32First(hModuleSnap, &me32))
-      {
-
-         ::CloseHandle(hModuleSnap);
-
-         return false;
-
-      }
-
-      do
-      {
-
-         if (!pred(me32))
-         {
-
-            bStopped = true;
-
-            break;
-
-         }
-
-      } while (Module32Next(hModuleSnap, &me32));
-
-      ::CloseHandle(hModuleSnap);
-
-      return bStopped;
-
-   }
-
-
-   template < typename PRED >
-   bool predicate_process(PRED pred)
-   {
-
-      HANDLE hProcessSnap;
-
-      PROCESSENTRY32 pe32;
-
-      hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-
-      if (hProcessSnap == INVALID_HANDLE_VALUE)
-      {
-
-         return false;
-
-      }
-
-      pe32.dwSize = sizeof(PROCESSENTRY32);
-
-      if (!Process32First(hProcessSnap, &pe32))
-      {
-
-         ::CloseHandle(hProcessSnap);
-
-         return false;
-
-      }
-
-      bool bStopped = false;
-
-      do
-      {
-
-         if (!pred(pe32.th32ProcessID))
-         {
-
-            bStopped = true;
-
-            break;
-
-         }
-
-      } while (Process32Next(hProcessSnap, &pe32));
-
-      ::CloseHandle(hProcessSnap);
-
-      return bStopped;
-
-   }
-
-
-} // namespace windows
+//namespace windows
+//{
+//
+//
+//   CLASS_DECL_ACME bool for_each_process_module(DWORD dwProcess, ::function < bool(const MODULEENTRY32 & moduleentry32) > & function);
+//
+//
+//   CLASS_DECL_ACME bool for_each_process_identifier(::function < bool(::process_identifier processidentifier) > & function);
+//
+//
+//} // namespace windows
 
 
 #include "acme/operating_system/message.h"

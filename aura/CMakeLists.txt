@@ -400,8 +400,8 @@ list(APPEND library_source
         user/user/layout_state.h
         user/user/main_window.cpp
         user/user/main_window.h
-        user/user/message.cpp
-        user/user/message.h
+        #user/user/message.cpp
+        #user/user/message.h
         user/user/message_box.cpp
         user/user/message_box.h
         #user/user/message_window.cpp

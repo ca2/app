@@ -697,7 +697,9 @@
    void os_context::set_dark_mode(bool bDarkMode)
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+      acmenode()->set_dark_mode(bDarkMode);
 
    }
 

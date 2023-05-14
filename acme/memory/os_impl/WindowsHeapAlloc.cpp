@@ -5,8 +5,8 @@
 
 
 #pragma warning(disable : 4074)
-#pragma init_seg(".CRT$XCA1")
-//#pragma init_seg(compiler)
+//#pragma init_seg(".CRT$XCA1")
+#pragma init_seg(compiler)
 
 
 class WindowsHeapAlloc
@@ -24,6 +24,7 @@ public:
       m_handle = ::HeapCreate(0, 0, 0);
 
    }
+
 
 } g_windowsheapalloc;
 

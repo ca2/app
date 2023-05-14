@@ -55,7 +55,7 @@ enum enum_timer : ::iptr
    e_timer_reload,
    e_timer_hover_select,
 
-
+   e_timer_caret_flashing,
 
 };
 

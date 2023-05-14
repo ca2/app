@@ -27,7 +27,8 @@ public:
    unicode_iterator & operator ++();
    unicode_iterator operator ++(int);
 
-   unicode_iterator operator +(int i) const
+   template < primitive_integral INTEGRAL >
+   unicode_iterator operator +(INTEGRAL i) const
    {
 
       auto iterator = *this;

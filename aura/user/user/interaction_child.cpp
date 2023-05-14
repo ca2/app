@@ -112,7 +112,7 @@ namespace user
             INFORMATION("");
             INFORMATION("");
 
-            m_puserinteraction->WindowDataLoadWindowRect();
+            m_puserinteraction->WindowDataLoadWindowRectangle();
 
          }
 

@@ -144,40 +144,42 @@ inline constexpr bool __le(const FLOATING1 & a, const FLOATING2 & b) { return a 
 namespace comparison
 {
 
-   template < typename T1, typename T2 >
+//   template < typename T1, typename T2 >
+//
+//constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2)
+//{
+//
+//   return t1 <=> t2;
+//
+//}
 
-constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2)
-{
-   
-   return t1 <=> t2;
-
-}
    template < typename T1, typename T2 >
    class comparison2
    {
    public:
 
 
-      constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2) const 
+      constexpr ::std::strong_ordering order(const T1 & t1, const T2 & t2) const
       {
-         
+
          return t1 <=> t2;
-      
+
       }
 
 
    };
 
-template < primitive_signed S1, primitive_signed S2 >
 
-constexpr ::std::strong_ordering order(S1 s1, S2 s2)
-{
+   template < primitive_signed S1, primitive_signed S2 >
+   constexpr ::std::strong_ordering order(S1 s1, S2 s2)
+   {
 
-   return s1 <=> s2;
+      return s1 <=> s2;
 
-}
+   }
 
-template < primitive_signed S1, primitive_signed S2 >
+
+   template < primitive_signed S1, primitive_signed S2 >
    class comparison2 < S1, S2 >
    {
    public:

@@ -145,7 +145,7 @@ namespace acme
 
 #if defined(UNIVERSAL_WINDOWS)
 
-      idaPid.add(scopedstrAppId);
+      idaPid.add(-1);
 
 #else
 
@@ -199,7 +199,7 @@ namespace acme
 
                int iProcessId = ansi_to_i32(strProcessId);
 
-               stra2.add_unique_ci(strProcessName);
+               stra2.case_insensitive_add_unique(strProcessName);
 
                string strPath = pnode->process_identifier_module_path(iProcessId);
 
@@ -982,14 +982,23 @@ namespace acme
 
       m_dLuminance = m_colorBackground.get_luminance();
 
-      m_bDarkMode = m_dLuminance < 0.5;
+      set_dark_mode(m_dLuminance < 0.5);
 
-      if(m_bDarkMode)
+   }
+
+
+   void node::set_dark_mode(bool bDark)
+   {
+
+      m_bDarkMode = bDark;
+
+      if (m_bDarkMode)
       {
 
          ::output_debug_string("background_color :: Dark\n");
 
-      } else
+      }
+      else
       {
 
          ::output_debug_string("background_color :: Lite\n");
@@ -1001,21 +1010,21 @@ namespace acme
    }
 
 
+//   int node::get_simple_ui_darkness()
+//   {
+//
+//      return m_iWeatherDarkness;
+//
+//   }
+//
+//
+//   void node::set_simple_ui_darkness(int iWeatherDarkness)
+//   {
+//
+//      m_iWeatherDarkness = iWeatherDarkness;
+//
+//   }
 
-   int node::get_simple_ui_darkness()
-   {
-
-      return m_iWeatherDarkness;
-
-   }
-
-
-   void node::set_simple_ui_darkness(int iWeatherDarkness)
-   {
-
-      m_iWeatherDarkness = iWeatherDarkness;
-
-   }
 
    void node::fetch_user_color()
    {
@@ -1084,6 +1093,12 @@ namespace acme
 
 
    void node::os_process_user_theme(string strTheme)
+   {
+
+   }
+
+
+   void node::os_process_user_icon_theme(string strTheme)
    {
 
    }
@@ -1626,12 +1641,33 @@ namespace acme
    }
 
 
-   bool node::process_modules(string_array& stra, ::process_identifier processidentifier)
+   ::file::path_array node::process_identifier_modules_paths(::process_identifier processidentifier)
    {
 
       throw ::interface_only();
 
-      //return false;
+      return {};
+
+   }
+
+
+   ::file::path_array node::modules_paths()
+   {
+
+      auto processidentifiera = processes_identifiers();
+
+      ::file::path_array patha;
+
+      for (auto processidentifier : processidentifiera)
+      {
+
+         auto pathaProcessModules = process_identifier_modules_paths(processidentifier);
+
+         patha.case_insensitive_append_unique(pathaProcessModules);
+
+      }
+
+      return ::transfer(patha);
 
    }
 
@@ -1710,24 +1746,49 @@ namespace acme
    }
 
 
-   bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array& stra)
-   {
+   //bool is_shared_library_busy(::process_identifier processidentifier, const string_array & stra) override;
 
-      throw ::interface_only();
+        //bool is_shared_library_busy(const string_array & stra) override;
+   
+   
+   //bool node::is_shared_library_busy(::process_identifier processidentifier, const string_array & stra)
+   //{
 
-      return false;
+   //   auto straModulesPaths = process_identifier_modules_paths(processidentifier);
 
-   }
+   //   for (auto & strModulePath : straModulesPaths)
+   //   {
+
+   //      ::file::path path = strModulePath;
+
+   //      if(stra.path.name() )
+
+   //   }
 
 
-   bool node::is_shared_library_busy(const string_array& stra)
-   {
+   //      straSuffix.surround("\\");
 
-      throw ::interface_only();
+   //   return ::windows::for_each_process_module(processidentifier, [&](auto & moduleentry32)
+   //      {
 
-      return false;
+   //      return !straSuffix.case_insensitive_suffixes(string(moduleentry32.szModule)) && !stra.case_insensitive_contains(string(moduleentry32.szModule));
 
-   }
+   //      });
+
+   //}
+
+
+   //bool node::is_shared_library_busy(const string_array & stra)
+   //{
+
+   //   return ::acme_windows::predicate_process([&](auto pid)
+   //      {
+
+   //      return !is_shared_library_busy(pid, stra);
+
+   //      });
+
+   //}
 
 
    bool node::process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary)

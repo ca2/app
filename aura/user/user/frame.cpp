@@ -8,8 +8,9 @@
 #include "acme/parallelization/pool.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/icon.h"
-#include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
 #include "aura/windowing/windowing.h"
 
 
@@ -51,6 +52,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
+      acmesystem()->add_signal_handler({ e_use, this }, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -513,6 +515,15 @@ namespace user
 
 
 
+   enum_window_type frame::get_window_type()
+   {
+
+      return e_window_type_frame;
+
+   }
+
+
+
    void frame::handle(::topic * ptopic, ::context * pcontext)
    {
 
@@ -574,7 +585,7 @@ namespace user
 
 #else
 
-      WindowDataLoadWindowRect();
+      WindowDataLoadWindowRectangle();
 
 #endif
 

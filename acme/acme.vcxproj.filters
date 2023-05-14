@@ -2989,6 +2989,8 @@
     </ClInclude>
     <ClInclude Include="primitive\string\string_range_mutable.h">
       <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4116,6 +4118,9 @@
     </ClCompile>
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <Filter>Source Files\memory\osdjfh</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

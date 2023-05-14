@@ -201,14 +201,16 @@ public:
    payload(const ::pointer < T > & p)
    {
       m_etype = e_type_new;
-      operator = (p.m_p);
+      //operator = (p.m_p);
+      _set_element((T*) p.m_p);
    }
 
    template < class T >
    payload(const ptr < T > & p)
    {
       m_etype = e_type_new;
-      operator = (p.m_p);
+      //operator = (p.m_p);
+      _set_element((T*) p.m_p);
    }
 
    //template < class T >

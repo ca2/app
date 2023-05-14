@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "desktop_file.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/system.h"
@@ -254,6 +255,18 @@ namespace freedesktop
    }
 
 
+   void file_not_ok()
+   {
+
+      ::output_debug_string("matter icon nok");
+
+      ::fflush(stdout);
+
+   }
+
+
+
+
    void desktop_file::create()
    {
 
@@ -319,7 +332,7 @@ namespace freedesktop
          if(bNok)
          {
 
-            ::output_debug_string("matter icon nok");
+            file_not_ok();
 
          }
 

@@ -9441,6 +9441,7 @@ return m_pmemory;
 case e_type_path:
 return m_ppath;
 default:
+   return nullptr;
 break;
 }
 

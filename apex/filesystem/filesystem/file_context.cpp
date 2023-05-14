@@ -1458,6 +1458,24 @@ void file_context::calculate_main_resource_memory()
 
    pfileOutput->set_ok_flag();
 
+   if(strPath.contains("256"))
+   {
+
+      output_debug_string("contains 256");
+
+      fflush(stdout);
+
+      if(pfileOutput.nok())
+      {
+
+         output_debug_string("output file nok");
+
+         fflush(stdout);
+
+      }
+
+   }
+
    return pfileOutput;
 
 }
@@ -1588,23 +1606,28 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       return;
    }
 
-   auto pwriter = varTarget.cast < ::file::file >();
-
-   if (varTarget.as_file_path().is_empty() || pwriter.nok())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
    auto preader = varSource.cast < ::file::file >();
 
-   if(varSource.as_file_path().is_empty() || preader.nok())
+   bool bSourceEmpty = varSource.as_file_path().is_empty();
+
+   if(bSourceEmpty && preader.nok())
    {
 
       throw ::exception(error_bad_argument);
 
    }
+
+   auto pwriter = varTarget.cast < ::file::file >();
+
+   bool bTargetEmpty = varTarget.as_file_path().is_empty();
+
+   if (bTargetEmpty && pwriter.nok())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
 
    if(pwriter.nok())
    {
@@ -1676,27 +1699,6 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    }
 
-   if(pwriter.nok())
-   {
-
-      pwriter = get_file(varNew,
-                             ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create |
-                             ::file::e_open_defer_create_directory |
-                             ::file::e_open_share_deny_write);
-
-      if (pwriter.nok())
-      {
-
-         string strError;
-
-         strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
-                         varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
-
-         throw ::exception(::error_io, strError);
-
-      }
-
-   }
 
    bool bGeneralFailure = false;
 
@@ -1718,6 +1720,28 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
 
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
+                            varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
+
+            throw ::exception(::error_io, strError);
+
+         }
+
+      }
+
+      if(pwriter.nok())
+      {
+
+         pwriter = get_file(varNew,
+                            ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create |
+                            ::file::e_open_defer_create_directory |
+                            ::file::e_open_share_deny_write);
+
+         if (pwriter.nok())
+         {
+
+            string strError;
+
+            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                             varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
 
             throw ::exception(::error_io, strError);

@@ -895,7 +895,6 @@
     <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
     <ClInclude Include="operating_system\main_window.h" />
-    <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\library.cpp" />
@@ -908,7 +907,6 @@
     <ClCompile Include="operating_system\windows\nano\window.cpp" />
     <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
-    <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />

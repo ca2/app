@@ -95,7 +95,7 @@ public:
 
    const_string_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 
-   explicit const_string_range(const ::atom& atom);
+   //explicit const_string_range(const ::atom& atom);
 
    explicit const_string_range(const ::block& block);
 
@@ -1441,7 +1441,7 @@ public:
       return *this;
    }
 
-   const_string_range& operator=(const atom& atom);
+   //const_string_range& operator=(const atom& atom);
 
    const_string_range& operator=(const block& block);
 

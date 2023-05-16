@@ -13,6 +13,7 @@ namespace graphics
    {
 
       m_iCurrentBuffer = 0;
+      m_bSingleBufferMode = true;
 
    }
 
@@ -130,6 +131,13 @@ namespace graphics
    ::image_pointer & double_buffer::get_buffer_image()
    {
 
+      if (m_bSingleBufferMode)
+      {
+
+         return m_imageaBuffer[0];
+
+      }
+
       return m_imageaBuffer[get_buffer_index()];
 
    }
@@ -137,6 +145,13 @@ namespace graphics
 
    ::particle * double_buffer::get_buffer_sync()
    {
+
+      if (m_bSingleBufferMode)
+      {
+
+         return m_mutexa[0];
+
+      }
 
       return m_mutexa[get_buffer_index()];
 
@@ -146,6 +161,13 @@ namespace graphics
    ::image_pointer & double_buffer::get_screen_image()
    {
 
+      if (m_bSingleBufferMode)
+      {
+
+         return m_imageaBuffer[0];
+
+      }
+
       return m_imageaBuffer[get_screen_index()];
 
    }
@@ -153,6 +175,13 @@ namespace graphics
 
    ::particle * double_buffer::get_screen_sync()
    {
+
+      if (m_bSingleBufferMode)
+      {
+
+         return m_mutexa[0];
+
+      }
 
       return m_mutexa[get_screen_index()];
 
@@ -162,7 +191,13 @@ namespace graphics
    ::index double_buffer::get_buffer_index() const
    {
 
-      if (m_iCurrentBuffer == 0)
+      if (m_bSingleBufferMode)
+      {
+
+         return 0;
+
+      }
+      else if (m_iCurrentBuffer == 0)
       {
 
          return 0;
@@ -181,7 +216,13 @@ namespace graphics
    ::index double_buffer::get_screen_index() const
    {
 
-      if (m_iCurrentBuffer == 0)
+      if (m_bSingleBufferMode)
+      {
+
+         return 0;
+
+      }
+      else if (m_iCurrentBuffer == 0)
       {
 
          return 1;

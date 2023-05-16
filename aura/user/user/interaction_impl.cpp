@@ -59,7 +59,7 @@ point_i32 g_pointLastBottomRight;
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #endif
 
-CLASS_DECL_ACME void monitor_pointer(void * p);
+CLASS_DECL_ACME void monitor_pointer(void* p);
 
 #define REDRAW_HINTING
 //CLASS_DECL_AURA bool task_set_name(const ::string &psz);
@@ -172,7 +172,7 @@ namespace user
    }
 
 
-   ::user::interaction_impl * interaction_impl::get_user_interaction_impl()
+   ::user::interaction_impl* interaction_impl::get_user_interaction_impl()
    {
 
       return this;
@@ -279,7 +279,7 @@ namespace user
    }
 
 
-   void interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   void interaction_impl::create_message_queue(::user::interaction* pinteraction, const ::string& lpszName)
    {
 
       if (_is_window())
@@ -341,7 +341,7 @@ namespace user
 #if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
 
 
-   ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
+   ::user::interaction_impl* interaction_impl::GetAncestor(::u32 gaFlags) const
    {
 
       __UNREFERENCED_PARAMETER(gaFlags);
@@ -434,7 +434,7 @@ namespace user
    }
 
 
-   ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
+   ::user::interaction_impl* interaction_impl::from_os_data(void* pdata)
    {
 
       __UNREFERENCED_PARAMETER(pdata);
@@ -446,7 +446,7 @@ namespace user
    }
 
 
-   void * interaction_impl::get_os_data() const
+   void* interaction_impl::get_os_data() const
    {
 
       throw ::interface_only();
@@ -488,7 +488,7 @@ namespace user
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::system * pusersystem)
+   bool interaction_impl::pre_create_window(::user::system* pusersystem)
    {
 
       __UNREFERENCED_PARAMETER(pusersystem);
@@ -758,26 +758,26 @@ namespace user
 
          auto pwindowing = windowing();
          pwindowing->windowing_send([&]()
-                                    {
+            {
 
-                                       auto pwindowing = windowing();
+               auto pwindowing = windowing();
 
-                                       pwindowing->new_window(this);
+               pwindowing->new_window(this);
 
-                                       if (m_pwindow)
-                                       {
+               if (m_pwindow)
+               {
 
-                                          output_debug_string("window created");
+                  output_debug_string("window created");
 
-                                       }
-                                       else
-                                       {
+               }
+               else
+               {
 
-                                          output_debug_string("window not created");
+                  output_debug_string("window not created");
 
-                                       }
+               }
 
-                                    });
+            });
 
       }
 
@@ -800,7 +800,7 @@ namespace user
    }
 
 
-   void interaction_impl::create_host(::user::interaction * puserinteraction)
+   void interaction_impl::create_host(::user::interaction* puserinteraction)
    {
 
       m_puserinteraction = puserinteraction;
@@ -1139,7 +1139,7 @@ namespace user
 //   }
 
 
-   void interaction_impl::prio_install_message_routing(::channel * pchannel)
+   void interaction_impl::prio_install_message_routing(::channel* pchannel)
    {
 
       ::user::primitive_impl::prio_install_message_routing(pchannel);
@@ -1150,7 +1150,7 @@ namespace user
    }
 
 
-   void interaction_impl::last_install_message_routing(::channel * pchannel)
+   void interaction_impl::last_install_message_routing(::channel* pchannel)
    {
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &interaction_impl::on_message_create);
@@ -1182,7 +1182,7 @@ namespace user
    }
 
 
-   void interaction_impl::_000OnMouseLeave(::message::message * pmessage)
+   void interaction_impl::_000OnMouseLeave(::message::message* pmessage)
    {
 
       if (m_bDestroyImplOnly)
@@ -1422,7 +1422,7 @@ namespace user
    //}
 
 
-   void interaction_impl::add_prodevian(::matter * pmatter)
+   void interaction_impl::add_prodevian(::matter* pmatter)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1443,7 +1443,7 @@ namespace user
    }
 
 
-   void interaction_impl::erase_prodevian(::matter * pmatter)
+   void interaction_impl::erase_prodevian(::matter* pmatter)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1464,7 +1464,7 @@ namespace user
    }
 
 
-   bool interaction_impl::is_prodevian(const ::matter * pmatter) const
+   bool interaction_impl::is_prodevian(const ::matter* pmatter) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1473,7 +1473,7 @@ namespace user
 
    }
 
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction* pinterface)
    {
 
       if (pinterface == nullptr)
@@ -1523,7 +1523,7 @@ namespace user
    }
 
 
-   void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave)
+   void interaction_impl::_on_mouse_move_step(const ::point_i32& pointCursor, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1630,7 +1630,7 @@ namespace user
    //   }
 
 
-   bool interaction_impl::mouse_hover_erase(::user::interaction * pinterface)
+   bool interaction_impl::mouse_hover_erase(::user::interaction* pinterface)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1648,7 +1648,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnCaptureChanged(::message::message * pmessage)
+   void interaction_impl::_001OnCaptureChanged(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -1658,7 +1658,7 @@ namespace user
    }
 
 
-   bool interaction_impl::__windows_message_bypass(::windowing::window * pwindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult)
+   bool interaction_impl::__windows_message_bypass(::windowing::window* pwindow, ::u32 message, wparam wparam, lparam lparam, lresult& lresult)
    {
 
       return false;
@@ -1666,7 +1666,7 @@ namespace user
    }
 
 
-   void interaction_impl::install_message_routing(::channel * pchannel)
+   void interaction_impl::install_message_routing(::channel* pchannel)
    {
 
       last_install_message_routing(pchannel);
@@ -1693,7 +1693,7 @@ namespace user
    }
 
 
-   void interaction_impl::default_message_handler(::message::message * pmessage)
+   void interaction_impl::default_message_handler(::message::message* pmessage)
    {
 
       m_pwindow->default_message_handler(pmessage);
@@ -1701,7 +1701,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_message_destroy(::message::message * pmessage)
+   void interaction_impl::on_message_destroy(::message::message* pmessage)
    {
 
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
@@ -1928,7 +1928,7 @@ namespace user
    //}
 
 
-   void interaction_impl::pre_translate_message(::message::message * pmessage)
+   void interaction_impl::pre_translate_message(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -2002,7 +2002,7 @@ namespace user
    //}
 
 
-   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   void interaction_impl::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
       __UNREFERENCED_PARAMETER(pcommand);
@@ -2012,7 +2012,7 @@ namespace user
    }
 
 
-   void interaction_impl::_002OnDraw(::message::message * pmessage)
+   void interaction_impl::_002OnDraw(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -2022,12 +2022,12 @@ namespace user
    }
 
 
-   void interaction_impl::message_handler(::message::message * pmessage)
+   void interaction_impl::message_handler(::message::message* pmessage)
    {
 
       bool bKeyMessage = false;
 
-      ::message::key * pkey = nullptr;
+      ::message::key* pkey = nullptr;
 
       if (m_puserinteraction->pre_message_handler(pkey, bKeyMessage, pmessage))
       {
@@ -2343,7 +2343,7 @@ namespace user
 
          //_008OnMouse(pmouse);
 
-         ::user::interaction * puserinteractionMouse = nullptr;
+         ::user::interaction* puserinteractionMouse = nullptr;
 
          if (m_puserinteractionMouseCapture)
          {
@@ -2522,7 +2522,7 @@ namespace user
          if (m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->handle((::topic *)pmessage->m_lparam.m_lparam, nullptr);
+            m_puserinteraction->handle((::topic*)pmessage->m_lparam.m_lparam, nullptr);
 
          }
          //         else
@@ -2561,7 +2561,7 @@ namespace user
    }
 
 
-   void interaction_impl::_message_handler(::message::message * pmessage)
+   void interaction_impl::_message_handler(::message::message* pmessage)
    {
 
       if (m_puserinteraction)
@@ -2574,13 +2574,13 @@ namespace user
    }
 
 
-   void interaction_impl::default_window_procedure(::message::message * pmessage)
+   void interaction_impl::default_window_procedure(::message::message* pmessage)
    {
 
    }
 
 
-   bool interaction_impl::on_mouse_message(::message::mouse * pmouse)
+   bool interaction_impl::on_mouse_message(::message::mouse* pmouse)
    {
 
       if (pmouse->m_atom == e_message_left_button_down)
@@ -2955,7 +2955,7 @@ namespace user
    }
 
 
-   bool interaction_impl::OnChildNotify(::message::message * pmessage)
+   bool interaction_impl::OnChildNotify(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -2967,7 +2967,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ReflectChildNotify(::message::message * pmessage)
+   bool interaction_impl::ReflectChildNotify(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -3055,25 +3055,25 @@ namespace user
       }
       */
 
-   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image * pimage)
+   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image* pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image * pimage)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image* pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void interaction_impl::_001OnPaint(::message::message * pmessage)
+   void interaction_impl::_001OnPaint(::message::message* pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       throw ::interface_only();
    }
 
-   void interaction_impl::_001OnPrint(::message::message * pmessage)
+   void interaction_impl::_001OnPrint(::message::message* pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       throw ::interface_only();
@@ -3108,7 +3108,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child interaction_impl)
 
-   void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction* pAlternateOwner)
    {
 
       __UNREFERENCED_PARAMETER(pAlternateOwner);
@@ -3151,7 +3151,7 @@ namespace user
 //
 //   }
 
-   void interaction_impl::UpdateDialogControls(channel * pTarget, bool bDisableIfNoHndler)
+   void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
       __UNREFERENCED_PARAMETER(pTarget);
       __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -3471,7 +3471,7 @@ namespace user
    //}
 
 
-   ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
+   ::user::primitive* interaction_impl::set_owner(::user::primitive* pprimitiveOwner)
    {
 
       __UNREFERENCED_PARAMETER(pprimitiveOwner);
@@ -3483,7 +3483,7 @@ namespace user
    }
 
 
-   lresult interaction_impl::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
+   lresult interaction_impl::send_message(const ::atom& atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       auto pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
@@ -3539,7 +3539,7 @@ namespace user
    //#endif
 
 
-   void interaction_impl::post_message(const ::atom & atom, wparam wParam, lparam lParam)
+   void interaction_impl::post_message(const ::atom& atom, wparam wParam, lparam lParam)
    {
 
       if (!m_puserinteraction)
@@ -3646,7 +3646,7 @@ namespace user
    //}
 
 
-   void interaction_impl::set_window_text(const ::string & pszString)
+   void interaction_impl::set_window_text(const ::string& pszString)
 
    {
 
@@ -3728,7 +3728,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, POINT_I32* pPoint, ::u32 nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -3740,7 +3740,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * prectangle)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl* puserinteractionTo, RECTANGLE_I32* prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -3790,7 +3790,7 @@ namespace user
    }
 
 
-   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
+   void interaction_impl::InvalidateRect(const ::rectangle_i32& rectangle, bool bErase)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -3801,7 +3801,7 @@ namespace user
    }
 
 
-   void interaction_impl::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
+   void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
       __UNREFERENCED_PARAMETER(pRgn);
       __UNREFERENCED_PARAMETER(bErase);
@@ -3809,7 +3809,7 @@ namespace user
    }
 
 
-   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
+   void interaction_impl::ValidateRect(const ::rectangle_i32& rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -3819,7 +3819,7 @@ namespace user
    }
 
 
-   void interaction_impl::ValidateRgn(::draw2d::region * pRgn)
+   void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    {
 
       __UNREFERENCED_PARAMETER(pRgn);
@@ -3874,10 +3874,60 @@ namespace user
    }
 
 
-   //void interaction_impl::set_need_redraw(bool bAscendants)
-   //{
+   void interaction_impl::set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw, bool bAscendants)
+   {
 
-   //}
+      synchronous_lock synchronouslock(m_puserinteraction->synchronization());
+
+      if (rectangleHostNeedRedraw.is_empty())
+      {
+
+         return;
+
+      }
+
+      for (auto& rectangle : m_rectangleaNeedRedraw)
+      {
+
+         if (rectangle.contains(rectangleHostNeedRedraw))
+         {
+
+            return;
+
+         }
+
+      }
+
+      m_rectangleaNeedRedraw.add(rectangleHostNeedRedraw);
+
+   }
+
+
+   bool interaction_impl::needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw)
+   {
+
+      if (m_rectangleaNeedRedraw.is_empty())
+      {
+
+         return true;
+
+      }
+
+      for (auto& rectangle : m_rectangleaNeedRedraw)
+      {
+
+         if (rectangle.intersects(rectangleHostNeedsToDraw))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
 
 
    void interaction_impl::post_redraw(bool bAscendants)
@@ -3895,7 +3945,7 @@ namespace user
    }
 
 
-   void interaction_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   void interaction_impl::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -3936,7 +3986,7 @@ namespace user
    //}
 
 
-   void interaction_impl::set_mouse_cursor(::windowing::cursor * pcursor)
+   void interaction_impl::set_mouse_cursor(::windowing::cursor* pcursor)
    {
 
       if (::is_null(m_pwindow))
@@ -4240,7 +4290,7 @@ namespace user
    //}
 
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
+   ::user::interaction* interaction_impl::ChildWindowFromPoint(const ::point_i32& point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -4252,7 +4302,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
+   ::user::interaction* interaction_impl::ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -4278,7 +4328,7 @@ namespace user
    //   }
 
 
-   ::user::interaction * interaction_impl::GetTopWindow()
+   ::user::interaction* interaction_impl::GetTopWindow()
    {
 
       throw ::interface_only();
@@ -4288,7 +4338,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::GetLastActivePopup()
+   ::user::interaction* interaction_impl::GetLastActivePopup()
    {
 
       throw ::interface_only();
@@ -4359,7 +4409,7 @@ namespace user
 
       }
 
-      for (auto & pinteraction : userinteractiona)
+      for (auto& pinteraction : userinteractiona)
       {
 
          pinteraction->post_message(e_message_mouse_leave);
@@ -4409,7 +4459,7 @@ namespace user
    //}
 
 
-   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const
+   void interaction_impl::Print(::draw2d::graphics_pointer& pgraphics, u32 dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -4420,7 +4470,7 @@ namespace user
    }
 
 
-   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const
+   void interaction_impl::PrintClient(::draw2d::graphics_pointer& pgraphics, u32 dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -4453,7 +4503,7 @@ namespace user
    //}
 
 
-   void interaction_impl::on_message_create(::message::message * pmessage)
+   void interaction_impl::on_message_create(::message::message* pmessage)
    {
 
       string strType = __type_name(m_puserinteraction);
@@ -4513,7 +4563,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
+   void interaction_impl::_001OnPrioCreate(::message::message* pmessage)
    {
 
       // // https://stackoverflow.com/questions/23367775/pragma-packshow-with-gcc - Morten Jensen
@@ -4633,7 +4683,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_message_show_window(::message::message * pmessage)
+   void interaction_impl::on_message_show_window(::message::message* pmessage)
    {
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
@@ -4682,7 +4732,7 @@ namespace user
 
             }
 
-            for (auto & pinteraction : userinteractiona)
+            for (auto& pinteraction : userinteractiona)
             {
 
                try
@@ -4722,7 +4772,7 @@ namespace user
 
                //}
 
-               for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+               for (auto& pinteraction : puserinteractionpointeraChild->interactiona())
                {
 
                   try
@@ -4766,7 +4816,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
 
-   void interaction_impl::_001OnWindowPosChanged(::message::message * pmessage)
+   void interaction_impl::_001OnWindowPosChanged(::message::message* pmessage)
    {
 
       throw ::interface_only();
@@ -4845,10 +4895,10 @@ namespace user
    //}
 
 
-   interaction_impl * interaction_impl::get_impl() const
+   interaction_impl* interaction_impl::get_impl() const
    {
 
-      return (::user::interaction_impl *)this;
+      return (::user::interaction_impl*)this;
 
    }
 
@@ -5043,6 +5093,60 @@ namespace user
 
          }
 
+         if (pgraphics)
+         {
+
+            for (::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
+            {
+
+               bool bErasedAny = false;
+
+               for (::index j = 0; j < m_rectangleaNeedRedraw.size();)
+               {
+
+                  if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
+                  {
+
+                     m_rectangleaNeedRedraw.erase_at(j);
+
+                     bErasedAny = true;
+
+                  }
+                  else
+                  {
+
+                     j++;
+
+                  }
+
+               }
+
+               if (bErasedAny)
+               {
+
+                  pgraphics->m_rectangleaNeedRedraw.erase_at(i);
+
+               }
+               else
+               {
+
+                  i++;
+
+               }
+
+            }
+
+            if (m_rectangleaNeedRedraw.has_element())
+            {
+
+               auto iRemaining = m_rectangleaNeedRedraw.size();
+
+               INFORMATION("There are still " << iRemaining << " rectangular areas left be drawn.");
+
+            }
+
+         }
+
       }
 
 #if TIME_REPORTING
@@ -5219,13 +5323,13 @@ namespace user
 
             auto puserinteraction = m_puserinteraction.m_p;
 
-            int * pi = (int *)puserinteraction;
+            int* pi = (int*)puserinteraction;
 
-            auto & i = *pi;
+            auto& i = *pi;
 
             //monitor_pointer(puserinteraction);
 
-            auto & iStateCount = m_puserinteraction->layout().m_iStateCount;
+            auto& iStateCount = m_puserinteraction->layout().m_iStateCount;
 
             monitor_pointer(&iStateCount);
 
@@ -5270,7 +5374,7 @@ namespace user
    }
 
 
-   void interaction_impl::queue_message_handler(::message::message * pmessage)
+   void interaction_impl::queue_message_handler(::message::message* pmessage)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -5289,7 +5393,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_bitmap_source(const string & strBitmapSource)
+   void interaction_impl::set_bitmap_source(const string& strBitmapSource)
    {
 
       m_strBitmapSource = strBitmapSource;
@@ -5356,7 +5460,7 @@ namespace user
    }
 
 
-   void interaction_impl::interaction_post(const ::procedure & procedure)
+   void interaction_impl::interaction_post(const ::procedure& procedure)
    {
 
       auto puserinteraction = m_puserinteraction;
@@ -5384,7 +5488,7 @@ namespace user
    }
 
 
-   guie_message_wnd::guie_message_wnd(::property_object * pparticle)
+   guie_message_wnd::guie_message_wnd(::property_object* pparticle)
    {
 
       m_puiForward = nullptr;
@@ -5392,7 +5496,7 @@ namespace user
    }
 
 
-   void guie_message_wnd::message_handler(::message::message * pmessage)
+   void guie_message_wnd::message_handler(::message::message* pmessage)
    {
 
       if (m_puiForward != nullptr)
@@ -5455,7 +5559,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_finish(::particle * pparticleContextFinish)
+   void interaction_impl::set_finish(::particle* pparticleContextFinish)
    {
 
       if (!has_destroying_flag())
@@ -5633,7 +5737,7 @@ namespace user
    }
 
 
-   ::graphics::graphics * interaction_impl::get_window_graphics()
+   ::graphics::graphics* interaction_impl::get_window_graphics()
    {
 
       return m_pgraphics;
@@ -5641,7 +5745,7 @@ namespace user
    }
 
 
-   ::user::element * interaction_impl::get_keyboard_focus()
+   ::user::element* interaction_impl::get_keyboard_focus()
    {
 
       return m_puserinteractionKeyboardFocus;
@@ -5649,7 +5753,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_prio_message_set_focus(::message::message * pmessage)
+   void interaction_impl::on_prio_message_set_focus(::message::message* pmessage)
    {
 
       ::pointer<::message::set_keyboard_focus>psetkeyboardfocus(pmessage);
@@ -5668,7 +5772,7 @@ namespace user
    }
 
 
-   bool interaction_impl::on_keyboard_focus(::user::primitive * pfocus)
+   bool interaction_impl::on_keyboard_focus(::user::primitive* pfocus)
    {
 
       auto pwindowing = windowing();
@@ -5808,7 +5912,7 @@ namespace user
 
 
 
-   void interaction_impl::on_message_kill_focus(::message::message * pmessage)
+   void interaction_impl::on_message_kill_focus(::message::message* pmessage)
    {
 
       ::pointer<::message::kill_keyboard_focus>pkillkeyboardfocus(pmessage);
@@ -6088,7 +6192,7 @@ namespace user
    //}
 
 
-   void interaction_impl::clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny)
+   void interaction_impl::clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny)
    {
 
       auto puserinteraction = m_puserinteraction;
@@ -6118,7 +6222,7 @@ namespace user
 
       }
 
-      ::windowing::window * pwindowGainingFocusIfAny = nullptr;
+      ::windowing::window* pwindowGainingFocusIfAny = nullptr;
 
       if (pprimitiveimplGainingFocusIfAny)
       {
@@ -6167,7 +6271,7 @@ namespace user
    }
 
 
-   void interaction_impl::post(::message::message * pmessage)
+   void interaction_impl::post(::message::message* pmessage)
    {
 
       //if (m_puserthread)
@@ -6201,7 +6305,7 @@ namespace user
 
 
 
-   void interaction_impl::redraw_add(::particle * pparticle)
+   void interaction_impl::redraw_add(::particle* pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
@@ -6211,7 +6315,7 @@ namespace user
    }
 
 
-   void interaction_impl::redraw_erase(::particle * pparticle)
+   void interaction_impl::redraw_erase(::particle* pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
@@ -6231,7 +6335,7 @@ namespace user
    }
 
 
-   ::particle * interaction_impl::mutex_redraw()
+   ::particle* interaction_impl::mutex_redraw()
    {
 
       if (m_pmutexRedraw == nullptr)
@@ -6294,10 +6398,10 @@ namespace user
       }
 
       // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = m_puserinteraction->const_layout().design();
+      auto& stateOutput = m_puserinteraction->const_layout().design();
 
       // Current/Previous Window State
-      auto & stateWindow = m_puserinteraction->const_layout().window();
+      auto& stateWindow = m_puserinteraction->const_layout().window();
 
       if (stateOutput == stateWindow)
       {
@@ -6563,20 +6667,20 @@ namespace user
       bool bHasSetWindowPosition = false;
 
       if (shouldGetVisible
-//#ifdef WINDOWS_DESKTOP
-  //    && !bLayered
-//#endif
-&& (
-   //#ifdef WINDOWS_DESKTOP
-   //               !bLayered
-   //#else
-                  //(uFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
-   //#endif
-   bMove
-   || bSize
-   || bVisibilityChange
-   || bZ
-   )
+         //#ifdef WINDOWS_DESKTOP
+           //    && !bLayered
+         //#endif
+         && (
+            //#ifdef WINDOWS_DESKTOP
+            //               !bLayered
+            //#else
+                           //(uFlags & (SWP_NOMOVE | SWP_NOSIZE)) != (SWP_NOMOVE | SWP_NOSIZE)
+            //#endif
+            bMove
+            || bSize
+            || bVisibilityChange
+            || bZ
+            )
          )
       {
 
@@ -6724,11 +6828,11 @@ namespace user
 
       m_puserinteraction->set_display(edisplayOutput, e_layout_design);
 
-      ::windowing::window * pwindowFocus = nullptr;
+      ::windowing::window* pwindowFocus = nullptr;
 
-      ::windowing::window * pwindowImpl = nullptr;
+      ::windowing::window* pwindowImpl = nullptr;
 
-      ::user::interaction_impl * pimplFocus = nullptr;
+      ::user::interaction_impl* pimplFocus = nullptr;
 
       if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
       {
@@ -6771,7 +6875,7 @@ namespace user
    }
 
 
-   void interaction_impl::ShowWindow(const ::e_display & edisplay)
+   void interaction_impl::ShowWindow(const ::e_display& edisplay)
    {
 
       //return false;
@@ -6780,7 +6884,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
 
@@ -6795,12 +6899,12 @@ namespace user
    }
 
 
-   void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
+   void interaction_impl::on_configuration_change(::user::primitive* pprimitiveSource)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
+      for (auto& puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
       {
 
          if (puserinteraction->is_window_screen_visible())
@@ -6823,24 +6927,32 @@ namespace user
    {
 
       m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
-      {
-
-         if (!m_puserinteraction)
          {
 
-            return;
-
-         }
-
-         __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-         if (edisplay == e_display_iconic)
-         {
-
-            if (eactivation == e_activation_no_activate)
+            if (!m_puserinteraction)
             {
 
-               m_pwindow->show_window(edisplay, eactivation);
+               return;
+
+            }
+
+            __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
+
+            if (edisplay == e_display_iconic)
+            {
+
+               if (eactivation == e_activation_no_activate)
+               {
+
+                  m_pwindow->show_window(edisplay, eactivation);
+
+               }
+               else
+               {
+
+                  m_pwindow->show_window(edisplay, eactivation);
+
+               }
 
             }
             else
@@ -6850,27 +6962,19 @@ namespace user
 
             }
 
-         }
-         else
-         {
+            if (m_puserinteraction)
+            {
 
-            m_pwindow->show_window(edisplay, eactivation);
+               m_puserinteraction->set_activation(e_activation_default, e_layout_design);
 
-         }
+            }
 
-         if (m_puserinteraction)
-         {
-
-            m_puserinteraction->set_activation(e_activation_default, e_layout_design);
-
-         }
-
-      });
+         });
 
    }
 
 
-   void interaction_impl::_001OnRedraw(::message::message * pmessage)
+   void interaction_impl::_001OnRedraw(::message::message* pmessage)
    {
 
       m_puserinteraction->prodevian_redraw(pmessage->m_wparam & 1);
@@ -6878,7 +6982,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDoShowWindow(::message::message * pmessage)
+   void interaction_impl::_001OnDoShowWindow(::message::message* pmessage)
    {
 
       m_puserinteraction->window_show_change_visibility();
@@ -6886,7 +6990,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnApplyVisual(::message::message * pmessage)
+   void interaction_impl::_001OnApplyVisual(::message::message* pmessage)
    {
 
       if (!m_puserinteraction)
@@ -6922,7 +7026,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_message_move(::message::message * pmessage)
+   void interaction_impl::on_message_move(::message::message* pmessage)
    {
 
       m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);
@@ -6978,7 +7082,7 @@ namespace user
 
                //m_pwindow->m_point = pmove->m_point;
 
-      auto & layout = m_puserinteraction->const_layout();
+      auto& layout = m_puserinteraction->const_layout();
 
       auto sketch_origin = layout.sketch().origin();
 
@@ -7026,7 +7130,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_message_size(::message::message * pmessage)
+   void interaction_impl::on_message_size(::message::message* pmessage)
    {
 
       if (m_bEatSizeEvent)
@@ -7143,7 +7247,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDestroyWindow(::message::message * pmessage)
+   void interaction_impl::_001OnDestroyWindow(::message::message* pmessage)
    {
 
       if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
@@ -7171,7 +7275,7 @@ namespace user
    }
 
 
-   void interaction_impl::show_software_keyboard(::user::element * pelement)
+   void interaction_impl::show_software_keyboard(::user::element* pelement)
    {
 
       throw ::interface_only();
@@ -7179,7 +7283,7 @@ namespace user
    }
 
 
-   void interaction_impl::hide_software_keyboard(::user::element * pelement)
+   void interaction_impl::hide_software_keyboard(::user::element* pelement)
    {
 
       throw ::interface_only();
@@ -7187,7 +7291,7 @@ namespace user
    }
 
 
-   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
+   void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
    {
 
       m_pwindow->non_top_most_upper_window_rects(recta);
@@ -7208,7 +7312,7 @@ namespace user
 
       ::rectangle_i32 rTest;
 
-      for (auto & rHigher : recta)
+      for (auto& rHigher : recta)
       {
 
          if (rTest.intersect(rHigher, rectangle))
@@ -7225,7 +7329,7 @@ namespace user
    }
 
 
-   void interaction_impl::approximate_occlusion_rects(rectangle_i32_array & raTest)
+   void interaction_impl::approximate_occlusion_rects(rectangle_i32_array& raTest)
    {
 
       raTest.erase_all();
@@ -7245,7 +7349,7 @@ namespace user
 
       m_puserinteraction->window_rectangle(rectangle);
 
-      for (auto & rHigher : ra)
+      for (auto& rHigher : ra)
       {
 
          ::rectangle_i32 rTest;
@@ -7355,7 +7459,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::opaque_area(const ::rectangle_i32 & rect)
+   i64 interaction_impl::opaque_area(const ::rectangle_i32& rect)
    {
 
       _synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
@@ -7371,7 +7475,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const ::rectangle_i32 & rect)
+   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const ::rectangle_i32& rect)
    {
 
       ::rectangle_i32 rectangle(rect);
@@ -7436,7 +7540,7 @@ namespace user
 
       ::i64 cApproxOpaqueArea = 0;
 
-      for (auto & r : ra)
+      for (auto& r : ra)
       {
 
          cApproxOpaqueArea += opaque_area(r);
@@ -7465,7 +7569,7 @@ namespace user
 
       ::i64 cApproxOpaqueArea = 0;
 
-      for (auto & r : ra)
+      for (auto& r : ra)
       {
 
          cApproxOpaqueArea += _001GetRectTopLeftWeightedArea(r);
@@ -7546,7 +7650,7 @@ namespace user
    }
 
 
-   strsize interaction_impl::get_window_text(char * sz, strsize s)
+   strsize interaction_impl::get_window_text(char* sz, strsize s)
    {
 
       if (!m_pwindow)
@@ -7564,7 +7668,7 @@ namespace user
 
 
 
-   void interaction_impl::get_window_text(string & str)
+   void interaction_impl::get_window_text(string& str)
    {
 
       if (!m_pwindow)
@@ -7587,7 +7691,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_icon(::windowing::icon *)
+   void interaction_impl::set_icon(::windowing::icon*)
    {
 
       //return ::success;
@@ -7611,7 +7715,7 @@ namespace user
    }
 
 
-   void interaction_impl::android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms)
+   void interaction_impl::android_fill_plasma(const void* pixels, int width, int height, int stride, ::i64 time_ms)
    {
 
       synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
@@ -7630,11 +7734,11 @@ namespace user
 
 #ifdef __i386__
 
-      ::copy_colorref_swap_red_blue((color32_t *)pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+      ::copy_colorref_swap_red_blue((color32_t*)pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #else
 
-      ::copy_colorref((color32_t *)pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+      ::copy_colorref((color32_t*)pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #endif
 
@@ -7649,7 +7753,7 @@ namespace user
    }
 
 
-   ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage)
+   ::user::interaction_impl* message_interaction_impl(::user::message* pusermessage)
    {
 
       auto pwindow = pusermessage->window();
@@ -7662,7 +7766,7 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_AURA::user::interaction * __interaction(::windowing::window * pwindow)
+CLASS_DECL_AURA::user::interaction* __interaction(::windowing::window* pwindow)
 {
 
    if (::is_null(pwindow)) return nullptr;
@@ -7676,7 +7780,7 @@ CLASS_DECL_AURA::user::interaction * __interaction(::windowing::window * pwindow
 }
 
 
-CLASS_DECL_AURA::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
+CLASS_DECL_AURA::user::interaction_impl* __interaction_impl(::windowing::window* pwindow)
 {
 
    if (::is_null(pwindow)) return nullptr;

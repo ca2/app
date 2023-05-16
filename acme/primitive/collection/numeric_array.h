@@ -219,6 +219,14 @@ public:
 
    void sort(bool bAsc = true);
 
+   bool is_any_set() const
+   {
+
+      return this->predicate_contains([](auto number) {return number != (TYPE)0; });
+
+   }
+
+
 };
 
 

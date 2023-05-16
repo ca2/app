@@ -59,7 +59,8 @@ namespace nanoui
    /// Handle mouse enter/leave events
    virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
    /// Handle window drag events
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+   //virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
    /// Handle mouse events recursively and bring the current window to the top
    virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
    /// Accept scroll events and propagate them to the widget under the mouse cursor

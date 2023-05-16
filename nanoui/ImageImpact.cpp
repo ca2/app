@@ -101,23 +101,8 @@ Vector2f ImageImpact::pixel_to_pos(const Vector2f & p) const {
    return pos;
 }
 
-bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) {
-   if (!m_enabled || !m_pimage)
-      return false;
 
-   if (action == ::e_message_key_down)
-   {
-      if (ekey == ::user::e_key_r) 
-      {
-         reset();
-         return true;
-      }
-   }
-   return false;
-}
-
-
-bool ImageImpact::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel, const ::user::e_key & /* modifiers */) 
+bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) 
 {
 
    if (!m_enabled || !m_pimage)
@@ -127,7 +112,37 @@ bool ImageImpact::mouse_drag_event(const Vector2i & /* p */, const Vector2i & re
 
    }
 
+   if (action == ::e_message_key_down)
+   {
+      
+      if (ekey == ::user::e_key_r) 
+      {
+         
+         reset();
+
+         return true;
+
+      }
+
+   }
+   
+   return false;
+
+}
+
+
+bool ImageImpact::mouse_motion_event(const Vector2i & /* p */, const Vector2i & rel, bool bDown, const ::user::e_key & /* modifiers */) 
+{
+
+   if (!m_enabled || !m_pimage || !bDown)
+   {
+
+      return false;
+
+   }
+
    m_offset.x() += (float)rel.x() * screen()->pixel_ratio();
+
    m_offset.y() += (float)rel.y() * screen()->pixel_ratio();
 
    return true;

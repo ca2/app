@@ -100,7 +100,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_mouse_move(const ::point_i32 & point, bool bDown, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -108,12 +108,12 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
-   {
+   //bool appearance::on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool appearance::on_scroll_event(const ::point_i32 & point, double x, double y)

@@ -17,6 +17,7 @@ namespace graphics
       int                           m_iGoodStride;
       ::image_pointer               m_imageaBuffer[2];
       ::pointer_array < ::mutex >   m_mutexa;
+      bool                          m_bSingleBufferMode;
 
 
       bool                          m_bDibIsHostingBuffer;

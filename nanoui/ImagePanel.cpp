@@ -61,12 +61,12 @@ int ImagePanel::index_for_position(const Vector2i & p) const {
 }
 
 
-bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, const ::user::e_key & /* modifiers */) 
+bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, bool bDown, const ::user::e_key & /* modifiers */) 
 {
 
    m_mouse_index = index_for_position(p);
 
-   return true;
+   return false;
 
 }
 

@@ -4486,9 +4486,10 @@ namespace user
 
 
 
-   void element::set_need_redraw(bool bAscendants)
+   void element::set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw, bool bAscendants)
    {
 
+      __UNREFERENCED_PARAMETER(rectangleNeedRedraw);
       __UNREFERENCED_PARAMETER(bAscendants);
 
    }

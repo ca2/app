@@ -578,7 +578,7 @@ namespace user
 
 
 
-      void set_need_redraw(bool bAscendants = true) override;
+      //void set_need_redraw(bool bAscendants = true) override;
       void set_need_load_form_data() override;
       void set_need_save_form_data() override;
       void post_redraw(bool bAscendants = true) override;

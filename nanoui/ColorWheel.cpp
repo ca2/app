@@ -162,8 +162,15 @@ bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, b
 }
 
 
-bool ColorWheel::mouse_drag_event(const Vector2i & p, const Vector2i &, const ::user::e_key &) 
+bool ColorWheel::mouse_motion_event(const Vector2i & p, const Vector2i & shift, bool bDown, const ::user::e_key &) 
 {
+
+   if (bDown)
+   {
+
+      return false;
+
+   }
 
    return adjust_position(p, m_drag_region) != None;
 

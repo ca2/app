@@ -109,7 +109,7 @@ namespace nanoui
      void draw(::nano2d::context * pcontext) override;
      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
      bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-     bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
 
    protected:
       std::pair<int, bool> tab_at_position(const Vector2i & p,

@@ -43,10 +43,10 @@ namespace nanoui
       ::function<void(int)> callback() const { return m_callback; }
       void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
 
-      virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-      virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      virtual void draw(::nano2d::context * pcontext) override;
+      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      void draw(::nano2d::context * pcontext) override;
 
       void _defer_load_image_directory(::nano2d::context * pcontext);
 

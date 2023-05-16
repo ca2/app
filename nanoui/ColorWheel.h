@@ -63,8 +63,9 @@ namespace nanoui
       /// Handles mouse button click events for the ColorWheel.
       bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
+      bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       /// Handles mouse drag events for the ColorWheel.
-      bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
    private:
       // Used to describe where the mouse is interacting
       enum Region {

@@ -160,9 +160,9 @@ namespace draw2d
 
       set_text_rendering_hint(::write_text::e_rendering_system_default);
 
-      ::color::color color(0, 0, 0, 0);
+      //::color::color color(0, 0, 0, 0);
 
-      fill_rectangle(get_size(), color);
+      //fill_rectangle(get_size(), color);
 
       //return true;
 
@@ -3167,6 +3167,13 @@ namespace draw2d
       }
 
       //return ::success;
+
+   }
+
+
+   void graphics::set_clipping(::draw2d::region* pregion)
+   {
+
 
    }
 

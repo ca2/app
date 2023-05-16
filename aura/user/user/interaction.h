@@ -346,7 +346,6 @@ namespace user
 
 
 
-
       //interaction_draw2d *                         m_pinteractiondraw2d;
 
       /// The menu_item this user_interaction (window)
@@ -769,7 +768,8 @@ namespace user
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout(bool bAscendants = true);
       //void set_need_layout() { m_bNeedLayout = true; }
-      virtual void set_need_redraw(bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true) override;
+      virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
       //virtual bool commit_sketch();
@@ -1345,7 +1345,8 @@ namespace user
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
 

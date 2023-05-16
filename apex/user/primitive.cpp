@@ -4515,12 +4515,12 @@ namespace user
    }
 
 
-   void primitive::set_need_redraw(bool bAscendants)
-   {
+   //void primitive::set_need_redraw(bool bAscendants)
+   //{
 
-      __UNREFERENCED_PARAMETER(bAscendants);
+   //   __UNREFERENCED_PARAMETER(bAscendants);
 
-   }
+   //}
 
 
    void primitive::set_need_load_form_data()

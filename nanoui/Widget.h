@@ -9,11 +9,12 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 /** \file */
-
 #pragma once
+
 
 #include "Object.h"
 #include "Theme.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include <vector>
 #include <algorithm>
 //#include "acme/primitive/primitive/function.h"
@@ -44,9 +45,9 @@ public:
       ref<Layout> m_layout;
       Vector2i m_pos, m_size, m_fixed_size;
       ::array<Widget *> m_children;
-      ::index m_iHoverCandidateChildStart;
-      ::index m_iHoverCandidateChildEnd;
-   ::function <void() > m_functionOnMoved;
+      //::index m_iHoverCandidateChildStart;
+      //::index m_iHoverCandidateChildEnd;
+      ::function <void() > m_functionOnMoved;
       /**
        * Whether or not this Widget is currently visible.  When a Widget is not
        * currently visible, no time is wasted executing its drawing method.
@@ -144,6 +145,8 @@ public:
          (parent()->absolute_position() + m_pos) : m_pos;
    }
 
+   virtual Vector2i screen_position() const;
+
    /// Return the size of the widget
    const Vector2i & size() const { return m_size; }
    /// set the size of the widget
@@ -158,6 +161,14 @@ public:
    int height() const { return m_size.y(); }
    /// Set the height of the widget
    void set_height(int height) { set_size({ m_size.v[0], height }); }
+
+
+   ::rectangle_i32 interaction_rectangle() const;
+
+   virtual void set_need_redraw();
+
+   virtual void post_redraw();
+
 
    /**
     * \brief Set the fixed size of this widget
@@ -302,13 +313,17 @@ public:
    virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse motion event (default implementation: propagate to children)
-   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers);
+   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse drag event (default implementation: do nothing)
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers);
+   // virtual bool mouse_drag_event(const Vector2i& p, const Vector2i& rel, const ::user::e_key& ekeyModifiers);
 
    /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
    virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers);
+
+   virtual void set_mouse_capture();
+
+   virtual void release_mouse_capture();
 
    /// Handle a mouse scroll event (default implementation: propagate to children)
    virtual bool scroll_event(const Vector2i & p, const Vector2f & rel);
@@ -322,20 +337,31 @@ public:
    /// Handle text input (UTF-32 format) (default implementation: do nothing)
    virtual bool keyboard_character_event(unsigned int codepoint);
 
+   virtual bool need_to_draw(::nano2d::context* pcontext);
+
    virtual void on_begin_draw(::nano2d::context * pcontext);
 
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true);
 
+
+   virtual void set_need_layout();
+
+
    /// Invoke the associated layout generator to properly place child widgets, if any
    virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true);
+
+
+   /// Draw the widget (and all child widgets)
+   virtual void call_draw(::nano2d::context* pcontext);
+
 
    /// Draw the widget (and all child widgets)
    virtual void draw(::nano2d::context * pcontext);
 
 //protected:
    /// Free all resources used by the widget and any children
-   virtual ~Widget();
+   ~Widget() override;
 
    /**
     * Convenience definition for subclasses to get the full icon scale for this

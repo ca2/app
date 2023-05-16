@@ -30,7 +30,10 @@ namespace nanoui
    public:
 
       
-      bool m_bDrag;
+      bool        m_bDrag;
+      float       m_fTotalHeight;
+      float       m_fScroll;
+      bool        m_update_layout;
 
 
       VScrollPanel(Widget * parent);
@@ -39,25 +42,26 @@ namespace nanoui
        * Return the current scroll amount as a value between 0 and 1. 0 means
        * scrolled to the top and 1 to the bottom.
        */
-      float scroll() const { return m_scroll; }
+      float scroll() const { return m_fScroll; }
 
       /**
        * Set the scroll amount to a value between 0 and 1. 0 means scrolled to
        * the top and 1 to the bottom.
        */
-      void set_scroll(float scroll) { m_scroll = scroll; }
+      void set_scroll(float fScroll) { m_fScroll = fScroll; }
+
+
+      virtual float y_coordinate_vertical_scroll(int y);
 
       virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      //virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(::nano2d::context * pcontext) override;
       virtual float get_y_offset() const;
       virtual float get_track_bar_height() const;
-      int m_child_preferred_height;
-      float m_scroll;
-      bool m_update_layout;
 };
 
 

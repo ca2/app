@@ -48,9 +48,9 @@ namespace nanoui
 
             m_bMouseDown = true;
 
-            screen()->m_puserinteraction->set_need_redraw();
+            set_need_redraw();
 
-            screen()->m_puserinteraction->post_redraw();
+            post_redraw();
 
          }
          else if (m_bMouseDown) 
@@ -61,9 +61,9 @@ namespace nanoui
 
                m_checked = !m_checked;
 
-               screen()->m_puserinteraction->set_need_redraw();
+               set_need_redraw();
 
-               screen()->m_puserinteraction->post_redraw();
+               post_redraw();
 
                screen()->m_puserinteraction->fork([this]()
                {
@@ -76,6 +76,10 @@ namespace nanoui
             }
 
             m_bMouseDown = false;
+
+            set_need_redraw();
+
+            post_redraw();
 
          }
 

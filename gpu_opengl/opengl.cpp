@@ -159,33 +159,33 @@ namespace opengl
    void opengl::defer_init_glew()
    {
 
-      if (!m_bGlewInit)
-      {
-         
-#if !defined(__APPLE__) && !defined(ANDROID)
+//      if (!m_bGlewInit)
+//      {
+//         
+//#if !defined(__APPLE__) && !defined(ANDROID)
+//
+//         glewExperimental = GL_TRUE;
+//
+//         GLenum err = glewInit();
+//
+//         if (err != GLEW_OK)
+//         {
+//
+//            const ::ansi_character * pszErrorString = (const char *) glewGetErrorString(err);
+//
+//            //throw ::exception(error_resource);
+//            // Problem: glewInit failed, something is seriously wrong.
+//            FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
+//
+//            throw ::exception(error_failed);
+//
+//         }
+//         
+//#endif
+//
+//         m_bGlewInit = true;
 
-         glewExperimental = GL_TRUE;
-
-         GLenum err = glewInit();
-
-         if (err != GLEW_OK)
-         {
-
-            const ::ansi_character * pszErrorString = (const char *) glewGetErrorString(err);
-
-            //throw ::exception(error_resource);
-            // Problem: glewInit failed, something is seriously wrong.
-            FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
-
-            throw ::exception(error_failed);
-
-         }
-         
-#endif
-
-         m_bGlewInit = true;
-
-      }
+//      }
 
       //return ::success;
 

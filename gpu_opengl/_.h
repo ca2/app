@@ -105,6 +105,7 @@
 //#include <gl/gl.h>
 #define GLAD_GLAPI_EXPORT
 #include <glad.h>
+CLASS_DECL_GPU_OPENGL const char * opengl_error_string(int iError);
 
 
 #endif

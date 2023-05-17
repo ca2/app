@@ -97,7 +97,7 @@ public:
 };
 
 
-using signal_map = ::atom_map < ::pointer<class ::signal>>;
+using signal_map = ::atom_map < ::pointer < class signal > >;
 
 
 

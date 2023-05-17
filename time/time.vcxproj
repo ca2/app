@@ -628,6 +628,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <BuildStlModules>false</BuildStlModules>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>

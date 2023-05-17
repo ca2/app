@@ -378,7 +378,7 @@ namespace dynamic_source
 
       strMillis = ::as_string(::integral_millisecond() % 1000);
 
-      auto pszBufferMillis = strMillis.get_buffer();
+      auto pszBufferMillis = strMillis.get_buffer(3);
 
       ::ansi_zero_pad(pszBufferMillis, 3);
 

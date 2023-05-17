@@ -53,7 +53,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //            }
 //         }
 //      }
-//      release_string_buffer(nLength*ncharCharLen);
+//      release_buffer(nLength*ncharCharLen);
 //   }
 //}
 //
@@ -72,7 +72,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //      char * pszBuffer = GetBuffer(nDestLength);
 //      //::str::ConvertTochar(pszBuffer,nDestLength,pch,nLength);
 //      nDestLength = wd16_to_ansi(pszBuffer, pch, nLength);
-//      release_string_buffer(nDestLength);
+//      release_buffer(nDestLength);
 //   }
 //}
 //
@@ -100,7 +100,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //      strsize nDestLength = ::str::get_char_length(pch,nLength);
 //      char * pszBuffer = GetBuffer(nDestLength);
 //      ::str::ConvertTochar(pszBuffer,-0xf0c,pch,nLength);
-//      release_string_buffer(nDestLength);
+//      release_buffer(nDestLength);
 //   }
 //}
 //
@@ -117,7 +117,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __
 //      strsize nDestLength = ::str::get_char_length(pch,nLength);
 //      char * pszBuffer = GetBuffer(nDestLength);
 //      ::str::ConvertTochar(pszBuffer,nDestLength,pch,nLength);
-//      release_string_buffer(nDestLength);
+//      release_buffer(nDestLength);
 //   }
 //}
 
@@ -883,7 +883,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      char * pszBuffer = GetBuffer(nLength);
 //      ::str::flood_characters(char(ch),nLength,pszBuffer);
-//      release_string_buffer(nLength);
+//      release_buffer(nLength);
 //   }
 //}
 //
@@ -895,7 +895,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      char * pszBuffer = GetBuffer(nLength);
 //      ::str::flood_characters(char(ch),nLength,pszBuffer);
-//      release_string_buffer(nLength);
+//      release_buffer(nLength);
 //   }
 //
 //}
@@ -956,7 +956,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      char * pszBuffer = GetBuffer(nDestLength);
 //      ::str::ConvertTochar(pszBuffer,nDestLength,pszSrc);
-//      release_string_buffer(nDestLength);
+//      release_buffer(nDestLength);
 //   }
 //   else
 //   {
@@ -974,7 +974,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   {
 //      char * pszBuffer = GetBuffer(nDestLength);
 //      wd32_to_ansi(pszBuffer,pszSrc,nDestLength);
-//      release_string_buffer(nDestLength);
+//      release_buffer(nDestLength);
 //   }
 //   else
 //   {
@@ -1520,7 +1520,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //      ::acme::memmove_s(pszBuffer + iIndex, (size_t) nCopy, pszBuffer + iIndex + nCount, (size_t) nCopy);
 //
-//      release_string_buffer(nNewLength);
+//      release_buffer(nNewLength);
 //
 //   }
 //
@@ -1555,7 +1555,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   pszBuffer[iIndex] = ch;
 //
-//   release_string_buffer(nNewLength);
+//   release_buffer(nNewLength);
 //
 //   return nNewLength;
 //
@@ -1596,7 +1596,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //                        pszBuffer + iIndex,(nNewLength - iIndex - nInsertLength + 1)*sizeof(char));
 //      ::acme::memcpy_s(pszBuffer + iIndex,nInsertLength*sizeof(char),
 //                       psz,nInsertLength*sizeof(char));
-//      release_string_buffer(nNewLength);
+//      release_buffer(nNewLength);
 //   }
 //
 //   return(nNewLength);
@@ -1632,7 +1632,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      }
 //      if(bCopied)
 //      {
-//         release_string_buffer(nLength);
+//         release_buffer(nLength);
 //      }
 //   }
 //
@@ -1695,7 +1695,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //         pszStart += ::str::SafeStringLen(pszStart) + 1;
 //      }
 //      ASSERT(pszBuffer[nNewLength] == 0);
-//      release_string_buffer(nNewLength);
+//      release_buffer(nNewLength);
 //   }
 //
 //   return(nCount);
@@ -1761,7 +1761,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //         pszStart += ::str::SafeStringLen(pszStart) + 1;
 //      }
 //      ASSERT(pszBuffer[nNewLength] == 0);
-//      release_string_buffer(nNewLength);
+//      release_buffer(nNewLength);
 //   }
 //
 //   return c;
@@ -1823,7 +1823,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   }
 //   *pszDest = 0;
 //   strsize nCount = strsize(pszSource - pszDest);
-//   release_string_buffer(nLength - nCount);
+//   release_buffer(nLength - nCount);
 //
 //   return(nCount);
 //}
@@ -2443,7 +2443,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
 //   ::str::string_uppercase(pszBuffer,nLength + 1);
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //
 //   return *this;
 //}
@@ -2454,7 +2454,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
 //   ::str::string_lowercase(pszBuffer,nLength + 1);
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //
 //   return *this;
 //}
@@ -2465,7 +2465,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
 //   ::str::string_reverse(pszBuffer);
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //
 //   return *this;
 //}
@@ -2557,7 +2557,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nDataLength = get_length() - iFirst;
 //      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
-//      release_string_buffer(nDataLength);
+//      release_buffer(nDataLength);
 //   }
 //
 //   return *this;
@@ -2680,7 +2680,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nDataLength = get_length() - iFirst;
 //      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
-//      release_string_buffer(nDataLength);
+//      release_buffer(nDataLength);
 //   }
 //
 //   return *this;
@@ -2710,7 +2710,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strsize nDataLength = get_length() - iFirst;
 //      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
-//      release_string_buffer(nDataLength);
+//      release_buffer(nDataLength);
 //   }
 //
 //   return *this;
@@ -2842,7 +2842,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
 //   ::str::ConvertToOem(pszBuffer,nLength + 1);
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //}
 //
 //// Convert the string to the ANSI character set
@@ -2851,7 +2851,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
 //   ::str::ConvertToAnsi(pszBuffer,nLength + 1);
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //}
 //
 //// Very simple sub-string extraction
@@ -2989,7 +2989,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#else
 //   ::str::printf(pszBuffer + nCurrentLength,pszFormat,args);
 //#endif
-//   release_string_buffer(nCurrentLength + nAppendLength);
+//   release_buffer(nCurrentLength + nAppendLength);
 //
 //
 //}
@@ -3010,7 +3010,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#else
 //   ::str::printf(pszBuffer,pszFormat,ptr);
 //#endif
-//   release_string_buffer(nLength);
+//   release_buffer(nLength);
 //   va_end(ptr);
 //}
 //
@@ -3122,7 +3122,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
 //char * pszBuffer = GetBuffer( nLength );
 //::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-//release_string_buffer( nLength );
+//release_buffer( nLength );
 //
 //return( true );
 //}*/
@@ -3139,7 +3139,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
 //char * pszBuffer = GetBuffer( nLength );
 //::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-//release_string_buffer( nLength );
+//release_buffer( nLength );
 //
 //return( true );
 //}*/
@@ -3227,7 +3227,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //void string::reserve(strsize res_arg)
 //{
-//   get_string_buffer(res_arg + 1);
+//   get_buffer(res_arg + 1);
 //}
 //
 //

@@ -1737,13 +1737,13 @@ public:
       if (u > 0)
       {
 
-         auto psz = str.get_string_buffer((strsize)u);
+         auto psz = str.get_buffer((strsize)u);
 
          memsize s = character_count_to_byte_length(psz, (strsize)u);
 
          read({ psz, s });
 
-         str.release_string_buffer((strsize)u);
+         str.release_buffer((strsize)u);
 
       }
 

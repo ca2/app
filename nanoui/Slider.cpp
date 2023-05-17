@@ -106,7 +106,7 @@ void Slider::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint knob_shadow =
       pcontext->radial_gradient(knob_pos.x(), knob_pos.y(), kr - kshadow,
-         kr + kshadow,  ::color::color(0, 64), m_theme->m_transparent);
+         kr + kshadow,  ::color::color(0, 64), m_theme->m_colorTransparent);
 
    pcontext->begin_path();
    pcontext->rectangle(knob_pos.x() - kr - 5, knob_pos.y() - kr - 5, kr * 2 + 10,
@@ -118,15 +118,15 @@ void Slider::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint knob = pcontext->linear_gradient(
       (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
-      m_theme->m_border_light, m_theme->m_border_medium);
+      m_theme->m_colorBorderLight, m_theme->m_colorBorderMedium);
    ::nano2d::paint knob_reverse = pcontext->linear_gradient(
       (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
-      m_theme->m_border_medium,
-      m_theme->m_border_light);
+      m_theme->m_colorBorderMedium,
+      m_theme->m_colorBorderLight);
 
    pcontext->begin_path();
    pcontext->circle(knob_pos.x(), knob_pos.y(), kr);
-   pcontext->stroke_color(m_theme->m_border_dark);
+   pcontext->stroke_color(m_theme->m_colorBorderDark);
    pcontext->fill_paint(knob);
    pcontext->stroke();
    pcontext->fill();

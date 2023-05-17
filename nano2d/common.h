@@ -344,6 +344,7 @@ extern NANOUI_EXPORT void chdir_to_bundle_parent();
  */
 extern NANOUI_EXPORT ::string get_utf8_character(uint32_t c);
 
+
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
 //extern NANOUI_EXPORT ::array<std::pair<int, ::string>>
 //load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);

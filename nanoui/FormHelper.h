@@ -353,7 +353,7 @@ public:
 template <typename T> class FormWidget<T, typename std::is_integral<T>::type> : public IntBox<T> {
 public:
    /// Creates a memory_new FormWidget with underlying type IntBox.
-   FormWidget(Widget * p) : IntBox<T>(p) { this->set_alignment(TextBox::Alignment::Right); }
+   FormWidget(Widget * p) : IntBox<T>(p) { this->set_alignment(TextBox::enum_alignment::Right); }
 };
 
 /**
@@ -365,7 +365,7 @@ public:
 template <typename T> class FormWidget<T, typename std::is_floating_point<T>::type> : public FloatBox<T> {
 public:
    /// Creates a memory_new FormWidget with underlying type FloatBox.
-   FormWidget(Widget * p) : FloatBox<T>(p) { this->set_alignment(TextBox::Alignment::Right); }
+   FormWidget(Widget * p) : FloatBox<T>(p) { this->set_alignment(TextBox::enum_alignment::Right); }
 };
 
 /**
@@ -374,7 +374,7 @@ public:
 template <> class FormWidget<::string, std::true_type> : public TextBox {
 public:
    /// Creates a memory_new FormWidget with underlying type TextBox.
-   FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::Alignment::Left); }
+   FormWidget(Widget * p) : TextBox(p) { set_alignment(TextBox::enum_alignment::Left); }
 
    /// Pass-through function for \ref nanoui::TextBox::set_callback.
    void set_callback(const std::function<void(const ::scoped_string &)> & cb) {

@@ -577,13 +577,13 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
 void memory_file::load_string(string &str)
 {
 
-   char * psz = str.get_string_buffer((i32)(this->size() + 1));
+   char * psz = str.get_buffer((i32)(this->size() + 1));
 
    ::memory_copy(psz, data_begin(), (size_t) data_size());
 
    psz[this->size()] = 0;
 
-   str.release_string_buffer();
+   str.release_buffer();
 
 }
 

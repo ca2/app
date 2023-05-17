@@ -770,12 +770,12 @@ string MYCFStringCopyUTF8String(CFStringRef aString)
    
    CFIndex maxSize = CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
    
-   char *buffer = str.get_string_buffer(maxSize);
+   char *buffer = str.get_buffer(maxSize);
    
    if (CFStringGetCString(aString, buffer, maxSize, kCFStringEncodingUTF8))
    {
       
-      str.release_string_buffer();
+      str.release_buffer();
       
       return str;
       

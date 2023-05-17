@@ -40,7 +40,7 @@ public:
       if (dwFlags & SET_LENGTH)
       {
 
-         m_pszBuffer = m_str.get_string_buffer(nMinLength);
+         m_pszBuffer = m_str.get_buffer(nMinLength);
 
       }
       else

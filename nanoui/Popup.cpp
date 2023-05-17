@@ -51,15 +51,15 @@ void Popup::draw(::nano2d::context * pcontext)
    if (!m_visible)
       return;
 
-   int ds = m_theme->m_window_drop_shadow_size;
-   int cr = m_theme->m_window_corner_radius;
+   int ds = m_theme->m_iWindowDropShadowSize;
+   int cr = m_theme->m_iWindowCorderRadius;
 
    pcontext->save();
    pcontext->reset_scissor();
 
    /* Draw a drop shadow */
    ::nano2d::paint shadow_paint = pcontext->box_gradient((float) m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), cr * 2.f, ds * 2.f,
-      m_theme->m_drop_shadow, m_theme->m_transparent);
+      m_theme->m_colorDropShadow, m_theme->m_colorTransparent);
 
    pcontext->begin_path();
    pcontext->rectangle((float)m_pos.x() - ds, (float)m_pos.y() - ds, (float)m_size.x() + 2.f * ds, (float)m_size.y() + 2.f *ds);
@@ -83,7 +83,7 @@ void Popup::draw(::nano2d::context * pcontext)
    pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() - m_anchor_size);
    pcontext->line_to((float)base.x() - 1.f * sign, (float)base.y() + m_anchor_size);
 
-   pcontext->fill_color(m_theme->m_window_popup);
+   pcontext->fill_color(m_theme->m_colorWindowPopup);
    pcontext->fill();
    pcontext->restore();
 

@@ -91,7 +91,7 @@ namespace nanoui
       
          m_button_panel = memory_new Widget(this);
 
-         m_button_panel->set_layout(memory_new BoxLayout(Orientation::Horizontal, Alignment::Middle, 0, 4));
+         m_button_panel->set_layout(memory_new BoxLayout(Orientation::Horizontal, enum_alignment::Middle, 0, 4));
 
       }
 
@@ -149,24 +149,24 @@ namespace nanoui
 
       }
 
-      //int ds = m_theme->m_window_drop_shadow_size;
-      int cr = m_theme->m_window_corner_radius;
-      int hh = m_theme->m_window_header_height;
+      //int ds = m_theme->m_iWindowDropShadowSize;
+      int cr = m_theme->m_iWindowCorderRadius;
+      int hh = m_theme->m_iWindowHeaderHeight;
 
       /* Draw window */
       pcontext->save();
       pcontext->begin_path();
       pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
-      pcontext->fill_color(m_mouse_focus ? m_theme->m_window_fill_focused
-         : m_theme->m_window_fill_unfocused);
+      pcontext->fill_color(m_mouse_focus ? m_theme->m_colorWindowFillFocused
+         : m_theme->m_colorWindowFillUnfocused);
       pcontext->fill();
 
 
       ///* Draw a drop shadow */
       //::nano2d::paint shadow_paint = pcontext->box_gradient(
       //   ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr * 2, ds * 2,
-      //   m_theme->m_drop_shadow, m_theme->m_transparent);
+      //   m_theme->m_colorDropShadow, m_theme->m_colorTransparent);
 
       //pcontext->Save();
       //pcontext->reset_scissor();
@@ -183,8 +183,8 @@ namespace nanoui
          ::nano2d::paint header_paint = pcontext->linear_gradient(
             (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
             (float)m_pos.y() + (float)hh,
-            m_theme->m_window_header_gradient_top,
-            m_theme->m_window_header_gradient_bot);
+            m_theme->m_colorWindowHeaderGradientTop,
+            m_theme->m_colorWindowHeaderGradientBottom);
 
          pcontext->begin_path();
          pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
@@ -194,7 +194,7 @@ namespace nanoui
 
          pcontext->begin_path();
          pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
-         pcontext->stroke_color(m_theme->m_window_header_sep_top);
+         pcontext->stroke_color(m_theme->m_colorWindowHeaderSeparationTop);
 
          //pcontext->Save();
          //pcontext->intersect_scissor(m_pos.x(), m_pos.y(), m_size.x(), 0.5f);
@@ -204,7 +204,7 @@ namespace nanoui
          pcontext->begin_path();
          pcontext->move_to(m_pos.x() + 0.5f, m_pos.y() + hh - 1.5f);
          pcontext->line_to(m_pos.x() + m_size.x() - 0.5f, m_pos.y() + hh - 1.5f);
-         pcontext->stroke_color(m_theme->m_window_header_sep_bot);
+         pcontext->stroke_color(m_theme->m_colorWindowHeaderSeparationBottom);
          pcontext->stroke();
 
          pcontext->font_size(18.0f);
@@ -212,13 +212,13 @@ namespace nanoui
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
          //pcontext->font_blur(2);
-         //pcontext->fill_color(m_theme->m_drop_shadow);
+         //pcontext->fill_color(m_theme->m_colorDropShadow);
          //pcontext->text(m_pos.x() + m_size.x() / 2,
             // m_pos.y() + hh / 2, m_title.c_str(), nullptr);
 
          //pcontext->font_blur(0);
-         pcontext->fill_color(m_focused ? m_theme->m_window_title_focused
-            : m_theme->m_window_title_unfocused);
+         pcontext->fill_color(m_focused ? m_theme->m_colorWindowTitleFocused
+            : m_theme->m_colorWindowTitleUnfocused);
          pcontext->text(m_pos.x() + m_size.x() / 2.f, m_pos.y() + hh / 2.f - 1.f,
             m_title);
       }
@@ -294,13 +294,20 @@ namespace nanoui
    bool Window::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
+      if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
+      {
+
+         return true;
+
+      }
+
       if (emouse == ::user::e_mouse_left_button)
       {
 
          if (down)
          {
 
-            auto bDrag = down && (p.y() - m_pos.y()) < m_theme->m_window_header_height;
+            auto bDrag = down && (p.y() - m_pos.y()) < m_theme->m_iWindowHeaderHeight;
 
             m_drag = bDrag;
 
@@ -336,13 +343,6 @@ namespace nanoui
             }
 
          }
-
-      }
-
-      if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
-      {
-
-         return true;
 
       }
 

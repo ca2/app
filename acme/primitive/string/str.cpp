@@ -3883,7 +3883,7 @@ string str::block(char ch, i32 iSize)
 
    string str;
 
-   auto psz = str.get_string_buffer(iSize);
+   auto psz = str.get_buffer(iSize);
 
    for (i32 i = 0; i < iSize; i++)
    {
@@ -3892,7 +3892,7 @@ string str::block(char ch, i32 iSize)
 
    }
 
-   str.release_string_buffer(iSize);
+   str.release_buffer(iSize);
 
    return str;
 
@@ -3904,7 +3904,7 @@ void str::fill(string & str, char ch)
 
    auto len = str.length();
 
-   auto psz = str.get_string_buffer();
+   auto psz = str.get_buffer();
 
    for (i32 i = 0; i < len; i++)
    {
@@ -3913,7 +3913,7 @@ void str::fill(string & str, char ch)
 
    }
 
-   str.release_string_buffer(len);
+   str.release_buffer(len);
 
 }
 //
@@ -3976,9 +3976,9 @@ void str::fix_eol(string & str)
 string & str::zero_pad(string & str, strsize lenPad)
 {
 
-   ::ansi_zero_pad(str.get_string_buffer(str.length() + lenPad), lenPad);
+   ::ansi_zero_pad(str.get_buffer(str.length() + lenPad), lenPad);
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    return str;
 
@@ -3993,9 +3993,9 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
    if (lenPad > str.length())
    {
 
-      ::ansi_zero_pad(str.get_string_buffer(lenPad), lenPad);
+      ::ansi_zero_pad(str.get_buffer(lenPad), lenPad);
 
-      str.release_string_buffer(lenPad);
+      str.release_buffer(lenPad);
 
    }
 

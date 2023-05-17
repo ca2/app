@@ -166,7 +166,7 @@ inline strsize _string_format(::wd16_character * pszBuffer, const ::wd16_charact
 
    auto nlength = get_formatted_length(pszFormat, args);
 
-   auto psz = wstrBuffer.get_string_buffer(nlength);
+   auto psz = wstrBuffer.get_buffer(nlength);
 
    wd32_string wstrFormat(pszFormat);
 
@@ -192,7 +192,7 @@ inline strsize _string_format(::wd16_character * pszBuffer, strsize nlength, con
 
    wd32_string wstrBuffer;
 
-   auto psz = wstrBuffer.get_string_buffer(nlength);
+   auto psz = wstrBuffer.get_buffer(nlength);
 
    wd32_string wstrFormat(pszFormat);
 

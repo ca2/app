@@ -2299,7 +2299,7 @@ void TransformSkewX(float* t, float a)
 	void context::circle(float cx, float cy, float r)
 	{
 		
-		//context::Ellipse)(ctx, cx, cy, r, r);
+		ellipse(cx, cy, r, r);
 
 	}
 

@@ -177,7 +177,7 @@ namespace url
 
       string strDecode;
 
-      char* pszStart = strDecode.get_string_buffer(sizeLen * 4);
+      char* pszStart = strDecode.get_buffer(sizeLen * 4);
 
       auto pszDecode = pszStart;
 
@@ -266,7 +266,7 @@ namespace url
 
       }
 
-      strDecode.release_string_buffer(sizeLen);
+      strDecode.release_buffer(sizeLen);
 
       return ::transfer(strDecode);
 
@@ -389,7 +389,7 @@ namespace url
 
       string strEncoded;
 
-      auto pszEncodedStart = strEncoded.get_string_buffer(block.get_size() * 5);
+      auto pszEncodedStart = strEncoded.get_buffer(block.get_size() * 5);
 
       auto pszEncoded = pszEncodedStart;
 
@@ -432,7 +432,7 @@ namespace url
 
       }
 
-      strEncoded.release_string_buffer(pszEncoded - pszEncodedStart);
+      strEncoded.release_buffer(pszEncoded - pszEncodedStart);
 
       return ::transfer(strEncoded);
 
@@ -745,7 +745,7 @@ void openURL(const string& url_str)
 //
 //   string strDecode;
 //
-//   char* psz = strDecode.get_string_buffer(iLen * 4);
+//   char* psz = strDecode.get_buffer(iLen * 4);
 //
 //   strsize i = 0;
 //
@@ -798,7 +798,7 @@ void openURL(const string& url_str)
 //      }
 //   }
 //
-//   strDecode.release_string_buffer(iLen);
+//   strDecode.release_buffer(iLen);
 //
 //   return strDecode;
 //

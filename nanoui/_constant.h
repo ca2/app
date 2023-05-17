@@ -1,5 +1,5 @@
 ﻿//
-// Alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSørensen!!
+// enum_alignment and Orientation From Layout.h by camilo on 2022-09-08 23:57 <3ThomasBorregaardSørensen!!
 //
 #pragma once
 
@@ -10,7 +10,7 @@ namespace nanoui
 
 
 /// The different kinds of alignments a layout can perform.
-   enum class Alignment : uint8_t
+   enum class enum_alignment : uint8_t
    {
       Minimum = 0, ///< Take only as much space as is required.
       Middle,      ///< Center align.

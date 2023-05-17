@@ -607,11 +607,11 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
       string str;
 
       ::memory_copy(
-      str.get_string_buffer(storage.size()),
+      str.get_buffer(storage.size()),
       storage.begin(),
       storage.size());
 
-      str.release_string_buffer();
+      str.release_buffer();
 
       return str;
 

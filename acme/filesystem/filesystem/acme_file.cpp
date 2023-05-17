@@ -365,7 +365,7 @@ string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostB
    //   
    //}
 
-   //char * psz = str.get_string_buffer(iReadAtMostByteCount);
+   //char * psz = str.get_buffer(iReadAtMostByteCount);
 
    //::size_t iPos = 0;
 
@@ -387,7 +387,7 @@ string acme_file::as_string(const ::file::path & pathParam, strsize iReadAtMostB
 
    //psz[iPos] = '\0';
 
-   //str.release_string_buffer();
+   //str.release_buffer();
 
    return str;
 

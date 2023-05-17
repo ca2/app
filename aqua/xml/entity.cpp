@@ -208,10 +208,10 @@ namespace xml
       if(pszSrc != nullptr)
       {
          strsize iLen = strlen(pszSrc);
-         char * pszRet = strRet.get_string_buffer(iLen);
+         char * pszRet = strRet.get_buffer(iLen);
          if(pszRet != nullptr)
             ref_to_entity(pszSrc, pszRet, (i32) iLen);
-         strRet.release_string_buffer();
+         strRet.release_buffer();
       }
       return strRet;
    }
@@ -225,10 +225,10 @@ namespace xml
          if( nEntityCount == 0 )
             return string(str);
          strsize len = strlen(str) + nEntityCount*10 ;
-         char * sbuf = s.get_string_buffer(len + 1);
+         char * sbuf = s.get_buffer(len + 1);
          if( sbuf )
             entity_to_ref( str, sbuf, (i32) len);
-         s.release_string_buffer();
+         s.release_buffer();
       }
       return s;
    }
@@ -238,10 +238,10 @@ namespace xml
       if(pszSrc != nullptr)
       {
          strsize iLen = strlen(pszSrc);
-         char * pszRet = str.get_string_buffer(iLen);
+         char * pszRet = str.get_buffer(iLen);
          if(pszRet != nullptr)
             iLen = ref_to_entity(pszSrc,pszRet,(i32)iLen);
-         str.release_string_buffer(iLen);
+         str.release_buffer(iLen);
       }
 
    }
@@ -257,12 +257,12 @@ namespace xml
             return;
          }
          strsize len = strlen(str) + nEntityCount * 10 ;
-         char * sbuf = s.get_string_buffer(len + 1);
+         char * sbuf = s.get_buffer(len + 1);
          if(sbuf)
          {
             len = entity_to_ref(str,sbuf,(i32)len);
          }
-         s.release_string_buffer(len);
+         s.release_buffer(len);
       }
 
    }

@@ -161,7 +161,7 @@ filesize FILE_get_size(FILE * str)
 
    string str;
 
-   return realpath(path, str.get_string_buffer(PATH_MAX * 8));
+   return realpath(path, str.get_buffer(PATH_MAX * 8));
 
 }
 

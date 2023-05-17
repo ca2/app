@@ -738,7 +738,7 @@ namespace android
    //   //if(oswindow != nullptr)
    //   //{
    //   //   i32 nLen = ::GetWindowTextLength(oswindow);
-   //   //   ::GetWindowText(oswindow,rString.get_string_buffer(nLen),nLen + 1);
+   //   //   ::GetWindowText(oswindow,rString.get_buffer(nLen),nLen + 1);
    //   //   rString.ReleaseBuffer();
    //   //}
 

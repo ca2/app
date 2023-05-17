@@ -115,8 +115,8 @@ namespace hex
    inline string lower_case_from(const void * p, memsize s)
    {
       string str;
-      lower_case_from(str.get_string_buffer(s * 2), p, s);
-      str.release_string_buffer(s * 2);
+      lower_case_from(str.get_buffer(s * 2), p, s);
+      str.release_buffer(s * 2);
       return str;
    }
 
@@ -124,8 +124,8 @@ namespace hex
    inline string upper_case_from(const void * p, memsize s)
    {
       string str;
-      upper_case_from(str.get_string_buffer(s * 2), p, s);
-      str.release_string_buffer(s * 2);
+      upper_case_from(str.get_buffer(s * 2), p, s);
+      str.release_buffer(s * 2);
       return str;
    }
 

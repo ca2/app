@@ -1015,9 +1015,9 @@ namespace user
 
       ASSERT(is_window());
 
-      GetLBText(nIndex, rString.get_string_buffer(GetLBTextLen(nIndex)));
+      GetLBText(nIndex, rString.get_buffer(GetLBTextLen(nIndex)));
 
-      rString.release_string_buffer();
+      rString.release_buffer();
 
    }
 

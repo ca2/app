@@ -1780,7 +1780,7 @@ string acmefile()->as_string(const ::string & path, strsize iReadAtMostByteCount
 
    }
 
-   char * psz = str.get_string_buffer(dwSize);
+   char * psz = str.get_buffer(dwSize);
 
    ::u32 dwRead;
 
@@ -1788,7 +1788,7 @@ string acmefile()->as_string(const ::string & path, strsize iReadAtMostByteCount
 
    psz[dwSize] = '\0';
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    ::CloseHandle(hfile);
 

@@ -24,66 +24,66 @@ namespace nanoui
 
 Theme::Theme()
 {
-   m_standard_font_size = 16;
-   m_button_font_size = 20;
-   m_text_box_font_size = 20;
+   m_iStandardFontSize = 16;
+   m_iButtonFontSize = 20;
+   m_iTextBoxFontSize = 20;
 
    
-   m_icon_scale = 0.60f;
+   m_fIconScale = 0.60f;
 
-   m_window_corner_radius = 2;
-   m_window_header_height = 30;
-   m_window_drop_shadow_size = 10;
-   m_button_corner_radius = 2;
-   m_tab_border_width = 0.75f;
-   m_tab_inner_margin = 5;
-   m_tab_min_button_width = 20;
-   m_tab_max_button_width = 160;
-   m_tab_control_width = 20;
-   m_tab_button_horizontal_padding = 10;
-   m_tab_button_vertical_padding = 2;
+   m_iWindowCorderRadius = 2;
+   m_iWindowHeaderHeight = 30;
+   m_iWindowDropShadowSize = 10;
+   m_iButtonCornerRadius = 2;
+   m_fTabBorderWidth = 0.75f;
+   m_iTabInnerMargin = 5;
+   m_iTabMinimumButtonWidth = 20;
+   m_iTabMaximumButtonWidth = 160;
+   m_iTabControlWidth = 20;
+   m_iHorizontalPaddingTabButton = 10;
+   m_iVerticalPaddingTabButton = 2;
 
-   m_drop_shadow = ::color::color(0, 128);
-   m_transparent = ::color::color(0, 0);
-   m_border_dark = ::color::color(29, 255);
-   m_border_light = ::color::color(92, 255);
-   m_border_medium = ::color::color(35, 255);
-   m_text_color = ::color::color(255, 160);
-   m_disabled_text_color = ::color::color(255, 80);
-   m_text_color_shadow = ::color::color(0, 160);
-   m_icon_color = m_text_color;
+   m_colorDropShadow = ::color::color(0, 128);
+   m_colorTransparent = ::color::color(0, 0);
+   m_colorBorderDark = ::color::color(29, 255);
+   m_colorBorderLight = ::color::color(92, 255);
+   m_colorBorderMedium = ::color::color(35, 255);
+   m_colorText = ::color::color(255, 160);
+   m_colorDisableText = ::color::color(255, 80);
+   m_colorTextShadow = ::color::color(0, 160);
+   m_colorIcon = m_colorText;
 
-   m_button_gradient_top_focused = ::color::color(64, 255);
-   m_button_gradient_bot_focused = ::color::color(48, 255);
-   m_button_gradient_top_unfocused = ::color::color(74, 255);
-   m_button_gradient_bot_unfocused = ::color::color(58, 255);
-   m_button_gradient_top_pushed = ::color::color(41, 255);
-   m_button_gradient_bot_pushed = ::color::color(29, 255);
+   m_colorButtonGradientTopFocused = ::color::color(64, 255);
+   m_colorButtonGradientBottomFocused = ::color::color(48, 255);
+   m_colorButtonGradientUnfocused = ::color::color(74, 255);
+   m_colorButtonGradientBottomUnfocused = ::color::color(58, 255);
+   m_colorButtonGradientTopPushed = ::color::color(41, 255);
+   m_colorButtonGradientBottomPushed = ::color::color(29, 255);
 
    /* Window-related */
-   m_window_fill_unfocused = ::color::color(43, 230);
-   m_window_fill_focused = ::color::color(45, 230);
-   m_window_title_unfocused = ::color::color(220, 160);
-   m_window_title_focused = ::color::color(255, 190);
+   m_colorWindowFillUnfocused = ::color::color(43, 230);
+   m_colorWindowFillFocused = ::color::color(45, 230);
+   m_colorWindowTitleUnfocused = ::color::color(220, 160);
+   m_colorWindowTitleFocused = ::color::color(255, 190);
 
-   m_window_header_gradient_top = m_button_gradient_top_unfocused;
-   m_window_header_gradient_bot = m_button_gradient_bot_unfocused;
-   m_window_header_sep_top = m_border_light;
-   m_window_header_sep_bot = m_border_dark;
+   m_colorWindowHeaderGradientTop = m_colorButtonGradientUnfocused;
+   m_colorWindowHeaderGradientBottom = m_colorButtonGradientBottomUnfocused;
+   m_colorWindowHeaderSeparationTop = m_colorBorderLight;
+   m_colorWindowHeaderSeparationBottom = m_colorBorderDark;
 
-   m_window_popup = ::color::color(50, 255);
+   m_colorWindowPopup = ::color::color(50, 255);
    m_window_popup_transparent = ::color::color(50, 0);
 
-   m_check_box_icon = FA_CHECK;
-   m_message_information_icon = FA_INFO_CIRCLE;
-   m_message_question_icon = FA_QUESTION_CIRCLE;
-   m_message_warning_icon = FA_EXCLAMATION_TRIANGLE;
-   m_message_alt_button_icon = FA_TIMES_CIRCLE;
-   m_message_primary_button_icon = FA_CHECK;
-   m_popup_chevron_right_icon = FA_CHEVRON_RIGHT;
-   m_popup_chevron_left_icon = FA_CHEVRON_LEFT;
-   m_text_box_up_icon = FA_CHEVRON_UP;
-   m_text_box_down_icon = FA_CHEVRON_DOWN;
+   m_efontawesomeCheckBox            = e_font_awesome_check;
+   m_efontawesomeMessageInformation  = e_font_awesome_info_circle;
+   m_efontawesomeMessageQuestion     = e_font_awesome_question_circle;
+   m_efontawesomeMessageWarning      = e_font_awesome_exclamation_triangle;
+   m_efontawesomeMessageAltButton    = e_font_awesome_times_circle;
+   m_efontawesomeMessagePrimaryButton= e_font_awesome_check;
+   m_efontawesomePopupChevronRight   = e_font_awesome_chevron_right;
+   m_efontawesomePopupChevronLeft    = e_font_awesome_chevron_left;
+   m_efontawesomeTextBoxUp           = e_font_awesome_chevron_up;
+   m_efontawesomeTextBoxDown         = e_font_awesome_chevron_down;
    //{
 
    //   void * p = nullptr;

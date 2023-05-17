@@ -69,7 +69,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen)
 
    string strDecode;
 
-   char * pszStart = strDecode.get_string_buffer(iLen * 4);
+   char * pszStart = strDecode.get_buffer(iLen * 4);
 
    auto psz = pszStart;
 
@@ -142,7 +142,7 @@ string url_decode(const ::scoped_string & scopedstrUrl,strsize iLen)
       }
    }
 
-   strDecode.release_string_buffer(iLen);
+   strDecode.release_buffer(iLen);
 
    return ::transfer(strDecode);
 
@@ -640,7 +640,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //
 //   string strDecode;
 //
-//   char* psz = strDecode.get_string_buffer(iLen * 4);
+//   char* psz = strDecode.get_buffer(iLen * 4);
 //
 //   strsize i = 0;
 //
@@ -693,7 +693,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      }
 //   }
 //
-//   strDecode.release_string_buffer(iLen);
+//   strDecode.release_buffer(iLen);
 //
 //   return strDecode;
 //

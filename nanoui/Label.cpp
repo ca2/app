@@ -20,8 +20,8 @@ namespace nanoui
 Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_string & font, int font_size)
    : Widget(parent), m_caption(caption), m_font(font) {
    if (m_theme) {
-      m_font_size = m_theme->m_standard_font_size;
-      m_color = m_theme->m_text_color;
+      m_font_size = m_theme->m_iStandardFontSize;
+      m_color = m_theme->m_colorText;
    }
    if (font_size >= 0) m_font_size = font_size;
 }
@@ -29,8 +29,8 @@ Label::Label(Widget * parent, const ::scoped_string & caption, const ::scoped_st
 void Label::set_theme(Theme * theme) {
    Widget::set_theme(theme);
    if (m_theme) {
-      m_font_size = m_theme->m_standard_font_size;
-      m_color = m_theme->m_text_color;
+      m_font_size = m_theme->m_iStandardFontSize;
+      m_color = m_theme->m_colorText;
    }
 }
 

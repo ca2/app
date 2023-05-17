@@ -850,7 +850,7 @@ namespace mysql
 
       string strEscaped;
 
-      char* pszEscaped = strEscaped.get_string_buffer(iLen * 2 + 1);
+      char* pszEscaped = strEscaped.get_buffer(iLen * 2 + 1);
 
       if (psz == nullptr)
       {
@@ -861,7 +861,7 @@ namespace mysql
 
       mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (unsigned long)iLen);
 
-      strEscaped.release_string_buffer();
+      strEscaped.release_buffer();
 
       return strEscaped;
 

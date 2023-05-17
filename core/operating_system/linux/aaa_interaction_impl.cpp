@@ -1210,7 +1210,7 @@ namespace linux
          if (hWnd != nullptr)
          {
             i32 nLen = ::GetWindowTextLength(hWnd);
-            ::GetWindowText(hWnd, rectangleString.get_string_buffer(nLen), nLen+1);
+            ::GetWindowText(hWnd, rectangleString.get_buffer(nLen), nLen+1);
             rectangleString.ReleaseBuffer();
          }
 

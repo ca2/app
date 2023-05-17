@@ -457,14 +457,14 @@
 
          string strLink;
 
-         char * psz = strLink.get_string_buffer(4096);
+         char * psz = strLink.get_buffer(4096);
 
          int count = (int) readlink(strSource, psz, 4096);
 
          if (count < 0)
          {
 
-            strLink.release_string_buffer(0);
+            strLink.release_buffer(0);
 
             strLink = strSource;
 
@@ -481,7 +481,7 @@
 
          }
 
-         strLink.release_string_buffer(count);
+         strLink.release_buffer(count);
 
          if(pstrDirectory != nullptr)
          {

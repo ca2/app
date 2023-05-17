@@ -685,11 +685,11 @@ string memory_base::as_utf8() const
 
       auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
 
-      auto p = strResult.get_string_buffer(s);
+      auto p = strResult.get_buffer(s);
 
       utf_to_utf(p, (::wd16_character *)&data()[2], (i32)(size() - 2));
 
-      strResult.release_string_buffer();
+      strResult.release_buffer();
 
    }
    else if (size() >= 2
@@ -708,11 +708,11 @@ string memory_base::as_utf8() const
 
       auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
 
-      auto p = strResult.get_string_buffer(s);
+      auto p = strResult.get_buffer(s);
 
       utf_to_utf(p, (const ::wd16_character *)&data()[2], (i32)(size() - 2));
 
-      strResult.release_string_buffer();
+      strResult.release_buffer();
 
    }
    else if (size() >= 3
@@ -1135,7 +1135,7 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    char * pchSrc = (char *)data();
 
-   char * pchDst = str.get_string_buffer(count * 2);
+   char * pchDst = str.get_buffer(count * 2);
 
    u64 tickEnd = pos + count;
 
@@ -1174,7 +1174,7 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    }
 
-   str.release_string_buffer();
+   str.release_buffer();
 
 }
 
@@ -1466,13 +1466,13 @@ string memory_base::get_string(memsize iStart, memsize iCount) const
 
    }
 
-   char * psz = str.get_string_buffer(iCount + 1);
+   char * psz = str.get_buffer(iCount + 1);
 
    ::memory_copy(psz, &data()[iStart], iCount);
 
    psz[iCount] = '\0';
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    return str;
 

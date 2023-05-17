@@ -35,13 +35,17 @@ namespace nanoui
       m_focused(false), m_mouse_focus(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
+      m_bNeedLayout = false;
       //m_iHoverCandidateChildStart = -1;
       //m_iHoverCandidateChildEnd = -1;
       if (parent)
          parent->add_child(this);
    }
 
-   Widget::~Widget() {
+
+   Widget::~Widget() 
+   {
+      
       //   if (std::uncaught_exceptions() > 0) {
       //      /* If a widget constructor throws an exception, it is immediately
       //         dealloated but may still be referenced by a parent. Be conservative
@@ -49,25 +53,48 @@ namespace nanoui
       //         exceptions. */
       //      return;
       //   }
-      for (auto child : m_children) {
-         if (child)
-            child->dec_ref();
+
+      for (auto pchild : m_children) 
+      {
+
+         if (pchild)
+         {
+         
+            pchild->dec_ref();
+
+         }
+
       }
+
    }
 
-   void Widget::set_theme(Theme* theme) {
+
+   void Widget::set_theme(Theme* theme) 
+   {
+
       if (m_theme.get() == theme)
+      {
+       
          return;
+
+      }
+
       m_theme = theme;
-      for (auto child : m_children)
-         child->set_theme(theme);
+
+      for (auto pchild : m_children)
+      {
+
+         pchild->set_theme(theme);
+
+      }
+
    }
 
 
    float Widget::font_size() const
    {
 
-      return (m_font_size < 0.f && m_theme) ? (float)m_theme->m_standard_font_size : (float)m_font_size;
+      return (m_font_size < 0.f && m_theme) ? (float)m_theme->m_iStandardFontSize : (float)m_font_size;
 
    }
 
@@ -107,17 +134,45 @@ namespace nanoui
 
    Vector2i Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
+
       if (m_layout)
+      {
+       
          return m_layout->preferred_size(pcontext, this, bRecalcTextSize);
+
+      }
       else
+      {
+
          return m_size;
+
+      }
+
    }
 
 
    void Widget::set_need_layout()
    {
 
-      screen()->set_need_layout();
+      m_bNeedLayout = true;
+
+      auto pparent = m_parent;
+
+      while (pparent)
+      {
+
+         pparent->set_need_layout();
+
+         if (dynamic_cast <Window*>(pparent) != nullptr)
+         {
+
+            break;
+
+         }
+
+         pparent = pparent->m_parent;
+
+      }
 
    }
 
@@ -145,17 +200,17 @@ namespace nanoui
       else
       {
 
-         for (auto c : m_children)
+         for (auto pchild : m_children)
          {
 
-            Vector2i pref = c->preferred_size(pcontext, bRecalcTextSize), fix = c->fixed_size();
+            Vector2i pref = pchild->preferred_size(pcontext, bRecalcTextSize), fix = pchild->fixed_size();
 
-            c->set_size(Vector2i(
+            pchild->set_size(Vector2i(
                fix[0] ? fix[0] : pref[0],
                fix[1] ? fix[1] : pref[1]
             ));
 
-            c->perform_layout(pcontext);
+            pchild->perform_layout(pcontext);
 
          }
 
@@ -170,12 +225,12 @@ namespace nanoui
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
       {
 
-         Widget* child = m_children[it];
+         Widget* pchild = m_children[it];
 
-         if (child->visible() && child->contains(p - m_pos))
+         if (pchild->visible() && pchild->contains(p - m_pos))
          {
 
-            return child->find_widget(p - m_pos);
+            return pchild->find_widget(p - m_pos);
 
          }
 
@@ -192,12 +247,12 @@ namespace nanoui
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
       {
 
-         Widget* child = m_children[it];
+         Widget* pchild = m_children[it];
 
-         if (child->visible() && child->contains(p - m_pos))
+         if (pchild->visible() && pchild->contains(p - m_pos))
          {
 
-            return child->find_widget(p - m_pos);
+            return pchild->find_widget(p - m_pos);
 
          }
 
@@ -214,23 +269,23 @@ namespace nanoui
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
       {
 
-         Widget* child = m_children[it];
+         Widget* pchild = m_children[it];
 
-         if (child->visible())
+         if (pchild->visible())
          {
 
             auto pointClient = p - m_pos;
 
-            if (child->contains(pointClient))
+            if (pchild->contains(pointClient))
             {
 
-               if (child->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers))
+               if (pchild->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers))
                {
 
                   if (emouse == ::user::e_mouse_left_button && down && !m_focused)
                   {
 
-                     child->request_focus();
+                     pchild->request_focus();
 
                   }
 
@@ -272,30 +327,30 @@ namespace nanoui
       for (auto i = iStart; i <= iEnd; i++)
       {
 
-         Widget* child = m_children[i];
+         Widget* pchild = m_children[i];
 
-         if (!child->visible())
+         if (!pchild->visible())
          {
 
             continue;
 
          }
 
-         bool contained = child->contains(p - m_pos);
+         bool contained = pchild->contains(p - m_pos);
 
-         bool prev_contained = child->contains(p - m_pos - rel);
+         bool prev_contained = pchild->contains(p - m_pos - rel);
 
          if (contained != prev_contained)
          {
 
-            handled |= child->mouse_enter_event(p, contained, ekeyModifiers);
+            handled |= pchild->mouse_enter_event(p, contained, ekeyModifiers);
 
          }
 
          if (contained || prev_contained)
          {
 
-            handled |= child->mouse_motion_event(p - m_pos, rel, bDown, ekeyModifiers);
+            handled |= pchild->mouse_motion_event(p - m_pos, rel, bDown, ekeyModifiers);
 
          }
 
@@ -314,16 +369,16 @@ namespace nanoui
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
       {
 
-         Widget* child = m_children[it];
+         Widget* pchild = m_children[it];
 
-         if (!child->visible())
+         if (!pchild->visible())
          {
 
             continue;
 
          }
 
-         if (child->contains(p - m_pos) && child->scroll_event(p - m_pos, rel))
+         if (pchild->contains(p - m_pos) && pchild->scroll_event(p - m_pos, rel))
          {
 
             return true;
@@ -504,6 +559,15 @@ namespace nanoui
    void Widget::call_draw(::nano2d::context* pcontext)
    {
 
+      if (m_bNeedLayout)
+      {
+
+         m_bNeedLayout = false;
+
+         perform_layout(pcontext);
+
+      }
+
       if (!need_to_draw(pcontext))
       {
 
@@ -592,24 +656,24 @@ namespace nanoui
       for (index i = 0; i < m_children.size(); i++)
       {
 
-         auto child = m_children[i];
+         auto pchild = m_children[i];
 
-         if (!child->visible())
+         if (!pchild->visible())
          {
 
             continue;
 
          }
 
-         child->on_begin_draw(pcontext);
+         pchild->on_begin_draw(pcontext);
 
-         auto childX = child->m_pos.x();
+         auto childX = pchild->m_pos.x();
 
-         auto childY = child->m_pos.y();
+         auto childY = pchild->m_pos.y();
 
-         auto childW = child->m_size.x();
+         auto childW = pchild->m_size.x();
 
-         auto childH = child->m_size.y();
+         auto childH = pchild->m_size.y();
 
          auto rectangleChild = ::rectangle_i32_dimension(childX, childY, childW, childH);
 
@@ -639,12 +703,12 @@ namespace nanoui
    //         
    //         pcontext->save();
    //
-   //         pcontext->intersect_scissor((float)child->m_pos.x(), (float)child->m_pos.y(),
-   //            (float)child->m_size.x(), (float)child->m_size.y());
+   //         pcontext->intersect_scissor((float)pchild->m_pos.x(), (float)pchild->m_pos.y(),
+   //            (float)pchild->m_size.x(), (float)pchild->m_size.y());
    //
    //#endif
 
-            child->call_draw(pcontext);
+            pchild->call_draw(pcontext);
 
             //#if !defined(NANOUI_SHOW_WIDGET_BOUNDS)
             //         

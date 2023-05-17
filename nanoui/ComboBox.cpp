@@ -53,10 +53,10 @@ void ComboBox::set_items(const ::array<::string> & items, const ::array<::string
       m_container->remove_child_at(m_container->child_count() - 1);
 
    if (m_scroll == nullptr && items.size() > 8) {
-      m_scroll = memory_new VScrollPanel(m_popup);
+      m_scroll = memory_new VScrollPanel(m_ppopup);
       m_scroll->set_fixed_height(300);
       m_container = memory_new Widget(m_scroll);
-      m_popup->set_layout(memory_new BoxLayout(Orientation::Horizontal, Alignment::Middle));
+      m_ppopup->set_layout(memory_new BoxLayout(Orientation::Horizontal, enum_alignment::Middle));
    }
 
    m_container->set_layout(memory_new GroupLayout(10));

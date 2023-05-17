@@ -78,7 +78,7 @@
 //inline string & to_string(string & str,string_composite & ca)
 //{
 //
-//   ca.get_string(str.get_string_buffer(ca.get_length()));
+//   ca.get_string(str.get_buffer(ca.get_length()));
 //
 //   str.ReleaseBuffer(); // search for 0 termination (if you want a string that accepts nulls, use binary strng (bstring)
 //

@@ -4432,7 +4432,7 @@ namespace draw2d
 
             }
 
-            char * psz = str.get_string_buffer(maximum(0, i));
+            char * psz = str.get_buffer(maximum(0, i));
 
             while (i > 0)
             {
@@ -4463,7 +4463,7 @@ namespace draw2d
 
             psz[i] = L'\0';
 
-            str.release_string_buffer();
+            str.release_buffer();
 
          }
 

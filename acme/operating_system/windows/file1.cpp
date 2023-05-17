@@ -21,11 +21,11 @@ string CLASS_DECL_ACME windows_get_short_file_name(const string & strPath)
 
    wstring wstrShortName;
 
-   auto pwsz = wstrShortName.get_string_buffer(requiredLength);
+   auto pwsz = wstrShortName.get_buffer(requiredLength);
 
    auto requiredLength2 = ::GetShortPathNameW(wstrLongName, pwsz, requiredLength);
 
-   wstrShortName.release_string_buffer(requiredLength2);
+   wstrShortName.release_buffer(requiredLength2);
 
    if (requiredLength2 != requiredLength)
    {
@@ -52,11 +52,11 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 
    wstring wstr;
    
-   auto p = wstr.get_string_buffer(MAX_PATH * 8);
+   auto p = wstr.get_buffer(MAX_PATH * 8);
 
    ::GetModuleFileNameW(hmodule, p, MAX_PATH * 8);
 
-   wstr.release_string_buffer();
+   wstr.release_buffer();
 
    return solve_relative(string(wstr));
 

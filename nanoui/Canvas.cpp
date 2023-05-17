@@ -37,7 +37,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    bool clear)
    : Widget(parent), m_draw_border(true) {
    m_size = Vector2i(250, 250);
-   m_border_color = m_theme->m_border_light;
+   m_border_color = m_theme->m_colorBorderLight;
 
 #if defined(NANOUI_USE_GLES)
    samples = 1;
@@ -208,7 +208,7 @@ void Canvas::draw(::nano2d::context * pcontext) {
 //      pcontext->stroke_color(m_border_color);
 //      ::nano2d::RoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f,
 //         m_size.x() - 1.f, m_size.y() - 1.f,
-//         m_theme->m_window_corner_radius);
+//         m_theme->m_iWindowCorderRadius);
 //      pcontext->stroke();
 //   }
 //

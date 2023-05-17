@@ -49,7 +49,7 @@ _br_find_exe (BrInitError *error)
    wstring path;
    path.alloc(MAX_PATH);
    GetModuleFileNameW(nullptr, path, MAX_PATH);
-   path.release_string_buffer();
+   path.release_buffer();
    return ansi_duplicate(unicode_to_utf8(path));
 #else
    char *path, *path2, *line, *result;

@@ -252,7 +252,7 @@ string apple_app_module_path()
 
    string str;
 
-   char * psz = str.get_string_buffer(1024);
+   char * psz = str.get_buffer(1024);
 
 
    u32 size = 1024;
@@ -261,20 +261,20 @@ string apple_app_module_path()
 
    {
 
-      str.release_string_buffer();
+      str.release_buffer();
 
    }
    else
    {
 
-      psz = str.get_string_buffer(size);
+      psz = str.get_buffer(size);
 
 
       if(_NSGetExecutablePath(psz, &size) == 0)
 
       {
 
-         str.release_string_buffer();
+         str.release_buffer();
 
       }
       else

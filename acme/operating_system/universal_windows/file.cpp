@@ -1826,7 +1826,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //   }
 //
-//   char* psz = str.get_string_buffer(dwSize);
+//   char* psz = str.get_buffer(dwSize);
 //
 //   DWORD dwRead;
 //
@@ -1834,7 +1834,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 //
 //   psz[dwSize] = '\0';
 //
-//   str.release_string_buffer();
+//   str.release_buffer();
 //
 //   ::hfile_close(hfile);
 //

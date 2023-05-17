@@ -78,7 +78,6 @@ public:
    //   bool m_stencil_buffer;
    //   bool m_float_buffer;
       bool m_redraw;
-      bool m_bNeedLayout;
       ::function<void(Vector2i)> m_resize_callback;
    //#if defined(NANOUI_USE_METAL)
    //   void * m_metal_texture = nullptr;

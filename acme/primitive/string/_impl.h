@@ -586,7 +586,7 @@ template < typename ITERATOR_TYPE >
 
    this->m_begin++;
 
-   auto p = str.get_string_buffer();
+   auto p = str.get_buffer();
 
    auto pend = p + str.length();
 
@@ -614,7 +614,7 @@ template < typename ITERATOR_TYPE >
 
    }
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    return str;
 

@@ -55,7 +55,7 @@ public:
    string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
-   string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
+   //string_base(enum_get_buffer, strsize len) { get_buffer(len); }
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
@@ -647,7 +647,7 @@ public:
    }
 
 
-   inline CHARACTER * get_string_buffer()
+   inline CHARACTER * get_buffer()
    {
 
       auto p = this->metadata();
@@ -666,7 +666,7 @@ public:
    }
 
 
-   inline CHARACTER * get_string_buffer(strsize characterCount)
+   inline CHARACTER * get_buffer(strsize characterCount)
    {
 
       auto p = this->metadata();
@@ -693,17 +693,17 @@ public:
    }
 
 
-   inline mutable_string_range < CHARACTER * > get_string_buffer_range(strsize characterCount)
+   inline mutable_string_range < CHARACTER * > get_range_buffer(strsize characterCount)
    {
 
-      auto p = get_string_buffer(characterCount);
+      auto p = get_buffer(characterCount);
 
       return { p, p + characterCount };
 
    }
 
 
-   inline void release_string_buffer_range(const mutable_string_range < CHARACTER * > & range)
+   inline void release_range_buffer(const mutable_string_range < CHARACTER * > & range)
    {
       
       if(range.m_end > (this->m_begin + this->storage_character_count()))
@@ -715,7 +715,7 @@ public:
       
       ::memmove((CHARACTER *) this->m_begin, range.m_begin, range.size());
          
-      release_string_buffer(range.size());
+      release_buffer(range.size());
 
    }
 
@@ -765,7 +765,8 @@ public:
 
    inline static string_base empty_string() { return string_base(); }
 
-   string_base & release_string_buffer(strsize nNewLength = -1);
+   string_base & release_buffer(strsize nNewLength = -1);
+
    inline this_iterator & truncate(this_iterator p);
    template < primitive_integral INTEGRAL >
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
@@ -1229,7 +1230,7 @@ public:
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
    CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-   release_string_buffer( nLength );
+   release_buffer( nLength );
 
    return( true );
    }*/
@@ -1246,7 +1247,7 @@ public:
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
    CHARACTER * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
-   release_string_buffer( nLength );
+   release_buffer( nLength );
 
    return( true );
    }*/
@@ -1460,13 +1461,13 @@ public:
 //
 //   auto len = scopedstrA.size() + scopedstrB.size();
 //
-//   auto p = str.get_string_buffer(len);
+//   auto p = str.get_buffer(len);
 //
 //   memcpy(p, scopedstrA, scopedstrA.size());
 //
 //   memcpy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
 //
-//   str.release_string_buffer(len);
+//   str.release_buffer(len);
 //
 //   return ::transfer(str);
 //

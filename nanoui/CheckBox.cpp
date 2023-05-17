@@ -124,7 +124,7 @@ namespace nanoui
       pcontext->font_size(font_size());
       pcontext->font_face("sans");
       pcontext->fill_color(
-         m_enabled ? m_theme->m_text_color : m_theme->m_disabled_text_color);
+         m_enabled ? m_theme->m_colorText : m_theme->m_colorDisableText);
       pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
       pcontext->text(m_pos.x() + 1.6f * font_size(), m_pos.y() + m_size.y() * 0.5f,
          m_caption);
@@ -143,11 +143,11 @@ namespace nanoui
       if (m_checked) {
          pcontext->font_size(icon_scale() * m_size.y());
          pcontext->font_face("icons");
-         pcontext->fill_color(m_enabled ? m_theme->m_icon_color
-            : m_theme->m_disabled_text_color);
+         pcontext->fill_color(m_enabled ? m_theme->m_colorIcon
+            : m_theme->m_colorDisableText);
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
          pcontext->text(m_pos.x() + m_size.y() * 0.5f + 1,
-            m_pos.y() + m_size.y() * 0.5f, get_utf8_character(m_theme->m_check_box_icon).data());
+            m_pos.y() + m_size.y() * 0.5f, get_utf8_character(m_theme->m_efontawesomeCheckBox).data());
       }
    }
 

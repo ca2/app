@@ -107,7 +107,7 @@ void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTex
    for (const ::scoped_string & label : m_tab_captions) {
       int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), unused);
       m_tab_offsets.push_back(width);
-      width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
+      width += label_width + 2 * m_theme->m_iHorizontalPaddingTabButton;
       if (m_tabs_closeable)
          width += m_close_width;
    }
@@ -115,7 +115,7 @@ void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTex
 
    pcontext->font_face("icons");
    m_close_width = (int)
-      pcontext->text_bounds(0.f, 0.f, get_utf8_character(FA_TIMES_CIRCLE).data(), unused);
+      pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), unused);
 }
 
 Vector2i TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
@@ -128,13 +128,13 @@ Vector2i TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecal
    for (const ::scoped_string & label : m_tab_captions) {
       float unused[4];
       int label_width = (int)pcontext->text_bounds(0, 0, label.c_str(), unused);
-      width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
+      width += label_width + 2 * m_theme->m_iHorizontalPaddingTabButton;
       if (m_tabs_closeable)
          width += m_close_width;
    }
 
    return Vector2i(width + 1,
-      (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding + 2.f * m_padding));
+      (int)(font_size() + 2.f * m_theme->m_iVerticalPaddingTabButton + 2.f * m_padding));
 }
 
 void TabWidgetBase::draw(::nano2d::context * pcontext) {
@@ -151,13 +151,13 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
    if (m_tab_offsets.size() != m_tab_captions.size() + 1)
       throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
 
-   int tab_height = (int)(font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
+   int tab_height = (int)(font_size() + 2.f * m_theme->m_iVerticalPaddingTabButton);
 
    if (m_background_color.fa() != 0.f) {
       pcontext->fill_color(m_background_color);
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
-         m_size.y() - tab_height - 2.f, (float)m_theme->m_button_corner_radius);
+         m_size.y() - tab_height - 2.f, (float)m_theme->m_iButtonCornerRadius);
       pcontext->fill();
    }
 
@@ -165,7 +165,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
 
    ::nano2d::paint tab_background_color = pcontext->linear_gradient(
       (float)m_pos.x(), m_pos.y() + 1.f, (float)m_pos.x(), (float)m_pos.y() + tab_height,
-      m_theme->m_button_gradient_top_pushed, m_theme->m_button_gradient_bot_pushed);
+      m_theme->m_colorButtonGradientTopPushed, m_theme->m_colorButtonGradientBottomPushed);
 
    pcontext->save();
    pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
@@ -179,42 +179,42 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
       if (i == (::index)m_active_tab) {
          pcontext->begin_path();
          pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-         pcontext->stroke_color(m_theme->m_border_light);
+            tab_height + 4.f, (float)m_theme->m_iButtonCornerRadius);
+         pcontext->stroke_color(m_theme->m_colorBorderLight);
          pcontext->stroke();
 
          pcontext->begin_path();
          pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 0.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
-         pcontext->stroke_color(m_theme->m_border_dark);
+            tab_height + 4.f, (float)m_theme->m_iButtonCornerRadius);
+         pcontext->stroke_color(m_theme->m_colorBorderDark);
          pcontext->stroke();
       }
       else {
          pcontext->begin_path();
          pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
-            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
+            tab_height + 4.f, (float)m_theme->m_iButtonCornerRadius);
 
          pcontext->fill_paint(tab_background_color);
          pcontext->fill();
 
-         pcontext->stroke_color(m_theme->m_border_dark);
+         pcontext->stroke_color(m_theme->m_colorBorderDark);
          pcontext->stroke();
       }
-      x_pos += m_theme->m_tab_button_horizontal_padding;
-      y_pos += m_theme->m_tab_button_vertical_padding + 1;
-      pcontext->fill_color(m_theme->m_text_color);
+      x_pos += m_theme->m_iHorizontalPaddingTabButton;
+      y_pos += m_theme->m_iVerticalPaddingTabButton + 1;
+      pcontext->fill_color(m_theme->m_colorText);
       pcontext->font_face(m_font.c_str());
 
       pcontext->text((float)x_pos, (float)y_pos, m_tab_captions[i]);
 
       if (m_tabs_closeable) {
          x_pos = m_pos.x() + m_tab_offsets[i + 1] -
-            m_theme->m_tab_button_horizontal_padding - m_close_width + 5;
+            m_theme->m_iHorizontalPaddingTabButton - m_close_width + 5;
          pcontext->font_face("icons");
-         pcontext->fill_color(i == (size_t)m_close_index_pushed ? m_theme->m_text_color_shadow
-            : m_theme->m_text_color);
+         pcontext->fill_color(i == (size_t)m_close_index_pushed ? m_theme->m_colorTextShadow
+            : m_theme->m_colorText);
          bool highlight = m_close_index == (int)i;
-         auto icon = highlight ? FA_TIMES_CIRCLE : FA_TIMES;
+         auto icon = highlight ? e_font_awesome_times_circle : e_font_awesome_times;
          float fs = font_size() * (highlight ? 1.f : .70f),
             offset_x = highlight ? 0.f : (fs * .40f),
             offset_y = highlight ? 0.f : (fs * .21f);
@@ -227,7 +227,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
       int x_pos = m_pos.x() + m_tab_drag_min + m_tab_drag_end - m_tab_drag_start;
       pcontext->begin_path();
       pcontext->rounded_rectangle(x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_tab_drag_max - m_tab_drag_min),
-         tab_height + 4.f, (float)m_theme->m_button_corner_radius);
+         tab_height + 4.f, (float)m_theme->m_iButtonCornerRadius);
       pcontext->fill_color(::color::color(255, 255, 255, 30));
       pcontext->fill();
    }
@@ -243,7 +243,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
       pcontext->move_to((float)(m_pos.x() + x1), m_pos.y() + tab_height + i + .5f);
       pcontext->line_to(m_pos.x() + m_size.x() + .5f, m_pos.y() + tab_height + i + .5f);
       pcontext->stroke_width(1.0f);
-      pcontext->stroke_color((i == 0) ? m_theme->m_border_dark : m_theme->m_border_light);
+      pcontext->stroke_color((i == 0) ? m_theme->m_colorBorderDark : m_theme->m_colorBorderLight);
       pcontext->stroke();
 
       /* Bottom + side borders */
@@ -251,14 +251,14 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
       pcontext->intersect_scissor((float)m_pos.x(), (float)(m_pos.y() + tab_height), (float)m_size.x(), (float)m_size.y());
       pcontext->begin_path();
       pcontext->rounded_rectangle(m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1.f,
-         m_size.y() - 2.f, (float)m_theme->m_button_corner_radius);
+         m_size.y() - 2.f, (float)m_theme->m_iButtonCornerRadius);
       pcontext->stroke();
       pcontext->restore();
    }
 }
 
 std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test_vertical) const {
-   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int)font_size() + 2 * m_theme->m_iVerticalPaddingTabButton;
    if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       return { -1, false };
 
@@ -268,10 +268,10 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test
          int r = m_tab_offsets[i + 1] - x;
          return {
              (int)i, m_tabs_closeable &&
-                r < m_theme->m_tab_button_horizontal_padding + m_close_width - 4 &&
-                r > m_theme->m_tab_button_horizontal_padding - 4 &&
-                p.y() - m_pos.y() > m_theme->m_tab_button_vertical_padding &&
-                p.y() - m_pos.y() <= tab_height - m_theme->m_tab_button_vertical_padding
+                r < m_theme->m_iHorizontalPaddingTabButton + m_close_width - 4 &&
+                r > m_theme->m_iHorizontalPaddingTabButton - 4 &&
+                p.y() - m_pos.y() > m_theme->m_iVerticalPaddingTabButton &&
+                p.y() - m_pos.y() <= tab_height - m_theme->m_iVerticalPaddingTabButton
          };
       }
    }
@@ -308,7 +308,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
          if (!b)
             continue;
          b->set_icon_position(Button::IconPosition::Right);
-         b->set_flags(Button::MenuButton);
+         b->set_flags(Button::ContextMenuButton);
       }
       m_popup->m_callbackLayout = [this](::nano2d::context * pcontext)
       {
@@ -449,7 +449,7 @@ TabWidget::TabWidget(Widget* parent, const ::scoped_string & font)
 void TabWidget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
    TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
 
-   int tab_height = (int)font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int)font_size() + 2 * m_theme->m_iVerticalPaddingTabButton;
 
    for (Widget* child : m_children) {
       child->set_position(Vector2i(m_padding, m_padding + tab_height + 1));

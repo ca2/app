@@ -40,6 +40,7 @@ class CLASS_DECL_NANOUI Widget :
 public:
 
 
+   bool m_bNeedLayout;
       Widget * m_parent;
       ref<Theme> m_theme;
       ref<Layout> m_layout;
@@ -70,11 +71,11 @@ public:
        * \brief The amount of extra icon scaling used in addition the the theme's
        *        default icon font scale.  Default value is ``1.0``, which implies
        *        that \ref nanoui::Widget::icon_scale simply returns the value
-       *        of \ref nanoui::Theme::m_icon_scale.
+       *        of \ref nanoui::Theme::m_fIconScale.
        *
        * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
        * need to adjust the Theme's default icon scaling
-       * (\ref nanoui::Theme::m_icon_scale) to properly display icons within their
+       * (\ref nanoui::Theme::m_fIconScale) to properly display icons within their
        * bounds (upscale, or downscale).
        *
        * \rst
@@ -366,14 +367,14 @@ public:
    /**
     * Convenience definition for subclasses to get the full icon scale for this
     * class of Widget.  It simple returns the value
-    * ``m_theme->m_icon_scale * this->m_icon_extra_scale``.
+    * ``m_theme->m_fIconScale * this->m_icon_extra_scale``.
     *
     * \remark
-    *     See also: \ref nanoui::Theme::m_icon_scale and
+    *     See also: \ref nanoui::Theme::m_fIconScale and
     *     \ref nanoui::Widget::m_icon_extra_scale.  This tiered scaling
     *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
     */
-   float icon_scale() const { return m_theme->m_icon_scale * m_icon_extra_scale; }
+   float icon_scale() const { return m_theme->m_fIconScale * m_icon_extra_scale; }
 
 
 };

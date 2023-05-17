@@ -581,7 +581,7 @@ namespace url
 
       string str;
 
-      char * psz = str.get_string_buffer(iLenUrl + iLenKey + strValue.length() + 2);
+      char * psz = str.get_buffer(iLenUrl + iLenKey + strValue.length() + 2);
 
       if(pszQuery == nullptr)
       {
@@ -590,7 +590,7 @@ namespace url
          strcpy(&psz[iLenUrl + 1], strKey);
          psz[iLenUrl + 1 + iLenKey] = '=';
          strcpy(&psz[iLenUrl + 1 + iLenKey + 1], strValue);
-         str.release_string_buffer(iLenUrl + iLenKey + strValue.length() + 2);
+         str.release_buffer(iLenUrl + iLenKey + strValue.length() + 2);
       }
       else
       {
@@ -671,7 +671,7 @@ namespace url
             bInserted = true;
          }
 
-         str.release_string_buffer(iFinalLen);
+         str.release_buffer(iFinalLen);
 
       }
 
@@ -2095,7 +2095,7 @@ namespace url
 
       string strDecode;
 
-      char* pszStart = strDecode.get_string_buffer(sizeLen * 4);
+      char* pszStart = strDecode.get_buffer(sizeLen * 4);
 
       auto pszDecode = pszStart;
 
@@ -2184,7 +2184,7 @@ namespace url
 
       }
 
-      strDecode.release_string_buffer(sizeLen);
+      strDecode.release_buffer(sizeLen);
 
       return ::transfer(strDecode);
 
@@ -2307,7 +2307,7 @@ namespace url
 
       string strEncoded;
 
-      auto pszEncodedStart = strEncoded.get_string_buffer(block.size() * 5);
+      auto pszEncodedStart = strEncoded.get_buffer(block.size() * 5);
 
       auto pszEncoded = pszEncodedStart;
 
@@ -2350,7 +2350,7 @@ namespace url
 
       }
 
-      strEncoded.release_string_buffer(pszEncoded - pszEncodedStart);
+      strEncoded.release_buffer(pszEncoded - pszEncodedStart);
 
       return ::transfer(strEncoded);
 
@@ -2689,7 +2689,7 @@ void openURL(const string& url_str)
 //
 //   string strDecode;
 //
-//   char* psz = strDecode.get_string_buffer(iLen * 4);
+//   char* psz = strDecode.get_buffer(iLen * 4);
 //
 //   strsize i = 0;
 //
@@ -2742,7 +2742,7 @@ void openURL(const string& url_str)
 //      }
 //   }
 //
-//   strDecode.release_string_buffer(iLen);
+//   strDecode.release_buffer(iLen);
 //
 //   return strDecode;
 //

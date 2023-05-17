@@ -98,8 +98,8 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)
    {
       f->read({ e_as_block, &tblDir });
-      strncpy(csTemp.get_string_buffer(5), tblDir.szTag, 4);
-      csTemp.release_string_buffer(4);
+      strncpy(csTemp.get_buffer(5), tblDir.szTag, 4);
+      csTemp.release_buffer(4);
       if (csTemp.case_insensitive_order("name") == 0)
       {
          bFound = true;
@@ -133,10 +133,10 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
             f->set_position(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset);
 
             //bug fix: see the post by SimonSays to read more about it
-            char* lpszNameBuf = csTemp.get_string_buffer(ttRecord.uStringLength + 1);
+            char* lpszNameBuf = csTemp.get_buffer(ttRecord.uStringLength + 1);
             memory_set(lpszNameBuf, 0, ttRecord.uStringLength + 1);
             f->read({ lpszNameBuf, ttRecord.uStringLength });
-            csTemp.release_string_buffer();
+            csTemp.release_buffer();
             if (csTemp.length() > 0)
             {
 

@@ -56,9 +56,9 @@ namespace acme
 
       ASSERT(nLen >= 0);
 
-      ::acme::memcpy_s(rString.get_string_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+      ::acme::memcpy_s(rString.get_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
 
-      rString.release_string_buffer();   // Need to call ReleaseBuffer after method get_string_buffer
+      rString.release_buffer();   // Need to call ReleaseBuffer after method get_buffer
 
       return true;
 

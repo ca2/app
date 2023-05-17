@@ -73,7 +73,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
    string str;
 
-   char * psz = str.get_string_buffer(iLen + 8);
+   char * psz = str.get_buffer(iLen + 8);
 
    strcpy(psz, pszText);
 
@@ -103,7 +103,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
    }
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    os_trace(elevel, pszTag, str);
 

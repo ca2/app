@@ -658,7 +658,7 @@ namespace universal_windows
       if (hWnd != nullptr)
       {
          int nLen = ::GetWindowTextLength(hWnd);
-         ::GetWindowText(hWnd, rString.get_string_buffer(nLen), nLen+1);
+         ::GetWindowText(hWnd, rString.get_buffer(nLen), nLen+1);
          rString.ReleaseBuffer();
       }
 

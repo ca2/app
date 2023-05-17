@@ -38,7 +38,7 @@ namespace nanoui
          RadioButton = (1 << 1), ///< A radio button.
          ToggleButton = (1 << 2), ///< A toggle button.
          PopupButton = (1 << 3), ///< A popup button.
-         MenuButton = (1 << 4)  ///< A menu button.
+         ContextMenuButton = (1 << 4)  ///< A context menu button.
       };
 
       /// The available icon positions.
@@ -88,7 +88,7 @@ namespace nanoui
       color::color m_background_color;
 
       /// The color::color of the caption text of this Button.
-      color::color m_text_color;
+      color::color m_colorText;
 
       /// The callback issued for all types of buttons.
       ::function<void()> m_callback;
@@ -127,9 +127,9 @@ namespace nanoui
       void set_background_color(const color::color & background_color) { m_background_color = background_color; }
 
       /// Returns the text color::color of the caption of this Button.
-      const color::color & text_color() const { return m_text_color; }
+      const color::color & text_color() const { return m_colorText; }
       /// Sets the text color::color of the caption of this Button.
-      void set_text_color(const color::color & text_color) { m_text_color = text_color; }
+      void set_text_color(const color::color & text_color) { m_colorText = text_color; }
    
    
       /// Returns the icon of this Button.  See \ref nanoui::Button::m_icon.

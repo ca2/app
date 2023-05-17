@@ -174,7 +174,7 @@
 //      //rString = &::windows_definition::WchNil;    // is_empty string without deallocating
 //      rString.empty();
 //      const i32 nMaxSize = 128;
-//      char * lpsz = rString.get_string_buffer(nMaxSize);
+//      char * lpsz = rString.get_buffer(nMaxSize);
 //      char * lpszResult;
 //      i32 nLen = 0;
 //      for (;;)
@@ -182,7 +182,7 @@
 //
 //         lpszResult = fgets(lpsz, nMaxSize+1, m_pStream);
 //
-//         rString.release_string_buffer();
+//         rString.release_buffer();
 //
 //         // handle error/eof case
 //         if (lpszResult == nullptr && !feof(m_pStream))
@@ -199,14 +199,14 @@
 //            break;
 //
 //         nLen = rString.get_length();
-//         lpsz = rString.get_string_buffer(nMaxSize + nLen) + nLen;
+//         lpsz = rString.get_buffer(nMaxSize + nLen) + nLen;
 //      }
 //
 //      // remov '\n' from end of string if present
-//      lpsz = rString.get_string_buffer(0);
+//      lpsz = rString.get_buffer(0);
 //      nLen = rString.get_length();
 //      if (nLen != 0 && lpsz[nLen-1] == '\n')
-//         rString.get_string_buffer(nLen-1);
+//         rString.get_buffer(nLen-1);
 //
 //      return lpszResult != nullptr;
 //   }

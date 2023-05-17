@@ -1378,7 +1378,7 @@ namespace user
 
       filesize iSize = m_ptree->m_peditfile->get_length();
 
-      char * psz = str.get_string_buffer((strsize)(iSize + 1));
+      char * psz = str.get_buffer((strsize)(iSize + 1));
 
       m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
@@ -1386,7 +1386,7 @@ namespace user
 
       psz[(memsize)iSize] = '\0';
 
-      str.release_string_buffer();
+      str.release_buffer();
 
       for (auto & m : m_base64map)
       {
@@ -1471,7 +1471,7 @@ namespace user
 
       filesize iSize = iEnd - iBeg;
 
-      char * psz = str.get_string_buffer((strsize)(iSize + 1));
+      char * psz = str.get_buffer((strsize)(iSize + 1));
 
       m_ptree->m_peditfile->seek((filesize)iBeg, ::e_seek_set);
 
@@ -1479,7 +1479,7 @@ namespace user
 
       psz[(memsize)iSize] = '\0';
 
-      str.release_string_buffer();
+      str.release_buffer();
 
    }
 
@@ -8200,13 +8200,13 @@ namespace user
 
          strsize iLineLen = m_iaLineLength[iLine] - (m_iaLineFlags[iLine] & e_line_end_length);
 
-         char * psz = strLine.get_string_buffer(iLineLen);
+         char * psz = strLine.get_buffer(iLineLen);
 
          m_ptree->m_peditfile->seek(m_iaLineStart[iLine], ::e_seek_set);
 
          m_ptree->m_peditfile->read(psz, iLineLen);
 
-         strLine.release_string_buffer(iLineLen);
+         strLine.release_buffer(iLineLen);
 
       }
 

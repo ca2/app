@@ -560,7 +560,7 @@ void __node_aura_pos_term()
 //
 //   wstring wstr;
 //
-//   ExpandEnvironmentStringsW(wstring(str), wstr.get_string_buffer(8192), (::u32)wstr.get_length());
+//   ExpandEnvironmentStringsW(wstring(str), wstr.get_buffer(8192), (::u32)wstr.get_length());
 //
 //   return wstr;
 //

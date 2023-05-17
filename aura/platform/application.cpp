@@ -5871,7 +5871,7 @@ namespace aura
    void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::count count = memory.get_size();
-   char * psz = strHex.get_string_buffer(count * 2);
+   char * psz = strHex.get_buffer(count * 2);
 
    for(index i = 0; i < count; i++)
    {

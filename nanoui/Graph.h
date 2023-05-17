@@ -46,8 +46,8 @@ namespace nanoui
       const ::color::color & fill_color() const { return m_fill_color; }
       void set_fill_color(const ::color::color & fill_color) { m_fill_color = fill_color; }
 
-      const ::color::color & text_color() const { return m_text_color; }
-      void set_text_color(const ::color::color & text_color) { m_text_color = text_color; }
+      const ::color::color & text_color() const { return m_colorText; }
+      void set_text_color(const ::color::color & text_color) { m_colorText = text_color; }
 
       const ::array<float> & values() const { return m_values; }
       ::array<float> & values() { return m_values; }
@@ -57,7 +57,7 @@ namespace nanoui
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       ::string m_caption, m_header, m_footer;
-      ::color::color m_background_color, m_fill_color, m_stroke_color, m_text_color;
+      ::color::color m_background_color, m_fill_color, m_stroke_color, m_colorText;
       ::array<float> m_values;
 };
 

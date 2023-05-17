@@ -239,11 +239,11 @@ string wd32_to_ansi_str(const ::wd32_character * pwszUni32, strsize iUni32Len)
 
    string str;
 
-   char * psz = str.get_string_buffer(iUtf8Len);
+   char * psz = str.get_buffer(iUtf8Len);
 
    wd32_to_ansi(psz, pwszUni32, iUni32Len);
 
-   str.release_string_buffer(iUtf8Len);
+   str.release_buffer(iUtf8Len);
 
    return str;
 

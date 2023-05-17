@@ -16,6 +16,9 @@
 
 #pragma once
 
+
+enum enum_font_awesome;
+
 #include "vector.h"
 #include "Object.h"
 //#include "nano2d/color.h"
@@ -47,156 +50,156 @@ namespace nanoui
        * NanoGUI widgets.  The default value is ``0.77f``, setting to e.g. higher
        * than ``1.0f`` is generally discouraged.
        */
-      float m_icon_scale;
+      float m_fIconScale;
 
       /* Spacing-related parameters */
       /// The font size for all widgets other than buttons and textboxes (default: `` 16``).
-      int m_standard_font_size;
+      int m_iStandardFontSize;
       /// The font size for buttons (default: ``20``).
-      int m_button_font_size;
+      int m_iButtonFontSize;
       /// The font size for text boxes (default: ``20``).
-      int m_text_box_font_size;
+      int m_iTextBoxFontSize;
       /// Rounding radius for Window widget corners (default: ``2``).
-      int m_window_corner_radius;
+      int m_iWindowCorderRadius;
       /// Default size of Window widget titles (default: ``30``).
-      int m_window_header_height;
+      int m_iWindowHeaderHeight;
       /// Size of drop shadow rendered behind the Window widgets (default: ``10``).
-      int m_window_drop_shadow_size;
+      int m_iWindowDropShadowSize;
       /// Rounding radius for Button (and derived types) widgets (default: ``2``).
-      int m_button_corner_radius;
+      int m_iButtonCornerRadius;
       /// The border width for Tab_header widgets (default: ``0.75f``).
-      float m_tab_border_width;
+      float m_fTabBorderWidth;
       /// The inner margin on a Tab_header widget (default: ``5``).
-      int m_tab_inner_margin;
+      int m_iTabInnerMargin;
       /// The minimum size for buttons on a Tab_header widget (default: ``20``).
-      int m_tab_min_button_width;
+      int m_iTabMinimumButtonWidth;
       /// The maximum size for buttons on a Tab_header widget (default: ``160``).
-      int m_tab_max_button_width;
+      int m_iTabMaximumButtonWidth;
       /// Used to help specify what lies "in bound" for a Tab_header widget (default: ``20``).
-      int m_tab_control_width;
+      int m_iTabControlWidth;
       /// The amount of horizontal padding for a Tab_header widget (default: ``10``).
-      int m_tab_button_horizontal_padding;
+      int m_iHorizontalPaddingTabButton;
       /// The amount of vertical padding for a Tab_header widget (default: ``2``).
-      int m_tab_button_vertical_padding;
+      int m_iVerticalPaddingTabButton;
 
       /* Generic colors */
       /**
        * The color::color of the drop shadow drawn behind widgets
        * (default: intensity=``0``, alpha=``128``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_drop_shadow;
+      color::color m_colorDropShadow;
       /**
        * The transparency color::color
        * (default: intensity=``0``, alpha=``0``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_transparent;
+      color::color m_colorTransparent;
       /**
        * The dark border color::color
        * (default: intensity=``29``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_border_dark;
+      color::color m_colorBorderDark;
       /**
        * The light border color::color
        * (default: intensity=``92``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_border_light;
+      color::color m_colorBorderLight;
       /**
        * The medium border color::color
        * (default: intensity=``35``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_border_medium;
+      color::color m_colorBorderMedium;
       /**
        * The text color::color
        * (default: intensity=``255``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_text_color;
+      color::color m_colorText;
       /**
        * The disable dtext color::color
        * (default: intensity=``255``, alpha=``80``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_disabled_text_color;
+      color::color m_colorDisableText;
       /**
        * The text shadow color::color
        * (default: intensity=``0``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_text_color_shadow;
-      /// The icon color::color (default: \ref nanoui::Theme::m_text_color).
-      color::color m_icon_color;
+      color::color m_colorTextShadow;
+      /// The icon color::color (default: \ref nanoui::Theme::m_colorText).
+      color::color m_colorIcon;
 
       /* Button colors */
       /**
        * The top gradient color::color for buttons in focus
        * (default: intensity=``64``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_top_focused;
+      color::color m_colorButtonGradientTopFocused;
       /**
        * The bottom gradient color::color for buttons in focus
        * (default: intensity=``48``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_bot_focused;
+      color::color m_colorButtonGradientBottomFocused;
       /**
        * The top gradient color::color for buttons not in focus
        * (default: intensity=``74``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_top_unfocused;
+      color::color m_colorButtonGradientUnfocused;
       /**
        * The bottom gradient color::color for buttons not in focus
        * (default: intensity=``58``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_bot_unfocused;
+      color::color m_colorButtonGradientBottomUnfocused;
       /**
        * The top gradient color::color for buttons currently pushed
        * (default: intensity=``41``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_top_pushed;
+      color::color m_colorButtonGradientTopPushed;
       /**
        * The bottom gradient color::color for buttons currently pushed
        * (default: intensity=``29``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_button_gradient_bot_pushed;
+      color::color m_colorButtonGradientBottomPushed;
 
       /* Window colors */
       /**
        * The fill color::color for a Window that is not in focus
        * (default: intensity=``43``, alpha=``230``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_window_fill_unfocused;
+      color::color m_colorWindowFillUnfocused;
       /**
        * The fill color::color for a Window that is in focus
        * (default: intensity=``45``, alpha=``230``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_window_fill_focused;
+      color::color m_colorWindowFillFocused;
       /**
        * The title color::color for a Window that is not in focus
        * (default: intensity=``220``, alpha=``160``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_window_title_unfocused;
+      color::color m_colorWindowTitleUnfocused;
       /**
        * The title color::color for a Window that is in focus
        * (default: intensity=``255``, alpha=``190``; see \ref nanoui::color::color::color::color(int,int)).
        */
-      color::color m_window_title_focused;
+      color::color m_colorWindowTitleFocused;
 
       /**
        * The top gradient color::color for Window headings
-       * (default: \ref nanoui::Theme::m_button_gradient_top_unfocused).
+       * (default: \ref nanoui::Theme::m_colorButtonGradientUnfocused).
        */
-      color::color m_window_header_gradient_top;
+      color::color m_colorWindowHeaderGradientTop;
       /**
        * The bottom gradient color::color for Window headings
-       * (default: \ref nanoui::Theme::m_button_gradient_bot_unfocused).
+       * (default: \ref nanoui::Theme::m_colorButtonGradientBottomUnfocused).
        */
-      color::color m_window_header_gradient_bot;
-      /// The Window header top separation color::color (default: \ref nanoui::Theme::m_border_light).
-      color::color m_window_header_sep_top;
-      /// The Window header bottom separation color::color (default: \ref nanoui::Theme::m_border_dark).
-      color::color m_window_header_sep_bot;
+      color::color m_colorWindowHeaderGradientBottom;
+      /// The Window header top separation color::color (default: \ref nanoui::Theme::m_colorBorderLight).
+      color::color m_colorWindowHeaderSeparationTop;
+      /// The Window header bottom separation color::color (default: \ref nanoui::Theme::m_colorBorderDark).
+      color::color m_colorWindowHeaderSeparationBottom;
 
       /**
        * The popup window color::color
        * (default: intensity=``50``, alpha=``255``; see \ref nanoui::color::color::color::color(int,int))).
        */
-      color::color m_window_popup;
+      color::color m_colorWindowPopup;
       /**
        * The transparent popup window color::color
        * (default: intensity=``50``, alpha=``0``; see \ref nanoui::color::color::color::color(int,int))).
@@ -204,25 +207,25 @@ namespace nanoui
       color::color m_window_popup_transparent;
 
       /// Icon to use for check box widgets (default: ``FA_CHECK``).
-      int m_check_box_icon;
+      enum_font_awesome m_efontawesomeCheckBox;
       /// Icon to use for informational message dialog widgets (default: ``FA_INFO_CIRCLE``).
-      int m_message_information_icon;
+      enum_font_awesome m_efontawesomeMessageInformation;
       /// Icon to use for interrogative message dialog widgets (default: ``FA_QUESTION_CIRCLE``).
-      int m_message_question_icon;
+      enum_font_awesome m_efontawesomeMessageQuestion;
       /// Icon to use for warning message dialog widgets (default: ``FA_EXCLAMATION_TRINAGLE``).
-      int m_message_warning_icon;
+      enum_font_awesome m_efontawesomeMessageWarning;
       /// Icon to use on message dialog alt button (default: ``FA_CIRCLE_WITH_CROSS``).
-      int m_message_alt_button_icon;
+      enum_font_awesome m_efontawesomeMessageAltButton;
       /// Icon to use on message_dialog primary button (default: ``FA_CHECK``).
-      int m_message_primary_button_icon;
+      enum_font_awesome m_efontawesomeMessagePrimaryButton;
       /// Icon to use for Popup_button widgets opening to the right (default: ``FA_CHEVRON_RIGHT``).
-      int m_popup_chevron_right_icon;
+      enum_font_awesome m_efontawesomePopupChevronRight;
       /// Icon to use for Popup_button widgets opening to the left (default: ``FA_CHEVRON_LEFT``).
-      int m_popup_chevron_left_icon;
+      enum_font_awesome m_efontawesomePopupChevronLeft;
       /// Icon to use when a text box has an up toggle (e.g. IntBox) (default: ``FA_CHEVRON_UP``).
-      int m_text_box_up_icon;
+      enum_font_awesome m_efontawesomeTextBoxUp;
       /// Icon to use when a text box has a down toggle (e.g. IntBox) (default: ``FA_CHEVRON_DOWN``).
-      int m_text_box_down_icon;
+      enum_font_awesome m_efontawesomeTextBoxDown;
       
       Theme();
       

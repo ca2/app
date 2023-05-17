@@ -36,7 +36,7 @@ namespace file
 
    }
 
-   auto pszBuffer = str.get_string_buffer(iBufferSize);
+   auto pszBuffer = str.get_buffer(iBufferSize);
 
    if(::is_null(pszBuffer))
    {
@@ -52,7 +52,7 @@ namespace file
 
       zero(pszBuffer, iBufferSize);
 
-      str.release_string_buffer();
+      str.release_buffer();
 
       if(feof(pfile))
       {
@@ -69,7 +69,7 @@ namespace file
 
    }
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    return ::success;
 

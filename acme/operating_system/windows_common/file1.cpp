@@ -467,7 +467,7 @@ namespace windows
 
       auto iLength = wstrPath.length();
 
-      unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
+      unichar * pszRoot = wstrRoot.get_buffer(iLength);
 
       wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
 

@@ -574,11 +574,11 @@ pacmedirectory->is(stra[i]))
 
          unsigned int uiSize = 4096;
 
-         char * psz = str.get_string_buffer(uiSize);
+         char * psz = str.get_buffer(uiSize);
 
          _ui_library_dir(psz, &uiSize);
 
-         str.release_string_buffer(uiSize);
+         str.release_buffer(uiSize);
 
          m_pdirsystem->m_strCa2 = str;
 

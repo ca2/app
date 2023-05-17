@@ -324,7 +324,7 @@ i64 oswindow_id(oswindow w)
 //
 //   wstring wstrModuleFilePath;
 //
-//   auto pwszModuleFilePath = wstrModuleFilePath.get_string_buffer(MAX_PATH * 8);
+//   auto pwszModuleFilePath = wstrModuleFilePath.get_buffer(MAX_PATH * 8);
 //
 //   if (!GetModuleFileNameW(nullptr, pwszModuleFilePath, MAX_PATH * 8))
 //   {
@@ -333,13 +333,13 @@ i64 oswindow_id(oswindow w)
 //
 //   }
 //
-//   wstrModuleFilePath.release_string_buffer();
+//   wstrModuleFilePath.release_buffer();
 //
 //   LPWSTR pszModuleFileName;
 //
 //   wstring wstrModuleFolder;
 //
-//   auto pwszModuleFolder = wstrModuleFolder.get_string_buffer(MAX_PATH * 8);
+//   auto pwszModuleFolder = wstrModuleFolder.get_buffer(MAX_PATH * 8);
 //
 //   if (!GetFullPathNameW(wstrModuleFilePath, MAX_PATH * 8, pwszModuleFolder, &pszModuleFileName))
 //   {
@@ -348,7 +348,7 @@ i64 oswindow_id(oswindow w)
 //
 //   }
 //
-//   wstrModuleFolder.release_string_buffer();
+//   wstrModuleFolder.release_buffer();
 //
 //   wstrModuleFolder.case_insensitive_ends_eat("\\");
 //   wstrModuleFolder.case_insensitive_ends_eat("/");
@@ -424,7 +424,7 @@ i64 oswindow_id(oswindow w)
 //
 //      wcscpy(wstrModuleFolder, wstrModuleFilePath);
 //
-//      wstrModuleFilePath.release_string_buffer();
+//      wstrModuleFilePath.release_buffer();
 //
 //      return string(wstrModuleFolder);
 //
@@ -438,7 +438,7 @@ i64 oswindow_id(oswindow w)
 //
 //   }
 //
-//   wstrModuleFilePath.release_string_buffer();
+//   wstrModuleFilePath.release_buffer();
 //
 //   LPWSTR pszModuleFileName;
 //
@@ -449,7 +449,7 @@ i64 oswindow_id(oswindow w)
 //
 //   }
 //
-//   wstrModuleFolder.release_string_buffer();
+//   wstrModuleFolder.release_buffer();
 //
 //   if (wstrModuleFolder.has_char())
 //   {
@@ -505,7 +505,7 @@ i64 oswindow_id(oswindow w)
 //
 //   string strModuleFolder;
 //
-//   auto wstrModuleFolder = strModuleFolder.get_string_buffer(MAX_PATH * 8);
+//   auto wstrModuleFolder = strModuleFolder.get_buffer(MAX_PATH * 8);
 //
 //   void * handle = dlopen("libacme.so", RTLD_NOW);
 //

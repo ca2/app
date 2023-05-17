@@ -3134,7 +3134,7 @@ void simple_frame_window::route_command(::message::command* pcommand, bool bRout
 //
 //   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
-//   //strCommand.release_string_buffer();
+//   //strCommand.release_buffer();
 //
 //#else
 //

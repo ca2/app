@@ -5163,11 +5163,11 @@ namespace ios
 
          long iSize = round_window_get_text_length();
 
-         char * psz = strTextPrevious.get_string_buffer(iSize);
+         char * psz = strTextPrevious.get_buffer(iSize);
 
          round_window_get_text(psz, iSize);
 
-         strTextPrevious.release_string_buffer(iSize);
+         strTextPrevious.release_buffer(iSize);
 
       }
 
@@ -5212,11 +5212,11 @@ namespace ios
 //
 //         long iSize = round_window_get_text_length();
 //
-//         char * pszText = strText.get_string_buffer(iSize);
+//         char * pszText = strText.get_buffer(iSize);
 //
 //         round_window_get_text(pszText, iSize);
 //
-//         strText.release_string_buffer(iSize);
+//         strText.release_buffer(iSize);
 //
 //         ptext->_001SetText(strText, ::e_source_user);
 //

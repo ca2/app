@@ -754,7 +754,7 @@ LPITEMIDLIST itemidlist::_full(IShellFolder * psf, LPCITEMIDLIST lpi)
 
    wstring wstr(str);
 
-   auto pwsz = wstr.get_string_buffer();
+   auto pwsz = wstr.get_buffer();
 
    hr = psfDeskTop->ParseDisplayName(nullptr, nullptr, pwsz, &ulEaten, &pifq, &ulAttribs);
 
@@ -986,9 +986,9 @@ HRESULT itemidlist::_parse(LPITEMIDLIST & pidl, const ::string & pcszPath, IShel
 
    ULONG chEaten = 0;
 
-   HRESULT hr = psfFolder->ParseDisplayName(nullptr, nullptr, wstr.get_string_buffer(MAX_PATH *8), &chEaten, &pidl, nullptr);
+   HRESULT hr = psfFolder->ParseDisplayName(nullptr, nullptr, wstr.get_buffer(MAX_PATH *8), &chEaten, &pidl, nullptr);
 
-   wstr.release_string_buffer();
+   wstr.release_buffer();
 
    return hr;
 
@@ -1136,7 +1136,7 @@ string itemidlist::_path(LPCITEMIDLIST pidl)
 
    wstring wstr;
 
-   SHGetPathFromIDListEx(pidl, wstr.get_string_buffer(2048), 2048, 0);
+   SHGetPathFromIDListEx(pidl, wstr.get_buffer(2048), 2048, 0);
 
    return wstr;
 

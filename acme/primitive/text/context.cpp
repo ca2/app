@@ -641,7 +641,7 @@ namespace text
 //
 //      strsize len;
 //
-//      auto strFile = mem.get_string_buffer<::ansi_character>(len);
+//      auto strFile = mem.get_buffer<::ansi_character>(len);
 //
 //      ::tokenizer parse(strFile);
 //

@@ -258,7 +258,7 @@ namespace ios
        {
        dwSize = ::GetModuleFileName(
        hmodule,
-       strPath.get_string_buffer(dwSize + 1024),
+       strPath.get_buffer(dwSize + 1024),
        (dwSize + 1024));
        strPath.ReleaseBuffer();
        }

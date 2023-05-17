@@ -19,7 +19,7 @@ inline string_base < const CHAR_TYPE * > str::repeat(const CHAR_TYPE * psz, strs
    if (len > 0)
    {
 
-      auto p = str.get_string_buffer(len);
+      auto p = str.get_buffer(len);
 
       while (c > 0)
       {
@@ -45,7 +45,7 @@ inline string_base < const CHAR_TYPE * > str::repeat(const CHAR_TYPE * psz, strs
 
       }
 
-      str.release_string_buffer(len);
+      str.release_buffer(len);
 
    }
 

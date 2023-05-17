@@ -84,7 +84,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    string str;
 
-   char * psz = str.get_string_buffer(iLen + 8);
+   char * psz = str.get_buffer(iLen + 8);
 
    strncpy(psz, scopedstrText, scopedstrText.size());
 
@@ -114,7 +114,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const ::scoped_string & sc
 
    }
 
-   str.release_string_buffer();
+   str.release_buffer();
 
    os_trace(elevel, scopedstrTag, str);
 

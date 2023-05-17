@@ -33,7 +33,7 @@ namespace filemanager
 
       //string & str = rstrMessage;
 
-      //char * psz = str.get_string_buffer(1024);
+      //char * psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
@@ -43,7 +43,7 @@ namespace filemanager
 
       //   1024);
 
-      //str.release_string_buffer();
+      //str.release_buffer();
 
 #endif
 
@@ -64,7 +64,7 @@ namespace filemanager
 
       //string & str = rwstrMessage;
 
-      //char * psz = str.get_string_buffer(1024);
+      //char * psz = str.get_buffer(1024);
 
       //m_pcontextmenu->GetCommandString(
       //   nID - 0x1000,
@@ -74,7 +74,7 @@ namespace filemanager
 
       //   1024);
 
-      //str.release_string_buffer();
+      //str.release_buffer();
 
 #endif
 

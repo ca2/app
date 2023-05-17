@@ -55,7 +55,7 @@ namespace file
       path(enum_no_initialize) : string(e_no_initialize) { }
       path(nullptr_t) { }
       //path(enum_for_moving) { }
-      //path(enum_get_buffer, strsize len) { get_string_buffer(len); }
+      //path(enum_get_buffer, strsize len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
       path(const ::ansi_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
       path(const ::wd16_string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);

@@ -20,7 +20,7 @@ namespace nanoui
 {
 
 
-BoxLayout::BoxLayout(Orientation orientation, enum_alignment alignment,
+BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
    int margin, int spacing)
    : m_orientation(orientation), m_ealignment(alignment), m_margin(margin),
    m_spacing(spacing) {
@@ -32,7 +32,7 @@ Vector2i BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget
    int y_offset = 0;
    const Window * window = dynamic_cast<const Window *>(widget);
    if (window && window->title().has_char()) {
-      if (m_orientation == Orientation::Vertical)
+      if (m_orientation == e_orientation_vertical)
          size[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
       else
          y_offset = widget->theme()->m_iWindowHeaderHeight;
@@ -75,7 +75,7 @@ void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bo
 
    const Window * window = dynamic_cast<const Window *>(widget);
    if (window && window->title().has_char()) {
-      if (m_orientation == Orientation::Vertical) {
+      if (m_orientation == e_orientation_vertical) {
          position += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
       }
       else {
@@ -103,16 +103,16 @@ void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bo
       pos[axis1] = position;
 
       switch (m_ealignment) {
-      case enum_alignment::Minimum:
+      case e_alignment_minimum:
          pos[axis2] += m_margin;
          break;
-      case enum_alignment::Middle:
+      case e_alignment_middle:
          pos[axis2] += (container_size[axis2] - target_size[axis2]) / 2;
          break;
-      case enum_alignment::Maximum:
+      case e_alignment_maximum:
          pos[axis2] += container_size[axis2] - target_size[axis2] - m_margin * 2;
          break;
-      case enum_alignment::Fill:
+      case e_alignment_fill:
          pos[axis2] += m_margin;
          target_size[axis2] = fs[axis2] ? fs[axis2] : (container_size[axis2] - m_margin * 2);
          break;
@@ -322,15 +322,15 @@ void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, b
             enum_alignment align = alignment(axis, item);
 
             switch (align) {
-            case enum_alignment::Minimum:
+            case e_alignment_minimum:
                break;
-            case enum_alignment::Middle:
+            case e_alignment_middle:
                item_pos[axis] += (grid[axis][item] - target_size[axis]) / 2;
                break;
-            case enum_alignment::Maximum:
+            case e_alignment_maximum:
                item_pos[axis] += grid[axis][item] - target_size[axis];
                break;
-            case enum_alignment::Fill:
+            case e_alignment_fill:
                target_size[axis] = fs[axis] ? fs[axis] : grid[axis][item];
                break;
             }
@@ -393,15 +393,15 @@ void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget * w
          int target_size = fs ? fs : ps;
 
          switch (anchor.align[axis]) {
-         case enum_alignment::Minimum:
+         case e_alignment_minimum:
             break;
-         case enum_alignment::Middle:
+         case e_alignment_middle:
             item_pos += (cell_size - target_size) / 2;
             break;
-         case enum_alignment::Maximum:
+         case e_alignment_maximum:
             item_pos += cell_size - target_size;
             break;
-         case enum_alignment::Fill:
+         case e_alignment_fill:
             target_size = fs ? fs : cell_size;
             break;
          }

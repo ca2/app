@@ -91,7 +91,7 @@ namespace nanoui
       
          m_button_panel = memory_new Widget(this);
 
-         m_button_panel->set_layout(memory_new BoxLayout(Orientation::Horizontal, enum_alignment::Middle, 0, 4));
+         m_button_panel->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4));
 
       }
 

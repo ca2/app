@@ -107,7 +107,7 @@ namespace nanoui
                if (m_callback)
                {
 
-                  m_callback(m_value);
+                  m_callback(m_strValue);
 
                }
 
@@ -120,7 +120,7 @@ namespace nanoui
                if (m_callback)
                {
 
-                  m_callback(m_value);
+                  m_callback(m_strValue);
 
                }
 
@@ -135,27 +135,27 @@ namespace nanoui
       }
 
 
-      bool mouse_drag_event(const Vector2i& p, const Vector2i& rel, const ::user::e_key& ekeyModifiers) override
+      bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
       {
 
-         if (TextBox::mouse_drag_event(p, rel, ekeyModifiers))
+         if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
          {
 
             return true;
 
          }
 
-         if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_mouse_down_pos.x() != -1)
+         if (m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_pointMouseDown.x() != -1)
          {
 
-            int value_delta = static_cast<int>((p.x() - m_mouse_down_pos.x()) / float(10));
+            int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
 
             set_value(m_mouse_down_value + value_delta * m_value_increment);
 
             if (m_callback)
             {
 
-               m_callback(m_value);
+               m_callback(m_strValue);
 
             }
 
@@ -188,7 +188,7 @@ namespace nanoui
             if (m_callback)
             {
 
-               m_callback(m_value);
+               m_callback(m_strValue);
 
             }
 

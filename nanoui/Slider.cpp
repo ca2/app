@@ -27,13 +27,21 @@ Slider::Slider(Widget * parent)
 
 Vector2i Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
 {
+   
    return Vector2i(70, 16);
+
 }
 
 
-bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */, const ::user::e_key & /* modifiers */) {
-   if (!m_enabled)
+bool Slider::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, bool bDown,const ::user::e_key & /* modifiers */)
+{
+
+   if (!m_enabled || !bDown)
+   {
+
       return false;
+
+   }
 
    const float kr =(m_size.y() * 0.4f), kshadow = 3.f;
    const float start_x = kr + kshadow + m_pos.x() - 1.f;

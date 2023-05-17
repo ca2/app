@@ -50,6 +50,7 @@ namespace acme
    protected:
 
 
+
 #ifdef LINUX
 
       enum_linux_distribution                            m_elinuxdistribution;
@@ -90,6 +91,11 @@ namespace acme
       bool                                                  m_bCallstackInitialized;
       bool                                                  m_bUpdateCallstack;
 
+
+      string                                                m_strTheme;
+      string                                                m_strIconTheme;
+
+
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
 
@@ -113,7 +119,7 @@ namespace acme
       bool                                                  m_bDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
-      int                                                   m_iWeatherDarkness;
+      //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
       ::user::enum_desktop                                  m_edesktop;
@@ -271,9 +277,11 @@ namespace acme
 
       virtual void background_color(const ::color::color & color);
 
-      virtual int get_simple_ui_darkness();
+//      virtual int get_simple_ui_darkness();
 
-      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+//      virtual void set_simple_ui_darkness(int iWeatherDarkness);
+
+      virtual void set_dark_mode(bool bDark);
 
       virtual void fetch_user_color();
 
@@ -288,6 +296,8 @@ namespace acme
       virtual void os_set_user_theme(const ::string & strUserTheme);
 
       virtual void os_process_user_theme(string strTheme);
+
+      virtual void os_process_user_icon_theme(string strIconTheme);
 
       virtual bool set_wallpaper(index iScreen, string strLocalImagePath);
 
@@ -376,7 +386,9 @@ namespace acme
 
       virtual void run_silent(const ::string & strFunct, const ::string & strstrParams);
 
-      virtual bool process_modules(string_array& stra, ::process_identifier processidentifier);
+      virtual ::file::path_array process_identifier_modules_paths(::process_identifier processidentifier);
+
+      virtual ::file::path_array modules_paths();
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
@@ -388,9 +400,9 @@ namespace acme
 
       virtual string process_identifier_command_line(::process_identifier processidentifier);
 
-      virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
+      //virtual bool is_shared_library_busy(::process_identifier processidentifier, const string_array& stra);
 
-      virtual bool is_shared_library_busy(const string_array& stra);
+      //virtual bool is_shared_library_busy(const string_array& stra);
 
       virtual bool process_contains_module(string& strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
 
@@ -732,6 +744,9 @@ namespace acme
 
       virtual ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr);
 
+      virtual ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier);
+
+      virtual ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function);
 
    };
 

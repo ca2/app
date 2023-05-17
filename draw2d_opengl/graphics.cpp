@@ -18,7 +18,7 @@
 #define GLAD_GLAPI_EXPORT
 
 #include "glad_wgl.h"
-#define WGL_CONTEXT_FLAGS_ARB 0X2094
+//#define WGL_CONTEXT_FLAGS_ARB 0X2094
 #define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
 #define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
 
@@ -1611,7 +1611,7 @@ namespace draw2d_opengl
       if (::is_set(ppen))
       {
 
-         glLineWidth(ppen->m_dWidth);
+         glLineWidth((float)(ppen->m_dWidth));
 
       }
 
@@ -3719,7 +3719,7 @@ namespace draw2d_opengl
 
    ::i32 graphics::SelectObject(::draw2d::region* pRgn)
    {
-      double nRetVal = GDI_ERROR;
+      int nRetVal = GDI_ERROR;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = (double)(iptr)::SelectObject(m_hdc, (HGDIOBJ) pRgn->get_os_data());
       //if(m_hdc != nullptr)
@@ -3738,7 +3738,7 @@ namespace draw2d_opengl
 
    ::i32 graphics::SetPolyFillMode(::i32 nPolyFillMode)
    {
-      double nRetVal = 0;
+      int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetPolyFillMode(m_hdc, nPolyFillMode);
       //if(m_hdc != nullptr)
@@ -3750,7 +3750,7 @@ namespace draw2d_opengl
 
    ::i32 graphics::SetROP2(::i32 nDrawMode)
    {
-      double nRetVal = 0;
+      int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetROP2(m_hdc, nDrawMode);
       //if(m_hdc != nullptr)
@@ -3798,7 +3798,7 @@ namespace draw2d_opengl
    ::i32 graphics::SetGraphicsMode(::i32 iMode)
    {
    
-      double nRetVal = 0;
+      int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //{
       //   nRetVal = ::SetGraphicsMode(m_hdc, iMode);
@@ -3854,7 +3854,7 @@ namespace draw2d_opengl
 
    ::i32 graphics::SetMapMode(::i32 nMapMode)
    {
-      double nRetVal = 0;
+      int nRetVal = 0;
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::SetMapMode(m_hdc, nMapMode);
       //if(m_hdc != nullptr)
@@ -4135,7 +4135,7 @@ namespace draw2d_opengl
    i32 graphics::IntersectClipRect(const ::rectangle_i32 & rectangleBounds)
    {
       
-      double nRetVal = 0;
+      int nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::IntersectClipRect(m_hdc,rectangleBounds.left,rectangleBounds.top,rectangleBounds.right,rectangleBounds.bottom);
@@ -4150,7 +4150,7 @@ namespace draw2d_opengl
    i32 graphics::OffsetClipRgn(i32 x, i32 y)
    {
       
-      double nRetVal = 0;
+      int nRetVal = 0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::OffsetClipRgn(m_hdc, x, y);
@@ -4165,7 +4165,7 @@ namespace draw2d_opengl
    i32 graphics::OffsetClipRgn(const ::size_i32 & size)
    {
       
-      double nRetVal =0;
+      int nRetVal =0;
 
       //if(m_hdc != nullptr && m_hdc != m_hdc)
       //   nRetVal = ::OffsetClipRgn(m_hdc, size.cx, size.cy);
@@ -5058,7 +5058,7 @@ namespace draw2d_opengl
    void graphics::draw_line(const point_i32& point1, const point_i32& point2, ::draw2d::pen * ppen)
    {
 
-      ::opengl::line(point1.x, point1.y, point2.x, point2.y, ppen->m_dWidth,
+      ::opengl::line(point1.x, point1.y, point2.x, point2.y, (float)(ppen->m_dWidth),
          ppen->m_color.red/255.f, ppen->m_color.green / 255.f, ppen->m_color.blue / 255.f,
          ppen->m_color.alpha / 255.f, 0.f, 0.f, true);
 
@@ -5087,7 +5087,7 @@ namespace draw2d_opengl
       if (::is_set(m_ppen))
       {
 
-         glLineWidth(m_ppen->m_dWidth);
+         glLineWidth((float)(m_ppen->m_dWidth));
 
       }
 
@@ -5100,8 +5100,8 @@ namespace draw2d_opengl
 
       }
 
-      glVertex2f(m_point.x, m_point.y);
-      glVertex2f(x, y);
+      glVertex2f((float)(m_point.x), (float)(m_point.y));
+      glVertex2f((float)(x), (float)(y));
 
       glEnd();
 
@@ -5137,7 +5137,7 @@ namespace draw2d_opengl
 
       ::pointer<font>pfont = m_pfont;
 
-      int length = 0;
+      float length = 0.f;
 
       for (unsigned int loop = 0; loop < scopedstr.size(); loop++)	// Loop To Find Text Length
       {
@@ -5146,14 +5146,14 @@ namespace draw2d_opengl
 
       }
 
-      glTranslatef(x, y, 0.0f);					// Center Our Text On The Screen
+      glTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
 
       glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
       glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
       glCallLists((GLsizei)scopedstr.size(), GL_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
       glPopAttrib();										// Pops The Display List Bits      }
 
-      glTranslatef(-x, -y, 0.0f);					// Center Our Text On The Screen
+      glTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
 
       //return true;
 

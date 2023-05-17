@@ -107,7 +107,7 @@ namespace user
       else
       {
 
-         WindowDataLoadWindowRect();
+         WindowDataLoadWindowRectangle();
 
       }
 

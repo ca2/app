@@ -13,6 +13,7 @@ namespace graphics
    {
 
       m_iCurrentBuffer = 0;
+      m_bSingleBufferMode = true;
 
    }
 
@@ -67,50 +68,60 @@ namespace graphics
 
       auto sizeWindow = window_size();
 
-      auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
-
-      auto sizeReserved = ::size_i32(1920, 1080);
-
-      if (sizeWindow.cx > sizeImage.cx)
+      if (!m_bDibIsHostingBuffer)
       {
 
-         sizeImage.cx = sizeWindow.cx;
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::size_i32(0, 0);
 
-      }
+         auto sizeReserved = ::size_i32(1920, 1080);
 
-      if (sizeWindow.cy > sizeImage.cy)
-      {
+         if (sizeWindow.cx > sizeImage.cx)
+         {
 
-         sizeImage.cy = sizeWindow.cy;
+            sizeImage.cx = sizeWindow.cx;
 
-      }
+         }
 
-      if (sizeReserved.cx > sizeImage.cx)
-      {
+         if (sizeWindow.cy > sizeImage.cy)
+         {
 
-         sizeImage.cx = sizeReserved.cx;
+            sizeImage.cy = sizeWindow.cy;
 
-      }
+         }
 
-      if (sizeReserved.cy > sizeImage.cy)
-      {
+         if (sizeReserved.cx > sizeImage.cx)
+         {
 
-         sizeImage.cy = sizeReserved.cy;
+            sizeImage.cx = sizeReserved.cx;
 
-      }
+         }
 
-      pimage->create(sizeImage);
+         if (sizeReserved.cy > sizeImage.cy)
+         {
 
-      if (pimage.nok())
-      {
+            sizeImage.cy = sizeReserved.cy;
 
-         return nullptr;
+         }
+
+         pimage->create(sizeImage);
+
+         if (pimage.nok())
+         {
+
+            return nullptr;
+
+         }
 
       }
 
       auto pgraphics = pimage->g();
 
-      pgraphics->resize(sizeWindow);
+      if (!m_bDibIsHostingBuffer)
+      {
+
+         pgraphics->resize(sizeWindow);
+
+      }
 
       return pgraphics;
 
@@ -120,6 +131,13 @@ namespace graphics
    ::image_pointer & double_buffer::get_buffer_image()
    {
 
+      if (m_bSingleBufferMode)
+      {
+
+         return m_imageaBuffer[0];
+
+      }
+
       return m_imageaBuffer[get_buffer_index()];
 
    }
@@ -127,6 +145,13 @@ namespace graphics
 
    ::particle * double_buffer::get_buffer_sync()
    {
+
+      if (m_bSingleBufferMode)
+      {
+
+         return m_mutexa[0];
+
+      }
 
       return m_mutexa[get_buffer_index()];
 
@@ -136,6 +161,13 @@ namespace graphics
    ::image_pointer & double_buffer::get_screen_image()
    {
 
+      if (m_bSingleBufferMode)
+      {
+
+         return m_imageaBuffer[0];
+
+      }
+
       return m_imageaBuffer[get_screen_index()];
 
    }
@@ -143,6 +175,13 @@ namespace graphics
 
    ::particle * double_buffer::get_screen_sync()
    {
+
+      if (m_bSingleBufferMode)
+      {
+
+         return m_mutexa[0];
+
+      }
 
       return m_mutexa[get_screen_index()];
 
@@ -152,7 +191,13 @@ namespace graphics
    ::index double_buffer::get_buffer_index() const
    {
 
-      if (m_iCurrentBuffer == 0)
+      if (m_bSingleBufferMode)
+      {
+
+         return 0;
+
+      }
+      else if (m_iCurrentBuffer == 0)
       {
 
          return 0;
@@ -171,7 +216,13 @@ namespace graphics
    ::index double_buffer::get_screen_index() const
    {
 
-      if (m_iCurrentBuffer == 0)
+      if (m_bSingleBufferMode)
+      {
+
+         return 0;
+
+      }
+      else if (m_iCurrentBuffer == 0)
       {
 
          return 1;

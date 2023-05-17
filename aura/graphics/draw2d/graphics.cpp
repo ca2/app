@@ -54,8 +54,6 @@ namespace draw2d
 
       m_bOutline = false;
 
-      defer_create_synchronization();
-
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
       m_pdrawcontext             = nullptr;
@@ -72,6 +70,18 @@ namespace draw2d
    {
 
    }
+
+
+   void graphics::on_initialize_particle()
+   {
+
+      ::aura::simple_chain < ::aura::draw_context >::on_initialize_particle();
+
+      defer_create_synchronization();
+
+   }
+
+
 
 
    void graphics::prefer_mapped_image_on_mix()
@@ -150,9 +160,9 @@ namespace draw2d
 
       set_text_rendering_hint(::write_text::e_rendering_system_default);
 
-      ::color::color color(0, 0, 0, 0);
+      //::color::color color(0, 0, 0, 0);
 
-      fill_rectangle(get_size(), color);
+      //fill_rectangle(get_size(), color);
 
       //return true;
 
@@ -3157,6 +3167,13 @@ namespace draw2d
       }
 
       //return ::success;
+
+   }
+
+
+   void graphics::set_clipping(::draw2d::region* pregion)
+   {
+
 
    }
 

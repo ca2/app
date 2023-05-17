@@ -683,7 +683,13 @@ string memory_base::as_utf8() const
          && data()[1] == 60)
    {
 
-      utf_to_utf(strResult, (::wd16_character *)&data()[2], (i32)(size() - 2));
+      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
+
+      auto p = strResult.get_string_buffer(s);
+
+      utf_to_utf(p, (::wd16_character *)&data()[2], (i32)(size() - 2));
+
+      strResult.release_string_buffer();
 
    }
    else if (size() >= 2
@@ -699,7 +705,14 @@ string memory_base::as_utf8() const
       //   storage.data()[i + 1] = b;
       //}
 #endif
-      utf_to_utf(strResult, (const ::wd16_character *)&data()[2], (i32)(size() - 2));
+
+      auto s = utf_to_utf_length(strResult, (::wd16_character*)&data()[2], (i32)(size() - 2));
+
+      auto p = strResult.get_string_buffer(s);
+
+      utf_to_utf(p, (const ::wd16_character *)&data()[2], (i32)(size() - 2));
+
+      strResult.release_string_buffer();
 
    }
    else if (size() >= 3

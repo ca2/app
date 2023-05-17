@@ -161,6 +161,8 @@ namespace user
 
       ::size_i32                                m_sizeDrawnBuffer;
 
+      ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+
 
       interaction_impl();
       ~interaction_impl() override;
@@ -177,6 +179,8 @@ namespace user
       virtual ::frequency get_output_per_second();
 
       void user_common_construct();
+
+      void on_initialize_particle() override;
 
       virtual bool __windows_message_bypass(::windowing::window * pwindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult);
 
@@ -787,8 +791,9 @@ namespace user
 
       virtual void on_visual_applied();
 
-      //virtual void set_need_redraw(bool bAscendants = true) override;
-      virtual void post_redraw(bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32& rectangleHostNeedRedraw = {}, bool bAscendants = true) override;
+      virtual bool needs_to_draw(const ::rectangle_i32& rectangleHostNeedsToDraw);
+      void post_redraw(bool bAscendants = true) override;
 
 
       virtual void user_interaction_on_hide() override;

@@ -42,13 +42,13 @@
 
 
 
-typedef uint32_t  dostime_t;
+typedef uint32_t  dos_time_t;
 
-dostime_t   mindostime();
-dostime_t   maxdostime();
-time_t      dos2unixtime(dostime_t dostime);
-dostime_t   dostime(int year, int month, int day, int hour, int minute, int second);
-dostime_t   unix2dostime(time_t unix_time);
+CLASS_DECL_ACME dos_time_t   minimum_dos_time();
+CLASS_DECL_ACME dos_time_t   maximum_dos_time();
+CLASS_DECL_ACME time_t      dos_time_unix_time(dos_time_t dostime);
+CLASS_DECL_ACME dos_time_t   dos_time(int year, int month, int day, int hour, int minute, int second);
+CLASS_DECL_ACME dos_time_t   unix_time_dos_time(time_t unix_time);
 
 
 // Local Variables:

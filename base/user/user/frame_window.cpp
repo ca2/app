@@ -132,14 +132,6 @@ namespace user
    }
 
 
-   ::user::interaction::enum_type frame_window::get_window_type()
-   {
-
-      return type_frame;
-
-   }
-
-
    void frame_window::on_simple_command(::message::simple_command * psimplecommand)
    {
 
@@ -190,7 +182,7 @@ namespace user
    void frame_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::box::install_message_routing(pchannel);
+      ::user::main_window::install_message_routing(pchannel);
 
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &frame_window::on_message_destroy);
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &frame_window::on_message_create);
@@ -2668,7 +2660,7 @@ namespace user
    void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::main_window::handle(ptopic, pcontext);
 
    }
 

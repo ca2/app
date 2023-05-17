@@ -207,18 +207,18 @@ namespace core
       ::pointer<::user::impact_system>get_template(index index) const;
 
 
-      ::pointer<::form_document>  create_form(::particle * pparticle, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       //::pointer<::form_document>  create_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_form(::particle * pparticle, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
       //::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_typed_child_form(::particle * pparticle, const ::type & type, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::form * pform, ::user::form_callback * pformcallback, ::user::element * puserelementParent, const ::payload & payload = ::e_type_empty_argument, const ::payload & payloadArgs = ::e_type_empty_argument);
 
       template < typename FORM >
       ::pointer<::form_document>  create_child_form(::particle * pparticle, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       {
 
-         return create_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
+         return create_typed_child_form(pparticle, __type(FORM), pimpactdata->m_pplaceholder, payload);
 
       }
 
@@ -226,7 +226,7 @@ namespace core
       ::user::document * hold(::pointer<::user::interaction>pinteraction);
 
 
-      virtual void     initialize(::particle * pparticle) override;
+      virtual void initialize(::particle * pparticle) override;
 
 
       virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");

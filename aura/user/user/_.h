@@ -184,6 +184,11 @@ namespace user
 
    class notify_icon;
 
+   CLASS_DECL_AURA ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage);
+
+   CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
+
+
 } // namespace user
 
 

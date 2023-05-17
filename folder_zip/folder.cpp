@@ -2,10 +2,10 @@
 #include "folder.h"
 #include "file.h"
 #include "file_function_definitions.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/operating_system/dos_time.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/primitive/memory.h"
 
@@ -22,6 +22,52 @@
 #endif
 
 
+#ifdef UNIVERSAL_WINDOWS
+#define TICKSPERSEC        10000000
+#define SECSPERDAY         86400
+#define SECS_1601_TO_1970  ((369 * 365 + 89) * (ULONGLONG)SECSPERDAY)
+#define TICKS_1601_TO_1970 (SECS_1601_TO_1970 * TICKSPERSEC)
+void WINAPI RtlSecondsSince1970ToFileTime(DWORD Seconds, LPFILETIME ft) {
+   ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+   ft->dwLowDateTime = (DWORD)secs;
+   ft->dwHighDateTime = (DWORD)(secs >> 32);
+   //TRACEN((printf("RtlSecondsSince1970ToFileTime %lx => %lx %lx\n", (long)Seconds, (long)ft->dwHighDateTime, (long)ft->dwLowDateTime)))
+}
+
+
+BOOL WINAPI DosDateTimeToFileTime(WORD fatdate, WORD fattime, LPFILETIME ft) {
+   struct tm newtm;
+#ifndef HAVE_TIMEGM
+
+   struct tm * gtm;
+   time_t time1, time2;
+#endif
+
+   //TRACEN((printf("DosDateTimeToFileTime\n")))
+   newtm.tm_sec = (fattime & 0x1f) * 2;
+   newtm.tm_min = (fattime >> 5) & 0x3f;
+   newtm.tm_hour = (fattime >> 11);
+   newtm.tm_mday = (fatdate & 0x1f);
+   newtm.tm_mon = ((fatdate >> 5) & 0x0f) - 1;
+   newtm.tm_year = (fatdate >> 9) + 80;
+#ifdef HAVE_TIMEGM
+
+   TRACEN((printf("DosDateTimeToFileTime-1\n")))
+      RtlSecondsSince1970ToFileTime(timegm(&newtm), ft);
+#else
+
+   //TRACEN((printf("DosDateTimeToFileTime-2\n")))
+   time1 = mktime(&newtm);
+   gtm = gmtime(&time1);
+   time2 = mktime(gtm);
+   RtlSecondsSince1970ToFileTime(2 * time1 - time2, ft);
+#endif
+
+   return TRUE;
+}
+
+#endif
+
 namespace folder_zip
 {
 
@@ -34,7 +80,6 @@ namespace folder_zip
       m_zipfile(nullptr)
    {
 
-      defer_create_synchronization();
       //m_pzlibfilefuncdef = zip_filefuncdef_malloc();
 
    }
@@ -80,6 +125,8 @@ namespace folder_zip
 
       //auto estatus =
       ::object::initialize(pparticle);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{
@@ -270,6 +317,13 @@ namespace folder_zip
       if (pathFile.has_char())
       {
 
+         if (pathFile.contains("-256.png"))
+         {
+
+            ::output_debug_string("-256.png");
+
+         }
+
          if (!locate_file(pathFile))
          {
 
@@ -279,7 +333,16 @@ namespace folder_zip
 
       }
 
-      auto pfile = __new(::folder_zip::file);
+      return this->get_file();
+
+   }
+
+
+
+   ::file_pointer folder::get_file()
+   {
+
+      auto pfile = __create_new < ::folder_zip::file >();
 
       pfile->m_pfolder = this;
 
@@ -319,6 +382,15 @@ namespace folder_zip
    }
 
 
+   void didnt_locate_file(const char * pszFile)
+   {
+
+      ::output_debug_string("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+
+      ::fflush(stdout);
+
+   }
+
    class ::time folder::get_modification_time() const
    {
 
@@ -326,7 +398,11 @@ namespace folder_zip
 
 #ifdef WINDOWS
 
+
       auto dosDate = m_unzfileinfo.dosDate;
+
+
+#ifdef WINDOWS_DESKTOP
 
       ::file_time_t filetimeLocal;
       ::file_time_t filetime;
@@ -336,6 +412,13 @@ namespace folder_zip
       ::LocalFileTimeToFileTime((LPFILETIME)&filetimeLocal, (LPFILETIME)&filetime);
 
       ::file_time_to_time(&time, &filetime);
+
+#else
+
+      time.m_iSecond = dos_time_unix_time(dosDate);
+      time.m_iNanosecond = 0;
+
+#endif
 
 #else
 
@@ -431,6 +514,8 @@ namespace folder_zip
 
          if (!locate([strFile](const char* psz) {return strFile.case_insensitive_equals(psz); }))
          {
+
+            didnt_locate_file(strFile);
 
             return false;
 

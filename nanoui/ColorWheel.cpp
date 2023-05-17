@@ -162,8 +162,15 @@ bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, b
 }
 
 
-bool ColorWheel::mouse_drag_event(const Vector2i & p, const Vector2i &, const ::user::e_key &) 
+bool ColorWheel::mouse_motion_event(const Vector2i & p, const Vector2i & shift, bool bDown, const ::user::e_key &) 
 {
+
+   if (bDown)
+   {
+
+      return false;
+
+   }
 
    return adjust_position(p, m_drag_region) != None;
 
@@ -302,9 +309,23 @@ ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region consid
 
 ::color::color ColorWheel::color() const {
    ::color::color rgb = hue2rgb(m_hue);
-   ::color::color black{ 0.f, 0.f, 0.f, 1.f };
-   ::color::color white{ 1.f, 1.f, 1.f, 1.f };
-   return rgb * (1 - m_white - m_black) + black * m_black + white * m_white;
+   //::color::color black{ 0.f, 0.f, 0.f, 1.f };
+   //::color::color white{ 1.f, 1.f, 1.f, 1.f };
+   ::color::color black{ 0.f, 0.f, 0.f, m_black };
+   ::color::color white{ m_white, m_white, m_white, m_white };
+
+   ::color::color color;
+
+   float alphaComplement = 1.0f - m_white - m_black;
+
+   color.set_red(rgb.fr() * alphaComplement + black.fr() + white.fr());
+   color.set_green(rgb.fg() * alphaComplement + black.fg() + white.fg());
+   color.set_blue(rgb.fb() * alphaComplement + black.fb() + white.fb());
+   color.set_alpha(rgb.fa() * alphaComplement + black.fa() + white.fa());
+
+   return color;
+
+   //return rgb * () + black * m_black + white * m_white;
 }
 
 void ColorWheel::set_color(const ::color::color & rgb) {

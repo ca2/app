@@ -74,8 +74,6 @@
 file_context::file_context()
 {
 
-   defer_create_synchronization();
-
 }
 
 
@@ -89,6 +87,8 @@ void file_context::initialize(::particle * pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
+
+   defer_create_synchronization();
 
    //if (!estatus)
    //{
@@ -811,8 +811,8 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
   // {
 
    mem = pfile->full_memory();
-   
-   
+
+
 //      {
 //
 //         return false;
@@ -881,25 +881,25 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
 
 ::memory file_context::as_memory(const ::payload &payloadFile)
 {
-   
+
    ::memory memory;
-   
+
    as_memory(payloadFile, memory);
-   
+
    return ::transfer(memory);
-   
+
 }
 
 
 ::memory file_context::safe_get_memory(const ::payload &payloadFile)
 {
-   
+
    ::memory memory;
-   
+
    safe_get_memory(payloadFile, memory);
-   
+
    return ::transfer(memory);
-   
+
 }
 
 
@@ -961,7 +961,7 @@ memsize file_context::read_beginning(const ::payload& payloadFile, void* p, mems
 {
 
    return read(payloadFile, p, 0, size, bNoExceptionOnFail);
-   
+
 }
 
 
@@ -1134,10 +1134,10 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    file_pointer pfile;
 
    pfile = get_file(payloadFile,
-                     ::file::e_open_binary 
+                     ::file::e_open_binary
       | ::file::e_open_write
       | ::file::e_open_create
-      | ::file::e_open_share_deny_write 
+      | ::file::e_open_share_deny_write
       | ::file::e_open_no_truncate
       | ::file::e_open_defer_create_directory);
 
@@ -1405,7 +1405,7 @@ void file_context::calculate_main_resource_memory()
 ::memory_file_pointer file_context::create_resource_file(const ::file::path & path)
 {
 
-   ::folder* pfolder = nullptr;
+   ::folder * pfolder = nullptr;
 
    {
 
@@ -1428,6 +1428,10 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
+   ::output_debug_string(strPath);
+
+   fflush(stdout);
+
    if (!pfolder->locate_file(strPath))
    {
 
@@ -1437,7 +1441,7 @@ void file_context::calculate_main_resource_memory()
 
    auto pfile = pfolder->get_file();
 
-   if (!pfile)
+   if (pfile.nok())
    {
 
       return nullptr;
@@ -1450,6 +1454,28 @@ void file_context::calculate_main_resource_memory()
 
    pfileOutput->seek_to_begin();
 
+   pfileOutput->m_estatus = ::success;
+
+   pfileOutput->set_ok_flag();
+
+   if(strPath.contains("256"))
+   {
+
+      output_debug_string("contains 256");
+
+      fflush(stdout);
+
+      if(pfileOutput.nok())
+      {
+
+         output_debug_string("output file nok");
+
+         fflush(stdout);
+
+      }
+
+   }
+
    return pfileOutput;
 
 }
@@ -1459,7 +1485,7 @@ void file_context::calculate_main_resource_memory()
 {
 
    auto pfile = create_resource_file(path);
-   
+
    if (!pfile)
    {
 
@@ -1579,110 +1605,180 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       }
       return;
    }
+
+   auto preader = varSource.cast < ::file::file >();
+
+   bool bSourceEmpty = varSource.as_file_path().is_empty();
+
+   if(bSourceEmpty && preader.nok())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   auto pwriter = varTarget.cast < ::file::file >();
+
+   bool bTargetEmpty = varTarget.as_file_path().is_empty();
+
+   if (bTargetEmpty && pwriter.nok())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+
+   if(pwriter.nok())
+   {
+
+      if (!dir()->is(varTarget.as_file_path().folder()))
+      {
+
+         dir()->create(varTarget.as_file_path().folder());
+
+      }
+
+   }
+
+   auto psystem = acmesystem();
+
+   auto pacmefile = psystem->m_pacmefile;
+
+   ::file::path pathTarget;
+
+   if(pwriter.nok())
+   {
+
+      pathTarget = psystem->defer_process_path(varTarget.as_file_path());
+
+   }
+
+   ::file::path pathSource;
+
+   if(preader.nok())
+   {
+
+      pathSource = psystem->defer_process_path(varSource.as_file_path());
+
+      if (exists(pathSource))
+      {
+
+         pacmefile->copy(pathTarget, pathSource, !bFailIfExists);
+
+         return;
+
+      }
+
+   }
+
+   if (bFailIfExists)
+   {
+
+      if (exists(varTarget))
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
+
+   ::payload varNew;
+
+   if (pwriter.nok()&& dir()->is(varTarget) && (varSource.as_file_path().name().has_char() && preader.nok()))
+   {
+
+      varNew = ::file::path(varTarget) / varSource.as_file_path().name();
+
+   }
    else
    {
 
-      if (varTarget.as_file_path().has_char() && varSource.as_file_path().has_char())
+      varNew = varTarget;
+
+   }
+
+
+   bool bGeneralFailure = false;
+
+   bool bOutputFail = false;
+   bool bInputFail = false;
+
+   try
+   {
+
+      if(preader.nok())
       {
 
-         if (!dir()->is(varTarget.as_file_path().folder()))
-         {
+         preader = get_reader(varSource,
+                              ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-            dir()->create(varTarget.as_file_path().folder());
-
-         }
-
-         auto psystem = acmesystem();
-
-         auto pacmefile = psystem->m_pacmefile;
-
-         auto pathTarget = psystem->defer_process_path(varTarget.as_file_path());
-
-         auto pathSource = psystem->defer_process_path(varSource.as_file_path());
-
-         if (exists(pathSource))
-         {
-
-            pacmefile->copy(pathTarget, pathSource, !bFailIfExists);
-
-            return;
-
-         }
-
-      }
-
-      if (bFailIfExists)
-      {
-
-         if (exists(varTarget))
-         {
-
-            throw ::exception(error_failed);
-
-         }
-
-      }
-
-      ::payload varNew;
-
-      if (dir()->is(varTarget) && varSource.as_file_path().name().has_char())
-      {
-
-         varNew = ::file::path(varTarget) / varSource.as_file_path().name();
-
-      }
-      else
-      {
-
-         varNew = varTarget;
-
-      }
-
-      file_pointer pfileOutput;
-
-      pfileOutput = get_file(varNew,
-                       ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
-                       ::file::e_open_share_deny_write);
-
-      if (pfileOutput.nok())
-      {
-
-         string strError;
-
-         strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
-                         varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
-         throw ::exception(::error_io, strError);
-      }
-
-      bool bGeneralFailure = false;
-
-      bool bOutputFail = false;
-      bool bInputFail = false;
-      try
-      {
-
-         auto pfileInput = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
-
-         if (pfileInput.nok())
+         if (preader.nok())
          {
 
             string strError;
 
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
                             varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
+
             throw ::exception(::error_io, strError);
+
          }
 
-         file()->transfer(pfileOutput, pfileInput);
+      }
 
-         bool bStatusFail = false;
+      if(pwriter.nok())
+      {
 
-         ::file::file_status st;
+         pwriter = get_file(varNew,
+                            ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create |
+                            ::file::e_open_defer_create_directory |
+                            ::file::e_open_share_deny_write);
+
+         if (pwriter.nok())
+         {
+
+            string strError;
+
+            strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
+                            varSource.as_file_path().c_str(), varNew.as_file_path().c_str(), bFailIfExists);
+
+            throw ::exception(::error_io, strError);
+
+         }
+
+      }
+
+      file()->transfer(pwriter, preader);
+
+      bool bStatusFail = false;
+
+      ::file::file_status st;
+
+      try
+      {
+
+         st = preader->get_status();
+
+      }
+      catch (...)
+      {
+
+         bStatusFail = true;
+
+         INFORMATION("During copy, failed to get status from input file \"" <<
+               varSource.as_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+
+      }
+
+      if (!bStatusFail)
+      {
 
          try
          {
 
-            st = pfileInput->get_status();
+            st = preader->get_status();
 
          }
          catch (...)
@@ -1690,83 +1786,72 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             bStatusFail = true;
 
-            INFORMATION("During copy, failed to get status from input file \"" <<
-                  varSource.as_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+            INFORMATION("During copy, failed to set status to output file \""
+               << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
          }
 
-         if (!bStatusFail)
-         {
-            try
-            {
+      }
 
-               st = pfileInput->get_status();
+      try
+      {
 
-            }
-            catch (...)
-            {
-
-               bStatusFail = true;
-
-               INFORMATION("During copy, failed to set status to output file \""
-                  << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
-
-            }
-
-         }
-
-         try
-         {
-            pfileOutput->flush();
-         }
-         catch (...)
-         {
-         }
-
-         try
-         {
-            pfileOutput->close();
-         }
-         catch (...)
-         {
-            bOutputFail = true;
-         }
+         pwriter->flush();
 
       }
       catch (...)
       {
 
-         bGeneralFailure = true;
-
       }
 
-      if (bInputFail || bGeneralFailure)
+      try
       {
-         if (bOutputFail)
-         {
-            string strError;
-            strError.format(
-               "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
-               varSource.as_file_path().c_str(), varTarget.as_file_path().c_str(), bFailIfExists);
-            throw ::exception(::error_io, strError);
-         }
-         else
-         {
-            string strError;
-            strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
-                            varSource.as_file_path().c_str(), bFailIfExists);
-            throw ::exception(::error_io, strError);
-         }
+
+         pwriter->close();
+
       }
-      else if (bOutputFail)
+      catch (...)
       {
-         string strError;
-         strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
-                         varTarget.as_file_path().c_str(), bFailIfExists);
-         throw ::exception(::error_io, strError);
+
+         bOutputFail = true;
+
       }
 
    }
+   catch (...)
+   {
+
+      bGeneralFailure = true;
+
+   }
+
+   if (bInputFail || bGeneralFailure)
+   {
+      if (bOutputFail)
+      {
+         string strError;
+         strError.format(
+            "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
+            varSource.as_file_path().c_str(), varTarget.as_file_path().c_str(), bFailIfExists);
+         throw ::exception(::error_io, strError);
+      }
+      else
+      {
+         string strError;
+         strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
+                         varSource.as_file_path().c_str(), bFailIfExists);
+         throw ::exception(::error_io, strError);
+      }
+   }
+   else if (bOutputFail)
+   {
+      string strError;
+      strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
+                      varTarget.as_file_path().c_str(), bFailIfExists);
+      throw ::exception(::error_io, strError);
+   }
+
+   //}
 
    //return ::success;
 
@@ -2108,9 +2193,9 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    for (i32 i = 0; i < listing.size(); i++)
    {
-      
+
       strOldName = listing[i].name();
-      
+
       strNewName = strOldName;
 
       strNewName.replace_with(strNew, strOld);
@@ -2386,7 +2471,7 @@ void file_context::normalize(string &str)
           (str.right(1) == "\\" ||
            str.right(1) == "/"))
    {
-      
+
       str = str.left(str.length() - 1);
 
    }
@@ -3041,7 +3126,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
       //{
 
          //INFORMATION("::file::file_context::zip_get_file Succeeded");
-         
+
          return pfolder;
 
       //}
@@ -3100,7 +3185,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
       if (string_ends(pathCache, "en_us_international.xml"))
       {
-         
+
          INFORMATION("Debug Here");
 
       }
@@ -3410,13 +3495,13 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
          throw file::exception(::error_file_not_found, errno_error_code(ENOENT), path, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
-      
+
       return nullptr;
 
    }
-   
+
    path = pathProcessed;
-   
+
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
@@ -3461,9 +3546,9 @@ file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open
    }
    else
    {
-      
+
       return create_native_file(path, eopen);
-      
+
    }
 
    return pfile;
@@ -3631,7 +3716,7 @@ bool file_context::is_link(const ::file::path & path)
    set.parse_ini(strIni);
 
    string strCid;
-   
+
    strCid = set["cid"];
 
    ::file::path pathIni = acmedirectory()->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";

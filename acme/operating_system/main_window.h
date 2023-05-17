@@ -23,6 +23,8 @@ namespace operating_system
 
       virtual void post_close();
 
+      virtual void post_application_exit();
+
       virtual ::string get_window_text(const ::iptr_array & idPath);
       virtual ::string indexed_get_window_text(const ::iptr_array & idPath);
 

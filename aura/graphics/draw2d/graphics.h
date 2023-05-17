@@ -16,6 +16,9 @@
 #include "aura/graphics/image/source.h"
 
 
+#include "acme/primitive/geometry2d/collection.h"
+
+
 #include "region.h"
 
 
@@ -122,9 +125,17 @@ namespace draw2d
       //::e_status                             m_estatus;
       //::e_status                             m_estatusLast;
 
+      ::rectangle_i32_array                  m_rectangleaNeedRedraw;
+
+
+
+
 
       graphics();
       ~graphics() override;
+
+
+      void on_initialize_particle() override;
 
 
 //      // void assert_ok() const override;
@@ -458,6 +469,8 @@ namespace draw2d
       
       virtual void add_clipping_shapes(const shape_array < ::draw2d::region > & shapea);
       virtual void reset_clip();
+
+      virtual void set_clipping(::draw2d::region * pregion);
       
       virtual void intersect_clip(const ::rectangle & rectangle);
       virtual void intersect_clip(const ::ellipse & ellipse);

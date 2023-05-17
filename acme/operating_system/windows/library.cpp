@@ -506,22 +506,6 @@ namespace acme
    }
    
    
-   ::string system::implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) 
-   {
-      
-      return scopedstrImplementation; 
-   
-   }
-
-
-   ::string system::library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
-   {
-
-      return scopedstrComponent + "_" + scopedstrImplementation;
-
-   }
-
-
 } // namespace acme
 
 

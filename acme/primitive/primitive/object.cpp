@@ -914,6 +914,8 @@ void object::add_task(::object* pobjectTask)
 
    }
 
+   defer_create_synchronization();
+
    _synchronous_lock synchronouslockParent1(synchronization());
 
    if(is_ascendant_task(pobjectTask))
@@ -976,7 +978,7 @@ void object::add_task(::object* pobjectTask)
 }
 
 
-void object::erase_task(::object* pobjectTask)
+void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object * pobjectTaskNewParent)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -1008,7 +1010,7 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   pobjectTask->m_pobjectParentTask = nullptr;
+   pobjectTask->m_pobjectParentTask = pobjectTaskNewParent;
 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
@@ -1041,6 +1043,8 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
+   defer_create_synchronization();
+
    _synchronous_lock synchronouslock(this->synchronization());
 
    if(is_ascendant_task(ptask))
@@ -1067,6 +1071,10 @@ void object::transfer_tasks_from(::object* ptask)
 
    objectaChildrenTask = *ptask->m_pparticleaChildrenTask;
 
+   *m_pparticleaChildrenTask = objectaChildrenTask;
+
+   ptask->m_pparticleaChildrenTask.release();
+
    for (auto pobjectTask : objectaChildrenTask)
    {
 
@@ -1077,8 +1085,6 @@ void object::transfer_tasks_from(::object* ptask)
 
          pobjectTask->m_pobjectParentTask = this;
 
-         m_pparticleaChildrenTask->add(pobjectTask);
-
       }
       catch (...)
       {
@@ -1086,8 +1092,6 @@ void object::transfer_tasks_from(::object* ptask)
       }
 
    }
-
-   ptask->m_pparticleaChildrenTask.release();
 
 }
 
@@ -3720,11 +3724,34 @@ bool object::IsSerializable() const
 void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 {
 
-   __defer_construct(ptask);
+   if (::is_null(ptask))
+   {
 
-   ptask->m_procedure = procedure;
+      __construct(ptask);
 
-   ptask->branch();
+      ::pointer < ::object > pobjectHoldThis = this;
+
+      ptask->m_procedure = [procedure, &ptask, pobjectHoldThis]()
+      {
+
+         try
+         {
+
+            procedure();
+
+         }
+         catch (...)
+         {
+
+         }
+
+         ptask = nullptr;
+
+      };
+
+      ptask->branch();
+
+   }
 
 }
 

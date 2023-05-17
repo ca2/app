@@ -34,7 +34,8 @@ public:
 
    virtual bool locate_file(const ::file::path & path);
    virtual bool locate_folder(const ::file::path & path);
-   virtual ::file_pointer get_file(const ::file::path & pathFile = nullptr);
+   virtual ::file_pointer get_file();
+   virtual ::file_pointer get_file(const ::file::path & pathFile);
    
    ::file::enum_type type(const ::file::path & pathItem = nullptr);
 

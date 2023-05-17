@@ -13,8 +13,11 @@ public:
 
    string            m_strName;
 
+#ifdef WINDOWS
 
-#if defined(ANDROID)
+   ::hsynchronization      m_handleSemaphore;
+
+#elif defined(ANDROID)
 
    ::i32              m_lMaxCount;
    sem_t *           m_psem;

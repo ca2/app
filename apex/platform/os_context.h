@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 ////#include "acme/primitive/primitive/object.h"
@@ -26,8 +26,8 @@ public:
 //      virtual ::file::path get_module_path(HMODULE hmodule);
 //#endif
 
-   virtual ::process_identifier module_path_process_identifier(const ::string & strName);
-   virtual ::process_identifier title_process_identifier(const ::string & strName);
+   virtual ::process_identifier_array module_path_processes_identifiers(const ::scoped_string & scopedstrName);
+   virtual ::process_identifier_array title_processes_identifiers(const ::scoped_string & scopedstrName);
    virtual ::process_identifier_array processes_identifiers();
    virtual ::file::path process_identifier_module_path(::process_identifier dwPid);
 

@@ -1050,6 +1050,9 @@ namespace aura
       virtual string draw2d_get_default_implementation_name();
 
 
+      void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+
+
    };
 
 

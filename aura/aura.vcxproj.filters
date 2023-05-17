@@ -13,9 +13,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{872fa787-2caf-4c13-aad4-f0df206f0448}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{1e44594e-ac79-44a4-9087-4027ae2bdf3a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{aaf4b8e0-a45e-4bb4-b003-370b7d2a360d}</UniqueIdentifier>
     </Filter>
@@ -115,9 +112,6 @@
     <Filter Include="Header Files\graphics\draw2d">
       <UniqueIdentifier>{dfcb47c9-40cc-4a33-9871-54d83715fcbe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\draw3d">
-      <UniqueIdentifier>{fffaf690-e781-4fae-8d14-3c0634791ce7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics\graphics">
       <UniqueIdentifier>{330b78c7-e72d-43fa-9ab9-6772527925a5}</UniqueIdentifier>
     </Filter>
@@ -144,6 +138,12 @@
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{c2e2ae15-73aa-43b0-9177-a905ac83bc1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{1e44594e-ac79-44a4-9087-4027ae2bdf3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw3d">
+      <UniqueIdentifier>{fffaf690-e781-4fae-8d14-3c0634791ce7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -244,9 +244,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\main_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\message.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\message_box.cpp">
@@ -848,7 +845,7 @@
     <ClInclude Include="user\user\main_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\message.h">
+    <ClInclude Include="user\user\aaa_message.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\message_box.h">

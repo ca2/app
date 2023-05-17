@@ -70,9 +70,12 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
+            int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
+
             rectangleNewPos.left = rectangleClient.left;
-            rectangleNewPos.top = rectangleClient.bottom - get_int(pstyle, e_int_scroll_bar_width);
-            rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.top = rectangleClient.bottom - iScrollBarWidth;
+            //rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - iScrollBarWidth;
             rectangleNewPos.bottom = rectangleClient.bottom;
 
             m_pscrollbarHorizontal->order(e_zorder_top);
@@ -298,7 +301,9 @@ namespace user
    int horizontal_scroll_base::get_final_x_scroll_bar_width()
    {
 
-      return m_pscrolldataHorizontal->m_bScroll && m_pscrolldataHorizontal->m_bScrollEnable ? m_pscrolldataHorizontal->m_iWidth : 0;
+      //return m_pscrolldataHorizontal->m_bScroll && m_pscrolldataHorizontal->m_bScrollEnable ? m_pscrolldataHorizontal->m_iWidth : 0;
+
+      return m_pscrolldataHorizontal->m_iWidth;
 
    }
 

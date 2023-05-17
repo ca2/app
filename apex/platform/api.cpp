@@ -72,7 +72,18 @@ void api::load_configuration()
 
 #endif
 
-   pathConfiguration = "matter://api" / (strPrefix + m_strImplementation + ".network_payload");
+   ::file::path pathName;
+
+   pathName = m_strImplementation;
+
+   if (m_strService.has_char())
+   {
+
+      pathName /= m_strService;
+
+   }
+
+   pathConfiguration = "matter://api" / (strPrefix + pathName + ".network_payload");
 
    string strNetworkPayload = file()->as_string(pathConfiguration);
 

@@ -22,8 +22,6 @@ namespace datetime
    datetime::datetime()
    {
 
-      defer_create_synchronization();
-
    }
 
 
@@ -62,6 +60,8 @@ namespace datetime
    {
     
       /*auto estatus = */ ::acme::department::initialize(pparticle);
+
+      defer_create_synchronization();
 
       //if (!estatus)
       //{

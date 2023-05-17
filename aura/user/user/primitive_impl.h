@@ -208,9 +208,10 @@ namespace user
       //virtual ::user::element* get_keyboard_focus();
 
 
-      virtual void _001OnExitIconic();
-      virtual void _001OnExitFullScreen();
-      virtual void _001OnExitZoomed();
+      virtual void _001OnAfterExitIconic();
+      virtual void _001OnAfterExitNormal();
+      virtual void _001OnAfterExitZoomed();
+      virtual void _001OnAfterExitFullScreen();
 
 
       virtual void _001OnTriggerMouseInside();
@@ -251,7 +252,7 @@ namespace user
       virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::index iItem = -1, i32 iLevel = -1);
 
 
-      virtual void set_need_redraw(bool bAscendants = true);
+      virtual void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true);
 
 
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);

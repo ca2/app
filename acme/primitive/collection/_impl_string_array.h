@@ -1101,7 +1101,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::index string_array_base < Type, RawType, m_etypeContainer > ::add_unique_ci(const Type & newElement)
+::index string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_add_unique(const Type & newElement)
 
 {
 
@@ -1122,7 +1122,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type m_etypeContainer >
-::count string_array_base < Type, RawType, m_etypeContainer > ::append_unique_ci(const string_array_base & straNewElements)
+::count string_array_base < Type, RawType, m_etypeContainer > ::case_insensitive_append_unique(const string_array_base & straNewElements)
 {
 
    ::count count = 0;
@@ -1130,7 +1130,7 @@ template < typename Type, typename RawType, ::enum_type m_etypeContainer >
    for(auto & newElement : straNewElements)
    {
 
-      if (add_unique_ci(newElement) >= 0)
+      if (case_insensitive_add_unique(newElement) >= 0)
       {
 
          count++;

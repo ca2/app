@@ -213,6 +213,7 @@ list(APPEND library_source
         #memory/new.cpp
         memory/os_alloc.cpp
         memory/os_alloc.h
+        memory/os_impl/malloc.cpp
         memory/paged.h
         memory/paged_large.cpp
         memory/property_memory_allocate.cpp
@@ -2293,7 +2294,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} primitive/collection/_generic_array.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

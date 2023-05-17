@@ -100,12 +100,12 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hsynchronization = ::CreateEventW(
+   m_handle = ::CreateEventW(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       bManualReset, 
       bInitiallyOwn, scopedstrName.is_empty() ? nullptr : wstring(scopedstrName).c_str());
 
-   if (m_hsynchronization == NULL)
+   if (m_handle == NULL)
    {
 
       throw ::exception(error_resource);
@@ -130,13 +130,13 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
    }
 
-   m_hsynchronization = ::CreateEventEx(
+   m_handle = ::CreateEventEx(
       (LPSECURITY_ATTRIBUTES)(psecurityattributes ? psecurityattributes->get_os_security_attributes() : nullptr),
       scopedstrName.is_empty() ? nullptr : wstring(scopedstrName).c_str(),
       dwFlags,
       DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
-   if (m_hsynchronization == nullptr)
+   if (m_handle == nullptr)
    {
 
       throw ::exception(error_resource);
@@ -267,13 +267,26 @@ event::~event()
 }
 
 
+#ifdef WINDOWS
+
+
+hsynchronization event::get_synchronization_handle()
+{
+
+   return m_handle;
+
+}
+
+
+#endif
+
 
 bool event::SetEvent()
 {
 
 #ifdef WINDOWS
 
-   if (m_hsynchronization == nullptr)
+   if (m_handle == nullptr)
    {
 
       ASSERT(false);
@@ -285,7 +298,7 @@ bool event::SetEvent()
    try
    {
 
-      return ::SetEvent((HANDLE)m_hsynchronization) != false;
+      return ::SetEvent((HANDLE)m_handle) != false;
 
    }
    catch(...)
@@ -389,7 +402,7 @@ bool event::ResetEvent()
    try
    {
 
-      if(m_hsynchronization == NULL)
+      if(m_handle == NULL)
       {
 
          ::output_debug_string(L"error reset event (1)");
@@ -398,7 +411,7 @@ bool event::ResetEvent()
 
       }
 
-      return ::ResetEvent((HANDLE)m_hsynchronization) != false;
+      return ::ResetEvent((HANDLE)m_handle) != false;
 
    }
    catch(...)
@@ -590,7 +603,7 @@ bool event::_wait (const class time & timeWait)
 
 #ifdef WINDOWS
 
-   DWORD dwResult = ::WaitForSingleObjectEx(m_hsynchronization, ::windows::wait(timeWait), false);
+   DWORD dwResult = ::WaitForSingleObjectEx(m_handle, ::windows::wait(timeWait), false);
 
    estatus = ::windows::wait_result_status(dwResult);
 
@@ -863,7 +876,7 @@ bool event::is_signaled() const
 
 #ifdef WINDOWS
 
-   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,0,false);
+   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_handle,0,false);
 
 #elif defined(ANDROID)
 

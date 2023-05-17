@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "desktop_file.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/system.h"
@@ -254,6 +255,18 @@ namespace freedesktop
    }
 
 
+   void file_not_ok()
+   {
+
+      ::output_debug_string("matter icon nok");
+
+      ::fflush(stdout);
+
+   }
+
+
+
+
    void desktop_file::create()
    {
 
@@ -300,13 +313,28 @@ namespace freedesktop
 
       //::file::path pathIcon = dir()->matter("main/icon-256.png");
 
-      ::file::path pathModuleIcon256 = acmedirectory()->module() / (strName + "-256.png");
+      ::file::path pathModule = acmedirectory()->module();
+
+      ::file::path pathModuleIcon256 = pathModule / (strName + "-256.png");
+
+      ::output_debug_string("\npathModuleIcon256=" + pathModuleIcon256 + "\n");
+
+      ::fflush(stdout);
 
       if(!acmefile()->exists(pathModuleIcon256))
       {
 
          auto pfileMainIcon256 = pcontext->m_papexcontext->file()->get_file("matter://main/icon-256.png",
                                                                            ::file::e_open_read);
+
+         bool bNok = pfileMainIcon256.nok();
+
+         if(bNok)
+         {
+
+            file_not_ok();
+
+         }
 
          papp->file()->copy(pathModuleIcon256, pfileMainIcon256);
 

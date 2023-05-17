@@ -12,7 +12,7 @@
 
 template < typename ITERATOR_TYPE >
 using string_natural_pointer =
-::natural_pointer < ::string_range < ITERATOR_TYPE >,
+::natural_pointer < ::const_string_range < ITERATOR_TYPE >,
    ::string_meta_data <
    dereference <
    get_type_item_pointer < ITERATOR_TYPE >
@@ -42,7 +42,7 @@ public:
    using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
    using ITEM = dereference < ITEM_POINTER >;
    using CHARACTER = ITEM;
-   using RANGE = ::string_range < ITERATOR_TYPE >;
+   using RANGE = ::const_string_range < ITERATOR_TYPE >;
    using this_iterator = typename RANGE::this_iterator;
    using iterator = typename RANGE::iterator;
    using const_iterator = typename RANGE::const_iterator;
@@ -661,7 +661,7 @@ public:
 
       }
 
-      return this->data();
+      return (CHARACTER *) this->data();
 
    }
 
@@ -688,7 +688,7 @@ public:
 
       //}
 
-      return this->data();
+      return (CHARACTER*) this->data();
 
    }
 
@@ -988,8 +988,8 @@ public:
 
    }
 
-
-   string_base unicode_substr(::strsize start) const
+   template < primitive_integral START >
+   string_base unicode_substr(START start) const
    {
 
       return { (this->unicode_begin() + start).c_str(), this->end()};
@@ -997,7 +997,8 @@ public:
    }
 
 
-   string_base unicode_substr(::strsize start, ::strsize count) const
+   template < primitive_integral START, primitive_integral COUNT >
+   string_base unicode_substr(START start, COUNT count) const
    {
 
       return { (this->unicode_begin() + start).c_str(), (this->unicode_begin() + start + count).c_str()};

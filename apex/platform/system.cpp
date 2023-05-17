@@ -375,27 +375,27 @@ namespace apex
 
       __construct_new(m_pthreading);
 
-      ::earth::time timeNow = ::earth::time::now();
-
-      auto pnode = node();
-
-      if (pnode)
-      {
-
-         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
-         {
-
-            pnode->set_simple_ui_darkness(0);
-
-         }
-         else
-         {
-
-            pnode->set_simple_ui_darkness(255);
-
-         }
-
-      }
+//      ::earth::time timeNow = ::earth::time::now();
+//
+//      auto pnode = node();
+//
+//      if (pnode)
+//      {
+//
+//         if (timeNow.hour() >= 6 && timeNow.hour() <= 17)
+//         {
+//
+//            pnode->set_dark_mode(false);
+//
+//         }
+//         else
+//         {
+//
+//            pnode->set_dark_mode(true);
+//
+//         }
+//
+//      }
 
 
       //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
@@ -3217,7 +3217,7 @@ pacmedirectory->create("/ca2core");
    //   else if(line->m_ecommand == command_line::command_file_open)
    //   {
 
-   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().case_insensitive_add_unique(line->m_payloadFile.stra());
 
    //      pcreate->m_ecommand = command_line::command_file_open;
 

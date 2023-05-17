@@ -61,21 +61,9 @@ namespace nanoui
       void set_value(const ::scoped_string & value) {
          m_value = value;
 
-         auto pscreen = screen();
+         set_need_redraw();
 
-         if (pscreen)
-         {
-
-            auto puserinteraction = pscreen->m_puserinteraction;
-
-            if (puserinteraction)
-            {
-               puserinteraction->set_need_redraw();
-               puserinteraction->post_redraw();
-
-            }
-
-         }
+         post_redraw();
 
       }
 
@@ -112,8 +100,8 @@ namespace nanoui
 
       bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
       bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
-      bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
@@ -250,17 +238,17 @@ public:
    }
 
 
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override
+   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override
    {
 
-      if (TextBox::mouse_drag_event(p, rel, ekeyModifiers))
+      if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
       {
 
          return true;
 
       }
 
-      if (m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_mouse_down_pos.x() != -1)
+      if (bDown && m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_mouse_down_pos.x() != -1)
       {
 
          int value_delta = static_cast<int>((p.x() - m_mouse_down_pos.x()) / float(10));
@@ -442,7 +430,7 @@ public:
 
       }
 
-      return TextBox::mouse_button_event(p, emouse, down, ekeyModifiers);
+      return TextBox::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
 
    }
 

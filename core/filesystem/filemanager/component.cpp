@@ -5,7 +5,9 @@
 #include "child_frame.h"
 #include "impact.h"
 #include "path_impact.h"
-#include "save_as_name_impact.h"
+#include "save_as_button_impact.h"
+#include "save_as_edit_impact.h"
+#include "save_as_impact.h"
 #include "left_impact.h"
 #include "main_impact.h"
 #include "main_frame.h"
@@ -248,7 +250,8 @@ namespace filemanager
       factory()->add_factory_item <operation_info_impact >();
       factory()->add_factory_item <operation_list_impact >();
       factory()->add_factory_item <save_as_edit_impact >();
-      factory()->add_factory_item <save_as_button>();
+      factory()->add_factory_item <save_as_button_impact>();
+      factory()->add_factory_item <save_as_impact>();
       factory()->add_factory_item <fs::simple::impact >();
       factory()->add_factory_item <fs::simple::list_impact >();
       factory()->add_factory_item <fs::simple::tree >();

@@ -582,7 +582,7 @@ void* task::s_os_task(void* p)
             try
             {
 
-               pparentTask->erase_task(ptask);
+               pparentTask->erase_task_and_set_task_new_parent(ptask, nullptr);
 
             }
             catch (...)
@@ -811,7 +811,7 @@ void task::term_task()
 
    //}
 
-   synchronous_lock synchronouslock(this->synchronization());
+   //synchronous_lock synchronouslock(this->synchronization());
 
    //if (m_pnotifya)
    //{

@@ -16,13 +16,15 @@ namespace userex
 
 
       
-      ::exception                            m_exception;
+      ::pointer < ::exception >              m_pexception;
       ::image_pointer                        m_pimage;
 
 
       failure_dialog();
+      ~failure_dialog() override;
 
-      void Initialize(const ::exception & e);
+
+      void initialize(::exception * pexception);
 
 
       virtual bool OnInitDialog();

@@ -895,6 +895,7 @@
     <ClInclude Include="operating_system\dostime.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
     <ClInclude Include="operating_system\main_window.h" />
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\library.cpp" />
@@ -907,6 +908,7 @@
     <ClCompile Include="operating_system\windows\nano\window.cpp" />
     <ClCompile Include="operating_system\windows\nano\_nano.cpp" />
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
@@ -1313,6 +1315,7 @@
     <ClInclude Include="primitive\primitive\url.h" />
     <ClInclude Include="primitive\primitive\url_domain.h" />
     <ClInclude Include="primitive\primitive\_c_memory.h" />
+    <ClInclude Include="primitive\primitive\_impl_atom.h" />
     <ClInclude Include="primitive\primitive\_property_object_impl.h" />
     <ClInclude Include="primitive\primitive\_text_stream.h" />
     <ClInclude Include="primitive\primitive\__payload_cast.h" />
@@ -1381,7 +1384,6 @@
     <ClInclude Include="primitive\time\__string.h" />
     <ClInclude Include="primitive\_.h" />
     <ClInclude Include="procedure.h" />
-    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="user\nano\nano.h" />
     <ClInclude Include="user\user\e_window_flag.h" />

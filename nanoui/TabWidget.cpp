@@ -47,11 +47,11 @@ void TabWidgetBase::remove_tab(int id) {
       update_visibility();
    }
 
-   screen()->m_puserinteraction->set_need_layout();
+   //screen()->m_puserinteraction->set_need_layout();
 
-   screen()->m_puserinteraction->set_need_redraw();
+   set_need_redraw();
 
-   screen()->m_puserinteraction->post_redraw();
+   post_redraw();
 
 }
 
@@ -72,11 +72,11 @@ int TabWidgetBase::insert_tab(int index, const ::scoped_string& scopedstrCaption
       update_visibility();
    }
 
-   screen()->m_puserinteraction->set_need_layout();
+   //screen()->m_puserinteraction->set_need_layout();
 
-   screen()->m_puserinteraction->set_need_redraw();
+   set_need_redraw();
 
-   screen()->m_puserinteraction->post_redraw();
+   post_redraw();
 
    return id;
 }
@@ -316,11 +316,11 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
          m_popup->perform_layout(pcontext);
       };
 
-      screen->m_puserinteraction->set_need_layout();
+      set_need_layout();
 
-      screen->m_puserinteraction->set_need_redraw();
+      set_need_redraw();
 
-      screen->m_puserinteraction->post_redraw();
+      post_redraw();
 
       //m_bPendingSizing = true;
       //m_bPendingLayout = true;
@@ -335,7 +335,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
             }
             else if (m_close_index == m_close_index_pushed) {
                remove_tab(tab_id(index));
-               mouse_motion_event(p, Vector2i(0), ::user::e_key_none);
+               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
             }
          }
          else {
@@ -354,7 +354,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
             }
             else if (m_tab_drag_index != -1) {
                m_tab_drag_index = -1;
-               mouse_motion_event(p, Vector2i(0), ::user::e_key_none);
+               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
             }
          }
          handled = true;
@@ -390,7 +390,7 @@ bool TabWidgetBase::mouse_enter_event(const Vector2i&/* p */, bool /* enter */, 
 }
 
 
-bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, const ::user::e_key& ekeyModifiers)
+bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
 {
 
    auto [index, close] = tab_at_position(p, false);
@@ -415,14 +415,16 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, c
             m_tab_drag_index = index;
             m_active_tab = index;
 
-            screen()->m_puserinteraction->set_need_layout();
+            set_need_layout();
 
-            screen()->m_puserinteraction->set_need_redraw();
+            set_need_redraw();
 
-            screen()->m_puserinteraction->post_redraw();
+            post_redraw();
 
          }
+
       }
+
       return true;
 
    }
@@ -436,7 +438,7 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, c
       return true;
    }
 
-   return Widget::mouse_motion_event(p, rel, ekeyModifiers);
+   return Widget::mouse_motion_event(p, rel, bDown, ekeyModifiers);
 
 }
 

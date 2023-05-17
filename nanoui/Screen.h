@@ -57,6 +57,7 @@ public:
    //   ::nano2d::context * m_nano2d_context = nullptr;
    //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
    //   Cursor m_cursor;
+   ::pointer < Widget >       m_pwidgetMouseCapture;
       ::array<Widget *> m_focus_path;
       Widget * m_pwidgetLeftButtonDown{nullptr};
       ::pointer<::nano2d::font_sink>      m_pfontsink;
@@ -77,6 +78,7 @@ public:
    //   bool m_stencil_buffer;
    //   bool m_float_buffer;
       bool m_redraw;
+      bool m_bNeedLayout;
       ::function<void(Vector2i)> m_resize_callback;
    //#if defined(NANOUI_USE_METAL)
    //   void * m_metal_texture = nullptr;
@@ -142,12 +144,12 @@ public:
    );
 
    /// Release all resources
-   virtual ~Screen();
+   ~Screen() override;
    
    
    void common_construct();
    
-  
+   void set_need_layout() override;
 //
 //   /// Get the window title bar caption
 //   const ::scoped_string & caption() const { return m_caption; }
@@ -353,11 +355,16 @@ public:
    void on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifierss) override;
    void on_mouse_leave() override;
 
+   virtual void set_mouse_capture(Widget* pwidgetMouseCapture);
+
+   virtual void release_mouse_capture();
+
+
    bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers, bool bDoubleClick) override;
    bool on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
-   bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
-   bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
+   bool on_mouse_move(const ::point_i32 & point, bool bDown, const ::user::e_key & ekeyModifiers) override;
+   //bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
    bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const string & strText) override;
    bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers) override;

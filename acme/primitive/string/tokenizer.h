@@ -17,7 +17,7 @@ public:
    tokenizer():m_iterator(nullptr) {}
    tokenizer(const tokenizer & range) : ansi_range(range) {}
    tokenizer(tokenizer && range) : ansi_range(::transfer(range)) { }
-   tokenizer(const ::ansi_range & range) :
+   tokenizer(const ::const_ansi_range & range) :
       RANGE(range), m_iterator(range.begin())
    {}
    ~tokenizer() {}

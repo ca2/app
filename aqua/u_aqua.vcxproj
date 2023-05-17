@@ -464,6 +464,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="audio\audio.h" />
+    <ClInclude Include="audio\audio_mixer.h" />
+    <ClInclude Include="audio\audio_mixer_user.h" />
+    <ClInclude Include="audio\out.h" />
+    <ClInclude Include="audio\sound_track_player.h" />
+    <ClInclude Include="audio\speaker.h" />
+    <ClInclude Include="audio\text_to_speech_client.h" />
+    <ClInclude Include="audio\_.h" />
+    <ClInclude Include="audio\_c.h" />
     <ClInclude Include="const\idpool.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game\estamira.h" />
@@ -506,6 +515,13 @@
     <ClInclude Include="user\controller.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="audio\audio.cpp" />
+    <ClCompile Include="audio\audio_mixer.cpp" />
+    <ClCompile Include="audio\audio_mixer_user.cpp" />
+    <ClCompile Include="audio\audio_wave_out.cpp" />
+    <ClCompile Include="audio\sound_track_player.cpp" />
+    <ClCompile Include="audio\speaker.cpp" />
+    <ClCompile Include="audio\text_to_speech_client.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -527,11 +543,6 @@
     </ClCompile>
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="multimedia\audio\audio.cpp" />
-    <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
-    <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
-    <ClCompile Include="multimedia\audio\speaker.cpp" />
-    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp" />
     <ClCompile Include="multimedia\decoder.cpp" />
     <ClCompile Include="multimedia\decoder_plugin.cpp" />
     <ClCompile Include="multimedia\exception.cpp" />

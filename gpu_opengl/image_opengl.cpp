@@ -6,8 +6,9 @@
 
 
 #ifdef WINDOWS_DESKTOP
-#include <gl/glew.h>
-#include <gl/gl.h>
+//#include <gl/glew.h>
+//#include <gl/gl.h>
+#include <glad.h>
 #endif
 
 

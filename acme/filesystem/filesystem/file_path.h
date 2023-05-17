@@ -16,11 +16,11 @@
 //CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrUrl);
 
 
-CLASS_DECL_ACME ::scoped_string file_path_name(const ::scoped_string & path);
-CLASS_DECL_ACME ::scoped_string file_path_final_extension(const ::scoped_string & path);
-CLASS_DECL_ACME ::scoped_string file_path_all_extensions(const ::scoped_string & path);
-CLASS_DECL_ACME ::scoped_string file_path_folder(const ::scoped_string & scopedstrPath);
-CLASS_DECL_ACME ::scoped_string file_path_title(const ::scoped_string & scopedstrPath);
+CLASS_DECL_ACME ::string file_path_name(const ::scoped_string & path);
+CLASS_DECL_ACME ::string file_path_final_extension(const ::scoped_string & path);
+CLASS_DECL_ACME ::string file_path_all_extensions(const ::scoped_string & path);
+CLASS_DECL_ACME ::string file_path_folder(const ::scoped_string & scopedstrPath);
+CLASS_DECL_ACME ::string file_path_title(const ::scoped_string & scopedstrPath);
 
 CLASS_DECL_ACME bool file_path_is_relative(const ::scoped_string & scopedstr);
 CLASS_DECL_ACME bool file_path_is_absolute(const ::scoped_string & scopedstr);

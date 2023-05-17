@@ -385,7 +385,7 @@ public:
 /**
  * A specialization for adding a ColorPicker to a FormHelper.
  */
-template <> class FormWidget<Color, std::true_type> : public ColorPicker {
+template <> class FormWidget<::color::color, std::true_type> : public ColorPicker {
 public:
    /// Creates a memory_new FormWidget with underlying type ColorPicker.
    FormWidget(Widget * p) : ColorPicker(p) { }
@@ -397,7 +397,8 @@ public:
    void set_editable(bool e) { set_enabled(e); }
 
    /// Returns the value of \ref nanoui::ColorPicker::color.
-   Color value() const { return color(); }
+   ::color::color value() const { return color(); }
+
 };
 
 NAMESPACE_END(detail)

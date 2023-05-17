@@ -7127,12 +7127,12 @@ end:
 
       ::f64 f64 = atof(strNumber);
 
-      if (bSigned)
-      {
+      //if (bSigned)
+      //{
 
-         f64 = -f64;
+      //   f64 = -f64;
 
-      }
+      //}
 
 //#else
 
@@ -7148,12 +7148,12 @@ end:
 
       ::i64 i = (::i64) atoll(strNumber);
 
-      if (bSigned)
-      {
+      //if (bSigned)
+      //{
 
-         i = -i;
+      //   i = -i;
 
-      }
+      //}
 
       operator = (i);
 
@@ -8876,7 +8876,7 @@ void payload::_001Add(const string_array & straParam)
 
    }
 
-   stra().append_unique_ci(straParam);
+   stra().case_insensitive_append_unique(straParam);
 
 }
 
@@ -9441,6 +9441,7 @@ return m_pmemory;
 case e_type_path:
 return m_ppath;
 default:
+   return nullptr;
 break;
 }
 
@@ -10213,7 +10214,7 @@ payload & payload::operator = (const ::file::path & path)
       else
       {
 
-         *m_ppath = path;
+         ((::file::path &) * m_ppath) = path;
 
       }
 

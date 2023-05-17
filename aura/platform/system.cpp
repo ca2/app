@@ -1221,7 +1221,7 @@ namespace aura
 
 #else
       
-      return component_name("draw2d", "cairo");
+      return implementation_name("draw2d", "cairo");
 
 #endif
 
@@ -3299,7 +3299,7 @@ namespace aura
    //   else if(line->m_ecommand == command_line::command_file_open)
    //   {
 
-   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().case_insensitive_add_unique(line->m_payloadFile.stra());
 
    //      pcreate->m_ecommand = command_line::command_file_open;
 

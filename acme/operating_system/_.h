@@ -19,3 +19,14 @@ namespace operating_system
 
 
 
+#ifdef UNIVERSAL_WINDOWS
+
+consteval bool is_universal_windows() { return true; }
+
+#else
+
+consteval bool is_universal_windows() { return false; }
+
+#endif
+
+

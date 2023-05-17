@@ -501,6 +501,15 @@
     <ClInclude Include="user\simple\_component.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
+    <ClInclude Include="user\simple\status_bar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\toolbar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\statusbar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">
@@ -737,6 +746,15 @@
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\status_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\statusbar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\toolbar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>

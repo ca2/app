@@ -119,10 +119,10 @@ class ptr
    }
    
    
-   ptr & operator = (ptr < TYPE > & p)
+   ::ptr < TYPE > & operator = (::ptr < TYPE > & p)
    {
       
-      if(this == p.m_p)
+      if(m_p == p.m_p)
       {
       
          auto pOld = m_p;

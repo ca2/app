@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "application.h"
+#include "shell_open.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
@@ -8,32 +9,31 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/primitive/string/base64.h"
-#include "aura/constant/idpool.h"
 #include "acme/handler/request.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "apex/platform/node.h"
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/os_context.h"
+#include "apex/user/message.h"
+#include "aqua/game/game.h"
+#include "aura/constant/idpool.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
-#include "aqua/game/game.h"
-#include "apex/filesystem/filesystem/dir_context.h"
-#include "apex/filesystem/filesystem/file_context.h"
-#include "apex/platform/node.h"
 #include "aura/user/user/window_util.h"
 #include "aura/user/user/interaction.h"
-#include "shell_open.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction_impl.h"
-#include "aura/user/user/message.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/plain_edit.h"
@@ -8998,6 +8998,46 @@ namespace aura
       return {};
 
    }
+
+
+   void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   {
+
+      auto prequest = __create_new<::request >();
+
+      prequest->_001ParseCommandLine(strCommandLine);
+
+      m_puserinteractionMain->frame_toggle_restore();
+
+      //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
+
+      //if (pinteraction != nullptr)
+      //{
+
+      //   ::user::frame * pframe = pinteraction->top_level_frame();
+
+      //   if (pframe != nullptr)
+      //   {
+
+      //      pframe->frame_toggle_restore();
+
+      //      //if (pframe->is_window_visible() && !pframe->layout().is_iconic())
+      //      //{
+
+      //      //   pframe->order(e_zorder_top);
+
+      //      //}
+
+      //      //pframe->display(e_display_restored);
+
+      //   }
+
+      //}
+
+      bHandled = true;
+
+   }
+
 
 
 } // namespace aura

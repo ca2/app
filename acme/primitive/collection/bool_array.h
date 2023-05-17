@@ -1,10 +1,10 @@
 #pragma once
 
 
-//#include "raw_array.h"
+#include "numeric_array.h"
 
 
-using bool_array = raw_array < bool, bool >;
+using bool_array = numeric_array < bool >;
 
 
 

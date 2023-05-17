@@ -801,7 +801,9 @@ namespace html
 
                pdata->m_pcoredata->m_bDrawFirstBody = true;
 
-               rectangle = pdata->m_pcoredata->m_pform->client_rectangle();
+               auto pform = pdata->m_pcoredata->m_pform;
+
+               rectangle = pform->client_rectangle();
 
             }
             else

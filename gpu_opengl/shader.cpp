@@ -52,17 +52,9 @@ namespace opengl
 
          GLenum eerror = glGetError();
          
-#if defined(__APPLE__) || defined(ANDROID)
-//         auto errString = glErrorString(eerror);
+         auto errString = opengl_error_string(eerror);
+
          FORMATTED_TRACE("error %d \"%s\"", eerror);
-
-#else
-
-         auto errString = gluErrorString(eerror);
-         FORMATTED_TRACE("error %d \"%s\"", eerror, errString);
-
-#endif
-         
 
          return ::error_failed;
 

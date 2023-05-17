@@ -109,6 +109,9 @@ namespace user
       virtual void set_impact_title(const ::string & strImpactTitle);
       virtual string get_impact_title() const;
 
+      enum_window_type get_window_type() override;
+
+
       ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual void initialize_impact(::user::document * pdocument);
@@ -172,8 +175,6 @@ namespace user
       //virtual void collaborate(::job * pjob);
       virtual i32  get_total_page_count(::context * ptopic) override;
 
-
-      virtual ::user::interaction::enum_type get_window_type() override;
 
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
 

@@ -227,6 +227,12 @@ namespace user
 
       //::oswindow                                   m_oswindow;
       e_window_flag                                m_ewindowflag;
+      bool                                         m_bAutomaticallyStoreWindowRectangle;
+      bool                                         m_bPendingSaveWindowRectangle;
+      bool                                         m_bLoadingWindowRectangle;
+
+
+      bool                                         m_bVisualChanged;
 
       // <3ThomasBorreggardSørensen_!!
       ::pointer<::matter>                          m_pmatterCommandHandler;
@@ -340,7 +346,6 @@ namespace user
 
 
 
-
       //interaction_draw2d *                         m_pinteractiondraw2d;
 
       /// The menu_item this user_interaction (window)
@@ -352,15 +357,15 @@ namespace user
       // references
       ::pointer<::file::insert_item>            m_pitemComposing;
       ::pointer<::thread>                       m_pthreadUserInteraction;
-      ::pointer<::user::interaction>              m_puserinteractionParent;
-      ::pointer<::user::interaction>              m_pupdowntarget;
-      ::task_pointer                               m_ptaskModal;
-      ::pointer<interaction>                      m_puserinteractionOwner;
+      ::pointer<::user::interaction>            m_puserinteractionParent;
+      ::pointer<::user::interaction>            m_pupdowntarget;
+      ::task_pointer                            m_ptaskModal;
+      ::pointer<interaction>                    m_puserinteractionOwner;
 
       // ownership
-      ::pointer<::user::system>                   m_pusersystem;
+      ::pointer<::user::system>                 m_pusersystem;
    protected:
-      ::user::interaction_layout                   m_layout;
+      ::user::interaction_layout                m_layout;
    public:
       //::pointer<drag_move>                        m_pdragmove;
       ::pointer<::draw2d::graphics_call_array>    m_pgraphicscalla;
@@ -377,6 +382,7 @@ namespace user
       ::pointer<::object>                         m_pmenuitem;
       pointer_array < interaction >                 m_menua;
       ::pointer<::appearance::appearance>         m_pappearance;
+      bool                                         m_bEmptyAreaIsClientArea;
 
 
       interaction();
@@ -386,6 +392,7 @@ namespace user
 
       virtual void on_create_user_interaction();
 
+      void on_initialize_particle() override;
 
       virtual bool is_branch_current() const override;
 
@@ -546,9 +553,9 @@ namespace user
       inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
       inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
+      //inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      //inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      //inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
       bool is_ok() const
@@ -567,6 +574,9 @@ namespace user
 
       virtual::e_display window_stored_display();
       virtual::e_display window_previous_display();
+
+
+      virtual void set_window_previous_display(::e_display edisplayPrevious);
 
 
       virtual int get_derived_height(int iWidth);
@@ -698,11 +708,11 @@ namespace user
 
       //auto prodevian() { return __new(::prodevian(this)); }
 
-      virtual bool should_save_window_rect();
+      virtual bool should_save_window_rectangle();
       
-      virtual bool FancyWindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false);
-      virtual bool WindowDataLoadWindowRect();
-      virtual void WindowDataSaveWindowRect();
+      virtual bool FancyWindowDataLoadWindowRectangle(bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool WindowDataLoadWindowRectangle();
+      virtual void WindowDataSaveWindowRectangle();
 
       virtual void on_defer_display();
 
@@ -737,7 +747,7 @@ namespace user
 
       virtual void prodevian_redraw(bool bUpdateBuffer) override;
 
-      virtual void _001OnAfterAppearance();
+      //virtual void _001OnAfterAppearance();
 
 
       virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
@@ -758,7 +768,8 @@ namespace user
       virtual void _set_reposition(bool bSetThis = true);
       virtual void set_need_layout(bool bAscendants = true);
       //void set_need_layout() { m_bNeedLayout = true; }
-      virtual void set_need_redraw(bool bAscendants = true) override;
+      void set_need_redraw(const ::rectangle_i32& rectangleNeedRedraw = {}, bool bAscendants = true) override;
+      virtual bool needs_to_draw(::draw2d::graphics * pgraphics, const ::rectangle_i32& rectangleNeedsToDraw = {});
       virtual void set_need_load_form_data() override;
       virtual void set_need_save_form_data() override;
       //virtual bool commit_sketch();
@@ -1177,6 +1188,7 @@ namespace user
 
       virtual bool scroll_bar_get_client_rect(RECTANGLE_I32 & rectangle);
 
+      virtual void window_show();
       virtual void on_visual_applied();
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -1333,7 +1345,8 @@ namespace user
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnNcClip(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) ;
 
@@ -1702,7 +1715,7 @@ namespace user
       virtual string get_window_default_matter() override;
       virtual string get_window_icon_matter() override;
       virtual u32 get_window_default_style() override;
-      virtual enum_type get_window_type() override;
+      //virtual enum_type get_window_type() override;
 
 
       virtual void on_simple_command(::message::simple_command* psimplecommand) override;
@@ -1745,16 +1758,40 @@ namespace user
       //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
       //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
 
-
-      virtual void _001OnExitIconic() override;
-      virtual void _001OnExitNormal() override;
-      virtual void _001OnExitZoomed() override;
-      virtual void _001OnExitFullScreen() override;
-
+      bool _001OnBeforeEnterIconic() override;
+      bool _001OnBeforeEnterNormal() override;
+      bool _001OnBeforeEnterZoomed() override;
+      bool _001OnBeforeEnterFullScreen() override;
 
 
-      virtual bool _001OnBeforeAppearance();
-      virtual bool _001OnExitAppearance();
+      bool _001OnBeforeEnterAppearance() override;
+
+
+      void _001OnAfterEnterIconic() override;
+      void _001OnAfterEnterNormal() override;
+      void _001OnAfterEnterZoomed() override;
+      void _001OnAfterEnterFullScreen() override;
+
+
+      void _001OnAfterEnterAppearance() override;
+
+
+      bool _001OnBeforeExitIconic() override;
+      bool _001OnBeforeExitNormal() override;
+      bool _001OnBeforeExitZoomed() override;
+      bool _001OnBeforeExitFullScreen() override;
+
+
+      bool _001OnBeforeExitAppearance() override;
+
+
+      void _001OnAfterExitIconic() override;
+      void _001OnAfterExitNormal() override;
+      void _001OnAfterExitZoomed() override;
+      void _001OnAfterExitFullScreen() override;
+
+
+      void _001OnAfterExitAppearance() override;
 
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;

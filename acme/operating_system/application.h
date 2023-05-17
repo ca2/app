@@ -22,11 +22,25 @@ namespace operating_system
       ~application() override;
 
 
+      virtual void open_by_process_identifier(::process_identifier processidentifier);
+
       virtual void open_by_module_path(const ::scoped_string & scopedstr);
 
       virtual void post_close();
 
+      virtual void post_exit();
+      
+      virtual ::string name();
 
+      virtual ::string main_window_title();
+      
+      virtual ::file::path module_path();
+      
+      virtual ::count window_count() const;
+      
+      inline bool has_window() const { return this->window_count(); }
+      
+      
    };
 
 

@@ -237,6 +237,7 @@
     <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aaa_color.h" />
     <ClInclude Include="color.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="context.h" />

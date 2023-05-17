@@ -2939,9 +2939,6 @@
     <ClInclude Include="primitive\collection\_std.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="R:\main\source\app\acme\primitive\string\_string.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\__wide.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
@@ -2989,6 +2986,12 @@
     </ClInclude>
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_impl_atom.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4116,6 +4119,9 @@
     </ClCompile>
     <ClCompile Include="memory\os_impl\aaa_select.cpp">
       <Filter>Source Files\memory\osdjfh</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\process.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -389,7 +389,7 @@ namespace user
 
       void set_plain_root(plain_text_tree * proot, bool bOwnData);
 
-      void _001OnKeyboardFocusTimer(u64 iTimer);
+      void _001OnKeyboardFocusTimer(::enum_timer etimer);
 
       string plain_edit_get_expanded_line(::draw2d::graphics_pointer& pgraphics, index iLine, array < strsize * > intptra = array < strsize * >());
 

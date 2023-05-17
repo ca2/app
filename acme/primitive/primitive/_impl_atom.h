@@ -4,6 +4,236 @@
 #pragma once
 
 
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE >::const_string_range(const block & block)
+{
+
+   *this = block;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline const_string_range < ITERATOR_TYPE > & const_string_range < ITERATOR_TYPE >::operator = (const block & block)
+{
+
+   if (block.size() % sizeof(decltype(*block.m_begin)) != 0)
+   {
+
+      throw ::exception(error_failed, "data type misalignment");
+
+   }
+
+   this->m_begin = (ITERATOR_TYPE)block.m_begin;
+   this->m_end = (ITERATOR_TYPE)block.m_end;
+
+   return *this;
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//inline const_string_range <  ITERATOR_TYPE >::const_string_range(const block & block)
+//{
+//
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+
+//template < >
+//inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
+//{
+//
+//   if (atom.is_text())
+//   {
+//
+//      this->m_begin = atom.m_str.m_begin;
+//      this->m_end = atom.m_str.m_end;
+//
+//   }
+//   else
+//   {
+//
+//      this->m_begin = nullptr;
+//      this->m_end = nullptr;
+//
+//   }
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+inline string_range < ITERATOR_TYPE >::string_range(const block & block) :
+   const_string_range < ITERATOR_TYPE >(block)
+{
+
+   //this->m_begin = (ITERATOR_TYPE)block.m_begin;
+   //this->m_end = (ITERATOR_TYPE)block.m_end;
+
+}
+
+
+//template <  >
+//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const atom & atom)
+//{
+//
+//   if (atom.is_text())
+//   {
+//
+//      BASE_RANGE::operator=(atom.m_str);
+//
+//   }
+//   else
+//   {
+//
+//      this->m_begin = nullptr;
+//      this->m_end = nullptr;
+//
+//   }
+//
+//   return *this;
+//
+//}
+
+
+//template <  >
+//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
+//{
+//
+//
+//   this->m_begin = (const ::ansi_character *)block.m_begin;
+//   this->m_end = (const ::ansi_character *)block.m_end;
+//
+//   return *this;
+//
+//}
+
+
+//template < typename ITERATOR_TYPE >
+//inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
+//{
+//
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+//template < typename ITERATOR_TYPE >
+//inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
+//{
+//
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+//template < typename ITERATOR_TYPE >
+//inline mutable_string_range <  ITERATOR_TYPE >::mutable_string_range(const atom & atom)
+//{
+//
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+inline mutable_string_range < ITERATOR_TYPE >::mutable_string_range(const block & block) :
+   string_range < ITERATOR_TYPE >(block)
+{
+
+
+   //throw_exception(error_not_supported);
+
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const atom & atom)
+//{
+//
+//   throw_exception(error_not_supported);
+//
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
+{
+
+   assign_range(atom.as_string());
+
+   return *this;
+
+}
+
+
+//template < typename ITERATOR_TYPE >
+//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom)
+//{
+//
+//   return operator+=(atom.operator ::string());
+//
+//}
+
+
+//template < typename ITERATOR_TYPE >
+//inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::atom & atom) :
+//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//{
+//
+//   m_str = atom.as_string();
+//
+//   RANGE::operator = (m_str);
+//
+//}
+
+
+//template < >
+//inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
+//   m_str(e_no_initialize), RANGE(e_no_initialize)
+//{
+//
+//   if (atom.is_text())
+//   {
+//
+//      RANGE::operator=(atom.m_str);
+//
+//   }
+//   else
+//   {
+//
+//      this->m_begin = nullptr;
+//      this->m_end = nullptr;
+//
+//   }
+//
+//}
+
+
+template < typename ITERATOR_TYPE >
+inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
+{
+
+   this->m_begin = (const CHARACTER *)block.data();
+   this->m_end = (const CHARACTER *)block.end();
+
+   return *this;
+
+}
+
+
 inline atom::atom()
 {
 
@@ -225,17 +455,6 @@ atom::atom(const RANGE & range) :
 }
 
 
-template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
-atom::atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload) :
-   m_str(has_as_string_not_payload)
-{
-
-   m_etype = e_type_text;
-
-}
-
-
-
 template < primitive_signed SIGNED >
 inline atom::atom(SIGNED i)
 {
@@ -419,22 +638,6 @@ inline bool atom::operator == (const ::string & str) const
 //   return order(str) >= 0;
 //
 //}
-
-
-inline ::string atom::operator +(const ::ansi_character * psz) const
-{
-
-   return this->as_string() + psz;
-
-}
-
-
-inline ::string atom::operator +(const ::string & str) const
-{
-
-   return this->as_string() + str;
-
-}
 
 
 //inline void atom::as(::string & str) const
@@ -1448,52 +1651,8 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
 }
 
 
-template < typename ITERATOR_TYPE >
-inline const_string_range <  ITERATOR_TYPE >::const_string_range(const atom & atom)
-{
-
-
-   throw_exception(error_not_supported);
-
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline const_string_range <  ITERATOR_TYPE >::const_string_range(const block & block)
-{
-
-
-   throw_exception(error_not_supported);
-
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_range <  ITERATOR_TYPE >::string_range(const atom & atom)
-{
-
-
-   throw_exception(error_not_supported);
-
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
-{
-
-
-   throw_exception(error_not_supported);
-
-
-}
-
-
 //template < typename ITERATOR_TYPE >
-//inline mutable_string_range <  ITERATOR_TYPE >::mutable_string_range(const atom & atom)
+//inline const_string_range <  ITERATOR_TYPE >::const_string_range(const atom & atom)
 //{
 //
 //
@@ -1502,161 +1661,6 @@ inline string_range <  ITERATOR_TYPE >::string_range(const block & block)
 //
 //}
 
-
-template < typename ITERATOR_TYPE >
-inline mutable_string_range <  ITERATOR_TYPE >::mutable_string_range(const block & block)
-{
-
-
-   throw_exception(error_not_supported);
-
-
-}
-
-
-//template < >
-//inline string_range <  const ::ansi_character * >::string_range(const atom & atom)
-//{
-//
-//   if (atom.is_text())
-//   {
-//
-//      this->m_begin =  atom.m_str.m_begin;
-//      this->m_end = atom.m_str.m_end;
-//
-//   }
-//   else
-//   {
-//
-//      this->m_begin = nullptr;
-//      this->m_end = nullptr;
-//
-//   }
-//
-//}
-//
-//
-//template < >
-//inline string_range <  const ::ansi_character * >::string_range(const block & block)
-//{
-//
-//   this->m_begin = (const ::ansi_character *) block.m_begin;
-//   this->m_end = (const ::ansi_character *)block.m_end;
-//
-//}
-
-
-//template < typename ITERATOR_TYPE >
-//inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const atom & atom)
-//{
-//
-//   throw_exception(error_not_supported);
-//
-//
-//}
-
-
-template <  >
-inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const atom & atom)
-{
-
-   if (atom.is_text())
-   {
-
-      BASE_RANGE::operator=(atom.m_str);
-
-   }
-   else
-   {
-
-      this->m_begin = nullptr;
-      this->m_end = nullptr;
-
-   }
-
-   return *this;
-
-}
-
-
-
-template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE > & string_range < ITERATOR_TYPE >::operator = (const block & block)
-{
-
-   this->m_begin = (const CHARACTER *)block.data();
-   this->m_end = (const CHARACTER *)block.end();
-
-   return *this;
-
-}
-
-
-//template <  >
-//inline string_range < const ::ansi_character * > & string_range <  const ::ansi_character * >::operator = (const block & block)
-//{
-//
-//
-//   this->m_begin = (const ::ansi_character *)block.m_begin;
-//   this->m_end = (const ::ansi_character *)block.m_end;
-//
-//   return *this;
-//
-//}
-
-
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const ::atom & atom)
-{
-
-   assign_range(atom.as_string());
-
-   return *this;
-
-}
-
-
-//template < typename ITERATOR_TYPE >
-//string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom)
-//{
-//
-//   return operator+=(atom.operator ::string());
-//
-//}
-
-
-//template < typename ITERATOR_TYPE >
-//inline scoped_string_base < ITERATOR_TYPE >::scoped_string_base(const ::atom & atom) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
-//{
-//
-//   m_str = atom.as_string();
-//
-//   RANGE::operator = (m_str);
-//
-//}
-
-
-//template < >
-//inline scoped_string_base < const ::ansi_character * >::scoped_string_base(const ::atom & atom) :
-//   m_str(e_no_initialize), RANGE(e_no_initialize)
-//{
-//
-//   if (atom.is_text())
-//   {
-//
-//      RANGE::operator=(atom.m_str);
-//
-//   }
-//   else
-//   {
-//
-//      this->m_begin = nullptr;
-//      this->m_end = nullptr;
-//
-//   }
-//
-//}
 
 
 
@@ -1708,5 +1712,31 @@ atom::atom(const PAYLOAD & payload)
 
 }
 
+
+
+template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
+atom::atom(const HAS_AS_STRING_NOT_PAYLOAD & has_as_string_not_payload) :
+   m_str(has_as_string_not_payload)
+{
+
+   m_etype = e_type_text;
+
+}
+
+
+inline ::string atom::operator +(const ::ansi_character * psz) const
+{
+
+   return this->as_string() + psz;
+
+}
+
+
+inline ::string atom::operator +(const ::string & str) const
+{
+
+   return this->as_string() + str;
+
+}
 
 

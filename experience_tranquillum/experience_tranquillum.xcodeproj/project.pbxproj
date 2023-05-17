@@ -208,29 +208,29 @@
 		9A927DBD27F10EF8002BCA3C /* experience */ = {
 			isa = PBXGroup;
 			children = (
-				9A927DBE27F10EF8002BCA3C /* frame_008.cpp */,
-				9A927DBF27F10EF8002BCA3C /* frame_Minimal001.cpp */,
-				9A927DC027F10EF8002BCA3C /* control_box.h */,
-				9A927DC127F10EF8002BCA3C /* frame.cpp */,
-				9A927DC227F10EF8002BCA3C /* control_box.cpp */,
-				9A927DC327F10EF8002BCA3C /* frame.h */,
-				9A927DC427F10EF8002BCA3C /* frame_Minimal001.h */,
-				9A927DC527F10EF8002BCA3C /* frame_013.h */,
+				9A927DCC27F10EF8002BCA3C /* _experience.h */,
 				9A927DC627F10EF8002BCA3C /* control_box_button.cpp */,
 				9A927DC727F10EF8002BCA3C /* control_box_button.h */,
+				9A927DC227F10EF8002BCA3C /* control_box.cpp */,
+				9A927DC027F10EF8002BCA3C /* control_box.h */,
+				9A927DD227F10EF8002BCA3C /* experience.cpp */,
 				9A927DC827F10EF8002BCA3C /* experience.h */,
-				9A927DC927F10EF8002BCA3C /* frame_008.h */,
-				9A927DCA27F10EF8002BCA3C /* frame_002.h */,
 				9A927DCB27F10EF8002BCA3C /* frame_001.cpp */,
-				9A927DCC27F10EF8002BCA3C /* _experience.h */,
+				9A927DD027F10EF8002BCA3C /* frame_001.h */,
 				9A927DCD27F10EF8002BCA3C /* frame_002.cpp */,
+				9A927DCA27F10EF8002BCA3C /* frame_002.h */,
+				9A927DD327F10EF8002BCA3C /* frame_005.cpp */,
+				9A927DD127F10EF8002BCA3C /* frame_005.h */,
+				9A927DBE27F10EF8002BCA3C /* frame_008.cpp */,
+				9A927DC927F10EF8002BCA3C /* frame_008.h */,
+				9A927DD427F10EF8002BCA3C /* frame_011.cpp */,
 				9A927DCE27F10EF8002BCA3C /* frame_011.h */,
 				9A927DCF27F10EF8002BCA3C /* frame_013.cpp */,
-				9A927DD027F10EF8002BCA3C /* frame_001.h */,
-				9A927DD127F10EF8002BCA3C /* frame_005.h */,
-				9A927DD227F10EF8002BCA3C /* experience.cpp */,
-				9A927DD327F10EF8002BCA3C /* frame_005.cpp */,
-				9A927DD427F10EF8002BCA3C /* frame_011.cpp */,
+				9A927DC527F10EF8002BCA3C /* frame_013.h */,
+				9A927DBF27F10EF8002BCA3C /* frame_Minimal001.cpp */,
+				9A927DC427F10EF8002BCA3C /* frame_Minimal001.h */,
+				9A927DC127F10EF8002BCA3C /* frame.cpp */,
+				9A927DC327F10EF8002BCA3C /* frame.h */,
 			);
 			path = experience;
 			sourceTree = "<group>";
@@ -647,7 +647,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "10.13";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = macos;
@@ -738,7 +738,7 @@
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/library",
 					"$(WorkspaceDir)/operating_system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "10.13";
+				MACOSX_DEPLOYMENT_TARGET = "$(BUILD_MACHINE_MACOS_DEPLOYMENT_TARGET)";
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";

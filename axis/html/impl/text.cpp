@@ -626,7 +626,9 @@ namespace html
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            auto pstyle = m_pelemental->m_pdata->m_pcoredata->m_pform->get_style(pgraphics);
+            auto pform = m_pelemental->m_pdata->m_pcoredata->m_pform;
+
+            auto pstyle = pform->get_style(pgraphics);
             
             auto colorText = m_pelemental->get_color(pstyle, ::css::color_text);
 

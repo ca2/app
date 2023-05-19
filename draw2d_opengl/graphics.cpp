@@ -14,7 +14,7 @@
 
 #include <math.h>
 #include <dwmapi.h>
-#include <gl/freeglut.h>
+//#include <gl/freeglut.h>
 #define GLAD_GLAPI_EXPORT
 
 #include "glad_wgl.h"

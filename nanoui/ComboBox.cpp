@@ -64,7 +64,7 @@ void ComboBox::set_items(const ::array<::string> & items, const ::array<::string
       m_scroll = memory_new VScrollPanel(m_ppopup);
       m_scroll->set_fixed_height(300);
       m_container = memory_new Widget(m_scroll);
-      m_ppopup->set_layout(memory_new BoxLayout(Orientation::Horizontal, enum_alignment::Middle));
+      m_ppopup->set_layout(memory_new BoxLayout(e_orientation_horizontal, e_alignment_middle));
    }
 
    m_container->set_layout(memory_new GroupLayout(10));

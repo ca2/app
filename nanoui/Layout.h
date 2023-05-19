@@ -89,11 +89,11 @@ namespace nanoui
        * \param spacing
        *     Extra spacing placed between widgets
        */
-      BoxLayout(Orientation orientation, enum_alignment alignment = enum_alignment::Middle,
+      BoxLayout(enum_orientation orientation, enum_alignment alignment = enum_alignment::Middle,
          int margin = 0, int spacing = 0);
 
       /// The Orientation this BoxLayout is using.
-      Orientation orientation() const { return m_orientation; }
+      enum_orientation orientation() const { return m_orientation; }
 
       /// Sets the Orientation of this BoxLayout.
       void set_orientation(Orientation orientation) { m_orientation = orientation; }
@@ -126,7 +126,7 @@ namespace nanoui
 
    protected:
       /// The Orientation of this BoxLayout.
-      Orientation m_orientation;
+      enum_orientation m_orientation;
 
       /// The enum_alignment of this BoxLayout.
       enum_alignment m_ealignment;
@@ -249,7 +249,7 @@ namespace nanoui
        * \param spacing
        *     The amount of spacing between widgets added to the grid.
        */
-      GridLayout(Orientation orientation = Orientation::Horizontal, int resolution = 2,
+      GridLayout(enum_orientation orientation = enum_orientation::Horizontal, int resolution = 2,
          enum_alignment alignment = enum_alignment::Middle,
          int margin = 0, int spacing = 0)
          : m_orientation(orientation), m_resolution(resolution), m_margin(margin) {
@@ -258,7 +258,7 @@ namespace nanoui
       }
 
       /// The Orientation of this GridLayout.
-      Orientation orientation() const { return m_orientation; }
+      enum_orientation orientation() const { return m_orientation; }
 
       /// Sets the Orientation of this GridLayout.
       void set_orientation(Orientation orientation) {
@@ -319,7 +319,7 @@ namespace nanoui
 
    protected:
       /// The Orientation of the GridLayout.
-      Orientation m_orientation;
+      enum_orientation m_orientation;
       /// The default enum_alignment of the GridLayout.
       enum_alignment m_default_alignment[2];
       /// The actual enum_alignment being used for each column/row

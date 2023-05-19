@@ -972,8 +972,8 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::nano2d::paint context::image_pattern(float cx, float cy, float w, float h, float angle,
-		int image, float alpha)
+	::nano2d::paint context::image_pattern_from_index(float cx, float cy, float w, float h, float angle,
+		float alpha, int image)
 	{
 
 		return {};
@@ -995,6 +995,15 @@ void TransformSkewX(float* t, float a)
 		//p.innerColor = p.outerColor = context::RGBAf)(1, 1, 1, alpha);
 
 		//return p;
+	}
+
+
+	::nano2d::paint context::image_pattern_from_image(float cx, float cy, float w, float h, float angle,
+		float alpha, ::image * pimage)
+	{
+
+		return {};
+
 	}
 
 	// Scissoring

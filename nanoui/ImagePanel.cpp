@@ -38,22 +38,22 @@ ImagePanel::ImagePanel(Widget * parent)
    
 }
 
-Vector2i ImagePanel::grid_size() const
+vector2_i32 ImagePanel::grid_size() const
 {
    int n_cols = 1 + std::max(0,
       (int)((m_size.x() - 2 * m_margin - m_thumb_size) /
          (float)(m_thumb_size + m_spacing)));
    int n_rows = ((int)m_images.size() + n_cols - 1) / n_cols;
-   return Vector2i(n_cols, n_rows);
+   return vector2_i32(n_cols, n_rows);
 }
 
-int ImagePanel::index_for_position(const Vector2i & p) const {
-   Vector2f pp = (Vector2f(p - m_pos) - Vector2f((float)m_margin)) /
+int ImagePanel::index_for_position(const vector2_i32 & p) const {
+   vector2_f32 pp = (vector2_f32(p - m_pos) - vector2_f32((float)m_margin)) /
       (float)(m_thumb_size + m_spacing);
    float icon_region = m_thumb_size / (float)(m_thumb_size + m_spacing);
    bool over_image = pp.x() - std::floor(pp.x()) < icon_region &&
       pp.y() - std::floor(pp.y()) < icon_region;
-   Vector2i grid_pos(pp), grid = grid_size();
+   vector2_i32 grid_pos(pp), grid = grid_size();
    over_image &= grid_pos.x() >= 0 && grid_pos.y() >= 0 && pp.x() >= 0 &&
       pp.y() >= 0 && grid_pos.x() < grid.x() &&
       grid_pos.y() < grid.y();
@@ -61,7 +61,7 @@ int ImagePanel::index_for_position(const Vector2i & p) const {
 }
 
 
-bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, bool bDown, const ::user::e_key & /* modifiers */) 
+bool ImagePanel::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* rel */, bool bDown, const ::user::e_key & /* modifiers */) 
 {
 
    m_mouse_index = index_for_position(p);
@@ -71,7 +71,7 @@ bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel 
 }
 
 
-bool ImagePanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+bool ImagePanel::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
 {
 
    int index = index_for_position(p);
@@ -108,10 +108,10 @@ void ImagePanel::_defer_load_image_directory(::nano2d::context * pcontext)
 }
 
 
-Vector2i ImagePanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   Vector2i grid = grid_size();
+vector2_i32 ImagePanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize) {
+   vector2_i32 grid = grid_size();
    ((ImagePanel *)this)->_defer_load_image_directory(pcontext);
-   return Vector2i(
+   return vector2_i32(
       grid.x() * m_thumb_size + (grid.x() - 1) * m_spacing + 2 * m_margin,
       grid.y() * m_thumb_size + (grid.y() - 1) * m_spacing + 2 * m_margin
    );
@@ -123,7 +123,7 @@ void ImagePanel::draw(::nano2d::context * pcontext)
    
    _defer_load_image_directory(pcontext);
 
-   Vector2i grid = grid_size();
+   vector2_i32 grid = grid_size();
 
    auto pvscrollpanel = dynamic_cast <VScrollPanel *>(parent());
 
@@ -136,8 +136,8 @@ void ImagePanel::draw(::nano2d::context * pcontext)
    pgraphics->m_bUseImageMipMapsOrResizedImages = true;
 
    for (::index i = 0; i < m_images.size(); ++i) {
-      Vector2i p = m_pos + Vector2i(m_margin) +
-         Vector2i((int)i % grid.x(), (int)i / grid.x()) * (m_thumb_size + m_spacing);
+      vector2_i32 p = m_pos + vector2_i32(m_margin) +
+         vector2_i32((int)i % grid.x(), (int)i / grid.x()) * (m_thumb_size + m_spacing);
       int imgw, imgh;
 
       if (pvscrollpanel)
@@ -182,9 +182,9 @@ void ImagePanel::draw(::nano2d::context * pcontext)
          iy = 0;
       }
 
-      ::nano2d::paint img_paint = pcontext->image_pattern(
-         p.x() + ix, p.y() + iy, iw, ih, 0, m_images[i].first,
-         m_mouse_index == (int)i ? 1.0f : 0.7f);
+      ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
+         p.x() + ix, p.y() + iy, iw, ih, 0, m_mouse_index == (int)i ? 1.0f : 0.7f,
+         m_images[i].first);
 
       pcontext->begin_path();
       pcontext->rounded_rectangle((float)p.x(), (float)p.y(), (float)m_thumb_size, (float)m_thumb_size, 5);

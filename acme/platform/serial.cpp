@@ -232,7 +232,7 @@ namespace serial
             if (start_of_line != read_so_far)
             {
 
-               lines.push_back(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+               lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
 
             }
 
@@ -244,7 +244,7 @@ namespace serial
          {
 
             // EOL found
-            lines.push_back(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+            lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
 
             start_of_line = read_so_far;
 
@@ -256,7 +256,7 @@ namespace serial
             if (start_of_line != read_so_far)
             {
 
-               lines.push_back(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
+               lines.add(string(reinterpret_cast<const char*> (buffer_ + start_of_line), read_so_far - start_of_line));
 
             }
 
@@ -885,7 +885,7 @@ namespace serial
 //      {
 //         if (start_of_line != read_so_far)
 //         {
-//            lines.push_back(
+//            lines.add(
 //               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }
@@ -895,7 +895,7 @@ namespace serial
 //                 (buffer_ + read_so_far - eol_len), eol_len) == eol)
 //      {
 //         // EOL found
-//         lines.push_back(
+//         lines.add(
 //            string(reinterpret_cast<const char *> (buffer_ + start_of_line),
 //                   read_so_far - start_of_line));
 //         start_of_line = read_so_far;
@@ -904,7 +904,7 @@ namespace serial
 //      {
 //         if (start_of_line != read_so_far)
 //         {
-//            lines.push_back(
+//            lines.add(
 //               string(reinterpret_cast<const char *> (buffer_ + start_of_line),
 //                      read_so_far - start_of_line));
 //         }

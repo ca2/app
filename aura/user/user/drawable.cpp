@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::hit_test(const ::point_i32& point)
+   ::item_pointer drawable::hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::item_pointer drawable::on_hit_test(const ::point_i32 & point)
+   ::item_pointer drawable::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
       return nullptr;
@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   item_pointer drawable::hit_test(::user::mouse* pmouse)
+   item_pointer drawable::hit_test(::user::mouse* pmouse, e_zorder ezorder)
    {
 
       return nullptr;

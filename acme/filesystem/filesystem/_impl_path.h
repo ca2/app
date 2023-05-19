@@ -997,18 +997,38 @@ namespace file
    inline path & path::operator *= (const ::ansi_string & str) { return operator *= (::file::path(str)); }
 
 
-   inline ::file::path path::title() const
+   inline ::const_ansi_range path::title() const
    {
 
-      return ::file_path_title(c_str());
+      auto rangeName = this->name();
+
+      auto end = rangeName.find('.');
+
+      if (::is_null(end))
+      {
+
+         return rangeName;
+
+      }
+
+      return rangeName(0, end);
 
    }
 
 
-   inline string path::name() const
+   inline ::const_ansi_range path::name() const
    {
 
-      return ::file_path_name(c_str());
+      auto p = rear_find_first_character_in("\\/");
+
+      if (::is_null(p))
+      {
+
+         return *this;
+
+      }
+
+      return { p + 1, this->end() };
 
    }
 
@@ -1021,19 +1041,40 @@ namespace file
    }
 
 
-   inline ::scoped_string path::find_final_extension() const
+   inline ::const_ansi_range path::find_final_extension() const
    {
 
-      return ::file_path_final_extension(*this);
+      auto rangeName = this->name();
+
+      auto last_dot = rangeName.rear_find('.');
+
+      if (!last_dot)
+      {
+
+         return {};
+
+      }
+
+      return { last_dot + 1, this->end() };
 
    }
 
 
-   inline ::scoped_string path::find_all_extensions() const
+   inline ::const_ansi_range path::find_all_extensions() const
    {
 
-      return file_path_all_extensions(*this);
+      auto rangeName = this->name();
 
+      auto name_first_dot = rangeName.find('.');
+
+      if (!name_first_dot)
+      {
+
+         return {};
+
+      }
+
+      return { name_first_dot + 1, this->end() };
    }
 
 

@@ -970,13 +970,13 @@ namespace networking_bsd
                   unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
                   unsigned long b3 = static_cast<unsigned long>(pa.getvalue());
                   sprintf(slask, "%lx", b0 * 256 + b1);
-                  vec.push_back(slask);
+                  vec.add(slask);
                   sprintf(slask, "%lx", b2 * 256 + b3);
-                  vec.push_back(slask);
+                  vec.add(slask);
                }
                else
                {
-                  vec.push_back(s);
+                  vec.add(s);
                }
                //
                x = i + 1;
@@ -2322,13 +2322,13 @@ namespace networking_bsd
       //               unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
       //               unsigned long b3 = static_cast<unsigned long>(pa.getvalue());
       //               sprintf(slask,"%lx",b0 * 256 + b1);
-      //               vec.push_back(slask);
+      //               vec.add(slask);
       //               sprintf(slask,"%lx",b2 * 256 + b3);
-      //               vec.push_back(slask);
+      //               vec.add(slask);
       //            }
       //            else
       //            {
-      //               vec.push_back(s);
+      //               vec.add(s);
       //            }
       //            //
       //            x = i + 1;

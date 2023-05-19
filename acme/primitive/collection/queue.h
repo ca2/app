@@ -17,7 +17,7 @@
 
 //    front()
 //    back()
-//    push_back()
+//    add()
 //    pop_front()
 
 
@@ -98,7 +98,7 @@ template < class TYPE, class CONTAINER >
 inline void queue < TYPE, CONTAINER > ::push(const TYPE & t)
 {
 
-   this->CONTAINER::push_back(t);
+   this->CONTAINER::add(t);
 
 }
 

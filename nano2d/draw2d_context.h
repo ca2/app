@@ -121,7 +121,8 @@ namespace nano2d
       ::nano2d::paint linear_gradient(float sx, float sy, float ex, float ey, ::color::color icol, ::color::color ocol) override;
       ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::color::color icol, ::color::color ocol) override;
       ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::color::color icol, ::color::color ocol) override;
-      ::nano2d::paint image_pattern(float cx, float cy, float w, float h, float angle, int image, float alpha) override;
+      ::nano2d::paint image_pattern_from_index(float cx, float cy, float w, float h, float angle, float alpha, int iImage) override;
+      ::nano2d::paint image_pattern_from_image(float cx, float cy, float w, float h, float angle, float alpha, ::image * pimage) override;
 
 
 

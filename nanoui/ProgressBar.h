@@ -32,7 +32,7 @@ namespace nanoui
       float value() { return m_value; }
       void set_value(float value) { m_value = value; }
 
-      virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       float m_value;

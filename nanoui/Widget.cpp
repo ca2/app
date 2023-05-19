@@ -31,8 +31,8 @@ namespace nanoui
 
    Widget::Widget(Widget* parent)
       : m_parent(nullptr), m_theme(nullptr), m_layout(nullptr),
-      m_pos(0), m_size(0), m_fixed_size(0), m_visible(true), m_enabled(true),
-      m_focused(false), m_mouse_focus(false), m_tooltip(""), m_font_size(-1)
+      m_pos(0), m_size(0), m_fixed_size(0), m_bVisible(true), m_bEnabled(true),
+      m_bMouseHover(false), m_tooltip(""), m_font_size(-1)
       , m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/
    {
       m_bNeedLayout = false;
@@ -66,6 +66,51 @@ namespace nanoui
 
       }
 
+   }
+
+
+   /// Return whether or not the widget is currently visible (assuming all parents are visible)
+   bool Widget::visible() const
+   { 
+      
+      return m_bVisible; 
+   
+   }
+
+
+   /// Set whether or not the widget is currently visible (assuming all parents are visible)
+   void Widget::set_visible(bool bVisible)
+   {
+      
+      m_bVisible = bVisible; 
+   
+   }
+
+
+   void Widget::toggle_visible()
+   { 
+
+      auto bVisible = this->visible();
+      
+      set_visible(!bVisible);
+
+   }
+
+
+   /// Return whether or not this widget is currently enabled
+   bool Widget::enabled() const
+   {
+      
+      return m_bEnabled; 
+   
+   }
+
+   /// Set whether or not this widget is currently enabled
+   void Widget::set_enabled(bool bEnabled) 
+   {
+      
+      m_bEnabled = bEnabled; 
+   
    }
 
 
@@ -107,7 +152,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_size(const Vector2i& size)
+   void Widget::set_size(const vector2_i32& size)
    {
 
       m_size = size;
@@ -132,7 +177,7 @@ namespace nanoui
    }
 
 
-   Vector2i Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   vector2_i32 Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       if (m_layout)
@@ -203,9 +248,9 @@ namespace nanoui
          for (auto pchild : m_children)
          {
 
-            Vector2i pref = pchild->preferred_size(pcontext, bRecalcTextSize), fix = pchild->fixed_size();
+            vector2_i32 pref = pchild->preferred_size(pcontext, bRecalcTextSize), fix = pchild->fixed_size();
 
-            pchild->set_size(Vector2i(
+            pchild->set_size(vector2_i32(
                fix[0] ? fix[0] : pref[0],
                fix[1] ? fix[1] : pref[1]
             ));
@@ -219,7 +264,7 @@ namespace nanoui
    }
 
 
-   Widget* Widget::find_widget(const Vector2i& p)
+   Widget* Widget::find_widget(const vector2_i32& p)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -241,7 +286,7 @@ namespace nanoui
    }
 
 
-   const Widget* Widget::find_widget(const Vector2i& p) const
+   const Widget* Widget::find_widget(const vector2_i32& p) const
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -263,7 +308,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -282,7 +327,9 @@ namespace nanoui
                if (pchild->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers))
                {
 
-                  if (emouse == ::user::e_mouse_left_button && down && !m_focused)
+                  bool bChildFocused = pchild->focused();
+
+                  if (emouse == ::user::e_mouse_left_button && down && !bChildFocused)
                   {
 
                      pchild->request_focus();
@@ -304,7 +351,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       bool handled = false;
@@ -363,7 +410,7 @@ namespace nanoui
    }
 
    
-   bool Widget::scroll_event(const Vector2i& p, const Vector2f& rel)
+   bool Widget::scroll_event(const vector2_i32& p, const vector2_f32& rel)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -392,7 +439,7 @@ namespace nanoui
    }
 
 
-   //bool Widget::mouse_drag_event(const Vector2i&, const Vector2i&, const ::user::e_key&)
+   //bool Widget::mouse_drag_event(const vector2_i32&, const vector2_i32&, const ::user::e_key&)
    //{
 
    //   return false;
@@ -400,10 +447,10 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const Vector2i&, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_enter_event(const vector2_i32&, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
-      m_mouse_focus = enter;
+      m_bMouseHover = enter;
 
       return false;
 
@@ -429,7 +476,7 @@ namespace nanoui
    bool Widget::focus_event(bool focused)
    {
 
-      m_focused = focused;
+      //m_focused = focused;
 
       return false;
 
@@ -457,7 +504,7 @@ namespace nanoui
       synchronous_lock lock(screen()->m_puserinteraction->synchronization());
       //m_iHoverCandidateChildStart = -1;
       //m_iHoverCandidateChildEnd = -1;
-      assert(index <= child_count());
+      ASSERT(index <= child_count());
       m_children.insert_at(index, widget);
       widget->inc_ref();
       widget->set_parent(this);
@@ -469,55 +516,134 @@ namespace nanoui
    }
 
 
-
    void Widget::remove_child(const Widget* widget)
    {
+
       synchronous_lock lock(screen()->m_puserinteraction->synchronization());
+
       //m_iHoverCandidateChildStart = -1;
       //m_iHoverCandidateChildEnd = -1;
-      size_t child_count = m_children.size();
-      m_children.erase(std::remove(m_children.begin(), m_children.end(), widget),
-         m_children.end());
-      if (m_children.size() == child_count)
-         throw std::runtime_error("Widget::remove_child(): widget not found!");
+      //size_t child_count = m_children.size();
+
+      if (!m_children.erase((Widget *) widget))
+      {
+
+         throw ::exception(error_wrong_state, "Widget::remove_child(): widget not found!");
+
+      }
+
       widget->dec_ref();
+
    }
 
-   void Widget::remove_child_at(int index) {
+
+   void Widget::remove_child_at(int index) 
+   {
+
       if (index < 0 || index >= (int)m_children.size())
-         throw std::runtime_error("Widget::remove_child_at(): out of bounds!");
+      {
+      
+         throw ::exception(error_index_out_of_bounds, "Widget::remove_child_at(): out of bounds!");
+
+      }
+
       Widget* widget = m_children[index];
-      m_children.erase(m_children.begin() + index);
+
+      m_children.erase_at(index);
+
       widget->dec_ref();
+
    }
 
-   Window* Widget::window() {
+
+   Window* Widget::window() 
+   {
+
       Widget* widget = this;
-      while (true) {
+
+      while (true) 
+      {
+
          if (!widget)
+         {
+
             return nullptr;
+
+         }
+
          Window* window = dynamic_cast<Window*>(widget);
+
          if (window)
+         {
+
             return window;
+
+         }
+
          widget = widget->parent();
+
       }
+
    }
 
-   Screen* Widget::screen() {
+
+   Screen* Widget::screen() 
+   {
+
       Widget* widget = this;
-      while (true) {
+
+      while (true) 
+      {
+
          if (!widget)
+         {
+
             return nullptr;
+
+         }
+
          Screen* screen = dynamic_cast<Screen*>(widget);
+
          if (screen)
+         {
+
             return screen;
+
+         }
+
          widget = widget->parent();
+
       }
+
    }
 
-   const Screen* Widget::screen() const { return const_cast<Widget*>(this)->screen(); }
 
-   const Window* Widget::window() const { return const_cast<Widget*>(this)->window(); }
+   const Screen* Widget::screen() const 
+   {
+      
+      return const_cast<Widget*>(this)->screen(); 
+   
+   }
+
+
+   const Window* Widget::window() const 
+   {
+      
+      return const_cast<Widget*>(this)->window(); 
+   
+   }
+
+
+   bool Widget::focused() const
+   { 
+
+      auto pscreen = screen();
+
+      auto pwidget = (Widget*)this;
+      
+      return pscreen->m_focus_path.contains(pwidget); 
+   
+   }
 
 
    void Widget::request_focus()
@@ -543,13 +669,15 @@ namespace nanoui
          if (!screen()->m_puserinteraction->needs_to_draw(pdraw2dcontext->m_pgraphics, interactionRectangle))
          {
 
-            INFORMATION("Opting out from draw widget!! " << typeid(*this).name());
+//            INFORMATION("Opting out from draw widget!! " << typeid(*this).name());
 
             return false;
 
          }
 
       }
+
+      INFORMATION("Need to draw widget!! " << typeid(*this).name());
 
       return true;
 
@@ -755,14 +883,14 @@ namespace nanoui
    //}
 
 
-   Vector2i Widget::screen_position() const 
+   vector2_i32 Widget::screen_position() const 
    {
    
       auto absolutePosition = absolute_position();
 
       auto pointScreenMainWindow = screen()->m_puserinteraction->position();
 
-      auto pointScreen = Vector2i(pointScreenMainWindow.x, pointScreenMainWindow.y);
+      auto pointScreen = vector2_i32(pointScreenMainWindow.x, pointScreenMainWindow.y);
 
       pointScreen += absolutePosition;
 
@@ -788,10 +916,25 @@ namespace nanoui
    }
 
 
-   void Widget::set_need_redraw()
+   void Widget::set_need_redraw(const ::rectangle_i32& rectangleParentCoordinates)
    {
 
-      auto rectangleInteraction = interaction_rectangle();
+      auto rectangleInteraction = rectangleParentCoordinates;
+
+      if (rectangleInteraction.is_empty())
+      {
+
+         rectangleInteraction = interaction_rectangle();
+
+      }
+      else
+      {
+
+         auto absolutePosition = absolute_position();
+
+         rectangleInteraction.offset(absolutePosition.x(), absolutePosition.y());
+
+      }
 
       screen()->m_puserinteraction->set_need_redraw(rectangleInteraction);
 
@@ -802,6 +945,95 @@ namespace nanoui
    {
 
       screen()->m_puserinteraction->post_redraw();
+
+   }
+
+   
+   void Widget::fixed_placement(const ::rectangle_i32& rectangle)
+   {
+
+      set_position(::vector2_i32(::vector2_i32(rectangle.left, rectangle.top)));
+
+      set_fixed_size(::vector2_i32(rectangle.width(), rectangle.height()));
+
+   }
+
+
+   void Widget::expose_fixed_size(const ::rectangle_i32& rectangle)
+   {
+
+      auto positionOld = m_pos;
+
+      auto rectangleOld = interaction_rectangle();
+
+      auto positionNew = ::vector2_i32(::vector2_i32(rectangle.left, rectangle.top));
+
+      set_position(positionNew);
+
+      auto sizeNew = ::vector2_i32(rectangle.width(), rectangle.height());
+
+      set_fixed_size(sizeNew);
+
+      auto rectangleNew = interaction_rectangle();
+
+      if (positionOld != positionNew)
+      {
+
+         set_need_redraw(rectangleOld);
+
+         set_need_redraw(rectangleNew);
+
+      }
+      else
+      {
+
+         auto rectangleRightDifference = rectangleOld.right_plus_difference(rectangleNew);
+
+         auto rectangleBottomDifference = rectangleOld.bottom_difference(rectangleNew);
+
+         rectangleRightDifference.normalize();
+
+         rectangleBottomDifference.normalize();
+
+         set_need_redraw(rectangleRightDifference);
+
+         set_need_redraw(rectangleBottomDifference);
+
+      }
+
+      post_redraw();
+
+   }
+
+
+   bool Widget::is_mouse_down() const
+   {
+
+      return screen()->is_mouse_down(this);
+
+   }
+
+
+   void Widget::set_mouse_down(bool bMouseDown)
+   {
+
+      if (bMouseDown)
+      {
+
+         screen()->m_pwidgetMouseDown = this;
+
+      }
+      else
+      {
+
+         if (screen()->m_pwidgetMouseDown == this)
+         {
+
+            screen()->m_pwidgetMouseDown = nullptr;
+
+         }
+
+      }
 
    }
 

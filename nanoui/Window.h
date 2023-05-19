@@ -57,19 +57,19 @@ namespace nanoui
    /// Draw the window
    virtual void draw(::nano2d::context * pcontext) override;
    /// Handle mouse enter/leave events
-   virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
    /// Handle window drag events
-   //virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
-   virtual bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+   //virtual bool mouse_drag_event(const vector2_i32 & p, const vector2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
    /// Handle mouse events recursively and bring the current window to the top
-   virtual bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+   virtual bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
    /// Accept scroll events and propagate them to the widget under the mouse cursor
       
       void on_begin_draw(::nano2d::context * pcontext) override;
             
-   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
+   virtual bool scroll_event(const vector2_i32 & p, const vector2_f32 & rel) override;
    /// Compute the preferred size of the widget
-   virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+   virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place child widgets, if any
    virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
    //protected:

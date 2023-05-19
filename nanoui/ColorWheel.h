@@ -88,23 +88,23 @@ namespace nanoui
       void set_color(const color::color & color);
 
       /// The preferred size of this ColorWheel.
-      Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       void draw(::nano2d::context * pcontext) override;
 
       /// Handles mouse button click events for the ColorWheel.
-      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
-      bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       /// Handles mouse drag events for the ColorWheel.
-      //bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      //bool mouse_drag_event(const vector2_i32 & p, const vector2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
 
       // Converts a specified hue (with saturation = value = 1) to RGB space.
       color::color hue2rgb(float h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
-      Region adjust_position(const Vector2i & p);
+      Region adjust_position(const vector2_i32 & p);
 
 };
 

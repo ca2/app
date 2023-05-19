@@ -25,18 +25,18 @@ Slider::Slider(Widget * parent)
 }
 
 
-Vector2i Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+vector2_i32 Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
 {
    
-   return Vector2i(70, 16);
+   return vector2_i32(70, 16);
 
 }
 
 
-bool Slider::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, bool bDown,const ::user::e_key & /* modifiers */)
+bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* rel */, bool bDown,const ::user::e_key & /* modifiers */)
 {
 
-   if (!m_enabled || !bDown)
+   if (!m_bEnabled || !bDown)
    {
 
       return false;
@@ -55,8 +55,8 @@ bool Slider::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, 
    return true;
 }
 
-bool Slider::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) {
-   if (!m_enabled)
+bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) {
+   if (!m_bEnabled)
       return false;
 
    const float kr = (m_size.y() * 0.4f), kshadow = 3.f;
@@ -74,19 +74,19 @@ bool Slider::mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool
 }
 
 void Slider::draw(::nano2d::context * pcontext) {
-   Vector2f center = Vector2f(m_pos) + Vector2f(m_size) * 0.5f;
+   vector2_f32 center = vector2_f32(m_pos) + vector2_f32(m_size) * 0.5f;
    float kr = (m_size.y() * 0.4f), kshadow = 3.f;
 
    float start_x = kr + kshadow + m_pos.x();
    float width_x = m_size.x() - 2 * (kr + kshadow);
 
-   Vector2f knob_pos(start_x + (m_value - m_range.first) /
+   vector2_f32 knob_pos(start_x + (m_value - m_range.first) /
       (m_range.second - m_range.first) * width_x,
       center.y() + 0.5f);
 
    ::nano2d::paint bg = pcontext->box_gradient(
       start_x, center.y() - 3 + 1, width_x, 6, 3, 3,
-                                               ::color::color(0, m_enabled ? 32 : 10),  ::color::color(0, m_enabled ? 128 : 210));
+                                               ::color::color(0, m_bEnabled ? 32 : 10),  ::color::color(0, m_bEnabled ? 128 : 210));
 
    pcontext->begin_path();
    pcontext->rounded_rectangle(start_x, center.y() - 3 + 1, width_x, 6, 2);
@@ -132,7 +132,7 @@ void Slider::draw(::nano2d::context * pcontext) {
    pcontext->fill();
    pcontext->begin_path();
    pcontext->circle(knob_pos.x(), knob_pos.y(), kr / 2);
-   pcontext->fill_color( ::color::color(150, m_enabled ? 255 : 100));
+   pcontext->fill_color( ::color::color(150, m_bEnabled ? 255 : 100));
    pcontext->stroke_paint(knob_reverse);
    pcontext->stroke();
    pcontext->fill();

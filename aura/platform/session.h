@@ -23,16 +23,16 @@ namespace aura
 
       bool                                                  m_bAcceptsFirstResponder;
 
-      ::user::interaction_impl *                            m_pimplPendingFocus2;
-      ::user::interaction *                                 m_puiLastUserInputPopup;
+      ::pointer < ::user::interaction_impl >                m_pimplPendingFocus2;
+      ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
 
       //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
 
-      ::user::interaction *                                 m_puiMouseMoveCapture;
-      ::user::interaction *                                 m_puiLastLButtonDown;
+      ::pointer < ::user::interaction >                     m_puiMouseMoveCapture;
 
 
-      ::pointer<::apex::savings>                         m_psavings;
+
+      ::pointer<::apex::savings>                            m_psavings;
 
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;

@@ -12,6 +12,8 @@
 #include "ComboBox.h"
 #include "VScrollPanel.h"
 #include "Layout.h"
+#include "acme/constant/source.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
 namespace nanoui
@@ -32,18 +34,24 @@ ComboBox::ComboBox(Widget * parent, const ::array<::string> & items, const ::arr
    set_items(items, items_short);
 }
 
-void ComboBox::set_selected_index(int idx) {
+
+void ComboBox::set_selected_index(int idx, const ::action_context& actioncontext)
+{
    if (m_items_short.empty())
       return;
    const ::array<Widget *> & children = m_container->children();
-   ((Button *)children[m_selected_index])->set_check(false);
-   ((Button *)children[idx])->set_check(true);
+   ((Button *)children[m_selected_index])->set_checked(false, e_source_selection);
+   ((Button *)children[idx])->set_checked(true, actioncontext);
    m_selected_index = idx;
    set_caption(m_items_short[idx]);
 }
 
-void ComboBox::set_items(const ::array<::string> & items, const ::array<::string> & items_short) {
-   assert(items.size() == items_short.size());
+
+void ComboBox::set_items(const ::array<::string> & items, const ::array<::string> & items_short) 
+{
+   
+   ASSERT(items.size() == items_short.size());
+
    m_items = items;
    m_items_short = items_short;
 
@@ -68,27 +76,32 @@ void ComboBox::set_items(const ::array<::string> & items, const ::array<::string
       button->set_callback([&, index] {
          m_selected_index = index;
          set_caption(m_items_short[index]);
-         set_check(false);
+         set_checked(false, e_source_selection);
          popup()->set_visible(false);
          if (m_callback)
             m_callback(index);
          });
       index++;
    }
-   set_selected_index(m_selected_index);
+
+   set_selected_index(m_selected_index, e_source_sync);
+
 }
 
-bool ComboBox::scroll_event(const Vector2i & p, const Vector2f & rel) {
-   set_check(false);
+
+bool ComboBox::scroll_event(const vector2_i32 & p, const vector2_f32 & rel)
+{
+
+   set_checked(false, e_source_selection);
    popup()->set_visible(false);
    if (rel.y() < 0) {
-      set_selected_index(std::min(m_selected_index + 1, (int)(items().size() - 1)));
+      set_selected_index(::minimum(m_selected_index + 1, (int)(items().size() - 1)), e_source_selection);
       if (m_callback)
          m_callback(m_selected_index);
       return true;
    }
    else if (rel.y() > 0) {
-      set_selected_index(std::max(m_selected_index - 1, 0));
+      set_selected_index(std::max(m_selected_index - 1, 0), e_source_user);
       if (m_callback)
          m_callback(m_selected_index);
       return true;

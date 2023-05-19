@@ -34,13 +34,13 @@ void Label::set_theme(Theme * theme) {
    }
 }
 
-Vector2i Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+vector2_i32 Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
 {
    if (bRecalcTextSize)
    {
       if (m_caption == "")
       {
-         m_sizePreferred = Vector2i(0);
+         m_sizePreferred = vector2_i32(0);
 
       }
       else
@@ -51,12 +51,12 @@ Vector2i Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSiz
          if (m_fixed_size.x() > 0) {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
             pcontext->text_box_bounds((float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption, bounds);
-            m_sizePreferred = Vector2i(m_fixed_size.x(), (int)(bounds[3] - bounds[1]));
+            m_sizePreferred = vector2_i32(m_fixed_size.x(), (int)(bounds[3] - bounds[1]));
          }
          else {
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_caption, bounds);
-            m_sizePreferred = Vector2i(
+            m_sizePreferred = vector2_i32(
                 iSize +2 ,
                (int)(int)(bounds[3] - bounds[1])
             );

@@ -9,6 +9,7 @@
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/primitive/particle.h"
 #include "acme/constant/element.h"
+#include "acme/user/user/_constant.h"
 
 
 #pragma pack(push, user_ITEM, 1)
@@ -51,6 +52,7 @@ struct CLASS_DECL_ACME ITEM_DATA_ADDITIONS
    u64                           m_uFlags;
    ::pointer < ::particle >      m_pparticle;
    ::enum_item                   m_eitem;
+   ::user::e_zorder              m_ezorder;
    union // small 1 bedroom ap
    {
       void *                        m_data[4];

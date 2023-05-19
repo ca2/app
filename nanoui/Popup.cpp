@@ -19,7 +19,7 @@ namespace nanoui
 
 
 Popup::Popup(Widget * parent, Window * parent_window)
-   : Window(parent, ""), m_parent_window(parent_window), m_anchor_pos(Vector2i(0)),
+   : Window(parent, ""), m_parent_window(parent_window), m_anchor_pos(vector2_i32(0)),
    m_anchor_offset(30), m_anchor_size(15), m_side(Side::Right) { }
 
 void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
@@ -27,7 +27,7 @@ void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) {
       Widget::perform_layout(pcontext, bRecalcTextSize);
    }
    else {
-      m_children[0]->set_position(Vector2i(0));
+      m_children[0]->set_position(vector2_i32(0));
       m_children[0]->set_size(m_size);
       m_children[0]->perform_layout(pcontext, bRecalcTextSize);
    }
@@ -39,8 +39,8 @@ void Popup::refresh_relative_placement() {
    if (!m_parent_window)
       return;
    m_parent_window->refresh_relative_placement();
-   m_visible &= m_parent_window->visible_recursive();
-   m_pos = m_parent_window->position() + m_anchor_pos - Vector2i(0, m_anchor_offset);
+   m_bVisible &= m_parent_window->visible_recursive();
+   m_pos = m_parent_window->position() + m_anchor_pos - vector2_i32(0, m_anchor_offset);
 }
 
 void Popup::draw(::nano2d::context * pcontext) 
@@ -48,7 +48,7 @@ void Popup::draw(::nano2d::context * pcontext)
 
    refresh_relative_placement();
 
-   if (!m_visible)
+   if (!m_bVisible)
       return;
 
    int ds = m_theme->m_iWindowDropShadowSize;
@@ -72,7 +72,7 @@ void Popup::draw(::nano2d::context * pcontext)
    pcontext->begin_path();
    pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
-   Vector2i base = m_pos + Vector2i(0, m_anchor_offset);
+   vector2_i32 base = m_pos + vector2_i32(0, m_anchor_offset);
    int sign = -1;
    if (m_side == Side::Left) {
       base.x() += m_size.x();

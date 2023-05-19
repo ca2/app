@@ -1807,8 +1807,6 @@ bool property_set::str_contains(const property_set & set) const
 bool property_set::contains(const property_set & set) const
 {
 
-   property_ptra ptraMatch;
-
    for (auto & pproperty : set)
    {
 
@@ -1821,14 +1819,7 @@ bool property_set::contains(const property_set & set) const
 
       }
 
-      ptraMatch.add(ppropertyHere);
-
-   }
-
-   for (auto & p : *this)
-   {
-
-      if (*ptraMatch[offset_of(&p)] != *p)
+      if (*ppropertyHere != *pproperty)
       {
 
          return false;

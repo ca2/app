@@ -145,6 +145,8 @@ namespace user
       lparam                                    m_lparam;
       lparam                                    m_lparamLastMouseMove;
 
+      bool                                      m_bUpdateBufferPending;
+
       ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
       ::pointer<::user::interaction>            m_puserinteractionKeyboardFocus;
       ::pointer<::user::interaction>            m_puserinteractionKeyboardFocusRequest;
@@ -162,6 +164,10 @@ namespace user
       ::size_i32                                m_sizeDrawnBuffer;
 
       ::rectangle_i32_array                     m_rectangleaNeedRedraw;
+
+      ::pointer < ::user::interaction >                     m_puiLastLButtonDown;
+      ::pointer < ::item >                                  m_pitemLButtonDown;
+
 
 
       interaction_impl();
@@ -723,7 +729,7 @@ namespace user
 
       virtual void start_window_visual() override;
       //virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
-      virtual void _001UpdateBuffer();
+      virtual void do_graphics(bool bDraw);
       virtual void _001UpdateScreen();
       //virtual void window_apply_visual(const window_state & windowstate) override;
 

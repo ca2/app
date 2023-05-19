@@ -169,12 +169,14 @@ public:
       if (::is_set(t.m_p))
       {
 
-         __dynamic_cast(m_p, t.m_p);
+         auto p = dynamic_cast < T * > (t.m_p);
 
-         m_pparticle = t.m_pparticle;
-
-         if (::is_set(m_p))
+         if (::is_set(p))
          {
+
+            m_p = p;
+
+            m_pparticle = t.m_pparticle;
 
             t.m_p = nullptr;
 

@@ -38,11 +38,11 @@ namespace user
 
       virtual bool is_composite();
 
-      virtual ::item_pointer hit_test(::user::mouse * pmouse);
+      virtual ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder);
 
-      virtual ::item_pointer hit_test(const ::point_i32 & point);
+      virtual ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder);
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point);
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
 
    };

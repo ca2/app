@@ -245,6 +245,16 @@ public:
    rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
+   rectangle_type left_difference(const rectangle_type& rectangle) const { return { this->left, ::maximum(this->top, rectangle.top), rectangle.left, ::minimum(this->bottom, rectangle.bottom) }; }
+   rectangle_type top_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->top, ::minimum(this->right, rectangle.right), rectangle.top }; }
+   rectangle_type right_difference(const rectangle_type& rectangle) const { return { this->right, ::maximum(this->top, rectangle.top), rectangle.right, ::minimum(this->bottom, rectangle.bottom) }; }
+   rectangle_type bottom_difference(const rectangle_type& rectangle) const { return { ::maximum(this->left, rectangle.left), this->bottom, ::minimum(this->right, rectangle.right), rectangle.bottom }; }
+
+   rectangle_type left_plus_difference(const rectangle_type& rectangle) const { return { this->left, ::minimum(this->top, rectangle.top), rectangle.left,::maximum(this->bottom, rectangle.bottom) }; }
+   rectangle_type top_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->top, ::maximum(this->right, rectangle.right), rectangle.top }; }
+   rectangle_type right_plus_difference(const rectangle_type& rectangle) const { return { this->right, ::minimum(this->top, rectangle.top), rectangle.right, ::maximum(this->bottom, rectangle.bottom) }; }
+   rectangle_type bottom_plus_difference(const rectangle_type& rectangle) const { return { ::minimum(this->left, rectangle.left), this->bottom, ::maximum(this->right, rectangle.right), rectangle.bottom }; }
+
    template < primitive_rectangle RECTANGLE >
    rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
 

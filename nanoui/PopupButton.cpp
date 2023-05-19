@@ -28,7 +28,7 @@ namespace nanoui
       set_flags(Flags::ToggleButton | Flags::PopupButton);
 
       m_ppopup = memory_new Popup(screen(), window());
-      m_ppopup->set_size(Vector2i(320, 250));
+      m_ppopup->set_size(vector2_i32(320, 250));
       m_ppopup->set_visible(false);
 
       m_icon_extra_scale = 0.8f; // widget override
@@ -36,10 +36,10 @@ namespace nanoui
    }
 
 
-   Vector2i PopupButton::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   vector2_i32 PopupButton::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
-      return Button::preferred_size(pcontext) + Vector2i(15, 0);
+      return Button::preferred_size(pcontext) + vector2_i32(15, 0);
 
    }
 
@@ -47,7 +47,7 @@ namespace nanoui
    void PopupButton::draw(::nano2d::context* pcontext) 
    {
 
-      if (!m_enabled && m_bChecked)
+      if (!m_bEnabled && m_bChecked)
          m_bChecked = false;
 
       m_ppopup->set_visible(m_bChecked);
@@ -62,11 +62,11 @@ namespace nanoui
 
          pcontext->font_size((m_font_size < 0 ? m_theme->m_iButtonFontSize : m_font_size) * icon_scale());
          pcontext->font_face("icons");
-         pcontext->fill_color(m_enabled ? text_color : ::color::color(m_theme->m_colorDisableText));
+         pcontext->fill_color(m_bEnabled ? text_color : ::color::color(m_theme->m_colorDisableText));
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
 
          float iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
-         Vector2f icon_pos(0, m_pos.y() + m_size.y() * 0.5f - 1);
+         vector2_f32 icon_pos(0, m_pos.y() + m_size.y() * 0.5f - 1);
 
          if (m_ppopup->side() == Popup::Right)
             icon_pos[0] = m_pos.x() + m_size.x() - iw - 8.f;
@@ -87,12 +87,12 @@ namespace nanoui
       if (parent_window) {
          int pos_y = absolute_position().y() - parent_window->position().y() + m_size.y() / 2;
          if (m_ppopup->side() == Popup::Right)
-            m_ppopup->set_anchor_pos(Vector2i(parent_window->width() + anchor_size, pos_y));
+            m_ppopup->set_anchor_pos(vector2_i32(parent_window->width() + anchor_size, pos_y));
          else
-            m_ppopup->set_anchor_pos(Vector2i(-anchor_size, pos_y));
+            m_ppopup->set_anchor_pos(vector2_i32(-anchor_size, pos_y));
       }
       else {
-         m_ppopup->set_position(absolute_position() + Vector2i(width() + anchor_size + 1, m_size.y() / 2 - anchor_size));
+         m_ppopup->set_position(absolute_position() + vector2_i32(width() + anchor_size + 1, m_size.y() / 2 - anchor_size));
       }
    }
 

@@ -29,8 +29,8 @@ Graph::Graph(Widget * parent, const ::scoped_string & caption)
    m_colorText = ::color::color(240, 192);
 }
 
-Vector2i Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
-   return Vector2i(180, 45);
+vector2_i32 Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
+   return vector2_i32(180, 45);
 }
 
 void Graph::draw(::nano2d::context * pcontext) {

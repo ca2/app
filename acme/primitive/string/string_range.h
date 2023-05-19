@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "string_range_const.h"
+#include "const_string_range.h"
 
 
 template<typename ITERATOR_TYPE>
@@ -158,13 +158,13 @@ public:
    //           using ::const_string_range<ITERATOR_TYPE>::operator CHARACTER *;
    inline operator CHARACTER * () { return this->data(); }
 
-   using ::const_string_range<ITERATOR_TYPE>::ptr_at;
-   inline const CHARACTER * ptr_at(::index i) { return this->data() + i; }
+   //using ::const_string_range<ITERATOR_TYPE>::ptr_at;
+   //inline const CHARACTER * ptr_at(::index i) { return this->data() + i; }
 
    //    inline const CHARACTER *ptr_at(::index i) const { return this->data() + i; }
 
-   using ::const_string_range<ITERATOR_TYPE>::rear_ptr;
-   inline const CHARACTER * rear_ptr(::index i) { return this->data() + this->size() + i; }
+   //using ::const_string_range<ITERATOR_TYPE>::rear_ptr;
+   //inline const CHARACTER * rear_ptr(::index i) { return this->data() + this->size() + i; }
 
    //    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + this->size() + i; }
    //

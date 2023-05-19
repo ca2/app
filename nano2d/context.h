@@ -262,7 +262,9 @@ namespace nano2d
 		// Creates and returns an image pattern. Parameters (ox,oy) specify the left-top location of the image pattern,
 		// (ex,ey) the size of one image, angle rotation around the top-left corner, image is handle to the image to render.
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
-		virtual ::nano2d::paint image_pattern(float ox, float oy, float ex, float ey, float angle, int image, float alpha);
+		virtual ::nano2d::paint image_pattern_from_index(float ox, float oy, float ex, float ey, float angle, float alpha, int iImage);
+
+		virtual ::nano2d::paint image_pattern_from_image(float ox, float oy, float ex, float ey, float angle, float alpha, ::image * pimage);
 
 		//
 		// Scissoring

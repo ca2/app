@@ -1426,9 +1426,7 @@ constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { retur
 
 
 template < typename TYPE >
-constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin);
-
-
+constexpr memsize index_of(const TYPE * p, const TYPE * pBegin);
 
 
 template<typename T>

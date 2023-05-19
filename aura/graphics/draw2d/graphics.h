@@ -89,7 +89,7 @@ namespace draw2d
       ::image_pointer                        m_pimageAlphaBlend;
       ::point_f64                            m_pointAlphaBlend;
       ::pointer<::task>                     m_ptask;
-
+      bool                                   m_bDraw;
 
       image *                                m_pimage;
       ::draw2d::bitmap_pointer               m_pbitmap;

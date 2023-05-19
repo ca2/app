@@ -573,7 +573,7 @@ namespace acme
       inline index push(ARRAY& a, typename ARRAY::BASE_ARG_TYPE newElement, index n = 0);
 
       template<class ARRAY>
-      inline void push_back(ARRAY& a, typename ARRAY::BASE_ARG_TYPE newElement, index n = 0);
+      inline void add(ARRAY& a, typename ARRAY::BASE_ARG_TYPE newElement, index n = 0);
 
       template<class TARGET, class SOURCE> inline ::index add(TARGET& target, const SOURCE& source)
       {
@@ -1783,7 +1783,7 @@ namespace acme
 
 
       template < typename ARRAY >
-      inline void push_back(ARRAY& a, typename ARRAY::BASE_ARG_TYPE newElement, index n)
+      inline void add(ARRAY& a, typename ARRAY::BASE_ARG_TYPE newElement, index n)
       {
 
          a.insert_at(a.get_upper_bound(n), newElement);

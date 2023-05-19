@@ -3393,7 +3393,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//void string::push_back(char ch)
+//void string::add(char ch)
 //{
 //
 //   operator += (ch);

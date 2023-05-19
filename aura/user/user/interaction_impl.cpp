@@ -140,6 +140,8 @@ namespace user
 
 #endif
 
+      m_bUpdateBufferPending = false;
+
    }
 
 
@@ -2474,6 +2476,29 @@ namespace user
 
          }
 
+         if (pmouse->m_atom == e_message_left_button_up)
+         {
+
+            auto pwindow = pmouse->m_pwindow;
+
+            auto pwindowimpl = pwindow->m_puserinteractionimpl;
+
+            if (::is_set(pwindowimpl->m_puiLastLButtonDown))
+            {
+
+               pwindowimpl->m_puiLastLButtonDown = nullptr;
+
+            }
+
+            if (::is_set(pwindowimpl->m_pitemLButtonDown))
+            {
+
+               pwindowimpl->m_pitemLButtonDown = nullptr;
+
+            }
+
+         }
+
          return;
 
       }
@@ -3940,7 +3965,9 @@ namespace user
 
       }
 
-      m_puserinteraction->post_message(::e_message_redraw, 1);
+      bool bForceUpdateBuffer = false;
+
+      m_puserinteraction->post_message(::e_message_redraw, bForceUpdateBuffer);
 
    }
 
@@ -4903,7 +4930,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001UpdateBuffer()
+   void interaction_impl::do_graphics(bool bDraw)
    {
 
       if (!m_puserinteraction || has_destroying_flag())
@@ -5012,6 +5039,8 @@ namespace user
 
          pgraphics->on_begin_draw();
 
+         pgraphics->m_rectangleaNeedRedraw = ::transfer(m_rectangleaNeedRedraw);
+
          pgraphics->m_pdraw2dhost = m_puserinteraction;
 
          pgraphics->m_puserstyle.release();
@@ -5058,7 +5087,20 @@ namespace user
             else
             {
 
-               m_puserinteraction->_001PrintBuffer(pgraphics);
+               pgraphics->m_bDraw = bDraw;
+
+               m_puserinteraction->do_graphics(pgraphics);
+
+               if (!bDraw && m_rectangleaNeedRedraw.has_element())
+               {
+
+                  bDraw = true;
+
+                  pgraphics->m_bDraw = bDraw;
+
+                  m_puserinteraction->do_graphics(pgraphics);
+
+               }
 
             }
 
@@ -5093,59 +5135,59 @@ namespace user
 
          }
 
-         if (pgraphics)
-         {
+         //if (pgraphics)
+         //{
 
-            for (::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
-            {
+         //   for (::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
+         //   {
 
-               bool bErasedAny = false;
+         //      bool bErasedAny = false;
 
-               for (::index j = 0; j < m_rectangleaNeedRedraw.size();)
-               {
+         //      for (::index j = 0; j < m_rectangleaNeedRedraw.size();)
+         //      {
 
-                  if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
-                  {
+         //         if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
+         //         {
 
-                     m_rectangleaNeedRedraw.erase_at(j);
+         //            m_rectangleaNeedRedraw.erase_at(j);
 
-                     bErasedAny = true;
+         //            bErasedAny = true;
 
-                  }
-                  else
-                  {
+         //         }
+         //         else
+         //         {
 
-                     j++;
+         //            j++;
 
-                  }
+         //         }
 
-               }
+         //      }
 
-               if (bErasedAny)
-               {
+         //      if (bErasedAny)
+         //      {
 
-                  pgraphics->m_rectangleaNeedRedraw.erase_at(i);
+         //         pgraphics->m_rectangleaNeedRedraw.erase_at(i);
 
-               }
-               else
-               {
+         //      }
+         //      else
+         //      {
 
-                  i++;
+         //         i++;
 
-               }
+         //      }
 
-            }
+         //   }
 
             if (m_rectangleaNeedRedraw.has_element())
             {
 
-               auto iRemaining = m_rectangleaNeedRedraw.size();
+               auto iRequestsDuringDrawing = m_rectangleaNeedRedraw.size();
 
-               INFORMATION("There are still " << iRemaining << " rectangular areas left be drawn.");
+               INFORMATION(iRequestsDuringDrawing << " redraw requests while drawing.");
 
             }
 
-         }
+         //}
 
       }
 
@@ -6723,12 +6765,12 @@ namespace user
 
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
 
-         if (sizeOutput != m_sizeDrawn)
+         if (sizeOutput.cx > m_sizeDrawn.cx || sizeOutput.cy > m_sizeDrawn.cy)
          {
 
             m_puserinteraction->set_need_layout();
 
-            m_puserinteraction->set_need_redraw();
+            //m_puserinteraction->set_need_redraw();
 
             m_puserinteraction->post_redraw();
 

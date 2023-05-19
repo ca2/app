@@ -14,6 +14,8 @@
 #include "ColorPicker.h"
 #include "Layout.h"
 #include "ColorWheel.h"
+#include "acme/constant/source.h"
+#include "acme/primitive/primitive/action_context.h"
 
 
 namespace nanoui
@@ -40,13 +42,13 @@ namespace nanoui
       m_pick_button = memory_new Button(m_ppopup, "Pick");
       m_pick_button->set_background_color(color);
       m_pick_button->set_text_color(color.contrasting_color());
-      m_pick_button->set_fixed_size(Vector2i(100, 20));
+      m_pick_button->set_fixed_size(vector2_i32(100, 20));
 
       // set the reset button to the specified color
       m_reset_button = memory_new Button(m_ppopup, "Reset");
       m_reset_button->set_background_color(color);
       m_reset_button->set_text_color(color.contrasting_color());
-      m_reset_button->set_fixed_size(Vector2i(100, 20));
+      m_reset_button->set_fixed_size(vector2_i32(100, 20));
 
       PopupButton::set_change_callback([&](bool) 
       {
@@ -80,7 +82,7 @@ namespace nanoui
       m_pick_button->set_callback([&]() {
          if (m_bChecked) {
             ::color::color value = m_color_wheel->color();
-            set_check(false);
+            set_checked(false, e_source_selection);
             set_color(value);
             m_final_callback(value);
          }

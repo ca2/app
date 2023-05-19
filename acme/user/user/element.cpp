@@ -4686,6 +4686,8 @@ namespace user
 
       pfiledialog->m_bSave = bSave;
 
+      pfiledialog->m_filedialogfiltera = filedialogfiltera;
+
       pfiledialog->m_function = [this, function](auto pdialog)
       {
 

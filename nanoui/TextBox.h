@@ -50,6 +50,7 @@ namespace nanoui
          e_alignment_right
       };
 
+      bool                                            m_bChanged;
       bool                                            m_bEditable;
       bool                                            m_bSpinnable;
       bool                                            m_bCommitted;
@@ -61,14 +62,14 @@ namespace nanoui
       int                                             m_iUnitImage;
       ::function<bool(const ::scoped_string& str) >   m_callback;
       bool                                            m_bValidFormat;
-      ::string                                        m_strValueTemp;
+      ::string                                        m_strValueEdit;
       ::string                                        m_strPlaceHolder;
-      int                                             m_iSelectionEnd;
-      int                                             m_iSelectionStart;
-      Vector2i                                        m_mouse_pos;
-      bool                                            m_bMouseDown;
-      Vector2i                                        m_pointMouseDown;
-      Vector2i                                        m_pointMouseDrag;
+      ::strsize                                       m_iSelectionEnd;
+      ::strsize                                       m_iSelectionStart;
+      vector2_i32                                        m_mouse_pos;
+      //bool                                            m_bMouseDown;
+      vector2_i32                                        m_pointMouseDown;
+      vector2_i32                                        m_pointMouseDrag;
       ::user::e_key                                   m_ekeyMouseDownModifier;
       float                                           m_fTextOffset;
       //class ::time m_timeLast;
@@ -119,15 +120,15 @@ namespace nanoui
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const ::scoped_string& str)>& callback) { m_callback = callback; }
 
-      bool mouse_enter_event(const Vector2i& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
-      //bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_enter_event(const vector2_i32& p, bool enter, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      //bool mouse_drag_event(const vector2_i32 & p, const vector2_i32 & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::string& strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
 
-      Vector2i preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      vector2_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context* pcontext) override;
    protected:
       bool check_format(const ::scoped_string& input, const ::scoped_string& format);
@@ -136,15 +137,15 @@ namespace nanoui
       bool delete_selection();
 
       void update_cursor(::nano2d::context* pcontext, float lastx,
-         const ::nano2d::glyphPosition* glyphs, int size);
-      float cursor_index_to_position(int index, float lastx,
-         const ::nano2d::glyphPosition* glyphs, int size);
-      int position_to_cursor_index(float posx, float lastx,
-         const ::nano2d::glyphPosition* glyphs, int size);
+         const ::nano2d::glyphPosition* glyphs, ::strsize size);
+      float cursor_index_to_position(::strsize index, float lastx,
+         const ::nano2d::glyphPosition* glyphs, ::strsize size);
+      ::strsize position_to_cursor_index(float posx, float lastx,
+         const ::nano2d::glyphPosition* glyphs, ::strsize size);
 
       /// The location (if any) for the spin area.
       enum class SpinArea { None, Top, Bottom };
-      SpinArea spin_area(const Vector2i& pos);
+      SpinArea spin_area(const vector2_i32& pos);
 
    };
 

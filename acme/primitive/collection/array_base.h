@@ -275,7 +275,7 @@ public:
       for (auto & item : initializer_list)
       {
 
-         add(item);
+         add_item(item);
 
       }
 
@@ -774,9 +774,9 @@ public:
    inline TYPE & operator[](::index i);
 
 
-   ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
+   TYPE & insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
    ::index erase_at(::index nIndex, ::count nCount = 1);
-   ::index insert_at(::index nStartIndex, array_base * pNewArray);
+   TYPE * insert_at(::index nStartIndex, array_base * pNewArray);
 
    ::index make_room_at(::index nIndex, ::count nCount = 1);
 
@@ -809,9 +809,11 @@ public:
 
 
    inline TYPE pop(::index i = -1);
-   inline ::index push(ARG_TYPE newElement, ::index i = 0);
+   inline ::index push(ARG_TYPE newElement);
    inline void pop_back(::index i = -1);
-   inline void push_back(ARG_TYPE newElement, ::index = 0);
+   inline TYPE & add_item(ARG_TYPE newElement);
+   inline TYPE & add(ARG_TYPE newElement) { return this->add_item(newElement); }
+   inline TYPE& add_new();
 
 
    inline TYPE pop_first(::index i = 0);
@@ -1053,30 +1055,6 @@ public:
    }
 
 
-   inline ::index add(ARG_TYPE newElement)
-   {
-
-      auto nIndex = this->size();
-
-      this->allocate((::count) (nIndex + 1));
-
-      this->last() = newElement;
-
-      return (::index) nIndex;
-
-   }
-
-
-   TYPE & add_new()
-   {
-
-      auto nIndex = this->size();
-
-      this->allocate((::count)(nIndex + 1));
-
-      return this->last();
-
-   }
 
 
    template < typename PRED >
@@ -1444,7 +1422,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::destroy()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
+TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
 {
 
    ::index nIndexParam = make_room_at(nIndex, nCount);
@@ -1458,9 +1436,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
    }
 
-   return nIndexParam;
+   return this->m_begin[nIndexParam];
 
 }
+
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
 ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::make_room_at(::index nIndex, ::count nCount /*=1*/)
@@ -1646,7 +1625,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::erase_descendin
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > * pNewArray)
+TYPE * array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > * pNewArray)
 {
 
    ASSERT(pNewArray != nullptr);
@@ -1655,7 +1634,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
    ::count nCount = pNewArray->get_size();
 
    if (nCount <= 0)
-      return -1;
+      return this->end();
 
    if (nIndex < 0)
       throw_exception(error_bad_argument);
@@ -1700,7 +1679,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_e
 
    }
 
-   return nIndexParam;
+   return this->m_begin + nIndexParam;
 
 
 }
@@ -2338,9 +2317,9 @@ template < typename ITERATOR2 >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer > ::erase(const ITERATOR2 & begin, const ITERATOR2 & last)
 {
 
-   auto start = this->offset_of(begin);
+   auto start = this->index_of(begin);
 
-   auto end = this->offset_of(last);
+   auto end = this->index_of(last);
 
    if(start < 0 || end < start)
    {
@@ -2804,21 +2783,49 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::pop_back
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push(ARG_TYPE newElement, ::index n)
+inline ::index array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push(ARG_TYPE newElement)
 {
 
-   return insert_at(this->get_upper_bound(n), newElement);
+   return index_of(&insert_at(this->size(), newElement));
 
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
-inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::push_back(ARG_TYPE newElement, ::index n)
+inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_item(ARG_TYPE newElement)
 {
 
-   insert_at(this->get_upper_bound(n), newElement);
+   auto nIndex = this->size();
+
+   this->allocate((::count)(nIndex + 1));
+
+   return this->m_begin[nIndex] = newElement;
 
 }
+
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_new()
+{
+
+   auto nIndex = this->size();
+
+   this->allocate((::count)(nIndex + 1));
+
+   return this->last();
+
+}
+
+
+
+
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >
+//inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, m_etypeContainer >::add_item(ARG_TYPE newElement)
+//{
+//
+//   return insert_at(this->size(), newElement);
+//
+//}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type m_etypeContainer >

@@ -55,7 +55,7 @@ namespace nanoui
       const Popup* popup() const { return m_ppopup; }
 
       virtual void draw(::nano2d::context* pcontext) override;
-      virtual Vector2i preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
       virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
 
 

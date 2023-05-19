@@ -159,7 +159,7 @@ namespace aura
 
       m_pappCurrent                    = nullptr;
 
-      m_puiLastLButtonDown             = nullptr;
+      //m_puiLastLButtonDown             = nullptr;
 
       m_pmapKeyPressed                 = nullptr;
 

@@ -19,7 +19,7 @@
 
 enum enum_font_awesome;
 
-#include "vector.h"
+#include "acme/primitive/geometry2d/vector.h"
 #include "Object.h"
 //#include "nano2d/color.h"
 

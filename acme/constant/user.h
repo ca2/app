@@ -531,11 +531,16 @@ namespace user
 
    };
 
-   enum enum_key : ::i32
+
+   enum enum_key : ::i64
    {
 
       e_key_none,
+
+      
       e_key_refer_to_text_member,
+
+
       e_key_0,
       e_key_1,
       e_key_2,
@@ -624,25 +629,47 @@ namespace user
       e_key_f10,
       e_key_f11,
       e_key_f12,
+      e_key_f13,
+      e_key_f14,
+      e_key_f15,
+      e_key_f16,
+      e_key_f17,
+      e_key_f18,
+      e_key_f19,
+      e_key_f20,
+      e_key_f21,
+      e_key_f22,
+      e_key_f23,
+      e_key_f24,
+      e_key_plus,
+      e_key_minus,
+      e_key_plus_oem,
+      e_key_minus_oem,
 
-      e_key_left_shift = 1 << 12,
-      e_key_right_shift = 1 << 13,
+
+      e_key_with_no_modifier_mask = 0xffffffff,
+
+
+      e_key_left_shift = 1LL << 32,
+      e_key_right_shift = 1LL << 33,
       e_key_shift = e_key_left_shift | e_key_right_shift,
-      e_key_left_control = 1 << 14,
-      e_key_right_control = 1 << 15,
+      e_key_left_control = 1LL << 34,
+      e_key_right_control = 1LL << 35,
       e_key_control = e_key_left_control | e_key_right_control,
-      e_key_left_alt = 1 << 16,
-      e_key_right_alt = 1 << 17,
+      e_key_left_alt = 1LL << 36,
+      e_key_right_alt = 1LL << 37,
       e_key_alt = e_key_left_alt | e_key_right_alt,
-      e_key_left_command = 1 << 18,
-      e_key_right_command = 1 << 19,
+      e_key_left_command = 1LL << 38,
+      e_key_right_command = 1LL << 39,
       e_key_command = e_key_left_command | e_key_right_command,
-      e_key_system_left_command = 1 << 20,
-      e_key_system_right_command = 1 << 21,
+      e_key_system_left_command = 1LL << 40,
+      e_key_system_right_command = 1LL << 41,
       e_key_system_command = e_key_system_left_command | e_key_system_right_command,
-      e_key_left_button = 1LL <<24,
-      e_key_right_button = 1LL << 25,
-      e_key_middle_button = 1LL << 26,
+
+
+      e_key_left_button = 1LL << 48,
+      e_key_right_button = 1LL << 49,
+      e_key_middle_button = 1LL << 50,
 
    };
 

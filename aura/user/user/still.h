@@ -106,7 +106,7 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;

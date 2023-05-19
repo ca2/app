@@ -32,7 +32,7 @@ namespace nanoui
    }
 
 
-   Vector2i ColorWheel::preferred_size(::nano2d::context*, bool bRecalcTextSize) 
+   vector2_i32 ColorWheel::preferred_size(::nano2d::context*, bool bRecalcTextSize) 
    {
 
       return { 100, 100 };
@@ -47,7 +47,7 @@ namespace nanoui
 
       Widget::draw(pcontext);
 
-      if (!m_visible)
+      if (!m_bVisible)
       {
 
          return;
@@ -153,10 +153,10 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
-      if (!m_enabled || emouse != ::user::e_mouse_left_button)
+      if (!m_bEnabled || emouse != ::user::e_mouse_left_button)
       {
 
          return false;
@@ -197,7 +197,7 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_motion_event(const Vector2i& p, const Vector2i& shift, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_motion_event(const vector2_i32& p, const vector2_i32& shift, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_regionDrag)
@@ -214,7 +214,7 @@ namespace nanoui
    }
 
 
-   ColorWheel::Region ColorWheel::adjust_position(const Vector2i& p)
+   ColorWheel::Region ColorWheel::adjust_position(const vector2_i32& p)
    {
 
       float x = (float) p.x();
@@ -275,7 +275,7 @@ namespace nanoui
       float a = -m_hue * 2 * ::nano2d::f_pi,
          sin_a = std::sin(a),
          cos_a = std::cos(a);
-      Vector2f xy(cos_a * x - sin_a * y,
+      vector2_f32 xy(cos_a * x - sin_a * y,
          sin_a * x + cos_a * y);
 
       float r = r0 - 6;

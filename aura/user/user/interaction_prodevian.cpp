@@ -174,7 +174,7 @@ namespace user
 
       //}
 
-      m_procedureUpdateScreen = [this]()
+      m_procedureUpdateScreen = [this, pimpl]()
          {
 
             if (!has_flag(e_flag_destroying) && !has_finishing_flag())
@@ -185,6 +185,17 @@ namespace user
             }
 
             m_bUpdatingScreen = false;
+
+            if(pimpl->m_rectangleaNeedRedraw.has_element())
+            {
+
+               auto iRequestsRemaining = pimpl->m_rectangleaNeedRedraw.size();
+
+               INFORMATION(iRequestsRemaining << " redraw requests remaining after updating the screen.");
+
+               m_puserinteraction->post_redraw();
+
+            }
 
          };
 
@@ -614,14 +625,14 @@ namespace user
 
       m_message.wParam &= ~1;
 
-      //if (m_bUpdateBufferUpdateWindowPending)
+      //if (m_puserinteraction->m_bUpdateBufferPending)
       //{
 
          prodevian_update_buffer(bRedraw);
 
       //}
 
-      //m_bUpdateBufferUpdateWindowPending = false;
+      //m_puserinteraction->m_bUpdateBufferPending = false;
 
       m_timeNow.Now();
 
@@ -901,12 +912,20 @@ namespace user
 
 #endif
 
-      if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
+      //if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
       {
+
+
 
          prodevian_update_screen();
 
       }
+      //else
+      //{
+
+      //   INFORMATION("no update screen");
+
+      //}
 
 #if TIME_REPORTING
 
@@ -1224,57 +1243,58 @@ namespace user
 
          }
 
-         if (bDraw && m_pimpl)
+         if (!m_pimpl)
          {
 
-            synchronouslock.unlock();
+            return;
 
-            m_timeBeforeDrawing.Now();
+         }
 
-            m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
+         synchronouslock.unlock();
 
-            i64 i2 = ::integral_nanosecond();
+         m_timeBeforeDrawing.Now();
 
-#if TIME_REPORTING
+         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 
-            static ::time timeLast;
-
-            output_debug_string("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
-
-#endif
-
-            m_pimpl->_001UpdateBuffer();
+         i64 i2 = ::integral_nanosecond();
 
 #if TIME_REPORTING
 
-            timeLast.Now();
+         static ::time timeLast;
 
-            g_timeBetweenUpdateBufferAndUpdateScreen.Now();
+         output_debug_string("time outside updatebuffer " +as_string(timeLast.elapsed().floating_millisecond().m_d) + "ms\n");
 
 #endif
 
-            bUpdateBuffer = true;
+         m_pimpl->do_graphics(bDraw);
 
-            bUpdateScreen = true;
+#if TIME_REPORTING
 
-            m_timeAfterDrawing.Now();
+         timeLast.Now();
 
-            m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
+         g_timeBetweenUpdateBufferAndUpdateScreen.Now();
 
-            if (m_puserinteraction)
-            {
+#endif
 
-               m_puserinteraction->on_after_graphical_update();
+         bUpdateBuffer = true;
 
-            }
+         bUpdateScreen = true;
 
-            if (m_puserinteraction)
-            {
+         m_timeAfterDrawing.Now();
 
-               m_puserinteraction->m_bNeedRedraw = false;
+         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
 
-            }
+         if (m_puserinteraction)
+         {
 
+            m_puserinteraction->on_after_graphical_update();
+
+         }
+
+         if (m_puserinteraction)
+         {
+
+            m_puserinteraction->m_bNeedRedraw = false;
 
          }
 

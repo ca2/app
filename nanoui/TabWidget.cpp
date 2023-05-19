@@ -26,7 +26,7 @@ namespace nanoui
 
 TabWidgetBase::TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont)
    : Widget(parent), m_font(scopedstrFont), m_background_color(::color::color(0.f, 0.f)) {
-   m_tab_offsets.push_back(0);
+   m_tab_offsets.add(0);
 }
 
 void TabWidgetBase::remove_tab(int id) {
@@ -106,19 +106,19 @@ void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTex
    float unused[4];
    for (const ::scoped_string & label : m_tab_captions) {
       int label_width = (int)pcontext->text_bounds(0.f, 0.f, label.c_str(), unused);
-      m_tab_offsets.push_back(width);
+      m_tab_offsets.add(width);
       width += label_width + 2 * m_theme->m_iHorizontalPaddingTabButton;
       if (m_tabs_closeable)
          width += m_close_width;
    }
-   m_tab_offsets.push_back(width);
+   m_tab_offsets.add(width);
 
    pcontext->font_face("icons");
    m_close_width = (int)
       pcontext->text_bounds(0.f, 0.f, get_utf8_character(e_font_awesome_times_circle).data(), unused);
 }
 
-Vector2i TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+vector2_i32 TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
 {
    pcontext->font_face(m_font.c_str());
    pcontext->font_size(font_size());
@@ -133,7 +133,7 @@ Vector2i TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecal
          width += m_close_width;
    }
 
-   return Vector2i(width + 1,
+   return vector2_i32(width + 1,
       (int)(font_size() + 2.f * m_theme->m_iVerticalPaddingTabButton + 2.f * m_padding));
 }
 
@@ -257,7 +257,7 @@ void TabWidgetBase::draw(::nano2d::context * pcontext) {
    }
 }
 
-std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test_vertical) const {
+std::pair<int, bool> TabWidgetBase::tab_at_position(const vector2_i32& p, bool test_vertical) const {
    int tab_height = (int)font_size() + 2 * m_theme->m_iVerticalPaddingTabButton;
    if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       return { -1, false };
@@ -278,7 +278,7 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i& p, bool test
    return { -1, false };
 }
 
-bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+bool TabWidgetBase::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
 {
    int index; bool close;
    std::tie(index, close) = tab_at_position(p);
@@ -298,7 +298,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
    if (m_popup_callback && emouse == ::user::e_mouse_right_button && down && index != -1 &&
       !drag_in_progress) {
       m_popup = m_popup_callback(tab_id(index), screen);
-      m_popup->set_position(p + Vector2i(8, -6));
+      m_popup->set_position(p + vector2_i32(8, -6));
       m_popup->set_anchor_offset(8);
       m_popup->set_anchor_size(8);
       if (m_popup->layout() == nullptr)
@@ -312,7 +312,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
       }
       m_popup->m_callbackLayout = [this](::nano2d::context * pcontext)
       {
-         m_popup->set_size(m_popup->preferred_size(pcontext) + Vector2i(40, 0));
+         m_popup->set_size(m_popup->preferred_size(pcontext) + vector2_i32(40, 0));
          m_popup->perform_layout(pcontext);
       };
 
@@ -335,7 +335,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
             }
             else if (m_close_index == m_close_index_pushed) {
                remove_tab(tab_id(index));
-               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
+               mouse_motion_event(p, vector2_i32(0), false, ::user::e_key_none);
             }
          }
          else {
@@ -354,7 +354,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
             }
             else if (m_tab_drag_index != -1) {
                m_tab_drag_index = -1;
-               mouse_motion_event(p, Vector2i(0), false, ::user::e_key_none);
+               mouse_motion_event(p, vector2_i32(0), false, ::user::e_key_none);
             }
          }
          handled = true;
@@ -376,7 +376,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse
 }
 
 
-bool TabWidgetBase::mouse_enter_event(const Vector2i&/* p */, bool /* enter */, const ::user::e_key&)
+bool TabWidgetBase::mouse_enter_event(const vector2_i32&/* p */, bool /* enter */, const ::user::e_key&)
 {
 
    if (m_tabs_closeable && m_close_index >= 0)
@@ -390,7 +390,7 @@ bool TabWidgetBase::mouse_enter_event(const Vector2i&/* p */, bool /* enter */, 
 }
 
 
-bool TabWidgetBase::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+bool TabWidgetBase::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
 {
 
    auto [index, close] = tab_at_position(p, false);
@@ -452,8 +452,8 @@ void TabWidget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSiz
    int tab_height = (int)font_size() + 2 * m_theme->m_iVerticalPaddingTabButton;
 
    for (Widget* child : m_children) {
-      child->set_position(Vector2i(m_padding, m_padding + tab_height + 1));
-      child->set_size(m_size - Vector2i(2 * m_padding, 2 * m_padding + tab_height + 1));
+      child->set_position(vector2_i32(m_padding, m_padding + tab_height + 1));
+      child->set_size(m_size - vector2_i32(2 * m_padding, 2 * m_padding + tab_height + 1));
       child->perform_layout(pcontext, bRecalcTextSize);
    }
 }
@@ -468,13 +468,13 @@ void TabWidget::update_visibility() {
       it->second->set_visible(true);
 }
 
-Vector2i TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize) {
-   Vector2i base_size = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize),
-      content_size = Vector2i(0);
+vector2_i32 TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize) {
+   vector2_i32 base_size = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize),
+      content_size = vector2_i32(0);
    for (Widget* child : m_children)
       content_size = max(content_size, child->preferred_size(pcontext, bRecalcTextSize));
 
-   return Vector2i(
+   return vector2_i32(
       std::max(base_size.x(), content_size.x() + 2 * m_padding),
       base_size.y() + content_size.y() + 2 * m_padding
    );

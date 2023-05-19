@@ -1280,7 +1280,7 @@ namespace url
             
          }
          
-         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
+         iStart = strQuery.index_of(pFind + strKey.length() + 1);
          
       }
 
@@ -1318,7 +1318,7 @@ namespace url
             if(pFind2 > strQuery.begin())
             {
                
-               return (strQuery.offset_of(pFind2) - (strKey.length() + 1)) > 0;
+               return (strQuery.index_of(pFind2) - (strKey.length() + 1)) > 0;
                
             }
             else
@@ -1362,7 +1362,7 @@ namespace url
                else
                {
                   
-                  return (strQuery.length() - (strQuery.offset_of(pFind) + strKey.length() + 1)) > 0;
+                  return (strQuery.length() - (strQuery.index_of(pFind) + strKey.length() + 1)) > 0;
                   
                }
                
@@ -1370,7 +1370,7 @@ namespace url
             
          }
          
-         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
+         iStart = strQuery.index_of(pFind + strKey.length() + 1);
          
       }
 
@@ -1468,7 +1468,7 @@ namespace url
             
          }
          
-         iStart = strQuery.offset_of(pFind + strKey.length() + 1);
+         iStart = strQuery.index_of(pFind + strKey.length() + 1);
          
       }
 

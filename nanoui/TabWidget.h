@@ -105,14 +105,14 @@ namespace nanoui
 
       // Widget implementation
      void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-     Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+     vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
      void draw(::nano2d::context * pcontext) override;
-     bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-     bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
-     bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_enter_event(const vector2_i32 & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_motion_event(const vector2_i32 & p, const vector2_i32 & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
 
    protected:
-      std::pair<int, bool> tab_at_position(const Vector2i & p,
+      std::pair<int, bool> tab_at_position(const vector2_i32 & p,
          bool test_vertical = true) const;
       virtual void update_visibility();
 
@@ -200,7 +200,7 @@ public:
    void set_remove_children(bool value) { m_remove_children = value; }
 
    virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-   virtual Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+   virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 protected:
    virtual void update_visibility() override;
 protected:

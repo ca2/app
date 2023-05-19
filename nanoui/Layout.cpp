@@ -26,8 +26,8 @@ BoxLayout::BoxLayout(Orientation orientation, enum_alignment alignment,
    m_spacing(spacing) {
 }
 
-Vector2i BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   Vector2i size(2 * m_margin);
+vector2_i32 BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
+   vector2_i32 size(2 * m_margin);
 
    int y_offset = 0;
    const Window * window = dynamic_cast<const Window *>(widget);
@@ -48,8 +48,8 @@ Vector2i BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget
       else
          size[axis1] += m_spacing;
 
-      Vector2i ps = w->preferred_size(pcontext, bRecalcTextSize), fs = w->fixed_size();
-      Vector2i target_size(
+      vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize), fs = w->fixed_size();
+      vector2_i32 target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
       );
@@ -59,12 +59,12 @@ Vector2i BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget
       first = false;
    }
    size[axis1] += m_spacing;
-   return size + Vector2i(0, y_offset);
+   return size + vector2_i32(0, y_offset);
 }
 
 void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   Vector2i fs_w = widget->fixed_size();
-   Vector2i container_size(
+   vector2_i32 fs_w = widget->fixed_size();
+   vector2_i32 container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
       fs_w[1] ? fs_w[1] : widget->height()
    );
@@ -93,12 +93,12 @@ void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bo
       else
          position += m_spacing;
 
-      Vector2i ps = w->preferred_size(pcontext), fs = w->fixed_size();
-      Vector2i target_size(
+      vector2_i32 ps = w->preferred_size(pcontext), fs = w->fixed_size();
+      vector2_i32 target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
       );
-      Vector2i pos(0, y_offset);
+      vector2_i32 pos(0, y_offset);
 
       pos[axis1] = position;
 
@@ -125,7 +125,7 @@ void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bo
    }
 }
 
-Vector2i GroupLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
+vector2_i32 GroupLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
    int height = m_margin, width = 2 * m_margin;
 
    const Window * window = dynamic_cast<const Window *>(widget);
@@ -141,8 +141,8 @@ Vector2i GroupLayout::preferred_size(::nano2d::context * pcontext, Widget * widg
          height += (label == nullptr) ? m_spacing : m_group_spacing;
       first = false;
 
-      Vector2i ps = c->preferred_size(pcontext, bRecalcTextSize), fs = c->fixed_size();
-      Vector2i target_size(
+      vector2_i32 ps = c->preferred_size(pcontext, bRecalcTextSize), fs = c->fixed_size();
+      vector2_i32 target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
       );
@@ -155,7 +155,7 @@ Vector2i GroupLayout::preferred_size(::nano2d::context * pcontext, Widget * widg
          indent = label->caption().has_char();
    }
    height += m_margin;
-   return Vector2i(width, height);
+   return vector2_i32(width, height);
 }
 
 void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
@@ -176,16 +176,16 @@ void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, 
       first = false;
 
       bool indent_cur = indent && label == nullptr;
-      Vector2i ps = Vector2i(available_width - (indent_cur ? m_group_indent : 0),
+      vector2_i32 ps = vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
          c->preferred_size(pcontext, bRecalcTextSize).y());
-      Vector2i fs = c->fixed_size();
+      vector2_i32 fs = c->fixed_size();
 
-      Vector2i target_size(
+      vector2_i32 target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
       );
 
-      c->set_position(Vector2i(m_margin + (indent_cur ? m_group_indent : 0), height));
+      c->set_position(vector2_i32(m_margin + (indent_cur ? m_group_indent : 0), height));
       c->set_size(target_size);
       c->perform_layout(pcontext);
 
@@ -196,13 +196,13 @@ void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, 
    }
 }
 
-Vector2i GridLayout::preferred_size(::nano2d::context * pcontext,
+vector2_i32 GridLayout::preferred_size(::nano2d::context * pcontext,
    Widget * widget, bool bRecalcTextSize) {
    /* Compute minimum row / column sizes */
    ::array<int> grid[2];
    compute_layout(pcontext, widget, grid, bRecalcTextSize);
 
-   Vector2i size(
+   vector2_i32 size(
       2 * m_margin + std::accumulate(grid[0].begin(), grid[0].end(), 0)
       + std::max((int)grid[0].size() - 1, 0) * m_spacing[0],
       2 * m_margin + std::accumulate(grid[1].begin(), grid[1].end(), 0)
@@ -222,7 +222,7 @@ void GridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, :
    for (auto w : widget->children())
       visible_children += w->visible() ? 1 : 0;
 
-   Vector2i dim;
+   vector2_i32 dim;
    dim[axis1] = m_resolution;
    dim[axis2] = (int)((visible_children + m_resolution - 1) / m_resolution);
 
@@ -239,9 +239,9 @@ void GridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, :
             w = widget->children()[child++];
          } while (!w->visible());
 
-         Vector2i ps = w->preferred_size(pcontext, bRecalcTextSize);
-         Vector2i fs = w->fixed_size();
-         Vector2i target_size(
+         vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize);
+         vector2_i32 fs = w->fixed_size();
+         vector2_i32 target_size(
             fs[0] ? fs[0] : ps[0],
             fs[1] ? fs[1] : ps[1]
          );
@@ -254,8 +254,8 @@ void GridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, :
 
 void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
    
-   Vector2i fs_w = widget->fixed_size();
-   Vector2i container_size(
+   vector2_i32 fs_w = widget->fixed_size();
+   vector2_i32 container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
       fs_w[1] ? fs_w[1] : widget->height()
    );
@@ -265,7 +265,7 @@ void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, b
    compute_layout(pcontext, widget, grid, bRecalcTextSize);
    int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
 
-   Vector2i extra(0);
+   vector2_i32 extra(0);
    const Window * window = dynamic_cast<const Window *>(widget);
    if (window && window->title().has_char())
       extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
@@ -292,12 +292,12 @@ void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, b
    }
 
    int axis1 = (int)m_orientation, axis2 = (axis1 + 1) % 2;
-   Vector2i start = m_margin + extra;
+   vector2_i32 start = m_margin + extra;
 
    size_t num_children = widget->children().size();
    size_t child = 0;
 
-   Vector2i pos = start;
+   vector2_i32 pos = start;
    for (int i2 = 0; i2 < dim[axis2]; i2++) {
       pos[axis1] = start[axis1];
       for (int i1 = 0; i1 < dim[axis1]; i1++) {
@@ -308,14 +308,14 @@ void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, b
             w = widget->children()[child++];
          } while (!w->visible());
 
-         Vector2i ps = w->preferred_size(pcontext, bRecalcTextSize);
-         Vector2i fs = w->fixed_size();
-         Vector2i target_size(
+         vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize);
+         vector2_i32 fs = w->fixed_size();
+         vector2_i32 target_size(
             fs[0] ? fs[0] : ps[0],
             fs[1] ? fs[1] : ps[1]
          );
 
-         Vector2i item_pos(pos);
+         vector2_i32 item_pos(pos);
          for (int j = 0; j < 2; j++) {
             int axis = (axis1 + j) % 2;
             int item = j == 0 ? i1 : i2;
@@ -350,16 +350,16 @@ AdvancedGridLayout::AdvancedGridLayout(const ::array<int> & cols, const ::array<
    m_row_stretch.resize(m_rows.size(), 0);
 }
 
-Vector2i AdvancedGridLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize)  {
+vector2_i32 AdvancedGridLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize)  {
    /* Compute minimum row / column sizes */
    ::array<int> grid[2];
    compute_layout(pcontext, widget, grid);
 
-   Vector2i size(
+   vector2_i32 size(
       std::accumulate(grid[0].begin(), grid[0].end(), 0),
       std::accumulate(grid[1].begin(), grid[1].end(), 0));
 
-   Vector2i extra(2 * m_margin);
+   vector2_i32 extra(2 * m_margin);
    const Window * window = dynamic_cast<const Window *>(widget);
    if (window && window->title().has_char())
       extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
@@ -406,7 +406,7 @@ void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget * w
             break;
          }
 
-         Vector2i pos = w->position(), size = w->size();
+         vector2_i32 pos = w->position(), size = w->size();
          pos[axis] = item_pos;
          size[axis] = target_size;
          w->set_position(pos);
@@ -419,13 +419,13 @@ void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget * w
 void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, ::array<int> * _grid)
 {
 
-   Vector2i fs_w = widget->fixed_size();
-   Vector2i container_size(
+   vector2_i32 fs_w = widget->fixed_size();
+   vector2_i32 container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
       fs_w[1] ? fs_w[1] : widget->height()
    );
 
-   Vector2i extra(2 * m_margin);
+   vector2_i32 extra(2 * m_margin);
    Window * window = dynamic_cast<Window *>(widget);
    if (window && window->title().has_char())
       extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
@@ -440,10 +440,10 @@ void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget * w
 
       for (int phase = 0; phase < 2; ++phase) {
          for (auto pair : m_anchor) {
-            Widget * w = pair.first;
+            Widget * w = pair.m_element1;
             if (!w->visible() || dynamic_cast<const Window *>(w) != nullptr)
                continue;
-            Anchor & anchor = pair.second;
+            Anchor & anchor = pair.m_element2;
             if ((anchor.size[axis] == 1) != (phase == 0))
                continue;
             int ps = w->preferred_size(pcontext)[axis], fs = w->fixed_size()[axis];

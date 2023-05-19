@@ -168,9 +168,9 @@ namespace windowing
 //
 //   XkbSymbolParser::XkbSymbolParser()
 //   {
-//      _nonSymbols.push_back("group");
-//      _nonSymbols.push_back("inet");
-//      _nonSymbols.push_back("pc");
+//      _nonSymbols.add("group");
+//      _nonSymbols.add("inet");
+//      _nonSymbols.add("pc");
 //   }
 //
 //   XkbSymbolParser::~XkbSymbolParser()
@@ -192,7 +192,7 @@ namespace windowing
 //            {
 //               if (isXkbLayoutSymbol(curSymbol))
 //               {
-//                  symbolList.push_back(curSymbol);
+//                  symbolList.add(curSymbol);
 //               }
 //               curSymbol.clear();
 //            }
@@ -211,7 +211,7 @@ namespace windowing
 //            {
 //               if (isXkbLayoutSymbol(curSymbol))
 //               {
-//                  symbolList.push_back(curSymbol);
+//                  symbolList.add(curSymbol);
 //               }
 //               curSymbol.clear();
 //               inSymbol = false;
@@ -221,7 +221,7 @@ namespace windowing
 //
 //      if (inSymbol && !curSymbol.empty() && isXkbLayoutSymbol(curSymbol))
 //      {
-//         symbolList.push_back(curSymbol);
+//         symbolList.add(curSymbol);
 //      }
 //   }
 //

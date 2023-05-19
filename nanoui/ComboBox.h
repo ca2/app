@@ -49,7 +49,7 @@ namespace nanoui
       int selected_index() const { return m_selected_index; }
 
       /// Sets the current index this ComboBox has selected.
-      void set_selected_index(int idx);
+      void set_selected_index(int idx, const ::action_context & actioncontext);
 
       /// The callback to execute for this ComboBox.
       ::function<void(int)> callback() const { return m_callback; }
@@ -67,7 +67,7 @@ namespace nanoui
       const ::array<::string> & items_short() const { return m_items_short; }
 
       /// Handles mouse scrolling events for this ComboBox.
-      virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
+      virtual bool scroll_event(const vector2_i32 & p, const vector2_f32 & rel) override;
    protected:
       /// Scroll panel used to store the combo box contents
       VScrollPanel * m_scroll = nullptr;

@@ -3,9 +3,9 @@
 
 #include "string_iterator.h"
 #include "string_meta_data.h"
-#include "string_range_const.h"
+#include "const_string_range.h"
 #include "string_range.h"
-#include "string_range_mutable.h"
+#include "mutable_string_range.h"
 #include "acme/memory/string_memory_allocator.h"
 
 
@@ -243,6 +243,40 @@ public:
    {
 
       return truncate(end);
+
+   }
+
+
+   bool contains_erase(const SCOPED_STRING& scopedstr)
+   {
+
+      if (scopedstr.is_empty())
+      {
+
+         return true;
+
+      }
+
+
+      bool bContains = false;
+
+      while (true)
+      {
+
+         auto p = this->find(scopedstr);
+
+         if (::is_null(p))
+         {
+
+            return bContains;
+
+         }
+
+         bContains = true;
+
+         this->erase(p, scopedstr.size());
+
+      }
 
    }
 
@@ -799,20 +833,29 @@ public:
    bool set_if_empty(const SCOPED_STRING & scopedstr) { return this->is_empty() ? (*this = scopedstr, true) : false; }
 
 
-   void push_back(CHARACTER ch);
+   void add(CHARACTER ch);
 
 
 
    void reserve(strsize res_arg = 0);
 
-   string_base & erase(strsize start = 0, strsize count = -1);
 
-   string_base& erase(const_iterator start, const_iterator end = 0)
+   string_base& erase_end(strsize start) { this->erase((::strsize)this->index_of(start), this->end()); }
+
+
+   string_base & erase(strsize start, strsize count);
+
+   /// erase count characters from start
+   string_base & erase(strsize count) { return this->erase((::strsize)0, count); }
+
+   string_base & erase(const_iterator start, strsize count) { return this->erase(this->index_of(start), count); }
+
+   string_base & erase(const_iterator start, const_iterator end = 0)
    {
 
       if (!end) end = this->end();
 
-      return this->erase(this->offset_of(start), this->offset_of(end) - this->offset_of(start));
+      return this->erase(this->index_of(start), this->index_of(end) - this->index_of(start));
 
    }
 

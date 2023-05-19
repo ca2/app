@@ -58,16 +58,21 @@ public:
    //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
    //   Cursor m_cursor;
    ::pointer < Widget >       m_pwidgetMouseCapture;
-      ::array<Widget *> m_focus_path;
+      ::comparable_array<Widget *> m_focus_path;
       Widget * m_pwidgetLeftButtonDown{nullptr};
       ::pointer<::nano2d::font_sink>      m_pfontsink;
-   //   Vector2i m_fbsize;
+   //   vector2_i32 m_fbsize;
       float m_pixel_ratio;
       //::user::e_key m_mouse_state;
       ::user::e_key m_modifiers;
-      Vector2i m_mouse_pos;
-      bool m_drag_active;
-      Widget * m_drag_widget = nullptr;
+      vector2_i32 m_mouse_pos;
+      ::pointer < Widget >          m_pwidgetMouseDown;
+      
+      
+      bool                          m_bDragActive;
+      ::pointer < Widget >          m_pwidgetDrag;
+
+
       class ::time m_last_interaction;
    //   bool m_process_events = true;
       ::color::color m_background;
@@ -78,7 +83,7 @@ public:
    //   bool m_stencil_buffer;
    //   bool m_float_buffer;
       bool m_redraw;
-      ::function<void(Vector2i)> m_resize_callback;
+      ::function<void(vector2_i32)> m_resize_callback;
    //#if defined(NANOUI_USE_METAL)
    //   void * m_metal_texture = nullptr;
    //   void * m_metal_drawable = nullptr;
@@ -131,7 +136,7 @@ public:
     */
    Screen(
           ::user::interaction * puserinteraction,
-      const Vector2i & size,
+      const vector2_i32 & size,
       const ::scoped_string & caption = "Unnamed",
       bool resizable = true,
       bool fullscreen = false,
@@ -168,10 +173,10 @@ public:
 //   void set_visible(bool visible);
 //
 //   /// Set window size
-//   void set_size(const Vector2i & size);
+//   void set_size(const vector2_i32 & size);
 //
 //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
-//   const Vector2i & framebuffer_size() const { return m_fbsize; }
+//   const vector2_i32 & framebuffer_size() const { return m_fbsize; }
 //
 //   /// Send an event that will cause the screen to be redrawn at the next event loop iteration
 //   void redraw();
@@ -222,6 +227,11 @@ public:
 
    /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
    float pixel_ratio() const { return m_pixel_ratio; }
+
+
+   virtual bool is_mouse_down(const Widget* pwidget) const;
+
+
 //
 //   /// Handle a file drop event
 //   virtual bool drop_event(const ::array<::string> & /* filenames */) {
@@ -235,16 +245,16 @@ public:
    bool keyboard_character_event(unsigned int codepoint) override;
 
    /// Window resize event handler
-   virtual bool resize_event(const nanoui::Vector2i & size);
+   virtual bool resize_event(const ::vector2_i32 & size);
 
    /// Set the resize callback
-   ::function<void(Vector2i)> resize_callback() const { return m_resize_callback; }
-   void set_resize_callback(const ::function<void(Vector2i)> & callback) {
+   ::function<void(vector2_i32)> resize_callback() const { return m_resize_callback; }
+   void set_resize_callback(const ::function<void(vector2_i32)> & callback) {
       m_resize_callback = callback;
    }
 
    /// Return the last observed mouse position value
-   Vector2i mouse_pos() const { return m_mouse_pos; }
+   vector2_i32 mouse_pos() const { return m_mouse_pos; }
 //
 //   /// Return a pointer to the underlying GLFW window data structure
 //   GLFWwindow * glfw_window() const { return m_glfw_window; }
@@ -321,7 +331,7 @@ public:
 
    virtual void on_close();
    //bool on_mouse_move(const ::point_i32 & point) override;
-   bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+   bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
 //   void drop_callback_event(int count, const char ** filenames);
@@ -336,7 +346,7 @@ public:
    void draw(::nano2d::context * pcontext) override;
    void draw_widgets(::nano2d::context * pcontext);
 
-   void set_size(const Vector2i & size) override;
+   void set_size(const vector2_i32 & size) override;
 
    using Widget::preferred_size;
    using Widget::perform_layout;

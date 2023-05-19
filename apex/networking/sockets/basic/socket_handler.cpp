@@ -721,7 +721,7 @@ namespace sockets
 //
 //                       _ERROR(it->m_psocket, " Select " << (i32)it->m_socket_id << "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR));
 //
-//                       m_socketidlistErase.push_back(it->m_socket_id);
+//                       m_socketidlistErase.add(it->m_socket_id);
 //
 //                    }
 //                    else
@@ -769,7 +769,7 @@ namespace sockets
 //
 //                          _ERROR(it->m_psocket, "Select " << (i32)it->m_socket_id << " No fd in fd_set"); // , LOG_LEVEL_ERROR));
 //
-//                          m_socketidlistErase.push_back(it->m_socket_id);
+//                          m_socketidlistErase.add(it->m_socket_id);
 //
 //                       }
 //
@@ -783,7 +783,7 @@ namespace sockets
 //
 //                    _ERROR(it->m_psocket, "Select" << (i32)it->m_socket_id << "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR));
 //
-//                    m_socketidlistErase.push_back(it->m_socket_id);
+//                    m_socketidlistErase.add(it->m_socket_id);
 //
 //                 }
 //
@@ -795,7 +795,7 @@ namespace sockets
 //
 //                 _ERROR(it->m_psocket, "Select" << (i32)it->m_socket_id << "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR));
 //
-//                 m_socketidlistErase.push_back(it->m_socket_id);
+//                 m_socketidlistErase.add(it->m_socket_id);
 //
 //              }
 //

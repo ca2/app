@@ -43,16 +43,16 @@ namespace nanoui
       ::function<void(int)> callback() const { return m_callback; }
       void set_callback(const ::function<void(int)> & callback) { m_callback = callback; }
 
-      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
-      bool mouse_button_event(const Vector2i & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-      Vector2i preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      bool mouse_motion_event(const vector2_i32 & p, const vector2_i32 & rel, bool bDown, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context * pcontext) override;
 
       void _defer_load_image_directory(::nano2d::context * pcontext);
 
    protected:
-      Vector2i grid_size() const;
-      int index_for_position(const Vector2i & p) const;
+      vector2_i32 grid_size() const;
+      int index_for_position(const vector2_i32 & p) const;
    protected:
       Images m_images;
       ::function<void(int)> m_callback;

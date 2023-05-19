@@ -217,7 +217,7 @@ static float emscripten_refresh = 0;
 
 //void async(const ::function<void()> & func) {
 //   std::lock_guard<std::pointer < ::mutex >> guard(m_async_mutex);
-//   m_async_functions.push_back(func);
+//   m_async_functions.add(func);
 //}
 
 //void leave() {
@@ -323,7 +323,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
          
          string strTitle = path.title();
 
-         images.push_back(std::make_pair(iImage, strTitle.c_str()));
+         images.add(std::make_pair(iImage, strTitle.c_str()));
 
       }
 
@@ -344,7 +344,7 @@ void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::arra
 //      int img = pcontext->create_imagefull_name.c_str(), 0);
 //      if (img == 0)
 //         throw std::runtime_error("Could not open image data!");
-//      result.push_back(
+//      result.add(
 //         std::make_pair(img, full_name.substr(0, full_name.length() - 4)));
 //#if !defined(_WIN32)
 //   }

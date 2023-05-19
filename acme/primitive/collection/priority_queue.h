@@ -59,7 +59,7 @@ template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
 inline void priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::push(const TYPE & t)
 {
 
-   this->priority_queue::push_back(t);
+   this->priority_queue::add(t);
 
    ::sort::quick_sort < FIRST > ((CONTAINER *) this);
 

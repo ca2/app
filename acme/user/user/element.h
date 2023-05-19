@@ -93,7 +93,6 @@ namespace user
       pointer< pointer_array < ::item > >     m_pitema;
 
       
-      ::pointer<::item>                     m_pitemLButtonDown;
       ::pointer<::item>                     m_pitemCurrent;
       ::pointer<::item>                     m_pitemHover;
       ::pointer<::item>                     m_pitemHoverMouse;

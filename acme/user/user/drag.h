@@ -22,6 +22,7 @@ namespace user
 
 
       ::e_element                m_eelement;
+      e_zorder                   m_ezorder;
       bool                       m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;
       ::size_i32                 m_sizeLButtonDownOffset;

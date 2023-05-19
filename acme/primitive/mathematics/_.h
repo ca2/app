@@ -693,5 +693,13 @@ inline int maximum_digits(int iBase)
 //CLASS_DECL_ACME int u64_maximum_digits(int iBase);
 
 
+template <class T>
+inline T square_power(T v)
+{
+
+   return v * v;
+
+}
+
 
 

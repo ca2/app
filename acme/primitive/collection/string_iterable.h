@@ -141,7 +141,7 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 //template < typename ITERABLE >
-//void string_iterable < ITERABLE >::push_back(const Type & newElement)
+//void string_iterable < ITERABLE >::add(const Type & newElement)
 //{
 //   index nIndex = this->m_nSize;
 //   set_at_grow(nIndex, newElement);

@@ -6,7 +6,7 @@
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/primitive/collection/string_map.h"
 
-class keyboard;
+//class keyboard;
 class front_end_schema;
 
 //#include "user_window_map.h"

@@ -963,7 +963,7 @@ end_processing_adding:
 
                         _ERROR(p->m_psocket, " Select " << (i32)p->m_socket << "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR));
 
-                        m_socketlistErase.push_back(p->m_socket);
+                        m_socketlistErase.add(p->m_socket);
 
                      }
                      else
@@ -1011,7 +1011,7 @@ end_processing_adding:
 
                            _ERROR(p->m_psocket, "Select " << (i32)p->m_socket << " No fd in fd_set"); // , LOG_LEVEL_ERROR));
 
-                           m_socketlistErase.push_back(p->m_socket);
+                           m_socketlistErase.add(p->m_socket);
 
                         }
 
@@ -1025,7 +1025,7 @@ end_processing_adding:
 
                      _ERROR(p->m_psocket, "Select" << (i32)p->m_socket << "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR));
 
-                     m_socketlistErase.push_back(p->m_socket);
+                     m_socketlistErase.add(p->m_socket);
 
                   }
 
@@ -1037,7 +1037,7 @@ end_processing_adding:
 
                   _ERROR(p->m_psocket, "Select" << (i32)p->m_socket << "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR));
 
-                  m_socketlistErase.push_back(p->m_socket);
+                  m_socketlistErase.add(p->m_socket);
 
                }
 

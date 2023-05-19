@@ -82,7 +82,7 @@ namespace nanoui
       }
 
 
-      virtual bool mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)
@@ -133,7 +133,7 @@ namespace nanoui
       }
 
 
-      virtual bool mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
       {
 
          if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
@@ -143,7 +143,7 @@ namespace nanoui
 
          }
 
-         if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_bMouseDown)
+         if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
          {
 
             int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
@@ -166,7 +166,7 @@ namespace nanoui
       }
 
 
-      virtual bool scroll_event(const Vector2i& p, const Vector2f& rel) override
+      virtual bool scroll_event(const vector2_i32& p, const vector2_f32& rel) override
       {
 
          if (Widget::scroll_event(p, rel))

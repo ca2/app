@@ -44,7 +44,7 @@ namespace nanoui
    }
 
 
-   Vector2i Window::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   vector2_i32 Window::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
    {
 
       bool bButtonPanelWasVisible = true;
@@ -52,13 +52,13 @@ namespace nanoui
       if (m_button_panel)
       {
 
-         bButtonPanelWasVisible = m_button_panel->m_visible;
+         bButtonPanelWasVisible = m_button_panel->m_bVisible;
 
          m_button_panel->set_visible(false);
 
       }
 
-      Vector2i result = Widget::preferred_size(pcontext, bRecalcTextSize);
+      vector2_i32 result = Widget::preferred_size(pcontext, bRecalcTextSize);
 
       if (m_button_panel)
       {
@@ -76,7 +76,7 @@ namespace nanoui
 
       }
 
-      return Vector2i(
+      return vector2_i32(
          std::max(result.x(), (int)(m_boundsHeader[2] - m_boundsHeader[0] + 20)),
          std::max(result.y(), (int)(m_boundsHeader[3] - m_boundsHeader[1]))
       );
@@ -119,7 +119,7 @@ namespace nanoui
          for (auto w : m_button_panel->children()) 
          {
 
-            w->set_fixed_size(Vector2i(22, 22));
+            w->set_fixed_size(vector2_i32(22, 22));
 
             w->set_font_size(15);
 
@@ -127,9 +127,9 @@ namespace nanoui
 
          m_button_panel->set_visible(true);
 
-         m_button_panel->set_size(Vector2i(width(), 22));
+         m_button_panel->set_size(vector2_i32(width(), 22));
 
-         m_button_panel->set_position(Vector2i(
+         m_button_panel->set_position(vector2_i32(
             width() - (m_button_panel->preferred_size(pcontext, bRecalcTextSize).x() + 5), 3));
 
          m_button_panel->perform_layout(pcontext, bRecalcTextSize);
@@ -141,6 +141,17 @@ namespace nanoui
 
    void Window::draw(::nano2d::context* pcontext)
    {
+
+      if (m_offsetToApplyOnDraw.x() != 0 || m_offsetToApplyOnDraw.y() != 0)
+      {
+
+         m_pos += m_offsetToApplyOnDraw;
+
+         m_offsetToApplyOnDraw.x() = 0;
+
+         m_offsetToApplyOnDraw.y() = 0;
+
+      }
 
       if (!need_to_draw(pcontext))
       {
@@ -158,7 +169,7 @@ namespace nanoui
       pcontext->begin_path();
       pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
-      pcontext->fill_color(m_mouse_focus ? m_theme->m_colorWindowFillFocused
+      pcontext->fill_color(m_bMouseHover ? m_theme->m_colorWindowFillFocused
          : m_theme->m_colorWindowFillUnfocused);
       pcontext->fill();
 
@@ -217,7 +228,7 @@ namespace nanoui
             // m_pos.y() + hh / 2, m_title.c_str(), nullptr);
 
          //pcontext->font_blur(0);
-         pcontext->fill_color(m_focused ? m_theme->m_colorWindowTitleFocused
+         pcontext->fill_color(focused() ? m_theme->m_colorWindowTitleFocused
             : m_theme->m_colorWindowTitleUnfocused);
          pcontext->text(m_pos.x() + m_size.x() / 2.f, m_pos.y() + hh / 2.f - 1.f,
             m_title);
@@ -246,7 +257,7 @@ namespace nanoui
    }
 
 
-   bool Window::mouse_enter_event(const Vector2i& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_enter_event(const vector2_i32& p, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -260,7 +271,7 @@ namespace nanoui
 #define __MOUSE_RIGHT_BUTTON 1
 
 
-   bool Window::mouse_motion_event(const Vector2i&, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_motion_event(const vector2_i32&, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (m_drag && (ekeyModifiers & ::user::e_key_left_button) != 0 && bDown)
@@ -268,13 +279,31 @@ namespace nanoui
 
          auto rectanglePrevious = interaction_rectangle();
 
-         m_pos += rel;
+         FORMATTED_INFORMATION("rectanglePrevious (%d, %d, %d, %d)", 
+            rectanglePrevious.left,
+            rectanglePrevious.top,
+            rectanglePrevious.right, 
+            rectanglePrevious.bottom);
 
-         m_pos = max(m_pos, Vector2i(0));
+         auto posOld = m_pos + m_offsetToApplyOnDraw;
 
-         m_pos = min(m_pos, parent()->size() - m_size);
+         auto pos = posOld + rel;
+
+         pos = max(pos, vector2_i32(0));
+
+         pos = min(pos, parent()->size() - m_size);
+
+         m_offsetToApplyOnDraw = pos - m_pos;
 
          auto rectangle = interaction_rectangle();
+
+         rectangle.offset(m_offsetToApplyOnDraw.x(), m_offsetToApplyOnDraw.y());
+
+         FORMATTED_INFORMATION("rectangle (%d, %d, %d, %d)",
+            rectangle.left,
+            rectangle.top,
+            rectangle.right,
+            rectangle.bottom);
 
          screen()->m_puserinteraction->set_need_redraw(rectanglePrevious);
 
@@ -291,7 +320,7 @@ namespace nanoui
    }
 
 
-   bool Window::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Window::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
@@ -351,7 +380,7 @@ namespace nanoui
    }
 
 
-   bool Window::scroll_event(const Vector2i& p, const Vector2f& rel)
+   bool Window::scroll_event(const vector2_i32& p, const vector2_f32& rel)
    {
 
       Widget::scroll_event(p, rel);

@@ -87,22 +87,22 @@ namespace nanoui
    }
 
 
-   Vector2i VScrollPanel::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   vector2_i32 VScrollPanel::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize) 
    {
 
       if (m_children.empty())
       {
 
-         return Vector2i(0);
+         return vector2_i32(0);
 
       }
 
-      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + Vector2i(12, 0);
+      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + vector2_i32(12, 0);
 
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const Vector2i& p, const Vector2i& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       if (!m_children.empty() && m_fTotalHeight > m_size.y() && bDown)
@@ -134,7 +134,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_button_event(const Vector2i& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const vector2_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers))
@@ -182,7 +182,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::scroll_event(const Vector2i& p, const Vector2f& rel)
+   bool VScrollPanel::scroll_event(const vector2_i32& p, const vector2_f32& rel)
    {
 
       if (!m_children.empty() && m_fTotalHeight > m_size.y())
@@ -197,13 +197,13 @@ namespace nanoui
 
             auto child = m_children[0];
 
-            Vector2i old_pos = child->position();
+            vector2_i32 old_pos = child->position();
 
             auto yOffset = get_y_offset();
 
-            child->set_position(Vector2i(0, (int)yOffset));
+            child->set_position(vector2_i32(0, (int)yOffset));
 
-            Vector2i new_pos = child->position();
+            vector2_i32 new_pos = child->position();
 
             m_update_layout = true;
 
@@ -265,7 +265,7 @@ namespace nanoui
       //int yoffset = 0;
       //if (m_child_preferred_height > m_size.y())
         // yoffset = (int)get_y_offset(m_scroll);
-      //child->set_position(Vector2i(0, yoffset));
+      //child->set_position(vector2_i32(0, yoffset));
 
       if (m_update_layout)
       {

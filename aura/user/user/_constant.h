@@ -7,6 +7,8 @@ namespace user
 {
 
 
+
+
    enum enum_interaction
    {
 

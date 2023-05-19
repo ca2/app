@@ -1429,3 +1429,47 @@ CLASS_DECL_ACME::color::color _020GetColor(::index i)
    return g_color20[i %20];
 
 }
+
+
+CLASS_DECL_ACME::color::color as_color(const ::scoped_string& scopedstr)
+{
+
+   if (scopedstr.size() == 6)
+   {
+
+      int r = 255;
+      int g = 255;
+      int b = 255;
+
+      sscanf(scopedstr, "%02x%02x%02x", &r, &g, &b);
+
+      return { (::byte)r, (::byte)g, (::byte)b, 255 };
+
+   }
+   else if (scopedstr.size() == 8)
+   {
+
+      int r = 255;
+      int g = 255;
+      int b = 255;
+      int a = 255;
+
+      sscanf(scopedstr, "%02x%02x%02x%02x", &r, &g, &b, &a);
+
+      return { (::byte)r, (::byte)g, (::byte)b, (::byte)a};
+
+   }
+   else
+   {
+
+      float r = 1.0, g = 1.0, b = 1.0, a = 1.0;
+
+      sscanf(scopedstr, "%f %f %f %f", &r, &g, &b, &a);
+
+      return ::color::color(r, g, b, a);
+
+   }
+
+}
+
+

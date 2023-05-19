@@ -370,7 +370,7 @@ namespace user
    }
 
 
-   void primitive_impl::_001Print(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::on_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (!m_puserinteraction)
@@ -391,7 +391,7 @@ namespace user
 
       windowing_output_debug_string("\ninteraction_impl_base::_001Print");
 
-      m_puserinteraction->_001Print(pgraphics);
+      m_puserinteraction->on_graphics(pgraphics);
 
    }
 

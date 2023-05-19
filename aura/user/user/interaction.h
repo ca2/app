@@ -223,7 +223,7 @@ namespace user
 
       ::pointer<::user::interaction_scaler>       m_pinteractionScaler;
 
-
+      bool                                         m_bUpdateBufferPending;
 
       //::oswindow                                   m_oswindow;
       e_window_flag                                m_ewindowflag;
@@ -473,13 +473,15 @@ namespace user
 
       //::windowing::window * window();
 
-      ::windowing::windowing * windowing();
+      virtual ::windowing::windowing * windowing();
 
-      ::windowing::display * get_display();
+      virtual ::windowing::display * get_display();
 
-      ::user::interaction * get_host_window();
+      virtual ::user::interaction * get_host_window();
 
-      ::item_pointer get_user_item(const ::item & item);
+      virtual ::user::interaction_impl * get_window_impl();
+
+      virtual ::item_pointer get_user_item(const ::item & item);
 
       virtual ::user::enum_state get_user_state();
 
@@ -1335,8 +1337,8 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
+      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
@@ -2108,16 +2110,16 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
-      ::item_pointer hit_test(::user::mouse * pmouse) override;
+      ::item_pointer hit_test(::user::mouse * pmouse, e_zorder ezorder) override;
 
       //using ::aura::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point) override;
+      ::item_pointer hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
       //using ::aura::drawable::on_hit_test;
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
+      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder, bool bAvoidRedraw = true);
 
       //virtual bool get_rectangle(::item * pitem);
 

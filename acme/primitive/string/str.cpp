@@ -4099,7 +4099,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
    }
 
-   str.erase(0, iLimit + 1);
+   str.erase(iLimit + 1);
 
 }
 

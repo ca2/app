@@ -399,29 +399,27 @@ namespace nano2d
 
 
 
-   ::nano2d::paint draw2d_context::image_pattern(float cx, float cy, float w, float h, float angle,
-      int image, float alpha)
-
+   ::nano2d::paint draw2d_context::image_pattern_from_index(float cx, float cy, float w, float h, float angle, float alpha, int iImage)
    {
 
-      if (image <= 0)
+      if (iImage <= 0)
       {
 
          return {};
 
       }
 
-      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(image);
+      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(iImage);
 
-      auto & paintimage = _create_new_paint_image();
+      return image_pattern_from_image(cx, cy, w, h, angle, alpha, pimage);
 
-      //m_pgraphics->__construct(paintimage.m_pbrush);
+   }
 
-      //paintimage.m_pbrush->CreatePatternBrush(
-      //   pimage,
-      //   ::size_f64(w, h));
 
-      
+   ::nano2d::paint draw2d_context::image_pattern_from_image(float cx, float cy, float w, float h, float angle, float alpha, ::image * pimage)
+   {
+
+      auto& paintimage = _create_new_paint_image();
 
       ::rectangle_f64 rectangleTarget(::point_f64(cx, cy), ::size_f64(w, h));
 

@@ -16,7 +16,7 @@ inline void swap(A & a, B & b)
 
 
 template < typename TYPE >
-constexpr memsize offset_of(const TYPE & p, const TYPE & pBegin)
+constexpr memsize index_of(const TYPE * p, const TYPE * pBegin)
 {
 
    return ::is_set(p) ? (::memsize)(p - pBegin) : -1;

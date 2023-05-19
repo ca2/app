@@ -6094,7 +6094,7 @@ bool string_base < ITERATOR_TYPE >::eat_before_let_separator(string_base < ITERA
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::push_back(CHARACTER ch)
+void string_base < ITERATOR_TYPE >::add(CHARACTER ch)
 {
 
    operator += (ch);

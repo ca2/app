@@ -253,7 +253,7 @@ namespace sockets
       }
       for (i32 i = 0; i < n; i++)
       {
-         vec.push_back(Utility::Sa2String(&point[i]));
+         vec.add(Utility::Sa2String(&point[i]));
       }
       sctp_freepaddrs(point);
       return n;
@@ -271,7 +271,7 @@ namespace sockets
       }
       for (i32 i = 0; i < n; i++)
       {
-         vec.push_back(Utility::Sa2String(&point[i]));
+         vec.add(Utility::Sa2String(&point[i]));
       }
       sctp_freeladdrs(point);
       return n;

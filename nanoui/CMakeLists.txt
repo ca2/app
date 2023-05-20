@@ -66,7 +66,7 @@ list(APPEND library_source
         Theme.h
         ToolButton.h
         traits.h
-        vector.h
+        #vector.h
         VScrollPanel.cpp
         VScrollPanel.h
         Widget.cpp

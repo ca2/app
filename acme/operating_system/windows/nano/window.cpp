@@ -539,7 +539,7 @@ namespace windows
 
 
 
-   //nano_child * nano_window::hit_test(const ::point_i32 & point)
+   //nano_child * nano_window::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   return m_pinterface->hit_test(point);

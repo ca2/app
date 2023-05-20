@@ -3600,7 +3600,7 @@ namespace user
 
       {
 
-         update_hover(pmouse, false);
+         update_hover(pmouse, ::user::e_zorder_any, false);
 
          pmessage->m_bRet = true;
 
@@ -6784,7 +6784,7 @@ namespace user
 
       pmouse->m_point = pointCursor;
 
-      update_hover(pmouse);
+      update_hover(pmouse, ::user::e_zorder_any);
 
       ::user::scroll_base::on_change_context_offset(pgraphics);
 
@@ -6826,7 +6826,7 @@ namespace user
    }
 
 
-   ::item_pointer list::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
+   ::item_pointer list::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
    {
 
       auto pitemHitTest = __new(::item);

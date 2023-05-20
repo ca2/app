@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::on_hit_test(const ::point_i32 &point)
+   ::item_pointer picture::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ASSERT(is_picture_enabled());
@@ -898,7 +898,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::hit_test(const ::point_i32 & point)
+   ::item_pointer picture::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       //item.m_pointScreen = point;
@@ -907,7 +907,7 @@ namespace user
 
       //item.m_pointHitTest = item.m_pointClient;
 
-      return on_hit_test(point);
+      return on_hit_test(point, ezorder);
 
    }
 

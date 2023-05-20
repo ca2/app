@@ -13,6 +13,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/filesystem/filesystem/folder_dialog.h"
+#include "acme/handler/request.h"
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
 #include "acme/operating_system/application.h"
@@ -304,6 +305,12 @@ namespace acme
          }
          else
          {
+
+            auto prequest = __create_new < ::request >();
+
+            prequest->initialize_command_line2(psystem->m_pacmeapplication->m_strCommandLine);
+
+            psystem->m_pacmeapplication->get_property_set().merge(prequest->get_property_set());
             
             psystem->m_pacmeapplication->main();
             
@@ -2760,6 +2767,14 @@ return false;
       throw interface_only();
 
       return -1;
+
+   }
+
+
+   void node::open_terminal_and_run(const ::scoped_string& scopedstr)
+   {
+
+      throw interface_only();
 
    }
 

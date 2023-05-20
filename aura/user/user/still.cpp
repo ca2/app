@@ -394,7 +394,7 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::point_i32 &point)
+   //::item_pointer still::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);
@@ -1118,7 +1118,7 @@ namespace user
 
       ::index iItem = -1;
 
-      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point)))
+      if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {
 
          auto pitemNone = __new(::item(e_element_none));

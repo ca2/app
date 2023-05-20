@@ -2176,7 +2176,7 @@ namespace user
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);

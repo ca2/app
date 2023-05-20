@@ -205,7 +205,7 @@ namespace experience_tranquillum
    }
 
 
-   ::item_pointer control_box_button::on_hit_test(const ::point_i32 &point)
+   ::item_pointer control_box_button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

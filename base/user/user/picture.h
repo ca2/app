@@ -81,10 +81,10 @@ namespace user
       virtual bool is_picture_enabled() const;
 
       using ::user::drawable::hit_test;
-      ::item_pointer hit_test(const ::point_i32 & point) override;
+      ::item_pointer hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;

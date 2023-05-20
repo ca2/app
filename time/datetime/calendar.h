@@ -63,7 +63,7 @@ namespace datetime
          virtual void next_year();
          virtual void previous_year();
 
-         virtual enum_element hit_test(const ::point_i32 & point);
+         virtual enum_element hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
          virtual bool hit_test(enum_element eelement, const ::point_i32& point);
          virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
 

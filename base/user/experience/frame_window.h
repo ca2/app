@@ -71,7 +71,7 @@ namespace experience
       bool is_full_screen_enabled() override;
 
 
-      ::item_pointer hit_test(::user::mouse * pmouse) override;
+      ::item_pointer hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
 
 
@@ -190,7 +190,7 @@ namespace experience
       bool is_sysmenu_enabled();
 
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32& point);
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
       
       virtual button * get_box_button(enum_button ebutton);

@@ -44,7 +44,7 @@ namespace apex
 
       virtual void hit_test(::item & item, ::message::mouse * pmouse);
 
-      virtual ::item hit_test(const ::point_i32 & point);
+      virtual ::item hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
       virtual ::item hit_test(::message::mouse * pmouse);
 

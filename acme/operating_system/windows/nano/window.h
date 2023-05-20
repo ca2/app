@@ -67,7 +67,7 @@ namespace windows
 
       void update_drawing_objects() override;
 
-      //nano_child * on_hit_test(const ::point_i32 & point) override;
+      //nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       void add_child(nano_child * pchild) override;
 

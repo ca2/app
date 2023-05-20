@@ -1482,10 +1482,10 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-::item_pointer simple_toolbar::on_hit_test(const ::point_i32 &point)
+::item_pointer simple_toolbar::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 {
 
-   return ::user::toolbar::on_hit_test(point);
+   return ::user::toolbar::on_hit_test(point, ezorder);
 
    //for (index iItem = 0; iItem < m_pitema->get_size(); iItem++)
    //{

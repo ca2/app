@@ -2893,7 +2893,7 @@ namespace user
 
          pmouse->m_point = pointCursor;
 
-         update_hover(pmouse);
+         update_hover(pmouse, ::user::e_zorder_any);
 
          pmessage->m_bRet = true;
 
@@ -3475,7 +3475,7 @@ namespace user
 
       m_iClick = 2;
 
-      auto item = hit_test(pmouse);
+      auto item = hit_test(pmouse, ::user::e_zorder_any);
 
       on_click(item);
 
@@ -5264,7 +5264,7 @@ namespace user
 
       pmouse->m_point = pointCursor;
 
-      update_hover(pmouse);
+      update_hover(pmouse, ::user::e_zorder_any);
 
    }
 
@@ -5306,7 +5306,7 @@ namespace user
    }
 
 
-   ::item_pointer mesh::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
+   ::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
    {
 
       ::item_pointer pitemHitTest = __new(::item);

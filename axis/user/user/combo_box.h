@@ -86,7 +86,7 @@ namespace user
 
       virtual bool get_element_rect(RECTANGLE_I32 & prectangle, enum_element eelement) override;
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 

@@ -52,7 +52,7 @@ namespace experience_core
    }
 
 
-   ::experience::enum_frame frame_002::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   ::experience::enum_frame frame_002::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ::experience::enum_frame etest = ::experience::e_frame_client;
@@ -69,7 +69,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 16;
             rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
@@ -77,7 +77,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
             rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
@@ -88,7 +88,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 16;
             rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
@@ -96,7 +96,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
             rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
@@ -107,7 +107,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 16;
             rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
@@ -115,7 +115,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
             rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
@@ -126,7 +126,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 16;
             rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
@@ -134,7 +134,7 @@ namespace experience_core
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
             rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
@@ -146,7 +146,7 @@ namespace experience_core
             rectangle.left = pointCenter.x - 8;
             rectangle.right = pointCenter.x + 8;
             rectangle.bottom = rectangleEvent.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top;
                goto SizingSuccess;
@@ -158,7 +158,7 @@ namespace experience_core
             rectangle.left = pointCenter.x - 8;
             rectangle.right = pointCenter.x + 8;
             rectangle.bottom = rectangleEvent.bottom;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom;
                goto SizingSuccess;
@@ -170,7 +170,7 @@ namespace experience_core
             rectangle.left = rectangleEvent.left;
             rectangle.right = rectangleEvent.left + 5;
             rectangle.bottom = pointCenter.y + 8;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
                goto SizingSuccess;
@@ -182,7 +182,7 @@ namespace experience_core
             rectangle.left = rectangleEvent.right - 5;
             rectangle.right = rectangleEvent.right;
             rectangle.bottom = pointCenter.y + 8;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
                goto SizingSuccess;

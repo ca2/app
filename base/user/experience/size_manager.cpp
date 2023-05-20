@@ -191,7 +191,7 @@ namespace experience
 
       }
 
-      auto eframeCursor = experience_frame_hit_test(pmouse->m_point);
+      auto eframeCursor = experience_frame_hit_test(pmouse->m_point, ::user::e_zorder_any);
 
       if (eframeCursor == e_frame_none)
       {
@@ -765,10 +765,10 @@ namespace experience
    }
 
 
-   enum_frame size_manager::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   enum_frame size_manager::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      enum_frame eframe = m_pframewindow->experience_frame_hit_test(pointCursor);
+      enum_frame eframe = m_pframewindow->experience_frame_hit_test(point, ::user::e_zorder_any);
 
       switch(eframe)
       {

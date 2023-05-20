@@ -304,7 +304,7 @@ namespace userstack
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::point_i32 &point)
+   ::item_pointer impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
       
       ::rectangle_i32 rectangleArea;

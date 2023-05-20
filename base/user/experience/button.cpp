@@ -175,7 +175,7 @@ namespace experience
    }
 
 
-   ::item_pointer button::on_hit_test(const ::point_i32 &point)
+   ::item_pointer button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -208,7 +208,7 @@ namespace experience
 
       }
 
-      return ::user::button::on_hit_test(point);
+      return ::user::button::on_hit_test(point, ezorder);
 
    }
 

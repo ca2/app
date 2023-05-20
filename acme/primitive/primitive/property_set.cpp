@@ -695,7 +695,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 
    }
 
-   if (::is_null(scopedstrValue))
+   if (scopedstrValue.is_empty())
    {
 
       pset->operator[](straKey[i]).set_type(::e_type_key_exists, false);

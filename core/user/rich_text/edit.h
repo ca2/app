@@ -34,7 +34,7 @@ namespace user
 
          //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
-         ::item_pointer on_hit_test(const ::point_i32 & point) override;
+         ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
          virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i);
 

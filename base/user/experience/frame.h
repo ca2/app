@@ -162,7 +162,7 @@ namespace experience
 
       //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow);
 
-      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
 
 
       virtual status < ::color::color > get_border_main_body_color();

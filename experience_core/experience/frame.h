@@ -74,7 +74,7 @@ namespace experience_core
 
       //bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam) override;
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 

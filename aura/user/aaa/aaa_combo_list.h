@@ -76,7 +76,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
       virtual ::item current_item() override;

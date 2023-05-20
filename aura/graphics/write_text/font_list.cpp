@@ -1496,7 +1496,7 @@ namespace write_text
 
 
 
-   ::item_pointer font_list::hit_test(const ::point_i32& point)
+   ::item_pointer font_list::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

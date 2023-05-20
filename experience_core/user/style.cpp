@@ -1954,13 +1954,13 @@ namespace experience_core
 
          //auto pwindowing = puser->windowing();
 
-         //auto pointCursor = pwindowing->get_cursor_position();
+         //auto point = pwindowing->get_cursor_position();
 
          pbar->client_to_screen()(point1);
 
          //      prop("tracking_window").cast < trw >()->point1 = point1;
 
-         //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
+         //    prop("tracking_window").cast < trw >()->point2 = point;
 
          byte uchAlpha;
 

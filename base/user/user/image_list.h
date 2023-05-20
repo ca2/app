@@ -37,7 +37,7 @@ namespace user
       ~image_list() override;
 
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       //virtual bool get_rect(::item & item) override;
 

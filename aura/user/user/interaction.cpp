@@ -17388,7 +17388,7 @@ namespace user
 
    //}
 
-   //::item interaction::on_hit_test(const ::point_i32& point)
+   //::item interaction::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   auto rectangle = this->rectangle(::e_element_client);

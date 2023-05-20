@@ -1380,7 +1380,7 @@ namespace experience
    }
 
 
-   ::item_pointer frame_window::hit_test(::user::mouse * pmouse)
+   ::item_pointer frame_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
       if (is_sizing_enabled())
@@ -1416,7 +1416,7 @@ namespace experience
 
       }
 
-      return ::user::frame_window::hit_test(pmouse);
+      return ::user::frame_window::hit_test(pmouse, ezorder);
 
    }
 
@@ -1795,12 +1795,12 @@ namespace experience
 
 
    // point_i32 should be in screen coordinates
-   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      return m_pframe->experience_frame_hit_test(pointCursor);
+      return m_pframe->experience_frame_hit_test(point, ::user::e_zorder_any);
 
    }
 

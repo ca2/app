@@ -2,6 +2,7 @@
 #include "toolbar.h"
 #include "acme/constant/message.h"
 #include "acme/constant/id.h"
+#include "acme/constant/timer.h"
 ////#include "acme/exception/exception.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/platform/timer.h"
@@ -12,7 +13,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
-#include "acme/constant/timer.h"
+#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
 
@@ -1539,7 +1540,9 @@ namespace user
    void toolbar::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      if (::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_iItem >= 0)
+      auto pwindowimpl = get_window_impl();
+
+      if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_iItem >= 0)
       {
 
          pmessage->m_bRet = true;

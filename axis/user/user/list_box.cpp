@@ -1065,7 +1065,7 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::point_i32 & point)
+   ::item_pointer list_box::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ::count iItemCount = _001GetListCount();

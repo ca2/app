@@ -269,7 +269,7 @@ namespace filehandler
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::point_i32 &point)
+   ::item_pointer impact::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       if (m_plist.is_null())

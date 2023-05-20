@@ -156,7 +156,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       auto psession = get_session();
 
@@ -211,7 +211,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       if (!::is_item(pitem, m_pfontlist->m_iHover))
       {
@@ -558,10 +558,10 @@ namespace user
    }
 
 
-   ::item_pointer font_list::on_hit_test(const ::point_i32 &point)
+   ::item_pointer font_list::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return m_pfontlist->hit_test(point + m_pointScroll);
+      return m_pfontlist->hit_test(point + m_pointScroll, ezorder);
 
    }
 

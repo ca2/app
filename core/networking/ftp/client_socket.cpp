@@ -495,7 +495,7 @@ namespace ftp
       string strLine;
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
-         vstrFileList.push_back(strPath + strLine);
+         vstrFileList.add(strPath + strLine);
 
       return true;
    }
@@ -515,7 +515,7 @@ namespace ftp
       string strLine;
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
-         vstrFileList.push_back(strPath + strLine);
+         vstrFileList.add(strPath + strLine);
 
       return true;
    }
@@ -544,7 +544,7 @@ namespace ftp
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = strPath;
-            vFileList.push_back(spFtpFileStatus);
+            vFileList.add(spFtpFileStatus);
          }
       }
 
@@ -573,7 +573,7 @@ namespace ftp
          ::pointer<file_status>spFtpFileStatus(__new(file_status));
          spFtpFileStatus->m_strPath = strPath;
          spFtpFileStatus->m_strName = strLine;
-         vFileList.push_back(spFtpFileStatus);
+         vFileList.add(spFtpFileStatus);
       }
 
       return true;
@@ -1837,7 +1837,7 @@ auto tickStart = ::time::now();
       case type::tyEBCDIC:
       case type::tyImage:
          if (representation.Format().IsValid())
-            Arguments.push_back(representation.Format().AsString());
+            Arguments.add(representation.Format().AsString());
       }
 
       reply Reply;
@@ -2015,8 +2015,8 @@ auto tickStart = ::time::now();
       string_array Arguments({ ::as_string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
-         Arguments.push_back("R");
-         Arguments.push_back(::as_string(*piMaxPageOrRecordSize));
+         Arguments.add("R");
+         Arguments.add(::as_string(*piMaxPageOrRecordSize));
       }
 
       reply Reply;

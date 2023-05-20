@@ -345,7 +345,7 @@ namespace experience_nanoui
    }
 
    
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
       return ::experience::frame::experience_frame_hit_test(point);
 //               ::rectangle_i32 rectangle;

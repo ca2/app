@@ -259,7 +259,7 @@ namespace experience
 
 
 
-   ::item_pointer orto_button::on_hit_test(const ::point_i32 &point)
+   ::item_pointer orto_button::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       if (m_pregion.is_null())

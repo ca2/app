@@ -137,7 +137,7 @@ namespace user
    }
 
 
-   //::item * drawable::hit_test(const ::point_i32& point)
+   //::item * drawable::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   ::item item; hit_test(item, point); return item;

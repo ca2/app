@@ -159,7 +159,7 @@ namespace user
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(RECTANGLE_I32 & rectangle, enum_position eposition);
 

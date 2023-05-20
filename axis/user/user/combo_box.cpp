@@ -496,7 +496,7 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::point_i32 & point)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
    {
 
       ::rectangle_i32 rectangleElement;
@@ -658,7 +658,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         auto pitemHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse, e_zorder_any);
 
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
@@ -704,7 +704,7 @@ namespace user
 
          //auto point = screen_to_client(pmouse->m_point);
 
-         auto pitemHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse, e_zorder_any);
 
          if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {

@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::point_i32 &point)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ::rectangle rectangleElement;

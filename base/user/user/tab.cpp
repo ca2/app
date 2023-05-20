@@ -1719,7 +1719,7 @@ namespace user
 
       pmouse->previous();
 
-      m_pitemClick = hit_test(pmouse);
+      m_pitemClick = hit_test(pmouse, ::user::e_zorder_any);
 
       get_data()->m_bDrag = false;
 
@@ -1835,7 +1835,7 @@ namespace user
 //
 //      }
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
       index iClickTab = get_data()->m_iClickTab;
 
@@ -2377,10 +2377,10 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::point_i32 &pointParam)
+   ::item_pointer tab::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
       
-      auto point = pointParam;
+      auto pointCursor = point;
 
       //synchronous_lock synchronouslock(this->synchronization());
 
@@ -2401,7 +2401,7 @@ namespace user
             if (get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
             {
 
-               if (rectangleScroll.contains(point))
+               if (rectangleScroll.contains(pointCursor))
                {
 
                   return __new(::item(::e_element_tab_near_scroll, -1));
@@ -2413,7 +2413,7 @@ namespace user
             if (get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
             {
 
-               if (rectangleScroll.contains(point))
+               if (rectangleScroll.contains(pointCursor))
                {
 
                   return __new(::item(::e_element_tab_far_scroll, -1));
@@ -3743,7 +3743,7 @@ namespace user
 
          auto pointCursor = get_cursor_position();
 
-         auto pitem = hit_test(pointCursor);
+         auto pitem = hit_test(pointCursor, ::user::e_zorder_any);
 
          index iClickTab = get_data()->m_iClickTab;
 

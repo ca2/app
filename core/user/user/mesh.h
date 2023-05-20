@@ -288,7 +288,7 @@ namespace user
 
       virtual mesh_data * GetDataInterface();
       using interaction::update_hover;
-      ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true) override;
+      ::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw = true) override;
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
       virtual ::draw2d::pen * _001GetPenFocused();

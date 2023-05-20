@@ -70,7 +70,7 @@ namespace userstack
 
       void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
 
-      ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);

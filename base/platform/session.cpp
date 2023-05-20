@@ -40,7 +40,7 @@ namespace base
 
       //}
 
-      m_puiLastLButtonDown             = nullptr;
+      //m_puiLastLButtonDown             = nullptr;
 
       m_pmapKeyPressed                 = nullptr;
 

@@ -127,19 +127,19 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
-nano_child * nano_window_interface::hit_test(::user::mouse * pmouse)
+nano_child * nano_window_interface::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
    auto point = pmouse->m_point;
 
    screen_to_client()(point);
 
-   return on_hit_test(point);
+   return on_hit_test(point, ezorder);
 
 }
 
 
-nano_child * nano_window_interface::on_hit_test(const ::point_i32 & point)
+nano_child * nano_window_interface::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
 
    return nullptr;

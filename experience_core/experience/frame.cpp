@@ -342,10 +342,10 @@ namespace experience_core
    }
 
    
-   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
-      return ::experience::frame::experience_frame_hit_test(point);
+      return ::experience::frame::experience_frame_hit_test(point, ezorder);
 //               ::rectangle_i32 rectangle;
 //               for(enum_element eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;

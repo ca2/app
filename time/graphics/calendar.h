@@ -43,7 +43,7 @@ namespace datetime
 
          void set_pos(point_i32 pt, size_i32 sz);
 
-         virtual enum_element hit_test(const ::point_i32& point);
+         virtual enum_element hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
          virtual bool hit_test(enum_element eelement, const ::point_i32& point);
          virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
 

@@ -66,7 +66,7 @@ namespace user
 
       virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

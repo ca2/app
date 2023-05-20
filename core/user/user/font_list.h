@@ -94,7 +94,7 @@ namespace user
 
       virtual void _001OnTimer(::timer * ptimer) override;
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

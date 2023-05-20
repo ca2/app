@@ -122,7 +122,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
    else
    {
 
-      auto eelement = hit_test(pmouse);
+      auto eelement = hit_test(pmouse, ::user::e_zorder_any);
 
       if(eelement.is_set())
       {
@@ -171,7 +171,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   m_pitemCurrent = hit_test(pmouse);
+   m_pitemCurrent = hit_test(pmouse, ::user::e_zorder_any);
 
    if(!m_pitemCurrent.is_set())
    {
@@ -1792,7 +1792,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 }
 
 
-::item_pointer simple_scroll_bar::on_hit_test(const ::point_i32 &point)
+::item_pointer simple_scroll_bar::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
 {
 
    ::rectangle_i32 rectangleTrack;

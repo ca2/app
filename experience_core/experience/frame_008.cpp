@@ -46,7 +46,7 @@ namespace experience_core
    //}
 
 
-   ::experience::enum_frame frame_008::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   ::experience::enum_frame frame_008::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
       ::experience::enum_frame etest = ::experience::e_frame_client;
@@ -59,7 +59,7 @@ namespace experience_core
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-         ::point_i32 pointHitTest = pointCursor;
+         ::point_i32 pointHitTest = point;
 
          //if(rectangleEvent.left < 0)
          // pointHitTest.x -= rectangleEvent.left;

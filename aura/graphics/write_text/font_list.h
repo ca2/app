@@ -95,7 +95,7 @@ namespace write_text
       //virtual void ensure_sel_visible();
 
 
-      virtual ::item_pointer hit_test(const ::point_i32& point);
+      virtual ::item_pointer hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
       virtual ::item_pointer hit_test_wide(const ::point_i32& point);
       virtual ::item_pointer hit_test_single_column(const ::point_i32& point);
       

@@ -5,6 +5,7 @@
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
+#include "aura/user/user/interaction_impl.h"
 
 
 namespace user
@@ -68,7 +69,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_pitemLButtonDown = hit_test(pmouse);
+      auto pwindowimpl = get_window_impl();
+
+      pwindowimpl->m_pitemLButtonDown = hit_test(pmouse, ::user::e_zorder_any);
 
    }
 
@@ -78,9 +81,11 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pitem = hit_test(pmouse);
+      auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-      if(pitem == m_pitemLButtonDown)
+      auto pwindowimpl = get_window_impl();
+
+      if(pitem == pwindowimpl->m_pitemLButtonDown)
       {
 
          m_scalar.set(pitem->m_iItem);
@@ -206,7 +211,7 @@ namespace user
    }
 
 
-   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point)
+   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
 
       ::rectangle_i32 rectangleClient;

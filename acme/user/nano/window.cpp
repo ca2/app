@@ -301,7 +301,7 @@ void nano_window::update_drawing_objects()
 }
 
 
-nano_child * nano_window::on_hit_test(const ::point_i32 & point)
+nano_child * nano_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
 
    for (auto & pchild: m_childa)
@@ -402,7 +402,7 @@ void nano_window::on_mouse_move(::user::mouse * pmouse)
 
    }
 
-   auto pchild = hit_test(pmouse);
+   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
    if (pchild)
    {
@@ -417,7 +417,7 @@ void nano_window::on_mouse_move(::user::mouse * pmouse)
 void nano_window::on_left_button_down(::user::mouse * pmouse)
 {
 
-   auto pchild = hit_test(pmouse);
+   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
    if (pchild)
    {
@@ -465,7 +465,7 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
 
    }
 
-   auto pchild = hit_test(pmouse);
+   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
    if (pchild)
    {
@@ -495,7 +495,7 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
 void nano_window::on_right_button_down(::user::mouse * pmouse)
 {
 
-   auto pchild = hit_test(pmouse);
+   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
    if (pchild)
    {
@@ -526,7 +526,7 @@ void nano_window::on_right_button_up(::user::mouse * pmouse)
 
    release_capture();
 
-   auto pchild = hit_test(pmouse);
+   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
    if (pchild)
    {

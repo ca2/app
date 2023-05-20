@@ -43,7 +43,7 @@ namespace experience_nanoui
    }
 
 
-   ::experience::enum_frame frame_001::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   ::experience::enum_frame frame_001::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
       ::experience::enum_frame etest = ::experience::e_frame_client;
       {

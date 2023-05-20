@@ -204,7 +204,7 @@ namespace datetime
 
 
 
-      enum_element graphics::hit_test(const ::point_i32 & point)
+      enum_element graphics::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)

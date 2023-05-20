@@ -33,7 +33,7 @@ namespace experience_core
       void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_grip egrip);
       void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
-      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
 
    };

@@ -347,7 +347,7 @@ namespace experience_nanoui
    
    ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 &point, ::user::e_zorder ezorder)
    {
-      return ::experience::frame::experience_frame_hit_test(point);
+      return ::experience::frame::experience_frame_hit_test(point, ezorder);
 //               ::rectangle_i32 rectangle;
 //               for(enum_element eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;
@@ -690,7 +690,7 @@ namespace experience_nanoui
 
                ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130));
+               pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130), 1.0);
 
                i += 5;
 

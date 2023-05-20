@@ -3894,7 +3894,7 @@
   // prevent individual pages from being generated for all of these
 #if !defined(DOXYGEN_SHOULD_SKIP_THIS)
 
-enum enum_font_awesome
+enum enum_font_awesome : ::i32
 {
    e_font_awesome_ad = 0xf641,
    e_font_awesome_address_book = 0xf2b9,

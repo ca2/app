@@ -70,7 +70,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 16;
             rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
@@ -78,7 +78,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
             rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_left;
                goto SizingSuccess;
@@ -89,7 +89,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 16;
             rectangle.bottom = rectangle.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
@@ -97,7 +97,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
             rectangle.bottom = rectangle.top + 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top_right;
                goto SizingSuccess;
@@ -108,7 +108,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 16;
             rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
@@ -116,7 +116,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
             rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_right;
                goto SizingSuccess;
@@ -127,7 +127,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 16;
             rectangle.top = rectangle.bottom - 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
@@ -135,7 +135,7 @@ namespace experience_nanoui
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
             rectangle.top = rectangle.bottom - 16;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom_left;
                goto SizingSuccess;
@@ -147,7 +147,7 @@ namespace experience_nanoui
             rectangle.left = pointCenter.x - 8;
             rectangle.right = pointCenter.x + 8;
             rectangle.bottom = rectangleEvent.top + 5;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_top;
                goto SizingSuccess;
@@ -159,7 +159,7 @@ namespace experience_nanoui
             rectangle.left = pointCenter.x - 8;
             rectangle.right = pointCenter.x + 8;
             rectangle.bottom = rectangleEvent.bottom;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_bottom;
                goto SizingSuccess;
@@ -171,7 +171,7 @@ namespace experience_nanoui
             rectangle.left = rectangleEvent.left;
             rectangle.right = rectangleEvent.left + 5;
             rectangle.bottom = pointCenter.y + 8;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_left;
                goto SizingSuccess;
@@ -183,7 +183,7 @@ namespace experience_nanoui
             rectangle.left = rectangleEvent.right - 5;
             rectangle.right = rectangleEvent.right;
             rectangle.bottom = pointCenter.y + 8;
-            if(rectangle.contains(pointCursor))
+            if(rectangle.contains(point))
             {
                etest = ::experience::e_frame_sizing_right;
                goto SizingSuccess;
@@ -975,14 +975,14 @@ SizingNone:;
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;

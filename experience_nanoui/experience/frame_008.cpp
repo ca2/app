@@ -57,7 +57,7 @@ namespace experience_nanoui
          ::point_i32 pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-         ::point_i32 pointHitTest = pointCursor;
+         ::point_i32 pointHitTest = point;
 
          //if(rectangleEvent.left < 0)
          // pointHitTest.x -= rectangleEvent.left;
@@ -739,14 +739,14 @@ SizingNone:;
 
       auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;
       rectangle.left++;
       rectangle.right--;
 
-      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonShadow);
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonShadow, 1.0);
 
       rectangle.top++;
       rectangle.bottom--;

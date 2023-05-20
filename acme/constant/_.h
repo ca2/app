@@ -15,6 +15,9 @@
 //#include "_enumeration.h"
 
 
+enum enum_font_awesome : ::i32;
+
+
 enum enum_zero_initialize
 {
 

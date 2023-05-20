@@ -35,7 +35,7 @@ list(APPEND library_source
         framework.h
         Graph.cpp
         Graph.h
-        Icons.h
+        #Icons.h
         ImagePanel.cpp
         ImagePanel.h
         ImageImpact.cpp

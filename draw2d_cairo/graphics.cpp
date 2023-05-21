@@ -351,8 +351,6 @@ namespace draw2d_cairo
    bool graphics::fill_contains(const point_f64 & point)
    {
 
-      //return cairo_in_fill(m_pdc, point.x, point.y);
-
       return cairo_in_fill(m_pdc, point.x, point.y);
 
    }
@@ -363,8 +361,6 @@ namespace draw2d_cairo
 
       cairo_reset_clip(m_pdc);
 
-      //return ::success;
-
    }
 
 
@@ -372,8 +368,6 @@ namespace draw2d_cairo
    {
 
       cairo_clip(m_pdc);
-
-      //return ::success;
 
    }
 
@@ -389,7 +383,6 @@ namespace draw2d_cairo
    }
 
 
-   //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
    void graphics::_add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region > & shape)
    {
 
@@ -400,7 +393,6 @@ namespace draw2d_cairo
    }
 
 
-   //virtual void _add_shape(const ::ellipse & ellipse) override;
    void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape)
    {
 
@@ -411,7 +403,6 @@ namespace draw2d_cairo
    }
 
 
-   //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
    void graphics::_add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region > & shape)
    {
 
@@ -472,16 +463,6 @@ namespace draw2d_cairo
       cairo_close_path(m_pdc);
 
    }
-
-
-//i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
-//{
-//
-//    throw ::interface_only();
-//
-//    return 0;
-//
-//}
 
 
    i32 graphics::GetDevicecaps(i32 nIndex)
@@ -3311,6 +3292,32 @@ namespace draw2d_cairo
       //return true;
 
    }
+
+
+
+   void graphics::set_clipping(::draw2d::region* pregion)
+   {
+
+      if(::is_null(pregion))
+      {
+
+         throw ::exception(error_bad_argument, "draw2d_cairo::set_clippping pregion is nullptr");
+
+      }
+
+      ::pointer < region > pcairoregion = pregion;
+
+      if(::is_null(pregion))
+      {
+
+         throw ::exception(error_not_expected, "pregion isn't draw2d_cairo::region");
+
+      }
+
+      pcairoregion->clip(m_pdc);
+
+   }
+
 
 
 //i32 graphics::SetGraphicsMode(i32 iMode)

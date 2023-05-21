@@ -3796,7 +3796,7 @@ namespace user
 
                bool bFirst = true;
 
-               ::rectangle_i32 rUnion;
+               //::rectangle_i32 rUnion;
 
                for (auto rectangleHostNeedRedraw : pgraphics->m_rectangleaNeedRedraw)
                {
@@ -3806,8 +3806,6 @@ namespace user
                   auto hostToClient = host_to_client();
 
                   rectangleNeedRedraw += hostToClient;
-
-
 
                   ::pointer < ::draw2d::region > pregionItem = __create < ::draw2d::region >();
 
@@ -3820,7 +3818,7 @@ namespace user
 
                      bFirst = false;
 
-                     rUnion = rectangleNeedRedraw;
+                     //rUnion = rectangleNeedRedraw;
 
                   }
                   else
@@ -3832,15 +3830,15 @@ namespace user
 
                      pregion = pregionCombine;
 
-                     rUnion.unite(rUnion, rectangleNeedRedraw);
+                     //rUnion.unite(rUnion, rectangleNeedRedraw);
 
                   }
 
                }
 
-               //pgraphics->set_clipping(pregion);
+               pgraphics->set_clipping(pregion);
 
-               pgraphics->intersect_clip(rUnion);
+               //pgraphics->intersect_clip(rUnion);
 
             }
 

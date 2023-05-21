@@ -201,6 +201,9 @@ namespace draw2d_cairo
 
       void intersect_clip(const ::rectangle_f64 & rectangle) override;
 
+      void set_clipping(::draw2d::region* pregion) override;
+
+
       //virtual bool PtVisible(double x, double y) override;
       //bool PtVisible(const ::point_f64 & point_f64) override;
       //virtual bool RectVisible(const ::rectangle_f64 & rectangle_f64) override;

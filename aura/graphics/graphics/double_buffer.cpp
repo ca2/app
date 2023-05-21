@@ -263,6 +263,13 @@ namespace graphics
 
       }
 
+      auto pimageNewScreen = get_screen_image();
+
+      auto pimageNewBuffer = get_buffer_image();
+
+      pimageNewBuffer->copy_from(pimageNewScreen);
+
+
       //      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
 
             //if (get_buffer_image()->is_ok())

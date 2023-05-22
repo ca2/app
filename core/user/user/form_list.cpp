@@ -1602,46 +1602,46 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectangleControl;
+      //::rectangle_i32 rectangleControl;
 
-      auto iItem = _001DisplayToStrict((::index)m_iDisplayItemHover);
+      //auto iItem = _001DisplayToStrict((::index)m_iDisplayItemHover);
 
-      auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
+      //auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
-      psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
+      //psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      //pitem->m_iItem = 
+      ////pitem->m_iItem = 
 
-      //if(m_bGroup)
-      //{
+      ////if(m_bGroup)
+      ////{
 
-      //   psubitem->m_pitem->m_iGroupTopDisplayIndex = 0;
+      ////   psubitem->m_pitem->m_iGroupTopDisplayIndex = 0;
 
-      //   for(psubitem->m_pitem->m_iGroup = 0; psubitem->m_pitem->m_iGroup < m_nGroupCount; psubitem->m_pitem->m_iGroup++)
-      //   {
+      ////   for(psubitem->m_pitem->m_iGroup = 0; psubitem->m_pitem->m_iGroup < m_nGroupCount; psubitem->m_pitem->m_iGroup++)
+      ////   {
 
-      //      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount((::index)psubitem->m_pitem->m_iGroup);
+      ////      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount((::index)psubitem->m_pitem->m_iGroup);
 
-      //      if(psubitem->m_pitem->item_index() >= psubitem->m_pitem->m_iGroupTopDisplayIndex && psubitem->m_pitem->item_index() < (psubitem->m_pitem->m_iGroupTopDisplayIndex + psubitem->m_pitem->m_iGroupCount))
-      //      {
+      ////      if(psubitem->m_pitem->item_index() >= psubitem->m_pitem->m_iGroupTopDisplayIndex && psubitem->m_pitem->item_index() < (psubitem->m_pitem->m_iGroupTopDisplayIndex + psubitem->m_pitem->m_iGroupCount))
+      ////      {
 
-      //         break;
+      ////         break;
 
-      //      }
+      ////      }
 
-      //   }
+      ////   }
 
-      //}
+      ////}
 
-      //pitem->m_iSubItem = pinteraction->m_iSubItem;
+      ////pitem->m_iSubItem = pinteraction->m_iSubItem;
 
-      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      //psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
 
-      //pitem->m_iListItem = -1;
+      ////pitem->m_iListItem = -1;
 
-      index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
+      //index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
 
-      copy(rectangle, psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
+      //copy(rectangle, psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
    }
 

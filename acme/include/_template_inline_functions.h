@@ -812,4 +812,20 @@ bool not_found(const T * p)
 //inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f");
 
 
+template < typename BOOLEAN, typename ASSIGNED, typename ASSIGNEE >
+inline void set_if_different(BOOLEAN& bSetIfChanged, ASSIGNED& left, const ASSIGNEE& right)
+{
+
+   if (left != right)
+   {
+
+      bSetIfChanged = true;
+
+      left = right;
+
+   }
+
+}
+
+
 

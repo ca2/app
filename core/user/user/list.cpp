@@ -646,7 +646,7 @@ namespace user
 
          }
 
-         if (iDisplayItem == m_iDisplayItemHover)
+         if (m_pitemHover && iDisplayItem == m_pitemHover->m_iItem)
          {
 
             if (!bHoverFont)
@@ -726,9 +726,10 @@ namespace user
 
       }
 
-      pdrawitem->m_bListItemHover = pdrawitem->m_iDisplayItem == m_iDisplayItemHover &&
+      pdrawitem->m_bListItemHover = m_pitemHover &&
+         pdrawitem->m_iDisplayItem == m_pitemHover->m_iItem &&
                                     (m_eview != impact_icon ||
-                                     ((m_piconlayout->m_iaDisplayToStrict.get_b((::index) m_iDisplayItemHover) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::index) m_iDisplayItemHover) < m_nItemCount)));
+                                     ((m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_iItem) < m_nItemCount)));
 
       if (pdrawitem->m_bListItemHover)
       {
@@ -3600,7 +3601,7 @@ namespace user
 
       {
 
-         update_hover(pmouse, ::user::e_zorder_any, false);
+         update_hover(pmouse, ::user::e_zorder_any);
 
          pmessage->m_bRet = true;
 
@@ -6819,70 +6820,71 @@ namespace user
 
    void list::on_message_mouse_leave(::message::message * pmessage)
    {
-      m_iDisplayItemHover = -1;
-      m_iSubItemHover = -1;
-      set_need_redraw();
-      pmessage->m_bRet = true;
+      //m_iDisplayItemHover = -1;
+      //m_iSubItemHover = -1;
+      //set_need_redraw();
+      //pmessage->m_bRet = true;
    }
 
 
-   ::item_pointer list::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
-   {
+   //::item_pointer list::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
+   //::item_pointer list::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
+   //{
 
-      auto pitemHitTest = __new(::item);
-      
-      auto pointClient = screen_to_client().get(pmouse->m_point);
+   //   auto pitemHitTest = __new(::item);
+   //   
+   //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
-      bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+   //   bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
-      {
+   //   if (_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+   //   {
 
-         if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
-         {
+   //      if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+   //      {
 
-            m_iDisplayItemHover = pitemHitTest->m_iItem;
+   //         m_iDisplayItemHover = pitemHitTest->m_iItem;
 
-            m_iSubItemHover = pitemHitTest->m_iSubItem;
+   //         m_iSubItemHover = pitemHitTest->m_iSubItem;
 
-            bAnyHoverChange = true;
+   //         bAnyHoverChange = true;
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         if (m_iDisplayItemHover != -1 || m_iSubItemHover != -1)
-         {
+   //      if (m_iDisplayItemHover != -1 || m_iSubItemHover != -1)
+   //      {
 
-            m_iDisplayItemHover = -1;
+   //         m_iDisplayItemHover = -1;
 
-            m_iSubItemHover = -1;
+   //         m_iSubItemHover = -1;
 
-            bAnyHoverChange = true;
+   //         bAnyHoverChange = true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (!bAvoidRedraw)
-      {
+   //   if (!bAvoidRedraw)
+   //   {
 
-         if (bAnyHoverChange)
-         {
+   //      if (bAnyHoverChange)
+   //      {
 
-            set_need_redraw();
+   //         set_need_redraw();
 
-            post_redraw();
+   //         post_redraw();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return pitemHitTest;
+   //   return pitemHitTest;
 
-   }
+   //}
 
 
    void list::data_get_DisplayToStrict()

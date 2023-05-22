@@ -713,9 +713,9 @@ namespace experience_core
 
          status < ::color::color > crMoveableBorderShadow;
 
-         string str;
+         auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(str);
+         //pframewindow->get_window_text(str);
 
          if(pframewindow->is_active_window())
          {
@@ -768,9 +768,7 @@ namespace experience_core
 
          }
 
-         string wstrWindowText;
-
-         pframewindow->get_window_text(wstrWindowText);
+         auto wstrWindowText = pframewindow->get_window_text();
 
          pgraphics->set_text_color(m_colorCaptionText);
 

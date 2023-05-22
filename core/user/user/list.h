@@ -89,8 +89,8 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       //mesh_data * GetDataInterface();
-      using mesh::update_hover;
-      ::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw = true) override;
+      //using mesh::update_hover;
+      //::item_pointer update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();

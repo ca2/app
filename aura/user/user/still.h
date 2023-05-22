@@ -30,7 +30,7 @@ namespace user
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
-
+      ::status < ::color::color >         m_statuscolorText;
 
       still();
       ~still() override;
@@ -59,6 +59,12 @@ namespace user
 
       void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check _001GetCheck() override;
+       
+      using ::user::interaction::get_color;
+      ::status < ::color::color > get_color(::user::style * pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) override; 
+
+
+      virtual void set_text_color(::status < ::color::color > statuscolor);
 
       //virtual bool is_pressed();
 

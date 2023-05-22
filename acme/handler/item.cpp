@@ -82,7 +82,7 @@ bool item::is_hidden() const
 CLASS_DECL_ACME bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2)
 {
 
-   if(!::is_item_set(pitem1) && !::is_item_set(pitem2))
+   if(!::is_item_set(pitem1) || !::is_item_set(pitem2))
    {
 
       return false;

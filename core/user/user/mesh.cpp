@@ -69,8 +69,8 @@ namespace user
       m_bDrag = false;
       m_eview = impact_grid;
       m_iDisplayItemFocus = -1;
-      m_iDisplayItemHover = -1;
-      m_iSubItemHover = -2;
+      //m_iDisplayItemHover = -1;
+      //m_iSubItemHover = -2;
       m_bEditDefaultHandling = true;
       m_bKeyboardMultipleSelectionDefaultHandling = true;
       m_bSortEnable              = true;
@@ -568,7 +568,7 @@ namespace user
 
          }
 
-         if(iDisplayItem == m_iDisplayItemHover)
+         if(m_pitemHover && iDisplayItem == m_pitemHover->m_iItem)
          {
 
             if(!bHoverFont)
@@ -622,9 +622,10 @@ namespace user
 
       }
 
-      pdrawitem->m_bListItemHover = pdrawitem->m_iDisplayItem == m_iDisplayItemHover &&
+      pdrawitem->m_bListItemHover = m_pitemHover &&
+         pdrawitem->m_iDisplayItem == m_pitemHover->m_iItem &&
                                     (m_eview != impact_icon ||
-                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::index) m_iDisplayItemHover) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::index) m_iDisplayItemHover) < m_nItemCount)));
+                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_iItem) < m_nItemCount)));
 
       if(pdrawitem->m_bListItemHover)
       {
@@ -5295,57 +5296,108 @@ namespace user
    void mesh::on_message_mouse_leave(::message::message * pmessage)
    {
       
-      m_iDisplayItemHover = -1;
+      //m_iDisplayItemHover = -1;
       
-      m_iSubItemHover = -1;
+      //m_iSubItemHover = -1;
       
-      set_need_redraw();
+      //set_need_redraw();
       
-      pmessage->m_bRet = true;
+      //pmessage->m_bRet = true;
 
    }
 
 
-   ::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder, bool bAvoidRedraw)
+   //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
+   //{
+
+   //   ::item_pointer pitemHitTest = __new(::item);
+   //   
+   //   auto pointClient = screen_to_client().get(pmouse->m_point);
+
+   //   bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+
+   //   if(_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+   //   {
+
+   //      if(m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+   //      {
+
+   //         m_iDisplayItemHover = pitemHitTest->m_iItem;
+
+   //         m_iSubItemHover = pitemHitTest->m_iSubItem;
+
+   //         bAnyHoverChange = true;
+
+   //      }
+
+   //   }
+
+   //   if (!bAvoidRedraw)
+   //   {
+
+   //      if (bAnyHoverChange)
+   //      {
+
+   //         set_need_redraw();
+
+   //         post_redraw();
+
+   //      }
+
+   //   }
+
+   //   return pitemHitTest;
+
+   //}
+
+
+   ::item_pointer mesh::on_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
       ::item_pointer pitemHitTest = __new(::item);
-      
-      auto pointClient = screen_to_client().get(pmouse->m_point);
 
-      bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+      //auto pointClient = screen_to_client().get(pmouse->m_point);
 
-      if(_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
+      //bool& bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+
+      if (!_001DisplayHitTest(point, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
       {
 
-         if(m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
-         {
+         pitemHitTest->m_eelement = e_element_none;
 
-            m_iDisplayItemHover = pitemHitTest->m_iItem;
+         pitemHitTest->m_iItem = -1;
 
-            m_iSubItemHover = pitemHitTest->m_iSubItem;
+         pitemHitTest->m_iSubItem = -1;
 
-            bAnyHoverChange = true;
+         //if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
+         //{
 
-         }
+         //   m_iDisplayItemHover = pitemHitTest->m_iItem;
+
+         //   m_iSubItemHover = pitemHitTest->m_iSubItem;
+
+         //   //bAnyHoverChange = true;
+
+         //}
 
       }
 
-      if (!bAvoidRedraw)
-      {
+      //if (!bAvoidRedraw)
+      //{
 
-         if (bAnyHoverChange)
-         {
+      //   if (bAnyHoverChange)
+      //   {
 
-            set_need_redraw();
+      //      set_need_redraw();
 
-            post_redraw();
+      //      post_redraw();
 
-         }
+      //   }
 
-      }
+      //}
 
       return pitemHitTest;
+
 
    }
 

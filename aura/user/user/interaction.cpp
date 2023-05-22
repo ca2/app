@@ -4894,7 +4894,7 @@ namespace user
 
       }
 
-      if (!layout().is_iconic())
+      if (layout().is_iconic())
       {
 
          return;
@@ -5008,7 +5008,7 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::draw2d::savedc k(pgraphics);
+      ::draw2d::savedc savedc(pgraphics);
 
       if (needs_to_draw(pgraphics))
       {

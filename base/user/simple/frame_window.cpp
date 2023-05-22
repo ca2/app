@@ -2409,25 +2409,25 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
    }
 
-   {
+   //{
 
-      synchronous_lock synchronouslock(this->synchronization());
+   //   synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pprimitiveimpl->m_puserinteraction == nullptr)
-      {
+   //   if (m_pprimitiveimpl->m_puserinteraction == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      //if (!_000OnBeforeDraw(pgraphicsParam))
-      //{
+   //   //if (!_000OnBeforeDraw(pgraphicsParam))
+   //   //{
 
-        // return;
+   //     // return;
 
-      //}
+   //   //}
 
-   }
+   //}
 
    auto pstyle = get_style(pgraphicsParam);
 
@@ -2493,38 +2493,38 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
       if (dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
+         //bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
-         if (!bBlurBackground)
-         {
+         //if (!bBlurBackground)
+         //{
 
-            iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
+         //   iDrawingOrder = get_int(pstyle, ::user::e_int_top_level_drawing_order);
 
-            if (pstyle)
-            {
+         //   if (pstyle)
+         //   {
 
-               pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
+         //      pstyle->_001OnDrawMainFrameBackground(pgraphics, this);
 
-               //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
-               //{
+         //      //if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+         //      //{
 
-               //   break;
+         //      //   break;
 
-               //}
+         //      //}
 
-               //style.next();
+         //      //style.next();
 
-            }
+         //   }
 
-         }
-
-#if TEST
-
-         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
-
-#endif
+         //}
+//
+//#if TEST
+//
+//         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+//
+//#endif
 
          string strType = __type_name(this);
 
@@ -2577,7 +2577,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
       }
 
-      _008CallOnDraw(pgraphics);
+      if (m_bOverdraw)
+      {
+
+         _008CallOnDraw(pgraphics);
+
+      }
 
 #if TEST
 

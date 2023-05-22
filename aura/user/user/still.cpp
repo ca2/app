@@ -498,7 +498,6 @@ namespace user
    //}
 
 
-
    void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
@@ -506,6 +505,34 @@ namespace user
 
    }
 
+
+   ::status < ::color::color > still::get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout)
+   {
+
+
+      if (eelement == e_element_text)
+      {
+
+         if (m_statuscolorText.ok())
+         {
+
+            return m_statuscolorText;
+
+         }
+
+      }
+
+      return ::user::interaction::get_color(pstyle, eelement, elayout);
+
+   }
+
+
+   void still::set_text_color(::status < ::color::color > statuscolor)
+   {
+
+      m_statuscolorText = statuscolor;
+
+   }
 
    void still::on_message_create(::message::message * pmessage)
    {

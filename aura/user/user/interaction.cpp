@@ -27,6 +27,7 @@
 #include "acme/primitive/geometry2d/_enhanced.h"
 #include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/time/_string.h"
 #include "apex/message/simple_command.h"
@@ -57,6 +58,8 @@
 
 
 #define INFO_LAYOUT_DISPLAY
+
+
 
 
 //template < typename R >
@@ -201,7 +204,7 @@ namespace user
       m_bPendingZorder = false;
 
       m_bMouseHoverOnCapture = false;
-      m_bMouseHover = false;
+      //m_bMouseHover = false;
       m_bClickDefaultMouseHandling = false;
       m_bHoverDefaultMouseHandling = false;
       m_bEditDefaultHandling = false;
@@ -309,7 +312,7 @@ namespace user
 
       m_flagNonClient.add(e_non_client_focus_rect);
 
-      m_bMouseHover = false;
+      //m_bMouseHover = false;
 
       m_bNeedRedraw = false;
 
@@ -1446,6 +1449,13 @@ namespace user
 
    bool interaction::needs_to_draw(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangleNeedsToDraw)
    {
+
+      if(get_host_window()->has_prodevian())
+      {
+
+         return true;
+
+      }
 
       auto* pinteraction = get_wnd();
 
@@ -3772,73 +3782,82 @@ namespace user
 
          pgraphics->reset_clip();
 
-         pgraphics->m_pointAddShapeTranslate = m_pointScroll;
-
-         if (pgraphics->m_rectangleaNeedRedraw.has_element())
+         if(!get_host_window()->has_prodevian())
          {
 
-            if (pgraphics->m_rectangleaNeedRedraw.size() == 1)
+            pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+
+            if (pgraphics->m_rectangleaNeedRedraw.has_element())
             {
 
-               auto rectangleNeedRedraw = pgraphics->m_rectangleaNeedRedraw.first();
-
-               auto hostToClient = host_to_client();
-
-               rectangleNeedRedraw += hostToClient;
-
-               pgraphics->intersect_clip(rectangleNeedRedraw);
-
-            }
-            else
-            {
-
-               ::pointer < ::draw2d::region > pregion;
-
-               bool bFirst = true;
-
-               //::rectangle_i32 rUnion;
-
-               for (auto rectangleHostNeedRedraw : pgraphics->m_rectangleaNeedRedraw)
+               if (pgraphics->m_rectangleaNeedRedraw.size() == 1)
                {
 
-                  auto rectangleNeedRedraw = rectangleHostNeedRedraw;
+                  auto rectangleNeedRedraw = pgraphics->m_rectangleaNeedRedraw.first();
 
                   auto hostToClient = host_to_client();
 
                   rectangleNeedRedraw += hostToClient;
 
-                  ::pointer < ::draw2d::region > pregionItem = __create < ::draw2d::region >();
+                  pgraphics->intersect_clip(rectangleNeedRedraw);
 
-                  pregionItem->create_rectangle(rectangleNeedRedraw);
-
-                  if (bFirst)
-                  {
-
-                     pregion = pregionItem;
-
-                     bFirst = false;
-
-                     //rUnion = rectangleNeedRedraw;
-
-                  }
-                  else
-                  {
-
-                     ::pointer < ::draw2d::region > pregionCombine = __create < ::draw2d::region >();
-
-                     pregionCombine->combine(pregion, pregionItem, ::draw2d::e_combine_add);
-
-                     pregion = pregionCombine;
-
-                     //rUnion.unite(rUnion, rectangleNeedRedraw);
-
-                  }
+                  INFORMATION("Single rectangle need redraw " << rectangleNeedRedraw);
 
                }
+               else
+               {
 
-               pgraphics->set_clipping(pregion);
+                  ::pointer<::draw2d::region> pregion;
 
-               //pgraphics->intersect_clip(rUnion);
+                  bool bFirst = true;
+
+                  //::rectangle_i32 rUnion;
+
+                  for (auto rectangleHostNeedRedraw: pgraphics->m_rectangleaNeedRedraw)
+                  {
+
+                     auto rectangleNeedRedraw = rectangleHostNeedRedraw;
+
+                     auto hostToClient = host_to_client();
+
+                     rectangleNeedRedraw += hostToClient;
+
+                     ::pointer<::draw2d::region> pregionItem = __create<::draw2d::region>();
+
+                     pregionItem->create_rectangle(rectangleNeedRedraw);
+
+                     INFORMATION("Multiple rectangle need redraw " << rectangleNeedRedraw);
+
+                     if (bFirst)
+                     {
+
+                        pregion = pregionItem;
+
+                        bFirst = false;
+
+                        //rUnion = rectangleNeedRedraw;
+
+                     }
+                     else
+                     {
+
+                        ::pointer<::draw2d::region> pregionCombine = __create<::draw2d::region>();
+
+                        pregionCombine->combine(pregion, pregionItem, ::draw2d::e_combine_add);
+
+                        pregion = pregionCombine;
+
+                        //rUnion.unite(rUnion, rectangleNeedRedraw);
+
+                     }
+
+                  }
+
+                  pgraphics->set_clipping(pregion);
+
+                  //pgraphics->intersect_clip(rUnion);
+
+               }
 
             }
 
@@ -4875,7 +4894,14 @@ namespace user
 
       }
 
-      //      if (type.name_contains("list_box"))
+      if (!layout().is_iconic())
+      {
+
+         return;
+
+      }
+
+         //      if (type.name_contains("list_box"))
       //      {
       //
       //         output_debug_string("list_box");
@@ -8259,16 +8285,7 @@ namespace user
 
       m_strWindowText2 = pszString;
 
-      if (m_pprimitiveimpl != nullptr)
-      {
-
-         m_pprimitiveimpl->set_window_text(pszString);
-
-      }
-
-      set_need_layout();
-
-      set_need_redraw();
+      on_set_window_text();
 
    }
 
@@ -8289,7 +8306,20 @@ namespace user
    }
 
 
-   ::string interaction::_get_window_text()
+   void interaction::on_set_window_text()
+   {
+
+      if (m_pprimitiveimpl != nullptr)
+      {
+
+         m_pprimitiveimpl->on_set_window_text();
+
+      }
+
+   }
+
+
+   ::string interaction::get_window_text()
    {
 
       if (m_astringfunctionWindowText)
@@ -8310,58 +8340,55 @@ namespace user
    }
 
 
-   strsize interaction::get_window_text(char* pszStringBuf, strsize nMaxCount)
-   {
-
-      ::string strWindowText = _get_window_text();
-
-      strsize n = minimum(nMaxCount, strWindowText.length());
-
-      ansi_count_copy(pszStringBuf, strWindowText, n);
-
-      return n;
-
-   }
-
-
-   string interaction::get_window_text()
-   {
-
-      string str;
-
-      get_window_text(str);
-
-      return str;
-
-   }
+//   strsize interaction::get_window_text(char* pszStringBuf, strsize nMaxCount)
+//   {
+//
+//      ::string strWindowText = _get_window_text();
+//
+//      strsize n = minimum(nMaxCount, strWindowText.length());
+//
+//      ansi_count_copy(pszStringBuf, strWindowText, n);
+//
+//      return n;
+//
+//   }
 
 
-   void interaction::get_window_text(string& str)
-   {
-
-      str = _get_window_text();
-
-   }
-
-
-   strsize interaction::get_window_text_length()
-   {
-
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (m_pprimitiveimpl == nullptr)
-      {
-
-         return 0;
-
-      }
-
-      return m_pprimitiveimpl->get_window_text_length();
-
-   }
+//   string interaction::get_window_text()
+//   {
+//
+//      string str;
+//
+//      get_window_text(str);
+//
+//      return str;
+//
+//   }
 
 
+//   void interaction::get_window_text(string& str)
+//   {
+//
+//      str = _get_window_text();
+//
+//   }
 
+
+//   strsize interaction::get_window_text_length()
+//   {
+//
+//      synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (m_pprimitiveimpl == nullptr)
+//      {
+//
+//         return 0;
+//
+//      }
+//
+//      return m_pprimitiveimpl->get_window_text_length();
+//
+//   }
 
 
    //::user::interaction * interaction::EnsureTopLevel()
@@ -10472,11 +10499,9 @@ namespace user
 
       ::size_f64 setFittingFontHeight;
 
-      string str;
+      string strWindowText = get_window_text();
 
-      get_window_text(str);
-
-      ::size_f64 size = pgraphics->get_text_extent(str);
+      ::size_f64 size = pgraphics->get_text_extent(strWindowText);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -13568,17 +13593,17 @@ namespace user
    }
 
 
-   void interaction::_001OnTriggerMouseInside()
-   {
-
-      if (m_pprimitiveimpl != nullptr)
-      {
-
-         m_pprimitiveimpl->_001OnTriggerMouseInside();
-
-      }
-
-   }
+//   void interaction::_001OnTriggerMouseInside()
+//   {
+//
+//      if (m_pprimitiveimpl != nullptr)
+//      {
+//
+//         m_pprimitiveimpl->_001OnTriggerMouseInside();
+//
+//      }
+//
+//   }
 
 
    void interaction::update_data(bool bSaveAndValidate)
@@ -18854,42 +18879,42 @@ namespace user
 
          }
 
-         bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
+         //bool bAvoidRedraw = !m_bHoverDefaultMouseHandling;
 
-         update_hover(pmouse, e_zorder_any, bAvoidRedraw);
+         update_hover(pmouse, e_zorder_any);
 
          //update_hover(pointCursorClient, false);
 
-         if (::is_set(m_pitemHover))
-         {
-
-            if (!m_bMouseHover)
-            {
-
-               m_bMouseHover = true;
-
-               track_mouse_leave();
-
-               //auto pappearance = get_appearance();
-
-               //if (::is_set(pappearance))
-               //{
-
-               //   ::point_i32 pointClient;
-
-               //   _screen_to_client(pointClient, pmouse->m_point);
-
-               //   auto psession = m_puserinteraction->get_session();
-
-               //   auto ekeyModifiers = psession->key_modifiers();
-
-               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
-
-               //}
-
-            }
-
-         }
+//         if (::is_item_set(m_pitemHover))
+//         {
+//
+//            if (!m_bMouseHover)
+//            {
+//
+//               m_bMouseHover = true;
+//
+//               track_mouse_leave();
+//
+//               //auto pappearance = get_appearance();
+//
+//               //if (::is_set(pappearance))
+//               //{
+//
+//               //   ::point_i32 pointClient;
+//
+//               //   _screen_to_client(pointClient, pmouse->m_point);
+//
+//               //   auto psession = m_puserinteraction->get_session();
+//
+//               //   auto ekeyModifiers = psession->key_modifiers();
+//
+//               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+//
+//               //}
+//
+//            }
+//
+//         }
 
       }
 
@@ -18988,24 +19013,59 @@ namespace user
    }
 
 
-   ::item_pointer interaction::update_hover(::user::mouse* pmouse, e_zorder ezorder, bool bAvoidRedraw)
+   ::item_pointer interaction::update_hover(::user::mouse* pmouse, e_zorder ezorder)
    {
 
       auto pitemHitTest = hit_test(pmouse, ezorder);
 
       drag_on_mouse_hover(pitemHitTest);
 
-      bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
+      ///bool bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (!::is_same_item(pitemHitTest, m_pitemHover)
-         && pitemHitTest->m_eelement != e_element_resize)
+      if (!::is_item_equivalent(pitemHitTest, m_pitemHover))
       {
+
+         auto pitemOldHover = m_pitemHover;
 
          g_iMouseHoverCount++;
 
          m_pitemHover = pitemHitTest;
 
-         bAnyHoverChange = true;
+         //m_pitemHOver->m_bAnyHoverChange = true;
+
+         if(::is_item_set(pitemHitTest))
+         {
+
+            track_mouse_leave();
+
+         }
+
+         bool bAnyRedraw = false;
+
+         if(::is_item_set(pitemOldHover) && pitemOldHover->m_rectangle.is_set())
+         {
+
+            set_need_redraw(pitemOldHover->m_rectangle);
+
+            bAnyRedraw = true;
+
+         }
+
+         if(::is_item_set(pitemHitTest) && pitemHitTest->m_rectangle.is_set())
+         {
+
+            set_need_redraw(pitemHitTest->m_rectangle);
+
+            bAnyRedraw = true;
+
+         }
+
+         if(bAnyRedraw)
+         {
+
+            post_redraw();
+
+         }
 
       }
 
@@ -19026,51 +19086,84 @@ namespace user
       //if (::is_set(pmouse))
       //{
 
-      if (m_pitemHover != m_pitemHoverMouse)
-      {
-
-         auto pitemOldMouseHover = m_pitemHoverMouse;
-
-         m_pitemHoverMouse = m_pitemHover;
-
-         bAnyHoverChange = true;
-
-         if (::is_set(m_pitemHoverMouse) && !::is_set(pitemOldMouseHover))
-         {
-
-            track_mouse_hover();
-
-            //simple_on_control_event(pmouse, e_event_mouse_enter);
-
-         }
-         else if (!::is_set(m_pitemHoverMouse) && ::is_set(pitemOldMouseHover))
-         {
-
-            //simple_on_control_event(pmouse, e_event_mouse_leave);
-
-         }
-
-         //pmouse->m_bRet = true;
-
-      }
+//      auto pitemOldMouseHover = m_pitemHoverMouse;
+//
+//      if (!::is_item_equivalent(m_pitemHover, m_pitemHoverMouse))
+//      {
+//
+//         m_pitemHoverMouse = m_pitemHover;
+//
+//         bAnyHoverChange = true;
+//
+//         if (::is_set(m_pitemHoverMouse) && !::is_set(pitemOldMouseHover))
+//         {
+//
+//            track_mouse_hover();
+//
+//            //simple_on_control_event(pmouse, e_event_mouse_enter);
+//
+//         }
+//         else if (!::is_set(m_pitemHoverMouse) && ::is_set(pitemOldMouseHover))
+//         {
+//
+//            //simple_on_control_event(pmouse, e_event_mouse_leave);
+//
+//         }
+//
+//         //pmouse->m_bRet = true;
+//
+//      }
 
       //}
 
-      if (bAnyHoverChange || (!::is_set(m_pitemHover) || !m_pitemHover->is_drawn()))
-      {
-
-         if (!bAvoidRedraw)
-         {
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
+//      if (bAnyHoverChange)
+//      {
+//
+//         //if (!bAvoidRedraw)
+//         //{
+//
+//         bool bAnyRedraw = false;
+//
+//         if(::is_item_set(pitemOldMouseHover) && pitemOldMouseHover->m_rectangle.is_set())
+//         {
+//
+//            set_need_redraw(pitemOldMouseHover->m_rectangle);
+//
+//            bAnyRedraw = true;
+//
+//         }
+//
+//         if(::is_item_set(m_pitemHoverMouse) && m_pitemHoverMouse->m_rectangle.is_set())
+//         {
+//
+//            set_need_redraw(m_pitemHoverMouse->m_rectangle);
+//
+//            bAnyRedraw = true;
+//
+//         }
+//
+//         if(bAnyRedraw)
+//         {
+//
+//            post_redraw();
+//
+//         }
+//
+//         //}
+//
+//      }
 
       return pitemHitTest;
+
+   }
+
+
+   bool interaction::is_mouse_hover() const
+   {
+
+      bool bMouseHover = ::is_item_set(m_pitemHover);
+
+      return bMouseHover;
 
    }
 
@@ -19091,20 +19184,19 @@ namespace user
 
       auto pitemOldHover = m_pitemHover;
 
-      auto pitemOldHoverMouse = m_pitemHoverMouse;
-
       m_pitemHover = nullptr;
 
-      m_pitemHoverMouse = nullptr;
-
-      if (pitemOldHover.is_set() || pitemOldHoverMouse.is_set())
+      if (::is_item_set(pitemOldHover))
       {
 
-         set_need_redraw();
+         if(pitemOldHover->m_rectangle.is_set())
+         {
 
-         //simple_on_control_event(pmessage, e_event_mouse_leave);
+            set_need_redraw(pitemOldHover->m_rectangle);
 
-         post_redraw();
+            post_redraw();
+
+         }
 
       }
 
@@ -19297,8 +19389,7 @@ namespace user
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      if (m_flagNonClient.has(e_non_client_background)
-         && !(top_level()->frame_is_transparent()))
+      if (m_flagNonClient.has(e_non_client_background) && !top_level()->frame_is_transparent())
       {
 
          draw_control_background(pgraphics);

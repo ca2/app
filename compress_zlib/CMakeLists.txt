@@ -39,7 +39,7 @@ if (MSVC)
     target_link_libraries(compress_zlib PRIVATE acme apex)
 elseif(LINUX)
 
-    if(NOT DONT_USE_PKG_CONFIG)
+    if(USE_PKGCONFIG)
         pkg_check_modules(PKGCONFIG zlib)
     endif()
 

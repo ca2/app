@@ -3001,12 +3001,12 @@ namespace user
    }
 
 
-   void element::_001OnTriggerMouseInside()
-   {
-
-      throw ::interface_only();
-
-   }
+//   void element::_001OnTriggerMouseInside()
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void element::update_data(bool bSaveAndValidate)

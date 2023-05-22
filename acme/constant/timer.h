@@ -8,6 +8,7 @@ enum enum_timer : ::iptr
 
    e_timer_slow, // indicative usage: few minutes
    e_timer_fast, // indicative usage: few seconds or big second fraction
+   e_timer_very_fast, // indicative usage: small second fraction
 
    e_timer_drag_start = 10000,
 
@@ -56,6 +57,8 @@ enum enum_timer : ::iptr
    e_timer_hover_select,
 
    e_timer_caret_flashing,
+
+   e_timer_main_impact_update,
 
 };
 

@@ -116,6 +116,9 @@ namespace user
       enum_stock_icon get_stock_icon() override;
 
 
+      void on_set_window_text() override;
+
+
    };
 
 

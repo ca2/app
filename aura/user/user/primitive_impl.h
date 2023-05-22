@@ -154,16 +154,18 @@ namespace user
       virtual void post_message(const ::atom& atom, wparam wParam = 0, ::lparam lParam = 0);
 
 
-      virtual void set_window_text(const ::string& pszString);
+      //virtual void set_window_text(const ::string& pszString);
+
+      virtual void on_set_window_text();
 
 
-      virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount);
+      //virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount);
 
 
-      virtual void get_window_text(string& rString);
+      //virtual void get_window_text(string& rString);
 
 
-      virtual strsize get_window_text_length();
+      //virtual strsize get_window_text_length();
 
 
       virtual void UpdateWindow();
@@ -214,7 +216,7 @@ namespace user
       virtual void _001OnAfterExitFullScreen();
 
 
-      virtual void _001OnTriggerMouseInside();
+      //virtual void _001OnTriggerMouseInside();
 
 
       virtual bool has_pending_graphical_update();

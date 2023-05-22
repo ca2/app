@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(draw2d_cairo CXX)
+message(STATUS "Project is " ${PROJECT_NAME})
 
 
 list(APPEND library_source
@@ -15,7 +16,6 @@ list(APPEND library_source
    draw2d.cpp
    draw2d.h
    _factory.cpp
-
    font.cpp
    font.h
    framework.cpp
@@ -59,16 +59,21 @@ set_target_properties(draw2d_cairo PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(draw2d_cairo PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(draw2d_cairo PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(draw2d_cairo PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/draw2d_cairo.lib")
     target_link_options(draw2d_cairo PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/draw2d_cairo.def")
     target_link_libraries(draw2d_cairo PRIVATE acme)
+
+
 elseif(LINUX OR FREEBSD)
 
-    if(NOT DONT_USE_PKG_CONFIG)
+
+    #if(USE_PKGCONFIG)
         pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
-    endif()
+    #endif()
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
@@ -99,9 +104,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(draw2d_cairo PRIVATE _DRAW2D_CAIRO_LIBRARY)

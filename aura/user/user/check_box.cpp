@@ -250,11 +250,11 @@ namespace user
 
       {
 
-         string strText;
+         string strWindowText;
 
-         get_window_text(strText);
+         strWindowText = get_window_text();
 
-         if(strText.has_char())
+         if(strWindowText.has_char())
          {
 
             ::e_align ealign = e_align_left_center;
@@ -280,7 +280,7 @@ namespace user
 
             pgraphics->set_text_color(crText);
 
-            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
+            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 

@@ -95,7 +95,7 @@ namespace user
       
       ::pointer<::item>                     m_pitemCurrent;
       ::pointer<::item>                     m_pitemHover;
-      ::pointer<::item>                     m_pitemHoverMouse;
+      //::pointer<::item>                     m_pitemHoverMouse;
       ::pointer<::item>                     m_pitemPressed;
 
 
@@ -510,7 +510,7 @@ namespace user
       //virtual bool merge(::user::interaction * pinteraction);
 
 
-      virtual void _001OnTriggerMouseInside();
+      //virtual void _001OnTriggerMouseInside();
 
       virtual void _000OnMouseLeave(::message::message* pmessage);
 

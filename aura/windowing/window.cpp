@@ -307,7 +307,7 @@ namespace windowing
    }
 
 
-   void window::set_window_text(const ::string & pszString)
+   void window::set_window_text(const ::scoped_string & scopedstr)
    {
 
       throw ::interface_only();
@@ -315,32 +315,40 @@ namespace windowing
    }
 
 
-   strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
+   ::string window::get_window_text()
    {
 
-      throw ::interface_only();
-
-      return 0;
+      return {};
 
    }
 
 
-   void window::get_window_text(string & rectangleString)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   strsize window::get_window_text_length()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
+//   strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
+//   void window::get_window_text(string & rectangleString)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
+//
+//
+//   strsize window::get_window_text_length()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
 
 
    void window::on_layout(::draw2d::graphics_pointer & pgraphics)

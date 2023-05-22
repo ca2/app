@@ -423,12 +423,14 @@ namespace user
 
 
       // Window Text Functions
-      virtual void set_window_text(const ::string & pszString) override;
+      //virtual void set_window_text(const ::string & pszString) override;
 
-      strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
+      void on_set_window_text() override;
 
-      void get_window_text(string & rString) override;
-      strsize get_window_text_length() override;
+      //strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
+
+      //void get_window_text(string & rString) override;
+      //strsize get_window_text_length() override;
 
 
       // Window size_i32 and position Functions
@@ -774,7 +776,7 @@ namespace user
       virtual bool has_redraw() override;
       virtual ::particle * mutex_redraw();
 
-      virtual void _001OnTriggerMouseInside() override;
+      //virtual void _001OnTriggerMouseInside() override;
 
       bool has_pending_graphical_update() override;
 

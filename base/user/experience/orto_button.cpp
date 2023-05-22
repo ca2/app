@@ -86,15 +86,15 @@ namespace experience
       if (m_estockicon == e_stock_icon_none)
       {
 
-         string str;
+         auto strWindowText = get_window_text();
 
-         get_window_text(str);
+         //get_window_text(str);
 
          pgraphics->set_font(this, ::e_element_none);
 
          pgraphics->set_text_color(crText);
 
-         pgraphics->draw_text(str, rectangleClient, e_align_center, e_draw_text_single_line);
+         pgraphics->draw_text(strWindowText, rectangleClient, e_align_center, e_draw_text_single_line);
 
       }
       else

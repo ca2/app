@@ -640,7 +640,7 @@ namespace ios
       void _001UpdateScreen() override;
 
 
-      void _001OnTriggerMouseInside() override;
+      //void _001OnTriggerMouseInside() override;
 
       void _001OnTimer(::timer * ptimer) override;
 

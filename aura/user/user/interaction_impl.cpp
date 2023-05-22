@@ -287,7 +287,14 @@ namespace user
       if (_is_window())
       {
 
-         set_window_text(lpszName);
+         auto puserinteraction = m_puserinteraction;
+
+         if(puserinteraction)
+         {
+
+            m_puserinteraction->set_window_text(lpszName);
+
+         }
 
       }
       else
@@ -1194,7 +1201,7 @@ namespace user
 
       }
 
-      m_puserinteraction->m_bMouseHover = false;
+      //m_puserinteraction->m_pitemHover = nullptr;
 
 #ifdef WINDOWS_DESKTOP
       if (!m_bTransparentMouseEvents)
@@ -1253,12 +1260,12 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnTriggerMouseInside()
-   {
-
-      m_puserinteraction->m_bMouseHover = true;
-
-   }
+//   void interaction_impl::_001OnTriggerMouseInside()
+//   {
+//
+//      //m_puserinteraction->m_bMouseHover = true;
+//
+//   }
 
 
    //void interaction_impl::_008OnMouse(::message::mouse * pmouse)
@@ -3671,16 +3678,33 @@ namespace user
    //}
 
 
-   void interaction_impl::set_window_text(const ::string& pszString)
-
+   void interaction_impl::on_set_window_text()
    {
 
-      __UNREFERENCED_PARAMETER(pszString);
+      auto pwindow = m_pwindow;
 
+      if(pwindow)
+      {
 
-      throw ::interface_only();
+         ::string strWindowText = m_puserinteraction->get_window_text();
+
+         pwindow->set_window_text(strWindowText);
+
+      }
 
    }
+
+
+//   void interaction_impl::set_window_text(const ::string& pszString)
+//
+//   {
+//
+//      __UNREFERENCED_PARAMETER(pszString);
+//
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    //strsize interaction_impl::GetWindowText(char * pszString,i32 nMaxCount)
@@ -7692,45 +7716,45 @@ namespace user
    }
 
 
-   strsize interaction_impl::get_window_text(char* sz, strsize s)
-   {
-
-      if (!m_pwindow)
-      {
-
-         return -1;
-
-      }
-
-      auto iSize = m_pwindow->get_window_text(sz, s);
-
-      return iSize;
-
-   }
-
-
-
-   void interaction_impl::get_window_text(string& str)
-   {
-
-      if (!m_pwindow)
-      {
-
-         return;
-
-      }
-
-      m_pwindow->get_window_text(str);
-
-   }
-
-
-   strsize interaction_impl::get_window_text_length()
-   {
-
-      return -1;
-
-   }
+//   strsize interaction_impl::get_window_text(char* sz, strsize s)
+//   {
+//
+//      if (!m_pwindow)
+//      {
+//
+//         return -1;
+//
+//      }
+//
+//      auto iSize = m_pwindow->get_window_text(sz, s);
+//
+//      return iSize;
+//
+//   }
+//
+//
+//
+//   void interaction_impl::get_window_text(string& str)
+//   {
+//
+//      if (!m_pwindow)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_pwindow->get_window_text(str);
+//
+//   }
+//
+//
+//   strsize interaction_impl::get_window_text_length()
+//   {
+//
+//      return -1;
+//
+//   }
 
 
    void interaction_impl::set_icon(::windowing::icon*)

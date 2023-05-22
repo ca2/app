@@ -709,9 +709,9 @@ namespace experience_tranquillum
 
          status < ::color::color > crMoveableBorderShadow;
 
-         string str;
+         auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(str);
+         //pframewindow->get_window_text(str);
 
          if (pframewindow->is_active_window())
          {
@@ -778,9 +778,9 @@ namespace experience_tranquillum
 
          //auto time5 = ::time::now();
 
-         string wstrWindowText;
+         //auto strWindowText = pframewindow->get_window_text();
 
-         pframewindow->get_window_text(wstrWindowText);
+         //pframewindow->get_window_text(wstrWindowText);
 
          auto pbrushText = __create < ::draw2d::brush >();
 
@@ -794,7 +794,7 @@ namespace experience_tranquillum
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+         pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
       }
 

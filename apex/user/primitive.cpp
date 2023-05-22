@@ -3082,12 +3082,12 @@ namespace user
    }
 
 
-   void primitive::_001OnTriggerMouseInside()
-   {
-
-      throw ::interface_only();
-
-   }
+//   void primitive::_001OnTriggerMouseInside()
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
    void primitive::update_data(bool bSaveAndValidate)

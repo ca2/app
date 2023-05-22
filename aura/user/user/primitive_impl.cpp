@@ -964,34 +964,40 @@ namespace user
    //}
 
 
-   void primitive_impl::set_window_text(const ::string& pszString)
+//   void primitive_impl::set_window_text(const ::string& pszString)
+//   {
+//
+//
+//   }
+
+
+   void primitive_impl::on_set_window_text()
    {
 
 
    }
 
-
-   strsize primitive_impl::get_window_text(char* pszStringBuf, strsize nMaxCount)
-   {
-
-      return 0;
-
-   }
-
-
-   void primitive_impl::get_window_text(string& rString)
-   {
+//   strsize primitive_impl::get_window_text(char* pszStringBuf, strsize nMaxCount)
+//   {
+//
+//      return 0;
+//
+//   }
 
 
-   }
+//   void primitive_impl::get_window_text(string& rString)
+//   {
+//
+//
+//   }
 
 
-   strsize primitive_impl::get_window_text_length()
-   {
-
-      return 0;
-
-   }
+//   strsize primitive_impl::get_window_text_length()
+//   {
+//
+//      return 0;
+//
+//   }
 
 
    void primitive_impl::UpdateWindow()
@@ -1144,11 +1150,11 @@ namespace user
    }
 
 
-   void primitive_impl::_001OnTriggerMouseInside()
-   {
-
-
-   }
+//   void primitive_impl::_001OnTriggerMouseInside()
+//   {
+//
+//
+//   }
 
 
    bool primitive_impl::has_pending_graphical_update()

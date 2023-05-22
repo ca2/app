@@ -287,7 +287,7 @@ public:
    ::pointer<::draw2d::graphics>   m_pgraphics;
    ::pointer<::draw2d::path>       m_ppath;
    ::pointer<::user::mouse>        m_pmouse;
-   bool                             m_bAnyHoverChange;
+   //bool                             m_bAnyHoverChange;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
    //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
@@ -626,6 +626,9 @@ inline bool is_item_index(const ::item * pitem, ::index iItem)
    return ::is_element(pitem, ::e_element_item) && ::is_item(pitem, iItem);
    
 }
+
+
+CLASS_DECL_ACME bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2);
 
 
 

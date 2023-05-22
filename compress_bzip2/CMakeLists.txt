@@ -61,7 +61,7 @@ if(DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
 else()
 
 
-   if(NOT DONT_USE_PKG_CONFIG)
+   if(USE_PKGCONFIG)
       pkg_check_modules(PKGCONFIG bzip2)
    endif()
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})

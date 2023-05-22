@@ -138,7 +138,7 @@ namespace user
       bool                                         m_bVisible;
       bool                                         m_bMouseHoverOnCapture;
 
-      bool                                         m_bMouseHover;
+      //bool                                         m_bMouseHover;
       bool                                         m_bClickDefaultMouseHandling;
       bool                                         m_bHoverDefaultMouseHandling;
       bool                                         m_bEditDefaultHandling;
@@ -1406,6 +1406,8 @@ namespace user
       virtual void set_window_text_source(const ::a_string_function & astringfunction) override;
       virtual void clear_window_text_source();
 
+      virtual void on_set_window_text();
+
 //#ifdef WINDOWS
 //      strsize _009GetWindowText(wchar_t * pwsz, int n) override;
 //#else
@@ -1413,12 +1415,12 @@ namespace user
 //#endif
 //      virtual strsize _009GetWindowTextLength() override;
 
-      virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount) override;
+      //virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount) override;
 
-      virtual ::string _get_window_text();
+      //virtual ::string _get_window_text();
       virtual string get_window_text() override;
-      virtual void get_window_text(string& rectangleString) override;
-      virtual strsize get_window_text_length() override;
+      //virtual void get_window_text(string& rectangleString) override;
+      //virtual strsize get_window_text_length() override;
 
       virtual ::user::frame* frame();
       inline ::user::interaction * top_level() { return m_puserinteractionTopLevel; }
@@ -1701,7 +1703,7 @@ namespace user
       virtual bool merge(::user::interaction* pinteraction);
 
 
-      virtual void _001OnTriggerMouseInside() override;
+      //virtual void _001OnTriggerMouseInside() override;
 
 
       virtual bool window_is_notify_icon_enabled();
@@ -2119,7 +2121,11 @@ namespace user
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder, bool bAvoidRedraw = true);
+      virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+
+
+      virtual bool is_mouse_hover() const;
 
       //virtual bool get_rectangle(::item * pitem);
 

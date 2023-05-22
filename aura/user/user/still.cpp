@@ -101,9 +101,9 @@ namespace user
 
          auto psession = get_session();
 
-         string strText;
+         auto strWindowText = get_window_text();
 
-         get_window_text(strText);
+         //get_window_text(strText);
 
          ::rectangle_f64 rectangleClient;
 
@@ -430,9 +430,9 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(_get_window_text());
+      auto strWindowText = get_window_text();
 
-      auto size = pgraphics->get_text_extent(strText);
+      auto size = pgraphics->get_text_extent(strWindowText);
 
       ::write_text::text_metric tm;
 
@@ -449,8 +449,6 @@ namespace user
    }
 
    
-
-
    void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -459,11 +457,11 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         string str;
+         auto strWindowText = get_window_text();
 
-         get_window_text(str);
+         //get_window_text(str);
 
-         auto size = pgraphics->get_text_extent(str);
+         auto size = pgraphics->get_text_extent(strWindowText);
 
          ::rectangle_i32 rectangle(0, 0, 0, 0);
 
@@ -565,9 +563,9 @@ namespace user
 
       }
 
-      ::string strText = _get_window_text();
+      ::string strWindowText = get_window_text();
 
-      if(strText.is_empty() || ::is_null(pfont))
+      if(strWindowText.is_empty() || ::is_null(pfont))
       {
 
          if(m_ptextouta)
@@ -583,7 +581,7 @@ namespace user
 
       auto pOsData = pfont->get_os_data(pgraphics, 0);
 
-      if(m_ptextouta && m_ptextouta->is_updated(strText, pOsData))
+      if(m_ptextouta && m_ptextouta->is_updated(strWindowText, pOsData))
       {
 
          return;
@@ -623,9 +621,9 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      pgraphics->create_simple_multiline_layout(*m_ptextouta, strText, rectangleClient, pfont, ealign, etextwrap);
+      pgraphics->create_simple_multiline_layout(*m_ptextouta, strWindowText, rectangleClient, pfont, ealign, etextwrap);
 
-      m_ptextouta->m_strLast = strText;
+      m_ptextouta->m_strLast = strWindowText;
 
       m_ptextouta->m_pLastOsData = pOsData;
 
@@ -883,11 +881,10 @@ namespace user
    void still::_001OnDrawImage(::draw2d::graphics_pointer & pgraphics)
    {
 
-      string strText;
-
-      get_window_text(strText);
+      auto strWindowText = get_window_text();
 
       ::rectangle_i32 rectangleClient;
+
       client_rectangle(rectangleClient);
 
 
@@ -1178,6 +1175,16 @@ namespace user
    {
 
       return m_strLink.has_char();
+
+   }
+
+
+   void still::on_set_window_text()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

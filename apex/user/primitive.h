@@ -438,7 +438,7 @@ namespace user
       //virtual bool merge(::user::interaction * pinteraction);
 
 
-      void _001OnTriggerMouseInside() override;
+      //void _001OnTriggerMouseInside() override;
 
       void _000OnMouseLeave(::message::message* pmessage) override;
 

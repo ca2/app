@@ -62,7 +62,7 @@ namespace experience
 
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void defer_save_window_placement() override;

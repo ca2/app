@@ -180,12 +180,12 @@ namespace windowing
       virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
-      virtual void set_window_text(const ::string & pszString);
+      virtual void set_window_text(const ::scoped_string & scopedstr);
 
-      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
+      virtual ::string get_window_text();
 
-      virtual void get_window_text(string & rectangleString);
-      virtual strsize get_window_text_length();
+      //virtual void get_window_text(string & rectangleString);
+      //virtual strsize get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

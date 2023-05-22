@@ -2420,12 +2420,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer& pgraphicsParam)
 
       }
 
-      if (!_000OnBeforeDraw(pgraphicsParam))
-      {
+      //if (!_000OnBeforeDraw(pgraphicsParam))
+      //{
 
-         return;
+        // return;
 
-      }
+      //}
 
    }
 
@@ -3518,11 +3518,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                if (base_class < ::experience::control_box > ::bases(pinteraction))
                {
 
-                  string str;
+                  auto strWindowText = pinteraction->get_window_text();
 
-                  pinteraction->get_window_text(str);
+                  //pinteraction->get_window_text(str);
 
-                  if (str == "r")
+                  if (strWindowText == "r")
                   {
 
                      //TRACE0("x button");

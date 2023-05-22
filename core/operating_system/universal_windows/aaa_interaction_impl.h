@@ -682,7 +682,7 @@ namespace universal_windows
       virtual bool is_active() override;
 
 
-      void _001OnTriggerMouseInside();
+      //void _001OnTriggerMouseInside();
 
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();

@@ -2668,48 +2668,134 @@ namespace user
    void frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bUpdateBuffer;
+      ::user::main_window::_000OnDraw(pgraphics);
 
-      bool bUpdateWindow;
+//      bool bUpdateBuffer;
+//
+//      bool bUpdateWindow;
+//
+//      auto type = __object_type(*this);
+//
+//      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
+//      {
+//
+//         //::output_debug_string("app_veriwell_keyboard::main_frame");
+//
+//      }
+//      else if(type.name_contains("simple_child_frame"))
+//      {
+//
+//         //::output_debug_string("simple_child_frame");
+//
+//      }
+//
+//      sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
-      auto type = __object_type(*this);
+//      if (!is_window_visible() || layout().is_iconic())
+//      {
+//
+//         return;
+//
+//      }
 
-      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
-      {
+//      if (m_bSketchToDesignLayout)
+//      {
+//
+//         m_bSketchToDesignLayout = false;
+//
+//         design_layout(pgraphics);
+//
+//      }
 
-         //::output_debug_string("app_veriwell_keyboard::main_frame");
+//      auto pstyle = get_style(pgraphics);
+//
+//      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
+//
+//      auto psession = get_session();
+//
+//      if (bBlurBackground)
+//      {
+//
+//         _001DrawThis(pgraphics);
+//
+//         _001DrawChildren(pgraphics);
+//
+//         _008CallOnDraw(pgraphics);
+//
+//      }
+//      else if (!psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+//               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth)
+//               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_memory))
+//      {
+//
+//#if TEST
+//
+//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//
+//         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
+//
+//#endif
+//
+//         //return;
+//
+//         _001DrawThis(pgraphics);
+//
+//         _001DrawChildren(pgraphics);
+//
+//         if(m_bOverdraw)
+//         {
+//
+//            _008CallOnDraw(pgraphics);
+//
+//         }
+//
+//#if TEST
+//
+//         pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//
+//#if TEST
+//
+//         pgraphics->fill_rectangle(60, 10, 50, 50, argb(128, 190, 180, 90));
+//
+//#endif
 
-      }
-      else if(type.name_contains("simple_child_frame"))
-      {
+//         _001DrawThis(pgraphics);
+//
+//         _001DrawChildren(pgraphics);
+//
+//         if(m_bOverdraw)
+//         {
+//
+//            _008CallOnDraw(pgraphics);
+//
+//         }
 
-         //::output_debug_string("simple_child_frame");
+//#if TEST
+//
+//         pgraphics->fill_rectangle(10, 60, 50, 50, argb(128, 190, 180, 90));
+//
+//#endif
+//
+//      }
 
-      }
 
-      sketch_to_design(bUpdateBuffer, bUpdateWindow);
+   }
 
-      if (!is_window_visible() || layout().is_iconic())
-      {
 
-         return;
-
-      }
-
-      if (m_bSketchToDesignLayout)
-      {
-
-         m_bSketchToDesignLayout = false;
-
-         design_layout(pgraphics);
-
-      }
+   void frame_window::_001OnNcDraw(::draw2d::graphics_pointer &pgraphics)
+   {
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
-
-      client_rectangle(rectangleClient);
+//      ::rectangle_i32 rectangleClient;
+//
+//      client_rectangle(rectangleClient);
 
       if(pstyle)
       {
@@ -2717,11 +2803,11 @@ namespace user
          if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
          {
 
-            _001DrawThis(pgraphics);
+            //_001DrawThis(pgraphics);
 
-            _001DrawChildren(pgraphics);
+            //_001DrawChildren(pgraphics);
 
-            _008CallOnDraw(pgraphics);
+            //_008CallOnDraw(pgraphics);
 
             return;
 
@@ -2729,76 +2815,7 @@ namespace user
 
       }
 
-      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
-
-      auto psession = get_session();
-
-      if (bBlurBackground)
-      {
-
-         _001DrawThis(pgraphics);
-
-         _001DrawChildren(pgraphics);
-
-         _008CallOnDraw(pgraphics);
-
-      }
-      else if (!psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
-               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth)
-               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_memory))
-      {
-
-#if TEST
-
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
-
-#endif
-
-         //return;
-
-         _001DrawThis(pgraphics);
-
-         _001DrawChildren(pgraphics);
-
-         if(m_bOverdraw)
-         {
-
-            _008CallOnDraw(pgraphics);
-
-         }
-
-#if TEST
-
-         pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
-
-#endif
-
-      }
-      else
-      {
-
-#if TEST
-
-         pgraphics->fill_rectangle(60, 10, 50, 50, argb(128, 190, 180, 90));
-
-#endif
-
-         _001DrawThis(pgraphics);
-
-         _001DrawChildren(pgraphics);
-
-         _008CallOnDraw(pgraphics);
-
-#if TEST
-
-         pgraphics->fill_rectangle(10, 60, 50, 50, argb(128, 190, 180, 90));
-
-#endif
-
-      }
-
+      ::user::main_window::_001OnNcDraw(pgraphics);
 
    }
 

@@ -201,7 +201,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      string strText(_get_window_text());
+      string strText(get_window_text());
 
       const ::size_i32 & size = pgraphics->get_text_extent(strText);
 
@@ -729,11 +729,11 @@ namespace user
       if (m_estockicon == e_stock_icon_none)
       {
 
-         string strText;
+         auto strWindowText = get_window_text();
 
-         get_window_text(strText);
+         //get_window_text(strText);
 
-         if (strText.has_char())
+         if (strWindowText.has_char())
          {
 
             auto pstyle = get_style(pgraphics);
@@ -784,7 +784,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
+            pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 
          }
 

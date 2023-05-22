@@ -607,7 +607,7 @@ namespace android
 
 
 
-      void _001OnTriggerMouseInside() override;
+//      void _001OnTriggerMouseInside() override;
 
 
       ::user::interaction * get_next(bool bIgnoreChildren, i32 * piLevel) override;

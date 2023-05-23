@@ -473,7 +473,7 @@ namespace user
 
       //::windowing::window * window();
 
-      virtual ::windowing::windowing * windowing();
+      ::windowing::windowing * windowing();
 
       virtual ::windowing::display * get_display();
 

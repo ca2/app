@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -39,7 +39,7 @@ namespace nanoui
        */
       ::function<void(const ::color::color&)> m_final_callback;
 
-      /// The ColorWheel for this ColorPicker (the actual widget allowing selection).
+      /// The ColorWheel for this ColorPicker (the actual pwidget allowing selection).
       ColorWheel* m_color_wheel;
 
       /**
@@ -89,7 +89,7 @@ namespace nanoui
        */
       void set_callback(const std::function<void(const ::color::color&)>& callback) {
          m_callback = callback;
-         m_callback(background_color());
+         m_callback(colorBackground());
       }
 
       /**

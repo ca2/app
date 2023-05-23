@@ -39,6 +39,13 @@ namespace user
       virtual void create_main_window();
 
 
+      bool should_redraw_on_mouse_activate() override;
+
+
+      bool should_redraw_on_mouse_hover() override;
+
+
+
    };
 
 

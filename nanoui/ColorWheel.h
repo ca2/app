@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -9,7 +9,7 @@
 /**
  * \file nanoui/colorwheel.h
  *
- * \brief Fancy analog widget to select a color::color value.  This widget was
+ * \brief Fancy analog pwidget to select a color::color value.  This pwidget was
  *        contributed by Dmitriy Morozov.
  */
 
@@ -26,7 +26,7 @@ namespace nanoui
 /**
  * \class ColorWheel colorwheel.h nanoui/colorwheel.h
  *
- * \brief Fancy analog widget to select a color::color value.  This widget was
+ * \brief Fancy analog pwidget to select a color::color value.  This pwidget was
  *        contributed by Dmitriy Morozov.
  */
    class CLASS_DECL_NANOUI ColorWheel : public Widget {

@@ -1,9 +1,9 @@
 ﻿/*
-    nanoui/popup.h -- Simple popup widget which is attached to another given
+    nanoui/popup.h -- Simple popup pwidget which is attached to another given
     window (can be nested)
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -26,14 +26,14 @@ namespace nanoui
  *
  * \brief Popup window for combo boxes, popup buttons, nested dialogs etc.
  *
- * Usually the Popup instance is constructed by another widget (e.g. \ref PopupButton)
+ * Usually the Popup instance is constructed by another pwidget (e.g. \ref PopupButton)
  * and does not need to be created by hand.
  */
    class CLASS_DECL_NANOUI Popup : public Window {
    public:
       enum Side { Left = 0, Right };
 
-      /// Create a memory_new popup parented to a screen (first argument) and a parent window (if applicable)
+      /// Create a memory_new popup parented to a pscreen (bFirst argument) and a parent window (if applicable)
       Popup(Widget * parent, Window * parent_window = nullptr);
 
       /// Return the anchor position in the parent window; the placement of the popup is relative to it
@@ -61,7 +61,7 @@ namespace nanoui
       /// Return the parent window of the popup
       const Window * parent_window() const { return m_parent_window; }
 
-      /// Invoke the associated layout generator to properly place child widgets, if any
+      /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
       virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draw the popup window

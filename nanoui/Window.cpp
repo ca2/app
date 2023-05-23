@@ -1,8 +1,8 @@
 /*
-    src/window.cpp -- Top-level window widget
+    src/window.cpp -- Top-level window pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -77,8 +77,8 @@ namespace nanoui
       }
 
       return vector2_i32(
-         std::max(result.x(), (int)(m_boundsHeader[2] - m_boundsHeader[0] + 20)),
-         std::max(result.y(), (int)(m_boundsHeader[3] - m_boundsHeader[1]))
+         ::maximum(result.x(), (int)(m_boundsHeader[2] - m_boundsHeader[0] + 20)),
+         ::maximum(result.y(), (int)(m_boundsHeader[3] - m_boundsHeader[1]))
       );
    }
 
@@ -116,12 +116,12 @@ namespace nanoui
 
          Widget::perform_layout(pcontext, bRecalcTextSize);
 
-         for (auto w : m_button_panel->children()) 
+         for (auto pwidgetChild : m_button_panel->children()) 
          {
 
-            w->set_fixed_size(vector2_i32(22, 22));
+            pwidgetChild->set_fixed_size(vector2_i32(22, 22));
 
-            w->set_font_size(15);
+            pwidgetChild->set_font_size(15);
 
          }
 
@@ -289,9 +289,9 @@ namespace nanoui
 
          auto pos = posOld + rel;
 
-         pos = max(pos, vector2_i32(0));
+         pos = pos.maximum(vector2_i32(0));
 
-         pos = min(pos, parent()->size() - m_size);
+         pos = pos.minimum(parent()->size() - m_size);
 
          m_offsetToApplyOnDraw = pos - m_pos;
 

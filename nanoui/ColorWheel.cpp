@@ -1,10 +1,10 @@
 /*
-    src/colorwheel.cpp -- fancy analog widget to select a ::color::color value
+    src/colorwheel.cpp -- fancy analog pwidget to select a ::color::color value
 
-    This widget was contributed by Dmitriy Morozov.
+    This pwidget was contributed by Dmitriy Morozov.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -100,8 +100,8 @@ namespace nanoui
       pcontext->rotate(hue * ::nano2d::f_pi * 2);
 
       // Marker on
-      float u = std::max(r1 / 50, 1.5f);
-      u = std::min(u, 4.f);
+      float u = ::maximum(r1 / 50, 1.5f);
+      u = ::minimum(u, 4.f);
       pcontext->stroke_width(u);
       pcontext->begin_path();
       pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
@@ -225,11 +225,11 @@ namespace nanoui
       
       y -= (float) m_pos.y();
 
-      float w = (float)m_size.x();
+      float pwidget = (float)m_size.x();
       
       float h = (float)m_size.y();
 
-      float cx = w / 2.f;
+      float cx = pwidget / 2.f;
 
       float cy = h / 2.f;
 
@@ -288,9 +288,9 @@ namespace nanoui
       if ((m_regionDrag & InnerTriangle) || (!m_regionDrag && triangle_test))
       {
 
-         l0 = std::min(std::max(0.f, l0), 1.f);
-         l1 = std::min(std::max(0.f, l1), 1.f);
-         l2 = std::min(std::max(0.f, l2), 1.f);
+         l0 = ::minimum(::maximum(0.f, l0), 1.f);
+         l1 = ::minimum(::maximum(0.f, l1), 1.f);
+         l2 = ::minimum(::maximum(0.f, l2), 1.f);
          float sum = l0 + l1 + l2;
          l0 /= sum;
          l1 /= sum;
@@ -392,39 +392,68 @@ namespace nanoui
       return color;
 
       //return rgb * () + black * m_black + white * m_white;
+
    }
 
-   void ColorWheel::set_color(const ::color::color& rgb) {
+
+   void ColorWheel::set_color(const ::color::color& rgb) 
+   {
+
       float r = rgb.fr(), g = rgb.fg(), b = rgb.fb();
 
-      float M = std::max({ r, g, b });
-      float m = std::min({ r, g, b });
+      float M = ::maximum({ r, g, b });
 
-      if (M == m) {
+      float m = ::minimum({ r, g, b });
+
+      if (M == m) 
+      {
+
          float l = 0.5f * (M + m);
          m_hue = 0.f;
          m_black = 1.f - l;
          m_white = l;
+
       }
-      else {
+      else 
+      {
+
          float d = M - m, h;
 
          if (M == r)
+         {
+
             h = (g - b) / d + (g < b ? 6 : 0);
+
+         }
          else if (M == g)
+         {
+
             h = (b - r) / d + 2;
+
+         }
          else
+         {
+
             h = (r - g) / d + 4;
+
+         }
+
          h /= 6;
 
          ::color::color ch = hue2rgb(m_hue);
-         float M2 = std::max({ ch.fr(), ch.fb(), ch.fb() });
-         float m2 = std::min({ ch.fr(), ch.fg(), ch.fb() });
+
+         float M2 = ::maximum({ ch.fr(), ch.fb(), ch.fb() });
+
+         float m2 = ::minimum({ ch.fr(), ch.fg(), ch.fb() });
 
          m_white = (M * m2 - m * M2) / (m2 - M2);
+
          m_black = (M + m2 + m * M2 - m - M * m2 - M2) / (m2 - M2);
+
          m_hue = h;
+
       }
+
    }
 
 

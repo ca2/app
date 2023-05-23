@@ -42,7 +42,7 @@ namespace nanoui
       }
 
       void set_value(Scalar value) {
-         Scalar clamped_value = std::min(std::max(value, m_min_value), m_max_value);
+         Scalar clamped_value = ::minimum(::maximum(value, m_min_value), m_max_value);
          char buffer[50];
          std::snprintf(buffer, 50, m_number_format.c_str(), clamped_value);
          TextBox::set_value(buffer);

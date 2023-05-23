@@ -17,11 +17,11 @@ namespace nanoui
       e_alignment_fill         ///< Fill according to preferred sizes.
    };
 
-   /// The direction of data flow for a layout.
-   enum enum_orientation {
-      e_orientation_horizontal = 0, ///< Layout expands on horizontal axis.
-      e_orientation_vertical        ///< Layout expands on vertical axis.
-   };
+   ///// The direction of data flow for a layout.
+   //enum enum_orientation {
+   //   e_orientation_horizontal = 0, ///< Layout expands on horizontal iAxisIndex.
+   //   e_orientation_vertical        ///< Layout expands on vertical iAxisIndex.
+   //};
 
 
 } // namespace nanoui

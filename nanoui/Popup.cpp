@@ -1,9 +1,9 @@
 /*
-    src/popup.cpp -- Simple popup widget which is attached to another given
+    src/popup.cpp -- Simple popup pwidget which is attached to another given
     window (can be nested)
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a

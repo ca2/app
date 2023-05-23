@@ -1,8 +1,8 @@
 /*
-    nanoui/graph.h -- Simple graph widget for showing a function plot
+    nanoui/graph.h -- Simple graph pwidget for showing a function plot
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,7 +22,7 @@ namespace nanoui
 /**
  * \class Graph graph.h nanoui/graph.h
  *
- * \brief Simple graph widget for showing a function plot.
+ * \brief Simple graph pwidget for showing a function plot.
  */
    class CLASS_DECL_NANOUI Graph : public Widget {
    public:
@@ -37,8 +37,8 @@ namespace nanoui
       ::string footer() const { return m_footer; }
       void set_footer(const ::scoped_string & footer) { m_footer = footer; }
 
-      const ::color::color & background_color() const { return m_background_color; }
-      void set_background_color(const ::color::color & background_color) { m_background_color = background_color; }
+      const ::color::color & colorBackground() const { return m_colorBackground; }
+      void set_background_color(const ::color::color & colorBackground) { m_colorBackground = colorBackground; }
 
       const ::color::color & stroke_color() const { return m_stroke_color; }
       void set_stroke_color(const ::color::color & stroke_color) { m_stroke_color = stroke_color; }
@@ -49,16 +49,16 @@ namespace nanoui
       const ::color::color & text_color() const { return m_colorText; }
       void set_text_color(const ::color::color & text_color) { m_colorText = text_color; }
 
-      const ::array<float> & values() const { return m_values; }
-      ::array<float> & values() { return m_values; }
-      void set_values(const ::array<float> & values) { m_values = values; }
+      const ::f32_array & values() const { return m_values; }
+      ::f32_array & values() { return m_values; }
+      void set_values(const ::f32_array & values) { m_values = values; }
 
       virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual void draw(::nano2d::context * pcontext) override;
    protected:
       ::string m_caption, m_header, m_footer;
-      ::color::color m_background_color, m_fill_color, m_stroke_color, m_colorText;
-      ::array<float> m_values;
+      ::color::color m_colorBackground, m_fill_color, m_stroke_color, m_colorText;
+      ::f32_array m_values;
 };
 
 

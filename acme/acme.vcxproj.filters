@@ -108,12 +108,6 @@
     <Filter Include="Header Files\primitive\logic">
       <UniqueIdentifier>{e97a5ec9-2fa7-4178-8eec-69ba27417691}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{d0364683-3fa6-44bf-bab8-f4017b7096bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{0cb109af-b237-4a4d-981f-97a8743d5c2e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\mathematics">
       <UniqueIdentifier>{8af08836-1f48-488b-bc62-eed638f784e8}</UniqueIdentifier>
     </Filter>
@@ -222,9 +216,6 @@
     <Filter Include="Header Files\primitive\numeric">
       <UniqueIdentifier>{61a25920-e5d9-4613-be22-31daa06b796b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\image">
-      <UniqueIdentifier>{1815af9e-cbde-4d16-a6c5-906a46510aa6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\memory">
       <UniqueIdentifier>{a3d7218f-de33-4dce-8f4e-af8e3d3c1a27}</UniqueIdentifier>
     </Filter>
@@ -272,6 +263,15 @@
     </Filter>
     <Filter Include="Source Files\memory\osdjfh">
       <UniqueIdentifier>{cee577fc-e955-46fe-887e-6e28e36017d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{d0364683-3fa6-44bf-bab8-f4017b7096bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{0cb109af-b237-4a4d-981f-97a8743d5c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{1815af9e-cbde-4d16-a6c5-906a46510aa6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

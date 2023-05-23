@@ -1097,8 +1097,6 @@
     <ClInclude Include="user\user\main_window.h" />
     <ClInclude Include="user\user\aaa_message.h" />
     <ClInclude Include="user\user\message_box.h" />
-    <ClInclude Include="user\user\message_window.h" />
-    <ClInclude Include="user\user\message_window_listener.h" />
     <ClInclude Include="user\user\notify_icon.h" />
     <ClInclude Include="user\user\notify_icon_listener.h" />
     <ClInclude Include="user\user\notify_icon_mm.h" />

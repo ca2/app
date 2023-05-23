@@ -2,10 +2,10 @@
     src/textbox.cpp -- Fancy text box with builtin regular
     expression-based validation
 
-    The text box widget was contributed by Christian Schueller.
+    The text box pwidget was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -85,10 +85,10 @@ namespace nanoui
 
       float uw = 0;
       if (m_iUnitImage > 0) {
-         int w, h;
-         pcontext->image_size(m_iUnitImage, &w, &h);
+         int pwidgetChild, h;
+         pcontext->image_size(m_iUnitImage, &pwidgetChild, &h);
          float uh = size[1] * 0.4f;
-         uw = w * uh / h;
+         uw = pwidgetChild * uh / h;
       }
       else if (m_strUnit.has_char()) {
          uw = pcontext->text_bounds(0, 0, m_strUnit, nullptr);
@@ -159,10 +159,10 @@ namespace nanoui
       if (m_iUnitImage > 0) 
       {
 
-         int w, h;
-         pcontext->image_size(m_iUnitImage, &w, &h);
+         int pwidgetChild, h;
+         pcontext->image_size(m_iUnitImage, &pwidgetChild, &h);
          float unit_height = m_size.y() * 0.4f;
-         unit_width = w * unit_height / h;
+         unit_width = pwidgetChild * unit_height / h;
          ::nano2d::paint img_paint = pcontext->image_pattern_from_index(
             m_pos.x() + m_size.x() - x_spacing - unit_width,
             draw_pos.y() - unit_height * 0.5f, unit_width, unit_height, 0,
@@ -1026,14 +1026,14 @@ namespace nanoui
    }
 
 
-   float TextBox::cursor_index_to_position(::strsize index, float lastx, const ::nano2d::glyphPosition* glyphs, ::strsize size)
+   float TextBox::cursor_index_to_position(::strsize iIndex, float lastx, const ::nano2d::glyphPosition* glyphs, ::strsize size)
    {
    
       float pos = 0;
-      if (index == size)
+      if (iIndex == size)
          pos = lastx; // last character
       else
-         pos = glyphs[index].x;
+         pos = glyphs[iIndex].x;
 
       return pos;
 

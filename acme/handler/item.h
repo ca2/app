@@ -513,6 +513,14 @@ inline bool is_item_set(const ::item * pitem)
 }
 
 
+inline bool is_item_set_and_non_negative(const ::item* pitem)
+{
+
+   return ::is_item_set(pitem) && pitem->m_iItem >= 0;
+
+}
+
+
 inline bool is_element(const ::item * pitem, ::enum_element eelement)
 {
 

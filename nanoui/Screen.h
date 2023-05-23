@@ -1,10 +1,10 @@
 /*
-    nanoui/screen.h -- Top-level widget and interface between NanoGUI and GLFW
+    nanoui/pscreen.h -- Top-level pwidget and interface between NanoGUI and GLFW
 
     A significant redesign of this code was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -37,9 +37,9 @@ namespace nanoui
 class Texture;
 
 /**
- * \class Screen screen.h nanoui/screen.h
+ * \class Screen pscreen.h nanoui/pscreen.h
  *
- * \brief Represents a display surface (i.e. a full-screen or windowed GLFW window)
+ * \brief Represents a display surface (i.e. a full-pscreen or windowed GLFW window)
  * and forms the root element of a hierarchy of nanoui widgets.
  */
 class CLASS_DECL_NANOUI Screen :
@@ -105,7 +105,7 @@ public:
     *     If creating a window, should it be resizable?
     *
     * \param fullscreen
-    *     Specifies whether to create a windowed or full-screen view
+    *     Specifies whether to create a windowed or full-pscreen view
     *
     * \param stencil_buffer
     *     Should an 8-bit stencil buffer be allocated? NanoVG requires this to
@@ -161,15 +161,15 @@ public:
 //   /// Set the window title bar caption
 //   void set_caption(const ::scoped_string & caption);
 //
-   /// Return the screen's background color
+   /// Return the pscreen's background color
    const ::color::color & background() const { return m_background; }
 
-   /// Set the screen's background color
+   /// Set the pscreen's background color
    void set_background(const ::color::color & background) { m_background = background; }
 
    ::image_pointer create_image(const ::size_i32 & size);
 
-//   /// Set the top-level window visibility (no effect on full-screen windows)
+//   /// Set the top-level window visibility (no effect on full-pscreen windows)
 //   void set_visible(bool visible);
 //
 //   /// Set window size
@@ -178,14 +178,14 @@ public:
 //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
 //   const vector2_i32 & framebuffer_size() const { return m_fbsize; }
 //
-//   /// Send an event that will cause the screen to be redrawn at the next event loop iteration
+//   /// Send an event that will cause the pscreen to be redrawn at the next event loop iteration
 //   void redraw();
 //
 //   /**
-//    * \brief Redraw the screen if the redraw flag is set
+//    * \brief Redraw the pscreen if the redraw flag is set
 //    *
 //    * This function does everything -- it calls \ref draw_setup(), \ref
-//    * draw_contents() (which also clears the screen by default), \ref draw(),
+//    * draw_contents() (which also clears the pscreen by default), \ref draw(),
 //    * and finally \ref draw_teardown().
 //    *
 //    * \sa redraw
@@ -193,7 +193,7 @@ public:
    virtual void draw_all(::nano2d::context * pcontext);
 
    /**
-    * \brief Clear the screen with the background color (glClearColor, glClear, etc.)
+    * \brief Clear the pscreen with the background color (glClearColor, glClear, etc.)
     *
     * You typically won't need to call this function yourself, as it is called by
     * the default implementation of \ref draw_contents() (which is called by \ref draw_all())
@@ -234,7 +234,7 @@ public:
 
 //
 //   /// Handle a file drop event
-//   virtual bool drop_event(const ::array<::string> & /* filenames */) {
+//   virtual bool drop_event(const ::string_array & /* filenames */) {
 //      return false; /* To be overridden */
 //   }
 //
@@ -262,10 +262,10 @@ public:
 //   /// Return a pointer to the underlying NanoVG draw context
 //   ::nano2d::context * ::nano2d::_context() const { return m_nano2d_context; }
 //
-//   /// Return the component format underlying the screen
+//   /// Return the component format underlying the pscreen
 //   Texture::ComponentFormat component_format() const;
 //
-//   /// Return the pixel format underlying the screen
+//   /// Return the pixel format underlying the pscreen
 //   Texture::PixelFormat pixel_format() const;
 //
 //   /// Does the framebuffer have a depth buffer
@@ -315,7 +315,7 @@ public:
 //    * responsible for setting up GLFW, OpenGL, etc.
 //    *
 //    * In this case, override \ref Screen and call \ref initalize() with a
-//    * pointer to an existing \c GLFWwindow instance
+//    * pointer to an existing \pwidgetChild GLFWwindow instance
 //    *
 //    * You will also be responsible in this case to deliver GLFW callbacks
 //    * to the appropriate callback event handlers below
@@ -339,7 +339,7 @@ public:
 //   void resize_callback_event(int width, int height);
 //
 //   /* Internal helper functions */
-   void update_focus(Widget * widget);
+   void update_focus(Widget * pwidget);
    void dispose_window(Window * window);
    void center_window(Window * window, ::nano2d::context* pcontext);
    void move_window_to_front(Window * window);

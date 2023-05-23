@@ -1572,6 +1572,46 @@ namespace user
    }
 
 
+   bool interaction::should_redraw_on_mouse_activate()
+   {
+
+      return true;
+
+   }
+
+
+   bool interaction::should_redraw_on_mouse_hover()
+   {
+
+      return true;
+
+   }
+
+   
+   bool interaction::should_redraw_on_hover(::item* pitem)
+   {
+
+      if (!::is_item_set(pitem))
+      {
+
+         return false;
+
+      }
+
+      if (pitem->m_eelement == e_element_client)
+      {
+
+         bool bShouldRedrawOnMouseHover = should_redraw_on_mouse_hover();
+
+         return bShouldRedrawOnMouseHover;
+
+      }
+
+      return true;
+
+   }
+
+
    ::user::form* interaction::get_form()
    {
 
@@ -5010,7 +5050,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      if (needs_to_draw(pgraphics))
+      if (pgraphics->m_bDraw && needs_to_draw(pgraphics))
       {
 
          try
@@ -11955,7 +11995,12 @@ namespace user
 
          layout().design().copy_position(layout().sketch());
 
-         set_need_redraw(layout().design().client_rect());
+         if (::is_set(get_parent()))
+         {
+
+            set_need_redraw(layout().design().client_rect());
+
+         }
 
       }
 
@@ -12047,7 +12092,12 @@ namespace user
 
       m_bUpdateVisual |= bDisplay || bZorder || bLayout || bActivation;
 
-      bUpdateBuffer = bPosition;
+      if (!bUpdateBuffer && ::is_set(get_parent()))
+      {
+
+         bUpdateBuffer = bPosition;
+
+      }
 
       if (!bUpdateBuffer && m_pinteractionimpl)
       {
@@ -19042,7 +19092,7 @@ namespace user
 
          bool bAnyRedraw = false;
 
-         if(::is_item_set(pitemOldHover) && pitemOldHover->m_rectangle.is_set())
+         if(::is_item_set(pitemOldHover) && should_redraw_on_hover(pitemOldHover) && pitemOldHover->m_rectangle.is_set())
          {
 
             set_need_redraw(pitemOldHover->m_rectangle);
@@ -19051,7 +19101,7 @@ namespace user
 
          }
 
-         if(::is_item_set(pitemHitTest) && pitemHitTest->m_rectangle.is_set())
+         if(::is_item_set(pitemHitTest) && should_redraw_on_hover(pitemOldHover) && pitemHitTest->m_rectangle.is_set())
          {
 
             set_need_redraw(pitemHitTest->m_rectangle);
@@ -19236,11 +19286,59 @@ namespace user
    ::item_pointer interaction::on_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
+      {
+
+         auto pitemHitTest = on_items_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+      {
+
+         auto pitemHitTest = on_default_bottom_right_resize_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+
+      {
+
+         auto pitemHitTest = on_default_full_client_area_hit_test(point, ezorder);
+
+         if (::is_set(pitemHitTest))
+         {
+
+            return pitemHitTest;
+
+         }
+
+      }
+
+      auto pitemNone = __new(::item(e_element_none));
+
+      return pitemNone;
+
+   }
+
+
+   ::item_pointer interaction::on_items_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
+
       synchronous_lock synchronouslock(this->synchronization());
 
       auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
-
-      //auto pointScroll = point + m_pointScroll;
 
       for (auto& pitem : *m_pitema)
       {
@@ -19290,18 +19388,39 @@ namespace user
 
       }
 
+      return nullptr;
+
+   }
+
+
+   ::item_pointer interaction::on_default_bottom_right_resize_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
+
+      synchronous_lock synchronouslock(this->synchronization());
+
+      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+
       auto rectangleResize = this->rectangle(::e_element_resize);
 
       if (rectangleResize.ok() && rectangleResize.contains(point))
       {
 
-         auto pitemClient = __new(::item(e_element_resize));
+         auto pitemHitTest = __new(::item(e_element_resize));
 
-         pitemClient->m_rectangle = rectangleResize;
+         pitemHitTest->m_rectangle = rectangleResize;
 
-         return pitemClient;
+         return pitemHitTest;
 
       }
+
+      return nullptr;
+
+
+   }
+
+   
+   ::item_pointer interaction::on_default_full_client_area_hit_test(const ::point_i32& point, e_zorder ezorder)
+   {
 
       if (ezorder & e_zorder_back)
       {
@@ -19311,19 +19430,17 @@ namespace user
          if (rectangleClient.ok() && rectangleClient.contains(point))
          {
 
-            auto pitemClient = __new(::item(e_element_client));
+            auto pitemHitTest = __new(::item(e_element_client));
 
-            pitemClient->m_rectangle = rectangleClient;
+            pitemHitTest->m_rectangle = rectangleClient;
 
-            return pitemClient;
+            return pitemHitTest;
 
          }
 
       }
 
-      auto pitemNone = __new(::item(e_element_none));
-
-      return pitemNone;
+      return nullptr;
 
    }
 

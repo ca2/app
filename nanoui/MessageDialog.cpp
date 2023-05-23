@@ -2,7 +2,7 @@
     src/messagedialog.cpp -- Simple "OK" or "Yes/No"-style modal dialogs
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -13,6 +13,7 @@
 #include "Layout.h"
 #include "Label.h"
 #include "Button.h"
+#include "Screen.h"
 
 
 namespace nanoui
@@ -55,10 +56,18 @@ namespace nanoui
 
       if (alt_button) {
          Button* button = memory_new Button(panel2, alt_button_text, m_theme->m_efontawesomeMessageAltButton);
-         button->set_callback([&] { if (m_callback) m_callback(1); dispose(); });
+         button->set_callback([&] { 
+
+            ::pointer < ::nanoui::Screen> pscreenHold = screen();
+            if (m_callback) m_callback(1); dispose(); 
+            }
+         );
       }
       Button* button = memory_new Button(panel2, button_text, m_theme->m_efontawesomeMessagePrimaryButton);
-      button->set_callback([this] { if (m_callback) m_callback(0); dispose(); });
+      button->set_callback([this] { 
+         ::pointer <  ::nanoui::Screen> pscreenHold = screen();
+         if (m_callback) m_callback(0); dispose(); 
+         });
       center();
       request_focus();
    }

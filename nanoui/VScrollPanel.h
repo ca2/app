@@ -1,9 +1,9 @@
 ﻿/*
-    nanoui/vscrollpanel.h -- Adds a vertical scrollbar around a widget
+    nanoui/vscrollpanel.h -- Adds a vertical scrollbar around a pwidget
     that is too big to fit into a certain area
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -23,7 +23,7 @@ namespace nanoui
 /**
  * \class VScrollPanel vscrollpanel.h nanoui/vscrollpanel.h
  *
- * \brief Adds a vertical scrollbar around a widget that is too big to fit into
+ * \brief Adds a vertical scrollbar around a pwidget that is too big to fit into
  *        a certain area.
  */
    class CLASS_DECL_NANOUI VScrollPanel : public Widget {

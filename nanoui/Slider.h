@@ -1,8 +1,8 @@
 /*
-    nanoui/slider.h -- Fractional slider widget with mouse control
+    nanoui/slider.h -- Fractional slider pwidget with mouse control
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,7 +22,7 @@ namespace nanoui
 /**
  * \class Slider slider.h nanoui/slider.h
  *
- * \brief Fractional slider widget with mouse control.
+ * \brief Fractional slider pwidget with mouse control.
  */
    class CLASS_DECL_NANOUI Slider : public Widget {
    public:
@@ -34,11 +34,11 @@ namespace nanoui
       const ::color::color & highlight_color() const { return m_highlight_color; }
       void set_highlight_color(const ::color::color & highlight_color) { m_highlight_color = highlight_color; }
 
-      std::pair<float, float> range() const { return m_range; }
-      void set_range(std::pair<float, float> range) { m_range = range; }
+      ::pair<float, float> range() const { return m_range; }
+      void set_range(::pair<float, float> range) { m_range = range; }
 
-      std::pair<float, float> highlighted_range() const { return m_highlighted_range; }
-      void set_highlighted_range(std::pair<float, float> highlighted_range) { m_highlighted_range = highlighted_range; }
+      ::pair<float, float> highlighted_range() const { return m_highlighted_range; }
+      void set_highlighted_range(::pair<float, float> highlighted_range) { m_highlighted_range = highlighted_range; }
 
       ::function<void(float)> callback() const { return m_callback; }
       void set_callback(const ::function<void(float)> & callback) { m_callback = callback; }
@@ -55,8 +55,8 @@ namespace nanoui
       float m_value;
       ::function<void(float)> m_callback;
       ::function<void(float)> m_final_callback;
-      std::pair<float, float> m_range;
-      std::pair<float, float> m_highlighted_range;
+      ::pair<float, float> m_range;
+      ::pair<float, float> m_highlighted_range;
       ::color::color m_highlight_color;
       
    };

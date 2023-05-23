@@ -1,10 +1,10 @@
 /*
-    src/screen.cpp -- Top-level widget and interface between NanoGUI and GLFW
+    src/pscreen.cpp -- Top-level pwidget and interface between NanoGUI and GLFW
 
     A significant redesign of this code was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -104,9 +104,9 @@ namespace nanoui
    //      emscripten_set_canvas_element_size("#canvas", w3, h3);
    //
    //   for (auto it : __nanoui_screens) {
-   //      Screen * screen = it.second;
-   //      screen->resize_event(vector2_i32((int)w2, (int)h2));
-   //      screen->redraw();
+   //      Screen * pscreen = it.second;
+   //      pscreen->resize_event(vector2_i32((int)w2, (int)h2));
+   //      pscreen->redraw();
    //   }
    //
    //   return true;
@@ -299,8 +299,8 @@ namespace nanoui
    //
    //   /* Propagate GLFW events to the appropriate Screen instance */
    //   glfwSetCursorPosCallback(m_glfw_window,
-   //      [](GLFWwindow * w, double x, double y) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, double x, double y) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -311,8 +311,8 @@ namespace nanoui
    //   );
    //
    //   glfwSetMouseButtonCallback(m_glfw_window,
-   //      [](GLFWwindow * w, int button, int action, int modifiers) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, int button, int action, int modifiers) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -323,8 +323,8 @@ namespace nanoui
    //   );
    //
    //   glfwSetKeyCallback(m_glfw_window,
-   //      [](GLFWwindow * w, int key, int scancode, int action, int mods) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, int key, int scancode, int action, int mods) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -335,8 +335,8 @@ namespace nanoui
    //   );
    //
    //   glfwSetCharCallback(m_glfw_window,
-   //      [](GLFWwindow * w, unsigned int codepoint) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, unsigned int codepoint) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -347,8 +347,8 @@ namespace nanoui
    //   );
    //
    //   glfwSetDropCallback(m_glfw_window,
-   //      [](GLFWwindow * w, int count, const char ** filenames) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, int count, const char ** filenames) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -359,8 +359,8 @@ namespace nanoui
    //   );
    //
    //   glfwSetScrollCallback(m_glfw_window,
-   //      [](GLFWwindow * w, double x, double y) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, double x, double y) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -372,11 +372,11 @@ namespace nanoui
    //
    //   /* React to framebuffer size events -- includes window
    //      size events and also catches things like dragging
-   //      a window from a Retina-capable screen to a normal
-   //      screen on Mac OS X */
+   //      a window from a Retina-capable pscreen to a normal
+   //      pscreen on Mac OS X */
    //   glfwSetFramebufferSizeCallback(m_glfw_window,
-   //      [](GLFWwindow * w, int width, int height) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, int width, int height) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
@@ -388,10 +388,10 @@ namespace nanoui
    //      }
    //   );
    //
-   //   // notify when the screen has lost focus (e.g. application switch)
+   //   // notify when the pscreen has lost focus (e.g. application switch)
    //   glfwSetWindowFocusCallback(m_glfw_window,
-   //      [](GLFWwindow * w, int focused) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, int focused) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //
@@ -402,13 +402,13 @@ namespace nanoui
    //   );
    //
    //   glfwSetWindowContentScaleCallback(m_glfw_window,
-   //      [](GLFWwindow * w, float, float) {
-   //         auto it = __nanoui_screens.find(w);
+   //      [](GLFWwindow * pwidgetChild, float, float) {
+   //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
    //         Screen * s = it->second;
    //
-   //         s->m_pixel_ratio = get_pixel_ratio(w);
+   //         s->m_pixel_ratio = get_pixel_ratio(pwidgetChild);
    //         s->resize_callback_event(s->m_size.x(), s->m_size.y());
    //      }
    //   );
@@ -441,25 +441,25 @@ namespace nanoui
    //   m_pixel_ratio = get_pixel_ratio(window);
    //
    //#if defined(EMSCRIPTEN)
-   //   double w, h;
-   //   emscripten_get_element_css_size("#canvas", &w, &h);
+   //   double pwidgetChild, h;
+   //   emscripten_get_element_css_size("#canvas", &pwidgetChild, &h);
    //   double ratio = emscripten_get_device_pixel_ratio(),
-   //      w2 = w * ratio, h2 = h * ratio;
+   //      w2 = pwidgetChild * ratio, h2 = h * ratio;
    //
-   //   if (w != m_size[0] || h != m_size[1]) {
+   //   if (pwidgetChild != m_size[0] || h != m_size[1]) {
    //      /* The canvas element is configured as width/height: auto, expand to
    //         the available space instead of using the specified window resolution */
    //      nanoui_emscripten_resize_callback(0, nullptr, nullptr);
    //      emscripten_set_resize_callback(nullptr, nullptr, false,
    //         nanoui_emscripten_resize_callback);
    //   }
-   //   else if (w != w2 || h != h2) {
+   //   else if (pwidgetChild != w2 || h != h2) {
    //      /* Configure for rendering on a high-DPI display */
    //      emscripten_set_canvas_element_size("#canvas", (int)w2, (int)h2);
-   //      emscripten_set_element_css_size("#canvas", w, h);
+   //      emscripten_set_element_css_size("#canvas", pwidgetChild, h);
    //   }
    //   m_fbsize = vector2_i32((int)w2, (int)h2);
-   //   m_size = vector2_i32((int)w, (int)h);
+   //   m_size = vector2_i32((int)pwidgetChild, (int)h);
    //#elif defined(_WIN32) || defined(__linux__)
    //   if (m_pixel_ratio != 1 && !m_fullscreen)
    //      glfwSetWindowSize(window, m_size.x() * m_pixel_ratio,
@@ -741,8 +741,8 @@ namespace nanoui
 
       if (elapsed > 0.5_s) {
          /* Draw tooltips */
-         const Widget* widget = find_widget(m_mouse_pos);
-         if (widget && widget->tooltip().has_char()) {
+         const Widget* pwidget = find_widget(m_mouse_pos);
+         if (pwidget && pwidget->tooltip().has_char()) {
             int tooltip_width = 150;
 
             float bounds[4];
@@ -750,24 +750,24 @@ namespace nanoui
             pcontext->font_size(15.0f);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
             pcontext->text_line_height(1.1f);
-            vector2_i32 pos = widget->absolute_position() +
-               vector2_i32(widget->width() / 2, widget->height() + 10);
+            vector2_i32 pos = pwidget->absolute_position() +
+               vector2_i32(pwidget->width() / 2, pwidget->height() + 10);
 
             pcontext->text_bounds((float)pos.x(), (float)pos.y(),
-               widget->tooltip(), bounds);
+               pwidget->tooltip(), bounds);
 
             int h = (int)((bounds[2] - bounds[0]) / 2.f);
             if (h > tooltip_width / 2) {
                pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_top);
                pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), (float)tooltip_width,
-                  widget->tooltip(), bounds);
+                  pwidget->tooltip(), bounds);
 
                h = (int)((bounds[2] - bounds[0]) / 2.f);
             }
             int shift = 0;
 
             if (pos.x() - h - 8 < 0) {
-               /* Keep tooltips on screen */
+               /* Keep tooltips on pscreen */
                shift = pos.x() - h - 8;
                pos.x() -= shift;
                bounds[0] -= shift;
@@ -790,7 +790,7 @@ namespace nanoui
 
             pcontext->fill_color(::color::color(255, 255));
             pcontext->font_blur(0.0f);
-            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), (float)tooltip_width, widget->tooltip());
+            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), (float)tooltip_width, pwidget->tooltip());
          }
       }
 
@@ -890,9 +890,9 @@ namespace nanoui
 
          auto pointClient = pointCursor - m_pwidgetMouseCapture->parent()->absolute_position();
 
-         auto handled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
+         auto bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, bDown, ekeyModifiers);
 
-         return handled;
+         return bHandled;
 
       }
 
@@ -907,9 +907,9 @@ namespace nanoui
 
       bool ret = false;
       if (!m_bDragActive || !m_pwidgetDrag) {
-         //Widget * widget = find_widget(p);
-         //if (widget != nullptr && widget->cursor() != m_cursor) {
-           // m_cursor = widget->cursor();
+         //Widget * pwidget = find_widget(p);
+         //if (pwidget != nullptr && pwidget->cursor() != m_cursor) {
+           // m_cursor = pwidget->cursor();
             //glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
          //}
       }
@@ -981,13 +981,13 @@ namespace nanoui
 
          auto pointClient = pointCursor - pwidgetMouseCapture->parent()->absolute_position();
 
-         auto handled = pwidgetMouseCapture->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers);
+         auto bHandled = pwidgetMouseCapture->mouse_button_event(pointClient, emouse, down, bDoubleClick, ekeyModifiers);
 
-         return handled;
+         return bHandled;
 
       }
 
-      bool handled = false;
+      bool bHandled = false;
       m_modifiers = ekeyModifiers;
       // m_last_interaction = glfwGetTime();
       m_last_interaction.Now();
@@ -1024,7 +1024,7 @@ namespace nanoui
 
          auto pointClient = m_mouse_pos - m_pwidgetDrag->parent()->absolute_position();
 
-         handled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
+         bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
 
       }
 
@@ -1053,7 +1053,7 @@ namespace nanoui
 
       bool bRet = Widget::mouse_button_event(m_mouse_pos, emouse, down, bDoubleClick, m_modifiers);
 
-      handled |= bRet;
+      bHandled |= bRet;
       //   action == GLFW_PRESS, m_modifiers);
        //}
        //catch (const std::exception & e) {
@@ -1063,7 +1063,7 @@ namespace nanoui
       {
          m_pwidgetLeftButtonDown = nullptr;
       }
-      return handled;
+      return bHandled;
    }
 
    //void Screen::key_callback_event(int key, int scancode, int action, int mods) {
@@ -1087,7 +1087,7 @@ namespace nanoui
    //}
    //
    //void Screen::drop_callback_event(int count, const char ** filenames) {
-   //   ::array<::string> arg(count);
+   //   ::string_array arg(count);
    //   for (int i = 0; i < count; ++i)
    //      arg[i] = filenames[i];
    //   m_redraw |= drop_event(arg);
@@ -1143,7 +1143,7 @@ namespace nanoui
    //   redraw();
    //}
 
-   void Screen::update_focus(Widget* widget) 
+   void Screen::update_focus(Widget* pwidget) 
    {
 
       for (auto pwidget : m_focus_path) 
@@ -1157,19 +1157,19 @@ namespace nanoui
 
       Window * window = nullptr;
 
-      while (widget) 
+      while (pwidget) 
       {
 
-         m_focus_path.add(widget);
+         m_focus_path.add(pwidget);
 
-         if (dynamic_cast<Window*>(widget))
+         if (dynamic_cast<Window*>(pwidget))
          {
 
-            window = dynamic_cast<Window*>(widget);
+            window = dynamic_cast<Window*>(pwidget);
 
          }
 
-         widget = widget->parent();
+         pwidget = pwidget->parent();
 
       }
 
@@ -1207,7 +1207,7 @@ namespace nanoui
 
       }
 
-      remove_child(window);
+      erase_child(window);
 
    }
 
@@ -1243,13 +1243,13 @@ namespace nanoui
       do 
       {
          ::index base_index = 0;
-         for (::index index = 0; index < m_children.size(); ++index)
-            if (m_children[index] == window)
-               base_index = index;
+         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
+            if (m_children[iIndex] == window)
+               base_index = iIndex;
          changed = false;
-         for (::index index = 0; index < m_children.size(); ++index) {
-            Popup* pw = dynamic_cast<Popup*>(m_children[index]);
-            if (pw && pw->parent_window() == window && index < base_index) {
+         for (::index iIndex = 0; iIndex < m_children.size(); ++iIndex) {
+            Popup* pw = dynamic_cast<Popup*>(m_children[iIndex]);
+            if (pw && pw->parent_window() == window && iIndex < base_index) {
                move_window_to_front(pw);
                changed = true;
                break;
@@ -1268,8 +1268,8 @@ namespace nanoui
    //   if (elapsed < 0.25f || elapsed > 1.25f)
    //      return false;
    //   /* Temporarily increase the frame rate to fade in the tooltip */
-   //   const Widget * widget = find_widget(m_mouse_pos);
-   //   return widget && !widget->tooltip().empty();
+   //   const Widget * pwidget = find_widget(m_mouse_pos);
+   //   return pwidget && !pwidget->tooltip().empty();
    //}
    //
    //Texture::PixelFormat Screen::pixel_format() const {
@@ -1520,7 +1520,7 @@ namespace nanoui
 
    //   vector2_i32 pointCursor(point.x, point.y);
 
-   //   bool handled = false;
+   //   bool bHandled = false;
 
    //   if (m_pwidgetMouseCapture)
    //   {
@@ -1531,7 +1531,7 @@ namespace nanoui
 
    //      m_mouse_pos = pointCursor;
 
-   //      handled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, ekeyModifiers);
+   //      bHandled = m_pwidgetMouseCapture->mouse_motion_event(pointClient, shift, ekeyModifiers);
 
    //   }
    //   else
@@ -1541,13 +1541,13 @@ namespace nanoui
 
    //      auto shift = pointCursor - m_mouse_pos;
 
-   //      auto handled = mouse_drag_event(pointClient, shift, ekeyModifiers);
+   //      auto bHandled = mouse_drag_event(pointClient, shift, ekeyModifiers);
 
    //      m_mouse_pos = pointCursor;
 
    //   }
 
-   //   return handled;
+   //   return bHandled;
 
    //   //p += m_pos;
 

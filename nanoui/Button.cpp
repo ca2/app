@@ -1,8 +1,8 @@
 /*
-    src/button.cpp -- [Normal/Toggle/Radio/Popup] Button widget
+    src/button.cpp -- [Normal/Toggle/Radio/Popup] Button pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -24,7 +24,7 @@ namespace nanoui
    Button::Button(Widget* parent, const ::scoped_string& caption, int icon)
       : Widget(parent), m_caption(caption), m_icon(icon),
       m_icon_position(IconPosition::LeftCentered), m_bChecked(false),
-      m_flags(NormalButton), m_background_color(::color::color(0, 0)),
+      m_flags(NormalButton), m_colorBackground(::color::color(0, 0)),
       m_colorText(::color::color(0, 0)),
       m_tw(-1.f), m_iw(-1.f), m_ih(-1.f)
    {
@@ -54,9 +54,9 @@ namespace nanoui
                   + m_size.y() * 0.15f;
             }
             else {
-               int w, h;
-               pcontext->image_size(m_icon, &w, &h);
-               m_iw = w * m_ih / h;
+               int pwidgetChild, h;
+               pcontext->image_size(m_icon, &pwidgetChild, &h);
+               m_iw = pwidgetChild * m_ih / h;
             }
          }
 
@@ -99,10 +99,10 @@ namespace nanoui
          if (m_flags & PopupButton)
          {
 
-            for (auto widget : parent()->children())
+            for (auto pwidget : parent()->children())
             {
 
-               Button* pbutton = dynamic_cast<Button*>(widget);
+               Button* pbutton = dynamic_cast<Button*>(pwidget);
 
                if (pbutton != this && pbutton && (pbutton->flags() & PopupButton) && pbutton->m_bChecked)
                {
@@ -130,10 +130,10 @@ namespace nanoui
             if (m_button_group.empty())
             {
 
-               for (auto widget : parent()->children())
+               for (auto pwidget : parent()->children())
                {
 
-                  Button* pbutton = dynamic_cast<Button*>(widget);
+                  Button* pbutton = dynamic_cast<Button*>(pwidget);
 
                   if (pbutton != this && pbutton && (pbutton->flags() & RadioButton) && pbutton->m_bChecked)
                   {
@@ -296,15 +296,15 @@ namespace nanoui
       pcontext->rounded_rectangle(m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 3.f,
          m_size.y() - 2.f, m_theme->m_iButtonCornerRadius - 1.f);
 
-      if (m_background_color.alpha != 0) {
-         pcontext->fill_color(::color::color(m_background_color.red, m_background_color.green,
-            m_background_color.blue, 1.f));
+      if (m_colorBackground.alpha != 0) {
+         pcontext->fill_color(::color::color(m_colorBackground.red, m_colorBackground.green,
+            m_colorBackground.blue, 1.f));
          pcontext->fill();
          if (bPressed) {
             colorGradientTop.set_alpha(colorGradientBottom.set_alpha(0.8f));
          }
          else {
-            double v = 1 - m_background_color.fa();
+            double v = 1 - m_colorBackground.fa();
             colorGradientTop.set_alpha(colorGradientBottom.set_alpha((float)(m_bEnabled ? v : v * .5 + .5)));
          }
       }
@@ -351,10 +351,10 @@ namespace nanoui
             iw = pcontext->text_bounds(0, 0, icon.data(), nullptr);
          }
          else {
-            int w, h;
+            int pwidgetChild, h;
             ih *= 0.9f;
-            pcontext->image_size(m_icon, &w, &h);
-            iw = w * ih / h;
+            pcontext->image_size(m_icon, &pwidgetChild, &h);
+            iw = pwidgetChild * ih / h;
          }
          if (m_caption != "")
             iw += m_size.y() * 0.15f;

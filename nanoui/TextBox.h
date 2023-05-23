@@ -2,10 +2,10 @@
     nanoui/textbox.h -- Fancy text box with builtin regular
     expression-based validation
 
-    The text box widget was contributed by Christian Schueller.
+    The text box pwidget was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -111,7 +111,7 @@ namespace nanoui
       /// Specify a placeholder text to be displayed while the text box is empty.
       void set_placeholder(const ::scoped_string& placeholder) { m_strPlaceHolder = placeholder; }
 
-      /// Set the \ref Theme used to draw this widget
+      /// Set the \ref Theme used to draw this pwidget
       virtual void set_theme(Theme* theme) override;
 
       /// The callback to execute when the value of this TextBox has changed.
@@ -138,7 +138,7 @@ namespace nanoui
 
       void update_cursor(::nano2d::context* pcontext, float lastx,
          const ::nano2d::glyphPosition* glyphs, ::strsize size);
-      float cursor_index_to_position(::strsize index, float lastx,
+      float cursor_index_to_position(::strsize iIndex, float lastx,
          const ::nano2d::glyphPosition* glyphs, ::strsize size);
       ::strsize position_to_cursor_index(float posx, float lastx,
          const ::nano2d::glyphPosition* glyphs, ::strsize size);

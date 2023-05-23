@@ -1,8 +1,8 @@
 /*
-    The text box widget was contributed by Christian Schueller.
+    The text box pwidget was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -57,9 +57,9 @@ namespace nanoui
       int m_iButtonFontSize;
       /// The font size for text boxes (default: ``20``).
       int m_iTextBoxFontSize;
-      /// Rounding radius for Window widget corners (default: ``2``).
+      /// Rounding radius for Window pwidget corners (default: ``2``).
       int m_iWindowCorderRadius;
-      /// Default size of Window widget titles (default: ``30``).
+      /// Default size of Window pwidget titles (default: ``30``).
       int m_iWindowHeaderHeight;
       /// Size of drop shadow rendered behind the Window widgets (default: ``10``).
       int m_iWindowDropShadowSize;
@@ -67,17 +67,17 @@ namespace nanoui
       int m_iButtonCornerRadius;
       /// The border width for Tab_header widgets (default: ``0.75f``).
       float m_fTabBorderWidth;
-      /// The inner margin on a Tab_header widget (default: ``5``).
+      /// The inner margin on a Tab_header pwidget (default: ``5``).
       int m_iTabInnerMargin;
-      /// The minimum size for buttons on a Tab_header widget (default: ``20``).
+      /// The minimum size for buttons on a Tab_header pwidget (default: ``20``).
       int m_iTabMinimumButtonWidth;
-      /// The maximum size for buttons on a Tab_header widget (default: ``160``).
+      /// The maximum size for buttons on a Tab_header pwidget (default: ``160``).
       int m_iTabMaximumButtonWidth;
-      /// Used to help specify what lies "in bound" for a Tab_header widget (default: ``20``).
+      /// Used to help specify what lies "in bound" for a Tab_header pwidget (default: ``20``).
       int m_iTabControlWidth;
-      /// The amount of horizontal padding for a Tab_header widget (default: ``10``).
+      /// The amount of horizontal padding for a Tab_header pwidget (default: ``10``).
       int m_iHorizontalPaddingTabButton;
-      /// The amount of vertical padding for a Tab_header widget (default: ``2``).
+      /// The amount of vertical padding for a Tab_header pwidget (default: ``2``).
       int m_iVerticalPaddingTabButton;
 
       /* Generic colors */

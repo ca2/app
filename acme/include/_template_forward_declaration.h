@@ -822,6 +822,9 @@ using u16_array = numeric_array < u16 >;
 using u32_array = numeric_array < u32 >;
 using u64_array = numeric_array < u64 >;
 
+using f32_array = numeric_array < f32 >;
+using f64_array = numeric_array < f64 >;
+
 
 using int_array = i32_array;
 

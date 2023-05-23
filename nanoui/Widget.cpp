@@ -1,8 +1,8 @@
 /*
-    src/widget.cpp -- Base class of all widgets
+    src/pwidget.cpp -- Base class of all widgets
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -47,7 +47,7 @@ namespace nanoui
    {
       
       //   if (std::uncaught_exceptions() > 0) {
-      //      /* If a widget constructor throws an exception, it is immediately
+      //      /* If a pwidget constructor throws an exception, it is immediately
       //         dealloated but may still be referenced by a parent. Be conservative
       //         and don't decrease the reference count of children while dispatching
       //         exceptions. */
@@ -69,7 +69,7 @@ namespace nanoui
    }
 
 
-   /// Return whether or not the widget is currently visible (assuming all parents are visible)
+   /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
    bool Widget::visible() const
    { 
       
@@ -78,7 +78,7 @@ namespace nanoui
    }
 
 
-   /// Set whether or not the widget is currently visible (assuming all parents are visible)
+   /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
    void Widget::set_visible(bool bVisible)
    {
       
@@ -97,7 +97,7 @@ namespace nanoui
    }
 
 
-   /// Return whether or not this widget is currently enabled
+   /// Return whether or not this pwidget is currently enabled
    bool Widget::enabled() const
    {
       
@@ -105,7 +105,7 @@ namespace nanoui
    
    }
 
-   /// Set whether or not this widget is currently enabled
+   /// Set whether or not this pwidget is currently enabled
    void Widget::set_enabled(bool bEnabled) 
    {
       
@@ -354,9 +354,9 @@ namespace nanoui
    bool Widget::mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
-      bool handled = false;
+      bool bHandled = false;
 
-      index iCount = 0;
+      ::count iCount = 0;
 
       ::index iStart = 0;
 
@@ -390,14 +390,14 @@ namespace nanoui
          if (contained != prev_contained)
          {
 
-            handled |= pchild->mouse_enter_event(p, contained, ekeyModifiers);
+            bHandled |= pchild->mouse_enter_event(p, contained, ekeyModifiers);
 
          }
 
          if (contained || prev_contained)
          {
 
-            handled |= pchild->mouse_motion_event(p - m_pos, rel, bDown, ekeyModifiers);
+            bHandled |= pchild->mouse_motion_event(p - m_pos, rel, bDown, ekeyModifiers);
 
          }
 
@@ -405,7 +405,7 @@ namespace nanoui
 
       }
 
-      return handled;
+      return bHandled;
 
    }
 
@@ -499,24 +499,24 @@ namespace nanoui
    }
 
 
-   void Widget::add_child(int index, Widget* widget)
+   void Widget::add_child(::index iIndex, Widget* pwidget)
    {
       synchronous_lock lock(screen()->m_puserinteraction->synchronization());
       //m_iHoverCandidateChildStart = -1;
       //m_iHoverCandidateChildEnd = -1;
-      ASSERT(index <= child_count());
-      m_children.insert_at(index, widget);
-      widget->inc_ref();
-      widget->set_parent(this);
-      widget->set_theme(m_theme);
+      ASSERT(iIndex <= child_count());
+      m_children.insert_at(iIndex, pwidget);
+      pwidget->inc_ref();
+      pwidget->set_parent(this);
+      pwidget->set_theme(m_theme);
    }
 
-   void Widget::add_child(Widget* widget) {
-      add_child(child_count(), widget);
+   void Widget::add_child(Widget* pwidget) {
+      add_child(child_count(), pwidget);
    }
 
 
-   void Widget::remove_child(const Widget* widget)
+   void Widget::erase_child(const Widget* pwidget)
    {
 
       synchronous_lock lock(screen()->m_puserinteraction->synchronization());
@@ -525,33 +525,33 @@ namespace nanoui
       //m_iHoverCandidateChildEnd = -1;
       //size_t child_count = m_children.size();
 
-      if (!m_children.erase((Widget *) widget))
+      if (!m_children.erase((Widget *) pwidget))
       {
 
-         throw ::exception(error_wrong_state, "Widget::remove_child(): widget not found!");
+         throw ::exception(error_wrong_state, "Widget::erase_child(): pwidget not found!");
 
       }
 
-      widget->dec_ref();
+      pwidget->dec_ref();
 
    }
 
 
-   void Widget::remove_child_at(int index) 
+   void Widget::erase_child_at(::index iIndex) 
    {
 
-      if (index < 0 || index >= (int)m_children.size())
+      if (iIndex < 0 || iIndex >= (int)m_children.size())
       {
       
-         throw ::exception(error_index_out_of_bounds, "Widget::remove_child_at(): out of bounds!");
+         throw ::exception(error_index_out_of_bounds, "Widget::erase_child_at(): out of bounds!");
 
       }
 
-      Widget* widget = m_children[index];
+      Widget* pwidget = m_children[iIndex];
 
-      m_children.erase_at(index);
+      m_children.erase_at(iIndex);
 
-      widget->dec_ref();
+      pwidget->dec_ref();
 
    }
 
@@ -559,19 +559,19 @@ namespace nanoui
    Window* Widget::window() 
    {
 
-      Widget* widget = this;
+      Widget* pwidget = this;
 
       while (true) 
       {
 
-         if (!widget)
+         if (!pwidget)
          {
 
             return nullptr;
 
          }
 
-         Window* window = dynamic_cast<Window*>(widget);
+         Window* window = dynamic_cast<Window*>(pwidget);
 
          if (window)
          {
@@ -580,7 +580,7 @@ namespace nanoui
 
          }
 
-         widget = widget->parent();
+         pwidget = pwidget->parent();
 
       }
 
@@ -590,28 +590,28 @@ namespace nanoui
    Screen* Widget::screen() 
    {
 
-      Widget* widget = this;
+      Widget* pwidget = this;
 
       while (true) 
       {
 
-         if (!widget)
+         if (!pwidget)
          {
 
             return nullptr;
 
          }
 
-         Screen* screen = dynamic_cast<Screen*>(widget);
+         Screen* pscreen = dynamic_cast<Screen*>(pwidget);
 
-         if (screen)
+         if (pscreen)
          {
 
-            return screen;
+            return pscreen;
 
          }
 
-         widget = widget->parent();
+         pwidget = pwidget->parent();
 
       }
 
@@ -669,7 +669,7 @@ namespace nanoui
          if (!screen()->m_puserinteraction->needs_to_draw(pdraw2dcontext->m_pgraphics, interactionRectangle))
          {
 
-//            INFORMATION("Opting out from draw widget!! " << typeid(*this).name());
+//            INFORMATION("Opting out from draw pwidget!! " << typeid(*this).name());
 
             return false;
 
@@ -677,7 +677,7 @@ namespace nanoui
 
       }
 
-      INFORMATION("Need to draw widget!! " << typeid(*this).name());
+      INFORMATION("Need to draw pwidget!! " << typeid(*this).name());
 
       return true;
 
@@ -781,7 +781,7 @@ namespace nanoui
 
       pcontext->translate((float)m_pos.x(), (float)m_pos.y());
 
-      for (index i = 0; i < m_children.size(); i++)
+      for (::index i = 0; i < m_children.size(); i++)
       {
 
          auto pchild = m_children[i];

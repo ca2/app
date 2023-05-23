@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -17,7 +17,7 @@
 
 #include "_constant.h"
 #include "Object.h"
- //#include <unordered_map>
+#include "acme/primitive/collection/numeric_array.h"
 #include "acme/primitive/geometry2d/vector.h"
 
 
@@ -34,30 +34,30 @@ namespace nanoui
    class CLASS_DECL_NANOUI Layout : public Object {
    public:
       /**
-       * Performs applies all layout computations for the given widget.
+       * Performs applies all layout computations for the given pwidget.
        *
        * \param pcontext
        *     The ``NanoVG`` context being used for drawing.
        *
-       * \param widget
-       *     The Widget whose child widgets will be positioned by the layout class..
+       * \param pwidget
+       *     The Widget whose pwidgetChild widgets will be positioned by the layout class..
        */
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) = 0;
+      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
 
       /**
-       * Compute the preferred size for a given layout and widget
+       * Compute the preferred size for a given layout and pwidget
        *
        * \param pcontext
        *     The ``NanoVG`` context being used for drawing.
        *
-       * \param widget
+       * \param pwidget
        *     Widget, whose preferred size should be computed
        *
        * \return
        *     The preferred size, accounting for things such as spacing, padding
        *     for icons, etc.
        */
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) = 0;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
    protected:
       /// Default destructor (exists for inheritance).
       virtual ~Layout() { }
@@ -68,17 +68,17 @@ namespace nanoui
     *
     * \brief Simple horizontal/vertical box layout
     *
-    * This widget stacks up a bunch of widgets horizontally or vertically. It adds
+    * This pwidget stacks up a bunch of widgets horizontally or vertically. It adds
     * margins around the entire container and a custom spacing between adjacent
     * widgets.
     */
    class CLASS_DECL_NANOUI BoxLayout : public Layout {
    public:
       /**
-       * \brief Construct a box layout which packs widgets in the given \c Orientation
+       * \brief Construct a box layout which packs widgets in the given \pwidgetChild enum_orientation
        *
        * \param orientation
-       *     The Orientation this BoxLayout expands along
+       *     The enum_orientation this BoxLayout expands along
        *
        * \param alignment
        *     Widget alignment perpendicular to the chosen orientation
@@ -89,14 +89,14 @@ namespace nanoui
        * \param spacing
        *     Extra spacing placed between widgets
        */
-      BoxLayout(enum_orientation orientation, enum_alignment alignment = enum_alignment::Middle,
+      BoxLayout(enum_orientation orientation, enum_alignment alignment = e_alignment_middle,
          int margin = 0, int spacing = 0);
 
-      /// The Orientation this BoxLayout is using.
-      enum_orientation orientation() const { return m_orientation; }
+      /// The enum_orientation this BoxLayout is using.
+      enum_orientation orientation() const { return m_eorientation; }
 
-      /// Sets the Orientation of this BoxLayout.
-      void set_orientation(Orientation orientation) { m_orientation = orientation; }
+      /// Sets the enum_orientation of this BoxLayout.
+      void set_orientation(enum_orientation orientation) { m_eorientation = orientation; }
 
       /// The enum_alignment of this BoxLayout.
       enum_alignment alignment() const { return m_ealignment; }
@@ -105,37 +105,37 @@ namespace nanoui
       void set_alignment(enum_alignment alignment) { m_ealignment = alignment; }
 
       /// The margin of this BoxLayout.
-      int margin() const { return m_margin; }
+      int margin() const { return m_iMargin; }
 
       /// Sets the margin of this BoxLayout.
-      void set_margin(int margin) { m_margin = margin; }
+      void set_margin(int margin) { m_iMargin = margin; }
 
       /// The spacing this BoxLayout is using to pad in between widgets.
-      int spacing() const { return m_spacing; }
+      int spacing() const { return m_iSpacing; }
 
       /// Sets the spacing of this BoxLayout.
-      void set_spacing(int spacing) { m_spacing = spacing; }
+      void set_spacing(int spacing) { m_iSpacing = spacing; }
 
       /* Implementation of the layout interface */
 
       /// See \ref Layout::preferred_size.
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \ref Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
    protected:
-      /// The Orientation of this BoxLayout.
-      enum_orientation m_orientation;
+      /// The enum_orientation of this BoxLayout.
+      enum_orientation m_eorientation;
 
       /// The enum_alignment of this BoxLayout.
       enum_alignment m_ealignment;
 
       /// The margin padding of this BoxLayout.
-      int m_margin;
+      int m_iMargin;
 
       /// The spacing between widgets of this BoxLayout.
-      int m_spacing;
+      int m_iSpacing;
    };
 
    /**
@@ -143,8 +143,8 @@ namespace nanoui
     *
     * \brief Special layout for widgets grouped by labels.
     *
-    * This widget resembles a box layout in that it arranges a set of widgets
-    * vertically. All widgets are indented on the horizontal axis except for
+    * This pwidget resembles a box layout in that it arranges a set of widgets
+    * vertically. All widgets are indented on the horizontal iAxisIndex except for
     * \ref Label widgets, which are not indented.
     *
     * This creates a pleasing layout where a number of widgets are grouped
@@ -169,20 +169,20 @@ namespace nanoui
        */
       GroupLayout(int margin = 15, int spacing = 6, int group_spacing = 14,
          int group_indent = 20)
-         : m_margin(margin), m_spacing(spacing), m_group_spacing(group_spacing),
+         : m_iMargin(margin), m_iSpacing(spacing), m_group_spacing(group_spacing),
          m_group_indent(group_indent) {}
 
       /// The margin of this GroupLayout.
-      int margin() const { return m_margin; }
+      int margin() const { return m_iMargin; }
 
       /// Sets the margin of this GroupLayout.
-      void set_margin(int margin) { m_margin = margin; }
+      void set_margin(int margin) { m_iMargin = margin; }
 
       /// The spacing between widgets of this GroupLayout.
-      int spacing() const { return m_spacing; }
+      int spacing() const { return m_iSpacing; }
 
       /// Sets the spacing between widgets of this GroupLayout.
-      void set_spacing(int spacing) { m_spacing = spacing; }
+      void set_spacing(int spacing) { m_iSpacing = spacing; }
 
       /// The indent of widgets in a group (underneath a Label) of this GroupLayout.
       int group_indent() const { return m_group_indent; }
@@ -199,17 +199,17 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \ref Layout::preferred_size.
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \ref Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
    protected:
       /// The margin of this GroupLayout.
-      int m_margin;
+      int m_iMargin;
 
       /// The spacing between widgets of this GroupLayout.
-      int m_spacing;
+      int m_iSpacing;
 
       /// The spacing between groups of this GroupLayout.
       int m_group_spacing;
@@ -223,14 +223,30 @@ namespace nanoui
     *
     * \brief Grid layout.
     *
-    * Widgets are arranged in a grid that has a fixed grid resolution \c resolution
+    * Widgets are arranged in a grid that has a fixed grid resolution \pwidgetChild resolution
     * along one of the axes. The layout orientation indicates the fixed dimension;
-    * widgets are also appended on this axis. The spacing between items can be
-    * specified per axis. The horizontal/vertical alignment can be specified per
+    * widgets are also appended on this iAxisIndex. The spacing between items can be
+    * specified per iAxisIndex. The horizontal/vertical alignment can be specified per
     * row and column.
     */
-   class CLASS_DECL_NANOUI GridLayout : public Layout {
+   class CLASS_DECL_NANOUI GridLayout :
+      public Layout 
+   {
    public:
+
+
+      /// The enum_orientation of the GridLayout.
+      enum_orientation m_eorientation;
+      /// The default enum_alignment of the GridLayout.
+      enum_alignment m_default_alignment[2];
+      /// The actual enum_alignment being used for each column/row
+      ::array<enum_alignment> m_ealignment[2];
+      /// The number of rows or columns before starting a memory_new one, depending on the enum_orientation.
+      int m_resolution;
+      /// The spacing used for each dimension.
+      vector2_i32 m_iSpacing;
+      /// The margin around this GridLayout.
+      int m_iMargin;
       /**
        * Create a 2-column grid layout by default.
        *
@@ -238,7 +254,7 @@ namespace nanoui
        *     The fixed dimension of this GridLayout.
        *
        * \param resolution
-       *     The number of rows or columns in the grid (depending on the Orientation).
+       *     The number of rows or columns in the grid (depending on the enum_orientation).
        *
        * \param alignment
        *     How widgets should be aligned within each grid cell.
@@ -249,48 +265,48 @@ namespace nanoui
        * \param spacing
        *     The amount of spacing between widgets added to the grid.
        */
-      GridLayout(enum_orientation orientation = enum_orientation::Horizontal, int resolution = 2,
-         enum_alignment alignment = enum_alignment::Middle,
+      GridLayout(enum_orientation orientation = e_orientation_horizontal, int resolution = 2,
+         enum_alignment alignment = e_alignment_middle,
          int margin = 0, int spacing = 0)
-         : m_orientation(orientation), m_resolution(resolution), m_margin(margin) {
+         : m_eorientation(orientation), m_resolution(resolution), m_iMargin(margin) {
          m_default_alignment[0] = m_default_alignment[1] = alignment;
-         m_spacing = vector2_i32(spacing);
+         m_iSpacing = vector2_i32(spacing);
       }
 
-      /// The Orientation of this GridLayout.
-      enum_orientation orientation() const { return m_orientation; }
+      /// The enum_orientation of this GridLayout.
+      enum_orientation orientation() const { return m_eorientation; }
 
-      /// Sets the Orientation of this GridLayout.
-      void set_orientation(Orientation orientation) {
-         m_orientation = orientation;
+      /// Sets the enum_orientation of this GridLayout.
+      void set_orientation(enum_orientation orientation) {
+         m_eorientation = orientation;
       }
 
-      /// The number of rows or columns (depending on the Orientation) of this GridLayout.
+      /// The number of rows or columns (depending on the enum_orientation) of this GridLayout.
       int resolution() const { return m_resolution; }
-      /// Sets the number of rows or columns (depending on the Orientation) of this GridLayout.
+      /// Sets the number of rows or columns (depending on the enum_orientation) of this GridLayout.
       void set_resolution(int resolution) { m_resolution = resolution; }
 
-      /// The spacing at the specified axis (row or column number, depending on the Orientation).
-      int spacing(int axis) const { return m_spacing[axis]; }
-      /// Sets the spacing for a specific axis.
-      void set_spacing(int axis, int spacing) { m_spacing[axis] = spacing; }
+      /// The spacing at the specified iAxisIndex (row or column number, depending on the enum_orientation).
+      int spacing(int iAxisIndex) const { return m_iSpacing[iAxisIndex]; }
+      /// Sets the spacing for a specific iAxisIndex.
+      void set_spacing(int iAxisIndex, int spacing) { m_iSpacing[iAxisIndex] = spacing; }
       /// Sets the spacing for all axes.
-      void set_spacing(int spacing) { m_spacing[0] = m_spacing[1] = spacing; }
+      void set_spacing(int spacing) { m_iSpacing[0] = m_iSpacing[1] = spacing; }
 
       /// The margin around this GridLayout.
-      int margin() const { return m_margin; }
+      int margin() const { return m_iMargin; }
       /// Sets the margin of this GridLayout.
-      void set_margin(int margin) { m_margin = margin; }
+      void set_margin(int margin) { m_iMargin = margin; }
 
       /**
-       * The enum_alignment of the specified axis (row or column number, depending on
-       * the Orientation) at the specified index of that row or column.
+       * The enum_alignment of the specified iAxisIndex (row or column number, depending on
+       * the enum_orientation) at the specified index of that row or column.
        */
-      enum_alignment alignment(int axis, int item) const {
-         if (item < (int)m_ealignment[axis].size())
-            return m_ealignment[axis][item];
+      enum_alignment alignment(int iAxisIndex, int item) const {
+         if (item < (int)m_ealignment[iAxisIndex].size())
+            return m_ealignment[iAxisIndex][item];
          else
-            return m_default_alignment[axis];
+            return m_default_alignment[iAxisIndex];
       }
 
       /// Sets the enum_alignment of the columns.
@@ -307,29 +323,15 @@ namespace nanoui
 
       /* Implementation of the layout interface */
       /// See \ref Layout::preferred_size.
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \ref Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
-   protected:
+
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context* pcontext, Widget* widget,
-         ::array<int>* grid, bool bRecalcTextSize) const;
+      void compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array * grid, bool bRecalcTextSize) const;
 
-   protected:
-      /// The Orientation of the GridLayout.
-      enum_orientation m_orientation;
-      /// The default enum_alignment of the GridLayout.
-      enum_alignment m_default_alignment[2];
-      /// The actual enum_alignment being used for each column/row
-      ::array<enum_alignment> m_ealignment[2];
-      /// The number of rows or columns before starting a memory_new one, depending on the Orientation.
-      int m_resolution;
-      /// The spacing used for each dimension.
-      vector2_i32 m_spacing;
-      /// The margin around this GridLayout.
-      int m_margin;
    };
 
    /**
@@ -338,10 +340,10 @@ namespace nanoui
     * \brief Advanced Grid layout.
     *
     * The is a fancier grid layout with support for items that span multiple rows
-    * or columns, and per-widget alignment flags. Each row and column additionally
+    * or columns, and per-pwidget alignment flags. Each row and column additionally
     * stores a stretch factor that controls how additional space is redistributed.
     * The downside of this flexibility is that a layout anchor data structure must
-    * be provided for each widget.
+    * be provided for each pwidget.
     *
     * An example:
     *
@@ -351,7 +353,7 @@ namespace nanoui
     *    using Anchor = AdvancedGridLayout::Anchor;
     *    Label *label = memory_new Label(window, "A label");
     *    // Add a centered label at grid position (1, 5), which spans two horizontal cells
-    *    layout->set_anchor(label, Anchor(1, 5, 2, 1, enum_alignment::Middle, enum_alignment::Middle));
+    *    layout->set_anchor(label, Anchor(1, 5, 2, 1, e_alignment_middle, e_alignment_middle));
     *
     * \endrst
     *
@@ -382,19 +384,19 @@ namespace nanoui
          Anchor() { }
 
          /// Create an Anchor at position ``(x, y)`` with specified enum_alignment.
-         Anchor(int x, int y, enum_alignment horiz = enum_alignment::Fill,
-            enum_alignment vert = enum_alignment::Fill) {
+         Anchor(int x, int y, enum_alignment horiz = e_alignment_fill,
+            enum_alignment vert = e_alignment_fill) {
             pos[0] = (uint8_t)x; pos[1] = (uint8_t)y;
             size[0] = size[1] = 1;
             align[0] = horiz; align[1] = vert;
          }
 
-         /// Create an Anchor at position ``(x, y)`` of size ``(w, h)`` with specified alignments.
-         Anchor(int x, int y, int w, int h,
-            enum_alignment horiz = enum_alignment::Fill,
-            enum_alignment vert = enum_alignment::Fill) {
+         /// Create an Anchor at position ``(x, y)`` of size ``(pwidgetChild, h)`` with specified alignments.
+         Anchor(int x, int y, int pwidgetChild, int h,
+            enum_alignment horiz = e_alignment_fill,
+            enum_alignment vert = e_alignment_fill) {
             pos[0] = (uint8_t)x; pos[1] = (uint8_t)y;
-            size[0] = (uint8_t)w; size[1] = (uint8_t)h;
+            size[0] = (uint8_t)pwidgetChild; size[1] = (uint8_t)h;
             align[0] = horiz; align[1] = vert;
          }
 
@@ -409,31 +411,31 @@ namespace nanoui
 
 
       /// The columns of this AdvancedGridLayout.
-      ::array<int> m_cols;
+      ::i32_array m_cols;
 
       /// The rows of this AdvancedGridLayout.
-      ::array<int> m_rows;
+      ::i32_array m_rows;
 
       /// The stretch for each column of this AdvancedGridLayout.
-      ::array<float> m_col_stretch;
+      ::f32_array m_col_stretch;
 
       /// The stretch for each row of this AdvancedGridLayout.
-      ::array<float> m_row_stretch;
+      ::f32_array m_row_stretch;
 
       /// The mapping of widgets to their specified anchor points.
       ::map<Widget*, Anchor> m_anchor;
 
       /// The margin around this AdvancedGridLayout.
-      int m_margin;
+      int m_iMargin;
 
 
       /// Creates an AdvancedGridLayout with specified columns, rows, and margin.
-      AdvancedGridLayout(const ::array<int>& cols = {}, const ::array<int>& rows = {}, int margin = 0);
+      AdvancedGridLayout(const ::i32_array& cols = {}, const ::i32_array& rows = {}, int margin = 0);
 
       /// The margin of this AdvancedGridLayout.
-      int margin() const { return m_margin; }
+      int margin() const { return m_iMargin; }
       /// Sets the margin of this AdvancedGridLayout.
-      void set_margin(int margin) { m_margin = margin; }
+      void set_margin(int margin) { m_iMargin = margin; }
 
       /// Return the number of cols
       int col_count() const { return (int)m_cols.size(); }
@@ -453,14 +455,14 @@ namespace nanoui
       /// Set the stretch factor of a given column
       void set_col_stretch(int index, float stretch) { m_col_stretch.element_at(index) = stretch; }
 
-      /// Specify the anchor data structure for a given widget
-      void set_anchor(Widget* widget, const Anchor& anchor) { m_anchor[widget] = anchor; }
+      /// Specify the anchor data structure for a given pwidget
+      void set_anchor(Widget* pwidget, const Anchor& anchor) { m_anchor[pwidget] = anchor; }
 
-      /// Retrieve the anchor data structure for a given widget
-      const Anchor & anchor(Widget* widget) const 
+      /// Retrieve the anchor data structure for a given pwidget
+      const Anchor & anchor(Widget* pwidget) const 
       {
          
-         auto p = m_anchor.plookup(widget);
+         auto p = m_anchor.plookup(pwidget);
 
          if (m_anchor.is_end(p))
          {
@@ -477,13 +479,13 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \ref Layout::preferred_size.
-      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual vector2_i32 preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \ref Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* widget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context* pcontext, Widget* widget, ::array<int>* grid);
+      void compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array* grid);
 
    };
 

@@ -2,7 +2,7 @@
     nanoui/label.h -- Text label with an arbitrary font, color, and size
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -23,7 +23,7 @@ namespace nanoui
 /**
  * \class Label label.h nanoui/label.h
  *
- * \brief Text label widget.
+ * \brief Text label pwidget.
  *
  * The font and color can be customized. When \ref Widget::set_fixed_width()
  * is used, the text is wrapped when it surpasses the specified width.
@@ -58,7 +58,7 @@ namespace nanoui
       /// Set the label color
       void set_color(const ::color::color & color) { m_color = color; }
 
-      /// Set the \ref Theme used to draw this widget
+      /// Set the \ref Theme used to draw this pwidget
       virtual void set_theme(Theme * theme) override;
 
       /// Compute the size needed to fully display the label

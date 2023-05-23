@@ -2,7 +2,7 @@
     nanoui/ImageImpact.cpp -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,7 +22,7 @@
 //#include <nanoui/renderpass.h>
 //#include <nanoui/shader.h>
 //#include <nanoui/texture.h>
-//#include <nanoui/screen.h>
+//#include <nanoui/pscreen.h>
 //#include <nanoui/opengl.h>
 //#include <nanoui_resources.h>
 
@@ -72,33 +72,70 @@ float ImageImpact::scale() const {
    return std::pow(2.f, m_scale / 5.f);
 }
 
-void ImageImpact::set_scale(float scale) {
+void ImageImpact::set_scale(float scale) 
+{
+
    m_scale = std::log2(scale) * 5.f;
+
 }
 
-void ImageImpact::center() {
+
+void ImageImpact::center() 
+{
+
    if (!m_pimage)
+   {
+
       return;
+
+   }
+
    m_offset = vector2_i32(.5f * (vector2_f32(m_size) * screen()->pixel_ratio() - vector2_f32((float)m_pimage->width(), (float)m_pimage->height())) * scale());
+
 }
 
-void ImageImpact::reset() {
+
+void ImageImpact::reset() 
+{
+
    m_scale = 0.f;
+
    center();
+
 }
 
-vector2_f32 ImageImpact::pos_to_pixel(const vector2_f32 & p) const {
+
+vector2_f32 ImageImpact::pos_to_pixel(const vector2_f32 & p) const 
+{
+
    vector2_f32 p2 = p;
-   if (m_draw_border)
+
+   if (m_bDrawBorder)
+   {
+
       p2 -= 1.f;
+
+   }
+
    return (p2 * screen()->pixel_ratio() - m_offset) / scale();
+
 }
 
-vector2_f32 ImageImpact::pixel_to_pos(const vector2_f32 & p) const {
+
+vector2_f32 ImageImpact::pixel_to_pos(const vector2_f32 & p) const 
+{
+
    vector2_i32 pos = (p * scale() + m_offset) / screen()->pixel_ratio();
-   if (m_draw_border)
+
+   if (m_bDrawBorder)
+   {
+
       pos += 1;
+
+   }
+
    return pos;
+
 }
 
 
@@ -167,7 +204,7 @@ bool ImageImpact::scroll_event(const vector2_i32 & p, const vector2_f32 & rel)
    m_scale = maximum(
       m_scale, minimum(0.f, std::log2(40.f / maximum(m_pimage->width(),
          m_pimage->height())) * 5.f));
-   m_scale = std::min(m_scale, 45.f);
+   m_scale = ::minimum(m_scale, 45.f);
 
    vector2_f32 p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
@@ -205,7 +242,7 @@ void ImageImpact::draw(::nano2d::context * pcontext)
 
    //if (scale() > 100 && m_pixel_callback) {
    //   float font_size = scale() / 10.f;
-   //   float alpha = std::min(1.f, (scale() - 100) / 100.f);
+   //   float alpha = ::minimum(1.f, (scale() - 100) / 100.f);
    //   pcontext->font_size(font_size);
    //   pcontext->font_face("sans-bold");
    //   pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
@@ -260,9 +297,9 @@ void ImageImpact::draw_contents(::nano2d::context * pcontext)
    //   bound2 = -vector2_f32(m_pimage->width(), m_pimage->height()) * scale();
 
    //if ((m_offset.x() >= bound1.x()) != (m_offset.x() < bound2.x()))
-   //   m_offset.x() = std::max(std::min(m_offset.x(), bound1.x()), bound2.x());
+   //   m_offset.x() = ::maximum(::minimum(m_offset.x(), bound1.x()), bound2.x());
    //if ((m_offset.y() >= bound1.y()) != (m_offset.y() < bound2.y()))
-   //   m_offset.y() = std::max(std::min(m_offset.y(), bound1.y()), bound2.y());
+   //   m_offset.y() = ::maximum(::minimum(m_offset.y(), bound1.y()), bound2.y());
 
 //   vector2_i32 viewport_size = render_pass()->viewport().second;
 
@@ -280,7 +317,7 @@ void ImageImpact::draw_contents(::nano2d::context * pcontext)
 
    //m_image_shader->set_uniform("matrix_image", Matrix4f(matrix_image));
    //m_image_shader->set_uniform("matrix_background", Matrix4f(matrix_background));
-   //m_image_shader->set_uniform("background_color", m_image_background_color);
+   //m_image_shader->set_uniform("colorBackground", m_image_background_color);
 
    //m_image_shader->begin();
    //m_image_shader->draw_array(Shader::PrimitiveType::Triangle, 0, 6, false);

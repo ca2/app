@@ -1,10 +1,10 @@
 /*
     src/colorpicker.cpp -- push button with a popup to tweak a color value
 
-    This widget was contributed by Christian Schueller.
+    This pwidget was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -56,9 +56,9 @@ namespace nanoui
             if (m_pick_button->checked()) 
             {
                
-               set_color(background_color());
+               set_color(colorBackground());
             
-               m_final_callback(background_color());
+               m_final_callback(colorBackground());
 
             }
 
@@ -89,7 +89,7 @@ namespace nanoui
          });
 
       m_reset_button->set_callback([&]() {
-         ::color::color bg = m_reset_button->background_color();
+         ::color::color bg = m_reset_button->colorBackground();
          ::color::color fg = m_reset_button->text_color();
 
          m_color_wheel->set_color(bg);
@@ -102,7 +102,7 @@ namespace nanoui
    }
 
    ::color::color ColorPicker::color() const {
-      return background_color();
+      return colorBackground();
    }
 
    void ColorPicker::set_color(const ::color::color& color) {

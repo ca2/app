@@ -12,6 +12,29 @@ enum enum_orientation
 };
 
 
+constexpr ::index index_of(enum_orientation eorientation)
+{
+
+   return eorientation == e_orientation_vertical ? 1 : 0;
+
+}
+
+
+constexpr enum_orientation orthogonal_of(enum_orientation eorientation)
+{
+
+   return eorientation == e_orientation_vertical ? e_orientation_horizontal : e_orientation_vertical;
+
+}
+
+constexpr ::index orthogonal_index_of(enum_orientation eorientation)
+{
+
+   return eorientation == e_orientation_vertical ? 0 : 1;
+
+}
+
+
 
 enum enum_align
 {

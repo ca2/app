@@ -1,9 +1,9 @@
 /*
-    src/vscrollpanel.cpp -- Adds a vertical scrollbar around a widget
+    src/vscrollpanel.cpp -- Adds a vertical scrollbar around a pwidget
     that is too big to fit into a certain area
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -65,7 +65,7 @@ namespace nanoui
       if (m_children.size() > 1)
       {
 
-         throw std::runtime_error("VScrollPanel should have one child.");
+         throw std::runtime_error("VScrollPanel should have one pwidgetChild.");
 
       }
 
@@ -195,15 +195,15 @@ namespace nanoui
 
             m_fScroll = fScroll;
 
-            auto child = m_children[0];
+            auto pwidgetChild = m_children[0];
 
-            vector2_i32 old_pos = child->position();
+            vector2_i32 old_pos = pwidgetChild->position();
 
             auto yOffset = get_y_offset();
 
-            child->set_position(vector2_i32(0, (int)yOffset));
+            pwidgetChild->set_position(vector2_i32(0, (int)yOffset));
 
-            vector2_i32 new_pos = child->position();
+            vector2_i32 new_pos = pwidgetChild->position();
 
             m_update_layout = true;
 
@@ -211,7 +211,7 @@ namespace nanoui
 
             post_redraw();
 
-            child->mouse_motion_event(p - m_pos, old_pos - new_pos, true, ::user::e_key_none);
+            pwidgetChild->mouse_motion_event(p - m_pos, old_pos - new_pos, true, ::user::e_key_none);
 
          }
 
@@ -260,20 +260,20 @@ namespace nanoui
          return;
 
       Widget* pwidgetPanel = m_children[0];
-      //m_child_preferred_height = child->preferred_size(pcontext).y();
+      //m_child_preferred_height = pwidgetChild->preferred_size(pcontext).y();
       float fTrackBarHeight = get_track_bar_height();
       //int yoffset = 0;
       //if (m_child_preferred_height > m_size.y())
         // yoffset = (int)get_y_offset(m_scroll);
-      //child->set_position(vector2_i32(0, yoffset));
+      //pwidgetChild->set_position(vector2_i32(0, yoffset));
 
       if (m_update_layout)
       {
 
          m_update_layout = false;
 
-         //child->m_iHoverCandidateChildStart = -1;
-         //child->m_iHoverCandidateChildEnd = -1;
+         //pwidgetChild->m_iHoverCandidateChildStart = -1;
+         //pwidgetChild->m_iHoverCandidateChildEnd = -1;
 
          auto size = pwidgetPanel->preferred_size(pcontext, false);
 

@@ -1,8 +1,8 @@
 ﻿/*
-    nanoui/window.h -- Top-level window widget
+    nanoui/window.h -- Top-level window pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,7 +22,7 @@ namespace nanoui
 /**
  * \class Window window.h nanoui/window.h
  *
- * \brief Top-level window widget.
+ * \brief Top-level window pwidget.
  */
    class CLASS_DECL_NANOUI Window : public Widget {
    public:
@@ -63,14 +63,14 @@ namespace nanoui
    virtual bool mouse_motion_event(const vector2_i32& p, const vector2_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
    /// Handle mouse events recursively and bring the current window to the top
    virtual bool mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
-   /// Accept scroll events and propagate them to the widget under the mouse cursor
+   /// Accept scroll events and propagate them to the pwidget under the mouse cursor
       
       void on_begin_draw(::nano2d::context * pcontext) override;
             
    virtual bool scroll_event(const vector2_i32 & p, const vector2_f32 & rel) override;
-   /// Compute the preferred size of the widget
+   /// Compute the preferred size of the pwidget
    virtual vector2_i32 preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-   /// Invoke the associated layout generator to properly place child widgets, if any
+   /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
    virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
    //protected:
    /// Internal helper function to maintain nested window position values; overridden in \ref Popup

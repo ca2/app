@@ -57,7 +57,7 @@ void file_dialog_from_platform(
 
          //for (auto & p : filetypes)
          //{
-         //   wfiletypes.add(wstring_pair( wstring(p.first.c_str()), wstring(p.second.c_str()) ));
+         //   wfiletypes.add(wstring_pair( wstring(p.bFirst.c_str()), wstring(p.second.c_str()) ));
 
          //}
 
@@ -165,7 +165,7 @@ void file_dialog_from_platform(
 //            cmd += "--save ";
 //         cmd += "--file-filter=\"";
 //         for (auto pair : filetypes)
-//            cmd += "\"*." + pair.first + "\" ";
+//            cmd += "\"*." + pair.bFirst + "\" ";
 //         cmd += "\"";
 //         FILE * output = popen(cmd.c_str(), "r");
 //         if (output == nullptr)
@@ -174,7 +174,7 @@ void file_dialog_from_platform(
 //            ;
 //         pclose(output);
 //         ::string paths(buffer);
-//         paths.erase(std::remove(paths.begin(), paths.end(), '\n'), paths.end());
+//         paths.erase(std::erase(paths.begin(), paths.end(), '\n'), paths.end());
 //
 //         while (!paths.empty()) {
 //            size_t end = paths.find("//");

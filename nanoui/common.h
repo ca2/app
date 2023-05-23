@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -229,7 +229,7 @@ class Window;
  *
  * \param detach
  *     This parameter only exists in the Python bindings. When the active
- *     \c Screen instance is provided via the \c detach parameter, the
+ *     \pwidgetChild Screen instance is provided via the \pwidgetChild detach parameter, the
  *     ``mainloop()`` function becomes non-blocking and returns
  *     immediately (in this case, the main loop runs in parallel on a newly
  *     created thread). This feature is convenient for prototyping user
@@ -283,7 +283,7 @@ class Window;
  */
 //CLASS_DECL_NANOUI void pick_single_file(
 //    void * poswindow,
-//    const ::array<std::pair<::string, ::string>> & filetypes,
+//    const ::array<::pair<::string, ::string>> & filetypes,
 //    const ::function < void(const::string &) > & promisseFile,
 //    bool save);
 
@@ -303,10 +303,10 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
  * implements this function right now. All other platforms return <tt>(false,
  * false)</tt>.
  *
- * \return A <tt>std::pair</tt> with two boolean values. The first indicates
+ * \return A <tt>::pair</tt> with two boolean values. The bFirst indicates
  * 10-bit color support, and the second indicates EDR support.
  */
-//extern CLASS_DECL_NANOUI std::pair<bool, bool> test_10bit_edr_support();
+//extern CLASS_DECL_NANOUI ::pair<bool, bool> test_10bit_edr_support();
 
 /**
  * \brief Open a native file open dialog, which allows multiple selection.
@@ -325,8 +325,8 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
  */
 extern CLASS_DECL_NANOUI void pick_multiple_file(
     void * poswindow, 
-    const ::array<std::pair<::string, ::string>> & filetypes, 
-    ::std::function < void(const ::array<::string> &) > promisseFiles);
+    const ::array<::pair<::string, ::string>> & filetypes, 
+    ::std::function < void(const ::string_array &) > promisseFiles);
 
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)
@@ -347,13 +347,13 @@ extern CLASS_DECL_NANOUI void chdir_to_bundle_parent();
  * defined in :ref:`file_nanoui_entypo.h`.
  * \endrst
  *
- * \param c
+ * \param pwidgetChild
  *     The UTF32 character to be converted.
  */
-extern CLASS_DECL_NANOUI ::string get_utf8_character(uint32_t c);
+extern CLASS_DECL_NANOUI ::string get_utf8_character(uint32_t pwidgetChild);
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
-//extern CLASS_DECL_NANOUI ::array<std::pair<int, ::string>>
+//extern CLASS_DECL_NANOUI ::array<::pair<int, ::string>>
 //load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)

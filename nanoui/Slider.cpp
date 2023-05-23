@@ -1,8 +1,8 @@
 /*
-    nanoui/slider.cpp -- Fractional slider widget with mouse control
+    nanoui/slider.cpp -- Fractional slider pwidget with mouse control
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -48,24 +48,45 @@ bool Slider::mouse_motion_event(const vector2_i32 & p, const vector2_i32 & /* re
    const float width_x = m_size.x() - 2.f * (kr + kshadow);
 
    float value = (p.x() - start_x) / width_x, old_value = m_value;
-   value = value * (m_range.second - m_range.first) + m_range.first;
-   m_value = std::min(std::max(value, m_range.first), m_range.second);
+   
+   value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
+   
+   m_value = ::minimum_maximum(value, m_range.m_element1, m_range.m_element2);
+   
    if (m_callback && m_value != old_value)
+   {
+
       m_callback(m_value);
+
+   }
+
    return true;
+
 }
 
-bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) {
+
+bool Slider::mouse_button_event(const vector2_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */) 
+{
+
    if (!m_bEnabled)
+   {
+
       return false;
 
+   }
+
    const float kr = (m_size.y() * 0.4f), kshadow = 3.f;
+
    const float start_x = kr + kshadow + m_pos.x() - 1;
+
    const float width_x = m_size.x() - 2 * (kr + kshadow);
 
    float value = (p.x() - start_x) / width_x, old_value = m_value;
-   value = value * (m_range.second - m_range.first) + m_range.first;
-   m_value = std::min(std::max(value, m_range.first), m_range.second);
+   
+   value = value * (m_range.m_element2 - m_range.m_element1) + m_range.m_element1;
+   
+   m_value = ::minimum_maximum(value, m_range.m_element1, m_range.m_element2);
+
    if (m_callback && m_value != old_value)
       m_callback(m_value);
    if (m_final_callback && !down)
@@ -80,8 +101,8 @@ void Slider::draw(::nano2d::context * pcontext) {
    float start_x = kr + kshadow + m_pos.x();
    float width_x = m_size.x() - 2 * (kr + kshadow);
 
-   vector2_f32 knob_pos(start_x + (m_value - m_range.first) /
-      (m_range.second - m_range.first) * width_x,
+   vector2_f32 knob_pos(start_x + (m_value - m_range.m_element1) /
+      (m_range.m_element2 - m_range.m_element1) * width_x,
       center.y() + 0.5f);
 
    ::nano2d::paint bg = pcontext->box_gradient(
@@ -93,15 +114,21 @@ void Slider::draw(::nano2d::context * pcontext) {
    pcontext->fill_paint(bg);
    pcontext->fill();
 
-   if (m_highlighted_range.second != m_highlighted_range.first) {
+   if (m_highlighted_range.m_element2 != m_highlighted_range.m_element1) 
+   {
+
       pcontext->begin_path();
-      pcontext->rounded_rectangle(start_x + m_highlighted_range.first * m_size.x(),
+
+      pcontext->rounded_rectangle(start_x + m_highlighted_range.m_element1 * m_size.x(),
          center.y() - kshadow + 1,
          width_x *
-         (m_highlighted_range.second - m_highlighted_range.first),
+         (m_highlighted_range.m_element2 - m_highlighted_range.m_element1),
          kshadow * 2, 2);
+
       pcontext->fill_color(m_highlight_color);
+
       pcontext->fill();
+
    }
 
    ::nano2d::paint knob_shadow =

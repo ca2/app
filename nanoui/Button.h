@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -9,7 +9,7 @@
 /**
  * \file nanoui/button.h
  *
- * \brief Defines the [Normal/Toggle/Radio/Popup] \ref nanoui::Button widget.
+ * \brief Defines the [Normal/Toggle/Radio/Popup] \ref nanoui::Button pwidget.
  */
 
 #pragma once
@@ -24,7 +24,7 @@ namespace nanoui
 /**
  * \class Button button.h nanoui/button.h
  *
- * \brief [Normal/Toggle/Radio/Popup] Button widget.
+ * \brief [Normal/Toggle/Radio/Popup] Button pwidget.
  */
    class CLASS_DECL_NANOUI Button :
    public Widget
@@ -82,7 +82,7 @@ namespace nanoui
       int m_flags;
 
       /// The background color::color of this Button.
-      color::color m_background_color;
+      color::color m_colorBackground;
 
       /// The color::color of the caption text of this Button.
       color::color m_colorText;
@@ -119,9 +119,9 @@ namespace nanoui
       void set_caption(const ::scoped_string & caption) { m_caption = caption; }
 
       /// Returns the background color::color of this Button.
-      const color::color & background_color() const { return m_background_color; }
+      const color::color & colorBackground() const { return m_colorBackground; }
       /// Sets the background color::color of this Button.
-      void set_background_color(const color::color & background_color) { m_background_color = background_color; }
+      void set_background_color(const color::color & colorBackground) { m_colorBackground = colorBackground; }
 
       /// Returns the text color::color of the caption of this Button.
       const color::color & text_color() const { return m_colorText; }

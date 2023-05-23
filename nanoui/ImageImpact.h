@@ -2,7 +2,7 @@
     nanoui/ImageImpact.h -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -22,14 +22,14 @@ namespace nanoui
 /**
  * \class ImageImpact ImageImpact.h nanoui/ImageImpact.h
  *
- * \brief A widget for displaying, panning, and zooming images. Numerical RGBA
+ * \brief A pwidget for displaying, panning, and zooming images. Numerical RGBA
  * pixel information is shown at large magnifications.
  */
    class CLASS_DECL_NANOUI ImageImpact : public Canvas {
    public:
       using PixelCallback = ::function<void(const vector2_i32 &, char **, size_t)>;
 
-      /// Initialize the widget
+      /// Initialize the pwidget
       ImageImpact(Widget * parent);
 
 
@@ -47,10 +47,10 @@ namespace nanoui
 
       void set_image(::image * pimage);
 
-      /// Center the image on the screen
+      /// Center the image on the pscreen
       void center();
 
-      /// Center the image on the screen and set the scale to 1:1
+      /// Center the image on the pscreen and set the scale to 1:1
       void reset();
 
       /// Set the callback that is used to acquire information about pixel components
@@ -70,9 +70,9 @@ namespace nanoui
       /// Set the current magnification of the image
       void set_scale(float scale);
 
-      /// Convert a position within the widget to a pixel position in the image
+      /// Convert a position within the pwidget to a pixel position in the image
       vector2_f32 pos_to_pixel(const vector2_f32 & p) const;
-      /// Convert a pixel position in the image to a position within the widget
+      /// Convert a pixel position in the image to a position within the pwidget
       vector2_f32 pixel_to_pos(const vector2_f32 & p) const;
 
       // Widget implementation

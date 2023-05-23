@@ -4,7 +4,7 @@
     The grid layout was contributed by Christian Schueller.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -14,478 +14,789 @@
 #include "Layout.h"
 #include "Window.h"
 #include "Label.h"
-#include <numeric>
+//#include <numeric>
 
 namespace nanoui
 {
 
 
-BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
-   int margin, int spacing)
-   : m_orientation(orientation), m_ealignment(alignment), m_margin(margin),
-   m_spacing(spacing) {
-}
-
-vector2_i32 BoxLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   vector2_i32 size(2 * m_margin);
-
-   int y_offset = 0;
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char()) {
-      if (m_orientation == e_orientation_vertical)
-         size[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
-      else
-         y_offset = widget->theme()->m_iWindowHeaderHeight;
+   BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
+      int margin, int spacing)
+      : m_eorientation(orientation), m_ealignment(alignment), m_iMargin(margin),
+      m_iSpacing(spacing) {
    }
 
-   bool first = true;
-   int axis1 = (int)m_orientation, axis2 = ((int)m_orientation + 1) % 2;
-   for (auto w : widget->children()) {
-      if (!w->visible())
-         continue;
-      if (first)
-         first = false;
-      else
-         size[axis1] += m_spacing;
 
-      vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize), fs = w->fixed_size();
-      vector2_i32 target_size(
-         fs[0] ? fs[0] : ps[0],
-         fs[1] ? fs[1] : ps[1]
-      );
+   vector2_i32 BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-      size[axis1] += target_size[axis1];
-      size[axis2] = std::max(size[axis2], target_size[axis2] + 2 * m_margin);
-      first = false;
-   }
-   size[axis1] += m_spacing;
-   return size + vector2_i32(0, y_offset);
-}
+      vector2_i32 size(2 * m_iMargin);
 
-void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   vector2_i32 fs_w = widget->fixed_size();
-   vector2_i32 container_size(
-      fs_w[0] ? fs_w[0] : widget->width(),
-      fs_w[1] ? fs_w[1] : widget->height()
-   );
+      int y_offset = 0;
 
-   int axis1 = (int)m_orientation, axis2 = ((int)m_orientation + 1) % 2;
-   int position = m_margin;
-   int y_offset = 0;
+      const Window* window = dynamic_cast<const Window*>(pwidget);
 
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char()) {
-      if (m_orientation == e_orientation_vertical) {
-         position += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
-      }
-      else {
-         y_offset = widget->theme()->m_iWindowHeaderHeight;
-         container_size[1] -= y_offset;
-      }
-   }
+      if (window && window->title().has_char()) 
+      {
 
-   bool first = true;
-   for (auto w : widget->children()) {
-      if (!w->visible())
-         continue;
-      if (first)
-         first = false;
-      else
-         position += m_spacing;
+         if (m_eorientation == e_orientation_vertical)
+         {
 
-      vector2_i32 ps = w->preferred_size(pcontext), fs = w->fixed_size();
-      vector2_i32 target_size(
-         fs[0] ? fs[0] : ps[0],
-         fs[1] ? fs[1] : ps[1]
-      );
-      vector2_i32 pos(0, y_offset);
+            size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
-      pos[axis1] = position;
+         }
+         else
+         {
 
-      switch (m_ealignment) {
-      case e_alignment_minimum:
-         pos[axis2] += m_margin;
-         break;
-      case e_alignment_middle:
-         pos[axis2] += (container_size[axis2] - target_size[axis2]) / 2;
-         break;
-      case e_alignment_maximum:
-         pos[axis2] += container_size[axis2] - target_size[axis2] - m_margin * 2;
-         break;
-      case e_alignment_fill:
-         pos[axis2] += m_margin;
-         target_size[axis2] = fs[axis2] ? fs[axis2] : (container_size[axis2] - m_margin * 2);
-         break;
+            y_offset = pwidget->theme()->m_iWindowHeaderHeight;
+
+         }
+
       }
 
-      w->set_position(pos);
-      w->set_size(target_size);
-      w->perform_layout(pcontext);
-      position += target_size[axis1];
+      bool bFirst = true;
+
+      auto iAxisIndex1 = index_of(m_eorientation);
+
+      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+
+      for (auto pwidgetChild : pwidget->children())
+      {
+
+         if (!pwidgetChild->visible())
+         {
+
+            continue;
+
+         }
+
+         if (bFirst)
+         {
+
+            bFirst = false;
+
+         }
+         else
+         {
+
+            size[iAxisIndex1] += m_iSpacing;
+
+         }
+
+         auto sizeFixed = pwidgetChild->fixed_size();
+
+         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+            [pwidgetChild, pcontext, bRecalcTextSize]()
+            {
+
+               return pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+            });
+
+         size[iAxisIndex1] += sizeTarget[iAxisIndex1];
+
+         size[iAxisIndex2] = ::maximum(size[iAxisIndex2], sizeTarget[iAxisIndex2] + 2 * m_iMargin);
+
+         bFirst = false;
+
+      }
+
+      size[iAxisIndex1] += m_iSpacing;
+      return size + vector2_i32(0, y_offset);
    }
-}
 
-vector2_i32 GroupLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   int height = m_margin, width = 2 * m_margin;
 
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      height += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+   void BoxLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-   bool first = true, indent = false;
-   for (auto c : widget->children()) {
-      if (!c->visible())
-         continue;
-      const Label * label = dynamic_cast<const Label *>(c);
-      if (!first)
-         height += (label == nullptr) ? m_spacing : m_group_spacing;
-      first = false;
+      vector2_i32 sizeFixed = pwidget->fixed_size();
 
-      vector2_i32 ps = c->preferred_size(pcontext, bRecalcTextSize), fs = c->fixed_size();
-      vector2_i32 target_size(
-         fs[0] ? fs[0] : ps[0],
-         fs[1] ? fs[1] : ps[1]
-      );
+      auto container_size = sizeFixed.prefer_self_coordinate_if_positive(pwidget->size());
 
-      bool indent_cur = indent && label == nullptr;
-      height += target_size.y();
-      width = std::max(width, target_size.x() + 2 * m_margin + (indent_cur ? m_group_indent : 0));
+      auto iAxisIndex1 = index_of(m_eorientation);
 
-      if (label)
-         indent = label->caption().has_char();
+      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+
+      int position = m_iMargin;
+
+      int y_offset = 0;
+
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+
+      if (window && window->title().has_char())
+      {
+
+         if (m_eorientation == e_orientation_vertical)
+         {
+
+            position += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+
+         }
+         else
+         {
+
+            y_offset = pwidget->theme()->m_iWindowHeaderHeight;
+
+            container_size[1] -= y_offset;
+
+         }
+
+      }
+
+      bool bFirst = true;
+
+      for (auto pwidgetChild : pwidget->children())
+      {
+
+         if (!pwidgetChild->visible())
+         {
+
+            continue;
+
+         }
+
+         if (bFirst)
+         {
+
+            bFirst = false;
+
+         }
+         else
+         {
+
+            position += m_iSpacing;
+
+         }
+
+         auto sizeFixed = pwidgetChild->fixed_size();
+
+         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+            [pwidgetChild, pcontext, bRecalcTextSize]()
+            {
+
+               return pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+            });
+
+
+         vector2_i32 pos(0, y_offset);
+
+         pos[iAxisIndex1] = position;
+
+         switch (m_ealignment)
+         {
+         case e_alignment_minimum:
+            pos[iAxisIndex2] += m_iMargin;
+            break;
+         case e_alignment_middle:
+            pos[iAxisIndex2] += (container_size[iAxisIndex2] - sizeTarget[iAxisIndex2]) / 2;
+            break;
+         case e_alignment_maximum:
+            pos[iAxisIndex2] += container_size[iAxisIndex2] - sizeTarget[iAxisIndex2] - m_iMargin * 2;
+            break;
+         case e_alignment_fill:
+            pos[iAxisIndex2] += m_iMargin;
+            sizeTarget[iAxisIndex2] = sizeFixed[iAxisIndex2] ? sizeFixed[iAxisIndex2] : (container_size[iAxisIndex2] - m_iMargin * 2);
+            break;
+         }
+
+         pwidgetChild->set_position(pos);
+
+         pwidgetChild->set_size(sizeTarget);
+
+         pwidgetChild->perform_layout(pcontext);
+
+         position += sizeTarget[iAxisIndex1];
+
+      }
+
    }
-   height += m_margin;
-   return vector2_i32(width, height);
-}
 
-void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   int height = m_margin, available_width =
-      (widget->fixed_width() ? widget->fixed_width() : widget->width()) - 2 * m_margin;
 
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      height += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+   vector2_i32 GroupLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-   bool first = true, indent = false;
-   for (auto c : widget->children()) {
-      if (!c->visible())
-         continue;
-      const Label * label = dynamic_cast<const Label *>(c);
-      if (!first)
-         height += (label == nullptr) ? m_spacing : m_group_spacing;
-      first = false;
+      int height = m_iMargin, width = 2 * m_iMargin;
 
-      bool indent_cur = indent && label == nullptr;
-      vector2_i32 ps = vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
-         c->preferred_size(pcontext, bRecalcTextSize).y());
-      vector2_i32 fs = c->fixed_size();
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+      if (window && window->title().has_char())
+         height += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
-      vector2_i32 target_size(
-         fs[0] ? fs[0] : ps[0],
-         fs[1] ? fs[1] : ps[1]
-      );
+      bool bFirst = true, indent = false;
 
-      c->set_position(vector2_i32(m_margin + (indent_cur ? m_group_indent : 0), height));
-      c->set_size(target_size);
-      c->perform_layout(pcontext);
+      for (auto pwidgetChild : pwidget->children())
+      {
 
-      height += target_size.y();
+         if (!pwidgetChild->visible())
+         {
 
-      if (label)
-         indent = label->caption().has_char();
+            continue;
+
+         }
+
+         const Label* label = dynamic_cast<const Label*>(pwidgetChild);
+
+         if (!bFirst)
+         {
+
+            height += (label == nullptr) ? m_iSpacing : m_group_spacing;
+
+         }
+
+         bFirst = false;
+
+         auto sizeFixed = pwidgetChild->fixed_size();
+
+         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+            [pwidgetChild, pcontext, bRecalcTextSize]()
+            {
+
+               return pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+            });
+
+
+         bool indent_cur = indent && label == nullptr;
+
+         height += sizeTarget.y();
+
+         width = ::maximum(width, sizeTarget.x() + 2 * m_iMargin + (indent_cur ? m_group_indent : 0));
+
+         if (label)
+         {
+
+            indent = label->caption().has_char();
+
+         }
+
+      }
+
+      height += m_iMargin;
+
+      return vector2_i32(width, height);
+
    }
-}
 
-vector2_i32 GridLayout::preferred_size(::nano2d::context * pcontext,
-   Widget * widget, bool bRecalcTextSize) {
-   /* Compute minimum row / column sizes */
-   ::array<int> grid[2];
-   compute_layout(pcontext, widget, grid, bRecalcTextSize);
 
-   vector2_i32 size(
-      2 * m_margin + std::accumulate(grid[0].begin(), grid[0].end(), 0)
-      + std::max((int)grid[0].size() - 1, 0) * m_spacing[0],
-      2 * m_margin + std::accumulate(grid[1].begin(), grid[1].end(), 0)
-      + std::max((int)grid[1].size() - 1, 0) * m_spacing[1]
-   );
+   void GroupLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      size[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+      int height = m_iMargin;
 
-   return size;
-}
+      int available_width = (pwidget->fixed_width() ? pwidget->fixed_width() : pwidget->width()) - 2 * m_iMargin;
 
-void GridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, ::array<int> * grid, bool bRecalcTextSize) const {
-   int axis1 = (int)m_orientation, axis2 = (axis1 + 1) % 2;
-   size_t num_children = widget->children().size(), visible_children = 0;
-   for (auto w : widget->children())
-      visible_children += w->visible() ? 1 : 0;
+      const Window* window = dynamic_cast<const Window*>(pwidget);
 
-   vector2_i32 dim;
-   dim[axis1] = m_resolution;
-   dim[axis2] = (int)((visible_children + m_resolution - 1) / m_resolution);
+      if (window && window->title().has_char())
+      {
 
-   grid[axis1].clear(); grid[axis1].resize(dim[axis1], 0);
-   grid[axis2].clear(); grid[axis2].resize(dim[axis2], 0);
+         height += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
-   size_t child = 0;
-   for (int i2 = 0; i2 < dim[axis2]; i2++) {
-      for (int i1 = 0; i1 < dim[axis1]; i1++) {
-         Widget * w = nullptr;
-         do {
-            if (child >= num_children)
-               return;
-            w = widget->children()[child++];
-         } while (!w->visible());
+      }
 
-         vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize);
-         vector2_i32 fs = w->fixed_size();
-         vector2_i32 target_size(
-            fs[0] ? fs[0] : ps[0],
-            fs[1] ? fs[1] : ps[1]
-         );
+      bool bFirst = true;
 
-         grid[axis1][i1] = std::max(grid[axis1][i1], target_size[axis1]);
-         grid[axis2][i2] = std::max(grid[axis2][i2], target_size[axis2]);
+      bool indent = false;
+
+      for (auto pwidgetChild : pwidget->children())
+      {
+
+         if (!pwidgetChild->visible())
+         {
+
+            continue;
+
+         }
+
+         const Label* label = dynamic_cast<const Label*>(pwidgetChild);
+
+         if (!bFirst)
+         {
+
+            height += (label == nullptr) ? m_iSpacing : m_group_spacing;
+
+         }
+
+         bFirst = false;
+
+         bool indent_cur = indent && label == nullptr;
+
+         auto sizeFixed = pwidgetChild->fixed_size();
+
+         auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+            [&]()
+            {
+
+               return vector2_i32(available_width - (indent_cur ? m_group_indent : 0),
+               pwidgetChild->preferred_size(pcontext, bRecalcTextSize).y());
+
+            });
+
+         pwidgetChild->set_position(vector2_i32(m_iMargin + (indent_cur ? m_group_indent : 0), height));
+
+         pwidgetChild->set_size(sizeTarget);
+
+         pwidgetChild->perform_layout(pcontext);
+
+         height += sizeTarget.y();
+
+         if (label)
+            indent = label->caption().has_char();
       }
    }
-}
 
-void GridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
+
+   vector2_i32 GridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize) 
+   {
+
+      /* Compute minimum row / column sizes */
+      ::i32_array grid[2];
+
+      compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
+
+      vector2_i32 size(
+         2 * m_iMargin + grid[0].get_sum()
+         + ::maximum((::i32) grid[0].size() - 1, 0) * m_iSpacing[0],
+         2 * m_iMargin + grid[1].get_sum()
+         + ::maximum((::i32)grid[1].size() - 1, 0) * m_iSpacing[1]
+      );
+
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+
+      if (window && window->title().has_char())
+      {
+
+         size[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+
+      }
+
+      return size;
+
+   }
+
+
+   void GridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array * grid, bool bRecalcTextSize) const
+   {
+
+      auto iAxisIndex1 = index_of(m_eorientation);
+
+      auto iAxisIndex2 = orthogonal_index_of(m_eorientation);
+
+      auto iChildrenCount = pwidget->children().size();
+
+      ::count iVisibleChildrenCount = 0;
+
+      for (auto pwidgetChild : pwidget->children())
+      {
+
+         iVisibleChildrenCount += pwidgetChild->visible() ? 1 : 0;
+
+      }
+
+      vector2_i32 dim;
+
+      dim[iAxisIndex1] = m_resolution;
+
+      dim[iAxisIndex2] = (::i32)((iVisibleChildrenCount + m_resolution - 1) / m_resolution);
+
+      grid[iAxisIndex1].clear(); grid[iAxisIndex1].resize(dim[iAxisIndex1], 0);
+
+      grid[iAxisIndex2].clear(); grid[iAxisIndex2].resize(dim[iAxisIndex2], 0);
+
+      ::index iChildIndex = 0;
+
+      for (int i2 = 0; i2 < dim[iAxisIndex2]; i2++)
+      {
+
+         for (int i1 = 0; i1 < dim[iAxisIndex1]; i1++)
+         {
+
+            Widget* pwidgetChild = nullptr;
+
+            do
+            {
+
+               if (iChildIndex >= iChildrenCount)
+               {
+
+                  return;
+
+               }
+
+               pwidgetChild = pwidget->children()[iChildIndex++];
+
+            } while (!pwidgetChild->visible());
+
+            vector2_i32 sizeTarget;
+
+            auto sizeFixed = pwidgetChild->fixed_size();
+
+            if (sizeFixed.is_set())
+            {
+
+               sizeTarget = sizeFixed;
+
+            }
+            else
+            {
+
+               auto sizePreferred = pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+               sizeTarget = sizePreferred;
+
+            }
+
+            grid[iAxisIndex1][i1] = ::maximum(grid[iAxisIndex1][i1], sizeTarget[iAxisIndex1]);
+
+            grid[iAxisIndex2][i2] = ::maximum(grid[iAxisIndex2][i2], sizeTarget[iAxisIndex2]);
+
+         }
+
+      }
+
+   }
+
+
+   void GridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
+
+      auto sizeFixed = pwidget->fixed_size();
+
+      auto container_size = sizeFixed.prefer_self_coordinate_if_set(pwidget->size());
+
+      /* Compute minimum row / column sizes */
+      ::i32_array grid[2];
+
+      compute_layout(pcontext, pwidget, grid, bRecalcTextSize);
+
+      int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
+
+      vector2_i32 extra(0);
+
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+
+      if (window && window->title().has_char())
+         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+
+      /* Strech to size provided by \pwidgetChild pwidget */
+      for (int i = 0; i < 2; i++) {
+         int grid_size = 2 * m_iMargin + extra[i];
+         for (int s : grid[i]) {
+            grid_size += s;
+            if (i + 1 < dim[i])
+               grid_size += m_iSpacing[i];
+         }
+
+         if (grid_size < container_size[i]) {
+            /* Re-distribute remaining space evenly */
+            int gap = container_size[i] - grid_size;
+            int g = gap / dim[i];
+            int rest = gap - g * dim[i];
+            for (int j = 0; j < dim[i]; ++j)
+               grid[i][j] += g;
+            for (int j = 0; rest > 0 && j < dim[i]; --rest, ++j)
+               grid[i][j] += 1;
+         }
+      }
+
+      auto iAxisIndex1 = ::index_of(m_eorientation);
+
+      auto iAxisIndex2 = ::orthogonal_index_of(m_eorientation);
+
+      vector2_i32 start = m_iMargin + extra;
+
+      auto iChildrenCount = pwidget->children().size();
+
+      ::index iChildIndex = 0;
+
+      vector2_i32 pos = start;
+
+      for (int i2 = 0; i2 < dim[iAxisIndex2]; i2++)
+      {
+
+         pos[iAxisIndex1] = start[iAxisIndex1];
+
+         for (int i1 = 0; i1 < dim[iAxisIndex1]; i1++)
+         {
+
+            Widget* pwidgetChild = nullptr;
+
+            do
+            {
+
+               if (iChildIndex >= iChildrenCount)
+               {
+
+                  return;
+
+               }
+
+               pwidgetChild = pwidget->children()[iChildIndex++];
+
+            } while (!pwidgetChild->visible());
+
+            auto sizeFixed = pwidgetChild->fixed_size();
+
+            auto sizeTarget = sizeFixed.pred_prefer_self_coordinate_if_positive(
+               [pwidgetChild, pcontext, bRecalcTextSize]()
+               {
+
+                  return pwidgetChild->preferred_size(pcontext, bRecalcTextSize);
+
+               });
+
+
+            vector2_i32 item_pos(pos);
+            for (int j = 0; j < 2; j++) {
+               int iAxisIndex = (iAxisIndex1 + j) % 2;
+               int item = j == 0 ? i1 : i2;
+               enum_alignment align = alignment(iAxisIndex, item);
+
+               switch (align) {
+               case e_alignment_minimum:
+                  break;
+               case e_alignment_middle:
+                  item_pos[iAxisIndex] += (grid[iAxisIndex][item] - sizeTarget[iAxisIndex]) / 2;
+                  break;
+               case e_alignment_maximum:
+                  item_pos[iAxisIndex] += grid[iAxisIndex][item] - sizeTarget[iAxisIndex];
+                  break;
+               case e_alignment_fill:
+                  sizeTarget[iAxisIndex] = sizeFixed[iAxisIndex] ? sizeFixed[iAxisIndex] : grid[iAxisIndex][item];
+                  break;
+               }
+            }
+            pwidgetChild->set_position(item_pos);
+            pwidgetChild->set_size(sizeTarget);
+            pwidgetChild->perform_layout(pcontext, bRecalcTextSize);
+            pos[iAxisIndex1] += grid[iAxisIndex1][i1] + m_iSpacing[iAxisIndex1];
+         }
+         pos[iAxisIndex2] += grid[iAxisIndex2][i2] + m_iSpacing[iAxisIndex2];
+      }
+   }
+
+   AdvancedGridLayout::AdvancedGridLayout(const ::i32_array& cols, const ::i32_array& rows, int margin)
+      : m_cols(cols), m_rows(rows), m_iMargin(margin) {
+      m_col_stretch.resize(m_cols.size(), 0);
+      m_row_stretch.resize(m_rows.size(), 0);
+   }
+
    
-   vector2_i32 fs_w = widget->fixed_size();
-   vector2_i32 container_size(
-      fs_w[0] ? fs_w[0] : widget->width(),
-      fs_w[1] ? fs_w[1] : widget->height()
-   );
+   vector2_i32 AdvancedGridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-   /* Compute minimum row / column sizes */
-   ::array<int> grid[2];
-   compute_layout(pcontext, widget, grid, bRecalcTextSize);
-   int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
+      /* Compute minimum row / column sizes */
+      ::i32_array grid[2];
 
-   vector2_i32 extra(0);
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+      compute_layout(pcontext, pwidget, grid);
 
-   /* Strech to size provided by \c widget */
-   for (int i = 0; i < 2; i++) {
-      int grid_size = 2 * m_margin + extra[i];
-      for (int s : grid[i]) {
-         grid_size += s;
-         if (i + 1 < dim[i])
-            grid_size += m_spacing[i];
+      vector2_i32 size(grid[0].get_sum(), grid[1].get_sum());
+
+      vector2_i32 extra(2 * m_iMargin);
+
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+
+      if (window && window->title().has_char())
+      {
+
+         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
+
       }
 
-      if (grid_size < container_size[i]) {
-         /* Re-distribute remaining space evenly */
-         int gap = container_size[i] - grid_size;
-         int g = gap / dim[i];
-         int rest = gap - g * dim[i];
-         for (int j = 0; j < dim[i]; ++j)
-            grid[i][j] += g;
-         for (int j = 0; rest > 0 && j < dim[i]; --rest, ++j)
-            grid[i][j] += 1;
-      }
+      return size + extra;
+
    }
 
-   int axis1 = (int)m_orientation, axis2 = (axis1 + 1) % 2;
-   vector2_i32 start = m_margin + extra;
 
-   size_t num_children = widget->children().size();
-   size_t child = 0;
+   void AdvancedGridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   {
 
-   vector2_i32 pos = start;
-   for (int i2 = 0; i2 < dim[axis2]; i2++) {
-      pos[axis1] = start[axis1];
-      for (int i1 = 0; i1 < dim[axis1]; i1++) {
-         Widget * w = nullptr;
-         do {
-            if (child >= num_children)
-               return;
-            w = widget->children()[child++];
-         } while (!w->visible());
+      ::i32_array grid[2];
+      compute_layout(pcontext, pwidget, grid);
 
-         vector2_i32 ps = w->preferred_size(pcontext, bRecalcTextSize);
-         vector2_i32 fs = w->fixed_size();
-         vector2_i32 target_size(
-            fs[0] ? fs[0] : ps[0],
-            fs[1] ? fs[1] : ps[1]
-         );
+      grid[0].insert_at(0, m_iMargin);
+      const Window* window = dynamic_cast<const Window*>(pwidget);
+      if (window && window->title().has_char())
+         grid[1].insert_at(0, pwidget->theme()->m_iWindowHeaderHeight + m_iMargin / 2);
+      else
+         grid[1].insert_at(0, m_iMargin);
 
-         vector2_i32 item_pos(pos);
-         for (int j = 0; j < 2; j++) {
-            int axis = (axis1 + j) % 2;
-            int item = j == 0 ? i1 : i2;
-            enum_alignment align = alignment(axis, item);
+      for (int iAxisIndex = 0; iAxisIndex < 2; ++iAxisIndex)
+      {
 
-            switch (align) {
+         for (::index i = 1; i < grid[iAxisIndex].size(); ++i)
+         {
+
+            grid[iAxisIndex][i] += grid[iAxisIndex][i - 1];
+
+         }
+
+         for (Widget* pwidgetChild : pwidget->children())
+         {
+
+            if (!pwidgetChild->visible() || dynamic_cast<const Window*>(pwidgetChild) != nullptr)
+            {
+
+               continue;
+
+            }
+
+            Anchor anchor = this->anchor(pwidgetChild);
+
+            int item_pos = grid[iAxisIndex][anchor.pos[iAxisIndex]];
+
+            int cell_size = grid[iAxisIndex][anchor.pos[iAxisIndex] + anchor.size[iAxisIndex]] - item_pos;
+
+            ::i32 sizeTarget;
+
+            auto sizeFixed = pwidgetChild->fixed_size()[iAxisIndex];
+
+            if (sizeFixed > 0)
+            {
+
+               sizeTarget = sizeFixed;
+
+            }
+            else
+            {
+
+               sizeTarget = pwidgetChild->preferred_size(pcontext, bRecalcTextSize)[iAxisIndex];
+
+            }
+
+            switch (anchor.align[iAxisIndex])
+            {
             case e_alignment_minimum:
                break;
             case e_alignment_middle:
-               item_pos[axis] += (grid[axis][item] - target_size[axis]) / 2;
+               item_pos += (cell_size - sizeTarget) / 2;
                break;
             case e_alignment_maximum:
-               item_pos[axis] += grid[axis][item] - target_size[axis];
+               item_pos += cell_size - sizeTarget;
                break;
             case e_alignment_fill:
-               target_size[axis] = fs[axis] ? fs[axis] : grid[axis][item];
+               sizeTarget = sizeFixed ? sizeFixed : cell_size;
                break;
             }
-         }
-         w->set_position(item_pos);
-         w->set_size(target_size);
-         w->perform_layout(pcontext, bRecalcTextSize);
-         pos[axis1] += grid[axis1][i1] + m_spacing[axis1];
-      }
-      pos[axis2] += grid[axis2][i2] + m_spacing[axis2];
-   }
-}
 
-AdvancedGridLayout::AdvancedGridLayout(const ::array<int> & cols, const ::array<int> & rows, int margin)
-   : m_cols(cols), m_rows(rows), m_margin(margin) {
-   m_col_stretch.resize(m_cols.size(), 0);
-   m_row_stretch.resize(m_rows.size(), 0);
-}
+            auto pos = pwidgetChild->position();
 
-vector2_i32 AdvancedGridLayout::preferred_size(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize)  {
-   /* Compute minimum row / column sizes */
-   ::array<int> grid[2];
-   compute_layout(pcontext, widget, grid);
+            auto size = pwidgetChild->size();
 
-   vector2_i32 size(
-      std::accumulate(grid[0].begin(), grid[0].end(), 0),
-      std::accumulate(grid[1].begin(), grid[1].end(), 0));
+            pos[iAxisIndex] = item_pos;
 
-   vector2_i32 extra(2 * m_margin);
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+            size[iAxisIndex] = sizeTarget;
 
-   return size + extra;
-}
+            pwidgetChild->set_position(pos);
 
-void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget * widget, bool bRecalcTextSize) {
-   ::array<int> grid[2];
-   compute_layout(pcontext, widget, grid);
+            pwidgetChild->set_size(size);
 
-   grid[0].insert_at(0, m_margin);
-   const Window * window = dynamic_cast<const Window *>(widget);
-   if (window && window->title().has_char())
-      grid[1].insert_at(0, widget->theme()->m_iWindowHeaderHeight + m_margin / 2);
-   else
-      grid[1].insert_at(0, m_margin);
+            pwidgetChild->perform_layout(pcontext);
 
-   for (int axis = 0; axis < 2; ++axis) {
-      for (::index i = 1; i < grid[axis].size(); ++i)
-         grid[axis][i] += grid[axis][i - 1];
-
-      for (Widget * w : widget->children()) {
-         if (!w->visible() || dynamic_cast<const Window *>(w) != nullptr)
-            continue;
-         Anchor anchor = this->anchor(w);
-
-         int item_pos = grid[axis][anchor.pos[axis]];
-         int cell_size = grid[axis][anchor.pos[axis] + anchor.size[axis]] - item_pos;
-         int ps = w->preferred_size(pcontext)[axis], fs = w->fixed_size()[axis];
-         int target_size = fs ? fs : ps;
-
-         switch (anchor.align[axis]) {
-         case e_alignment_minimum:
-            break;
-         case e_alignment_middle:
-            item_pos += (cell_size - target_size) / 2;
-            break;
-         case e_alignment_maximum:
-            item_pos += cell_size - target_size;
-            break;
-         case e_alignment_fill:
-            target_size = fs ? fs : cell_size;
-            break;
          }
 
-         vector2_i32 pos = w->position(), size = w->size();
-         pos[axis] = item_pos;
-         size[axis] = target_size;
-         w->set_position(pos);
-         w->set_size(size);
-         w->perform_layout(pcontext);
       }
+
    }
-}
 
-void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget * widget, ::array<int> * _grid)
-{
+   void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::i32_array* _grid)
+   {
 
-   vector2_i32 fs_w = widget->fixed_size();
-   vector2_i32 container_size(
-      fs_w[0] ? fs_w[0] : widget->width(),
-      fs_w[1] ? fs_w[1] : widget->height()
-   );
+      vector2_i32 fs_w = pwidget->fixed_size();
+      vector2_i32 container_size(
+         fs_w[0] ? fs_w[0] : pwidget->width(),
+         fs_w[1] ? fs_w[1] : pwidget->height()
+      );
 
-   vector2_i32 extra(2 * m_margin);
-   Window * window = dynamic_cast<Window *>(widget);
-   if (window && window->title().has_char())
-      extra[1] += widget->theme()->m_iWindowHeaderHeight - m_margin / 2;
+      vector2_i32 extra(2 * m_iMargin);
+      Window* window = dynamic_cast<Window*>(pwidget);
+      if (window && window->title().has_char())
+         extra[1] += pwidget->theme()->m_iWindowHeaderHeight - m_iMargin / 2;
 
-   container_size -= extra;
+      container_size -= extra;
 
-   for (int axis = 0; axis < 2; ++axis) {
-      ::array<int> & grid = _grid[axis];
-      ::array<int> & sizes = axis == 0 ? m_cols : m_rows;
-      ::array<float> & stretch = axis == 0 ? m_col_stretch : m_row_stretch;
-      grid = sizes;
+      for (int iAxisIndex = 0; iAxisIndex < 2; ++iAxisIndex) {
+         ::i32_array& grid = _grid[iAxisIndex];
+         ::i32_array& sizes = iAxisIndex == 0 ? m_cols : m_rows;
+         ::f32_array& stretch = iAxisIndex == 0 ? m_col_stretch : m_row_stretch;
+         grid = sizes;
 
-      for (int phase = 0; phase < 2; ++phase) {
-         for (auto pair : m_anchor) {
-            Widget * w = pair.m_element1;
-            if (!w->visible() || dynamic_cast<const Window *>(w) != nullptr)
-               continue;
-            Anchor & anchor = pair.m_element2;
-            if ((anchor.size[axis] == 1) != (phase == 0))
-               continue;
-            int ps = w->preferred_size(pcontext)[axis], fs = w->fixed_size()[axis];
-            int target_size = fs ? fs : ps;
+         for (int phase = 0; phase < 2; ++phase) {
+            for (auto pair : m_anchor) {
+               Widget* pwidgetChild = pair.m_element1;
+               if (!pwidgetChild->visible() || dynamic_cast<const Window*>(pwidgetChild) != nullptr)
+                  continue;
+               Anchor& anchor = pair.m_element2;
+               if ((anchor.size[iAxisIndex] == 1) != (phase == 0))
+                  continue;
 
-            if (anchor.pos[axis] + anchor.size[axis] > (int)grid.size())
-               throw std::runtime_error(
-                  "Advanced grid layout: widget is out of bounds: " +
-                  (::string)anchor);
+               i32 sizeTarget;
 
-            int current_size = 0;
-            float total_stretch = 0;
-            for (int i = anchor.pos[axis];
-               i < anchor.pos[axis] + anchor.size[axis]; ++i) {
-               if (sizes[i] == 0 && anchor.size[axis] == 1)
-                  grid[i] = std::max(grid[i], target_size);
-               current_size += grid[i];
-               total_stretch += stretch[i];
+               auto sizeFixed = pwidgetChild->fixed_size()[iAxisIndex];
+
+               if (sizeFixed > 0)
+               {
+
+                  sizeTarget = sizeFixed;
+
+               }
+               else
+               {
+
+                  sizeTarget = pwidgetChild->preferred_size(pcontext)[iAxisIndex];
+
+               }
+
+               if (anchor.pos[iAxisIndex] + anchor.size[iAxisIndex] > (int)grid.size())
+                  throw std::runtime_error(
+                     "Advanced grid layout: pwidget is out of bounds: " +
+                     (::string)anchor);
+
+               int current_size = 0;
+               float total_stretch = 0;
+               for (int i = anchor.pos[iAxisIndex];
+                  i < anchor.pos[iAxisIndex] + anchor.size[iAxisIndex]; ++i) {
+                  if (sizes[i] == 0 && anchor.size[iAxisIndex] == 1)
+                     grid[i] = ::maximum(grid[i], sizeTarget);
+                  current_size += grid[i];
+                  total_stretch += stretch[i];
+               }
+               if (sizeTarget <= current_size)
+                  continue;
+               if (total_stretch == 0)
+                  throw std::runtime_error(
+                     "Advanced grid layout: no space to place pwidget: " +
+                     (::string)anchor);
+               float amt = (sizeTarget - current_size) / total_stretch;
+               for (int i = anchor.pos[iAxisIndex];
+                  i < anchor.pos[iAxisIndex] + anchor.size[iAxisIndex]; ++i)
+                  grid[i] += (int)std::round(amt * stretch[i]);
             }
-            if (target_size <= current_size)
-               continue;
-            if (total_stretch == 0)
-               throw std::runtime_error(
-                  "Advanced grid layout: no space to place widget: " +
-                  (::string)anchor);
-            float amt = (target_size - current_size) / total_stretch;
-            for (int i = anchor.pos[axis];
-               i < anchor.pos[axis] + anchor.size[axis]; ++i)
-               grid[i] += (int)std::round(amt * stretch[i]);
          }
+
+         auto current_size = grid.get_sum();
+
+         float total_stretch = stretch.get_sum();
+
+         if (current_size >= container_size[iAxisIndex] || total_stretch == 0)
+         {
+
+            continue;
+
+         }
+
+         float amt = (container_size[iAxisIndex] - current_size) / total_stretch;
+
+         for (::index i = 0; i < grid.size(); ++i)
+         {
+
+            grid[i] += (int)std::round(amt * stretch[i]);
+
+         }
+
       }
 
-      int current_size = std::accumulate(grid.begin(), grid.end(), 0);
-      float total_stretch = std::accumulate(stretch.begin(), stretch.end(), 0.0f);
-      if (current_size >= container_size[axis] || total_stretch == 0)
-         continue;
-      float amt = (container_size[axis] - current_size) / total_stretch;
-      for (::index i = 0; i < grid.size(); ++i)
-         grid[i] += (int)std::round(amt * stretch[i]);
    }
-}
-
 
 
 } // namespace nanoui

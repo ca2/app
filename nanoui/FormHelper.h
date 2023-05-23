@@ -1,6 +1,6 @@
 /*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -100,11 +100,11 @@ NAMESPACE_END(detail)
  * \rst
  * .. code-block:: cpp
  *
- *    // [ ... initialize NanoGUI, construct screen ... ]
+ *    // [ ... initialize NanoGUI, construct pscreen ... ]
  *
- *    FormHelper* h = memory_new FormHelper(screen);
+ *    FormHelper* h = memory_new FormHelper(pscreen);
  *
- *    // Add a memory_new windows widget
+ *    // Add a memory_new windows pwidget
  *    h->add_window(vector2_i32(10,10),"Menu");
  *
  *    // Start a memory_new group
@@ -126,8 +126,8 @@ NAMESPACE_END(detail)
  */
    class FormHelper {
    public:
-      /// Create a helper class to construct NanoGUI widgets on the given screen
-      FormHelper(Screen * screen) : m_screen(screen) { }
+      /// Create a helper class to construct NanoGUI widgets on the given pscreen
+      FormHelper(Screen * pscreen) : m_screen(pscreen) { }
 
       /// Add a memory_new top-level window
       Window * add_window(const vector2_i32 & pos,
@@ -154,34 +154,34 @@ NAMESPACE_END(detail)
          return label;
       }
 
-      /// Add a memory_new data widget controlled using custom getter/setter functions
+      /// Add a memory_new data pwidget controlled using custom getter/setter functions
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label, const std::function<void(const Type &)> & setter,
             const std::function<Type()> & getter, bool editable = true) {
          Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
-         auto widget = memory_new detail::FormWidget<Type>(m_window);
-         auto refresh = [widget, getter] {
-            Type value = getter(), current = widget->value();
+         auto pwidget = memory_new detail::FormWidget<Type>(m_window);
+         auto refresh = [pwidget, getter] {
+            Type value = getter(), current = pwidget->value();
             if (value != current)
-               widget->set_value(value);
+               pwidget->set_value(value);
          };
          refresh();
-         widget->set_callback(setter);
-         widget->set_editable(editable);
-         widget->set_font_size((float)m_widget_font_size);
-         vector2_i32 fs = widget->fixed_size();
-         widget->set_fixed_size(vector2_i32(fs.x() != 0 ? fs.x() : m_fixed_size.x(),
-            fs.y() != 0 ? fs.y() : m_fixed_size.y()));
+         pwidget->set_callback(setter);
+         pwidget->set_editable(editable);
+         pwidget->set_font_size((float)m_widget_font_size);
+         vector2_i32 sizeFixed = pwidget->fixed_size();
+         pwidget->set_fixed_size(vector2_i32(sizeFixed.x() != 0 ? sizeFixed.x() : m_fixed_size.x(),
+            sizeFixed.y() != 0 ? sizeFixed.y() : m_fixed_size.y()));
          m_refresh_callbacks.add(refresh);
          if (m_layout->row_count() > 0)
             m_layout->append_row(m_variable_spacing);
          m_layout->append_row(0);
          m_layout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1));
-         m_layout->set_anchor(widget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
-         return widget;
+         m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
+         return pwidget;
       }
 
-      /// Add a memory_new data widget that exposes a raw variable in memory
+      /// Add a memory_new data pwidget that exposes a raw variable in memory
       template <typename Type> detail::FormWidget<Type> *
          add_variable(const ::scoped_string & label, Type & value, bool editable = true) {
          return add_variable<Type>(label,
@@ -203,16 +203,16 @@ NAMESPACE_END(detail)
          return button;
       }
 
-      /// Add an arbitrary (optionally labeled) widget to the layout
-      void add_widget(const ::scoped_string & label, Widget * widget) {
+      /// Add an arbitrary (optionally labeled) pwidget to the layout
+      void add_widget(const ::scoped_string & label, Widget * pwidget) {
          m_layout->append_row(0);
          if (label == "") {
-            m_layout->set_anchor(widget, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1, 3, 1));
+            m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1, 3, 1));
          }
          else {
             Label * label_w = memory_new Label(m_window, label, m_label_font_name, m_label_font_size);
             m_layout->set_anchor(label_w, AdvancedGridLayout::Anchor(1, m_layout->row_count() - 1));
-            m_layout->set_anchor(widget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
+            m_layout->set_anchor(pwidget, AdvancedGridLayout::Anchor(3, m_layout->row_count() - 1));
          }
       }
 
@@ -335,7 +335,7 @@ public:
    T value() const { return (T)selected_index(); }
 
    /// Pass-through function for \ref nanoui::ComboBox::set_selected_index.
-   void set_value(T value) { set_selected_index((int)value); m_selected_index = (int)value; }
+   void set_value(T value) { set_selected_index((int)value); m_iSelectedIndex = (int)value; }
 
    /// Pass-through function for \ref nanoui::ComboBox::set_callback.
    void set_callback(const std::function<void(const T &)> & cb) {
@@ -393,7 +393,7 @@ public:
    FormWidget(Widget * p) : ColorPicker(p) { }
 
    /// Pass-through function for \ref nanoui::ColorPicker::set_color.
-   void set_value(const ::color::color & c) { set_color(c); }
+   void set_value(const ::color::color & pwidgetChild) { set_color(pwidgetChild); }
 
    /// Pass-through function for \ref nanoui::Widget::set_enabled.
    void set_editable(bool e) { set_enabled(e); }

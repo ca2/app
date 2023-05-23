@@ -112,7 +112,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
    return ::make_pair{ (typename std::make_unsigned<SIGNED>::type) ((bNegative = i < 0) ? -i : i), bNegative };
 
 }
-//::std::pair<int, int> ia;
+//::::pair<int, int> ia;
 //inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //

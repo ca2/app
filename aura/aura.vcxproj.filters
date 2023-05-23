@@ -851,12 +851,6 @@
     <ClInclude Include="user\user\message_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\message_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\message_window_listener.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\notify_icon.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>

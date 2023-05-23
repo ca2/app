@@ -1,8 +1,8 @@
 /*
-    src/m_pcheckbox.cpp -- Two-state check box widget
+    src/m_pcheckbox.cpp -- Two-state check box pwidget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -23,7 +23,7 @@ namespace nanoui
       : Widget(parent), m_caption(caption), m_bChecked(false), m_callback(callback) 
    {
    
-      m_icon_extra_scale = 1.2f; // widget override
+      m_icon_extra_scale = 1.2f; // pwidget override
 
    }
 

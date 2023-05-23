@@ -776,6 +776,9 @@ namespace user
       virtual void set_need_save_form_data() override;
       //virtual bool commit_sketch();
       virtual void post_redraw(bool bAscendants = true) override;
+      virtual bool should_redraw_on_mouse_activate();
+      virtual bool should_redraw_on_mouse_hover();
+      virtual bool should_redraw_on_hover(::item * pitem);
       virtual void show_window();
 
 
@@ -2120,6 +2123,13 @@ namespace user
       //using ::aura::drawable::on_hit_test;
       ::item_pointer on_hit_test(const ::point_i32 & point, e_zorder ezorder) override;
 
+
+      virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
+
+      virtual ::item_pointer on_default_bottom_right_resize_hit_test(const ::point_i32& point, e_zorder ezorder);
+
+      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32& point, e_zorder ezorder);
+
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
@@ -2415,6 +2425,9 @@ namespace user
 //         //const ::array < ::pair < ::string, ::string > >& filetypes,
 //                              const ::function < void(const ::file::path &) >& function);
 //                              //,       bool save);
+
+      
+      
 
 
    };

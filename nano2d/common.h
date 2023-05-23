@@ -275,7 +275,7 @@ class Window;
  */
 //NANOUI_EXPORT void pick_single_file(
 //    void * poswindow,
-//    const ::array<std::pair<::string, ::string>> & filetypes,
+//    const ::array<::pair<::string, ::string>> & filetypes,
 //    const ::function < void(const::string &) > & promisseFile,
 //    bool save);
 
@@ -295,10 +295,10 @@ NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & pa
  * implements this function right now. All other platforms return <tt>(false,
  * false)</tt>.
  *
- * \return A <tt>std::pair</tt> with two boolean values. The first indicates
+ * \return A <tt>::pair</tt> with two boolean values. The first indicates
  * 10-bit color support, and the second indicates EDR support.
  */
-//extern NANOUI_EXPORT std::pair<bool, bool> test_10bit_edr_support();
+//extern NANOUI_EXPORT ::pair<bool, bool> test_10bit_edr_support();
 
 /**
  * \brief Open a native file open dialog, which allows multiple selection.
@@ -317,7 +317,7 @@ NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & pa
  */
 extern NANOUI_EXPORT void pick_multiple_file(
     void * poswindow, 
-    const ::array<std::pair<::string, ::string>> & filetypes, 
+    const ::array<::pair<::string, ::string>> & filetypes, 
     ::std::function < void(const ::array<::string> &) > promisseFiles);
 
 
@@ -346,7 +346,7 @@ extern NANOUI_EXPORT ::string get_utf8_character(uint32_t c);
 
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
-//extern NANOUI_EXPORT ::array<std::pair<int, ::string>>
+//extern NANOUI_EXPORT ::array<::pair<int, ::string>>
 //load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)

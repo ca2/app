@@ -30,11 +30,17 @@ struct vector_base
    static constexpr size_t SIZE = t_iSize;
 
 
-   vector_base() { }
+   vector_base():
+      vector_base(COORDINATE{})
+   { 
+   
+   }
+
+   vector_base(enum_no_initialize) { }
 
    vector_base(const vector_base&) = default;
 
-   template <typename T,
+   template <primitive_number T,
       std::enable_if_t<T::SIZE == SIZE &&
       std::is_same_v<typename T::COORDINATE, COORDINATE>, int> = 0>
    vector_base(const T & a) {
@@ -135,6 +141,142 @@ struct vector_base
       return true;
    }
 
+
+   template < typename PREDICATE >
+   bool is_every(PREDICATE predicate) const
+   {
+
+      for (size_t i = 0; i < SIZE; ++i)
+      {
+
+         if (!predicate(m_coordinatea[i]))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+   
+   bool is_empty() const
+   {
+
+      return is_every([](auto coordinate) {return coordinate == COORDINATE{}; });
+
+   }
+
+
+   bool is_set() const
+   {
+
+      return !is_empty();
+
+   }
+
+
+   bool is_all_set() const
+   {
+
+      return is_every([](auto coordinate) {return coordinate != COORDINATE{}; });
+
+   }
+
+
+   bool is_all_positive() const
+   {
+
+      return is_every([](auto coordinate) {return coordinate > COORDINATE{}; });
+
+   }
+
+
+   template < typename PREDICATE >
+   vector_base prefer_self_coordinate_if(const vector_base &vectorOther, PREDICATE predicate) const
+   {
+
+      vector_base vector;
+
+      for (size_t i = 0; i < SIZE; ++i)
+      {
+
+         if (predicate(m_coordinatea[i]))
+         {
+
+            vector[i] = m_coordinatea[i];
+
+         }
+         else
+         {
+
+            vector[i] = vectorOther.m_coordinatea[i];
+
+         }
+
+      }
+
+      return vector;
+
+   }
+
+
+   vector_base prefer_self_coordinate_if_set(const vector_base& vectorOther) const
+   {
+
+      return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate != 0; });
+
+   }
+
+
+   vector_base prefer_self_coordinate_if_positive(const vector_base& vectorOther) const
+   {
+
+      return prefer_self_coordinate_if(vectorOther, [](auto coordinate) {return coordinate > COORDINATE{}; });
+
+   }
+
+
+   template < typename PREDICATE, typename SOURCE_PREDICATE >
+   vector_base pred_prefer_self_coordinate_if(PREDICATE predicate, SOURCE_PREDICATE sourcepredicate) const
+   {
+
+      if (is_every(predicate))
+      {
+
+         return *this;
+
+      }
+
+      auto vectorOther = sourcepredicate();
+
+      return prefer_self_coordinate_if(vectorOther, predicate);
+
+   }
+
+
+   template < typename SOURCE_PREDICATE >
+   vector_base pred_prefer_self_coordinate_if_set(SOURCE_PREDICATE sourcepredicate) const
+   {
+
+      return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate != COORDINATE{}; }, sourcepredicate);
+
+   }
+
+
+   template < typename SOURCE_PREDICATE >
+   vector_base pred_prefer_self_coordinate_if_positive(SOURCE_PREDICATE sourcepredicate) const
+   {
+
+      return pred_prefer_self_coordinate_if([](auto coordinate) {return coordinate > COORDINATE{}; }, sourcepredicate);
+
+   }
+
+
+
    constexpr bool operator!=(const vector_base& a) const { return !operator==(a); }
 
    constexpr const COORDINATE& operator[](size_t i) const { return m_coordinatea[i]; }
@@ -161,36 +303,83 @@ struct vector_base
    template <size_t S = SIZE, std::enable_if_t<(S >= 4), int> = 0>
    COORDINATE& w() { return m_coordinatea[3]; }
 
+   vector_base maximum(const vector_base & vector) const
+   {
+
+      vector_base result;
+
+      for (size_t i = 0; i < SIZE; ++i)
+      {
+
+         result.m_coordinatea[i] = ::maximum(m_coordinatea[i], vector.m_coordinatea[i]);
+
+      }
+
+      return result;
+
+   }
+
+   vector_base minimum(const vector_base& vector) const
+   {
+
+      vector_base result;
+
+      for (size_t i = 0; i < SIZE; ++i)
+      {
+
+         result.m_coordinatea[i] = ::minimum(m_coordinatea[i], vector.m_coordinatea[i]);
+
+      }
+
+      return result;
+
+   }
+
+
+
+   COORDINATE dot(const vector_base & vector) const
+   {
+
+      COORDINATE result = m_coordinatea[0] * vector.m_coordinatea[0];
+
+      for (size_t i = 1; i < SIZE; ++i)
+      {
+
+         result += m_coordinatea[i] * vector.m_coordinatea[i];
+
+      }
+
+      return result;
+
+   }
+
+
+   COORDINATE squared_normal()  const
+   {
+
+      return dot(*this);
+
+   }
+
+
+   COORDINATE normal() const
+   {
+      
+      return ::sqrt(squared_normal());
+
+   }
+
+   vector_base normalize() const
+   {
+
+      return *this / norm(*this);
+
+   }
+
 
 };
 
 
-template <typename COORDINATE, size_t SIZE>
-COORDINATE dot(const vector_base<COORDINATE, SIZE>& a1, const vector_base<COORDINATE, SIZE>& a2) {
-   COORDINATE result = a1.m_coordinatea[0] * a2.m_coordinatea[0];
-   for (size_t i = 1; i < SIZE; ++i)
-      result += a1.m_coordinatea[i] * a2.m_coordinatea[i];
-   return result;
-}
-
-template <typename COORDINATE, size_t SIZE>
-COORDINATE squared_norm(const vector_base<COORDINATE, SIZE>& a) {
-   COORDINATE result = a.m_coordinatea[0] * a.m_coordinatea[0];
-   for (size_t i = 1; i < SIZE; ++i)
-      result += a.m_coordinatea[i] * a.m_coordinatea[i];
-   return result;
-}
-
-template <typename COORDINATE, size_t SIZE>
-COORDINATE norm(const vector_base<COORDINATE, SIZE>& a)
-{
-   return ::sqrt(squared_norm(a));
-}
-
-template <typename COORDINATE, size_t SIZE>
-vector_base<COORDINATE, SIZE> normalize(const vector_base<COORDINATE, SIZE>& a) {
-   return a / norm(a);
-}
 
 template <typename COORDINATE>
 vector_base<COORDINATE, 3> cross(const vector_base<COORDINATE, 3>& a, const vector_base<COORDINATE, 3>& b) {
@@ -201,21 +390,15 @@ vector_base<COORDINATE, 3> cross(const vector_base<COORDINATE, 3>& a, const vect
    );
 }
 
-template <typename COORDINATE, size_t SIZE>
-vector_base<COORDINATE, SIZE> max(const vector_base<COORDINATE, SIZE>& a1, const vector_base<COORDINATE, SIZE>& a2) {
-   vector_base<COORDINATE, SIZE> result;
-   for (size_t i = 0; i < SIZE; ++i)
-      result.m_coordinatea[i] = std::max(a1.m_coordinatea[i], a2.m_coordinatea[i]);
-   return result;
-}
 
-template <typename COORDINATE, size_t SIZE>
-vector_base<COORDINATE, SIZE> min(const vector_base<COORDINATE, SIZE>& a1, const vector_base<COORDINATE, SIZE>& a2) {
-   vector_base<COORDINATE, SIZE> result;
-   for (size_t i = 0; i < SIZE; ++i)
-      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
-   return result;
-}
+
+//template <typename COORDINATE, size_t SIZE>
+//vector_base<COORDINATE, SIZE> min(const vector_base<COORDINATE, SIZE>& a1, const vector_base<COORDINATE, SIZE>& a2) {
+//   vector_base<COORDINATE, SIZE> result;
+//   for (size_t i = 0; i < SIZE; ++i)
+//      result.m_coordinatea[i] = std::min(a1.m_coordinatea[i], a2.m_coordinatea[i]);
+//   return result;
+//}
 
 // Import some common Enoki types
 using vector2_i32 = vector_base<::i32, 2>;

@@ -44,7 +44,7 @@ namespace nanoui
       }
 
       void set_value(Scalar value) {
-         Scalar clamped_value = std::min(std::max(value, m_iMinimumValue), m_iMaximumValue);
+         Scalar clamped_value = ::minimum(::maximum(value, m_iMinimumValue), m_iMaximumValue);
          TextBox::set_value(::as_string(clamped_value));
       }
 

@@ -1,6 +1,6 @@
 ﻿/*
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
-    The widget drawing code is based on the NanoVG demo application
+    The pwidget drawing code is based on the NanoVG demo application
     by Mikko Mononen.
 
     All rights reserved. Use of this source code is governed by a
@@ -24,7 +24,7 @@ namespace nanoui
 /**
  * \class CheckBox m_pcheckbox.h nanoui/m_pcheckbox.h
  *
- * \brief Two-state check box widget.
+ * \brief Two-state check box pwidget.
  *
  * \remark
  *     This class overrides \ref nanoui::Widget::mIconExtraScale to be ``1.2f``,

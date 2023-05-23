@@ -209,6 +209,23 @@ namespace user
    }
 
 
+
+   bool main_window::should_redraw_on_mouse_activate()
+   {
+
+      return false;
+
+   }
+
+
+   bool main_window::should_redraw_on_mouse_hover()
+   {
+
+      return false;
+
+   }
+
+
 } // namespace user
 
 
